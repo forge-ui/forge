@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
-const imgImage = "/images/hero.jpg";
-const img4ColUpsideDownBar = "/images/chart-card.png";
-const imgLargeBadgeImgStatisticCard = "/images/stat-card.png";
+import { asset } from "@/lib/asset";
+
+const imgImage = asset("/images/hero.jpg");
+const img4ColUpsideDownBar = asset("/images/chart-card.png");
+const imgLargeBadgeImgStatisticCard = asset("/images/stat-card.png");
 const imgVector4 = "https://www.figma.com/api/mcp/asset/c5a735e4-9e18-462b-9a48-3277980dbd3c";
 const imgVector5 = "https://www.figma.com/api/mcp/asset/c4897031-a106-4424-9ccd-3c023307e937";
 const imgIcon = "https://www.figma.com/api/mcp/asset/361caab7-76de-438a-8ba6-53bcd1d0c3d0";
