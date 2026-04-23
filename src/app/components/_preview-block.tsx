@@ -8,19 +8,22 @@ import { CopyLinear, CheckCircleLinear } from "solar-icon-set";
 import { cn } from "@forge-ui/react";
 
 const COLLAPSED_HEIGHT = 180;
+const COLLAPSIBLE_MIN_LINES = 7;
 
 export function PreviewBlock({
   children,
   code,
   className,
-  minHeight = 240,
+  minHeight = 160,
 }: {
   children: ReactNode;
   code: string;
   className?: string;
   minHeight?: number;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const lines = code.split("\n");
+  const collapsible = lines.length >= COLLAPSIBLE_MIN_LINES;
+  const [expanded, setExpanded] = useState(!collapsible);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -32,8 +35,6 @@ export function PreviewBlock({
       // no-op
     }
   };
-
-  const lines = code.split("\n");
 
   return (
     <div
@@ -84,17 +85,19 @@ export function PreviewBlock({
             </code>
           </pre>
 
-          {!expanded && (
+          {collapsible && !expanded && (
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-fg-grey-50 via-fg-grey-50/85 to-transparent" />
           )}
 
-          <button
-            type="button"
-            onClick={() => setExpanded((v) => !v)}
-            className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm transition-colors hover:bg-fg-grey-50"
-          >
-            {expanded ? "收起代码" : "展开代码"}
-          </button>
+          {collapsible && (
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm transition-colors hover:bg-fg-grey-50"
+            >
+              {expanded ? "收起代码" : "展开代码"}
+            </button>
+          )}
         </div>
       </div>
     </div>

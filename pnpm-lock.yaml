@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/manrope':
+        specifier: 5.2.8
+        version: 5.2.8
+      '@fontsource-variable/plus-jakarta-sans':
+        specifier: 5.2.8
+        version: 5.2.8
       '@forge-ui/react':
         specifier: ^0.1.0
         version: 0.1.0(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)
@@ -169,6 +175,12 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@fontsource-variable/manrope@5.2.8':
+    resolution: {integrity: sha512-nc9lOuCRz73UHnovDE2bwXUdghE2SEOc7Aii0qGe3CLyE03W1a7VnY5Z6euRiapiKbCkGS+eXbY3s/kvWeGeSw==}
+
+  '@fontsource-variable/plus-jakarta-sans@5.2.8':
+    resolution: {integrity: sha512-iQecBizIdZxezODNHzOn4SvvRMrZL/S8k4MEXGDynCmUrImVW0VmX+tIAMqnADwH4haXlHSXqMgU6+kcfBQJdw==}
+
   '@forge-ui/react@0.1.0':
     resolution: {integrity: sha512-C5iyluGuFCCBnibsOqpXGHwsoPA03G7yB2xgrKJOu3XBchfgIYj0faE7R8duMXw199ZuXMCJvrqiL3ffO7FI2w==, tarball: https://npm.pkg.github.com/download/@forge-ui/react/0.1.0/a100da50629312ae5cefbecaa61d9df1fcf77165}
     peerDependencies:
@@ -177,6 +189,9 @@ packages:
       react-dom: '>=19'
       solar-icon-set: ^2
       tailwindcss: ^4
+    peerDependenciesMeta:
+      next:
+        optional: true
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2136,13 +2151,18 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
+  '@fontsource-variable/manrope@5.2.8': {}
+
+  '@fontsource-variable/plus-jakarta-sans@5.2.8': {}
+
   '@forge-ui/react@0.1.0(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)':
     dependencies:
-      next: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       solar-icon-set: 2.0.1(react@19.2.4)
       tailwindcss: 4.2.2
+    optionalDependencies:
+      next: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
   '@humanfs/core@0.19.1': {}
 

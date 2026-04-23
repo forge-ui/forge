@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { asset } from "@/lib/asset";
 import {
   HomeSmileBoldDuotone,
   InboxBoldDuotone,
@@ -40,7 +41,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "topbar",
     showPageHeader: false,
     swatch: "bg-white border border-fg-grey-200",
-    thumbnail: "/images/showcase/dashboard-builder/light-topbar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/light-topbar.png"),
   },
   {
     slug: "light-sidebar",
@@ -51,7 +52,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "sidebar",
     showPageHeader: true,
     swatch: "bg-white border border-fg-grey-200",
-    thumbnail: "/images/showcase/dashboard-builder/light-sidebar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/light-sidebar.png"),
   },
   {
     slug: "purple-topbar",
@@ -62,7 +63,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "topbar",
     showPageHeader: false,
     swatch: "bg-fg-violet",
-    thumbnail: "/images/showcase/dashboard-builder/purple-topbar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/purple-topbar.png"),
   },
   {
     slug: "purple-sidebar",
@@ -73,7 +74,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "sidebar",
     showPageHeader: true,
     swatch: "bg-fg-violet",
-    thumbnail: "/images/showcase/dashboard-builder/purple-sidebar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/purple-sidebar.png"),
   },
   {
     slug: "blue-topbar",
@@ -84,7 +85,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "topbar",
     showPageHeader: false,
     swatch: "bg-blue-600",
-    thumbnail: "/images/showcase/dashboard-builder/blue-topbar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/blue-topbar.png"),
   },
   {
     slug: "blue-sidebar",
@@ -95,7 +96,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "sidebar",
     showPageHeader: true,
     swatch: "bg-blue-600",
-    thumbnail: "/images/showcase/dashboard-builder/blue-sidebar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/blue-sidebar.png"),
   },
   {
     slug: "black-topbar",
@@ -106,7 +107,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "topbar",
     showPageHeader: false,
     swatch: "bg-fg-black",
-    thumbnail: "/images/showcase/dashboard-builder/black-topbar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/black-topbar.png"),
   },
   {
     slug: "black-sidebar",
@@ -117,7 +118,7 @@ export const variants: BuilderVariant[] = [
     profilePosition: "sidebar",
     showPageHeader: true,
     swatch: "bg-fg-black",
-    thumbnail: "/images/showcase/dashboard-builder/black-sidebar.png",
+    thumbnail: asset("/images/showcase/dashboard-builder/black-sidebar.png"),
   },
 ];
 
@@ -138,14 +139,14 @@ export const favoriteItems: AppLayoutMenuItem[] = [
 ];
 
 export const profile: AppLayoutProfile = {
-  avatar: "/images/forge-logo.svg",
+  avatar: asset("/images/forge-logo.svg"),
   name: "John Doe Hoegan",
   role: "Manager",
 };
 
 export const teamMeta = {
   teamName: "Sugab's Team",
-  teamAvatar: "/images/forge-logo.svg",
+  teamAvatar: asset("/images/forge-logo.svg"),
   teamMemberCount: 24,
 };
 
@@ -154,7 +155,7 @@ export function findVariant(slug: string): BuilderVariant | undefined {
 }
 
 export function variantHref(slug: string): string {
-  return `/dashboard-builder/${slug}`;
+  return `/templates/dashboard-builder/${slug}`;
 }
 
 export const emptyContent: ReactNode = <div className="min-h-[calc(100vh-12rem)]" />;

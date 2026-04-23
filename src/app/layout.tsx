@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import type { CSSProperties } from "react";
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta-sans",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Forge",
   description: "SaaS Starter Kit",
 };
+
+const fontVariables = {
+  "--font-manrope": "'Manrope Variable', system-ui, sans-serif",
+  "--font-plus-jakarta-sans": "'Plus Jakarta Sans Variable', system-ui, sans-serif",
+} as CSSProperties;
 
 export default function RootLayout({
   children,
@@ -23,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${plusJakartaSans.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="zh" className="h-full antialiased" style={fontVariables} suppressHydrationWarning>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
