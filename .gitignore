@@ -49,4 +49,8 @@ figma-code/
 .spec-workflow/
 
 # 旧 git 历史备份（重 init 后保留本地回退）
-.git.old/
+.git.old*/
+
+# 本地 AI session 交接文档（不入仓）
+HANDOFF*.md
+AGENTS.local.md
