@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Forge 设计 token 与基础 body reset */
+@import "@forge-ui/react/styles.css";
+
+/* 让 Tailwind v4 扫描 @forge-ui/react 产物里的 utility class */
+@source "../../node_modules/@forge-ui/react/dist";

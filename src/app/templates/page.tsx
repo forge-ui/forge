@@ -1,0 +1,109 @@
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRightLinear } from "solar-icon-set";
+import { SiteHeader } from "@/app/_components/site-header";
+
+type ShowcaseItem = {
+  href: string;
+  title: string;
+  description: string;
+  thumbnail?: string;
+  thumbnails?: string[];
+};
+
+const items: ShowcaseItem[] = [
+  {
+    href: "/templates/ecommerce/products",
+    title: "Ecommerce Admin",
+    description:
+      "一套电商后台，管商品、订单、客户、分类、卖家，列表详情表单都齐了。",
+    thumbnail: "/images/showcase/ecommerce.png",
+  },
+  {
+    href: "/templates/dashboard-builder",
+    title: "Dashboard Builder",
+    description:
+      "8 种空白后台外壳，白紫蓝黑 × 顶栏/侧栏 Profile，挑一个当起点。",
+    thumbnail: "/images/showcase/dashboard-builder-hero.png",
+  },
+  {
+    href: "/templates/blank",
+    title: "空白模版",
+    description:
+      "最基础的后台外壳，左边导航 + 顶部标题栏，中间留白等你填。",
+    thumbnail: "/images/showcase/templates.png",
+  },
+  {
+    href: "/templates/auth/sign-in",
+    title: "Authentication",
+    description:
+      "登录、注册、忘记密码、重置密码四页一套，带第三方登录和邮箱验证。",
+    thumbnail: "/images/showcase/auth.png",
+  },
+];
+
+export default function ExamplesIndex() {
+  return (
+    <div className="flex min-h-screen flex-col bg-fg-grey-50">
+      <SiteHeader />
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12 lg:px-8">
+        <div className="flex flex-col gap-10">
+          <header className="flex flex-col gap-3">
+            <h1 className="text-4xl font-bold tracking-fg text-fg-black">Examples</h1>
+            <p className="max-w-2xl text-base leading-7 text-fg-grey-700">
+              用 Forge UI Kit 拼出来的示例项目。挑一个当起点复制改造，或者看它们怎么组合组件做业务。
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex flex-col gap-0 overflow-hidden rounded-3xl bg-white border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
+              >
+                <div className="relative aspect-video w-full overflow-hidden border-b border-fg-grey-200 bg-fg-grey-100">
+                  {item.thumbnails ? (
+                    <div className="absolute inset-0 grid grid-cols-4 gap-px bg-fg-grey-200">
+                      {item.thumbnails.slice(0, 4).map((src, i) => (
+                        <div key={i} className="relative overflow-hidden bg-white">
+                          <Image
+                            src={src}
+                            alt=""
+                            fill
+                            sizes="(max-width: 768px) 25vw, (max-width: 1024px) 12vw, 8vw"
+                            className="object-contain"
+                            unoptimized
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : item.thumbnail ? (
+                    <Image
+                      src={item.thumbnail}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover object-top"
+                      unoptimized
+                    />
+                  ) : null}
+                </div>
+                <div className="flex flex-col gap-3 p-6">
+                  <h2 className="text-xl font-bold tracking-fg text-fg-black">{item.title}</h2>
+                  <p className="text-sm leading-6 text-fg-grey-700 line-clamp-2">{item.description}</p>
+                  <div className="mt-2 flex items-center gap-1 text-sm font-semibold text-fg-violet">
+                    Open example
+                    <ArrowRightLinear size={16} className="transition-transform group-hover:translate-x-0.5" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
