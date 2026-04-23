@@ -4,10 +4,11 @@
 
 import { useState } from "react";
 import { EyeLinear, EyeClosedLinear, HeartBold } from "solar-icon-set";
+import { asset } from "@/lib/asset";
 
-const imgImage = "/images/hero.jpg";
-const img4ColUpsideDownBar = "/images/chart-card.png";
-const imgLargeBadgeImgStatisticCard = "/images/stat-card.png";
+const imgImage = asset("/images/hero.jpg");
+const img4ColUpsideDownBar = asset("/images/chart-card.png");
+const imgLargeBadgeImgStatisticCard = asset("/images/stat-card.png");
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +47,7 @@ export default function SignUpPage() {
             <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-[400px]">
               {/* Google */}
               <button className="border border-fg-grey-200 border-solid content-stretch flex gap-[8px] items-center justify-center overflow-clip pl-[14px] pr-[16px] py-[14px] relative rounded-full shrink-0 w-full cursor-pointer hover:bg-gray-50 transition-colors">
-                <img alt="" src="/images/brands/google.svg" className="size-[20px] shrink-0" />
+                <img alt="" src={asset("/images/brands/google.svg")} className="size-[20px] shrink-0" />
                 <span className="font-bold leading-5 text-fg-grey-700 text-sm tracking-fg whitespace-nowrap">
                   Register with Google
                 </span>
@@ -54,7 +55,7 @@ export default function SignUpPage() {
 
               {/* Facebook */}
               <button className="border border-fg-grey-200 border-solid content-stretch flex gap-[8px] items-center justify-center overflow-clip pl-[14px] pr-[16px] py-[14px] relative rounded-full shrink-0 w-full cursor-pointer hover:bg-gray-50 transition-colors">
-                <img alt="" src="/images/brands/facebook.svg" className="size-[20px] shrink-0" />
+                <img alt="" src={asset("/images/brands/facebook.svg")} className="size-[20px] shrink-0" />
                 <span className="font-bold leading-5 text-fg-grey-700 text-sm tracking-fg whitespace-nowrap">
                   Register with Facebook
                 </span>

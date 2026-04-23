@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { asset } from "@/lib/asset";
 import {
   DataTable,
   FullWidthTable,
@@ -187,7 +188,7 @@ const CODE_REG_TEXT = `<CellText>Title Here</CellText>
 const CODE_SQUARE_IMG = `<CellImageText src="/img.png" title="Title Here" subtitle="Subtext here" />`;
 
 const CODE_CIRCLE_IMG = `<CellImageText
-  src="/flag-au.png"
+  src={asset("/flag-au.png")}
   title="Australia"
   subtitle="ilahmbudi@mail.co..."
   rounded="full"
@@ -473,7 +474,7 @@ export default function TableCasePage() {
           <PreviewBlock code={CODE_SQUARE_IMG} minHeight={140}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
               <CellPreviewRow>
-                <CellImageText src="/images/stat-card.png" title="Handmade Pouch" subtitle="+3 other products" />
+                <CellImageText src={asset("/images/stat-card.png")} title="Handmade Pouch" subtitle="+3 other products" />
               </CellPreviewRow>
             </div>
           </PreviewBlock>
@@ -487,7 +488,7 @@ export default function TableCasePage() {
           <PreviewBlock code={CODE_CIRCLE_IMG} minHeight={140}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
               <CellPreviewRow>
-                <CellImageText src="/images/stat-card.png" title="Australia" subtitle="ilahmbudi@mail.co..." rounded="full" />
+                <CellImageText src={asset("/images/stat-card.png")} title="Australia" subtitle="ilahmbudi@mail.co..." rounded="full" />
               </CellPreviewRow>
             </div>
           </PreviewBlock>
