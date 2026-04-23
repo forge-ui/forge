@@ -27,6 +27,8 @@ export default function Page() {
   return <Button>Hello Forge</Button>;
 }`;
 
+const INSTALL_SKILL = `curl -fsSL https://forge-ui.github.io/forge/install-skill.sh | bash`;
+
 function Step({
   n,
   title,
@@ -118,6 +120,19 @@ export default function QuickStartPage() {
           }
           code={USE}
         />
+        <Step
+          n={5}
+          title="给 AI 装 skill（可选）"
+          caption={
+            <>
+              让 Claude Code / Cursor / Codex 自动按 Forge 规范拼页面——import 走{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui/react</code>，颜色走{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">fg-*</code> token，icon 走{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">solar-icon-set</code>，不会手搓 div 复刻。装完重启一下 agent 即可生效。
+            </>
+          }
+          code={INSTALL_SKILL}
+        />
       </div>
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-fg-grey-200 pt-6 text-sm">
@@ -132,6 +147,12 @@ export default function QuickStartPage() {
           className="font-semibold text-fg-grey-900 underline underline-offset-4 hover:text-fg-black"
         >
           遇到问题？
+        </Link>
+        <Link
+          href="/docs/ui-for-agents"
+          className="font-semibold text-fg-grey-900 underline underline-offset-4 hover:text-fg-black"
+        >
+          AI skill 说明
         </Link>
         <Link
           href="/components"
