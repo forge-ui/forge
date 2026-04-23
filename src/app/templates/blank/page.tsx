@@ -1,4 +1,5 @@
 import { AppLayout } from "@forge-ui/react";
+import { asset } from "@/lib/asset";
 import { sampleMenuItems, sampleFavoriteItems, sampleProfile } from "./_shared";
 
 export default function TemplatesPage() {
@@ -8,7 +9,7 @@ export default function TemplatesPage() {
       profilePosition="sidebar"
       accent="purple"
       teamName="Sugab's Team"
-      teamAvatar="/images/forge-logo.svg"
+      teamAvatar={asset("/images/forge-logo.svg")}
       teamMemberCount={24}
       menuItems={sampleMenuItems}
       favoriteItems={sampleFavoriteItems}
