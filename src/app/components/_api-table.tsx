@@ -11,7 +11,13 @@ export type ApiTableRow = {
 export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
   return (
     <div className="overflow-x-auto rounded-xl border border-fg-grey-200 bg-white">
-      <table className="w-full border-collapse text-left text-sm">
+      <table className="w-full table-fixed border-collapse text-left text-sm">
+        <colgroup>
+          <col className="w-[28%]" />
+          <col className="w-[26%]" />
+          <col className="w-[12%]" />
+          <col className="w-[34%]" />
+        </colgroup>
         <thead>
           <tr className="border-b border-fg-grey-200 bg-fg-grey-50">
             <th className="px-4 py-2.5 text-xs font-semibold uppercase tracking-fg text-fg-grey-700">
@@ -35,12 +41,12 @@ export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
               className="border-b border-fg-grey-200 last:border-0"
             >
               <td className="px-4 py-2.5 align-top">
-                <code className="font-mono text-[13px] text-fg-violet">
+                <code className="font-mono text-[13px] text-fg-violet break-words">
                   {row.attr}
                 </code>
               </td>
               <td className="px-4 py-2.5 align-top">
-                <code className="font-mono text-[12px] leading-relaxed text-fg-grey-900">
+                <code className="font-mono text-[12px] leading-relaxed text-fg-grey-900 break-words">
                   {row.type}
                 </code>
               </td>
@@ -49,7 +55,7 @@ export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
                   {row.defaultValue}
                 </code>
               </td>
-              <td className="px-4 py-2.5 align-top text-fg-grey-900">
+              <td className="px-4 py-2.5 align-top text-fg-grey-900 break-words">
                 {row.description}
               </td>
             </tr>

@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.8
         version: 5.2.8
       '@forge-ui/react':
-        specifier: ^0.1.0
-        version: 0.1.0(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)
+        specifier: ^0.1.1
+        version: 0.1.1(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)
       next:
         specifier: 16.2.2
         version: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -181,17 +181,14 @@ packages:
   '@fontsource-variable/plus-jakarta-sans@5.2.8':
     resolution: {integrity: sha512-iQecBizIdZxezODNHzOn4SvvRMrZL/S8k4MEXGDynCmUrImVW0VmX+tIAMqnADwH4haXlHSXqMgU6+kcfBQJdw==}
 
-  '@forge-ui/react@0.1.0':
-    resolution: {integrity: sha512-C5iyluGuFCCBnibsOqpXGHwsoPA03G7yB2xgrKJOu3XBchfgIYj0faE7R8duMXw199ZuXMCJvrqiL3ffO7FI2w==, tarball: https://npm.pkg.github.com/download/@forge-ui/react/0.1.0/a100da50629312ae5cefbecaa61d9df1fcf77165}
+  '@forge-ui/react@0.1.1':
+    resolution: {integrity: sha512-lZx+Z7FSgOxQO0tSVPhTTE8nHuDyPeCtpkZZtperIHw07HLiP6isMLcF7GHZmqwMFZIC371xlccl2XozU6o6sA==, tarball: https://npm.pkg.github.com/download/@forge-ui/react/0.1.1/a41963cb255f7044fbcd3268c72a5d0ad8a070dc}
     peerDependencies:
       next: '>=15'
       react: '>=19'
       react-dom: '>=19'
       solar-icon-set: ^2
       tailwindcss: ^4
-    peerDependenciesMeta:
-      next:
-        optional: true
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2155,14 +2152,13 @@ snapshots:
 
   '@fontsource-variable/plus-jakarta-sans@5.2.8': {}
 
-  '@forge-ui/react@0.1.0(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)':
+  '@forge-ui/react@0.1.1(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)':
     dependencies:
+      next: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       solar-icon-set: 2.0.1(react@19.2.4)
       tailwindcss: 4.2.2
-    optionalDependencies:
-      next: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
   '@humanfs/core@0.19.1': {}
 
