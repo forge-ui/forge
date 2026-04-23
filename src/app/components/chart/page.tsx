@@ -256,7 +256,7 @@ export default function ChartCasePage() {
         </SubSection>
 
         <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_TOOLTIP}>
+          <PreviewBlock code={CODE_TOOLTIP} minHeight={160}>
             <ChartTooltip
               items={[
                 { color: "bg-fg-violet", label: "Revenue", value: "$4,200", trend: "up" },
@@ -291,7 +291,7 @@ export default function ChartCasePage() {
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             带图标的 legend 行。<InlineCode>icon</InlineCode> 传 solar-icon-set 组件本身（不实例化）。
           </p>
-          <PreviewBlock code={CODE_LISTITEM}>
+          <PreviewBlock code={CODE_LISTITEM} minHeight={120}>
             <div className="w-72">
               <ChartListItem icon={WalletLinear} title="Revenue" subtitle="This month" value="$12,500" trend="+12.5%" trendDirection="up" />
             </div>
@@ -300,7 +300,7 @@ export default function ChartCasePage() {
         </SubSection>
 
         <SubSection title="ChartLegendItem" stack>
-          <PreviewBlock code={CODE_LEGEND}>
+          <PreviewBlock code={CODE_LEGEND} minHeight={120}>
             <div className="w-72">
               <ChartLegendItem color="bg-fg-violet" label="Revenue" value="$4,200" />
             </div>
@@ -309,7 +309,7 @@ export default function ChartCasePage() {
         </SubSection>
 
         <SubSection title="ChartValueRow" stack>
-          <PreviewBlock code={CODE_VALUEROW}>
+          <PreviewBlock code={CODE_VALUEROW} minHeight={120}>
             <div className="w-64">
               <ChartValueRow label="Revenue" value="$12,500" color="bg-fg-violet" />
             </div>
@@ -318,7 +318,7 @@ export default function ChartCasePage() {
         </SubSection>
 
         <SubSection title="ChartStatFooter" stack>
-          <PreviewBlock code={CODE_STATFOOTER}>
+          <PreviewBlock code={CODE_STATFOOTER} minHeight={140}>
             <div className="w-96">
               <ChartStatFooter
                 items={[
@@ -336,7 +336,7 @@ export default function ChartCasePage() {
       <Section title="Donut 系列" description="六种环形 chart：Meter（水平进度条）/ HalfDonut / DashedHalfDonut / Donut / Pie / MultilayerDonut。每个组件 props 各不相同，分别列出。">
         <SubSectionGrid cols={2}>
         <SubSection title="MeterChart" stack>
-          <PreviewBlock code={CODE_METER} minHeight={180}>
+          <PreviewBlock code={CODE_METER} minHeight={140}>
             <div className="w-96">
               <MeterChart segments={[{ value: 50 }, { value: 30 }, { value: 20 }]} trend="10%" trendDirection="up" subtitle="+$181 today" />
             </div>

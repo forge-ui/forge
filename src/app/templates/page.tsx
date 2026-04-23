@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightLinear } from "solar-icon-set";
 import { SiteHeader } from "@/app/_components/site-header";
+import { asset } from "@/lib/asset";
 
 type ShowcaseItem = {
   href: string;
@@ -17,28 +18,28 @@ const items: ShowcaseItem[] = [
     title: "Ecommerce Admin",
     description:
       "一套电商后台，管商品、订单、客户、分类、卖家，列表详情表单都齐了。",
-    thumbnail: "/images/showcase/ecommerce.png",
+    thumbnail: asset("/images/showcase/ecommerce.png"),
   },
   {
     href: "/templates/dashboard-builder",
     title: "Dashboard Builder",
     description:
       "8 种空白后台外壳，白紫蓝黑 × 顶栏/侧栏 Profile，挑一个当起点。",
-    thumbnail: "/images/showcase/dashboard-builder-hero.png",
+    thumbnail: asset("/images/showcase/dashboard-builder-hero.png"),
   },
   {
     href: "/templates/blank",
     title: "空白模版",
     description:
       "最基础的后台外壳，左边导航 + 顶部标题栏，中间留白等你填。",
-    thumbnail: "/images/showcase/templates.png",
+    thumbnail: asset("/images/showcase/templates.png"),
   },
   {
     href: "/templates/auth/sign-in",
     title: "Authentication",
     description:
       "登录、注册、忘记密码、重置密码四页一套，带第三方登录和邮箱验证。",
-    thumbnail: "/images/showcase/auth.png",
+    thumbnail: asset("/images/showcase/auth.png"),
   },
 ];
 

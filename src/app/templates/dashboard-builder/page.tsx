@@ -20,7 +20,7 @@ export default function DashboardBuilderGallery() {
           {variants.map((v) => (
             <Link
               key={v.slug}
-              href={`/dashboard-builder/${v.slug}`}
+              href={`/templates/dashboard-builder/${v.slug}`}
               className="group flex flex-col gap-0 overflow-hidden rounded-3xl bg-white border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
             >
               <div className="relative aspect-video w-full overflow-hidden border-b border-fg-grey-200 bg-fg-grey-100">
