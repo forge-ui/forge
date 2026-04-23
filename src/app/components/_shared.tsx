@@ -92,7 +92,7 @@ export function SubSectionGrid({
 }) {
   const colClass = cols === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2";
   return (
-    <div className={cn("grid grid-cols-1 items-start gap-x-6 gap-y-6", colClass, className)}>
+    <div className={cn("grid grid-cols-1 items-start gap-x-6 gap-y-6 [&>*]:min-w-0", colClass, className)}>
       {children}
     </div>
   );
