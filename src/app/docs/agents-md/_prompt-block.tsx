@@ -5,6 +5,7 @@ import { CopyLinear, CheckCircleLinear } from "solar-icon-set";
 import { cn } from "@forge-ui/react";
 
 const COLLAPSED_MAX_HEIGHT = 320;
+const COLLAPSE_THRESHOLD_LINES = 12;
 
 export function PromptBlock({ content }: { content: string }) {
   const [expanded, setExpanded] = useState(false);
@@ -21,6 +22,8 @@ export function PromptBlock({ content }: { content: string }) {
   };
 
   const lines = content.split("\n");
+  const collapsible = lines.length > COLLAPSE_THRESHOLD_LINES;
+  const showCollapsed = collapsible && !expanded;
 
   return (
     <div className="relative overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
@@ -39,7 +42,7 @@ export function PromptBlock({ content }: { content: string }) {
 
       <div
         className="relative overflow-hidden transition-[max-height] duration-200"
-        style={{ maxHeight: expanded ? 20000 : COLLAPSED_MAX_HEIGHT }}
+        style={{ maxHeight: showCollapsed ? COLLAPSED_MAX_HEIGHT : 20000 }}
       >
         <pre className="overflow-x-auto py-4 text-[13px] leading-relaxed text-fg-black">
           <code className="block font-mono">
@@ -56,22 +59,21 @@ export function PromptBlock({ content }: { content: string }) {
           </code>
         </pre>
 
-        {!expanded && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/85 to-transparent" />
-        )}
-
-        {!expanded && (
-          <button
-            type="button"
-            onClick={() => setExpanded(true)}
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm hover:bg-fg-grey-50 transition-colors"
-          >
-            展开代码
-          </button>
+        {showCollapsed && (
+          <>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/85 to-transparent" />
+            <button
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm hover:bg-fg-grey-50 transition-colors"
+            >
+              展开代码
+            </button>
+          </>
         )}
       </div>
 
-      {expanded && (
+      {collapsible && expanded && (
         <div className="flex justify-center border-t border-fg-grey-200 bg-fg-grey-50 py-2.5">
           <button
             type="button"

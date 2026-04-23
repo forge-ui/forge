@@ -16,6 +16,16 @@ Forge UI Kit (`@forge-ui/react`) is a ToB-focused design system for Next.js 16 +
 
 ---
 
+## One-line install (this skill itself)
+
+```bash
+curl -fsSL https://forge-ui.github.io/forge/install-skill.sh | bash
+```
+
+Drops this skill into `~/.claude/skills/forge-react/`. Override target with `CLAUDE_SKILLS_DIR=~/.cursor/skills bash` for other tools. Re-run any time to update.
+
+---
+
 ## Critical — read before writing code
 
 1. **Components come from `@forge-ui/react` only.** Do **not** hand-roll `<div className="bg-...">` to reproduce what the Kit already has. Kit doesn't have what you need → stop and ask; don't improvise.

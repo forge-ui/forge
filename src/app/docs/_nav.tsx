@@ -22,6 +22,8 @@ export const docsNavGroups: NavGroup[] = [
     items: [
       { href: "/docs", label: "介绍" },
       { href: "/docs/quick-start", label: "快速开始" },
+      { href: "/docs/installation", label: "详细安装" },
+      { href: "/docs/troubleshoot", label: "故障排查" },
     ],
   },
   {
