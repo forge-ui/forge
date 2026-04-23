@@ -1,59 +1,42 @@
-# Forge — SaaS Starter Kit
+# Forge
 
-基于 Figma 设计稿还原的生产级 SaaS 脚手架，面向 ToB 场景。单 App + Route Groups 架构，clone 即跑。
+Forge UI Kit 的文档站 + 组件 showcase。只消费组件，不产组件。
 
-## 技术栈
+- **线上**: https://forge-ui.github.io/forge/
+- **UI Kit 包**: [`@forge-ui/react`](https://github.com/forge-ui/forge-core)（GitHub Packages, private）
+- **对外 AI 协作指引**: `/docs/agents-md`
 
-- Next.js 16 + React 19
-- Tailwind CSS v4
-- TypeScript
-- 60+ UI 组件（`src/components/ui`）
-- 24 个组件用例（`src/app/(showcase)/cases`）
-- AI 驱动工作流：Claude Code / Cursor / Codex 接入
+## 这个仓里有什么
 
-## 启动
+```
+src/app/
+├── docs/          接入文档（quick-start / agents-md / ui-for-agents）
+├── cases/         每个组件一个示例页，铺 color / size / variant 矩阵
+├── components/    组件规格页（props、变体说明）
+└── templates/     业务模板：auth 套件 / ecommerce 后台 / dashboard-builder
+```
+
+组件实现、设计 token、布局壳都在另一个仓 [`forge-ui/forge-core`](https://github.com/forge-ui/forge-core)（发布为 `@forge-ui/react`）。本仓只是它的消费者和展示台。
+
+## 本地起站
 
 ```bash
+# 1. 拿一个有 read:packages scope 的 GitHub PAT
+export GITHUB_TOKEN=ghp_xxx
+
+# 2. 装依赖（从 GitHub Packages 拉 @forge-ui/react）
 pnpm install
+
+# 3. 起 dev
 pnpm dev --port 3456 --hostname 0.0.0.0
 ```
 
-访问 http://localhost:3456 查看 Showcase。
-
-## 目录
-
-| 路径 | 用途 |
-|---|---|
-| `src/components/ui/` | 60+ UI 组件 |
-| `src/components/layouts/` | AppLayout 等布局模板 |
-| `src/app/(showcase)/cases/` | 24 个组件用例页 |
-| `src/app/(showcase)/docs/` | 文档站（Skill / AGENTS.md 接入） |
-| `src/app/app/ecommerce/` | 业务模板（categories/customers/orders/products/sellers） |
-| `src/app/{sign-in,sign-up,forgot-password,reset-password}/` | 登录套件 |
-| `src/app/templates/` | 模板总览 |
-| `src/app/globals.css` | 设计 token（`--fg-*` 色板 + 字体） |
-| `figma-code/` | Figma Dev Mode 导出资料 |
-
-## 设计资产
-
-- 官网：[Majin UI Kit](https://www.figma.com/design/3MG7QpDykk6tJ2V7gMCL6V/Majin-UI)
-- 后台：[Protask UI Kit](https://www.figma.com/design/NURk2MWDU9a86hgHBKbE5M/Protask-UI-Kit)
-
-## AI 接入
-
-项目面向 AI 助手协作开发，提供两种路线：
-
-- **Skill（推荐）** — 按需加载，上下文更省。详见 `/docs/ui-for-agents`
-- **AGENTS.md** — 单文件粘贴，轻量试用。详见 `/docs/agents-md`
-
-顶层 `AGENTS.md` 是 Forge 内部开发时给 AI 的复核 / 重写 case 工作流规则。
-
-## 架构决策
-
-- 单 App + Route Groups，不用 monorepo（buyer clone 即跑）
-- 不做租户 / 组织模型（简单就是卖点）
-- 多仓库：`forge`（基础） + `forge-xxx`（垂直模板），包含完整代码不依赖 submodule
+访问 http://localhost:3456。前提是你的账号被加进了 forge-ui 的 team，否则包拉不下来。
 
 ## 部署
 
-Vercel 一键部署，参考 [Next.js 部署文档](https://nextjs.org/docs/app/building-your-application/deploying)。
+推 `main` 分支 → `.github/workflows/pages.yml` 自动 build + 部署到 GitHub Pages。`next.config.ts` 里 `output: "export"`，产物走 GitHub Pages artifact。
+
+## 技术栈
+
+Next.js 16 (App Router, `output: export`) · React 19 · Tailwind CSS v4 · TypeScript
