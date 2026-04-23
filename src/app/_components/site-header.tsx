@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MagniferLinear } from "solar-icon-set";
 import { cn } from "@forge-ui/react";
+import { asset } from "@/lib/asset";
 
 const tabs = [
   { href: "/docs", label: "文档" },
@@ -22,7 +23,7 @@ export function SiteHeader() {
         <div className="flex w-64 shrink-0 items-center px-4">
           <Link href="/" className="flex items-center gap-2 px-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/forge-logo.svg" alt="Forge" className="size-7" />
+            <img src={asset("/images/forge-logo.svg")} alt="Forge" className="size-7" />
             <span className="font-display text-lg font-bold tracking-fg text-fg-black">
               Forge
             </span>

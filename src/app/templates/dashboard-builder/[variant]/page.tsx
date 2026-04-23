@@ -1,51 +1,15 @@
-"use client";
+import { variants } from "../_variants";
+import { VariantContent } from "./_content";
 
-import { notFound, useParams } from "next/navigation";
-import { AppLayout } from "@forge-ui/react";
-import {
-  findVariant,
-  menuItems,
-  favoriteItems,
-  profile,
-  teamMeta,
-} from "../_variants";
+export function generateStaticParams() {
+  return variants.map((v) => ({ variant: v.slug }));
+}
 
-export default function DashboardBuilderVariantPage() {
-  const params = useParams<{ variant: string }>();
-  const v = findVariant(params.variant);
-  if (!v) notFound();
+type Props = {
+  params: Promise<{ variant: string }>;
+};
 
-  const headerProps = v.showPageHeader
-    ? {
-        pageHeaderVariant: "detail" as const,
-        pageTitle: "Page Title",
-        secondaryAction: { label: "Tertiary" },
-        primaryAction: { label: "Primary" },
-      }
-    : {};
-
-  const currentHref = `/dashboard-builder/${v.slug}`;
-  const activeMenuItems = menuItems.map((item, i) =>
-    i === 0 ? { ...item, href: currentHref } : item,
-  );
-
-  return (
-    <AppLayout
-      mode={v.mode}
-      profilePosition={v.profilePosition}
-      accent={v.accent}
-      teamName={teamMeta.teamName}
-      teamAvatar={teamMeta.teamAvatar}
-      teamMemberCount={teamMeta.teamMemberCount}
-      menuItems={activeMenuItems}
-      favoriteItems={favoriteItems}
-      profile={profile}
-      notifications={99}
-      messages={99}
-      searchPlaceholder="Search..."
-      {...headerProps}
-    >
-      <div className="min-h-[calc(100vh-12rem)]" />
-    </AppLayout>
-  );
+export default async function DashboardBuilderVariantPage({ params }: Props) {
+  const { variant } = await params;
+  return <VariantContent variant={variant} />;
 }
