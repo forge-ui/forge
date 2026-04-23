@@ -17,7 +17,10 @@ Forge 把这套东西一次性打包：
 - **75+ 组件**，按 Figma 源稿（Protask + Majin UI Kit）1:1 还原，不是"大概像就行"
 - **分层设计 token**：8 色 × 10 shade 的 primitive 层 + 语义层（`bg-accent` / `text-muted` / `border-divider`），Tailwind v4 原生集成
 - **现成业务模板**：电商后台（订单 / 商品 / 客户 / 分类 / 卖家）、dashboard builder、登录套件
-- **AI 协作友好**：一份 `/docs/agents-md` 指引，Claude / Cursor 拿去就能按 Forge 的方式拼页面，不会手搓 div 复刻
+- **AI 协作友好**：一份 `/docs/agents-md` 指引 + 一条命令把 Forge skill 装进 Claude Code / Cursor / Codex：
+  ```bash
+  curl -fsSL https://forge-ui.github.io/forge/install-skill.sh | bash
+  ```
 
 ## 产品形态
 
