@@ -1,66 +1,92 @@
 # Forge
 
-Forge UI Kit 的文档站 + 组件 showcase。只消费组件，不产组件。
+一套为 ToB SaaS 产品准备的设计系统 + React 组件库。从 Figma 稿到生产代码，团队拿来就能拼页面。
 
-- **线上**: https://forge-ui.github.io/forge/
-- **UI Kit 包**: [`@forge-ui/react`](https://github.com/forge-ui/forge-core)（GitHub Packages, private）
-- **对外 AI 协作指引**: `/docs/agents-md`
+**[在线看组件和模板 →](https://forge-ui.github.io/forge/)**
 
-## 这个仓里有什么
+## 做这个是为了解决什么
 
-```
-src/app/
-├── docs/          接入文档（quick-start / agents-md / ui-for-agents）
-├── cases/         每个组件一个示例页，铺 color / size / variant 矩阵
-├── components/    组件规格页（props、变体说明）
-└── templates/     业务模板：auth 套件 / ecommerce 后台 / dashboard-builder
-```
+ToB 后台产品的 UI 通常有三个老问题：
 
-组件实现、设计 token、布局壳都在另一个仓 [`forge-ui/forge-core`](https://github.com/forge-ui/forge-core)（发布为 `@forge-ui/react`）。本仓只是它的消费者和展示台。
+- **Figma 稿到代码总要对齐**。每个新前端来都得重新校像素、间距、hover 态，重复劳动。
+- **管理后台结构高度相似**。表格详情、统计卡、分类树、订单流，每个新项目都从零撸一遍。
+- **设计规范放久了就散掉**。色板、字号、间距到处是"差不多"的小差异，用久了系统越走越歪。
 
-## 本地起站
+Forge 把这套东西一次性打包：
+
+- **75+ 组件**，按 Figma 源稿（Protask + Majin UI Kit）1:1 还原，不是"大概像就行"
+- **分层设计 token**：8 色 × 10 shade 的 primitive 层 + 语义层（`bg-accent` / `text-muted` / `border-divider`），Tailwind v4 原生集成
+- **现成业务模板**：电商后台（订单 / 商品 / 客户 / 分类 / 卖家）、dashboard builder、登录套件
+- **AI 协作友好**：一份 `/docs/agents-md` 指引，Claude / Cursor 拿去就能按 Forge 的方式拼页面，不会手搓 div 复刻
+
+## 产品形态
+
+| | |
+|---|---|
+| 组件包 | `@forge-ui/react`（GitHub Packages 私有） |
+| 在线展示 | [forge-ui.github.io/forge](https://forge-ui.github.io/forge/) |
+| 组件源码 | [forge-ui/forge-core](https://github.com/forge-ui/forge-core) |
+| 本仓（forge） | 文档站 + showcase + 业务模板，消费组件包 |
+
+在线展示分四块：
+
+- `/components` — 每个组件的规格和变体矩阵
+- `/cases` — 组件用法示例
+- `/templates` — 现成页面（订单详情、登录套件、dashboard 等）
+- `/docs` — 接入文档 + AI 协作规则
+
+## 适合谁
+
+- 做 ToB 后台 / SaaS 控制台类产品的团队
+- 用 Next.js 16 + React 19 + Tailwind v4 的项目
+- 希望 AI 辅助开发能"接得上"自己的设计系统
+
+目前**私有分发**——成员加入 `forge-ui` team 后拿到 `read:packages` 权限即可装包。
+
+---
+
+## 开发者指南
+
+本仓是文档站，不含组件实现。组件源码在 [forge-core](https://github.com/forge-ui/forge-core)。
+
+### 本地起站
 
 ```bash
-# 1. 拿一个有 read:packages scope 的 GitHub PAT
-export GITHUB_TOKEN=ghp_xxx
-
-# 2. 装依赖（从 GitHub Packages 拉 @forge-ui/react）
+export GITHUB_TOKEN=ghp_xxx    # 需要 read:packages scope
 pnpm install
-
-# 3. 起 dev
 pnpm dev --port 3456 --hostname 0.0.0.0
 ```
 
-访问 http://localhost:3456。前提是你的账号被加进了 forge-ui 的 team，否则包拉不下来。
+访问 http://localhost:3456。前提：GitHub 账号已被加进 `forge-ui` team。
 
-## 部署
+### 仓结构
 
-`main` = 源码；`gh-pages` = 静态构建产物。Pages source 配成 **Branch: `gh-pages` / path: `/`**。
+```
+src/app/
+├── docs/          接入文档 + AI 协作指南
+├── cases/         组件用法示例（一个组件一页）
+├── components/    组件规格页（props + 变体说明）
+└── templates/     业务模板（auth / ecommerce / dashboard-builder）
+```
 
-每次要更新线上站：
+### 部署
+
+`main` 分支放源码，`gh-pages` 分支放静态构建产物。更新线上站走本地 build：
 
 ```bash
-# 1. 本地 production build
 NODE_ENV=production pnpm build
-
-# 2. 阻止 GitHub Pages 用 Jekyll 处理 _next/ 下划线目录
-touch out/.nojekyll
-
-# 3. 把 out/ 当成一个临时 git 仓 push gh-pages 分支
+touch out/.nojekyll                         # 阻止 Jekyll 处理 _next/ 下划线目录
 MAIN_HASH=$(git rev-parse --short HEAD)
 cd out
 git init -q -b gh-pages
 git remote add origin https://github.com/forge-ui/forge.git
 git add -A
-git commit -q -m "deploy: static export from main@${MAIN_HASH}"
+git commit -q -m "deploy: main@${MAIN_HASH}"
 git push -f origin gh-pages
 cd .. && rm -rf out/.git
 ```
 
-走完一遍站点会在 1-2 分钟内更新。
-
-> **为什么不用 GitHub Actions workflow？**
-> forge 仓的默认 `GITHUB_TOKEN` 拉不到另一个 user/org 下的 private package（`@forge-ui/react`）——除非在 package settings 里单独授权。本地 build 后推产物绕过这个限制，也省了 PAT 管理。
+1-2 分钟后 [forge-ui.github.io/forge](https://forge-ui.github.io/forge/) 生效。
 
 ## 技术栈
 
