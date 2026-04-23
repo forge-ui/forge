@@ -1,13 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { EyeClosedLinear, HeartBold } from "solar-icon-set";
 import { asset } from "@/lib/asset";
 
 const imgImage = asset("/images/hero.jpg");
 const img4ColUpsideDownBar = asset("/images/chart-card.png");
 const imgLargeBadgeImgStatisticCard = asset("/images/stat-card.png");
-const imgVector4 = "https://www.figma.com/api/mcp/asset/c5a735e4-9e18-462b-9a48-3277980dbd3c";
-const imgVector5 = "https://www.figma.com/api/mcp/asset/c4897031-a106-4424-9ccd-3c023307e937";
-const imgIcon = "https://www.figma.com/api/mcp/asset/361caab7-76de-438a-8ba6-53bcd1d0c3d0";
 
 export default function ResetPasswordPage() {
   return (
@@ -35,11 +33,7 @@ export default function ResetPasswordPage() {
             <p className="font-normal leading-5 relative shrink-0 text-fg-grey-700 text-sm tracking-fg whitespace-nowrap">
               © 2024 Made With
             </p>
-            <div className="overflow-clip relative shrink-0 size-[18px]">
-              <div className="absolute inset-[12.5%_7.41%_12.06%_7.23%]">
-                <img alt="" className="absolute block max-w-none size-full" src={imgIcon} />
-              </div>
-            </div>
+            <HeartBold size={14} color="#FE4A23" />
             <p className="font-normal leading-5 relative shrink-0 text-fg-grey-700 text-sm tracking-fg whitespace-nowrap">
               By Sugab
             </p>
@@ -68,20 +62,9 @@ export default function ResetPasswordPage() {
                     placeholder="Your password. . ."
                     className="flex-[1_0_0] h-[24px] bg-transparent outline-none font-normal leading-5 text-fg-black text-sm tracking-fg placeholder:text-fg-grey-700"
                   />
-                  <div className="content-stretch flex items-center justify-center p-[8px] relative shrink-0 size-[24px] cursor-pointer">
-                    <div className="overflow-clip relative shrink-0 size-[20px]">
-                      <div className="absolute inset-[16.67%_8.33%]">
-                        <div className="absolute inset-[-5.63%_-4.5%]">
-                          <img alt="" className="block max-w-none size-full" src={imgVector4} />
-                        </div>
-                      </div>
-                      <div className="absolute inset-[37.5%]">
-                        <div className="absolute inset-[-15%]">
-                          <img alt="" className="block max-w-none size-full" src={imgVector5} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <button type="button" aria-label="Toggle password visibility" className="flex items-center justify-center shrink-0 size-[24px] cursor-pointer">
+                    <EyeClosedLinear size={16} color="#71717A" />
+                  </button>
                 </div>
               </div>
 
@@ -98,20 +81,9 @@ export default function ResetPasswordPage() {
                     placeholder="Your password. . ."
                     className="flex-[1_0_0] h-[24px] bg-transparent outline-none font-normal leading-5 text-fg-black text-sm tracking-fg placeholder:text-fg-grey-700"
                   />
-                  <div className="content-stretch flex items-center justify-center p-[8px] relative shrink-0 size-[24px] cursor-pointer">
-                    <div className="overflow-clip relative shrink-0 size-[20px]">
-                      <div className="absolute inset-[16.67%_8.33%]">
-                        <div className="absolute inset-[-5.63%_-4.5%]">
-                          <img alt="" className="block max-w-none size-full" src={imgVector4} />
-                        </div>
-                      </div>
-                      <div className="absolute inset-[37.5%]">
-                        <div className="absolute inset-[-15%]">
-                          <img alt="" className="block max-w-none size-full" src={imgVector5} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <button type="button" aria-label="Toggle password visibility" className="flex items-center justify-center shrink-0 size-[24px] cursor-pointer">
+                    <EyeClosedLinear size={16} color="#71717A" />
+                  </button>
                 </div>
               </div>
 
