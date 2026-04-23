@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { HeartBold } from "solar-icon-set";
 import { asset } from "@/lib/asset";
 
 const imgImage = asset("/images/hero.jpg");
 const img4ColUpsideDownBar = asset("/images/chart-card.png");
 const imgLargeBadgeImgStatisticCard = asset("/images/stat-card.png");
-const imgIcon = "https://www.figma.com/api/mcp/asset/361caab7-76de-438a-8ba6-53bcd1d0c3d0";
 
 export default function ForgotPasswordPage() {
   return (
@@ -79,11 +79,7 @@ export default function ForgotPasswordPage() {
             <p className="font-normal leading-5 relative shrink-0 text-fg-grey-700 text-sm tracking-fg whitespace-nowrap">
               © 2024 Made With
             </p>
-            <div className="overflow-clip relative shrink-0 size-[18px]">
-              <div className="absolute inset-[12.5%_7.41%_12.06%_7.23%]">
-                <img alt="" className="absolute block max-w-none size-full" src={imgIcon} />
-              </div>
-            </div>
+            <HeartBold size={14} color="#FE4A23" />
             <p className="font-normal leading-5 relative shrink-0 text-fg-grey-700 text-sm tracking-fg whitespace-nowrap">
               By Sugab
             </p>

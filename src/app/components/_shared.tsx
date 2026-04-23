@@ -79,8 +79,9 @@ export function SubSection({
   );
 }
 
-// SubSectionGrid — 把多个 SubSection 横向并排（小屏自动单列），减少长页面竖排堆叠
-// 用 items-start 让每个 cell 顶部对齐，高度自适应。lg 断点起生效。
+// SubSectionGrid — 多个 SubSection 自适应分布：容器够宽并排，挤了自动降为一列
+// auto-fit + minmax(min(100%, N), 1fr) 让每个 cell 至少 N px，否则一列。
+// cols 是上限（最多几列），实际列数由容器宽度决定。
 export function SubSectionGrid({
   cols = 2,
   children,
@@ -90,9 +91,14 @@ export function SubSectionGrid({
   children: ReactNode;
   className?: string;
 }) {
-  const colClass = cols === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2";
+  const minWidth = cols === 3 ? "380px" : "560px";
   return (
-    <div className={cn("grid grid-cols-1 items-start gap-x-6 gap-y-6 [&>*]:min-w-0", colClass, className)}>
+    <div
+      className={cn("grid items-start gap-x-6 gap-y-6 [&>*]:min-w-0", className)}
+      style={{
+        gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${minWidth}), 1fr))`,
+      }}
+    >
       {children}
     </div>
   );

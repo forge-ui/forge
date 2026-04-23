@@ -188,7 +188,7 @@ const CODE_REG_TEXT = `<CellText>Title Here</CellText>
 const CODE_SQUARE_IMG = `<CellImageText src="/img.png" title="Title Here" subtitle="Subtext here" />`;
 
 const CODE_CIRCLE_IMG = `<CellImageText
-  src={asset("/flag-au.png")}
+  src="/flag-au.png"
   title="Australia"
   subtitle="ilahmbudi@mail.co..."
   rounded="full"

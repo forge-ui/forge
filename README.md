@@ -41,7 +41,7 @@ Forge 把这套东西一次性打包：
 - 用 Next.js 16 + React 19 + Tailwind v4 的项目
 - 希望 AI 辅助开发能"接得上"自己的设计系统
 
-目前**私有分发**——成员加入 `forge-ui` team 后拿到 `read:packages` 权限即可装包。
+目前**组件包私有分发**——本文档站（`forge-ui/forge`）是公开的，但组件包 `@forge-ui/react` 发在 GitHub Packages 私有，成员加入 `forge-ui` team 后拿到 `read:packages` 权限即可装包。
 
 ---
 
