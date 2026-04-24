@@ -1,0 +1,236 @@
+1:"$Sreact.fragment"
+2:I[98877,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"default"]
+3:I[95566,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"default"]
+4:I[84675,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/0c43su98dkpue.js","/forge/_next/static/chunks/14aowbyxi__ig.js"],"SiteHeader"]
+5:I[76992,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/0c43su98dkpue.js","/forge/_next/static/chunks/14aowbyxi__ig.js"],"DocsNav"]
+15:I[70028,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"default",1]
+:HL["/forge/_next/static/chunks/0y-ptb-lk6kaw.css","style"]
+:HC["/",""]
+0:{"P":null,"c":["","docs","agents-md",""],"q":"","i":false,"f":[[["",{"children":["docs",{"children":["agents-md",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/forge/_next/static/chunks/0y-ptb-lk6kaw.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/forge/_next/static/chunks/0hqkv7pg6nbe~.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/forge/_next/static/chunks/0zu3am009s7rg.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh","className":"h-full antialiased","style":{"--font-manrope":"'Manrope Variable', system-ui, sans-serif","--font-plus-jakarta-sans":"'Plus Jakarta Sans Variable', system-ui, sans-serif"},"suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-full flex flex-col font-sans","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/forge/_next/static/chunks/0c43su98dkpue.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/forge/_next/static/chunks/14aowbyxi__ig.js","async":true,"nonce":"$undefined"}]],["$","div",null,{"className":"flex min-h-screen flex-col bg-fg-grey-50","children":[["$","$L4",null,{}],["$","div",null,{"className":"mx-auto flex w-full max-w-[1440px] flex-1","children":[["$","$L5",null,{}],["$","main",null,{"className":"min-w-0 flex-1 px-8 py-10 lg:px-12","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","div",null,{"className":"mx-auto flex w-full max-w-5xl gap-16","children":[["$","article",null,{"className":"flex min-w-0 flex-1 flex-col gap-10","children":[["$","header",null,{"className":"flex flex-col gap-5","children":[["$","div",null,{"className":"inline-flex justify-start items-center gap-2","children":[["$","span","0",{"className":"inline-flex justify-start items-center gap-2","children":[false,["$","a",null,{"href":"/docs","onClick":"$undefined","className":"justify-start text-sm font-bold leading-5 tracking-fg cursor-pointer text-fg-black","children":"文档"}]]}],["$","span","1",{"className":"inline-flex justify-start items-center gap-2","children":[["$","span",null,{"className":"justify-start text-neutral-200 text-sm font-medium leading-5 tracking-fg","children":"/"}],["$","span",null,{"className":"justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg","children":"AGENTS.md"}]]}]]}],["$","div",null,{"className":"flex items-start justify-between gap-6","children":[["$","h1",null,{"className":"font-display text-4xl font-bold tracking-fg text-fg-black","children":"AGENTS.md"}],["$","button",null,{"type":"button","className":"flex shrink-0 items-center gap-2 rounded-full bg-fg-grey-100 px-4 py-2 text-sm font-semibold text-fg-black hover:bg-fg-grey-200 transition-colors","children":["$L6","复制页面","$L7","$L8"]}]]}],"$L9"]}],"$La","$Lb","$Lc","$Ld","$Le","$Lf"]}],"$L10"]}],["$L11"],"$L12"]}],{},null,false,null]},null,false,"$@13"]},null,false,null]},null,false,null],"$L14",false]],"m":"$undefined","G":["$15",["$L16"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"P0H4B5tiaHORKQWiw7D7F"}
+17:I[70682,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/0c43su98dkpue.js","/forge/_next/static/chunks/14aowbyxi__ig.js","/forge/_next/static/chunks/0a.6cl8sgyh7x.js"],""]
+18:I[5952,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/0c43su98dkpue.js","/forge/_next/static/chunks/14aowbyxi__ig.js","/forge/_next/static/chunks/0a.6cl8sgyh7x.js"],"PromptBlock"]
+1a:I[21133,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/0c43su98dkpue.js","/forge/_next/static/chunks/14aowbyxi__ig.js","/forge/_next/static/chunks/0a.6cl8sgyh7x.js"],"CodeBlock"]
+1b:I[40401,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/0c43su98dkpue.js","/forge/_next/static/chunks/14aowbyxi__ig.js","/forge/_next/static/chunks/0a.6cl8sgyh7x.js"],"DocsToc"]
+1c:I[90522,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[90522,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"ViewportBoundary"]
+22:I[90522,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"MetadataBoundary"]
+6:["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","xmlns":"http://www.w3.org/2000/svg","width":14,"height":14,"style":{"color":"#71717A","display":"inline-block"},"children":[["$","path",null,{"d":"M6 11c0-2.828 0-4.243.879-5.121C7.757 5 9.172 5 12 5h3c2.828 0 4.243 0 5.121.879C21 6.757 21 8.172 21 11v5c0 2.828 0 4.243-.879 5.121C19.243 22 17.828 22 15 22h-3c-2.828 0-4.243 0-5.121-.879C6 20.243 6 18.828 6 16v-5Z","stroke":"currentColor","strokeWidth":1.5}],["$","path",null,{"d":"M6 19a3 3 0 0 1-3-3v-6c0-3.771 0-5.657 1.172-6.828C5.343 2 7.229 2 11 2h4a3 3 0 0 1 3 3","stroke":"currentColor","strokeWidth":1.5}]]}]
+7:["$","span",null,{"aria-hidden":true,"className":"h-4 w-px bg-fg-grey-300"}]
+8:["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","xmlns":"http://www.w3.org/2000/svg","width":12,"height":12,"style":{"color":"#71717A","display":"inline-block"},"children":["$","path",null,{"d":"m19 9-7 6-7-6","stroke":"currentColor","strokeWidth":1.5,"strokeLinecap":"round","strokeLinejoin":"round"}]}]
+9:["$","p",null,{"className":"max-w-2xl text-base font-normal leading-[1.8] text-fg-grey-900","children":"把 Forge 规则作为单文件粘到项目根，AI 编码助手自动读。"}]
+a:["$","div",null,{"className":"text-base font-normal leading-[1.8] text-fg-grey-900","children":[["$","p",null,{"children":"给 AI 编码助手的 Forge 规则清单。比 Skill 简单——不需要安装、不需要按需加载，一个 Markdown 文件搞定。适合轻量项目或快速试用。"}],["$","p",null,{"className":"mt-3 rounded-lg border border-fg-yellow-200 bg-fg-yellow-50 px-4 py-3 text-sm text-fg-black","children":[["$","strong",null,{"children":"提示："}],"组件多、上下文紧张的项目建议走"," ",["$","$L17",null,{"href":"/docs/ui-for-agents","className":"text-fg-violet hover:underline","children":"UI for Agents"}]," ","的 Skill 方案，按需加载更省 token。"]}]]}]
+19:T23dd,# Forge UI Kit — AI 接入指南
+
+你正在协助一个基于 **Forge UI Kit** 搭起来的 Next.js 项目。Forge 是一套 ToB 级组件库 + 布局 + 登录/业务模板，整个工作方式是「AI 拼装、人工确认」——你不手写组件、不自己选色、不造轮子。人只做 UI 效果与组件选型的确认。
+
+## 你的职责
+
+1. 读用户给的业务文档（PRD / 流程图 / 接口说明）
+2. 拆出页面清单 + 每页的操作流
+3. 从现成资源里挑：登录套件、业务模板骨架、组件、布局
+4. 拼出页面，只 `import` 不手搓
+5. 缺件或不确定的，停下问人，别自行发挥
+
+## 铁律（违反必须重写）
+
+1. **组件只从 `@forge-ui/react` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
+2. **颜色只用 `fg-*` token**。禁用 Tailwind 默认色（如 `text-blue-500` `bg-gray-100`），全部换成 `text-fg-violet` `bg-fg-grey-100`。没对上的颜色去 `src/app/globals.css` 的 `@theme inline` 里扩 token，不要就地写 hex。
+3. **Icon 用 `solar-icon-set`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾。颜色必须用 `color="#HEX"` prop，不要用 className 上的 `text-*`——库里 fill 写死了，className 不生效。尺寸用 `size={N}` prop。
+4. **布局用 `<AppLayout>`**（`@forge-ui/react`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
+5. **不确定就看 `/cases/<name>`**。Forge 每个组件都有一页示例（`src/app/cases/<name>/page.tsx`），去读它，比凭想象写 props 靠谱十倍。
+
+## 可用资源索引
+
+### 组件清单（`@forge-ui/react`）
+
+按类别分组，括号里是 `cases/` 下对应的示例页：
+
+**基础**
+- `Button` / `IconButton` / `StyledLink`（button-link）
+- `NotificationBadge` / `Label` / `CircleIcon` / `ArtisticIcon`（badge）
+- `ProgressBar`（progress）
+- `Checkbox` / `RadioButton` / `Toggle`（input-field）
+- `Avatar` / `AvatarGroup`（badge）
+
+**表单**（cases/input-field）
+- `TextField` / `TextArea` / `SelectOption` / `Datepicker`
+- `MediaUpload` / `ProfileImgUpload` / `FileUpload` / `FileCard` / `FileTypeIcon`
+- `IconSelector` / `IconPicker` / `ColorPicker`
+- `TextFieldSelectSuffix`
+
+**数据展示**（cases/card / cases/list / cases/table）
+- 卡片家族：`StatCard` / `ProgressStatCard` / `LineChartStatCard` / `WheelChartStatCard` / `BarChartStatCard`
+- 金融卡：`BalanceCard` / `DebitCard` / `CreditCard`
+- 业务卡：`ProjectCard` / `TaskCard` / `UserCard` / `ImageStatCard` / `HighlightCard` / `ProgressCard` / `ActivityCard`
+- 列表：`ListItem` / `DescriptionItem` / `ListGroup` / `MenuItem` / `NotificationItem` / `ProfileCard` / `ContactItem`
+- 表格：`DataTable` / `FullWidthTable` / `TableCell` / `StatusBadge` / `ProgressBadge`
+
+**图表**（cases/chart）
+- `MeterChart` / `HalfDonutChart` / `DashedHalfDonutChart` / `DonutChart` / `PieChart` / `MultilayerDonutChart` / `BubbleChart`
+- `BarChart` / `BarHorizontalChart` / `BarUpsideDownChart` / `SmoothLineChart`
+- `ChartCard` / `ChartTooltip` / `ChartListItem` / `ChartLegendItem` / `ChartValueRow` / `ChartStatFooter`
+
+**聊天与社交**（cases/chat / cases/comment）
+- `ChatBubble` / `ChatInputBar` / `CommentItem` / `ReviewItem`
+
+**筛选**（cases/filter）
+- `FilterGroup` / `FilterTrigger` / `FilterPanel`
+
+**日历**（cases/calendar）
+- `SmallCalendar` / `SmallDailyCalendar` / `FullCalendar`
+- `CalendarDayCell` / `CalendarWeekRow` / `EventCard` / `EventTag`
+
+**时间轴**（cases/history）
+- `HistoryItem` / `HistoryGrouped`
+
+**导航与控件**
+- `SidebarMenu`（cases/menu）
+- `TopBar` / `PageHeader` / `Breadcrumbs`（cases/page-header）
+- `Toolbar` + 一堆 Toolbar 子组件 / `PageTitleToolbar`（cases/toolbar）
+- `Pagination` / `Stepper` / `PageDot` / `TabBar` / `ButtonGroup`（cases/pagination-stepper, cases/tab）
+- `Tooltip` / `TooltipBubble` / `TooltipAnchor`（cases/tooltip）
+- `ConfirmationDialog`（cases/modal）
+- `DropdownPanel` / `IconTrigger` / `KebabMenu`（cases/menu）
+
+**Widget**（cases/other-widget）
+- `CurrencyConverter` / `RatingStars` / `ImageGrid` / `ProductRow` / `MapCard`（cases/map）
+
+**布局模板**
+- `AppLayout`（`@forge-ui/react/app-layout`）— sidebar + topbar + 内容区一站式，业务页都用它
+
+### 颜色 Token（`src/app/globals.css`）
+
+8 个色系 × 10 shade（50/100/200/.../900），外加一个 `grey`：
+
+- `fg-violet-{50..900}`（品牌主色，别名 `fg-violet = 500`）
+- `fg-blue-{50..900}`
+- `fg-green-{50..900}`
+- `fg-red-{50..900}`（别名 `fg-red = 500`）
+- `fg-yellow-{50..900}`（别名 `fg-yellow = 500`）
+- `fg-cyan-{50..900}`
+- `fg-black-{50..900}`（别名 `fg-black = 500 = #000A19`，注意不是纯黑）
+- `fg-grey-{50..900}`
+
+**用法**：
+- Tailwind 直接用 `bg-fg-violet-500` `text-fg-black` `border-fg-grey-200`
+- 运行时取 hex：`var(--fg-violet)` / `var(--fg-grey-700)`
+- 深浅调性通常：`50/100` 作浅底、`500` 作主色、`700+` 作深底或高对比文字
+
+### Icon（`solar-icon-set`）
+
+```tsx
+import { MagniferLinear, BellBoldDuotone } from "solar-icon-set";
+
+<MagniferLinear size={16} color="#71717A" />
+<BellBoldDuotone size={24} color="var(--fg-violet)" />
+```
+
+**项目内默认灰色 icon 色值**：`#71717A`（对应 `fg-grey-700` 附近），保持全站一致。
+
+**踩坑（常犯）**：
+1. `className="text-fg-red"` 对 solar icon **不生效**——库里 fill 写死，颜色必须走 `color` prop。
+2. 外层 wrapper 给了 `p-Y`（上下 padding）或固定 height 会**压扁 SVG**。icon 外包装只给 `w-X h-X` 的正方形 box，或者 `inline-flex items-center`。
+
+### 布局（`AppLayout`）
+
+```tsx
+import { AppLayout } from "@forge-ui/react";
+
+<AppLayout
+  mode="light"              // light | dark
+  accent="purple"           // purple | blue | black
+  profilePosition="sidebar" // sidebar | topbar
+  logoText="Your Brand"
+  teamName="Acme Inc"
+  menuItems={[
+    { icon: <HomeLinear size={20} />, label: "Dashboard", href: "/dashboard" },
+    { label: "Orders", href: "/orders", badge: 3 },
+  ]}
+  profile={{ avatar: "/me.jpg", name: "Jane Doe", role: "Admin" }}
+  pageTitle="Orders"
+  breadcrumbs={[{ label: "Home", href: "/" }, { label: "Orders" }]}
+  pageHeaderVariant="detail"  // home | detail
+  primaryAction={{ label: "New", onClick: () => {} }}
+>
+  {/* 你的业务内容 */}
+</AppLayout>
+```
+
+示例页在 `/examples/ecommerce/*`，可参考。
+
+### 登录套件（现成页面，改文案与接口即可）
+
+- `/sign-in` — 登录
+- `/sign-up` — 注册
+- `/forgot-password` — 忘记密码
+- `/reset-password` — 重置密码
+
+源文件：`src/app/{sign-in,sign-up,forgot-password,reset-password}/page.tsx`
+
+### 业务模板（真实多页骨架）
+
+`src/app/examples/(dashboard)/ecommerce/` 下是一套电商后台，包含：
+- `categories` / `customers` / `orders` / `products` / `sellers`
+- 每个模块都有 列表页 / 详情页 `[id]` / 新建页 `new`
+- 统一用 `AppLayout`、`DataTable`、`Toolbar` 拼装
+
+新业务用它当骨架：先复制最接近的模块（如 orders 给"订单类业务"），再改字段和接口。
+
+### Case 索引（组件用法示例，写代码前必看对应页）
+
+`/cases/<name>` → `src/app/cases/<name>/page.tsx`：
+
+badge / button-link / calendar / card / chart / chat / comment / filter / history / input-field / list / map / menu / modal / other-widget / page-header / pagination-stepper / progress / tab / table / toolbar / tooltip
+
+（共 22 个。`file-type` 和 `style-guide` 是 `/components/*` 下的 Kit 资产展示页，不是业务示例，命中需求时直接读源文件 `src/app/components/{file-type,style-guide}/page.tsx`。）
+
+## 工作流
+
+**Step 1. 读 PRD**
+抽出：页面清单、每页主要操作、数据字段、业务状态、权限边界。
+
+**Step 2. 挑骨架**
+- 有登录需求 → 用 `/sign-in` 等现成页
+- 后台业务（列表+详情+新建） → 复制 `app/ecommerce/<最接近模块>/` 改
+- 自定义页面 → 套 `<AppLayout>` 起架子
+
+**Step 3. 拆页面 → 拼组件**
+- 先写页面骨架（AppLayout + Toolbar + 主内容容器）
+- 主内容按区块拆：每块对应一个 Kit 组件或组件组合
+- 遇到不确定的组件 → 打开 `/cases/<name>` 对应示例页复制用法
+- 颜色选 `fg-*`，icon 选 `solar-icon-set`
+
+**Step 4. 缺件停下**
+如果 Kit 里没有合适组件（不是变体缺失，是真的没有），**立即停下问人**。不要自己手搓 div 复刻。用户会判断要不要扩 Kit。
+
+**Step 5. 自检**
+- `pnpm tsc --noEmit` 通过
+- 本地起服务：`pnpm dev --port 3456 --hostname 0.0.0.0`（常驻，别自己另起）
+- 截图给用户确认效果
+
+## 提交前自检清单
+
+- [ ] 没有手搓 div 复刻 Kit 已有组件
+- [ ] 颜色全部走 `fg-*` token，无裸 Tailwind 默认色
+- [ ] Icon 全部 `solar-icon-set` + `color` prop
+- [ ] 布局用 `<AppLayout>` 或继承自模板
+- [ ] tsc 通过
+- [ ] 截图与设计对照过
+- [ ] 不确定的地方已问人，未自行发挥
+b:["$","section",null,{"id":"preview","className":"flex scroll-mt-24 flex-col gap-5","children":[["$","h2",null,{"className":"font-display text-3xl font-semibold tracking-fg text-fg-black","children":"AGENTS.md 预览"}],["$","div",null,{"className":"flex flex-col gap-4 text-base font-normal leading-[1.8] text-fg-grey-900","children":[["$","p",null,{"children":"下面是完整内容，点击「展开代码」可查看全文，右上角 Copy 按钮一键复制："}],["$","$L18",null,{"content":"$19"}]]}]]}]
+c:["$","section",null,{"id":"usage","className":"flex scroll-mt-24 flex-col gap-5","children":[["$","h2",null,{"className":"font-display text-3xl font-semibold tracking-fg text-fg-black","children":"使用"}],["$","div",null,{"className":"flex flex-col gap-4 text-base font-normal leading-[1.8] text-fg-grey-900","children":[["$","p",null,{"children":"三种接入方式，按你的工具选一个："}],["$","ol",null,{"className":"ml-5 list-decimal space-y-2","children":[["$","li",null,{"children":[["$","strong",null,{"className":"text-fg-black","children":"粘贴到文件"}],"：复制上面预览的内容，粘到项目根的"," ",["$","code",null,{"className":"rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet","children":"AGENTS.md"}],"、",["$","code",null,{"className":"rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet","children":"CLAUDE.md"}]," ","或"," ",["$","code",null,{"className":"rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet","children":".cursorrules"}],"。"]}],["$","li",null,{"children":[["$","strong",null,{"className":"text-fg-black","children":"命令行拉取"}],"（即将上线）："]}]]}],["$","$L1a",null,{"code":"# 推荐：粘到项目根的 AGENTS.md\ncurl -fsSL https://forge.ui/agents-md > AGENTS.md","lang":"bash"}],["$","ol",null,{"className":"ml-5 list-decimal space-y-2","start":3,"children":["$","li",null,{"children":[["$","strong",null,{"className":"text-fg-black","children":"对话首轮"}],"：复制内容，作为 ChatGPT / Claude.ai 对话的第一条消息发给 AI，然后再发 PRD。"]}]}]]}]]}]
+d:["$","section",null,{"id":"what-it-does","className":"flex scroll-mt-24 flex-col gap-5","children":[["$","h2",null,{"className":"font-display text-3xl font-semibold tracking-fg text-fg-black","children":"内容覆盖"}],["$","div",null,{"className":"flex flex-col gap-4 text-base font-normal leading-[1.8] text-fg-grey-900","children":["$","ul",null,{"className":"ml-5 list-disc space-y-1.5","children":[["$","li",null,{"children":"Forge UI Kit 定位与 AI 的职责边界"}],["$","li",null,{"children":"5 条铁律（import / token / icon / layout / 看 case 示例）"}],["$","li",null,{"children":"60+ 组件清单，按 9 大类分组"}],["$","li",null,{"children":"颜色 token 全表：8 色 × 10 shade"}],["$","li",null,{"children":["Icon 规范：",["$","code",null,{"className":"font-mono text-[13px]","children":"solar-icon-set"}]," 用法与两个常见踩坑"]}],["$","li",null,{"children":[["$","code",null,{"className":"font-mono text-[13px]","children":"AppLayout"}]," props 与示例"]}],["$","li",null,{"children":"登录套件、业务模板入口"}],["$","li",null,{"children":"22 个 case 页索引"}],["$","li",null,{"children":"PRD → 页面工作流 + 提交前自检清单"}]]}]}]]}]
+e:["$","section",null,{"id":"options","className":"flex scroll-mt-24 flex-col gap-5","children":[["$","h2",null,{"className":"font-display text-3xl font-semibold tracking-fg text-fg-black","children":"放哪个文件"}],["$","div",null,{"className":"flex flex-col gap-4 text-base font-normal leading-[1.8] text-fg-grey-900","children":["$","ul",null,{"className":"ml-5 list-disc space-y-1.5","children":[["$","li",null,{"children":[["$","code",null,{"className":"font-mono text-[13px]","children":"AGENTS.md"}]," — 通用格式，Claude Code / Codex / OpenCode 都读"]}],["$","li",null,{"children":[["$","code",null,{"className":"font-mono text-[13px]","children":"CLAUDE.md"}]," — Claude Code 专属"]}],["$","li",null,{"children":[["$","code",null,{"className":"font-mono text-[13px]","children":".cursorrules"}]," — Cursor 专属"]}],["$","li",null,{"children":"同时放多个也可以，内容一致即可"}]]}]}]]}]
+f:["$","section",null,{"id":"related","className":"flex scroll-mt-24 flex-col gap-5","children":[["$","h2",null,{"className":"font-display text-3xl font-semibold tracking-fg text-fg-black","children":"相关文档"}],["$","div",null,{"className":"flex flex-col gap-4 text-base font-normal leading-[1.8] text-fg-grey-900","children":["$","ul",null,{"className":"ml-5 list-disc space-y-1.5","children":[["$","li",null,{"children":[["$","$L17",null,{"href":"/docs/ui-for-agents","className":"text-fg-violet hover:underline","children":"UI for Agents"}]," ","— Skill 方案（推荐，按需加载）"]}],["$","li",null,{"children":[["$","a",null,{"href":"https://agents.md","target":"_blank","rel":"noreferrer","className":"text-fg-violet hover:underline","children":"AGENTS.md 规范"}]," ","— AGENTS.md 格式定义"]}],["$","li",null,{"children":[["$","a",null,{"href":"https://docs.claude.com/en/docs/claude-code/memory","target":"_blank","rel":"noreferrer","className":"text-fg-violet hover:underline","children":"CLAUDE.md"}]," ","— Claude Code 的 AGENTS.md 等价物"]}],["$","li",null,{"children":[["$","$L17",null,{"href":"/docs/quick-start","className":"text-fg-violet hover:underline","children":"快速开始"}]," ","— 从 0 到第一个业务页"]}]]}]}]]}]
+10:["$","$L1b",null,{"items":[{"id":"preview","title":"AGENTS.md 预览"},{"id":"usage","title":"使用"},{"id":"what-it-does","title":"内容覆盖"},{"id":"options","title":"放哪个文件"},{"id":"related","title":"相关文档"}]}]
+11:["$","script","script-0",{"src":"/forge/_next/static/chunks/0a.6cl8sgyh7x.js","async":true,"nonce":"$undefined"}]
+12:["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]
+1f:[]
+13:"$W1f"
+14:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+16:["$","link","0",{"rel":"stylesheet","href":"/forge/_next/static/chunks/0y-ptb-lk6kaw.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+24:I[62836,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"Forge"}],["$","meta","1",{"name":"description","content":"SaaS Starter Kit"}],["$","link","2",{"rel":"icon","href":"/forge/favicon.ico?favicon.0-ck87y_47~dq.ico","sizes":"32x32","type":"image/x-icon"}],["$","$L24","3",{}]]

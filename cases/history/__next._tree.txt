@@ -1,0 +1,10 @@
+:HL["/forge/_next/static/chunks/0y-ptb-lk6kaw.css","style"]
+:HC["/",""]
+:HL["https://i.pravatar.cc/100?img=1","image"]
+:HL["https://picsum.photos/seed/history1/64/64","image"]
+:HL["https://picsum.photos/seed/history2/64/64","image"]
+:HL["https://picsum.photos/seed/history3/64/64","image"]
+:HL["https://picsum.photos/seed/history4/64/64","image"]
+:HL["https://picsum.photos/seed/history-product/44/44","image"]
+:HL["https://i.pravatar.cc/100?img=2","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cases","param":null,"prefetchHints":0,"slots":{"children":{"name":"history","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"P0H4B5tiaHORKQWiw7D7F"}

@@ -1,0 +1,7 @@
+1:"$Sreact.fragment"
+2:I[75307,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"ClientSegmentRoot"]
+3:I[80809,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js","/forge/_next/static/chunks/074ti56jvzed2.js","/forge/_next/static/chunks/14aowbyxi__ig.js","/forge/_next/static/chunks/10ozguf-un7h8.js"],"default"]
+4:I[98877,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"default"]
+5:I[95566,["/forge/_next/static/chunks/0hqkv7pg6nbe~.js","/forge/_next/static/chunks/0zu3am009s7rg.js"],"default"]
+0:{"rsc":["$","$1","c",{"children":[[["$","script","script-0",{"src":"/forge/_next/static/chunks/074ti56jvzed2.js","async":true}],["$","script","script-1",{"src":"/forge/_next/static/chunks/14aowbyxi__ig.js","async":true}],["$","script","script-2",{"src":"/forge/_next/static/chunks/10ozguf-un7h8.js","async":true}]],["$","$L2",null,{"Component":"$3","slots":{"children":["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]},"serverProvidedParams":{"params":{},"promises":["$@6"]}}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"P0H4B5tiaHORKQWiw7D7F"}
+6:"$0:rsc:props:children:1:props:serverProvidedParams:params"
