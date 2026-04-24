@@ -80,55 +80,54 @@ export default function QuickStartPage() {
       <div className="flex flex-col gap-8">
         <Step
           n={1}
-          title="配 .npmrc"
+          title="新建 .npmrc"
           caption={
             <>
-              项目根目录新建 <code className="rounded bg-fg-grey-100 px-1 text-xs">.npmrc</code>，把{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui</code> scope 指向 GitHub Packages。
+              项目根目录加一份 <code className="rounded bg-fg-grey-100 px-1 text-xs">.npmrc</code>，告诉 pnpm{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui</code> 这个 scope 要去 GitHub Packages 拉。
             </>
           }
           code={NPMRC}
         />
         <Step
           n={2}
-          title="装"
+          title="安装 @forge-ui/react"
           caption={
             <>
-              从 GitHub 生成一个带 <code className="rounded bg-fg-grey-100 px-1 text-xs">read:packages</code> 权限的 PAT，export 到 shell 后安装。
+              去 GitHub 生成一个带 <code className="rounded bg-fg-grey-100 px-1 text-xs">read:packages</code> 权限的 classic PAT，丢进 shell 再装包。
             </>
           }
           code={INSTALL}
         />
         <Step
           n={3}
-          title="接 Tailwind"
+          title="接入 Tailwind 样式"
           caption={
             <>
-              在 <code className="rounded bg-fg-grey-100 px-1 text-xs">app/globals.css</code> 顶部加三行：import
-              Tailwind、import 组件样式、让 Tailwind 扫产物目录。
+              在 <code className="rounded bg-fg-grey-100 px-1 text-xs">app/globals.css</code> 顶部加这三行：引入 Tailwind、引入 Forge 的 token 样式、让 Tailwind v4 扫到 Kit 组件产物里的 utility class。
             </>
           }
           code={GLOBALS_CSS}
         />
         <Step
           n={4}
-          title="用"
+          title="渲染第一个组件"
           caption={
             <>
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">pnpm dev</code>，页面上看到紫色按钮就通了。
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">pnpm dev</code> 跑起来，页面上看到紫色胶囊按钮就通了。
             </>
           }
           code={USE}
         />
         <Step
           n={5}
-          title="给 AI 装 skill（可选）"
+          title="顺手给 AI 装一份 skill（可选）"
           caption={
             <>
-              让 Claude Code / Cursor / Codex 自动按 Forge 规范拼页面——import 走{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui/react</code>，颜色走{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">fg-*</code> token，icon 走{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">solar-icon-set</code>，不会手搓 div 复刻。装完重启一下 agent 即可生效。
+              让 Claude Code / Cursor / Codex 看懂 Forge 的规矩——组件从{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui/react</code> 拿、颜色走{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">fg-*</code> token、icon 走{" "}
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">solar-icon-set</code>，不再手搓 div 复刻组件。装完重启一下 agent。
             </>
           }
           code={INSTALL_SKILL}

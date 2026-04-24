@@ -10,6 +10,7 @@ type ShowcaseItem = {
   description: string;
   thumbnail?: string;
   thumbnails?: string[];
+  external?: boolean;
 };
 
 const items: ShowcaseItem[] = [
@@ -28,18 +29,12 @@ const items: ShowcaseItem[] = [
     thumbnail: asset("/images/showcase/dashboard-builder-hero.png"),
   },
   {
-    href: "/templates/blank",
-    title: "空白模版",
+    href: "https://github.com/forge-ui/forge-starter",
+    title: "Forge Starter",
     description:
-      "最基础的后台外壳，左边导航 + 顶部标题栏，中间留白等你填。",
-    thumbnail: asset("/images/showcase/templates.png"),
-  },
-  {
-    href: "/templates/auth/sign-in",
-    title: "Authentication",
-    description:
-      "登录、注册、忘记密码、重置密码四页一套，带第三方登录和邮箱验证。",
-    thumbnail: asset("/images/showcase/auth.png"),
+      "Next.js 16 + Tailwind v4 + Forge 的起点仓库，登录注册 + 空白后台 + AGENTS.md，gh template 一键 fork。",
+    thumbnail: asset("/images/showcase/forge-starter.png"),
+    external: true,
   },
 ];
 
