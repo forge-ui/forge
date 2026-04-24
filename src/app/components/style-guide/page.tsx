@@ -97,7 +97,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="Color System"
-        description="Figma Protask UI Kit 色板：8 色 × 10 档（50 / 100–900）+ White。"
+        description="Forge 色板：8 色 × 10 档（50 / 100–900）+ White。"
       >
         <div className="flex flex-col gap-8 w-full">
           {colorFamilies.map((f) => (
