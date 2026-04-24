@@ -72,25 +72,6 @@ src/app/
 └── templates/     业务模板（auth / ecommerce / dashboard-builder）
 ```
 
-### 部署
-
-`main` 分支放源码，`gh-pages` 分支放静态构建产物。更新线上站走本地 build：
-
-```bash
-NODE_ENV=production pnpm build
-touch out/.nojekyll                         # 阻止 Jekyll 处理 _next/ 下划线目录
-MAIN_HASH=$(git rev-parse --short HEAD)
-cd out
-git init -q -b gh-pages
-git remote add origin https://github.com/forge-ui/forge.git
-git add -A
-git commit -q -m "deploy: main@${MAIN_HASH}"
-git push -f origin gh-pages
-cd .. && rm -rf out/.git
-```
-
-1-2 分钟后 [forge-ui.github.io/forge](https://forge-ui.github.io/forge/) 生效。
-
 ## 技术栈
 
 Next.js 16 (App Router, `output: export`) · React 19 · Tailwind CSS v4 · TypeScript
