@@ -92,7 +92,7 @@ export default function OrderInvoicePage() {
             items={[
               { label: "Dashboard", href: "/templates/ecommerce" },
               { label: "Orders", href: "/templates/ecommerce/orders" },
-              { label: "Order Details", href: `/examples/ecommerce/orders/${params.id}` },
+              { label: "Order Details", href: `/templates/ecommerce/orders/${params.id}` },
               { label: `Invoice ${invoiceId}` },
             ]}
           />

@@ -228,7 +228,7 @@ export default function OrdersPage() {
         width: "w-[120px]",
         render: (row) => (
           <Link
-            href={`/examples/ecommerce/orders/${row.id.replace("#", "")}`}
+            href={`/templates/ecommerce/orders/${row.id.replace("#", "")}`}
             className="text-sm font-bold text-fg-black hover:text-fg-violet no-underline"
           >
             {row.id}

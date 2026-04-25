@@ -242,7 +242,7 @@ export default function ProductsPage() {
         render: (row) => (
           <div
             className="cursor-pointer"
-            onClick={() => router.push(`/examples/ecommerce/products/${row.id}`)}
+            onClick={() => router.push(`/templates/ecommerce/products/${row.id}`)}
           >
             <CellImageText src={row.imageUrl} title={row.name} subtitle={row.variants} />
           </div>

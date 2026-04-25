@@ -322,7 +322,7 @@ export default function SellersPage() {
               variant="ghost"
               shape="square"
               size="sm"
-              onClick={() => router.push(`/examples/ecommerce/sellers/${row.id}`)}
+              onClick={() => router.push(`/templates/ecommerce/sellers/${row.id}`)}
             >
               <EyeLinear size={16} />
             </IconButton>

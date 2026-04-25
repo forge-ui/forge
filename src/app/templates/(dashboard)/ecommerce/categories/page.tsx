@@ -76,7 +76,7 @@ export default function CategoriesPage() {
         render: (row) => (
           <div
             className="cursor-pointer"
-            onClick={() => router.push(`/examples/ecommerce/categories/${row.id}`)}
+            onClick={() => router.push(`/templates/ecommerce/categories/${row.id}`)}
           >
             <CellImageText src={row.imageUrl} title={row.name} subtitle={row.description} />
           </div>
@@ -113,7 +113,7 @@ export default function CategoriesPage() {
               variant="ghost"
               shape="square"
               size="sm"
-              onClick={() => router.push(`/examples/ecommerce/categories/${row.id}`)}
+              onClick={() => router.push(`/templates/ecommerce/categories/${row.id}`)}
             >
               <PenLinear size={16} />
             </IconButton>

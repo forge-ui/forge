@@ -140,7 +140,7 @@ export default function OrderDetailPage() {
           <IconButton variant="tertiary">
             <MenuDotsLinear size={20} />
           </IconButton>
-          <Link href={`/examples/ecommerce/orders/${id}/invoice`}>
+          <Link href={`/templates/ecommerce/orders/${id}/invoice`}>
             <Button iconLeft={<FileTextBoldDuotone size={16} />}>Invoice</Button>
           </Link>
         </div>
