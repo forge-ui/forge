@@ -3,7 +3,7 @@ import { type ReactNode } from "react";
 // ============================================================
 // InfoRow — examples sidebar 信息行（裸 icon + label + value 上下排）
 // 不在 UI Kit (DescriptionItem 用 CircleIcon 包，跟此处需要的裸 icon 视觉不同)
-// 仅 src/app/examples/ 下业务示例使用
+// 仅 src/app/templates/ 下业务示例使用
 // ============================================================
 
 export function InfoRow({

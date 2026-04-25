@@ -246,7 +246,7 @@ export default function CustomersPage() {
         render: (row) => (
           <div
             className="cursor-pointer"
-            onClick={() => router.push(`/examples/ecommerce/customers/${row.id}`)}
+            onClick={() => router.push(`/templates/ecommerce/customers/${row.id}`)}
           >
             <CellImageText
               src={row.avatarUrl}

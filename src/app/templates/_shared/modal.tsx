@@ -7,7 +7,7 @@ import { cn } from "@forge-ui/react";
 // ============================================================
 // Modal — examples 业务页通用弹窗壳
 // 不在 UI Kit (Figma 没设计通用 Modal，只有 ConfirmationDialog 特化弹窗)
-// 仅 src/app/examples/ 下业务示例使用
+// 仅 src/app/templates/ 下业务示例使用
 // ============================================================
 
 export function Modal({

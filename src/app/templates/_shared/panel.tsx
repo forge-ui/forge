@@ -3,7 +3,7 @@ import { cn } from "@forge-ui/react";
 
 // ============================================================
 // Panel — examples 业务页通用容器壳
-// 不在 UI Kit (Figma 没设计这个)，仅 src/app/examples/ 下业务示例使用
+// 不在 UI Kit (Figma 没设计这个)，仅 src/app/templates/ 下业务示例使用
 // outline + bg + rounded-card + p-6 + 可选 title/subtitle/action/footer
 // ============================================================
 
