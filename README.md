@@ -2,7 +2,7 @@
 
 一套为 ToB SaaS 产品准备的设计系统 + React 组件库。从 Figma 稿到生产代码，团队拿来就能拼页面。
 
-**[在线看组件和模板 →](https://forge-ui.github.io/forge/)**
+**[在线看组件和模板 →](https://forge-mu-amber.vercel.app/)**
 
 ## 做这个是为了解决什么
 
@@ -19,17 +19,20 @@ Forge 把这套东西一次性打包：
 - **现成业务模板**：电商后台（订单 / 商品 / 客户 / 分类 / 卖家）、dashboard builder、登录套件
 - **AI 协作友好**：一份 `/docs/agents-md` 指引 + 一条命令把 Forge skill 装进 Claude Code / Cursor / Codex：
   ```bash
-  curl -fsSL https://forge-ui.github.io/forge/install-skill.sh | bash
+  curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
   ```
 
 ## 产品形态
 
 | | |
 |---|---|
-| 组件包 | `@forge-ui/react`（GitHub Packages 私有） |
-| 在线展示 | [forge-ui.github.io/forge](https://forge-ui.github.io/forge/) |
-| 组件源码 | [forge-ui/forge-core](https://github.com/forge-ui/forge-core) |
-| 本仓（forge） | 文档站 + showcase + 业务模板，消费组件包 |
+| 免费 Core 包（MIT） | `@forge-ui-official/core`（公共 npm，30+ 原子组件） |
+| Pro 组件包 | `@forge-ui/react`（GitHub Packages 私有，含 DataTable / Calendar / Charts / 业务 Card / AppLayout） |
+| 在线展示 | [forge-mu-amber.vercel.app](https://forge-mu-amber.vercel.app/) |
+| Pro 组件源码 | [forge-ui/forge-core](https://github.com/forge-ui/forge-core)（私有） |
+| 免费 Core 源码 | [forge-ui/forge-core-public](https://github.com/forge-ui/forge-core-public)（MIT 开源） |
+| 本仓（forge） | 文档站 + showcase + 业务模板，消费 Pro 组件包 |
+| 早鸟 / Pro 购买 | [waitlist](https://forge-mu-amber.vercel.app/waitlist) — $49.9 lifetime（前 50 名） |
 
 在线展示分四块：
 
@@ -44,7 +47,7 @@ Forge 把这套东西一次性打包：
 - 用 Next.js 16 + React 19 + Tailwind v4 的项目
 - 希望 AI 辅助开发能"接得上"自己的设计系统
 
-目前**组件包私有分发**——本文档站（`forge-ui/forge`）是公开的，但组件包 `@forge-ui/react` 发在 GitHub Packages 私有，成员加入 `forge-ui` team 后拿到 `read:packages` 权限即可装包。
+**免费 Core 公开发布在 npm**（`@forge-ui-official/core`，MIT），任何人 `pnpm add` 就能用。**Pro 版** `@forge-ui/react` 通过 GitHub Packages 私有分发，购买早鸟后获得 `read:packages` token 即可装包。
 
 ---
 
@@ -74,4 +77,4 @@ src/app/
 
 ## 技术栈
 
-Next.js 16 (App Router, `output: export`) · React 19 · Tailwind CSS v4 · TypeScript
+Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · TypeScript · Vercel deployment

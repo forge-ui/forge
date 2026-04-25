@@ -17,6 +17,8 @@ const NPMRC = `@forge-ui:registry=https://npm.pkg.github.com
 const INSTALL = `export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxx
 pnpm add @forge-ui/react`;
 
+const FREE_INSTALL = `pnpm add @forge-ui-official/core`;
+
 const GLOBALS_CSS = `@import "tailwindcss";
 @import "@forge-ui/react/styles.css";
 @source "../../node_modules/@forge-ui/react/dist";`;
@@ -27,7 +29,7 @@ export default function Page() {
   return <Button>Hello Forge</Button>;
 }`;
 
-const INSTALL_SKILL = `curl -fsSL https://forge-ui.github.io/forge/install-skill.sh | bash`;
+const INSTALL_SKILL = `curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash`;
 
 function Step({
   n,
@@ -75,6 +77,26 @@ export default function QuickStartPage() {
             {chip}
           </span>
         ))}
+      </div>
+
+      <div className="flex flex-col gap-3 rounded-2xl border border-purple-200 bg-gradient-to-br from-purple-50 to-orange-50 p-5">
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-fg-violet px-2 py-0.5 text-[10px] font-bold tracking-wide text-white">
+            FREE · MIT
+          </span>
+          <span className="text-sm font-semibold tracking-fg text-fg-black">
+            先试试免费版？1 行命令搞定，无需 PAT
+          </span>
+        </div>
+        <p className="text-sm leading-relaxed text-fg-grey-700">
+          <code className="rounded bg-white/70 px-1 text-xs">@forge-ui-official/core</code>{" "}
+          含 30+ 原子组件（Button、TextField、Tooltip、Datepicker、Pagination 等），MIT license，发到公共 npm。直接装就能用：
+        </p>
+        <PromptBlock content={FREE_INSTALL} />
+        <p className="text-xs text-fg-grey-700">
+          下面是 <strong>Pro 版</strong>（<code className="rounded bg-white/70 px-1">@forge-ui/react</code>）安装步骤，含 DataTable Pro · 全部 Calendar · 16 个 Charts · 17 个业务 Card · AppLayout · 所有 case 页。
+          <Link href="/waitlist" className="ml-1 font-semibold text-fg-violet underline">加入早鸟名单</Link>。
+        </p>
       </div>
 
       <div className="flex flex-col gap-8">
