@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MagniferLinear } from "solar-icon-set";
-import { cn } from "@forge-ui/react";
+import { Button, cn } from "@forge-ui/react";
 import { asset } from "@/lib/asset";
 
 const tabs = [
@@ -64,6 +64,11 @@ export function SiteHeader() {
               />
               <span className="flex-1 truncate">搜索文档...</span>
             </button>
+            <Link href="/waitlist">
+              <Button color="black" variant="primary" size="sm">
+                加入名单
+              </Button>
+            </Link>
             <a
               href="https://github.com/forge-ui/forge"
               target="_blank"

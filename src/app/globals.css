@@ -5,3 +5,15 @@
 
 /* 让 Tailwind v4 扫描 @forge-ui/react 产物里的 utility class */
 @source "../../node_modules/@forge-ui/react/dist";
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
