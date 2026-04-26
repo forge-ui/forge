@@ -29,6 +29,13 @@ const items: ShowcaseItem[] = [
     thumbnail: asset("/images/showcase/dashboard-builder-hero.png"),
   },
   {
+    href: "/templates/dashboards",
+    title: "Dashboards",
+    description:
+      "10 个填好的 SaaS 控制台样板，Project / Analytics / CRM / E-Commerce / Finance 五大业务，4 种侧栏配色齐活。",
+    thumbnail: asset("/images/showcase/dashboards/finance-3.png"),
+  },
+  {
     href: "https://github.com/forge-ui/forge-starter",
     title: "Forge Starter",
     description:
