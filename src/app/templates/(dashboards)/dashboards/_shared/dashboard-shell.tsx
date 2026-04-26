@@ -10,27 +10,10 @@ import type {
   AppLayoutProfilePosition,
 } from "@forge-ui/react";
 
-export type DashboardShellVariant =
-  | "violet-top"
-  | "light-top"
-  | "light-sb"
-  | "blue-sb";
-
-interface VariantConfig {
+interface DashboardShellProps {
   mode: AppLayoutMode;
   accent: AppLayoutAccentColor;
   profilePosition: AppLayoutProfilePosition;
-}
-
-const variantConfig: Record<DashboardShellVariant, VariantConfig> = {
-  "violet-top": { mode: "dark", accent: "purple", profilePosition: "topbar" },
-  "light-top": { mode: "light", accent: "purple", profilePosition: "topbar" },
-  "light-sb": { mode: "light", accent: "purple", profilePosition: "sidebar" },
-  "blue-sb": { mode: "dark", accent: "blue", profilePosition: "sidebar" },
-};
-
-interface DashboardShellProps {
-  variant: DashboardShellVariant;
   menuItems: AppLayoutMenuItem[];
   favoriteItems?: AppLayoutMenuItem[];
   profile: AppLayoutProfile;
@@ -46,7 +29,9 @@ interface DashboardShellProps {
 }
 
 export function DashboardShell({
-  variant,
+  mode,
+  accent,
+  profilePosition,
   menuItems,
   favoriteItems,
   profile,
@@ -60,12 +45,11 @@ export function DashboardShell({
   logoText = "Protask",
   children,
 }: DashboardShellProps) {
-  const cfg = variantConfig[variant];
   return (
     <AppLayout
-      mode={cfg.mode}
-      accent={cfg.accent}
-      profilePosition={cfg.profilePosition}
+      mode={mode}
+      accent={accent}
+      profilePosition={profilePosition}
       menuItems={menuItems}
       favoriteItems={favoriteItems}
       profile={profile}

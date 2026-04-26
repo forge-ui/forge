@@ -170,7 +170,9 @@ const regionsForMap: MapRegion[] = [
 export default function AnalyticsPage() {
   return (
     <DashboardShell
-      variant="light-top"
+      mode="light"
+      accent="purple"
+      profilePosition="topbar"
       menuItems={menuItems}
       profile={mainProfile}
     >

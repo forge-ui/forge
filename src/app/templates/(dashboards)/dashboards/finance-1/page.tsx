@@ -48,7 +48,9 @@ const menuItems: AppLayoutMenuItem[] = [
 export default function Finance1Page() {
   return (
     <DashboardShell
-      variant="light-top"
+      mode="dark"
+      accent="blue"
+      profilePosition="topbar"
       menuItems={menuItems}
       profile={mainProfile}
     >
@@ -61,12 +63,12 @@ export default function Finance1Page() {
           </div>
           <div className="flex items-center gap-3">
             <Button variant="tertiary" iconLeft={<CalendarMinimalisticLinear size={16} />}>Select Dates</Button>
-            <Button iconLeft={<PlusIcon size={16} />}>Add Payment</Button>
+            <Button color="purple" iconLeft={<PlusIcon size={16} />}>Add Payment</Button>
           </div>
         </div>
 
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <BalanceCard
             title="Total Balance"
             balance="$21,500"
@@ -85,6 +87,7 @@ export default function Finance1Page() {
             trendDirection="up"
             chartColor="blue"
             chartDirection="up"
+            className="!w-full"
           />
           <LineChartStatCard
             title="Expenses"
@@ -94,6 +97,7 @@ export default function Finance1Page() {
             trendDirection="down"
             chartColor="red"
             chartDirection="down"
+            className="!w-full"
           />
         </div>
 

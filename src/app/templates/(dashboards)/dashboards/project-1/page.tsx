@@ -112,7 +112,9 @@ const projectColumns: ColumnDef<ProjectRow>[] = [
 export default function Project1Page() {
   return (
     <DashboardShell
-      variant="violet-top"
+      mode="dark"
+      accent="purple"
+      profilePosition="topbar"
       menuItems={menuItems}
       favoriteItems={favoriteItems}
       profile={mainProfile}
