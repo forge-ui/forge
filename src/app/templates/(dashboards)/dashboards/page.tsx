@@ -11,16 +11,16 @@ type DashboardEntry = {
 };
 
 const entries: DashboardEntry[] = [
-  { slug: "finance-1", title: "Finance · 顶栏版", subtitle: "白底顶栏 + 黑色主按钮，余额、信用卡、收支统计、转账。" },
-  { slug: "finance-2", title: "Finance · 三卡片堆叠", subtitle: "白侧栏 + 紫色主题，卡片堆叠展示、收支折线、半圆甜甜圈。" },
-  { slug: "finance-3", title: "Finance · 紫色侧栏", subtitle: "蓝紫侧栏 + 完整理财工作台，余额、统计、转账、汇率换算。" },
-  { slug: "ecommerce-1", title: "E-Commerce · 概览", subtitle: "蓝色侧栏 + 销售概览，图片卡、地图分布、订单表格。" },
-  { slug: "ecommerce-2", title: "E-Commerce · 商品分析", subtitle: "白侧栏 + 黑主题，气泡图分类、销售指标、商品列表。" },
-  { slug: "ecommerce-3", title: "E-Commerce · 订单工作台", subtitle: "深色侧栏 + 订单流程，状态徽章、客户信息、批量操作。" },
-  { slug: "project-1", title: "Project · 任务看板", subtitle: "紫色顶栏 + 项目看板，任务列表、进度仪表、团队成员。" },
-  { slug: "project-2", title: "Project · 工时统计", subtitle: "白侧栏 + 工时数据，任务时间线、预算追踪、燃尽图。" },
-  { slug: "analytics", title: "Analytics · 数据洞察", subtitle: "黑色顶栏 + 多图表组合，流量来源、转化漏斗、留存矩阵。" },
-  { slug: "crm", title: "CRM · 客户关系", subtitle: "白侧栏 + 销售管线，客户卡片、跟进时间线、漏斗指标。" },
+  { slug: "finance-1", title: "Finance · Overview", subtitle: "白侧栏 / 顶栏 profile · 余额、信用卡列表、Income/Expenses 双向柱图。" },
+  { slug: "finance-2", title: "Finance · Card 中心", subtitle: "白侧栏 / 侧栏 profile · 三张信用卡堆叠展示、收支折线、半圆甜甜圈。" },
+  { slug: "finance-3", title: "Finance · 工作台", subtitle: "蓝色侧栏 / 侧栏 profile · 余额、信用卡、Wallet、汇率换算、统计 + 表格全家桶。" },
+  { slug: "ecommerce-1", title: "E-Commerce · 销售概览", subtitle: "蓝色侧栏 / 侧栏 profile · 蓝色主题，Top Product 高亮卡 + Top Region 地图。" },
+  { slug: "ecommerce-2", title: "E-Commerce · 数据分析", subtitle: "白侧栏 / 侧栏 profile · Total Revenue/Orders/Customers 三卡 + 多色折线 + Expenses 气泡图。" },
+  { slug: "ecommerce-3", title: "E-Commerce · 销售总览", subtitle: "白侧栏 / 顶栏 profile · 紫蓝绿红四彩卡 + Target 仪表 + 紫色单色柱图。" },
+  { slug: "project-1", title: "Project · 项目概览", subtitle: "紫色侧栏 / 顶栏 profile · Total/In Progress/Completed/Unfinished 四指标 + Team Member。" },
+  { slug: "project-2", title: "Project · 工作台", subtitle: "白侧栏 / 侧栏 profile · Active Project/Client/Team 三卡 + 三色折线 + 饼图 + Calendar。" },
+  { slug: "analytics", title: "Analytics · 数据洞察", subtitle: "白侧栏 / 顶栏 profile · 四指标 progress + 紫色柱图 + Campaign 列表。" },
+  { slug: "crm", title: "CRM · 客户分析", subtitle: "紫色侧栏 / 顶栏 profile · Revenue/Leads/Customer 三卡 + Average Sales 紫柱图 + 转化进度条。" },
 ];
 
 export default function DashboardsGallery() {
