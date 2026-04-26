@@ -72,7 +72,9 @@ const recentProjects = [
 export default function Project2Page() {
   return (
     <DashboardShell
-      variant="light-sb"
+      mode="light"
+      accent="blue"
+      profilePosition="sidebar"
       menuItems={menuItems}
       favoriteItems={favoriteItems}
       profile={mainProfile}
@@ -83,7 +85,7 @@ export default function Project2Page() {
     >
       <div className="flex flex-col gap-6">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <ProgressStatCard
             title="Active Project"
             subtitle="2 Jul - Today"
@@ -94,6 +96,7 @@ export default function Project2Page() {
             progressValue={42}
             progressColor="red"
             icon={<FolderBoldDuotone size={20} />}
+            className="!w-full"
           />
           <LineChartStatCard
             title="Active Client"
@@ -103,6 +106,7 @@ export default function Project2Page() {
             trendDirection="up"
             chartColor="green"
             chartDirection="down"
+            className="!w-full"
           />
           <WheelChartStatCard
             title="Team Assigned"
@@ -112,6 +116,7 @@ export default function Project2Page() {
             trendDirection="up"
             wheelColor="red"
             wheelPercent={80}
+            className="!w-full"
           />
         </div>
 

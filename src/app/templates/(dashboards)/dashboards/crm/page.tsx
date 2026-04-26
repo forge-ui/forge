@@ -20,7 +20,7 @@ import {
 import {
   Button,
   HighlightCard,
-  LineChartStatCard,
+  BarChartStatCard,
   BarChart,
   MeterChart,
   DataTable,
@@ -105,7 +105,9 @@ const leadColumns: ColumnDef<LeadRow>[] = [
 export default function CrmPage() {
   return (
     <DashboardShell
-      variant="violet-top"
+      mode="light"
+      accent="purple"
+      profilePosition="topbar"
       menuItems={menuItems}
       profile={mainProfile}
       teamName={teamMeta.teamName}
@@ -125,19 +127,24 @@ export default function CrmPage() {
           </div>
         </div>
 
-        {/* 3 stats: Revenue (highlight) + Leads (line) + Customer (line) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-3xl bg-fg-violet text-white p-6 flex flex-col gap-3 relative overflow-hidden">
+        {/* 3 stats: Revenue (highlight) + Leads (bar) + Customer (bar) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 [&>*]:!w-full">
+          <div className="rounded-card bg-fg-violet text-white p-5 flex flex-col gap-4 relative overflow-hidden">
             <div className="absolute -right-10 -bottom-10 size-48 rounded-full bg-violet-700 opacity-50" />
             <div className="absolute -right-6 -top-6 size-32 rounded-full bg-violet-600 opacity-40" />
-            <div className="relative flex flex-col gap-1">
-              <div className="text-sm text-purple-200">Revenue</div>
-              <div className="text-xs text-purple-200">2 Jul - Today</div>
+            <div className="relative flex items-start justify-between gap-2">
+              <div className="flex flex-col gap-0.5">
+                <div className="text-base font-medium text-white">Revenue</div>
+                <div className="text-xs text-white/75">2 Jul - Today</div>
+              </div>
+              <div className="size-10 rounded-full bg-white/15 flex items-center justify-center">
+                <WalletBoldDuotone size={18} />
+              </div>
             </div>
-            <div className="relative text-3xl font-semibold">1,200</div>
+            <div className="relative text-3xl font-semibold leading-9">1,200</div>
             <div className="relative">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-purple-200">Progress</span>
+                <span className="text-white/75">Progress</span>
                 <span>25%</span>
               </div>
               <div className="mt-1 h-1.5 w-full rounded-full bg-violet-800/50 overflow-hidden">
@@ -145,28 +152,28 @@ export default function CrmPage() {
               </div>
               <div className="mt-2 flex items-center justify-between text-xs">
                 <span className="inline-flex items-center gap-1 text-emerald-300">10%</span>
-                <span className="text-purple-200">+$150 today</span>
+                <span className="text-white/75">+$150 today</span>
               </div>
             </div>
           </div>
 
-          <LineChartStatCard
+          <BarChartStatCard
             title="Leads"
-            subtitle="2 Jul - Today"
             value="44,210"
             trend="10%"
             trendDirection="up"
-            chartColor="purple"
-            chartDirection="up"
+            subtitle="+150 today"
+            barColor="purple"
+            bars={[16, 24, 32, 20, 40]}
           />
-          <LineChartStatCard
+          <BarChartStatCard
             title="Customer"
-            subtitle="2 Jul - Today"
             value="21,230"
             trend="10%"
             trendDirection="up"
-            chartColor="purple"
-            chartDirection="up"
+            subtitle="+150 today"
+            barColor="purple"
+            bars={[14, 22, 18, 38, 28]}
           />
         </div>
 

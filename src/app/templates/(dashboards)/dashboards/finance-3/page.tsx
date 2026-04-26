@@ -124,7 +124,9 @@ export default function Finance3Page() {
 
   return (
     <DashboardShell
-      variant="blue-sb"
+      mode="light"
+      accent="purple"
+      profilePosition="sidebar"
       menuItems={menuItems}
       profile={mainProfile}
       pageTitle="Dashboard"

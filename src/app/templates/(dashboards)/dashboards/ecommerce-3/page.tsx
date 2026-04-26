@@ -116,7 +116,9 @@ const orderColumns: ColumnDef<OrderRow>[] = [
 export default function Ecommerce3Page() {
   return (
     <DashboardShell
-      variant="light-top"
+      mode="light"
+      accent="black"
+      profilePosition="topbar"
       menuItems={menuItems}
       favoriteItems={favoriteItems}
       profile={mainProfile}

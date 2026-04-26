@@ -99,7 +99,9 @@ const transactionColumns: ColumnDef<TransactionRow>[] = [
 export default function Finance2Page() {
   return (
     <DashboardShell
-      variant="light-sb"
+      mode="light"
+      accent="black"
+      profilePosition="topbar"
       menuItems={menuItems}
       profile={mainProfile}
       pageTitle="Dashboard"
@@ -107,7 +109,7 @@ export default function Finance2Page() {
     >
       <div className="flex flex-col gap-6">
         {/* Card stack + Income + Expenses */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           {/* Card stack */}
           <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
             <div className="flex items-start justify-between">
@@ -139,6 +141,7 @@ export default function Finance2Page() {
             trendDirection="up"
             chartColor="purple"
             chartDirection="up"
+            className="!w-full"
           />
           <LineChartStatCard
             title="Expenses"
@@ -148,6 +151,7 @@ export default function Finance2Page() {
             trendDirection="down"
             chartColor="red"
             chartDirection="down"
+            className="!w-full"
           />
         </div>
 
