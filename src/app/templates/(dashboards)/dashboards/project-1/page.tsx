@@ -53,6 +53,7 @@ import {
   statisticBarData,
   type ProjectRow,
 } from "../_shared";
+import { asset } from "@/lib/asset";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Overview", href: "/templates/dashboards/project-1" },
@@ -227,7 +228,8 @@ export default function Project1Page() {
               trend="146 Finished"
               trendDirection="up"
               trendSubtitle="80% Success"
-              avatars={[]}
+              backgroundImage={asset("/images/team/edward-allen.png")}
+              backgroundImageAlt="Edward Allen"
               action={<IconButton variant="ghost" shape="square" size="sm"><AltArrowRightLinear size={16} /></IconButton>}
             />
             <BarChartStatCard
