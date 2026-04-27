@@ -220,6 +220,7 @@ export default function Project1Page() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1 flex flex-col gap-6">
             <ImageStatCard
+              size="wide"
               title="Team of the Month"
               value="Edward Allen"
               theme="purple"
@@ -230,6 +231,7 @@ export default function Project1Page() {
               action={<IconButton variant="ghost" shape="square" size="sm"><AltArrowRightLinear size={16} /></IconButton>}
             />
             <BarChartStatCard
+              size="wide"
               title="Client Growth"
               subtitle="2 Jul - Today"
               value="1,456"

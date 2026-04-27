@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.8
         version: 5.2.8
       '@forge-ui/react':
-        specifier: ^0.1.6
-        version: 0.1.6(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)
+        specifier: ^0.1.7
+        version: 0.1.7(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)
       next:
         specifier: 16.2.2
         version: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -181,8 +181,8 @@ packages:
   '@fontsource-variable/plus-jakarta-sans@5.2.8':
     resolution: {integrity: sha512-iQecBizIdZxezODNHzOn4SvvRMrZL/S8k4MEXGDynCmUrImVW0VmX+tIAMqnADwH4haXlHSXqMgU6+kcfBQJdw==}
 
-  '@forge-ui/react@0.1.6':
-    resolution: {integrity: sha512-YLuVRr7PhgDAv/piGbY0AYaKmdc4onB/dNhMbqYPO4CszE4rM96BsJbrGYyGCXrhO+9b0mZMAH1OwzUP1qqUtQ==, tarball: https://npm.pkg.github.com/download/@forge-ui/react/0.1.6/528a9176ac83f63649ef3e0627df92dce5258ec1}
+  '@forge-ui/react@0.1.7':
+    resolution: {integrity: sha512-9hSpSTiqspVBtim5iulqqSDw/It7C9Giolx5v2A6Zyj8enp+oeZ/k2eTw1D6tA+SrskzHaai+/IwzPDf+oj5wg==, tarball: https://npm.pkg.github.com/download/@forge-ui/react/0.1.7/0933669fe1ec7773330f59fb152ae4e42a3c99fb}
     peerDependencies:
       next: '>=15'
       react: '>=19'
@@ -2152,7 +2152,7 @@ snapshots:
 
   '@fontsource-variable/plus-jakarta-sans@5.2.8': {}
 
-  '@forge-ui/react@0.1.6(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)':
+  '@forge-ui/react@0.1.7(next@16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solar-icon-set@2.0.1(react@19.2.4))(tailwindcss@4.2.2)':
     dependencies:
       next: 16.2.2(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react: 19.2.4
