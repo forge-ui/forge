@@ -138,10 +138,10 @@ export default function Project1Page() {
 
         {/* 4 stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard title="Total Project" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" icon={<FolderBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard title="In Progress" value="4,412" trend="5%" trendDirection="up" subtitle="+150 today" icon={<CartLargeBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard title="Completed" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" icon={<FolderWithFilesBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard title="Unfinished" value="329" trend="0%" trendDirection="down" subtitle="+150 today" icon={<BillListBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="Total Project" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" icon={<FolderBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="In Progress" value="4,412" trend="5%" trendDirection="up" subtitle="+150 today" icon={<CartLargeBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="Completed" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" icon={<FolderWithFilesBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="Unfinished" value="329" trend="0%" trendDirection="down" subtitle="+150 today" icon={<BillListBoldDuotone size={20} />} badgeVariant="opacity" />
         </div>
 
         {/* Statistic + All Project bubble */}
