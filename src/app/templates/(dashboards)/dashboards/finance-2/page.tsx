@@ -135,23 +135,25 @@ export default function Finance2Page() {
 
           <LineChartStatCard
             title="Income"
-            subtitle="2 Jul - Today"
+            subtitle="+$355 today"
             value="$35,500"
             trend="10%"
             trendDirection="up"
             chartColor="purple"
             chartDirection="up"
-            className="!w-full"
+            size="wide"
+            icon={<CardSendBoldDuotone size={20} />}
           />
           <LineChartStatCard
             title="Expenses"
-            subtitle="2 Jul - Today"
+            subtitle="+$150 today"
             value="$14,000"
             trend="10%"
             trendDirection="down"
             chartColor="red"
             chartDirection="down"
-            className="!w-full"
+            size="wide"
+            icon={<CardSendBoldDuotone size={20} />}
           />
         </div>
 

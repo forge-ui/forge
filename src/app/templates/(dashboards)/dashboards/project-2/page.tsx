@@ -85,10 +85,10 @@ export default function Project2Page() {
     >
       <div className="flex flex-col gap-6">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           <ProgressStatCard
             title="Active Project"
-            subtitle="2 Jul - Today"
+            subtitle="+44 today"
             value="4,412"
             trend="10%"
             trendDirection="up"
@@ -96,27 +96,29 @@ export default function Project2Page() {
             progressValue={42}
             progressColor="red"
             icon={<FolderBoldDuotone size={20} />}
-            className="!w-full"
+            size="wide"
           />
           <LineChartStatCard
             title="Active Client"
-            subtitle="2 Jul - Today"
+            subtitle="+0 today"
             value="1,456"
             trend="10%"
             trendDirection="up"
             chartColor="green"
             chartDirection="down"
-            className="!w-full"
+            size="wide"
+            icon={<UserBoldDuotone size={20} />}
           />
           <WheelChartStatCard
             title="Team Assigned"
-            subtitle="2 Jul - Today"
+            subtitle="+5 today"
             value="324"
             trend="5%"
             trendDirection="up"
             wheelColor="red"
             wheelPercent={80}
-            className="!w-full"
+            size="wide"
+            icon={<UsersGroupTwoRoundedBoldDuotone size={20} />}
           />
         </div>
 
