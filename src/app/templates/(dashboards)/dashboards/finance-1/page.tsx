@@ -68,7 +68,7 @@ export default function Finance1Page() {
         </div>
 
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           <BalanceCard
             title="Total Balance"
             balance="$21,500"
@@ -81,23 +81,25 @@ export default function Finance1Page() {
           />
           <LineChartStatCard
             title="Income"
-            subtitle="2 Jul - Today"
+            subtitle="+$355 today"
             value="$35,500"
             trend="10%"
             trendDirection="up"
             chartColor="blue"
             chartDirection="up"
-            className="!w-full"
+            size="wide"
+            icon={<CardSendBoldDuotone size={20} />}
           />
           <LineChartStatCard
             title="Expenses"
-            subtitle="2 Jul - Today"
+            subtitle="+$150 today"
             value="$14,000"
             trend="10%"
             trendDirection="down"
             chartColor="red"
             chartDirection="down"
-            className="!w-full"
+            size="wide"
+            icon={<CardSendBoldDuotone size={20} />}
           />
         </div>
 
