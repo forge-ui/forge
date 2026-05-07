@@ -11,31 +11,31 @@ import {
   WalletBoldDuotone,
   TagBoldDuotone,
   CalendarMinimalisticLinear,
-  AltArrowRightLinear,
-  ArrowRightUpLinear,
   VideocameraRecordLinear,
   PhoneLinear,
 } from "solar-icon-set";
 import {
   Button,
   ProgressStatCard,
-  BarChart,
   MapCard,
   DataTable,
   CellText,
-  CellMuted,
   ProgressBadge,
   KebabMenu,
   ListGroup,
   ChartListItem,
-  PlusIcon,
 } from "@forge-ui/react";
 import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@forge-ui/react";
 import {
   DashboardShell,
   WalletGoalCard,
   mainProfile,
-  statisticBarData,
+  groupedStatisticBarData,
+  groupedStatisticSeries,
+  groupedStatisticTooltip,
+  FigmaChartHeader,
+  FigmaGroupedBarChart,
+  FigmaMetricRow,
 } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
@@ -187,57 +187,23 @@ export default function AnalyticsPage() {
         </div>
 
         {/* 4 progress stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <ProgressStatCard title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
-          <ProgressStatCard title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
-          <ProgressStatCard title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
-          <ProgressStatCard title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
+          <ProgressStatCard size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
+          <ProgressStatCard size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
+          <ProgressStatCard size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
+          <ProgressStatCard size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
         </div>
 
         {/* Statistic + Campaign */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
-                <p className="text-sm text-fg-grey-500">Income and expenses</p>
-              </div>
-              <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
-                <button className="px-3 py-1.5 rounded-full bg-white shadow-sm text-fg-black">All</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Income</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Expenses</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Profit</button>
-              </div>
-            </div>
-            <div className="flex items-center gap-6">
-              {[
-                { label: "Income", value: "$26,120", trend: "10%", up: true, color: "#7c3aed" },
-                { label: "Expenses", value: "$18,000", trend: "10%", up: false, color: "#f97316" },
-              ].map((s) => (
-                <div key={s.label} className="flex items-center gap-2">
-                  <div className="size-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: s.color }}>
-                    <ArrowRightUpLinear size={16} />
-                  </div>
-                  <div>
-                    <div className="text-xs text-fg-grey-500">{s.label}</div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-base font-semibold text-fg-black">{s.value}</span>
-                      <span className={`text-xs font-medium ${s.up ? "text-emerald-500" : "text-fg-red"}`}>{s.trend}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <BarChart
-              data={statisticBarData}
-              accent="purple"
-              activeIndex={6}
-              showLabels
-              showTooltip
-              tooltipValue="$680"
-              tooltipTrend="up"
-              height="h-[300px]"
-              barWidth="thin"
+            <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
+            <FigmaMetricRow series={groupedStatisticSeries.slice(0, 2)} />
+            <FigmaGroupedBarChart
+              data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 2) }))}
+              series={groupedStatisticSeries.slice(0, 2)}
+              tooltipItems={groupedStatisticTooltip.slice(0, 2)}
+              heightClass="h-[300px]"
             />
           </div>
 

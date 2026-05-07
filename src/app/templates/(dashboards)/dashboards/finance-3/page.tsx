@@ -16,8 +16,6 @@ import {
   FilterLinear,
   AltArrowRightLinear,
   RefreshLinear,
-  HomeBoldDuotone,
-  CartBoldDuotone,
 } from "solar-icon-set";
 import {
   Button,
@@ -26,7 +24,6 @@ import {
   CreditCard,
   BalanceCard,
   CurrencyConverter,
-  BarUpsideDownChart,
   MultilayerDonutChart,
   DataTable,
   CellImageText,
@@ -49,6 +46,7 @@ import {
   transactions,
   contacts,
   upsideDownBarData,
+  FigmaUpsideDownBarChart,
   type TransactionRow,
 } from "../_shared";
 
@@ -157,9 +155,9 @@ export default function Finance3Page() {
               subtitle="All Your Cards"
               items={
                 <div className="flex flex-col gap-3">
-                  <CreditCard cardNumber="**** **** **** 9090" holderName="Jogn Doe Hoegan" expiry="07/25" theme="purple" className="!w-full" />
-                  <CreditCard cardNumber="**** **** **** 9090" holderName="Jogn Doe Hoegan" expiry="07/25" theme="dark" className="!w-full" />
-                  <Button variant="tertiary" iconLeft={<PlusIcon size={16} />} className="w-full">Add New Card</Button>
+                  <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="purple" variant="gradient" className="!w-full" />
+                  <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="dark" variant="flat" className="!w-full" />
+                  <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={16} />} className="w-full rounded-full">Add New Card</Button>
                 </div>
               }
             />
@@ -202,7 +200,7 @@ export default function Finance3Page() {
                   <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
                   <p className="text-sm text-fg-grey-500">Income and Expenses</p>
                 </div>
-                <Button variant="tertiary" iconRight={<AltArrowDownLinear size={14} />}>Monthly</Button>
+                <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>
               </div>
               <div className="flex items-center gap-8">
                 <div className="flex items-center gap-3">
@@ -213,14 +211,14 @@ export default function Finance3Page() {
                     <div className="text-sm text-fg-grey-500">Income</div>
                     <div className="flex items-center gap-2">
                       <span className="text-xl font-semibold text-fg-black">$12,201</span>
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-500">
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-fg-green">
                         10% <ArrowRightUpLinear size={12} />
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="size-10 rounded-full bg-rose-100 flex items-center justify-center text-fg-red">
+                  <div className="size-10 rounded-full bg-fg-red-100 flex items-center justify-center text-fg-red">
                     <ArrowRightDownLinear size={18} />
                   </div>
                   <div>
@@ -234,18 +232,14 @@ export default function Finance3Page() {
                   </div>
                 </div>
               </div>
-              <BarUpsideDownChart
+              <FigmaUpsideDownBarChart
                 data={upsideDownBarData}
-                accent="purple"
                 activeIndex={statisticActiveIndex}
-                showTooltip
-                showLabels
                 tooltipUpperValue="$680"
                 tooltipLowerValue="$280"
-                tooltipTrend="up"
                 upperColor="bg-fg-violet"
                 lowerColor="bg-fg-red"
-                height="h-[280px]"
+                heightClass="h-[280px]"
               />
             </div>
 
@@ -259,9 +253,9 @@ export default function Finance3Page() {
                     <p className="text-sm text-fg-grey-500">Recent transactions</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="tertiary" size="sm" iconLeft={<CalendarMinimalisticLinear size={14} />}>Select Dates</Button>
-                    <Button variant="tertiary" size="sm" iconLeft={<FilterLinear size={14} />}>Filters</Button>
-                    <Button color="purple" size="sm" iconRight={<AltArrowRightLinear size={14} />}>See More</Button>
+                    <Button color="grey" variant="tertiary" size="sm" iconLeft={<CalendarMinimalisticLinear size={14} />} className="rounded-full text-fg-grey-700">Select Dates</Button>
+                    <Button color="grey" variant="tertiary" size="sm" iconLeft={<FilterLinear size={14} />} className="rounded-full text-fg-grey-700">Filters</Button>
+                    <Button color="purple" size="sm" iconRight={<AltArrowRightLinear size={14} />} className="rounded-full">See More</Button>
                   </div>
                 </div>
                 <DataTable<TransactionRow>

@@ -225,6 +225,25 @@ export const statisticBarData = months.map((label, idx) => {
   return { label, value: Math.round(heights[idx] * 1200) };
 });
 
+export const groupedStatisticBarData = months.map((label, idx) => {
+  const income = [120, 640, 620, 210, 360, 220, 580, 380, 180, 740, 300, 170];
+  const expenses = [300, 130, 310, 230, 130, 230, 170, 130, 80, 270, 205, 75];
+  const profit = [220, 210, 380, 170, 175, 250, 390, 210, 110, 390, 120, 65];
+  return { label, values: [income[idx], expenses[idx], profit[idx]] };
+});
+
+export const groupedStatisticSeries = [
+  { label: "Income", colorClass: "bg-fg-violet", value: "$26,120", trend: "up" as const },
+  { label: "Expenses", colorClass: "bg-fg-red", value: "$18,000", trend: "down" as const },
+  { label: "Profit", colorClass: "bg-fg-cyan", value: "$7,820", trend: "up" as const },
+];
+
+export const groupedStatisticTooltip = [
+  { label: "Income", value: "$680", colorClass: "bg-fg-violet", trend: "up" as const },
+  { label: "Expenses", value: "$280", colorClass: "bg-fg-red", trend: "down" as const },
+  { label: "Profit", value: "$280", colorClass: "bg-fg-cyan", trend: "up" as const },
+];
+
 // Bi-directional bar chart
 export const upsideDownBarData = months.map((label, idx) => {
   const u = [400, 600, 500, 450, 400, 700, 380, 320, 380, 500, 380, 380];

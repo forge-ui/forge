@@ -24,7 +24,6 @@ import {
   LineChartStatCard,
   ImageStatCard,
   HighlightCard,
-  BarUpsideDownChart,
   MapCard,
   DataTable,
   CellImageText,
@@ -33,7 +32,6 @@ import {
   StatusBadge,
   KebabMenu,
   IconButton,
-  PlusIcon,
 } from "@forge-ui/react";
 import type {
   AppLayoutMenuItem,
@@ -46,6 +44,7 @@ import {
   mainProfile,
   orders,
   upsideDownBarData,
+  FigmaUpsideDownBarChart,
   type OrderRow,
 } from "../_shared";
 
@@ -138,7 +137,7 @@ export default function Ecommerce1Page() {
     >
       <div className="flex flex-col gap-6">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 [&>*]:!w-full">
           <WheelChartStatCard
             title="Total Revenue"
             subtitle="2 Jul - Today"
@@ -146,6 +145,7 @@ export default function Ecommerce1Page() {
             trend="10%"
             trendDirection="up"
             theme="blue"
+            size="wide"
             wheelColor="blue"
             wheelPercent={75}
           />
@@ -155,6 +155,7 @@ export default function Ecommerce1Page() {
             value="31,300"
             trend="10%"
             trendDirection="up"
+            size="wide"
             chartColor="red"
             chartDirection="down"
           />
@@ -165,6 +166,7 @@ export default function Ecommerce1Page() {
             trend="10%"
             trendDirection="up"
             trendSubtitle="+150 today"
+            size="wide"
             avatars={[1, 2, 3].map((i) => `https://i.pravatar.cc/80?u=cust-${i}`)}
           />
         </div>
@@ -181,19 +183,19 @@ export default function Ecommerce1Page() {
             </div>
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <div className="size-10 rounded-full bg-indigo-50 flex items-center justify-center text-blue-600">
+                <div className="size-10 rounded-full bg-fg-blue-50 flex items-center justify-center text-fg-blue">
                   <ArrowRightUpLinear size={18} />
                 </div>
                 <div>
                   <div className="text-sm text-fg-grey-500">Income</div>
                   <div className="flex items-center gap-2">
                     <span className="text-xl font-semibold text-fg-black">$26,201</span>
-                    <span className="text-xs font-medium text-emerald-500">10%</span>
+                    <span className="text-xs font-medium text-fg-green">10%</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="size-10 rounded-full bg-rose-100 flex items-center justify-center text-fg-red">
+                <div className="size-10 rounded-full bg-fg-red-100 flex items-center justify-center text-fg-red">
                   <ArrowRightDownLinear size={18} />
                 </div>
                 <div>
@@ -205,18 +207,14 @@ export default function Ecommerce1Page() {
                 </div>
               </div>
             </div>
-            <BarUpsideDownChart
+            <FigmaUpsideDownBarChart
               data={upsideDownBarData}
-              accent="blue"
               activeIndex={5}
-              showLabels
-              showTooltip
               tooltipUpperValue="$680"
               tooltipLowerValue="$280"
-              tooltipTrend="up"
-              upperColor="bg-blue-600"
+              upperColor="bg-fg-blue"
               lowerColor="bg-fg-red"
-              height="h-[280px]"
+              heightClass="h-[280px]"
             />
           </div>
 
@@ -255,9 +253,9 @@ export default function Ecommerce1Page() {
                 <p className="text-sm text-fg-grey-500">Recent orders</p>
               </div>
               <div className="flex items-center gap-2">
-                <Button variant="tertiary" size="sm" iconLeft={<CalendarMinimalisticLinear size={14} />}>Select Dates</Button>
-                <Button variant="tertiary" size="sm" iconLeft={<FilterLinear size={14} />}>Filters</Button>
-                <Button color="blue" size="sm" iconRight={<AltArrowRightLinear size={14} />}>See More</Button>
+                <Button color="grey" variant="tertiary" size="sm" iconLeft={<CalendarMinimalisticLinear size={14} />} className="rounded-full text-fg-grey-700">Select Dates</Button>
+                <Button color="grey" variant="tertiary" size="sm" iconLeft={<FilterLinear size={14} />} className="rounded-full text-fg-grey-700">Filters</Button>
+                <Button color="blue" size="sm" iconRight={<AltArrowRightLinear size={14} />} className="rounded-full">See More</Button>
               </div>
             </div>
             <DataTable<OrderRow>

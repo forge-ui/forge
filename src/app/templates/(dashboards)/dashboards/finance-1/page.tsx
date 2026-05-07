@@ -9,18 +9,15 @@ import {
   BillListBoldDuotone,
   ChartBoldDuotone,
   CalendarMinimalisticLinear,
-  AltArrowRightLinear,
   AltArrowDownLinear,
   ArrowRightUpLinear,
   ArrowRightDownLinear,
-  TransferHorizontalLinear,
 } from "solar-icon-set";
 import {
   Button,
   BalanceCard,
   CreditCard,
   LineChartStatCard,
-  BarUpsideDownChart,
   DonutChart,
   ListGroup,
   PlusIcon,
@@ -33,6 +30,7 @@ import {
   mainProfile,
   transactions,
   upsideDownBarData,
+  FigmaUpsideDownBarChart,
 } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
@@ -44,6 +42,26 @@ const menuItems: AppLayoutMenuItem[] = [
   { icon: <CardSendBoldDuotone size={20} />, label: "Invoice", href: "#invoice" },
   { icon: <BillListBoldDuotone size={20} />, label: "Reports", href: "#reports" },
 ];
+
+function CardCarouselPreview() {
+  return (
+    <div className="relative -mx-8 h-[222px] overflow-hidden">
+      <div className="absolute left-0 top-8 h-40 w-12 overflow-hidden rounded-r-2xl">
+        <div className="absolute left-[-236px] top-0">
+          <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="yellow" variant="flat" className="[&_*]:invisible" />
+        </div>
+      </div>
+      <div className="absolute right-0 top-8 h-40 w-12 overflow-hidden rounded-l-2xl">
+        <div className="absolute right-[-236px] top-0">
+          <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="blue" variant="flat" className="[&_*]:invisible" />
+        </div>
+      </div>
+      <div className="absolute left-1/2 top-8 -translate-x-1/2">
+        <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="purple" variant="gradient" className="shadow-card" />
+      </div>
+    </div>
+  );
+}
 
 export default function Finance1Page() {
   return (
@@ -62,13 +80,13 @@ export default function Finance1Page() {
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your finance</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="tertiary" iconLeft={<CalendarMinimalisticLinear size={16} />}>Select Dates</Button>
-            <Button color="purple" iconLeft={<PlusIcon size={16} />}>Add Payment</Button>
+            <Button color="grey" variant="tertiary" iconLeft={<CalendarMinimalisticLinear size={16} />}>Select Dates</Button>
+            <Button color="blue" iconLeft={<PlusIcon size={16} />}>Add Payment</Button>
           </div>
         </div>
 
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch [&>*]:!w-full">
           <BalanceCard
             title="Total Balance"
             balance="$21,500"
@@ -105,18 +123,17 @@ export default function Finance1Page() {
 
         {/* Card list + Statistic */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <ListGroup
-            title="Card"
-            subtitle="All Your Cards"
-            action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
-            items={
-              <div className="flex flex-col gap-3">
-                <CreditCard cardNumber="**** **** **** 9090" holderName="John Doe Hoegan" expiry="07/25" theme="purple" />
-                <CreditCard cardNumber="**** **** **** 9090" holderName="John Doe Hoegan" expiry="07/25" theme="dark" />
-                <Button variant="tertiary" iconLeft={<PlusIcon size={16} />} className="w-full">Add New Card</Button>
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-8 min-h-[398px] flex flex-col">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-2xl font-semibold leading-8 text-fg-black">Card</h3>
+                <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">All Your Cards</p>
               </div>
-            }
-          />
+              <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
+            </div>
+            <CardCarouselPreview />
+            <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={20} />} className="h-14 w-full rounded-full text-base font-semibold">Add New Card</Button>
+          </div>
 
           <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
@@ -124,7 +141,7 @@ export default function Finance1Page() {
                 <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
               </div>
-              <Button variant="tertiary" iconRight={<AltArrowDownLinear size={14} />}>Monthly</Button>
+              <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>
             </div>
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
@@ -135,12 +152,12 @@ export default function Finance1Page() {
                   <div className="text-sm text-fg-grey-500">Income</div>
                   <div className="flex items-center gap-2">
                     <span className="text-xl font-semibold text-fg-black">$12,201</span>
-                    <span className="text-xs font-medium text-emerald-500">10%</span>
+                    <span className="text-xs font-medium text-fg-green">10%</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="size-10 rounded-full bg-rose-100 flex items-center justify-center text-fg-red">
+                <div className="size-10 rounded-full bg-fg-red-100 flex items-center justify-center text-fg-red">
                   <ArrowRightDownLinear size={18} />
                 </div>
                 <div>
@@ -152,18 +169,14 @@ export default function Finance1Page() {
                 </div>
               </div>
             </div>
-            <BarUpsideDownChart
+            <FigmaUpsideDownBarChart
               data={upsideDownBarData}
-              accent="purple"
               activeIndex={5}
-              showTooltip
-              showLabels
               tooltipUpperValue="$680"
               tooltipLowerValue="$280"
-              tooltipTrend="up"
-              upperColor="bg-blue-600"
+              upperColor="bg-fg-blue"
               lowerColor="bg-fg-red"
-              height="h-[280px]"
+              heightClass="h-[280px]"
             />
           </div>
         </div>
