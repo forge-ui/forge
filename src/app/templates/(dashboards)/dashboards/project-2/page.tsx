@@ -9,15 +9,11 @@ import {
   BillListBoldDuotone,
   StarBoldDuotone,
   TagBoldDuotone,
-  CartLargeBoldDuotone,
-  CalendarMinimalisticLinear,
-  AltArrowRightLinear,
   ArrowRightUpLinear,
   PhoneCallingLinear,
   LetterLinear,
 } from "solar-icon-set";
 import {
-  Button,
   ProgressStatCard,
   LineChartStatCard,
   WheelChartStatCard,
@@ -28,7 +24,6 @@ import {
   IconButton,
   KebabMenu,
   ListGroup,
-  PlusIcon,
   FullCalendar,
 } from "@forge-ui/react";
 import type { AppLayoutMenuItem, CalendarEvent } from "@forge-ui/react";
@@ -85,7 +80,7 @@ export default function Project2Page() {
     >
       <div className="flex flex-col gap-6">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch [&>*]:!w-full">
           <ProgressStatCard
             title="Active Project"
             subtitle="+44 today"

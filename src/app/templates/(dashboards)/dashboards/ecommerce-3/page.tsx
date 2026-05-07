@@ -10,10 +10,6 @@ import {
   MouseBoldDuotone,
   GameboyBoldDuotone,
   KeyboardBoldDuotone,
-  WalletBoldDuotone,
-  ChartBoldDuotone,
-  CartLargeBoldDuotone,
-  TagBoldDuotone,
   CalendarMinimalisticLinear,
   AltArrowRightLinear,
   EyeLinear,
@@ -22,10 +18,8 @@ import {
 } from "solar-icon-set";
 import {
   Button,
-  StatCard,
   BarChartStatCard,
   HalfDonutChart,
-  BarChart,
   PieChart,
   DataTable,
   CellImageText,
@@ -45,7 +39,11 @@ import {
   orders,
   topProducts,
   regions,
-  statisticBarData,
+  groupedStatisticBarData,
+  groupedStatisticSeries,
+  groupedStatisticTooltip,
+  FigmaChartHeader,
+  FigmaGroupedBarChart,
   type OrderRow,
 } from "../_shared";
 
@@ -138,11 +136,11 @@ export default function Ecommerce3Page() {
         </div>
 
         {/* 4 colorful stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <BarChartStatCard title="Income" value="$75,000" trend="10%" trendDirection="up" subtitle="+$750 today" theme="purple" barColor="purple" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard title="Orders" value="31,000" trend="5%" trendDirection="up" subtitle="+156 today" theme="blue" barColor="blue" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard title="Profit" value="$32,125" trend="10%" trendDirection="up" subtitle="+$321 today" theme="green" barColor="green" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard title="Expenses" value="$18,120" trend="10%" trendDirection="up" subtitle="+$321 today" theme="red" barColor="red" bars={[10, 30, 60, 95, 50, 40, 30]} />
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
+          <BarChartStatCard title="Income" value="$75,000" trend="10%" trendDirection="up" subtitle="+$750 today" theme="purple" size="wide" barColor="purple" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard title="Orders" value="31,000" trend="5%" trendDirection="up" subtitle="+156 today" theme="blue" size="wide" barColor="blue" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard title="Profit" value="$32,125" trend="10%" trendDirection="up" subtitle="+$321 today" theme="green" size="wide" barColor="green" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard title="Expenses" value="$18,120" trend="10%" trendDirection="up" subtitle="+$321 today" theme="red" size="wide" barColor="red" bars={[10, 30, 60, 95, 50, 40, 30]} />
         </div>
 
         {/* Target + Statistic */}
@@ -180,28 +178,12 @@ export default function Ecommerce3Page() {
           </div>
 
           <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
-                <p className="text-sm text-fg-grey-500">Income and Expenses</p>
-              </div>
-              <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
-                <button className="px-3 py-1.5 text-fg-grey-500">Daily</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Weekly</button>
-                <button className="px-3 py-1.5 rounded-full bg-white shadow-sm text-fg-black">Monthly</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Annual</button>
-              </div>
-            </div>
-            <BarChart
-              data={statisticBarData}
-              accent="purple"
-              activeIndex={6}
-              showLabels
-              showTooltip
-              tooltipValue="$680"
-              tooltipTrend="up"
-              height="h-[280px]"
-              barWidth="thin"
+            <FigmaChartHeader title="Statistic" subtitle="Income and Expenses" tabs={["Daily", "Weekly", "Monthly", "Annual"]} activeTab="Monthly" />
+            <FigmaGroupedBarChart
+              data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 1) }))}
+              series={groupedStatisticSeries.slice(0, 1)}
+              tooltipItems={groupedStatisticTooltip.slice(0, 1)}
+              heightClass="h-[280px]"
             />
           </div>
         </div>

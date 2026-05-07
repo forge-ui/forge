@@ -12,9 +12,6 @@ import {
   CartLargeBoldDuotone,
   CalendarMinimalisticLinear,
   AltArrowRightLinear,
-  AltArrowDownLinear,
-  ArrowRightUpLinear,
-  Pen2Linear,
   PhoneCallingLinear,
   LetterLinear,
 } from "solar-icon-set";
@@ -24,9 +21,7 @@ import {
   ImageStatCard,
   BarChartStatCard,
   BubbleChart,
-  BarChart,
   EventCard,
-  ContactItem,
   DataTable,
   CellImageText,
   CellMuted,
@@ -34,7 +29,6 @@ import {
   KebabMenu,
   Avatar,
   AvatarGroup,
-  ChartLegendItem,
   PlusIcon,
   IconButton,
   ListGroup,
@@ -50,7 +44,12 @@ import {
   teamMeta,
   projects,
   teamMembers,
-  statisticBarData,
+  groupedStatisticBarData,
+  groupedStatisticSeries,
+  groupedStatisticTooltip,
+  FigmaChartHeader,
+  FigmaGroupedBarChart,
+  FigmaMetricRow,
   type ProjectRow,
 } from "../_shared";
 import { asset } from "@/lib/asset";
@@ -148,48 +147,13 @@ export default function Project1Page() {
         {/* Statistic + All Project bubble */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
-                <p className="text-sm text-fg-grey-500">Income and expenses</p>
-              </div>
-              <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
-                <button className="px-3 py-1.5 rounded-full bg-white shadow-sm text-fg-black">All</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Income</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Expenses</button>
-                <button className="px-3 py-1.5 text-fg-grey-500">Profit</button>
-              </div>
-            </div>
-            <div className="flex items-center gap-6">
-              {[
-                { label: "Income", value: "$26,120", trend: "10%", up: true, color: "#7c3aed" },
-                { label: "Expenses", value: "$18,000", trend: "10%", up: false, color: "#f97316" },
-                { label: "Profit", value: "$7,820", trend: "10%", up: true, color: "#0ea5e9" },
-              ].map((s) => (
-                <div key={s.label} className="flex items-center gap-2">
-                  <div className="size-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: s.color }}>
-                    <ArrowRightUpLinear size={16} />
-                  </div>
-                  <div>
-                    <div className="text-xs text-fg-grey-500">{s.label}</div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-base font-semibold text-fg-black">{s.value}</span>
-                      <span className={`text-xs font-medium ${s.up ? "text-emerald-500" : "text-fg-red"}`}>{s.trend}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <BarChart
-              data={statisticBarData}
-              accent="purple"
-              activeIndex={6}
-              showLabels
-              showTooltip
-              tooltipValue="$680"
-              tooltipTrend="up"
-              height="h-[260px]"
-              barWidth="thin"
+            <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
+            <FigmaMetricRow series={groupedStatisticSeries} />
+            <FigmaGroupedBarChart
+              data={groupedStatisticBarData}
+              series={groupedStatisticSeries}
+              tooltipItems={groupedStatisticTooltip}
+              heightClass="h-[260px]"
             />
           </div>
 

@@ -10,13 +10,9 @@ import {
   MouseBoldDuotone,
   GameboyBoldDuotone,
   KeyboardBoldDuotone,
-  CalendarMinimalisticLinear,
   AltArrowRightLinear,
-  EyeLinear,
-  TrashBinMinimalisticLinear,
   FilterLinear,
   ArrowRightUpLinear,
-  ArrowRightDownLinear,
 } from "solar-icon-set";
 import {
   Button,
@@ -33,10 +29,8 @@ import {
   CellMuted,
   StatusBadge,
   KebabMenu,
-  IconButton,
   ListGroup,
   ChartListItem,
-  PlusIcon,
 } from "@forge-ui/react";
 import type {
   AppLayoutMenuItem,
@@ -151,7 +145,7 @@ export default function Ecommerce2Page() {
     >
       <div className="flex flex-col gap-6">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 [&>*]:!w-full">
           <ProgressStatCard
             title="Total Revenue"
             subtitle="2 Jul - Today"
@@ -168,6 +162,7 @@ export default function Ecommerce2Page() {
             value="31,300"
             trend="10%"
             trendDirection="up"
+            size="wide"
             chartColor="red"
             chartDirection="down"
           />
@@ -177,6 +172,7 @@ export default function Ecommerce2Page() {
             value="14,000"
             trend="10%"
             trendDirection="up"
+            size="wide"
             barColor="purple"
             bars={[10, 30, 60, 95, 50, 40, 30]}
           />
