@@ -15,6 +15,13 @@ type ShowcaseItem = {
 
 const items: ShowcaseItem[] = [
   {
+    href: "/templates/project-template",
+    title: "Project Management",
+    description:
+      "Protask 项目管理模板，包含项目、客户、成员、任务、文件和发票的完整多页工作流。",
+    thumbnail: asset("/images/showcase/project-template.png"),
+  },
+  {
     href: "/templates/ecommerce/products",
     title: "Ecommerce Admin",
     description:
