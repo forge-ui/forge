@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui/react";
+import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui-official/core";`;
 
 const CODE_GROUP_CHECKBOX = `<FilterGroup
   title="Category"

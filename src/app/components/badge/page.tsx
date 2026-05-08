@@ -4,7 +4,7 @@ import {
   Label,
   CircleIcon,
   ArtisticIcon,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { BellBoldDuotone } from "solar-icon-set";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -12,7 +12,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { NotificationBadge, Label, CircleIcon, ArtisticIcon } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { NotificationBadge, Label, CircleIcon, ArtisticIcon } from "@forge-ui-official/core";`;
 
 // NotificationBadge
 const CODE_NB_USAGE = `<NotificationBadge>99+</NotificationBadge>

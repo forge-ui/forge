@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { cn } from "@forge-ui/react";
+import { cn } from "@forge-ui-official/core";
 
 // ============================================================
 // Panel — examples 业务页通用容器壳

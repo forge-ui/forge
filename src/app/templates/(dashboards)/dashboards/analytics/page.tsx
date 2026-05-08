@@ -24,8 +24,8 @@ import {
   KebabMenu,
   ListGroup,
   ChartListItem,
-} from "@forge-ui/react";
-import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@forge-ui-official/core";
 import {
   DashboardShell,
   WalletGoalCard,

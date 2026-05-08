@@ -1,4 +1,4 @@
-import { Pagination, PageDot, Stepper } from "@forge-ui/react";
+import { Pagination, PageDot, Stepper } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const COLORS = ["purple", "blue", "black"] as const;

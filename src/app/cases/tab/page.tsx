@@ -8,7 +8,7 @@ import {
   type ButtonGroupShape,
   type TabItem,
   type ButtonGroupItem,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const tabColors: TabBarColor[] = ["purple", "blue", "black"];

@@ -9,36 +9,13 @@ type Issue = {
 
 const ISSUES: Issue[] = [
   {
-    id: "auth",
-    symptom: (
-      <>
-        <code>401 Unauthorized</code> / <code>403 Forbidden</code>
-      </>
-    ),
-    fix: (
-      <>
-        Token 没 <code>read:packages</code> scope，或过期了，或你还没被加进 org。先跑{" "}
-        <code>echo $GITHUB_TOKEN</code> 确认 shell 里拿到了 token；再回{" "}
-        <a
-          href="https://github.com/settings/tokens"
-          target="_blank"
-          rel="noreferrer"
-          className="text-fg-violet underline underline-offset-4 hover:text-fg-violet-700"
-        >
-          GitHub PAT 页面
-        </a>{" "}
-        检查 scope。
-      </>
-    ),
-  },
-  {
     id: "no-styles",
     symptom: <>装上了但样式全灰，按钮没颜色</>,
     fix: (
       <>
         Tailwind 没扫到产物。确认 <code>globals.css</code> 里{" "}
         <code>@source</code> 的相对路径能从 css 文件定位到{" "}
-        <code>node_modules/@forge-ui/react/dist</code>。monorepo 里路径可能是{" "}
+        <code>node_modules/@forge-ui-official/core/dist</code>。monorepo 里路径可能是{" "}
         <code>../../../node_modules/...</code>。
       </>
     ),
@@ -47,13 +24,13 @@ const ISSUES: Issue[] = [
     id: "missing-styles-css",
     symptom: (
       <>
-        <code>Cannot find module &quot;@forge-ui/react/styles.css&quot;</code>
+        <code>Cannot find module &quot;@forge-ui-official/core/styles.css&quot;</code>
       </>
     ),
     fix: (
       <>
         装的是太旧的版本（<code>0.1.0</code> 之前）。跑{" "}
-        <code>pnpm update @forge-ui/react</code>，或检查 <code>package.json</code>{" "}
+        <code>pnpm update @forge-ui-official/core</code>，或检查 <code>package.json</code>{" "}
         里版本是不是 <code>^0.1.0</code>。
       </>
     ),
@@ -100,7 +77,7 @@ export default function TroubleshootPage() {
           回到详细安装 →
         </Link>
         <a
-          href="https://github.com/forge-ui/forge-core/issues"
+          href="https://github.com/forge-ui/forge/issues"
           target="_blank"
           rel="noreferrer"
           className="font-semibold text-fg-grey-900 underline underline-offset-4 hover:text-fg-black"

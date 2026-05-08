@@ -9,13 +9,13 @@ import {
   ImageGrid,
   ProductRow,
   RatingStars,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import type {
   HistoryItemColor,
   HistoryItemProps,
   HistoryItemVariant,
   HistoryItemShowDatetime,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   CheckCircleBold,
   StarLinear,

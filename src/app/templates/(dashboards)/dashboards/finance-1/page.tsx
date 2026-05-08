@@ -22,8 +22,8 @@ import {
   ListGroup,
   PlusIcon,
   KebabMenu,
-} from "@forge-ui/react";
-import type { AppLayoutMenuItem } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 import {
   DashboardShell,
   WalletGoalCard,

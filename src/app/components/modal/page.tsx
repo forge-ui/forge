@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ConfirmationDialog } from "@forge-ui/react";
+import { ConfirmationDialog } from "@forge-ui-official/core";
 import {
   DangerBold,
   PlainBold,
@@ -13,7 +13,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { ConfirmationDialog } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { ConfirmationDialog } from "@forge-ui-official/core";`;
 
 const CODE_USAGE = `<ConfirmationDialog
   color="red"

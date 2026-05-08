@@ -5,7 +5,7 @@ import {
   type MapVariant,
   type MapRegion,
   type AccentColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const mapColors: AccentColor[] = ["purple", "blue", "black"];

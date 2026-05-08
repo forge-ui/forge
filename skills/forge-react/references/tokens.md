@@ -1,6 +1,6 @@
 # Forge Design Tokens — quick reference
 
-Snapshot of `@forge-ui/react/styles.css`. When picking a color, pick a semantic alias first (`accent`, `text-muted`, `border`); reach for raw primitives (`fg-violet-500`) only when none fit.
+Snapshot of `@forge-ui-official/core/styles.css`. When picking a color, pick a semantic alias first (`accent`, `text-muted`, `border`); reach for raw primitives (`fg-violet-500`) only when none fit.
 
 Tailwind usage: `bg-fg-violet-500` / `text-fg-grey-700` / `border-fg-grey-200`. CSS: `var(--fg-violet)` / `var(--accent)`.
 

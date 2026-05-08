@@ -1,6 +1,6 @@
 "use client";
 
-import { CommentItem, ReviewItem } from "@forge-ui/react";
+import { CommentItem, ReviewItem } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const avatarUrls = [

@@ -16,7 +16,7 @@ import {
   BarHorizontalChart,
   BarUpsideDownChart,
   SmoothLineChart,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { WalletLinear } from "solar-icon-set";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 

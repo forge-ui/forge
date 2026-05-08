@@ -1,7 +1,7 @@
 "use client";
 
 import { CalendarMinimalisticLinear } from "solar-icon-set";
-import { Button, KebabMenu, ProgressBar } from "@forge-ui/react";
+import { Button, KebabMenu, ProgressBar } from "@forge-ui-official/core";
 
 interface WalletGoalCardProps {
   title: string;

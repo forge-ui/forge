@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { AddCircleLinear } from "solar-icon-set";
-import { Button, CellActions, DataTable, FileTypeIcon, ToolbarFilterButton, ToolbarShowSelect } from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+import { Button, CellActions, DataTable, FileTypeIcon, ToolbarFilterButton, ToolbarShowSelect } from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { fileItems, projects } from "../_data";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";

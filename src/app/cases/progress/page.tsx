@@ -4,7 +4,7 @@ import {
   type ProgressSize,
   type ProgressLabelVariant,
   type ProgressLabelSize,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const progressColors: ProgressColor[] = [

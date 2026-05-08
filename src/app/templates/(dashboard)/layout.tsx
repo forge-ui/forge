@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { AppLayout } from "@forge-ui/react";
+import { AppLayout } from "@forge-ui-official/core";
 import {
   BoxBoldDuotone,
   BagBoldDuotone,
@@ -11,7 +11,7 @@ import {
   GameboyBoldDuotone,
   KeyboardBoldDuotone,
 } from "solar-icon-set";
-import type { AppLayoutMenuItem } from "@forge-ui/react";
+import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 
 const menuItems: AppLayoutMenuItem[] = [
   {

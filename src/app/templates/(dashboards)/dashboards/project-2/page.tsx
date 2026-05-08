@@ -25,8 +25,8 @@ import {
   KebabMenu,
   ListGroup,
   FullCalendar,
-} from "@forge-ui/react";
-import type { AppLayoutMenuItem, CalendarEvent } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { AppLayoutMenuItem, CalendarEvent } from "@forge-ui-official/core";
 import {
   DashboardShell,
   mainProfile,

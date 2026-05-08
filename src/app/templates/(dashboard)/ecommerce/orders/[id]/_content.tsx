@@ -14,7 +14,7 @@ import {
   HistoryItem,
   Label,
   type LabelColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   FileTextBoldDuotone,
   TrashBinTrashLinear,

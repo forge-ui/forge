@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { TabBar, ButtonGroup } from "@forge-ui/react";
+import { TabBar, ButtonGroup } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
 // ─── TabBar 代码片段 ───
 
-const CODE_IMPORT = `import { TabBar, ButtonGroup } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { TabBar, ButtonGroup } from "@forge-ui-official/core";`;
 
 const CODE_TABBAR_USAGE = `<TabBar
   tabs={[

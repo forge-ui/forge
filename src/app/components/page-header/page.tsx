@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { PageHeader, Breadcrumbs } from "@forge-ui/react";
+import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";`;
 
 const CODE_HEADER_SEARCH = `<PageHeader
   variant="search"

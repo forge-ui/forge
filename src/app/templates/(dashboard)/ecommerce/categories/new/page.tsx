@@ -11,15 +11,16 @@ import {
   IconButton,
   TextField,
   TextArea,
-  MediaUpload,
   ConfirmationDialog,
   CloseIcon,
   CheckIcon,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 
 export default function AddCategoryPage() {
   const router = useRouter();
   const [isSaveDialogOpen, setIsSaveDialogOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   return (
     <div className="flex flex-col gap-6">
@@ -75,13 +76,17 @@ export default function AddCategoryPage() {
           <h3 className="text-lg font-semibold text-fg-black mb-5">General Information</h3>
           <TextField
             label="Product Name"
-            value="Watch"
+            placeholder="Type product name here..."
+            value={name}
+            onChange={setName}
             shape="pill"
           />
           <div className="mt-4">
             <TextArea
               label="Description"
-              value="Our range of watches are perfect whether you're looking to upgrade."
+              placeholder="Type product description here..."
+              value={description}
+              onChange={setDescription}
               rows={6}
             />
           </div>
@@ -92,23 +97,18 @@ export default function AddCategoryPage() {
           <h3 className="text-lg font-semibold text-fg-black mb-5">Category</h3>
           <p className="text-sm text-fg-grey-700 mb-1.5">Photo</p>
           <div className="flex flex-col items-center gap-4 py-4">
-            <div className="relative">
-              <img
-                src="https://placehold.co/100x100/e2e8f0/64748b?text=Watch"
-                alt="category-preview"
-                className="w-[100px] h-[100px] rounded-xl object-cover"
-              />
-              <span className="absolute top-1 right-1 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3.5 7L6 9.5L10.5 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
+            <div className="w-[100px] h-[100px] rounded-xl bg-fg-violet-50 flex items-center justify-center">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M21 15.4998V5.5C21 4.11929 19.8807 3 18.5 3H5.5C4.11929 3 3 4.11929 3 5.5V18.4998C3 19.8805 4.11929 20.9998 5.5 20.9998H18.5C19.0667 20.9998 19.5896 20.8113 20.0094 20.4937" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-fg-violet" />
+                <circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="1.5" className="text-fg-violet" />
+                <path d="M3 16L7 12.5C8 11.5 9 11.5 10 12.5L17 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-fg-violet" />
+              </svg>
             </div>
             <p className="text-sm text-center text-fg-grey-700 leading-5">
               Drag and drop image here,<br />or click add image
             </p>
             <Button variant="primary">
-              Change Image
+              Add Image
             </Button>
           </div>
         </div>

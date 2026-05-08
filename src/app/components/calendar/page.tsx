@@ -7,7 +7,7 @@ import {
   EventCard,
   SmallCalendar,
   FullCalendar,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -15,7 +15,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import {
   EventTag, CalendarDayCell, EventCard,
   SmallCalendar, FullCalendar,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_EVENTTAG_USAGE = `<EventTag label="Meeting Title" color="purple" />
 <EventTag label="Review" color="green" variant="outline" />`;

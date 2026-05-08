@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { HistoryItem, HistoryGrouped } from "@forge-ui/react";
+import { HistoryItem, HistoryGrouped } from "@forge-ui-official/core";
 import {
   CheckCircleLinear,
   UserLinear,
@@ -11,7 +11,7 @@ import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { HistoryItem, HistoryGrouped } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { HistoryItem, HistoryGrouped } from "@forge-ui-official/core";`;
 
 const CODE_ITEM_USAGE = `<HistoryItem
   title="Order Placed"

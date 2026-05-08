@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRightUpLinear } from "solar-icon-set";
-import { cn } from "@forge-ui/react";
+import { cn } from "@forge-ui-official/core";
 
 type NavItem = { href: string; label: string; external?: boolean };
 type NavGroup = { title: string; items: NavItem[] };

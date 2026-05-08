@@ -1,5 +1,5 @@
 // case 页通用展示框 — 仅排版用，不属于 UI Kit
-// case 内容必须从 @forge-ui/react import，禁止在 Section/SubSection 里手搓 UI 元素
+// case 内容必须从 @forge-ui-official/core import，禁止在 Section/SubSection 里手搓 UI 元素
 //
 // 两类排版 helper，各司其职：
 //   · Section / SubSection / Labeled — 小组件矩阵（button/tag/badge 的 color × size 小 demo）
@@ -12,7 +12,7 @@
 // 供 `_toc.tsx` 抽取右侧 TOC。
 
 import { type ReactNode } from "react";
-import { cn } from "@forge-ui/react";
+import { cn } from "@forge-ui-official/core";
 
 export function slugify(text: string): string {
   return text

@@ -17,7 +17,7 @@ import {
   IconSelector,
   IconPicker,
   ColorPicker,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
   SettingsBoldDuotone,
@@ -59,7 +59,7 @@ const CODE_IMPORT = `import {
   Toggle, RadioButton, CheckboxControl, CheckboxWithLabel,
   MediaUpload, ProfileImgUpload, FileUpload,
   IconSelector, IconPicker, ColorPicker,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_TF_USAGE = `<TextField placeholder="Placeholder text. . ." />
 <TextField state="filled" value="Filled text" />

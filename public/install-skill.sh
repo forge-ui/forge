@@ -2,10 +2,13 @@
 #
 # Install the forge-react skill into Claude Code / Cursor / Codex.
 #
-#   curl -fsSL https://forge-ui.github.io/forge/install-skill.sh | bash
+#   curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
 #
 # Overrides (environment variables):
-#   CLAUDE_SKILLS_DIR   where to install (default: ~/.claude/skills)
+#   FORGE_AGENT         codex | claude | cursor (default: claude)
+#   FORGE_SKILLS_DIR    where to install (highest priority)
+#   CODEX_SKILLS_DIR    Codex target dir, usually ~/.codex/skills
+#   CLAUDE_SKILLS_DIR   Claude/Cursor target dir, usually ~/.claude/skills
 #   FORGE_BRANCH        git branch to pull from (default: main)
 #   FORGE_REPO          source repo (default: forge-ui/forge)
 #
@@ -16,7 +19,22 @@ REPO="${FORGE_REPO:-forge-ui/forge}"
 BRANCH="${FORGE_BRANCH:-main}"
 SKILL_NAME="forge-react"
 SKILL_SUBDIR="skills/${SKILL_NAME}"
-SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
+AGENT="${FORGE_AGENT:-claude}"
+
+case "$AGENT" in
+  codex)
+    DEFAULT_SKILLS_DIR="$HOME/.codex/skills"
+    ;;
+  claude|cursor)
+    DEFAULT_SKILLS_DIR="$HOME/.claude/skills"
+    ;;
+  *)
+    err "Unknown FORGE_AGENT: ${AGENT}. Use codex, claude, or cursor."
+    exit 1
+    ;;
+esac
+
+SKILLS_DIR="${FORGE_SKILLS_DIR:-${CODEX_SKILLS_DIR:-${CLAUDE_SKILLS_DIR:-$DEFAULT_SKILLS_DIR}}}"
 DEST="${SKILLS_DIR}/${SKILL_NAME}"
 
 bold() { printf "\033[1m%s\033[0m\n" "$*"; }

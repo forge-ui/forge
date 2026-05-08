@@ -9,7 +9,7 @@ import {
   NotificationBadge,
   type AccentColor,
   type ListGroupTab,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,

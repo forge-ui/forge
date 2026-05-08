@@ -9,8 +9,8 @@ import {
   SmallCalendar,
   SmallDailyCalendar,
   FullCalendar,
-} from "@forge-ui/react";
-import type { EventTagColor, CalendarEvent } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { EventTagColor, CalendarEvent } from "@forge-ui-official/core";
 import { PageHeading, BareSection, BarLabel, LabeledRow } from "../_shared";
 
 // ============================================================

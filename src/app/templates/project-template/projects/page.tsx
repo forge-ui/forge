@@ -23,8 +23,8 @@ import {
   ToolbarFilterButton,
   ToolbarPillTabs,
   ToolbarShowSelect,
-} from "@forge-ui/react";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { projects, type Project, type ProjectStatus } from "../_data";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";

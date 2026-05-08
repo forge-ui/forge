@@ -8,7 +8,7 @@ import {
   ToolbarShowSelect,
   FilterPanel,
   FilterGroup,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 
 const SELECT_OPTIONS = [
   { label: "All", value: "all" },

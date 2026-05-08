@@ -1,6 +1,6 @@
 "use client";
 
-import { FilterPanel, FilterGroup } from "@forge-ui/react";
+import { FilterPanel, FilterGroup } from "@forge-ui-official/core";
 
 /**
  * Reusable mock FilterPanel for wiring ToolbarFilterButton / FilterTrigger

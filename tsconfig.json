@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@forge-ui-official/core": ["./core/src/index.ts"]
     }
   },
   "include": [

@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear, MagniferLinear } from "solar-icon-set";
-import { Avatar, Button, ButtonGroup, CellActions, CellMuted, CellTextSubtitle, DataTable, TextField, ToolbarDatepicker, ToolbarFilterButton, ToolbarShowSelect } from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+import { Avatar, Button, ButtonGroup, CellActions, CellMuted, CellTextSubtitle, DataTable, TextField, ToolbarDatepicker, ToolbarFilterButton, ToolbarShowSelect } from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { clients, type Client } from "../_data";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";

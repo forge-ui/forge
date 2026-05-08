@@ -1,8 +1,8 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { CloseIcon } from "@forge-ui/react";
-import { cn } from "@forge-ui/react";
+import { CloseIcon } from "@forge-ui-official/core";
+import { cn } from "@forge-ui-official/core";
 
 // ============================================================
 // Modal — examples 业务页通用弹窗壳

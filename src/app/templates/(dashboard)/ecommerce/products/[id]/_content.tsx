@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import {
   PenNewSquareLinear,
   MenuDotsBold,
@@ -20,8 +21,8 @@ import {
   CellMuted,
   CellKebabMenu,
   CellImageText,
-} from "@forge-ui/react";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 
 // --- Data types ---
 
@@ -100,6 +101,9 @@ const tabItems = [
 ];
 
 export default function ProductDetailPage() {
+  const router = useRouter();
+  const params = useParams<{ id: string }>();
+  const productId = params?.id ?? "1";
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [orderPage, setOrderPage] = useState(1);
@@ -180,7 +184,10 @@ export default function ProductDetailPage() {
           />
         </div>
         <div className="flex items-center gap-3">
-          <Button iconLeft={<PenNewSquareLinear size={16} />} onClick={() => {}}>
+          <Button
+            iconLeft={<PenNewSquareLinear size={16} />}
+            onClick={() => router.push(`/templates/ecommerce/products/${productId}/edit`)}
+          >
             Edit
           </Button>
         </div>

@@ -35,7 +35,7 @@ import {
   type CheckboxColor,
   type CellActionKey,
   type CellLinkColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { CardBold } from "solar-icon-set";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 

@@ -14,7 +14,7 @@ import {
   ToolbarFavoriteButton,
   ToolbarPillTabs,
   PageTitleToolbar,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -45,7 +45,7 @@ const CODE_IMPORT = `import {
   ToolbarFilterButton, ToolbarShowSelect, ToolbarActions,
   ToolbarKebabButton, ToolbarFavoriteButton, ToolbarPillTabs,
   PageTitleToolbar,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 // Breadcrumbs
 const CODE_CRUMBS_USAGE = `<Breadcrumbs

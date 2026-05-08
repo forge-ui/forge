@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui/react";
+import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";
 import {
   StarLinear,
   ArrowRightLinear,
@@ -13,7 +13,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 
 // ─── Button 段落使用的代码片段（与 Preview JSX 手动对齐） ───
 
-const CODE_IMPORT = `import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";`;
 
 const CODE_BUTTON_USAGE = `<Button>Button</Button>
 <Button variant="secondary">Secondary</Button>

@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
-import type { AppLayoutPageHeaderVariant } from "@forge-ui/react";
+import type { AppLayoutPageHeaderVariant } from "@forge-ui-official/core";
 
 // SSR 不能跑 useLayoutEffect，client 侧用 useLayoutEffect 避免首屏闪标题
 const useIsoLayoutEffect =
