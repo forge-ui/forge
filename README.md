@@ -1,26 +1,35 @@
 # Forge
 
-Forge 是一个面向 ToB SaaS 和后台系统的开源 UI 工程仓库，包含 React 组件库、设计 token、AppLayout、业务模板、组件案例、文档站和 agent skill。目标是让开发者和 AI agent 使用同一套组件规则，快速搭出一致、可维护的业务后台。
+面向 SaaS 后台和 ToB 业务系统的开源 React 组件库与模板工程。
 
-## 内容
+Forge 把团队做后台产品时反复重建的东西整理成一套可直接使用的工程资产：设计 token、React 组件、AppLayout、数据密集型 UI、完整业务模板，以及一份给 AI coding agent 使用的 Forge Skill。
 
-| 路径 | 说明 |
-|---|---|
-| `core/` | 组件库源码，发布为 `@forge-ui-official/core` |
-| `src/app/docs` | 文档站页面 |
-| `src/app/components` | 组件展示页 |
-| `src/app/cases` | 组件组合案例 |
-| `src/app/templates` | 后台业务模板和完整页面示例 |
-| `skills/forge-react` | 可安装到 AI coding agent 的 Forge skill |
-| `public/` | 图片资产和 skill 安装脚本 |
+**目标：让人和 AI 都能基于同一套组件规则，稳定地交付专业、统一、可维护的后台界面。**
 
-## 使用组件包
+![Forge dashboard builder preview](./public/images/showcase/dashboard-builder-hero.png)
+
+## 你可以用它做什么
+
+- **搭后台产品**：订单、商品、客户、项目、成员、文件、发票、详情页、新建页、编辑页等常见业务页面都有模板可参考。
+- **搭 SaaS 控制台**：内置多套 dashboard 组合，覆盖电商、财务、项目管理、CRM、分析看板等场景。
+- **搭统一设计系统**：组件、颜色、字体、圆角、阴影和交互状态统一由 `@forge-ui-official/core` 提供。
+- **让 AI 写得更稳**：Forge Skill 会约束 AI 优先使用组件、token、布局和模板，而不是临时手搓 UI。
+
+## 核心能力
+
+- **React 组件库**：Button、Form、DataTable、Calendar、Chart、Card、Toolbar、Dialog、Tooltip、File、Avatar 等后台高频组件。
+- **应用级布局**：`AppLayout` 内置 sidebar、topbar、profile、notification、language switcher、team switcher 和 page header。
+- **业务模板**：电商后台、项目管理后台、dashboard builder、登录流程、详情页、创建/编辑流程、发票页。
+- **Tailwind v4 设计 token**：通过 `@forge-ui-official/core/styles.css` 暴露 Forge 的颜色、排版和组件样式。
+- **AI-ready 工作流**：面向 Codex、Claude Code、Cursor 等工具的可安装 Skill。
+
+## 安装
 
 ```bash
 pnpm add @forge-ui-official/core
 ```
 
-在 Tailwind v4 入口 CSS 中引入样式，并让 Tailwind 扫描组件包产物：
+在 Tailwind v4 入口 CSS 中引入 Forge 样式，并让 Tailwind 扫描组件包产物：
 
 ```css
 @import "tailwindcss";
@@ -28,7 +37,38 @@ pnpm add @forge-ui-official/core
 @source "../node_modules/@forge-ui-official/core/dist";
 ```
 
-`@source` 的相对路径取决于你的 CSS 文件位置。如果入口在 `src/app/globals.css`，通常需要写成 `../../node_modules/@forge-ui-official/core/dist`。
+`@source` 的相对路径取决于你的 CSS 文件位置。如果入口文件在 `src/app/globals.css`，通常需要写成：
+
+```css
+@source "../../node_modules/@forge-ui-official/core/dist";
+```
+
+## 使用示例
+
+```tsx
+import { AppLayout, Button, DataTable } from "@forge-ui-official/core";
+
+export default function OrdersPage() {
+  return (
+    <AppLayout pageTitle="Orders" logoText="Acme">
+      <Button>New Order</Button>
+      <DataTable columns={[]} rows={[]} />
+    </AppLayout>
+  );
+}
+```
+
+## 仓库结构
+
+| 路径 | 说明 |
+|---|---|
+| `core/` | `@forge-ui-official/core` 组件库源码 |
+| `src/app/docs` | 文档页面 |
+| `src/app/components` | 组件展示与变体 |
+| `src/app/cases` | 组件组合案例 |
+| `src/app/templates` | 完整后台模板和业务页面 |
+| `skills/forge-react` | Forge Skill 和辅助脚本 |
+| `public/` | 图片、图标和安装脚本 |
 
 ## 本地开发
 
@@ -47,9 +87,9 @@ pnpm core:typecheck  # 只检查组件包类型
 pnpm lint            # 运行 ESLint
 ```
 
-## Agent Skill
+## Forge Skill
 
-Forge 提供一份可安装的 skill，用于约束 AI agent 写业务页面时优先使用 Forge 组件、token 和模板。
+安装 Forge Skill 后，AI coding agent 会更倾向于复用 Forge 组件、token、布局和模板，减少临时拼 UI 带来的样式漂移。
 
 ```bash
 # Claude Code / Cursor
@@ -59,10 +99,10 @@ curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
 curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | FORGE_AGENT=codex bash
 ```
 
-## 相关仓库
+## 相关项目
 
-- [`forge-starter`](https://github.com/forge-ui/forge-starter): 最小 Next.js 起手模板
-- [`forge-agent`](https://github.com/forge-ui/forge-agent): 基于 Forge 的 AI agent 产品壳示例
+- [`forge-starter`](https://github.com/forge-ui/forge-starter)：最小 Next.js 起手模板。
+- [`forge-agent`](https://github.com/forge-ui/forge-agent)：基于 Forge 构建的 AI Agent 产品壳示例。
 
 ## License
 
