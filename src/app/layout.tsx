@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import type { CSSProperties } from "react";
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/plus-jakarta-sans";
@@ -21,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh" className="h-full antialiased" style={fontVariables} suppressHydrationWarning>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
