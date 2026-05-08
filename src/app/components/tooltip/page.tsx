@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Tooltip, TooltipBubble, TooltipAnchor } from "@forge-ui/react";
+import { Tooltip, TooltipBubble, TooltipAnchor } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -15,7 +15,7 @@ const LONG = "Text Here Lorem Ipsum Dolor Sit Amet";
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { Tooltip, TooltipBubble, TooltipAnchor } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { Tooltip, TooltipBubble, TooltipAnchor } from "@forge-ui-official/core";`;
 
 const CODE_BUBBLE_USAGE = `<TooltipBubble content="Text Here" position="top" size="sm" />
 <TooltipBubble content="Text Here Lorem Ipsum" position="top" size="lg" />`;

@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Pagination, Stepper, PageDot } from "@forge-ui/react";
+import { Pagination, Stepper, PageDot } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { Pagination, Stepper, PageDot } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { Pagination, Stepper, PageDot } from "@forge-ui-official/core";`;
 
 const CODE_PAGINATION_USAGE = `<Pagination totalPages={10} currentPage={3} onPageChange={(p) => setPage(p)} />`;
 

@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui/react";
+import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";`;
 
 const CODE_CURRENCY_USAGE = `<CurrencyConverter
   title="Exchange"

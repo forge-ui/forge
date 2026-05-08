@@ -7,7 +7,7 @@ import {
   DropdownDivider,
   IconTrigger,
   KebabMenu,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
   SettingsBoldDuotone,
@@ -26,7 +26,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import {
   MenuItem, DropdownPanel, DropdownDivider,
   IconTrigger, KebabMenu,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_MENUITEM_USAGE = `<MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="Home" />
 <MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="Settings" active />`;

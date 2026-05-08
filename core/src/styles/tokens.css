@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Forge Design Token System
+   Layer 1: Primitive tokens (raw Figma values)
+   Layer 2: Semantic tokens (role-based aliases)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Layer 1 — Primitive Tokens
+   Never reference these directly in components; use semantic tokens (Layer 2)
+   or the Tailwind @theme utility classes (e.g. bg-fg-violet-500).
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Violet (Figma "Purple") */
+  --fg-violet-50:  #F1EBFD;
+  --fg-violet-100: #D3C2F8;
+  --fg-violet-200: #BEA4F5;
+  --fg-violet-300: #A17AF1;
+  --fg-violet-400: #8E61EE;
+  --fg-violet-500: #7239EA;
+  --fg-violet-600: #6834D5;
+  --fg-violet-700: #5128A6;
+  --fg-violet-800: #3F1F81;
+  --fg-violet-900: #301862;
+  /* Shorthand alias — Figma Purple 500 is the brand primary */
+  --fg-violet: var(--fg-violet-500);
+
+  /* Blue */
+  --fg-blue-50:  #EBEEFF;
+  --fg-blue-100: #C0CAFF;
+  --fg-blue-200: #A2B0FF;
+  --fg-blue-300: #788CFF;
+  --fg-blue-400: #5D75FF;
+  --fg-blue-500: #3553FF;
+  --fg-blue-600: #304CE8;
+  --fg-blue-700: #263BB5;
+  --fg-blue-800: #1D2E8C;
+  --fg-blue-900: #16236B;
+  --fg-blue: var(--fg-blue-500);
+
+  /* Green */
+  --fg-green-50:  #E6F8F0;
+  --fg-green-100: #B3E9D2;
+  --fg-green-200: #8EDFBC;
+  --fg-green-300: #5AD09D;
+  --fg-green-400: #3AC78A;
+  --fg-green-500: #09B96D;
+  --fg-green-600: #08A863;
+  --fg-green-700: #06834D;
+  --fg-green-800: #05663C;
+  --fg-green-900: #044E2E;
+
+  /* Red */
+  --fg-red-50:  #FFEDE9;
+  --fg-red-100: #FFC7BB;
+  --fg-red-200: #FFAC9A;
+  --fg-red-300: #FE866C;
+  --fg-red-400: #FE6E4F;
+  --fg-red-500: #FE4A23;
+  --fg-red-600: #E74320;
+  --fg-red-700: #B43519;
+  --fg-red-800: #8C2913;
+  --fg-red-900: #6B1F0F;
+  --fg-red: var(--fg-red-500);
+
+  /* Yellow */
+  --fg-yellow-50:  #FEF9E6;
+  --fg-yellow-100: #FCEBB1;
+  --fg-yellow-200: #FBE28B;
+  --fg-yellow-300: #F9D555;
+  --fg-yellow-400: #F8CD35;
+  --fg-yellow-500: #F6C002;
+  --fg-yellow-600: #E0AF02;
+  --fg-yellow-700: #AF8801;
+  --fg-yellow-800: #876A01;
+  --fg-yellow-900: #675101;
+  --fg-yellow: var(--fg-yellow-500);
+
+  /* Cyan */
+  --fg-cyan-50:  #ECFAFB;
+  --fg-cyan-100: #C5F0F3;
+  --fg-cyan-200: #A9E8ED;
+  --fg-cyan-300: #81DEE4;
+  --fg-cyan-400: #69D8DF;
+  --fg-cyan-500: #43CED7;
+  --fg-cyan-600: #3DBBC4;
+  --fg-cyan-700: #309299;
+  --fg-cyan-800: #257176;
+  --fg-cyan-900: #1C575A;
+
+  /* Black */
+  --fg-black-50:  #E6E7E8;
+  --fg-black-100: #B0B3B8;
+  --fg-black-200: #8A8E95;
+  --fg-black-300: #545B65;
+  --fg-black-400: #333B47;
+  --fg-black-500: #000A19;
+  --fg-black-600: #000917;
+  --fg-black-700: #000712;
+  --fg-black-800: #00060E;
+  --fg-black-900: #00040B;
+  --fg-black: var(--fg-black-500);
+
+  /* Grey */
+  --fg-grey-50:  #FAFAFA;
+  --fg-grey-100: #EBEBEB;
+  --fg-grey-200: #E1E1E1;
+  --fg-grey-300: #D3D3D3;
+  --fg-grey-400: #CACACA;
+  --fg-grey-500: #BDBDBD;
+  --fg-grey-600: #ACACAC;
+  --fg-grey-700: #868686;
+  --fg-grey-800: #686868;
+  --fg-grey-900: #4F4F4F;
+
+  /* White */
+  --fg-white: #FFFFFF;
+
+  /* Legacy aliases retained for backward compatibility */
+  --fg-violet-100-legacy: var(--fg-violet-100);
+  --fg-yellow-600-legacy: var(--fg-yellow-600);
+  --fg-yellow-50-legacy: var(--fg-yellow-50);
+  --fg-yellow-100-legacy: var(--fg-yellow-100);
+}
+
+/* --------------------------------------------------------------------------
+   Layer 2 — Semantic Tokens (Light theme)
+   Use THESE in components. Swap values here to re-theme the entire kit.
+   -------------------------------------------------------------------------- */
+
+:root,
+[data-theme="light"] {
+  /* Background & Surface */
+  --background: var(--fg-white);
+  --foreground: var(--fg-black);
+  --surface: var(--fg-grey-50);
+  --surface-foreground: var(--fg-black);
+  --overlay: rgba(0, 10, 25, 0.40);
+
+  /* Primary (accent) */
+  --accent: var(--fg-violet);
+  --accent-foreground: var(--fg-white);
+  --accent-soft: var(--fg-violet-100);
+  --accent-soft-foreground: var(--fg-violet);
+
+  /* Text hierarchy */
+  --text-primary: var(--fg-black);
+  --text-secondary: var(--fg-grey-900);
+  --text-muted: var(--fg-grey-700);
+  --text-disabled: var(--fg-grey-500);
+
+  /* Borders & Dividers */
+  --border: var(--fg-grey-200);
+  --border-muted: var(--fg-grey-100);
+  --divider: var(--fg-grey-200);
+
+  /* Status */
+  --danger: var(--fg-red);
+  --danger-foreground: var(--fg-white);
+  --warning: var(--fg-yellow);
+  --warning-foreground: var(--fg-black);
+  --warning-soft: var(--fg-yellow-50);
+  --warning-muted: var(--fg-yellow-600);
+
+  /* Interactive */
+  --focus: var(--fg-violet);
+  --hover: var(--fg-grey-100);
+}
+
+/* --------------------------------------------------------------------------
+   Accent variants — drive --accent / --accent-soft via data-accent attribute
+   so internal components (TeamSwitcher, Notifications popover, etc.) using
+   text-accent / bg-accent can follow the AppLayout `accent` prop.
+   -------------------------------------------------------------------------- */
+
+[data-accent="blue"] {
+  --accent: var(--fg-blue);
+  --accent-foreground: var(--fg-white);
+  --accent-soft: var(--fg-blue-100);
+  --accent-soft-foreground: var(--fg-blue);
+  --focus: var(--fg-blue);
+}
+
+[data-accent="black"] {
+  --accent: var(--fg-black);
+  --accent-foreground: var(--fg-white);
+  --accent-soft: var(--fg-grey-100);
+  --accent-soft-foreground: var(--fg-black);
+  --focus: var(--fg-black);
+}
+
+/* --------------------------------------------------------------------------
+   Dark theme overrides
+   -------------------------------------------------------------------------- */
+
+[data-theme="dark"] {
+  --background: var(--fg-black);
+  --foreground: var(--fg-white);
+  --surface: #1A1A2E;
+  --surface-foreground: var(--fg-white);
+  --overlay: rgba(0, 0, 0, 0.60);
+
+  --accent: var(--fg-violet);
+  --accent-foreground: var(--fg-white);
+  --accent-soft: rgba(114, 57, 234, 0.2);
+  --accent-soft-foreground: var(--fg-violet-100);
+
+  --text-primary: var(--fg-white);
+  --text-secondary: var(--fg-grey-500);
+  --text-muted: var(--fg-grey-700);
+  --text-disabled: var(--fg-grey-900);
+
+  --border: #2A2A3E;
+  --border-muted: #1F1F33;
+  --divider: #2A2A3E;
+
+  --danger: var(--fg-red);
+  --danger-foreground: var(--fg-white);
+  --warning: var(--fg-yellow);
+  --warning-foreground: var(--fg-black);
+  --warning-soft: rgba(246, 192, 2, 0.1);
+  --warning-muted: var(--fg-yellow-600);
+
+  --focus: var(--fg-violet);
+  --hover: rgba(255, 255, 255, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Tailwind v4 @theme — registers tokens as utility classes
+   -------------------------------------------------------------------------- */
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-plus-jakarta-sans);
+
+  /* Primitive colors → utility classes (bg-fg-violet-500, text-fg-blue-700, etc.) */
+  --color-fg-violet: var(--fg-violet);
+  --color-fg-violet-50: var(--fg-violet-50);
+  --color-fg-violet-100: var(--fg-violet-100);
+  --color-fg-violet-200: var(--fg-violet-200);
+  --color-fg-violet-300: var(--fg-violet-300);
+  --color-fg-violet-400: var(--fg-violet-400);
+  --color-fg-violet-500: var(--fg-violet-500);
+  --color-fg-violet-600: var(--fg-violet-600);
+  --color-fg-violet-700: var(--fg-violet-700);
+  --color-fg-violet-800: var(--fg-violet-800);
+  --color-fg-violet-900: var(--fg-violet-900);
+
+  --color-fg-blue: var(--fg-blue);
+  --color-fg-blue-50: var(--fg-blue-50);
+  --color-fg-blue-100: var(--fg-blue-100);
+  --color-fg-blue-200: var(--fg-blue-200);
+  --color-fg-blue-300: var(--fg-blue-300);
+  --color-fg-blue-400: var(--fg-blue-400);
+  --color-fg-blue-500: var(--fg-blue-500);
+  --color-fg-blue-600: var(--fg-blue-600);
+  --color-fg-blue-700: var(--fg-blue-700);
+  --color-fg-blue-800: var(--fg-blue-800);
+  --color-fg-blue-900: var(--fg-blue-900);
+
+  /* Semantic accent tokens → utility classes (bg-accent, text-accent, etc.)
+     These follow `--accent` which can be retargeted via [data-accent="..."].
+     Internal components should prefer text-accent / bg-accent over hard-coded
+     bg-fg-violet so AppLayout's `accent` prop can swap the brand color. */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
+
+  --color-fg-green-50: var(--fg-green-50);
+  --color-fg-green-100: var(--fg-green-100);
+  --color-fg-green-200: var(--fg-green-200);
+  --color-fg-green-300: var(--fg-green-300);
+  --color-fg-green-400: var(--fg-green-400);
+  --color-fg-green-500: var(--fg-green-500);
+  --color-fg-green-600: var(--fg-green-600);
+  --color-fg-green-700: var(--fg-green-700);
+  --color-fg-green-800: var(--fg-green-800);
+  --color-fg-green-900: var(--fg-green-900);
+
+  --color-fg-red: var(--fg-red);
+  --color-fg-red-50: var(--fg-red-50);
+  --color-fg-red-100: var(--fg-red-100);
+  --color-fg-red-200: var(--fg-red-200);
+  --color-fg-red-300: var(--fg-red-300);
+  --color-fg-red-400: var(--fg-red-400);
+  --color-fg-red-500: var(--fg-red-500);
+  --color-fg-red-600: var(--fg-red-600);
+  --color-fg-red-700: var(--fg-red-700);
+  --color-fg-red-800: var(--fg-red-800);
+  --color-fg-red-900: var(--fg-red-900);
+
+  --color-fg-yellow: var(--fg-yellow);
+  --color-fg-yellow-50: var(--fg-yellow-50);
+  --color-fg-yellow-100: var(--fg-yellow-100);
+  --color-fg-yellow-200: var(--fg-yellow-200);
+  --color-fg-yellow-300: var(--fg-yellow-300);
+  --color-fg-yellow-400: var(--fg-yellow-400);
+  --color-fg-yellow-500: var(--fg-yellow-500);
+  --color-fg-yellow-600: var(--fg-yellow-600);
+  --color-fg-yellow-700: var(--fg-yellow-700);
+  --color-fg-yellow-800: var(--fg-yellow-800);
+  --color-fg-yellow-900: var(--fg-yellow-900);
+
+  --color-fg-cyan-50: var(--fg-cyan-50);
+  --color-fg-cyan-100: var(--fg-cyan-100);
+  --color-fg-cyan-200: var(--fg-cyan-200);
+  --color-fg-cyan-300: var(--fg-cyan-300);
+  --color-fg-cyan-400: var(--fg-cyan-400);
+  --color-fg-cyan-500: var(--fg-cyan-500);
+  --color-fg-cyan-600: var(--fg-cyan-600);
+  --color-fg-cyan-700: var(--fg-cyan-700);
+  --color-fg-cyan-800: var(--fg-cyan-800);
+  --color-fg-cyan-900: var(--fg-cyan-900);
+
+  --color-fg-black: var(--fg-black);
+  --color-fg-black-50: var(--fg-black-50);
+  --color-fg-black-100: var(--fg-black-100);
+  --color-fg-black-200: var(--fg-black-200);
+  --color-fg-black-300: var(--fg-black-300);
+  --color-fg-black-400: var(--fg-black-400);
+  --color-fg-black-500: var(--fg-black-500);
+  --color-fg-black-600: var(--fg-black-600);
+  --color-fg-black-700: var(--fg-black-700);
+  --color-fg-black-800: var(--fg-black-800);
+  --color-fg-black-900: var(--fg-black-900);
+
+  --color-fg-grey-50: var(--fg-grey-50);
+  --color-fg-grey-100: var(--fg-grey-100);
+  --color-fg-grey-200: var(--fg-grey-200);
+  --color-fg-grey-300: var(--fg-grey-300);
+  --color-fg-grey-400: var(--fg-grey-400);
+  --color-fg-grey-500: var(--fg-grey-500);
+  --color-fg-grey-600: var(--fg-grey-600);
+  --color-fg-grey-700: var(--fg-grey-700);
+  --color-fg-grey-800: var(--fg-grey-800);
+  --color-fg-grey-900: var(--fg-grey-900);
+
+  --color-fg-white: var(--fg-white);
+
+  /* Semantic colors → utility classes (bg-background, text-foreground, etc.) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-overlay: var(--overlay);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+  --color-border: var(--border);
+  --color-border-muted: var(--border-muted);
+  --color-divider: var(--divider);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-muted: var(--warning-muted);
+  --color-focus: var(--focus);
+  --color-hover: var(--hover);
+
+  /* Border Radius */
+  --radius-card: 20px;
+  --radius-xs: 4px;
+
+  /* Shadows */
+  --shadow-subtle: 0px 4px 30px 0px rgba(102, 112, 133, 0.03);
+  --shadow-card: 0px 4px 30px 0px rgba(77, 84, 100, 0.05);
+  --shadow-elevated: 0px 4px 30px 0px rgba(77, 84, 100, 0.20);
+
+  /* Font Sizes */
+  --text-display-l: 28px;
+  --text-2xs: 10px;
+
+  /* Letter Spacing */
+  --tracking-fg: 0.5px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

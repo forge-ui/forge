@@ -10,28 +10,21 @@ const toc = [
   { id: "related", title: "相关文档" },
 ];
 
-const installCmd = `npx skills add forge-ui/forge`;
+const installCmd = `# Claude Code / Cursor
+curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
 
-const structureTree = `.claude/skills/forge/
-├── SKILL.md                       # 主入口（定位 / 铁律 / 工作流 / 子文档索引）
+# Codex
+curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | FORGE_AGENT=codex bash`;
+
+const structureTree = `.claude/skills/forge-react/ 或 .codex/skills/forge-react/
+├── SKILL.md                       # 主入口（定位 / 铁律 / 工作流 / 脚本索引）
+├── scripts/
+│   ├── list.mjs                   # 列出 components / cases / templates
+│   ├── get-component.mjs          # 读取组件规格页
+│   ├── get-case.mjs               # 读取 case 示例页
+│   └── get-template.mjs           # 读取业务模板页
 └── references/
-    ├── tokens.md                  # 颜色 8 色 × 10 shade + 字体 token
-    ├── icons.md                   # solar-icon-set 用法与两个常见坑
-    ├── cases-index.md             # 22 个 case 页覆盖矩阵
-    ├── workflow.md                # PRD → 页面工作流 + 自检清单
-    ├── templates/
-    │   ├── auth.md                # 登录套件（sign-in / sign-up / forgot-password / reset-password）
-    │   └── business.md            # app/ecommerce 业务骨架
-    └── components/                # 70 个组件各 1 份 props & 示例
-        ├── button.md
-        ├── icon-button.md
-        ├── link.md
-        ├── badge.md
-        ├── forms.md               # TextField / TextArea / SelectOption / Datepicker / Upload ...
-        ├── data-table.md          # DataTable / FullWidthTable / 各种 Cell*
-        ├── charts.md              # MeterChart / DonutChart / BarChart ...
-        ├── layouts-app-layout.md  # AppLayout
-        └── ... (60+ more)`;
+    └── tokens.md                  # 颜色 token、语义变量、icon 默认色`;
 
 export default function UIForAgentsPage() {
   return (
@@ -63,7 +56,7 @@ export default function UIForAgentsPage() {
           >
             Agent Skills 通用规范
           </a>
-          ，Claude Code / Cursor / Codex 三个工具都能自动识别。
+          ，Claude Code / Cursor / Codex 都可以安装到自己的 skills 目录。
         </p>
         <CodeBlock code={installCmd} lang="bash" />
       </DocSection>
@@ -85,15 +78,14 @@ export default function UIForAgentsPage() {
           <li>查询组件 props 与用法</li>
         </ul>
         <p>
-          更复杂的场景，配合{" "}
-          <span className="text-fg-grey-700">MCP Server（即将上线）</span>，实时读取组件文档与源码。
+          脚本会优先读取本地 Forge 仓库，找不到时再读取 GitHub 上的公开源码。
         </p>
       </DocSection>
 
       <DocSection id="whats-included" title="覆盖内容">
         <ul className="ml-5 list-disc space-y-1.5">
           <li>Forge UI Kit 安装与接入指南</li>
-          <li>60+ 组件的 props、变体、示例索引</li>
+          <li>组件规格页、case 页、业务模板页索引</li>
           <li>颜色 token 全表（8 色 × 10 shade）与字体 token</li>
           <li>Icon（solar-icon-set）用法与常见踩坑</li>
           <li>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useParams, useRouter } from "next/navigation";
 import {
   PenNewSquareLinear,
   MenuDotsBold,
@@ -17,8 +18,8 @@ import {
   ToolbarSearchInput,
   ToolbarFilterButton,
   ToolbarShowSelect,
-} from "@forge-ui/react";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 
 const SHOW_PER_PAGE_OPTIONS = [
@@ -56,6 +57,9 @@ const statusMap: Record<CategoryProductItem["status"], { label: string; color: S
 };
 
 export default function CategoryDetailPage() {
+  const router = useRouter();
+  const params = useParams<{ id: string }>();
+  const categoryId = params?.id ?? "1";
   const [page, setPage] = useState(1);
   const [showPerPage, setShowPerPage] = useState("5");
 
@@ -107,7 +111,10 @@ export default function CategoryDetailPage() {
           />
         </div>
         <div className="flex items-center gap-3">
-          <Button iconLeft={<PenNewSquareLinear size={16} />} onClick={() => {}}>
+          <Button
+            iconLeft={<PenNewSquareLinear size={16} />}
+            onClick={() => router.push(`/templates/ecommerce/categories/${categoryId}/edit`)}
+          >
             Edit
           </Button>
         </div>

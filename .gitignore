@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/core/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -12,6 +13,7 @@
 
 # testing
 /coverage
+coverage
 
 # next.js
 /.next/
@@ -29,6 +31,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -39,14 +42,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.gstack/
+
+# workspace build outputs
+/core/dist
+/core/src/assets/_inlined.ts
+.turbo
+*.tgz
 
 # Figma 设计稿源文件（本地参考用，不入仓）
 figma-code/
 
 # Claude / spec-workflow 本地痕迹
 .claude/
+.agents/
+.gstack/
 .spec-workflow/
+docs/superpowers/
 
 # 旧 git 历史备份（重 init 后保留本地回退）
 .git.old*/

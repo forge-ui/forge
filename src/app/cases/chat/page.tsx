@@ -6,7 +6,7 @@ import {
   ChatBubble,
   ChatInputBar,
   Button,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   MagniferLinear,
   AddSquareLinear,

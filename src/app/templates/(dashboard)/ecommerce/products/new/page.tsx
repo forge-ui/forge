@@ -19,7 +19,7 @@ import {
   PlusIcon,
   CloseIcon,
   CheckIcon,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 
 export default function AddProductPage() {
   const router = useRouter();

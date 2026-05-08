@@ -7,7 +7,7 @@ import {
   PenLinear,
   TrashBinMinimalisticLinear,
 } from "solar-icon-set";
-import { PlusIcon } from "@forge-ui/react";
+import { PlusIcon } from "@forge-ui-official/core";
 import {
   PageHeader,
   Breadcrumbs,
@@ -24,8 +24,8 @@ import {
   ConfirmationDialog,
   ToolbarDatepicker,
   ToolbarFilterButton,
-} from "@forge-ui/react";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 
 interface ProductInventoryItem {

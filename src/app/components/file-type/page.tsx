@@ -1,6 +1,6 @@
 "use client";
 
-import { FileTypeIcon, FileCard } from "@forge-ui/react";
+import { FileTypeIcon, FileCard } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -17,7 +17,7 @@ function IconTile({ ext }: { ext: string }) {
   );
 }
 
-const CODE_IMPORT = `import { FileTypeIcon, FileCard } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { FileTypeIcon, FileCard } from "@forge-ui-official/core";`;
 
 const CODE_ICON_USAGE = `<FileTypeIcon fileName="design.fig" />`;
 

@@ -28,7 +28,7 @@ import {
   type FinancialVariant,
   type EventCardColor,
   type ProfileCardState,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,

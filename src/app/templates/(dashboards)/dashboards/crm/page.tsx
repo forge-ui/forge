@@ -28,12 +28,12 @@ import {
   KebabMenu,
   ListGroup,
   ActivityCard,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   DashboardShell,
   mainProfile,

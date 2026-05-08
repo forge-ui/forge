@@ -31,13 +31,13 @@ import {
   KebabMenu,
   ListGroup,
   ChartListItem,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
   MapRegion,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   DashboardShell,
   mainProfile,

@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { CommentItem, ReviewItem } from "@forge-ui/react";
+import { CommentItem, ReviewItem } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { CommentItem, ReviewItem } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { CommentItem, ReviewItem } from "@forge-ui-official/core";`;
 
 const CODE_COMMENT_USAGE = `<CommentItem
   avatar="https://i.pravatar.cc/100?img=1"

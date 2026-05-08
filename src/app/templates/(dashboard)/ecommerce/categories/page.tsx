@@ -17,8 +17,8 @@ import {
   CellMuted,
   ConfirmationDialog,
   PlusIcon,
-} from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 
 interface CategoryItem {
   id: string;

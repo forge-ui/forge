@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { AddCircleLinear, FolderOpenLinear } from "solar-icon-set";
-import { Avatar, AvatarGroup, Button, LineChartStatCard, ProgressBar, StatusBadge } from "@forge-ui/react";
+import { Avatar, AvatarGroup, Button, LineChartStatCard, ProgressBar, StatusBadge } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { clients, members, projects, tasks } from "../_data";
 import { ProjectLogo } from "../_logos";

@@ -50,7 +50,7 @@ import {
   type MediaItem,
   type MediaUploadColor,
   type IconSelectorColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const fieldStates: TextFieldState[] = ["idle", "focus", "filled", "disabled", "error"];

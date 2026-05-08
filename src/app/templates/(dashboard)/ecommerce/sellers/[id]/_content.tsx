@@ -16,8 +16,8 @@ import {
   ToolbarSearchInput,
   ToolbarDatepicker,
   ToolbarFilterButton,
-} from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 import {
   PhoneCallingLinear,

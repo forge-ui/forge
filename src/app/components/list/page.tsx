@@ -10,7 +10,7 @@ import {
   NotificationItem,
   ProfileCard,
   Label,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,
@@ -24,7 +24,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import {
   ListItem, DescriptionItem, ListGroup,
   ContactItem, NotificationItem, ProfileCard,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_LISTITEM_USAGE = `<ListItem
   lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }}

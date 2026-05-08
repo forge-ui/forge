@@ -18,7 +18,7 @@ import {
   type ProfileCardState,
   type SidebarMenuBgMode,
   type SidebarMenuMode,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
   ChartBoldDuotone,

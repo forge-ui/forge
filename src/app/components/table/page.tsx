@@ -30,7 +30,7 @@ import {
   CircleIcon,
   ToolbarDatepicker,
   ToolbarFilterButton,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import type {
   ColumnDef,
   StatusBadgeColor,
@@ -38,7 +38,7 @@ import type {
   ProgressBadgeColor,
   ProgressBarColor,
   AvatarInitialColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { AddCircleLinear, StarLinear, CheckCircleLinear, CardBold } from "solar-icon-set";
 import { PageHeading, Section, SubSection, SubSectionGrid } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -156,7 +156,7 @@ const CODE_IMPORT = `import {
   CellStatusDot, CellCode, CellRating,
   CellActions, CellLink, CellKebabMenu,
   type ColumnDef,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_STATUS_USAGE = `<StatusBadge label="Pending" color="yellow" />
 <StatusBadge label="Processing" color="cyan" />
@@ -422,7 +422,7 @@ export default function TableCasePage() {
 
       <Section
         title="Import"
-        description="从 @forge-ui/react 统一导入表格相关组件。"
+        description="从 @forge-ui-official/core 统一导入表格相关组件。"
       >
         <CodeBlock code={CODE_IMPORT} />
       </Section>

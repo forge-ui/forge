@@ -1,7 +1,7 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { AppLayout } from "@forge-ui/react";
+import { AppLayout } from "@forge-ui-official/core";
 import {
   findVariant,
   menuItems,

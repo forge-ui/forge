@@ -9,8 +9,8 @@ import {
   UsersGroupTwoRoundedBoldDuotone,
   WidgetBoldDuotone,
 } from "solar-icon-set";
-import { AppLayout } from "@forge-ui/react";
-import type { AppLayoutMenuItem } from "@forge-ui/react";
+import { AppLayout } from "@forge-ui-official/core";
+import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 import { mainProfile, teamMeta } from "./_data";
 import { ProtaskLogo } from "./_logos";
 

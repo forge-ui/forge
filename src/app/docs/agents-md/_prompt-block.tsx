@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CopyLinear, CheckCircleLinear } from "solar-icon-set";
-import { cn } from "@forge-ui/react";
+import { cn } from "@forge-ui-official/core";
 
 const COLLAPSED_MAX_HEIGHT = 320;
 const COLLAPSE_THRESHOLD_LINES = 12;

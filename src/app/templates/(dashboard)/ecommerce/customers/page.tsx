@@ -16,16 +16,17 @@ import {
   ConfirmationDialog,
   Pagination,
   Avatar,
-} from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 import {
   LetterLinear,
   PhoneCallingLinear,
   ChatRoundLinear,
   TrashBinMinimalisticLinear,
   DownloadMinimalisticLinear,
+  PenLinear,
 } from "solar-icon-set";
-import { PlusIcon } from "@forge-ui/react";
+import { PlusIcon } from "@forge-ui-official/core";
 import { Modal } from "@/app/templates/_shared";
 
 interface CustomerItem {
@@ -178,10 +179,18 @@ export default function CustomersPage() {
     useState<CustomerItem[]>(initialCustomerList);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editTarget, setEditTarget] = useState<CustomerItem | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<CustomerItem | null>(null);
   const [uploadedProfileImageUrl, setUploadedProfileImageUrl] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [addCustomerFormValue, setAddCustomerFormValue] =
+    useState<AddCustomerFormValue>({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+    });
+  const [editCustomerFormValue, setEditCustomerFormValue] =
     useState<AddCustomerFormValue>({
       name: "",
       email: "",
@@ -222,6 +231,44 @@ export default function CustomersPage() {
   const handleSubmitAddCustomer = useCallback(() => {
     handleCloseAddModal();
   }, [handleCloseAddModal]);
+
+  const handleOpenEditModal = useCallback((record: CustomerItem) => {
+    setEditTarget(record);
+    setEditCustomerFormValue({
+      name: record.name,
+      email: record.email,
+      phone: record.phone,
+      address: "1833 Bel Meadow Drive, Fontana, California 92335, USA",
+    });
+  }, []);
+
+  const handleCloseEditModal = useCallback(() => {
+    setEditTarget(null);
+  }, []);
+
+  const updateEditFormField = useCallback(
+    (field: keyof AddCustomerFormValue, value: string) => {
+      setEditCustomerFormValue((prev) => ({ ...prev, [field]: value }));
+    },
+    []
+  );
+
+  const handleSubmitEditCustomer = useCallback(() => {
+    if (!editTarget) return;
+    setCustomerList((prev) =>
+      prev.map((item) =>
+        item.id === editTarget.id
+          ? {
+              ...item,
+              name: editCustomerFormValue.name,
+              email: editCustomerFormValue.email,
+              phone: editCustomerFormValue.phone,
+            }
+          : item
+      )
+    );
+    handleCloseEditModal();
+  }, [editTarget, editCustomerFormValue, handleCloseEditModal]);
 
   const handleUploadProfileImage = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -316,6 +363,14 @@ export default function CustomersPage() {
               variant="ghost"
               shape="square"
               size="sm"
+              onClick={() => handleOpenEditModal(row)}
+            >
+              <PenLinear size={16} />
+            </IconButton>
+            <IconButton
+              variant="ghost"
+              shape="square"
+              size="sm"
               onClick={() => handleOpenDeleteModal(row)}
             >
               <TrashBinMinimalisticLinear size={16} />
@@ -324,7 +379,7 @@ export default function CustomersPage() {
         ),
       },
     ],
-    [handleOpenDeleteModal]
+    [handleOpenDeleteModal, handleOpenEditModal]
   );
 
   const totalPages = Math.ceil(100 / 10);
@@ -422,6 +477,68 @@ export default function CustomersPage() {
             Cancel
           </Button>
           <Button onClick={handleSubmitAddCustomer}>Submit</Button>
+        </div>
+      </Modal>
+
+      {/* Edit Customer Modal */}
+      <Modal
+        open={editTarget !== null}
+        onClose={handleCloseEditModal}
+        title="Edit Customer"
+        width="w-[640px]"
+      >
+        <div className="px-6 py-6">
+          <div className="space-y-4">
+            <div>
+              <p className="mb-1 text-sm font-medium text-fg-grey-700">
+                Profile Image
+              </p>
+              <div className="flex items-center gap-3">
+                <Avatar
+                  src={editTarget?.avatarUrl}
+                  initials={editTarget?.name?.[0] ?? "?"}
+                  size="lg"
+                />
+                <Button
+                  variant="tertiary"
+                  size="sm"
+                  iconLeft={<PlusIcon size={16} />}
+                >
+                  Upload
+                </Button>
+              </div>
+            </div>
+            <TextField
+              label="Name"
+              value={editCustomerFormValue.name}
+              shape="pill"
+              onChange={(val) => updateEditFormField("name", val)}
+            />
+            <TextField
+              label="Email"
+              value={editCustomerFormValue.email}
+              shape="pill"
+              onChange={(val) => updateEditFormField("email", val)}
+            />
+            <TextField
+              label="Phone"
+              value={editCustomerFormValue.phone}
+              shape="pill"
+              onChange={(val) => updateEditFormField("phone", val)}
+            />
+            <TextArea
+              label="Address"
+              value={editCustomerFormValue.address}
+              rows={4}
+              onChange={(val) => updateEditFormField("address", val)}
+            />
+          </div>
+        </div>
+        <div className="px-6 pb-6 flex items-center justify-between">
+          <Button variant="tertiary" onClick={handleCloseEditModal}>
+            Cancel
+          </Button>
+          <Button onClick={handleSubmitEditCustomer}>Save</Button>
         </div>
       </Modal>
 

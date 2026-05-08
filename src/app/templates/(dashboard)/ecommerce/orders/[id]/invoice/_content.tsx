@@ -6,7 +6,7 @@ import {
   Breadcrumbs,
   Button,
   IconButton,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   PlainLinear,
   DownloadMinimalisticLinear,

@@ -1,0 +1,67 @@
+{
+  "name": "@forge-ui-official/core",
+  "version": "0.1.1",
+  "description": "Forge UI Kit — React 19 + Tailwind v4 components",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "prebuild": "node scripts/gen-assets.mjs",
+    "build": "tsup && cp src/styles/tokens.css dist/styles.css",
+    "predev": "node scripts/gen-assets.mjs",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "preview": "pnpm --filter preview dev",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "next": ">=15",
+    "react": ">=19",
+    "react-dom": ">=19",
+    "solar-icon-set": "^2",
+    "tailwindcss": "^4"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "next": "16.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "solar-icon-set": "^2.0.1",
+    "tailwindcss": "^4",
+    "tsup": "^8.3.5",
+    "typescript": "^5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forge-ui/forge.git",
+    "directory": "core"
+  }
+}

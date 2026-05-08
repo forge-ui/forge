@@ -11,7 +11,7 @@ import {
   type TooltipPosition,
   type TooltipSize,
   type TooltipAnchorState,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const positions: TooltipPosition[] = ["top", "right", "bottom", "left"];

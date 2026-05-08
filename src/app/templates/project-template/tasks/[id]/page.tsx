@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { AddCircleLinear, Pen2Linear, UserPlusLinear } from "solar-icon-set";
-import { Avatar, AvatarGroup, Button, Checkbox, FileCard, ProgressBar, StatusBadge } from "@forge-ui/react";
+import { Avatar, AvatarGroup, Button, Checkbox, FileCard, ProgressBar, StatusBadge } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, fileItems, tasks } from "../../_data";
 import { TemplateDeleteDialog, TemplateFormModal } from "../../_modals";

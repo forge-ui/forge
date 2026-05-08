@@ -6,7 +6,7 @@ import {
   TypographyWeightSample,
   TypographySizeRow,
   type ColorScaleStop,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -28,7 +28,7 @@ const colorFamilies = [
 const CODE_IMPORT = `import {
   ColorSwatch, ColorSection,
   TypefaceBlock, TypographyWeightSample, TypographySizeRow,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_SWATCH = `<ColorSwatch label="Purple 500" hex="#8E61EE" tone="light" />`;
 

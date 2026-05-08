@@ -13,7 +13,7 @@ import {
   type CircleIconVariant,
   type ArtisticIconColor,
   type ArtisticIconVariant,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const notificationColors: NotificationBadgeColor[] = [

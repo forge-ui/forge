@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ChatBubble, ChatInputBar } from "@forge-ui/react";
+import { ChatBubble, ChatInputBar } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { ChatBubble, ChatInputBar } from "@forge-ui/react";`;
+const CODE_IMPORT = `import { ChatBubble, ChatInputBar } from "@forge-ui-official/core";`;
 
 const CODE_BUBBLE_USAGE = `<ChatBubble type="received" avatar={avatar} senderName="Alex" content="Hey, how's it going?" />
 <ChatBubble type="sent" content="All good, working on the new design." time="10:32" />`;

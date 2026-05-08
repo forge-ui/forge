@@ -5,7 +5,7 @@ import {
   TopBar,
   PageHeader,
   type PageHeaderColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { Logout3Linear } from "solar-icon-set";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 

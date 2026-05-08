@@ -19,7 +19,7 @@ import {
   BarHorizontalChart,
   BarUpsideDownChart,
   SmoothLineChart,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { WalletLinear } from "solar-icon-set";
 import { PageHeading, Section, SubSection, SubSectionGrid } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -30,7 +30,7 @@ const CODE_IMPORT = `import {
   MeterChart, HalfDonutChart, DashedHalfDonutChart, DonutChart, PieChart,
   MultilayerDonutChart, BubbleChart, BarChart, BarHorizontalChart, BarUpsideDownChart,
   SmoothLineChart,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 const CODE_TOOLTIP = `<ChartTooltip
   items={[

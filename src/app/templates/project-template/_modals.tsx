@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Button, ConfirmationDialog, TextField } from "@forge-ui/react";
+import { Button, ConfirmationDialog, TextField } from "@forge-ui-official/core";
 import { TrashBinMinimalisticLinear } from "solar-icon-set";
 import { Modal } from "../_shared/modal";
 

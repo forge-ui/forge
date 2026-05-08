@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Fetch a template page source from forge-ui/forge on main branch.
+// Fetch a template page source from a local Forge checkout or forge-ui/forge.
 // Templates at src/app/templates/<path>/page.tsx are full business screens
 // (auth flow, ecommerce module, dashboard shells) you can copy wholesale.
 //
@@ -13,8 +13,24 @@
 // The path is the route segments after /templates/. Route groups like
 // (dashboard) are inserted automatically — you don't need to type them.
 
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 const REPO = "forge-ui/forge";
 const BRANCH = "main";
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const LOCAL_ROOT = findLocalRoot();
+
+function findLocalRoot() {
+  const candidates = [
+    process.env.FORGE_REPO_DIR,
+    path.resolve(SCRIPT_DIR, "../../.."),
+    process.cwd(),
+  ].filter(Boolean);
+
+  return candidates.find((dir) => fs.existsSync(path.join(dir, "src/app/templates"))) ?? null;
+}
 
 // Ecommerce pages live under the (dashboard) route group in the repo.
 const ROUTE_GROUP_MAP = [
@@ -34,18 +50,27 @@ async function fetchFile(url) {
   return res.text();
 }
 
-async function fetchTemplate(path) {
-  const cleaned = path.replace(/^\/+|\/+$/g, "");
+async function fetchTemplate(templatePath) {
+  const cleaned = templatePath.replace(/^\/+|\/+$/g, "");
   const mapped = mapPath(cleaned);
   const base = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/src/app/templates/${mapped}`;
 
   // Try page.tsx first; if missing, try _content.tsx (client-wrapper pattern for
   // dynamic routes like ecommerce/orders/[id]).
   for (const filename of ["page.tsx", "_content.tsx"]) {
+    const rel = `src/app/templates/${mapped}/${filename}`;
+    if (LOCAL_ROOT) {
+      const localPath = path.join(LOCAL_ROOT, rel);
+      if (fs.existsSync(localPath)) {
+        return { src: fs.readFileSync(localPath, "utf8"), rel, filename };
+      }
+    }
+
     const url = `${base}/${filename}`;
     const src = await fetchFile(url);
     if (src !== null) {
-      return { url, src, filename };
+      const rel = url.replace(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/`, "");
+      return { src, rel, filename };
     }
   }
 
@@ -65,12 +90,11 @@ async function main() {
 
   for (const p of paths) {
     try {
-      const { url, src, filename } = await fetchTemplate(p);
-      const rel = url.replace(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/`, "");
+      const { src, rel, filename } = await fetchTemplate(p);
       console.log(`\n# ========================================================`);
       console.log(`# Template: ${p}`);
       console.log(`# Source: ${rel} (${filename})`);
-      console.log(`# Live: https://forge-ui.github.io/forge/templates/${p.replace(/\[/g, "").replace(/\]/g, "")}/`);
+      console.log(`# Live: https://forge-mu-amber.vercel.app/templates/${p.replace(/\[/g, "").replace(/\]/g, "")}/`);
       console.log(`# ========================================================\n`);
       console.log(src);
     } catch (err) {

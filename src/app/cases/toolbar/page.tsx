@@ -15,7 +15,7 @@ import {
   type ButtonColor,
   type ToolbarColor,
   type ToolbarPillTab,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import { AddCircleLinear } from "solar-icon-set";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 import { ToolbarInteractiveDemo } from "./_interactive-demo";

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // List every component, case, and template page available in the forge docs site.
-// Pulls directory listings from GitHub's REST API — no auth required (public repo).
+// Reads a local Forge checkout first, then falls back to GitHub's REST API.
 //
 // Usage:
 //   node scripts/list.mjs                 # list all three groups
@@ -8,8 +8,14 @@
 //   node scripts/list.mjs cases           # just cases
 //   node scripts/list.mjs templates       # just templates
 
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 const REPO = "forge-ui/forge";
 const BRANCH = "main";
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const LOCAL_ROOT = findLocalRoot();
 
 const groups = {
   components: "src/app/components",
@@ -17,20 +23,66 @@ const groups = {
   templates: "src/app/templates",
 };
 
-async function listDir(path) {
-  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`, {
-    headers: { Accept: "application/vnd.github+json" },
-  });
-  if (!res.ok) {
-    throw new Error(`GitHub API ${res.status} for ${path}`);
-  }
-  const items = await res.json();
-  return items
-    .filter((x) => x.type === "dir" && !x.name.startsWith("_") && !x.name.startsWith("("))
+function findLocalRoot() {
+  const candidates = [
+    process.env.FORGE_REPO_DIR,
+    path.resolve(SCRIPT_DIR, "../../.."),
+    process.cwd(),
+  ].filter(Boolean);
+
+  return candidates.find((dir) => fs.existsSync(path.join(dir, "src/app"))) ?? null;
+}
+
+function isPublicDir(name) {
+  return !name.startsWith("_") && !name.startsWith("(");
+}
+
+function listLocalDir(relPath) {
+  if (!LOCAL_ROOT) return null;
+  const dir = path.join(LOCAL_ROOT, relPath);
+  if (!fs.existsSync(dir)) return null;
+
+  return fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((x) => x.isDirectory() && isPublicDir(x.name))
     .map((x) => x.name);
 }
 
+async function listRemoteDir(relPath) {
+  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${relPath}?ref=${BRANCH}`, {
+    headers: { Accept: "application/vnd.github+json" },
+  });
+  if (!res.ok) {
+    throw new Error(`GitHub API ${res.status} for ${relPath}`);
+  }
+  const items = await res.json();
+  return items
+    .filter((x) => x.type === "dir" && isPublicDir(x.name))
+    .map((x) => x.name);
+}
+
+async function listDir(relPath) {
+  return listLocalDir(relPath) ?? listRemoteDir(relPath);
+}
+
 async function listTemplates() {
+  if (LOCAL_ROOT) {
+    const out = [];
+    const root = path.join(LOCAL_ROOT, groups.templates);
+    if (fs.existsSync(root)) {
+      for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+        if (!entry.isDirectory() || entry.name.startsWith("_")) continue;
+        if (entry.name.startsWith("(")) {
+          const children = listLocalDir(`${groups.templates}/${entry.name}`) ?? [];
+          for (const c of children) out.push(`${entry.name}/${c}`);
+        } else {
+          out.push(entry.name);
+        }
+      }
+      return out;
+    }
+  }
+
   // Templates have nested groups (auth, ecommerce, dashboard-builder + flat pages).
   const top = await fetch(
     `https://api.github.com/repos/${REPO}/contents/${groups.templates}?ref=${BRANCH}`,

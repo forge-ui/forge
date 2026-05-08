@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Pen2Linear } from "solar-icon-set";
-import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard, TabBar } from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard, TabBar } from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, members, projects, tasks, type Project, type Task } from "../../_data";
 import { ProjectLogo } from "../../_logos";

@@ -12,15 +12,15 @@
 
 ## 铁律（违反必须重写）
 
-1. **组件只从 `@forge-ui/react` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
+1. **组件只从 `@forge-ui-official/core` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
 2. **颜色只用 `fg-*` token**。禁用 Tailwind 默认色（如 `text-blue-500` `bg-gray-100`），全部换成 `text-fg-violet` `bg-fg-grey-100`。没对上的颜色去 `src/app/globals.css` 的 `@theme inline` 里扩 token，不要就地写 hex。
 3. **Icon 用 `solar-icon-set`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾。颜色必须用 `color="#HEX"` prop，不要用 className 上的 `text-*`——库里 fill 写死了，className 不生效。尺寸用 `size={N}` prop。
-4. **布局用 `<AppLayout>`**（`@forge-ui/react`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
+4. **布局用 `<AppLayout>`**（`@forge-ui-official/core`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
 5. **不确定就看 `/cases/<name>`**。Forge 每个组件都有一页示例（`src/app/cases/<name>/page.tsx`），去读它，比凭想象写 props 靠谱十倍。
 
 ## 可用资源索引
 
-### 组件清单（`@forge-ui/react`）
+### 组件清单（`@forge-ui-official/core`）
 
 按类别分组，括号里是 `cases/` 下对应的示例页：
 
@@ -75,7 +75,7 @@
 - `CurrencyConverter` / `RatingStars` / `ImageGrid` / `ProductRow` / `MapCard`（cases/map）
 
 **布局模板**
-- `AppLayout`（`@forge-ui/react/app-layout`）— sidebar + topbar + 内容区一站式，业务页都用它
+- `AppLayout`（`@forge-ui-official/core/app-layout`）— sidebar + topbar + 内容区一站式，业务页都用它
 
 ### 颜色 Token（`src/app/globals.css`）
 
@@ -113,7 +113,7 @@ import { MagniferLinear, BellBoldDuotone } from "solar-icon-set";
 ### 布局（`AppLayout`）
 
 ```tsx
-import { AppLayout } from "@forge-ui/react";
+import { AppLayout } from "@forge-ui-official/core";
 
 <AppLayout
   mode="light"              // light | dark

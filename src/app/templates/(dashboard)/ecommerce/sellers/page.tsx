@@ -15,8 +15,8 @@ import {
   TextArea,
   ConfirmationDialog,
   Avatar,
-} from "@forge-ui/react";
-import type { ColumnDef } from "@forge-ui/react";
+} from "@forge-ui-official/core";
+import type { ColumnDef } from "@forge-ui-official/core";
 import {
   LetterLinear,
   ChatRoundLinear,
@@ -25,7 +25,7 @@ import {
   DownloadMinimalisticLinear,
   StarBold,
 } from "solar-icon-set";
-import { PlusIcon } from "@forge-ui/react";
+import { PlusIcon } from "@forge-ui-official/core";
 import { Modal } from "@/app/templates/_shared";
 
 interface SellerItem {

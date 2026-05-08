@@ -12,7 +12,7 @@ import {
   ConfirmationDialog,
   CloseIcon,
   CheckIcon,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   DangerTriangleLinear,
   ArrowLeftLinear,

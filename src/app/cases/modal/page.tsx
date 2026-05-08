@@ -4,7 +4,7 @@ import {
   ConfirmationDialog,
   type ConfirmationDialogColor,
   type ConfirmationDialogLayout,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   TrashBinMinimalisticBold,
   CheckCircleBold,

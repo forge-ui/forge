@@ -19,7 +19,7 @@ import {
   ActivityCard,
   FileCard,
   Label,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 import {
   ChartSquareBoldDuotone,
   WalletBoldDuotone,
@@ -46,7 +46,7 @@ const CODE_IMPORT = `import {
   BalanceCard, DebitCard, CreditCard,
   ProgressCard, ProjectCard, TaskCard, UserCard,
   HighlightCard, ActivityCard, FileCard,
-} from "@forge-ui/react";`;
+} from "@forge-ui-official/core";`;
 
 // StatCard
 const CODE_STATCARD_USAGE = `<StatCard

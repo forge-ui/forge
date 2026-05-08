@@ -1,6 +1,6 @@
 "use client";
 
-import { CurrencyConverter, type CurrencyConverterColor } from "@forge-ui/react";
+import { CurrencyConverter, type CurrencyConverterColor } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const COLORS: CurrencyConverterColor[] = ["purple", "blue", "dark"];

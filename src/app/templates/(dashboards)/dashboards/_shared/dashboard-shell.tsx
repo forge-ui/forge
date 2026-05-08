@@ -1,14 +1,14 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { AppLayout } from "@forge-ui/react";
+import { AppLayout } from "@forge-ui-official/core";
 import type {
   AppLayoutMenuItem,
   AppLayoutMode,
   AppLayoutAccentColor,
   AppLayoutProfile,
   AppLayoutProfilePosition,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 
 interface DashboardShellProps {
   mode: AppLayoutMode;

@@ -17,7 +17,7 @@ import type {
   AppLayoutProfile,
   AppLayoutProfilePosition,
   AppLayoutAccentColor,
-} from "@forge-ui/react";
+} from "@forge-ui-official/core";
 
 export type BuilderVariant = {
   slug: string;
