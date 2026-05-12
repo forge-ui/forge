@@ -3,7 +3,7 @@ name: forge-react
 description: "Forge UI Kit for ToB SaaS dashboards — Next.js 16 + React 19 + Tailwind v4 components. Use when building admin consoles, back-office, or ecommerce dashboards with @forge-ui-official/core: AppLayout sidebar shells, DataTable / StatCard / FileUpload / FormField / ChartCard family, fg-* color tokens, Forge auth or ecommerce templates. Keywords: Forge UI Kit, forge-ui, @forge-ui-official/core, AppLayout, fg-violet, fg-grey, Forge dashboard, Forge templates, Forge SaaS."
 metadata:
   author: forge-ui
-  version: "0.1.3"
+  version: "0.1.4"
   docs: "https://forge-mu-amber.vercel.app/"
 ---
 
@@ -83,6 +83,8 @@ Scripts read a local Forge checkout first when available, then fall back to `git
 
 Design tokens (colors, shadows, radii, typography) live in `references/tokens.md` — read it when you need exact hex values or shade names.
 
+Page patterns for common admin screens live in `references/page-patterns.md` — read it when designing app shells, auth flows, dashboards, CRUD, analytics/reporting, settings, messages, calendar, profile, file manager, invoice/billing, team/member, audit/activity, stepper, card/kanban, or chat/agent pages.
+
 ---
 
 ## Conventions
@@ -153,11 +155,12 @@ Use `scripts/get-template.mjs` to read the source.
 ## Workflow for new features
 
 1. **Read the PRD**, extract: page list, main actions per page, data fields, states, permissions.
-2. **Pick a skeleton**: list+detail+new business → copy the closest `/templates/ecommerce/<module>`; custom → `<AppLayout>` wrapper.
-3. **Decompose → compose**: break the page into sections; each section is a Kit component or a combination. Unsure about a prop? `node scripts/get-case.mjs <name>` and copy the pattern.
-4. **Colors = `fg-*`, icons = `solar-icon-set` + `color` prop.** No exceptions.
-5. **Missing component = stop and ask**, don't improvise.
-6. **Self-check**: `pnpm tsc --noEmit`, then `pnpm dev --port 3456 --hostname 0.0.0.0` and screenshot.
+2. **Pick a page pattern**: app shell / auth / dashboard / list / detail / form / settings / messages / calendar / profile / files / billing / team / audit / stepper / cards / chat. Read `references/page-patterns.md` when the page type is not obvious.
+3. **Pick a skeleton**: list+detail+new business → copy the closest `/templates/ecommerce/<module>`; custom → `<AppLayout>` wrapper.
+4. **Decompose → compose**: break the page into sections; each section is a Kit component or a combination. Unsure about a prop? `node scripts/get-case.mjs <name>` and copy the pattern.
+5. **Colors = `fg-*`, icons = `solar-icon-set` + `color` prop.** No exceptions.
+6. **Missing component = stop and ask**, don't improvise.
+7. **Self-check**: `pnpm tsc --noEmit`, then `pnpm dev --port 3456 --hostname 0.0.0.0` and screenshot.
 
 ---
 
