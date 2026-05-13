@@ -11,10 +11,10 @@ const toc = [
 ];
 
 const installCmd = `# Claude Code / Cursor
-curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
+curl -fsSL https://forgeui.org/install-skill.sh | bash
 
 # Codex
-curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | FORGE_AGENT=codex bash`;
+curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash`;
 
 const structureTree = `.claude/skills/forge-react/ 或 .codex/skills/forge-react/
 ├── SKILL.md                       # 主入口（定位 / 铁律 / 工作流 / 脚本索引）
