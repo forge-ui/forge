@@ -22,7 +22,7 @@ export default function Page() {
   return <Button>Hello Forge</Button>;
 }`;
 
-const INSTALL_SKILL = `curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash`;
+const INSTALL_SKILL = `curl -fsSL https://forgeui.org/install-skill.sh | bash`;
 
 function Step({
   n,

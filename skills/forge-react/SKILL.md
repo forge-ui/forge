@@ -4,14 +4,14 @@ description: "Forge UI Kit for ToB SaaS dashboards — Next.js 16 + React 19 + T
 metadata:
   author: forge-ui
   version: "0.1.4"
-  docs: "https://forge-mu-amber.vercel.app/"
+  docs: "https://forgeui.org/"
 ---
 
 # Forge UI Kit — React Development Guide
 
 Forge UI Kit (`@forge-ui-official/core`) is a ToB-focused design system for Next.js 16 + React 19 + Tailwind v4 projects. Use it when you're building dashboards, admin consoles, ecommerce back-offices, or any page that needs a sidebar + topbar + data-dense content shell.
 
-**Live docs**: https://forge-mu-amber.vercel.app/
+**Live docs**: https://forgeui.org/
 **Package**: `@forge-ui-official/core` (MIT, public npm package)
 
 ---
@@ -19,13 +19,13 @@ Forge UI Kit (`@forge-ui-official/core`) is a ToB-focused design system for Next
 ## One-line install (this skill itself)
 
 ```bash
-curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
+curl -fsSL https://forgeui.org/install-skill.sh | bash
 ```
 
 Default target is `~/.claude/skills/forge-react/`. For Codex, install into `~/.codex/skills/forge-react/`:
 
 ```bash
-curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | FORGE_AGENT=codex bash
+curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash
 ```
 
 Use `FORGE_SKILLS_DIR=/path/to/skills` for any other agent. Re-run any time to update.
@@ -44,7 +44,7 @@ Use `FORGE_SKILLS_DIR=/path/to/skills` for any other agent. Re-run any time to u
 
 ## Installation (host project)
 
-See https://forge-mu-amber.vercel.app/docs/quick-start/ for the full walk-through. Summary:
+See https://forgeui.org/docs/quick-start/ for the full walk-through. Summary:
 
 1. Install the package: `pnpm add @forge-ui-official/core`.
 2. `app/globals.css`:

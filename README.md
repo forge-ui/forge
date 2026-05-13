@@ -93,10 +93,16 @@ pnpm lint            # 运行 ESLint
 
 ```bash
 # Claude Code / Cursor
-curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
+curl -fsSL https://forgeui.org/install-skill.sh | bash
 
 # Codex
-curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | FORGE_AGENT=codex bash
+curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash
+```
+
+如果官网域名暂时不可用，也可以直接从 GitHub 安装：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-skill.sh | FORGE_AGENT=codex bash
 ```
 
 ## 相关项目

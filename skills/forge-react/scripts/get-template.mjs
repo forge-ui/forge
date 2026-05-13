@@ -94,7 +94,7 @@ async function main() {
       console.log(`\n# ========================================================`);
       console.log(`# Template: ${p}`);
       console.log(`# Source: ${rel} (${filename})`);
-      console.log(`# Live: https://forge-mu-amber.vercel.app/templates/${p.replace(/\[/g, "").replace(/\]/g, "")}/`);
+      console.log(`# Live: https://forgeui.org/templates/${p.replace(/\[/g, "").replace(/\]/g, "")}/`);
       console.log(`# ========================================================\n`);
       console.log(src);
     } catch (err) {

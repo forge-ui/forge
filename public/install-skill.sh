@@ -2,7 +2,7 @@
 #
 # Install the forge-react skill into Claude Code / Cursor / Codex.
 #
-#   curl -fsSL https://forge-mu-amber.vercel.app/install-skill.sh | bash
+#   curl -fsSL https://forgeui.org/install-skill.sh | bash
 #
 # Overrides (environment variables):
 #   FORGE_AGENT         codex | claude | cursor (default: claude)
