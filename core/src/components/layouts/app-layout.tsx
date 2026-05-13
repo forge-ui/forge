@@ -420,7 +420,7 @@ export function AppLayout({
         )}
 
         {/* Menu sections */}
-        <div className={cn("flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}>
+        <div className={cn("fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}>
           {sidebarSlot ? (
             sidebarSlot
           ) : (
