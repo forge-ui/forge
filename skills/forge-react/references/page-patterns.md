@@ -40,6 +40,29 @@ Think in reusable page blocks, similar to shadcn Blocks: shell, toolbar, data bo
 5. Add feedback states: loading, empty, error, permission denied, success.
 6. Put row actions in `KebabMenu` / `CellActions`; use `ConfirmationDialog` for destructive actions.
 7. Put bulk actions in `ToolbarActions` or the table selection state, not scattered around the page.
+8. Run a layout integrity check: full width, equal-height rows, no accidental large blank card areas, no mobile overflow.
+
+## Layout Integrity
+
+Decide the grid and height strategy before composing components. Do not stack arbitrary `div`s and hope the page fills correctly.
+
+Rules:
+
+- Page body should use `w-full`, `min-w-0`, `flex-1`, and `min-h-0` where needed so content can fill and shrink correctly.
+- Dashboard bodies should usually use `grid grid-cols-12 gap-6 items-stretch`; cards in the same row should use `h-full`.
+- If same-row cards have very different content density, do not leave a large blank area. Change the row span, split dense/sparse cards, or use `flex flex-col justify-between h-full` inside the sparse card.
+- Card grids should use `auto-rows-fr` or explicit `min-h-[...]` values to avoid visual breaks.
+- Charts need stable height, such as `h-[280px]`, `min-h-[320px]`, or `aspect-[16/9]`; do not let SVG/canvas natural height define the layout.
+- Right-side todo/message/template cards placed next to large charts need enough visual density: footer actions, status summaries, grouped headings, or a smaller row span.
+- Horizontal card groups should use responsive grid columns, not hand-written percentages. Common breakpoints: `grid-cols-1 md:grid-cols-2 xl:grid-cols-4/5`.
+- Any `overflow-y-auto` region needs a clear parent height or a `min-h-0` chain, otherwise scroll/fill behavior will break.
+
+Self-check:
+
+- Does the first viewport have one side full and the other side mostly empty?
+- Are lower modules misaligned because previous row heights are inconsistent?
+- Does the layout fill naturally at 1440px, 1920px, and mobile widths?
+- Do CTAs, stats, list items, chart legends, and footers create a complete visual block inside each card?
 
 ## App Shell / Auth
 

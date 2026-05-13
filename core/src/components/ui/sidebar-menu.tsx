@@ -246,7 +246,7 @@ export function SidebarMenu({
         </div>
       )}
 
-      <div className="flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto">
+      <div className="fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto">
         <div className="flex flex-col gap-3">
           <div className="px-3 flex items-start gap-2">
             <span
