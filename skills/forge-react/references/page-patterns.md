@@ -4,17 +4,36 @@ Use this reference before designing common SaaS admin pages. Pick the page type 
 
 Think in reusable page blocks, similar to shadcn Blocks: shell, toolbar, data body, feedback state, and confirmation flow. Prefer real Forge cases/templates as the source of truth.
 
+## Page Selection Decision Tree
+
+Before composing JSX, choose the page model:
+
+1. If the request asks for a system/platform/admin/back-office, read `contracts/system-brief.md`, choose a `blueprints/*.md` archetype, and produce a System Brief before choosing page components.
+2. If the request names a business object users manage, treat it as a resource module and read `contracts/module-contract.md` plus `admin-module-playbook.md` first.
+3. If the user asks for metrics, trends, anomalies, or reports, start with analytics/reporting, then add drill-down links to lists/details.
+4. If the user asks for approval, generation, import, publishing, tickets, or review, model a workflow queue with explicit states and actions.
+5. If the user asks for settings, permissions, integrations, notifications, or rules, model grouped configuration with save/reset behavior and danger zones.
+6. If the page mixes multiple intents, give each intent a clear surface: dashboard for insight, list/detail for operations, settings for configuration.
+
+Pick the nearest Forge template after the page model is clear. For example, ecommerce products/orders/customers are good CRUD references; project-template projects/members/files/invoices/tasks are good operational module references; dashboards are good entry pages, not replacements for CRUD flows.
+
+When a blueprint exists, prefer its module map and state model over inventing generic fields. The page pattern decides the surface; the blueprint decides the business logic.
+
+For system generation, combine patterns instead of picking only one: app shell + workbench/dashboard + core list/detail + mutation form/dialog + settings/audit/supporting surface.
+
 ## Pattern Map
 
 | Page / flow | Structure | Forge components | Source examples |
 |---|---|---|---|
+| Full admin system | domain sidebar + workbench + core modules + supporting settings/audit | `AppLayout`, `StatCard`, `FullWidthTable`, `TabBar`, `ListGroup`, `HistoryGrouped`, `ConfirmationDialog` | project-template overview/projects/tasks/members/files/invoices |
 | App shell / navigation | sidebar + topbar + breadcrumbs + user/team entry | `AppLayout`, `SidebarMenu`, `TopBar`, `PageHeader`, `Breadcrumbs` | `components/layouts-app-layout.md`, dashboard-builder templates |
-| Auth | brand area + form + secondary links + loading/error states | auth templates, `TextField`, `Button`, `Checkbox`, `StyledLink` | `references/templates/auth.md` |
+| Auth | brand area + form + secondary links + loading/error states | `TextField`, `Button`, `Checkbox`, `StyledLink` | compose from form primitives; no Forge auth template yet |
 | Dashboard | KPI grid + charts + activity/list/map | `StatCard`, `ProgressStatCard`, `ChartCard`, chart family, `MapCard`, `ActivityCard`, `ListGroup` | `cases/card`, `cases/chart`, `templates/(dashboards)/dashboards/*` |
 | Analytics / reporting | metric summary + trends + dimension filters + detail table | `Toolbar`, `ChartCard`, chart family, `DataTable`, `StatCard`, `ButtonGroup` | analytics, CRM, finance dashboards |
-| List page | `AppLayout` + `Toolbar` + `DataTable` + pagination/actions | `Toolbar`, `ToolbarSearchInput`, `ToolbarFilterButton`, `ToolbarActions`, `DataTable`, `StatusBadge`, `Pagination`, `KebabMenu` | `cases/toolbar`, `cases/table`, ecommerce templates |
+| List page | `AppLayout` + `Toolbar` + `FullWidthTable`/`DataTable` + pagination/actions | `Toolbar`, `ToolbarSearchInput`, `ToolbarFilterButton`, `ToolbarActions`, `FullWidthTable`, `DataTable`, `StatusBadge`, `Pagination`, `KebabMenu` | `cases/toolbar`, `cases/table`, ecommerce/project templates |
 | Detail page | back/breadcrumbs + summary + fields + related data + timeline | `AppLayout pageHeaderVariant="detail"`, `Breadcrumbs`, `DescriptionItem`, `ListGroup`, `HistoryGrouped`, `DataTable` | `cases/page-header`, `cases/list`, `cases/history` |
 | Master-detail workspace | left list/search + right preview/detail + quick actions | `ToolbarSearchInput`, `ListGroup`, `DataTable`, `TabBar`, `DescriptionItem`, `ChatBubble` | project client/member detail templates |
+| Right drawer / inspector | list/table/queue stays visible + selected object summary/actions | `DataTable`, `ListGroup`, `DescriptionItem`, `TabBar`, `HistoryGrouped`, `ConfirmationDialog` | task/user/file processing workspaces |
 | Create / edit | sectioned form + submit actions + upload/validation | `TextField`, `TextArea`, `SelectOption`, `Datepicker`, `FileUpload`, `MediaUpload`, `Button`, `Stepper` | `cases/input-field`, ecommerce `new` pages |
 | Bulk import/export | selection state + actions, or stepper import flow | `DataTable`, `ToolbarActions`, `FileUpload`, `Stepper`, `StatusBadge` | list templates + form cases |
 | Delete / danger | row/detail/settings action + confirmation | `KebabMenu`, `IconButton`, `Button color="red"`, `ConfirmationDialog` | `cases/menu`, `cases/modal` |
@@ -30,17 +49,20 @@ Think in reusable page blocks, similar to shadcn Blocks: shell, toolbar, data bo
 | Chat / agent | conversation sidebar + message stream + input + result panel | `ContactItem`, `ChatBubble`, `ChatInputBar`, `TabBar`, `DataTable`, charts, `ListGroup` | `cases/chat`, `cases/list` |
 | Audit / activity | filters + timeline + actor + object + before/after summary | `HistoryGrouped`, `HistoryItem`, `ActivityCard`, `ToolbarDatepicker`, `ToolbarFilterButton` | `cases/history` |
 | Search results | search + category filters + list/table results + empty state | `ToolbarSearchInput`, `FilterGroup`, `ListGroup`, `DataTable`, `Pagination` | `cases/filter`, `cases/list` |
+| Async job center | job list + progress/status + failure report + retry/download | `DataTable`, `StatusBadge`, `ProgressBar`, `NotificationItem`, `Button` | import/export/generate/report workflows |
+| First-run / empty setup | empty state + guided primary action + sample/import option | `AppLayout`, `Button`, `FileUpload`, `Stepper`, `ListGroup` | create/import onboarding flows |
 
 ## Universal Admin Skeleton
 
 1. Wrap the page in `<AppLayout>`.
-2. Use `pageHeaderVariant="home"` for dashboard/list pages and `pageHeaderVariant="detail"` for detail/create/edit pages.
-3. Use `Toolbar` for search, filters, view switches, export/import, and primary actions.
-4. Choose the main body component: `DataTable`, cards, `ListGroup`, charts, calendar, file, or chat.
-5. Add feedback states: loading, empty, error, permission denied, success.
-6. Put row actions in `KebabMenu` / `CellActions`; use `ConfirmationDialog` for destructive actions.
-7. Put bulk actions in `ToolbarActions` or the table selection state, not scattered around the page.
-8. Run a layout integrity check: full width, equal-height rows, no accidental large blank card areas, no mobile overflow.
+2. Build navigation from business domains: dashboard/workbench, operations, relationships, output/finance, governance/settings.
+3. Use `pageHeaderVariant="home"` for dashboard/list pages and `pageHeaderVariant="detail"` for detail/create/edit pages.
+4. Use `Toolbar` for search, filters, view switches, export/import, and primary actions.
+5. Choose the main body component: `FullWidthTable`, `DataTable`, cards, `ListGroup`, charts, calendar, file, or chat.
+6. Add feedback states: loading, empty, error, permission denied, success.
+7. Put row actions in `KebabMenu` / `CellActions`; use `ConfirmationDialog` for destructive actions.
+8. Put bulk actions in `ToolbarActions` or the table selection state, not scattered around the page.
+9. Run a layout integrity check: full width, equal-height rows, no accidental large blank card areas, no mobile overflow.
 
 ## Layout Integrity
 
@@ -70,7 +92,7 @@ Self-check:
 - Group navigation by business domain: dashboard, core objects, collaboration, finance, settings.
 - Use `pageHeaderVariant="home"` for dashboards/lists and `pageHeaderVariant="detail"` for detail/edit/invoice/task pages.
 - Use `Breadcrumbs` for nested resources.
-- For login/signup/reset/invite pages, read `references/templates/auth.md` and reuse the auth template skeleton.
+- Forge currently has no auth template source. For login/signup/reset/invite pages, compose the skeleton from `TextField`, `Checkbox`, `Button`, and `StyledLink`.
 - Auth forms should cover loading, validation error, disabled submit, and success redirect states.
 
 ## Dashboard
@@ -79,6 +101,7 @@ Self-check:
 - Middle: main chart + secondary chart with `ChartCard` and chart family components.
 - Bottom: activity, top lists, map, or tasks with `ActivityCard`, `ListGroup`, `MapCard`, `TaskCard`.
 - Keep labels short, show units, and use `trend` / `trendDirection` for movement.
+- Dashboard/workbench cards should navigate to work: each KPI, anomaly, task, or shortcut should imply a filtered list, queue, detail page, or action.
 
 ## Analytics / Reporting
 
@@ -92,9 +115,14 @@ Self-check:
 
 - Header: title + `primaryAction` for New/Create.
 - Toolbar: search, status filter, date filter, tabs or view switch, export, bulk actions.
-- Table: 6-8 columns; status uses `StatusBadge`; main entity uses image/avatar text cell; final column uses `CellKebabMenu`.
+- Table: 6-8 columns; status uses `StatusBadge`; main entity uses image/avatar text cell; final column uses `KebabMenu` or `CellKebabMenu`.
+- Use `FullWidthTable` for full-page management lists. Use `DataTable` for embedded dashboard/detail tables.
 - Footer: `Pagination`.
 - Actions: view detail, edit, duplicate, archive, delete. Delete must confirm.
+- Keep search, filters, sort, page, pageSize, and view mode in URL when the list is an operational view users may share or revisit.
+- Show bulk actions only after selection. For cross-page selection, clarify whether the action applies to current page or all matching records.
+- For saved views such as "Overdue", "Needs review", or "My items", show the active segment and make clearing filters obvious.
+- `ToolbarSearchInput` is display-only today. For controlled search that updates URL state, use `TextField` with a search icon or a project wrapper exposing `value` and `onChange`.
 
 ## Detail / Master-Detail
 
@@ -115,14 +143,14 @@ Self-check:
 ## File Manager
 
 - Toolbar: search, type filter, upload, create folder, view switch.
-- Table view: `DataTable` for name, type, size, owner, updated time, permission.
+- Table view: `FullWidthTable` for name, type, size, owner, updated time, permission.
 - Grid view: `FileCard` + `KebabMenu` for download, rename, move, delete.
 - Use `FileUpload` for upload and `FileTypeIcon` for file type.
 - Cover permissions, upload progress, failed retry, empty folder, and destructive delete confirmation.
 
 ## Invoice / Billing
 
-- List: `DataTable` with invoice id, client, project, amount, due date, status.
+- List: `FullWidthTable` with invoice id, client, project, amount, due date, status.
 - Status: `StatusBadge` for paid, pending, overdue, draft, void.
 - Detail: summary, company/client info, line items, totals, tax/discount, actions.
 - Actions: send, download, print, edit, void/delete. Void/delete must confirm.
