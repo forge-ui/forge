@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Fetch a template page source from a local Forge checkout or forge-ui/forge.
 // Templates at src/app/templates/<path>/page.tsx are full business screens
-// (auth flow, ecommerce module, dashboard shells) you can copy wholesale.
+// (ecommerce modules, project-template modules, dashboard shells) you can copy.
 //
 // Usage:
-//   node scripts/get-template.mjs auth/sign-in
 //   node scripts/get-template.mjs ecommerce/products
 //   node scripts/get-template.mjs ecommerce/orders/[id]
+//   node scripts/get-template.mjs project-template/projects
 //   node scripts/get-template.mjs dashboard-builder
 //   node scripts/get-template.mjs blank
 //
@@ -82,8 +82,8 @@ async function main() {
   if (paths.length === 0) {
     console.error("Usage: node scripts/get-template.mjs <path> [<path>...]");
     console.error("Examples:");
-    console.error("  node scripts/get-template.mjs auth/sign-in");
     console.error("  node scripts/get-template.mjs ecommerce/products");
+    console.error("  node scripts/get-template.mjs project-template/projects");
     console.error("  node scripts/get-template.mjs dashboard-builder");
     process.exit(1);
   }
