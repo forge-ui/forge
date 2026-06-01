@@ -47,6 +47,7 @@ next-env.d.ts
 /core/dist
 /core/src/assets/_inlined.ts
 .turbo
+tmp/
 *.tgz
 
 # Figma 设计稿源文件（本地参考用，不入仓）
