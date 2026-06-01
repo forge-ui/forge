@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  SurfaceCard,
   StatCard,
   ProgressStatCard,
   LineChartStatCard,
@@ -72,6 +73,49 @@ export default function CardCasePage() {
         title="Card"
         hint="15+ 种卡片组件：StatCard 系列 / 金融卡 / Project / Task / User / Event / Profile / Highlight / Activity。"
       />
+
+      {/* ============ SurfaceCard ============ */}
+      <Section
+        title="Surface Card"
+        description="通用白底内容面板：标题 / 副标题 / action / footer。用于业务 section，不用 ChartCard 伪装普通面板。"
+      >
+        <SubSection title="Variants">
+          <Labeled label="title + action">
+            <SurfaceCard
+              title="Approval context"
+              subtitle="Reviewer signal, downstream impact, and next action."
+              action={
+                <IconButton aria-label="Share" size="sm" variant="tertiary">
+                  <ShareLinear size={16} color="currentColor" />
+                </IconButton>
+              }
+              className="w-full max-w-xl"
+            >
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div>
+                  <p className="text-xs font-medium text-fg-grey-700">Risk</p>
+                  <p className="mt-1 text-xl font-semibold text-fg-black">High</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-fg-grey-700">Owner</p>
+                  <p className="mt-1 text-xl font-semibold text-fg-black">Elena</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-fg-grey-700">Due</p>
+                  <p className="mt-1 text-xl font-semibold text-fg-black">Today</p>
+                </div>
+              </div>
+            </SurfaceCard>
+          </Labeled>
+          <Labeled label="no header">
+            <SurfaceCard padding="sm" className="w-full max-w-xl">
+              <p className="text-sm leading-5 text-fg-grey-700">
+                Compact neutral surface for filters, empty states, or secondary page sections.
+              </p>
+            </SurfaceCard>
+          </Labeled>
+        </SubSection>
+      </Section>
 
       {/* ============ StatCard (Regular) ============ */}
       <Section

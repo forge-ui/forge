@@ -23,6 +23,8 @@ export { Avatar, AvatarGroup } from "./avatar";
 export type { AvatarSize, AvatarInitialColor } from "./avatar";
 
 // Composite components
+export { SurfaceCard } from "./surface-card";
+export type { SurfaceCardPadding } from "./surface-card";
 export { StatCard } from "./stat-card";
 export { ProjectCard } from "./project-card";
 export type { ProjectCardColor } from "./project-card";
