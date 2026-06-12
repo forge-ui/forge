@@ -1,0 +1,498 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "quality-governance-control-tower",
+    "name": "Quality governance control tower",
+    "appliesTo": [
+      "data quality",
+      "compliance scan",
+      "repair workflow",
+      "audit-ready reporting"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "/Users/hesong/Downloads/project-9684331",
+      "/Users/hesong/Downloads/protask-figma",
+      "/Users/hesong/Documents/gihub_space/forge/tmp/spec-to-forge-output/prior-auth-ops-c12-protask"
+    ],
+    "notes": "First paired IA artifact distilled from Readdy route shape, Protask screen taxonomy, and a prior ForgeUI C12 generated app."
+  },
+  "lifecycleModel": [
+    "overview",
+    "policy",
+    "event",
+    "artifact",
+    "operation"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Quality overview",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which source, run, or report needs attention before submission?",
+      "primaryDataObject": "quality-program",
+      "layoutIntent": "hero-overview",
+      "routeRole": "dashboard",
+      "actions": [
+        {
+          "label": "Open blocked runs",
+          "verb": "monitor",
+          "kind": "read",
+          "lifecycle": "event"
+        },
+        {
+          "label": "Review open issues",
+          "verb": "triage",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/quality-runs",
+        "/issues",
+        "/reports"
+      ],
+      "navigationRationale": "Dashboard prioritizes risk and sends users into the next lifecycle route instead of hosting workflow actions.",
+      "businessDensity": [
+        "risk focus",
+        "report readiness",
+        "blocked run stream",
+        "next action links"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "data-sources",
+      "route": "/data-sources",
+      "title": "Data sources",
+      "primaryVerb": "connect",
+      "lifecycle": "artifact",
+      "decisionQuestion": "Which source is healthy enough to scan?",
+      "primaryDataObject": "data-source",
+      "layoutIntent": "source-inventory",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Create scan from source",
+          "verb": "configure",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/quality-runs/new"
+      ],
+      "navigationRationale": "Connection health is separate from scan execution.",
+      "businessDensity": [
+        "source health",
+        "row count",
+        "owner department",
+        "last sync",
+        "schema readiness"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "templates",
+      "route": "/templates",
+      "title": "Standard templates",
+      "primaryVerb": "govern",
+      "lifecycle": "policy",
+      "decisionQuestion": "Which standard template is reliable enough for this dataset?",
+      "primaryDataObject": "quality-template",
+      "layoutIntent": "policy-template-library",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Inspect rules",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/templates/[id]",
+        "/quality-runs/new"
+      ],
+      "navigationRationale": "Policy decisions happen before scan execution.",
+      "businessDensity": [
+        "standard reference",
+        "version",
+        "coverage",
+        "rule count",
+        "fix strategy coverage"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "template-detail",
+      "route": "/templates/[id]",
+      "title": "Template detail",
+      "primaryVerb": "inspect",
+      "lifecycle": "policy",
+      "decisionQuestion": "Is this template coverage, rule logic, and fix strategy safe to use for a scan?",
+      "primaryDataObject": "quality-template",
+      "layoutIntent": "tabbed-policy-detail",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Create scan with template",
+          "verb": "configure",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/quality-runs/new",
+        "/audit-logs"
+      ],
+      "navigationRationale": "Template detail inspects policy coverage and can start scan setup, but does not execute or repair scans inline.",
+      "businessDensity": [
+        "rule groups",
+        "coverage gaps",
+        "version history",
+        "fix strategy",
+        "audit evidence"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/templates",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "quality-runs",
+      "route": "/quality-runs",
+      "title": "Quality runs",
+      "primaryVerb": "monitor",
+      "lifecycle": "event",
+      "decisionQuestion": "Which scan event is blocked, failed, or ready for diagnosis?",
+      "primaryDataObject": "quality-run",
+      "layoutIntent": "run-queue-with-health",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Create run",
+          "verb": "configure",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Open run detail",
+          "verb": "diagnose",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [
+        "/quality-runs/new",
+        "/quality-runs/[id]"
+      ],
+      "navigationRationale": "Run queue monitors scan events. It does not repair issues or export reports.",
+      "businessDensity": [
+        "run status",
+        "score",
+        "issue count",
+        "owner",
+        "started time",
+        "retry state"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "quality-run-new",
+      "route": "/quality-runs/new",
+      "title": "Create quality run",
+      "primaryVerb": "configure",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which source, template, scope, and execution mode should define this run?",
+      "primaryDataObject": "quality-run-draft",
+      "layoutIntent": "wizard-multi-step",
+      "routeRole": "wizard",
+      "actions": [
+        {
+          "label": "Create scan",
+          "verb": "configure",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/quality-runs/[id]"
+      ],
+      "navigationRationale": "Sequential scan setup is a wizard because each decision constrains the next one.",
+      "businessDensity": [
+        "source selection",
+        "template selection",
+        "scan scope",
+        "execution mode",
+        "preflight warnings"
+      ],
+      "surfaceRole": "action",
+      "parentRoute": "/quality-runs",
+      "entryAffordance": "primary_cta"
+    },
+    {
+      "id": "quality-run-detail",
+      "route": "/quality-runs/[id]",
+      "title": "Run diagnostics",
+      "primaryVerb": "diagnose",
+      "lifecycle": "event",
+      "decisionQuestion": "What caused this run outcome and which issue or report should be opened next?",
+      "primaryDataObject": "quality-run",
+      "layoutIntent": "run-diagnostics-workbench",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Open issue",
+          "verb": "triage",
+          "kind": "read",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Open report",
+          "verb": "review",
+          "kind": "read",
+          "lifecycle": "artifact"
+        }
+      ],
+      "linksOut": [
+        "/issues",
+        "/issues/[id]",
+        "/reports/[id]"
+      ],
+      "navigationRationale": "Run detail explains an event; issue repair and report preview live in separate lifecycle pages.",
+      "businessDensity": [
+        "score breakdown",
+        "root cause distribution",
+        "blocked rules",
+        "issue links",
+        "report readiness"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/quality-runs",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "issues",
+      "route": "/issues",
+      "title": "Issue center",
+      "primaryVerb": "triage",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which issue should be repaired, reviewed, ignored, or escalated first?",
+      "primaryDataObject": "quality-issue",
+      "layoutIntent": "list-with-filters-and-bulk",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Open diff repair",
+          "verb": "repair",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/issues/[id]"
+      ],
+      "navigationRationale": "The queue prioritizes and assigns work. Diff confirmation belongs to issue detail.",
+      "businessDensity": [
+        "severity",
+        "rule",
+        "affected rows",
+        "fixability",
+        "owner",
+        "SLA"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "issue-detail",
+      "route": "/issues/[id]",
+      "title": "Issue repair",
+      "primaryVerb": "repair",
+      "lifecycle": "operation",
+      "decisionQuestion": "Should this fix strategy be applied after reviewing root cause, impact, and diff?",
+      "primaryDataObject": "quality-issue",
+      "layoutIntent": "split-pane-diff-repair",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Confirm repair",
+          "verb": "repair",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "View audit trail",
+          "verb": "audit",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [
+        "/quality-runs/[id]",
+        "/audit-logs"
+      ],
+      "navigationRationale": "Issue detail owns diff repair and writes audit evidence after confirmation.",
+      "businessDensity": [
+        "root cause",
+        "impact scope",
+        "before after diff",
+        "fix strategy",
+        "rollback note",
+        "audit link"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/issues",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "reports",
+      "route": "/reports",
+      "title": "Reports",
+      "primaryVerb": "publish",
+      "lifecycle": "artifact",
+      "decisionQuestion": "Which compliance report is ready to submit or needs more fixes?",
+      "primaryDataObject": "quality-report",
+      "layoutIntent": "report-registry",
+      "routeRole": "report",
+      "actions": [
+        {
+          "label": "Open report",
+          "verb": "review",
+          "kind": "read",
+          "lifecycle": "artifact"
+        }
+      ],
+      "linksOut": [
+        "/reports/[id]"
+      ],
+      "navigationRationale": "Reports are submission artifacts, not scan or repair workspaces.",
+      "businessDensity": [
+        "status",
+        "score",
+        "hash",
+        "batch",
+        "generated time",
+        "evidence completeness"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "report-detail",
+      "route": "/reports/[id]",
+      "title": "Report preview",
+      "primaryVerb": "review",
+      "lifecycle": "artifact",
+      "decisionQuestion": "Is this compliance report ready for submission with enough evidence?",
+      "primaryDataObject": "quality-report",
+      "layoutIntent": "report-preview-with-evidence",
+      "routeRole": "report",
+      "actions": [
+        {
+          "label": "Export report",
+          "verb": "review",
+          "kind": "read",
+          "lifecycle": "artifact"
+        },
+        {
+          "label": "View audit chain",
+          "verb": "audit",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [
+        "/audit-logs",
+        "/issues"
+      ],
+      "navigationRationale": "Report detail reviews evidence and export readiness. Open issues remain in the repair route.",
+      "businessDensity": [
+        "evidence chain",
+        "repair records",
+        "hash",
+        "signature readiness",
+        "submission status"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/reports",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "audit-logs",
+      "route": "/audit-logs",
+      "title": "Audit logs",
+      "primaryVerb": "audit",
+      "lifecycle": "event",
+      "decisionQuestion": "Who changed what, when, and why?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "actions": [
+        {
+          "label": "Inspect event",
+          "verb": "audit",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [],
+      "navigationRationale": "Audit is immutable evidence, usually terminal or backlink-only.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "object",
+        "reason",
+        "before after",
+        "timestamp"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "settings",
+      "route": "/settings",
+      "title": "Quality settings",
+      "primaryVerb": "configure",
+      "lifecycle": "policy",
+      "decisionQuestion": "Which threshold, role, notification, or execution setting controls quality governance?",
+      "primaryDataObject": "quality-setting",
+      "layoutIntent": "settings-grouped",
+      "routeRole": "settings",
+      "actions": [
+        {
+          "label": "Update settings",
+          "verb": "configure",
+          "kind": "admin",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/templates",
+        "/audit-logs"
+      ],
+      "navigationRationale": "Settings are governance controls and should not absorb run diagnosis or issue repair.",
+      "businessDensity": [
+        "threshold",
+        "role",
+        "notification",
+        "execution policy",
+        "audit"
+      ],
+      "surfaceRole": "navigation"
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "all-in-one-run-detail",
+      "description": "Do not put source management, template editing, diff repair, report export, and audit stream inside /quality-runs/[id].",
+      "severity": "critical"
+    },
+    {
+      "id": "generic-leaf-workspace",
+      "description": "Leaf routes named workspace, center, hub, console, or all-in-one hide the real business verb.",
+      "severity": "critical"
+    }
+  ]
+}

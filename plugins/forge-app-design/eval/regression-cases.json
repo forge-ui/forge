@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "smoke-clean-app",
+      "label": "Portable ForgeUI source smoke fixture",
+      "target": "${FORGE_DEMO_ROOT}/clean-app",
+      "maxCritical": 0,
+      "maxWarn": 0,
+      "minPageFiles": 1,
+      "minComponentFiles": 0,
+      "requiredFiles": [
+        "app/page.tsx"
+      ],
+      "requiredText": [
+        {
+          "file": "app/page.tsx",
+          "patterns": [
+            "PageHeader",
+            "DataTable",
+            "StatusBadge"
+          ]
+        }
+      ],
+      "notes": "Default smoke must stay portable. Historical generated apps live in regression-cases.full.json and need FORGE_DEMO_ROOT when replayed."
+    }
+  ]
+}

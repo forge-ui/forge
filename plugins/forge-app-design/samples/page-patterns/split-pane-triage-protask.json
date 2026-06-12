@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "archetypeId": "split-pane-triage-protask",
+  "sourceReferences": [
+    "$FORGE_APP_DESIGN_ROOT/samples/detail-triage-workflow",
+    "$FORGE_APP_DESIGN_ROOT/samples/entity-detail-activity-rail",
+    "$FORGE_APP_DESIGN_ROOT/golden-apps/support-ticket-sla-center.md"
+  ],
+  "patterns": [
+    {
+      "id": "split-pane-triage",
+      "routeRole": "detail",
+      "layoutIntent": "split-pane-triage",
+      "decisionQuestion": "What evidence, root cause, impact, and history justify resolving, escalating, or sending back this record?",
+      "primaryDataObject": "triage-case",
+      "kpiCards": [
+        "severity",
+        "SLA remaining",
+        "risk score",
+        "owner"
+      ],
+      "tableColumns": [],
+      "detailSections": [
+        "identity and meta strip",
+        "resolution/action panel",
+        "evidence",
+        "root cause",
+        "impact scope",
+        "similar or related records",
+        "SOP or next action",
+        "change history",
+        "audit trail",
+        "next workflow link"
+      ],
+      "drawerActions": [
+        "resolve",
+        "escalate",
+        "send back",
+        "open audit log",
+        "continue workflow"
+      ],
+      "workflowStates": [
+        "loading",
+        "empty",
+        "saving",
+        "saved",
+        "error",
+        "hover"
+      ],
+      "emptyStateCopy": "No case is loaded. Return to the parent queue and reopen a row with evidence.",
+      "businessDensity": [
+        "identity",
+        "status",
+        "severity",
+        "owner",
+        "evidence",
+        "root cause",
+        "impact scope",
+        "related records",
+        "SOP",
+        "history",
+        "resolution",
+        "audit trail",
+        "next workflow"
+      ],
+      "visualBaseline": {
+        "typography": [
+          "Detail H1 uses text-2xl or smaller; section titles stay text-base/text-lg.",
+          "Evidence, history, and metadata rows use text-sm plus text-xs supporting copy."
+        ],
+        "density": [
+          "At a desktop review viewport, first viewport shows identity/profile context, evidence or activity, and the primary resolution/action surface.",
+          "Detail must not become a stack of large cards with only one decision item visible."
+        ],
+        "spacing": [
+          "Use gap-4/gap-5 for split panes; avoid default gap-6/space-y-6.",
+          "Cards inside detail panes use compact headers and padding=sm when possible."
+        ],
+        "borders": [
+          "Use subtle outline-fg-grey-200 surfaces and light dividers for evidence/history rows."
+        ],
+        "profileRegion": [
+          "Detail pages need a dedicated identity/profile rail or identity strip, not only a breadcrumb title.",
+          "Profile rail should carry status, owner, SLA/risk, and stable metadata.",
+          "Use responsive rail constraints; do not hard-code fixed pixel rails."
+        ],
+        "rightRail": [
+          "Right/context rail uses responsive min/max or clamp constraints, stays compact, and remains subordinate to the main evidence/action surface.",
+          "Right rail contains activity/history/related records; it must not replace root cause, impact, or resolution.",
+          "Do not replace split-pane topology with a loose grid of unrelated cards."
+        ]
+      },
+      "linksOut": [
+        "/triage",
+        "/workflow-board",
+        "/audit-log"
+      ],
+      "expectedForgeComponents": [
+        "SurfaceCard",
+        "Label",
+        "ProgressBar",
+        "FileCard",
+        "HistoryItem",
+        "CommentItem",
+        "TextArea",
+        "Button",
+        "ButtonGroup",
+        "StyledLink"
+      ],
+      "forbiddenShortcuts": [
+        "Do not render detail as a flat field list.",
+        "Do not hide resolution/escalation below secondary evidence.",
+        "Do not omit evidence, root cause, impact, history, audit trail, or next workflow link.",
+        "Do not use dashboard KPI rows as a replacement for evidence and decision context.",
+        "Do not pass visual acceptance with quality-eval text only; browser screenshot must show evidence/action surfaces."
+      ]
+    }
+  ]
+}

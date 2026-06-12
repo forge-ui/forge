@@ -1,0 +1,485 @@
+{
+  "version": 2,
+  "purpose": "Machine-readable ForgeUI component semantics for forge-app-design generation. Cell primitives outrank raw composition for any table/list/queue row. Toolbar primitives outrank custom filter-strip shells.",
+  "compositionDoctrine": [
+    "DataTable cells: always start from the Cell* primitive that matches the field shape. Only fall back to Avatar + custom composition when no Cell* primitive can express the field, and the gap MUST be logged in FORGEUI-GAPS.md.",
+    "Toolbars / filter strips: always start from Toolbar + ToolbarSearchInput + ToolbarSelectDropdown + ToolbarDatepicker + ToolbarPillTabs + ToolbarShowSelect. Do not build a rounded white shell around bare <input> / <select>.",
+    "AppLayout owns sidebar / topbar / breadcrumbs / primaryAction. Page bodies never re-implement that shell."
+  ],
+  "sourceRules": [
+    "references/forge-composition-dna.md",
+    "core/src/components/ui/data-table.tsx",
+    "core/src/components/ui/toolbar.tsx",
+    "core/src/components/layouts/app-layout.tsx"
+  ],
+  "generationPriority": {
+    "tableCell": [
+      "CellImageText",
+      "CellTextSubtitle",
+      "CellText",
+      "CellMuted",
+      "CellNumber",
+      "CellProgressValue",
+      "CellProgressBar",
+      "CellStatusDot",
+      "CellCode",
+      "CellRating",
+      "CellFile",
+      "CellLink",
+      "CellActions",
+      "CellKebabMenu",
+      "StatusBadge",
+      "ProgressBadge"
+    ],
+    "listToolbar": [
+      "Toolbar",
+      "ToolbarSearchInput",
+      "ToolbarSelectDropdown",
+      "ToolbarDatepicker",
+      "ToolbarPillTabs",
+      "ToolbarShowSelect",
+      "ToolbarFilterButton",
+      "ToolbarActions"
+    ],
+    "dashboardCard": [
+      "StatCard",
+      "ProgressStatCard",
+      "LineChartStatCard",
+      "WheelChartStatCard",
+      "BarChartStatCard",
+      "HighlightCard",
+      "ImageStatCard",
+      "ProjectCard",
+      "TaskCard",
+      "ActivityCard"
+    ],
+    "railItem": [
+      "TaskCard",
+      "ProjectCard",
+      "ProfileCard",
+      "HistoryItem",
+      "ActivityCard",
+      "ContactItem",
+      "FileCard"
+    ],
+    "form": [
+      "TextField",
+      "TextArea",
+      "SelectOption",
+      "Datepicker",
+      "FileUpload",
+      "MediaUpload",
+      "CheckboxControl",
+      "IconSelector",
+      "SelectionControl"
+    ]
+  },
+  "components": [
+    {
+      "name": "AppLayout",
+      "purpose": "Admin application shell with sidebar, topbar, team switcher, notifications, and profile.",
+      "bestFor": ["all generated Forge admin apps"],
+      "avoidWhen": ["custom marketing pages", "standalone auth-only pages"],
+      "requiredUsage": [
+        "Use profilePosition=\"topbar\" for Protask-style admin apps.",
+        "Only surfaceRole=navigation routes enter menuItems.",
+        "Use breadcrumbs + primaryAction + secondaryAction for detail and action pages."
+      ],
+      "forbiddenUsage": [
+        "Do not rebuild sidebar/topbar/profile in page.tsx.",
+        "Do not add extra max-w-* / p-6 / p-8 wrappers around the page root.",
+        "Do not put /new, /edit, [id], or audit routes in menuItems."
+      ],
+      "source": "core/src/components/layouts/app-layout.tsx"
+    },
+    {
+      "name": "DataTable",
+      "purpose": "Primary surface for business queues, entity lists, audit records, and priority work tables.",
+      "bestFor": ["paginated lists", "filtered queues", "bulk selection", "row actions", "audit tables"],
+      "avoidWhen": ["single record detail", "less than three static facts", "kanban lane cards"],
+      "props": ["rows", "columns", "showCheckbox", "showPagination", "currentPage", "totalPages", "title", "subtitle", "headerActions", "footerLeft", "footerRight", "paginationLabel", "className"],
+      "fieldRules": {
+        "_priority": "ALWAYS pick the matching Forge cell primitive FIRST. Raw Avatar / div / p / span / Label composition inside a DataTable column render is a composition defect, not an acceptable fallback.",
+        "identityWithImage": "CellImageText (NEVER Avatar + div + p + Label by hand)",
+        "identityNoImage": "CellTextSubtitle (NEVER nested div + p + p)",
+        "primaryText": "CellText (NEVER bare <span> or <p>)",
+        "mutedText": "CellMuted (NEVER <Label color=\"gray\"> as a whole-cell wrapper)",
+        "numericValue": "CellNumber",
+        "numericValueWithBadge": "CellProgressValue",
+        "progress": "CellProgressBar (NEVER call <ProgressBar/> directly inside a column render)",
+        "status": "StatusBadge or CellStatusDot",
+        "stageChange": "ProgressBadge",
+        "code": "CellCode",
+        "file": "CellFile (NEVER ad-hoc icon + filename span)",
+        "rating": "CellRating",
+        "actions": "CellActions or CellKebabMenu (NEVER two stacked text buttons)",
+        "linkAction": "CellLink (NEVER StyledLink inside a column render)"
+      },
+      "forbiddenUsage": [
+        "Do not pass data=; use rows=.",
+        "Do not use onRowClick; navigation belongs in CellLink, CellActions, or StyledLink cell.",
+        "Do not use [&_table]:table-fixed on rich operational queues.",
+        "Do not wrap in a second large titled SurfaceCard.",
+        "Do not write <div className=\"flex items-center gap-2\"><Avatar/><span>{name}</span></div> as a column render; use CellImageText.",
+        "Do not use <Label color=\"gray\"> as the entire cell for a date or numeric value; use CellMuted or CellNumber.",
+        "Do not hand-roll <div><p>{title}</p><p className=\"text-fg-grey-500\">{subtitle}</p></div>; use CellTextSubtitle.",
+        "Do not place a raw <ProgressBar/>, <Avatar/>, <Button/>, or <Label/> as the entire column render when a Cell* primitive exists for that field shape."
+      ],
+      "source": "core/src/components/ui/data-table.tsx:579-796"
+    },
+    {
+      "name": "FullWidthTable",
+      "purpose": "Full-screen data management variant of DataTable with built-in show-N rows selector.",
+      "bestFor": ["full-screen data management routes", "audit logs"],
+      "avoidWhen": ["narrow rail tables", "embedded mini-tables"],
+      "props": ["rows", "columns", "showCheckbox", "showRowsSelect", "rowsPerPage", "rowsOptions"],
+      "source": "core/src/components/ui/data-table.tsx:801-993"
+    },
+    {
+      "name": "CellImageText",
+      "purpose": "Identity cell with avatar/logo plus title and subtitle in the Forge h-10 row.",
+      "bestFor": ["row identity with image", "customer / org / product cells"],
+      "avoidWhen": ["identity without image, use CellTextSubtitle instead"],
+      "props": ["src", "title", "subtitle", "rounded"],
+      "requiredUsage": ["rounded=\"full\" for people; rounded=\"lg\" for org/product/file."],
+      "forbiddenUsage": ["Do not re-implement avatar + title + subtitle by hand inside a DataTable column."],
+      "source": "core/src/components/ui/data-table.tsx:253-280"
+    },
+    {
+      "name": "CellTextSubtitle",
+      "purpose": "Two-line text identity cell (title + subtitle) in the Forge h-10 row.",
+      "bestFor": ["row identity without image", "name + code rows", "name + role rows"],
+      "avoidWhen": ["single-line text values"],
+      "props": ["title", "subtitle"],
+      "source": "core/src/components/ui/data-table.tsx:218-239"
+    },
+    {
+      "name": "CellText",
+      "purpose": "Single-line primary cell value with Forge typography and line-clamp-1.",
+      "bestFor": ["primary text cells", "action names", "headers in feed lists"],
+      "avoidWhen": ["muted/secondary values"],
+      "props": ["children"],
+      "source": "core/src/components/ui/data-table.tsx:206-216"
+    },
+    {
+      "name": "CellMuted",
+      "purpose": "Muted text cell for secondary, non-decision values.",
+      "bestFor": ["date strings", "owner names without avatar", "low-emphasis metadata"],
+      "avoidWhen": ["status enums (use Label)", "numeric KPIs (use CellNumber)"],
+      "props": ["children"],
+      "source": "core/src/components/ui/data-table.tsx:241-251"
+    },
+    {
+      "name": "CellNumber",
+      "purpose": "Numeric cell with optional up/down trend arrow and ProgressBadge.",
+      "bestFor": ["amount", "count", "percent change with badge"],
+      "avoidWhen": ["non-numeric values"],
+      "props": ["value", "trend", "badge", "badgeColor", "subdued"],
+      "forbiddenUsage": ["Do not hand-render <span className=\"text-fg-green-500\">↑ value</span>."],
+      "source": "core/src/components/ui/data-table.tsx:359-393"
+    },
+    {
+      "name": "CellProgressValue",
+      "purpose": "Value plus small outlined ProgressBadge (green/red/grey) for delta indicators.",
+      "bestFor": ["amount + change pill", "score + delta"],
+      "avoidWhen": ["status enums"],
+      "props": ["value", "badge", "badgeColor"],
+      "source": "core/src/components/ui/data-table.tsx:282-299"
+    },
+    {
+      "name": "CellProgressBar",
+      "purpose": "Compact progress bar cell with label and percentage; pinned to size=sm for row height.",
+      "bestFor": ["readiness", "SLA pressure", "completion in queue rows"],
+      "avoidWhen": ["binary status"],
+      "props": ["value", "percent", "color"],
+      "forbiddenUsage": ["Do not call <ProgressBar/> directly inside a DataTable column; always wrap in CellProgressBar."],
+      "source": "core/src/components/ui/data-table.tsx:399-420"
+    },
+    {
+      "name": "CellStatusDot",
+      "purpose": "Status cell rendered as a colored dot ring plus emphasis-controlled label.",
+      "bestFor": ["status enums that should not feel like a saturated pill", "monitoring lists"],
+      "avoidWhen": ["status that must read as a count badge"],
+      "props": ["label", "color", "emphasis"],
+      "source": "core/src/components/ui/data-table.tsx:332-357"
+    },
+    {
+      "name": "CellCode",
+      "purpose": "Monospaced-shape semibold code/identifier cell.",
+      "bestFor": ["release IDs", "short codes"],
+      "avoidWhen": ["long descriptive text"],
+      "props": ["code"],
+      "source": "core/src/components/ui/data-table.tsx:422-430"
+    },
+    {
+      "name": "CellRating",
+      "purpose": "Star icon plus rating value.",
+      "bestFor": ["rating cells", "NPS rows"],
+      "props": ["score", "color"],
+      "source": "core/src/components/ui/data-table.tsx:432-449"
+    },
+    {
+      "name": "CellFile",
+      "purpose": "File identity cell with file-type icon, name, and optional size.",
+      "bestFor": ["attachment rows", "evidence tables", "import logs"],
+      "props": ["name", "size", "icon"],
+      "source": "core/src/components/ui/data-table.tsx:451-477"
+    },
+    {
+      "name": "CellActions",
+      "purpose": "Row action cluster (mail/phone/chat/eye/pen/trash) plus optional kebab.",
+      "bestFor": ["row actions", "owner contact rows"],
+      "props": ["actions", "showKebab", "iconColor", "onAction", "onKebab"],
+      "forbiddenUsage": ["Do not stack two text buttons (Preview + Open) in every row; use one CellLink plus CellActions."],
+      "source": "core/src/components/ui/data-table.tsx:496-532"
+    },
+    {
+      "name": "CellKebabMenu",
+      "purpose": "Single kebab-menu action cell.",
+      "bestFor": ["row menus when no inline actions are needed"],
+      "props": ["onClick"],
+      "source": "core/src/components/ui/data-table.tsx:301-317"
+    },
+    {
+      "name": "CellLink",
+      "purpose": "Inline link-styled row action with arrow-up-right icon.",
+      "bestFor": ["Open detail", "Open audit log", "Go to record"],
+      "props": ["label", "color", "onClick"],
+      "source": "core/src/components/ui/data-table.tsx:546-569"
+    },
+    {
+      "name": "StatusBadge",
+      "purpose": "Solid-color status pill for 1-of-N enums.",
+      "bestFor": ["status", "severity", "tier badges"],
+      "avoidWhen": ["delta indicators (use ProgressBadge)"],
+      "props": ["label", "color"],
+      "source": "core/src/components/ui/data-table.tsx:135-156"
+    },
+    {
+      "name": "ProgressBadge",
+      "purpose": "Outlined small pill (green/red/grey) for change/stage indicators.",
+      "bestFor": ["up/down delta", "stage advanced/blocked"],
+      "props": ["label", "color"],
+      "source": "core/src/components/ui/data-table.tsx:178-204"
+    },
+    {
+      "name": "Toolbar",
+      "purpose": "Generic flex row for left/right toolbar slots above a DataTable.",
+      "bestFor": ["filter strip", "page-title toolbar"],
+      "props": ["left", "right", "className"],
+      "forbiddenUsage": ["Do not wrap the toolbar in a second SurfaceCard. Filter controls own their own borders."],
+      "source": "core/src/components/ui/toolbar.tsx:24-39"
+    },
+    {
+      "name": "ToolbarSearchInput",
+      "purpose": "Pill-shaped search input matching Forge filter strip.",
+      "props": ["placeholder", "className"],
+      "source": "core/src/components/ui/toolbar.tsx:43-67"
+    },
+    {
+      "name": "ToolbarSelectDropdown",
+      "purpose": "Pill-shaped select dropdown used in filter strips.",
+      "props": ["placeholder", "value", "fixedWidth", "options", "onChange", "onClick"],
+      "source": "core/src/components/ui/toolbar.tsx:94-172"
+    },
+    {
+      "name": "ToolbarDatepicker",
+      "purpose": "Pill-shaped datepicker trigger for filter strips.",
+      "props": ["label", "onClick", "enablePopover", "accentBg"],
+      "source": "core/src/components/ui/toolbar.tsx:176-225"
+    },
+    {
+      "name": "ToolbarPillTabs",
+      "purpose": "Segmented pill tabs (max 5) for short filter dimensions.",
+      "props": ["items", "activeIndex", "color", "onChange"],
+      "forbiddenUsage": ["Do not cram more than 5 options; promote second high-cardinality dimension to ToolbarSelectDropdown."],
+      "source": "core/src/components/ui/toolbar.tsx:371-413"
+    },
+    {
+      "name": "ToolbarShowSelect",
+      "purpose": "Show-N rows-per-page selector for full-screen data tables.",
+      "props": ["value", "options", "onChange"],
+      "source": "core/src/components/ui/toolbar.tsx:275-304"
+    },
+    {
+      "name": "SurfaceCard",
+      "purpose": "White outlined admin surface for grouped content, panels, rails, field groups, and compact summaries.",
+      "bestFor": ["field groups", "right rails", "evidence panels", "activity panels", "compact summary cards"],
+      "avoidWhen": ["wrapping every table row", "wrapping a DataTable only to add another table title"],
+      "props": ["title", "subtitle", "action", "padding", "className", "contentClassName"],
+      "defaultDensity": "padding=sm or padding=md for operating pages; padding=lg only for major dashboard panels",
+      "source": "core/src/components/ui/surface-card.tsx"
+    },
+    {
+      "name": "ChartCard",
+      "purpose": "White outlined chart surface for trends, status mix, and dashboard analysis panels.",
+      "bestFor": ["dashboard trend panel", "control tower chart", "segment mix panel", "analytics surface with footer stats"],
+      "avoidWhen": ["non-chart summary cards", "right rail activity", "wrapping a DataTable"],
+      "props": ["title", "subtitle", "children", "footer", "action", "width", "size", "minHeight", "className"],
+      "requiredUsage": [
+        "Default width fills the parent grid/flex column.",
+        "Use width=\"fixed\" or size=4col/6col/8col only in component showcases, never generated app routes.",
+        "If width and size are both present, width is the authoritative layout mode; size is only a legacy fixed-width preset.",
+        "Let the parent grid define responsive column behavior with minmax(0,1fr), clamp rails, and gap-4/gap-5."
+      ],
+      "source": "core/src/components/ui/charts/chart-card.tsx"
+    },
+    {
+      "name": "StatCard",
+      "purpose": "KPI card with semantic theme and optional icon/action.",
+      "bestFor": ["dashboard KPI strip", "major status numbers", "control tower top row"],
+      "avoidWhen": ["low-frequency metadata", "row-level values", "detail description lists"],
+      "props": ["title", "value", "trend", "trendDirection", "subtitle", "theme", "size", "width", "icon", "badgeVariant", "action", "onKebabClick"],
+      "requiredUsage": [
+        "Use non-white themes to encode semantics when multiple stat cards appear.",
+        "Default width fills the parent grid/flex column; use width=\"fixed\" only in component showcases.",
+        "Use size=wide when the card needs the wide internal chart/icon layout.",
+        "Use trend / trendDirection / subtitle props instead of hand-rendered arrows."
+      ],
+      "source": "core/src/components/ui/stat-card.tsx"
+    },
+    {
+      "name": "HighlightCard",
+      "purpose": "High-emphasis colored dashboard anchor.",
+      "bestFor": ["dashboard visual anchor", "main signal of the day"],
+      "source": "core/src/components/ui/highlight-card.tsx"
+    },
+    {
+      "name": "ProjectCard",
+      "purpose": "Identity-carrying project/work item card for dashboard rails and grids.",
+      "bestFor": ["dashboard priority work rail", "project lists"],
+      "props": ["logo", "title", "description", "labelText", "labelColor", "progress", "progressColor", "avatars", "overflowCount", "date", "width"],
+      "requiredUsage": ["Default width fills the parent grid/flex column; use width=\"fixed\" only in component showcases."],
+      "source": "core/src/components/ui/project-card.tsx"
+    },
+    {
+      "name": "TaskCard",
+      "purpose": "Compact task identity card with status, priority, and owner.",
+      "bestFor": ["dashboard priority work rail", "kanban-like lane cards"],
+      "props": ["title", "description", "labelText", "labelColor", "progress", "progressColor", "avatars", "overflowCount", "date", "width"],
+      "requiredUsage": ["Default width fills the parent lane/rail column; use width=\"fixed\" only in component showcases."],
+      "source": "core/src/components/ui/task-card.tsx"
+    },
+    {
+      "name": "ProfileCard",
+      "purpose": "Avatar + name + role identity surface for detail identity rails and team switchers.",
+      "bestFor": ["detail identity strip", "owner/assignee rail", "team picker rows"],
+      "props": ["avatar", "name", "subtitle", "state", "accent", "surface"],
+      "source": "core/src/components/ui/profile-card.tsx"
+    },
+    {
+      "name": "HistoryItem",
+      "purpose": "Timeline or activity stream item; variants: regular dot, badge icon, profile avatar.",
+      "bestFor": ["recent activity", "audit trail", "status changes", "comments/events"],
+      "props": ["variant", "color", "title", "description", "datetime", "showDatetime", "showConnector", "tags", "icon", "avatar"],
+      "forbiddenUsage": ["Do not render the activity feed as a <ul><li> or hand-rolled card list."],
+      "source": "core/src/components/ui/history-item.tsx"
+    },
+    {
+      "name": "HistoryGrouped",
+      "purpose": "Grouped HistoryItem stream with day/section separators.",
+      "bestFor": ["detail audit rail", "long activity history"],
+      "source": "core/src/components/ui/history-grouped.tsx"
+    },
+    {
+      "name": "ActivityCard",
+      "purpose": "Compact activity card with title + datetime + body.",
+      "bestFor": ["dashboard activity column", "team feed"],
+      "source": "core/src/components/ui/activity-card.tsx"
+    },
+    {
+      "name": "FileCard",
+      "purpose": "Evidence, attachment, document, import, and export file representation.",
+      "bestFor": ["evidence rails", "detail attachments", "audit packets", "workflow documents"],
+      "avoidWhen": ["plain text links with no file context"],
+      "props": ["file"],
+      "source": "core/src/components/ui/forms"
+    },
+    {
+      "name": "ButtonGroup",
+      "purpose": "Short segmented filter or mode switch.",
+      "bestFor": ["status filters", "segment filters", "dashboard scope toggles"],
+      "avoidWhen": ["more than five options in one group", "long option labels", "multi-select filters"],
+      "props": ["items", "activeIndex", "color", "shape", "onChange"],
+      "forbiddenUsage": ["Do not rely on flex-wrap to cram 6-8 options into one segmented control."],
+      "source": "core/src/components/ui/button-group.tsx"
+    },
+    {
+      "name": "Label",
+      "purpose": "Compact semantic badge for status, priority, counts, and readiness.",
+      "bestFor": ["status", "priority", "stage", "risk tier", "small count"],
+      "avoidWhen": ["paragraph labels", "large KPI values", "entire date or numeric cell content"],
+      "props": ["children", "color", "size", "variant"],
+      "colors": ["purple", "blue", "cyan", "green", "red", "yellow", "gray"],
+      "source": "core/src/components/ui/badge.tsx"
+    },
+    {
+      "name": "ProgressBar",
+      "purpose": "Compact visual for risk, readiness, progress, SLA pressure, or completion.",
+      "bestFor": ["risk score", "completion", "readiness", "progress", "SLA pressure"],
+      "avoidWhen": ["binary status", "decorative bars", "inside a DataTable column (use CellProgressBar)"],
+      "props": ["value", "color", "size", "label", "showPercentage", "labelVariant"],
+      "source": "core/src/components/ui/progress-bar.tsx"
+    },
+    {
+      "name": "Avatar",
+      "purpose": "Identity anchor for people, organizations, queues, and records.",
+      "bestFor": ["owner", "assignee", "customer", "merchant", "company", "team"],
+      "avoidWhen": ["DataTable identity cells (use CellImageText instead)", "decorative icons without identity meaning"],
+      "requiredUsage": ["When used in non-DataTable surfaces, pair with semantic Forge identity components (ProfileCard, HistoryItem variant=profile, ContactItem)."],
+      "source": "core/src/components/ui/avatar.tsx"
+    },
+    {
+      "name": "TextField",
+      "purpose": "Single-line form input.",
+      "bestFor": ["name", "email", "phone", "title", "short codes", "search when ToolbarSearchInput cannot be controlled"],
+      "avoidWhen": ["long text", "selectable enums", "date ranges"],
+      "props": ["label", "value", "placeholder", "shape", "onChange"],
+      "source": "core/src/components/ui/forms/text-field.tsx"
+    },
+    {
+      "name": "TextArea",
+      "purpose": "Long text input for notes, descriptions, resolution, and comments.",
+      "bestFor": ["resolution notes", "root cause notes", "description", "comments", "review notes"],
+      "avoidWhen": ["short enum or status values"],
+      "props": ["label", "value", "rows", "onChange"],
+      "source": "core/src/components/ui/forms/text-area.tsx"
+    },
+    {
+      "name": "SelectOption",
+      "purpose": "Select control for enum, owner, segment, scope, or configuration choices.",
+      "bestFor": ["more than four enum options", "owner selector", "segment selector", "single or multiple scoped choices"],
+      "avoidWhen": ["two or three binary choices that fit radio/checkbox", "status filters better served by ButtonGroup"],
+      "props": ["label", "value", "options", "color", "onChange"],
+      "source": "core/src/components/ui/forms/select-option.tsx"
+    },
+    {
+      "name": "Datepicker",
+      "purpose": "Inline date/datetime picker for forms.",
+      "bestFor": ["scheduled deployment time", "due date", "window start/end"],
+      "source": "core/src/components/ui/forms/datepicker.tsx"
+    },
+    {
+      "name": "FileUpload",
+      "purpose": "Inline file uploader for action pages.",
+      "bestFor": ["evidence upload", "attachment upload", "import file"],
+      "source": "core/src/components/ui/forms/file-upload.tsx"
+    },
+    {
+      "name": "CheckboxControl",
+      "purpose": "Boolean or checklist input without nested label button semantics.",
+      "bestFor": ["boolean field", "preflight checklist", "policy toggles", "single selection when paired with text"],
+      "avoidWhen": ["using CheckboxWithLabel"],
+      "requiredUsage": ["Pair with a separate span/label text; do not use CheckboxWithLabel."],
+      "source": "core/src/components/ui/checkbox.tsx"
+    },
+    {
+      "name": "StyledLink",
+      "purpose": "Low-noise navigation/action link.",
+      "bestFor": ["open detail", "open audit log", "back to parent", "secondary row action"],
+      "avoidWhen": ["primary destructive or write action", "inside a DataTable column (use CellLink instead)"],
+      "props": ["href", "color", "children"],
+      "source": "core/src/components/ui/link.tsx"
+    }
+  ]
+}

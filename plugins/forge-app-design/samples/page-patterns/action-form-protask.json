@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "archetypeId": "action-form-protask",
+  "sourceReferences": [
+    "/Users/hesong/Downloads/protask-figma/crm/Add Customer Filled.png",
+    "$FORGE_APP_DESIGN_ROOT/samples/action-form-protask"
+  ],
+  "patterns": [
+    {
+      "id": "action-form-protask",
+      "routeRole": "wizard",
+      "layoutIntent": "action-form-protask",
+      "decisionQuestion": "Is this create/edit/submit action ready to save with a clear owner, scope, policy, and next route?",
+      "primaryDataObject": "action-draft",
+      "kpiCards": [],
+      "tableColumns": [],
+      "detailSections": ["title with breadcrumbs and actions", "primary field group", "policy field group", "preflight checklist", "status side rail"],
+      "drawerActions": ["save", "cancel"],
+      "workflowStates": ["editing", "dirty", "saving", "saved", "error", "hover"],
+      "emptyStateCopy": "No parent context is selected. Return to the parent list and start the action from a row or toolbar CTA.",
+      "businessDensity": ["owner", "scope", "policy", "priority", "readiness", "next workflow"],
+      "visualBaseline": {
+        "typography": [
+          "Action page H1 uses text-2xl or smaller; form labels and helper text use Forge text-sm/text-xs scale."
+        ],
+        "density": [
+          "At a desktop review viewport, first viewport shows title, first field group, save/cancel action, and right context/preflight rail."
+        ],
+        "spacing": [
+          "Use grouped fields with gap-4/gap-5; avoid a loose PageHeader plus scattered cards.",
+          "Keep explanatory copy short; do not add marketing-style descriptions above the form.",
+          "Use responsive rail constraints instead of fixed pixel sidebars."
+        ],
+        "borders": [
+          "Use SurfaceCard with outline-fg-grey-200 and Forge form controls."
+        ],
+        "profileRegion": [
+          "Use AppLayout topbar profile; action pages do not create custom profile blocks."
+        ],
+        "rightRail": [
+          "Right rail shows context, readiness, validation, or changed-summary; it uses responsive min/max or clamp constraints and remains visible on desktop."
+        ]
+      },
+      "linksOut": ["/parent-list", "/parent-list/[id]"],
+      "expectedForgeComponents": ["Breadcrumbs", "Button", "SurfaceCard", "TextField", "TextArea", "SelectOption", "Checkbox", "Label", "ProgressBar", "StyledLink"],
+      "forbiddenShortcuts": [
+        "Do not put action routes in sidebar navigation.",
+        "Do not use kicker/eyebrow or long explanatory copy above action forms.",
+        "Do not replace Cancel/Save with a menu-only action.",
+        "Do not define custom SectionCard, Button, Badge, Table, or generic card shells."
+      ]
+    },
+    {
+      "id": "action-form-simple-edit",
+      "routeRole": "wizard",
+      "layoutIntent": "action-form-protask",
+      "decisionQuestion": "Which grouped fields changed, and can the user safely save or cancel?",
+      "primaryDataObject": "entity-draft",
+      "kpiCards": [],
+      "tableColumns": [],
+      "detailSections": ["identity fields", "contact/configuration fields", "status rail", "changed summary"],
+      "drawerActions": ["save", "cancel"],
+      "workflowStates": ["editing", "dirty", "saving", "saved", "error"],
+      "emptyStateCopy": "No record is loaded. Return to the parent list and reopen the edit action.",
+      "businessDensity": ["changed fields", "status", "owner", "validation", "audit note"],
+      "visualBaseline": {
+        "typography": [
+          "Edit page H1 uses text-2xl or smaller; labels and helper text use text-sm/text-xs."
+        ],
+        "density": [
+          "At a desktop review viewport, first viewport shows primary changed fields, validation/status, and save/cancel."
+        ],
+        "spacing": [
+          "Use compact field groups; avoid gap-6/space-y-6 as default form rhythm.",
+          "Use responsive rail constraints instead of fixed pixel sidebars."
+        ],
+        "borders": [
+          "Use subtle Forge outlines, not custom heavy card borders."
+        ],
+        "rightRail": [
+          "Changed summary or validation rail stays compact, responsive, and visible on desktop."
+        ]
+      },
+      "linksOut": ["/parent-list/[id]"],
+      "expectedForgeComponents": ["Breadcrumbs", "Button", "SurfaceCard", "TextField", "SelectOption", "Label", "ProgressBar"],
+      "forbiddenShortcuts": [
+        "Do not show read-only detail history on the edit form.",
+        "Do not hide validation only in toast text."
+      ]
+    }
+  ]
+}

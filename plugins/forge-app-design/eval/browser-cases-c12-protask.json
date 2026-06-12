@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "C12",
+      "label": "Prior authorization Protask-inspired app",
+      "target": "${FORGE_BROWSER_DEMO_ROOT}/prior-auth-ops-c12-protask",
+      "allowMissing": true,
+      "port": 3722,
+      "routes": [
+        {
+          "route": "/",
+          "screenshotKey": "root",
+          "requiredText": [
+            "Prior authorization control tower",
+            "Authorization trend",
+            "Live activity"
+          ]
+        },
+        {
+          "route": "/cases",
+          "screenshotKey": "cases",
+          "requiredText": [
+            "Case queue",
+            "Evidence files",
+            "Recent activity"
+          ]
+        },
+        {
+          "route": "/cases/PA-1048",
+          "screenshotKey": "case-detail",
+          "requiredText": [
+            "PRIOR AUTHORIZATION CASE",
+            "Care team",
+            "Activity and comments"
+          ]
+        },
+        {
+          "route": "/tasks",
+          "screenshotKey": "tasks",
+          "requiredText": [
+            "Review task board",
+            "Progress",
+            "Linked case"
+          ]
+        },
+        {
+          "route": "/rules",
+          "screenshotKey": "rules",
+          "requiredText": [
+            "Payer rule library",
+            "Requirement changed",
+            "Rule owner"
+          ]
+        },
+        {
+          "route": "/intake",
+          "screenshotKey": "intake",
+          "requiredText": [
+            "Document intake",
+            "Packet checklist",
+            "OCR preview"
+          ]
+        },
+        {
+          "route": "/settings",
+          "screenshotKey": "settings",
+          "requiredText": [
+            "Automation settings",
+            "Enabled policies",
+            "No pending changes"
+          ]
+        }
+      ]
+    }
+  ]
+}

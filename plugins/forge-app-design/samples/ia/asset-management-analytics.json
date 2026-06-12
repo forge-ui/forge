@@ -1,0 +1,390 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "asset-management-analytics",
+    "name": "Asset management analytics",
+    "appliesTo": [
+      "indicator platform",
+      "metadata catalog",
+      "data asset management",
+      "analytics governance"
+    ]
+  },
+  "source": {
+    "kind": "reference-derived",
+    "references": [
+      "/Users/hesong/Downloads/project-9684331"
+    ],
+    "notes": "Paired IA artifact distilled from the Readdy indicator platform: asset catalog, query, calculation, template, extraction, quality, permission, and audit are separate product routes."
+  },
+  "lifecycleModel": [
+    "overview",
+    "artifact",
+    "operation",
+    "policy",
+    "event"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Asset overview",
+      "primaryVerb": "summarize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which indicator, data source, or pending operation needs attention?",
+      "primaryDataObject": "indicator-program",
+      "layoutIntent": "dashboard-with-quick-entries",
+      "routeRole": "dashboard",
+      "actions": [
+        {
+          "label": "Open asset catalog",
+          "verb": "catalog",
+          "kind": "read",
+          "lifecycle": "artifact"
+        },
+        {
+          "label": "Open pending quality checks",
+          "verb": "validate",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [
+        "/assets",
+        "/query",
+        "/quality",
+        "/audit-log"
+      ],
+      "navigationRationale": "Overview summarizes asset health and routes users into catalog, query, quality, or audit work.",
+      "businessDensity": [
+        "asset health",
+        "pending approval",
+        "source coverage",
+        "quick entries",
+        "quality alert"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "assets",
+      "route": "/assets",
+      "title": "Indicator assets",
+      "primaryVerb": "catalog",
+      "lifecycle": "artifact",
+      "decisionQuestion": "Which indicator is reusable, incomplete, stale, or ready for query?",
+      "primaryDataObject": "indicator-asset",
+      "layoutIntent": "asset-list-with-detail",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Open query",
+          "verb": "query",
+          "kind": "read",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Review permission",
+          "verb": "authorize",
+          "kind": "read",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/query",
+        "/permission",
+        "/quality"
+      ],
+      "navigationRationale": "Catalog shows asset identity and sends users to operation or governance routes.",
+      "businessDensity": [
+        "owner",
+        "lineage",
+        "freshness",
+        "calculation method",
+        "permission",
+        "quality status"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "query",
+      "route": "/query",
+      "title": "Indicator query",
+      "primaryVerb": "query",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which filters, dimensions, and result fields answer the current business question?",
+      "primaryDataObject": "query-result",
+      "layoutIntent": "query-workbench",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Run query",
+          "verb": "query",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Save extract",
+          "verb": "extract",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/extract",
+        "/analysis"
+      ],
+      "navigationRationale": "Query is an operation workbench. Extraction and analysis remain separate follow-up routes.",
+      "businessDensity": [
+        "dimensions",
+        "filters",
+        "preview rows",
+        "latency",
+        "saved query",
+        "export scope"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "calculation",
+      "route": "/calculation",
+      "title": "Calculation rules",
+      "primaryVerb": "calculate",
+      "lifecycle": "operation",
+      "decisionQuestion": "Is this formula correct, explainable, and safe to apply to the indicator?",
+      "primaryDataObject": "calculation-rule",
+      "layoutIntent": "formula-workbench",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Validate formula",
+          "verb": "calculate",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/assets",
+        "/quality",
+        "/audit-log"
+      ],
+      "navigationRationale": "Formula editing validates operational logic and emits audit evidence.",
+      "businessDensity": [
+        "formula",
+        "dependencies",
+        "test values",
+        "lineage",
+        "owner",
+        "audit"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "templates",
+      "route": "/templates",
+      "title": "Indicator templates",
+      "primaryVerb": "template",
+      "lifecycle": "policy",
+      "decisionQuestion": "Which template standard should govern new indicator creation?",
+      "primaryDataObject": "indicator-template",
+      "layoutIntent": "template-library",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Create from template",
+          "verb": "catalog",
+          "kind": "write",
+          "lifecycle": "artifact"
+        }
+      ],
+      "linksOut": [
+        "/assets",
+        "/permission"
+      ],
+      "navigationRationale": "Templates set policy for asset creation; asset usage stays in catalog and query routes.",
+      "businessDensity": [
+        "standard",
+        "fields",
+        "approval",
+        "coverage",
+        "owner",
+        "version"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "extract",
+      "route": "/extract",
+      "title": "Data extraction",
+      "primaryVerb": "extract",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which source, schedule, and destination should produce this extraction job?",
+      "primaryDataObject": "extract-job",
+      "layoutIntent": "wizard-multi-step",
+      "routeRole": "wizard",
+      "actions": [
+        {
+          "label": "Create extraction",
+          "verb": "extract",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/analysis",
+        "/quality"
+      ],
+      "navigationRationale": "Extraction setup is sequential and separate from analysis or quality validation.",
+      "businessDensity": [
+        "source",
+        "schedule",
+        "destination",
+        "mapping",
+        "preflight",
+        "retry"
+      ],
+      "surfaceRole": "action",
+      "parentRoute": "/query",
+      "entryAffordance": "primary_cta"
+    },
+    {
+      "id": "analysis",
+      "route": "/analysis",
+      "title": "Analysis board",
+      "primaryVerb": "analyze",
+      "lifecycle": "artifact",
+      "decisionQuestion": "What changed in the indicator portfolio and which asset needs follow-up?",
+      "primaryDataObject": "analysis-board",
+      "layoutIntent": "analysis-board",
+      "routeRole": "board",
+      "actions": [
+        {
+          "label": "Open asset",
+          "verb": "catalog",
+          "kind": "read",
+          "lifecycle": "artifact"
+        }
+      ],
+      "linksOut": [
+        "/assets",
+        "/quality"
+      ],
+      "navigationRationale": "Analysis interprets asset results and links back to catalog or quality follow-up.",
+      "businessDensity": [
+        "trend",
+        "segment",
+        "exception",
+        "comparison",
+        "follow-up"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "quality",
+      "route": "/quality",
+      "title": "Quality checks",
+      "primaryVerb": "validate",
+      "lifecycle": "event",
+      "decisionQuestion": "Which indicator quality issue blocks usage or requires owner action?",
+      "primaryDataObject": "quality-check",
+      "layoutIntent": "quality-overview",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Open asset",
+          "verb": "catalog",
+          "kind": "read",
+          "lifecycle": "artifact"
+        }
+      ],
+      "linksOut": [
+        "/assets",
+        "/audit-log"
+      ],
+      "navigationRationale": "Quality checks monitor validation events and route remediation to asset or audit pages.",
+      "businessDensity": [
+        "check status",
+        "owner",
+        "severity",
+        "freshness",
+        "lineage",
+        "evidence"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "permission",
+      "route": "/permission",
+      "title": "Permission matrix",
+      "primaryVerb": "authorize",
+      "lifecycle": "policy",
+      "decisionQuestion": "Who can view, edit, extract, or approve each indicator asset?",
+      "primaryDataObject": "permission-rule",
+      "layoutIntent": "permission-matrix",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Update permission",
+          "verb": "authorize",
+          "kind": "admin",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/assets",
+        "/audit-log"
+      ],
+      "navigationRationale": "Permission changes are governance actions and must produce audit evidence.",
+      "businessDensity": [
+        "role",
+        "scope",
+        "asset",
+        "approval",
+        "risk",
+        "last change"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "audit-log",
+      "route": "/audit-log",
+      "title": "Audit log",
+      "primaryVerb": "audit",
+      "lifecycle": "event",
+      "decisionQuestion": "Who changed an asset, formula, permission, or extraction job?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "actions": [
+        {
+          "label": "Inspect event",
+          "verb": "audit",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [],
+      "navigationRationale": "Audit is immutable evidence and usually terminal.",
+      "businessDensity": [
+        "actor",
+        "object",
+        "before after",
+        "reason",
+        "timestamp",
+        "trace id"
+      ],
+      "surfaceRole": "navigation"
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "asset-console-all-in-one",
+      "description": "Do not put catalog, query, formula editing, extraction, permission, quality, and audit into one asset console.",
+      "severity": "critical"
+    },
+    {
+      "id": "query-page-governs-permission",
+      "description": "Query workbench may read permission state, but permission changes belong to the permission matrix.",
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "rich-entity-list-protask",
+    "name": "Rich operational entity list with insight rail",
+    "appliesTo": [
+      "case queue",
+      "ticket queue",
+      "approval queue",
+      "exception list",
+      "incident list",
+      "risk review records"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "$FORGE_APP_DESIGN_ROOT/samples/rich-entity-list-protask",
+      "$FORGE_APP_DESIGN_ROOT/samples/rich-entity-list"
+    ],
+    "notes": "Paired IA artifact for operational list routes that need row identity, filters, owner, risk, evidence, action, and an insight surface."
+  },
+  "lifecycleModel": [
+    "overview",
+    "operation",
+    "detail",
+    "audit"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Operations overview",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which queue has the highest risk or closest SLA breach?",
+      "primaryDataObject": "operations-program",
+      "layoutIntent": "hero-overview",
+      "routeRole": "dashboard",
+      "actions": [
+        {
+          "label": "Open exceptions",
+          "verb": "monitor",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/exceptions"
+      ],
+      "navigationRationale": "Dashboard prioritizes work and links into the operational queue without owning row decisions.",
+      "businessDensity": [
+        "risk focus",
+        "SLA pressure",
+        "queue count",
+        "owner load"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "exceptions",
+      "route": "/exceptions",
+      "title": "Exceptions",
+      "primaryVerb": "triage",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which exception should be opened, assigned, marked reviewed, or escalated first?",
+      "primaryDataObject": "exception-case",
+      "layoutIntent": "rich-entity-list-protask",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Create exception",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/exceptions/new",
+        "/exceptions/[id]",
+        "/audit-log"
+      ],
+      "navigationRationale": "The list owns discovery, filters, selection, and row actions. It is the parent route for create and detail surfaces.",
+      "businessDensity": [
+        "row identity",
+        "owner",
+        "status",
+        "priority",
+        "risk",
+        "SLA",
+        "evidence",
+        "activity",
+        "row action"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "exception-new",
+      "route": "/exceptions/new",
+      "title": "Create exception",
+      "primaryVerb": "create",
+      "lifecycle": "operation",
+      "decisionQuestion": "Is the selected owner, scope, priority, and evidence requirement ready to save?",
+      "primaryDataObject": "exception-draft",
+      "layoutIntent": "action-form-protask",
+      "routeRole": "wizard",
+      "actions": [
+        {
+          "label": "Save exception",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/exceptions/[id]"
+      ],
+      "navigationRationale": "The action page creates an exception from the queue toolbar or empty state. It does not enter sidebar navigation.",
+      "businessDensity": [
+        "owner",
+        "scope",
+        "priority",
+        "evidence",
+        "preflight",
+        "next workflow"
+      ],
+      "surfaceRole": "action",
+      "parentRoute": "/exceptions",
+      "entryAffordance": "toolbar"
+    },
+    {
+      "id": "exception-detail",
+      "route": "/exceptions/[id]",
+      "title": "Exception detail",
+      "primaryVerb": "resolve",
+      "lifecycle": "detail",
+      "decisionQuestion": "What evidence, root cause, impact, and history justify the next resolution action?",
+      "primaryDataObject": "exception-case",
+      "layoutIntent": "split-pane-triage",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Resolve exception",
+          "verb": "resolve",
+          "kind": "write",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/audit-log"
+      ],
+      "navigationRationale": "Detail owns evidence-heavy resolution. The parent list only previews enough context for prioritization.",
+      "businessDensity": [
+        "root cause",
+        "impact scope",
+        "evidence",
+        "similar cases",
+        "SOP",
+        "history"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/exceptions",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "audit-log",
+      "route": "/audit-log",
+      "title": "Audit log",
+      "primaryVerb": "audit",
+      "lifecycle": "audit",
+      "decisionQuestion": "Who changed queue priority, assignment, status, or evidence, and why?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "actions": [
+        {
+          "label": "Open related exception",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/exceptions/[id]"
+      ],
+      "navigationRationale": "Audit is read-only and separate from queue triage and create actions.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "object",
+        "reason",
+        "timestamp"
+      ],
+      "surfaceRole": "navigation"
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "field-dump-table",
+      "description": "An operational list is rendered as plain columns without row identity, owner, risk, evidence, or row action.",
+      "severity": "warn"
+    },
+    {
+      "id": "action-route-in-sidebar",
+      "description": "A route ending in /new or /edit is promoted into sidebar navigation instead of being launched from the list toolbar or empty state.",
+      "severity": "critical"
+    },
+    {
+      "id": "preview-without-detail-link",
+      "description": "The insight rail shows context but does not provide a route into full detail or next workflow.",
+      "severity": "warn"
+    }
+  ]
+}

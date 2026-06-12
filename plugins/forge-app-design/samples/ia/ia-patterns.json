@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "purpose": "Reusable information architecture patterns for Forge admin prototypes.",
+  "sources": [
+    {
+      "id": "readdy-indicator-platform",
+      "path": "/Users/hesong/Downloads/project-9684331",
+      "signal": "Routes separate assets, query, calculation, template, extraction, analysis, data quality, permission, and audit."
+    },
+    {
+      "id": "protask-figma-admin-screens",
+      "path": "/Users/hesong/Downloads/protask-figma",
+      "signal": "List, detail, action modal, invoice, tracking, attachment, activity, and tabbed detail are separate screen intents."
+    },
+    {
+      "id": "prior-auth-ops-c12-protask",
+      "path": "/Users/hesong/Documents/gihub_space/forge/tmp/spec-to-forge-output/prior-auth-ops-c12-protask",
+      "signal": "Generated Forge app with dashboard, queue, detail triage, board, policy matrix, intake wizard, and settings split by workflow verb."
+    }
+  ],
+  "globalRules": [
+    {
+      "id": "one-page-one-primary-verb",
+      "level": "critical",
+      "rule": "Each route must have exactly one primary business verb. Secondary context may link out, but must not become another workflow on the same page.",
+      "bad": "A single quality detail page imports data, edits templates, scans, repairs, previews report, and audits changes.",
+      "good": "Import belongs to /data-sources, template selection belongs to /templates or /quality-runs/new, scan details belong to /quality-runs/[id], repair belongs to /issues/[id], report preview belongs to /reports/[id]."
+    },
+    {
+      "id": "lifecycle-isolation",
+      "level": "critical",
+      "rule": "Policy, event, artifact, and operation lifecycles should be separate routes when they have independent states or owners.",
+      "examples": {
+        "policy": ["/templates", "/templates/[id]", "/settings"],
+        "event": ["/quality-runs", "/quality-runs/[id]", "/audit-logs"],
+        "artifact": ["/data-sources", "/reports", "/reports/[id]"],
+        "operation": ["/issues", "/issues/[id]", "/quality-runs/new"]
+      }
+    },
+    {
+      "id": "route-names-must-be-domain-nouns",
+      "level": "warning",
+      "rule": "Avoid vague routes such as /workspace, /center, /hub, /console, and generic /detail. Use domain nouns and action pages."
+    },
+    {
+      "id": "dashboard-is-navigation-and-prioritization",
+      "level": "warning",
+      "rule": "Dashboard should summarize risk and direct users to the next route. It should not host the full workflow."
+    },
+    {
+      "id": "detail-pages-need-business-depth",
+      "level": "critical",
+      "rule": "Operational detail pages must include root cause, impact scope, related records, SOP or next action, and change history."
+    }
+  ],
+  "systemArchetypes": [
+    {
+      "id": "quality-governance-control-tower",
+      "appliesTo": ["data quality", "compliance scan", "reporting", "repair workflow"],
+      "routeSequence": [
+        { "route": "/", "verb": "prioritize", "lifecycle": "overview", "layoutIntent": "hero-overview" },
+        { "route": "/data-sources", "verb": "connect", "lifecycle": "artifact", "layoutIntent": "source-inventory" },
+        { "route": "/templates", "verb": "govern", "lifecycle": "policy", "layoutIntent": "policy-template-library" },
+        { "route": "/templates/[id]", "verb": "inspect", "lifecycle": "policy", "layoutIntent": "tabbed-policy-detail" },
+        { "route": "/quality-runs", "verb": "monitor", "lifecycle": "event", "layoutIntent": "run-queue-with-health" },
+        { "route": "/quality-runs/new", "verb": "configure", "lifecycle": "operation", "layoutIntent": "wizard-multi-step" },
+        { "route": "/quality-runs/[id]", "verb": "diagnose", "lifecycle": "event", "layoutIntent": "run-diagnostics-workbench" },
+        { "route": "/issues", "verb": "triage", "lifecycle": "operation", "layoutIntent": "list-with-filters-and-bulk" },
+        { "route": "/issues/[id]", "verb": "repair", "lifecycle": "operation", "layoutIntent": "split-pane-diff-repair" },
+        { "route": "/reports", "verb": "publish", "lifecycle": "artifact", "layoutIntent": "report-registry" },
+        { "route": "/reports/[id]", "verb": "review", "lifecycle": "artifact", "layoutIntent": "report-preview-with-evidence" },
+        { "route": "/audit-logs", "verb": "audit", "lifecycle": "event", "layoutIntent": "audit-stream" },
+        { "route": "/settings", "verb": "configure", "lifecycle": "policy", "layoutIntent": "settings-grouped" }
+      ],
+      "routingPrinciples": [
+        "Create run is a wizard, not a drawer, because source, template, scan scope, and schedule are sequential decisions.",
+        "Run detail diagnoses a scan event; it links to issues for repair and reports for output.",
+        "Issue detail is the only place that owns diff repair confirmation.",
+        "Report detail is read-heavy and export-oriented; do not mix it with repair."
+      ]
+    },
+    {
+      "id": "case-triage-operations",
+      "appliesTo": ["tickets", "authorization", "risk review", "manual operations"],
+      "routeSequence": [
+        { "route": "/", "verb": "prioritize", "lifecycle": "overview", "layoutIntent": "hero-overview" },
+        { "route": "/cases", "verb": "queue", "lifecycle": "operation", "layoutIntent": "list-with-filters-and-drawer" },
+        { "route": "/cases/[id]", "verb": "decide", "lifecycle": "operation", "layoutIntent": "split-pane-triage" },
+        { "route": "/tasks", "verb": "advance", "lifecycle": "operation", "layoutIntent": "kanban-board-with-row-actions" },
+        { "route": "/rules", "verb": "govern", "lifecycle": "policy", "layoutIntent": "policy-matrix-with-impact" },
+        { "route": "/intake", "verb": "ingest", "lifecycle": "artifact", "layoutIntent": "wizard-multi-step" },
+        { "route": "/settings", "verb": "configure", "lifecycle": "policy", "layoutIntent": "settings-grouped" }
+      ]
+    },
+    {
+      "id": "asset-management-analytics",
+      "appliesTo": ["indicator platform", "metadata catalog", "data asset management"],
+      "routeSequence": [
+        { "route": "/", "verb": "summarize", "lifecycle": "overview", "layoutIntent": "dashboard-with-quick-entries" },
+        { "route": "/assets", "verb": "catalog", "lifecycle": "artifact", "layoutIntent": "asset-list-with-detail" },
+        { "route": "/query", "verb": "query", "lifecycle": "operation", "layoutIntent": "query-workbench" },
+        { "route": "/calculation", "verb": "calculate", "lifecycle": "operation", "layoutIntent": "formula-workbench" },
+        { "route": "/templates", "verb": "template", "lifecycle": "policy", "layoutIntent": "template-library" },
+        { "route": "/extract", "verb": "extract", "lifecycle": "operation", "layoutIntent": "wizard-multi-step" },
+        { "route": "/analysis", "verb": "analyze", "lifecycle": "artifact", "layoutIntent": "analysis-board" },
+        { "route": "/quality", "verb": "validate", "lifecycle": "event", "layoutIntent": "quality-overview" },
+        { "route": "/permission", "verb": "authorize", "lifecycle": "policy", "layoutIntent": "permission-matrix" },
+        { "route": "/audit-log", "verb": "audit", "lifecycle": "event", "layoutIntent": "audit-stream" }
+      ]
+    }
+  ]
+}

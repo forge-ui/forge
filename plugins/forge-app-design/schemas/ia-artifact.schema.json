@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "https://forge.local/forge-app-design/ia-artifact.schema.json",
+  "title": "forge-app-design IA artifact",
+  "type": "object",
+  "required": ["version", "archetype", "source", "pages", "antiPatterns"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "archetype": {
+      "type": "object",
+      "required": ["id", "name", "appliesTo"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "appliesTo": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind", "references"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["manual", "repo-intake", "prd-derived", "reference-derived"] },
+        "references": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "string" }
+      }
+    },
+    "lifecycleModel": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": ["overview", "policy", "event", "artifact", "operation"]
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "route",
+          "title",
+          "primaryVerb",
+          "lifecycle",
+          "decisionQuestion",
+          "primaryDataObject",
+          "layoutIntent",
+          "surfaceRole",
+          "linksOut"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "route": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "primaryVerb": { "type": "string", "minLength": 1 },
+          "lifecycle": { "type": "string", "minLength": 1 },
+          "decisionQuestion": { "type": "string", "minLength": 1 },
+          "primaryDataObject": { "type": "string", "minLength": 1 },
+          "layoutIntent": { "type": "string", "minLength": 1 },
+          "routeRole": { "type": "string", "enum": ["dashboard", "list", "detail", "wizard", "board", "settings", "audit", "report"] },
+          "surfaceRole": { "type": "string", "enum": ["navigation", "action", "detail"] },
+          "parentRoute": { "type": "string", "minLength": 1 },
+          "entryAffordance": { "type": "string", "enum": ["primary_cta", "row_action", "toolbar", "empty_state_cta"] },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["label", "verb", "kind", "lifecycle"],
+              "additionalProperties": false,
+              "properties": {
+                "label": { "type": "string" },
+                "verb": { "type": "string" },
+                "kind": { "type": "string", "enum": ["read", "write", "admin"] },
+                "lifecycle": { "type": "string" }
+              }
+            },
+            "default": []
+          },
+          "linksOut": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "navigationRationale": { "type": "string" },
+          "businessDensity": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          }
+        }
+      }
+    },
+    "antiPatterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "severity"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "severity": { "type": "string", "enum": ["critical", "warn"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "id": "workflow-board",
+      "route": "/workflow-board",
+      "title": "Workflow board",
+      "primaryVerb": "monitor",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which lane is blocked?",
+      "primaryDataObject": "workflow-item",
+      "layoutIntent": "kanban-workflow-protask",
+      "routeRole": "board",
+      "surfaceRole": "navigation",
+      "actions": [],
+      "linksOut": [],
+      "businessDensity": ["lane", "status"]
+    }
+  ],
+  "globalNavigation": ["/workflow-board"]
+}

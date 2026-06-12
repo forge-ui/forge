@@ -10,7 +10,8 @@
     "typecheck": "pnpm core:typecheck && tsc --noEmit",
     "core:build": "pnpm --filter @forge-ui-official/core build",
     "core:typecheck": "pnpm --filter @forge-ui-official/core typecheck",
-    "skill:spec-to-forge:sync": "node skills/spec-to-forge-app/scripts/sync-installed.mjs"
+    "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",
+    "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.2.8",

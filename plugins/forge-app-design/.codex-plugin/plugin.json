@@ -1,0 +1,25 @@
+{
+  "name": "forge-app-design",
+  "version": "0.1.0",
+  "description": "Codex-native product design orchestration for Forge admin prototypes.",
+  "author": {
+    "name": "Forge local team"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Forge App Design",
+    "shortDescription": "Design and build Forge admin prototypes from PRDs.",
+    "longDescription": "Forge App Design is the ForgeUI downstream peer to Product Design for Codex-native admin prototyping. It consumes Product Design or Forge Design handoffs, turns Page Intent Specs and IA into runnable ForgeUI pages, and validates the result with screenshots, product-quality, visual, and build gates.",
+    "developerName": "Forge local team",
+    "category": "Productivity",
+    "capabilities": [
+      "Product design brief",
+      "Product Design handoff consumption",
+      "Forge admin IA",
+      "Page Intent Specs",
+      "ForgeUI implementation",
+      "Validation gates"
+    ],
+    "defaultPrompt": "Help me design a Forge admin prototype from this PRD."
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "kanban-workflow-protask",
+    "name": "Actionable workflow kanban with status lanes and detail closure",
+    "appliesTo": [
+      "workflow board",
+      "job status board",
+      "support ticket board",
+      "deployment board",
+      "approval pipeline",
+      "fulfillment wave board"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "$FORGE_APP_DESIGN_ROOT/samples/kanban-workflow-protask",
+      "$FORGE_APP_DESIGN_ROOT/golden-apps/fulfillment-ops-control-tower.md",
+      "$FORGE_APP_DESIGN_ROOT/golden-apps/support-ticket-sla-center.md"
+    ],
+    "notes": "Use this when the board is an operational workflow surface, not a decorative status grouping."
+  },
+  "lifecycleModel": [
+    "overview",
+    "operation",
+    "detail",
+    "audit"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Operations overview",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which workflow lane, blocked item, or priority card needs attention first?",
+      "primaryDataObject": "workflow-program",
+      "layoutIntent": "dashboard-control-tower-protask",
+      "routeRole": "dashboard",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open workflow board",
+          "verb": "monitor",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/workflow-board"
+      ],
+      "navigationRationale": "Dashboard prioritizes the workflow and routes users into the actionable board.",
+      "businessDensity": [
+        "lane health",
+        "blocked count",
+        "SLA pressure",
+        "priority work",
+        "activity"
+      ]
+    },
+    {
+      "id": "workflow-board",
+      "route": "/workflow-board",
+      "title": "Workflow board",
+      "primaryVerb": "advance",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which card should be advanced, rerun, assigned, or opened for detail?",
+      "primaryDataObject": "workflow-item",
+      "layoutIntent": "kanban-workflow-protask",
+      "routeRole": "board",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Run now",
+          "verb": "advance",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Open detail",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/workflow-board/[id]",
+        "/workflow-board/new",
+        "/audit-log"
+      ],
+      "navigationRationale": "The board owns status scanning and direct lane-level actions; detail owns deeper evidence and resolution.",
+      "businessDensity": [
+        "lane count",
+        "status",
+        "owner",
+        "SLA",
+        "progress",
+        "next action",
+        "diagnostic link",
+        "empty lane"
+      ]
+    },
+    {
+      "id": "workflow-detail",
+      "route": "/workflow-board/[id]",
+      "title": "Workflow item detail",
+      "primaryVerb": "resolve",
+      "lifecycle": "detail",
+      "decisionQuestion": "What evidence, owner, history, and next action justify advancing or blocking this workflow item?",
+      "primaryDataObject": "workflow-item",
+      "layoutIntent": "split-pane-triage-protask",
+      "routeRole": "detail",
+      "surfaceRole": "detail",
+      "parentRoute": "/workflow-board",
+      "entryAffordance": "row_action",
+      "actions": [
+        {
+          "label": "Advance item",
+          "verb": "advance",
+          "kind": "write",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/workflow-board",
+        "/audit-log"
+      ],
+      "navigationRationale": "Detail explains the card with evidence, history, and action closure.",
+      "businessDensity": [
+        "identity",
+        "status",
+        "owner",
+        "evidence",
+        "root cause",
+        "history",
+        "resolution",
+        "next workflow"
+      ]
+    },
+    {
+      "id": "workflow-new",
+      "route": "/workflow-board/new",
+      "title": "Create workflow item",
+      "primaryVerb": "create",
+      "lifecycle": "operation",
+      "decisionQuestion": "Is the owner, lane, schedule, and preflight context safe to add to the board?",
+      "primaryDataObject": "workflow-item-draft",
+      "layoutIntent": "action-form-protask",
+      "routeRole": "wizard",
+      "surfaceRole": "action",
+      "parentRoute": "/workflow-board",
+      "entryAffordance": "toolbar",
+      "actions": [
+        {
+          "label": "Save item",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/workflow-board/[id]"
+      ],
+      "navigationRationale": "Create is a separate action route launched from the board toolbar.",
+      "businessDensity": [
+        "owner",
+        "lane",
+        "schedule",
+        "preflight",
+        "next route"
+      ]
+    },
+    {
+      "id": "audit-log",
+      "route": "/audit-log",
+      "title": "Audit log",
+      "primaryVerb": "audit",
+      "lifecycle": "audit",
+      "decisionQuestion": "Who advanced, blocked, reran, or changed a workflow item, and why?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open related item",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/workflow-board/[id]"
+      ],
+      "navigationRationale": "Audit is a read-only support surface with links back to the item detail.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "reason",
+        "time",
+        "related item"
+      ]
+    }
+  ],
+  "globalNavigation": [
+    "/",
+    "/workflow-board",
+    "/audit-log"
+  ],
+  "antiPatterns": [
+    {
+      "id": "read-only-kanban",
+      "description": "Lanes group cards by status but cards have no direct action, no detail link, and no local feedback."
+    },
+    {
+      "id": "board-as-table-replacement",
+      "description": "The board repeats the list table without lane-specific decision context or status progression."
+    },
+    {
+      "id": "workflow-action-in-sidebar",
+      "description": "Create/edit/import actions are promoted into sidebar navigation instead of launched from the board."
+    }
+  ]
+}
