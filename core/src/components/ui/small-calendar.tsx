@@ -6,6 +6,7 @@ import { AltArrowLeftLinear, AltArrowRightLinear, MenuDotsBold } from "solar-ico
 import { accentColors, type AccentColor } from "./accent-utils";
 import { EventCard, type EventCardColor } from "./event-card";
 import { MONTH_NAMES, DAY_NAMES_SHORT, getDaysInMonth, getFirstDayOfMonth } from "./calendar-utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 
 // ============================================================
 // SmallCalendar — Figma "Small Calendar" (node 6387:3079)
@@ -28,6 +29,7 @@ export function SmallCalendar({
   color = "purple",
   events = [],
   onMenuClick,
+  width,
   className,
 }: {
   title?: string;
@@ -35,6 +37,8 @@ export function SmallCalendar({
   color?: AccentColor;
   events?: SmallCalendarEvent[];
   onMenuClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const accent = accentColors[color];
@@ -62,7 +66,13 @@ export function SmallCalendar({
   };
 
   return (
-    <div className={cn("w-96 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden", className)}>
+    <div
+      className={cn(
+        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+        resolveCardWidthClass(width, "w-96"),
+        className,
+      )}
+    >
       {/* Header */}
       <div className="px-6 pt-6 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-2">

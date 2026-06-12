@@ -3,11 +3,11 @@ import { HistoryItem, type HistoryItemProps, type HistoryItemColor } from "./his
 
 const progressBarColors: Record<HistoryItemColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
   gray: "bg-fg-grey-500",
   black: "bg-fg-black",
 };

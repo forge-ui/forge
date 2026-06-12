@@ -22,9 +22,9 @@ interface DonutChartProps {
 }
 
 const sizeMap = {
-  sm: { outer: "w-40 h-40", inner: "w-24 h-24" },
-  md: { outer: "w-60 h-60", inner: "w-36 h-36" },
-  lg: { outer: "w-72 h-72", inner: "w-[172px] h-[172px]" },
+  sm: { outer: "max-w-40", inner: "w-3/5 h-3/5" },
+  md: { outer: "max-w-60", inner: "w-3/5 h-3/5" },
+  lg: { outer: "max-w-72", inner: "w-3/5 h-3/5" },
 };
 
 export function DonutChart({
@@ -44,8 +44,8 @@ export function DonutChart({
     color: seg.color ?? rampFallback[i],
   }));
   return (
-    <div className="flex flex-col items-center">
-      <div className={cn("relative rounded-full", s.outer)} style={{ background: buildConicGradient(resolved, { trackColor }) }}>
+    <div className="flex w-full flex-col items-center">
+      <div className={cn("relative w-full aspect-square rounded-full", s.outer)} style={{ background: buildConicGradient(resolved, { trackColor }) }}>
         <div className={cn("absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white", s.inner)} />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <ChartCenterText centerValue={centerValue} trend={trend} trendDirection={trendDirection} />

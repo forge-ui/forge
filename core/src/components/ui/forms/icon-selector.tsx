@@ -18,11 +18,11 @@ export type IconSelectorColor = FormAccentColor;
 
 const defaultPalette = [
   "bg-fg-violet",
-  "bg-emerald-500",
-  "bg-teal-400",
+  "bg-fg-green-500",
+  "bg-fg-cyan-500",
   "bg-fg-yellow",
   "bg-fg-red",
-  "bg-blue-600",
+  "bg-fg-blue",
   "bg-fg-grey-700",
   "bg-fg-black",
 ];
@@ -185,7 +185,7 @@ export function IconSelector({
 
         {/* Popover */}
         {open && (
-          <div className="absolute left-[76px] top-[50px] w-80 z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-white shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]">
+          <div className="absolute left-[76px] top-[50px] w-80 max-w-[calc(100vw-2rem)] z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-white shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]">
             {/* Search */}
             <div className="self-stretch p-4 border-b border-fg-grey-200 flex flex-col gap-2">
               <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden">

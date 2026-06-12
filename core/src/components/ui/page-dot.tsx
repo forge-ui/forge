@@ -12,7 +12,7 @@ import { cn } from "../../lib/utils";
 
 const activeColors = {
   purple: "bg-fg-violet text-white",
-  blue: "bg-blue-600 text-white",
+  blue: "bg-fg-blue text-white",
   black: "bg-fg-black text-white",
 } as const;
 

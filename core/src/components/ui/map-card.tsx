@@ -5,14 +5,15 @@ import { useState } from "react";
 import { cn } from "../../lib/utils";
 import { MenuDotsBold, MagniferLinear } from "solar-icon-set";
 import { type AccentColor } from "./accent-utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 import { MAP_PATHS, MAP_VIEWBOX } from "./map-data";
 
 // ============================================================
 // MapCard — Figma "Map" (node 6498:224709)
 // World map with highlighted continents + region sales list.
 // 3 variants × 3 colors = 9 combinations.
-//   "sm"   — compact card (w-96), small map, 5 regions
-//   "md"   — medium card (w-[480px]), taller map, 4 regions
+//   "sm"   — compact card, small map, 5 regions
+//   "md"   — medium card, taller map, 4 regions
 //   "lg"   — full-width map background with floating search panel
 // ============================================================
 
@@ -37,9 +38,9 @@ export interface MapRegion {
 
 // Accent hex values for SVG fill (can't use Tailwind classes in SVG)
 const accentHex: Record<AccentColor, string> = {
-  purple: "#7c3aed",
-  blue: "#2563eb",
-  black: "#0f172a",
+  purple: "var(--fg-violet)",
+  blue: "var(--fg-blue)",
+  black: "var(--fg-black)",
 };
 
 // Continent index → MapContinent ID
@@ -62,7 +63,7 @@ function WorldMapSvg({
   className?: string;
 }) {
   const accentFill = accentHex[color];
-  const neutral = "#d4d4d8";
+  const neutral = "var(--fg-grey-300)";
   const highlightSet = new Set(highlights.map((h) => CONTINENT_IDS.indexOf(h)));
 
   return (
@@ -76,7 +77,7 @@ function WorldMapSvg({
           key={i}
           d={p.d}
           fill={highlightSet.has(p.c) ? accentFill : neutral}
-          stroke="#f8f8f8"
+          stroke="var(--fg-grey-50)"
           strokeWidth={0.25}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -152,6 +153,7 @@ export function MapCard({
   regions = [],
   highlights = ["north-america", "oceania"],
   onMenuClick,
+  width,
   className,
 }: {
   title?: string;
@@ -161,6 +163,8 @@ export function MapCard({
   regions?: MapRegion[];
   highlights?: MapContinent[];
   onMenuClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const [search, setSearch] = useState("");
@@ -176,19 +180,20 @@ export function MapCard({
     return (
       <div
         className={cn(
-          "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden",
+          "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+          resolveCardWidthClass("full", "w-full"),
           className,
         )}
       >
         <CardHeader title={title} subtitle={subtitle} onMenuClick={onMenuClick} />
 
         <div className="relative pt-6">
-          <div className="bg-stone-50 overflow-hidden">
+          <div className="bg-fg-grey-50 overflow-hidden">
             <WorldMapSvg highlights={highlights} color={color} className="w-full h-[420px]" />
           </div>
 
           {/* Floating search panel */}
-          <div className="absolute right-6 top-10 w-96 bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col">
+          <div className="absolute right-6 top-10 w-96 max-w-[calc(100%-3rem)] bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col">
             <div className="px-6 pt-6 flex flex-col gap-2">
               <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden text-fg-grey-700">
                 <MagniferLinear size={20} className="shrink-0" />
@@ -213,13 +218,13 @@ export function MapCard({
   }
 
   // Small / Medium — card with map on top, region list below
-  const widthClass = variant === "sm" ? "w-96" : "w-[480px]";
+  const widthClass = resolveCardWidthClass(width, variant === "sm" ? "w-96" : "w-[480px]");
   const mapHeight = variant === "sm" ? "h-44" : "h-56";
 
   return (
     <div
       className={cn(
-        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden",
+        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
         widthClass,
         className,
       )}
@@ -227,7 +232,7 @@ export function MapCard({
       <CardHeader title={title} subtitle={subtitle} onMenuClick={onMenuClick} />
 
       <div className="pt-6">
-        <div className="bg-stone-50 overflow-hidden">
+        <div className="bg-fg-grey-50 overflow-hidden">
           <WorldMapSvg highlights={highlights} color={color} className={cn("w-full", mapHeight)} />
         </div>
       </div>

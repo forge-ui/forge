@@ -179,7 +179,7 @@ export function SelectOption(props: SelectOptionProps) {
   const triggerStyle = { width: width ?? defaultWidth };
 
   const triggerState = cn(
-    isError && "bg-rose-50 outline-fg-red",
+    isError && "bg-fg-red-50 outline-fg-red",
     isDisabled && "bg-fg-grey-200 outline-fg-grey-200 cursor-not-allowed",
     isOpen && !isError && !isDisabled && cn(isGrey ? "bg-fg-grey-50" : "bg-white", accent.outline),
     !isError && !isDisabled && !isOpen && cn(isGrey ? "bg-fg-grey-50" : "bg-white", "outline-fg-grey-100"),

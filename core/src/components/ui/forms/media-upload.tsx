@@ -89,7 +89,7 @@ export function MediaUpload({
   }
 
   return (
-    <div className={cn("inline-flex flex-col gap-1 w-80 max-w-full", className)}>
+    <div className={cn("flex w-full max-w-80 flex-col gap-1", className)}>
       {label && (
         <span className="text-sm font-medium text-fg-grey-700 leading-5 tracking-fg">
           {label}
@@ -116,7 +116,7 @@ export function MediaUpload({
                   alt=""
                 />
                 {item.state === "success" && (
-                  <div className="w-6 h-6 p-1 absolute top-1 right-1 bg-emerald-500 rounded-full flex justify-center items-center">
+                  <div className="w-6 h-6 p-1 absolute top-1 right-1 bg-fg-green-500 rounded-full flex justify-center items-center">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path d="M3 7.5L5.5 10L11 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -126,7 +126,7 @@ export function MediaUpload({
                   <button
                     type="button"
                     onClick={() => onRemove(item.id)}
-                    className="w-8 h-8 p-1.5 absolute top-1 right-1 bg-rose-100 rounded-full flex justify-center items-center cursor-pointer text-fg-red"
+                    className="w-8 h-8 p-1.5 absolute top-1 right-1 bg-fg-red-100 rounded-full flex justify-center items-center cursor-pointer text-fg-red"
                   >
                     <CloseCircleLinear size={20} />
                   </button>

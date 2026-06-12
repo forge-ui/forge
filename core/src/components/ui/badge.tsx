@@ -6,9 +6,9 @@ import { type ReactNode } from "react";
 const notificationColors = {
   purple: "bg-fg-violet",
   orange: "bg-fg-red",
-  green: "bg-emerald-500",
+  green: "bg-fg-green-500",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
   black: "bg-fg-black",
 } as const;
 
@@ -43,27 +43,27 @@ const labelSizes = {
 
 const labelColors = {
   purple: {
-    outline: "bg-purple-100 outline outline-1 outline-offset-[-1px] outline-purple-300 text-fg-violet",
+    outline: "bg-fg-violet-100 outline outline-1 outline-offset-[-1px] outline-fg-violet-300 text-fg-violet",
     solid: "bg-fg-violet text-white",
   },
   blue: {
-    outline: "bg-indigo-50 outline outline-1 outline-offset-[-1px] outline-indigo-200 text-blue-600",
-    solid: "bg-blue-600 text-white",
+    outline: "bg-fg-blue-50 outline outline-1 outline-offset-[-1px] outline-fg-blue-200 text-fg-blue",
+    solid: "bg-fg-blue text-white",
   },
   cyan: {
-    outline: "bg-teal-50 outline outline-1 outline-offset-[-1px] outline-teal-100 text-teal-400",
-    solid: "bg-teal-400 text-white",
+    outline: "bg-fg-cyan-50 outline outline-1 outline-offset-[-1px] outline-fg-cyan-100 text-fg-cyan-500",
+    solid: "bg-fg-cyan-500 text-white",
   },
   green: {
-    outline: "bg-emerald-50 outline outline-1 outline-offset-[-1px] outline-emerald-200 text-emerald-500",
-    solid: "bg-emerald-500 text-white",
+    outline: "bg-fg-green-50 outline outline-1 outline-offset-[-1px] outline-fg-green-200 text-fg-green-500",
+    solid: "bg-fg-green-500 text-white",
   },
   red: {
-    outline: "bg-rose-100 outline outline-1 outline-offset-[-1px] outline-red-200 text-fg-red",
+    outline: "bg-fg-red-100 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-red",
     solid: "bg-fg-red text-white",
   },
   yellow: {
-    outline: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-orange-200 text-fg-yellow",
+    outline: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-yellow",
     solid: "bg-fg-yellow text-white",
   },
   gray: {
@@ -109,32 +109,32 @@ const circleIconSizes = {
 const circleIconVariants = {
   solid: {
     purple: { bg: "bg-fg-violet", icon: "text-white" },
-    blue: { bg: "bg-blue-600", icon: "text-white" },
+    blue: { bg: "bg-fg-blue", icon: "text-white" },
     red: { bg: "bg-fg-red", icon: "text-white" },
     orange: { bg: "bg-fg-red", icon: "text-white" },
-    green: { bg: "bg-emerald-500", icon: "text-white" },
+    green: { bg: "bg-fg-green-500", icon: "text-white" },
     yellow: { bg: "bg-fg-yellow", icon: "text-white" },
-    cyan: { bg: "bg-teal-400", icon: "text-white" },
+    cyan: { bg: "bg-fg-cyan-500", icon: "text-white" },
     black: { bg: "bg-fg-black", icon: "text-white" },
   },
   light: {
-    purple: { bg: "bg-purple-100", icon: "text-fg-violet" },
-    blue: { bg: "bg-indigo-50", icon: "text-blue-600" },
-    red: { bg: "bg-rose-100", icon: "text-fg-red" },
-    orange: { bg: "bg-orange-100", icon: "text-fg-red" },
-    green: { bg: "bg-emerald-50", icon: "text-emerald-500" },
+    purple: { bg: "bg-fg-violet-100", icon: "text-fg-violet" },
+    blue: { bg: "bg-fg-blue-50", icon: "text-fg-blue" },
+    red: { bg: "bg-fg-red-100", icon: "text-fg-red" },
+    orange: { bg: "bg-fg-red-100", icon: "text-fg-red" },
+    green: { bg: "bg-fg-green-50", icon: "text-fg-green-500" },
     yellow: { bg: "bg-fg-yellow-50", icon: "text-fg-yellow" },
-    cyan: { bg: "bg-teal-50", icon: "text-teal-400" },
+    cyan: { bg: "bg-fg-cyan-50", icon: "text-fg-cyan-500" },
     black: { bg: "bg-fg-grey-100", icon: "text-fg-black" },
   },
   neutral: {
     purple: { bg: "bg-fg-grey-50", icon: "text-fg-violet" },
-    blue: { bg: "bg-fg-grey-50", icon: "text-blue-600" },
+    blue: { bg: "bg-fg-grey-50", icon: "text-fg-blue" },
     red: { bg: "bg-fg-grey-50", icon: "text-fg-red" },
     orange: { bg: "bg-fg-grey-50", icon: "text-fg-red" },
-    green: { bg: "bg-fg-grey-50", icon: "text-emerald-500" },
+    green: { bg: "bg-fg-grey-50", icon: "text-fg-green-500" },
     yellow: { bg: "bg-fg-grey-50", icon: "text-fg-yellow" },
-    cyan: { bg: "bg-fg-grey-50", icon: "text-teal-400" },
+    cyan: { bg: "bg-fg-grey-50", icon: "text-fg-cyan-500" },
     black: { bg: "bg-fg-grey-50", icon: "text-fg-black" },
   },
 } as const;
@@ -170,22 +170,22 @@ export function CircleIcon({
 // ============================================================
 const artisticShells = {
   black: "bg-fg-black",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
   purple: "bg-fg-violet",
-  green: "bg-emerald-500",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
 } as const;
 
 const artisticGradients = {
   black: {
-    topRight: "bg-gradient-to-b from-teal-400/25 to-teal-400/0",
-    bottomLeft: "bg-gradient-to-b from-teal-400/0 to-teal-400",
+    topRight: "bg-gradient-to-b from-fg-cyan-500/25 to-fg-cyan-500/0",
+    bottomLeft: "bg-gradient-to-b from-fg-cyan-500/0 to-fg-cyan-500",
   },
   blue: {
-    topRight: "bg-gradient-to-b from-emerald-500/50 to-emerald-500/0",
-    bottomLeft: "bg-gradient-to-b from-emerald-500/0 to-emerald-500",
+    topRight: "bg-gradient-to-b from-fg-green-500/50 to-fg-green-500/0",
+    bottomLeft: "bg-gradient-to-b from-fg-green-500/0 to-fg-green-500",
   },
   purple: {
     topRight: "bg-gradient-to-b from-fg-yellow/30 to-fg-yellow/0",
@@ -200,8 +200,8 @@ const artisticGradients = {
     bottomLeft: "bg-gradient-to-b from-fg-yellow/0 to-fg-yellow",
   },
   yellow: {
-    topRight: "bg-gradient-to-b from-teal-400/50 to-teal-400/0",
-    bottomLeft: "bg-gradient-to-b from-teal-400/0 to-teal-400",
+    topRight: "bg-gradient-to-b from-fg-cyan-500/50 to-fg-cyan-500/0",
+    bottomLeft: "bg-gradient-to-b from-fg-cyan-500/0 to-fg-cyan-500",
   },
   cyan: {
     topRight: "bg-gradient-to-b from-fg-violet/25 to-fg-violet/0",
@@ -210,9 +210,9 @@ const artisticGradients = {
 } as const;
 
 const artisticOrbs = {
-  black: { big: "bg-emerald-500", small: "bg-fg-yellow", bigBlur: "blur-md", smallBlur: "blur-md" },
-  blue: { big: "bg-fg-yellow", small: "bg-teal-400", bigBlur: "blur-md", smallBlur: "blur-md" },
-  purple: { big: "bg-teal-400", small: "bg-fg-yellow", bigBlur: "blur-md", smallBlur: "blur-md" },
+  black: { big: "bg-fg-green-500", small: "bg-fg-yellow", bigBlur: "blur-md", smallBlur: "blur-md" },
+  blue: { big: "bg-fg-yellow", small: "bg-fg-cyan-500", bigBlur: "blur-md", smallBlur: "blur-md" },
+  purple: { big: "bg-fg-cyan-500", small: "bg-fg-yellow", bigBlur: "blur-md", smallBlur: "blur-md" },
   green: { big: "bg-fg-yellow", small: "bg-white", bigBlur: "blur", smallBlur: "blur-[10px]" },
   red: { big: "bg-fg-yellow", small: "bg-white", bigBlur: "blur", smallBlur: "blur-[10px]" },
   yellow: { big: "bg-fg-red", small: "bg-white", bigBlur: "blur", smallBlur: "blur-[10px]" },

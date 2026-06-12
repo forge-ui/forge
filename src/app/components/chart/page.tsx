@@ -39,7 +39,7 @@ const CODE_TOOLTIP = `<ChartTooltip
   ]}
 />`;
 
-const CODE_CARD = `<ChartCard title="Revenue" subtitle="Monthly" size="4col">
+const CODE_CARD = `<ChartCard title="Revenue" subtitle="Monthly">
   <DonutChart segments={[{ value: 60 }, { value: 40 }]} centerValue="$8.4k" size="sm" />
 </ChartCard>`;
 
@@ -98,7 +98,8 @@ const CARD_PROPS: ApiTableRow[] = [
   { attr: "title / subtitle", type: "string", defaultValue: "—", description: "卡片头部。" },
   { attr: "children", type: "ReactNode", defaultValue: "—", description: "主 chart 区。" },
   { attr: "footer", type: "ReactNode", defaultValue: "—", description: "底部槽（通常是 ChartStatFooter）。" },
-  { attr: "size", type: "'4col' | '6col' | '8col' | 'full'", defaultValue: "'4col'", description: "宽度预设。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 宽度时用 fixed。" },
+  { attr: "size", type: "'4col' | '6col' | '8col' | 'full'", defaultValue: "'full'", description: "已废弃的展示尺寸提示，仅在显式 width='fixed' 时生效；单独传 size 不再固定宽度；业务页面省略即可。" },
   { attr: "onMenuClick", type: "() => void", defaultValue: "—", description: "右上 menu 点击。" },
 ];
 
@@ -271,10 +272,10 @@ export default function ChartCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="ChartCard" description="白底卡片，装 chart 主体 + footer。4 种宽度预设。">
+      <Section title="ChartCard" description="白底卡片，装 chart 主体 + footer。默认填满父级列；4col/6col/8col 已废弃，仅在显式 width='fixed' 时用于组件展示固定尺寸。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_CARD} minHeight={360}>
-            <ChartCard title="Revenue" subtitle="Monthly" size="4col">
+            <ChartCard title="Revenue" subtitle="Monthly">
               <DonutChart segments={[{ value: 60 }, { value: 40 }]} centerValue="$8.4k" size="sm" />
             </ChartCard>
           </PreviewBlock>

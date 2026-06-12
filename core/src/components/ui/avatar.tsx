@@ -17,12 +17,12 @@ const avatarSizes = {
 } as const;
 
 const avatarInitialColors = {
-  purple: { bg: "bg-purple-100", text: "text-fg-violet" },
-  blue: { bg: "bg-indigo-50", text: "text-blue-600" },
-  green: { bg: "bg-emerald-50", text: "text-emerald-500" },
-  orange: { bg: "bg-orange-100", text: "text-fg-red" },
+  purple: { bg: "bg-fg-violet-100", text: "text-fg-violet" },
+  blue: { bg: "bg-fg-blue-50", text: "text-fg-blue" },
+  green: { bg: "bg-fg-green-50", text: "text-fg-green-500" },
+  orange: { bg: "bg-fg-red-100", text: "text-fg-red" },
   yellow: { bg: "bg-fg-yellow-50", text: "text-fg-yellow" },
-  cyan: { bg: "bg-teal-50", text: "text-teal-400" },
+  cyan: { bg: "bg-fg-cyan-50", text: "text-fg-cyan-500" },
 } as const;
 
 export type AvatarSize = keyof typeof avatarSizes;
@@ -80,7 +80,7 @@ export function Avatar({
     <span className="relative inline-flex">
       {avatarInner}
       <span
-        className={`${onlineDotSizes[size]} absolute bottom-0 right-0 rounded-full bg-emerald-500 border-white`}
+        className={`${onlineDotSizes[size]} absolute bottom-0 right-0 rounded-full bg-fg-green-500 border-white`}
       />
     </span>
   );
@@ -103,7 +103,7 @@ export function AvatarGroup({
     <div className="flex justify-center items-center">
       <div className="flex -space-x-2">{children}</div>
       {showOverflow && (
-        <div className="w-8 h-8 p-1 bg-purple-100 rounded-full flex justify-center items-center overflow-hidden -ml-2 border-2 border-white">
+        <div className="w-8 h-8 p-1 bg-fg-violet-100 rounded-full flex justify-center items-center overflow-hidden -ml-2 border-2 border-white">
           <span className="text-fg-violet text-xs font-semibold leading-4.5 tracking-fg">
             +{overflowCount}
           </span>

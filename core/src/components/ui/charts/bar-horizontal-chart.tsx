@@ -65,7 +65,7 @@ export function BarHorizontalChart({
               {isActive && (
                 <div className={cn(
                   "pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-l from-transparent",
-                  accent === "purple" ? "to-fg-violet/10" : accent === "blue" ? "to-blue-600/10" : "to-fg-black/10",
+                  accent === "purple" ? "to-fg-violet/10" : accent === "blue" ? "to-fg-blue/10" : "to-fg-black/10",
                 )} />
               )}
 

@@ -15,33 +15,33 @@ const chatColors: Record<AccentColor, {
   filesPlusText: string;       // +N text color
 }> = {
   purple: {
-    playBtnBg: "bg-purple-100",
-    playIcon: "#7C3AED",
+    playBtnBg: "bg-fg-violet-100",
+    playIcon: "var(--fg-violet)",
     waveMain: "bg-fg-violet",
-    waveLightReceived: "bg-purple-300",
-    waveLightSent: "bg-violet-400",
-    fileSubText: "text-violet-300",
-    filesPlusBg: "bg-purple-100",
+    waveLightReceived: "bg-fg-violet-300",
+    waveLightSent: "bg-fg-violet-400",
+    fileSubText: "text-fg-violet-300",
+    filesPlusBg: "bg-fg-violet-100",
     filesPlusText: "text-fg-violet",
   },
   blue: {
-    playBtnBg: "bg-indigo-50",
-    playIcon: "#2563EB",
-    waveMain: "bg-blue-600",
-    waveLightReceived: "bg-indigo-200",
-    waveLightSent: "bg-indigo-400",
-    fileSubText: "text-indigo-300",
-    filesPlusBg: "bg-indigo-50",
-    filesPlusText: "text-blue-600",
+    playBtnBg: "bg-fg-blue-50",
+    playIcon: "var(--fg-blue)",
+    waveMain: "bg-fg-blue",
+    waveLightReceived: "bg-fg-blue-200",
+    waveLightSent: "bg-fg-blue-400",
+    fileSubText: "text-fg-blue-300",
+    filesPlusBg: "bg-fg-blue-50",
+    filesPlusText: "text-fg-blue",
   },
   black: {
-    playBtnBg: "bg-gray-200",
-    playIcon: "#020617",
+    playBtnBg: "bg-fg-grey-200",
+    playIcon: "var(--fg-black)",
     waveMain: "bg-fg-black",
-    waveLightReceived: "bg-gray-400",
-    waveLightSent: "bg-gray-600",
-    fileSubText: "text-neutral-400",
-    filesPlusBg: "bg-gray-200",
+    waveLightReceived: "bg-fg-grey-400",
+    waveLightSent: "bg-fg-grey-600",
+    fileSubText: "text-fg-grey-500",
+    filesPlusBg: "bg-fg-grey-200",
     filesPlusText: "text-fg-black",
   },
 };
@@ -161,7 +161,7 @@ export function ChatBubble({
             </div>
             {!isSent && (
               <button className="ml-2 shrink-0 opacity-70 hover:opacity-100 transition-opacity">
-                <DownloadLinear size={18} color="#71717A" />
+                <DownloadLinear size={18} color="var(--fg-grey-700)" />
               </button>
             )}
           </div>

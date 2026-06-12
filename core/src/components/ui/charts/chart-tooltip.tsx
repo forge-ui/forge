@@ -37,7 +37,7 @@ export function ChartTooltip({ items, className }: ChartTooltipProps) {
               <span
                 className={cn(
                   "text-xs",
-                  item.trend === "up" ? "text-emerald-500" : "text-fg-red"
+                  item.trend === "up" ? "text-fg-green-500" : "text-fg-red"
                 )}
               >
                 {item.trend === "up" ? "↑" : "↓"}

@@ -72,7 +72,7 @@ export function ContactItem({
         )}
         {online && (
           <span
-            className={`absolute right-0 bottom-0 w-2.5 h-2.5 bg-emerald-500 rounded-full outline-2 ${onlineDotOutline}`}
+            className={`absolute right-0 bottom-0 w-2.5 h-2.5 bg-fg-green-500 rounded-full outline-2 ${onlineDotOutline}`}
           />
         )}
       </div>
@@ -110,7 +110,7 @@ export function ContactItem({
             </span>
           )}
           {unreadCount !== undefined && unreadCount > 0 && (
-            <span className="px-1.5 py-0.5 bg-orange-600 rounded-full text-white text-[10px] font-semibold leading-4 tracking-fg">
+            <span className="px-1.5 py-0.5 bg-fg-red rounded-full text-white text-[10px] font-semibold leading-4 tracking-fg">
               {unreadCount > 99 ? "99+" : unreadCount}
             </span>
           )}

@@ -16,9 +16,9 @@ interface PieChartProps {
 }
 
 const sizeMap = {
-  sm: "w-40 h-40",
-  md: "w-60 h-60",
-  lg: "w-72 h-72",
+  sm: "max-w-40",
+  md: "max-w-60",
+  lg: "max-w-72",
 };
 
 export function PieChart({ segments, accent = "purple", size = "md", trackColor }: PieChartProps) {
@@ -29,7 +29,7 @@ export function PieChart({ segments, accent = "purple", size = "md", trackColor 
   }));
   return (
     <div
-      className={cn("rounded-full", sizeMap[size])}
+      className={cn("w-full aspect-square rounded-full", sizeMap[size])}
       style={{ background: buildConicGradient(resolved, { trackColor }) }}
     />
   );

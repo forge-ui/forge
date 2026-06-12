@@ -19,59 +19,65 @@ export function rampColors(accent: AccentColor, count: number): string[] {
   return [ramp[0], ramp[1], ramp[2], ramp[3], ramp[4]];
 }
 
-// Tailwind bg-* class → hex value mapping for CSS gradients & SVG fills
+// Forge token bg-* class → CSS color mapping for gradients & SVG fills.
 export const tailwindColorMap: Record<string, string> = {
-  "bg-fg-violet": "#7c3aed",
-  "bg-violet-500": "#8b5cf6",
-  "bg-violet-400": "#a78bfa",
-  "bg-purple-600": "#9333ea",
-  "bg-purple-500": "#a855f7",
-  "bg-purple-400": "#c084fc",
-  "bg-purple-300": "#d8b4fe",
-  "bg-purple-200": "#e9d5ff",
-  "bg-purple-100": "#f3e8ff",
-  "bg-blue-600": "#2563eb",
-  "bg-blue-500": "#3b82f6",
-  "bg-blue-400": "#60a5fa",
-  "bg-blue-300": "#93c5fd",
-  "bg-indigo-600": "#4f46e5",
-  "bg-indigo-500": "#6366f1",
-  "bg-green-600": "#16a34a",
-  "bg-green-500": "#22c55e",
-  "bg-green-400": "#4ade80",
-  "bg-emerald-500": "#10b981",
-  "bg-emerald-400": "#34d399",
-  "bg-fg-yellow": "#eab308",
-  "bg-yellow-400": "#facc15",
-  "bg-orange-500": "#f97316",
-  "bg-orange-400": "#fb923c",
-  "bg-red-600": "#dc2626",
-  "bg-fg-red": "#ef4444",
-  "bg-red-400": "#f87171",
-  "bg-pink-500": "#ec4899",
-  "bg-pink-400": "#f472b6",
-  "bg-rose-500": "#f43f5e",
-  "bg-fg-black": "#111827",
-  "bg-fg-grey-100": "#f3f4f6",
-  "bg-fg-grey-200": "#e5e7eb",
-  "bg-fg-grey-300": "#d1d5db",
-  "bg-fg-grey-500": "#9ca3af",
-  "bg-fg-grey-700": "#374151",
-  "bg-gray-300": "#d1d5db",
-  "bg-gray-500": "#6b7280",
-  "bg-indigo-50": "#eef2ff",
-  "bg-indigo-100": "#e0e7ff",
-  "bg-indigo-200": "#c7d2fe",
+  "bg-fg-violet": "var(--fg-violet)",
+  "bg-fg-violet-600": "var(--fg-violet-600)",
+  "bg-fg-violet-500": "var(--fg-violet-500)",
+  "bg-fg-violet-400": "var(--fg-violet-400)",
+  "bg-fg-violet-300": "var(--fg-violet-300)",
+  "bg-fg-violet-200": "var(--fg-violet-200)",
+  "bg-fg-violet-100": "var(--fg-violet-100)",
+  "bg-fg-blue": "var(--fg-blue)",
+  "bg-fg-blue-700": "var(--fg-blue-700)",
+  "bg-fg-blue-600": "var(--fg-blue-600)",
+  "bg-fg-blue-500": "var(--fg-blue-500)",
+  "bg-fg-blue-400": "var(--fg-blue-400)",
+  "bg-fg-blue-300": "var(--fg-blue-300)",
+  "bg-fg-blue-200": "var(--fg-blue-200)",
+  "bg-fg-blue-100": "var(--fg-blue-100)",
+  "bg-fg-blue-50": "var(--fg-blue-50)",
+  "bg-fg-green-600": "var(--fg-green-600)",
+  "bg-fg-green-500": "var(--fg-green-500)",
+  "bg-fg-green-400": "var(--fg-green-400)",
+  "bg-fg-green-300": "var(--fg-green-300)",
+  "bg-fg-green-200": "var(--fg-green-200)",
+  "bg-fg-green-100": "var(--fg-green-100)",
+  "bg-fg-green-50": "var(--fg-green-50)",
+  "bg-fg-cyan-500": "var(--fg-cyan-500)",
+  "bg-fg-cyan-300": "var(--fg-cyan-300)",
+  "bg-fg-cyan-200": "var(--fg-cyan-200)",
+  "bg-fg-cyan-100": "var(--fg-cyan-100)",
+  "bg-fg-cyan-50": "var(--fg-cyan-50)",
+  "bg-fg-yellow": "var(--fg-yellow)",
+  "bg-fg-yellow-400": "var(--fg-yellow-400)",
+  "bg-fg-yellow-300": "var(--fg-yellow-300)",
+  "bg-fg-yellow-100": "var(--fg-yellow-100)",
+  "bg-fg-yellow-50": "var(--fg-yellow-50)",
+  "bg-fg-red": "var(--fg-red)",
+  "bg-fg-red-600": "var(--fg-red-600)",
+  "bg-fg-red-500": "var(--fg-red-500)",
+  "bg-fg-red-400": "var(--fg-red-400)",
+  "bg-fg-red-300": "var(--fg-red-300)",
+  "bg-fg-red-200": "var(--fg-red-200)",
+  "bg-fg-red-100": "var(--fg-red-100)",
+  "bg-fg-red-50": "var(--fg-red-50)",
+  "bg-fg-black": "var(--fg-black)",
+  "bg-fg-grey-100": "var(--fg-grey-100)",
+  "bg-fg-grey-200": "var(--fg-grey-200)",
+  "bg-fg-grey-300": "var(--fg-grey-300)",
+  "bg-fg-grey-500": "var(--fg-grey-500)",
+  "bg-fg-grey-700": "var(--fg-grey-700)",
 };
 
-export const TRACK_COLOR_HEX = "#e5e7eb";
+export const TRACK_COLOR_HEX = "var(--fg-grey-200)";
 
 export function resolveColor(color: string): string {
   return tailwindColorMap[color] || color;
 }
 
 export function trendColorClass(direction?: "up" | "down"): string {
-  if (direction === "up") return "text-emerald-500";
+  if (direction === "up") return "text-fg-green-500";
   if (direction === "down") return "text-fg-red";
   return "text-fg-grey-900";
 }

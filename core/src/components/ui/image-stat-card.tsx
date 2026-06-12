@@ -7,7 +7,9 @@ import {
   CardKebabButton,
   CardAvatarGroup,
   resolveCardTheme,
+  resolveCardWidthClass,
   type CardTheme,
+  type CardWidth,
   type LegacyCardTheme,
   type TrendDirection,
 } from "./card-utils";
@@ -15,7 +17,8 @@ import {
 // ============================================================
 // ImageStatCard — Figma "Image Statistic Card" (node 6356:20972)
 // Large card with subtitle below title, value + trend + avatars.
-// `lg` (default) keeps the fixed 360px width; `wide` fills the parent column.
+// `lg` controls the internal scale; width defaults to filling the parent column.
+// Use `width="fixed"` for the legacy 360px Figma showcase width.
 // Optional `backgroundImage` renders a subject photo absolutely on the
 // right side of the card with text laid out on top.
 // ============================================================
@@ -38,6 +41,7 @@ export function ImageStatCard({
   avatars = [],
   backgroundImage,
   backgroundImageAlt = "",
+  width,
   className,
 }: {
   title: string;
@@ -59,6 +63,8 @@ export function ImageStatCard({
    * card's bottom-right; text content stays in the left half above it. */
   backgroundImage?: string;
   backgroundImageAlt?: string;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -76,7 +82,7 @@ export function ImageStatCard({
     <div
       className={cn(
         "rounded-card flex-col justify-between gap-6 overflow-hidden relative p-6",
-        isWide ? "flex w-full" : "inline-flex w-90",
+        resolveCardWidthClass(isWide ? "full" : width, "w-90"),
         minHeight,
         cfg.bg,
         className,

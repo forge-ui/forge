@@ -105,7 +105,7 @@ export function MessageMenu() {
 
 export function NotificationPanel({ onClose }: { onClose: () => void }) {
   return (
-    <div className="w-[360px] bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
+    <div className="w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
       {/* Header */}
       <div className="self-stretch p-5 bg-white border-b border-fg-grey-200 flex justify-start items-center gap-4 overflow-hidden">
         <span className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">Notification</span>
@@ -243,7 +243,7 @@ export function TeamSwitcherDropdown({
   const settingsLabel = labels?.settings ?? "Setting";
   const createNewLabel = labels?.createNew ?? "Create New";
   return (
-    <div className="w-64 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
+    <div className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
       <div className="self-stretch pt-2 flex flex-col justify-start items-center gap-3">
         {teamAvatar && (

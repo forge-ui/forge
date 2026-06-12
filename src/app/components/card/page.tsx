@@ -66,7 +66,8 @@ const CODE_STATCARD_THEMES = `<StatCard theme="white" ... />
 <StatCard theme="green" ... />`;
 
 const CODE_STATCARD_SIZES = `<StatCard size="sm" ... />
-<StatCard size="lg" ... />`;
+<StatCard size="lg" ... />
+<StatCard size="wide" ... />`;
 
 const STATCARD_PROPS: ApiTableRow[] = [
   { attr: "title", type: "string", defaultValue: "—", description: "卡片标题。" },
@@ -74,7 +75,8 @@ const STATCARD_PROPS: ApiTableRow[] = [
   { attr: "trend", type: "string", defaultValue: "—", description: "趋势百分比，会作为右上角 badge。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "底部描述文本。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "8 种主题色。" },
-  { attr: "size", type: "'sm' | 'lg'", defaultValue: "'sm'", description: "紧凑或完整尺寸。" },
+  { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和字号；默认宽度填满父级。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "icon", type: "ReactNode", defaultValue: "—", description: "左上角图标槽。" },
   { attr: "badgeVariant", type: "'greyBg' | 'solid' | 'opacity' | 'white'", defaultValue: "'greyBg'", description: "trend badge 外观。" },
   { attr: "onKebabClick", type: "() => void", defaultValue: "—", description: "右上角三点菜单回调。" },
@@ -92,7 +94,7 @@ const CODE_PROGRESS_STAT_USAGE = `<ProgressStatCard
 />`;
 
 const PROGRESS_STAT_PROPS: ApiTableRow[] = [
-  { attr: "title / value / trend / subtitle / theme / size / icon", type: "同 StatCard", defaultValue: "—", description: "基础字段与 StatCard 一致。" },
+  { attr: "title / value / trend / subtitle / theme / size / width / icon", type: "同 StatCard", defaultValue: "—", description: "基础字段与 StatCard 一致。" },
   { attr: "progressValue", type: "number", defaultValue: "0", description: "进度条数值 0-100。" },
   { attr: "progressColor", type: "ProgressColor", defaultValue: "'purple'", description: "进度条颜色。" },
 ];
@@ -107,7 +109,8 @@ const LINE_CHART_STAT_PROPS: ApiTableRow[] = [
   { attr: "trend", type: "string", defaultValue: "—", description: "趋势文案，如 +10%。" },
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
-  { attr: "size", type: "'sm' | 'lg'", defaultValue: "'sm'", description: "卡片尺寸（无 md 档）。" },
+  { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和图表布局（无 md 档）。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "chartColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "折线与渐变底色。" },
   { attr: "chartDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "折线走势方向。" },
 ];
@@ -117,7 +120,8 @@ const WHEEL_CHART_STAT_PROPS: ApiTableRow[] = [
   { attr: "trend", type: "string", defaultValue: "—", description: "趋势文案。" },
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
-  { attr: "size", type: "'sm' | 'lg'", defaultValue: "'sm'", description: "卡片尺寸（无 md 档）。" },
+  { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和图表布局（无 md 档）。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "wheelColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "甜甜圈主色。" },
   { attr: "wheelPercent", type: "number", defaultValue: "70", description: "0-100 填充百分比。" },
 ];
@@ -127,7 +131,8 @@ const BAR_CHART_STAT_PROPS: ApiTableRow[] = [
   { attr: "trend", type: "string", defaultValue: "—", description: "趋势文案。" },
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
-  { attr: "size", type: "'sm' | 'lg'", defaultValue: "'sm'", description: "卡片尺寸（无 md 档）。" },
+  { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和图表布局（无 md 档）。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "barColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "柱子主色。" },
   { attr: "bars", type: "number[]", defaultValue: "[16,24,32,20,40]", description: "迷你柱状图数据数组。" },
 ];
@@ -145,6 +150,8 @@ const CODE_IMAGE_STAT_USAGE = `<ImageStatCard
 
 const IMAGE_STAT_PROPS: ApiTableRow[] = [
   { attr: "title / subtitle / value / trend / theme", type: "同 StatCard", defaultValue: "—", description: "基础字段。" },
+  { attr: "size", type: "'lg' | 'wide'", defaultValue: "'lg'", description: "内部布局尺寸。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "trendSubtitle", type: "string", defaultValue: "—", description: "趋势下方的小字。" },
   { attr: "avatars", type: "string[]", defaultValue: "—", description: "右侧用户头像组 URL 列表。" },
   { attr: "onKebabClick", type: "() => void", defaultValue: "—", description: "kebab 回调。" },
@@ -165,6 +172,7 @@ const BALANCE_PROPS: ApiTableRow[] = [
   { attr: "cardNumber", type: "string", defaultValue: "—", description: "卡号末 4 位。" },
   { attr: "cardIcon", type: "string", defaultValue: "—", description: "卡号旁的品牌 icon 图片 URL（24×24 渲染）。" },
   { attr: "onTransfer / onRequest", type: "() => void", defaultValue: "—", description: "Transfer / Request 按钮回调。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 dashboard/grid 单元；仅组件展示原始尺寸时用 fixed。" },
 ];
 
 const DEBIT_PROPS: ApiTableRow[] = [
@@ -208,6 +216,7 @@ const PROJECTCARD_PROPS: ApiTableRow[] = [
   { attr: "overflowCount", type: "number", defaultValue: "—", description: "尾部 +N 圆，传 > 0 时显示。" },
   { attr: "date", type: "string", defaultValue: "—", description: "右下角日期文案。" },
   { attr: "onMenuClick", type: "() => void", defaultValue: "—", description: "右上 kebab 回调，传后才显示。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满项目 grid/看板列；仅组件展示原始尺寸时用 fixed。" },
 ];
 
 const TASKCARD_PROPS: ApiTableRow[] = [
@@ -221,6 +230,7 @@ const TASKCARD_PROPS: ApiTableRow[] = [
   { attr: "overflowCount", type: "number", defaultValue: "—", description: "尾部 +N 圆。" },
   { attr: "date", type: "string", defaultValue: "—", description: "右下角日期文案。" },
   { attr: "onMenuClick", type: "() => void", defaultValue: "—", description: "右上 kebab 回调。" },
+  { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满任务列；仅组件展示原始尺寸时用 fixed。" },
 ];
 
 // UserCard
@@ -528,7 +538,7 @@ export default function CardCasePage() {
 
       <Section
         title="ProjectCard / TaskCard"
-        description="两个业务卡：ProjectCard 带 logo（320 宽），TaskCard 无 logo（256 宽）。其余字段类似。"
+        description="两个业务卡：ProjectCard 带 logo，TaskCard 无 logo。业务页面默认填满父级列，组件展示才使用 fixed 原始尺寸。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="ProjectCard" stack>
@@ -543,7 +553,7 @@ export default function CardCasePage() {
 
         <SubSection title="TaskCard" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            任务卡：无 logo，label 在顶部独立一行，宽度 256，适合任务板列。
+            任务卡：无 logo，label 在顶部独立一行，适合填满任务板列。
           </p>
           <PreviewBlock code={CODE_PROJECT_USAGE} minHeight={240}>
             <TaskCard title="Design review" description="Ship spec by EOW" labelText="Label" labelColor="red" progress={50} progressColor="yellow" avatars={avatarSet} date="21 Oct 2022" onMenuClick={() => {}} />

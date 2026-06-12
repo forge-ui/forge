@@ -8,8 +8,10 @@ import {
   CardIconChip,
   CardKebabButton,
   resolveCardTheme,
+  resolveCardWidthClass,
   type CardTheme,
   type CardBadgeVariant,
+  type CardWidth,
   type TrendDirection,
   type StatCardSize,
 } from "./card-utils";
@@ -39,6 +41,7 @@ export function StatCard({
   badgeVariant,
   action,
   onKebabClick,
+  width,
   className,
 }: {
   title: string;
@@ -56,6 +59,8 @@ export function StatCard({
   action?: ReactNode;
   /** If set, renders the built-in kebab-menu button. */
   onKebabClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -70,7 +75,7 @@ export function StatCard({
     <div
       className={cn(
         "rounded-card flex-col justify-start items-start gap-4 overflow-hidden relative",
-        isWide ? "flex" : "inline-flex",
+        resolveCardWidthClass(isWide ? "full" : width, sz.fixedWidth),
         sz.wrapper,
         cfg.bg,
         className,

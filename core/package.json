@@ -25,6 +25,8 @@
   "scripts": {
     "prebuild": "node scripts/gen-assets.mjs",
     "build": "tsup && cp src/styles/tokens.css dist/styles.css",
+    "audit:components": "node scripts/audit-components.mjs",
+    "audit:components:showcase": "node scripts/audit-components.mjs --showcase",
     "predev": "node scripts/gen-assets.mjs",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",

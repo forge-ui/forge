@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { type ReactNode, useState, useRef, useEffect, useCallback } from "react";
+import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "../../lib/utils";
 import {
@@ -92,6 +92,10 @@ interface AppLayoutProps {
   /** 完全自定义 sidebar 主体（替换 MAIN MENU + menuItems + favoriteItems 那块）。
    *  传了就用 slot；没传 fallback 到 menuItems / favoriteItems 老逻辑。 */
   sidebarSlot?: ReactNode;
+  /** Expanded sidebar width. Accepts any CSS length; default keeps the Forge starter density. */
+  sidebarWidth?: string;
+  /** Collapsed sidebar rail width. Accepts any CSS length; default keeps the Forge starter density. */
+  collapsedSidebarWidth?: string;
   /** 隐藏 sidebar 底部那一排 widget icon（语言、日历、通知、消息），profile 卡保留 */
   hideSidebarWidgets?: boolean;
   /** 自定义 team switcher 下拉里 invite / settings / createNew 按钮的文案 */
@@ -116,6 +120,7 @@ const accentTokens = {
     accentBar: "bg-fg-violet",
     accentBarDark: "bg-white",
     addButton: "bg-fg-violet",
+    onAccentMuted: "text-fg-violet-100",
   },
   blue: {
     activeBg: "bg-fg-blue",
@@ -124,6 +129,7 @@ const accentTokens = {
     accentBar: "bg-fg-blue",
     accentBarDark: "bg-white",
     addButton: "bg-fg-blue",
+    onAccentMuted: "text-fg-blue-100",
   },
   black: {
     activeBg: "bg-fg-black",
@@ -132,6 +138,7 @@ const accentTokens = {
     accentBar: "bg-fg-black",
     accentBarDark: "bg-white",
     addButton: "bg-fg-black",
+    onAccentMuted: "text-fg-grey-400",
   },
 } as const;
 
@@ -315,6 +322,8 @@ export function AppLayout({
   showKebab = true,
   hideHeader,
   sidebarSlot,
+  sidebarWidth = "16rem",
+  collapsedSidebarWidth = "5rem",
   hideSidebarWidgets,
   teamLabels,
 }: AppLayoutProps) {
@@ -331,6 +340,10 @@ export function AppLayout({
 
   // Sidebar collapse state
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const sidebarStyle = {
+    "--forge-sidebar-expanded-width": sidebarWidth,
+    "--forge-sidebar-collapsed-width": collapsedSidebarWidth,
+  } as CSSProperties;
 
   // Popover state
   const [openPopover, setOpenPopover] = useState<PopoverId>(null);
@@ -359,11 +372,16 @@ export function AppLayout({
   return (
     <div ref={layoutRef} data-accent={accent} className={cn("w-full min-h-screen flex", outerBg)}>
       {/* ====== Sidebar ====== */}
-      <div className={cn(
-        "sticky top-0 h-screen flex flex-col shrink-0 z-30 transition-all duration-300",
-        sidebarCollapsed ? "w-20 overflow-hidden" : "w-64 overflow-visible",
-        sidebarBg
-      )}>
+      <div
+        style={sidebarStyle}
+        className={cn(
+          "sticky top-0 h-screen flex flex-col shrink-0 z-30 transition-all duration-300",
+          sidebarCollapsed
+            ? "w-[var(--forge-sidebar-collapsed-width)] overflow-hidden"
+            : "w-[var(--forge-sidebar-expanded-width)] overflow-visible",
+          sidebarBg
+        )}
+      >
         {/* Logo */}
         <div className="h-20 p-6 flex items-center gap-2.5">
           <div
@@ -589,7 +607,7 @@ export function AppLayout({
                 onProfileClick={() => togglePopover("profile")}
                 profileButtonClassName={openPopover === "profile" ? cn(accentCfg.activeBg, "text-white") : undefined}
                 profileNameClassName={openPopover === "profile" ? "text-white" : "text-fg-black"}
-                profileRoleClassName={openPopover === "profile" ? "text-purple-300" : "text-fg-grey-700"}
+                profileRoleClassName={openPopover === "profile" ? accentCfg.onAccentMuted : "text-fg-grey-700"}
                 profileChevronClassName={cn(
                   "transition-transform",
                   openPopover === "profile" ? "text-white rotate-180" : "text-fg-grey-700"

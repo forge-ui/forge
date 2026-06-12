@@ -17,7 +17,7 @@ export function ImageGrid({
   images,
   size = "md",
   overflowCount,
-  overflowClassName = "bg-purple-100 text-fg-violet",
+  overflowClassName = "bg-fg-violet-100 text-fg-violet",
   className = "",
 }: {
   images: string[];

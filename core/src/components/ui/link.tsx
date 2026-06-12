@@ -11,14 +11,14 @@ import { type ReactNode } from "react";
 // Figma: 每个基色在 hover 下切到深色 token（violet-800 / blue-800 / ...），
 // disabled 用 stone-500（fg-grey-700）。这里把 base + hover 拆成两类。
 const linkColors = {
-  purple: "text-fg-violet hover:text-violet-800",
-  dark: "text-violet-800 hover:text-violet-900",
-  blue: "text-blue-600 hover:text-blue-800",
-  green: "text-emerald-500 hover:text-emerald-700",
-  red: "text-fg-red hover:text-red-800",
-  orange: "text-fg-red hover:text-red-800",
-  yellow: "text-fg-yellow hover:text-yellow-700",
-  cyan: "text-teal-400 hover:text-teal-600",
+  purple: "text-fg-violet hover:text-fg-violet-800",
+  dark: "text-fg-violet-800 hover:text-fg-violet-900",
+  blue: "text-fg-blue hover:text-fg-blue-800",
+  green: "text-fg-green-500 hover:text-fg-green-700",
+  red: "text-fg-red hover:text-fg-red-800",
+  orange: "text-fg-red hover:text-fg-red-800",
+  yellow: "text-fg-yellow hover:text-fg-yellow-700",
+  cyan: "text-fg-cyan-500 hover:text-fg-cyan-600",
   gray: "text-fg-grey-700 hover:text-fg-grey-900",
 } as const;
 

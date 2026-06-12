@@ -144,7 +144,7 @@ function SearchHeader({
 
   return (
     <div className={cn("w-full px-6 py-3 border-b border-fg-grey-200 flex flex-col justify-center items-start", className)}>
-      <div className="self-stretch inline-flex justify-between items-center">
+      <div className="self-stretch flex justify-between items-center gap-4">
         {/* Left: search input or hamburger button */}
         {leftMode === "hamburger" ? (
           <button
@@ -155,7 +155,7 @@ function SearchHeader({
             <span className="text-fg-grey-700"><HamburgerMenuLinear size={20} /></span>
           </button>
         ) : (
-          <div className="w-80 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden">
+          <div className="flex-1 max-w-80 min-w-0 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden">
             <div className="w-6 h-6 flex justify-center items-center gap-2 text-fg-grey-700">
               <MagniferLinear size={20} />
             </div>
@@ -171,7 +171,7 @@ function SearchHeader({
         )}
 
         {/* Right actions */}
-        <div className="flex justify-start items-center gap-2">
+        <div className="shrink-0 flex justify-start items-center gap-2">
           <div className="pr-3 flex justify-start items-center gap-2">
             {/* Calendar — Figma: data-style="Bold Duotone" */}
             {showCalendar && (

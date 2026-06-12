@@ -157,13 +157,13 @@ export function StatusBadge({
 
 const progressBadgeColors = {
   green: {
-    bg: "bg-emerald-50",
-    outline: "outline-emerald-200",
-    text: "text-emerald-500",
+    bg: "bg-fg-green-50",
+    outline: "outline-fg-green-200",
+    text: "text-fg-green-500",
   },
   red: {
-    bg: "bg-rose-100",
-    outline: "outline-red-200",
+    bg: "bg-fg-red-100",
+    outline: "outline-fg-red-200",
     text: "text-fg-red",
   },
   grey: {
@@ -572,7 +572,7 @@ export type DataTableColor = "purple" | "blue" | "black";
 
 const headerActiveColors: Record<DataTableColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
   black: "bg-fg-black",
 };
 

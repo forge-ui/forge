@@ -179,7 +179,7 @@ function TrendTag({ value, direction }: { value: string; direction: "up" | "down
     <span
       className={cn(
         "inline-flex items-center gap-0.5 text-xs font-bold leading-4 tracking-fg",
-        direction === "up" ? "text-emerald-500" : "text-fg-red"
+        direction === "up" ? "text-fg-green-500" : "text-fg-red"
       )}
     >
       {value}

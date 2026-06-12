@@ -58,7 +58,7 @@ export function CalendarPopup({ accentBg = "bg-fg-violet" }: { accentBg?: string
         type="button"
         className={cn(
           "w-8 h-8 rounded-lg flex items-center justify-center text-sm leading-5 transition-colors",
-          isToday(d) ? cn(accentBg, "text-white rounded-full font-bold") : "text-slate-700 hover:bg-fg-grey-100"
+          isToday(d) ? cn(accentBg, "text-white rounded-full font-bold") : "text-fg-grey-900 hover:bg-fg-grey-100"
         )}
       >
         {d}
@@ -67,7 +67,7 @@ export function CalendarPopup({ accentBg = "bg-fg-violet" }: { accentBg?: string
   });
 
   return (
-    <div className="w-[400px] bg-white rounded-card shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col">
+    <div className="w-full max-w-[400px] bg-white rounded-card shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col">
       <div className="p-4 border-b border-fg-grey-200 flex items-center gap-3">
         <button type="button" onClick={prevMonth} className="w-8 h-8 rounded-lg flex items-center justify-center text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
           <AltArrowLeftLinear size={16} />

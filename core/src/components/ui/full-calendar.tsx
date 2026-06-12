@@ -34,12 +34,12 @@ export interface CalendarEvent {
 
 const barBg: Record<EventTagColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
-  orange: "bg-orange-500",
+  cyan: "bg-fg-cyan-500",
+  orange: "bg-fg-red",
 };
 
 export function FullCalendar({
@@ -203,7 +203,7 @@ export function FullCalendar({
 
       {/* ── Detail floating overlay ── */}
       {detailPanel && (
-        <div className="absolute right-4 top-14 w-72 bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.12)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-y-auto max-h-[calc(100%-70px)] z-30">
+        <div className="absolute right-4 top-14 w-72 max-w-[calc(100%-2rem)] bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.12)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-y-auto max-h-[calc(100%-70px)] z-30">
           <div className="flex items-center justify-end gap-1 px-4 pt-3">
             <button className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><PenLinear size={14} /></button>
             <button className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><MenuDotsBold size={14} /></button>

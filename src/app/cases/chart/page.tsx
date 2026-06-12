@@ -46,7 +46,7 @@ export default function ChartCasePage() {
 
       <Section title="ChartCard" description="Card wrapper for charts">
         <SubSection title="Example">
-          <ChartCard title="Revenue Overview" subtitle="Monthly breakdown" size="4col">
+          <ChartCard title="Revenue Overview" subtitle="Monthly breakdown" size="4col" width="fixed">
             <DonutChart
               segments={[
                 { value: 40, color: "bg-fg-violet" },
@@ -98,7 +98,7 @@ export default function ChartCasePage() {
 
       <Section title="MeterChart" description="Horizontal segmented meter — 3 / 2 / 1 段 Monochromatic">
         <SubSection title="Monochromatic 1 / 2 / 3 段">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MeterChart
               segments={[
                 { value: 50 },
@@ -122,7 +122,7 @@ export default function ChartCasePage() {
               ]}
             />
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MeterChart
               segments={[
                 { value: 75 },
@@ -144,7 +144,7 @@ export default function ChartCasePage() {
               ]}
             />
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MeterChart
               segments={[{ value: 75 }]}
               subtitle="+$181 today"
@@ -168,7 +168,7 @@ export default function ChartCasePage() {
 
       <Section title="HalfDonutChart" description="Semi-circle donut (Regular + List 两种)">
         <SubSection title="Regular">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <HalfDonutChart
               segments={[{ value: 75 }]}
               centerValue="75%"
@@ -184,7 +184,7 @@ export default function ChartCasePage() {
               ]}
             />
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <HalfDonutChart
               segments={[
                 { value: 50 },
@@ -204,7 +204,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="+List">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <HalfDonutChart
               segments={[{ value: 75 }]}
               centerValue="75%"
@@ -218,7 +218,7 @@ export default function ChartCasePage() {
               <ChartListItem icon={WalletLinear} title="Title Here" subtitle="Subtext" value="$24,500" trend="10%" trendDirection="up" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <HalfDonutChart
               segments={[
                 { value: 50 },
@@ -239,7 +239,7 @@ export default function ChartCasePage() {
 
       <Section title="DashedHalfDonutChart" description="Dashed semi-circle donut (Regular + List 两种)">
         <SubSection title="Regular">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DashedHalfDonutChart
               segments={[{ value: 75 }]}
               trackColor="bg-purple-300"
@@ -255,7 +255,7 @@ export default function ChartCasePage() {
               ]}
             />
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DashedHalfDonutChart
               segments={[
                 { value: 50 },
@@ -277,7 +277,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="+List">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DashedHalfDonutChart
               segments={[{ value: 75 }]}
               trackColor="bg-purple-300"
@@ -292,7 +292,7 @@ export default function ChartCasePage() {
               <ChartListItem icon={WalletLinear} title="Title Here" subtitle="Subtext" value="$24,500" trend="10%" trendDirection="up" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DashedHalfDonutChart
               segments={[
                 { value: 50 },
@@ -332,7 +332,7 @@ export default function ChartCasePage() {
           ))}
         </SubSection>
         <SubSection title="Regular">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DonutChart
               size="md"
               segments={[{ value: 75 }]}
@@ -346,7 +346,7 @@ export default function ChartCasePage() {
               <ChartLegendItem color="bg-fg-grey-200" label="Label" value="$10,000" /> {/* track, non-ramp */}
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DonutChart
               size="md"
               segments={[
@@ -363,7 +363,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={3} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DonutChart
               size="md"
               segments={[
@@ -386,7 +386,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="+List">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DonutChart
               size="md"
               segments={[{ value: 75 }]}
@@ -401,7 +401,7 @@ export default function ChartCasePage() {
               <ChartListItem icon={WalletLinear} title="Title Here" subtitle="Subtext" value="$24,500" trend="10%" trendDirection="up" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <DonutChart
               size="md"
               segments={[
@@ -439,13 +439,13 @@ export default function ChartCasePage() {
           ))}
         </SubSection>
         <SubSection title="Regular (1-5 段)">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart segments={[{ value: 75 }]} />
             <div className="w-full flex flex-col gap-3">
               <ChartLegendItem shade={0} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart
               segments={[
                 { value: 60 },
@@ -457,7 +457,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={2} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart
               segments={[
                 { value: 50 },
@@ -471,7 +471,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={3} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart
               segments={[
                 { value: 40 },
@@ -487,7 +487,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={3} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart
               segments={[
                 { value: 35 },
@@ -507,7 +507,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="+List">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart segments={[{ value: 75 }]} />
             <div className="w-full flex flex-col gap-3">
               <ChartListItem icon={WalletLinear} title="Title Here" subtitle="Subtext" value="$24,500" trend="10%" trendDirection="up" />
@@ -515,7 +515,7 @@ export default function ChartCasePage() {
               <ChartListItem icon={WalletLinear} title="Title Here" subtitle="Subtext" value="$24,500" trend="10%" trendDirection="up" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <PieChart
               segments={[
                 { value: 50 },
@@ -534,7 +534,7 @@ export default function ChartCasePage() {
 
       <Section title="MultilayerDonutChart" description="嵌套 270° C 形 arc (1/2/3/4 层)">
         <SubSection title="1 / 2 / 3 / 4 层">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MultilayerDonutChart
               layers={[{ value: 75 }]}
               centerValue="$75.5k"
@@ -546,7 +546,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={0} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MultilayerDonutChart
               layers={[
                 { value: 75 },
@@ -562,7 +562,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={1} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MultilayerDonutChart
               layers={[
                 { value: 75 },
@@ -580,7 +580,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={2} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MultilayerDonutChart
               layers={[
                 { value: 75 },
@@ -602,7 +602,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="+List">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <MultilayerDonutChart
               layers={[
                 { value: 75 },
@@ -625,7 +625,7 @@ export default function ChartCasePage() {
 
       <Section title="BubbleChart" description="2 / 3 / 4 个 bubble 紧密排列 (Regular + List)">
         <SubSection title="Regular">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BubbleChart
               bubbles={[
                 { value: 65 },
@@ -637,7 +637,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={2} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BubbleChart
               bubbles={[
                 { value: 58.33 },
@@ -651,7 +651,7 @@ export default function ChartCasePage() {
               <ChartLegendItem shade={3} label="Label" value="$10,000" />
             </div>
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BubbleChart
               bubbles={[
                 { value: 58.33 },
@@ -669,7 +669,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="+List">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BubbleChart
               bubbles={[
                 { value: 65 },
@@ -687,7 +687,7 @@ export default function ChartCasePage() {
 
       <Section title="BarChart (Vertical)" description="Thin / Wide bars + tooltip + active label 高亮">
         <SubSection title="4 Col (thin / wide)">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BarChart
               data={[
                 { value: 30, label: "Lbl" },
@@ -706,7 +706,7 @@ export default function ChartCasePage() {
             />
             <ChartValueRow value="$4,103" trend="10%" trendDirection="up" />
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BarChart
               data={[
                 { value: 30, label: "Lbl" },
@@ -800,7 +800,7 @@ export default function ChartCasePage() {
 
       <Section title="BarUpsideDownChart" description="Dual-direction bar chart (Income violet 上 / Expenses red 下)">
         <SubSection title="4 Col (thin / wide)">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BarUpsideDownChart
               data={[
                 { upperValue: 50, lowerValue: 30, label: "Lbl" },
@@ -826,7 +826,7 @@ export default function ChartCasePage() {
               ]}
             />
           </ChartCard>
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <BarUpsideDownChart
               data={[
                 { upperValue: 50, lowerValue: 30, label: "Lbl" },
@@ -886,7 +886,7 @@ export default function ChartCasePage() {
 
       <Section title="组合用法 (ChartCard)" description="对照 figma：chart 放进 ChartCard，搭配 ChartStatFooter / ChartListItem">
         <SubSection title="Donut + ChartStatFooter">
-          <ChartCard title="Revenue" subtitle="Monthly breakdown" size="4col">
+          <ChartCard title="Revenue" subtitle="Monthly breakdown" size="4col" width="fixed">
             <DonutChart
               size="sm"
               segments={[{ value: 75 }]}
@@ -904,7 +904,7 @@ export default function ChartCasePage() {
           </ChartCard>
         </SubSection>
         <SubSection title="Donut + ChartListItem 列表">
-          <ChartCard title="Top Channels" subtitle="This month" size="4col">
+          <ChartCard title="Top Channels" subtitle="This month" size="4col" width="fixed">
             <DonutChart
               size="sm"
               segments={[
@@ -956,7 +956,7 @@ export default function ChartCasePage() {
 
       <Section title="SmoothLineChart" description="Catmull-Rom smoothed line with area fill">
         <SubSection title="4 Col (小卡片，仅 line + tooltip)">
-          <ChartCard title="Title Here" subtitle="Text Here" size="4col">
+          <ChartCard title="Title Here" subtitle="Text Here" size="4col" width="fixed">
             <SmoothLineChart
               series={[
                 { data: [520, 620, 760, 700, 560, 680, 880, 820, 700, 780, 900, 720] },

@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils";
-import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
+import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
 
 // ============================================================
 // BarChartStatCard — Figma "Bar Chart Statistic Card" (node 6320:5395)
@@ -11,22 +11,22 @@ export type BarColor = "purple" | "blue" | "green" | "red" | "orange" | "yellow"
 
 const barActive: Record<BarColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
-  orange: "bg-orange-500",
+  orange: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
 };
 
 const barInactive: Record<BarColor, string> = {
-  purple: "bg-purple-300",
-  blue: "bg-blue-300",
-  green: "bg-emerald-300",
-  red: "bg-red-300",
-  orange: "bg-orange-300",
-  yellow: "bg-yellow-300",
-  cyan: "bg-teal-200",
+  purple: "bg-fg-violet-300",
+  blue: "bg-fg-blue-300",
+  green: "bg-fg-green-300",
+  red: "bg-fg-red-300",
+  orange: "bg-fg-red-300",
+  yellow: "bg-fg-yellow-300",
+  cyan: "bg-fg-cyan-200",
 };
 
 function BarSlot({
@@ -83,6 +83,7 @@ export function BarChartStatCard({
   size = "sm",
   barColor = "purple",
   bars = [16, 24, 32, 20, 40],
+  width,
   className,
 }: {
   title: string;
@@ -94,6 +95,8 @@ export function BarChartStatCard({
   size?: StatCardSize;
   barColor?: BarColor;
   bars?: number[];
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -107,6 +110,7 @@ export function BarChartStatCard({
       theme={cardThemes[themeKey]}
       themeKey={themeKey}
       size={size}
+      width={width}
       chartSlot={<BarSlot bars={bars} color={barColor} themeKey={themeKey} size={size} />}
       className={className}
     />

@@ -3,6 +3,8 @@ import {
   financialThemes,
   FinancialOrbs,
   MastercardLogo,
+  resolveCardWidthClass,
+  type CardWidth,
   type FinancialTheme,
   type FinancialVariant,
 } from "./card-utils";
@@ -24,6 +26,7 @@ export function CreditCard({
   expiry = "07/25",
   theme = "dark",
   variant = "glow",
+  width,
   className,
 }: {
   cardNumber?: string;
@@ -31,6 +34,8 @@ export function CreditCard({
   expiry?: string;
   theme?: FinancialTheme;
   variant?: FinancialVariant;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const cfg = financialThemes[theme];
@@ -38,7 +43,8 @@ export function CreditCard({
   return (
     <div
       className={cn(
-        "w-72 h-40 rounded-2xl inline-flex flex-col justify-between p-5 overflow-hidden relative",
+        "aspect-[9/5] rounded-2xl flex-col justify-between p-5 overflow-hidden relative",
+        resolveCardWidthClass(width, "w-72"),
         cfg.bg,
         className,
       )}
