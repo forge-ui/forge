@@ -671,7 +671,7 @@ export function AppLayout({
           )}
 
           {/* Main content */}
-          <div className="flex-1 p-6 flex flex-col gap-8 overflow-auto">
+          <div className="flex-1 p-4 sm:p-5 flex flex-col gap-5 overflow-auto">
             {children}
           </div>
         </div>

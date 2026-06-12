@@ -728,7 +728,7 @@ export function DataTable<T>({
 
       {/* Footer */}
       {(showPagination || footerLeft || footerRight) && (
-        <div className="self-stretch p-6 bg-white flex justify-start items-center gap-3">
+        <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
           {paginationLabel ? (
             <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
               {paginationLabel}
@@ -842,7 +842,7 @@ export function FullWidthTable<T>({
     >
       {/* Header */}
       {(title || headerActions) && (
-        <div className="self-stretch p-6 bg-white flex justify-start items-center gap-4">
+        <div className="self-stretch p-5 bg-white flex justify-start items-center gap-4">
           <div className="flex-1 flex justify-start items-center gap-4">
             <div className="inline-flex flex-col justify-center items-start gap-2">
               {title && (
@@ -933,7 +933,7 @@ export function FullWidthTable<T>({
       </table>
 
       {/* Footer */}
-      <div className="self-stretch p-6 bg-white flex justify-start items-center gap-3">
+      <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
         <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
           {paginationLabel ?? `Showing 1-${rows.length} from ${totalPages * rows.length}`}
         </div>

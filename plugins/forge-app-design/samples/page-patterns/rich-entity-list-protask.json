@@ -124,6 +124,8 @@
       ],
       "expectedForgeComponents": [
         "SurfaceCard",
+        "PageTitleToolbar",
+        "FilterPanel",
         "DataTable",
         "Avatar",
         "Button",
@@ -132,6 +134,8 @@
         "ProgressBar",
         "FileCard",
         "HistoryItem",
+        "ListGroup",
+        "NotificationItem",
         "StyledLink"
       ],
       "forbiddenShortcuts": [

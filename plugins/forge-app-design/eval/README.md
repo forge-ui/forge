@@ -79,6 +79,27 @@ Core exports that are not approved for direct page generation must be listed in
 is either promoted into `components` with generation semantics or explicitly
 deferred with a reason.
 
+## Core visual baseline audit
+
+Run this after changing ForgeUI core defaults that can affect generated admin
+page density:
+
+```bash
+node $FORGE_APP_DESIGN_ROOT/eval/core-visual-baseline-audit.mjs
+```
+
+The audit is intentionally narrower than `core/scripts/audit-components.mjs`.
+It guards the component defaults that directly shape generated business pages:
+
+- `AppLayout` content padding/gap must stay compact.
+- `PageTitleToolbar` must use admin H1 scale, not display/hero scale.
+- `ListGroup`, `NotificationItem`, `FilterPanel`, and `DataTable` routine
+  titles/chrome must stay close to Forge/Protask rail/table density.
+- Large value typography, overlay widgets, logo text, chart center labels, and
+  explicit showcase fixed-width maps are intentionally out of scope.
+
+This audit is part of `pnpm forge-app-design:validate`.
+
 ## Example project intake
 
 Use this to turn a local example project into a lightweight precedent artifact:

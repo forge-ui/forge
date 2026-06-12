@@ -43,16 +43,16 @@ export function ListGroup({
         className
       )}
     >
-      <div className="self-stretch px-6 pt-6 inline-flex justify-start items-start gap-3">
+      <div className="self-stretch px-5 pt-5 inline-flex justify-start items-start gap-3">
         <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
           <div className="inline-flex items-center gap-3">
-            <span className="text-fg-black text-xl font-semibold leading-8 tracking-fg">
+            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
               {title}
             </span>
             {badge}
           </div>
           {subtitle && (
-            <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+            <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
               {subtitle}
             </span>
           )}
@@ -72,7 +72,7 @@ export function ListGroup({
       </div>
 
       {tabs && tabs.length > 0 && (
-        <div className="self-stretch px-6 pt-6">
+        <div className="self-stretch px-5 pt-5">
           <div
             role="tablist"
             className="p-1 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex w-full"
@@ -101,7 +101,7 @@ export function ListGroup({
         </div>
       )}
 
-      <div className="self-stretch px-6 py-6 flex flex-col gap-5">{items}</div>
+      <div className="self-stretch px-5 py-5 flex flex-col gap-4">{items}</div>
     </div>
   );
 }

@@ -51,6 +51,9 @@ Current status:
 - Batch 003 exists under `intake/a-tier-batch-003` and adds vertical business
   workflow evidence for ERP, commerce, support, document signing, feedback,
   automation, secrets/access, and finance operations.
+- Batch 004 exists under `intake/a-tier-batch-004` and adds platform operations,
+  internal tool builders, commerce dashboards, developer workflow, and
+  workflow/orchestration evidence.
 - Future batches should prioritize the weakest current visual/product gaps:
   dense list/table workflows, identity/detail rails, compact activity rails,
   workflow boards, and dashboard control towers.
@@ -85,6 +88,10 @@ Forge DNA / visual baseline — **partial**:
   owns the visual primitive baseline, and `forge-app-design` supplies context,
   handoff normalization, audits, and pattern/gap feedback. This reduces the
   risk of over-prescriptive page templates.
+- The chain contract is now explicit in
+  `references/product-design-forge-starter-chain.md`; fresh starter proof should
+  start from `forge-ui/forge-starter` and consume a published core package for
+  release acceptance, using local tarballs only before publish.
 
 Acceptance gates:
 

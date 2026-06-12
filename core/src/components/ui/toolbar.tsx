@@ -430,17 +430,17 @@ export function PageTitleToolbar({
   return (
     <div
       className={cn(
-        "self-stretch inline-flex justify-start items-end gap-6",
+        "self-stretch inline-flex justify-start items-end gap-4",
         !hasSubContent && "items-center",
         className,
       )}
     >
       <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch justify-start text-fg-black text-display-l font-semibold leading-9 tracking-fg">
+        <div className="self-stretch justify-start text-fg-black text-2xl font-semibold leading-8 tracking-fg">
           {title}
         </div>
         {subtitle && (
-          <div className="self-stretch justify-start text-fg-grey-700 text-base font-medium leading-6 tracking-fg">
+          <div className="self-stretch justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
             {subtitle}
           </div>
         )}

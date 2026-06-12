@@ -61,12 +61,12 @@ export function NotificationItem({
         )}
         <div className="self-stretch flex items-start gap-2">
           {leadIcon && <span className="shrink-0 mt-0.5">{leadIcon}</span>}
-          <span className="self-stretch text-fg-black text-base font-semibold leading-6 tracking-fg">
+          <span className="self-stretch text-fg-black text-sm font-semibold leading-5 tracking-fg">
             {title}
           </span>
         </div>
         {body && (
-          <p className="self-stretch text-fg-grey-800 text-sm font-normal leading-5 tracking-fg">
+          <p className="self-stretch text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
             {body}
           </p>
         )}

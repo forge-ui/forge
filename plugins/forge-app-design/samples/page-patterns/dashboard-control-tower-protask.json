@@ -89,6 +89,7 @@
       ],
       "expectedForgeComponents": [
         "SurfaceCard",
+        "PageTitleToolbar",
         "ProgressStatCard",
         "BarChartStatCard",
         "ChartCard",
@@ -97,6 +98,8 @@
         "ProgressBar",
         "DataTable",
         "HistoryItem",
+        "ListGroup",
+        "NotificationItem",
         "ButtonGroup",
         "Button"
       ],

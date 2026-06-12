@@ -24,6 +24,8 @@ Current generated screenshots reviewed:
 - `/Users/hesong/Documents/gihub_space/forge/plugins/forge-app-design/golden-apps/screenshots/gym-member-admin/members.png`
 - `/Users/hesong/Documents/gihub_space/forge/plugins/forge-app-design/golden-apps/screenshots/gym-member-admin/member-detail.png`
 - `/Users/hesong/Documents/gihub_space/forge/plugins/forge-app-design/golden-apps/screenshots/gym-member-admin/classes.png`
+- `/Users/hesong/Documents/gihub_space/forge/plugins/forge-app-design/golden-apps/screenshots/fresh-starter-pharmacy-ops/dashboard-1440.png`
+- `/Users/hesong/Documents/gihub_space/forge/plugins/forge-app-design/golden-apps/screenshots/fresh-starter-pharmacy-ops/dashboard-1680.png`
 
 Forge source anchors:
 
@@ -52,6 +54,7 @@ Forge source anchors:
 | Table readability | Forge table cells use readable identity columns and concise metadata; truncation preserves meaning. | The rejected list combines `table-fixed`, narrow clamp widths, and a side rail, truncating core identity/evidence text into fragments. | Do not use `table-fixed` on rich operational queues to compensate for too many concepts. Reduce columns, move secondary context to rail/detail, or let horizontal overflow preserve readable cells. |
 | Right rail | Protask detail uses a strong left profile/identity rail and a main activity/evidence stream; dashboard right rail is compact activity/context, not card sprawl. | Generated detail uses right cards for history/similar items but lacks a Protask-like identity/profile rail and leaves large vertical gaps. | Detail pages need a dedicated identity/profile rail plus evidence/activity/action surface. Rails should use responsive min/max or clamp constraints, stay compact, and remain subordinate to the main decision surface. |
 | Card/grid width | Forge starter behaves best when cards fill their parent grid column and the parent controls available width. | Earlier generated pages and some starter experiments used fixed card widths, creating unnatural gaps between cards and uneven dashboard rhythm. | Production-like admin pages must not set `width="fixed"` or `w-64`/`w-80`/`w-96` on card-family components. Use parent grid tracks, `minmax`, `clamp`, and `items-start` for rails. |
+| Core defaults | The fresh pharmacy starter shows that compact `AppLayout`, `PageTitleToolbar`, `ListGroup`, `NotificationItem`, `FilterPanel`, and `DataTable` defaults materially improve natural output. | Before the core fix, generated pages had to fight inherited `p-6/gap-8`, display-scale title helpers, and oversized rail/list titles. | Keep core defaults compact and guard them with `core-visual-baseline-audit`; page patterns should not reintroduce display-scale headings or loose wrappers. |
 
 ## Baseline Rules
 
@@ -60,6 +63,9 @@ baseline.
 
 1. Typography:
    - Page H1: `text-2xl font-semibold` or smaller.
+   - `PageTitleToolbar` is the preferred Forge helper for ordinary local page
+     titles. It must stay at admin title scale; do not override it back to
+     display/hero typography in generated apps.
    - Card/table/rail title: `text-sm` with `font-medium` or `font-semibold`, close to sidebar menu scale, usually `text-fg-black`. Avoid routine `text-lg`/`text-xl` card headers.
    - Row/card body: `text-sm`; metadata and helper text: `text-xs`.
    - No `text-display-l` or routine `text-3xl` on admin pages.
