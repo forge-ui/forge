@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "C8",
+      "label": "Data quality golden dashboard",
+      "target": "${FORGE_BROWSER_DEMO_ROOT}/data-quality-golden-codex",
+      "allowMissing": true,
+      "route": "/",
+      "port": 3718,
+      "requiredText": [
+        "Data quality at a glance",
+        "Top risk sources",
+        "Check jobs · live"
+      ]
+    },
+    {
+      "id": "C9",
+      "label": "Fulfillment waves kanban",
+      "target": "${FORGE_BROWSER_DEMO_ROOT}/fulfillment-ops-c7-codex",
+      "allowMissing": true,
+      "route": "/waves",
+      "port": 3719,
+      "requiredText": [
+        "Wave control",
+        "Scan fulfillment waves",
+        "blocked"
+      ],
+      "requiredVisibleText": [
+        "Planned",
+        "Advance",
+        "Open issue"
+      ]
+    },
+    {
+      "id": "C10",
+      "label": "Support ticket queue",
+      "target": "${FORGE_BROWSER_DEMO_ROOT}/ticket-system-v1",
+      "allowMissing": true,
+      "route": "/tickets",
+      "port": 3720,
+      "requiredText": [
+        "工单列表",
+        "全部状态",
+        "全部优先级"
+      ]
+    },
+    {
+      "id": "C12",
+      "label": "Prior authorization Protask-inspired ForgeUI-first app",
+      "target": "${FORGE_BROWSER_DEMO_ROOT}/prior-auth-ops-c12-protask",
+      "allowMissing": true,
+      "port": 3722,
+      "routes": [
+        {
+          "route": "/",
+          "screenshotKey": "root",
+          "requiredText": [
+            "Prior authorization control tower",
+            "Authorization trend",
+            "Live activity"
+          ]
+        },
+        {
+          "route": "/cases",
+          "screenshotKey": "cases",
+          "requiredText": [
+            "Case queue",
+            "Evidence files",
+            "Recent activity"
+          ],
+          "requiredVisibleText": [
+            "Preview",
+            "Triage"
+          ]
+        },
+        {
+          "route": "/cases/PA-1048",
+          "screenshotKey": "case-detail",
+          "requiredText": [
+            "PRIOR AUTHORIZATION CASE",
+            "Care team",
+            "Activity and comments"
+          ]
+        },
+        {
+          "route": "/tasks",
+          "screenshotKey": "tasks",
+          "requiredText": [
+            "Review task board",
+            "Progress",
+            "Linked case"
+          ]
+        },
+        {
+          "route": "/rules",
+          "screenshotKey": "rules",
+          "requiredText": [
+            "Payer rule library",
+            "Requirement changed",
+            "Rule owner"
+          ]
+        },
+        {
+          "route": "/intake",
+          "screenshotKey": "intake",
+          "requiredText": [
+            "Document intake",
+            "Packet checklist",
+            "OCR preview"
+          ]
+        },
+        {
+          "route": "/settings",
+          "screenshotKey": "settings",
+          "requiredText": [
+            "Automation settings",
+            "Enabled policies",
+            "No pending changes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "label": "Deployment release board promoted kanban PRD",
+      "target": "${FORGE_BROWSER_DEMO_ROOT}/deployment-release-board-codex",
+      "allowMissing": true,
+      "port": 3744,
+      "routes": [
+        {
+          "route": "/dashboard",
+          "screenshotKey": "dashboard",
+          "requiredText": [
+            "Release control tower",
+            "Readiness trend",
+            "Priority releases"
+          ],
+          "requiredVisibleText": [
+            "Open deployment board",
+            "Blocked releases"
+          ]
+        },
+        {
+          "route": "/deployments",
+          "screenshotKey": "deployments",
+          "requiredText": [
+            "Deployment board",
+            "Canary",
+            "Open diagnostics"
+          ],
+          "requiredVisibleText": [
+            "Canary",
+            "Advance",
+            "Open diagnostics"
+          ]
+        },
+        {
+          "route": "/deployments/REL-1042",
+          "screenshotKey": "deployment-detail",
+          "requiredText": [
+            "Deployment detail",
+            "Evidence",
+            "Root cause",
+            "Resolution"
+          ],
+          "requiredVisibleText": [
+            "Evidence",
+            "Root cause",
+            "Mark ready"
+          ]
+        },
+        {
+          "route": "/deployments/new",
+          "screenshotKey": "deployment-new",
+          "requiredText": [
+            "Create deployment",
+            "Deployment fields",
+            "Preflight"
+          ],
+          "requiredVisibleText": [
+            "Deployment fields",
+            "Preflight",
+            "Save deployment"
+          ]
+        },
+        {
+          "route": "/audit-log",
+          "screenshotKey": "audit-log",
+          "requiredText": [
+            "Audit log",
+            "Advanced release",
+            "Open deployment"
+          ]
+        }
+      ]
+    }
+  ]
+}

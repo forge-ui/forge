@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "forbiddenRouteTerms": [
+    "workspace",
+    "center",
+    "hub",
+    "console",
+    "overview-detail",
+    "all-in-one"
+  ],
+  "preferredNouns": {
+    "data quality": [
+      "data-sources",
+      "templates",
+      "quality-runs",
+      "issues",
+      "reports",
+      "audit-logs",
+      "settings"
+    ],
+    "operations": [
+      "cases",
+      "tasks",
+      "rules",
+      "intake",
+      "settings"
+    ],
+    "commerce": [
+      "orders",
+      "products",
+      "customers",
+      "sellers",
+      "invoices",
+      "tracking"
+    ],
+    "finance": [
+      "wallets",
+      "cards",
+      "invoices",
+      "transactions",
+      "reports"
+    ],
+    "project": [
+      "projects",
+      "tasks",
+      "clients",
+      "members",
+      "calendar",
+      "files"
+    ]
+  },
+  "verbToRouteShape": [
+    {
+      "verb": "prioritize",
+      "shape": "/",
+      "intent": "dashboard",
+      "notes": "Summary, risk focus, and links to operational pages."
+    },
+    {
+      "verb": "connect",
+      "shape": "/<artifacts>",
+      "intent": "inventory-list",
+      "notes": "Source connection and health belongs here, not inside a run detail page."
+    },
+    {
+      "verb": "configure",
+      "shape": "/<events>/new",
+      "intent": "wizard",
+      "notes": "Use when user must choose source, template, scope, and execution mode."
+    },
+    {
+      "verb": "monitor",
+      "shape": "/<events>",
+      "intent": "queue",
+      "notes": "Event list with status, owner, SLA, and retry actions."
+    },
+    {
+      "verb": "diagnose",
+      "shape": "/<events>/[id]",
+      "intent": "detail-workbench",
+      "notes": "Explain one run/event and link to issues and reports."
+    },
+    {
+      "verb": "triage",
+      "shape": "/<issues>",
+      "intent": "filterable-list",
+      "notes": "Bulk status and assignment actions, but no row-level diff repair."
+    },
+    {
+      "verb": "repair",
+      "shape": "/<issues>/[id]",
+      "intent": "split-pane",
+      "notes": "Owns fix strategy, before/after diff, confirmation, and rollback note."
+    },
+    {
+      "verb": "publish",
+      "shape": "/<reports>",
+      "intent": "registry",
+      "notes": "Report list, export status, and compliance readiness."
+    },
+    {
+      "verb": "review",
+      "shape": "/<reports>/[id]",
+      "intent": "preview",
+      "notes": "Read-only report preview with evidence and export actions."
+    },
+    {
+      "verb": "audit",
+      "shape": "/audit-logs",
+      "intent": "event-stream",
+      "notes": "Immutable history, actor, object, before/after, and reason."
+    }
+  ],
+  "splitTriggers": [
+    {
+      "trigger": "A page contains more than two primary verbs from connect/configure/run/repair/report/audit.",
+      "action": "Split into lifecycle routes before writing UI."
+    },
+    {
+      "trigger": "A PRD mentions diff, rollback, confirmation, or manual override.",
+      "action": "Create a dedicated repair/review detail route."
+    },
+    {
+      "trigger": "A PRD mentions templates, standards, rules, or policy versions.",
+      "action": "Create policy/library routes separate from execution routes."
+    },
+    {
+      "trigger": "A PRD mentions logs, traceability, compliance evidence, or responsibility.",
+      "action": "Create audit/report artifact routes."
+    }
+  ]
+}

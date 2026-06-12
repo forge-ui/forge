@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "archetypeId": "rich-entity-list-protask",
+  "sourceReferences": [
+    "$FORGE_APP_DESIGN_ROOT/samples/rich-entity-list-protask",
+    "$FORGE_APP_DESIGN_ROOT/samples/rich-entity-list"
+  ],
+  "patterns": [
+    {
+      "id": "rich-entity-list-protask",
+      "routeRole": "list",
+      "layoutIntent": "rich-entity-list-protask",
+      "decisionQuestion": "Which row should be opened, assigned, marked reviewed, or escalated first based on owner, status, risk, SLA, evidence, and activity?",
+      "primaryDataObject": "operational-entity",
+      "kpiCards": [
+        "blocked count",
+        "high-risk count",
+        "SLA at-risk count",
+        "ready count"
+      ],
+      "tableColumns": [
+        "identity with avatar/logo and secondary metadata",
+        "status",
+        "priority",
+        "owner or assignee",
+        "risk or SLA progress",
+        "evidence count",
+        "one compact row action plus optional link/icon/menu"
+      ],
+      "detailSections": [
+        "compact filters above table",
+        "first viewport table rows",
+        "selected row insight rail",
+        "compact workload stats",
+        "risk reason",
+        "next action",
+        "evidence files",
+        "recent activity"
+      ],
+      "drawerActions": [
+        "preview row",
+        "open full detail",
+        "mark reviewed",
+        "create exception from toolbar"
+      ],
+      "workflowStates": [
+        "loading",
+        "empty",
+        "hover",
+        "selected",
+        "reviewed",
+        "error"
+      ],
+      "emptyStateCopy": "No rows match these filters. Clear a filter or create a new exception from the toolbar.",
+      "requiredVisibleText": [
+        "first concrete row identity",
+        "fifth concrete row identity",
+        "primary row action"
+      ],
+      "businessDensity": [
+        "row identity",
+        "secondary metadata",
+        "owner",
+        "status",
+        "priority",
+        "risk",
+        "SLA",
+        "evidence",
+        "activity",
+        "row action",
+        "pagination",
+        "filter surface"
+      ],
+      "visualBaseline": {
+        "typography": [
+          "Admin H1 uses text-2xl or smaller; no text-display-l or routine text-3xl.",
+          "Table text defaults to text-sm; metadata/helper text uses text-xs."
+        ],
+        "density": [
+          "At a desktop review viewport, first viewport shows heading, compact filters, table header, and multiple row identities/actions when data exists.",
+          "No summary/workload card may sit between filters and the main table."
+        ],
+        "spacing": [
+          "Page root uses space-y-4 or space-y-5.",
+          "Filter-to-table rhythm is compact; avoid space-y-6/gap-6 on queue pages.",
+          "Do not stack search, two segmented ButtonGroups, and summary chips into three chrome rows above the table.",
+          "Do not wrap search plus segmented filters in an extra rounded white shell unless the shell contains meaningful grouped filter content."
+        ],
+        "borders": [
+          "Use SurfaceCard/DataTable with outline-fg-grey-200 or border-fg-grey-200.",
+          "Avoid darker grey borders except empty, drop, or error states."
+        ],
+        "profileRegion": [
+          "Use AppLayout topbar profile; do not rebuild custom topbar/profile controls."
+        ],
+        "tableFirstViewport": [
+          "Rows cap identity to two text lines and one compact action cluster.",
+          "Use compact row actions and truncate metadata to preserve row density.",
+          "Long tables use one DataTable surface plus row dividers; do not render each row as a nested card.",
+          "Do not wrap DataTable in another large titled SurfaceCard when the DataTable header can own the title/subtitle.",
+          "Do not use table-fixed on rich operational queues to squeeze table and rail together."
+        ],
+        "rightRail": [
+          "Insight rail uses responsive min/max or clamp constraints and stays subordinate to the table; it must not push the table below the fold.",
+          "At common desktop widths, the table must stay readable. Use a drawer/dialog, hide the rail until a wide viewport, or use a dedicated detail route.",
+          "Do not render selected-row insight as a normal card below the table at the 1366px review viewport."
+        ],
+        "rowActions": [
+          "Row actions may show one action cluster only: one small primary command, or one compact link/icon/menu.",
+          "Do not render two text actions such as Preview and Open side by side in every row.",
+          "Do not stack Preview/Open/Review-style actions vertically in every row; secondary actions belong in the preview rail, detail page, or action route."
+        ],
+        "cellDensity": [
+          "Risk cells choose one representation: compact score, label, or progress bar. Do not combine number, percent, and bar in the same table cell.",
+          "Secondary row metadata should be no more than two grey-token steps lighter than primary row text.",
+          "When status already uses warning/danger/success color, priority and risk-score labels should stay neutral except for the highest severity tier.",
+          "Primary row identity text usually uses text-sm font-medium; reserve font-semibold for a single dominant metric or action."
+        ]
+      },
+      "linksOut": [
+        "/exceptions/new",
+        "/exceptions/[id]",
+        "/audit-log"
+      ],
+      "expectedForgeComponents": [
+        "SurfaceCard",
+        "DataTable",
+        "Avatar",
+        "Button",
+        "ButtonGroup",
+        "Label",
+        "ProgressBar",
+        "FileCard",
+        "HistoryItem",
+        "StyledLink"
+      ],
+      "forbiddenShortcuts": [
+        "Do not render an operational queue as plain name/status/date columns.",
+        "Do not place a large workload summary card between filters and the main DataTable.",
+        "Do not let the main queue table fall below the desktop review viewport.",
+        "Do not hide all row actions in a kebab menu.",
+        "Do not put /new, /create, /edit, /import, or /bulk routes in sidebar navigation.",
+        "Do not define custom SectionCard, Button, Badge, Table, or generic card shells.",
+        "Do not omit evidence, activity, or detail links from the insight rail.",
+        "Do not use text-display-l as the default queue title; use compact Forge CRM H1 scale.",
+        "Do not force a right insight rail beside the table at lg desktop widths.",
+        "Do not render selected-row insight as a below-table card on the list page.",
+        "Do not stack multiple row actions vertically in the action column.",
+        "Do not put both a text button and text link in the row action column.",
+        "Do not combine risk score, percentage, and progress bar in one DataTable cell.",
+        "Do not stack two large ButtonGroups above the queue table.",
+        "Do not wrap a compact filter toolbar in a redundant rounded-card shell.",
+        "Do not use four or more colored label families in the same queue row.",
+        "Do not use table-fixed on rich queue DataTables as a substitute for reducing columns or collapsing the rail.",
+        "Do not wrap a DataTable in a second large titled card shell when the DataTable already provides the table surface."
+      ]
+    }
+  ]
+}

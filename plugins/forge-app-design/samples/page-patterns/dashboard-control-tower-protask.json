@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "archetypeId": "dashboard-control-tower-protask",
+  "sourceReferences": [
+    "$FORGE_APP_DESIGN_ROOT/samples/protask-compound-dashboard",
+    "$FORGE_APP_DESIGN_ROOT/golden-apps/fulfillment-ops-control-tower.md",
+    "$FORGE_APP_DESIGN_ROOT/golden-apps/data-quality-control-tower.md"
+  ],
+  "patterns": [
+    {
+      "id": "dashboard-control-tower-protask",
+      "routeRole": "dashboard",
+      "layoutIntent": "dashboard-control-tower-protask",
+      "decisionQuestion": "Which operating segment, queue, or record needs action now, why, and where should the user go next?",
+      "primaryDataObject": "operations-program",
+      "kpiCards": [
+        "protected value or impact",
+        "high risk count",
+        "blocked count",
+        "ready or recovery count"
+      ],
+      "tableColumns": [
+        "priority work identity",
+        "owner",
+        "status",
+        "risk",
+        "workflow link"
+      ],
+      "detailSections": [
+        "compact KPI/stat strip",
+        "trend or bar visual",
+        "risk/readiness gauge",
+        "priority work table",
+        "activity stream",
+        "workflow entry link"
+      ],
+      "drawerActions": [
+        "open priority queue",
+        "open riskiest detail",
+        "open audit log"
+      ],
+      "workflowStates": [
+        "loading",
+        "empty",
+        "hover",
+        "selected",
+        "error"
+      ],
+      "emptyStateCopy": "No priority work is active. Review recent activity or adjust the operating segment filter.",
+      "businessDensity": [
+        "trend",
+        "risk",
+        "readiness",
+        "priority work",
+        "activity",
+        "owner",
+        "SLA",
+        "workflow entry",
+        "audit trail"
+      ],
+      "visualBaseline": {
+        "typography": [
+          "Dashboard H1 uses Forge CRM text-2xl scale; KPI numbers may be text-3xl only inside stat cards.",
+          "Priority work and activity text uses text-sm/text-xs."
+        ],
+        "density": [
+          "At a desktop review viewport, first viewport shows control tower signal, compact KPI/stat strip, trend/risk visual, and at least one priority work or activity surface.",
+          "Do not spend the first viewport on four isolated KPI cards.",
+          "KPI/stat rows use one visual treatment. A colored high-emphasis anchor belongs on its own surface or grid position, not mixed into an otherwise white KPI row.",
+          "Risk-heavy dashboards should not use a large saturated red StatCard as the default anchor. Prefer a white SurfaceCard with small red Label/ProgressBar signals."
+        ],
+        "spacing": [
+          "Use gap-4/gap-5 for dashboard grids; reserve gap-6/p-6 for one major chart panel at most."
+        ],
+        "borders": [
+          "Use Forge cards with outline-fg-grey-200; avoid stacked custom card shells."
+        ],
+        "profileRegion": [
+          "Use native AppLayout topbar profile and keep it visually secondary."
+        ],
+        "rightRail": [
+          "Activity/context rail is compact, scannable, and paired with a main visual or priority-work surface."
+        ]
+      },
+      "linksOut": [
+        "/priority-work",
+        "/priority-work/[id]",
+        "/audit-log"
+      ],
+      "expectedForgeComponents": [
+        "SurfaceCard",
+        "ProgressStatCard",
+        "BarChartStatCard",
+        "ChartCard",
+        "BarChart",
+        "HalfDonutChart",
+        "ProgressBar",
+        "DataTable",
+        "HistoryItem",
+        "ButtonGroup",
+        "Button"
+      ],
+      "forbiddenShortcuts": [
+        "Do not stop at four KPI cards.",
+        "Do not render priority work as a generic recent items list without owner, status, risk, and route.",
+        "Do not omit trend/risk/readiness visual surfaces.",
+        "Do not mix one saturated StatCard with multiple white KPI cards in the same KPI row.",
+        "Do not render breach/risk focus as a wide saturated red StatCard unless the page is explicitly an incident alarm board.",
+        "Do not make dashboard KPI values smaller than routine H1 text.",
+        "Do not put create/edit/resolve flows directly on the dashboard.",
+        "Do not rely on quality-eval text reports without browser screenshot acceptance.",
+        "Do not use hero-sized page H1; keep admin dashboard titles near Forge CRM text-2xl scale."
+      ]
+    }
+  ]
+}

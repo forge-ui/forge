@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "archetypeId": "kanban-workflow-protask",
+  "sourceReferences": [
+    "$FORGE_APP_DESIGN_ROOT/samples/kanban-workflow-protask",
+    "$FORGE_APP_DESIGN_ROOT/golden-apps/fulfillment-ops-control-tower.md",
+    "$FORGE_APP_DESIGN_ROOT/golden-apps/support-ticket-sla-center.md"
+  ],
+  "patterns": [
+    {
+      "id": "kanban-workflow-board",
+      "routeRole": "board",
+      "layoutIntent": "kanban-workflow-protask",
+      "decisionQuestion": "Which status lane or card needs an advance, rerun, assignment, diagnostic review, or detail follow-up?",
+      "primaryDataObject": "workflow-item",
+      "kpiCards": [
+        "total items",
+        "pending",
+        "running",
+        "success",
+        "failed"
+      ],
+      "tableColumns": [],
+      "detailSections": [
+        "lane count strip",
+        "status lanes",
+        "actionable workflow card",
+        "owner and schedule metadata",
+        "progress/status signal",
+        "empty lane state",
+        "failed/blocked diagnostic link",
+        "local action feedback"
+      ],
+      "drawerActions": [
+        "advance",
+        "rerun",
+        "open detail",
+        "open diagnostics",
+        "create workflow item"
+      ],
+      "workflowStates": [
+        "loading",
+        "empty",
+        "pending",
+        "saving",
+        "saved",
+        "error",
+        "hover"
+      ],
+      "emptyStateCopy": "No items are in this lane. New work appears here after it is created or moved by the previous step.",
+      "requiredVisibleText": [
+        "Queued",
+        "Run now",
+        "Open diagnostics"
+      ],
+      "businessDensity": [
+        "lane count",
+        "status",
+        "owner",
+        "schedule",
+        "SLA or due date",
+        "progress",
+        "last activity",
+        "next action",
+        "diagnostic link",
+        "detail link"
+      ],
+      "visualBaseline": {
+        "typography": [
+          "Board H1 uses text-2xl or smaller; card titles use text-sm/text-base, metadata uses text-xs/text-sm."
+        ],
+        "density": [
+          "At a desktop review viewport, first viewport shows lane status strip, multiple lanes, and multiple actionable cards.",
+          "Cards are compact enough to show status, owner/schedule, progress, and action without becoming large blank panels."
+        ],
+        "spacing": [
+          "Use gap-4/gap-5 between lanes and cards; avoid default gap-6/space-y-6 on board pages.",
+          "Lane height and card density should adapt to viewport and content; do not hard-code fixed pixel columns just to match one screenshot."
+        ],
+        "borders": [
+          "Use TaskCard/SurfaceCard with subtle Forge outlines; heavy dashed borders are only for empty lane states."
+        ],
+        "profileRegion": [
+          "Use native AppLayout topbar profile and no custom board topbar."
+        ],
+        "rightRail": [
+          "If a board has a context rail, it must not push lanes below the fold."
+        ]
+      },
+      "linksOut": [
+        "/workflow-board/[id]",
+        "/workflow-board/new",
+        "/audit-log"
+      ],
+      "expectedForgeComponents": [
+        "SurfaceCard",
+        "TaskCard",
+        "Label",
+        "ProgressBar",
+        "Button",
+        "StyledLink",
+        "Breadcrumbs"
+      ],
+      "forbiddenShortcuts": [
+        "Do not make the kanban board read-only.",
+        "Do not omit lane empty states.",
+        "Do not use a generic custom card shell instead of Forge TaskCard or SurfaceCard.",
+        "Do not hide detail or diagnostic links from failed/blocked cards.",
+        "Do not count a supporting workflow route as promoted without IA, page-pattern, visual rule, and screenshot acceptance."
+      ]
+    }
+  ]
+}

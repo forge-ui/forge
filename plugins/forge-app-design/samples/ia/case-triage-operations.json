@@ -1,0 +1,340 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "case-triage-operations",
+    "name": "Case triage operations",
+    "appliesTo": [
+      "tickets",
+      "authorization",
+      "risk review",
+      "manual operations",
+      "SLA workflow"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "/Users/hesong/Downloads/protask-figma",
+      "/Users/hesong/Documents/gihub_space/forge/tmp/spec-to-forge-output/prior-auth-ops-c12-protask"
+    ],
+    "notes": "Paired IA artifact for admin systems where operators triage cases, decide outcomes, advance tasks, and govern policy rules."
+  },
+  "lifecycleModel": [
+    "overview",
+    "artifact",
+    "operation",
+    "policy",
+    "event"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Operations overview",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which queue, SLA risk, or blocked decision needs attention first?",
+      "primaryDataObject": "operations-program",
+      "layoutIntent": "hero-overview",
+      "routeRole": "dashboard",
+      "actions": [
+        {
+          "label": "Open hot queue",
+          "verb": "queue",
+          "kind": "read",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Review policy drift",
+          "verb": "govern",
+          "kind": "read",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/cases",
+        "/tasks",
+        "/rules"
+      ],
+      "navigationRationale": "Dashboard ranks work and directs operators into queue, task, or rule routes without owning the decisions.",
+      "businessDensity": [
+        "SLA risk",
+        "blocked cases",
+        "team load",
+        "policy drift",
+        "next action links"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "cases",
+      "route": "/cases",
+      "title": "Case queue",
+      "primaryVerb": "queue",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which case should be opened, assigned, escalated, or deferred?",
+      "primaryDataObject": "case",
+      "layoutIntent": "list-with-filters-and-drawer",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Open case",
+          "verb": "decide",
+          "kind": "read",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Bulk assign",
+          "verb": "advance",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/cases/[id]",
+        "/tasks"
+      ],
+      "navigationRationale": "The queue ranks and filters work. The case detail owns decision evidence and final disposition.",
+      "businessDensity": [
+        "priority",
+        "SLA",
+        "assignee",
+        "risk score",
+        "reason",
+        "age",
+        "next step"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "case-detail",
+      "route": "/cases/[id]",
+      "title": "Case decision",
+      "primaryVerb": "decide",
+      "lifecycle": "operation",
+      "decisionQuestion": "Should this case be approved, rejected, escalated, or returned after reviewing evidence?",
+      "primaryDataObject": "case",
+      "layoutIntent": "split-pane-triage",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Approve",
+          "verb": "decide",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Escalate",
+          "verb": "advance",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "View rule impact",
+          "verb": "govern",
+          "kind": "read",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/tasks",
+        "/rules",
+        "/audit-logs"
+      ],
+      "navigationRationale": "Case detail owns the operator decision. Rule edits and immutable audit evidence stay on separate routes.",
+      "businessDensity": [
+        "evidence",
+        "risk factors",
+        "similar cases",
+        "SOP",
+        "decision note",
+        "audit trail"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/cases",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "tasks",
+      "route": "/tasks",
+      "title": "Task board",
+      "primaryVerb": "advance",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which work item should move to the next state and what is blocking it?",
+      "primaryDataObject": "task",
+      "layoutIntent": "kanban-board-with-row-actions",
+      "routeRole": "board",
+      "actions": [
+        {
+          "label": "Move task",
+          "verb": "advance",
+          "kind": "write",
+          "lifecycle": "operation"
+        },
+        {
+          "label": "Open case",
+          "verb": "decide",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/cases/[id]"
+      ],
+      "navigationRationale": "The board manages state movement while final decisions remain in case detail.",
+      "businessDensity": [
+        "state",
+        "owner",
+        "blocker",
+        "due time",
+        "handoff reason",
+        "case link"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "rules",
+      "route": "/rules",
+      "title": "Policy rules",
+      "primaryVerb": "govern",
+      "lifecycle": "policy",
+      "decisionQuestion": "Which rule or threshold should change without harming queue quality?",
+      "primaryDataObject": "policy-rule",
+      "layoutIntent": "policy-matrix-with-impact",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Review impact",
+          "verb": "govern",
+          "kind": "read",
+          "lifecycle": "policy"
+        },
+        {
+          "label": "Adjust rule",
+          "verb": "govern",
+          "kind": "admin",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/cases",
+        "/audit-logs"
+      ],
+      "navigationRationale": "Policy rules explain and govern queue behavior; case decisions do not edit thresholds inline.",
+      "businessDensity": [
+        "threshold",
+        "coverage",
+        "false positive rate",
+        "affected queues",
+        "approval state"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "intake",
+      "route": "/intake",
+      "title": "Case intake",
+      "primaryVerb": "ingest",
+      "lifecycle": "artifact",
+      "decisionQuestion": "Which inputs, attachments, and validation checks are required before a case enters the queue?",
+      "primaryDataObject": "case-intake",
+      "layoutIntent": "wizard-multi-step",
+      "routeRole": "wizard",
+      "actions": [
+        {
+          "label": "Submit intake",
+          "verb": "ingest",
+          "kind": "write",
+          "lifecycle": "artifact"
+        }
+      ],
+      "linksOut": [
+        "/cases"
+      ],
+      "navigationRationale": "Intake collects evidence before operational triage begins.",
+      "businessDensity": [
+        "requester",
+        "attachments",
+        "validation",
+        "duplicate detection",
+        "routing rule"
+      ],
+      "surfaceRole": "action",
+      "parentRoute": "/cases",
+      "entryAffordance": "primary_cta"
+    },
+    {
+      "id": "settings",
+      "route": "/settings",
+      "title": "Operations settings",
+      "primaryVerb": "configure",
+      "lifecycle": "policy",
+      "decisionQuestion": "Which team, escalation, or notification setting controls the workflow?",
+      "primaryDataObject": "operations-setting",
+      "layoutIntent": "settings-grouped",
+      "routeRole": "settings",
+      "actions": [
+        {
+          "label": "Update settings",
+          "verb": "configure",
+          "kind": "admin",
+          "lifecycle": "policy"
+        }
+      ],
+      "linksOut": [
+        "/rules"
+      ],
+      "navigationRationale": "Settings are policy controls and should not absorb queue or case detail work.",
+      "businessDensity": [
+        "teams",
+        "SLA clock",
+        "escalation",
+        "notification",
+        "permissions"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "audit-logs",
+      "route": "/audit-logs",
+      "title": "Audit logs",
+      "primaryVerb": "audit",
+      "lifecycle": "event",
+      "decisionQuestion": "Who changed a case, task, rule, or setting and why?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "actions": [
+        {
+          "label": "Inspect event",
+          "verb": "audit",
+          "kind": "read",
+          "lifecycle": "event"
+        }
+      ],
+      "linksOut": [],
+      "navigationRationale": "Audit is immutable evidence and should not own queue decisions.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "object",
+        "reason",
+        "before after",
+        "timestamp"
+      ],
+      "surfaceRole": "navigation"
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "queue-detail-all-in-one",
+      "description": "Do not put queue filters, case decision, policy editing, task board, and intake wizard into one operations workspace.",
+      "severity": "critical"
+    },
+    {
+      "id": "dashboard-owns-decisions",
+      "description": "Dashboard may prioritize work, but approval/rejection decisions must live in case detail.",
+      "severity": "critical"
+    }
+  ]
+}

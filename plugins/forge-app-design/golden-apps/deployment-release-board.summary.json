@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "id": "deployment-release-board-codex",
+  "generatedAt": "2026-06-04T06:53:03.611Z",
+  "routeModel": {
+    "dashboard": "/dashboard",
+    "detail": "/deployments/[id]",
+    "workflowRoutes": [
+      "/deployments",
+      "/deployments/new"
+    ]
+  },
+  "scores": {
+    "quality": {
+      "critical": 0,
+      "warn": 0,
+      "passed": 51
+    },
+    "browser": {
+      "passed": 1,
+      "total": 1,
+      "failed": 0
+    },
+    "product": {
+      "score": 87,
+      "pass": true
+    },
+    "visual": {
+      "score": 97,
+      "pass": false
+    }
+  },
+  "visualBaselineVersion": "adaptive-protask-forge-2026-06-04",
+  "visualBlockingIssues": [
+    "split-pane-triage baseline failed: compact detail spacing and identity/profile rail",
+    "kanban-workflow-protask baseline failed: adaptive layout sizing",
+    "action-form-protask baseline failed: typography scale and compact action spacing"
+  ],
+  "briefSpecs": 5,
+  "briefRoutes": [
+    "/dashboard",
+    "/deployments",
+    "/deployments/[id]",
+    "/deployments/new",
+    "/audit-log"
+  ],
+  "browserRoutes": [
+    {
+      "route": "/dashboard",
+      "pass": true,
+      "visibleTextChecks": [
+        {
+          "text": "Open deployment board",
+          "pass": true
+        },
+        {
+          "text": "Blocked releases",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "route": "/deployments",
+      "pass": true,
+      "visibleTextChecks": [
+        {
+          "text": "Canary",
+          "pass": true
+        },
+        {
+          "text": "Advance",
+          "pass": true
+        },
+        {
+          "text": "Open diagnostics",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "route": "/deployments/REL-1042",
+      "pass": true,
+      "visibleTextChecks": [
+        {
+          "text": "Evidence",
+          "pass": true
+        },
+        {
+          "text": "Root cause",
+          "pass": true
+        },
+        {
+          "text": "Mark ready",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "route": "/deployments/new",
+      "pass": true,
+      "visibleTextChecks": [
+        {
+          "text": "Deployment fields",
+          "pass": true
+        },
+        {
+          "text": "Preflight",
+          "pass": true
+        },
+        {
+          "text": "Save deployment",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "route": "/audit-log",
+      "pass": true,
+      "visibleTextChecks": []
+    }
+  ],
+  "blockingIssues": []
+}

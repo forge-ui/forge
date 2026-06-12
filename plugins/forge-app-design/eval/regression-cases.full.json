@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "c5-ticket-system",
+      "label": "C5 ticket system PRD",
+      "target": "${FORGE_DEMO_ROOT}/ticket-system-v1",
+      "allowMissing": true,
+      "maxCritical": 0,
+      "maxWarn": 0,
+      "minPageFiles": 4,
+      "minComponentFiles": 0,
+      "requiredFiles": [
+        "app/page.tsx",
+        "app/tickets/page.tsx",
+        "app/tickets/[id]/page.tsx",
+        "app/escalations/page.tsx",
+        "app/sla-policies/page.tsx",
+        "mock/ticket.ts",
+        "mock/s-l-a-policy.ts"
+      ],
+      "requiredText": [
+        {
+          "file": "app/tickets/page.tsx",
+          "patterns": ["Ticket", "DataTable"]
+        },
+        {
+          "file": "app/page.tsx",
+          "patterns": ["工单总览", "SLA", "DataTable"]
+        }
+      ],
+      "notes": "C5 support-ticket baseline upgraded for golden app use; warnings are no longer allowed."
+    },
+    {
+      "id": "c6-data-quality-v4",
+      "label": "C6 data quality monitor PRD",
+      "target": "${FORGE_DEMO_ROOT}/data-quality-mon-v4-brief",
+      "allowMissing": true,
+      "maxCritical": 0,
+      "maxWarn": 0,
+      "minPageFiles": 6,
+      "minComponentFiles": 5,
+      "requiredFiles": [
+        "DESIGN-BRIEF.md",
+        "app/page.tsx",
+        "app/jobs/page.tsx",
+        "app/issues/page.tsx",
+        "app/sources/page.tsx",
+        "app/rules/page.tsx",
+        "app/reports/page.tsx",
+        "app/_components/JobsKanban.tsx",
+        "app/_components/KpiRow.tsx",
+        "app/_components/RiskSourcesPanel.tsx"
+      ],
+      "requiredText": [
+        {
+          "file": "DESIGN-BRIEF.md",
+          "patterns": ["component_plan", "workflow"]
+        },
+        {
+          "file": "app/page.tsx",
+          "patterns": ["RiskSourcesPanel", "JobsKanban"]
+        },
+        {
+          "file": "app/jobs/page.tsx",
+          "patterns": ["JobsKanban"]
+        }
+      ]
+    },
+    {
+      "id": "c7-fulfillment-ops",
+      "label": "C7 fulfillment ops PRD",
+      "target": "${FORGE_DEMO_ROOT}/fulfillment-ops-c7-codex",
+      "allowMissing": true,
+      "maxCritical": 0,
+      "maxWarn": 0,
+      "minPageFiles": 5,
+      "minComponentFiles": 4,
+      "requiredFiles": [
+        "DESIGN-BRIEF.md",
+        "app/page.tsx",
+        "app/waves/page.tsx",
+        "app/issues/page.tsx",
+        "app/issues/[id]/page.tsx",
+        "app/carrier-lanes/page.tsx",
+        "app/inventory-risks/page.tsx",
+        "app/_components/BlockedWavePanel.tsx",
+        "app/_components/HealthStats.tsx",
+        "app/_components/RiskStreams.tsx",
+        "app/waves/_components/WaveColumn.tsx",
+        "app/issues/[id]/_components/RootCausePanel.tsx",
+        "app/issues/[id]/_components/ResolutionPanel.tsx"
+      ],
+      "requiredText": [
+        {
+          "file": "DESIGN-BRIEF.md",
+          "patterns": ["component_plan", "primary_action", "inline_advance", "root_cause"]
+        },
+        {
+          "file": "app/waves/page.tsx",
+          "patterns": ["WaveColumn", "handleAdvance"]
+        },
+        {
+          "file": "app/issues/[id]/page.tsx",
+          "patterns": ["RootCausePanel", "ResolutionPanel"]
+        }
+      ]
+    },
+    {
+      "id": "c12-prior-auth-ops-forgeui-first",
+      "label": "C12 prior authorization ops ForgeUI-first PRD",
+      "target": "${FORGE_DEMO_ROOT}/prior-auth-ops-c12-protask",
+      "allowMissing": true,
+      "maxCritical": 0,
+      "maxWarn": 0,
+      "minPageFiles": 7,
+      "minComponentFiles": 12,
+      "requiredFiles": [
+        "DESIGN-BRIEF.md",
+        "VALIDATION.md",
+        "PRODUCT-SCORE.md",
+        "C12-PROTASK-VALIDATION.md",
+        "product-quality-report.md",
+        "product-quality-report.json",
+        "protask-visual-report.md",
+        "protask-visual-report.json",
+        "USER-ACCEPTANCE-PACKET.md",
+        "USER-ACCEPTANCE-GALLERY.html",
+        "USER-ACCEPTANCE.example.json",
+        "app/page.tsx",
+        "app/cases/page.tsx",
+        "app/cases/[id]/page.tsx",
+        "app/tasks/page.tsx",
+        "app/rules/page.tsx",
+        "app/intake/page.tsx",
+        "app/settings/page.tsx",
+        "app/_lib/prior-auth-data.ts",
+        "app/cases/[id]/_components/RootCausePanel.tsx",
+        "app/cases/[id]/_components/CaseResolutionPanel.tsx",
+        "app/tasks/_components/TaskColumn.tsx",
+        "app/intake/_components/IntakeStepper.tsx",
+        "app/settings/_components/PolicyGroup.tsx"
+      ],
+      "requiredText": [
+        {
+          "file": "DESIGN-BRIEF.md",
+          "patterns": ["component_plan", "split-pane-triage", "kanban-board-with-row-actions", "wizard-multi-step"]
+        },
+        {
+          "file": "app/cases/[id]/page.tsx",
+          "patterns": ["RootCausePanel", "EvidencePanel", "CaseResolutionPanel", "router.push\\(`/tasks\\?case="]
+        },
+        {
+          "file": "app/tasks/page.tsx",
+          "patterns": ["TaskColumn", "handleAdvance"]
+        },
+        {
+          "file": "VALIDATION.md",
+          "patterns": ["0 critical", "7/7", "Browser Gate"]
+        },
+        {
+          "file": "C12-PROTASK-VALIDATION.md",
+          "patterns": ["ForgeUI-first", "0 critical / 0 warn / 29 passed", "browser validation: C8-C12 4/4 cases passed", "OK \"Preview\", OK \"Triage\""]
+        },
+        {
+          "file": "PRODUCT-SCORE.md",
+          "patterns": ["100/100", "Business depth", "Workflow closure", "protask-visual-audit"]
+        },
+        {
+          "file": "product-quality-report.md",
+          "patterns": ["Score: 100/100", "Product design brief", "Browser and visual evidence"]
+        },
+        {
+          "file": "protask-visual-report.md",
+          "patterns": ["Score: 100/100", "ForgeUI-first system", "Rich list and queue density"]
+        },
+        {
+          "file": "USER-ACCEPTANCE-PACKET.md",
+          "patterns": ["C12 User Acceptance Packet", "Protask visual-density audit", "Preview", "Triage"]
+        },
+        {
+          "file": "USER-ACCEPTANCE-GALLERY.html",
+          "patterns": ["C12 Prior Authorization Ops", "C12-cases.png", "Protask visual"]
+        }
+      ],
+      "notes": "Supersedes C11 after user scored C11 60/100; C12 is the current ForgeUI-first Protask benchmark candidate."
+    },
+    {
+      "id": "c13-deployment-release-board-kanban",
+      "label": "C13 deployment release board promoted kanban PRD",
+      "target": "${FORGE_DEMO_ROOT}/deployment-release-board-codex",
+      "allowMissing": true,
+      "maxCritical": 0,
+      "maxWarn": 0,
+      "minPageFiles": 5,
+      "minComponentFiles": 12,
+      "requiredFiles": [
+        "DESIGN-BRIEF.md",
+        "IA-ROUTE-MAP.json",
+        "PAGE-PATTERN-MATCH.json",
+        "browser-report.json",
+        "product-quality-report.json",
+        "protask-visual-report.json",
+        "app/dashboard/page.tsx",
+        "app/deployments/page.tsx",
+        "app/deployments/[id]/page.tsx",
+        "app/deployments/new/page.tsx",
+        "app/audit-log/page.tsx",
+        "app/deployments/_components/DeploymentCard.tsx",
+        "app/deployments/_components/DeploymentLane.tsx"
+      ],
+      "requiredText": [
+        {
+          "file": "DESIGN-BRIEF.md",
+          "patterns": ["kanban-workflow-protask", "component_plan", "primary_action", "secondary_context"]
+        },
+        {
+          "file": "app/deployments/page.tsx",
+          "patterns": ["DeploymentLane", "handleAdvance", "Open diagnostics"]
+        },
+        {
+          "file": "protask-visual-report.md",
+          "patterns": ["Score: 97/100", "kanban workflow baseline", "rich list route not required for kanban-first PRD"]
+        }
+      ],
+      "notes": "Fresh promoted kanban evidence: dashboard -> board -> detail -> new -> audit, with first viewport visible lane/action/diagnostic acceptance."
+    }
+  ]
+}

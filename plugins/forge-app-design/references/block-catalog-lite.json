@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "purpose": "First-pass block catalog for selecting Forge admin page compositions before writing code.",
+  "blocks": [
+    {
+      "id": "app-shell",
+      "role": "shell",
+      "intent": "Provide Forge AppLayout with navigation-only sidebar and topbar profile.",
+      "components": ["AppLayout"],
+      "inputs": ["navigation routes", "app label", "team profile", "user profile"],
+      "redLines": ["No custom page-level topbar", "No action/detail routes in sidebar"]
+    },
+    {
+      "id": "dashboard-control-tower",
+      "role": "dashboard",
+      "intent": "Prioritize operational work through KPI, trend/risk visual, priority work, activity, and workflow entry.",
+      "pattern": "dashboard-control-tower-protask",
+      "components": ["StatCard", "SurfaceCard", "ProgressBar", "DataTable", "HistoryItem", "StyledLink", "ButtonGroup"],
+      "firstViewportMustShow": ["page title", "KPI/stat strip", "trend or risk visual", "priority work or activity"],
+      "redLines": ["Not just four KPI cards", "No form workflow inside dashboard", "No mixed saturated/white KPI row", "No wide saturated red risk StatCard by default", "KPI values must be visually stronger than page H1"]
+    },
+    {
+      "id": "rich-queue-list",
+      "role": "list",
+      "intent": "Let operators scan, filter, preview, and open the next row to act on.",
+      "pattern": "rich-entity-list-protask",
+      "components": ["SurfaceCard", "DataTable", "Avatar", "Label", "ProgressBar", "Button", "StyledLink", "FileCard", "HistoryItem"],
+      "firstViewportMustShow": ["compact filters", "table header", "multiple row identities", "one row action"],
+      "redLines": ["No lg side rail squeeze", "No table-fixed", "No vertical row action stack", "No dual text actions in a row", "No compound risk score/percent/bar cell", "No redundant rounded filter shell", "No noisy multi-color label row", "No selected-row detail card below table", "No two stacked 5-item ButtonGroups", "No DataTable inside another large titled table card"]
+    },
+    {
+      "id": "split-pane-triage-detail",
+      "role": "detail",
+      "intent": "Resolve a record by showing identity, evidence, root cause, impact, history, and action feedback.",
+      "pattern": "split-pane-triage-protask",
+      "components": ["Breadcrumbs", "SurfaceCard", "Avatar", "Label", "ProgressBar", "FileCard", "HistoryItem", "TextArea", "Button", "StyledLink"],
+      "firstViewportMustShow": ["identity/status", "evidence or root cause", "resolution/action", "history or context"],
+      "redLines": ["No all-field description dump", "No loose unrelated card grid", "No missing next workflow link"]
+    },
+    {
+      "id": "action-form-with-status-rail",
+      "role": "action",
+      "intent": "Create, edit, submit, or configure a record through grouped fields with save feedback and right context.",
+      "pattern": "action-form-protask",
+      "components": ["Breadcrumbs", "SurfaceCard", "TextField", "TextArea", "SelectOption", "CheckboxControl", "ProgressBar", "Label", "Button", "StyledLink"],
+      "firstViewportMustShow": ["breadcrumbs or parent exit", "H1", "Cancel/Save", "first field group", "status/preflight rail"],
+      "redLines": ["No action route in sidebar", "No CheckboxWithLabel", "No long hero copy above form"]
+    },
+    {
+      "id": "audit-activity-stream",
+      "role": "audit",
+      "intent": "Show who changed what, when, and which record is related.",
+      "pattern": "audit-stream",
+      "components": ["SurfaceCard", "HistoryItem", "DataTable", "StyledLink", "Label"],
+      "firstViewportMustShow": ["audit title", "actor/action/target", "timestamp", "related record link"],
+      "redLines": ["No write workflow inside audit page"]
+    },
+    {
+      "id": "kanban-workflow-board",
+      "role": "workflow",
+      "intent": "Move workflow items through lanes with direct actions and diagnostic links.",
+      "pattern": "kanban-workflow-protask",
+      "components": ["SurfaceCard", "TaskCard", "Label", "ProgressBar", "Button", "StyledLink"],
+      "firstViewportMustShow": ["lane titles", "lane counts", "actionable cards", "failed/blocked diagnostic link"],
+      "status": "planned",
+      "redLines": ["Supporting route does not count as promoted kanban validation", "No read-only status grouping pretending to be workflow"]
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "split-pane-triage-protask",
+    "name": "Split-pane triage detail with evidence and resolution closure",
+    "appliesTo": [
+      "case detail",
+      "incident triage",
+      "approval review",
+      "risk alert detail",
+      "support ticket investigation",
+      "failed workflow repair"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "$FORGE_APP_DESIGN_ROOT/samples/detail-triage-workflow",
+      "$FORGE_APP_DESIGN_ROOT/samples/entity-detail-activity-rail",
+      "$FORGE_APP_DESIGN_ROOT/golden-apps/support-ticket-sla-center.md"
+    ],
+    "notes": "Detail pattern for evidence-heavy operational decisions. The list identifies priority; detail owns evidence, resolution, audit, and downstream workflow."
+  },
+  "lifecycleModel": [
+    "overview",
+    "operation",
+    "detail",
+    "audit"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Operations overview",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which queue or record requires investigation first?",
+      "primaryDataObject": "operations-program",
+      "layoutIntent": "dashboard-control-tower-protask",
+      "routeRole": "dashboard",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open triage queue",
+          "verb": "triage",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/triage"
+      ],
+      "navigationRationale": "Dashboard prioritizes work and links into the parent triage queue.",
+      "businessDensity": [
+        "risk",
+        "SLA",
+        "activity",
+        "priority queue"
+      ]
+    },
+    {
+      "id": "triage",
+      "route": "/triage",
+      "title": "Triage queue",
+      "primaryVerb": "triage",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which case should be opened based on risk, owner, status, evidence, and SLA?",
+      "primaryDataObject": "triage-case",
+      "layoutIntent": "rich-entity-list-protask",
+      "routeRole": "list",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Create case",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/triage/[id]",
+        "/triage/new"
+      ],
+      "navigationRationale": "The queue owns discovery and row actions; detail owns evidence-heavy resolution.",
+      "businessDensity": [
+        "row identity",
+        "owner",
+        "status",
+        "risk",
+        "SLA",
+        "evidence",
+        "row action"
+      ]
+    },
+    {
+      "id": "triage-detail",
+      "route": "/triage/[id]",
+      "title": "Triage detail",
+      "primaryVerb": "resolve",
+      "lifecycle": "detail",
+      "decisionQuestion": "What evidence, root cause, impact, and history justify resolving, escalating, or sending back this case?",
+      "primaryDataObject": "triage-case",
+      "layoutIntent": "split-pane-triage",
+      "routeRole": "detail",
+      "surfaceRole": "detail",
+      "parentRoute": "/triage",
+      "entryAffordance": "row_action",
+      "actions": [
+        {
+          "label": "Resolve case",
+          "verb": "resolve",
+          "kind": "write",
+          "lifecycle": "detail"
+        },
+        {
+          "label": "Escalate case",
+          "verb": "escalate",
+          "kind": "write",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/workflow-board",
+        "/audit-log"
+      ],
+      "navigationRationale": "Detail is a focused decision workspace with evidence, root cause, impact, history, resolution, audit trail, and downstream link.",
+      "businessDensity": [
+        "identity",
+        "status",
+        "evidence",
+        "root cause",
+        "impact scope",
+        "related records",
+        "SOP",
+        "history",
+        "resolution",
+        "audit trail",
+        "next workflow link"
+      ]
+    },
+    {
+      "id": "triage-new",
+      "route": "/triage/new",
+      "title": "Create case",
+      "primaryVerb": "create",
+      "lifecycle": "operation",
+      "decisionQuestion": "Is the owner, scope, policy, and evidence requirement safe to save?",
+      "primaryDataObject": "triage-case-draft",
+      "layoutIntent": "action-form-protask",
+      "routeRole": "wizard",
+      "surfaceRole": "action",
+      "parentRoute": "/triage",
+      "entryAffordance": "toolbar",
+      "actions": [
+        {
+          "label": "Save case",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/triage/[id]"
+      ],
+      "navigationRationale": "Create is a separate action route launched from the queue.",
+      "businessDensity": [
+        "owner",
+        "scope",
+        "priority",
+        "preflight",
+        "next workflow"
+      ]
+    },
+    {
+      "id": "workflow-board",
+      "route": "/workflow-board",
+      "title": "Workflow board",
+      "primaryVerb": "monitor",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which downstream workflow item should be advanced or watched after triage?",
+      "primaryDataObject": "workflow-item",
+      "layoutIntent": "kanban-board-with-row-actions",
+      "routeRole": "board",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open case detail",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/triage/[id]"
+      ],
+      "navigationRationale": "Workflow board receives resolved/escalated cases from detail and keeps next-step work visible.",
+      "businessDensity": [
+        "status lane",
+        "owner",
+        "SLA",
+        "next action"
+      ]
+    },
+    {
+      "id": "audit-log",
+      "route": "/audit-log",
+      "title": "Audit log",
+      "primaryVerb": "audit",
+      "lifecycle": "audit",
+      "decisionQuestion": "Who changed evidence, status, root cause, resolution, or workflow handoff, and why?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open related case",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/triage/[id]"
+      ],
+      "navigationRationale": "Audit is read-only and separate from decision work.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "object",
+        "reason",
+        "timestamp"
+      ]
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "flat-field-detail",
+      "description": "Detail renders a flat field list without evidence, root cause, impact, history, resolution, or workflow closure.",
+      "severity": "warn"
+    },
+    {
+      "id": "read-only-dossier",
+      "description": "Evidence is visible but there is no local resolution/escalation action or downstream workflow link.",
+      "severity": "warn"
+    }
+  ]
+}

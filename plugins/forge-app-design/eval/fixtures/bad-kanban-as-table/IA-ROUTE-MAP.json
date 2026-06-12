@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "id": "workflow-board",
+      "route": "/workflow-board",
+      "title": "Workflow board",
+      "primaryVerb": "filter",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which row needs attention?",
+      "primaryDataObject": "workflow-item",
+      "layoutIntent": "kanban-workflow-protask",
+      "routeRole": "board",
+      "surfaceRole": "navigation",
+      "actions": [{ "label": "Filter", "verb": "filter", "kind": "read", "lifecycle": "operation" }],
+      "linksOut": [],
+      "businessDensity": ["status", "owner", "last update"]
+    }
+  ],
+  "globalNavigation": ["/workflow-board"]
+}

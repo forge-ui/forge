@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "dashboard-control-tower-protask",
+    "name": "Protask control tower dashboard",
+    "appliesTo": [
+      "operations control tower",
+      "risk dashboard",
+      "SLA dashboard",
+      "compliance dashboard",
+      "fulfillment dashboard",
+      "support operations dashboard"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "$FORGE_APP_DESIGN_ROOT/samples/protask-compound-dashboard",
+      "$FORGE_APP_DESIGN_ROOT/golden-apps/fulfillment-ops-control-tower.md",
+      "$FORGE_APP_DESIGN_ROOT/golden-apps/data-quality-control-tower.md"
+    ],
+    "notes": "Dashboard control tower pattern for first-screen prioritization. It should not collapse into four KPI cards."
+  },
+  "lifecycleModel": [
+    "overview",
+    "operation",
+    "detail",
+    "audit"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Control tower",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which operating segment, queue, or record needs action now, and why?",
+      "primaryDataObject": "operations-program",
+      "layoutIntent": "dashboard-control-tower-protask",
+      "routeRole": "dashboard",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open priority queue",
+          "verb": "triage",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/priority-work",
+        "/priority-work/[id]",
+        "/audit-log"
+      ],
+      "navigationRationale": "Dashboard prioritizes work with trend, risk, priority rows, and activity. It links into queue/detail routes but does not own the full workflow.",
+      "businessDensity": [
+        "compact KPI",
+        "trend",
+        "risk mix",
+        "readiness gauge",
+        "priority work",
+        "activity stream",
+        "workflow entry"
+      ]
+    },
+    {
+      "id": "priority-work",
+      "route": "/priority-work",
+      "title": "Priority work",
+      "primaryVerb": "triage",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which work item should be opened, assigned, or escalated first?",
+      "primaryDataObject": "work-item",
+      "layoutIntent": "rich-entity-list-protask",
+      "routeRole": "list",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Create work item",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/priority-work/new",
+        "/priority-work/[id]"
+      ],
+      "navigationRationale": "The queue owns row decisions and launches action/detail routes from toolbar or row actions.",
+      "businessDensity": [
+        "row identity",
+        "status",
+        "owner",
+        "risk",
+        "SLA",
+        "evidence",
+        "row action"
+      ]
+    },
+    {
+      "id": "priority-work-detail",
+      "route": "/priority-work/[id]",
+      "title": "Priority work detail",
+      "primaryVerb": "resolve",
+      "lifecycle": "detail",
+      "decisionQuestion": "What evidence, root cause, impact, and history justify the next workflow action?",
+      "primaryDataObject": "work-item",
+      "layoutIntent": "split-pane-triage",
+      "routeRole": "detail",
+      "surfaceRole": "detail",
+      "parentRoute": "/priority-work",
+      "entryAffordance": "row_action",
+      "actions": [
+        {
+          "label": "Resolve work item",
+          "verb": "resolve",
+          "kind": "write",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/audit-log"
+      ],
+      "navigationRationale": "Detail owns evidence-heavy resolution after the dashboard and queue identify priority.",
+      "businessDensity": [
+        "evidence",
+        "root cause",
+        "impact scope",
+        "history",
+        "resolution",
+        "audit trail"
+      ]
+    },
+    {
+      "id": "priority-work-new",
+      "route": "/priority-work/new",
+      "title": "Create work item",
+      "primaryVerb": "create",
+      "lifecycle": "operation",
+      "decisionQuestion": "Is the owner, scope, priority, and evidence requirement safe to save?",
+      "primaryDataObject": "work-item-draft",
+      "layoutIntent": "action-form-protask",
+      "routeRole": "wizard",
+      "surfaceRole": "action",
+      "parentRoute": "/priority-work",
+      "entryAffordance": "toolbar",
+      "actions": [
+        {
+          "label": "Save work item",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/priority-work/[id]"
+      ],
+      "navigationRationale": "Action route is launched from the queue and remains outside sidebar navigation.",
+      "businessDensity": [
+        "owner",
+        "scope",
+        "priority",
+        "preflight",
+        "next workflow"
+      ]
+    },
+    {
+      "id": "audit-log",
+      "route": "/audit-log",
+      "title": "Audit log",
+      "primaryVerb": "audit",
+      "lifecycle": "audit",
+      "decisionQuestion": "Who changed priority, status, owner, evidence, or resolution, and why?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "surfaceRole": "navigation",
+      "actions": [
+        {
+          "label": "Open related work item",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "detail"
+        }
+      ],
+      "linksOut": [
+        "/priority-work/[id]"
+      ],
+      "navigationRationale": "Audit is read-only and separate from dashboard prioritization and detail resolution.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "object",
+        "reason",
+        "timestamp"
+      ]
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "kpi-only-dashboard",
+      "description": "Dashboard stops at four KPI cards and a generic table without trend, risk, priority work, activity, or workflow entry.",
+      "severity": "warn"
+    },
+    {
+      "id": "dashboard-owns-workflow",
+      "description": "Dashboard hosts create, edit, resolve, export, and audit actions instead of linking to dedicated routes.",
+      "severity": "critical"
+    }
+  ]
+}

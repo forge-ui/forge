@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "archetype": {
+    "id": "action-form-protask",
+    "name": "Action form with Protask title and status rail",
+    "appliesTo": [
+      "create form",
+      "edit form",
+      "submit request",
+      "workflow start",
+      "admin action page"
+    ]
+  },
+  "source": {
+    "kind": "manual",
+    "references": [
+      "/Users/hesong/Downloads/protask-figma/crm/Add Customer Filled.png",
+      "$FORGE_APP_DESIGN_ROOT/samples/action-form-protask"
+    ],
+    "notes": "Paired IA artifact for focused action forms that should not become sidebar pages or dashboard-like all-in-one forms."
+  },
+  "lifecycleModel": [
+    "overview",
+    "artifact",
+    "operation",
+    "audit"
+  ],
+  "pages": [
+    {
+      "id": "dashboard",
+      "route": "/",
+      "title": "Operations overview",
+      "primaryVerb": "prioritize",
+      "lifecycle": "overview",
+      "decisionQuestion": "Which queue or record should receive the next action?",
+      "primaryDataObject": "operations-program",
+      "layoutIntent": "hero-overview",
+      "routeRole": "dashboard",
+      "actions": [
+        {
+          "label": "Open review tasks",
+          "verb": "monitor",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/review-tasks"
+      ],
+      "navigationRationale": "Dashboard prioritizes work and links to parent queues, but does not host create/edit forms.",
+      "businessDensity": [
+        "risk focus",
+        "queue count",
+        "next action"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "review-tasks",
+      "route": "/review-tasks",
+      "title": "Review tasks",
+      "primaryVerb": "monitor",
+      "lifecycle": "operation",
+      "decisionQuestion": "Which task should be opened or which new task should be created?",
+      "primaryDataObject": "review-task",
+      "layoutIntent": "list-with-filters-and-bulk",
+      "routeRole": "list",
+      "actions": [
+        {
+          "label": "Create review task",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/review-tasks/new",
+        "/review-tasks/[id]"
+      ],
+      "navigationRationale": "The parent list owns discovery, filtering, and the primary CTA into the action form.",
+      "businessDensity": [
+        "status",
+        "owner",
+        "priority",
+        "due time",
+        "scope"
+      ],
+      "surfaceRole": "navigation"
+    },
+    {
+      "id": "review-task-new",
+      "route": "/review-tasks/new",
+      "title": "Create review task",
+      "primaryVerb": "create",
+      "lifecycle": "operation",
+      "decisionQuestion": "Is the selected owner, scope, policy, and due window safe enough to save?",
+      "primaryDataObject": "review-task-draft",
+      "layoutIntent": "action-form-protask",
+      "routeRole": "wizard",
+      "actions": [
+        {
+          "label": "Save task",
+          "verb": "create",
+          "kind": "write",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/review-tasks/[id]"
+      ],
+      "navigationRationale": "The action page only creates the task. It does not replace the parent queue or detail audit route.",
+      "businessDensity": [
+        "owner",
+        "scope",
+        "policy",
+        "priority",
+        "preflight",
+        "next workflow"
+      ],
+      "surfaceRole": "action",
+      "parentRoute": "/review-tasks",
+      "entryAffordance": "primary_cta"
+    },
+    {
+      "id": "review-task-detail",
+      "route": "/review-tasks/[id]",
+      "title": "Review task detail",
+      "primaryVerb": "inspect",
+      "lifecycle": "operation",
+      "decisionQuestion": "What happened after the task was created, and what action should happen next?",
+      "primaryDataObject": "review-task",
+      "layoutIntent": "tabbed-detail-with-related",
+      "routeRole": "detail",
+      "actions": [
+        {
+          "label": "Open audit trail",
+          "verb": "audit",
+          "kind": "read",
+          "lifecycle": "audit"
+        }
+      ],
+      "linksOut": [
+        "/audit-logs"
+      ],
+      "navigationRationale": "Detail owns history and related records, separate from the create/edit form.",
+      "businessDensity": [
+        "history",
+        "owner",
+        "related records",
+        "audit"
+      ],
+      "surfaceRole": "detail",
+      "parentRoute": "/review-tasks",
+      "entryAffordance": "row_action"
+    },
+    {
+      "id": "audit-logs",
+      "route": "/audit-logs",
+      "title": "Audit logs",
+      "primaryVerb": "audit",
+      "lifecycle": "audit",
+      "decisionQuestion": "Who changed a task or policy, when did it change, and what was the reason?",
+      "primaryDataObject": "audit-event",
+      "layoutIntent": "audit-stream",
+      "routeRole": "audit",
+      "actions": [
+        {
+          "label": "Open related task",
+          "verb": "inspect",
+          "kind": "read",
+          "lifecycle": "operation"
+        }
+      ],
+      "linksOut": [
+        "/review-tasks/[id]"
+      ],
+      "navigationRationale": "Audit is read-only and separate from create/edit action forms.",
+      "businessDensity": [
+        "actor",
+        "action",
+        "object",
+        "reason",
+        "timestamp"
+      ],
+      "surfaceRole": "navigation"
+    }
+  ],
+  "antiPatterns": [
+    {
+      "id": "action-route-in-sidebar",
+      "description": "A route ending in /new or /edit is promoted into sidebar navigation.",
+      "severity": "critical"
+    },
+    {
+      "id": "form-as-dashboard",
+      "description": "The action page adds dashboard KPI rows, long descriptions, or unrelated detail history instead of focused save/cancel workflow.",
+      "severity": "warn"
+    }
+  ]
+}
