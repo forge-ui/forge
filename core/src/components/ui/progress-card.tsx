@@ -66,7 +66,7 @@ export function ProgressCard({
       <CardGlow theme={cfg} />
 
       <div className="flex items-center justify-between relative z-10">
-        <span className={cn("text-base font-medium leading-6 tracking-fg", cfg.titleColor)}>{title}</span>
+        <span className={cn("text-sm font-medium leading-5 tracking-fg", cfg.titleColor)}>{title}</span>
         {action && <div className="shrink-0">{action}</div>}
       </div>
 

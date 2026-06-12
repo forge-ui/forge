@@ -6,7 +6,7 @@ small by design and should be applied before writing page code.
 Source rules:
 
 - `references/forge-composition-dna.md` (composition source of truth).
-- `references/component-registry-lite.json` (generation priority list).
+- `references/component-registry.json` (generation priority list).
 - `core/src/components/ui/data-table.tsx:206-569` (Forge cell primitives).
 
 ## Universal Rules
@@ -74,7 +74,7 @@ in `FORGEUI-GAPS.md` rather than hand-rolling.
 Hand-rolled composition inside a `DataTable` column `render` is only allowed
 when ALL of the following hold:
 
-1. No `Cell*` primitive in [component-registry-lite.json](component-registry-lite.json)
+1. No `Cell*` primitive in [component-registry.json](component-registry.json)
    maps to the field shape (check the `DataTable.fieldRules` map, not just
    the name).
 2. No combination of two `Cell*` primitives can express it (e.g.

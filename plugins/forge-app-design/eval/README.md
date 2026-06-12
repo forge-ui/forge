@@ -60,6 +60,38 @@ against a synthetic app route tree. It should stay at `0 issues`; warnings in
 sample links are treated as sample drift and should be fixed before using the
 artifact as a worker reference.
 
+## Component registry validation
+
+Run this after changing ForgeUI component exports, component registry semantics,
+or generation priority:
+
+```bash
+node $FORGE_APP_DESIGN_ROOT/eval/validate-component-registry.mjs
+```
+
+The validator treats `references/component-registry.json` as the source of
+truth, requires `component-registry-lite.json` to remain an exact compatibility
+mirror, checks required component semantics, and rejects registry entries that
+do not exist in the Forge core export indexes.
+
+Core exports that are not approved for direct page generation must be listed in
+`exportCoverage.deferredExports`. A new ForgeUI export fails validation until it
+is either promoted into `components` with generation semantics or explicitly
+deferred with a reason.
+
+## Example project intake
+
+Use this to turn a local example project into a lightweight precedent artifact:
+
+```bash
+node $FORGE_APP_DESIGN_ROOT/scripts/example-project-intake.mjs --source <project-dir> --id <slug> --domain <domain>
+```
+
+The output lives under `precedents/<slug>/metadata.json` and updates
+`precedents/index.json`. It records route roles, Forge component usage,
+screenshots, reusable lessons, and anti-patterns without copying the full source
+tree.
+
 ## Product-quality audit
 
 Run this after `quality-eval` and browser validation when a generated app is being

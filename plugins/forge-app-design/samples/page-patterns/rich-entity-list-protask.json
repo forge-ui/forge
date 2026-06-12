@@ -74,7 +74,7 @@
       "visualBaseline": {
         "typography": [
           "Admin H1 uses text-2xl or smaller; no text-display-l or routine text-3xl.",
-          "Table text defaults to text-sm; metadata/helper text uses text-xs."
+          "Table title, card title, and row primary text default to text-sm; metadata/helper text uses text-xs."
         ],
         "density": [
           "At a desktop review viewport, first viewport shows heading, compact filters, table header, and multiple row identities/actions when data exists.",

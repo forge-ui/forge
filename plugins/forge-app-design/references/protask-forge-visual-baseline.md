@@ -60,7 +60,7 @@ baseline.
 
 1. Typography:
    - Page H1: `text-2xl font-semibold` or smaller.
-   - Section title: `text-base`/`text-lg`, not hero scale.
+   - Card/table/rail title: `text-sm` with `font-medium` or `font-semibold`, close to sidebar menu scale, usually `text-fg-black`. Avoid routine `text-lg`/`text-xl` card headers.
    - Row/card body: `text-sm`; metadata and helper text: `text-xs`.
    - No `text-display-l` or routine `text-3xl` on admin pages.
 

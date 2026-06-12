@@ -67,22 +67,22 @@ export function ChartCard({
         className
       )}
     >
-      <div className="self-stretch px-6 pt-6 inline-flex justify-start items-start gap-3">
+      <div className="self-stretch px-5 pt-5 inline-flex justify-start items-start gap-3">
         <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
           <div className="self-stretch inline-flex justify-start items-center gap-3">
-            <span className="text-fg-black text-xl font-semibold leading-8 tracking-fg">
+            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
               {title}
             </span>
           </div>
           {subtitle && (
-            <span className="self-stretch text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+            <span className="self-stretch text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
               {subtitle}
             </span>
           )}
         </div>
         {actionElement}
       </div>
-      <div className="self-stretch flex-1 p-6 flex flex-col justify-start items-center gap-6">
+      <div className="self-stretch flex-1 p-5 flex flex-col justify-start items-center gap-5">
         {children}
         {footer}
       </div>

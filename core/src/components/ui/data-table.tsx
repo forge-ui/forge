@@ -652,17 +652,17 @@ export function DataTable<T>({
     >
       {/* Header */}
       {(title || headerActions) && (
-        <div className="self-stretch p-6 bg-white flex justify-start items-center gap-3">
+        <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
           {(title || subtitle || badge) && (
             <div className="flex-1 flex justify-start items-center gap-4">
               <div className="inline-flex flex-col justify-center items-start gap-2">
                 {title && (
-                  <div className="justify-start text-fg-black text-xl font-semibold leading-7.5 tracking-fg">
+                  <div className="justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg">
                     {title}
                   </div>
                 )}
                 {subtitle && (
-                  <div className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+                  <div className="justify-start text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
                     {subtitle}
                   </div>
                 )}
@@ -687,7 +687,7 @@ export function DataTable<T>({
               <th
                 key={col.key}
                 className={cn(
-                  "px-6 py-4 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
+                  "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
                   col.width
                 )}
                 style={col.flex ? { width: "auto" } : undefined}
@@ -717,7 +717,7 @@ export function DataTable<T>({
                 </td>
               )}
               {columns.map((col) => (
-                <td key={col.key} className={cn("px-6 py-4", col.width)} style={col.flex ? { width: "auto" } : undefined}>
+                <td key={col.key} className={cn("px-5 py-3.5", col.width)} style={col.flex ? { width: "auto" } : undefined}>
                   {col.render(row, rowIndex)}
                 </td>
               ))}
@@ -846,12 +846,12 @@ export function FullWidthTable<T>({
           <div className="flex-1 flex justify-start items-center gap-4">
             <div className="inline-flex flex-col justify-center items-start gap-2">
               {title && (
-                <div className="justify-start text-fg-black text-xl font-semibold leading-7.5 tracking-fg">
+                <div className="justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg">
                   {title}
                 </div>
               )}
               {subtitle && (
-                <div className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+                <div className="justify-start text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
                   {subtitle}
                 </div>
               )}
@@ -893,7 +893,7 @@ export function FullWidthTable<T>({
               <th
                 key={col.key}
                 className={cn(
-                  "px-6 py-4 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
+                  "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
                   col.width
                 )}
                 style={col.flex ? { width: "auto" } : undefined}
@@ -923,7 +923,7 @@ export function FullWidthTable<T>({
                 </td>
               )}
               {columns.map((col) => (
-                <td key={col.key} className={cn("px-6 py-4", col.width)} style={col.flex ? { width: "auto" } : undefined}>
+                <td key={col.key} className={cn("px-5 py-3.5", col.width)} style={col.flex ? { width: "auto" } : undefined}>
                   {col.render(row, rowIndex)}
                 </td>
               ))}

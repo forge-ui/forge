@@ -515,7 +515,7 @@ export function StatCardShell({
       <div className="self-stretch inline-flex justify-start items-start gap-2 relative z-10">
         {isWide ? (
           <>
-            <span className={cn("flex-1 text-base font-medium leading-6 tracking-fg truncate", theme.titleColor)}>
+            <span className={cn("flex-1 text-sm font-medium leading-5 tracking-fg truncate", theme.titleColor)}>
               {title}
             </span>
             {icon && (
@@ -541,7 +541,7 @@ export function StatCardShell({
                   size={iconSize}
                 />
               )}
-              <span className={cn("flex-1 text-base font-medium leading-6 tracking-fg truncate", theme.titleColor)}>
+              <span className={cn("flex-1 text-sm font-medium leading-5 tracking-fg truncate", theme.titleColor)}>
                 {title}
               </span>
             </div>

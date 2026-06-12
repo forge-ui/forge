@@ -61,7 +61,7 @@
       "visualBaseline": {
         "typography": [
           "Dashboard H1 uses Forge CRM text-2xl scale; KPI numbers may be text-3xl only inside stat cards.",
-          "Priority work and activity text uses text-sm/text-xs."
+          "Priority work, activity, card titles, and table titles use text-sm/text-xs; routine card headers do not use text-lg/text-xl."
         ],
         "density": [
           "At a desktop review viewport, first viewport shows control tower signal, compact KPI/stat strip, trend/risk visual, and at least one priority work or activity surface.",

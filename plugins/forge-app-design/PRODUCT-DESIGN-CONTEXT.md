@@ -41,7 +41,7 @@ Use this as the local context source for Codex-native prototype design work arou
 
 ## Generation Semantics
 
-- Component semantics live in `references/component-registry-lite.json`.
+- Component semantics live in `references/component-registry.json`.
   Generated apps should choose ForgeUI components by purpose, not by visual
   similarity alone.
 - Field-to-component mapping lives in
@@ -71,6 +71,11 @@ Use this as the local context source for Codex-native prototype design work arou
 
 ## Starter Validation
 
+- Canonical local starter for future validation:
+  `/Users/hesong/Desktop/forge-starter-canonical`.
+- The canonical starter must consume the latest published npm package for
+  `@forge-ui-official/core`, not a workspace link. Update it after core
+  publishes and validate with `pnpm typecheck` plus `pnpm build`.
 - `golden-apps/gym-member-admin.md` records a clean Forge starter validation:
   Product Design produced the business/layout direction, Forge starter/core
   carried the visual baseline, and `forge-app-design` was intentionally not

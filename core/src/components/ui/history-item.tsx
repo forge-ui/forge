@@ -139,7 +139,7 @@ export function HistoryItem({
       <div className="flex-1 pb-4 inline-flex flex-col justify-start items-start gap-2">
         {/* Title row */}
         <div className="self-stretch inline-flex justify-start items-center gap-2">
-          <div className="flex-1 text-fg-black text-base font-semibold leading-6 tracking-fg">{title}</div>
+          <div className="flex-1 text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</div>
           {datetime && showDatetime === "inline" && (
             <div className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{datetime}</div>
           )}

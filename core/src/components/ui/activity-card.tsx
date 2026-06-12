@@ -53,7 +53,7 @@ export function ActivityCard({
         />
         <div className="flex-1 flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <span className="text-base font-semibold text-fg-black">{title}</span>
+            <span className="text-sm font-semibold leading-5 text-fg-black">{title}</span>
             <span className="text-sm leading-5 text-fg-grey-700">{description}</span>
           </div>
 

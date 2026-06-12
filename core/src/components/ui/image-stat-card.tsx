@@ -107,7 +107,7 @@ export function ImageStatCard({
       {/* Top row: title + subtitle left / action right */}
       <div className="self-stretch inline-flex justify-between items-start gap-2 relative z-10">
         <div className="flex-1 flex flex-col gap-1 min-w-0">
-          <span className={cn("text-base font-semibold leading-6 tracking-fg truncate", cfg.valueColor)}>
+          <span className={cn("text-sm font-semibold leading-5 tracking-fg truncate", cfg.valueColor)}>
             {title}
           </span>
           {subtitle && (

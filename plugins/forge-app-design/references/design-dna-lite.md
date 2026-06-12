@@ -27,7 +27,7 @@ Protask CRM screenshots and Forge original implementations:
 ## Typography
 
 - Routine admin H1: `text-2xl font-semibold text-fg-black` or smaller.
-- Section titles: `text-base` or `text-lg`.
+- Card/table/rail titles: default to `text-sm` with `font-medium` or `font-semibold`, close to sidebar menu scale, usually `text-fg-black`. Use `text-base` only for a strong section header; avoid routine `text-lg`/`text-xl` card headers.
 - Table/card body: `text-sm`.
 - Metadata/helper text: `text-xs`.
 - `text-display-l`, `text-3xl`, and larger scales are not default admin page
