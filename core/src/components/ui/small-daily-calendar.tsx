@@ -58,8 +58,8 @@ export function SmallDailyCalendar({
       {/* Header */}
       <div className="px-6 pt-6 pb-4 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-1">
-          <span className="text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</span>
-          <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{subtitle}</span>
+          <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</span>
+          <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{subtitle}</span>
         </div>
         {onMenuClick && (
           <button onClick={onMenuClick} className="w-6 h-6 flex items-center justify-center cursor-pointer text-fg-grey-700">

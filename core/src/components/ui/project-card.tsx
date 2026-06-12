@@ -84,7 +84,7 @@ export function ProjectCard({
 
       {/* Content */}
       <div className="self-stretch flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch text-fg-black text-base font-semibold leading-6 tracking-fg">{title}</div>
+        <div className="self-stretch text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</div>
         {description && (
           <div className="self-stretch h-10 text-fg-grey-700 text-sm font-normal leading-5 tracking-fg line-clamp-2">
             {description}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "precedents": [
+    {
+      "id": "forge-starter-canonical",
+      "title": "Forge Starter Canonical",
+      "domain": "starter-baseline",
+      "routeCount": 12,
+      "forgeComponentsUsed": 3,
+      "artifact": "precedents/forge-starter-canonical/metadata.json"
+    }
+  ]
+}

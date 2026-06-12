@@ -21,7 +21,7 @@
       "businessDensity": ["owner", "scope", "policy", "priority", "readiness", "next workflow"],
       "visualBaseline": {
         "typography": [
-          "Action page H1 uses text-2xl or smaller; form labels and helper text use Forge text-sm/text-xs scale."
+          "Action page H1 uses text-2xl or smaller; form group card titles, labels, and helper text use Forge text-sm/text-xs scale."
         ],
         "density": [
           "At a desktop review viewport, first viewport shows title, first field group, save/cancel action, and right context/preflight rail."

@@ -65,7 +65,7 @@
       ],
       "visualBaseline": {
         "typography": [
-          "Detail H1 uses text-2xl or smaller; section titles stay text-base/text-lg.",
+          "Detail H1 uses text-2xl or smaller; card/rail section titles usually stay text-sm and only use text-base for a dominant section.",
           "Evidence, history, and metadata rows use text-sm plus text-xs supporting copy."
         ],
         "density": [

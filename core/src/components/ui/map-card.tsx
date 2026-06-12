@@ -122,13 +122,13 @@ function CardHeader({
   onMenuClick?: () => void;
 }) {
   return (
-    <div className="px-6 pt-6 inline-flex justify-start items-start gap-3">
+    <div className="px-5 pt-5 inline-flex justify-start items-start gap-3">
       <div className="flex-1 flex flex-col gap-2">
-        <span className="text-fg-black text-xl font-semibold leading-8 tracking-fg">
+        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
           {title}
         </span>
         {subtitle && (
-          <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+          <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
             {subtitle}
           </span>
         )}

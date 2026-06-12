@@ -77,5 +77,23 @@ pnpm typecheck
 发布前先从仓库根目录执行：
 
 ```bash
+pnpm core:audit
+pnpm core:typecheck
 pnpm core:build
+(cd core && npm pack --dry-run)
 ```
+
+发布检查清单：
+
+- 确认 `core/package.json` 版本号已递增，且根目录 `package.json` /
+  lockfile 没有被无关依赖变更污染。
+- `pnpm core:audit` 必须是 `0 error`。现有
+  `semantic-alias-review` warning 是 Figma orange 命名到 Forge red token 的
+  有意兼容别名；新增 warning 需要人工确认后再发布。
+- `pnpm core:typecheck`、`pnpm core:build` 必须通过。
+- `(cd core && npm pack --dry-run)` 必须只包含 `dist/` 和必要的包元数据。
+- 发布后用 canonical starter 消费 npm 包验证：
+  `/Users/hesong/Desktop/forge-starter-canonical`，执行 `pnpm install`、
+  `pnpm typecheck`、`pnpm build`。
+- 不把 npm token 写入仓库或全局 npmrc。短期手动发布可用临时 npmrc；
+  长期优先迁移到 npm trusted publishing。

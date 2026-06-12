@@ -34,6 +34,6 @@ PRD
 ## First-Version Lite Assets
 
 - `references/design-dna-lite.md`: visual DNA and density rules.
-- `references/component-registry-lite.json`: ForgeUI component semantics.
+- `references/component-registry.json`: ForgeUI component semantics.
 - `references/field-component-rules-lite.md`: field-to-component mapping.
 - `references/block-catalog-lite.json`: page block selection before JSX.

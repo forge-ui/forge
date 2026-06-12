@@ -38,7 +38,7 @@ export function HistoryGrouped({
       {/* Header */}
       <div className="p-5 border-b border-fg-grey-200 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-base font-semibold text-fg-black">{title}</span>
+          <span className="text-sm font-semibold leading-5 text-fg-black">{title}</span>
           {badge}
         </div>
         {action && <div>{action}</div>}

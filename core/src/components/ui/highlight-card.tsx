@@ -55,7 +55,7 @@ export function HighlightCard({
     >
       <div className="w-1/2 max-w-48 aspect-square absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/20 rounded-full blur-3xl" />
 
-      <h3 className={cn("text-lg font-semibold leading-7 tracking-fg relative z-10", cfg.valueColor)}>
+      <h3 className={cn("text-sm font-semibold leading-5 tracking-fg relative z-10", cfg.valueColor)}>
         {title}
       </h3>
 

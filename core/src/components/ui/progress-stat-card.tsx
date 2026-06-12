@@ -96,7 +96,7 @@ export function ProgressStatCard({
       {isWide ? (
         <>
           <div className="self-stretch inline-flex justify-between items-center gap-2 relative z-10">
-            <span className={cn("flex-1 text-base font-medium leading-6 tracking-fg truncate", cfg.titleColor)}>
+            <span className={cn("flex-1 text-sm font-medium leading-5 tracking-fg truncate", cfg.titleColor)}>
               {title}
             </span>
             {icon ? (
@@ -120,7 +120,7 @@ export function ProgressStatCard({
           <div className="flex-1 inline-flex flex-col justify-start items-start gap-4 min-w-0">
             <div className="self-stretch inline-flex justify-start items-center gap-2">
               {icon && <CardIconChip icon={icon} theme={cfg} themeKey={themeKey} size={iconSize} />}
-              <span className={cn("flex-1 text-base font-medium leading-6 tracking-fg truncate", cfg.titleColor)}>
+              <span className={cn("flex-1 text-sm font-medium leading-5 tracking-fg truncate", cfg.titleColor)}>
                 {title}
               </span>
             </div>

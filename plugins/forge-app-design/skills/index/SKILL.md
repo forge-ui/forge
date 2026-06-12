@@ -59,9 +59,10 @@ Default rule: **no handoff means design first; handoff means Forge implementatio
    - Prefer saved Forge context when available in this plugin root:
      - `PRODUCT-DESIGN-CONTEXT.md`
      - `references/design-dna-lite.md`
-     - `references/component-registry-lite.json`
+     - `references/component-registry.json`
      - `references/field-component-rules-lite.md`
      - `references/block-catalog-lite.json`
+     - `precedents/index.json`
      - `FORGEUI-GAPS.md`
      - `CODEX-PROTOTYPE-DESIGN-ROADMAP.md`
 
@@ -90,7 +91,7 @@ Default rule: **no handoff means design first; handoff means Forge implementatio
      - `rich-entity-list-protask`
      - `split-pane-triage-protask`
      - `kanban-workflow-protask`
-   - Read `../../references/design-dna-lite.md`, `../../references/component-registry-lite.json`, `../../references/field-component-rules-lite.md`, and `../../references/block-catalog-lite.json` before implementing Protask-style admin pages.
+   - Read `../../references/design-dna-lite.md`, `../../references/component-registry.json`, `../../references/field-component-rules-lite.md`, and `../../references/block-catalog-lite.json` before implementing Protask-style admin pages.
    - Read `../../references/protask-forge-visual-baseline.md` before implementing Protask-style admin pages.
    - Do not apply one generic PageHeader + Filter + Card + Table template to every route.
    - Match page role:
@@ -100,6 +101,7 @@ Default rule: **no handoff means design first; handoff means Forge implementatio
      - action: grouped form, right context, save/pending/error/success feedback
      - workflow: lanes, card actions, progress, diagnostic links, empty states
    - Encode visual baseline decisions in `PAGE-PATTERN-MATCH.json`: typography, density, spacing, borders, profile region, table first viewport, and right rail. Do not rely on ForgeUI component presence alone.
+   - Before implementation, select 0-2 relevant entries from `../../precedents/index.json`. Read the matching `metadata.json` files when they exist. Use them as product/layout precedent only; component facts still come from `../../references/component-registry.json`.
 
 5. Write Forge Design Handoff
    - Use `../../references/forge-design-handoff.md`.

@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "id": "forge-starter-canonical",
+  "title": "Forge Starter Canonical",
+  "domain": "starter-baseline",
+  "source": {
+    "path": "/Users/hesong/Desktop/forge-starter-canonical",
+    "packageName": "forge-starter",
+    "dependencies": {
+      "dependencies": {
+        "@forge-ui-official/core": "^0.1.3"
+      },
+      "devDependencies": {}
+    }
+  },
+  "summary": {
+    "routeCount": 12,
+    "sourceFilesScanned": 15,
+    "forgeComponentsUsed": 3,
+    "screenshots": 0
+  },
+  "routes": [
+    {
+      "route": "/analytics",
+      "pageRole": "list",
+      "evidence": [
+        "route naming"
+      ]
+    },
+    {
+      "route": "/calendar",
+      "pageRole": "list",
+      "evidence": [
+        "route naming"
+      ]
+    },
+    {
+      "route": "/dashboard",
+      "pageRole": "dashboard",
+      "evidence": [
+        "dashboard route keyword"
+      ]
+    },
+    {
+      "route": "/inbox",
+      "pageRole": "list",
+      "evidence": [
+        "route naming"
+      ]
+    },
+    {
+      "route": "/projects",
+      "pageRole": "list",
+      "evidence": [
+        "route naming"
+      ]
+    },
+    {
+      "route": "/starred",
+      "pageRole": "list",
+      "evidence": [
+        "route naming"
+      ]
+    },
+    {
+      "route": "/team",
+      "pageRole": "list",
+      "evidence": [
+        "route naming"
+      ]
+    },
+    {
+      "route": "/forgot-password",
+      "pageRole": "auth",
+      "evidence": [
+        "auth route keyword"
+      ]
+    },
+    {
+      "route": "/login",
+      "pageRole": "auth",
+      "evidence": [
+        "auth route keyword"
+      ]
+    },
+    {
+      "route": "/register",
+      "pageRole": "auth",
+      "evidence": [
+        "auth route keyword"
+      ]
+    },
+    {
+      "route": "/reset-password",
+      "pageRole": "auth",
+      "evidence": [
+        "auth route keyword"
+      ]
+    },
+    {
+      "route": "/",
+      "pageRole": "dashboard",
+      "evidence": [
+        "root route"
+      ]
+    }
+  ],
+  "componentUsage": {
+    "usesForgePackage": true,
+    "used": [
+      {
+        "name": "TextField",
+        "count": 14,
+        "files": [
+          "app/(auth)/forgot-password/page.tsx",
+          "app/(auth)/login/page.tsx",
+          "app/(auth)/register/page.tsx",
+          "app/(auth)/reset-password/page.tsx"
+        ]
+      },
+      {
+        "name": "Button",
+        "count": 12,
+        "files": [
+          "app/(auth)/forgot-password/page.tsx",
+          "app/(auth)/login/page.tsx",
+          "app/(auth)/register/page.tsx",
+          "app/(auth)/reset-password/page.tsx"
+        ]
+      },
+      {
+        "name": "AppLayout",
+        "count": 3,
+        "files": [
+          "app/(app)/dashboard/page.tsx"
+        ]
+      }
+    ],
+    "missingFromRegistry": []
+  },
+  "screenshots": [],
+  "reusableLessons": [
+    "Use dashboard as priority and navigation surface, not as the only workspace.",
+    "Keep list pages dense: toolbar, table header, first rows, and row actions visible in first viewport.",
+    "Reuse AppLayout chrome instead of rebuilding sidebar/topbar/profile per page."
+  ],
+  "antiPatternsToAvoid": []
+}
