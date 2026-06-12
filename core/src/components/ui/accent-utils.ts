@@ -21,11 +21,11 @@ export interface AccentConfig {
   border: string;
   /** Secondary text that reads on top of accent.bg (e.g. subtitle on a solid accent card) */
   onAccentMuted: string;
-  /** Hex value matching `bg` — for SVG fill / stroke / icon color props that don't accept className */
+  /** CSS color value matching `bg` — for SVG fill / stroke / icon color props that don't accept className */
   hex: string;
   /** Monochromatic shade ramp (deep → light), 5 stops. For multi-segment charts. */
   ramp: readonly [string, string, string, string, string];
-  /** Hex values matching `ramp` stops — for SVG conic gradients / stroke colors */
+  /** CSS color values matching `ramp` stops — for SVG conic gradients / stroke colors */
   rampHex: readonly [string, string, string, string, string];
 }
 
@@ -44,9 +44,9 @@ export const accentColors: Record<AccentColor, AccentConfig> = {
     bgTint: "bg-fg-violet-100",
     border: "border-fg-violet",
     onAccentMuted: "text-fg-violet-300",
-    hex: "#7239EA", // matches --fg-violet-500 token
+    hex: "var(--fg-violet)",
     ramp: ["bg-fg-violet-500", "bg-fg-violet-400", "bg-fg-violet-300", "bg-fg-violet-200", "bg-fg-violet-100"],
-    rampHex: ["#7239EA", "#8E61EE", "#A17AF1", "#BEA4F5", "#D3C2F8"],
+    rampHex: ["var(--fg-violet-500)", "var(--fg-violet-400)", "var(--fg-violet-300)", "var(--fg-violet-200)", "var(--fg-violet-100)"],
   },
   blue: {
     bg: "bg-fg-blue",
@@ -55,9 +55,9 @@ export const accentColors: Record<AccentColor, AccentConfig> = {
     bgTint: "bg-fg-blue-100",
     border: "border-fg-blue",
     onAccentMuted: "text-fg-blue-200",
-    hex: "#3553FF", // matches --fg-blue-500 token
+    hex: "var(--fg-blue)",
     ramp: ["bg-fg-blue-700", "bg-fg-blue-500", "bg-fg-blue-400", "bg-fg-blue-300", "bg-fg-blue-100"],
-    rampHex: ["#263BB5", "#3553FF", "#5D75FF", "#788CFF", "#C0CAFF"],
+    rampHex: ["var(--fg-blue-700)", "var(--fg-blue-500)", "var(--fg-blue-400)", "var(--fg-blue-300)", "var(--fg-blue-100)"],
   },
   black: {
     bg: "bg-fg-black",
@@ -66,8 +66,8 @@ export const accentColors: Record<AccentColor, AccentConfig> = {
     bgTint: "bg-fg-grey-100",
     border: "border-fg-black",
     onAccentMuted: "text-fg-grey-400",
-    hex: "#000A19", // matches --fg-black-500 token
+    hex: "var(--fg-black)",
     ramp: ["bg-fg-black", "bg-fg-grey-700", "bg-fg-grey-500", "bg-fg-grey-300", "bg-fg-grey-200"],
-    rampHex: ["#000A19", "#868686", "#BDBDBD", "#D3D3D3", "#E1E1E1"],
+    rampHex: ["var(--fg-black)", "var(--fg-grey-700)", "var(--fg-grey-500)", "var(--fg-grey-300)", "var(--fg-grey-200)"],
   },
 };

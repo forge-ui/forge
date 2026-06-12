@@ -60,7 +60,7 @@ export function BarChart({
             {isActive && (
               <div className={cn(
                 "pointer-events-none absolute inset-0 rounded-t-lg bg-gradient-to-b from-transparent",
-                accent === "purple" ? "to-fg-violet/10" : accent === "blue" ? "to-blue-600/10" : "to-fg-black/10",
+                accent === "purple" ? "to-fg-violet/10" : accent === "blue" ? "to-fg-blue/10" : "to-fg-black/10",
               )} />
             )}
 

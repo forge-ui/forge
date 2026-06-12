@@ -3,22 +3,22 @@ import { cn } from "../../lib/utils";
 
 const solidColors = {
   purple: "bg-fg-violet text-white",
-  green: "bg-emerald-500 text-white",
+  green: "bg-fg-green-500 text-white",
   red: "bg-fg-red text-white",
   yellow: "bg-fg-yellow text-white",
-  blue: "bg-blue-600 text-white",
-  cyan: "bg-teal-400 text-white",
-  orange: "bg-orange-500 text-white",
+  blue: "bg-fg-blue text-white",
+  cyan: "bg-fg-cyan-500 text-white",
+  orange: "bg-fg-red text-white",
 } as const;
 
 const outlineColors = {
-  purple: "bg-purple-100 outline outline-1 outline-offset-[-1px] outline-purple-300 text-fg-violet",
-  green: "bg-emerald-50 outline outline-1 outline-offset-[-1px] outline-emerald-200 text-emerald-500",
-  red: "bg-rose-100 outline outline-1 outline-offset-[-1px] outline-red-200 text-fg-red",
-  yellow: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-orange-200 text-fg-yellow",
-  blue: "bg-indigo-50 outline outline-1 outline-offset-[-1px] outline-indigo-200 text-blue-600",
-  cyan: "bg-teal-50 outline outline-1 outline-offset-[-1px] outline-teal-100 text-teal-400",
-  orange: "bg-orange-50 outline outline-1 outline-offset-[-1px] outline-orange-200 text-fg-red",
+  purple: "bg-fg-violet-100 outline outline-1 outline-offset-[-1px] outline-fg-violet-300 text-fg-violet",
+  green: "bg-fg-green-50 outline outline-1 outline-offset-[-1px] outline-fg-green-200 text-fg-green-500",
+  red: "bg-fg-red-100 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-red",
+  yellow: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-yellow",
+  blue: "bg-fg-blue-50 outline outline-1 outline-offset-[-1px] outline-fg-blue-200 text-fg-blue",
+  cyan: "bg-fg-cyan-50 outline outline-1 outline-offset-[-1px] outline-fg-cyan-100 text-fg-cyan-500",
+  orange: "bg-fg-red-50 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-red",
 } as const;
 
 const sizes = {

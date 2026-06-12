@@ -33,14 +33,14 @@ export function HalfDonutChart({
   }));
   const gradient = buildConicGradient(resolved, { sweep: 50, fromAngle: 270, trackColor });
   return (
-    <div className="flex w-64 flex-col items-center">
-      <div className="relative h-32 w-64 overflow-hidden">
+    <div className="flex w-full max-w-64 flex-col items-center">
+      <div className="relative w-full aspect-[2/1] overflow-hidden">
         <div
-          className="absolute left-1/2 top-0 h-60 w-60 -translate-x-1/2 rounded-full"
+          className="absolute left-1/2 top-0 h-[187.5%] w-[93.75%] -translate-x-1/2 rounded-full"
           style={{ background: gradient }}
         />
-        <div className="absolute left-1/2 top-[30px] h-[180px] w-[180px] -translate-x-1/2 rounded-full bg-white" />
-        <div className="absolute left-1/2 top-[70px] -translate-x-1/2 flex flex-col items-center text-center">
+        <div className="absolute left-1/2 top-[23.4375%] h-[140.625%] w-[70.3125%] -translate-x-1/2 rounded-full bg-white" />
+        <div className="absolute left-1/2 top-[54.6875%] -translate-x-1/2 flex flex-col items-center text-center">
           <ChartCenterText centerValue={centerValue} trend={trend} trendDirection={trendDirection} />
         </div>
       </div>

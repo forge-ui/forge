@@ -1,6 +1,6 @@
 import { useId, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
+import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
 
 // ============================================================
 // LineChartStatCard — Figma "Line Chart Statistic Card" (node 4299:4765)
@@ -14,32 +14,32 @@ export type LineChartColor =
 
 const chartGradient: Record<LineChartColor, string> = {
   purple: "from-fg-violet/10",
-  blue: "from-blue-600/10",
-  green: "from-emerald-500/10",
-  red: "from-red-500/10",
-  orange: "from-orange-500/10",
+  blue: "from-fg-blue/10",
+  green: "from-fg-green-500/10",
+  red: "from-fg-red-500/10",
+  orange: "from-fg-red/10",
   yellow: "from-fg-yellow/10",
-  cyan: "from-teal-400/10",
+  cyan: "from-fg-cyan-500/10",
 };
 
 const chartBorder: Record<LineChartColor, string> = {
   purple: "border-fg-violet",
-  blue: "border-blue-600",
-  green: "border-emerald-500",
+  blue: "border-fg-blue",
+  green: "border-fg-green-500",
   red: "border-fg-red",
-  orange: "border-orange-500",
+  orange: "border-fg-red",
   yellow: "border-fg-yellow",
-  cyan: "border-teal-400",
+  cyan: "border-fg-cyan-500",
 };
 
 const chartStroke: Record<LineChartColor, string> = {
-  purple: "#7c3aed",
-  blue: "#2563eb",
-  green: "#10b981",
-  red: "#ef4444",
-  orange: "#f97316",
-  yellow: "#fbbf24",
-  cyan: "#2dd4bf",
+  purple: "var(--fg-violet)",
+  blue: "var(--fg-blue)",
+  green: "var(--fg-green-500)",
+  red: "var(--fg-red)",
+  orange: "var(--fg-red)",
+  yellow: "var(--fg-yellow)",
+  cyan: "var(--fg-cyan-500)",
 };
 
 function CompactLineChartSlot({
@@ -115,8 +115,8 @@ function WideLineChartSlot({
   const { line, area } = buildSmoothPath(data);
   if (!line) return null;
   const isWhite = themeKey === "white";
-  const stroke = isWhite ? chartStroke[chartColor] : "#ffffff";
-  const fillStop = isWhite ? chartStroke[chartColor] : "#ffffff";
+  const stroke = isWhite ? chartStroke[chartColor] : "var(--fg-white)";
+  const fillStop = isWhite ? chartStroke[chartColor] : "var(--fg-white)";
 
   return (
     <svg
@@ -149,6 +149,7 @@ export function LineChartStatCard({
   chartDirection = "up",
   series,
   icon,
+  width,
   className,
 }: {
   title: string;
@@ -164,6 +165,8 @@ export function LineChartStatCard({
   series?: number[];
   /** Icon for the top-right chip (only rendered in size="wide"). */
   icon?: ReactNode;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -182,6 +185,7 @@ export function LineChartStatCard({
       themeKey={themeKey}
       size={size}
       icon={icon}
+      width={width}
       chartSlot={chartSlot}
       className={className}
     />

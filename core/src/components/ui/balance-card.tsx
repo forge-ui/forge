@@ -10,7 +10,9 @@ import {
   CardGlow,
   CardTrend,
   resolveCardTheme,
+  resolveCardWidthClass,
   type CardTheme,
+  type CardWidth,
   type LegacyCardTheme,
   type TrendDirection,
 } from "./card-utils";
@@ -37,6 +39,7 @@ export function BalanceCard({
   cardIcon,
   onTransfer,
   onRequest,
+  width,
   className,
 }: {
   title?: string;
@@ -50,6 +53,8 @@ export function BalanceCard({
   cardIcon?: string;
   onTransfer?: () => void;
   onRequest?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -66,7 +71,14 @@ export function BalanceCard({
   const cardNumColor = isWhite ? "text-fg-black" : "text-white";
 
   return (
-    <div className={cn("w-80 p-6 rounded-card inline-flex flex-col gap-5 overflow-hidden relative", cfg.bg, className)}>
+    <div
+      className={cn(
+        "p-6 rounded-card flex-col gap-5 overflow-hidden relative",
+        resolveCardWidthClass(width, "w-80"),
+        cfg.bg,
+        className,
+      )}
+    >
       <CardGlow theme={cfg} />
 
       {cardNumber && (

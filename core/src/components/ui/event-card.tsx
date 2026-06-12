@@ -2,6 +2,7 @@
 import { cn } from "../../lib/utils";
 import { ClockCircleBoldDuotone } from "solar-icon-set";
 import { type AccentColor } from "./accent-utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 
 // ============================================================
 // EventCard — Figma "Event Card" (calendar.md)
@@ -13,24 +14,24 @@ export type EventCardColor = AccentColor | "red" | "yellow" | "green" | "cyan" |
 
 const barColors: Record<EventCardColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
   black: "bg-fg-black",
   red: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  green: "bg-emerald-500",
-  cyan: "bg-teal-400",
-  orange: "bg-orange-500",
+  green: "bg-fg-green-500",
+  cyan: "bg-fg-cyan-500",
+  orange: "bg-fg-red",
 };
 
 const chipBg: Record<EventCardColor, string> = {
-  purple: "bg-purple-100 text-fg-violet",
-  blue: "bg-indigo-50 text-blue-600",
+  purple: "bg-fg-violet-100 text-fg-violet",
+  blue: "bg-fg-blue-50 text-fg-blue",
   black: "bg-fg-grey-200 text-fg-black",
-  red: "bg-rose-100 text-fg-red",
-  yellow: "bg-yellow-100 text-fg-yellow",
-  green: "bg-emerald-50 text-emerald-600",
-  cyan: "bg-teal-50 text-teal-600",
-  orange: "bg-orange-50 text-orange-600",
+  red: "bg-fg-red-100 text-fg-red",
+  yellow: "bg-fg-yellow-100 text-fg-yellow",
+  green: "bg-fg-green-50 text-fg-green-600",
+  cyan: "bg-fg-cyan-50 text-fg-cyan-600",
+  orange: "bg-fg-red-50 text-fg-red-600",
 };
 
 export function EventCard({
@@ -39,6 +40,7 @@ export function EventCard({
   color = "purple",
   avatars = [],
   overflowCount,
+  width,
   className,
 }: {
   title: string;
@@ -48,12 +50,15 @@ export function EventCard({
   avatars?: string[];
   /** Number to show in "+N" overflow chip. If omitted, no chip is shown. */
   overflowCount?: number;
+  /** Use full to fill calendar/list columns. Use fixed only for compact standalone showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "w-72 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden",
+        "bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+        resolveCardWidthClass(width, "w-72"),
         className,
       )}
     >

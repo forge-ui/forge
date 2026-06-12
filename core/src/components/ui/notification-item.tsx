@@ -38,7 +38,7 @@ export function NotificationItem({
     <div
       className={cn(
         "self-stretch px-5 py-4 flex flex-col items-end gap-2",
-        unread && "bg-yellow-50",
+        unread && "bg-fg-yellow-50",
         className
       )}
     >

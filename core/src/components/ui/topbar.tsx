@@ -7,8 +7,8 @@ import { cn } from "../../lib/utils";
 
 const topbarColors = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
 } as const;
 
 export type TopBarColor = keyof typeof topbarColors;

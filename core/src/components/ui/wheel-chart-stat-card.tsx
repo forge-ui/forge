@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
+import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
 
 // ============================================================
 // WheelChartStatCard — Figma "Wheel Chart Statistic Card" (node 6306:29093)
@@ -12,12 +12,12 @@ export type WheelColor = "purple" | "blue" | "green" | "red" | "orange" | "yello
 
 const wheelBg: Record<WheelColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
-  orange: "bg-orange-500",
+  orange: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
 };
 
 function WheelSlot({
@@ -45,8 +45,8 @@ function WheelSlot({
       <div
         className={cn("absolute inset-0 rounded-full", fillClass)}
         style={{
-          WebkitMask: `conic-gradient(from 0deg, #000 0deg ${angle}deg, transparent ${angle}deg 360deg)`,
-          mask: `conic-gradient(from 0deg, #000 0deg ${angle}deg, transparent ${angle}deg 360deg)`,
+          WebkitMask: `conic-gradient(from 0deg, var(--fg-black) 0deg ${angle}deg, transparent ${angle}deg 360deg)`,
+          mask: `conic-gradient(from 0deg, var(--fg-black) 0deg ${angle}deg, transparent ${angle}deg 360deg)`,
         }}
       />
     </div>
@@ -64,6 +64,7 @@ export function WheelChartStatCard({
   wheelColor = "purple",
   wheelPercent = 70,
   icon,
+  width,
   className,
 }: {
   title: string;
@@ -77,6 +78,8 @@ export function WheelChartStatCard({
   wheelPercent?: number;
   /** Icon for the top-right chip (only rendered in size="wide"). */
   icon?: ReactNode;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -91,6 +94,7 @@ export function WheelChartStatCard({
       themeKey={themeKey}
       size={size}
       icon={icon}
+      width={width}
       chartSlot={<WheelSlot percent={wheelPercent} color={wheelColor} themeKey={themeKey} size={size} />}
       className={className}
     />

@@ -69,10 +69,10 @@ export function MenuItem({
       return resolvedState === "active"
         ? cn(accentTheme.bg, "text-white")
         : resolvedState === "hover"
-          ? "bg-red-50 text-fg-red"
+          ? "bg-fg-red-50 text-fg-red"
           : resolvedState === "disabled"
             ? "text-fg-red/40 cursor-not-allowed"
-            : "text-fg-red hover:bg-red-50";
+            : "text-fg-red hover:bg-fg-red-50";
     }
 
     if (surface === "onColoredBg") {

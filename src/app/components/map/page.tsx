@@ -35,7 +35,7 @@ const CODE_USAGE = `<MapCard
 
 const CODE_VARIANTS = `<MapCard variant="sm" regions={regions} />
 <MapCard variant="md" regions={regions} />
-<MapCard variant="lg" regions={regions} className="w-full" />`;
+<MapCard variant="lg" regions={regions} />`;
 
 const CODE_COLORS = `<MapCard color="purple" regions={regions} highlights={["north-america", "oceania"]} />
 <MapCard color="blue"   regions={regions} highlights={["europe", "asia"]} />

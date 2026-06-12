@@ -7,7 +7,7 @@ import { cn } from "../../lib/utils";
 
 const breadcrumbColors = {
   purple: "text-fg-violet",
-  blue: "text-blue-600",
+  blue: "text-fg-blue",
   black: "text-fg-black",
 } as const;
 
@@ -36,7 +36,7 @@ export function Breadcrumbs({
         return (
           <span key={index} className="inline-flex justify-start items-center gap-2">
             {index > 0 && (
-              <span className="justify-start text-neutral-200 text-sm font-medium leading-5 tracking-fg">
+              <span className="justify-start text-fg-grey-200 text-sm font-medium leading-5 tracking-fg">
                 /
               </span>
             )}

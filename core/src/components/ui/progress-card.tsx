@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { cardThemes, CardGlow, resolveCardTheme, type CardTheme, type LegacyCardTheme } from "./card-utils";
+import { cardThemes, CardGlow, resolveCardTheme, resolveCardWidthClass, type CardTheme, type CardWidth, type LegacyCardTheme } from "./card-utils";
 
 // ============================================================
 // ProgressCard — Figma "Progress Card" (node 304:56383)
@@ -16,11 +16,11 @@ const innerBgMap: Record<CardTheme, string> = {
   white: "bg-white",
   black: "bg-fg-black",
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
 };
 
 export function ProgressCard({
@@ -32,6 +32,8 @@ export function ProgressCard({
   progressColor,
   items,
   action,
+  width,
+  className,
 }: {
   title: string;
   value: string;
@@ -39,18 +41,28 @@ export function ProgressCard({
   theme?: ProgressCardTheme;
   /** 0-100 */
   progress: number;
-  /** CSS color for the conic-gradient fill (e.g. "#7c3aed") */
+  /** CSS color for the conic-gradient fill (e.g. "var(--fg-violet)") */
   progressColor: string;
   items: { label: string; value: string; color: string }[];
   action?: ReactNode;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
+  className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
   const cfg = cardThemes[themeKey];
   const isWhite = themeKey === "white";
-  const trackColor = isWhite ? "#e5e7eb" : "rgba(255,255,255,0.2)";
+  const trackColor = isWhite ? "var(--fg-grey-200)" : "rgba(255,255,255,0.2)";
 
   return (
-    <div className={cn("w-80 p-5 rounded-card inline-flex flex-col gap-5 overflow-hidden relative", cfg.bg)}>
+    <div
+      className={cn(
+        "p-5 rounded-card flex-col gap-5 overflow-hidden relative",
+        resolveCardWidthClass(width, "w-80"),
+        cfg.bg,
+        className,
+      )}
+    >
       <CardGlow theme={cfg} />
 
       <div className="flex items-center justify-between relative z-10">

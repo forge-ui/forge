@@ -47,9 +47,9 @@ export const cardThemes: Record<CardTheme, CardThemeConfig> = {
     bg: "bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
     valueColor: "text-fg-black",
     titleColor: "text-fg-grey-700",
-    trendColor: "text-emerald-500",
+    trendColor: "text-fg-green-500",
     subtextColor: "text-fg-grey-700",
-    iconChipBg: "bg-purple-100",
+    iconChipBg: "bg-fg-violet-100",
     iconChipText: "text-fg-violet",
     avatarBorder: "border-white",
   },
@@ -62,8 +62,8 @@ export const cardThemes: Record<CardTheme, CardThemeConfig> = {
     iconChipBg: "bg-white/10",
     iconChipText: "text-white",
     avatarBorder: "border-fg-black",
-    glowFrom: "from-teal-400/0 to-teal-400/25",
-    glowTo: "from-teal-400/50 to-teal-400/0",
+    glowFrom: "from-fg-cyan-500/0 to-fg-cyan-500/25",
+    glowTo: "from-fg-cyan-500/50 to-fg-cyan-500/0",
   },
   purple: {
     bg: "bg-fg-violet",
@@ -78,26 +78,26 @@ export const cardThemes: Record<CardTheme, CardThemeConfig> = {
     glowTo: "from-fg-yellow/75 to-fg-yellow/0",
   },
   blue: {
-    bg: "bg-blue-600",
+    bg: "bg-fg-blue",
     valueColor: "text-white",
     titleColor: "text-white/75",
     trendColor: "text-white",
     subtextColor: "text-white/75",
     iconChipBg: "bg-white/15",
     iconChipText: "text-white",
-    avatarBorder: "border-blue-600",
-    glowFrom: "from-emerald-500/0 to-emerald-500/50",
-    glowTo: "from-emerald-500/75 to-emerald-500/0",
+    avatarBorder: "border-fg-blue",
+    glowFrom: "from-fg-green-500/0 to-fg-green-500/50",
+    glowTo: "from-fg-green-500/75 to-fg-green-500/0",
   },
   green: {
-    bg: "bg-emerald-500",
+    bg: "bg-fg-green-500",
     valueColor: "text-white",
     titleColor: "text-white/75",
     trendColor: "text-white",
     subtextColor: "text-white/75",
     iconChipBg: "bg-white/15",
     iconChipText: "text-white",
-    avatarBorder: "border-emerald-500",
+    avatarBorder: "border-fg-green-500",
     glowFrom: "from-fg-yellow/0 to-fg-yellow/80",
     glowTo: "from-fg-yellow to-fg-yellow/0",
   },
@@ -122,18 +122,18 @@ export const cardThemes: Record<CardTheme, CardThemeConfig> = {
     iconChipBg: "bg-white/20",
     iconChipText: "text-white",
     avatarBorder: "border-fg-yellow",
-    glowFrom: "from-orange-600/0 to-orange-600/50",
-    glowTo: "from-orange-600/75 to-orange-600/0",
+    glowFrom: "from-fg-red/0 to-fg-red/50",
+    glowTo: "from-fg-red/75 to-fg-red/0",
   },
   cyan: {
-    bg: "bg-teal-400",
+    bg: "bg-fg-cyan-500",
     valueColor: "text-white",
     titleColor: "text-white/75",
     trendColor: "text-white",
     subtextColor: "text-white/75",
     iconChipBg: "bg-white/20",
     iconChipText: "text-white",
-    avatarBorder: "border-teal-400",
+    avatarBorder: "border-fg-cyan-500",
     glowFrom: "from-fg-yellow/0 to-fg-yellow/75",
     glowTo: "from-fg-yellow to-fg-yellow/0",
   },
@@ -214,11 +214,11 @@ const badgeColorMap: Record<CardTheme, { solid: string; opacity: string; text: s
   white: { solid: "bg-fg-violet", opacity: "bg-fg-violet/10", text: "text-fg-violet" },
   black: { solid: "bg-fg-black", opacity: "bg-fg-black/10", text: "text-fg-black" },
   purple: { solid: "bg-fg-violet", opacity: "bg-fg-violet/10", text: "text-fg-violet" },
-  blue: { solid: "bg-blue-600", opacity: "bg-blue-600/10", text: "text-blue-600" },
-  green: { solid: "bg-emerald-500", opacity: "bg-emerald-500/10", text: "text-emerald-500" },
+  blue: { solid: "bg-fg-blue", opacity: "bg-fg-blue/10", text: "text-fg-blue" },
+  green: { solid: "bg-fg-green-500", opacity: "bg-fg-green-500/10", text: "text-fg-green-500" },
   red: { solid: "bg-fg-red", opacity: "bg-fg-red/10", text: "text-fg-red" },
   yellow: { solid: "bg-fg-yellow", opacity: "bg-fg-yellow/10", text: "text-fg-yellow" },
-  cyan: { solid: "bg-teal-400", opacity: "bg-teal-400/10", text: "text-teal-400" },
+  cyan: { solid: "bg-fg-cyan-500", opacity: "bg-fg-cyan-500/10", text: "text-fg-cyan-500" },
 };
 
 export function CardIconChip({
@@ -293,43 +293,43 @@ export const financialThemes: Record<FinancialTheme, FinancialThemeConfig> = {
     bg: "bg-fg-black",
     textColor: "text-white",
     labelColor: "text-white/75",
-    glowOrbs: ["bg-teal-400/30", "bg-fg-violet/30"],
-    gradientOrbs: ["from-teal-400/50 to-teal-400/0", "from-fg-violet/50 to-fg-violet/0"],
+    glowOrbs: ["bg-fg-cyan-500/30", "bg-fg-violet/30"],
+    gradientOrbs: ["from-fg-cyan-500/50 to-fg-cyan-500/0", "from-fg-violet/50 to-fg-violet/0"],
   },
   purple: {
     bg: "bg-fg-violet",
     textColor: "text-white",
     labelColor: "text-white/75",
-    glowOrbs: ["bg-fg-yellow/40", "bg-pink-500/30"],
-    gradientOrbs: ["from-fg-yellow/60 to-fg-yellow/0", "from-pink-500/50 to-pink-500/0"],
+    glowOrbs: ["bg-fg-yellow/40", "bg-fg-red-500/30"],
+    gradientOrbs: ["from-fg-yellow/60 to-fg-yellow/0", "from-fg-red-500/50 to-fg-red-500/0"],
   },
   blue: {
-    bg: "bg-blue-600",
+    bg: "bg-fg-blue",
     textColor: "text-white",
     labelColor: "text-white/75",
-    glowOrbs: ["bg-emerald-500/30", "bg-cyan-400/30"],
-    gradientOrbs: ["from-emerald-500/60 to-emerald-500/0", "from-cyan-400/50 to-cyan-400/0"],
+    glowOrbs: ["bg-fg-green-500/30", "bg-fg-cyan-500/30"],
+    gradientOrbs: ["from-fg-green-500/60 to-fg-green-500/0", "from-fg-cyan-500/50 to-fg-cyan-500/0"],
   },
   yellow: {
     bg: "bg-fg-yellow",
     textColor: "text-fg-black",
     labelColor: "text-fg-black/60",
     glowOrbs: ["bg-fg-red/30", "bg-fg-red/20"],
-    gradientOrbs: ["from-orange-600/50 to-orange-600/0", "from-red-500/40 to-red-500/0"],
+    gradientOrbs: ["from-fg-red/50 to-fg-red/0", "from-fg-red-500/40 to-fg-red-500/0"],
   },
   cyan: {
-    bg: "bg-teal-400",
+    bg: "bg-fg-cyan-500",
     textColor: "text-fg-black",
     labelColor: "text-fg-black/60",
-    glowOrbs: ["bg-blue-600/25", "bg-emerald-500/25"],
-    gradientOrbs: ["from-blue-600/40 to-blue-600/0", "from-emerald-500/40 to-emerald-500/0"],
+    glowOrbs: ["bg-fg-blue/25", "bg-fg-green-500/25"],
+    gradientOrbs: ["from-fg-blue/40 to-fg-blue/0", "from-fg-green-500/40 to-fg-green-500/0"],
   },
   green: {
-    bg: "bg-emerald-500",
+    bg: "bg-fg-green-500",
     textColor: "text-white",
     labelColor: "text-white/75",
-    glowOrbs: ["bg-fg-yellow/40", "bg-teal-400/30"],
-    gradientOrbs: ["from-fg-yellow/60 to-fg-yellow/0", "from-teal-400/50 to-teal-400/0"],
+    glowOrbs: ["bg-fg-yellow/40", "bg-fg-cyan-500/30"],
+    gradientOrbs: ["from-fg-yellow/60 to-fg-yellow/0", "from-fg-cyan-500/50 to-fg-cyan-500/0"],
   },
   orange: {
     bg: "bg-fg-red",
@@ -342,8 +342,8 @@ export const financialThemes: Record<FinancialTheme, FinancialThemeConfig> = {
     bg: "bg-fg-red",
     textColor: "text-white",
     labelColor: "text-white/75",
-    glowOrbs: ["bg-fg-yellow/40", "bg-pink-500/30"],
-    gradientOrbs: ["from-fg-yellow/60 to-fg-yellow/0", "from-pink-500/50 to-pink-500/0"],
+    glowOrbs: ["bg-fg-yellow/40", "bg-fg-red-500/30"],
+    gradientOrbs: ["from-fg-yellow/60 to-fg-yellow/0", "from-fg-red-500/50 to-fg-red-500/0"],
   },
 };
 
@@ -382,7 +382,7 @@ export function MastercardLogo() {
   return (
     <div className="flex items-center">
       <div className="w-7 h-7 rounded-full bg-fg-red" />
-      <div className="w-7 h-7 rounded-full bg-orange-400 -ml-3 opacity-80" />
+      <div className="w-7 h-7 rounded-full bg-fg-red-400 -ml-3 opacity-80" />
     </div>
   );
 }
@@ -440,13 +440,19 @@ export function CardAvatarGroup({
 // Provides: outer bg + glow, title row (with optional icon + action),
 // value + trend row, and a right-aligned chart/widget slot.
 
+export type CardWidth = "full" | "fixed";
+
+export function resolveCardWidthClass(width: CardWidth | undefined, fixedWidth: string) {
+  return width === "fixed" ? `${fixedWidth} max-w-full inline-flex` : "w-full min-w-0 flex";
+}
+
 export const statCardSizes = {
-  sm: { wrapper: "w-64 p-5", value: "text-3xl leading-9" },
-  lg: { wrapper: "w-90 p-6", value: "text-5xl leading-[60px]" },
+  sm: { wrapper: "p-5", fixedWidth: "w-64", value: "text-3xl leading-9" },
+  lg: { wrapper: "p-6", fixedWidth: "w-90", value: "text-5xl leading-[60px]" },
   // `wide` fills the parent column (e.g. 1/3 of a dashboard row) and lets
   // the chartSlot stretch with flex-1. Icon is rendered in the top-right
   // chip position to mirror Figma's wide statistic cards.
-  wide: { wrapper: "w-full p-6", value: "text-3xl leading-9" },
+  wide: { wrapper: "p-6", fixedWidth: "", value: "text-3xl leading-9" },
 } as const;
 
 export type StatCardSize = keyof typeof statCardSizes;
@@ -467,6 +473,7 @@ export function StatCardShell({
   chartSlot,
   /** Full-width content below the value row (e.g. progress bar) */
   footerSlot,
+  width,
   className,
 }: {
   title: string;
@@ -483,6 +490,8 @@ export function StatCardShell({
   action?: ReactNode;
   chartSlot?: ReactNode;
   footerSlot?: ReactNode;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const sz = statCardSizes[size];
@@ -494,7 +503,7 @@ export function StatCardShell({
     <div
       className={cn(
         "rounded-card flex-col justify-start items-start gap-4 overflow-hidden relative",
-        isWide ? "flex" : "inline-flex",
+        resolveCardWidthClass(isWide ? "full" : width, sz.fixedWidth),
         sz.wrapper,
         theme.bg,
         className,

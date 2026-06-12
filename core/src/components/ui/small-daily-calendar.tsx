@@ -54,7 +54,7 @@ export function SmallDailyCalendar({
   }
 
   return (
-    <div className={cn("w-[420px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden", className)}>
+    <div className={cn("w-full max-w-[420px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden", className)}>
       {/* Header */}
       <div className="px-6 pt-6 pb-4 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-1">
@@ -90,7 +90,7 @@ export function SmallDailyCalendar({
                   key={h}
                   className={cn(
                     "flex-1 border-l border-fg-grey-100 first:border-l-0",
-                    isNowSlot && "bg-rose-50",
+                    isNowSlot && "bg-fg-red-50",
                   )}
                 />
               );

@@ -8,27 +8,27 @@ import { cn } from "../../lib/utils";
 // ============================================================
 
 const iconBgColors = {
-  red: "bg-rose-100",
-  green: "bg-emerald-50",
+  red: "bg-fg-red-100",
+  green: "bg-fg-green-50",
   yellow: "bg-fg-yellow-50",
-  purple: "bg-purple-100",
-  blue: "bg-indigo-50",
+  purple: "bg-fg-violet-100",
+  blue: "bg-fg-blue-50",
 } as const;
 
 const iconTextColors = {
   red: "text-fg-red",
-  green: "text-emerald-500",
+  green: "text-fg-green-500",
   yellow: "text-fg-yellow",
   purple: "text-fg-violet",
-  blue: "text-blue-600",
+  blue: "text-fg-blue",
 } as const;
 
 const confirmBgColors = {
   red: "bg-fg-red",
-  green: "bg-emerald-500",
+  green: "bg-fg-green-500",
   yellow: "bg-fg-yellow text-fg-black",
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
 } as const;
 
 export type ConfirmationDialogColor = keyof typeof confirmBgColors;
@@ -60,7 +60,7 @@ export function ConfirmationDialog({
   return (
     <div
       className={cn(
-        "w-[480px] p-6 bg-white rounded-card flex flex-col items-center gap-8",
+        "w-full max-w-[480px] p-6 bg-white rounded-card flex flex-col items-center gap-8",
         className
       )}
     >

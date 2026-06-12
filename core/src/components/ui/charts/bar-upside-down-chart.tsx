@@ -68,7 +68,7 @@ export function BarUpsideDownChart({
             {isActive && (
               <div className={cn(
                 "pointer-events-none absolute inset-0 rounded-b-lg bg-gradient-to-b to-transparent",
-                accent === "purple" ? "from-fg-violet/10" : accent === "blue" ? "from-blue-600/10" : "from-fg-black/10",
+                accent === "purple" ? "from-fg-violet/10" : accent === "blue" ? "from-fg-blue/10" : "from-fg-black/10",
               )} />
             )}
 

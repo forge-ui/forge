@@ -88,7 +88,7 @@ export function ChatInputBar({
           <div className="flex flex-wrap items-center gap-2">
             {showAttachment && (
               <ToggleButton label="Attach">
-                <PaperclipLinear size={15} color="#52525B" />
+                <PaperclipLinear size={15} color="var(--fg-grey-900)" />
               </ToggleButton>
             )}
             {toggles?.map((t) => (
@@ -183,7 +183,7 @@ function SendButton({
         className="flex h-9 items-center gap-1.5 rounded-full bg-accent px-4 text-sm font-semibold text-white transition hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
       >
         {sendLabel}
-        <ArrowUpLinear size={15} color="#fff" />
+        <ArrowUpLinear size={15} color="var(--fg-white)" />
       </button>
     );
   }

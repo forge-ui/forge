@@ -123,7 +123,7 @@ export function SmoothLineChart({
       {markerPoint && showTooltip && (
         <>
           <div
-            className="pointer-events-none absolute bottom-0 top-0 w-5 -translate-x-1/2 rounded-sm bg-gradient-to-b from-transparent to-purple-100/70"
+            className="pointer-events-none absolute bottom-0 top-0 w-5 -translate-x-1/2 rounded-sm bg-gradient-to-b from-transparent to-fg-violet-100/70"
             style={{ left: `${(markerPoint[0] / VIEWBOX_W) * 100}%` }}
           />
           <div

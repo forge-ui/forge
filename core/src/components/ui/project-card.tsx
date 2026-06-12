@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { MenuDotsBold, CalendarLinear } from "solar-icon-set";
+import { cn } from "../../lib/utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 
 // ============================================================
 // ProjectCard - 项目卡片
@@ -12,11 +14,11 @@ export type ProjectCardColor =
 
 const cardColors: Record<ProjectCardColor, { bar: string; text: string; labelBg: string }> = {
   purple: { bar: "bg-fg-violet", text: "text-fg-violet", labelBg: "bg-fg-violet" },
-  blue: { bar: "bg-blue-600", text: "text-blue-600", labelBg: "bg-blue-600" },
-  green: { bar: "bg-emerald-500", text: "text-emerald-500", labelBg: "bg-emerald-500" },
+  blue: { bar: "bg-fg-blue", text: "text-fg-blue", labelBg: "bg-fg-blue" },
+  green: { bar: "bg-fg-green-500", text: "text-fg-green-500", labelBg: "bg-fg-green-500" },
   red: { bar: "bg-fg-red", text: "text-fg-red", labelBg: "bg-fg-red" },
   yellow: { bar: "bg-fg-yellow", text: "text-fg-yellow", labelBg: "bg-fg-yellow" },
-  cyan: { bar: "bg-teal-400", text: "text-teal-400", labelBg: "bg-teal-400" },
+  cyan: { bar: "bg-fg-cyan-500", text: "text-fg-cyan-500", labelBg: "bg-fg-cyan-500" },
   gray: { bar: "bg-fg-grey-700", text: "text-fg-grey-700", labelBg: "bg-fg-grey-700" },
 };
 
@@ -32,6 +34,7 @@ export function ProjectCard({
   overflowCount,
   date,
   onMenuClick,
+  width,
   className = "",
 }: {
   logo?: string;
@@ -45,6 +48,8 @@ export function ProjectCard({
   overflowCount?: number;
   date?: string;
   onMenuClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const pColor = cardColors[progressColor];
@@ -52,7 +57,11 @@ export function ProjectCard({
 
   return (
     <div
-      className={`w-80 p-5 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-start gap-4 overflow-hidden ${className}`}
+      className={cn(
+        "p-5 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-start gap-4 overflow-hidden",
+        resolveCardWidthClass(width, "w-80"),
+        className,
+      )}
     >
       {/* Header: logo + label + menu */}
       <div className="self-stretch inline-flex justify-between items-start">
@@ -66,7 +75,7 @@ export function ProjectCard({
           {onMenuClick && (
             <button onClick={onMenuClick} className="w-6 h-6 p-2 flex justify-center items-center cursor-pointer">
               <span className="rotate-90">
-                <MenuDotsBold size={16} color="#71717A" />
+                <MenuDotsBold size={16} color="var(--fg-grey-700)" />
               </span>
             </button>
           )}
@@ -106,14 +115,14 @@ export function ProjectCard({
             ))}
           </div>
           {overflowCount && overflowCount > 0 && (
-            <div className="w-8 h-8 p-1 bg-purple-100 rounded-full flex justify-center items-center overflow-hidden -ml-2">
+            <div className="w-8 h-8 p-1 bg-fg-violet-100 rounded-full flex justify-center items-center overflow-hidden -ml-2">
               <span className="text-fg-violet text-xs font-semibold leading-4.5 tracking-fg">+{overflowCount}</span>
             </div>
           )}
         </div>
         {date && (
           <div className="flex justify-center items-center gap-2">
-            <CalendarLinear size={20} color="#A3A3A3" />
+            <CalendarLinear size={20} color="var(--fg-grey-600)" />
             <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{date}</span>
           </div>
         )}
@@ -121,4 +130,3 @@ export function ProjectCard({
     </div>
   );
 }
-

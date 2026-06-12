@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { type ReactNode, useState } from "react";
+import { type CSSProperties, type ReactNode, useState } from "react";
 import { HamburgerMenuLinear } from "solar-icon-set";
 import { cn } from "../../lib/utils";
 import { MenuItem } from "./menu-item";
@@ -81,6 +81,8 @@ export function SidebarMenu({
   accent = "purple",
   mode = "full",
   bgMode = "white",
+  width,
+  railWidth,
   onMenuCollapse,
   className,
 }: {
@@ -95,6 +97,10 @@ export function SidebarMenu({
   accent?: SidebarMenuAccent;
   mode?: SidebarMenuMode;
   bgMode?: SidebarMenuBgMode;
+  /** Expanded sidebar width. Accepts any CSS length; default keeps the Forge starter density. */
+  width?: string;
+  /** Minimized sidebar rail width. Accepts any CSS length; default keeps the Forge starter density. */
+  railWidth?: string;
   onMenuCollapse?: () => void;
   className?: string;
 }) {
@@ -112,6 +118,10 @@ export function SidebarMenu({
     bgMode === "colored" ? "border-white/10" : "border-fg-grey-200";
   const sectionLabelColor =
     bgMode === "colored" ? "text-white/75" : "text-fg-grey-700";
+  const sidebarStyle = {
+    "--forge-sidebar-width": width,
+    "--forge-sidebar-rail-width": railWidth,
+  } as CSSProperties;
 
   if (mode === "minimized") {
     const flattenForRail = (items: SidebarMenuItem[]): SidebarMenuItem[] =>
@@ -125,8 +135,9 @@ export function SidebarMenu({
 
     return (
       <div
+        style={sidebarStyle}
         className={cn(
-          "w-20 self-stretch shadow-[0px_4px_30px_0px_rgba(102,112,133,0.03)] flex flex-col items-center gap-4 py-6",
+          "w-[var(--forge-sidebar-rail-width,5rem)] self-stretch shadow-[0px_4px_30px_0px_rgba(102,112,133,0.03)] flex flex-col items-center gap-4 py-6",
           shellBg,
           className
         )}
@@ -192,8 +203,9 @@ export function SidebarMenu({
 
   return (
     <div
+      style={sidebarStyle}
       className={cn(
-        "w-64 self-stretch shadow-[0px_4px_30px_0px_rgba(102,112,133,0.03)] flex flex-col",
+        "w-[var(--forge-sidebar-width,16rem)] self-stretch shadow-[0px_4px_30px_0px_rgba(102,112,133,0.03)] flex flex-col",
         shellBg,
         className
       )}
@@ -211,7 +223,7 @@ export function SidebarMenu({
               <div
                 className={cn(
                   "w-1.5 h-1 absolute left-[5px] top-[5px] rounded-sm",
-                  bgMode === "colored" ? "bg-white/60" : "bg-purple-300"
+                  bgMode === "colored" ? "bg-white/60" : "bg-fg-violet-300"
                 )}
               />
             </div>

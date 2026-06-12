@@ -35,7 +35,7 @@ function CommentInner({
         <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">{name}</span>
         <span className="text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">{date}</span>
       </div>
-      <p className="self-stretch text-stone-500 text-sm font-normal leading-5 tracking-fg">
+      <p className="self-stretch text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">
         {content}
       </p>
       {images && images.length > 0 && (

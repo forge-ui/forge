@@ -42,7 +42,7 @@ export function getFieldClasses({
   const wrapper = cn(
     "outline outline-1 outline-offset-[-1px] transition-all",
     shapeClass,
-    state === "error" && "bg-rose-100 outline-fg-red",
+    state === "error" && "bg-fg-red-100 outline-fg-red",
     state === "disabled" && "bg-fg-grey-200 outline-fg-grey-200 cursor-not-allowed",
     state === "focus" && `bg-transparent ${accent.outline}`,
     (state === "filled" || state === "idle") && "bg-white outline-fg-grey-200",
@@ -63,8 +63,8 @@ export function getFieldClasses({
 // From Figma "Purple/Blue/Black Tag Option" — Opacity style (light bg + colored text)
 
 const tagBgByColor: Record<FieldColor, string> = {
-  purple: "bg-purple-100",
-  blue: "bg-indigo-50",
+  purple: "bg-fg-violet-100",
+  blue: "bg-fg-blue-50",
   black: "bg-fg-grey-100",
 };
 

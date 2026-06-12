@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { type ReactNode } from "react";
 import { MenuDotsBold } from "solar-icon-set";
+import { cn } from "../../lib/utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 
 // ============================================================
 // UserCard - 用户卡片
@@ -19,6 +21,7 @@ export function UserCard({
   stats,
   checked = false,
   onMenuClick,
+  width,
   className = "",
 }: {
   avatar?: string;
@@ -30,20 +33,27 @@ export function UserCard({
   stats?: { label: string; value: string }[];
   checked?: boolean;
   onMenuClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const initialsColors = {
-    purple: { bg: "bg-purple-100", text: "text-fg-violet" },
-    blue: { bg: "bg-indigo-50", text: "text-blue-600" },
-    green: { bg: "bg-emerald-50", text: "text-emerald-500" },
-    orange: { bg: "bg-orange-100", text: "text-fg-red" },
+    purple: { bg: "bg-fg-violet-100", text: "text-fg-violet" },
+    blue: { bg: "bg-fg-blue-50", text: "text-fg-blue" },
+    green: { bg: "bg-fg-green-50", text: "text-fg-green-500" },
+    orange: { bg: "bg-fg-red-100", text: "text-fg-red" },
   };
 
   const iColor = initialsColors[initialsColor];
 
   return (
     <div
-      className={`w-52 p-4 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] ${checked ? "outline-fg-violet" : "outline-fg-grey-200"} inline-flex flex-col justify-start items-center gap-4 overflow-hidden ${className}`}
+      className={cn(
+        "p-4 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] flex-col justify-start items-center gap-4 overflow-hidden",
+        checked ? "outline-fg-violet" : "outline-fg-grey-200",
+        resolveCardWidthClass(width, "w-52"),
+        className,
+      )}
     >
       {/* Avatar + name + badge */}
       <div className="self-stretch relative flex flex-col justify-start items-center gap-4">
@@ -67,7 +77,7 @@ export function UserCard({
             className="w-6 h-6 p-2 absolute right-0 top-0 inline-flex justify-center items-center cursor-pointer"
           >
             <span className="rotate-90">
-              <MenuDotsBold size={16} color="#71717A" />
+              <MenuDotsBold size={16} color="var(--fg-grey-700)" />
             </span>
           </button>
         )}
@@ -90,4 +100,3 @@ export function UserCard({
     </div>
   );
 }
-

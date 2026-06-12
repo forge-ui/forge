@@ -8,7 +8,9 @@ import {
   CardIconChip,
   CardKebabButton,
   resolveCardTheme,
+  resolveCardWidthClass,
   type CardTheme,
+  type CardWidth,
   type LegacyCardTheme,
   type TrendDirection,
   type StatCardSize,
@@ -27,12 +29,12 @@ export type ProgressFillColor =
 
 const progressFillBg: Record<ProgressFillColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
-  orange: "bg-orange-500",
+  orange: "bg-fg-red",
   yellow: "bg-fg-yellow",
-  cyan: "bg-teal-400",
+  cyan: "bg-fg-cyan-500",
   gray: "bg-fg-grey-500",
 };
 
@@ -49,6 +51,7 @@ export function ProgressStatCard({
   icon,
   action,
   onKebabClick,
+  width,
   className,
 }: {
   title: string;
@@ -64,6 +67,8 @@ export function ProgressStatCard({
   icon?: ReactNode;
   action?: ReactNode;
   onKebabClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
@@ -80,7 +85,7 @@ export function ProgressStatCard({
     <div
       className={cn(
         "rounded-card flex-col justify-start items-start gap-4 overflow-hidden relative",
-        isWide ? "flex" : "inline-flex",
+        resolveCardWidthClass(isWide ? "full" : width, sz.fixedWidth),
         sz.wrapper,
         cfg.bg,
         className,

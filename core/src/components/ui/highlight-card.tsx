@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "../../lib/utils";
-import { cardThemes, resolveCardTheme, type CardTheme, type LegacyCardTheme } from "./card-utils";
+import { cardThemes, resolveCardTheme, resolveCardWidthClass, type CardTheme, type CardWidth, type LegacyCardTheme } from "./card-utils";
 
 // ============================================================
 // HighlightCard — Figma "Highlight Card" (node 6498:191669)
@@ -30,6 +30,7 @@ export function HighlightCard({
   image,
   annotations = [],
   products = [],
+  width,
   className,
 }: {
   title: string;
@@ -37,13 +38,22 @@ export function HighlightCard({
   image: string;
   annotations?: Annotation[];
   products?: Product[];
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }) {
   const cfg = cardThemes[resolveCardTheme(theme)];
 
   return (
-    <div className={cn("w-96 h-[462px] p-6 rounded-card inline-flex flex-col gap-5 overflow-hidden relative", cfg.bg, className)}>
-      <div className="w-48 h-48 absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/20 rounded-full blur-3xl" />
+    <div
+      className={cn(
+        "h-[462px] p-6 rounded-card flex-col gap-5 overflow-hidden relative",
+        resolveCardWidthClass(width, "w-96"),
+        cfg.bg,
+        className,
+      )}
+    >
+      <div className="w-1/2 max-w-48 aspect-square absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/20 rounded-full blur-3xl" />
 
       <h3 className={cn("text-lg font-semibold leading-7 tracking-fg relative z-10", cfg.valueColor)}>
         {title}

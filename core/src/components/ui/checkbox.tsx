@@ -8,8 +8,8 @@
 
 const checkboxColors = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
-  green: "bg-emerald-500",
+  blue: "bg-fg-blue",
+  green: "bg-fg-green-500",
   red: "bg-fg-red",
   orange: "bg-fg-red",
   black: "bg-fg-black",
@@ -50,7 +50,7 @@ export function Checkbox({
           </svg>
         </>
       ) : (
-        <div className="w-5 h-5 bg-white rounded-md border-2 border-stone-300" />
+        <div className="w-5 h-5 bg-white rounded-md border-2 border-fg-grey-300" />
       )}
     </button>
   );

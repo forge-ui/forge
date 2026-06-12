@@ -29,7 +29,7 @@ export default function MapCasePage() {
       {/* ============ Variants × Colors ============ */}
       <Section
         title="Variants (sm / md)"
-        description="紧凑版 (sm w-96) 和中号 (md w-[480px])，下方列表显示 regions。3 色全铺。"
+        description="紧凑版和中号控制内部地图高度；宽度默认填满父级列。3 色全铺。"
       >
         {(["sm", "md"] as MapVariant[]).map((v) => (
           <SubSection key={v} title={`Variant: ${v}`} >

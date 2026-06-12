@@ -12,8 +12,8 @@ import {
 import { formAccents, type FormAccentColor } from "./form-utils";
 
 const rangeStyles: Record<FormAccentColor, { bg: string; text: string }> = {
-  purple: { bg: "bg-purple-100", text: "text-fg-violet" },
-  blue: { bg: "bg-blue-100", text: "text-blue-600" },
+  purple: { bg: "bg-fg-violet-100", text: "text-fg-violet" },
+  blue: { bg: "bg-fg-blue-100", text: "text-fg-blue" },
   black: { bg: "bg-fg-grey-200", text: "text-fg-black" },
 };
 
@@ -107,7 +107,7 @@ export function Datepicker({
   const wrapperClass = cn(
     "flex items-center gap-1 px-4 py-3 outline outline-1 outline-offset-[-1px] transition-all cursor-pointer",
     shapeClass,
-    isError && "bg-rose-100 outline-fg-red",
+    isError && "bg-fg-red-100 outline-fg-red",
     isDisabled && "bg-fg-grey-200 outline-fg-grey-200 cursor-not-allowed",
     isFocus && !isError && !isDisabled && `bg-transparent ${accent.outline}`,
     isFilled && !isFocus && !isError && !isDisabled && "bg-white outline-fg-grey-200",
@@ -206,7 +206,7 @@ export function Datepicker({
         </div>
 
         {open && !isDisabled && (
-          <div className="absolute top-full left-0 mt-1 w-96 bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50">
+          <div className="absolute top-full left-0 mt-1 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50">
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-fg-grey-200 p-4">
               <button type="button" onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">

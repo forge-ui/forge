@@ -13,7 +13,7 @@ import {
 import { cn } from "../../lib/utils";
 
 // ============================================================
-// Tooltip — Figma: w-2 h-1 bg-slate-950 rectangle arrow (NOT CSS triangle)
+// Tooltip — Figma: w-2 h-1 bg-fg-black rectangle arrow (NOT CSS triangle)
 // position: top | bottom | left | right
 // size: sm (single-line) | lg (multi-line w-44)
 // ============================================================
@@ -151,7 +151,7 @@ export function Tooltip({
 // ============================================================
 // TooltipAnchor — 14×14 icon trigger paired with Tooltip
 // Figma: p-0.5 + Bold Duotone icon w-3.5 h-3.5
-// state: idle (transparent) | active (bg-gray-200 rounded)
+// state: idle (transparent) | active (bg-fg-grey-200 rounded)
 // ============================================================
 
 export type TooltipAnchorState = "idle" | "active";

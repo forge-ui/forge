@@ -37,7 +37,7 @@ export function ActivityCard({
               className="shrink-0 w-6 h-6 flex items-center justify-center rounded-md hover:bg-fg-grey-100 transition-colors"
             >
               <span className="rotate-90">
-                <MenuDotsBold size={16} color="#71717A" />
+                <MenuDotsBold size={16} color="var(--fg-grey-700)" />
               </span>
             </button>
           )}

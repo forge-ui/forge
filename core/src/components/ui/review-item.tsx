@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { StarBold, MenuDotsBold } from "solar-icon-set";
+import { cn } from "../../lib/utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 
-const STAR_FILLED = "#EAB308";
-const STAR_EMPTY = "#E5E7EB";
+const STAR_FILLED = "var(--fg-yellow)";
+const STAR_EMPTY = "var(--fg-grey-200)";
 
 function StarRow({ rating, size = 16 }: { rating: number; size?: number }) {
   return (
@@ -34,7 +36,7 @@ function ImageGrid({
         />
       ))}
       {overflowImageCount !== undefined && overflowImageCount > 0 && (
-        <div className="w-16 h-16 rounded-xl bg-purple-100 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-xl bg-fg-violet-100 flex items-center justify-center">
           <span className="text-sm font-semibold text-fg-violet">
             +{overflowImageCount}
           </span>
@@ -63,6 +65,8 @@ interface ReviewItemRegular extends ReviewItemBase {
 interface ReviewItemCard extends ReviewItemBase {
   variant: "card";
   onMenuClick?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
 }
 
 export function ReviewItem(props: ReviewItemRegular | ReviewItemCard) {
@@ -139,11 +143,16 @@ function CardVariant({
   images,
   overflowImageCount,
   onMenuClick,
+  width,
   className = "",
 }: ReviewItemCard) {
   return (
     <div
-      className={`w-96 p-4 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-4 ${className}`}
+      className={cn(
+        "p-4 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-center items-start gap-4",
+        resolveCardWidthClass(width, "w-96"),
+        className,
+      )}
     >
       {/* Header: avatar + name + date | menu */}
       <div className="self-stretch inline-flex justify-start items-center gap-4">
@@ -168,7 +177,7 @@ function CardVariant({
           className="w-6 h-6 flex items-center justify-center cursor-pointer"
         >
           <span className="rotate-90">
-            <MenuDotsBold size={16} color="#71717A" />
+            <MenuDotsBold size={16} color="var(--fg-grey-700)" />
           </span>
         </button>
       </div>
@@ -177,7 +186,7 @@ function CardVariant({
       {/* Stars + content */}
       <div className="self-stretch flex flex-col justify-start items-start gap-2.5">
         <StarRow rating={rating} size={24} />
-        <p className="self-stretch text-stone-500 text-sm font-normal leading-5 tracking-fg">
+        <p className="self-stretch text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">
           {content}
         </p>
       </div>

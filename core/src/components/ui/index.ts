@@ -319,6 +319,7 @@ export type {
   CardTheme,
   CardThemeConfig,
   TrendDirection,
+  CardWidth,
   StatCardSize,
   FinancialTheme,
   FinancialThemeConfig,

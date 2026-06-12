@@ -1,6 +1,9 @@
 import { type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
 import { MenuDotsBold } from "solar-icon-set";
+import { resolveCardWidthClass, type CardWidth } from "../card-utils";
+
+type ChartCardSize = "4col" | "6col" | "8col" | "full";
 
 interface ChartCardProps {
   title: string;
@@ -9,16 +12,23 @@ interface ChartCardProps {
   footer?: ReactNode;
   action?: ReactNode;
   onMenuClick?: () => void;
-  size?: "4col" | "6col" | "8col" | "full";
+  /**
+   * @deprecated Figma-size showcase hint only. Never forces fixed width by
+   * itself — the 4col/6col/8col fixed-width classes apply only together with an
+   * explicit `width="fixed"`.
+   */
+  size?: ChartCardSize;
+  /** Omitted/full fills the parent (dashboard/grid column). Use fixed only for Figma-size showcases. Takes precedence over `size`. */
+  width?: CardWidth;
   minHeight?: string;
   className?: string;
 }
 
-const sizeClasses: Record<NonNullable<ChartCardProps["size"]>, string> = {
+const fixedWidthClasses: Record<ChartCardSize, string> = {
   "4col": "w-96",
   "6col": "w-[600px]",
   "8col": "w-[800px]",
-  full: "self-stretch",
+  full: "w-full",
 };
 
 function ThreeDotsVerticalIcon() {
@@ -32,10 +42,13 @@ export function ChartCard({
   footer,
   action,
   onMenuClick,
-  size = "4col",
+  size = "full",
+  width,
   minHeight = "min-h-80",
   className,
 }: ChartCardProps) {
+  const widthMode = width ?? "full";
+
   const actionElement = action ?? (
     <button
       onClick={onMenuClick}
@@ -48,8 +61,8 @@ export function ChartCard({
   return (
     <div
       className={cn(
-        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-start overflow-hidden",
-        sizeClasses[size],
+        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-start overflow-hidden",
+        resolveCardWidthClass(widthMode, fixedWidthClasses[size]),
         minHeight,
         className
       )}

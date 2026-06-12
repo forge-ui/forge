@@ -40,7 +40,7 @@ export function RatingStars({
         <StarBold
           key={i}
           size={s.icon}
-          color={i < filled ? "#F6C002" : "#E1E1E1"}
+          color={i < filled ? "var(--fg-yellow)" : "var(--fg-grey-200)"}
         />
       ))}
     </div>

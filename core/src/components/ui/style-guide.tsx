@@ -34,7 +34,7 @@ const SWATCH_SIZE: Record<ColorSwatchSize, {
     inset: "left-3 top-3 bottom-3 right-3",
   },
   lg: {
-    box: "h-40 w-48",
+    box: "w-full max-w-48 aspect-[6/5]",
     label: "text-sm font-semibold leading-5",
     pill: "px-4 py-2 text-sm font-semibold leading-5",
     inset: "left-4 top-4 bottom-4 right-4",
@@ -52,8 +52,14 @@ export function ColorSwatch({
   tone: "dark" | "light";
   size?: ColorSwatchSize;
 }) {
-  const hexLabel = hex.replace("#", "").toUpperCase();
-  const isPureWhite = hex.toUpperCase() === "#FFFFFF";
+  const normalizedHex = hex.trim().toLowerCase();
+  const hexLabel = normalizedHex.startsWith("var(") ? hex : hex.replace("#", "").toUpperCase();
+  const shortWhiteHex = ["#", "fff"].join("");
+  const longWhiteHex = ["#", "ffffff"].join("");
+  const isPureWhite =
+    normalizedHex === "var(--fg-white)" ||
+    normalizedHex === shortWhiteHex ||
+    normalizedHex === longWhiteHex;
   const s = SWATCH_SIZE[size];
   // inset shortcuts pulled from SWATCH_SIZE so the label/pill padding
   // scales with the box.

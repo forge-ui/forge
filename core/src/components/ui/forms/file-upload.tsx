@@ -118,12 +118,12 @@ export function FileCard({
               <div className="flex items-center gap-1">
                 {isSuccess && (
                   <>
-                    <div className="p-1 bg-emerald-500 rounded-full flex items-center justify-center">
+                    <div className="p-1 bg-fg-green-500 rounded-full flex items-center justify-center">
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                         <path d="M2 5.5L4 7.5L8 3.5" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <span className="text-emerald-500 text-xs font-medium leading-4 tracking-fg">
+                    <span className="text-fg-green-500 text-xs font-medium leading-4 tracking-fg">
                       Uploaded
                     </span>
                   </>
@@ -210,7 +210,7 @@ export function FileUpload({
   }
 
   return (
-    <div className={cn("inline-flex flex-col gap-2 w-72", className)}>
+    <div className={cn("flex w-full max-w-72 flex-col gap-2", className)}>
       {label && (
         <span className="text-sm font-medium text-fg-grey-700 leading-5 tracking-fg">
           {label}

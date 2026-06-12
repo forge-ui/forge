@@ -40,7 +40,7 @@ export function Toggle({
       className={cn(
         "p-1 rounded-full inline-flex items-start transition-colors",
         isMd ? "w-9" : "w-8",
-        checked ? cn(formAccents[color].bg, "justify-end") : "bg-stone-300 justify-start",
+        checked ? cn(formAccents[color].bg, "justify-end") : "bg-fg-grey-300 justify-start",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
       )}
     >
@@ -48,7 +48,7 @@ export function Toggle({
         className={cn(
           "rounded-full",
           isMd ? "w-3 h-3" : "w-3 h-3",
-          checked ? "bg-white" : "bg-stone-50",
+          checked ? "bg-white" : "bg-fg-grey-50",
         )}
       />
     </button>
@@ -75,7 +75,7 @@ export function RadioButton({
       onClick={() => onChange?.(!checked)}
       className={cn(
         "w-5 h-5 rounded-full flex items-center justify-center transition-colors",
-        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-stone-300 bg-white",
+        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-white",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
       )}
     >

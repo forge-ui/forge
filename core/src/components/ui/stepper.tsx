@@ -8,7 +8,7 @@ import { cn } from "../../lib/utils";
 
 const onColors = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
   black: "bg-fg-black",
 } as const;
 

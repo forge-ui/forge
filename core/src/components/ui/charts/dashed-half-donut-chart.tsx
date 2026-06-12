@@ -89,13 +89,11 @@ export function DashedHalfDonutChart({
   }
 
   return (
-    <div className="flex w-64 flex-col items-center">
-      <div className="relative h-36 w-64 overflow-hidden">
+    <div className="flex w-full max-w-64 flex-col items-center">
+      <div className="relative w-full aspect-[13/7] overflow-hidden">
         <svg
-          width="260"
-          height="140"
           viewBox="0 0 260 140"
-          className="absolute left-1/2 top-0 -translate-x-1/2"
+          className="absolute inset-0 h-full w-full"
         >
           {arcs.map((arc, i) => (
             <path
@@ -109,7 +107,7 @@ export function DashedHalfDonutChart({
             />
           ))}
         </svg>
-        <div className="absolute left-1/2 top-[70px] -translate-x-1/2 flex flex-col items-center text-center">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 flex flex-col items-center text-center">
           <ChartCenterText centerValue={centerValue} trend={trend} trendDirection={trendDirection} />
         </div>
       </div>

@@ -50,12 +50,12 @@ export function ToolbarSearchInput({
   return (
     <div
       className={cn(
-        "w-80 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden",
+        "w-full max-w-80 min-w-0 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden",
         className,
       )}
     >
       <div className="w-6 h-6 flex justify-center items-center">
-        <MagniferLinear size={20} color="#71717A" />
+        <MagniferLinear size={20} color="var(--fg-grey-700)" />
       </div>
       <div className="flex-1 h-6 flex justify-start items-center gap-2 overflow-hidden">
         <span className="justify-start text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">
@@ -144,7 +144,7 @@ export function ToolbarSelectDropdown({
           </span>
         </div>
         <div className="w-6 h-6 flex justify-center items-center">
-          <AltArrowDownLinear size={20} color="#71717A" />
+          <AltArrowDownLinear size={20} color="var(--fg-grey-700)" />
         </div>
       </button>
       {usingInternal && open && options && (
@@ -206,7 +206,7 @@ export function ToolbarDatepicker({
         className="px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
       >
         <div className="w-6 h-6 flex justify-center items-center">
-          <CalendarBoldDuotone size={20} color="#71717A" />
+          <CalendarBoldDuotone size={20} color="var(--fg-grey-700)" />
         </div>
         <div className="h-6 flex justify-start items-center gap-2 overflow-hidden">
           <span className="justify-start text-fg-grey-700 text-sm font-normal leading-5 tracking-fg whitespace-nowrap">
@@ -258,7 +258,7 @@ export function ToolbarFilterButton({
         onClick={handleClick}
         className="px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
       >
-        <FilterBold size={20} color="#71717A" />
+        <FilterBold size={20} color="var(--fg-grey-700)" />
         <span className="justify-start text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap">
           {label}
         </span>
@@ -335,7 +335,7 @@ export function ToolbarKebabButton({
         className,
       )}
     >
-      <MenuDotsBold size={20} color="#71717A" />
+      <MenuDotsBold size={20} color="var(--fg-grey-700)" />
     </button>
   );
 }
@@ -358,7 +358,7 @@ export function ToolbarFavoriteButton({
         className,
       )}
     >
-      <StarBoldDuotone size={20} color="#71717A" />
+      <StarBoldDuotone size={20} color="var(--fg-grey-700)" />
     </button>
   );
 }

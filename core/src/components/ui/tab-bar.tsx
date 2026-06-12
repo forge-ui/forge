@@ -9,13 +9,13 @@ import { cn } from "../../lib/utils";
 
 const tabActiveColors = {
   purple: "text-fg-violet",
-  blue: "text-blue-600",
+  blue: "text-fg-blue",
   black: "text-fg-black",
 } as const;
 
 const tabBorderColors = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
   black: "bg-fg-black",
 } as const;
 

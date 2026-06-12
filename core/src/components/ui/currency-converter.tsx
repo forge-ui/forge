@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 import { MenuDotsBold, AltArrowDownLinear, TransferVerticalLinear, InfoCircleBoldDuotone } from "solar-icon-set";
 import { cn } from "../../lib/utils";
+import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 
 // ============================================================
 // CurrencyConverter - 货币转换器卡片
@@ -11,7 +12,7 @@ export type CurrencyConverterColor = "purple" | "blue" | "dark";
 
 const buttonColors: Record<CurrencyConverterColor, string> = {
   purple: "bg-fg-violet",
-  blue: "bg-blue-600",
+  blue: "bg-fg-blue",
   dark: "bg-fg-black",
 };
 
@@ -83,6 +84,8 @@ export interface CurrencyConverterProps {
   onToChange?: (value: string) => void;
   onFromCurrencyChange?: () => void;
   onToCurrencyChange?: () => void;
+  /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
+  width?: CardWidth;
   className?: string;
 }
 
@@ -105,12 +108,14 @@ export function CurrencyConverter({
   onToChange,
   onFromCurrencyChange,
   onToCurrencyChange,
+  width,
   className,
 }: CurrencyConverterProps) {
   return (
     <div
       className={cn(
-        "w-96 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-center overflow-hidden",
+        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-center overflow-hidden",
+        resolveCardWidthClass(width, "w-96"),
         className
       )}
     >
