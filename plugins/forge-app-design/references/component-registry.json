@@ -39,7 +39,9 @@
       "ToolbarPillTabs",
       "ToolbarShowSelect",
       "ToolbarFilterButton",
-      "ToolbarActions"
+      "ToolbarActions",
+      "PageTitleToolbar",
+      "FilterPanel"
     ],
     "dashboardCard": [
       "StatCard",
@@ -59,6 +61,8 @@
       "ProfileCard",
       "HistoryItem",
       "ActivityCard",
+      "ListGroup",
+      "NotificationItem",
       "ContactItem",
       "FileCard"
     ],
@@ -1143,6 +1147,54 @@
       "source": "core/src/components/ui/forms/file-upload.tsx"
     },
     {
+      "id": "FilterPanel",
+      "name": "FilterPanel",
+      "category": "filtering",
+      "import": {
+        "from": "@forge-ui-official/core",
+        "name": "FilterPanel"
+      },
+      "responsive": "intrinsic-with-parent-wrap",
+      "density": "compact-panel",
+      "recommendedFor": [
+        "advanced filter popover",
+        "side filter drawer content",
+        "operational queue refinement panel"
+      ],
+      "avoidFor": [
+        "always-visible first-screen list filters",
+        "simple two-control toolbar filters"
+      ],
+      "constraints": [
+        "Use ToolbarSearchInput, ToolbarSelectDropdown, ToolbarDatepicker, ToolbarPillTabs, or inline controls for first-screen filters before opening a FilterPanel.",
+        "Keep FilterPanel as an overlay or secondary refinement surface so it does not push the primary queue below the fold.",
+        "Do not use a fixed page-column card to imitate filters when a Toolbar pattern is enough."
+      ],
+      "purpose": "Compact advanced filter panel with reset, grouped controls, cancel, and apply actions.",
+      "bestFor": [
+        "advanced filter popover",
+        "side filter drawer content",
+        "operational queue refinement panel"
+      ],
+      "avoidWhen": [
+        "always-visible first-screen filters",
+        "simple two-control toolbar filters"
+      ],
+      "props": [
+        "title",
+        "color",
+        "children",
+        "onReset",
+        "onCancel",
+        "onApply",
+        "applyLabel",
+        "cancelLabel",
+        "resetLabel",
+        "className"
+      ],
+      "source": "core/src/components/ui/filter-panel.tsx"
+    },
+    {
       "id": "FullWidthTable",
       "name": "FullWidthTable",
       "category": "data-display",
@@ -1446,6 +1498,56 @@
       "source": "core/src/components/ui/line-chart-stat-card.tsx:140-228"
     },
     {
+      "id": "ListGroup",
+      "name": "ListGroup",
+      "category": "grouped-list",
+      "import": {
+        "from": "@forge-ui-official/core",
+        "name": "ListGroup"
+      },
+      "responsive": "fills-parent",
+      "density": "compact-panel",
+      "recommendedFor": [
+        "right rail grouped context",
+        "dashboard risk or activity rail",
+        "detail evidence or audit group"
+      ],
+      "avoidFor": [
+        "primary entity queues that need sorting or pagination",
+        "large tabular datasets"
+      ],
+      "constraints": [
+        "Use ListGroup for compact secondary context, not as a replacement for the main DataTable queue.",
+        "Keep items concise; long operational rows belong in DataTable or a split-pane detail surface.",
+        "Do not wrap ListGroup in another SurfaceCard."
+      ],
+      "purpose": "Outlined compact grouped list with title, optional subtitle, badge, tabs, and action area.",
+      "bestFor": [
+        "right rail grouped context",
+        "dashboard risk or activity rail",
+        "detail evidence or audit group"
+      ],
+      "avoidWhen": [
+        "primary entity queues that need sorting or pagination",
+        "large tabular datasets"
+      ],
+      "props": [
+        "title",
+        "subtitle",
+        "color",
+        "badge",
+        "items",
+        "action",
+        "tabs",
+        "activeTab",
+        "onTabChange",
+        "closable",
+        "onClose",
+        "className"
+      ],
+      "source": "core/src/components/ui/list-group.tsx"
+    },
+    {
       "id": "MediaUpload",
       "name": "MediaUpload",
       "category": "form",
@@ -1480,6 +1582,100 @@
         "onChange"
       ],
       "source": "core/src/components/ui/forms/media-upload.tsx"
+    },
+    {
+      "id": "NotificationItem",
+      "name": "NotificationItem",
+      "category": "timeline",
+      "import": {
+        "from": "@forge-ui-official/core",
+        "name": "NotificationItem"
+      },
+      "responsive": "fills-parent",
+      "density": "dense-operational",
+      "recommendedFor": [
+        "right rail activity stream",
+        "dashboard exception feed",
+        "detail audit or alert list"
+      ],
+      "avoidFor": [
+        "toast notifications",
+        "primary table rows",
+        "long-form comments"
+      ],
+      "constraints": [
+        "Use inside ListGroup or another rail/list container; do not float standalone NotificationItem cards across the page.",
+        "Use title as a short operational signal and body as one-line supporting context.",
+        "For audit trails with connectors, prefer HistoryItem over NotificationItem."
+      ],
+      "purpose": "Dense notification/activity item with tag, time, title, body, unread state, lead icon, and optional mark-read action.",
+      "bestFor": [
+        "right rail activity stream",
+        "dashboard exception feed",
+        "detail audit or alert list"
+      ],
+      "avoidWhen": [
+        "toast notifications",
+        "primary table rows",
+        "long-form comments"
+      ],
+      "props": [
+        "tag",
+        "time",
+        "title",
+        "body",
+        "unread",
+        "color",
+        "onMarkRead",
+        "actionLabel",
+        "className",
+        "leadIcon"
+      ],
+      "source": "core/src/components/ui/notification-item.tsx"
+    },
+    {
+      "id": "PageTitleToolbar",
+      "name": "PageTitleToolbar",
+      "category": "page-title",
+      "import": {
+        "from": "@forge-ui-official/core",
+        "name": "PageTitleToolbar"
+      },
+      "responsive": "intrinsic-with-parent-wrap",
+      "density": "dense-operational",
+      "recommendedFor": [
+        "dashboard page heading",
+        "list page heading with compact actions",
+        "detail or action page heading below AppLayout breadcrumbs"
+      ],
+      "avoidFor": [
+        "replacing AppLayout topbar",
+        "repeating section titles inside cards"
+      ],
+      "constraints": [
+        "Use PageTitleToolbar once near the page root; nested cards and rails should use smaller component titles.",
+        "Do not use oversized hero typography for admin page titles; keep title close to sidebar/profile scale.",
+        "Do not add extra p-6 or p-8 wrappers around PageTitleToolbar when AppLayout already owns page padding."
+      ],
+      "purpose": "Compact page-level title, subtitle, optional eyebrow, and left/right actions for Forge admin pages.",
+      "bestFor": [
+        "dashboard page heading",
+        "list page heading with compact actions",
+        "detail or action page heading below AppLayout breadcrumbs"
+      ],
+      "avoidWhen": [
+        "replacing AppLayout topbar",
+        "repeating section titles inside cards"
+      ],
+      "props": [
+        "title",
+        "subtitle",
+        "eyebrow",
+        "left",
+        "right",
+        "className"
+      ],
+      "source": "core/src/components/ui/toolbar.tsx"
     },
     {
       "id": "ProfileCard",
@@ -2604,10 +2800,6 @@
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
       {
-        "name": "FilterPanel",
-        "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
-      },
-      {
         "name": "FilterTrigger",
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
@@ -2644,10 +2836,6 @@
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
       {
-        "name": "ListGroup",
-        "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
-      },
-      {
         "name": "ListItem",
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
@@ -2676,19 +2864,11 @@
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
       {
-        "name": "NotificationItem",
-        "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
-      },
-      {
         "name": "PageDot",
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
       {
         "name": "PageHeader",
-        "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
-      },
-      {
-        "name": "PageTitleToolbar",
         "reason": "Public core export is not yet approved as a direct Forge App Design generation primitive; use only through source review, a documented pattern, or a future registry promotion."
       },
       {

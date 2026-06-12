@@ -14,11 +14,34 @@
       "primaryDataObject": "action-draft",
       "kpiCards": [],
       "tableColumns": [],
-      "detailSections": ["title with breadcrumbs and actions", "primary field group", "policy field group", "preflight checklist", "status side rail"],
-      "drawerActions": ["save", "cancel"],
-      "workflowStates": ["editing", "dirty", "saving", "saved", "error", "hover"],
+      "detailSections": [
+        "title with breadcrumbs and actions",
+        "primary field group",
+        "policy field group",
+        "preflight checklist",
+        "status side rail"
+      ],
+      "drawerActions": [
+        "save",
+        "cancel"
+      ],
+      "workflowStates": [
+        "editing",
+        "dirty",
+        "saving",
+        "saved",
+        "error",
+        "hover"
+      ],
       "emptyStateCopy": "No parent context is selected. Return to the parent list and start the action from a row or toolbar CTA.",
-      "businessDensity": ["owner", "scope", "policy", "priority", "readiness", "next workflow"],
+      "businessDensity": [
+        "owner",
+        "scope",
+        "policy",
+        "priority",
+        "readiness",
+        "next workflow"
+      ],
       "visualBaseline": {
         "typography": [
           "Action page H1 uses text-2xl or smaller; form group card titles, labels, and helper text use Forge text-sm/text-xs scale."
@@ -41,8 +64,24 @@
           "Right rail shows context, readiness, validation, or changed-summary; it uses responsive min/max or clamp constraints and remains visible on desktop."
         ]
       },
-      "linksOut": ["/parent-list", "/parent-list/[id]"],
-      "expectedForgeComponents": ["Breadcrumbs", "Button", "SurfaceCard", "TextField", "TextArea", "SelectOption", "Checkbox", "Label", "ProgressBar", "StyledLink"],
+      "linksOut": [
+        "/parent-list",
+        "/parent-list/[id]"
+      ],
+      "expectedForgeComponents": [
+        "Breadcrumbs",
+        "Button",
+        "SurfaceCard",
+        "PageTitleToolbar",
+        "TextField",
+        "TextArea",
+        "SelectOption",
+        "Checkbox",
+        "Label",
+        "ProgressBar",
+        "StyledLink",
+        "ListGroup"
+      ],
       "forbiddenShortcuts": [
         "Do not put action routes in sidebar navigation.",
         "Do not use kicker/eyebrow or long explanatory copy above action forms.",
@@ -58,11 +97,31 @@
       "primaryDataObject": "entity-draft",
       "kpiCards": [],
       "tableColumns": [],
-      "detailSections": ["identity fields", "contact/configuration fields", "status rail", "changed summary"],
-      "drawerActions": ["save", "cancel"],
-      "workflowStates": ["editing", "dirty", "saving", "saved", "error"],
+      "detailSections": [
+        "identity fields",
+        "contact/configuration fields",
+        "status rail",
+        "changed summary"
+      ],
+      "drawerActions": [
+        "save",
+        "cancel"
+      ],
+      "workflowStates": [
+        "editing",
+        "dirty",
+        "saving",
+        "saved",
+        "error"
+      ],
       "emptyStateCopy": "No record is loaded. Return to the parent list and reopen the edit action.",
-      "businessDensity": ["changed fields", "status", "owner", "validation", "audit note"],
+      "businessDensity": [
+        "changed fields",
+        "status",
+        "owner",
+        "validation",
+        "audit note"
+      ],
       "visualBaseline": {
         "typography": [
           "Edit page H1 uses text-2xl or smaller; labels and helper text use text-sm/text-xs."
@@ -81,8 +140,20 @@
           "Changed summary or validation rail stays compact, responsive, and visible on desktop."
         ]
       },
-      "linksOut": ["/parent-list/[id]"],
-      "expectedForgeComponents": ["Breadcrumbs", "Button", "SurfaceCard", "TextField", "SelectOption", "Label", "ProgressBar"],
+      "linksOut": [
+        "/parent-list/[id]"
+      ],
+      "expectedForgeComponents": [
+        "Breadcrumbs",
+        "Button",
+        "SurfaceCard",
+        "PageTitleToolbar",
+        "TextField",
+        "SelectOption",
+        "Label",
+        "ProgressBar",
+        "ListGroup"
+      ],
       "forbiddenShortcuts": [
         "Do not show read-only detail history on the edit form.",
         "Do not hide validation only in toast text."

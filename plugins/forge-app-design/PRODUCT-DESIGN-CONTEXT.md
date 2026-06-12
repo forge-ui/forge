@@ -14,6 +14,8 @@ Use this as the local context source for Codex-native prototype design work arou
 - Generated business layouts may diverge when the domain needs it, but they
   must keep ForgeUI primitives, token discipline, responsive card/grid
   behavior, and the acceptance chain below.
+- Detailed chain contract:
+  `references/product-design-forge-starter-chain.md`.
 
 ## Design System
 
@@ -67,15 +69,19 @@ Use this as the local context source for Codex-native prototype design work arou
   screenshots from intake probes.
 - Use every 2-3 pattern updates to trigger a fresh PRD validation run.
 - Current local artifact batches: `intake/a-tier-batch-001`,
-  `intake/a-tier-batch-002`, and `intake/a-tier-batch-003`.
+  `intake/a-tier-batch-002`, `intake/a-tier-batch-003`, and
+  `intake/a-tier-batch-004`.
 
 ## Starter Validation
 
-- Canonical local starter for future validation:
-  `/Users/hesong/Desktop/forge-starter-canonical`.
-- The canonical starter must consume the latest published npm package for
-  `@forge-ui-official/core`, not a workspace link. Update it after core
-  publishes and validate with `pnpm typecheck` plus `pnpm build`.
+- Canonical starter source for future validation:
+  `https://github.com/forge-ui/forge-starter`.
+- Fresh validation should use a new local directory, not an old hand-polished
+  demo. The starter must consume the latest published npm package for
+  `@forge-ui-official/core` when proving a release; a local tarball is allowed
+  only for pre-publish validation and must be called out as such.
+- Validate starter runs with `pnpm typecheck`, `pnpm build`, and screenshots at
+  common desktop width plus a wide desktop width when a right rail is expected.
 - `golden-apps/gym-member-admin.md` records a clean Forge starter validation:
   Product Design produced the business/layout direction, Forge starter/core
   carried the visual baseline, and `forge-app-design` was intentionally not
@@ -84,6 +90,10 @@ Use this as the local context source for Codex-native prototype design work arou
   design the admin product within Forge constraints; ForgeUI should provide the
   visual primitives; `forge-app-design` should supply context, handoff rules,
   audits, and pattern/gap feedback rather than over-prescribing page templates.
+- Latest fresh starter evidence:
+  `golden-apps/fresh-starter-pharmacy-ops.md` validates the compact core
+  defaults with a pharmacy refill operations dashboard consuming the published
+  npm package `@forge-ui-official/core@0.1.4`.
 
 ## Acceptance Chain
 

@@ -307,7 +307,7 @@ function TitleHeader({
   const accent = accentColors[color!];
 
   return (
-    <div className={cn("w-full px-6 py-5 border-b border-fg-grey-200 inline-flex justify-start items-center gap-6", className)}>
+    <div className={cn("w-full px-5 py-4 border-b border-fg-grey-200 inline-flex justify-start items-center gap-4", className)}>
       {/* Left: back button + optional avatar + title */}
       <div className="flex-1 flex justify-start items-center gap-3">
         {showBackButton && (
@@ -323,7 +323,7 @@ function TitleHeader({
           <img className="w-12 h-12 rounded-full" src={titleAvatar} alt="" />
         )}
         {title && (
-          <div className="flex-1 text-fg-black text-xl font-semibold leading-8 tracking-fg">{title}</div>
+          <div className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</div>
         )}
       </div>
 

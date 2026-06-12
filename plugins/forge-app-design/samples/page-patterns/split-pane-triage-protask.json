@@ -97,10 +97,13 @@
       ],
       "expectedForgeComponents": [
         "SurfaceCard",
+        "PageTitleToolbar",
         "Label",
         "ProgressBar",
         "FileCard",
         "HistoryItem",
+        "ListGroup",
+        "NotificationItem",
         "CommentItem",
         "TextArea",
         "Button",

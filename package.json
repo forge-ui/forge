@@ -13,7 +13,8 @@
     "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",
     "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase",
     "forge-app-design:registry": "node plugins/forge-app-design/eval/validate-component-registry.mjs",
-    "forge-app-design:validate": "pnpm -s forge-app-design:registry && node plugins/forge-app-design/eval/validate-precedents.mjs && node plugins/forge-app-design/eval/golden-summary-validate.mjs && node plugins/forge-app-design/eval/ia-artifact-validate.mjs && node plugins/forge-app-design/eval/kanban-pattern-audit.mjs --report-dir /tmp/forge-app-design-validate/kanban"
+    "forge-app-design:core-visual": "node plugins/forge-app-design/eval/core-visual-baseline-audit.mjs",
+    "forge-app-design:validate": "pnpm -s forge-app-design:registry && pnpm -s forge-app-design:core-visual && node plugins/forge-app-design/eval/validate-precedents.mjs && node plugins/forge-app-design/eval/golden-summary-validate.mjs && node plugins/forge-app-design/eval/ia-artifact-validate.mjs && node plugins/forge-app-design/eval/kanban-pattern-audit.mjs --report-dir /tmp/forge-app-design-validate/kanban"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.2.8",

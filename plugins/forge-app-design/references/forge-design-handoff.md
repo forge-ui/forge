@@ -8,6 +8,12 @@ Use it as the artifact boundary between Product Design and Forge App Design:
 - Forge App Design consumes those artifacts and implements with ForgeUI.
 - Product Design should not write the final Forge code; Forge App Design should not reopen product strategy unless the user asks.
 
+For the full runtime model, read
+`references/product-design-forge-starter-chain.md`: Product Design owns product
+and screen intent, Forge starter owns the clean consuming app, ForgeUI owns the
+visual primitives, and `forge-app-design` owns Forge-specific context, audits,
+and feedback into registry/DNA/pattern rules.
+
 ## Required Sections
 
 ### Source Stage

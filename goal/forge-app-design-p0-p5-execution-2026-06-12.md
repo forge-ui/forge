@@ -1,8 +1,8 @@
 # Forge App Design P0-P5 Execution - 2026-06-12
 
-Status: active - P0/P1/P2/P5 infrastructure closed; P3/P4 long-range evidence remains
+Status: active - core 0.1.3 released, next five execution tracks must close before this goal can be considered done
 Owner: Codex
-Last updated: 2026-06-12 13:05 CST
+Last updated: 2026-06-12 13:30 CST
 
 ## North Star
 
@@ -11,6 +11,49 @@ prototype design and implementation. Product Design may explore product and
 interaction directions, while Forge App Design must turn that intent into a
 Forge starter app using ForgeUI, a single component registry, page patterns,
 precedent examples, and objective acceptance gates.
+
+## Non-Stop Execution Tracks Added After `core@0.1.3`
+
+These five tracks are part of the same final goal, not optional follow-ups.
+The goal is not complete until each track has evidence, validation, and a
+fresh starter check where applicable.
+
+### T1 - Full Core Component Visual Audit
+
+- [ ] Audit every exported ForgeUI component for default typography, font weight, color contrast, padding, border, radius, responsive width, and composition spacing.
+- [ ] Record objective differences against Forge/Protask source examples, not only screenshots.
+- [ ] Classify every finding as `core-default`, `composition-guidance`, `audit-rule`, or `acceptable`.
+- [ ] Fix P0/P1 component-level defaults in `core` when the root cause is component behavior.
+- [ ] Re-run `core:audit`, `core:typecheck`, and `core:build` after fixes.
+
+### T2 - Clean Starter Fresh Validation
+
+- [ ] Create a fresh validation app in a clean directory from Forge starter, consuming the latest published `@forge-ui-official/core` from npm.
+- [ ] Build a new admin prototype without reusing old hand-tuned demo pages.
+- [ ] Capture desktop screenshots and inspect whether the page naturally respects Forge/Protask typography, density, spacing, border, profile, table-first-viewport, and right-rail expectations.
+- [ ] Treat visual mismatches as evidence for T1/T3 rather than manually polishing the old page.
+
+### T3 - Feed Findings Back Into Forge App Design
+
+- [ ] Update `component-registry.json` and compatibility mirror with component selection constraints discovered from T1/T2.
+- [ ] Update `design-dna-lite.md`, visual baseline, field/component rules, and page patterns when the root cause is layout or composition experience.
+- [ ] Add or tighten audit checks for recurring failures, especially oversized headings, over-dark supporting text, fixed card widths, weak table density, and unnatural card gaps.
+- [ ] Re-run `forge-app-design:validate`.
+
+### T4 - Product Design + Forge Starter Chain
+
+- [ ] Document the operating model: Product Design owns business intent, IA, interaction exploration, and divergent layout; Forge App Design owns ForgeUI component choice, density guardrails, starter implementation, and acceptance.
+- [ ] Ensure Product Design is asked to use ForgeUI as a design constraint without forcing one fixed Forge template.
+- [ ] Ensure Forge App Design can consume a Product Design handoff and produce a starter app with ForgeUI defaults instead of redesigning from scratch.
+- [ ] Validate the chain with at least one clean starter implementation.
+
+### T5 - A-Tier Repo Intake For Product Depth
+
+- [ ] Continue A-tier repo intake in batches of 5-10 projects, without bulk cloning or full installs.
+- [ ] Extract only IA artifact, page pattern, business workflow, and ForgeUI gaps.
+- [ ] Delete temporary clones after artifact extraction.
+- [ ] After every 2-3 promoted patterns, run a fresh PRD/starter validation to prove the skill naturally produces better admin products.
+- [ ] Keep the 400+ repo corpus as a long-range evidence source, not a blocking full-analysis task.
 
 ## P0 - Release Consumption And Registry Foundation
 

@@ -33,6 +33,7 @@ should influence ForgeUI and `forge-app-design` rules.
 | ID | Domain | Evidence | Status |
 |---|---|---|---|
 | `gym-member-admin` | Gym membership / visits / classes / revenue admin | `gym-member-admin.md` and `screenshots/gym-member-admin/*.png` | Product Design + clean Forge starter validation; `typecheck` and `next build` pass; human review acceptable but below Protask parity |
+| `fresh-starter-pharmacy-ops` | Pharmacy refill / store inventory / transfer operations | `fresh-starter-pharmacy-ops.md` and `screenshots/fresh-starter-pharmacy-ops/*.png` | T2 pre-publish tarball validation; `typecheck` and `next build` pass; confirms compact core defaults before npm patch publish |
 
 ## Verification Policy
 

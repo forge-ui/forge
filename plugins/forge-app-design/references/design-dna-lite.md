@@ -18,6 +18,9 @@ Protask CRM screenshots and Forge original implementations:
 ## Shell
 
 - Use Forge `AppLayout`; do not rebuild sidebar, topbar, profile, or workspace switcher.
+- Rely on `AppLayout` for the grey content shell and compact content padding.
+  Do not wrap every page in another `p-6`/`gap-8` scaffold to compensate for
+  layout uncertainty.
 - Keep the app label short. Avoid full slug names in the logo/team label.
 - Sidebar contains only navigation routes. Action routes such as `/new`,
   `/edit`, `/import`, and detail `[id]` routes stay out of sidebar navigation.
@@ -27,6 +30,10 @@ Protask CRM screenshots and Forge original implementations:
 ## Typography
 
 - Routine admin H1: `text-2xl font-semibold text-fg-black` or smaller.
+- Prefer Forge `PageTitleToolbar` for routine dashboard/list/detail page titles
+  when a local title bar is needed. Do not manually reintroduce
+  `text-display-l` or `text-3xl` page titles after core has normalized the
+  default title scale.
 - Card/table/rail titles: default to `text-sm` with `font-medium` or `font-semibold`, close to sidebar menu scale, usually `text-fg-black`. Use `text-base` only for a strong section header; avoid routine `text-lg`/`text-xl` card headers.
 - Table/card body: `text-sm`.
 - Metadata/helper text: `text-xs`.
@@ -46,6 +53,9 @@ Protask CRM screenshots and Forge original implementations:
 
 - Default page rhythm: `space-y-4` or `space-y-5`.
 - Default grid gaps: `gap-4` or `gap-5`.
+- `AppLayout` already provides compact page padding. Page code should usually
+  start with a `flex flex-col gap-5` or equivalent workflow layout, not another
+  outer padding container.
 - Use `p-4`/`p-5` card bodies for operating surfaces; reserve `p-6` for one
   major dashboard panel, not every page section.
 - First viewport must carry work: list pages show filters plus table rows;
@@ -136,6 +146,9 @@ Protask CRM screenshots and Forge original implementations:
 ## Dashboard Pages
 
 - Do not ship four isolated KPI cards as a dashboard.
+- A compact KPI row is acceptable only when it is followed by an actual work
+  surface such as a queue table, trend/readiness panel, activity rail, or
+  workflow entry in the first viewport.
 - Include at least three of: compact KPI strip, trend/progress visual,
   risk/readiness visual, priority work table/list, activity stream, workflow
   entry link.
