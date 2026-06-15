@@ -53,6 +53,14 @@ import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/co
 
 更完整的 AI 约束和验收规则在 Forge Skill / `forge-app-design` 插件里。
 
+## Forge App Design 插件
+
+`forge-app-design` 是 Forge 面向 Codex 的后台原型设计插件。它不替代 Product Design，也不是组件库本身；它负责把用户需求或 Product Design 产出的页面意图，转成可落地的 Forge 后台原型。
+
+插件会约束 Codex 先确认业务目标、页面模块、核心对象和操作流程，再基于 Forge starter 与 `@forge-ui-official/core` 实现页面，并完成类型检查、构建、截图和质量验收。这样 AI 不是临时拼 UI，而是按 Forge 的组件、视觉基线和后台页面模式稳定交付。
+
+详细规则、样例和验收脚本在 `plugins/forge-app-design`。
+
 ## 你可以用它做什么
 
 - **搭后台产品**：订单、商品、客户、项目、成员、文件、发票、详情页、新建页、编辑页等常见业务页面都有模板可参考。
