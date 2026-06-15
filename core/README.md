@@ -12,6 +12,14 @@ src/lib/             工具函数
 src/index.ts         包导出入口
 ```
 
+## 组件设计原则
+
+- 组件默认服务后台业务页面，不是一次性 demo。字号、字重、颜色、圆角、边框、阴影和间距要保持克制、紧凑、可扫描。
+- Card、table、chart、rail、profile 等组件默认自适应父级 grid / flex 容器，不在组件内部写死业务宽度。
+- 固定尺寸只用于明确的组件变体或 showcase 场景；生产式页面优先通过父级 `minmax`、`clamp`、grid tracks 和 truncation 控制密度。
+- 组件内部优先使用 Forge token 和语义 class，不引入 Tailwind 默认色系来绕过设计系统。
+- 如果业务页面需要反复覆盖同一类组件的字号、颜色、宽度或状态样式，应回到 `core` 扩组件或 token，而不是在页面里手搓局部样式。
+
 ## 开发
 
 从仓库根目录执行：
