@@ -16,12 +16,12 @@ import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta, type CustomerStatus, type LeadStatus, type SaleStatus } from "./_data";
 
 const menuItems: AppLayoutMenuItem[] = [
-  { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard" },
+  { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/crm-template/customers" },
   { icon: <UserBoldDuotone size={20} />, label: "Customer", href: "/templates/crm-template/customers" },
   { icon: <UsersGroupTwoRoundedBoldDuotone size={20} />, label: "Leads", href: "/templates/crm-template/leads" },
   { icon: <CartLargeBoldDuotone size={20} />, label: "Sales", href: "/templates/crm-template/sales" },
   { icon: <ChartBoldDuotone size={20} />, label: "Activity", href: "/templates/crm-template/activity" },
-  { icon: <TagBoldDuotone size={20} />, label: "Campaign" },
+  { icon: <TagBoldDuotone size={20} />, label: "Campaign", href: "#" },
 ];
 
 export function CrmTemplateShell({ children }: { children: ReactNode }) {
