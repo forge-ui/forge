@@ -69,6 +69,8 @@ interface AppLayoutProps {
   teamMemberCount?: number;
   /** 自定义 team switcher 下面那行副标题；不传则 fallback 到 `${teamMemberCount} Members` */
   teamSubtitle?: string;
+  /** 自定义 sidebar 主菜单分组标题 */
+  menuSectionLabel?: string;
   teams?: Team[];
   /** 默认 sidebar 主菜单。如果传了 sidebarSlot，这个会被忽略 */
   menuItems?: AppLayoutMenuItem[];
@@ -81,6 +83,8 @@ interface AppLayoutProps {
   primaryAction?: { label: string; onClick?: () => void };
   secondaryAction?: { label: string; onClick?: () => void };
   searchPlaceholder?: string;
+  topbarLeftMode?: "search" | "hamburger";
+  topbarAccent?: AppLayoutAccentColor;
   pageTitle?: string;
   breadcrumbs?: AppLayoutBreadcrumb[];
   /** 是否在 page header 显示日期选择器（默认：home variant 显示，detail variant 不显示） */
@@ -305,6 +309,7 @@ export function AppLayout({
   teamAvatar,
   teamMemberCount,
   teamSubtitle,
+  menuSectionLabel = "Main Menu",
   teams,
   menuItems,
   favoriteItems,
@@ -312,6 +317,8 @@ export function AppLayout({
   notifications,
   messages,
   searchPlaceholder = "Search...",
+  topbarLeftMode = "search",
+  topbarAccent,
   pageTitle,
   breadcrumbs,
   pageHeaderVariant = "home",
@@ -446,7 +453,7 @@ export function AppLayout({
               <div className="flex flex-col gap-3">
                 {!sidebarCollapsed && (
                   <div className="px-3">
-                    <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>Main Menu</span>
+                    <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>{menuSectionLabel}</span>
                   </div>
                 )}
                 {(menuItems ?? []).map((item, i) => (
@@ -588,7 +595,9 @@ export function AppLayout({
             <div className="relative">
               <PageHeader
                 variant="search"
-                color={accent}
+                color={topbarAccent ?? accent}
+                leftMode={topbarLeftMode}
+                onHamburgerClick={() => setSidebarCollapsed((prev) => !prev)}
                 searchPlaceholder={searchPlaceholder}
                 showCalendar
                 onCalendarClick={() => togglePopover("calendar")}
