@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, type ReactNode } from "react";
+import { useId, type InputHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
 import {
   FieldFrame,
@@ -32,6 +32,7 @@ export function TextField({
   iconLeft,
   iconRight,
   suffix,
+  type = "text",
   tags,
   onRemoveTag,
   onChange,
@@ -50,6 +51,7 @@ export function TextField({
   iconRight?: ReactNode;
   /** Right-aligned suffix (e.g. "cm", currency, unit, dropdown trigger) */
   suffix?: ReactNode;
+  type?: InputHTMLAttributes<HTMLInputElement>["type"];
   /** Render tag chips before the input (Multiple variant) */
   tags?: TextFieldTag[];
   onRemoveTag?: (value: string) => void;
@@ -93,7 +95,7 @@ export function TextField({
             ))}
           <input
             id={inputId}
-            type="text"
+            type={type}
             placeholder={placeholder}
             value={value}
             disabled={isDisabled}
