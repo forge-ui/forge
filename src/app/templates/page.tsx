@@ -22,6 +22,27 @@ const items: ShowcaseItem[] = [
     thumbnail: asset("/images/showcase/project-template.png"),
   },
   {
+    href: "/templates/finance-template",
+    title: "Protask Finance",
+    description:
+      "基于 Protask Finance 截图和组件导出还原的多页财务模板，覆盖概览、交易、钱包、卡片和发票工作流。",
+    thumbnail: asset("/images/protask/auth-login.jpg"),
+  },
+  {
+    href: "/templates/crm-template",
+    title: "Protask CRM",
+    description:
+      "基于 Protask CRM 截图和已有 dashboard 实现沉淀的客户、线索、销售和活动管理模板。",
+    thumbnail: asset("/images/protask/auth-login.jpg"),
+  },
+  {
+    href: "/templates/micellaneous-template",
+    title: "Protask Micellaneous",
+    description:
+      "保留 Protask 原目录拼写的杂项模板，覆盖 Calendar、Chat、File Manager 和 Table Action 页面。",
+    thumbnail: asset("/images/protask/auth-login.jpg"),
+  },
+  {
     href: "/templates/ecommerce/products",
     title: "Ecommerce Admin",
     description:
@@ -95,6 +116,7 @@ export default function ExamplesIndex() {
                       src={item.thumbnail}
                       alt={item.title}
                       fill
+                      loading={item.thumbnail.includes("/images/protask/auth-login.jpg") ? "eager" : undefined}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover object-top"
                       unoptimized
