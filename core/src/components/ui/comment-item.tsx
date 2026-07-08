@@ -51,7 +51,7 @@ function CommentInner({
         className="inline-flex justify-start items-center gap-1 cursor-pointer"
       >
         <ReplyLinear size={20} color="currentColor" />
-        <span className="text-accent text-sm font-bold leading-5 tracking-fg">Reply</span>
+        <span className="text-accent text-sm font-bold leading-5 tracking-fg">回复</span>
       </button>
     </div>
   );

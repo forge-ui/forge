@@ -98,14 +98,14 @@ export function FullCalendar({
       ? `${weekDays[0].getDate()}-${weekDays[6].getDate()} ${MONTH_NAMES[weekDays[0].getMonth()]} ${weekDays[0].getFullYear()}`
       : `${dy} ${MONTH_NAMES[mo]} ${yr}`;
 
-  const viewLabel = view === "month" ? "Month" : view === "week" ? "Week" : "Days";
+  const viewLabel = view === "month" ? "月" : view === "week" ? "周" : "日";
 
   return (
     <div className={cn("bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-hidden relative", className)}>
 
       {/* ── Top bar ── */}
       <div className="px-4 py-3 border-b border-fg-grey-200 flex items-center gap-3">
-        <button onClick={goToday} className="px-3 py-1.5 rounded-lg outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100 cursor-pointer shrink-0">Today</button>
+        <button onClick={goToday} className="px-3 py-1.5 rounded-lg outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100 cursor-pointer shrink-0">今天</button>
         <button onClick={prev} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowLeftLinear size={14} /></button>
         <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg min-w-36 text-center">{titleText}</span>
         <button onClick={next} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowRightLinear size={14} /></button>

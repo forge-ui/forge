@@ -24,8 +24,8 @@ export interface SmallCalendarEvent {
 }
 
 export function SmallCalendar({
-  title = "Calendar",
-  subtitle = "Text Here",
+  title = "日历",
+  subtitle = "本月日程",
   color = "purple",
   events = [],
   onMenuClick,
@@ -143,7 +143,7 @@ export function SmallCalendar({
               {selectedDay} {MONTH_NAMES[viewMonth]} {viewYear}
             </span>
             {selectedEvents.length === 0 ? (
-              <span className="text-fg-grey-700 text-xs">No events</span>
+              <span className="text-fg-grey-700 text-xs">暂无事件</span>
             ) : (
               selectedEvents.map((e, i) => (
                 <EventCard

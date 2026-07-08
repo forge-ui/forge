@@ -117,7 +117,7 @@ export function IconSelector({
   onChange,
   label,
   color = "purple",
-  searchPlaceholder = "Search icon. . .",
+  searchPlaceholder = "搜索图标...",
   className,
 }: {
   icons: ReactNode[];
@@ -179,7 +179,7 @@ export function IconSelector({
         >
           <AddCircleLinear size={20} />
           <span className="text-sm font-bold leading-5 tracking-fg">
-            {open ? "Close" : "Select"}
+            {open ? "关闭" : "选择"}
           </span>
         </button>
 

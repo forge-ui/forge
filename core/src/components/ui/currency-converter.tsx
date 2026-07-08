@@ -26,7 +26,7 @@ interface CurrencyInputProps {
 
 function CurrencyInput({
   value,
-  placeholder = "Placeholder text. . .",
+  placeholder = "请输入金额",
   currency = "USD",
   onChange,
   onCurrencyChange,
@@ -90,8 +90,8 @@ export interface CurrencyConverterProps {
 }
 
 export function CurrencyConverter({
-  title = "Title Here",
-  subtitle = "Text here",
+  title = "汇率换算",
+  subtitle = "实时估算仅供参考",
   color = "purple",
   fromValue,
   fromCurrency = "USD",
@@ -100,7 +100,7 @@ export function CurrencyConverter({
   toCurrency = "USD",
   toPlaceholder,
   exchangeRateText = "1 EUR = 1.09 USD",
-  convertLabel = "Convert",
+  convertLabel = "换算",
   convertIcon,
   onMenuClick,
   onConvert,

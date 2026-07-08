@@ -105,7 +105,7 @@ export type SelectOptionProps = SingleProps | MultipleProps;
 export function SelectOption(props: SelectOptionProps) {
   const {
     options,
-    placeholder = "Select. . .",
+    placeholder = "请选择...",
     label,
     errorMessage,
     state = "idle",

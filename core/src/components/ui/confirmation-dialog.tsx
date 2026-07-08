@@ -37,8 +37,8 @@ export type ConfirmationDialogLayout = "spread" | "right";
 export function ConfirmationDialog({
   title,
   description,
-  confirmLabel = "Delete",
-  cancelLabel = "Cancel",
+  confirmLabel = "删除",
+  cancelLabel = "取消",
   color,
   icon,
   layout = "spread",

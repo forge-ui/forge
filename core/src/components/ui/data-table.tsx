@@ -862,7 +862,7 @@ export function FullWidthTable<T>({
           {showRowCount && (
             <div className="flex justify-start items-center gap-2">
               <span className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
-                Show
+                显示
               </span>
               <select
                 value={currentRowCount}
@@ -935,7 +935,7 @@ export function FullWidthTable<T>({
       {/* Footer */}
       <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
         <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
-          {paginationLabel ?? `Showing 1-${rows.length} from ${totalPages * rows.length}`}
+          {paginationLabel ?? `显示 1-${rows.length}，共 ${totalPages * rows.length} 条`}
         </div>
         {showPagination && (
           <div className="flex justify-start items-start gap-2">

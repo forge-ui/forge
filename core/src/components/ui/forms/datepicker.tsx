@@ -22,10 +22,10 @@ export type DatepickerShape = "rounded" | "pill";
 export type DatepickerColor = FormAccentColor;
 export type DatepickerMode = "single" | "range";
 
-const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+const DAYS = ["日", "一", "二", "三", "四", "五", "六"];
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "1月", "2月", "3月", "4月", "5月", "6月",
+  "7月", "8月", "9月", "10月", "11月", "12月",
 ];
 
 function getDaysInMonth(year: number, month: number) {
@@ -45,14 +45,14 @@ function toDateNum(d: Date) {
 }
 
 function formatDate(d: Date) {
-  return `${MONTHS[d.getMonth()].slice(0, 3)} ${d.getDate()}, ${d.getFullYear()}`;
+  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 }
 
 export function Datepicker({
   value,
   rangeStart,
   rangeEnd,
-  placeholder = "Select date",
+  placeholder = "选择日期",
   state = "idle",
   shape = "rounded",
   color = "purple",
@@ -341,7 +341,7 @@ export function Datepicker({
                 {mode === "range" && pickingEnd && (
                   <div className="px-4 pb-3 text-center">
                     <span className={cn("text-xs font-medium tracking-fg", range.text)}>
-                      Select end date
+                      选择结束日期
                     </span>
                   </div>
                 )}

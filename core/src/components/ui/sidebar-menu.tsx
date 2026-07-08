@@ -145,7 +145,7 @@ export function SidebarMenu({
         <button
           type="button"
           onClick={onMenuCollapse}
-          aria-label="Expand"
+          aria-label="展开"
           className={cn("p-3 rounded-full", iconColor)}
         >
           <HamburgerMenuLinear size={20} />
@@ -235,7 +235,7 @@ export function SidebarMenu({
         <button
           type="button"
           onClick={onMenuCollapse}
-          aria-label="Collapse"
+          aria-label="收起"
           className={cn("w-5 h-5 transition-colors", iconColor)}
         >
           <HamburgerMenuLinear size={20} />
@@ -249,7 +249,7 @@ export function SidebarMenu({
             name={teamName}
             subtitle={
               teamMemberCount !== undefined
-                ? `${teamMemberCount} Members`
+                ? `${teamMemberCount} 名成员`
                 : undefined
             }
             accent={accent}
@@ -267,7 +267,7 @@ export function SidebarMenu({
                 sectionLabelColor
               )}
             >
-              Main Menu
+              主菜单
             </span>
           </div>
           {mainMenuItems.map((item, i) => (
@@ -284,7 +284,7 @@ export function SidebarMenu({
                   sectionLabelColor
                 )}
               >
-                Favorite
+                常用项目
               </span>
             </div>
             {favoriteItems.map((item, i) => (

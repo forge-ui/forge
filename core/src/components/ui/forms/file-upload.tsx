@@ -124,7 +124,7 @@ export function FileCard({
                       </svg>
                     </div>
                     <span className="text-fg-green-500 text-xs font-medium leading-4 tracking-fg">
-                      Uploaded
+                      已上传
                     </span>
                   </>
                 )}
@@ -134,7 +134,7 @@ export function FileCard({
                       <RefreshLinear size={10} />
                     </div>
                     <span className="text-fg-yellow text-xs font-medium leading-4 tracking-fg">
-                      Uploading
+                      上传中
                     </span>
                   </>
                 )}
@@ -144,7 +144,7 @@ export function FileCard({
                       <CloseCircleLinear size={10} />
                     </div>
                     <span className="text-fg-red text-xs font-medium leading-4 tracking-fg">
-                      Failed
+                      上传失败
                     </span>
                   </>
                 )}
@@ -183,7 +183,7 @@ export function FileCard({
 export function FileUpload({
   files = [],
   label,
-  buttonLabel = "Add File",
+  buttonLabel = "添加文件",
   color = "purple",
   onUpload,
   onRemove,

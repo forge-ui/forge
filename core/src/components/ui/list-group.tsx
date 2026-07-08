@@ -61,7 +61,7 @@ export function ListGroup({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label="关闭"
             className="p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-2 text-fg-grey-700"
           >
             <CloseCircleLinear size={20} />

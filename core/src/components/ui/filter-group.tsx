@@ -48,7 +48,7 @@ export type FilterGroupContent =
     };
 
 export function FilterGroup({
-  title = "Filter Group",
+  title = "筛选分组",
   color = "purple",
   content = { type: "empty" },
   defaultOpen,
@@ -119,14 +119,14 @@ export function FilterGroup({
             {content.type === "range" && (
               <>
                 <RangeField
-                  label={content.minLabel ?? "Minimum"}
-                  placeholder={content.minPlaceholder ?? "Minimum. . ."}
+                  label={content.minLabel ?? "最小值"}
+                  placeholder={content.minPlaceholder ?? "请输入最小值"}
                   value={content.minValue ?? ""}
                   onChange={content.onMinChange}
                 />
                 <RangeField
-                  label={content.maxLabel ?? "Maximum"}
-                  placeholder={content.maxPlaceholder ?? "Maximum. . ."}
+                  label={content.maxLabel ?? "最大值"}
+                  placeholder={content.maxPlaceholder ?? "请输入最大值"}
                   value={content.maxValue ?? ""}
                   onChange={content.onMaxChange}
                 />

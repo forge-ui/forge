@@ -7,7 +7,7 @@ import { accentColors, type AccentColor } from "./accent-utils";
 export type FilterTriggerPanel = ReactNode | ((close: () => void) => ReactNode);
 
 export function FilterTrigger({
-  label = "Filters",
+  label = "筛选",
   color = "purple",
   count,
   open: openProp,

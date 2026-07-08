@@ -12,7 +12,7 @@ export type ChatInputBarToggle = {
 };
 
 export function ChatInputBar({
-  placeholder = "Type a message...",
+  placeholder = "输入消息...",
   value: controlledValue,
   onChange,
   onSend,
@@ -87,7 +87,7 @@ export function ChatInputBar({
         <div className="flex items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
             {showAttachment && (
-              <ToggleButton label="Attach">
+              <ToggleButton label="附件">
                 <PaperclipLinear size={15} color="var(--fg-grey-900)" />
               </ToggleButton>
             )}
