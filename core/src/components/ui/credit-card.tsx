@@ -22,7 +22,7 @@ function formatCardNumber(last4: string) {
 
 export function CreditCard({
   cardNumber = "9090",
-  holderName = "John Doe",
+  holderName = "张三",
   expiry = "07/25",
   theme = "dark",
   variant = "glow",
@@ -54,7 +54,7 @@ export function CreditCard({
       <div className="flex justify-between items-start relative z-10">
         <div className="flex flex-col gap-1">
           <span className={cn("text-xs font-medium leading-4.5 tracking-fg", cfg.labelColor)}>
-            Number
+            卡号
           </span>
           <span className={cn("text-sm font-semibold leading-5 tracking-fg", cfg.textColor)}>
             {formatCardNumber(cardNumber)}
@@ -66,7 +66,7 @@ export function CreditCard({
       <div className="flex justify-between items-end relative z-10">
         <div className="flex flex-col gap-1">
           <span className={cn("text-xs font-medium leading-4.5 tracking-fg", cfg.labelColor)}>
-            Name
+            姓名
           </span>
           <span className={cn("text-sm font-medium leading-5 tracking-fg", cfg.textColor)}>
             {holderName}

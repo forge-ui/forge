@@ -5,12 +5,12 @@
 // ============================================================
 
 export const MONTH_NAMES = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "1月", "2月", "3月", "4月", "5月", "6月",
+  "7月", "8月", "9月", "10月", "11月", "12月",
 ];
 
-export const DAY_NAMES_SHORT = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-export const DAY_NAMES_UPPER = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+export const DAY_NAMES_SHORT = ["日", "一", "二", "三", "四", "五", "六"];
+export const DAY_NAMES_UPPER = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
 export function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -25,7 +25,5 @@ export function isSameDay(a: Date, b: Date) {
 }
 
 export function formatHour(h: number) {
-  const period = h >= 12 ? "PM" : "AM";
-  const hour12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
-  return `${hour12} ${period}`;
+  return `${String(h).padStart(2, "0")}:00`;
 }

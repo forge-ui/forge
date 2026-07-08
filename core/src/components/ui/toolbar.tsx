@@ -41,7 +41,7 @@ export function Toolbar({
 // ── ToolbarSearchInput ──────────────────────────────────────
 
 export function ToolbarSearchInput({
-  placeholder = "Search. . .",
+  placeholder = "搜索...",
   className,
 }: {
   placeholder?: string;
@@ -92,7 +92,7 @@ export interface ToolbarSelectOption {
 }
 
 export function ToolbarSelectDropdown({
-  placeholder = "Select. . .",
+  placeholder = "请选择...",
   value,
   fixedWidth,
   onClick,
@@ -174,7 +174,7 @@ export function ToolbarSelectDropdown({
 // ── ToolbarDatepicker ───────────────────────────────────────
 
 export function ToolbarDatepicker({
-  label = "Select Dates",
+  label = "选择日期",
   onClick,
   enablePopover = false,
   accentBg = "bg-fg-violet",
@@ -228,7 +228,7 @@ export function ToolbarDatepicker({
 export type ToolbarFilterPanel = ReactNode | ((close: () => void) => ReactNode);
 
 export function ToolbarFilterButton({
-  label = "Filters",
+  label = "筛选",
   onClick,
   panel,
   className,
@@ -288,7 +288,7 @@ export function ToolbarShowSelect({
   return (
     <div className={cn("flex justify-start items-center gap-2", className)}>
       <span className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
-        Show
+        显示
       </span>
       <ToolbarSelectDropdown
         value={value}

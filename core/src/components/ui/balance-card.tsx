@@ -28,7 +28,7 @@ import {
 type BalanceCardTheme = CardTheme | LegacyCardTheme;
 
 export function BalanceCard({
-  title = "Total Balance",
+  title = "总余额",
   balance,
   trend,
   trendDirection = "up",
@@ -103,11 +103,11 @@ export function BalanceCard({
       <div className="self-stretch inline-flex gap-3 relative z-10">
         <button onClick={onTransfer} className={cn("flex-1 h-10 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", transferBtn)}>
           <RoundTransferHorizontalLinear size={20} />
-          Transfer
+          转账
         </button>
         <button onClick={onRequest} className={cn("flex-1 h-10 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", requestBtn)}>
           <DownloadLinear size={20} />
-          Request
+          收款
         </button>
       </div>
     </div>

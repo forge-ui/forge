@@ -5,15 +5,15 @@ import { RestartCircleLinear } from "solar-icon-set";
 import { accentColors, type AccentColor } from "./accent-utils";
 
 export function FilterPanel({
-  title = "Filters",
+  title = "筛选",
   color = "purple",
   children,
   onReset,
   onCancel,
   onApply,
-  applyLabel = "Apply Filter",
-  cancelLabel = "Cancel",
-  resetLabel = "Reset",
+  applyLabel = "应用筛选",
+  cancelLabel = "取消",
+  resetLabel = "重置",
   className = "",
 }: {
   title?: string;

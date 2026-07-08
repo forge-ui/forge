@@ -89,7 +89,7 @@ export function TaskCard({
       {/* Progress */}
       <div className="self-stretch flex flex-col justify-start items-start gap-2">
         <div className="self-stretch inline-flex justify-start items-start gap-2">
-          <span className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">Progress</span>
+          <span className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">进度</span>
           <span className={`${progress === 0 ? "text-fg-grey-700" : pColor.text} text-sm font-bold leading-5 tracking-fg`}>
             {progress}%
           </span>

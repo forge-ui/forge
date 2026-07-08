@@ -56,7 +56,7 @@ export function KebabMenu({
         surface={surface}
         state={open ? "open" : "idle"}
         onClick={() => setOpen((v) => !v)}
-        ariaLabel="More options"
+        ariaLabel="更多操作"
       />
 
       {open && (

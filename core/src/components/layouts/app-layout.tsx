@@ -20,7 +20,7 @@ import {
   ProfileDropdown,
   TeamSwitcherDropdown,
   CalendarPopup,
-  usFlagDataUrl,
+  languageMarkDataUrl,
   type Team,
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
@@ -36,12 +36,45 @@ export type AppLayoutMode = "light" | "dark";
 export type AppLayoutProfilePosition = "sidebar" | "topbar";
 export type AppLayoutAccentColor = "purple" | "blue" | "black";
 
-export interface AppLayoutMenuItem {
+interface AppLayoutMenuItemBase {
   icon?: ReactNode;
   label: string;
-  href: string;
   badge?: number;
-  children?: AppLayoutMenuItem[];
+}
+
+export type AppLayoutMenuItem =
+  | (AppLayoutMenuItemBase & {
+      href: string;
+      children?: AppLayoutMenuItem[];
+    })
+  | (AppLayoutMenuItemBase & {
+      href?: undefined;
+      children: AppLayoutMenuItem[];
+    });
+
+function isHrefActive(pathname: string, href?: string) {
+  return !!href && (pathname === href || (href.split("/").length > 2 && pathname.startsWith(href + "/")));
+}
+
+function hasActiveDescendant(item: AppLayoutMenuItem, pathname: string): boolean {
+  return !!item.children?.some((child) => isHrefActive(pathname, child.href) || hasActiveDescendant(child, pathname));
+}
+
+function findFirstNavigableHref(item: AppLayoutMenuItem): string | undefined {
+  if (item.href) return item.href;
+  for (const child of item.children ?? []) {
+    const href = findFirstNavigableHref(child);
+    if (href) return href;
+  }
+  return undefined;
+}
+
+function findFirstChildNavigableHref(item: AppLayoutMenuItem): string | undefined {
+  for (const child of item.children ?? []) {
+    const href = findFirstNavigableHref(child);
+    if (href) return href;
+  }
+  return undefined;
 }
 
 export interface AppLayoutProfile {
@@ -67,10 +100,12 @@ interface AppLayoutProps {
   teamName?: string;
   teamAvatar?: string;
   teamMemberCount?: number;
-  /** 自定义 team switcher 下面那行副标题；不传则 fallback 到 `${teamMemberCount} Members` */
+  /** 自定义 team switcher 下面那行副标题；不传则 fallback 到 `${teamMemberCount} 名成员` */
   teamSubtitle?: string;
   /** 自定义 sidebar 主菜单分组标题 */
   menuSectionLabel?: string;
+  /** 自定义 sidebar 收藏分组标题 */
+  favoriteSectionLabel?: string;
   teams?: Team[];
   /** 默认 sidebar 主菜单。如果传了 sidebarSlot，这个会被忽略 */
   menuItems?: AppLayoutMenuItem[];
@@ -93,7 +128,7 @@ interface AppLayoutProps {
   showKebab?: boolean;
   /** 完全隐藏 page header 区（标题 / 按钮 / 边框）。chat / 沉浸式页面用 */
   hideHeader?: boolean;
-  /** 完全自定义 sidebar 主体（替换 MAIN MENU + menuItems + favoriteItems 那块）。
+  /** 完全自定义 sidebar 主体（替换主菜单 + menuItems + favoriteItems 那块）。
    *  传了就用 slot；没传 fallback 到 menuItems / favoriteItems 老逻辑。 */
   sidebarSlot?: ReactNode;
   /** Expanded sidebar width. Accepts any CSS length; default keeps the Forge starter density. */
@@ -226,40 +261,43 @@ function SidebarMenuItemRow({
   depth?: number;
   collapsed?: boolean;
 }) {
-  const hasChildren = item.children && item.children.length > 0;
-  const isExactActive = pathname === item.href;
-  const isChildActive = hasChildren && item.children!.some(
-    (child) => pathname === child.href || pathname.startsWith(child.href + "/")
-  );
-  const isActive = hasChildren ? false : (isExactActive || (item.href.split("/").length > 2 && pathname.startsWith(item.href + "/")));
-  const [expanded, setExpanded] = useState(isExactActive || isChildActive || false);
+  const childItems = item.children ?? [];
+  const hasChildren = childItems.length > 0;
+  const isActive = !hasChildren && isHrefActive(pathname, item.href);
+  const isChildActive = hasActiveDescendant(item, pathname);
+  const [expanded, setExpanded] = useState(isActive || isChildActive);
 
   // Collapsed mode: icon-only
   if (collapsed && depth === 0) {
-    const link = hasChildren ? item.children![0].href : item.href;
+    const link = hasChildren ? findFirstChildNavigableHref(item) ?? item.href : item.href;
     const active = isActive || isChildActive;
-    return (
+    const iconOnly = (
+      <span className={cn(
+        "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
+        active ? cn(accentActive, "text-white") : config.menuItem
+      )}>
+        {item.icon}
+      </span>
+    );
+    return link ? (
       <a href={link} className="flex justify-center" title={item.label}>
-        <span className={cn(
-          "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-          active ? cn(accentActive, "text-white") : config.menuItem
-        )}>
-          {item.icon}
-        </span>
+        {iconOnly}
       </a>
+    ) : (
+      <span className="flex justify-center" title={item.label}>
+        {iconOnly}
+      </span>
     );
   }
 
-  const row = (
-    <button
-      type="button"
-      onClick={() => { if (hasChildren) setExpanded(!expanded); }}
-      className={cn(
-        "self-stretch px-3.5 py-3 rounded-full inline-flex items-center gap-2 transition-colors relative",
-        depth > 0 && "pl-[46px]",
-        isActive ? cn(accentActive, config.menuItemActiveText) : config.menuItem
-      )}
-    >
+  const rowClassName = cn(
+    "self-stretch px-3.5 py-3 rounded-full inline-flex items-center gap-2 transition-colors relative",
+    depth > 0 && "pl-[46px]",
+    isActive ? cn(accentActive, config.menuItemActiveText) : config.menuItem
+  );
+
+  const rowContent = (
+    <>
       {isActive && depth === 0 && (
         <div className={cn("w-1 h-12 absolute left-[-16px] top-0 rounded-tr-lg rounded-br-lg", accentBar)} />
       )}
@@ -277,20 +315,35 @@ function SidebarMenuItemRow({
           </span>
         </span>
       )}
+    </>
+  );
+
+  const row = item.href && !hasChildren ? (
+    <a href={item.href} className={rowClassName}>
+      {rowContent}
+    </a>
+  ) : hasChildren ? (
+    <button
+      type="button"
+      onClick={() => setExpanded(!expanded)}
+      className={rowClassName}
+    >
+      {rowContent}
     </button>
+  ) : (
+    <span className={cn(rowClassName, "cursor-default opacity-70")} aria-disabled="true">
+      {rowContent}
+    </span>
   );
 
   const children = hasChildren && expanded && (
     <div className="flex flex-col">
-      {item.children!.map((child, i) => (
+      {childItems.map((child, i) => (
         <SidebarMenuItemRow key={i} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} depth={depth + 1} />
       ))}
     </div>
   );
 
-  if (item.href && !hasChildren) {
-    return <a href={item.href} className="flex flex-col">{row}{children}</a>;
-  }
   return <div className="flex flex-col">{row}{children}</div>;
 }
 
@@ -309,14 +362,15 @@ export function AppLayout({
   teamAvatar,
   teamMemberCount,
   teamSubtitle,
-  menuSectionLabel = "Main Menu",
+  menuSectionLabel = "主菜单",
+  favoriteSectionLabel = "常用项目",
   teams,
   menuItems,
   favoriteItems,
   profile,
   notifications,
   messages,
-  searchPlaceholder = "Search...",
+  searchPlaceholder = "搜索...",
   topbarLeftMode = "search",
   topbarAccent,
   pageTitle,
@@ -419,9 +473,9 @@ export function AppLayout({
               {teamAvatar && <img src={teamAvatar} alt={teamName} className="w-10 h-10 rounded-full object-cover shrink-0" />}
               <div className="flex-1 flex flex-col gap-0.5 min-w-0">
                 <span className={cn("text-sm font-semibold leading-5 tracking-fg line-clamp-1", config.teamName)}>{teamName}</span>
-                {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} Members` : null)) && (
+                {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : null)) && (
                   <span className={cn("text-xs font-medium leading-4.5 tracking-fg line-clamp-1", config.teamCount)}>
-                    {teamSubtitle ?? `${teamMemberCount} Members`}
+                    {teamSubtitle ?? `${teamMemberCount} 名成员`}
                   </span>
                 )}
               </div>
@@ -465,7 +519,7 @@ export function AppLayout({
                 <div className="flex flex-col gap-3">
                   {!sidebarCollapsed && (
                     <div className="px-3">
-                      <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>Favorite</span>
+                      <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>{favoriteSectionLabel}</span>
                     </div>
                   )}
                   {favoriteItems.map((item, i) => (
@@ -489,7 +543,7 @@ export function AppLayout({
                   onClick={() => togglePopover("language")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("language"))}
                 >
-                  <img src={usFlagDataUrl} alt="Language" className="w-5 h-5 rounded-full object-cover" />
+                  <img src={languageMarkDataUrl} alt="语言" className="w-5 h-5 rounded-full object-cover" />
                 </button>
                 <button
                   type="button"
@@ -610,7 +664,7 @@ export function AppLayout({
                 notificationsButtonClassName={iconActive("notifications")}
                 onLanguageClick={() => togglePopover("language")}
                 languageButtonClassName={iconActive("language")}
-                languageFlag={<img src={usFlagDataUrl} alt="Language" className="w-5 h-5 rounded-full object-cover" />}
+                languageFlag={<img src={languageMarkDataUrl} alt="语言" className="w-5 h-5 rounded-full object-cover" />}
                 showProfile={!!profile}
                 profile={profile ? { name: profile.name, role: profile.role, avatar: profile.avatar } : undefined}
                 onProfileClick={() => togglePopover("profile")}

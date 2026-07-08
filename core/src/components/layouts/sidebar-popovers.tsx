@@ -20,51 +20,53 @@ export { CalendarPopup } from "../ui/calendar-popup";
 // Sample data for popovers
 // ============================================================
 
-const usFlagDataUrl =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 28'%3E%3Crect width='40' height='28' fill='%23fff'/%3E%3Cpath stroke='%23bf0a30' stroke-width='2.1538' d='M0 1.08h40M0 5.38h40M0 9.69h40M0 14h40M0 18.31h40M0 22.62h40M0 26.92h40'/%3E%3Crect width='16' height='15.08' fill='%23002868'/%3E%3C/svg%3E";
+const languageMarkDataUrl =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%23020817'/%3E%3Ctext x='20' y='26' text-anchor='middle' font-size='20' font-family='Arial, sans-serif' font-weight='700' fill='%23fff'%3E%E4%B8%AD%3C/text%3E%3C/svg%3E";
+
+const usFlagDataUrl = languageMarkDataUrl;
 
 const messageMenuItems = [
-  { label: "Chat", badge: 99 },
-  { label: "Discussion" },
-  { label: "Reviews", badge: 99 },
-  { label: "Support" },
+  { label: "站内消息", badge: 99 },
+  { label: "项目讨论" },
+  { label: "审核评论", badge: 99 },
+  { label: "客户支持" },
 ];
 
 const notificationItems = [
   {
     id: "1",
-    tag: "Updates",
-    time: "Just now",
-    title: "Title Here",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim mi et felis fermentum, non euismod.",
+    tag: "构建更新",
+    time: "刚刚",
+    title: "客服知识库 SFT 数据集已生成",
+    description: "本轮生成 1,248 条样本，自动质检命中 36 条待复核项，请进入任务队列处理。",
     read: false,
   },
   {
     id: "2",
-    tag: "Updates",
-    time: "5 min ago",
-    title: "Title Here",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim mi et felis fermentum.",
+    tag: "审核提醒",
+    time: "5 分钟前",
+    title: "信贷制度 RAG 评测集等待二审",
+    description: "引用链路与答案一致性已完成自动检查，仍有 18 条高风险样本需要人工确认。",
     read: false,
   },
   {
     id: "3",
-    tag: "System",
-    time: "1 hr ago",
-    title: "Title Here",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    tag: "系统",
+    time: "1 小时前",
+    title: "解析服务运行正常",
+    description: "文档解析、切块、Embedding 与导出队列均处于健康状态。",
     read: true,
   },
 ];
 
 const languageOptions = [
-  { code: "en-US", label: "English (US)", flagUrl: usFlagDataUrl },
-  { code: "en-GB", label: "English (UK)", flagUrl: usFlagDataUrl },
-  { code: "fr-FR", label: "Français", flagUrl: usFlagDataUrl },
-  { code: "ja-JP", label: "日本語", flagUrl: usFlagDataUrl },
+  { code: "zh-CN", label: "简体中文", flagUrl: languageMarkDataUrl },
+  { code: "zh-TW", label: "繁体中文", flagUrl: languageMarkDataUrl },
+  { code: "en-US", label: "英文（美国）", flagUrl: languageMarkDataUrl },
+  { code: "ja-JP", label: "日文", flagUrl: languageMarkDataUrl },
 ];
 
-export { usFlagDataUrl };
+export { languageMarkDataUrl, usFlagDataUrl };
 
 export type Team = {
   id: string;
@@ -108,7 +110,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
     <div className="w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
       {/* Header */}
       <div className="self-stretch p-5 bg-white border-b border-fg-grey-200 flex justify-start items-center gap-4 overflow-hidden">
-        <span className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">Notification</span>
+        <span className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">通知</span>
         <button type="button" onClick={onClose} className="w-6 h-6 relative text-fg-grey-700 hover:text-fg-grey-900 transition-colors">
           <CloseCircleLinear size={24} />
         </button>
@@ -138,7 +140,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
             </div>
             {!item.read && (
               <button type="button" className="inline-flex justify-start items-start gap-1 hover:underline">
-                <span className="text-accent text-sm font-bold leading-5 tracking-fg">Mark as Read</span>
+                <span className="text-accent text-sm font-bold leading-5 tracking-fg">标为已读</span>
               </button>
             )}
           </div>
@@ -148,10 +150,10 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
       {/* Footer */}
       <div className="self-stretch p-5 bg-white border-t border-fg-grey-200 inline-flex justify-between items-center overflow-hidden">
         <button type="button" className="flex justify-start items-start gap-1 hover:underline">
-          <span className="text-accent text-sm font-bold leading-5 tracking-fg">Mark All as Read</span>
+          <span className="text-accent text-sm font-bold leading-5 tracking-fg">全部标为已读</span>
         </button>
         <button type="button" className="flex justify-start items-start gap-1 hover:underline">
-          <span className="text-accent text-sm font-bold leading-5 tracking-fg">See More</span>
+          <span className="text-accent text-sm font-bold leading-5 tracking-fg">查看更多</span>
         </button>
       </div>
     </div>
@@ -159,7 +161,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
 }
 
 export function LanguageSwitcher({ accentBg }: { accentBg: string }) {
-  const [active, setActive] = useState("en-US");
+  const [active, setActive] = useState("zh-CN");
 
   return (
     <div className="w-60 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
@@ -189,10 +191,10 @@ export function LanguageSwitcher({ accentBg }: { accentBg: string }) {
 
 export function ProfileDropdown() {
   const items = [
-    { label: "Edit Profile", icon: <PenBoldDuotone size={20} />, color: "text-fg-grey-700" },
-    { label: "Edit Password", icon: <LockPasswordBoldDuotone size={20} />, color: "text-fg-grey-700" },
-    { label: "Setting", icon: <SettingsBoldDuotone size={20} />, color: "text-fg-grey-700" },
-    { label: "Sign Out", icon: <Logout2BoldDuotone size={20} />, color: "text-fg-red" },
+    { label: "编辑资料", icon: <PenBoldDuotone size={20} />, color: "text-fg-grey-700" },
+    { label: "修改密码", icon: <LockPasswordBoldDuotone size={20} />, color: "text-fg-grey-700" },
+    { label: "系统设置", icon: <SettingsBoldDuotone size={20} />, color: "text-fg-grey-700" },
+    { label: "退出登录", icon: <Logout2BoldDuotone size={20} />, color: "text-fg-red" },
   ];
 
   return (
@@ -233,15 +235,15 @@ export function TeamSwitcherDropdown({
   teamName: string;
   teamAvatar?: string;
   teamMemberCount?: number;
-  /** 自定义副标题，不传则 fallback 到 `${teamMemberCount} Members` */
+  /** 自定义副标题，不传则 fallback 到 `${teamMemberCount} 名成员` */
   teamSubtitle?: string;
   teams?: Team[];
   /** 自定义三个内置按钮的文案（邀请 / 设置 / 新建） */
   labels?: TeamSwitcherLabels;
 }) {
-  const inviteLabel = labels?.invite ?? "Invite People";
-  const settingsLabel = labels?.settings ?? "Setting";
-  const createNewLabel = labels?.createNew ?? "Create New";
+  const inviteLabel = labels?.invite ?? "邀请成员";
+  const settingsLabel = labels?.settings ?? "设置";
+  const createNewLabel = labels?.createNew ?? "新建团队";
   return (
     <div className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
@@ -253,9 +255,9 @@ export function TeamSwitcherDropdown({
         )}
         <div className="self-stretch flex flex-col justify-center items-center gap-1">
           <span className="self-stretch text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{teamName}</span>
-          {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} Members` : null)) && (
+          {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : null)) && (
             <span className="self-stretch text-center text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
-              {teamSubtitle ?? `${teamMemberCount} Members`}
+              {teamSubtitle ?? `${teamMemberCount} 名成员`}
             </span>
           )}
         </div>

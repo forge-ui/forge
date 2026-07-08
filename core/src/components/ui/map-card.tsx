@@ -146,8 +146,8 @@ function CardHeader({
 }
 
 export function MapCard({
-  title = "Top Region",
-  subtitle = "Sales by region",
+  title = "区域排行",
+  subtitle = "按区域统计",
   color = "purple",
   variant = "sm",
   regions = [],
@@ -201,7 +201,7 @@ export function MapCard({
                   type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search. . ."
+                  placeholder="搜索..."
                   className="flex-1 text-sm font-normal leading-5 tracking-fg text-fg-black placeholder:text-fg-grey-700 outline-none bg-transparent"
                 />
               </div>

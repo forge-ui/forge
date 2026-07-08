@@ -13,11 +13,11 @@ function getFirstDayOfMonth(year: number, month: number) {
 }
 
 const MONTH_NAMES = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "1月", "2月", "3月", "4月", "5月", "6月",
+  "7月", "8月", "9月", "10月", "11月", "12月",
 ];
 
-const DAY_LABELS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+const DAY_LABELS = ["日", "一", "二", "三", "四", "五", "六"];
 
 export function CalendarPopup({ accentBg = "bg-fg-violet" }: { accentBg?: string }) {
   // Initialize from a stable placeholder (not `new Date()` at render) to avoid

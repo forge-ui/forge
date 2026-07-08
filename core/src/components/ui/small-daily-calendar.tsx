@@ -28,8 +28,8 @@ export interface DailyEvent {
 const HOURS = [9, 10, 11, 12, 13, 14]; // 09:00 – 14:00
 
 export function SmallDailyCalendar({
-  title = "Daily Activity",
-  subtitle = "Text Here",
+  title = "今日日程",
+  subtitle = "时间线",
   color = "purple",
   events = [],
   /** Hour position of the "now" red line (e.g. 12.5 = 12:30). Set to 0 or omit to hide. */

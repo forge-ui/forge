@@ -85,7 +85,7 @@ export function CalendarDayCell({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             {moreAvatar && <img src={moreAvatar} alt="" className="w-3.5 h-3.5 rounded-full object-cover" />}
-            {overflowCount} More. . .
+            还有 {overflowCount} 项
           </button>
         )}
       </div>

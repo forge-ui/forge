@@ -60,8 +60,8 @@ export interface MediaItem {
 export function MediaUpload({
   items = [],
   label,
-  buttonLabel = "Add Image",
-  message = "Drag and drop image here, or click add image",
+  buttonLabel = "添加图片",
+  message = "拖放图片到这里，或点击添加图片",
   color = "purple",
   onUpload,
   onRemove,
@@ -190,7 +190,7 @@ export function MediaUpload({
 export function ProfileImgUpload({
   src,
   label,
-  linkLabel = "Upload",
+  linkLabel = "上传",
   color = "purple",
   onUpload,
   className,
