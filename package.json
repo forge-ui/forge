@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "pnpm core:typecheck && tsc --noEmit",
+    "docs:llms": "node scripts/generate-llms-docs.mjs",
     "core:build": "pnpm --filter @forge-ui-official/core build",
     "core:typecheck": "pnpm --filter @forge-ui-official/core typecheck",
     "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",

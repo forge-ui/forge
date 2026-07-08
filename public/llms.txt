@@ -1,0 +1,40 @@
+# Forge UI Kit
+
+> Forge UI Kit is a React 19 + Tailwind v4 component system for dense admin/SaaS prototypes. Use it with @forge-ui-official/core, Forge Starter, and forge-app-design guardrails.
+
+Website: https://forgeui.org
+Package: @forge-ui-official/core@0.1.6
+Framework: Next.js 16, React 19, Tailwind CSS v4
+
+## Primary Agent Docs
+
+- https://forgeui.org/llms-full.txt — full English-oriented Forge UI agent context.
+- https://forgeui.org/llms-full.md — markdown mirror of the full English Forge UI agent context.
+- https://forgeui.org/llms-full-cn.txt — full Chinese Forge UI agent context.
+- https://forgeui.org/llms-full-cn.md — markdown mirror of the full Chinese Forge UI agent context.
+- https://forgeui.org/llms-semantic.md — component semantics, page-role rules, and composition red lines.
+- https://forgeui.org/llms-components.md — generated component catalog from forge-app-design component registry.
+- https://forgeui.org/docs/ui-for-agents — UI for Agents guide and skill installation.
+- https://forgeui.org/docs/agents-md — AGENTS.md prompt for Forge UI projects.
+- https://forgeui.org/cases — component case gallery.
+- https://forgeui.org/templates — admin/dashboard templates.
+
+## Core Rules
+
+- Import components only from @forge-ui-official/core.
+- Import styles with @import "@forge-ui-official/core/styles.css" and Tailwind v4 @source for the package dist.
+- Use fg-* design tokens; do not use Tailwind default colors for Forge surfaces.
+- Use solar-icon-set for icons; pass size and color props directly.
+- Use AppLayout for admin shells; do not rebuild sidebar, topbar, or profile areas.
+- Design the business module, data flow, fields, actions, and page role before choosing components.
+- Prefer existing cases, templates, precedents, component registry, and Forge Starter before freehand composition.
+
+## Useful Source Paths
+
+- core/src/components/ui — primitive and composite Forge UI components.
+- core/src/components/layouts — AppLayout and layout shells.
+- core/src/styles/tokens.css — fg-* tokens and Tailwind v4 theme.
+- forge-app-design/references/component-registry.json — optional external full component usage registry.
+- forge-app-design/references/block-catalog-lite.json — optional external page/block composition catalog.
+- forge-app-design/references/protask-forge-visual-baseline.md — optional external visual density baseline.
+- forge-app-design/references/dataset-recall-policy.md — optional external business corpus recall policy.
