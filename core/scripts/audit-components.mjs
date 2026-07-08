@@ -17,7 +17,6 @@ const includeShowcase = process.argv.includes("--showcase");
 const showcaseRoots = [
   "src/app/cases",
   "src/app/components",
-  "plugins/forge-app-design/samples",
 ].map((relPath) => path.join(repoRoot, relPath));
 const skippedDirectories = new Set(["dist", "node_modules", ".next"]);
 

@@ -21,7 +21,7 @@ Forge 把团队做后台产品时反复重建的东西整理成一套可直接�
 Forge 仓库地址：https://github.com/forge-ui/forge
 Forge starter 地址：https://github.com/forge-ui/forge-starter
 
-请先确认本地已经安装或可读取 Forge Skill 和 forge-app-design 插件；如果没有，请从 Forge 仓库安装或读取对应说明。
+请先确认本地已经安装或可读取 Forge Skill；如果需要更严格的 Codex 原型设计/验收流程，也可以安装独立的 forge-app-design 插件。
 然后 clone Forge starter 并初始化环境。
 请确认项目已经安装 @forge-ui-official/core；如果 starter 没有带上，请执行 pnpm add @forge-ui-official/core。
 同时确认入口 CSS 已引入 @forge-ui-official/core/styles.css，并且 Tailwind v4 已配置 @source 指向 @forge-ui-official/core/dist。
@@ -30,7 +30,7 @@ Forge starter 地址：https://github.com/forge-ui/forge-starter
 环境就绪后，先主动向我确认业务目标、用户角色、需要的页面/模块、核心数据对象、主要操作流程和验收标准。
 我确认后，再开始设计并实现业务模块。
 
-实现时请使用 Forge Skill 和 forge-app-design 插件：
+实现时请使用 Forge Skill；如果环境中有 forge-app-design 插件，也请配合使用：
 - Forge Skill 负责约束组件库、token、AppLayout 和基础样式。
 - forge-app-design 负责把需求梳理成页面意图、信息架构、业务模块、组件计划和验收清单。
 
@@ -72,14 +72,14 @@ pnpm add -D tailwindcss @tailwindcss/postcss
 import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
 ```
 
-更完整的 AI 约束和验收规则在 Forge Skill / `forge-app-design` 插件里。
+更完整的 AI 约束在 Forge Skill 里；Codex 原型设计、验收和数据集召回流程由独立的 `forge-app-design` 插件提供。
 
 ## 你可以用它做什么
 
 - **搭后台产品**：订单、商品、客户、项目、成员、文件、发票、详情页、新建页、编辑页等常见业务页面都有模板可参考。
 - **搭 SaaS 控制台**：内置多套 dashboard 组合，覆盖电商、财务、项目管理、CRM、分析看板等场景。
 - **搭统一设计系统**：组件、颜色、字体、圆角、阴影和交互状态统一由 `@forge-ui-official/core` 提供。
-- **让 AI 写得更稳**：Forge Skill / `forge-app-design` 会约束 AI 优先使用组件、token、布局和模板，而不是临时手搓 UI。
+- **让 AI 写得更稳**：Forge Skill 会约束 AI 优先使用组件、token、布局和模板，而不是临时手搓 UI；`forge-app-design` 插件可作为可选的 Codex 原型设计与验收层。
 
 ## 核心能力
 
@@ -99,7 +99,6 @@ import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/co
 | `src/app/cases` | 组件组合案例 |
 | `src/app/templates` | 完整后台模板和业务页面 |
 | `.agents/skills/forge` | Forge UI Kit skill，用于在本仓和 starter 中写业务页面 |
-| `plugins/forge-app-design` | Codex 侧 Forge 原型设计插件、规则、样例、验收和 intake 资产 |
 | `public/` | 图片、图标和安装脚本 |
 
 ## 本地开发
@@ -121,7 +120,7 @@ pnpm lint            # 运行 ESLint
 
 ## Forge Skill
 
-安装 Forge Skill 后，AI coding agent 会更倾向于复用 Forge 组件、token、布局和模板，减少临时拼 UI 带来的样式漂移。Codex 场景下，推荐同时使用 `forge-app-design` 插件作为 Product Design 到 Forge starter 的落地与验收层。
+安装 Forge Skill 后，AI coding agent 会更倾向于复用 Forge 组件、token、布局和模板，减少临时拼 UI 带来的样式漂移。Codex 场景下，可以额外安装独立的 `forge-app-design` 插件作为 Product Design 到 Forge starter 的落地与验收层。
 
 ```bash
 # Claude Code / Cursor
@@ -139,11 +138,11 @@ curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-
 
 ## Forge App Design 插件
 
-`forge-app-design` 是 Forge 面向 Codex 的后台原型设计插件。它不替代 Product Design，也不是组件库本身；它负责把用户需求或 Product Design 产出的页面意图，转成可落地的 Forge 后台原型。
+`forge-app-design` 是 Forge 面向 Codex 的后台原型设计插件，已从本仓拆出为独立项目：[forge-ui/forge-app-design](https://github.com/forge-ui/forge-app-design)。它不替代 Product Design，也不是组件库本身；它负责把用户需求或 Product Design 产出的页面意图，转成可落地的 Forge 后台原型。
 
 插件会约束 Codex 先确认业务目标、页面模块、核心对象和操作流程，再基于 Forge starter 与 `@forge-ui-official/core` 实现页面，并完成类型检查、构建、截图和质量验收。这样 AI 不是临时拼 UI，而是按 Forge 的组件、视觉基线和后台页面模式稳定交付。
 
-详细规则、样例和验收脚本在 `plugins/forge-app-design`。
+公开版包含完整插件和 GitHub-only 数据集；完整私有数据集在私有仓维护。详细规则、样例、验收脚本和数据集抽取规范请看独立插件仓的 `README.md` 和 `DATASET-CONTRIBUTING.md`。
 
 ## 相关项目
 
