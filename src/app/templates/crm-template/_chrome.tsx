@@ -16,7 +16,7 @@ import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta, type CustomerStatus, type LeadStatus, type SaleStatus } from "./_data";
 
 const menuItems: AppLayoutMenuItem[] = [
-  { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/crm-template/customers" },
+  { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/crm-template/overview" },
   { icon: <UserBoldDuotone size={20} />, label: "Customer", href: "/templates/crm-template/customers" },
   { icon: <UsersGroupTwoRoundedBoldDuotone size={20} />, label: "Leads", href: "/templates/crm-template/leads" },
   { icon: <CartLargeBoldDuotone size={20} />, label: "Sales", href: "/templates/crm-template/sales" },
