@@ -45,7 +45,7 @@ pnpm core:audit            # 默认范围：core/src/components（发布门禁�
 pnpm core:audit:showcase   # 额外审计 showcase/sample 源（仅 review warning，不影响退出码）
 ```
 
-showcase 范围覆盖 `src/app/cases`、`src/app/components`、`plugins/forge-app-design/samples`；不扫描 `dist` / `node_modules`。
+showcase 范围覆盖 `src/app/cases`、`src/app/components`；不扫描 `dist` / `node_modules`。`forge-app-design` 样例已经拆到独立插件仓维护。
 
 warning 分类说明：
 

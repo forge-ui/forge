@@ -52,13 +52,6 @@ tmp/forge-app-design-output/**
 **/node_modules/
 *.tgz
 
-# Forge App Design 运行报告（源码、fixtures、golden notes 可入仓；运行产物不入仓）
-plugins/forge-app-design/eval/quality/
-plugins/forge-app-design/eval/**/*-report*.json
-plugins/forge-app-design/eval/**/*-report*.md
-plugins/forge-app-design/eval/**/quality-report.json
-plugins/forge-app-design/eval/**/quality-report.md
-
 # Figma 设计稿源文件（本地参考用，不入仓）
 figma-code/
 
