@@ -1,0 +1,545 @@
+{
+  "timestamp": "2026-07-08T09:02:34.338Z",
+  "target": ".",
+  "reportDir": ".",
+  "browserReport": "./browser-report.fresh-prd-ai-workflow-support-ops-001.json",
+  "qualityReport": "./quality-report.json",
+  "score": 96,
+  "pass": true,
+  "note": "Machine pre-score only; final 80+ still requires user acceptance.",
+  "facts": {
+    "appRoot": "./src/app",
+    "routePrefix": "/fresh-prd-ai-workflow-support-ops-001",
+    "pageFiles": 6,
+    "componentFiles": 16,
+    "briefSpecs": 6,
+    "qualitySummary": {
+      "critical": 0,
+      "warn": 0,
+      "passed": 57
+    },
+    "browserRoutes": 6,
+    "datasetRecallCheckpointRoutes": 6
+  },
+  "sections": [
+    {
+      "name": "Product design brief",
+      "score": 20,
+      "max": 20,
+      "pass": true,
+      "issues": [],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "DESIGN-BRIEF.md exists",
+          "pass": true,
+          "score": 2,
+          "max": 2,
+          "detail": ""
+        },
+        {
+          "name": "page intent specs cover implemented pages",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "6/6 routes covered, 6 specs"
+        },
+        {
+          "name": "required product fields present on every spec",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "6/6 complete"
+        },
+        {
+          "name": "functional module map exists before page specs",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "business/data/field/layout/action design fields present on every spec",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 complete"
+        },
+        {
+          "name": "business/data/field/layout/action decisions are concrete",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "module screen contracts are explicit",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "component_plan present on every spec",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": "6/6 with component_plan"
+        },
+        {
+          "name": "layout intents are diverse",
+          "pass": true,
+          "score": 2,
+          "max": 2,
+          "detail": "6 distinct intents"
+        },
+        {
+          "name": "same-role precedent_refs exist for known page roles",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": "6/6 known-role specs cite same-role precedents; 6/6 cite any precedent"
+        },
+        {
+          "name": "precedent_refs are known catalog ids",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "same-role precedent_refs match known precedent ids",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": "6/6 known-role precedent refs cite same-role ids"
+        },
+        {
+          "name": "precedent decision exists on every spec",
+          "pass": true,
+          "score": 2,
+          "max": 2,
+          "detail": "6/6 specs cite precedent or miss reason"
+        },
+        {
+          "name": "reference_usage accompanies precedent_refs",
+          "pass": true,
+          "score": 2,
+          "max": 2,
+          "detail": "6/6 complete reference usage"
+        },
+        {
+          "name": "reference_usage explains borrow, adapt, and avoid-copy",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 specs explain borrow + adapt + avoid-copy"
+        },
+        {
+          "name": "tiered precedent usage states tier and useFor",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "5/5 tiered precedent specs state tier/useFor"
+        },
+        {
+          "name": "AI admin specs cite AI admin precedent",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 AI admin specs cite ai-admin-operations-protask or justify a miss"
+        },
+        {
+          "name": "business_pattern_refs exist for matched deep-domain specs",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 matched specs cite matching business patterns; /fresh-prd-ai-workflow-support-ops-001/operations: ai-gateway-model-routing|agent-collaboration-operations|mes-production-execution; /fresh-prd-ai-workflow-support-ops-001/workflows: ai-gateway-model-routing|agent-collaboration-operations|mes-production-execution; /fresh-prd-ai-workflow-support-ops-001/workflows/[runId]: ai-gateway-model-routing|agent-collaboration-operations|mes-production-execution; /fresh-prd-ai-workflow-support-ops-001/support: ai-gateway-model-routing|agent-collaboration-operations|mes-production-execution; /fresh-prd-ai-workflow-support-ops-001/evidence: ai-gateway-model-routing|rag-dataset-retrieval|mes-production-execution; /fresh-prd-ai-workflow-support-ops-001/recovery/new: ai-gateway-model-routing|mes-production-execution"
+        },
+        {
+          "name": "business_pattern_refs are known recall pattern ids",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "business_pattern_usage accompanies business_pattern_refs",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 specs with business pattern usage"
+        },
+        {
+          "name": "business_pattern_usage explains recall, adapt, and avoid-copy",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 specs explain recall + adapt + avoid-copy"
+        },
+        {
+          "name": "business pattern screen contracts are adapted",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "dataset refs exist for every Page Intent Spec",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 Page Intent Specs include dataset recall fields"
+        },
+        {
+          "name": "dataset_refs are known dataset ids or paths",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "module_contract_refs are known module ids or paths",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "dataset recall is adapted and avoid-copy scoped",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 Page Intent Specs explain dataset adaptation and avoid-copy"
+        },
+        {
+          "name": "per-route dataset recall checkpoints cover Page Intent Specs",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 routes with checkpoint refs and 6/6 specs grounded"
+        }
+      ]
+    },
+    {
+      "name": "IA and page-pattern artifacts",
+      "score": 0,
+      "max": 0,
+      "pass": true,
+      "issues": [],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "IA-ROUTE-MAP.json exists",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "IA-ROUTE-MAP.json is valid JSON",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "PAGE-PATTERN-MATCH.json exists",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "PAGE-PATTERN-MATCH.json is valid JSON",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "IA route map covers implemented routes",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 routes"
+        },
+        {
+          "name": "page-pattern match covers implemented routes",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 routes"
+        },
+        {
+          "name": "IA routes align with page-pattern routes",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "6/6 IA routes have pattern entries"
+        }
+      ]
+    },
+    {
+      "name": "Componentization",
+      "score": 16,
+      "max": 20,
+      "pass": true,
+      "issues": [
+        "route-local component folders are used: 1 _components folders"
+      ],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "enough implemented pages for medium PRD",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "6 page files"
+        },
+        {
+          "name": "component files scale with page count",
+          "pass": true,
+          "score": 5,
+          "max": 5,
+          "detail": "16 components for 6 pages"
+        },
+        {
+          "name": "page.tsx files stay below 200 lines",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "max 6 lines"
+        },
+        {
+          "name": "route-local component folders are used",
+          "pass": false,
+          "score": 0,
+          "max": 4,
+          "detail": "1 _components folders"
+        },
+        {
+          "name": "no oversized unsplit page",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "name": "Business depth",
+      "score": 20,
+      "max": 20,
+      "pass": true,
+      "issues": [],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "business depth concepts",
+          "pass": true,
+          "score": 12,
+          "max": 12
+        },
+        {
+          "name": "domain model has multiple entities",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "44 exported types"
+        },
+        {
+          "name": "decision/action framing covers pages",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "6/6 specs"
+        },
+        {
+          "name": "mock business copy avoids faker.lorem",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "name": "Line-item document pattern",
+      "score": 0,
+      "max": 0,
+      "pass": true,
+      "issues": [],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "line-item document surface detected",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "0 line-item Page Intent Specs"
+        },
+        {
+          "name": "line-item specs cite line-item precedent",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "0/0 line-item specs cite line-item-document-protask or justify a miss"
+        },
+        {
+          "name": "line-item document includes line items",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "line-item document includes tax and totals",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "line-item document includes stock or inventory impact",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "line-item document includes ledger or payment impact",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "line-item document includes preflight or fiscal lock",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "line-item document includes audit or reversal context",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        },
+        {
+          "name": "line-item document includes guarded posting action",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "name": "Workflow closure",
+      "score": 20,
+      "max": 20,
+      "pass": true,
+      "issues": [],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "cross-route links are present",
+          "pass": true,
+          "score": 5,
+          "max": 5,
+          "detail": "127 link signals"
+        },
+        {
+          "name": "interactive local state exists",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "163 useState signals"
+        },
+        {
+          "name": "named handlers are present",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "37 handlers"
+        },
+        {
+          "name": "save/pending/action feedback exists",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "250 feedback signals"
+        },
+        {
+          "name": "multiple internal routes are referenced",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": "187 route refs"
+        }
+      ]
+    },
+    {
+      "name": "Browser and visual evidence",
+      "score": 20,
+      "max": 20,
+      "pass": true,
+      "issues": [],
+      "blockingIssues": [],
+      "checks": [
+        {
+          "name": "quality-eval is clean",
+          "pass": true,
+          "score": 5,
+          "max": 5,
+          "detail": "0 critical / 0 warn"
+        },
+        {
+          "name": "browser case passed",
+          "pass": true,
+          "score": 5,
+          "max": 5,
+          "detail": ""
+        },
+        {
+          "name": "browser routes cover implemented pages",
+          "pass": true,
+          "score": 4,
+          "max": 4,
+          "detail": "6 browser routes for 6 pages"
+        },
+        {
+          "name": "screenshots exist for browser routes",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": "6/6 screenshots"
+        },
+        {
+          "name": "screenshots are fresh for browser report",
+          "pass": true,
+          "score": 0,
+          "max": 0,
+          "detail": "fresh enough"
+        },
+        {
+          "name": "browser stylesheets are loaded",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": "6 routes with valid stylesheet checks"
+        },
+        {
+          "name": "source avoids known visual-fit traps",
+          "pass": true,
+          "score": 3,
+          "max": 3,
+          "detail": ""
+        }
+      ]
+    }
+  ]
+}
