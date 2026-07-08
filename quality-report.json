@@ -1,0 +1,413 @@
+{
+  "target": ".",
+  "reportDir": ".",
+  "routePrefix": "/fresh-prd-ai-workflow-support-ops-001",
+  "timestamp": "2026-07-08T09:02:22.077Z",
+  "summary": {
+    "critical": 0,
+    "warn": 0,
+    "passed": 57
+  },
+  "checks": [
+    {
+      "level": "L1",
+      "name": "placeholder-leftover",
+      "description": "scaffold placeholder still present — LLM forgot to write the page",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "wrong-forge-import",
+      "description": "forge package must be @forge-ui-official/core (not @forge-ui/*)",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "empty-onclick",
+      "description": "onClick handler is empty placeholder ({() => {}})",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "jsx-raw-arrow-text",
+      "description": "raw <- or -> in JSX text breaks Turbopack parser",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "pageheader-search-variant",
+      "description": "PageHeader variant=\"search\" only valid on search-result pages",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "page-title-wrapper-has-breadcrumbs-actions",
+      "description": "generated PageTitle wrapper must expose Forge breadcrumbs and page-level actions",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "action-form-missing-exit",
+      "description": "action form routes must expose breadcrumbs/back/cancel, not trap the user in the form",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "action-form-kicker-copy",
+      "description": "action form titles should not use kicker/eyebrow copy",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "action-form-long-description",
+      "description": "action form title description should stay short; long instructions belong in field groups or preflight panels",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "datatable-data-prop",
+      "description": "DataTable takes rows=, not data=",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "datatable-onrowclick",
+      "description": "DataTable has no onRowClick prop",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "rich-list-missing-row-identity",
+      "description": "operational queue tables should include row identity, not plain field dumps",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "rich-list-missing-row-action",
+      "description": "operational queue tables should expose a row action or detail link",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "toolbar-search-onchange",
+      "description": "ToolbarSearchInput has no onChange; it is display-only",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "mock-delete-call",
+      "description": "mock CRUD helper uses .remove(), not .delete()",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "api-params-non-promise",
+      "description": "Next 16 API [id] route params must be Promise<{id}>",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "statcard-all-white",
+      "description": ">=2 StatCard all theme=\"white\" — loses semantic color encoding",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "forge-card-fixed-width",
+      "description": "official Forge cards in app routes should fill their parent grid/flex column",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "raw-tailwind-color-in-app",
+      "description": "generated admin pages should use Forge fg-* tokens instead of Tailwind default color families",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "over-rounded-admin-surface",
+      "description": "large rounded surfaces make admin pages feel less Forge/Protask-like",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "coarse-admin-density",
+      "description": "large spacing or display-scale text usually breaks dense admin page rhythm",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "page-inline-hex",
+      "description": "page.tsx 总装禁止散落 hex 字面 (B+ escape hatch 规则) — inline style 必须搬到 ./_components/",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "page-getting-long",
+      "description": "page.tsx > 250 lines — consider splitting into ./components/",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "page-too-long-no-split",
+      "description": "page.tsx > 320 lines without ./components import — must split",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "main-container-max-w",
+      "description": "main container must not set max-w — AppLayout already controls content width",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "main-container-double-padding",
+      "description": "main container must not add p-6/p-8 because AppLayout already pads content",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "raw-button-in-app",
+      "description": "business app must use Forge <Button>/<ButtonGroup>, not raw <button>",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "checkbox-with-label-hydration",
+      "description": "CheckboxWithLabel nests button semantics in current Forge core and can trigger React hydration errors",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "handrolled-visual-primitive",
+      "description": "do not hand-roll Forge visual primitives in generated app pages",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "gradient-text-in-app",
+      "description": "Forge admin app pages must not use gradient text",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "decorative-side-accent",
+      "description": "rounded card with decorative left border accent tends to look AI-generated",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "marketing-buzzword-copy",
+      "description": "admin UI copy should be concrete, not marketing buzzword copy",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "internal-ia-copy-in-ui",
+      "description": "internal IA/design constraints must not leak into visible admin UI copy",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "em-dash-copy",
+      "description": "em dash in generated UI copy often signals unpolished AI prose",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "transition-all-in-app",
+      "description": "transition-all can animate layout properties and create product UI jank",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L1",
+      "name": "custom-card-shell",
+      "description": "business app must not define generic custom card shells when Forge card components fit",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "statusbadge-uses-children",
+      "description": "StatusBadge takes label= prop, not children",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "progress-statcard-progress-prop",
+      "description": "ProgressStatCard takes progressValue=, not progress=",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "statusbadge-size-prop",
+      "description": "StatusBadge has no size prop",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "listgroup-bad-color",
+      "description": "ListGroup color must be purple | blue | black",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "statcard-bad-size",
+      "description": "StatCard size must be sm | lg | wide",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "statcard-label-prop",
+      "description": "StatCard takes title= prop, not label=",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "statcard-numeric-value",
+      "description": "StatCard value must be a string, not a numeric JSX literal",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "label-bad-color",
+      "description": "Label color must be purple | blue | cyan | green | red | yellow | gray",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "toolbar-search-controlled-props",
+      "description": "ToolbarSearchInput has no value/onValueChange props",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "datatable-column-label",
+      "description": "DataTable ColumnDef uses header:, not label:",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L2",
+      "name": "buttongroup-too-many-items",
+      "description": "ButtonGroup should not carry more than 5 segments",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-required-page-fields",
+      "description": "Every IA page needs route, primaryVerb, lifecycle, decisionQuestion, primaryDataObject, surfaceRole, and linksOut",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-surface-role-valid",
+      "description": "surfaceRole must be navigation, action, or detail; entryAffordance must use the known affordance enum",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-nonnavigation-entry-bound",
+      "description": "Action/detail routes must bind to a navigation parent and describe how users enter them",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-action-like-route-not-navigation",
+      "description": "Routes ending in new/create/edit/import/export/bulk are action surfaces, not sidebar navigation",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-sidebar-only-navigation",
+      "description": "Sidebar menu should include navigation routes only",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-forbidden-leaf-route",
+      "description": "Leaf routes must not hide business intent behind workspace/center/hub/console/all-in-one",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-cross-lifecycle-actions",
+      "description": "A page may have related read links, but must not own actions across multiple unrelated lifecycle stages",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-covers-app-routes",
+      "description": "IA route map should cover implemented app routes",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "IA",
+      "name": "ia-links-out-valid",
+      "description": "linksOut should point to known IA routes and non-terminal pages should link onward",
+      "status": "pass",
+      "files": []
+    },
+    {
+      "level": "L3",
+      "name": "next-build",
+      "description": "next build succeeded",
+      "status": "pass",
+      "files": [],
+      "duration_ms": 11549
+    }
+  ]
+}
