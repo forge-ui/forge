@@ -2,6 +2,10 @@
   "name": "forge",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.1.3",
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "pnpm core:build && next dev",
     "build": "pnpm core:build && next build",
@@ -11,6 +15,10 @@
     "docs:llms": "node scripts/generate-llms-docs.mjs",
     "core:build": "pnpm --filter @forge-ui-official/core build",
     "core:typecheck": "pnpm --filter @forge-ui-official/core typecheck",
+    "core:test": "pnpm --filter @forge-ui-official/core test",
+    "core:check": "pnpm --filter @forge-ui-official/core check",
+    "core:check-package": "pnpm --filter @forge-ui-official/core check:package",
+    "core:check-consumer": "pnpm --filter @forge-ui-official/core check:consumer",
     "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",
     "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase"
   },

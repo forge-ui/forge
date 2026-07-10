@@ -87,6 +87,7 @@ export function IconButton({
   variant = "primary",
   size = "md",
   shape = "circle",
+  type = "button",
   disabled = false,
   className = "",
   ...props
@@ -100,6 +101,7 @@ export function IconButton({
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">) {
   return (
     <button
+      type={type}
       disabled={disabled}
       className={`${iconButtonSizes[size]} ${iconButtonVariants[color][variant]} ${iconButtonShapes[shape]} inline-flex justify-center items-center gap-1 overflow-hidden transition-colors ${disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${className}`}
       {...props}

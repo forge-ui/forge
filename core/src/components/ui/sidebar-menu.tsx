@@ -48,6 +48,8 @@ function SidebarRow({
         surface={surface}
         kind={kind}
         badge={item.badge}
+        href={hasChildren ? undefined : item.href}
+        expanded={hasChildren ? expanded : undefined}
         onClick={() => {
           if (hasChildren) setExpanded((v) => !v);
         }}
@@ -56,7 +58,7 @@ function SidebarRow({
         <div className="flex flex-col gap-1">
           {item.children!.map((child, i) => (
             <SidebarRow
-              key={i}
+              key={child.href ?? `${child.label}-${i}`}
               item={child}
               accent={accent}
               surface={surface}
@@ -154,8 +156,10 @@ export function SidebarMenu({
         <div className="flex-1 flex flex-col items-center gap-2">
           {railMain.map((item, i) => (
             <MenuItem
-              key={`m-${i}`}
+              key={`m-${item.href ?? `${item.label}-${i}`}`}
               lead={item.icon ? { kind: "icon", icon: item.icon } : undefined}
+              ariaLabel={item.label}
+              href={item.href}
               active={item.active}
               accent={accent}
               surface={surface}
@@ -176,8 +180,10 @@ export function SidebarMenu({
 
           {railFav.map((item, i) => (
             <MenuItem
-              key={`f-${i}`}
+              key={`f-${item.href ?? `${item.label}-${i}`}`}
               lead={item.icon ? { kind: "icon", icon: item.icon } : undefined}
+              ariaLabel={item.label}
+              href={item.href}
               active={item.active}
               accent={accent}
               surface={surface}
@@ -271,7 +277,7 @@ export function SidebarMenu({
             </span>
           </div>
           {mainMenuItems.map((item, i) => (
-            <SidebarRow key={i} item={item} accent={accent} surface={surface} />
+            <SidebarRow key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
           ))}
         </div>
 
@@ -288,7 +294,7 @@ export function SidebarMenu({
               </span>
             </div>
             {favoriteItems.map((item, i) => (
-              <SidebarRow key={i} item={item} accent={accent} surface={surface} />
+              <SidebarRow key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
             ))}
           </div>
         )}

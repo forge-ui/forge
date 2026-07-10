@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect } from "react";
+import { type ReactNode, useState, useRef, useEffect, useId } from "react";
 import { cn } from "../../../lib/utils";
 import { MagniferLinear, AddCircleLinear } from "solar-icon-set";
 import { formAccents, type FormAccentColor } from "./form-utils";
@@ -13,6 +13,17 @@ import { formAccents, type FormAccentColor } from "./form-utils";
 // ============================================================
 
 export type IconSelectorColor = FormAccentColor;
+
+export function filterIconIndexes(
+  labels: string[] | undefined,
+  query: string,
+  iconCount = labels?.length ?? 0,
+): number[] {
+  const indexes = Array.from({ length: iconCount }, (_, index) => index);
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  if (!normalizedQuery || !labels) return indexes;
+  return indexes.filter((index) => labels[index]?.toLocaleLowerCase().includes(normalizedQuery));
+}
 
 // ── Color Picker ──────────────────────────────────────────
 
@@ -46,6 +57,8 @@ export function ColorPicker({
           <button
             key={i}
             type="button"
+            aria-label={`颜色 ${i + 1}`}
+            aria-pressed={isSelected}
             onClick={() => onChange?.(i)}
             className={cn(
               "p-0.5 rounded-full flex items-center gap-2 cursor-pointer",
@@ -70,12 +83,14 @@ export function ColorPicker({
 
 export function IconPicker({
   icons,
+  labels,
   selectedIndex,
   onChange,
   color = "purple",
   className,
 }: {
   icons: ReactNode[];
+  labels?: string[];
   selectedIndex?: number;
   onChange?: (index: number) => void;
   color?: IconSelectorColor;
@@ -91,6 +106,8 @@ export function IconPicker({
           <button
             key={index}
             type="button"
+            aria-label={labels?.[index] ?? `图标 ${index + 1}`}
+            aria-pressed={isSelected}
             onClick={() => onChange?.(index)}
             className={cn(
               "p-2 rounded-[10px] flex items-center justify-center cursor-pointer transition-colors",
@@ -115,6 +132,7 @@ export function IconSelector({
   icons,
   selectedIndex,
   onChange,
+  labels,
   label,
   color = "purple",
   searchPlaceholder = "搜索图标...",
@@ -123,6 +141,8 @@ export function IconSelector({
   icons: ReactNode[];
   selectedIndex?: number;
   onChange?: (index: number) => void;
+  /** Searchable accessible names aligned with `icons`. Without labels, search leaves all icons visible. */
+  labels?: string[];
   label?: string;
   color?: IconSelectorColor;
   searchPlaceholder?: string;
@@ -131,27 +151,44 @@ export function IconSelector({
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const dialogId = useId();
+  const labelId = useId();
   const accent = formAccents[color];
 
-  // Close on outside click
+  // Move focus into the popover and support dismissal from the keyboard or pointer.
   useEffect(() => {
     if (!open) return;
+    searchInputRef.current?.focus();
+
     function handleClick(e: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      setOpen(false);
+      triggerRef.current?.focus();
+    }
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, [open]);
 
   const hasSelection = selectedIndex !== undefined && selectedIndex >= 0;
+  const filteredIndexes = filterIconIndexes(labels, search, icons.length);
 
   return (
     <div className={cn("inline-flex flex-col items-start gap-1", className)} ref={containerRef}>
       {label && (
         <div className="self-stretch flex items-start gap-2">
-          <span className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{label}</span>
+          <span id={labelId} className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{label}</span>
         </div>
       )}
       <div className="self-stretch relative inline-flex items-center gap-3">
@@ -173,8 +210,12 @@ export function IconSelector({
 
         {/* Select / Close button */}
         <button
+          ref={triggerRef}
           type="button"
           onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-haspopup="dialog"
+          aria-controls={dialogId}
           className={cn("flex items-start gap-1 cursor-pointer", accent.text)}
         >
           <AddCircleLinear size={20} />
@@ -185,7 +226,14 @@ export function IconSelector({
 
         {/* Popover */}
         {open && (
-          <div className="absolute left-[76px] top-[50px] w-80 max-w-[calc(100vw-2rem)] z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-white shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]">
+          <div
+            id={dialogId}
+            role="dialog"
+            aria-modal="false"
+            aria-labelledby={label ? labelId : undefined}
+            aria-label={label ? undefined : "图标选择器"}
+            className="absolute left-[76px] top-[50px] w-80 max-w-[calc(100vw-2rem)] z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-white shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]"
+          >
             {/* Search */}
             <div className="self-stretch p-4 border-b border-fg-grey-200 flex flex-col gap-2">
               <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden">
@@ -193,7 +241,9 @@ export function IconSelector({
                   <MagniferLinear size={20} />
                 </div>
                 <input
+                  ref={searchInputRef}
                   type="text"
+                  aria-label={searchPlaceholder}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder={searchPlaceholder}
@@ -204,12 +254,15 @@ export function IconSelector({
 
             {/* Icon grid */}
             <div className="self-stretch p-3 flex flex-wrap gap-2 content-start max-h-72 overflow-y-auto">
-              {icons.map((icon, index) => {
+              {filteredIndexes.map((index) => {
+                const icon = icons[index];
                 const isSelected = index === selectedIndex;
                 return (
                   <button
                     key={index}
                     type="button"
+                    aria-label={labels?.[index] ?? `图标 ${index + 1}`}
+                    aria-pressed={isSelected}
                     onClick={() => {
                       onChange?.(index);
                     }}
@@ -226,6 +279,9 @@ export function IconSelector({
                   </button>
                 );
               })}
+              {filteredIndexes.length === 0 && (
+                <p className="w-full py-6 text-center text-sm text-fg-grey-700">未找到匹配图标</p>
+              )}
             </div>
           </div>
         )}

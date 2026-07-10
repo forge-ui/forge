@@ -73,6 +73,7 @@ export function Button({
   color = "purple",
   variant = "primary",
   size = "lg",
+  type = "button",
   disabled = false,
   iconLeft,
   iconRight,
@@ -93,6 +94,7 @@ export function Button({
 
   return (
     <button
+      type={type}
       disabled={disabled}
       className={cn(
         sizeConfig.base,

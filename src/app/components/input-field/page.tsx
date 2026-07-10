@@ -51,6 +51,7 @@ const iconList = [
   <StarBoldDuotone key={6} size={20} />,
   <HeartBoldDuotone key={7} size={20} />,
 ];
+const iconLabels = ["首页", "设置", "用户", "图表", "消息", "通知", "星标", "喜欢"];
 
 // ─── TextField 代码片段 ───
 
@@ -226,7 +227,7 @@ const FILEUPLOAD_PROPS: ApiTableRow[] = [
 
 const CODE_PICKER_USAGE = `<ColorPicker selectedIndex={0} />
 <IconPicker icons={iconList} selectedIndex={0} onChange={setIndex} />
-<IconSelector label="Icons" icons={iconList} selectedIndex={0} onChange={setIndex} />`;
+<IconSelector label="Icons" icons={iconList} labels={iconLabels} selectedIndex={0} onChange={setIndex} />`;
 
 const COLORPICKER_PROPS: ApiTableRow[] = [
   { attr: "colors", type: "string[]", defaultValue: "default palette", description: "色板（每项为 Tailwind bg-* class）。" },
@@ -243,6 +244,7 @@ const ICONPICKER_PROPS: ApiTableRow[] = [
 
 const ICONSELECTOR_PROPS: ApiTableRow[] = [
   { attr: "icons", type: "ReactNode[]", defaultValue: "—", description: "图标节点列表。" },
+  { attr: "labels", type: "string[]", defaultValue: "—", description: "与 icons 对齐的可访问名称；传入后搜索框会按名称过滤。" },
   { attr: "selectedIndex", type: "number", defaultValue: "—", description: "当前选中下标。" },
   { attr: "onChange", type: "(index: number) => void", defaultValue: "—", description: "切换回调。" },
   { attr: "label", type: "string", defaultValue: "—", description: "组件上方标签。" },
@@ -533,7 +535,7 @@ export default function InputFieldCasePage() {
             紧凑图标网格，<InlineCode>icons</InlineCode> 传图标节点数组。
           </p>
           <PreviewBlock code={CODE_PICKER_USAGE} minHeight={140}>
-            <IconPicker icons={iconList} selectedIndex={selectedIcon} onChange={setSelectedIcon} />
+            <IconPicker icons={iconList} labels={iconLabels} selectedIndex={selectedIcon} onChange={setSelectedIcon} />
           </PreviewBlock>
           <ApiTable rows={ICONPICKER_PROPS} />
         </SubSection>
@@ -543,7 +545,7 @@ export default function InputFieldCasePage() {
             带 label 的完整卡片，点击 <InlineCode>Select</InlineCode> 弹出搜索 popover。
           </p>
           <PreviewBlock code={CODE_PICKER_USAGE} minHeight={180}>
-            <IconSelector label="Icons" icons={iconList} selectedIndex={selectedIcon} onChange={setSelectedIcon} />
+            <IconSelector label="Icons" icons={iconList} labels={iconLabels} selectedIndex={selectedIcon} onChange={setSelectedIcon} />
           </PreviewBlock>
           <ApiTable rows={ICONSELECTOR_PROPS} />
         </SubSection>

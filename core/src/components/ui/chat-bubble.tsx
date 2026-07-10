@@ -64,6 +64,7 @@ export function ChatBubble({
   extraImageCount,
   fileName,
   fileSize,
+  onFileDownload,
   voiceDuration,
   className = "",
 }: {
@@ -78,6 +79,8 @@ export function ChatBubble({
   extraImageCount?: number;
   fileName?: string;
   fileSize?: string;
+  /** Renders an actionable download button for received file messages. */
+  onFileDownload?: () => void;
   voiceDuration?: string;
   className?: string;
 }) {
@@ -159,8 +162,13 @@ export function ChatBubble({
                 </p>
               )}
             </div>
-            {!isSent && (
-              <button className="ml-2 shrink-0 opacity-70 hover:opacity-100 transition-opacity">
+            {!isSent && onFileDownload && (
+              <button
+                type="button"
+                aria-label={`下载 ${fileName ?? content ?? "文件"}`}
+                onClick={onFileDownload}
+                className="ml-2 shrink-0 opacity-70 hover:opacity-100 transition-opacity"
+              >
                 <DownloadLinear size={18} color="var(--fg-grey-700)" />
               </button>
             )}

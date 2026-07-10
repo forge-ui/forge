@@ -100,7 +100,14 @@ export function ProgressBar({
           )}
         </div>
       )}
-      <div className={cn("self-stretch rounded-full overflow-hidden", progressSizes[size], trackClass)}>
+      <div
+        role="progressbar"
+        aria-label={label ?? "进度"}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={clampedValue}
+        className={cn("self-stretch rounded-full overflow-hidden", progressSizes[size], trackClass)}
+      >
         <div
           className={cn("rounded-full transition-all", progressSizes[size], progressColors[color])}
           style={{ width: `${clampedValue}%` }}

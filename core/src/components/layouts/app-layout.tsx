@@ -8,11 +8,13 @@ import { cn } from "../../lib/utils";
 import {
   AltArrowDownLinear,
   HamburgerMenuLinear,
+  CloseSquareLinear,
   CalendarBoldDuotone,
   BellBoldDuotone,
   LetterBoldDuotone,
 } from "solar-icon-set";
 import { PageHeader } from "../ui/page-header";
+import { Breadcrumbs } from "../ui/breadcrumbs";
 import {
   MessageMenu,
   NotificationPanel,
@@ -20,11 +22,14 @@ import {
   ProfileDropdown,
   TeamSwitcherDropdown,
   CalendarPopup,
-  languageMarkDataUrl,
+  languageFlagDataUrls,
+  type LanguageCode,
   type Team,
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
 import { forgeLogoDataUrl } from "../../assets/_inlined";
+import { accentTokens, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
+import { languageLabels } from "../../internal/sidebar-popover-data";
 
 export type { Team };
 
@@ -35,6 +40,7 @@ export type { Team };
 export type AppLayoutMode = "light" | "dark";
 export type AppLayoutProfilePosition = "sidebar" | "topbar";
 export type AppLayoutAccentColor = "purple" | "blue" | "black";
+export type AppLayoutLanguage = LanguageCode;
 
 interface AppLayoutMenuItemBase {
   icon?: ReactNode;
@@ -52,31 +58,6 @@ export type AppLayoutMenuItem =
       children: AppLayoutMenuItem[];
     });
 
-function isHrefActive(pathname: string, href?: string) {
-  return !!href && (pathname === href || (href.split("/").length > 2 && pathname.startsWith(href + "/")));
-}
-
-function hasActiveDescendant(item: AppLayoutMenuItem, pathname: string): boolean {
-  return !!item.children?.some((child) => isHrefActive(pathname, child.href) || hasActiveDescendant(child, pathname));
-}
-
-function findFirstNavigableHref(item: AppLayoutMenuItem): string | undefined {
-  if (item.href) return item.href;
-  for (const child of item.children ?? []) {
-    const href = findFirstNavigableHref(child);
-    if (href) return href;
-  }
-  return undefined;
-}
-
-function findFirstChildNavigableHref(item: AppLayoutMenuItem): string | undefined {
-  for (const child of item.children ?? []) {
-    const href = findFirstNavigableHref(child);
-    if (href) return href;
-  }
-  return undefined;
-}
-
 export interface AppLayoutProfile {
   avatar: string;
   name: string;
@@ -90,7 +71,7 @@ export interface AppLayoutBreadcrumb {
   href?: string;
 }
 
-interface AppLayoutProps {
+export interface AppLayoutProps {
   mode?: AppLayoutMode;
   profilePosition?: AppLayoutProfilePosition;
   accent?: AppLayoutAccentColor;
@@ -113,6 +94,9 @@ interface AppLayoutProps {
   profile?: AppLayoutProfile;
   notifications?: number;
   messages?: number;
+  language?: AppLayoutLanguage;
+  defaultLanguage?: AppLayoutLanguage;
+  onLanguageChange?: (language: AppLayoutLanguage) => void;
   pageHeaderVariant?: AppLayoutPageHeaderVariant;
   onBack?: () => void;
   primaryAction?: { label: string; onClick?: () => void };
@@ -148,206 +132,6 @@ interface AppLayoutProps {
 type PopoverId = "calendar" | "messages" | "notifications" | "language" | "profile" | "team" | null;
 
 // ============================================================
-// Accent color tokens
-// ============================================================
-
-const accentTokens = {
-  purple: {
-    activeBg: "bg-fg-violet",
-    activeBgLight: "bg-fg-violet",
-    activeBgDark: "bg-white/20",
-    accentBar: "bg-fg-violet",
-    accentBarDark: "bg-white",
-    addButton: "bg-fg-violet",
-    onAccentMuted: "text-fg-violet-100",
-  },
-  blue: {
-    activeBg: "bg-fg-blue",
-    activeBgLight: "bg-fg-blue",
-    activeBgDark: "bg-white/20",
-    accentBar: "bg-fg-blue",
-    accentBarDark: "bg-white",
-    addButton: "bg-fg-blue",
-    onAccentMuted: "text-fg-blue-100",
-  },
-  black: {
-    activeBg: "bg-fg-black",
-    activeBgLight: "bg-fg-black",
-    activeBgDark: "bg-white/20",
-    accentBar: "bg-fg-black",
-    accentBarDark: "bg-white",
-    addButton: "bg-fg-black",
-    onAccentMuted: "text-fg-grey-400",
-  },
-} as const;
-
-// ============================================================
-// Mode config (light vs dark sidebar)
-// ============================================================
-
-const modeConfig = {
-  light: {
-    outer: "bg-white",
-    sidebar: "bg-white shadow-subtle",
-    logoText: "text-fg-black",
-    hamburger: "text-fg-grey-700 hover:text-fg-black",
-    teamSwitcher: "bg-fg-grey-50 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
-    teamName: "text-fg-black",
-    teamCount: "text-fg-grey-700",
-    teamChevron: "text-fg-grey-700",
-    sectionTitle: "text-fg-grey-700",
-    menuItem: "text-fg-grey-700 hover:bg-fg-grey-100",
-    menuItemActiveText: "text-white font-bold",
-    badgeBg: "bg-fg-red",
-    profileBg: "bg-fg-grey-50 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
-    profileName: "text-fg-black",
-    profileRole: "text-fg-grey-700",
-    profileChevron: "text-fg-grey-900",
-    contentArea: "bg-fg-grey-50 rounded-3xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
-    topbarText: "text-fg-black",
-    topbarSubtext: "text-fg-grey-700",
-    topbarIcon: "text-fg-grey-700 hover:text-fg-black",
-    dividerColor: "bg-fg-grey-200",
-    breadcrumbText: "text-fg-grey-700",
-    breadcrumbActive: "text-fg-black",
-    useAccentBgForActive: true,
-  },
-  dark: {
-    outer: "bg-fg-black",
-    sidebar: "bg-fg-black",
-    logoText: "text-white",
-    hamburger: "text-white/70 hover:text-white",
-    teamSwitcher: "bg-white/10",
-    teamName: "text-white",
-    teamCount: "text-white/70",
-    teamChevron: "text-white/70",
-    sectionTitle: "text-white/50",
-    menuItem: "text-white/70 hover:bg-white/10",
-    menuItemActiveText: "text-white font-bold",
-    badgeBg: "bg-fg-red",
-    profileBg: "bg-white/10",
-    profileName: "text-white",
-    profileRole: "text-white/70",
-    profileChevron: "text-white/70",
-    contentArea: "bg-fg-grey-50 rounded-3xl",
-    topbarText: "text-fg-black",
-    topbarSubtext: "text-fg-grey-700",
-    topbarIcon: "text-fg-grey-700 hover:text-fg-black",
-    dividerColor: "bg-fg-grey-200",
-    breadcrumbText: "text-fg-grey-700",
-    breadcrumbActive: "text-fg-black",
-    useAccentBgForActive: false,
-  },
-} as const;
-
-// ============================================================
-// Menu Item
-// ============================================================
-
-function SidebarMenuItemRow({
-  item,
-  config,
-  accentActive,
-  accentBar,
-  pathname,
-  depth = 0,
-  collapsed = false,
-}: {
-  item: AppLayoutMenuItem;
-  config: (typeof modeConfig)[AppLayoutMode];
-  accentActive: string;
-  accentBar: string;
-  pathname: string;
-  depth?: number;
-  collapsed?: boolean;
-}) {
-  const childItems = item.children ?? [];
-  const hasChildren = childItems.length > 0;
-  const isActive = !hasChildren && isHrefActive(pathname, item.href);
-  const isChildActive = hasActiveDescendant(item, pathname);
-  const [expanded, setExpanded] = useState(isActive || isChildActive);
-
-  // Collapsed mode: icon-only
-  if (collapsed && depth === 0) {
-    const link = hasChildren ? findFirstChildNavigableHref(item) ?? item.href : item.href;
-    const active = isActive || isChildActive;
-    const iconOnly = (
-      <span className={cn(
-        "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-        active ? cn(accentActive, "text-white") : config.menuItem
-      )}>
-        {item.icon}
-      </span>
-    );
-    return link ? (
-      <a href={link} className="flex justify-center" title={item.label}>
-        {iconOnly}
-      </a>
-    ) : (
-      <span className="flex justify-center" title={item.label}>
-        {iconOnly}
-      </span>
-    );
-  }
-
-  const rowClassName = cn(
-    "self-stretch px-3.5 py-3 rounded-full inline-flex items-center gap-2 transition-colors relative",
-    depth > 0 && "pl-[46px]",
-    isActive ? cn(accentActive, config.menuItemActiveText) : config.menuItem
-  );
-
-  const rowContent = (
-    <>
-      {isActive && depth === 0 && (
-        <div className={cn("w-1 h-12 absolute left-[-16px] top-0 rounded-tr-lg rounded-br-lg", accentBar)} />
-      )}
-      {item.icon && <span className="w-6 h-6 flex justify-center items-center shrink-0">{item.icon}</span>}
-      <span className="flex-1 text-sm font-semibold leading-5 tracking-fg line-clamp-1 text-left">{item.label}</span>
-      {item.badge !== undefined && item.badge > 0 && (
-        <span className={cn("px-1.5 py-0.5 rounded-full inline-flex flex-col justify-center items-center gap-2", config.badgeBg)}>
-          <span className="text-white text-2xs font-semibold leading-3.5 tracking-fg">{item.badge}</span>
-        </span>
-      )}
-      {hasChildren && (
-        <span className="w-6 h-6 flex justify-center items-center shrink-0">
-          <span className={cn("transition-transform inline-flex", expanded && "rotate-180")}>
-            <AltArrowDownLinear size={16} />
-          </span>
-        </span>
-      )}
-    </>
-  );
-
-  const row = item.href && !hasChildren ? (
-    <a href={item.href} className={rowClassName}>
-      {rowContent}
-    </a>
-  ) : hasChildren ? (
-    <button
-      type="button"
-      onClick={() => setExpanded(!expanded)}
-      className={rowClassName}
-    >
-      {rowContent}
-    </button>
-  ) : (
-    <span className={cn(rowClassName, "cursor-default opacity-70")} aria-disabled="true">
-      {rowContent}
-    </span>
-  );
-
-  const children = hasChildren && expanded && (
-    <div className="flex flex-col">
-      {childItems.map((child, i) => (
-        <SidebarMenuItemRow key={i} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} depth={depth + 1} />
-      ))}
-    </div>
-  );
-
-  return <div className="flex flex-col">{row}{children}</div>;
-}
-
-// ============================================================
 // AppLayout
 // ============================================================
 
@@ -370,6 +154,9 @@ export function AppLayout({
   profile,
   notifications,
   messages,
+  language,
+  defaultLanguage = "zh-CN",
+  onLanguageChange,
   searchPlaceholder = "搜索...",
   topbarLeftMode = "search",
   topbarAccent,
@@ -401,6 +188,11 @@ export function AppLayout({
 
   // Sidebar collapse state
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [internalLanguage, setInternalLanguage] = useState<AppLayoutLanguage>(defaultLanguage);
+  const activeLanguage = language ?? internalLanguage;
+  const activeLanguageLabel = languageLabels[activeLanguage];
   const sidebarStyle = {
     "--forge-sidebar-expanded-width": sidebarWidth,
     "--forge-sidebar-collapsed-width": collapsedSidebarWidth,
@@ -409,54 +201,235 @@ export function AppLayout({
   // Popover state
   const [openPopover, setOpenPopover] = useState<PopoverId>(null);
   const layoutRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const mobileSidebarTriggerRef = useRef<HTMLElement | null>(null);
+  const popoverTriggerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const update = () => {
+      setIsMobile(media.matches);
+      if (!media.matches) setMobileSidebarOpen(false);
+    };
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    setMobileSidebarOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileSidebarOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const focusableSelector = [
+      "a[href]",
+      "button:not([disabled])",
+      "input:not([disabled])",
+      "select:not([disabled])",
+      "textarea:not([disabled])",
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(",");
+    const getFocusable = () =>
+      [...(sidebarRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? [])];
+    const focusable = getFocusable();
+    focusable[0]?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        if (sidebarRef.current?.querySelector("[data-popover]")) return;
+        event.preventDefault();
+        setMobileSidebarOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const currentFocusable = getFocusable();
+      if (currentFocusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+      const first = currentFocusable[0];
+      const last = currentFocusable[currentFocusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (!sidebarRef.current?.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      if (mobileSidebarTriggerRef.current?.isConnected) {
+        mobileSidebarTriggerRef.current.focus();
+      }
+    };
+  }, [mobileSidebarOpen]);
+
+  useEffect(() => {
+    if (isMobile && !mobileSidebarOpen) setOpenPopover(null);
+  }, [isMobile, mobileSidebarOpen]);
+
+  useEffect(() => {
+    if (openPopover === null) return;
+    const popover = layoutRef.current?.querySelector<HTMLElement>(
+      `[data-popover="${openPopover}"]`,
+    );
+    const menuItem = popover?.querySelector<HTMLElement>(
+      '[role="menu"] [role="menuitem"], [role="menu"] [role="menuitemradio"]',
+    );
+    const dialogControl = popover?.querySelector<HTMLElement>(
+      '[role="dialog"] button:not([disabled]), [role="dialog"] input:not([disabled]), [role="dialog"] [tabindex]:not([tabindex="-1"])',
+    );
+    (menuItem ?? dialogControl)?.focus();
+  }, [openPopover]);
 
   const togglePopover = useCallback((id: PopoverId) => {
     setOpenPopover((prev) => (prev === id ? null : id));
   }, []);
 
+  const closePopover = useCallback((restoreFocus = false) => {
+    setOpenPopover(null);
+    if (restoreFocus && popoverTriggerRef.current?.isConnected) {
+      popoverTriggerRef.current.focus();
+    }
+  }, []);
+
+  const selectLanguage = useCallback((nextLanguage: AppLayoutLanguage) => {
+    if (language === undefined) setInternalLanguage(nextLanguage);
+    onLanguageChange?.(nextLanguage);
+    closePopover(true);
+  }, [closePopover, language, onLanguageChange]);
+
   // Click-outside handler
   useEffect(() => {
+    if (openPopover === null) return;
     function handleClickOutside(e: MouseEvent) {
-      if (openPopover === null) return;
       const target = e.target as HTMLElement;
       if (target.closest("[data-popover]") || target.closest("[data-popover-trigger]")) return;
       setOpenPopover(null);
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      closePopover(true);
+    }
+    function handleFocusOutside(e: FocusEvent) {
+      const target = e.target;
+      if (!(target instanceof window.Node)) return;
+      const popover = layoutRef.current?.querySelector<HTMLElement>(
+        `[data-popover="${openPopover}"]`,
+      );
+      if (popover?.contains(target) || popoverTriggerRef.current?.contains(target)) return;
+      setOpenPopover(null);
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openPopover]);
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("focusin", handleFocusOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("focusin", handleFocusOutside);
+    };
+  }, [closePopover, openPopover]);
 
   // Helper: active icon style
   const iconActive = (id: PopoverId) =>
     openPopover === id ? cn(accentCfg.activeBg, "text-white") : config.topbarIcon;
 
+  const toggleSidebar = () => {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      if (!mobileSidebarOpen && document.activeElement instanceof HTMLElement) {
+        mobileSidebarTriggerRef.current = document.activeElement;
+      }
+      setSidebarCollapsed(false);
+      setMobileSidebarOpen((open) => !open);
+      return;
+    }
+    setSidebarCollapsed((collapsed) => !collapsed);
+  };
+
   return (
-    <div ref={layoutRef} data-accent={accent} className={cn("w-full min-h-screen flex", outerBg)}>
+    <div
+      ref={layoutRef}
+      data-accent={accent}
+      data-forge-app-layout
+      onClickCapture={(event) => {
+        const trigger = (event.target as Element).closest<HTMLElement>("[data-popover-trigger]");
+        if (trigger) popoverTriggerRef.current = trigger;
+      }}
+      className={cn("w-full min-w-0 min-h-screen flex", outerBg)}
+    >
+      {mobileSidebarOpen && (
+        <button
+          type="button"
+          aria-label="关闭主导航"
+          data-forge-app-overlay
+          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+        />
+      )}
+
       {/* ====== Sidebar ====== */}
       <div
+        ref={sidebarRef}
+        id="forge-app-sidebar"
+        data-forge-app-sidebar
+        role="navigation"
+        aria-label="主导航"
+        aria-hidden={isMobile && !mobileSidebarOpen ? true : undefined}
+        inert={isMobile && !mobileSidebarOpen ? true : undefined}
+        onClickCapture={(event) => {
+          if (isMobile && (event.target as HTMLElement).closest("a[href]")) {
+            setMobileSidebarOpen(false);
+          }
+        }}
         style={sidebarStyle}
         className={cn(
-          "sticky top-0 h-screen flex flex-col shrink-0 z-30 transition-all duration-300",
+          "fixed inset-y-0 left-0 h-dvh flex flex-col shrink-0 z-50 transition-[width,transform] duration-300 md:sticky md:top-0 md:z-30 md:h-screen md:translate-x-0",
+          "w-[var(--forge-sidebar-expanded-width)] max-w-[calc(100vw-3rem)] overflow-visible",
+          mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
           sidebarCollapsed
-            ? "w-[var(--forge-sidebar-collapsed-width)] overflow-hidden"
-            : "w-[var(--forge-sidebar-expanded-width)] overflow-visible",
+            ? "md:w-[var(--forge-sidebar-collapsed-width)] md:overflow-hidden"
+            : "md:w-[var(--forge-sidebar-expanded-width)] md:overflow-visible",
           sidebarBg
         )}
       >
         {/* Logo */}
-        <div className="h-20 p-6 flex items-center gap-2.5">
+        <div className="relative h-20 p-6 flex items-center gap-2.5">
           <div
-            className={cn("flex-1 flex items-center gap-2 overflow-hidden", sidebarCollapsed && "justify-center cursor-pointer")}
-            onClick={sidebarCollapsed ? () => setSidebarCollapsed(false) : undefined}
+            inert={sidebarCollapsed ? true : undefined}
+            className={cn("flex-1 flex items-center gap-2 overflow-hidden", sidebarCollapsed && "justify-center")}
           >
             {logo ?? <img src={forgeLogoDataUrl} alt="Forge" className="w-8 h-8 shrink-0" />}
             {!sidebarCollapsed && (
-              <span className={cn("text-2xl font-semibold leading-8 tracking-fg whitespace-nowrap", config.logoText)}>{logoText}</span>
+              <span className={cn("min-w-0 truncate whitespace-nowrap text-2xl font-semibold leading-8 tracking-fg", config.logoText)}>{logoText}</span>
             )}
           </div>
+          {sidebarCollapsed && (
+            <button
+              type="button"
+              aria-label="展开主导航"
+              onClick={() => setSidebarCollapsed(false)}
+              className="absolute inset-0 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-fg-violet"
+            />
+          )}
           {!sidebarCollapsed && (
-            <button type="button" onClick={() => setSidebarCollapsed(true)} className={cn("w-5 h-5 transition-colors shrink-0", config.hamburger)}>
-              <HamburgerMenuLinear size={20} />
+            <button
+              type="button"
+              aria-label={isMobile ? "关闭主导航" : "收起主导航"}
+              onClick={() => isMobile ? setMobileSidebarOpen(false) : setSidebarCollapsed(true)}
+              className={cn("w-5 h-5 transition-colors shrink-0", config.hamburger)}
+            >
+              {isMobile ? <CloseSquareLinear size={20} /> : <HamburgerMenuLinear size={20} />}
             </button>
           )}
         </div>
@@ -466,6 +439,8 @@ export function AppLayout({
           <div className="px-4 py-3 relative">
             <button
               type="button"
+              aria-haspopup="menu"
+              aria-expanded={openPopover === "team"}
               data-popover-trigger="team"
               onClick={() => togglePopover("team")}
               className={cn("w-full p-4 rounded-xl flex items-center gap-3 transition-colors", config.teamSwitcher)}
@@ -484,7 +459,7 @@ export function AppLayout({
               </span>
             </button>
             {openPopover === "team" && (
-              <div data-popover="team" className="absolute left-full top-0 ml-2 z-50">
+              <div data-popover="team" className="absolute left-4 top-full mt-2 z-[60] md:left-full md:top-0 md:ml-2 md:mt-0 md:z-50">
                 <TeamSwitcherDropdown
                   teamName={teamName}
                   teamAvatar={teamAvatar}
@@ -511,7 +486,7 @@ export function AppLayout({
                   </div>
                 )}
                 {(menuItems ?? []).map((item, i) => (
-                  <SidebarMenuItemRow key={i} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
+                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
                 ))}
               </div>
 
@@ -523,7 +498,7 @@ export function AppLayout({
                     </div>
                   )}
                   {favoriteItems.map((item, i) => (
-                    <SidebarMenuItemRow key={i} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
+                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
                   ))}
                 </div>
               )}
@@ -532,21 +507,28 @@ export function AppLayout({
         </div>
 
         {/* Secondary menu + Profile (when profilePosition === "sidebar") */}
-        {profilePosition === "sidebar" && !sidebarCollapsed && (
+        {(profilePosition === "sidebar" || isMobile) && !sidebarCollapsed && (
           <div className="relative p-4 flex flex-col gap-4">
             {/* Widget row: language, calendar, notifications, messages */}
             {!hideSidebarWidgets && (
               <div className="flex items-center justify-between">
                 <button
                   type="button"
+                  aria-label={`切换语言，当前${activeLanguageLabel}`}
+                  aria-haspopup="menu"
+                  aria-expanded={openPopover === "language"}
+                  data-language-code={activeLanguage}
                   data-popover-trigger="language"
                   onClick={() => togglePopover("language")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("language"))}
                 >
-                  <img src={languageMarkDataUrl} alt="语言" className="w-5 h-5 rounded-full object-cover" />
+                  <img data-forge-language-flag={activeLanguage} src={languageFlagDataUrls[activeLanguage]} alt="" className="w-5 h-5 rounded-full object-cover" />
                 </button>
                 <button
                   type="button"
+                  aria-label="打开日历"
+                  aria-haspopup="dialog"
+                  aria-expanded={openPopover === "calendar"}
                   data-popover-trigger="calendar"
                   onClick={() => togglePopover("calendar")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("calendar"))}
@@ -555,6 +537,9 @@ export function AppLayout({
                 </button>
                 <button
                   type="button"
+                  aria-label={`通知${notifications && notifications > 0 ? `，${notifications} 条未读` : ""}`}
+                  aria-haspopup="dialog"
+                  aria-expanded={openPopover === "notifications"}
                   data-popover-trigger="notifications"
                   onClick={() => togglePopover("notifications")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("notifications"))}
@@ -566,6 +551,9 @@ export function AppLayout({
                 </button>
                 <button
                   type="button"
+                  aria-label={`消息${messages && messages > 0 ? `，${messages} 条未读` : ""}`}
+                  aria-haspopup="menu"
+                  aria-expanded={openPopover === "messages"}
                   data-popover-trigger="messages"
                   onClick={() => togglePopover("messages")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("messages"))}
@@ -582,6 +570,9 @@ export function AppLayout({
             {profile && (
               <button
                 type="button"
+                aria-label={`打开 ${profile.name} 的个人菜单`}
+                aria-haspopup="menu"
+                aria-expanded={openPopover === "profile"}
                 data-popover-trigger="profile"
                 onClick={() => togglePopover("profile")}
                 className={cn(
@@ -611,27 +602,27 @@ export function AppLayout({
 
             {/* Sidebar popovers - positioned to the right, in the content area */}
             {openPopover === "language" && (
-              <div data-popover="language" className="absolute left-full bottom-20 ml-4 z-50">
-                <LanguageSwitcher accentBg={accentCfg.activeBg} />
+              <div data-popover="language" className="absolute left-4 bottom-20 z-[60] md:left-full md:ml-4 md:z-50">
+                <LanguageSwitcher accentBg={accentCfg.activeBg} value={activeLanguage} onChange={selectLanguage} />
               </div>
             )}
             {openPopover === "calendar" && (
-              <div data-popover="calendar" className="absolute left-full bottom-20 ml-4 z-50">
+              <div data-popover="calendar" className="absolute left-4 bottom-20 w-[calc(100vw-2rem)] z-[60] md:left-full md:ml-4 md:w-screen md:max-w-[400px] md:z-50">
                 <CalendarPopup accentBg={accentCfg.activeBg} />
               </div>
             )}
             {openPopover === "notifications" && (
-              <div data-popover="notifications" className="absolute left-full bottom-4 ml-4 z-50">
-                <NotificationPanel onClose={() => setOpenPopover(null)} />
+              <div data-popover="notifications" className="absolute left-4 bottom-4 z-[60] md:left-full md:ml-4 md:z-50">
+                <NotificationPanel onClose={() => closePopover(true)} />
               </div>
             )}
             {openPopover === "messages" && (
-              <div data-popover="messages" className="absolute left-full bottom-20 ml-4 z-50">
+              <div data-popover="messages" className="absolute left-4 bottom-20 z-[60] md:left-full md:ml-4 md:z-50">
                 <MessageMenu />
               </div>
             )}
             {openPopover === "profile" && (
-              <div data-popover="profile" className="absolute left-full bottom-4 ml-4 z-50">
+              <div data-popover="profile" className="absolute left-4 bottom-4 z-[60] md:left-full md:ml-4 md:z-50">
                 <ProfileDropdown />
               </div>
             )}
@@ -640,8 +631,8 @@ export function AppLayout({
       </div>
 
       {/* ====== Content area ====== */}
-      <div className="flex-1 p-2 flex flex-col min-h-screen">
-        <div className={cn("flex-1 flex flex-col", config.contentArea)}>
+      <div data-forge-app-content className="min-w-0 w-full flex-1 p-0 md:p-2 flex flex-col min-h-screen">
+        <div className={cn("min-w-0 flex-1 flex flex-col max-md:rounded-none max-md:outline-none", config.contentArea)}>
 
           {/* Topbar: depends on profilePosition */}
           {profilePosition === "topbar" ? (
@@ -651,23 +642,32 @@ export function AppLayout({
                 variant="search"
                 color={topbarAccent ?? accent}
                 leftMode={topbarLeftMode}
-                onHamburgerClick={() => setSidebarCollapsed((prev) => !prev)}
+                onHamburgerClick={toggleSidebar}
+                showMobileMenuButton
+                hamburgerAriaLabel={mobileSidebarOpen ? "关闭主导航" : "打开主导航"}
+                hamburgerExpanded={mobileSidebarOpen}
+                hamburgerControls="forge-app-sidebar"
                 searchPlaceholder={searchPlaceholder}
                 showCalendar
                 onCalendarClick={() => togglePopover("calendar")}
+                calendarExpanded={openPopover === "calendar"}
                 calendarButtonClassName={iconActive("calendar")}
                 messages={messages}
                 onMessagesClick={() => togglePopover("messages")}
+                messagesExpanded={openPopover === "messages"}
                 messagesButtonClassName={iconActive("messages")}
                 notifications={notifications}
                 onNotificationsClick={() => togglePopover("notifications")}
+                notificationsExpanded={openPopover === "notifications"}
                 notificationsButtonClassName={iconActive("notifications")}
                 onLanguageClick={() => togglePopover("language")}
+                languageExpanded={openPopover === "language"}
                 languageButtonClassName={iconActive("language")}
-                languageFlag={<img src={languageMarkDataUrl} alt="语言" className="w-5 h-5 rounded-full object-cover" />}
+                languageFlag={<img data-forge-language-flag={activeLanguage} src={languageFlagDataUrls[activeLanguage]} alt={`切换语言，当前${activeLanguageLabel}`} className="w-5 h-5 rounded-full object-cover" />}
                 showProfile={!!profile}
                 profile={profile ? { name: profile.name, role: profile.role, avatar: profile.avatar } : undefined}
                 onProfileClick={() => togglePopover("profile")}
+                profileExpanded={openPopover === "profile"}
                 profileButtonClassName={openPopover === "profile" ? cn(accentCfg.activeBg, "text-white") : undefined}
                 profileNameClassName={openPopover === "profile" ? "text-white" : "text-fg-black"}
                 profileRoleClassName={openPopover === "profile" ? accentCfg.onAccentMuted : "text-fg-grey-700"}
@@ -677,27 +677,27 @@ export function AppLayout({
                 )}
               />
               {/* Topbar popovers */}
-              {openPopover === "calendar" && (
+              {!isMobile && openPopover === "calendar" && (
                 <div data-popover="calendar" className="absolute top-full right-48 mt-0 z-50">
                   <CalendarPopup accentBg={accentCfg.activeBg} />
                 </div>
               )}
-              {openPopover === "messages" && (
+              {!isMobile && openPopover === "messages" && (
                 <div data-popover="messages" className="absolute top-full right-48 mt-0 z-50">
                   <MessageMenu />
                 </div>
               )}
-              {openPopover === "notifications" && (
+              {!isMobile && openPopover === "notifications" && (
                 <div data-popover="notifications" className="absolute top-full right-48 mt-0 z-50">
-                  <NotificationPanel onClose={() => setOpenPopover(null)} />
+                  <NotificationPanel onClose={() => closePopover(true)} />
                 </div>
               )}
-              {openPopover === "language" && (
+              {!isMobile && openPopover === "language" && (
                 <div data-popover="language" className="absolute top-full right-48 mt-0 z-50">
-                  <LanguageSwitcher accentBg={accentCfg.activeBg} />
+                  <LanguageSwitcher accentBg={accentCfg.activeBg} value={activeLanguage} onChange={selectLanguage} />
                 </div>
               )}
-              {openPopover === "profile" && (
+              {!isMobile && openPopover === "profile" && (
                 <div data-popover="profile" className="absolute top-full right-0 mt-0 z-50">
                   <ProfileDropdown />
                 </div>
@@ -709,6 +709,11 @@ export function AppLayout({
               variant="title"
               color={accent}
               title={pageTitle}
+              onHamburgerClick={toggleSidebar}
+              showMobileMenuButton
+              hamburgerAriaLabel={mobileSidebarOpen ? "关闭主导航" : "打开主导航"}
+              hamburgerExpanded={mobileSidebarOpen}
+              hamburgerControls="forge-app-sidebar"
               showBackButton
               onBack={onBack}
               showDatePicker={showDatePicker ?? false}
@@ -724,6 +729,11 @@ export function AppLayout({
               variant="title"
               color={accent}
               title={pageTitle}
+              onHamburgerClick={toggleSidebar}
+              showMobileMenuButton
+              hamburgerAriaLabel={mobileSidebarOpen ? "关闭主导航" : "打开主导航"}
+              hamburgerExpanded={mobileSidebarOpen}
+              hamburgerControls="forge-app-sidebar"
               showBackButton={false}
               showDatePicker={showDatePicker ?? true}
               showFilters={false}
@@ -735,6 +745,9 @@ export function AppLayout({
 
           {/* Main content */}
           <div className="flex-1 p-4 sm:p-5 flex flex-col gap-5 overflow-auto">
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <Breadcrumbs items={breadcrumbs} color={accent} />
+            )}
             {children}
           </div>
         </div>

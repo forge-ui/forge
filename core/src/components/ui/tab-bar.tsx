@@ -35,16 +35,21 @@ export function TabBar({
   surface = "inline",
   onChange,
   className,
+  ariaLabel = "标签页",
 }: {
   tabs: TabItem[];
   color?: TabBarColor;
   surface?: TabBarSurface;
   onChange?: (index: number) => void;
   className?: string;
+  ariaLabel?: string;
 }) {
   const isPage = surface === "page";
+  const activeIndex = tabs.findIndex((tab) => tab.active);
   return (
     <div
+      role="tablist"
+      aria-label={ariaLabel}
       className={cn(
         "border-b border-fg-grey-200",
         isPage
@@ -57,7 +62,26 @@ export function TabBar({
         <button
           key={index}
           type="button"
+          role="tab"
+          aria-selected={!!tab.active}
+          tabIndex={tab.active || (activeIndex === -1 && index === 0) ? 0 : -1}
           onClick={() => onChange?.(index)}
+          onKeyDown={(event) => {
+            const lastIndex = tabs.length - 1;
+            const nextIndex = event.key === "ArrowRight"
+              ? (index + 1) % tabs.length
+              : event.key === "ArrowLeft"
+                ? (index - 1 + tabs.length) % tabs.length
+                : event.key === "Home"
+                  ? 0
+                  : event.key === "End"
+                    ? lastIndex
+                    : -1;
+            if (nextIndex < 0) return;
+            event.preventDefault();
+            onChange?.(nextIndex);
+            event.currentTarget.parentElement?.querySelectorAll<HTMLElement>("[role='tab']")[nextIndex]?.focus();
+          }}
           className={cn(
             "relative px-4 py-3 text-sm cursor-pointer inline-flex items-center gap-1.5",
             tab.active

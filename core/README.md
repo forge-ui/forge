@@ -6,6 +6,7 @@ Forge 的 React 组件包源码。这里保留 package 边界，供 workspace �
 
 ```txt
 src/components/      组件与 AppLayout
+src/internal/        发布包内的拆分实现（非公共深入口）
 src/styles/tokens.css 设计 token 与 Tailwind v4 theme
 src/assets/          组件依赖的内联资源
 src/lib/             工具函数
@@ -22,6 +23,8 @@ src/index.ts         包导出入口
 
 ## 开发
 
+仓库工具链要求 Node.js `>=22.13.0`，并由根目录 `packageManager` 固定 pnpm 版本。
+
 从仓库根目录执行：
 
 ```bash
@@ -35,29 +38,36 @@ pnpm build
 ```bash
 pnpm core:build
 pnpm core:typecheck
+pnpm core:test
+pnpm core:check
 pnpm core:audit
+pnpm core:check-package
+pnpm core:check-consumer
 ```
 
 ## 组件审计
 
 ```bash
-pnpm core:audit            # 默认范围：core/src/components（发布门禁，error 时退出码非 0）
+pnpm core:audit            # 默认范围：core/src/components + core/src/internal（发布门禁）
 pnpm core:audit:showcase   # 额外审计 showcase/sample 源（仅 review warning，不影响退出码）
 ```
 
 showcase 范围覆盖 `src/app/cases`、`src/app/components`；不扫描 `dist` / `node_modules`。`forge-app-design` 样例已经拆到独立插件仓维护。
 
-warning 分类说明：
+语义 alias 说明：
 
-- `semantic-alias-review`（orange → fg-red）：Figma 源把该样式命名为 orange，但其色值等于 Forge Red 500，且 tokens.css 没有 fg-orange 色阶，保留 alias 以维持与 Figma 的视觉一致。保持为 warning（而非 error）是为了让新增的 orange → fg-* 映射在 review 时被人工确认，同时不让已确认的历史 alias 卡住发布门禁。
+- 已确认的 orange → fg-red 等兼容映射由精确的“文件路径 + 对象路径 + class 值”allowlist 管理，默认审计会报告批准数量但不产生 warning。
+- 新增、重复或已经失效的 alias 都会成为 error；必须先人工判断语义，再有意更新 allowlist。
 - `fixed-width-review` / `width-fixed-review`：组件内部显式 fixed API 的映射表（如 ChartCard 的 `fixedWidthClasses`，只在 `width="fixed"` 时生效）不告警；业务页面/样例里的 `width="fixed"`、`w-96` 等硬编码宽度仍会被提示。
 
 ## P1/P2 验证命令
 
 ```bash
 pnpm core:audit
-pnpm core:typecheck
+pnpm core:check
 pnpm core:build
+pnpm core:check-package
+pnpm core:check-consumer
 pnpm typecheck
 ```
 
@@ -86,20 +96,20 @@ pnpm typecheck
 
 ```bash
 pnpm core:audit
-pnpm core:typecheck
+pnpm core:check
 pnpm core:build
-(cd core && npm pack --dry-run)
+pnpm core:check-package
+pnpm core:check-consumer
 ```
 
 发布检查清单：
 
 - 确认 `core/package.json` 版本号已递增，且根目录 `package.json` /
   lockfile 没有被无关依赖变更污染。
-- `pnpm core:audit` 必须是 `0 error`。现有
-  `semantic-alias-review` warning 是 Figma orange 命名到 Forge red token 的
-  有意兼容别名；新增 warning 需要人工确认后再发布。
-- `pnpm core:typecheck`、`pnpm core:build` 必须通过。
-- `(cd core && npm pack --dry-run)` 必须只包含 `dist/` 和必要的包元数据。
+- `pnpm core:check` 必须完成源码/测试类型检查、lint、交互回归、alias gate 与组件审计，并保持默认审计 `0 error / 0 warning`。
+- `pnpm core:build` 必须通过。
+- `pnpm core:check-package` 必须通过导出快照、关键拆分入口、文件集合和 raw/gzip 体积门禁。
+- `pnpm core:check-consumer` 必须从真实 tarball 安装到临时 Next.js 15 / 16 项目，并通过深入口、SSR、Tailwind `@source` 和生产构建验证。
 - 发布后用 canonical starter 消费 npm 包验证：
   `/Users/hesong/Desktop/forge-starter-canonical`，执行 `pnpm install`、
   `pnpm typecheck`、`pnpm build`。

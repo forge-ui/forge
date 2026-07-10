@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@forge-ui-official/core/styles.css";
+@source "../node_modules/@forge-ui-official/core/dist";
+
+body {
+  margin: 0;
+  background: var(--color-fg-grey-50);
+}

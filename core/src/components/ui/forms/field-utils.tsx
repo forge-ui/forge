@@ -86,6 +86,7 @@ export function FieldTag({
       {onRemove && (
         <button
           type="button"
+          aria-label={`移除 ${label}`}
           onClick={(e) => { e.stopPropagation(); onRemove(); }}
           className="w-[18px] h-[18px] flex items-center justify-center cursor-pointer shrink-0"
         >
@@ -112,13 +113,14 @@ export const FieldFrame = forwardRef<
     headerAction?: ReactNode;
     errorMessage?: string;
     showError?: boolean;
+    errorId?: string;
     inputId?: string;
     display?: "flex" | "inline-flex";
     children: ReactNode;
     className?: string;
   }
 >(function FieldFrame(
-  { label, headerAction, errorMessage, showError, inputId, display = "flex", children, className },
+  { label, headerAction, errorMessage, showError, errorId, inputId, display = "flex", children, className },
   ref,
 ) {
   return (
@@ -138,7 +140,7 @@ export const FieldFrame = forwardRef<
       )}
       {children}
       {showError && errorMessage && (
-        <span className="text-fg-red text-xs leading-4 tracking-fg">{errorMessage}</span>
+        <span id={errorId} className="text-fg-red text-xs leading-4 tracking-fg">{errorMessage}</span>
       )}
     </div>
   );

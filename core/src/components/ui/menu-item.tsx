@@ -24,6 +24,9 @@ export function MenuItem({
   lead,
   label,
   badge,
+  href,
+  ariaLabel,
+  expanded,
   className,
   onClick,
 }: {
@@ -37,6 +40,9 @@ export function MenuItem({
   lead?: MenuItemLead;
   label?: string;
   badge?: number;
+  href?: string;
+  ariaLabel?: string;
+  expanded?: boolean;
   className?: string;
   onClick?: () => void;
 }) {
@@ -97,19 +103,8 @@ export function MenuItem({
 
   const labelWeight = resolvedState === "active" ? "font-bold" : "font-semibold";
 
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={resolvedState === "disabled"}
-      className={cn(
-        "relative rounded-full inline-flex items-center gap-2 transition-colors",
-        hasText && "w-full",
-        kind === "submenu" ? submenuPadding : basePadding,
-        stateClass,
-        className
-      )}
-    >
+  const content = (
+    <>
       {showLeftLine && (
         <span
           aria-hidden
@@ -147,6 +142,7 @@ export function MenuItem({
 
       {showBadge && (
         <span
+          aria-label={`${badge} 条未读`}
           className={cn(
             "rounded-full bg-fg-red text-white text-[10px] font-semibold leading-4 tracking-fg px-1.5 py-0.5",
             !hasText && "absolute top-1 right-1"
@@ -158,8 +154,10 @@ export function MenuItem({
 
       {showSubmenuArrow && (
         <span
+          aria-hidden
           className={cn(
             "w-6 h-6 flex items-center justify-center shrink-0",
+            expanded && "rotate-180",
             resolvedState === "active"
               ? "text-white"
               : surface === "onColoredBg"
@@ -170,6 +168,41 @@ export function MenuItem({
           <AltArrowDownLinear size={16} />
         </span>
       )}
+    </>
+  );
+
+  const interactiveClassName = cn(
+    "relative rounded-full inline-flex items-center gap-2 transition-colors",
+    hasText && "w-full",
+    kind === "submenu" ? submenuPadding : basePadding,
+    stateClass,
+    className,
+  );
+
+  if (href && resolvedState !== "disabled") {
+    return (
+      <a
+        href={href}
+        aria-label={ariaLabel}
+        aria-current={resolvedState === "active" ? "page" : undefined}
+        onClick={onClick}
+        className={interactiveClassName}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      aria-label={ariaLabel}
+      aria-expanded={kind === "dropdown" ? expanded : undefined}
+      onClick={onClick}
+      disabled={resolvedState === "disabled"}
+      className={interactiveClassName}
+    >
+      {content}
     </button>
   );
 }

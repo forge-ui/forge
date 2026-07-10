@@ -1,8 +1,10 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
-import { Checkbox } from "../checkbox";
+import { CheckboxVisual } from "../checkbox";
 import { formAccents, type FormAccentColor } from "./form-utils";
 
 // ============================================================
@@ -23,18 +25,23 @@ export function Toggle({
   color = "purple",
   disabled = false,
   size = "md",
+  ariaLabel = "开关",
 }: {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   color?: ControlColor;
   disabled?: boolean;
   size?: "sm" | "md";
+  ariaLabel?: string;
 }) {
   const isMd = size === "md";
 
   return (
     <button
       type="button"
+      role="switch"
+      aria-label={ariaLabel}
+      aria-checked={checked}
       disabled={disabled}
       onClick={() => onChange?.(!checked)}
       className={cn(
@@ -62,17 +69,22 @@ export function RadioButton({
   onChange,
   color = "purple",
   disabled = false,
+  ariaLabel = "单选项",
 }: {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   color?: ControlColor;
   disabled?: boolean;
+  ariaLabel?: string;
 }) {
   return (
     <button
       type="button"
+      role="radio"
+      aria-label={ariaLabel}
+      aria-checked={checked}
       disabled={disabled}
-      onClick={() => onChange?.(!checked)}
+      onClick={() => onChange?.(true)}
       className={cn(
         "w-5 h-5 rounded-full flex items-center justify-center transition-colors",
         checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-white",
@@ -81,6 +93,20 @@ export function RadioButton({
     >
       {checked && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
     </button>
+  );
+}
+
+function RadioVisual({ checked, color }: { checked: boolean; color: ControlColor }) {
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "w-5 h-5 rounded-full flex items-center justify-center transition-colors shrink-0",
+        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-white",
+      )}
+    >
+      {checked && <span className="w-2.5 h-2.5 bg-white rounded-full" />}
+    </span>
   );
 }
 
@@ -109,9 +135,7 @@ export function RadioWithLabel({
 }) {
   const accent = formAccents[color];
 
-  const radioEl = (
-    <RadioButton checked={checked} color={color} onChange={onChange} disabled={disabled} />
-  );
+  const radioEl = <RadioVisual checked={checked} color={color} />;
 
   const labelEl = (
     <div className="flex items-start gap-1">
@@ -130,8 +154,10 @@ export function RadioWithLabel({
   return (
     <button
       type="button"
+      role="radio"
+      aria-checked={checked}
       disabled={disabled}
-      onClick={() => onChange?.(!checked)}
+      onClick={() => onChange?.(true)}
       className={cn(
         "inline-flex items-start gap-2 overflow-hidden",
         disabled && "opacity-60 cursor-not-allowed",
@@ -181,11 +207,9 @@ export function CheckboxWithLabel({
   const accent = formAccents[color];
 
   const checkboxEl = (
-    <Checkbox
-      checked={checked}
-      color={color}
-      onChange={onChange}
-    />
+    <span aria-hidden className="w-5 h-5 relative shrink-0">
+      <CheckboxVisual checked={checked} color={color} />
+    </span>
   );
 
   const labelEl = (
@@ -215,6 +239,8 @@ export function CheckboxWithLabel({
   return (
     <button
       type="button"
+      role="checkbox"
+      aria-checked={checked}
       disabled={disabled}
       onClick={() => onChange?.(!checked)}
       className={cn(

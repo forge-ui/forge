@@ -379,7 +379,7 @@ export default function CustomersPage() {
         ),
       },
     ],
-    [handleOpenDeleteModal, handleOpenEditModal]
+    [handleOpenDeleteModal, handleOpenEditModal, router]
   );
 
   const totalPages = Math.ceil(100 / 10);

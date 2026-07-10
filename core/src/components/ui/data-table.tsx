@@ -1,6 +1,8 @@
 "use client";
 
-import { type ReactNode } from "react";
+/* eslint-disable @next/next/no-img-element */
+
+import { type CSSProperties, type Key, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import {
   AltArrowLeftLinear,
@@ -586,10 +588,19 @@ export type DataTableProps<T> = {
   color?: DataTableColor;
   showCheckbox?: boolean;
   checkboxColor?: CheckboxColor;
+  /** Stable selected row identities. Pair with getRowKey for sort/filter-safe selection. */
+  selectedRowKeys?: ReadonlySet<Key>;
+  /** Receives a new Set after a stable-key selection change. The input Set is never mutated. */
+  onSelectedRowKeysChange?: (keys: Set<Key>) => void;
+  /** @deprecated Prefer selectedRowKeys for selection that survives sorting and filtering. */
   selectedRows?: Set<number>;
   onSelectRow?: (index: number, checked: boolean) => void;
   onSelectAll?: (checked: boolean) => void;
   onSort?: (columnKey: string) => void;
+  sortColumnKey?: string;
+  sortDirection?: "asc" | "desc";
+  getRowKey?: (row: T, index: number) => Key;
+  emptyState?: ReactNode;
   footerLeft?: ReactNode;
   footerRight?: ReactNode;
   showPagination?: boolean;
@@ -597,6 +608,8 @@ export type DataTableProps<T> = {
   totalPages?: number;
   onPageChange?: (page: number) => void;
   paginationLabel?: string;
+  /** Minimum width of the table content. Overflow stays inside the component. */
+  tableMinWidth?: CSSProperties["minWidth"];
   className?: string;
 };
 
@@ -617,6 +630,242 @@ function getPageNumbers(
   return pages;
 }
 
+export function getPaginationSummary({
+  currentPage,
+  pageSize,
+  rowCount,
+  totalRows,
+}: {
+  currentPage: number;
+  pageSize: number;
+  rowCount: number;
+  totalRows?: number;
+}): string {
+  if (rowCount <= 0) return totalRows === undefined ? "暂无数据" : `显示 0，共 ${totalRows} 条`;
+  const start = (Math.max(1, currentPage) - 1) * pageSize + 1;
+  const end = start + rowCount - 1;
+  return totalRows === undefined ? `显示 ${start}-${end}` : `显示 ${start}-${end}，共 ${totalRows} 条`;
+}
+
+type TableGridProps<T> = Pick<
+  DataTableProps<T>,
+  | "columns"
+  | "rows"
+  | "showCheckbox"
+  | "checkboxColor"
+  | "selectedRowKeys"
+  | "selectedRows"
+  | "onSelectedRowKeysChange"
+  | "onSelectRow"
+  | "onSelectAll"
+  | "onSort"
+  | "sortColumnKey"
+  | "sortDirection"
+  | "getRowKey"
+  | "emptyState"
+  | "tableMinWidth"
+>;
+
+function TableGrid<T>({
+  columns,
+  rows,
+  showCheckbox = false,
+  checkboxColor = "purple",
+  selectedRowKeys,
+  selectedRows,
+  onSelectedRowKeysChange,
+  onSelectRow,
+  onSelectAll,
+  onSort,
+  sortColumnKey,
+  sortDirection,
+  getRowKey,
+  emptyState = "暂无数据",
+  tableMinWidth,
+}: TableGridProps<T>) {
+  const getKey = (row: T, rowIndex: number) => getRowKey?.(row, rowIndex) ?? rowIndex;
+  const isRowSelected = (row: T, rowIndex: number) => (
+    selectedRowKeys?.has(getKey(row, rowIndex))
+    ?? selectedRows?.has(rowIndex)
+    ?? false
+  );
+  const allSelected = rows.length > 0 && rows.every(isRowSelected);
+
+  const updateKeySelection = (checked: boolean, rowIndexes: number[]) => {
+    if (selectedRowKeys == null) return;
+    const nextSelectedRowKeys = new Set(selectedRowKeys);
+    for (const rowIndex of rowIndexes) {
+      const rowKey = getKey(rows[rowIndex], rowIndex);
+      if (checked) nextSelectedRowKeys.add(rowKey);
+      else nextSelectedRowKeys.delete(rowKey);
+    }
+    onSelectedRowKeysChange?.(nextSelectedRowKeys);
+  };
+
+  return (
+    <div data-forge-table-scroll className="self-stretch overflow-x-auto">
+      <table
+        data-forge-table-content
+        className="w-full border-collapse"
+        style={tableMinWidth ? { minWidth: tableMinWidth } : undefined}
+      >
+        <thead>
+          <tr className="border-t border-b border-fg-grey-200">
+            {showCheckbox && (
+              <th className="w-14 px-4 py-4 bg-white text-left">
+                <Checkbox
+                  aria-label="选择全部行"
+                  checked={allSelected}
+                  color={checkboxColor}
+                  onChange={(checked) => {
+                    updateKeySelection(checked, rows.map((_, rowIndex) => rowIndex));
+                    if (selectedRowKeys == null) onSelectAll?.(checked);
+                  }}
+                />
+              </th>
+            )}
+            {columns.map((col) => (
+              <th
+                key={col.key}
+                aria-sort={
+                  col.sortable && sortColumnKey === col.key
+                    ? sortDirection === "asc"
+                      ? "ascending"
+                      : sortDirection === "desc"
+                        ? "descending"
+                        : "none"
+                    : undefined
+                }
+                className={cn(
+                  "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
+                  col.width,
+                )}
+                style={col.flex ? { width: "auto" } : undefined}
+              >
+                <div className="flex items-center gap-2">
+                  {col.header}
+                  {col.sortable && (
+                    <button
+                      type="button"
+                      aria-label={`按${typeof col.header === "string" ? col.header : col.key}排序`}
+                      onClick={() => onSort?.(col.key)}
+                      className={cn(
+                        "w-4 h-4 flex items-center justify-center cursor-pointer text-fg-grey-500",
+                        sortColumnKey === col.key && sortDirection === "asc" && "rotate-180",
+                      )}
+                    >
+                      <AltArrowDownLinear size={10} />
+                    </button>
+                  )}
+                </div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, rowIndex) => (
+            <tr key={getKey(row, rowIndex)} className="border-b border-fg-grey-200 bg-white">
+              {showCheckbox && (
+                <td className="w-14 px-6 py-4">
+                  <Checkbox
+                    aria-label={`选择第 ${rowIndex + 1} 行`}
+                    checked={isRowSelected(row, rowIndex)}
+                    color={checkboxColor}
+                    onChange={(checked) => {
+                      updateKeySelection(checked, [rowIndex]);
+                      if (selectedRowKeys == null) onSelectRow?.(rowIndex, checked);
+                    }}
+                  />
+                </td>
+              )}
+              {columns.map((col) => (
+                <td
+                  key={col.key}
+                  className={cn("px-5 py-3.5", col.width)}
+                  style={col.flex ? { width: "auto" } : undefined}
+                >
+                  {col.render(row, rowIndex)}
+                </td>
+              ))}
+            </tr>
+          ))}
+          {rows.length === 0 && (
+            <tr className="border-b border-fg-grey-200 bg-white">
+              <td
+                colSpan={columns.length + (showCheckbox ? 1 : 0)}
+                className="px-5 py-10 text-center text-sm text-fg-grey-700"
+              >
+                {emptyState}
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function PaginationControls({
+  color,
+  currentPage,
+  totalPages,
+  onPageChange,
+}: {
+  color: DataTableColor;
+  currentPage: number;
+  totalPages: number;
+  onPageChange?: (page: number) => void;
+}) {
+  return (
+    <div className="flex justify-start items-start gap-2">
+      <button
+        type="button"
+        onClick={() => onPageChange?.(Math.max(1, currentPage - 1))}
+        disabled={currentPage <= 1}
+        className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+      >
+        <AltArrowLeftLinear size={20} color="var(--fg-grey-500)" />
+      </button>
+      {getPageNumbers(totalPages, currentPage).map((page, index) =>
+        page === "..." ? (
+          <span
+            key={`ellipsis-${index}`}
+            className="w-10 h-10 p-2 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden"
+          >
+            <span className="flex-1 text-center text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">
+              ...
+            </span>
+          </span>
+        ) : (
+          <button
+            key={page}
+            type="button"
+            onClick={() => onPageChange?.(page)}
+            className={cn(
+              "w-10 h-10 p-2 rounded-full flex justify-center items-center gap-1 overflow-hidden cursor-pointer",
+              page === currentPage
+                ? cn(headerActiveColors[color], "text-white")
+                : "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700",
+            )}
+          >
+            <span className="flex-1 text-center text-sm font-semibold leading-5 tracking-fg">
+              {page}
+            </span>
+          </button>
+        ),
+      )}
+      <button
+        type="button"
+        onClick={() => onPageChange?.(Math.min(totalPages, currentPage + 1))}
+        disabled={currentPage >= totalPages}
+        className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+      >
+        <AltArrowRightLinear size={20} color="var(--fg-grey-500)" />
+      </button>
+    </div>
+  );
+}
+
 export function DataTable<T>({
   title,
   subtitle,
@@ -627,10 +876,16 @@ export function DataTable<T>({
   color = "purple",
   showCheckbox = false,
   checkboxColor = "purple",
+  selectedRowKeys,
+  onSelectedRowKeysChange,
   selectedRows,
   onSelectRow,
   onSelectAll,
   onSort,
+  sortColumnKey,
+  sortDirection,
+  getRowKey,
+  emptyState = "暂无数据",
   footerLeft,
   footerRight,
   showPagination = false,
@@ -638,13 +893,12 @@ export function DataTable<T>({
   totalPages = 1,
   onPageChange,
   paginationLabel,
+  tableMinWidth,
   className,
 }: DataTableProps<T>) {
-  const allSelected =
-    selectedRows != null && rows.length > 0 && selectedRows.size === rows.length;
-
   return (
     <div
+      data-forge-data-table
       className={cn(
         "w-full rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden",
         className
@@ -674,57 +928,23 @@ export function DataTable<T>({
         </div>
       )}
 
-      {/* Table */}
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="border-t border-b border-fg-grey-200">
-            {showCheckbox && (
-              <th className="w-14 px-4 py-4 bg-white text-left">
-                <Checkbox checked={allSelected} color={checkboxColor} onChange={onSelectAll} />
-              </th>
-            )}
-            {columns.map((col) => (
-              <th
-                key={col.key}
-                className={cn(
-                  "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
-                  col.width
-                )}
-                style={col.flex ? { width: "auto" } : undefined}
-              >
-                <div className="flex items-center gap-2">
-                  {col.header}
-                  {col.sortable && (
-                    <button type="button" onClick={() => onSort?.(col.key)} className="w-4 h-4 flex items-center justify-center cursor-pointer text-fg-grey-500">
-                      <AltArrowDownLinear size={10} />
-                    </button>
-                  )}
-                </div>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="border-b border-fg-grey-200 bg-white">
-              {showCheckbox && (
-                <td className="w-14 px-6 py-4">
-                  <Checkbox
-                    checked={selectedRows?.has(rowIndex) ?? false}
-                    color={checkboxColor}
-                    onChange={(c) => onSelectRow?.(rowIndex, c)}
-                  />
-                </td>
-              )}
-              {columns.map((col) => (
-                <td key={col.key} className={cn("px-5 py-3.5", col.width)} style={col.flex ? { width: "auto" } : undefined}>
-                  {col.render(row, rowIndex)}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TableGrid
+        columns={columns}
+        rows={rows}
+        showCheckbox={showCheckbox}
+        checkboxColor={checkboxColor}
+        selectedRowKeys={selectedRowKeys}
+        selectedRows={selectedRows}
+        onSelectedRowKeysChange={onSelectedRowKeysChange}
+        onSelectRow={onSelectRow}
+        onSelectAll={onSelectAll}
+        onSort={onSort}
+        sortColumnKey={sortColumnKey}
+        sortDirection={sortDirection}
+        getRowKey={getRowKey}
+        emptyState={emptyState}
+        tableMinWidth={tableMinWidth}
+      />
 
       {/* Footer */}
       {(showPagination || footerLeft || footerRight) && (
@@ -737,54 +957,12 @@ export function DataTable<T>({
             footerLeft && <div className="flex-1">{footerLeft}</div>
           )}
           {showPagination && (
-            <div className="flex justify-start items-start gap-2">
-              <button
-                type="button"
-                onClick={() => onPageChange?.(Math.max(1, currentPage - 1))}
-                disabled={currentPage <= 1}
-                className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                <AltArrowLeftLinear size={20} color="var(--fg-grey-500)" />
-              </button>
-              {getPageNumbers(totalPages, currentPage).map((page, i) =>
-                page === "..." ? (
-                  <span
-                    key={`ellipsis-${i}`}
-                    className="w-10 h-10 p-2 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden"
-                  >
-                    <span className="flex-1 text-center text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">
-                      ...
-                    </span>
-                  </span>
-                ) : (
-                  <button
-                    key={page}
-                    type="button"
-                    onClick={() => onPageChange?.(page as number)}
-                    className={cn(
-                      "w-10 h-10 p-2 rounded-full flex justify-center items-center gap-1 overflow-hidden cursor-pointer",
-                      page === currentPage
-                        ? cn(headerActiveColors[color], "text-white")
-                        : "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700"
-                    )}
-                  >
-                    <span className="flex-1 text-center text-sm font-semibold leading-5 tracking-fg">
-                      {page}
-                    </span>
-                  </button>
-                )
-              )}
-              <button
-                type="button"
-                onClick={() =>
-                  onPageChange?.(Math.min(totalPages, currentPage + 1))
-                }
-                disabled={currentPage >= totalPages}
-                className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                <AltArrowRightLinear size={20} color="var(--fg-grey-500)" />
-              </button>
-            </div>
+            <PaginationControls
+              color={color}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
           )}
           {footerRight && !showPagination && (
             <div>{footerRight}</div>
@@ -803,6 +981,8 @@ export type FullWidthTableProps<T> = DataTableProps<T> & {
   rowCountOptions?: number[];
   currentRowCount?: number;
   onRowCountChange?: (count: number) => void;
+  /** Exact total record count. Omit it when the data source does not provide one. */
+  totalRows?: number;
 };
 
 export function FullWidthTable<T>({
@@ -815,26 +995,34 @@ export function FullWidthTable<T>({
   color = "purple",
   showCheckbox = true,
   checkboxColor = "purple",
+  selectedRowKeys,
+  onSelectedRowKeysChange,
   selectedRows,
   onSelectRow,
   onSelectAll,
   onSort,
+  sortColumnKey,
+  sortDirection,
+  getRowKey,
+  emptyState = "暂无数据",
+  footerLeft,
+  footerRight,
   showPagination = true,
   currentPage = 1,
   totalPages = 1,
   onPageChange,
   paginationLabel,
+  tableMinWidth,
   showRowCount = false,
   rowCountOptions = [10, 25, 50],
   currentRowCount = 10,
   onRowCountChange,
+  totalRows,
   className,
 }: FullWidthTableProps<T>) {
-  const allSelected =
-    selectedRows != null && rows.length > 0 && selectedRows.size === rows.length;
-
   return (
     <div
+      data-forge-full-width-table
       className={cn(
         "w-full rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden",
         className
@@ -880,113 +1068,46 @@ export function FullWidthTable<T>({
         </div>
       )}
 
-      {/* Table */}
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="border-t border-b border-fg-grey-200">
-            {showCheckbox && (
-              <th className="w-14 px-4 py-4 bg-white text-left">
-                <Checkbox checked={allSelected} color={checkboxColor} onChange={onSelectAll} />
-              </th>
-            )}
-            {columns.map((col) => (
-              <th
-                key={col.key}
-                className={cn(
-                  "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
-                  col.width
-                )}
-                style={col.flex ? { width: "auto" } : undefined}
-              >
-                <div className="flex items-center gap-2">
-                  {col.header}
-                  {col.sortable && (
-                    <button type="button" onClick={() => onSort?.(col.key)} className="w-4 h-4 flex items-center justify-center cursor-pointer text-fg-grey-500">
-                      <AltArrowDownLinear size={10} />
-                    </button>
-                  )}
-                </div>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="border-b border-fg-grey-200 bg-white">
-              {showCheckbox && (
-                <td className="w-14 px-6 py-4">
-                  <Checkbox
-                    checked={selectedRows?.has(rowIndex) ?? false}
-                    color={checkboxColor}
-                    onChange={(c) => onSelectRow?.(rowIndex, c)}
-                  />
-                </td>
-              )}
-              {columns.map((col) => (
-                <td key={col.key} className={cn("px-5 py-3.5", col.width)} style={col.flex ? { width: "auto" } : undefined}>
-                  {col.render(row, rowIndex)}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TableGrid
+        columns={columns}
+        rows={rows}
+        showCheckbox={showCheckbox}
+        checkboxColor={checkboxColor}
+        selectedRowKeys={selectedRowKeys}
+        selectedRows={selectedRows}
+        onSelectedRowKeysChange={onSelectedRowKeysChange}
+        onSelectRow={onSelectRow}
+        onSelectAll={onSelectAll}
+        onSort={onSort}
+        sortColumnKey={sortColumnKey}
+        sortDirection={sortDirection}
+        getRowKey={getRowKey}
+        emptyState={emptyState}
+        tableMinWidth={tableMinWidth}
+      />
 
       {/* Footer */}
       <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
-        <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
-          {paginationLabel ?? `显示 1-${rows.length}，共 ${totalPages * rows.length} 条`}
-        </div>
-        {showPagination && (
-          <div className="flex justify-start items-start gap-2">
-            <button
-              type="button"
-              onClick={() => onPageChange?.(Math.max(1, currentPage - 1))}
-              disabled={currentPage <= 1}
-              className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <AltArrowLeftLinear size={20} color="var(--fg-grey-500)" />
-            </button>
-            {getPageNumbers(totalPages, currentPage).map((page, i) =>
-              page === "..." ? (
-                <span
-                  key={`ellipsis-${i}`}
-                  className="w-10 h-10 p-2 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden"
-                >
-                  <span className="flex-1 text-center text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">
-                    ...
-                  </span>
-                </span>
-              ) : (
-                <button
-                  key={page}
-                  type="button"
-                  onClick={() => onPageChange?.(page as number)}
-                  className={cn(
-                    "w-10 h-10 p-2 rounded-full flex justify-center items-center gap-1 overflow-hidden cursor-pointer",
-                    page === currentPage
-                      ? cn(headerActiveColors[color], "text-white")
-                      : "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700"
-                  )}
-                >
-                  <span className="flex-1 text-center text-sm font-semibold leading-5 tracking-fg">
-                    {page}
-                  </span>
-                </button>
-              )
-            )}
-            <button
-              type="button"
-              onClick={() =>
-                onPageChange?.(Math.min(totalPages, currentPage + 1))
-              }
-              disabled={currentPage >= totalPages}
-              className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <AltArrowRightLinear size={20} color="var(--fg-grey-500)" />
-            </button>
+        {paginationLabel ? (
+          <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+            {paginationLabel}
+          </div>
+        ) : footerLeft ? (
+          <div className="flex-1">{footerLeft}</div>
+        ) : (
+          <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+            {getPaginationSummary({ currentPage, pageSize: currentRowCount, rowCount: rows.length, totalRows })}
           </div>
         )}
+        {showPagination && (
+          <PaginationControls
+            color={color}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+          />
+        )}
+        {footerRight && !showPagination && <div>{footerRight}</div>}
       </div>
     </div>
   );

@@ -23,13 +23,15 @@ export function Breadcrumbs({
   items,
   color = "purple",
   className,
+  ariaLabel = "面包屑导航",
 }: {
   items: BreadcrumbItem[];
   color?: BreadcrumbColor;
   className?: string;
+  ariaLabel?: string;
 }) {
   return (
-    <div className={cn("inline-flex justify-start items-center gap-2", className)}>
+    <nav aria-label={ariaLabel} className={cn("inline-flex justify-start items-center gap-2", className)}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
 
@@ -41,10 +43,10 @@ export function Breadcrumbs({
               </span>
             )}
             {isLast ? (
-              <span className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+              <span aria-current="page" className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
                 {item.label}
               </span>
-            ) : item.href || item.onClick ? (
+            ) : item.href ? (
               <a
                 href={item.href}
                 onClick={item.onClick}
@@ -55,6 +57,17 @@ export function Breadcrumbs({
               >
                 {item.label}
               </a>
+            ) : item.onClick ? (
+              <button
+                type="button"
+                onClick={item.onClick}
+                className={cn(
+                  "justify-start text-sm font-bold leading-5 tracking-fg cursor-pointer",
+                  breadcrumbColors[color],
+                )}
+              >
+                {item.label}
+              </button>
             ) : (
               <span
                 className={cn(
@@ -68,6 +81,6 @@ export function Breadcrumbs({
           </span>
         );
       })}
-    </div>
+    </nav>
   );
 }

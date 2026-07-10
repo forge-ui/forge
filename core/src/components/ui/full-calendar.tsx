@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useState, type ReactNode } from "react";
+import { useState, useSyncExternalStore, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import { AltArrowLeftLinear, AltArrowRightLinear, AltArrowDownLinear, PenLinear, MenuDotsBold, CloseCircleLinear } from "solar-icon-set";
 import { accentColors, type AccentColor } from "./accent-utils";
@@ -21,6 +21,10 @@ import { MONTH_NAMES, DAY_NAMES_UPPER, getDaysInMonth, getFirstDayOfMonth, forma
 // ============================================================
 
 const HOURS = [6, 7, 8, 9, 10, 11, 12, 13, 14];
+
+const subscribeToHydration = () => () => undefined;
+const getClientHydrationSnapshot = () => true;
+const getServerHydrationSnapshot = () => false;
 
 export type CalendarView = "month" | "week" | "day";
 
@@ -67,19 +71,36 @@ export function FullCalendar({
   className?: string;
 }) {
   const accent = accentColors[color];
-  const today = new Date();
-  const [yr, setYr] = useState(yearProp ?? today.getFullYear());
-  const [mo, setMo] = useState(monthProp ?? today.getMonth());
-  const [dy] = useState(dayProp ?? today.getDate());
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getClientHydrationSnapshot,
+    getServerHydrationSnapshot,
+  );
+  const today = hydrated ? new Date() : null;
+  const [manualView, setManualView] = useState<{ year: number; month: number } | null>(null);
+  const yr = manualView?.year ?? yearProp ?? today?.getFullYear() ?? 2024;
+  const mo = manualView?.month ?? monthProp ?? today?.getMonth() ?? 0;
+  const dy = dayProp ?? today?.getDate() ?? 1;
 
   const daysInMonth = getDaysInMonth(yr, mo);
   const firstDay = getFirstDayOfMonth(yr, mo);
   const prevMonthDays = getDaysInMonth(yr, mo === 0 ? 11 : mo - 1);
-  const isTodayCell = (d: number) => d === today.getDate() && mo === today.getMonth() && yr === today.getFullYear();
+  const isTodayCell = (d: number) =>
+    today !== null
+    && d === today.getDate()
+    && mo === today.getMonth()
+    && yr === today.getFullYear();
 
-  const prev = () => { if (mo === 0) { setMo(11); setYr(yr - 1); } else setMo(mo - 1); };
-  const next = () => { if (mo === 11) { setMo(0); setYr(yr + 1); } else setMo(mo + 1); };
-  const goToday = () => { setYr(today.getFullYear()); setMo(today.getMonth()); };
+  const prev = () => setManualView(
+    mo === 0 ? { year: yr - 1, month: 11 } : { year: yr, month: mo - 1 },
+  );
+  const next = () => setManualView(
+    mo === 11 ? { year: yr + 1, month: 0 } : { year: yr, month: mo + 1 },
+  );
+  const goToday = () => {
+    const localToday = today ?? new Date();
+    setManualView({ year: localToday.getFullYear(), month: localToday.getMonth() });
+  };
 
   // Week range
   const viewDate = new Date(yr, mo, dy);
@@ -105,10 +126,10 @@ export function FullCalendar({
 
       {/* ── Top bar ── */}
       <div className="px-4 py-3 border-b border-fg-grey-200 flex items-center gap-3">
-        <button onClick={goToday} className="px-3 py-1.5 rounded-lg outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100 cursor-pointer shrink-0">今天</button>
-        <button onClick={prev} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowLeftLinear size={14} /></button>
+        <button type="button" onClick={goToday} className="px-3 py-1.5 rounded-lg outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100 cursor-pointer shrink-0">今天</button>
+        <button type="button" aria-label="上个月" onClick={prev} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowLeftLinear size={14} /></button>
         <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg min-w-36 text-center">{titleText}</span>
-        <button onClick={next} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowRightLinear size={14} /></button>
+        <button type="button" aria-label="下个月" onClick={next} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowRightLinear size={14} /></button>
         <div className="flex-1" />
         <span className="flex items-center gap-1 px-3 py-1.5 rounded-lg outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-xs font-medium text-fg-grey-700">
           {viewLabel}
@@ -150,7 +171,7 @@ export function FullCalendar({
           <div className="grid grid-cols-[56px_repeat(7,1fr)] border-b border-fg-grey-200">
             <div />
             {weekDays.map((d, i) => {
-              const isT = d.toDateString() === today.toDateString();
+              const isT = today !== null && d.toDateString() === today.toDateString();
               return (
                 <div key={i} className="px-1 py-2 text-center border-l border-fg-grey-100">
                   <span className={cn("text-sm font-semibold", isT ? accent.text : "text-fg-black")}>{d.getDate()}</span>
@@ -205,9 +226,9 @@ export function FullCalendar({
       {detailPanel && (
         <div className="absolute right-4 top-14 w-72 max-w-[calc(100%-2rem)] bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.12)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-y-auto max-h-[calc(100%-70px)] z-30">
           <div className="flex items-center justify-end gap-1 px-4 pt-3">
-            <button className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><PenLinear size={14} /></button>
-            <button className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><MenuDotsBold size={14} /></button>
-            <button onClick={onCloseDetail} className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><CloseCircleLinear size={14} /></button>
+            <button type="button" aria-label="编辑日程" className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><PenLinear size={14} /></button>
+            <button type="button" aria-label="更多操作" className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><MenuDotsBold size={14} /></button>
+            <button type="button" aria-label="关闭详情" onClick={onCloseDetail} className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><CloseCircleLinear size={14} /></button>
           </div>
           {detailPanel}
         </div>

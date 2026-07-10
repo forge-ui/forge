@@ -97,6 +97,7 @@ const iconSet = [
   <FlagLinear key="f" size={22} color="currentColor" />,
   <PinLinear key="p" size={22} color="currentColor" />,
 ];
+const iconLabels = ["星标", "喜欢", "通知", "书签", "用户", "聊天", "旗帜", "位置"];
 
 export default function InputFieldCasePage() {
   const [toggleOn, setToggleOn] = useState(true);
@@ -507,6 +508,7 @@ export default function InputFieldCasePage() {
               <div className="w-64">
                 <IconPicker
                   icons={iconSet}
+                  labels={iconLabels}
                   color={c}
                   selectedIndex={selectedIcon}
                   onChange={setSelectedIcon}
@@ -520,6 +522,7 @@ export default function InputFieldCasePage() {
           <IconSelector
             label="Select an icon"
             icons={iconSet}
+            labels={iconLabels}
             selectedIndex={selectedIcon}
             onChange={setSelectedIcon}
             color="purple"

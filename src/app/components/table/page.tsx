@@ -269,12 +269,18 @@ const CODE_COLUMNS = `const columns: ColumnDef<OrderRow>[] = [
     render: () => <CellKebabMenu /> },
 ];`;
 
-const CODE_DATATABLE_USAGE = `<DataTable<OrderRow>
+const CODE_DATATABLE_USAGE = `const [selectedRowKeys, setSelectedRowKeys] = useState<Set<Key>>(new Set());
+
+<DataTable<OrderRow>
   title="Recent Orders"
   subtitle="Last 30 days"
   color="blue"
   columns={orderColumns}
   rows={orderRows}
+  showCheckbox
+  getRowKey={(row) => row.invoice}
+  selectedRowKeys={selectedRowKeys}
+  onSelectedRowKeysChange={setSelectedRowKeys}
   showPagination
   currentPage={1}
   totalPages={16}
@@ -289,8 +295,11 @@ const CODE_FULLWIDTH_USAGE = `<FullWidthTable<OrderRow>
   title="Recent Orders"
   color="black"
   showCheckbox
+  getRowKey={(row) => row.invoice}
+  selectedRowKeys={new Set(["#302011"])}
   showRowCount
   currentRowCount={10}
+  totalRows={156}
   rowCountOptions={[10, 25, 50]}
   showPagination
   columns={orderColumns}
@@ -388,11 +397,17 @@ const DATATABLE_PROPS: ApiTableRow[] = [
   { attr: "badge", type: "ReactNode", defaultValue: "—", description: "title 右侧的 Label / 计数徽章。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "强调色，影响 checkbox / action 按钮。" },
   { attr: "showCheckbox", type: "boolean", defaultValue: "false", description: "是否显示首列勾选框。" },
-  { attr: "selectedRows", type: "Set<number>", defaultValue: "—", description: "已选中行的索引集合。" },
+  { attr: "selectedRowKeys", type: "ReadonlySet<Key>", defaultValue: "—", description: "推荐：按稳定业务 key 控制选中状态，排序、过滤和分页后仍对应同一记录。" },
+  { attr: "onSelectedRowKeysChange", type: "(keys: Set<Key>) => void", defaultValue: "—", description: "key 模式选择回调；始终返回新 Set，不修改传入集合。" },
+  { attr: "selectedRows", type: "Set<number>", defaultValue: "—", description: "兼容旧版的索引集合；新代码优先使用 selectedRowKeys。" },
+  { attr: "getRowKey", type: "(row, index) => Key", defaultValue: "index", description: "返回稳定业务 key，同时用于 React 行节点与 key 模式选择。" },
+  { attr: "emptyState", type: "ReactNode", defaultValue: "'暂无数据'", description: "rows 为空时的跨列表格内容。" },
+  { attr: "sortColumnKey / sortDirection", type: "string / 'asc' | 'desc'", defaultValue: "—", description: "受控排序状态，同时驱动 aria-sort 与箭头方向。" },
   { attr: "headerActions", type: "ReactNode", defaultValue: "—", description: "表头右侧操作区，常放 Datepicker + Button。" },
   { attr: "showPagination", type: "boolean", defaultValue: "false", description: "底部是否显示翻页。" },
   { attr: "currentPage / totalPages", type: "number", defaultValue: "—", description: "当前页与总页数。" },
   { attr: "paginationLabel", type: "string", defaultValue: "—", description: "左下角范围说明文字。" },
+  { attr: "tableMinWidth", type: "CSSProperties['minWidth']", defaultValue: "—", description: "表格内容最小宽度；超出时只在组件内部横向滚动。" },
 ];
 
 const FULLWIDTH_PROPS: ApiTableRow[] = [
@@ -400,7 +415,8 @@ const FULLWIDTH_PROPS: ApiTableRow[] = [
   { attr: "showRowCount", type: "boolean", defaultValue: "false", description: "是否显示 Show N 选择器。" },
   { attr: "currentRowCount", type: "number", defaultValue: "10", description: "每页行数当前值。" },
   { attr: "rowCountOptions", type: "number[]", defaultValue: "[10, 25, 50]", description: "每页行数选项。" },
-  { attr: "showCheckbox / selectedRows", type: "同 DataTable", defaultValue: "—", description: "勾选逻辑。" },
+  { attr: "totalRows", type: "number", defaultValue: "—", description: "精确总记录数；未提供时摘要只显示当前范围，不再猜测总数。" },
+  { attr: "showCheckbox / selectedRowKeys", type: "同 DataTable", defaultValue: "—", description: "勾选逻辑；推荐使用稳定 key 模式。" },
   { attr: "showPagination / currentPage / totalPages", type: "同 DataTable", defaultValue: "—", description: "翻页控制。" },
 ];
 
@@ -692,7 +708,8 @@ export default function TableCasePage() {
                 color="blue"
                 showCheckbox
                 checkboxColor="blue"
-                selectedRows={new Set([0, 2])}
+                getRowKey={(row) => row.invoice}
+                selectedRowKeys={new Set(["#302012", "#302002"])}
                 headerActions={
                   <Button color="blue" size="md" iconLeft={<AddCircleLinear size={20} color="white" />}>
                     Add Order
@@ -738,7 +755,8 @@ export default function TableCasePage() {
                 color="black"
                 showCheckbox
                 checkboxColor="purple"
-                selectedRows={new Set([1])}
+                getRowKey={(row) => row.invoice}
+                selectedRowKeys={new Set(["#302011"])}
                 headerActions={
                   <div className="flex items-center gap-3">
                     <ToolbarDatepicker label="Select Dates" />
@@ -754,7 +772,7 @@ export default function TableCasePage() {
                 showPagination
                 currentPage={1}
                 totalPages={32}
-                paginationLabel="Showing 1-3 from 156"
+                totalRows={156}
                 columns={orderColumns}
                 rows={orderRows}
               />

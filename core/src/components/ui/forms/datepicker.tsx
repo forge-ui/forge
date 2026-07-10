@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useId } from "react";
 import { cn } from "../../../lib/utils";
 import {
   CalendarLinear,
@@ -82,6 +82,9 @@ export function Datepicker({
   const [viewMonth, setViewMonth] = useState(initDate.getMonth());
   const [pickingEnd, setPickingEnd] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const triggerId = useId();
+  const dialogId = useId();
   const accent = formAccents[color];
   const range = rangeStyles[color];
 
@@ -93,6 +96,7 @@ export function Datepicker({
   const shapeClass = shape === "pill" ? "rounded-full" : "rounded-xl";
 
   useEffect(() => {
+    if (!open) return;
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
@@ -100,9 +104,21 @@ export function Datepicker({
         setView("calendar");
       }
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      setOpen(false);
+      setPickingEnd(false);
+      setView("calendar");
+      triggerRef.current?.focus();
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open]);
 
   const wrapperClass = cn(
     "flex items-center gap-1 px-4 py-3 outline outline-1 outline-offset-[-1px] transition-all cursor-pointer",
@@ -133,6 +149,7 @@ export function Datepicker({
     if (mode === "single") {
       onChange?.(date);
       setOpen(false);
+      triggerRef.current?.focus();
     } else {
       if (!pickingEnd || !rangeStart) {
         onRangeChange?.(date, null);
@@ -144,6 +161,7 @@ export function Datepicker({
         onRangeChange?.(start, end);
         setPickingEnd(false);
         setOpen(false);
+        triggerRef.current?.focus();
       }
     }
   }
@@ -187,10 +205,20 @@ export function Datepicker({
   return (
     <div className="flex flex-col" ref={ref}>
       {label && (
-        <label className="text-sm font-medium text-fg-black mb-1">{label}</label>
+        <label htmlFor={triggerId} className="text-sm font-medium text-fg-black mb-1">{label}</label>
       )}
       <div className="relative">
-        <div className={wrapperClass} onClick={() => !isDisabled && setOpen(!open)}>
+        <button
+          ref={triggerRef}
+          id={triggerId}
+          type="button"
+          disabled={isDisabled}
+          aria-haspopup="dialog"
+          aria-expanded={open && !isDisabled}
+          aria-controls={dialogId}
+          className={cn(wrapperClass, "text-left")}
+          onClick={() => setOpen(!open)}
+        >
           <span
             className={cn(
               "flex-1 text-sm font-normal leading-5",
@@ -203,17 +231,18 @@ export function Datepicker({
             {displayText}
           </span>
           <span className="text-fg-grey-700"><CalendarLinear size={20} /></span>
-        </div>
+        </button>
 
         {open && !isDisabled && (
-          <div className="absolute top-full left-0 mt-1 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50">
+          <div id={dialogId} role="dialog" aria-label={label ?? placeholder} className="absolute top-full left-0 mt-1 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50">
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-fg-grey-200 p-4">
-              <button type="button" onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
+              <button type="button" aria-label="上个月" onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
                 <AltArrowLeftLinear size={16} />
               </button>
 
-              <div
+              <button
+                type="button"
                 onClick={() => setView(view === "months" ? "calendar" : "months")}
                 className={cn(
                   "flex-1 h-10 px-3 py-2.5 bg-white rounded-lg flex items-center gap-2 cursor-pointer",
@@ -222,9 +251,10 @@ export function Datepicker({
               >
                 <span className="flex-1 text-sm font-medium text-fg-black leading-5 tracking-fg">{MONTHS[viewMonth]}</span>
                 <span className="text-fg-grey-700"><AltArrowDownLinear size={16} /></span>
-              </div>
+              </button>
 
-              <div
+              <button
+                type="button"
                 onClick={() => setView(view === "years" ? "calendar" : "years")}
                 className={cn(
                   "w-24 h-10 px-3 py-2.5 bg-white rounded-lg flex items-center gap-2 cursor-pointer",
@@ -233,9 +263,9 @@ export function Datepicker({
               >
                 <span className="flex-1 text-sm font-medium text-fg-black leading-5 tracking-fg">{viewYear}</span>
                 <span className="text-fg-grey-700"><AltArrowDownLinear size={16} /></span>
-              </div>
+              </button>
 
-              <button type="button" onClick={nextMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
+              <button type="button" aria-label="下个月" onClick={nextMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
                 <AltArrowRightLinear size={16} />
               </button>
             </div>
@@ -246,7 +276,8 @@ export function Datepicker({
                 {MONTHS.map((m, i) => {
                   const isSelected = i === viewMonth;
                   return (
-                    <div
+                    <button
+                      type="button"
                       key={i}
                       onClick={() => { setViewMonth(i); setView("calendar"); }}
                       className="h-11 px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-fg-grey-100"
@@ -258,7 +289,7 @@ export function Datepicker({
                         {m}
                       </span>
                       {isSelected && <CheckCircleLinear size={16} className={accent.text} />}
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -270,7 +301,8 @@ export function Datepicker({
                 {Array.from({ length: 12 }, (_, i) => viewYear - 5 + i).map((y) => {
                   const isSelected = y === viewYear;
                   return (
-                    <div
+                    <button
+                      type="button"
                       key={y}
                       onClick={() => { setViewYear(y); setView("calendar"); }}
                       className="h-11 px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-fg-grey-100"
@@ -282,7 +314,7 @@ export function Datepicker({
                         {y}
                       </span>
                       {isSelected && <CheckCircleLinear size={16} className={accent.text} />}
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -310,6 +342,8 @@ export function Datepicker({
                           <button
                             key={day}
                             type="button"
+                            aria-label={`${viewYear}年${viewMonth + 1}月${day}日`}
+                            aria-pressed={!!isEndpoint}
                             onClick={() => handleDayClick(new Date(viewYear, viewMonth, day))}
                             className={cn(
                               "w-8 h-8 p-0.5 flex flex-col justify-center items-center cursor-pointer transition-colors",

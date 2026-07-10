@@ -16,7 +16,7 @@ export function rampColors(accent: AccentColor, count: number): string[] {
   if (count === 2) return [ramp[0], ramp[2]];
   if (count === 3) return [ramp[0], ramp[2], ramp[3]];
   if (count === 4) return [ramp[0], ramp[1], ramp[2], ramp[3]];
-  return [ramp[0], ramp[1], ramp[2], ramp[3], ramp[4]];
+  return Array.from({ length: count }, (_, index) => ramp[index % ramp.length]);
 }
 
 // Forge token bg-* class → CSS color mapping for gradients & SVG fills.
