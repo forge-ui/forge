@@ -73,7 +73,7 @@ export function ProjectCard({
             </div>
           )}
           {onMenuClick && (
-            <button onClick={onMenuClick} className="w-6 h-6 p-2 flex justify-center items-center cursor-pointer">
+            <button type="button" aria-label="更多操作" onClick={onMenuClick} className="w-6 h-6 p-2 flex justify-center items-center cursor-pointer">
               <span className="rotate-90">
                 <MenuDotsBold size={16} color="var(--fg-grey-700)" />
               </span>

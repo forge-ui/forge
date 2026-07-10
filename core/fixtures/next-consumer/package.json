@@ -1,0 +1,23 @@
+{
+  "name": "forge-core-next-consumer",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build"
+  },
+  "dependencies": {
+    "@forge-ui-official/core": "0.0.0-tarball",
+    "next": "16.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "solar-icon-set": "2.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.2",
+    "@types/node": "20.19.39",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "tailwindcss": "4.2.2",
+    "typescript": "5.9.3"
+  }
+}

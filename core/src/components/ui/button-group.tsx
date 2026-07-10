@@ -28,6 +28,7 @@ export function ButtonGroup({
   shape = "rounded",
   onChange,
   className,
+  ariaLabel = "选项组",
 }: {
   items: ButtonGroupItem[];
   activeIndex?: number;
@@ -35,11 +36,14 @@ export function ButtonGroup({
   shape?: ButtonGroupShape;
   onChange?: (index: number) => void;
   className?: string;
+  ariaLabel?: string;
 }) {
   const isPill = shape === "pill";
 
   return (
     <div
+      role="group"
+      aria-label={ariaLabel}
       className={cn(
         "p-1 bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
         isPill ? "rounded-full" : "rounded-xl",
@@ -50,6 +54,7 @@ export function ButtonGroup({
         <button
           key={index}
           type="button"
+          aria-pressed={index === activeIndex}
           onClick={() => onChange?.(index)}
           className={cn(
             "px-4 py-2 text-sm leading-5 cursor-pointer whitespace-nowrap",

@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { cn } from "../../lib/utils";
 import { MenuDotsBold } from "solar-icon-set";
 import { type AccentColor } from "./accent-utils";
@@ -54,7 +53,7 @@ export function SmallDailyCalendar({
   }
 
   return (
-    <div className={cn("w-full max-w-[420px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden", className)}>
+    <div data-accent={color} className={cn("w-full max-w-[420px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden", className)}>
       {/* Header */}
       <div className="px-6 pt-6 pb-4 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-1">
@@ -62,7 +61,7 @@ export function SmallDailyCalendar({
           <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{subtitle}</span>
         </div>
         {onMenuClick && (
-          <button onClick={onMenuClick} className="w-6 h-6 flex items-center justify-center cursor-pointer text-fg-grey-700">
+          <button type="button" aria-label="更多操作" onClick={onMenuClick} className="w-6 h-6 flex items-center justify-center cursor-pointer text-fg-grey-700">
             <MenuDotsBold size={16} className="rotate-90" />
           </button>
         )}

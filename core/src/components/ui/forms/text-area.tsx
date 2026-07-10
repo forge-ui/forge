@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useLayoutEffect, useRef, type ReactNode } from "react";
+import { forwardRef, useId, useImperativeHandle, useLayoutEffect, useRef, type ReactNode, type TextareaHTMLAttributes } from "react";
 import { cn } from "../../../lib/utils";
 import {
   FieldFrame,
@@ -14,7 +14,20 @@ export type TextAreaState = FieldState;
 export type TextAreaShape = FieldShape;
 export type TextAreaColor = FieldColor;
 
-export function TextArea({
+export type TextAreaProps = {
+  state?: TextAreaState;
+  shape?: TextAreaShape;
+  color?: TextAreaColor;
+  label?: string;
+  errorMessage?: string;
+  autoGrow?: boolean;
+  headerAction?: ReactNode;
+  onChange?: (value: string) => void;
+  className?: string;
+  textareaClassName?: string;
+} & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "color" | "onChange">;
+
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextArea({
   placeholder,
   value,
   state = "idle",
@@ -27,30 +40,21 @@ export function TextArea({
   headerAction,
   onChange,
   className,
+  textareaClassName,
   id,
-}: {
-  placeholder?: string;
-  value?: string;
-  state?: TextAreaState;
-  shape?: TextAreaShape;
-  color?: TextAreaColor;
-  label?: string;
-  errorMessage?: string;
-  /** Initial & minimum visible rows */
-  rows?: number;
-  /** Grow with content (height follows scrollHeight). Default true. */
-  autoGrow?: boolean;
-  headerAction?: ReactNode;
-  onChange?: (value: string) => void;
-  className?: string;
-  /** Optional id, defaults to a useId-generated value so labels can link via htmlFor */
-  id?: string;
-}) {
+  disabled,
+  onInput,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  ...textareaProps
+}, forwardedRef) {
   const autoId = useId();
   const inputId = id ?? autoId;
+  const errorId = `${inputId}-error`;
   const { wrapper, text } = getFieldClasses({ state, shape, color });
-  const isDisabled = state === "disabled";
+  const isDisabled = state === "disabled" || disabled;
   const ref = useRef<HTMLTextAreaElement>(null);
+  useImperativeHandle(forwardedRef, () => ref.current as HTMLTextAreaElement, []);
 
   useLayoutEffect(() => {
     if (!autoGrow) return;
@@ -60,13 +64,14 @@ export function TextArea({
     el.style.height = `${el.scrollHeight}px`;
   }, [autoGrow, value]);
 
-  const handleInput = autoGrow
-    ? (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const handleInput = (e: React.InputEvent<HTMLTextAreaElement>) => {
+    onInput?.(e);
+    if (autoGrow) {
         const el = e.currentTarget;
         el.style.height = "auto";
         el.style.height = `${el.scrollHeight}px`;
-      }
-    : undefined;
+    }
+  };
 
   return (
     <FieldFrame
@@ -74,6 +79,7 @@ export function TextArea({
       headerAction={headerAction}
       errorMessage={errorMessage}
       showError={state === "error"}
+      errorId={errorId}
       inputId={inputId}
     >
       <div className={cn("px-4 py-3 overflow-hidden", wrapper, className)}>
@@ -83,12 +89,15 @@ export function TextArea({
           placeholder={placeholder}
           value={value}
           disabled={isDisabled}
+          aria-invalid={ariaInvalid ?? (state === "error")}
+          aria-describedby={[ariaDescribedBy, state === "error" && errorMessage ? errorId : undefined].filter(Boolean).join(" ") || undefined}
           rows={rows}
           onInput={handleInput}
           onChange={(e) => onChange?.(e.target.value)}
-          className={cn("w-full block resize-none", text)}
+          className={cn("w-full block resize-none", text, textareaClassName)}
+          {...textareaProps}
         />
       </div>
     </FieldFrame>
   );
-}
+});

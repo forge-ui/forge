@@ -1,6 +1,6 @@
 import { cn } from "../../../lib/utils";
 import { resolveColor, trendArrow, trendColorClass, rampColors, TRACK_COLOR_HEX } from "./chart-utils";
-import { accentColors, type AccentColor } from "../accent-utils";
+import { type AccentColor } from "../accent-utils";
 
 interface DonutLayer {
   /** 0-100 percent */

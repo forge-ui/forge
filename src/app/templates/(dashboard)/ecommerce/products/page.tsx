@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, type Key } from "react";
 import { useRouter } from "next/navigation";
 import {
   DownloadMinimalisticLinear,
@@ -197,14 +197,14 @@ export default function ProductsPage() {
   const [activeFilterIndex, setActiveFilterIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
-  const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
+  const [selectedRowKeys, setSelectedRowKeys] = useState<Set<Key>>(new Set());
   const [productList, setProductList] = useState<ProductInventoryItem[]>(mockProductList);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<ProductInventoryItem | null>(null);
 
   const handleDeleteProduct = useCallback((productId: string) => {
     setProductList((prev) => prev.filter((item) => item.id !== productId));
-    setSelectedRows(new Set());
+    setSelectedRowKeys(new Set());
   }, []);
 
   const handleOpenDeleteModal = useCallback((record: ProductInventoryItem) => {
@@ -384,22 +384,9 @@ export default function ProductsPage() {
         columns={columns}
         rows={filteredList}
         showCheckbox
-        selectedRows={selectedRows}
-        onSelectRow={(index, checked) => {
-          setSelectedRows((prev) => {
-            const next = new Set(prev);
-            if (checked) next.add(index);
-            else next.delete(index);
-            return next;
-          });
-        }}
-        onSelectAll={(checked) => {
-          if (checked) {
-            setSelectedRows(new Set(filteredList.map((_, i) => i)));
-          } else {
-            setSelectedRows(new Set());
-          }
-        }}
+        getRowKey={(row) => row.id}
+        selectedRowKeys={selectedRowKeys}
+        onSelectedRowKeysChange={setSelectedRowKeys}
         showPagination
         currentPage={currentPage}
         totalPages={totalPages}

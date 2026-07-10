@@ -69,7 +69,7 @@ export default function FinanceInvoiceDetailPage() {
                 </div>
                 <div className="rounded-[20px] border border-fg-grey-200 p-5">
                   <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">Pay From</p>
-                  <p className="mt-4 text-sm font-semibold text-fg-black">Sugab's Team</p>
+                  <p className="mt-4 text-sm font-semibold text-fg-black">Sugab&apos;s Team</p>
                   <p className="mt-1 text-xs font-medium text-fg-grey-500">finance@protask.com</p>
                 </div>
               </div>

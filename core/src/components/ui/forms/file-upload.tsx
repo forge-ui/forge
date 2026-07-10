@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { cn } from "../../../lib/utils";
 import {
-  CheckCircleLinear,
   CloseCircleLinear,
   RefreshLinear,
 } from "solar-icon-set";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, type InputHTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
 import {
   FieldFrame,
@@ -20,7 +20,24 @@ export interface TextFieldTag {
   value: string;
 }
 
-export function TextField({
+export type TextFieldProps = {
+  state?: TextFieldState;
+  shape?: TextFieldShape;
+  color?: TextFieldColor;
+  label?: string;
+  errorMessage?: string;
+  headerAction?: ReactNode;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  suffix?: ReactNode;
+  tags?: TextFieldTag[];
+  onRemoveTag?: (value: string) => void;
+  onChange?: (value: string) => void;
+  className?: string;
+  inputClassName?: string;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "color" | "size" | "onChange">;
+
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField({
   placeholder,
   value,
   state = "idle",
@@ -37,33 +54,18 @@ export function TextField({
   onRemoveTag,
   onChange,
   className,
+  inputClassName,
   id,
-}: {
-  placeholder?: string;
-  value?: string;
-  state?: TextFieldState;
-  shape?: TextFieldShape;
-  color?: TextFieldColor;
-  label?: string;
-  errorMessage?: string;
-  headerAction?: ReactNode;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
-  /** Right-aligned suffix (e.g. "cm", currency, unit, dropdown trigger) */
-  suffix?: ReactNode;
-  type?: InputHTMLAttributes<HTMLInputElement>["type"];
-  /** Render tag chips before the input (Multiple variant) */
-  tags?: TextFieldTag[];
-  onRemoveTag?: (value: string) => void;
-  onChange?: (value: string) => void;
-  className?: string;
-  /** Optional id, defaults to a useId-generated value so labels can link via htmlFor */
-  id?: string;
-}) {
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  ...inputProps
+}, ref) {
   const autoId = useId();
   const inputId = id ?? autoId;
+  const errorId = `${inputId}-error`;
   const { wrapper, text } = getFieldClasses({ state, shape, color });
-  const isDisabled = state === "disabled";
+  const isDisabled = state === "disabled" || disabled;
   const hasTags = tags && tags.length > 0;
   // Tag chips already have internal padding (p-2), so the outer wrapper uses
   // tighter p-2 to match Figma's "Multiple" variant height exactly.
@@ -75,6 +77,7 @@ export function TextField({
       headerAction={headerAction}
       errorMessage={errorMessage}
       showError={state === "error"}
+      errorId={errorId}
       inputId={inputId}
     >
       <div className={cn("flex items-center gap-1", padding, wrapper, className)}>
@@ -95,12 +98,16 @@ export function TextField({
             ))}
           <input
             id={inputId}
+            ref={ref}
             type={type}
             placeholder={placeholder}
             value={value}
             disabled={isDisabled}
+            aria-invalid={ariaInvalid ?? (state === "error")}
+            aria-describedby={[ariaDescribedBy, state === "error" && errorMessage ? errorId : undefined].filter(Boolean).join(" ") || undefined}
             onChange={(e) => onChange?.(e.target.value)}
-            className={cn("min-w-0 flex-1", text)}
+            className={cn("min-w-0 flex-1", text, inputClassName)}
+            {...inputProps}
           />
         </div>
         {suffix && (
@@ -116,4 +123,4 @@ export function TextField({
       </div>
     </FieldFrame>
   );
-}
+});

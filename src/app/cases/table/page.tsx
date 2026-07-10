@@ -323,7 +323,8 @@ export default function TableCasePage() {
           columns={sixColumns}
           rows={orders}
           showCheckbox
-          selectedRows={new Set([1])}
+          getRowKey={(row) => row.id}
+          selectedRowKeys={new Set(["#302011"])}
           showPagination
           currentPage={2}
           totalPages={5}
@@ -344,7 +345,8 @@ export default function TableCasePage() {
               color={c}
               checkboxColor={c === "black" ? "purple" : c}
               showCheckbox
-              selectedRows={new Set([0, 2])}
+              getRowKey={(row) => row.id}
+              selectedRowKeys={new Set(["#302012", "#302002"])}
               showPagination
               currentPage={1}
               totalPages={5}
@@ -366,7 +368,8 @@ export default function TableCasePage() {
               color={c}
               checkboxColor={c === "black" ? "purple" : c}
               showCheckbox
-              selectedRows={new Set([0])}
+              getRowKey={(row) => row.id}
+              selectedRowKeys={new Set(["#302012"])}
               showPagination
               currentPage={2}
               totalPages={5}
@@ -388,14 +391,15 @@ export default function TableCasePage() {
               rows={orders}
               color={c}
               checkboxColor={c === "black" ? "purple" : c}
-              selectedRows={new Set([1, 3])}
+              getRowKey={(row) => row.id}
+              selectedRowKeys={new Set(["#302011", "#301901"])}
               showPagination
               currentPage={1}
               totalPages={5}
-              paginationLabel="Showing 1-5 from 25"
               showRowCount
               rowCountOptions={[5, 10, 25, 50]}
               currentRowCount={5}
+              totalRows={25}
             />
           ))}
         </div>

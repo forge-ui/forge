@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { cn } from "../../lib/utils";
 import { AltArrowLeftLinear, AltArrowRightLinear, MenuDotsBold } from "solar-icon-set";
 import { accentColors, type AccentColor } from "./accent-utils";
 import { EventCard, type EventCardColor } from "./event-card";
 import { MONTH_NAMES, DAY_NAMES_SHORT, getDaysInMonth, getFirstDayOfMonth } from "./calendar-utils";
 import { resolveCardWidthClass, type CardWidth } from "./card-utils";
+
+const subscribeToHydration = () => () => undefined;
+const getClientHydrationSnapshot = () => true;
+const getServerHydrationSnapshot = () => false;
 
 // ============================================================
 // SmallCalendar — Figma "Small Calendar" (node 6387:3079)
@@ -42,27 +46,43 @@ export function SmallCalendar({
   className?: string;
 }) {
   const accent = accentColors[color];
-  const today = new Date();
-  const [viewYear, setViewYear] = useState(today.getFullYear());
-  const [viewMonth, setViewMonth] = useState(today.getMonth());
-  const [selectedDay, setSelectedDay] = useState(today.getDate());
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getClientHydrationSnapshot,
+    getServerHydrationSnapshot,
+  );
+  const today = hydrated ? new Date() : null;
+  const [manualView, setManualView] = useState<{ year: number; month: number } | null>(null);
+  const [selectedDayOverride, setSelectedDay] = useState<number | null>(null);
+  const viewYear = manualView?.year ?? today?.getFullYear() ?? 2024;
+  const viewMonth = manualView?.month ?? today?.getMonth() ?? 0;
+  const selectedDay = selectedDayOverride ?? today?.getDate() ?? 1;
 
   const daysInMonth = getDaysInMonth(viewYear, viewMonth);
   const firstDay = getFirstDayOfMonth(viewYear, viewMonth);
 
   const isToday = (day: number) =>
-    day === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear();
+    today !== null
+    && day === today.getDate()
+    && viewMonth === today.getMonth()
+    && viewYear === today.getFullYear();
 
   const selectedEvents = events.filter((e) => e.day === selectedDay);
   const eventDays = new Set(events.map((e) => e.day));
 
   const prevMonth = () => {
-    if (viewMonth === 0) { setViewMonth(11); setViewYear(viewYear - 1); }
-    else setViewMonth(viewMonth - 1);
+    setManualView(
+      viewMonth === 0
+        ? { year: viewYear - 1, month: 11 }
+        : { year: viewYear, month: viewMonth - 1 },
+    );
   };
   const nextMonth = () => {
-    if (viewMonth === 11) { setViewMonth(0); setViewYear(viewYear + 1); }
-    else setViewMonth(viewMonth + 1);
+    setManualView(
+      viewMonth === 11
+        ? { year: viewYear + 1, month: 0 }
+        : { year: viewYear, month: viewMonth + 1 },
+    );
   };
 
   return (
@@ -80,7 +100,7 @@ export function SmallCalendar({
           <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{subtitle}</span>
         </div>
         {onMenuClick && (
-          <button onClick={onMenuClick} className="w-6 h-6 flex items-center justify-center cursor-pointer text-fg-grey-700">
+          <button type="button" aria-label="更多操作" onClick={onMenuClick} className="w-6 h-6 flex items-center justify-center cursor-pointer text-fg-grey-700">
             <MenuDotsBold size={16} className="rotate-90" />
           </button>
         )}
@@ -90,14 +110,14 @@ export function SmallCalendar({
       <div className="flex-1 p-6 flex flex-col gap-4">
         {/* Month nav */}
         <div className="flex items-center gap-2">
-          <button onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex items-center justify-center cursor-pointer hover:bg-fg-grey-100 text-fg-grey-700">
+          <button type="button" aria-label="上个月" onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex items-center justify-center cursor-pointer hover:bg-fg-grey-100 text-fg-grey-700">
             <AltArrowLeftLinear size={20} />
           </button>
           <div className="flex-1 flex justify-center items-center gap-2">
             <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">{MONTH_NAMES[viewMonth].slice(0, 9)}</span>
             <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">{viewYear}</span>
           </div>
-          <button onClick={nextMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex items-center justify-center cursor-pointer hover:bg-fg-grey-100 text-fg-grey-700">
+          <button type="button" aria-label="下个月" onClick={nextMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex items-center justify-center cursor-pointer hover:bg-fg-grey-100 text-fg-grey-700">
             <AltArrowRightLinear size={20} />
           </button>
         </div>
@@ -119,6 +139,7 @@ export function SmallCalendar({
             return (
               <button
                 key={day}
+                type="button"
                 onClick={() => setSelectedDay(day)}
                 className={cn(
                   "w-8 h-8 rounded-lg flex flex-col items-center justify-center text-sm leading-5 tracking-fg cursor-pointer transition-colors relative",

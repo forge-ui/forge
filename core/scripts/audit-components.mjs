@@ -1,14 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { approvedSemanticAliases } from "./semantic-alias-allowlist.mjs";
+import { createSemanticAliasGate } from "./semantic-alias-gate.mjs";
+import { scanSemanticAliases } from "./semantic-alias-scanner.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, "..");
 const repoRoot = path.resolve(root, "..");
-const componentRoot = path.join(root, "src/components");
+const componentRoots = [
+  path.join(root, "src/components"),
+  path.join(root, "src/internal"),
+];
 const tokenCss = path.join(root, "src/styles/tokens.css");
 
-// Default scope is the core component package only. `--showcase` additionally
+// Default scope covers both public component sources and their published
+// internal implementations. `--showcase` additionally
 // scans the repo showcase/sample sources below as an opt-in review scope:
 // every finding there is reported as a warning (never an error, never affects
 // the exit code) so the publish gate stays focused on core. core dist and
@@ -45,13 +52,9 @@ const showcaseCompatLinePattern = /\b(showcase|figma)\b/i;
 // surface in review.
 const widthFixedPropPattern = /\bwidth\s*=\s*(?:"fixed"|\{\s*["']fixed["']\s*\})/g;
 const commentLinePattern = /^(\/\/|\/?\*)/;
-// `orange:` variant keys intentionally resolve to fg-red: the Figma source
-// names the style "orange" but its hex equals Forge Red 500, and tokens.css
-// defines no fg-orange scale. The alias is kept verbatim for visual parity
-// with Figma. It stays a review *warning* (not an error) so any newly added
-// orange -> fg-* mapping still gets human eyes, without failing the gate for
-// the documented historical aliases.
-const semanticAliasPattern = /\borange\s*:\s*["'][^"']*fg-red[^"']*["']/g;
+// `orange:` variant keys intentionally resolve to fg-red in a small number of
+// Figma-compatible maps. Exact path + value fingerprints are approved once;
+// new, duplicated, changed, or stale aliases fail the publish gate.
 
 function walk(dir) {
   const files = [];
@@ -105,9 +108,10 @@ function linesForMatch(source, pattern) {
 }
 
 function rel(file) {
-  return file.startsWith(root + path.sep)
+  const relativePath = file.startsWith(root + path.sep)
     ? path.relative(root, file)
     : path.relative(repoRoot, file);
+  return relativePath.split(path.sep).join("/");
 }
 
 function collectTokenDefinitions() {
@@ -121,6 +125,8 @@ const tokenDefinitions = collectTokenDefinitions();
 const errors = [];
 const warnings = [];
 const showcaseWarnings = [];
+const semanticAliasGate = createSemanticAliasGate(approvedSemanticAliases);
+let approvedSemanticAliasCount = 0;
 
 function auditFile(file, { showcaseScope }) {
   const source = fs.readFileSync(file, "utf8");
@@ -192,16 +198,35 @@ function auditFile(file, { showcaseScope }) {
     });
   }
 
-  for (const hit of linesForMatch(source, semanticAliasPattern)) {
-    pushWarning({
-      type: "semantic-alias-review",
-      file,
+  for (const hit of scanSemanticAliases(source, rel(file))) {
+    const auditHit = {
       ...hit,
+      match: `${hit.aliasPath} = ${JSON.stringify(hit.value)}`,
+      text: "Orange compatibility alias resolves to a Forge red token.",
+    };
+    if (showcaseScope) {
+      pushWarning({
+        type: "semantic-alias-review",
+        file,
+        ...auditHit,
+      });
+      continue;
+    }
+
+    if (semanticAliasGate.consume(rel(file), hit.aliasPath, hit.value)) {
+      approvedSemanticAliasCount += 1;
+      continue;
+    }
+
+    pushError({
+      type: "unapproved-semantic-alias",
+      file,
+      ...auditHit,
     });
   }
 }
 
-const coreFiles = walk(componentRoot);
+const coreFiles = componentRoots.flatMap((componentRoot) => walk(componentRoot));
 for (const file of coreFiles) {
   auditFile(file, { showcaseScope: false });
 }
@@ -218,11 +243,30 @@ if (includeShowcase) {
   }
 }
 
+const semanticAliasResult = semanticAliasGate.finalize();
+for (const [relativeFile, aliasPath, value] of semanticAliasResult.duplicates) {
+  errors.push({
+    type: "duplicate-semantic-alias-allowlist",
+    file: path.join(root, relativeFile),
+    match: `${aliasPath} = ${JSON.stringify(value)}`,
+    text: "Duplicate approved semantic alias fingerprint.",
+  });
+}
+for (const [relativeFile, aliasPath, value] of semanticAliasResult.stale) {
+  errors.push({
+    type: "stale-semantic-alias-allowlist",
+    file: path.join(root, relativeFile),
+    match: `${aliasPath} = ${JSON.stringify(value)}`,
+    text: "Approved semantic alias no longer exists in source.",
+  });
+}
+
 function printItems(label, items) {
   if (items.length === 0) return;
   console.log(`\n${label}`);
   for (const item of items) {
-    console.log(`${item.type}: ${rel(item.file)}:${item.line} ${item.match}`);
+    const location = item.line ? `${rel(item.file)}:${item.line}` : rel(item.file);
+    console.log(`${item.type}: ${location} ${item.match}`);
     console.log(`  ${item.text}`);
   }
 }
@@ -231,7 +275,7 @@ printItems("Forge component audit errors", errors);
 printItems("Forge component audit warnings", warnings);
 printItems("Forge showcase audit warnings (opt-in review scope)", showcaseWarnings);
 
-let summary = `\nForge component audit: ${errors.length} error(s), ${warnings.length} warning(s) across ${coreFiles.length} files.`;
+let summary = `\nForge component audit: ${errors.length} error(s), ${warnings.length} warning(s) across ${coreFiles.length} files. Approved semantic aliases: ${approvedSemanticAliasCount}.`;
 if (includeShowcase) {
   summary += ` Showcase scope: ${showcaseWarnings.length} review warning(s) across ${showcaseFileCount} files.`;
 }

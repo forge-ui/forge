@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
 import { AltArrowDownLinear, AltArrowUpLinear } from "solar-icon-set";
 import { formAccents, type FormAccentColor } from "./form-utils";
@@ -45,7 +45,11 @@ function OptionItem({
 }) {
   const accent = formAccents[color];
   return (
-    <div
+    <button
+      type="button"
+      role="option"
+      tabIndex={-1}
+      aria-selected={selected}
       onClick={onClick}
       className="h-12 px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-fg-grey-100 transition-colors w-full"
     >
@@ -66,7 +70,7 @@ function OptionItem({
           <path d="M5.5 11.5L9 15L16.5 7.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       )}
-    </div>
+    </button>
   );
 }
 
@@ -120,6 +124,9 @@ export function SelectOption(props: SelectOptionProps) {
 
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const pendingOptionFocusRef = useRef<"first" | "last" | null>(null);
+  const listboxId = useId();
   const accent = formAccents[color];
 
   const isError = state === "error";
@@ -131,15 +138,48 @@ export function SelectOption(props: SelectOptionProps) {
 
   const shapeClass = shape === "pill" ? "rounded-full" : "rounded-xl";
 
+  function getOptionElements(container: ParentNode | null = ref.current) {
+    return container
+      ? [...container.querySelectorAll<HTMLElement>('[role="option"]')]
+      : [];
+  }
+
+  function focusBoundaryOption(target: "first" | "last") {
+    const optionElements = getOptionElements();
+    const targetIndex = target === "first" ? 0 : optionElements.length - 1;
+    optionElements[targetIndex]?.focus();
+  }
+
   useEffect(() => {
+    if (!open) return;
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
       }
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      setOpen(false);
+      triggerRef.current?.focus();
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!isOpen || pendingOptionFocusRef.current === null) return;
+    const optionElements = ref.current
+      ? [...ref.current.querySelectorAll<HTMLElement>('[role="option"]')]
+      : [];
+    const targetIndex = pendingOptionFocusRef.current === "first" ? 0 : optionElements.length - 1;
+    optionElements[targetIndex]?.focus();
+    pendingOptionFocusRef.current = null;
+  }, [isOpen, options.length]);
 
   const selectedValues: string[] = isMultiple
     ? (Array.isArray(props.value) ? (props.value as string[]) : [])
@@ -152,6 +192,7 @@ export function SelectOption(props: SelectOptionProps) {
     if (isMultiple) return;
     (props.onChange as ((value: string) => void) | undefined)?.(v);
     setOpen(false);
+    triggerRef.current?.focus();
   }
 
   function toggleMultiple(v: string) {
@@ -166,6 +207,56 @@ export function SelectOption(props: SelectOptionProps) {
     if (!isMultiple) return;
     const next = selectedValues.filter((x) => x !== v);
     (props.onChange as ((value: string[]) => void) | undefined)?.(next);
+  }
+
+  function handleTriggerKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+    if (event.target !== event.currentTarget) return;
+    if (isDisabled) return;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const target = event.key === "ArrowDown" ? "first" : "last";
+      if (isOpen) {
+        focusBoundaryOption(target);
+      } else {
+        pendingOptionFocusRef.current = target;
+        setOpen(true);
+      }
+      return;
+    }
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setOpen(true);
+    }
+  }
+
+  function handleListboxKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+    const currentOption = (event.target as HTMLElement).closest<HTMLElement>('[role="option"]');
+    if (!currentOption || !event.currentTarget.contains(currentOption)) return;
+
+    const optionElements = getOptionElements(event.currentTarget);
+    const currentIndex = optionElements.indexOf(currentOption);
+    if (currentIndex < 0 || optionElements.length === 0) return;
+
+    let nextIndex: number;
+    switch (event.key) {
+      case "ArrowDown":
+        nextIndex = (currentIndex + 1) % optionElements.length;
+        break;
+      case "ArrowUp":
+        nextIndex = (currentIndex - 1 + optionElements.length) % optionElements.length;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = optionElements.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    optionElements[nextIndex]?.focus();
   }
 
   // Trigger styling (exactly per Figma: outline-based border)
@@ -199,9 +290,19 @@ export function SelectOption(props: SelectOptionProps) {
     >
       <div className="relative">
         <div
+          ref={triggerRef}
+          role="combobox"
+          tabIndex={isDisabled ? -1 : 0}
+          aria-expanded={isOpen}
+          aria-controls={listboxId}
+          aria-haspopup="listbox"
+          aria-label={label ?? placeholder}
+          aria-disabled={isDisabled}
+          aria-invalid={isError}
           className={cn(triggerBase, triggerState)}
           style={triggerStyle}
           onClick={() => !isDisabled && setOpen(!open)}
+          onKeyDown={handleTriggerKeyDown}
         >
           {/* Content */}
           {isMultiple && selectedItems.length > 0 ? (
@@ -250,6 +351,10 @@ export function SelectOption(props: SelectOptionProps) {
         {/* Dropdown — 宽度跟 trigger 一致 */}
         {isOpen && (
           <div
+            id={listboxId}
+            role="listbox"
+            aria-multiselectable={isMultiple || undefined}
+            onKeyDown={handleListboxKeyDown}
             className="absolute top-full left-0 mt-1 py-2 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden"
             style={triggerStyle}
           >

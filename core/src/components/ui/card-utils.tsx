@@ -407,7 +407,6 @@ export function CardAvatarGroup({
   return (
     <div className="flex -space-x-2 shrink-0">
       {visible.map((src, i) => (
-        /* eslint-disable-next-line @next/next/no-img-element */
         <img
           key={`${src}-${i}`}
           src={src}

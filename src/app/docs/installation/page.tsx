@@ -39,9 +39,9 @@ export default function InstallationPage() {
 
       <DocSection id="prereq" title="前置">
         <ul className="list-disc space-y-1 pl-5">
-          <li>Node.js 20+</li>
+          <li>Node.js 20+（消费 Core；参与 Forge 仓库开发需 22.13+）</li>
           <li>pnpm 9+（npm / yarn 也行，示例用 pnpm）</li>
-          <li>Next.js 16+（App Router）</li>
+          <li>Next.js 15+（App Router；Core 消费门禁覆盖 Next 15 / 16）</li>
           <li>React 19+、React DOM 19+</li>
           <li>Tailwind CSS v4</li>
         </ul>
@@ -78,7 +78,7 @@ export default function InstallationPage() {
             <code>solar-icon-set</code> ^2
           </li>
           <li>
-            <code>next</code> {">="}15（可选，只在用到 AppLayout 等依赖 next/link 的组件时才需要）
+            <code>next</code> {">="}15（core 根入口包含 AppLayout 与 StyledLink，因此是必需 peer dependency）
           </li>
         </ul>
         <p>pnpm 装完如果提示某个 peer 缺失，按提示补装。</p>
