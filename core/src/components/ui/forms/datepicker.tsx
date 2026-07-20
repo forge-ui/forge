@@ -8,7 +8,7 @@ import {
   AltArrowRightLinear,
   AltArrowDownLinear,
   CheckCircleLinear,
-} from "solar-icon-set";
+} from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
 
 const rangeStyles: Record<FormAccentColor, { bg: string; text: string }> = {

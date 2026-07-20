@@ -30,7 +30,7 @@ forms:
 dialogs:
   destructive: "ConfirmationDialog inside host dialog shell"
 icons:
-  package: "solar-icon-set"
+  package: "@forge-ui-official/core/icons"
   names: []
 missing_primitives:
   drawer: "host app shell or ask"
@@ -46,5 +46,4 @@ missing_primitives:
 - Use `TextField`, `TextArea`, `SelectOption`, `Datepicker`, `FileUpload`, `MediaUpload`, and `Stepper` for forms.
 - Use `ConfirmationDialog` only as content inside a dialog shell.
 - Use `fg-*` color tokens only.
-- Use `solar-icon-set` icons with the `color` prop and numeric `size`.
-
+- Use `@forge-ui-official/core/icons` icons with the `color` prop and numeric `size`.

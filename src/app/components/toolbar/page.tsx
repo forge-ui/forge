@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Login2Linear } from "solar-icon-set";
+import { Login2Linear } from "@forge-ui-official/core/icons";
 import {
   Button,
   Breadcrumbs,

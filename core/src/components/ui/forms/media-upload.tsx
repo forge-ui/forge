@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState } from "react";
 import { cn } from "../../../lib/utils";
-import { CloseCircleLinear, UserBoldDuotone } from "solar-icon-set";
+import { CloseCircleLinear, UserBoldDuotone } from "../../../icons";
 
 // Gallery icon from Figma — inline SVG composite with currentColor for theming
 function GalleryIcon({ className }: { className?: string }) {

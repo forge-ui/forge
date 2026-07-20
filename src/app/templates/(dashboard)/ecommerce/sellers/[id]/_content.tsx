@@ -28,7 +28,7 @@ import {
   TrashBinMinimalisticLinear,
   CopyLinear,
   StarBold,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 // --- Types ---
 

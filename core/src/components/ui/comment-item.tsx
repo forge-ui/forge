@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { ReplyLinear } from "solar-icon-set";
+import { ReplyLinear } from "../../icons";
 
 export type CommentReply = {
   avatar: string;

@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "solar-icon-set";
+import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "@forge-ui-official/core/icons";
 import { Button, ProgressBar, StatusBadge } from "@forge-ui-official/core";
 import { CrmSurface, DetailLine } from "../../_components";
 import { CrmPageHeader, CrmTemplateShell, saleStatusColor } from "../../_chrome";

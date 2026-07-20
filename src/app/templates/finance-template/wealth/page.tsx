@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AddCircleLinear } from "solar-icon-set";
+import { AddCircleLinear } from "@forge-ui-official/core/icons";
 import {
   Button,
   CellActions,

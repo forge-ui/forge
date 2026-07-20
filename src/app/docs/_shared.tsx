@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { CopyLinear, AltArrowDownLinear } from "solar-icon-set";
+import { CopyLinear, AltArrowDownLinear } from "@forge-ui-official/core/icons";
 import { Breadcrumbs, type BreadcrumbItem } from "@forge-ui-official/core";
 import { DocsToc, type TocItem } from "./_toc";
 

@@ -319,7 +319,7 @@ import {
   type KebabMenuItem,
 } from "@forge-ui-official/core";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, EyeLinear, PenLinear, TrashBinTrashLinear, MagniferLinear } from "solar-icon-set";
+import { AddCircleLinear, EyeLinear, PenLinear, TrashBinTrashLinear, MagniferLinear } from "@forge-ui-official/core/icons";
 
 type OrderStatus = "draft" | "pending" | "paid" | "void";
 type OrderRow = { id: string; number: string; customer: string; status: OrderStatus; updatedAt: string };
@@ -672,7 +672,7 @@ Typed row action map example:
 
 ```tsx
 import type { KebabMenuItem } from "@forge-ui-official/core";
-import { EyeLinear, PenLinear, TrashBinTrashLinear } from "solar-icon-set";
+import { EyeLinear, PenLinear, TrashBinTrashLinear } from "@forge-ui-official/core/icons";
 
 type InvoiceStatus = "draft" | "sent" | "paid" | "void";
 type Invoice = { id: string; status: InvoiceStatus };

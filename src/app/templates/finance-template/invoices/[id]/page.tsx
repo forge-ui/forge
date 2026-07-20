@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { CloudDownloadLinear, Pen2Linear } from "solar-icon-set";
+import { CloudDownloadLinear, Pen2Linear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, CellText, DataTable, StatusBadge } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { FieldLine, FinanceSurface } from "../../_components";

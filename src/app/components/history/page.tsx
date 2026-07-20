@@ -6,7 +6,7 @@ import {
   CheckCircleLinear,
   UserLinear,
   DocumentTextLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";

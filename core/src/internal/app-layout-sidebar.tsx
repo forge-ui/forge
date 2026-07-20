@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AltArrowDownLinear } from "solar-icon-set";
+import { AltArrowDownLinear } from "../icons";
 import type { AppLayoutMenuItem, AppLayoutMode } from "../components/layouts/app-layout";
 import { cn } from "../lib/utils";
 

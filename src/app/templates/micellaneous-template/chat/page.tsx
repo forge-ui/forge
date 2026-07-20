@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, PhoneCallingRoundedLinear, VideocameraRecordLinear } from "solar-icon-set";
+import { AddCircleLinear, PhoneCallingRoundedLinear, VideocameraRecordLinear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, ChatBubble, ChatInputBar, Checkbox, ContactItem, ToolbarSearchInput } from "@forge-ui-official/core";
 import { Modal } from "../../_shared/modal";
 import { MicellaneousPageHeader, MicellaneousTemplateShell, MiscSurface } from "../_chrome";

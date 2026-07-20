@@ -133,7 +133,7 @@ Framework: Next.js 16, React 19, Tailwind CSS v4
 - Import components only from @forge-ui-official/core.
 - Import styles with @import "@forge-ui-official/core/styles.css" and Tailwind v4 @source for the package dist.
 - Use fg-* design tokens; do not use Tailwind default colors for Forge surfaces.
-- Use solar-icon-set for icons; pass size and color props directly.
+- Use @forge-ui-official/core/icons for icons; pass size and color props directly.
 - Use AppLayout for admin shells; do not rebuild sidebar, topbar, or profile areas.
 - Design the business module, data flow, fields, actions, and page role before choosing components.
 - Prefer existing cases, templates, precedents, component registry, and Forge Starter before freehand composition.
@@ -151,7 +151,7 @@ Framework: Next.js 16, React 19, Tailwind CSS v4
 
 const fullEn = `# Forge UI Kit Agent Context
 
-Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and solar-icon-set. The package is \`@forge-ui-official/core@${corePackage.version}\`.
+Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and an MIT-licensed Phosphor-backed icon compatibility layer. The package is \`@forge-ui-official/core@${corePackage.version}\`.
 
 ## When To Use
 
@@ -171,10 +171,10 @@ Do not use it as a marketing landing-page library or as permission to hand-roll 
 import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
 \`\`\`
 
-Icons use \`solar-icon-set\`:
+Icons use \`@forge-ui-official/core/icons\`:
 
 \`\`\`tsx
-import { HomeLinear } from "solar-icon-set";
+import { HomeLinear } from "@forge-ui-official/core/icons";
 
 <HomeLinear size={20} color="#71717A" />
 \`\`\`
@@ -183,7 +183,7 @@ import { HomeLinear } from "solar-icon-set";
 
 - Components: import from \`@forge-ui-official/core\` only.
 - Colors: use \`fg-*\` tokens only. Avoid Tailwind default colors such as \`text-blue-500\`, \`bg-gray-100\`, or arbitrary hex in page markup.
-- Icons: use \`solar-icon-set\`; pass \`size\` and \`color\` props. Do not rely on \`className="text-*"\` for icon color.
+- Icons: use \`@forge-ui-official/core/icons\`; pass \`size\` and explicit semantic \`color\` props. The default color is inherited from \`currentColor\`.
 - Layout: use \`AppLayout\` for admin shells. Do not rebuild sidebar, topbar, or profile regions in route files.
 - Density: keep operational pages compact and scannable. Avoid large decorative hero sections, oversized page titles, wide blank gaps, fixed card widths, and nested cards.
 - Responsiveness: components should fill parent grid/flex tracks. Use parent layout constraints, not fixed component widths.
@@ -237,10 +237,10 @@ Forge UI Kit 是面向后台管理系统和 SaaS 原型的 React 19 + Next.js 16
 import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
 \`\`\`
 
-Icon 使用 \`solar-icon-set\`：
+Icon 使用 \`@forge-ui-official/core/icons\`：
 
 \`\`\`tsx
-import { HomeLinear } from "solar-icon-set";
+import { HomeLinear } from "@forge-ui-official/core/icons";
 
 <HomeLinear size={20} color="#71717A" />
 \`\`\`
@@ -249,7 +249,7 @@ import { HomeLinear } from "solar-icon-set";
 
 - 组件只从 \`@forge-ui-official/core\` 导入。
 - 颜色只用 \`fg-*\` token，不在业务页使用 Tailwind 默认色或裸 hex。
-- Icon 用 \`solar-icon-set\`，通过 \`size\` / \`color\` prop 控制。
+- Icon 用 \`@forge-ui-official/core/icons\`，通过 \`size\` / \`color\` prop 控制。
 - 后台壳层用 \`AppLayout\`，不要在业务页重写 sidebar/topbar/profile。
 - 页面保持后台系统密度：字号克制、颜色不过深、卡片不写死宽度、表格首屏要有有效行、右 rail 要服务决策。
 - 缺组件时回到 core 扩展或记录 ForgeUI gap，不在业务页手搓通用 primitive。
