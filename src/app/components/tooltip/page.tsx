@@ -8,7 +8,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 import {
   InfoCircleBoldDuotone,
   DangerCircleBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 const SHORT = "Text Here";
 const LONG = "Text Here Lorem Ipsum Dolor Sit Amet";
@@ -61,7 +61,7 @@ const ANCHOR_PROPS: ApiTableRow[] = [
     attr: "icon",
     type: "ReactNode",
     defaultValue: "—",
-    description: "触发 icon，推荐 solar-icon-set 14px。",
+    description: "触发 icon，推荐 @forge-ui-official/core/icons 14px。",
   },
   {
     attr: "state",

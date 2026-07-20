@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { StarBold, MenuDotsBold } from "solar-icon-set";
+import { StarBold, MenuDotsBold } from "../../icons";
 import { cn } from "../../lib/utils";
 import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 

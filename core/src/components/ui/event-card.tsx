@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "../../lib/utils";
-import { ClockCircleBoldDuotone } from "solar-icon-set";
+import { ClockCircleBoldDuotone } from "../../icons";
 import { type AccentColor } from "./accent-utils";
 import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 

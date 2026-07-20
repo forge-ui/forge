@@ -17,7 +17,7 @@ import {
   BarUpsideDownChart,
   SmoothLineChart,
 } from "@forge-ui-official/core";
-import { WalletLinear } from "solar-icon-set";
+import { WalletLinear } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 export default function ChartCasePage() {

@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useSyncExternalStore, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { AltArrowLeftLinear, AltArrowRightLinear, AltArrowDownLinear, PenLinear, MenuDotsBold, CloseCircleLinear } from "solar-icon-set";
+import { AltArrowLeftLinear, AltArrowRightLinear, AltArrowDownLinear, PenLinear, MenuDotsBold, CloseCircleLinear } from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 import { EventTag, type EventTagColor } from "./event-tag";
 import { CalendarDayCell } from "./calendar-day-cell";

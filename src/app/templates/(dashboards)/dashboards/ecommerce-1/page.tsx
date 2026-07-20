@@ -17,7 +17,7 @@ import {
   FilterLinear,
   ArrowRightUpLinear,
   ArrowRightDownLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   WheelChartStatCard,

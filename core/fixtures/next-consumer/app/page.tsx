@@ -7,6 +7,7 @@ import {
   type ColumnDef,
 } from "@forge-ui-official/core";
 import { AppLayout } from "@forge-ui-official/core/components/layouts/app-layout";
+import { BellBoldDuotone } from "@forge-ui-official/core/icons";
 import { PageHeader } from "@forge-ui-official/core/components/ui/page-header";
 
 type Row = {
@@ -49,7 +50,9 @@ export default function Home() {
             showFavorite={false}
             primaryAction={{ label: "新建" }}
           />
-          <Button color="purple">根入口组件</Button>
+          <Button color="purple" iconLeft={<BellBoldDuotone aria-label="Forge MIT icon" />}>
+            根入口组件
+          </Button>
           <DataTable
             columns={columns}
             rows={rows}

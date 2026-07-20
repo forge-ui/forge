@@ -5,7 +5,7 @@ import { cn } from "../../../lib/utils";
 import {
   CloseCircleLinear,
   RefreshLinear,
-} from "solar-icon-set";
+} from "../../../icons";
 
 // ============================================================
 // FileUpload — Figma "File Upload" component

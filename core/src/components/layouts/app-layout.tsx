@@ -12,7 +12,7 @@ import {
   CalendarBoldDuotone,
   BellBoldDuotone,
   LetterBoldDuotone,
-} from "solar-icon-set";
+} from "../../icons";
 import { PageHeader } from "../ui/page-header";
 import { Breadcrumbs } from "../ui/breadcrumbs";
 import {

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "../../../lib/utils";
-import { AltArrowDownLinear } from "solar-icon-set";
+import { AltArrowDownLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
 
 // ============================================================

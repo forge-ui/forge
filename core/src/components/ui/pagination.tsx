@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "../../lib/utils";
-import { AltArrowLeftLinear, AltArrowRightLinear } from "solar-icon-set";
+import { AltArrowLeftLinear, AltArrowRightLinear } from "../../icons";
 import { PageDot, type PageDotColor } from "./page-dot";
 
 // ============================================================

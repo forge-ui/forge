@@ -2,7 +2,7 @@
 
 import { useState, useSyncExternalStore } from "react";
 import { cn } from "../../lib/utils";
-import { AltArrowLeftLinear, AltArrowRightLinear, MenuDotsBold } from "solar-icon-set";
+import { AltArrowLeftLinear, AltArrowRightLinear, MenuDotsBold } from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 import { EventCard, type EventCardColor } from "./event-card";
 import { MONTH_NAMES, DAY_NAMES_SHORT, getDaysInMonth, getFirstDayOfMonth } from "./calendar-utils";

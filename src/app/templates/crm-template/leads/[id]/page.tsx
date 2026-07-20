@@ -9,7 +9,7 @@ import {
   Pen2Linear,
   UsersGroupRoundedLinear,
   VideocameraRecordLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { Avatar, Button, FileTypeIcon, HistoryItem, StatusBadge, TabBar } from "@forge-ui-official/core";
 import { ProtaskActivityDialog, normalizeProtaskActivityDialogId } from "../../../_shared/protask-actions";
 import { CrmSurface, DetailLine } from "../../_components";

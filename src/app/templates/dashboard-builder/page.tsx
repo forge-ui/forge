@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRightLinear } from "solar-icon-set";
+import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "@/app/_components/site-header";
 import { variants } from "./_variants";
 

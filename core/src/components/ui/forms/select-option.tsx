@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
-import { AltArrowDownLinear, AltArrowUpLinear } from "solar-icon-set";
+import { AltArrowDownLinear, AltArrowUpLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
 import { FieldFrame, FieldTag } from "./field-utils";
 

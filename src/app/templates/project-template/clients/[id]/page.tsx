@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { AddCircleLinear, Pen2Linear } from "solar-icon-set";
+import { AddCircleLinear, Pen2Linear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, FileCard, TabBar } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";

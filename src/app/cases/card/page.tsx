@@ -36,7 +36,7 @@ import {
   CartLargeBoldDuotone,
   UsersGroupRoundedBoldDuotone,
   ShareLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const themes: CardTheme[] = [...ALL_CARD_THEMES];

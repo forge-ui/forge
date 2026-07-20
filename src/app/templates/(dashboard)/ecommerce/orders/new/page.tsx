@@ -16,7 +16,7 @@ import {
 import {
   DangerTriangleLinear,
   ArrowLeftLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 const categoryOptions = [
   { label: "Electronics", value: "electronics" },

@@ -79,6 +79,7 @@ function verifyScenario({ scenario, tarballPath }) {
     "Forge Core tarball consumer",
     'data-forge-app-layout="true"',
     'data-forge-data-table="true"',
+    'aria-label="Forge MIT icon"',
     "bg-fg-violet",
   ]) {
     if (!html.includes(marker)) {

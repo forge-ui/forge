@@ -4,7 +4,7 @@ import {
   AltArrowDownLinear,
   RoundTransferHorizontalLinear,
   DownloadLinear,
-} from "solar-icon-set";
+} from "../../icons";
 import {
   cardThemes,
   CardGlow,
