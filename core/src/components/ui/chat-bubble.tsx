@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { PlayBoldDuotone, DocumentTextLinear, DownloadLinear } from "solar-icon-set";
+import { PlayBoldDuotone, DocumentTextLinear, DownloadLinear } from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 
 // Chat-specific color tokens (play button, waveform, file subtitle)
 const chatColors: Record<AccentColor, {
   playBtnBg: string;
-  playIcon: string;            // hex for solar icon
+  playIcon: string;            // explicit Forge icon color
   waveMain: string;            // received primary bars (12)
   waveLightReceived: string;   // received secondary bars (9)
   waveLightSent: string;       // sent secondary bars (9)

@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { FilterBold } from "solar-icon-set";
+import { FilterBold } from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 
 export type FilterTriggerPanel = ReactNode | ((close: () => void) => ReactNode);

@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
-import { MenuDotsBold } from "solar-icon-set";
+import { MenuDotsBold } from "../../../icons";
 import { resolveCardWidthClass, type CardWidth } from "../card-utils";
 
 type ChartCardSize = "4col" | "6col" | "8col" | "full";

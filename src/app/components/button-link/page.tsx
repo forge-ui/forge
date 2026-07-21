@@ -6,7 +6,7 @@ import {
   HeartLinear,
   TrashBinTrashLinear,
   AddCircleLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -73,7 +73,7 @@ const BUTTON_PROPS: ApiTableRow[] = [
     attr: "iconLeft",
     type: "ReactNode",
     defaultValue: "—",
-    description: "文本左侧的图标槽，建议传 solar-icon-set 16px 图标。",
+    description: "文本左侧的图标槽，建议传 @forge-ui-official/core/icons 16px 图标。",
   },
   {
     attr: "iconRight",
@@ -128,7 +128,7 @@ const ICONBUTTON_PROPS: ApiTableRow[] = [
     attr: "children",
     type: "ReactNode",
     defaultValue: "—",
-    description: "图标节点，建议 solar-icon-set 20px 以匹配 md 尺寸。",
+    description: "图标节点，建议 @forge-ui-official/core/icons 20px 以匹配 md 尺寸。",
   },
   {
     attr: "color",
@@ -365,7 +365,7 @@ export default function ButtonLinkCasePage() {
 
         <SubSection title="With Icon" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            使用 <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 插入图标，推荐 solar-icon-set 16px 图标以匹配内边距。
+            使用 <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 插入图标，推荐 @forge-ui-official/core/icons 16px 图标以匹配内边距。
           </p>
           <PreviewBlock code={CODE_BUTTON_ICON}>
             <Button iconLeft={<StarLinear size={16} />}>Star it</Button>

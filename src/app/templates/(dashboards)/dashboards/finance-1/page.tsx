@@ -12,7 +12,7 @@ import {
   AltArrowDownLinear,
   ArrowRightUpLinear,
   ArrowRightDownLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   BalanceCard,

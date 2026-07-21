@@ -25,7 +25,7 @@ import {
   TrashBinMinimalisticLinear,
   DownloadMinimalisticLinear,
   PenLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PlusIcon } from "@forge-ui-official/core";
 import { Modal } from "@/app/templates/_shared";
 

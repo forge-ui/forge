@@ -15,7 +15,7 @@ import {
   PlayCircleBold,
   UsersGroupRoundedLinear,
   VideocameraRecordLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Avatar,
   Button,

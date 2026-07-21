@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ChatRoundLineLinear, DocumentTextLinear, FolderOpenLinear, ListCheckLinear } from "solar-icon-set";
+import { ChatRoundLineLinear, DocumentTextLinear, FolderOpenLinear, ListCheckLinear } from "@forge-ui-official/core/icons";
 import { AppLayout } from "@forge-ui-official/core";
 import { Breadcrumbs, PageTitleToolbar, SurfaceCard, ToolbarActions } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem } from "@forge-ui-official/core";

@@ -12,7 +12,7 @@ import {
   LockKeyholeLinear,
   MailboxLinear,
   UserLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 type AuthMode = "login" | "register" | "forgot" | "reset";
 

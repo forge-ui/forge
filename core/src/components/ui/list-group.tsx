@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { CloseCircleLinear } from "solar-icon-set";
+import { CloseCircleLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 import { accentColors, type AccentColor } from "./accent-utils";
 

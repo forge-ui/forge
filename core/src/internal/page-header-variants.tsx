@@ -14,7 +14,7 @@ import {
   MenuDotsBold,
   SortFromTopToBottomBold,
   StarBoldDuotone,
-} from "solar-icon-set";
+} from "../icons";
 import { accentColors } from "../components/ui/accent-utils";
 import { CalendarPopup } from "../components/ui/calendar-popup";
 import type { PageHeaderProps } from "../components/ui/page-header";

@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear } from "solar-icon-set";
+import { AddCircleLinear } from "@forge-ui-official/core/icons";
 import { Button, CellActions, CellText, DataTable, StatusBadge, Toolbar, ToolbarActions, ToolbarSearchInput, ToolbarShowSelect } from "@forge-ui-official/core";
 import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { ProtaskDeleteDialog, ProtaskEditDialog, ProtaskFilterTrigger, ProtaskViewDialog } from "../../_shared/protask-actions";

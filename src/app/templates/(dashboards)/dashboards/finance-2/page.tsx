@@ -14,7 +14,7 @@ import {
   ArrowRightUpLinear,
   ArrowRightDownLinear,
   FilterLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   CreditCard,

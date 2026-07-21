@@ -23,7 +23,7 @@ export default function IntroductionPage() {
       <DocSection id="what-is-forge" title="Forge 是什么">
         <p>
           Forge 是一套面向内部 ToB 交付的 React UI Kit，技术栈是 Next.js 16 · React
-          19 · Tailwind v4 · TypeScript 5，图标选用 solar-icon。
+          19 · Tailwind v4 · TypeScript 5，图标由 MIT 许可的 Phosphor Icons 提供。
         </p>
         <p>
           内容包括 60+ 组件、业务级模版（Ecommerce / Auth）以及 Dashboard Builder

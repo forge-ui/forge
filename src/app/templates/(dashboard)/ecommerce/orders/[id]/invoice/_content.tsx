@@ -13,7 +13,7 @@ import {
   PrinterLinear,
   PenLinear,
   ArrowLeftLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 interface InvoiceLineItem {
   key: string;

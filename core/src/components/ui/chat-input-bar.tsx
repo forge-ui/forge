@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type KeyboardEvent, type ReactNode } from "react";
-import { ArrowUpLinear, PaperclipLinear, PlainLinear } from "solar-icon-set";
+import { ArrowUpLinear, PaperclipLinear, PlainLinear } from "../../icons";
 
 export type ChatInputBarToggle = {
   id: string;
