@@ -10,7 +10,7 @@
     "next": "16.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "solar-icon-set": "2.0.1"
+    "@phosphor-icons/react": "2.1.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.2.2",

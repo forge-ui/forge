@@ -39,7 +39,7 @@ import type {
   ProgressBarColor,
   AvatarInitialColor,
 } from "@forge-ui-official/core";
-import { AddCircleLinear, StarLinear, CheckCircleLinear, CardBold } from "solar-icon-set";
+import { AddCircleLinear, StarLinear, CheckCircleLinear, CardBold } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, SubSectionGrid } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -352,7 +352,7 @@ const FILE_PROPS: ApiTableRow[] = [
 const ACTIONS_PROPS: ApiTableRow[] = [
   { attr: "actions", type: "CellActionKey[]", defaultValue: "[]", description: "'mail' | 'phone' | 'chat' | 'eye' | 'pen' | 'trash' 的任意组合。" },
   { attr: "showKebab", type: "boolean", defaultValue: "true", description: "是否追加 kebab menu。" },
-  { attr: "iconColor", type: "string", defaultValue: "'var(--fg-grey-700)'", description: "所有 icon 颜色（solar-icon-set 需用 color prop）。" },
+  { attr: "iconColor", type: "string", defaultValue: "'var(--fg-grey-700)'", description: "所有 icon 颜色（@forge-ui-official/core/icons 需用 color prop）。" },
   { attr: "onAction / onKebab", type: "(key) => void", defaultValue: "—", description: "点击回调。" },
 ];
 

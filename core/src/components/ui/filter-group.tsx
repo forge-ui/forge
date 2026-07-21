@@ -5,7 +5,7 @@ import {
   AddSquareLinear,
   MinusSquareLinear,
   FiltersLinear,
-} from "solar-icon-set";
+} from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 
 export type FilterGroupColor = AccentColor;

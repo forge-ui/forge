@@ -14,7 +14,7 @@ import {
   ChatDotsLinear,
   FlagLinear,
   PinLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   TextField,
   TextArea,

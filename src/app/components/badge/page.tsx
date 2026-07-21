@@ -5,7 +5,7 @@ import {
   CircleIcon,
   ArtisticIcon,
 } from "@forge-ui-official/core";
-import { BellBoldDuotone } from "solar-icon-set";
+import { BellBoldDuotone } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -81,7 +81,7 @@ const CODE_CIRCLE_COLORS = `<CircleIcon color="purple">...</CircleIcon>
 <CircleIcon color="yellow">...</CircleIcon>`;
 
 const CIRCLE_PROPS: ApiTableRow[] = [
-  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 solar-icon-set BoldDuotone。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 @forge-ui-official/core/icons BoldDuotone。" },
   { attr: "color", type: "'purple' | 'blue' | 'red' | 'orange' | 'green' | 'yellow' | 'cyan' | 'black'", defaultValue: "'purple'", description: "主色，共 8 种。" },
   { attr: "variant", type: "'solid' | 'light' | 'neutral'", defaultValue: "'solid'", description: "实底 / 浅底 / 中性灰底。" },
   { attr: "size", type: "'lg' | 'md' | 'sm' | 'xs'", defaultValue: "'md'", description: "圆形直径，分别对应 40/32/28/20 px。" },
@@ -104,7 +104,7 @@ const CODE_ART_COLORS = `<ArtisticIcon color="black">...</ArtisticIcon>
 <ArtisticIcon color="cyan">...</ArtisticIcon>`;
 
 const ART_PROPS: ApiTableRow[] = [
-  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 solar-icon-set 24px BoldDuotone。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 @forge-ui-official/core/icons 24px BoldDuotone。" },
   { attr: "color", type: "'black' | 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "主色，共 7 种。" },
   { attr: "variant", type: "'gradient' | 'orbs'", defaultValue: "'gradient'", description: "渐变底 或 浮光球装饰。" },
 ];
@@ -219,7 +219,7 @@ export default function BadgeCasePage() {
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            以 children 传入 solar-icon-set 图标即可，尺寸随 <InlineCode>size</InlineCode> 自动协调。
+            以 children 传入 @forge-ui-official/core/icons 图标即可，尺寸随 <InlineCode>size</InlineCode> 自动协调。
           </p>
           <PreviewBlock code={CODE_CIRCLE_USAGE} minHeight={140}>
             <CircleIcon color="purple" variant="solid">

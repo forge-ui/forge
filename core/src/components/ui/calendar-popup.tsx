@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
-import { AltArrowLeftLinear, AltArrowRightLinear } from "solar-icon-set";
+import { AltArrowLeftLinear, AltArrowRightLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 
 function getDaysInMonth(year: number, month: number) {

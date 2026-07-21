@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AddCircleLinear } from "solar-icon-set";
+import { AddCircleLinear } from "@forge-ui-official/core/icons";
 import {
   ToolbarSearchInput,
   ToolbarSelectDropdown,

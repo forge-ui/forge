@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { type ReactNode } from "react";
-import { MenuDotsBold } from "solar-icon-set";
+import { MenuDotsBold } from "../../icons";
 
 export function ActivityCard({
   icon,

@@ -28,7 +28,7 @@ import {
   StarBoldDuotone,
   HeartBoldDuotone,
   MagniferLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, SubSectionGrid } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -236,7 +236,7 @@ const COLORPICKER_PROPS: ApiTableRow[] = [
 ];
 
 const ICONPICKER_PROPS: ApiTableRow[] = [
-  { attr: "icons", type: "ReactNode[]", defaultValue: "—", description: "图标节点列表，用 solar-icon-set 实例。" },
+  { attr: "icons", type: "ReactNode[]", defaultValue: "—", description: "图标节点列表，用 @forge-ui-official/core/icons 实例。" },
   { attr: "selectedIndex", type: "number", defaultValue: "—", description: "当前选中下标。" },
   { attr: "onChange", type: "(index: number) => void", defaultValue: "—", description: "切换回调。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "选中态主色。" },

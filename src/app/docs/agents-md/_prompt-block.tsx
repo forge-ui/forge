@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CopyLinear, CheckCircleLinear } from "solar-icon-set";
+import { CopyLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
 
 const COLLAPSED_MAX_HEIGHT = 320;

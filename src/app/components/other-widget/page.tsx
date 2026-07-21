@@ -101,7 +101,7 @@ export default function OtherWidgetCasePage() {
 
       <Section
         title="RatingStars"
-        description="评分星级。数字 + N 颗星（solar-icon-set StarBold）。"
+        description="评分星级。数字 + N 颗星（@forge-ui-official/core/icons StarBold）。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_RATING_USAGE}>
