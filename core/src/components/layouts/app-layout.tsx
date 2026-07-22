@@ -9,9 +9,9 @@ import {
   AltArrowDownLinear,
   HamburgerMenuLinear,
   CloseSquareLinear,
-  CalendarBoldDuotone,
-  BellBoldDuotone,
-  LetterBoldDuotone,
+  CalendarBold,
+  BellBold,
+  LetterBold,
 } from "solar-icon-set";
 import { PageHeader } from "../ui/page-header";
 import { Breadcrumbs } from "../ui/breadcrumbs";
@@ -533,7 +533,7 @@ export function AppLayout({
                   onClick={() => togglePopover("calendar")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("calendar"))}
                 >
-                  <CalendarBoldDuotone size={20} />
+                  <CalendarBold size={20} />
                 </button>
                 <button
                   type="button"
@@ -544,7 +544,7 @@ export function AppLayout({
                   onClick={() => togglePopover("notifications")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("notifications"))}
                 >
-                  <BellBoldDuotone size={20} />
+                  <BellBold size={20} />
                   {notifications !== undefined && notifications > 0 && openPopover !== "notifications" && (
                     <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{notifications}</span>
                   )}
@@ -558,7 +558,7 @@ export function AppLayout({
                   onClick={() => togglePopover("messages")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("messages"))}
                 >
-                  <LetterBoldDuotone size={20} />
+                  <LetterBold size={20} />
                   {messages !== undefined && messages > 0 && openPopover !== "messages" && (
                     <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{messages}</span>
                   )}
