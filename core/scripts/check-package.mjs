@@ -198,7 +198,30 @@ checkLimit("all JavaScript sourcemaps", sourceMapBytes, limits.sourceMaps);
 
 const styles = pack.files.find((file) => file.path === "dist/styles.css");
 if (!styles) errors.push("dist/styles.css is missing from tarball");
-else checkLimit("dist/styles.css raw", styles.size, limits.stylesRaw);
+else {
+  checkLimit("dist/styles.css raw", styles.size, limits.stylesRaw);
+  const stylesContents = fs.readFileSync(path.join(root, styles.path), "utf8");
+  const requiredTypographyVariables = [
+    "--forge-typography-contract-version",
+    "--forge-font-sans-family",
+    "--forge-font-display-family",
+    "--forge-text-2xs-size",
+    "--forge-text-display-l-size",
+    "--forge-font-normal-weight",
+    "--forge-font-medium-weight",
+    "--forge-font-semibold-weight",
+    "--forge-font-bold-weight",
+    "--forge-leading-tight-factor",
+    "--forge-tracking-fg",
+    "--forge-tracking-tight-factor",
+    "--forge-tracking-wide-factor",
+  ];
+  for (const variable of requiredTypographyVariables) {
+    if (!stylesContents.includes(`${variable}:`)) {
+      errors.push(`dist/styles.css is missing Forge typography contract variable ${variable}`);
+    }
+  }
+}
 
 if (errors.length > 0) {
   console.error("Forge package check failed:\n");

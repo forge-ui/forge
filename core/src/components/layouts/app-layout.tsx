@@ -28,7 +28,7 @@ import {
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
 import { forgeLogoDataUrl } from "../../assets/_inlined";
-import { accentTokens, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
+import { accentTokens, findActiveSidebarMenuItem, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
 import { languageLabels } from "../../internal/sidebar-popover-data";
 
 export type { Team };
@@ -110,6 +110,8 @@ export interface AppLayoutProps {
   showDatePicker?: boolean;
   /** 是否在 page header 显示三点菜单（默认 true） */
   showKebab?: boolean;
+  /** 是否在 page header 显示收藏操作（默认：home variant 不显示，detail variant 显示） */
+  showFavorite?: boolean;
   /** 完全隐藏 page header 区（标题 / 按钮 / 边框）。chat / 沉浸式页面用 */
   hideHeader?: boolean;
   /** 完全自定义 sidebar 主体（替换主菜单 + menuItems + favoriteItems 那块）。
@@ -168,6 +170,7 @@ export function AppLayout({
   secondaryAction,
   showDatePicker,
   showKebab = true,
+  showFavorite,
   hideHeader,
   sidebarSlot,
   sidebarWidth = "16rem",
@@ -181,6 +184,10 @@ export function AppLayout({
 
   const accentActive = config.useAccentBgForActive ? accentCfg.activeBgLight : accentCfg.activeBgDark;
   const accentBar = config.useAccentBgForActive ? accentCfg.accentBar : accentCfg.accentBarDark;
+  const activeSidebarItem = findActiveSidebarMenuItem(
+    [...(menuItems ?? []), ...(favoriteItems ?? [])],
+    pathname,
+  );
 
   // In dark mode, sidebar bg follows accent (purple → violet, blue → blue, black → black)
   const sidebarBg = mode === "dark" ? accentCfg.activeBg : config.sidebar;
@@ -427,7 +434,7 @@ export function AppLayout({
               type="button"
               aria-label={isMobile ? "关闭主导航" : "收起主导航"}
               onClick={() => isMobile ? setMobileSidebarOpen(false) : setSidebarCollapsed(true)}
-              className={cn("w-5 h-5 transition-colors shrink-0", config.hamburger)}
+              className={cn("w-5 h-5 flex items-center justify-center transition-colors shrink-0", config.hamburger)}
             >
               {isMobile ? <CloseSquareLinear size={20} /> : <HamburgerMenuLinear size={20} />}
             </button>
@@ -474,7 +481,10 @@ export function AppLayout({
         )}
 
         {/* Menu sections */}
-        <div className={cn("fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}>
+        <div
+          data-forge-sidebar-scroll
+          className={cn("fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}
+        >
           {sidebarSlot ? (
             sidebarSlot
           ) : (
@@ -486,7 +496,7 @@ export function AppLayout({
                   </div>
                 )}
                 {(menuItems ?? []).map((item, i) => (
-                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
+                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                 ))}
               </div>
 
@@ -498,7 +508,7 @@ export function AppLayout({
                     </div>
                   )}
                   {favoriteItems.map((item, i) => (
-                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
+                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                   ))}
                 </div>
               )}
@@ -635,7 +645,7 @@ export function AppLayout({
         <div className={cn("min-w-0 flex-1 flex flex-col max-md:rounded-none max-md:outline-none", config.contentArea)}>
 
           {/* Topbar: depends on profilePosition */}
-          {profilePosition === "topbar" ? (
+          {hideHeader ? null : profilePosition === "topbar" ? (
             /* --- Topbar with search + icons + profile (using PageHeader) --- */
             <div className="relative">
               <PageHeader
@@ -703,7 +713,7 @@ export function AppLayout({
                 </div>
               )}
             </div>
-          ) : hideHeader ? null : pageHeaderVariant === "detail" ? (
+          ) : pageHeaderVariant === "detail" ? (
             /* --- Detail Page Header (using PageHeader) --- */
             <PageHeader
               variant="title"
@@ -719,7 +729,7 @@ export function AppLayout({
               showDatePicker={showDatePicker ?? false}
               showFilters={false}
               showKebab={showKebab}
-              showFavorite
+              showFavorite={showFavorite ?? true}
               secondaryAction={secondaryAction ? { label: secondaryAction.label, onClick: secondaryAction.onClick } : undefined}
               primaryAction={primaryAction ? { label: primaryAction.label, onClick: primaryAction.onClick } : undefined}
             />
@@ -738,7 +748,8 @@ export function AppLayout({
               showDatePicker={showDatePicker ?? true}
               showFilters={false}
               showKebab={showKebab}
-              showFavorite={false}
+              showFavorite={showFavorite ?? false}
+              secondaryAction={secondaryAction ? { label: secondaryAction.label, onClick: secondaryAction.onClick } : undefined}
               primaryAction={primaryAction ? { label: primaryAction.label, onClick: primaryAction.onClick } : undefined}
             />
           )}
