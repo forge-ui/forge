@@ -4,7 +4,7 @@ export const expectedPublicApi = [
   "AccentColor:type:5b0112444bf5ffd0a28bdafe271a79a568545b8c7c77a16825e8f619870b4c97",
   "AccentConfig:type:87b62cd58ccdfe84377d0d3e405cee5444714b38c6b2c96924d2ca5dd1657d4e",
   "ActivityCard:value:04d40fcbed51f6404ffb0d5c0aebebb3d33bdf55b4087ec9a1449095f154e4af",
-  "AppLayout:value:d3e5e55b597802f5f158397da418e0300fb4c77e73df8202424eaa95b84c8e89",
+  "AppLayout:value:991de14e90a09a76b5a683220b26f33e5473f320aba39756aeb792e4d788c19f",
   "AppLayoutAccentColor:type:c585b2913e4f85cf673e6e2776da00da69a167f9736f5c3075aacb487c7b7a1d",
   "AppLayoutBreadcrumb:type:95356762b225f33843590fa2abc75dde711ea80d6b090cd1c5971280ed7a8623",
   "AppLayoutLanguage:type:c3234be95413a3e5ee6825acc9ec77224a0cc61740d695a87bf0f76dbfd45998",
@@ -13,7 +13,7 @@ export const expectedPublicApi = [
   "AppLayoutPageHeaderVariant:type:4838223b20da19f7826d52510ed3cb3fe01c34626d7044bed56b29c3597bca4a",
   "AppLayoutProfile:type:80cac5ead273178b6e722732e36438bb4f868c88b156b5aa373b31016188cf21",
   "AppLayoutProfilePosition:type:a8008726307b4ff6d697cde2f248872bd52ab77379017c3ae4fed23769ff0c6a",
-  "AppLayoutProps:type:418ff3cecdca2d669f23b217ef109cd0d176369bbd7eaf377387ccc24561a49e",
+  "AppLayoutProps:type:160b6057fb5694bf918f858fe41cbf0291754512aa28bc37ef68806429529163",
   "ArtisticIcon:value:b671451d7e566b9b927f3dffcce8cfc73c2b3c05f2b3bfd09c5a7350f49f49b5",
   "ArtisticIconColor:type:54071ff32dc8d175b7c268a8721b172889d52b73a07b478aa4c579010a8b0370",
   "ArtisticIconVariant:type:9518b44a23ca3b1f5ded8c17fa21886d194d16016c69aea1a45a91e6c1dc5c50",
@@ -330,8 +330,8 @@ export const expectedPublicApi = [
 ];
 
 export const expectedWildcardApi = [
-  "./components/layouts/app-layout:b33612d70e7bcd41a2b86e4c6e38226a2fb14a6caf4d288f178ced739395039a",
-  "./components/layouts/index:d83e2f2b607d6a67ed61c123412eaace7ae17d7e4aefb2d4e2b979babeb28aa2",
+  "./components/layouts/app-layout:7f3cc90af6e80af1a81becd804c06f5301a32f1d543c055478d6d489edf85e2f",
+  "./components/layouts/index:55c50838a1c51fa3abed0969c45762bd97b5d500acf1683316e22ad30d3d8405",
   "./components/layouts/sidebar-popovers:e909293fbf665ecd13834ae098811ab87f56f108e8152fe28c3b99834baed10b",
   "./components/ui/accent-utils:dc88870fd996d0c5ebf1be6c82f3910bd3d080ee0f1be9c77579ebad3418bfb9",
   "./components/ui/activity-card:27b58aa32959bc570c98aaaca39abe2cb3fe8d2cbe2698bf97ced446ae24d3d2",
@@ -402,7 +402,7 @@ export const expectedWildcardApi = [
   "./components/ui/icon-trigger:ef726d41348a83861558b3f71f1130f78cccd68539d4e72467bf59116b6ebc1f",
   "./components/ui/image-grid:142f66a1b94749daa6d5fcf0637ba96915ee966ab2e0a1a76cb830c589e084d6",
   "./components/ui/image-stat-card:cd7c0378958d4fab6d073db33171a5a9b79fc8bfd1227b0802b9244ab382a33e",
-  "./components/ui/index:0a141d8a49cccb491723a5eb786da41cb3ce9a07789041cc90fbfc48ea3b3da0",
+  "./components/ui/index:6e2a9380f01e2914e1af4dd6af6a3d141dc194b7dd13f6ca8f794d4ff27b24eb",
   "./components/ui/kebab-menu:961d50324aa38f2145b2f03b3ce6c7fb518485c8ab02911db9ac6f2f1b4f5c5b",
   "./components/ui/line-chart-stat-card:a2e835b0f3e4a4e2b70abd16220379d06ab6dad42b65d6f4a5e9a4341787f8f4",
   "./components/ui/link:2eec7f6327b2d7e3917eea52c516e2d378fb79647a78f278f878945990b80649",

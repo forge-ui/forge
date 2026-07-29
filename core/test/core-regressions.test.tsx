@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { JSDOM } from "jsdom";
 import { act, createElement, type Key } from "react";
 import { createRoot } from "react-dom/client";
@@ -123,6 +125,18 @@ test("SidebarMenu 会把叶子节点的 href 渲染成真实链接", () => {
     mainMenuItems: [{ label: "报表", href: "/reports" }],
   });
   assert.match(html, /<a[^>]*href="\/reports"/);
+});
+
+test("AppLayout 侧栏叶子导航由 Next Link 承担 SPA 跳转", () => {
+  const source = readFileSync(resolve(process.cwd(), "src/internal/app-layout-sidebar.tsx"), "utf8");
+  assert.match(source, /import NextLink from ["']next\/link["']/);
+  assert.equal((source.match(/<NextLink\b/g) ?? []).length, 2);
+  assert.doesNotMatch(source, /<a\b[^>]*\bhref=/);
+});
+
+test("AppLayout home 与 detail header 都透传 secondaryAction", () => {
+  const source = readFileSync(resolve(process.cwd(), "src/components/layouts/app-layout.tsx"), "utf8");
+  assert.equal((source.match(/secondaryAction=\{secondaryAction \?/g) ?? []).length, 2);
 });
 
 test("图表色阶对超过五个系列仍返回完整颜色列表", () => {
@@ -462,6 +476,8 @@ test("PageHeader 拆分前后保留 search 与 title 两种公共渲染入口", 
   });
   assert.match(title, /项目详情/);
   assert.match(title, /aria-label="返回"/);
+  assert.match(title, /data-forge-page-header/);
+  assert.match(title, /data-forge-page-title/);
 });
 
 test("Sidebar popover 公共导出与语言别名保持兼容", () => {

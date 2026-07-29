@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import NextLink from "next/link";
 import { AltArrowDownLinear } from "solar-icon-set";
 import type { AppLayoutMenuItem, AppLayoutMode } from "../components/layouts/app-layout";
 import { cn } from "../lib/utils";
@@ -90,12 +91,45 @@ export const modeConfig = {
   },
 } as const;
 
-function isHrefActive(pathname: string, href?: string) {
-  return !!href && (pathname === href || (href.split("/").length > 2 && pathname.startsWith(href + "/")));
+function normalizeRoutePath(value?: string) {
+  if (!value) return null;
+  const path = value.split(/[?#]/, 1)[0];
+  if (!path.startsWith("/")) return null;
+  return path.replace(/\/+$/, "") || "/";
 }
 
-function hasActiveDescendant(item: AppLayoutMenuItem, pathname: string): boolean {
-  return !!item.children?.some((child) => isHrefActive(pathname, child.href) || hasActiveDescendant(child, pathname));
+function hrefMatchesPathname(pathname: string, href?: string) {
+  const currentPath = normalizeRoutePath(pathname);
+  const targetPath = normalizeRoutePath(href);
+  if (!currentPath || !targetPath) return false;
+  return currentPath === targetPath || (targetPath !== "/" && currentPath.startsWith(`${targetPath}/`));
+}
+
+export function findActiveSidebarMenuItem(
+  items: AppLayoutMenuItem[] | undefined,
+  pathname: string,
+): AppLayoutMenuItem | null {
+  let activeItem: AppLayoutMenuItem | null = null;
+  let activePathLength = -1;
+
+  function visit(item: AppLayoutMenuItem) {
+    const children = item.children ?? [];
+    if (children.length === 0 && hrefMatchesPathname(pathname, item.href)) {
+      const targetPath = normalizeRoutePath(item.href);
+      if (targetPath && targetPath.length > activePathLength) {
+        activeItem = item;
+        activePathLength = targetPath.length;
+      }
+    }
+    for (const child of children) visit(child);
+  }
+
+  for (const item of items ?? []) visit(item);
+  return activeItem;
+}
+
+function hasActiveDescendant(item: AppLayoutMenuItem, activeItem: AppLayoutMenuItem | null): boolean {
+  return !!activeItem && !!item.children?.some((child) => child === activeItem || hasActiveDescendant(child, activeItem));
 }
 
 function findFirstNavigableHref(item: AppLayoutMenuItem): string | undefined {
@@ -121,6 +155,7 @@ export function SidebarMenuItemRow({
   accentActive,
   accentBar,
   pathname,
+  activeItem,
   depth = 0,
   collapsed = false,
 }: {
@@ -129,36 +164,46 @@ export function SidebarMenuItemRow({
   accentActive: string;
   accentBar: string;
   pathname: string;
+  activeItem?: AppLayoutMenuItem | null;
   depth?: number;
   collapsed?: boolean;
 }) {
   const childItems = item.children ?? [];
   const hasChildren = childItems.length > 0;
-  const isActive = !hasChildren && isHrefActive(pathname, item.href);
-  const isChildActive = hasActiveDescendant(item, pathname);
+  const resolvedActiveItem = activeItem === undefined
+    ? findActiveSidebarMenuItem([item], pathname)
+    : activeItem;
+  const isActive = !hasChildren && item === resolvedActiveItem;
+  const isChildActive = hasActiveDescendant(item, resolvedActiveItem);
+  const isBranchActive = isActive || isChildActive;
   const [manualExpansion, setManualExpansion] = useState<{
     pathname: string;
     expanded: boolean;
   } | null>(null);
   const expanded = manualExpansion?.pathname === pathname
     ? manualExpansion.expanded
-    : isActive || isChildActive;
+    : isBranchActive;
 
   if (collapsed && depth === 0) {
     const link = hasChildren ? findFirstChildNavigableHref(item) ?? item.href : item.href;
-    const active = isActive || isChildActive;
     const iconOnly = (
       <span className={cn(
         "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-        active ? cn(accentActive, "text-white") : config.menuItem
+        isBranchActive ? cn(accentActive, "text-white") : config.menuItem
       )}>
         {item.icon}
       </span>
     );
     return link ? (
-      <a href={link} className="flex justify-center" title={item.label}>
+      <NextLink
+        href={link}
+        prefetch
+        aria-current={!hasChildren && isActive ? "page" : undefined}
+        className="flex justify-center"
+        title={item.label}
+      >
         {iconOnly}
-      </a>
+      </NextLink>
     ) : (
       <span className="flex justify-center" title={item.label}>
         {iconOnly}
@@ -195,9 +240,14 @@ export function SidebarMenuItemRow({
   );
 
   const row = item.href && !hasChildren ? (
-    <a href={item.href} className={rowClassName}>
+    <NextLink
+      href={item.href}
+      prefetch
+      aria-current={isActive ? "page" : undefined}
+      className={rowClassName}
+    >
       {rowContent}
-    </a>
+    </NextLink>
   ) : hasChildren ? (
     <button
       type="button"
@@ -216,7 +266,7 @@ export function SidebarMenuItemRow({
   const children = hasChildren && expanded && (
     <div className="flex flex-col">
       {childItems.map((child, i) => (
-        <SidebarMenuItemRow key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} depth={depth + 1} />
+        <SidebarMenuItemRow key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} />
       ))}
     </div>
   );
