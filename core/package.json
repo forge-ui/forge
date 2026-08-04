@@ -1,6 +1,6 @@
 {
   "name": "@forge-ui-official/core",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Forge UI Kit — React 19 + Tailwind v4 components",
   "license": "MIT",
   "private": false,
