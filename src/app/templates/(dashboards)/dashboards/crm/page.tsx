@@ -114,7 +114,7 @@ export default function CrmPage() {
       teamAvatar={teamMeta.teamAvatar}
       teamMemberCount={teamMeta.teamMemberCount}
     >
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         {/* Page header */}
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
@@ -128,8 +128,8 @@ export default function CrmPage() {
         </div>
 
         {/* 3 stats: Revenue (highlight) + Leads (bar) + Customer (bar) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 [&>*]:!w-full">
-          <div className="rounded-card bg-fg-violet text-white p-4 flex flex-col gap-3 relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 [&>*]:!w-full">
+          <div className="rounded-card bg-fg-violet text-white p-5 flex flex-col gap-4 relative overflow-hidden">
             <div className="absolute -right-10 -bottom-10 size-48 rounded-full bg-fg-violet-700 opacity-50" />
             <div className="absolute -right-6 -top-6 size-32 rounded-full bg-fg-violet-600 opacity-40" />
             <div className="relative flex items-start justify-between gap-2">
@@ -158,7 +158,6 @@ export default function CrmPage() {
           </div>
 
           <BarChartStatCard
-            density="compact"
             title="Leads"
             value="44,210"
             trend="10%"
@@ -169,7 +168,6 @@ export default function CrmPage() {
             bars={[16, 24, 32, 20, 40]}
           />
           <BarChartStatCard
-            density="compact"
             title="Customer"
             value="21,230"
             trend="10%"
@@ -182,22 +180,22 @@ export default function CrmPage() {
         </div>
 
         {/* Average Sales bar + Success Rate meter */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <FigmaChartHeader title="Average Sales" subtitle="Income and expenses" />
             <FigmaMetricRow series={groupedStatisticSeries.slice(0, 1)} />
             <FigmaGroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 1) }))}
               series={groupedStatisticSeries.slice(0, 1)}
               tooltipItems={groupedStatisticTooltip.slice(0, 1)}
-              heightClass="h-56"
+              heightClass="h-[260px]"
             />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Success Rate</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Success Rate</h3>
                 <p className="text-sm text-fg-grey-500">Conversion rate</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -226,11 +224,11 @@ export default function CrmPage() {
         </div>
 
         {/* Recent Leads + Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Recent Leads</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Recent Leads</h3>
                 <p className="text-sm text-fg-grey-500">Recent leads</p>
               </div>
               <div className="flex items-center gap-2">
@@ -251,7 +249,6 @@ export default function CrmPage() {
           </div>
 
           <ListGroup
-            density="compact"
             title="Activity"
             subtitle="Recent activity"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}

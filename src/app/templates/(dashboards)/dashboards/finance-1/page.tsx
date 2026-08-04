@@ -22,7 +22,6 @@ import {
   ListGroup,
   PlusIcon,
   KebabMenu,
-  SurfaceCard,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 import {
@@ -46,18 +45,18 @@ const menuItems: AppLayoutMenuItem[] = [
 
 function CardCarouselPreview() {
   return (
-    <div className="relative -mx-4 h-40 overflow-hidden">
-      <div className="absolute left-0 top-3 h-32 w-8 overflow-hidden rounded-r-xl">
+    <div className="relative -mx-8 h-[222px] overflow-hidden">
+      <div className="absolute left-0 top-8 h-40 w-12 overflow-hidden rounded-r-2xl">
         <div className="absolute left-[-236px] top-0">
           <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="yellow" variant="flat" className="[&_*]:invisible" />
         </div>
       </div>
-      <div className="absolute right-0 top-3 h-32 w-8 overflow-hidden rounded-l-xl">
+      <div className="absolute right-0 top-8 h-40 w-12 overflow-hidden rounded-l-2xl">
         <div className="absolute right-[-236px] top-0">
           <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="blue" variant="flat" className="[&_*]:invisible" />
         </div>
       </div>
-      <div className="absolute left-1/2 top-3 w-[clamp(12rem,78%,15rem)] -translate-x-1/2">
+      <div className="absolute left-1/2 top-8 -translate-x-1/2">
         <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="purple" variant="gradient" className="shadow-card" />
       </div>
     </div>
@@ -73,7 +72,7 @@ export default function Finance1Page() {
       menuItems={menuItems}
       profile={mainProfile}
     >
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         {/* Page header */}
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
@@ -87,7 +86,7 @@ export default function Finance1Page() {
         </div>
 
         {/* 3 stats */}
-        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-3 [&>*]:!w-full">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch [&>*]:!w-full">
           <BalanceCard
             title="Total Balance"
             balance="$21,500"
@@ -97,7 +96,6 @@ export default function Finance1Page() {
             cardNumber="*9821"
             onTransfer={() => {}}
             onRequest={() => {}}
-            density="compact"
           />
           <LineChartStatCard
             title="Income"
@@ -108,7 +106,6 @@ export default function Finance1Page() {
             chartColor="blue"
             chartDirection="up"
             size="wide"
-            density="compact"
             icon={<CardSendBoldDuotone size={20} />}
           />
           <LineChartStatCard
@@ -120,53 +117,53 @@ export default function Finance1Page() {
             chartColor="red"
             chartDirection="down"
             size="wide"
-            density="compact"
             icon={<CardSendBoldDuotone size={20} />}
           />
         </div>
 
         {/* Card list + Statistic */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <SurfaceCard
-            title="Card"
-            subtitle="All Your Cards"
-            action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
-            padding="sm"
-            contentClassName="flex flex-col gap-3"
-          >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-8 min-h-[398px] flex flex-col">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-2xl font-semibold leading-8 text-fg-black">Card</h3>
+                <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">All Your Cards</p>
+              </div>
+              <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
+            </div>
             <CardCarouselPreview />
-            <Button color="grey" variant="tertiary" size="sm" iconLeft={<PlusIcon size={16} />} className="w-full rounded-full">Add New Card</Button>
-          </SurfaceCard>
+            <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={20} />} className="h-14 w-full rounded-full text-base font-semibold">Add New Card</Button>
+          </div>
 
-          <SurfaceCard
-            title="Statistic"
-            subtitle="Income and Expenses"
-            action={<Button color="grey" variant="tertiary" size="sm" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>}
-            padding="sm"
-            className="lg:col-span-2"
-            contentClassName="flex flex-col gap-4"
-          >
-            <div className="flex flex-wrap items-center gap-4">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
+                <p className="text-sm text-fg-grey-500">Income and Expenses</p>
+              </div>
+              <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>
+            </div>
+            <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <div className="flex size-8 items-center justify-center rounded-full bg-fg-violet-100 text-fg-violet">
-                  <ArrowRightUpLinear size={16} />
+                <div className="size-10 rounded-full bg-fg-violet-100 flex items-center justify-center text-fg-violet">
+                  <ArrowRightUpLinear size={18} />
                 </div>
                 <div>
-                  <div className="text-xs text-fg-grey-500">Income</div>
+                  <div className="text-sm text-fg-grey-500">Income</div>
                   <div className="flex items-center gap-2">
-                    <span className="text-base font-semibold text-fg-black">$12,201</span>
+                    <span className="text-xl font-semibold text-fg-black">$12,201</span>
                     <span className="text-xs font-medium text-fg-green">10%</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="flex size-8 items-center justify-center rounded-full bg-fg-red-100 text-fg-red">
-                  <ArrowRightDownLinear size={16} />
+                <div className="size-10 rounded-full bg-fg-red-100 flex items-center justify-center text-fg-red">
+                  <ArrowRightDownLinear size={18} />
                 </div>
                 <div>
-                  <div className="text-xs text-fg-grey-500">Expenses</div>
+                  <div className="text-sm text-fg-grey-500">Expenses</div>
                   <div className="flex items-center gap-2">
-                    <span className="text-base font-semibold text-fg-black">$10,120</span>
+                    <span className="text-xl font-semibold text-fg-black">$10,120</span>
                     <span className="text-xs font-medium text-fg-red">10%</span>
                   </div>
                 </div>
@@ -179,15 +176,14 @@ export default function Finance1Page() {
               tooltipLowerValue="$280"
               upperColor="bg-fg-blue"
               lowerColor="bg-fg-red"
-              heightClass="h-56"
+              heightClass="h-[280px]"
             />
-          </SurfaceCard>
+          </div>
         </div>
 
         {/* Wallet + Transactions + All Expenses */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <ListGroup
-            density="compact"
             title="Wallet"
             subtitle="Your saving progress"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -200,7 +196,6 @@ export default function Finance1Page() {
           />
 
           <ListGroup
-            density="compact"
             title="Transactions"
             subtitle="Recent Transactions"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -222,13 +217,14 @@ export default function Finance1Page() {
             }
           />
 
-          <SurfaceCard
-            title="All Expenses"
-            subtitle="Based on categories"
-            action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
-            padding="sm"
-            contentClassName="flex flex-col gap-3"
-          >
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-fg-black">All Expenses</h3>
+                <p className="text-sm text-fg-grey-500">Based on categories</p>
+              </div>
+              <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
+            </div>
             <DonutChart
               segments={[
                 { value: 40, color: "#2563eb" },
@@ -241,7 +237,7 @@ export default function Finance1Page() {
               trend="10%"
               trendDirection="up"
               subtitle="+$181 today"
-              size="md"
+              size="lg"
             />
             <div className="flex flex-col gap-1.5 text-xs text-fg-grey-700 pt-2 border-t border-fg-grey-200">
               {[
@@ -257,7 +253,7 @@ export default function Finance1Page() {
                 </div>
               ))}
             </div>
-          </SurfaceCard>
+          </div>
         </div>
       </div>
     </DashboardShell>

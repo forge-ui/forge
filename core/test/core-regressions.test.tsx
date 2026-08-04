@@ -39,9 +39,6 @@ import { Datepicker } from "../src/components/ui/forms/datepicker";
 import { TabBar } from "../src/components/ui/tab-bar";
 import { ButtonGroup } from "../src/components/ui/button-group";
 import { PageHeader } from "../src/components/ui/page-header";
-import { StatCard } from "../src/components/ui/stat-card";
-import { BalanceCard } from "../src/components/ui/balance-card";
-import { ListGroup } from "../src/components/ui/list-group";
 import {
   LanguageSwitcher,
   MessageMenu,
@@ -81,40 +78,6 @@ test("Button 和 IconButton 默认不会提交父级表单", () => {
     render(IconButton, { "aria-label": "新增" }, "+"),
     /<button[^>]*type="button"/,
   );
-});
-
-test("Dashboard 卡片的 compact 密度收紧留白并保留默认密度", () => {
-  const compactStat = render(StatCard, {
-    title: "收入",
-    value: "$12,000",
-    size: "wide",
-    density: "compact",
-  });
-  assert.match(compactStat, /\bp-4\b/);
-  assert.match(compactStat, /\btext-2xl\b/);
-
-  const defaultStat = render(StatCard, {
-    title: "收入",
-    value: "$12,000",
-    size: "wide",
-  });
-  assert.match(defaultStat, /\bp-6\b/);
-  assert.match(defaultStat, /\btext-3xl\b/);
-
-  const compactBalance = render(BalanceCard, {
-    balance: "$21,500",
-    density: "compact",
-  });
-  assert.match(compactBalance, /\bp-4\b/);
-  assert.match(compactBalance, /\bh-9\b/);
-
-  const compactList = render(ListGroup, {
-    title: "Transactions",
-    density: "compact",
-    items: createElement("span", null, "Item"),
-  });
-  assert.match(compactList, /\bpx-4\b/);
-  assert.match(compactList, /\bpy-4\b/);
 });
 
 test("ChatBubble 只在提供下载动作时渲染名称准确的文件按钮", () => {

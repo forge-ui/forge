@@ -472,7 +472,6 @@ export function StatCardShell({
   chartSlot,
   /** Full-width content below the value row (e.g. progress bar) */
   footerSlot,
-  density = "default",
   width,
   className,
 }: {
@@ -490,24 +489,21 @@ export function StatCardShell({
   action?: ReactNode;
   chartSlot?: ReactNode;
   footerSlot?: ReactNode;
-  density?: "default" | "compact";
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
 }) {
   const sz = statCardSizes[size];
-  const isCompact = density === "compact";
   const isWide = size === "wide";
-  const iconSize = size === "lg" ? 48 : isCompact ? 36 : 40;
+  const iconSize = size === "lg" ? 48 : 40;
   const resolvedIconVariant: CardBadgeVariant = iconVariant ?? (isWide ? "solid" : "default");
 
   return (
     <div
       className={cn(
-        "rounded-card flex-col items-start overflow-hidden relative",
-        isCompact ? "justify-between gap-3" : "justify-start gap-4",
+        "rounded-card flex-col justify-start items-start gap-4 overflow-hidden relative",
         resolveCardWidthClass(isWide ? "full" : width, sz.fixedWidth),
-        isCompact ? "p-4" : sz.wrapper,
+        sz.wrapper,
         theme.bg,
         className,
       )}
@@ -555,8 +551,8 @@ export function StatCardShell({
 
       {/* Value + trend row with optional chart on the right */}
       <div className="self-stretch inline-flex justify-between items-end gap-4 relative z-10">
-        <div className={cn("flex flex-col min-w-0", isCompact ? "gap-1" : "gap-2", isWide ? "shrink-0" : "flex-1")}>
-          <div className={cn("font-semibold tracking-fg", isCompact ? "text-2xl leading-8" : sz.value, theme.valueColor)}>
+        <div className={cn("flex flex-col gap-2 min-w-0", isWide ? "shrink-0" : "flex-1")}>
+          <div className={cn("font-semibold tracking-fg", sz.value, theme.valueColor)}>
             {value}
           </div>
           <CardTrend trend={trend} direction={trendDirection} subtitle={subtitle} theme={theme} />

@@ -107,7 +107,7 @@ function MiniFinanceLine({
       : "M2 18 C16 36 24 20 39 36 C52 50 58 58 73 55 C88 52 91 42 105 54 C119 66 128 60 138 58";
 
   return (
-    <svg viewBox="0 0 140 76" className="h-14 w-36" aria-hidden="true">
+    <svg viewBox="0 0 140 76" className="h-20 w-44" aria-hidden="true">
       <defs>
         <linearGradient id={`finance-2-${color}-fade`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={stroke} stopOpacity="0.18" />
@@ -134,20 +134,20 @@ function FinanceStatCard({
   const iconClass = color === "purple" ? "bg-fg-grey-100 text-fg-violet" : "bg-fg-grey-100 text-fg-red";
 
   return (
-    <div className="rounded-3xl border border-fg-grey-200 bg-white p-4 min-h-44 flex flex-col justify-between gap-3">
+    <div className="rounded-3xl border border-fg-grey-200 bg-white p-7 min-h-[248px] flex flex-col justify-between">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
-          <p className="mt-1 text-xs font-medium text-fg-grey-700">2 Jul - Today</p>
+          <h3 className="text-2xl font-semibold leading-8 text-fg-black">{title}</h3>
+          <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">2 Jul - Today</p>
         </div>
-        <span className={`flex size-9 items-center justify-center rounded-full ${iconClass}`}>
-          {direction === "up" ? <ArrowRightUpLinear size={18} /> : <ArrowRightDownLinear size={18} />}
+        <span className={`flex size-14 items-center justify-center rounded-full ${iconClass}`}>
+          {direction === "up" ? <ArrowRightUpLinear size={24} /> : <ArrowRightDownLinear size={24} />}
         </span>
       </div>
-      <div className="flex items-end justify-between gap-3">
+      <div className="flex items-end justify-between gap-5">
         <div>
-          <div className="text-2xl font-semibold leading-8 text-fg-black">{value}</div>
-          <div className="mt-1 flex items-center gap-1 text-sm font-bold text-fg-green">
+          <div className="text-4xl font-semibold leading-[48px] text-fg-black">{value}</div>
+          <div className="mt-4 flex items-center gap-2 text-base font-bold text-fg-green">
             10%
             <span className="inline-block size-0 border-x-[5px] border-b-[7px] border-x-transparent border-b-fg-green" />
             <span className="font-medium text-fg-grey-700">+$150 today</span>
@@ -161,18 +161,18 @@ function FinanceStatCard({
 
 function CardCarouselPreview() {
   return (
-    <div className="relative -mx-4 h-56 overflow-hidden">
-      <div className="absolute left-0 top-6 h-40 w-10 overflow-hidden rounded-r-2xl">
+    <div className="relative -mx-8 h-[286px] overflow-hidden">
+      <div className="absolute left-0 top-12 h-40 w-12 overflow-hidden rounded-r-2xl">
         <div className="absolute left-[-236px] top-0">
           <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="yellow" variant="flat" className="[&_*]:invisible" />
         </div>
       </div>
-      <div className="absolute right-0 top-6 h-40 w-10 overflow-hidden rounded-l-2xl">
+      <div className="absolute right-0 top-12 h-40 w-12 overflow-hidden rounded-l-2xl">
         <div className="absolute right-[-236px] top-0">
           <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="blue" variant="flat" className="[&_*]:invisible" />
         </div>
       </div>
-      <div className="absolute left-1/2 top-6 -translate-x-1/2">
+      <div className="absolute left-1/2 top-12 -translate-x-1/2">
         <CreditCard
           cardNumber="9090"
           holderName="John Doe Hoegan"
@@ -188,40 +188,40 @@ function CardCarouselPreview() {
 
 function FinanceWalletPanel() {
   return (
-    <div className="rounded-3xl border border-fg-grey-200 bg-white p-4 min-h-[420px] flex flex-col">
+    <div className="rounded-3xl border border-fg-grey-200 bg-white p-8 min-h-[520px] flex flex-col">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">Wallet</h3>
-          <p className="mt-1 text-xs font-medium text-fg-grey-700">Your Savings Progress</p>
+          <h3 className="text-2xl font-semibold leading-8 text-fg-black">Wallet</h3>
+          <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">Your Savings Progress</p>
         </div>
         <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
       </div>
-      <div className="relative mt-6 flex-1 overflow-hidden">
+      <div className="relative mt-12 flex-1 overflow-hidden">
         <div className="absolute left-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-white" />
         <div className="absolute right-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-white" />
-        <div className="mx-4 rounded-[28px] border border-fg-grey-200 bg-white p-4 shadow-subtle">
+        <div className="mx-6 rounded-[28px] border border-fg-grey-200 bg-white p-8 shadow-subtle">
           <div className="flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <span className="flex size-10 items-center justify-center rounded-full bg-fg-grey-100 text-fg-violet">
-                <WalletBoldDuotone size={20} />
+            <div className="flex items-center gap-4">
+              <span className="flex size-16 items-center justify-center rounded-full bg-fg-grey-100 text-fg-violet">
+                <WalletBoldDuotone size={26} />
               </span>
               <div>
-                <div className="text-sm font-semibold text-fg-black">Holiday</div>
-                <div className="mt-1 text-xs text-fg-grey-700">12 December 2024</div>
+                <div className="text-xl font-semibold text-fg-black">Holiday</div>
+                <div className="mt-1 text-base text-fg-grey-700">12 December 2024</div>
               </div>
             </div>
             <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
           </div>
-          <div className="mt-6 flex items-end justify-between">
-            <span className="text-lg font-semibold text-fg-black">$1,600</span>
-            <span className="text-lg font-semibold text-fg-violet">50%</span>
+          <div className="mt-10 flex items-end justify-between">
+            <span className="text-2xl font-semibold text-fg-black">$1,600</span>
+            <span className="text-2xl font-semibold text-fg-violet">50%</span>
           </div>
           <div className="mt-5 h-3 rounded-full bg-fg-grey-100">
             <div className="h-full w-1/2 rounded-full bg-fg-violet" />
           </div>
-          <div className="mt-5 border-t border-fg-grey-200 pt-5 grid grid-cols-2 gap-3">
-            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-semibold">Top Up</Button>
-            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-semibold">Withdraw</Button>
+          <div className="mt-8 border-t border-fg-grey-200 pt-8 grid grid-cols-2 gap-5">
+            <Button color="grey" variant="tertiary" className="h-14 rounded-full text-base font-semibold">Top Up</Button>
+            <Button color="grey" variant="tertiary" className="h-14 rounded-full text-base font-semibold">Withdraw</Button>
           </div>
         </div>
       </div>
@@ -236,11 +236,11 @@ function FinanceWalletPanel() {
 
 function AllExpensesPanel() {
   return (
-    <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 min-h-[420px] flex flex-col gap-4">
+    <div className="rounded-3xl bg-white border border-fg-grey-200 p-8 min-h-[520px] flex flex-col gap-6">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">All Expenses</h3>
-          <p className="mt-1 text-xs font-medium text-fg-grey-700">Based on categories</p>
+          <h3 className="text-2xl font-semibold leading-8 text-fg-black">All Expenses</h3>
+          <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">Based on categories</p>
         </div>
         <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
       </div>
@@ -257,22 +257,22 @@ function AllExpensesPanel() {
         trendDirection="up"
         subtitle="+$181 today"
       />
-      <div className="flex flex-col gap-3 pt-1">
+      <div className="flex flex-col gap-5 pt-2">
         {[
           { label: "Housing", value: "$5,731", color: "#7239EA", subtitle: "Apartment, Electricity, etc", delta: "2.5%" },
           { label: "Food", value: "$4,245", color: "#F6C002", subtitle: "Milk, Coffee, Sereal, etc" },
           { label: "Transportation", value: "$3,150", color: "#09B96D", subtitle: "Gas, Taxi, Service", delta: "5%" },
         ].map((row) => (
-          <div key={row.label} className="flex items-center gap-3">
-            <div className="size-10 rounded-full flex items-center justify-center" style={{ backgroundColor: `${row.color}14` }}>
-              <WalletBoldDuotone size={18} color={row.color} />
+          <div key={row.label} className="flex items-center gap-4">
+            <div className="size-14 rounded-full flex items-center justify-center" style={{ backgroundColor: `${row.color}14` }}>
+              <WalletBoldDuotone size={22} color={row.color} />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-fg-black">{row.label}</div>
-              <div className="mt-1 text-xs text-fg-grey-700 truncate">{row.subtitle}</div>
+              <div className="text-base font-semibold text-fg-black">{row.label}</div>
+              <div className="mt-1 text-sm text-fg-grey-700 truncate">{row.subtitle}</div>
             </div>
             <div className="text-right">
-              <div className="text-sm font-semibold text-fg-black">{row.value}</div>
+              <div className="text-lg font-semibold text-fg-black">{row.value}</div>
               {row.delta && (
                 <div className="mt-1 flex items-center justify-end gap-1 text-sm font-bold text-fg-green">
                   {row.delta}
@@ -298,39 +298,39 @@ export default function Finance2Page() {
       pageTitle="Dashboard"
       primaryAction={{ label: "Add Payment" }}
     >
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="flex flex-col gap-4">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 min-h-[380px] flex flex-col">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="flex flex-col gap-6">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-8 min-h-[470px] flex flex-col">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold leading-5 text-fg-black">Card</h3>
-                <p className="mt-1 text-xs font-medium text-fg-grey-700">All Your Cards</p>
+                <h3 className="text-2xl font-semibold leading-8 text-fg-black">Card</h3>
+                <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">All Your Cards</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
             </div>
             <CardCarouselPreview />
-            <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={16} />} className="h-10 w-full rounded-full text-sm font-semibold">Add New Card</Button>
+            <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={20} />} className="h-16 w-full rounded-full text-base font-semibold">Add New Card</Button>
           </div>
 
           <FinanceWalletPanel />
           <AllExpensesPanel />
         </div>
 
-        <div className="flex flex-col gap-4 lg:col-span-2">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="flex flex-col gap-6 lg:col-span-2">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <FinanceStatCard title="Income" value="$35,500" color="purple" direction="up" />
             <FinanceStatCard title="Expenses" value="$14,000" color="red" direction="down" />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 min-h-[460px] flex flex-col gap-4">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-8 min-h-[610px] flex flex-col gap-8">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold leading-5 text-fg-black">Statistic</h3>
-                <p className="mt-1 text-xs font-medium text-fg-grey-700">Income and Expenses</p>
+                <h3 className="text-2xl font-semibold leading-8 text-fg-black">Statistic</h3>
+                <p className="mt-3 text-base font-medium leading-6 text-fg-grey-700">Income and Expenses</p>
               </div>
-              <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="h-10 rounded-full px-5 text-sm font-medium text-fg-grey-700">Monthly</Button>
+              <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={18} />} className="h-14 rounded-full px-8 text-base font-medium text-fg-grey-700">Monthly</Button>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
                 <div className="size-10 rounded-full bg-fg-violet-100 flex items-center justify-center text-fg-violet">
                   <ArrowRightUpLinear size={18} />
@@ -363,14 +363,14 @@ export default function Finance2Page() {
               tooltipLowerValue="$280"
               upperColor="bg-fg-violet"
               lowerColor="bg-fg-red"
-              heightClass="h-56"
+              heightClass="h-[360px]"
             />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Transaction</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Transaction</h3>
                 <p className="text-sm text-fg-grey-500">Recent transactions</p>
               </div>
               <div className="flex items-center gap-2">

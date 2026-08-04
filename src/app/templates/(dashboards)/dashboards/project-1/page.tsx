@@ -122,7 +122,7 @@ export default function Project1Page() {
       teamAvatar={teamMeta.teamAvatar}
       teamMemberCount={teamMeta.teamMemberCount}
     >
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         {/* Page header */}
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
@@ -137,30 +137,30 @@ export default function Project1Page() {
         </div>
 
         {/* 4 stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard density="compact" size="wide" title="Total Project" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" icon={<FolderBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard density="compact" size="wide" title="In Progress" value="4,412" trend="5%" trendDirection="up" subtitle="+150 today" icon={<CartLargeBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard density="compact" size="wide" title="Completed" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" icon={<FolderWithFilesBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard density="compact" size="wide" title="Unfinished" value="329" trend="0%" trendDirection="down" subtitle="+150 today" icon={<BillListBoldDuotone size={20} />} badgeVariant="opacity" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StatCard size="wide" title="Total Project" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" icon={<FolderBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="In Progress" value="4,412" trend="5%" trendDirection="up" subtitle="+150 today" icon={<CartLargeBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="Completed" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" icon={<FolderWithFilesBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard size="wide" title="Unfinished" value="329" trend="0%" trendDirection="down" subtitle="+150 today" icon={<BillListBoldDuotone size={20} />} badgeVariant="opacity" />
         </div>
 
         {/* Statistic + All Project bubble */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
             <FigmaMetricRow series={groupedStatisticSeries} />
             <FigmaGroupedBarChart
               data={groupedStatisticBarData}
               series={groupedStatisticSeries}
               tooltipItems={groupedStatisticTooltip}
-              heightClass="h-56"
+              heightClass="h-[260px]"
             />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">All Project</h3>
+                <h3 className="text-lg font-semibold text-fg-black">All Project</h3>
                 <p className="text-sm text-fg-grey-500">Based on status</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -171,7 +171,7 @@ export default function Project1Page() {
                 { value: 25, label: "25%", color: "bg-emerald-500" },
                 { value: 8, label: "8%", color: "bg-orange-500" },
               ]}
-              height={220}
+              height={260}
             />
             <div className="flex items-center justify-center gap-4 text-xs text-fg-grey-700">
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#fbbf24" }} /> In Progress</span>
@@ -182,10 +182,9 @@ export default function Project1Page() {
         </div>
 
         {/* Team of the Month + Client Growth + Daily Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-1 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-1 flex flex-col gap-6">
             <ImageStatCard
-              density="compact"
               size="wide"
               title="Team of the Month"
               value="Edward Allen"
@@ -198,7 +197,6 @@ export default function Project1Page() {
               action={<IconButton variant="ghost" shape="square" size="sm"><AltArrowRightLinear size={16} /></IconButton>}
             />
             <BarChartStatCard
-              density="compact"
               size="wide"
               title="Client Growth"
               subtitle="2 Jul - Today"
@@ -211,10 +209,10 @@ export default function Project1Page() {
           </div>
 
           {/* Daily Activity gantt */}
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Daily Activity</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Daily Activity</h3>
                 <p className="text-sm text-fg-grey-500">Today&apos;s activity</p>
               </div>
               <KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />
@@ -226,7 +224,7 @@ export default function Project1Page() {
               ))}
             </div>
             {/* Gantt rows */}
-            <div className="relative flex flex-col gap-2 pt-2 min-h-52">
+            <div className="relative flex flex-col gap-2 pt-2 min-h-[260px]">
               <div className="absolute inset-0 grid grid-cols-6 pointer-events-none">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="border-l border-fg-grey-100" />
@@ -281,11 +279,11 @@ export default function Project1Page() {
         </div>
 
         {/* Projects + Team Member */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Projects</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Projects</h3>
                 <p className="text-sm text-fg-grey-500">Recent projects</p>
               </div>
               <div className="flex items-center gap-2">
@@ -306,7 +304,6 @@ export default function Project1Page() {
           </div>
 
           <ListGroup
-            density="compact"
             title="Team Member"
             subtitle="All Team Member"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}

@@ -121,7 +121,7 @@ export default function Ecommerce3Page() {
       favoriteItems={favoriteItems}
       profile={mainProfile}
     >
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         {/* Page header */}
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
@@ -136,19 +136,19 @@ export default function Ecommerce3Page() {
         </div>
 
         {/* 4 colorful stats */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
-          <BarChartStatCard density="compact" title="Income" value="$75,000" trend="10%" trendDirection="up" subtitle="+$750 today" theme="purple" size="wide" barColor="purple" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard density="compact" title="Orders" value="31,000" trend="5%" trendDirection="up" subtitle="+156 today" theme="blue" size="wide" barColor="blue" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard density="compact" title="Profit" value="$32,125" trend="10%" trendDirection="up" subtitle="+$321 today" theme="green" size="wide" barColor="green" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard density="compact" title="Expenses" value="$18,120" trend="10%" trendDirection="up" subtitle="+$321 today" theme="red" size="wide" barColor="red" bars={[10, 30, 60, 95, 50, 40, 30]} />
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
+          <BarChartStatCard title="Income" value="$75,000" trend="10%" trendDirection="up" subtitle="+$750 today" theme="purple" size="wide" barColor="purple" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard title="Orders" value="31,000" trend="5%" trendDirection="up" subtitle="+156 today" theme="blue" size="wide" barColor="blue" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard title="Profit" value="$32,125" trend="10%" trendDirection="up" subtitle="+$321 today" theme="green" size="wide" barColor="green" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard title="Expenses" value="$18,120" trend="10%" trendDirection="up" subtitle="+$321 today" theme="red" size="wide" barColor="red" bars={[10, 30, 60, 95, 50, 40, 30]} />
         </div>
 
         {/* Target + Statistic */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Target</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Target</h3>
                 <p className="text-sm text-fg-grey-500">Revenue target</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -177,23 +177,23 @@ export default function Ecommerce3Page() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <FigmaChartHeader title="Statistic" subtitle="Income and Expenses" tabs={["Daily", "Weekly", "Monthly", "Annual"]} activeTab="Monthly" />
             <FigmaGroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 1) }))}
               series={groupedStatisticSeries.slice(0, 1)}
               tooltipItems={groupedStatisticTooltip.slice(0, 1)}
-              heightClass="h-56"
+              heightClass="h-[280px]"
             />
           </div>
         </div>
 
         {/* All Expenses + Top Product + Top Category */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">All Expenses</h3>
+                <h3 className="text-lg font-semibold text-fg-black">All Expenses</h3>
                 <p className="text-sm text-fg-grey-500">Based on categories</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -207,7 +207,7 @@ export default function Ecommerce3Page() {
                   { value: 10, color: "#f97316" },
                   { value: 5, color: "#0ea5e9" },
                 ]}
-                size="md"
+                size="lg"
               />
             </div>
             <div className="flex flex-col gap-1.5 text-xs text-fg-grey-700">
@@ -227,7 +227,6 @@ export default function Ecommerce3Page() {
           </div>
 
           <ListGroup
-            density="compact"
             title="Top Product"
             subtitle="Based on Sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -252,7 +251,6 @@ export default function Ecommerce3Page() {
           />
 
           <ListGroup
-            density="compact"
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -282,11 +280,11 @@ export default function Ecommerce3Page() {
         </div>
 
         {/* Recent Orders + Top Region */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Recent Orders</h3>
                 <p className="text-sm text-fg-grey-500">Recent orders</p>
               </div>
               <div className="flex items-center gap-2">
@@ -306,7 +304,6 @@ export default function Ecommerce3Page() {
           </div>
 
           <ListGroup
-            density="compact"
             title="Top Region"
             subtitle="Sales by region"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}

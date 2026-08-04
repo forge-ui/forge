@@ -143,11 +143,10 @@ export default function Ecommerce2Page() {
       pageTitle="Dashboard"
       primaryAction={{ label: "Add Order" }}
     >
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 [&>*]:!w-full">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 [&>*]:!w-full">
           <ProgressStatCard
-            density="compact"
             title="Total Revenue"
             subtitle="2 Jul - Today"
             value="$32,200"
@@ -158,7 +157,6 @@ export default function Ecommerce2Page() {
             progressColor="red"
           />
           <LineChartStatCard
-            density="compact"
             title="Orders"
             subtitle="1 Jan - Today"
             value="31,300"
@@ -169,7 +167,6 @@ export default function Ecommerce2Page() {
             chartDirection="down"
           />
           <BarChartStatCard
-            density="compact"
             title="Customers"
             subtitle="2 Jul - Today"
             value="14,000"
@@ -182,11 +179,11 @@ export default function Ecommerce2Page() {
         </div>
 
         {/* Statistic + Expenses bubbles */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
               </div>
               <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
@@ -196,7 +193,7 @@ export default function Ecommerce2Page() {
                 <button className="px-3 py-1.5 text-fg-grey-500">Year</button>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               {[
                 { label: "Income", value: "$26,201", trend: "10%", up: true, color: "#7c3aed" },
                 { label: "Expenses", value: "$18,120", trend: "10%", up: false, color: "#fbbf24" },
@@ -233,14 +230,14 @@ export default function Ecommerce2Page() {
               showYAxis
               yAxisLabels={["$1.2k", "$1k", "$800", "$600", "$400", "$200", "0"]}
               xAxisLabels={months}
-              height="h-56"
+              height="h-[260px]"
             />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Expenses</h3>
+                <h3 className="text-lg font-semibold text-fg-black">Expenses</h3>
                 <p className="text-sm text-fg-grey-500">Based on category</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -252,7 +249,7 @@ export default function Ecommerce2Page() {
                 { value: 8, label: "8%", color: "bg-sky-500" },
                 { value: 2, label: "2%", color: "bg-orange-500" },
               ]}
-              height={200}
+              height={240}
             />
             <div className="grid grid-cols-2 gap-2 text-xs text-fg-grey-700">
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#7c3aed" }} /> Google Ads</span>
@@ -264,19 +261,18 @@ export default function Ecommerce2Page() {
         </div>
 
         {/* Top Region + Top Product + Top Category */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <MapCard
             title="Top Region"
             subtitle="Sales by region"
             color="purple"
-            variant="sm"
+            variant="md"
             regions={regionsForMap}
             highlights={["north-america", "europe", "asia", "oceania"]}
             onMenuClick={() => {}}
           />
 
           <ListGroup
-            density="compact"
             title="Top Product"
             subtitle="Based on Sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -302,7 +298,6 @@ export default function Ecommerce2Page() {
           />
 
           <ListGroup
-            density="compact"
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -331,10 +326,10 @@ export default function Ecommerce2Page() {
         </div>
 
         {/* Recent Orders table */}
-        <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
+              <h3 className="text-lg font-semibold text-fg-black">Recent Orders</h3>
               <p className="text-sm text-fg-grey-500">Recent orders</p>
             </div>
             <div className="flex items-center gap-2">

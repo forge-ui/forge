@@ -30,7 +30,6 @@ export function HighlightCard({
   image,
   annotations = [],
   products = [],
-  density = "default",
   width,
   className,
 }: {
@@ -39,8 +38,6 @@ export function HighlightCard({
   image: string;
   annotations?: Annotation[];
   products?: Product[];
-  /** Use compact inside dense dashboards while preserving the default showcase scale. */
-  density?: "default" | "compact";
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -50,8 +47,7 @@ export function HighlightCard({
   return (
     <div
       className={cn(
-        "rounded-card flex-col overflow-hidden relative",
-        density === "compact" ? "h-96 p-4 gap-3" : "h-[462px] p-6 gap-5",
+        "h-[462px] p-6 rounded-card flex-col gap-5 overflow-hidden relative",
         resolveCardWidthClass(width, "w-96"),
         cfg.bg,
         className,

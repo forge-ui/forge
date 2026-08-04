@@ -25,13 +25,11 @@ function WheelSlot({
   color,
   themeKey,
   size = "sm",
-  density = "default",
 }: {
   percent?: number;
   color: WheelColor;
   themeKey: CardTheme;
   size?: StatCardSize;
-  density?: "default" | "compact";
 }) {
   const isWhite = themeKey === "white";
   const fillClass = isWhite ? wheelBg[color] : "bg-white";
@@ -39,9 +37,8 @@ function WheelSlot({
   // Use conic-gradient via inline style so fill angle is data-driven.
   const clamped = Math.max(0, Math.min(100, percent));
   const angle = (clamped / 100) * 360;
-  const dimensionClass = density === "compact"
-    ? size === "wide" ? "w-16 h-16 ml-auto" : "w-12 h-12"
-    : size === "wide" ? "w-20 h-20 ml-auto" : size === "lg" ? "w-16 h-16" : "w-12 h-12";
+  const dimensionClass =
+    size === "wide" ? "w-20 h-20 ml-auto" : size === "lg" ? "w-16 h-16" : "w-12 h-12";
   return (
     <div className={cn("rounded-full relative overflow-hidden", dimensionClass)}>
       <div className={cn("absolute inset-0 rounded-full", trackClass)} />
@@ -64,7 +61,6 @@ export function WheelChartStatCard({
   subtitle,
   theme = "white",
   size = "sm",
-  density = "default",
   wheelColor = "purple",
   wheelPercent = 70,
   icon,
@@ -78,7 +74,6 @@ export function WheelChartStatCard({
   subtitle?: string;
   theme?: WheelChartStatCardTheme;
   size?: StatCardSize;
-  density?: "default" | "compact";
   wheelColor?: WheelColor;
   wheelPercent?: number;
   /** Icon for the top-right chip (only rendered in size="wide"). */
@@ -98,10 +93,9 @@ export function WheelChartStatCard({
       theme={cardThemes[themeKey]}
       themeKey={themeKey}
       size={size}
-      density={density}
       icon={icon}
       width={width}
-      chartSlot={<WheelSlot percent={wheelPercent} color={wheelColor} themeKey={themeKey} size={size} density={density} />}
+      chartSlot={<WheelSlot percent={wheelPercent} color={wheelColor} themeKey={themeKey} size={size} />}
       className={className}
     />
   );
