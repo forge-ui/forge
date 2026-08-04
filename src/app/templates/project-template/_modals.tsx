@@ -28,12 +28,12 @@ export function TemplateFormModal({
 }) {
   return (
     <Modal open={open} onClose={onClose} title={title} width="w-[620px]">
-      <div className="grid grid-cols-2 gap-5 p-6">
+      <div className="grid grid-cols-2 gap-4 p-4">
         {fields.map((field) => (
           <TextField key={field.label} label={field.label} placeholder={field.placeholder} value={field.value} />
         ))}
       </div>
-      <div className="flex justify-end gap-3 border-t border-fg-grey-200 p-6">
+      <div className="flex justify-end gap-3 border-t border-fg-grey-200 p-4">
         <Button color="grey" variant="tertiary" onClick={onClose}>
           Cancel
         </Button>
