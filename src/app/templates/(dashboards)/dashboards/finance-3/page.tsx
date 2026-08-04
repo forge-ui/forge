@@ -47,6 +47,8 @@ import {
   contacts,
   upsideDownBarData,
   FigmaUpsideDownBarChart,
+  compactBalanceCardClass,
+  compactListGroupClass,
   type TransactionRow,
 } from "../_shared";
 
@@ -130,11 +132,11 @@ export default function Finance3Page() {
       pageTitle="Dashboard"
       primaryAction={{ label: "Add Payment" }}
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         {/* Main grid: 4 columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {/* Left column (col-span-1) */}
-          <div className="lg:col-span-1 flex flex-col gap-6">
+          <div className="lg:col-span-1 flex flex-col gap-4">
             {/* Total Balance */}
             <BalanceCard
               title="Total Balance"
@@ -146,11 +148,12 @@ export default function Finance3Page() {
               balanceHidden={false}
               onTransfer={() => {}}
               onRequest={() => {}}
-              className="!w-full"
+              className={`${compactBalanceCardClass} !w-full`}
             />
 
             {/* Credit cards */}
             <ListGroup
+              className={compactListGroupClass}
               title="Credit"
               subtitle="All Your Cards"
               items={
@@ -164,6 +167,7 @@ export default function Finance3Page() {
 
             {/* Wallet */}
             <ListGroup
+              className={compactListGroupClass}
               title="Wallet"
               subtitle="Your Savings Progress"
               items={
@@ -192,17 +196,17 @@ export default function Finance3Page() {
           </div>
 
           {/* Right wide region (col-span-3) */}
-          <div className="lg:col-span-3 flex flex-col gap-6">
+          <div className="lg:col-span-3 flex flex-col gap-4">
             {/* Statistic full-width */}
-            <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-6">
+            <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
+                  <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                   <p className="text-sm text-fg-grey-500">Income and Expenses</p>
                 </div>
                 <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>
               </div>
-              <div className="flex items-center gap-8">
+              <div className="flex items-center gap-6">
                 <div className="flex items-center gap-3">
                   <div className="size-10 rounded-full bg-fg-violet-100 flex items-center justify-center text-fg-violet">
                     <ArrowRightUpLinear size={18} />
@@ -239,17 +243,17 @@ export default function Finance3Page() {
                 tooltipLowerValue="$280"
                 upperColor="bg-fg-violet"
                 lowerColor="bg-fg-red"
-                heightClass="h-[280px]"
+                heightClass="h-56"
               />
             </div>
 
             {/* Bottom: Transaction table (left) + Contact/Expenses (right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {/* Transaction (col-span-2) */}
-              <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+              <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-fg-black">Transaction</h3>
+                    <h3 className="text-sm font-semibold text-fg-black">Transaction</h3>
                     <p className="text-sm text-fg-grey-500">Recent transactions</p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -270,8 +274,9 @@ export default function Finance3Page() {
               </div>
 
               {/* Right column: Contact + All Expenses */}
-              <div className="lg:col-span-1 flex flex-col gap-6">
+              <div className="lg:col-span-1 flex flex-col gap-4">
                 <ListGroup
+                  className={compactListGroupClass}
                   title="Contact"
                   subtitle="Recent transactions"
                   action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -292,10 +297,10 @@ export default function Finance3Page() {
                 />
 
                 {/* All Expenses */}
-                <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
+                <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-fg-black">All Expenses</h3>
+                      <h3 className="text-sm font-semibold text-fg-black">All Expenses</h3>
                       <p className="text-sm text-fg-grey-500">Based on categories</p>
                     </div>
                     <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
