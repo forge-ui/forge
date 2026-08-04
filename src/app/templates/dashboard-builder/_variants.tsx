@@ -139,14 +139,14 @@ export const favoriteItems: AppLayoutMenuItem[] = [
 ];
 
 export const profile: AppLayoutProfile = {
-  avatar: asset("/images/forge-logo.svg"),
+  avatar: asset("/images/forge-logo-v2.svg"),
   name: "John Doe Hoegan",
   role: "Manager",
 };
 
 export const teamMeta = {
   teamName: "Sugab's Team",
-  teamAvatar: asset("/images/forge-logo.svg"),
+  teamAvatar: asset("/images/forge-logo-v2.svg"),
   teamMemberCount: 24,
 };
 
