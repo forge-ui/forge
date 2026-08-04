@@ -36,6 +36,8 @@ import {
   FigmaChartHeader,
   FigmaGroupedBarChart,
   FigmaMetricRow,
+  compactListGroupClass,
+  compactStatCardClass,
 } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
@@ -176,7 +178,7 @@ export default function AnalyticsPage() {
       menuItems={menuItems}
       profile={mainProfile}
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         {/* Page header */}
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
@@ -187,27 +189,28 @@ export default function AnalyticsPage() {
         </div>
 
         {/* 4 progress stats */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
-          <ProgressStatCard size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
-          <ProgressStatCard size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
-          <ProgressStatCard size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
-          <ProgressStatCard size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
+          <ProgressStatCard className={compactStatCardClass} size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
+          <ProgressStatCard className={compactStatCardClass} size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
+          <ProgressStatCard className={compactStatCardClass} size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
+          <ProgressStatCard className={compactStatCardClass} size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
         </div>
 
         {/* Statistic + Campaign */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
             <FigmaMetricRow series={groupedStatisticSeries.slice(0, 2)} />
             <FigmaGroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 2) }))}
               series={groupedStatisticSeries.slice(0, 2)}
               tooltipItems={groupedStatisticTooltip.slice(0, 2)}
-              heightClass="h-[300px]"
+              heightClass="h-56"
             />
           </div>
 
           <ListGroup
+            className={compactListGroupClass}
             title="Campaign"
             subtitle="Active campaign"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -230,18 +233,19 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Top Region + Visit by Source + Top Category */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <MapCard
             title="Top Region"
             subtitle="User session in each region"
             color="purple"
-            variant="md"
+            variant="sm"
             regions={regionsForMap}
             highlights={["north-america", "europe", "asia", "oceania"]}
             onMenuClick={() => {}}
           />
 
           <ListGroup
+            className={compactListGroupClass}
             title="Visit by Source"
             subtitle="Link clicked"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -264,6 +268,7 @@ export default function AnalyticsPage() {
           />
 
           <ListGroup
+            className={compactListGroupClass}
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -287,11 +292,11 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Top Referral Pages + Top Performing Pages */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">Top Referral Pages</h3>
+                <h3 className="text-sm font-semibold text-fg-black">Top Referral Pages</h3>
                 <p className="text-sm text-fg-grey-500">Based on session</p>
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>
@@ -307,10 +312,10 @@ export default function AnalyticsPage() {
             />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">Top Performing Pages</h3>
+                <h3 className="text-sm font-semibold text-fg-black">Top Performing Pages</h3>
                 <p className="text-sm text-fg-grey-500">Based on clicks</p>
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>
