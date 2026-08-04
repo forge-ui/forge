@@ -125,6 +125,11 @@ export interface AppLayoutProps {
   hideSidebarWidgets?: boolean;
   /** 自定义 team switcher 下拉里 invite / settings / createNew 按钮的文案 */
   teamLabels?: TeamSwitcherLabels;
+  /**
+   * Team switcher 是否显示邀请 / 设置 / 新建。
+   * false = 仅当前工作区标题 + teams 列表（应用切换器用）。默认 true。
+   */
+  showTeamActions?: boolean;
 }
 
 // ============================================================
@@ -177,6 +182,7 @@ export function AppLayout({
   collapsedSidebarWidth = "5rem",
   hideSidebarWidgets,
   teamLabels,
+  showTeamActions = true,
 }: AppLayoutProps) {
   const pathname = usePathname();
   const config = modeConfig[mode];
@@ -474,6 +480,7 @@ export function AppLayout({
                   teamSubtitle={teamSubtitle}
                   teams={teams}
                   labels={teamLabels}
+                  showActions={showTeamActions}
                 />
               </div>
             )}
