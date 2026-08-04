@@ -41,6 +41,7 @@ export function StatCard({
   badgeVariant,
   action,
   onKebabClick,
+  density = "default",
   width,
   className,
 }: {
@@ -59,6 +60,8 @@ export function StatCard({
   action?: ReactNode;
   /** If set, renders the built-in kebab-menu button. */
   onKebabClick?: () => void;
+  /** Use compact inside dense dashboards while preserving the default Figma showcase scale. */
+  density?: "default" | "compact";
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -67,16 +70,17 @@ export function StatCard({
   const cfg = cardThemes[themeKey];
   const sz = statCardSizes[size];
   const isWide = size === "wide";
-  const iconSize = size === "lg" ? 48 : 40;
+  const isCompact = density === "compact";
+  const iconSize = size === "lg" && !isCompact ? 48 : isCompact ? 36 : 40;
 
   const actionNode = action ?? (onKebabClick ? <CardKebabButton theme={cfg} onClick={onKebabClick} /> : null);
 
   return (
     <div
       className={cn(
-        "rounded-card flex-col justify-start items-start gap-4 overflow-hidden relative",
+        "rounded-card flex-col justify-start items-start overflow-hidden relative",
+        isCompact ? "gap-3 p-4" : cn("gap-4", sz.wrapper),
         resolveCardWidthClass(isWide ? "full" : width, sz.fixedWidth),
-        sz.wrapper,
         cfg.bg,
         className,
       )}
@@ -101,20 +105,20 @@ export function StatCard({
               <div className="shrink-0">{actionNode}</div>
             ) : null}
           </div>
-          <div className={cn("self-stretch font-semibold tracking-fg relative z-10", sz.value, cfg.valueColor)}>
+          <div className={cn("self-stretch font-semibold tracking-fg relative z-10", isCompact ? "text-2xl leading-8" : sz.value, cfg.valueColor)}>
             {value}
           </div>
         </>
       ) : (
         <div className="self-stretch inline-flex justify-start items-start gap-2 relative z-10">
-          <div className="flex-1 inline-flex flex-col justify-start items-start gap-4 min-w-0">
+          <div className={cn("flex-1 inline-flex flex-col justify-start items-start min-w-0", isCompact ? "gap-3" : "gap-4")}>
             <div className="self-stretch inline-flex justify-start items-center gap-2">
               {icon && <CardIconChip icon={icon} theme={cfg} themeKey={themeKey} variant={badgeVariant} size={iconSize} />}
               <span className={cn("flex-1 text-sm font-medium leading-5 tracking-fg truncate", cfg.titleColor)}>
                 {title}
               </span>
             </div>
-            <div className={cn("self-stretch font-semibold tracking-fg", sz.value, cfg.valueColor)}>
+            <div className={cn("self-stretch font-semibold tracking-fg", isCompact ? "text-2xl leading-8" : sz.value, cfg.valueColor)}>
               {value}
             </div>
           </div>

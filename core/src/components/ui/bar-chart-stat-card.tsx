@@ -34,23 +34,26 @@ function BarSlot({
   color,
   themeKey,
   size = "sm",
+  density = "default",
 }: {
   bars: number[];
   color: BarColor;
   themeKey: CardTheme;
   size?: StatCardSize;
+  density?: "default" | "compact";
 }) {
   const isColored = themeKey !== "white" && themeKey !== "black";
   const isWide = size === "wide";
+  const isCompact = density === "compact";
   const maxBar = Math.max(...bars);
   const visible = bars.slice(0, isWide ? 7 : 5);
   // In wide mode, normalize input heights to fit within the 64px container.
-  const wideMax = 60;
+  const wideMax = isCompact ? 44 : 60;
   return (
     <div
       className={cn(
         "flex items-end",
-        isWide ? "gap-2 h-16 w-full justify-end" : "gap-1 h-10",
+        isWide ? cn("gap-2 w-full justify-end", isCompact ? "h-12" : "h-16") : "gap-1 h-10",
       )}
     >
       {visible.map((h, i) => {
@@ -81,6 +84,7 @@ export function BarChartStatCard({
   subtitle,
   theme = "white",
   size = "sm",
+  density = "default",
   barColor = "purple",
   bars = [16, 24, 32, 20, 40],
   width,
@@ -93,6 +97,7 @@ export function BarChartStatCard({
   subtitle?: string;
   theme?: BarChartStatCardTheme;
   size?: StatCardSize;
+  density?: "default" | "compact";
   barColor?: BarColor;
   bars?: number[];
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
@@ -110,8 +115,9 @@ export function BarChartStatCard({
       theme={cardThemes[themeKey]}
       themeKey={themeKey}
       size={size}
+      density={density}
       width={width}
-      chartSlot={<BarSlot bars={bars} color={barColor} themeKey={themeKey} size={size} />}
+      chartSlot={<BarSlot bars={bars} color={barColor} themeKey={themeKey} size={size} density={density} />}
       className={className}
     />
   );

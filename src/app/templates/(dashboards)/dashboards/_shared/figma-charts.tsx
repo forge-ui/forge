@@ -59,19 +59,19 @@ export function FigmaChartHeader({
   return (
     <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
-        <h3 className="text-lg font-semibold leading-7 text-fg-black">{title}</h3>
-        {subtitle && <p className="text-sm leading-5 text-fg-grey-700">{subtitle}</p>}
+        <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
+        {subtitle && <p className="text-xs leading-4 text-fg-grey-700">{subtitle}</p>}
       </div>
       {action ?? (
-        <div className="inline-flex shrink-0 items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-sm">
+        <div className="inline-flex shrink-0 items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
           {tabs.map((tab) => (
             <button
               key={tab}
               type="button"
               className={
                 tab === activeTab
-                  ? "rounded-full bg-white px-4 py-2 font-semibold text-fg-violet shadow-subtle"
-                  : "rounded-full px-4 py-2 font-medium text-fg-grey-500"
+                  ? "rounded-full bg-white px-3 py-1.5 font-semibold text-fg-violet shadow-subtle"
+                  : "rounded-full px-3 py-1.5 font-medium text-fg-grey-500"
               }
             >
               {tab}
@@ -85,18 +85,18 @@ export function FigmaChartHeader({
 
 export function FigmaMetricRow({ series }: { series: ChartSeries[] }) {
   return (
-    <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
       {series.map((item) => (
-        <div key={item.label} className="flex items-center gap-3">
-          <span className={`flex size-10 items-center justify-center rounded-full text-white ${item.colorClass}`}>
-            <ArrowRightUpLinear size={18} />
+        <div key={item.label} className="flex items-center gap-2">
+          <span className={`flex size-8 items-center justify-center rounded-full text-white ${item.colorClass}`}>
+            <ArrowRightUpLinear size={16} />
           </span>
           <div className="min-w-0">
-            <div className="text-sm font-medium leading-5 text-fg-grey-500">{item.label}</div>
+            <div className="text-xs font-medium leading-4 text-fg-grey-500">{item.label}</div>
             <div className="flex items-center gap-2">
-              <span className="text-xl font-semibold leading-7 text-fg-black">{item.value}</span>
+              <span className="text-base font-semibold leading-6 text-fg-black">{item.value}</span>
               {item.trend && (
-                <span className={item.trend === "up" ? "text-sm font-bold text-fg-green" : "text-sm font-bold text-fg-red"}>
+                <span className={item.trend === "up" ? "text-xs font-bold text-fg-green" : "text-xs font-bold text-fg-red"}>
                   10% <TrendArrow trend={item.trend} />
                 </span>
               )}
@@ -114,7 +114,7 @@ export function FigmaGroupedBarChart({
   activeIndex = 6,
   tooltipItems,
   yAxisLabels = defaultYAxis,
-  heightClass = "h-[280px]",
+  heightClass = "h-56",
 }: {
   data: ChartPoint[];
   series: ChartSeries[];
@@ -126,7 +126,7 @@ export function FigmaGroupedBarChart({
   const max = maxValue(data);
 
   return (
-    <div className={`relative grid grid-cols-[52px_1fr] gap-4 ${heightClass}`}>
+    <div className={`relative grid grid-cols-[44px_1fr] gap-3 ${heightClass}`}>
       <div className="flex h-full flex-col justify-between py-2 text-xs font-medium text-fg-grey-700">
         {yAxisLabels.map((label) => (
           <span key={label}>{label}</span>
@@ -141,10 +141,10 @@ export function FigmaGroupedBarChart({
         </div>
 
         {tooltipItems && (
-          <div className="absolute left-1/2 top-3 z-20 min-w-40 -translate-x-1/2 rounded-xl bg-fg-black px-4 py-3 text-white shadow-elevated">
+          <div className="absolute left-1/2 top-3 z-20 min-w-36 -translate-x-1/2 rounded-xl bg-fg-black px-3 py-2 text-white shadow-elevated">
             <div className="flex flex-col gap-2">
               {tooltipItems.map((item) => (
-                <div key={item.label} className="flex items-center justify-between gap-4 text-sm">
+                <div key={item.label} className="flex items-center justify-between gap-3 text-xs">
                   <span className="flex items-center gap-2 text-white/70">
                     <span className={`size-2.5 rounded-full ${item.colorClass}`} />
                     {item.label}
@@ -189,7 +189,7 @@ export function FigmaUpsideDownBarChart({
   activeIndex = 6,
   tooltipUpperValue = "$680",
   tooltipLowerValue = "$280",
-  heightClass = "h-[280px]",
+  heightClass = "h-56",
 }: {
   data: { label: string; upperValue: number; lowerValue: number }[];
   upperColor?: string;
@@ -209,12 +209,12 @@ export function FigmaUpsideDownBarChart({
           <span key={index} className="border-t border-dashed border-fg-grey-100" />
         ))}
       </div>
-      <div className="absolute left-1/2 top-8 z-20 min-w-36 -translate-x-1/2 rounded-xl bg-fg-black px-4 py-3 text-white shadow-elevated">
-        <div className="flex items-center justify-between gap-4 text-sm">
+      <div className="absolute left-1/2 top-6 z-20 min-w-32 -translate-x-1/2 rounded-xl bg-fg-black px-3 py-2 text-white shadow-elevated">
+        <div className="flex items-center justify-between gap-3 text-xs">
           <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${upperColor}`} />Income</span>
           <span className="font-semibold">{tooltipUpperValue}</span>
         </div>
-        <div className="mt-2 flex items-center justify-between gap-4 text-sm">
+        <div className="mt-1.5 flex items-center justify-between gap-3 text-xs">
           <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${lowerColor}`} />Expenses</span>
           <span className="font-semibold">{tooltipLowerValue}</span>
         </div>

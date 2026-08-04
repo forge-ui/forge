@@ -149,6 +149,7 @@ export function LineChartStatCard({
   chartDirection = "up",
   series,
   icon,
+  density = "default",
   width,
   className,
 }: {
@@ -165,6 +166,7 @@ export function LineChartStatCard({
   series?: number[];
   /** Icon for the top-right chip (only rendered in size="wide"). */
   icon?: ReactNode;
+  density?: "default" | "compact";
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -185,6 +187,7 @@ export function LineChartStatCard({
       themeKey={themeKey}
       size={size}
       icon={icon}
+      density={density}
       width={width}
       chartSlot={chartSlot}
       className={className}

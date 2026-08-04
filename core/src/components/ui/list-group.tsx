@@ -19,6 +19,7 @@ export function ListGroup({
   onTabChange,
   closable,
   onClose,
+  density = "default",
   className,
 }: {
   title: string;
@@ -32,6 +33,7 @@ export function ListGroup({
   onTabChange?: (value: string) => void;
   closable?: boolean;
   onClose?: () => void;
+  density?: "default" | "compact";
   className?: string;
 }) {
   const accent = accentColors[color];
@@ -43,8 +45,8 @@ export function ListGroup({
         className
       )}
     >
-      <div className="self-stretch px-5 pt-5 inline-flex justify-start items-start gap-3">
-        <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
+      <div className={cn("self-stretch inline-flex justify-start items-start", density === "compact" ? "px-4 pt-4 gap-2" : "px-5 pt-5 gap-3")}>
+        <div className={cn("flex-1 inline-flex flex-col justify-start items-start", density === "compact" ? "gap-1" : "gap-2")}>
           <div className="inline-flex items-center gap-3">
             <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
               {title}
@@ -72,7 +74,7 @@ export function ListGroup({
       </div>
 
       {tabs && tabs.length > 0 && (
-        <div className="self-stretch px-5 pt-5">
+        <div className={cn("self-stretch", density === "compact" ? "px-4 pt-4" : "px-5 pt-5")}>
           <div
             role="tablist"
             className="p-1 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex w-full"
@@ -87,7 +89,8 @@ export function ListGroup({
                   aria-selected={isActive}
                   onClick={() => onTabChange?.(tab.value)}
                   className={cn(
-                    "flex-1 px-3.5 py-2.5 rounded-full text-sm transition-colors",
+                    "flex-1 rounded-full text-sm transition-colors",
+                    density === "compact" ? "px-3 py-2" : "px-3.5 py-2.5",
                     isActive
                       ? `${accent.bgTint} ${accent.text} font-bold`
                       : "text-fg-grey-700 font-semibold hover:bg-fg-grey-100"
@@ -101,7 +104,7 @@ export function ListGroup({
         </div>
       )}
 
-      <div className="self-stretch px-5 py-5 flex flex-col gap-4">{items}</div>
+      <div className={cn("self-stretch flex flex-col", density === "compact" ? "px-4 py-4 gap-3" : "px-5 py-5 gap-4")}>{items}</div>
     </div>
   );
 }

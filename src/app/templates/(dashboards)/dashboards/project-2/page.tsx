@@ -78,10 +78,11 @@ export default function Project2Page() {
       teamMemberCount={teamMeta.teamMemberCount}
       pageTitle="Overview"
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch [&>*]:!w-full">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 items-stretch [&>*]:!w-full">
           <ProgressStatCard
+            density="compact"
             title="Active Project"
             subtitle="+44 today"
             value="4,412"
@@ -94,6 +95,7 @@ export default function Project2Page() {
             size="wide"
           />
           <LineChartStatCard
+            density="compact"
             title="Active Client"
             subtitle="+0 today"
             value="1,456"
@@ -105,6 +107,7 @@ export default function Project2Page() {
             icon={<UserBoldDuotone size={20} />}
           />
           <WheelChartStatCard
+            density="compact"
             title="Team Assigned"
             subtitle="+5 today"
             value="324"
@@ -118,11 +121,11 @@ export default function Project2Page() {
         </div>
 
         {/* Statistic + All Project pie */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
+                <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and expenses</p>
               </div>
               <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
@@ -132,7 +135,7 @@ export default function Project2Page() {
                 <button className="px-3 py-1.5 text-fg-grey-500">Profit</button>
               </div>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               {[
                 { label: "Income", value: "$26,201", trend: "10%", up: true, color: "#7c3aed" },
                 { label: "Expenses", value: "$18,120", trend: "10%", up: false, color: "#f97316" },
@@ -170,14 +173,14 @@ export default function Project2Page() {
               showYAxis
               yAxisLabels={["$1.2k", "$1k", "$800", "$600", "$400", "$200", "0"]}
               xAxisLabels={months}
-              height="h-[260px]"
+              height="h-56"
             />
           </div>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">All Project</h3>
+                <h3 className="text-sm font-semibold text-fg-black">All Project</h3>
                 <p className="text-sm text-fg-grey-500">Based on status</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -190,7 +193,7 @@ export default function Project2Page() {
                   { value: 20, color: "#10b981" },
                   { value: 10, color: "#ef4444" },
                 ]}
-                size="lg"
+                size="md"
               />
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
@@ -203,8 +206,9 @@ export default function Project2Page() {
         </div>
 
         {/* Recent Project + Team Member + Calendar */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <ListGroup
+            density="compact"
             title="Recent Project"
             subtitle="Recent Active Project"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -229,6 +233,7 @@ export default function Project2Page() {
           />
 
           <ListGroup
+            density="compact"
             title="Team Member"
             subtitle="All Team Member"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -253,10 +258,10 @@ export default function Project2Page() {
             }
           />
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-4">
+          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">Calendar</h3>
+                <h3 className="text-sm font-semibold text-fg-black">Calendar</h3>
                 <p className="text-sm text-fg-grey-500">Recent schedule</p>
               </div>
               <KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />
