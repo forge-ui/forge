@@ -51,25 +51,38 @@ function OptionItem({
       tabIndex={-1}
       aria-selected={selected}
       onClick={onClick}
-      className="h-12 px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-fg-grey-100 transition-colors w-full"
+      className="flex h-12 w-full cursor-pointer items-center gap-2 px-4 py-3 text-left transition-colors hover:bg-fg-grey-100"
     >
       {isImage && item.image && (
         /* eslint-disable-next-line @next/next/no-img-element */
-        <img src={item.image} alt="" className="w-5 h-5 rounded-full shrink-0 object-cover" />
+        <img src={item.image} alt="" className="size-5 shrink-0 rounded-full object-cover" />
       )}
       <span
         className={cn(
-          "flex-1 text-sm leading-5 tracking-fg truncate",
+          "min-w-0 flex-1 text-left text-sm leading-5 tracking-fg truncate",
           selected ? cn("font-bold", accent.text) : "font-semibold text-fg-grey-700",
         )}
       >
         {item.label}
       </span>
-      {selected && (
-        <svg className={cn("w-[22px] h-[22px] shrink-0", accent.text)} viewBox="0 0 22 22" fill="none">
-          <path d="M5.5 11.5L9 15L16.5 7.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Reserve check column so selected/unselected labels share the same left edge */}
+      <span
+        className={cn(
+          "inline-flex size-[22px] shrink-0 items-center justify-center",
+          selected ? accent.text : "text-transparent",
+        )}
+        aria-hidden={!selected}
+      >
+        <svg className="size-[22px]" viewBox="0 0 22 22" fill="none">
+          <path
+            d="M5.5 11.5L9 15L16.5 7.5"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
-      )}
+      </span>
     </button>
   );
 }
