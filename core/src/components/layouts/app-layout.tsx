@@ -416,7 +416,7 @@ export function AppLayout({
             inert={sidebarCollapsed ? true : undefined}
             className={cn("flex-1 flex items-center gap-2 overflow-hidden", sidebarCollapsed && "justify-center")}
           >
-            {logo ?? <img src={forgeLogoDataUrl} alt="Forge" className="w-8 h-8 shrink-0" />}
+            {logo ?? <img src={forgeLogoDataUrl} alt="Forge" className={cn("w-8 h-8 shrink-0", mode === "dark" && "invert")} />}
             {!sidebarCollapsed && (
               <span className={cn("min-w-0 truncate whitespace-nowrap text-2xl font-semibold leading-8 tracking-fg", config.logoText)}>{logoText}</span>
             )}
