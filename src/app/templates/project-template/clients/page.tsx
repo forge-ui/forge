@@ -7,6 +7,7 @@ import { Avatar, Button, ButtonGroup, CellActions, CellMuted, CellTextSubtitle, 
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { clients, type Client } from "../_data";
+import { projectPageStackClass } from "../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";
 import { ProjectLogo } from "../_logos";
 
@@ -32,7 +33,7 @@ export default function ClientsPage() {
 
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop title="Client" current="Client" actions={<div className="flex gap-4"><Button variant="tertiary" iconLeft={<CloudDownloadLinear size={20} />}>Export</Button><Button iconLeft={<AddCircleLinear size={20} />} onClick={() => openModal("add")}>Add New</Button></div>} />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -61,5 +62,5 @@ export default function ClientsPage() {
 
 function ClientCards({ clients, onEdit, onDelete }: { clients: Client[]; onEdit: (client: Client) => void; onDelete: (client: Client) => void }) {
   const router = useRouter();
-  return <div className="grid grid-cols-4 gap-6">{clients.slice(0, 8).map((client) => <article key={client.id} className="rounded-[28px] border border-fg-grey-200 bg-white p-6 text-center"><Avatar src={client.avatar} size="lg" /><h2 className="mt-4 text-xl font-semibold text-fg-black">{client.name}</h2><p className="text-fg-grey-500">{client.email}</p><div className="mt-5 flex items-center justify-center gap-2"><ProjectLogo name={client.logo} size="sm" /><span>{client.company}</span></div><p className="mt-3 text-fg-grey-500">{client.projects} Project</p><div className="mt-5 flex justify-center"><CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") router.push(`/templates/project-template/clients/${client.id}`); if (action === "pen") onEdit(client); if (action === "trash") onDelete(client); }} /></div></article>)}</div>;
+  return <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">{clients.slice(0, 8).map((client) => <article key={client.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4 text-center"><Avatar src={client.avatar} size="lg" /><h2 className="mt-3 text-lg font-semibold text-fg-black">{client.name}</h2><p className="text-sm text-fg-grey-500">{client.email}</p><div className="mt-3 flex items-center justify-center gap-2"><ProjectLogo name={client.logo} size="sm" /><span>{client.company}</span></div><p className="mt-2 text-sm text-fg-grey-500">{client.projects} Project</p><div className="mt-3 flex justify-center"><CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") router.push(`/templates/project-template/clients/${client.id}`); if (action === "pen") onEdit(client); if (action === "trash") onDelete(client); }} /></div></article>)}</div>;
 }

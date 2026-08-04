@@ -6,6 +6,7 @@ import { Button, CellActions, DataTable, FileTypeIcon, ToolbarFilterButton, Tool
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { fileItems, projects } from "../_data";
+import { projectPageStackClass } from "../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";
 
 type FileRow = { id: string; name: string; project: string; size: string; added: string };
@@ -29,7 +30,7 @@ export default function FilesPage() {
   ];
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop title="File Manager" current="File Manager" actions={<Button iconLeft={<AddCircleLinear size={18} />} onClick={() => setModal("add")}>Add File</Button>} />
         <div className="flex justify-end gap-4"><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
         <DataTable<FileRow> columns={columns} rows={rows} color="purple" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-9 from 100" />
