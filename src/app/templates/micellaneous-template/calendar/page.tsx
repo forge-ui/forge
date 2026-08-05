@@ -23,7 +23,7 @@ function MicellaneousCalendarContent() {
 
   return (
     <MicellaneousTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <MicellaneousPageHeader
           title="Calendar"
           current={`Calendar ${view[0].toUpperCase()}${view.slice(1)}`}

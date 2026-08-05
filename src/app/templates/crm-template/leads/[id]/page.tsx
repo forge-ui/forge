@@ -104,7 +104,7 @@ function CrmLeadDetailContent() {
 
   return (
     <CrmTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <CrmPageHeader
           title="Leads Details"
           current="Leads Details"
@@ -115,7 +115,7 @@ function CrmLeadDetailContent() {
             </div>
           }
         />
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[320px_minmax(0,1fr)]">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)]">
           <aside className="flex flex-col gap-5">
             <CrmSurface>
               <div className="flex flex-col items-center text-center">

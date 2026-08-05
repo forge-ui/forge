@@ -106,7 +106,7 @@ function FinanceWalletsContent() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <FinancePageHeader title="Wallet" current="Wallet" actions={<Button color="blue" iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/finance-template/wallets?dialog=add-wallet")}>Add Wallet</Button>} />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"

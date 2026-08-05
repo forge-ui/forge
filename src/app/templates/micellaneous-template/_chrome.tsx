@@ -50,7 +50,7 @@ export function MicellaneousPageHeader({ title, current, actions }: { title: str
 }
 
 export function MiscSurface({ title, subtitle, action, children, className = "" }: { title?: string; subtitle?: string; action?: ReactNode; children: ReactNode; className?: string }) {
-  const padding = className.includes("p-0") ? "none" : "md";
+  const padding = className.includes("p-0") ? "none" : "sm";
   const shellClassName = className.replace(/\bp-0\b/g, "").trim();
 
   return (

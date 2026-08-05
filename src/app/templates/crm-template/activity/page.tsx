@@ -167,7 +167,7 @@ function CrmActivityContent() {
 
   return (
     <CrmTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <CrmPageHeader
           title="Activity"
           current="Activity"
@@ -179,7 +179,7 @@ function CrmActivityContent() {
           }
         />
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-[320px_minmax(0,1fr)]">
-          <aside className="flex min-h-[760px] flex-col gap-6 rounded-[20px] bg-white p-6 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+          <aside className="flex min-h-[680px] flex-col gap-5 rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
             <div className="flex items-center gap-3">
               <h2 className="flex-1 text-xl font-semibold leading-8 tracking-fg text-fg-black">Member</h2>
               <button type="button" className="inline-flex items-center gap-1 text-sm font-bold leading-5 tracking-fg text-fg-violet">

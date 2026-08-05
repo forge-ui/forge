@@ -218,7 +218,7 @@ function CrmCustomerDetailContent() {
 
   return (
     <CrmTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <CrmPageHeader
           title="Customer Details"
           current="Customer Details"
@@ -243,7 +243,7 @@ function CrmCustomerDetailContent() {
           }
         />
 
-        <div className={isVer2 ? "grid grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_360px]" : "grid grid-cols-1 items-start gap-4 xl:grid-cols-[320px_minmax(0,1fr)]"}>
+        <div className={isVer2 ? "grid grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_320px]" : "grid grid-cols-1 items-start gap-4 xl:grid-cols-[300px_minmax(0,1fr)]"}>
           {isVer2 ? (
             <>
               {detailSection}
@@ -429,7 +429,7 @@ function DetailContent({ activeTab }: { activeTab: DetailTab }) {
 
 function ScheduleLogPanel({ kind }: { kind: "call" | "meet" }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <TimelineSectionTitle>Schedule</TimelineSectionTitle>
       <ActivityEntry type={`${kind}-schedule`} />
       <TimelineSectionTitle>Log</TimelineSectionTitle>
