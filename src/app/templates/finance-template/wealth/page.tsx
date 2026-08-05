@@ -60,7 +60,7 @@ export default function FinanceWealthPage() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <FinancePageHeader
           title="Wealth"
           current="Wealth"
@@ -73,7 +73,7 @@ export default function FinanceWealthPage() {
           <FinanceMetricCard title="Total Balance" value="$14,000" trend="10%" note="+$150 today" chartColor="green" />
         </div>
 
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[360px_minmax(0,1fr)]">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[320px_minmax(0,1fr)]">
           <FinanceSurface
             title="Card"
             eyebrow="All Your Cards"

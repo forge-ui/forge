@@ -71,7 +71,7 @@ function MicellaneousActionsContent() {
 
   return (
     <MicellaneousTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <MicellaneousPageHeader title="Table Action" current="Table Action" actions={<Button iconLeft={<AddCircleLinear size={18} />}>Add Action</Button>} />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"

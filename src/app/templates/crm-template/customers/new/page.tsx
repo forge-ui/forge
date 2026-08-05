@@ -21,7 +21,7 @@ function CrmCustomerFormContent() {
 
   return (
     <CrmTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <CrmPageHeader title={isVariant2 ? "Add Customer ver 2" : "Add Customer"} current={isVariant2 ? "Add Customer ver 2" : "Add Customer"} actions={<Button>Save Customer</Button>} />
         <CrmSurface>
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">

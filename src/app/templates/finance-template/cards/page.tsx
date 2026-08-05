@@ -83,13 +83,13 @@ function FinanceCardsContent() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <FinancePageHeader
           title="Card"
           current="Card"
           actions={<Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Download Report</Button>}
         />
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[360px_minmax(0,1fr)]">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[320px_minmax(0,1fr)]">
           <aside className="flex flex-col gap-5">
             <FinanceSurface
               title="Card"
