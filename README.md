@@ -94,9 +94,10 @@ import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/co
 | 路径 | 说明 |
 |---|---|
 | `core/` | `@forge-ui-official/core` 组件库源码 |
+| `docs/for-agents/` | **给 AI 的组件路由表 + 介绍表**（先读 `README.md`） |
 | `src/app/docs` | 文档页面 |
 | `src/app/components` | 组件展示与变体 |
-| `src/app/cases` | 组件组合案例 |
+| `src/app/cases` | 组件组合案例（活文档，props 以源码为准） |
 | `src/app/templates` | 完整后台模板和业务页面 |
 | `.agents/skills/forge` | Forge UI Kit skill，用于在本仓和 starter 中写业务页面 |
 | `public/` | 图片、图标和安装脚本 |
@@ -117,6 +118,16 @@ pnpm core:build      # 只构建 @forge-ui-official/core
 pnpm core:typecheck  # 只检查组件包类型
 pnpm lint            # 运行 ESLint
 ```
+
+## 给 AI 的组件目录
+
+写业务页前让 Agent 读：
+
+- [`docs/for-agents/README.md`](./docs/for-agents/README.md) — 总入口  
+- [`docs/for-agents/routes.md`](./docs/for-agents/routes.md) — `/cases/*` 路由表  
+- [`docs/for-agents/components.md`](./docs/for-agents/components.md) — 组件用途 + 对应 case  
+
+全量 export 机器清单见 `docs/for-agents/inventory.json`（与 forge-readdy catalog 同源可刷新）。
 
 ## Forge Skill
 
