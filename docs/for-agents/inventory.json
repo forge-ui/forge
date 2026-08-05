@@ -1,0 +1,1299 @@
+{
+  "package": "@forge-ui-official/core",
+  "version": "0.1.7",
+  "generatedAt": "2026-08-04T06:13:11.864Z",
+  "source": "dist/components/ui/index.d.ts (+ AppLayout from layouts)",
+  "componentCount": 181,
+  "oneShotDefaultCount": 22,
+  "components": [
+    {
+      "name": "ActivityCard",
+      "module": "activity-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "AppLayout",
+      "module": "../layouts/app-layout",
+      "group": "layouts",
+      "oneShotDefault": true
+    },
+    {
+      "name": "AppLayoutBreadcrumb",
+      "module": "../layouts/app-layout",
+      "group": "layouts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "AppLayoutMenuItem",
+      "module": "../layouts/app-layout",
+      "group": "layouts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "AppLayoutProfile",
+      "module": "../layouts/app-layout",
+      "group": "layouts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ArtisticIcon",
+      "module": "badge",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Avatar",
+      "module": "avatar",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "AvatarGroup",
+      "module": "avatar",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BalanceCard",
+      "module": "balance-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BarChart",
+      "module": "charts/bar-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BarChartStatCard",
+      "module": "bar-chart-stat-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BarHorizontalChart",
+      "module": "charts/bar-horizontal-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BarUpsideDownChart",
+      "module": "charts/bar-upside-down-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BreadcrumbItem",
+      "module": "breadcrumbs",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Breadcrumbs",
+      "module": "breadcrumbs",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "BubbleChart",
+      "module": "charts/bubble-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Button",
+      "module": "button",
+      "group": "primitives",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ButtonGroup",
+      "module": "button-group",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ButtonGroupItem",
+      "module": "button-group",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CalendarDayCell",
+      "module": "calendar-day-cell",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CalendarEvent",
+      "module": "full-calendar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CalendarWeekRow",
+      "module": "calendar-week-row",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CardAvatarGroup",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CardGlow",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CardIconChip",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CardKebabButton",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CardTrend",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CardWidth",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellActions",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": true
+    },
+    {
+      "name": "CellCode",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellFile",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellImageText",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellKebabMenu",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellLink",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellMuted",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellNumber",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellProgressBar",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellProgressValue",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellRating",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellStatusDot",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CellText",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": true
+    },
+    {
+      "name": "CellTextSubtitle",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ChartCard",
+      "module": "charts/chart-card",
+      "group": "charts",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ChartLegendItem",
+      "module": "charts/chart-legend-item",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ChartListItem",
+      "module": "charts/chart-list-item",
+      "group": "charts",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ChartStatFooter",
+      "module": "charts/chart-stat-footer",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ChartTooltip",
+      "module": "charts/chart-tooltip",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ChartValueRow",
+      "module": "charts/chart-value-row",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ChatBubble",
+      "module": "chat-bubble",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ChatInputBar",
+      "module": "chat-input-bar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ChatInputBarToggle",
+      "module": "chat-input-bar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Checkbox",
+      "module": "checkbox",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CheckboxControl",
+      "module": "checkbox",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CheckboxWithLabel",
+      "module": "forms/selection-control",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CheckIcon",
+      "module": "plain-icons",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CircleIcon",
+      "module": "badge",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CloseIcon",
+      "module": "plain-icons",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ColorPicker",
+      "module": "forms/icon-selector",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ColorSwatch",
+      "module": "style-guide",
+      "group": "tokens-utils",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ColumnDef",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": true
+    },
+    {
+      "name": "CommentData",
+      "module": "comment-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CommentItem",
+      "module": "comment-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CommentReply",
+      "module": "comment-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ConfirmationDialog",
+      "module": "confirmation-dialog",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ContactItem",
+      "module": "contact-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CreditCard",
+      "module": "credit-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "CurrencyConverter",
+      "module": "currency-converter",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DailyEvent",
+      "module": "small-daily-calendar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DashedHalfDonutChart",
+      "module": "charts/dashed-half-donut-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DataTable",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": true
+    },
+    {
+      "name": "Datepicker",
+      "module": "forms/datepicker",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DebitCard",
+      "module": "debit-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DescriptionItem",
+      "module": "list-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DonutChart",
+      "module": "charts/donut-chart",
+      "group": "charts",
+      "oneShotDefault": true
+    },
+    {
+      "name": "DropdownDivider",
+      "module": "dropdown-panel",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "DropdownPanel",
+      "module": "dropdown-panel",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "EventCard",
+      "module": "event-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "EventTag",
+      "module": "event-tag",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FileCard",
+      "module": "forms/file-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FileItem",
+      "module": "forms/file-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FileTypeIcon",
+      "module": "forms/file-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FileUpload",
+      "module": "forms/file-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FilterGroup",
+      "module": "filter-group",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FilterGroupCheckboxOption",
+      "module": "filter-group",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FilterGroupContent",
+      "module": "filter-group",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FilterGroupRadioOption",
+      "module": "filter-group",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FilterPanel",
+      "module": "filter-panel",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FilterTrigger",
+      "module": "filter-trigger",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FinancialOrbs",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FullCalendar",
+      "module": "full-calendar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "FullWidthTable",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "HalfDonutChart",
+      "module": "charts/half-donut-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "HighlightCard",
+      "module": "highlight-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "HistoryGrouped",
+      "module": "history-grouped",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "HistoryItem",
+      "module": "history-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "IconButton",
+      "module": "icon-button",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "IconPicker",
+      "module": "forms/icon-selector",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "IconSelector",
+      "module": "forms/icon-selector",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "IconTrigger",
+      "module": "icon-trigger",
+      "group": "other",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ImageGrid",
+      "module": "image-grid",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ImageStatCard",
+      "module": "image-stat-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "KebabMenu",
+      "module": "kebab-menu",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "KebabMenuItem",
+      "module": "kebab-menu",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Label",
+      "module": "badge",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "LineChartStatCard",
+      "module": "line-chart-stat-card",
+      "group": "cards",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ListGroup",
+      "module": "list-group",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ListGroupTab",
+      "module": "list-group",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ListItem",
+      "module": "list-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MapCard",
+      "module": "map-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MapContinent",
+      "module": "map-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MapRegion",
+      "module": "map-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MastercardLogo",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MediaItem",
+      "module": "forms/media-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MediaUpload",
+      "module": "forms/media-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MenuItem",
+      "module": "menu-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MeterChart",
+      "module": "charts/meter-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "MultilayerDonutChart",
+      "module": "charts/multilayer-donut-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "NotificationBadge",
+      "module": "badge",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "NotificationItem",
+      "module": "notification-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PageDot",
+      "module": "page-dot",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PageHeader",
+      "module": "page-header",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PageHeaderAction",
+      "module": "page-header",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PageHeaderProfile",
+      "module": "page-header",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PageTitleToolbar",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": true
+    },
+    {
+      "name": "Pagination",
+      "module": "pagination",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PieChart",
+      "module": "charts/pie-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "PlusIcon",
+      "module": "plain-icons",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProductRow",
+      "module": "product-row",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProfileCard",
+      "module": "profile-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProfileImgUpload",
+      "module": "forms/media-upload",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProgressBadge",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProgressBar",
+      "module": "progress-bar",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProgressCard",
+      "module": "progress-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProgressStatCard",
+      "module": "progress-stat-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ProjectCard",
+      "module": "project-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "RadioButton",
+      "module": "forms/selection-control",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "RadioWithLabel",
+      "module": "forms/selection-control",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "RatingStars",
+      "module": "rating-stars",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ReviewItem",
+      "module": "review-item",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SelectOption",
+      "module": "forms/select-option",
+      "group": "forms",
+      "oneShotDefault": true
+    },
+    {
+      "name": "SelectOptionItem",
+      "module": "forms/select-option",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SidebarMenu",
+      "module": "sidebar-menu",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SidebarMenuItem",
+      "module": "sidebar-menu",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SmallCalendar",
+      "module": "small-calendar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SmallCalendarEvent",
+      "module": "small-calendar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SmallDailyCalendar",
+      "module": "small-daily-calendar",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SmoothLineChart",
+      "module": "charts/smooth-line-chart",
+      "group": "charts",
+      "oneShotDefault": false
+    },
+    {
+      "name": "StatCard",
+      "module": "stat-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "StatCardShell",
+      "module": "card-utils",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "StatusBadge",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": true
+    },
+    {
+      "name": "Stepper",
+      "module": "stepper",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "StyledLink",
+      "module": "link",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
+      "name": "SurfaceCard",
+      "module": "surface-card",
+      "group": "cards",
+      "oneShotDefault": true
+    },
+    {
+      "name": "TabBar",
+      "module": "tab-bar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TabItem",
+      "module": "tab-bar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TableCell",
+      "module": "data-table",
+      "group": "table",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TaskCard",
+      "module": "task-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TextArea",
+      "module": "forms/text-area",
+      "group": "forms",
+      "oneShotDefault": true
+    },
+    {
+      "name": "TextField",
+      "module": "forms/text-field",
+      "group": "forms",
+      "oneShotDefault": true
+    },
+    {
+      "name": "TextFieldSelectSuffix",
+      "module": "forms/text-field-select",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Toggle",
+      "module": "forms/selection-control",
+      "group": "forms",
+      "oneShotDefault": false
+    },
+    {
+      "name": "Toolbar",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ToolbarActions",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ToolbarDatepicker",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ToolbarFavoriteButton",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ToolbarFilterButton",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ToolbarKebabButton",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ToolbarPillTab",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ToolbarPillTabs",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "ToolbarSearchInput",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ToolbarSelectDropdown",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": true
+    },
+    {
+      "name": "ToolbarShowSelect",
+      "module": "toolbar",
+      "group": "chrome",
+      "oneShotDefault": true
+    },
+    {
+      "name": "Tooltip",
+      "module": "tooltip",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TooltipAnchor",
+      "module": "tooltip",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TooltipBubble",
+      "module": "tooltip",
+      "group": "patterns",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TopBar",
+      "module": "topbar",
+      "group": "chrome",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TypefaceBlock",
+      "module": "style-guide",
+      "group": "tokens-utils",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TypographySizeRow",
+      "module": "style-guide",
+      "group": "tokens-utils",
+      "oneShotDefault": false
+    },
+    {
+      "name": "TypographyWeightSample",
+      "module": "style-guide",
+      "group": "tokens-utils",
+      "oneShotDefault": false
+    },
+    {
+      "name": "UserCard",
+      "module": "user-card",
+      "group": "cards",
+      "oneShotDefault": false
+    },
+    {
+      "name": "WheelChartStatCard",
+      "module": "wheel-chart-stat-card",
+      "group": "cards",
+      "oneShotDefault": false
+    }
+  ],
+  "groups": {
+    "cards": [
+      "ActivityCard",
+      "BalanceCard",
+      "BarChartStatCard",
+      "CardAvatarGroup",
+      "CardGlow",
+      "CardIconChip",
+      "CardKebabButton",
+      "CardTrend",
+      "CardWidth",
+      "CreditCard",
+      "DebitCard",
+      "EventCard",
+      "FinancialOrbs",
+      "HighlightCard",
+      "ImageStatCard",
+      "LineChartStatCard",
+      "MapCard",
+      "MapContinent",
+      "MapRegion",
+      "MastercardLogo",
+      "ProfileCard",
+      "ProgressCard",
+      "ProgressStatCard",
+      "ProjectCard",
+      "StatCard",
+      "StatCardShell",
+      "SurfaceCard",
+      "TaskCard",
+      "UserCard",
+      "WheelChartStatCard"
+    ],
+    "layouts": [
+      "AppLayout",
+      "AppLayoutBreadcrumb",
+      "AppLayoutMenuItem",
+      "AppLayoutProfile"
+    ],
+    "primitives": [
+      "ArtisticIcon",
+      "Avatar",
+      "AvatarGroup",
+      "Button",
+      "ButtonGroup",
+      "ButtonGroupItem",
+      "CheckIcon",
+      "Checkbox",
+      "CheckboxControl",
+      "CircleIcon",
+      "CloseIcon",
+      "IconButton",
+      "Label",
+      "NotificationBadge",
+      "PlusIcon",
+      "ProgressBar",
+      "StyledLink"
+    ],
+    "charts": [
+      "BarChart",
+      "BarHorizontalChart",
+      "BarUpsideDownChart",
+      "BubbleChart",
+      "ChartCard",
+      "ChartLegendItem",
+      "ChartListItem",
+      "ChartStatFooter",
+      "ChartTooltip",
+      "ChartValueRow",
+      "DashedHalfDonutChart",
+      "DonutChart",
+      "HalfDonutChart",
+      "MeterChart",
+      "MultilayerDonutChart",
+      "PieChart",
+      "SmoothLineChart"
+    ],
+    "chrome": [
+      "BreadcrumbItem",
+      "Breadcrumbs",
+      "PageDot",
+      "PageHeader",
+      "PageHeaderAction",
+      "PageHeaderProfile",
+      "PageTitleToolbar",
+      "Pagination",
+      "SidebarMenu",
+      "SidebarMenuItem",
+      "Stepper",
+      "TabBar",
+      "TabItem",
+      "Toolbar",
+      "ToolbarActions",
+      "ToolbarDatepicker",
+      "ToolbarFavoriteButton",
+      "ToolbarFilterButton",
+      "ToolbarKebabButton",
+      "ToolbarPillTab",
+      "ToolbarPillTabs",
+      "ToolbarSearchInput",
+      "ToolbarSelectDropdown",
+      "ToolbarShowSelect",
+      "TopBar"
+    ],
+    "patterns": [
+      "CalendarDayCell",
+      "CalendarEvent",
+      "CalendarWeekRow",
+      "ChatBubble",
+      "ChatInputBar",
+      "ChatInputBarToggle",
+      "CommentData",
+      "CommentItem",
+      "CommentReply",
+      "ConfirmationDialog",
+      "ContactItem",
+      "CurrencyConverter",
+      "DailyEvent",
+      "DescriptionItem",
+      "DropdownDivider",
+      "DropdownPanel",
+      "EventTag",
+      "FilterGroup",
+      "FilterGroupCheckboxOption",
+      "FilterGroupContent",
+      "FilterGroupRadioOption",
+      "FilterPanel",
+      "FilterTrigger",
+      "FullCalendar",
+      "HistoryGrouped",
+      "HistoryItem",
+      "ImageGrid",
+      "KebabMenu",
+      "KebabMenuItem",
+      "ListGroup",
+      "ListGroupTab",
+      "ListItem",
+      "MenuItem",
+      "NotificationItem",
+      "ProductRow",
+      "RatingStars",
+      "ReviewItem",
+      "SmallCalendar",
+      "SmallCalendarEvent",
+      "SmallDailyCalendar",
+      "Tooltip",
+      "TooltipAnchor",
+      "TooltipBubble"
+    ],
+    "table": [
+      "CellActions",
+      "CellCode",
+      "CellFile",
+      "CellImageText",
+      "CellKebabMenu",
+      "CellLink",
+      "CellMuted",
+      "CellNumber",
+      "CellProgressBar",
+      "CellProgressValue",
+      "CellRating",
+      "CellStatusDot",
+      "CellText",
+      "CellTextSubtitle",
+      "ColumnDef",
+      "DataTable",
+      "FullWidthTable",
+      "ProgressBadge",
+      "StatusBadge",
+      "TableCell"
+    ],
+    "forms": [
+      "CheckboxWithLabel",
+      "ColorPicker",
+      "Datepicker",
+      "FileCard",
+      "FileItem",
+      "FileTypeIcon",
+      "FileUpload",
+      "IconPicker",
+      "IconSelector",
+      "MediaItem",
+      "MediaUpload",
+      "ProfileImgUpload",
+      "RadioButton",
+      "RadioWithLabel",
+      "SelectOption",
+      "SelectOptionItem",
+      "TextArea",
+      "TextField",
+      "TextFieldSelectSuffix",
+      "Toggle"
+    ],
+    "tokens-utils": [
+      "ColorSwatch",
+      "TypefaceBlock",
+      "TypographySizeRow",
+      "TypographyWeightSample"
+    ],
+    "other": [
+      "IconTrigger"
+    ]
+  }
+}
