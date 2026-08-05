@@ -14,7 +14,7 @@ export function CrmSurface({
   children: ReactNode;
   className?: string;
 }) {
-  const padding = className.includes("p-0") ? "none" : "md";
+  const padding = className.includes("p-0") ? "none" : "sm";
   const shellClassName = className.replace(/\bp-0\b/g, "").trim();
 
   return (
@@ -81,19 +81,19 @@ export function CrmMetricCard({
   footer: ReactNode;
 }) {
   return (
-    <div className="flex h-60 min-w-0 flex-col justify-between overflow-hidden rounded-[20px] bg-white p-6 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
-      <div className="flex items-start gap-4">
+    <div className="flex h-52 min-w-0 flex-col justify-between overflow-hidden rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+      <div className="flex items-start gap-3">
         <div className="flex min-w-0 flex-1 flex-col gap-2">
-          <p className="truncate text-xl font-semibold leading-8 tracking-fg text-fg-black">{title}</p>
+          <p className="truncate text-lg font-semibold leading-7 tracking-fg text-fg-black">{title}</p>
           <p className="text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{date}</p>
         </div>
-        <div className={`grid size-12 shrink-0 place-items-center rounded-full ${iconClassName}`}>
+        <div className={`grid size-10 shrink-0 place-items-center rounded-full ${iconClassName}`}>
           {icon}
         </div>
       </div>
       <div className="flex items-end gap-4">
-        <div className="flex min-w-36 flex-1 flex-col gap-4">
-          <p className="text-3xl font-semibold tracking-fg text-fg-black">{value}</p>
+        <div className="flex min-w-36 flex-1 flex-col gap-3">
+          <p className="text-2xl font-semibold tracking-fg text-fg-black">{value}</p>
           <div className="flex items-center gap-1 text-sm leading-5 tracking-fg">
             <span className={trendDirection === "down" ? "font-bold text-fg-red" : "font-bold text-fg-green-500"}>
               {trend}

@@ -84,7 +84,7 @@ function FinanceTransactionsContent() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <FinancePageHeader
           title="Transactions"
           current="Transactions"

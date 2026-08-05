@@ -31,13 +31,13 @@ function MicellaneousChatContent() {
 
   return (
     <MicellaneousTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <MicellaneousPageHeader
           title="Chat"
           current={chat === "team" ? "Chat Team" : "Chat Person"}
           actions={<Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/micellaneous-template/chat?chat=team&details=1&dialog=add-member")}>Add Member</Button>}
         />
-        <div className={showDetails ? "grid min-h-[720px] grid-cols-1 gap-5 xl:grid-cols-[320px_minmax(0,1fr)_300px]" : "grid min-h-[720px] grid-cols-1 gap-5 xl:grid-cols-[320px_minmax(0,1fr)]"}>
+        <div className={showDetails ? "grid min-h-[660px] grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)_280px]" : "grid min-h-[660px] grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)]"}>
           <MiscSurface className="p-0">
             <div className="border-b border-fg-grey-200 p-4">
               <ToolbarSearchInput placeholder="Search contacts..." className="max-w-none" />
