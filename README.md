@@ -148,6 +148,7 @@ curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-
 
 - [`forge-starter`](https://github.com/forge-ui/forge-starter)：最小 Next.js 起手模板。
 - [`forge-agent`](https://github.com/forge-ui/forge-agent)：基于 Forge 构建的 AI Agent 产品壳示例。
+- [`forge-design-extension`](https://github.com/forge-ui/forge-design-extension)：在真实 Chrome 里点选或放置组件，用本地 Grok 改界面。
 
 ## License
 
