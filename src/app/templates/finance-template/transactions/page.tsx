@@ -4,9 +4,7 @@ import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear } from "solar-icon-set";
 import {
-  Button,
   CellActions,
-  CellText,
   CellTextSubtitle,
   DataTable,
   StatusBadge,
@@ -86,14 +84,11 @@ function FinanceTransactionsContent() {
     <FinanceTemplateShell>
       <div className="flex flex-col gap-5">
         <FinancePageHeader
+          variant="collection"
           title="Transactions"
           current="Transactions"
-          actions={
-            <div className="flex flex-wrap items-center gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Download Report</Button>
-              <Button color="blue" iconLeft={<AddCircleLinear size={18} />}>Add Payment</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Download Report", icon: <CloudDownloadLinear size={18} /> }}
+          primaryAction={{ label: "Add Payment", icon: <AddCircleLinear size={18} /> }}
         />
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[320px_minmax(0,1fr)]">
           <aside className="flex flex-col gap-5">

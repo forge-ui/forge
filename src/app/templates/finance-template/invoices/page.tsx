@@ -4,7 +4,6 @@ import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear } from "solar-icon-set";
 import {
-  Button,
   CellActions,
   CellImageText,
   CellText,
@@ -81,9 +80,10 @@ function FinanceInvoicesContent() {
     <FinanceTemplateShell>
       <div className="flex flex-col gap-5">
         <FinancePageHeader
+          variant="collection"
           title="Invoice"
           current="Invoice"
-          actions={<Button color="blue" iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/finance-template/invoices/new")}>Add Invoice</Button>}
+          primaryAction={{ label: "Add Invoice", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/finance-template/invoices/new") }}
         />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"

@@ -58,8 +58,14 @@ function FinanceInvoiceFormContent() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-5">
-        <FinancePageHeader title={isEdit ? "Edit Invoice" : "Add Invoice"} current={isEdit ? "Edit Invoice" : "Add Invoice"} actions={<Button color="blue" onClick={() => router.push("/templates/finance-template/invoices/new?dialog=edit-invoice-confirmation")}>Save Invoice</Button>} />
+      <div className="flex flex-col gap-6">
+        <FinancePageHeader
+          variant="action"
+          title={isEdit ? "Edit Invoice" : "Add Invoice"}
+          current={isEdit ? "Edit Invoice" : "Add Invoice"}
+          secondaryAction={{ label: "Cancel", onClick: () => router.push("/templates/finance-template/invoices") }}
+          primaryAction={{ label: "Save Invoice", onClick: () => router.push("/templates/finance-template/invoices/new?dialog=edit-invoice-confirmation") }}
+        />
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
           <FinanceSurface title="Invoice Fields" eyebrow="Bill-to, dates and line items" className="min-w-0">
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">

@@ -21,8 +21,14 @@ function CrmCustomerFormContent() {
 
   return (
     <CrmTemplateShell>
-      <div className="flex flex-col gap-5">
-        <CrmPageHeader title={isVariant2 ? "Add Customer ver 2" : "Add Customer"} current={isVariant2 ? "Add Customer ver 2" : "Add Customer"} actions={<Button>Save Customer</Button>} />
+      <div className="flex flex-col gap-6">
+        <CrmPageHeader
+          variant="action"
+          title={isVariant2 ? "Add Customer ver 2" : "Add Customer"}
+          current={isVariant2 ? "Add Customer ver 2" : "Add Customer"}
+          secondaryAction={{ label: "Cancel" }}
+          primaryAction={{ label: "Save Customer" }}
+        />
         <CrmSurface>
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             <TextField label="Full Name" value={isFilled ? "John Bushmill" : ""} />

@@ -10,7 +10,7 @@ import {
   UsersGroupRoundedLinear,
   VideocameraRecordLinear,
 } from "solar-icon-set";
-import { Avatar, Button, FileTypeIcon, HistoryItem, StatusBadge, TabBar } from "@forge-ui-official/core";
+import { Avatar, FileTypeIcon, HistoryItem, StatusBadge, TabBar } from "@forge-ui-official/core";
 import { ProtaskActivityDialog, normalizeProtaskActivityDialogId } from "../../../_shared/protask-actions";
 import { CrmSurface, DetailLine } from "../../_components";
 import { CrmPageHeader, CrmTemplateShell, leadStatusColor } from "../../_chrome";
@@ -106,14 +106,11 @@ function CrmLeadDetailContent() {
     <CrmTemplateShell>
       <div className="flex flex-col gap-5">
         <CrmPageHeader
+          variant="detail"
           title="Leads Details"
           current="Leads Details"
-          actions={
-            <div className="flex flex-wrap gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<Pen2Linear size={18} />} onClick={() => router.push("/templates/crm-template/leads?dialog=edit-leads")}>Edit Leads</Button>
-              <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push(`${basePath}?dialog=add-call-schedule`)}>Add Activity</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Edit Leads", icon: <Pen2Linear size={18} />, onClick: () => router.push("/templates/crm-template/leads?dialog=edit-leads") }}
+          primaryAction={{ label: "Add Activity", icon: <AddCircleLinear size={18} />, onClick: () => router.push(`${basePath}?dialog=add-call-schedule`) }}
         />
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)]">
           <aside className="flex flex-col gap-5">

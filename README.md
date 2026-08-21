@@ -19,10 +19,11 @@ Forge 把团队做后台产品时反复重建的东西整理成一套可直接�
 请用 Forge 生态创建一个新的后台原型项目。
 
 Forge 仓库地址：https://github.com/forge-ui/forge
-Forge starter 地址：https://github.com/forge-ui/forge-starter
+Forge Starter 地址：https://github.com/forge-ui/forge-starter
+Forge Design Extension 地址：https://github.com/forge-ui/forge-design-extension
 
-请先确认本地已经安装或可读取 Forge Skill；如果需要更严格的 Codex 原型设计/验收流程，也可以安装独立的 forge-app-design 插件。
-然后 clone Forge starter 并初始化环境。
+请先确认本地已经安装或可读取 Forge Skill。
+然后 clone Forge Starter 并初始化环境。
 请确认项目已经安装 @forge-ui-official/core；如果 starter 没有带上，请执行 pnpm add @forge-ui-official/core。
 同时确认入口 CSS 已引入 @forge-ui-official/core/styles.css，并且 Tailwind v4 已配置 @source 指向 @forge-ui-official/core/dist。
 最后确认 pnpm dev、pnpm typecheck、pnpm build 都可用。
@@ -30,9 +31,10 @@ Forge starter 地址：https://github.com/forge-ui/forge-starter
 环境就绪后，先主动向我确认业务目标、用户角色、需要的页面/模块、核心数据对象、主要操作流程和验收标准。
 我确认后，再开始设计并实现业务模块。
 
-实现时请使用 Forge Skill；如果环境中有 forge-app-design 插件，也请配合使用：
+实现时请使用 Forge Skill；快开走 Forge Starter，在真实页面上改 UI 走 Forge Design Extension：
 - Forge Skill 负责约束组件库、token、AppLayout 和基础样式。
-- forge-app-design 负责把需求梳理成页面意图、信息架构、业务模块、组件计划和验收清单。
+- Forge Starter 负责后台壳、登录、业务样板和加模块流程。
+- Forge Design Extension 负责在真实 Chrome 页面上点选、放置 Forge 组件并改界面。
 
 页面实现优先使用 AppLayout 和 ForgeUI 组件，不要手写基础 Button/Card/Table/Form/Layout 样式。
 页面布局可以按业务需要设计，但基础颜色、字体、圆角、边框、密度和响应式行为必须遵循 ForgeUI。
@@ -72,14 +74,14 @@ pnpm add -D tailwindcss @tailwindcss/postcss
 import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
 ```
 
-更完整的 AI 约束在 Forge Skill 里；Codex 原型设计、验收和数据集召回流程由独立的 `forge-app-design` 插件提供。
+更完整的 AI 约束在 Forge Skill 里。新项目快开走 [Forge Starter](https://github.com/forge-ui/forge-starter)；在已跑起来的页面上点选、放置组件或改 UI，用 [Forge Design Extension](https://github.com/forge-ui/forge-design-extension)。
 
 ## 你可以用它做什么
 
 - **搭后台产品**：订单、商品、客户、项目、成员、文件、发票、详情页、新建页、编辑页等常见业务页面都有模板可参考。
 - **搭 SaaS 控制台**：内置多套 dashboard 组合，覆盖电商、财务、项目管理、CRM、分析看板等场景。
 - **搭统一设计系统**：组件、颜色、字体、圆角、阴影和交互状态统一由 `@forge-ui-official/core` 提供。
-- **让 AI 写得更稳**：Forge Skill 会约束 AI 优先使用组件、token、布局和模板，而不是临时手搓 UI；`forge-app-design` 插件可作为可选的 Codex 原型设计与验收层。
+- **让 AI 写得更稳**：Forge Skill 约束组件、token、布局和模板；Forge Starter 提供快开脚手架；Forge Design Extension 在真实页面上点选和改 UI。
 
 ## 核心能力
 
@@ -131,7 +133,7 @@ pnpm lint            # 运行 ESLint
 
 ## Forge Skill
 
-安装 Forge Skill 后，AI coding agent 会更倾向于复用 Forge 组件、token、布局和模板，减少临时拼 UI 带来的样式漂移。Codex 场景下，可以额外安装独立的 `forge-app-design` 插件作为 Product Design 到 Forge starter 的落地与验收层。
+安装 Forge Skill 后，AI coding agent 会更倾向于复用 Forge 组件、token、布局和模板，减少临时拼 UI 带来的样式漂移。新后台从 [Forge Starter](https://github.com/forge-ui/forge-starter) 快开；要在真实页面上点选组件、放置组件或改界面，用 [Forge Design Extension](https://github.com/forge-ui/forge-design-extension)。
 
 ```bash
 # Claude Code / Cursor
@@ -147,17 +149,18 @@ curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash
 curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-skill.sh | FORGE_AGENT=codex bash
 ```
 
-## Forge App Design 插件
+## Forge Design Extension
 
-`forge-app-design` 是 Forge 面向 Codex 的后台原型设计插件，已从本仓拆出为独立项目：[forge-ui/forge-app-design](https://github.com/forge-ui/forge-app-design)。它不替代 Product Design，也不是组件库本身；它负责把用户需求或 Product Design 产出的页面意图，转成可落地的 Forge 后台原型。
+[Forge Design](https://github.com/forge-ui/forge-design-extension) 是 Forge 的设计工具：Chrome 插件 + 本机桥接。它不替代组件库，也不替代 Starter。**Starter 负责快开后台，Design Extension 负责在已经跑起来的页面上做设计。**
 
-插件会约束 Codex 先确认业务目标、页面模块、核心对象和操作流程，再基于 Forge starter 与 `@forge-ui-official/core` 实现页面，并完成类型检查、构建、截图和质量验收。这样 AI 不是临时拼 UI，而是按 Forge 的组件、视觉基线和后台页面模式稳定交付。
+打开自己的应用，点一下要改的地方，侧边栏里的本地模型带着真实 selector 改文案、样式、交互，或把 Forge 组件写入源码。也可以从组件盘拖到锚点旁，确认后再写入项目。页面内容留在本机，不经过云端。
 
-公开版包含完整插件和 GitHub-only 数据集；完整私有数据集在私有仓维护。详细规则、样例、验收脚本和数据集抽取规范请看独立插件仓的 `README.md` 和 `DATASET-CONTRIBUTING.md`。
+安装与用法见独立仓 README：启动本机桥接，在 Chrome 加载 `extension/`，然后在真实页面上点选或放置。
 
 ## 相关项目
 
-- [`forge-starter`](https://github.com/forge-ui/forge-starter)：最小 Next.js 起手模板。
+- [`forge-starter`](https://github.com/forge-ui/forge-starter)：后台快开脚手架，带登录、样板模块和加页流程。
+- [`forge-design-extension`](https://github.com/forge-ui/forge-design-extension)：在真实 Chrome 页面上点选、放置组件并改 UI。
 - [`forge-agent`](https://github.com/forge-ui/forge-agent)：基于 Forge 构建的 AI Agent 产品壳示例。
 - [`forge-design-extension`](https://github.com/forge-ui/forge-design-extension)：在真实 Chrome 里点选或放置组件，用本地 Grok 改界面。
 

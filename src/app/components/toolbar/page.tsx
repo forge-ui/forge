@@ -123,23 +123,25 @@ const PILL_PROPS: ApiTableRow[] = [
 
 // PageTitleToolbar
 const CODE_PTT_USAGE = `<PageTitleToolbar
-  title="Dashboard"
-  subtitle="Lorem ipsum dolor sit amet"
-  breadcrumbs={<Breadcrumbs items={crumbs} />}
-  actions={
-    <ToolbarActions>
-      <ToolbarDatepicker />
-      <ToolbarFilterButton />
-      <Button color="purple" iconLeft={icon}>Primary</Button>
-    </ToolbarActions>
-  }
+  variant="collection"
+  color="purple"
+  title="Customer"
+  subtitle="Manage customer relationships and account health."
+  breadcrumbItems={crumbs}
+  secondaryAction={{ label: "Export" }}
+  primaryAction={{ label: "Add customer", icon }}
 />`;
 
 const PTT_PROPS: ApiTableRow[] = [
+  { attr: "variant", type: "'overview' | 'collection' | 'detail' | 'action'", defaultValue: "—", description: "固定页面头部结构；业务页必须选择一个预设。" },
   { attr: "title", type: "string", defaultValue: "—", description: "页面大标题。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "副标题文本。" },
-  { attr: "breadcrumbs", type: "ReactNode", defaultValue: "—", description: "通常传入 <Breadcrumbs />。与 subtitle 可并存，顺序为 crumbs → title → subtitle。" },
-  { attr: "actions", type: "ReactNode", defaultValue: "—", description: "右侧操作区，一般是 ToolbarActions 或 ToolbarPillTabs。" },
+  { attr: "breadcrumbItems", type: "BreadcrumbItem[]", defaultValue: "—", description: "结构化面包屑；组件内部固定渲染 Breadcrumbs。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "面包屑和主操作的主题色。" },
+  { attr: "dateAction", type: "{ label?; onClick?; enablePopover? }", defaultValue: "—", description: "overview / collection 的固定日期操作位。" },
+  { attr: "menuAction", type: "{ ariaLabel?; onClick? }", defaultValue: "—", description: "detail 的固定更多操作位。" },
+  { attr: "secondaryAction", type: "PageTitleToolbarAction", defaultValue: "—", description: "固定次操作位；action 变体必填。" },
+  { attr: "primaryAction", type: "PageTitleToolbarAction", defaultValue: "—", description: "固定主操作位；action 变体必填。" },
 ];
 
 // Toolbar sub-controls
@@ -342,27 +344,21 @@ export default function ToolbarCasePage() {
 
       <Section
         title="PageTitleToolbar"
-        description="带大标题的 Toolbar，通常放在页面顶部，支持 Breadcrumbs / Subtitle / Actions 三个槽。"
+        description="固定页面标题、面包屑和操作顺序。业务页只选择预设并传结构化数据，不开放布局插槽。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>title</InlineCode> 必填，其余均可选。breadcrumbs + subtitle 可并存。
+            <InlineCode>variant</InlineCode>、<InlineCode>title</InlineCode> 和 <InlineCode>breadcrumbItems</InlineCode> 必填；action 变体同时要求 Cancel/Save 两个操作。
           </p>
           <PreviewBlock code={CODE_PTT_USAGE} minHeight={220}>
             <div className="w-full max-w-4xl">
               <PageTitleToolbar
-                title="Dashboard"
-                subtitle="Lorem ipsum dolor si amet"
-                breadcrumbs={<Breadcrumbs items={PAGE_CRUMBS} />}
-                actions={
-                  <ToolbarActions>
-                    <ToolbarDatepicker />
-                    <ToolbarFilterButton />
-                    <Button color="purple" variant="primary" iconLeft={PrimaryIcon}>
-                      Primary
-                    </Button>
-                  </ToolbarActions>
-                }
+                variant="collection"
+                title="Customer"
+                subtitle="Manage customer relationships and account health."
+                breadcrumbItems={PAGE_CRUMBS}
+                secondaryAction={{ label: "Export" }}
+                primaryAction={{ label: "Add customer", icon: PrimaryIcon }}
               />
             </div>
           </PreviewBlock>

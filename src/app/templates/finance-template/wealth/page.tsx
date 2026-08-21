@@ -62,9 +62,10 @@ export default function FinanceWealthPage() {
     <FinanceTemplateShell>
       <div className="flex flex-col gap-5">
         <FinancePageHeader
+          variant="overview"
           title="Wealth"
           current="Wealth"
-          actions={<ToolbarDatepicker label="Select Dates" />}
+          dateAction={{ label: "Select Dates", enablePopover: true }}
         />
 
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">

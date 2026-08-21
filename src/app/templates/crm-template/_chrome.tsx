@@ -10,8 +10,14 @@ import {
   WidgetBoldDuotone,
 } from "solar-icon-set";
 import { AppLayout } from "@forge-ui-official/core";
-import { Breadcrumbs, PageTitleToolbar, ToolbarActions } from "@forge-ui-official/core";
-import type { AppLayoutMenuItem, StatusBadgeColor } from "@forge-ui-official/core";
+import { PageTitleToolbar } from "@forge-ui-official/core";
+import type {
+  AppLayoutMenuItem,
+  PageTitleToolbarAction,
+  PageTitleToolbarDateAction,
+  PageTitleToolbarMenuAction,
+  StatusBadgeColor,
+} from "@forge-ui-official/core";
 import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta, type CustomerStatus, type LeadStatus, type SaleStatus } from "./_data";
 
@@ -49,27 +55,43 @@ export function CrmTemplateShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function CrmPageHeader({
-  title,
-  current,
-  parents = [],
-  actions,
-}: {
+interface CrmPageHeaderBase {
   title: string;
   current: string;
+  subtitle?: string;
   parents?: Array<{ label: string; href?: string }>;
-  actions?: ReactNode;
-}) {
+}
+
+type CrmPageHeaderProps =
+  | (CrmPageHeaderBase & {
+      variant: "overview";
+      dateAction?: PageTitleToolbarDateAction;
+      primaryAction?: PageTitleToolbarAction;
+    })
+  | (CrmPageHeaderBase & {
+      variant: "collection";
+      dateAction?: PageTitleToolbarDateAction;
+      secondaryAction?: PageTitleToolbarAction;
+      primaryAction?: PageTitleToolbarAction;
+    })
+  | (CrmPageHeaderBase & {
+      variant: "detail";
+      menuAction?: PageTitleToolbarMenuAction;
+      secondaryAction?: PageTitleToolbarAction;
+      primaryAction?: PageTitleToolbarAction;
+    })
+  | (Omit<CrmPageHeaderBase, "subtitle"> & {
+      variant: "action";
+      secondaryAction: PageTitleToolbarAction;
+      primaryAction: PageTitleToolbarAction;
+    });
+
+export function CrmPageHeader({ current, parents = [], ...props }: CrmPageHeaderProps) {
   return (
     <PageTitleToolbar
-      title={title}
-      breadcrumbs={
-        <Breadcrumbs
-          color="purple"
-          items={[{ label: "Dashboard", href: "/templates/crm-template/customers" }, ...parents, { label: current }]}
-        />
-      }
-      actions={actions ? <ToolbarActions>{actions}</ToolbarActions> : undefined}
+      {...props}
+      color={"purple" as const}
+      breadcrumbItems={[{ label: "Dashboard", href: "/templates/crm-template/customers" }, ...parents, { label: current }]}
     />
   );
 }

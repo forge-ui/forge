@@ -25,14 +25,11 @@ function MicellaneousCalendarContent() {
     <MicellaneousTemplateShell>
       <div className="flex flex-col gap-5">
         <MicellaneousPageHeader
+          variant="collection"
           title="Calendar"
           current={`Calendar ${view[0].toUpperCase()}${view.slice(1)}`}
-          actions={
-            <div className="flex flex-wrap gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Export</Button>
-              <Button iconLeft={<AddCircleLinear size={18} />}>Add Event</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Export", icon: <CloudDownloadLinear size={18} /> }}
+          primaryAction={{ label: "Add Event", icon: <AddCircleLinear size={18} /> }}
         />
         <FullCalendar
           view={view}

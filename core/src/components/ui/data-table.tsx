@@ -67,7 +67,7 @@ export function TableCell({
   checkbox = false,
   checked = false,
   onCheckedChange,
-  checkboxColor = "purple",
+  checkboxColor = "black",
   leadIcon,
 }: TableCellProps) {
   const isHeader = variant === "header";
@@ -117,12 +117,63 @@ export type ColumnDef<T> = {
   key: string;
   header: string;
   sortable?: boolean;
+  /** Tailwind width class for compact columns, e.g. `w-[120px]`. */
   width?: string;
+  /** Readable identity column, capped at 280px. Does not absorb leftover table width. */
   flex?: boolean;
   render: (row: T, rowIndex: number) => ReactNode;
 };
 
-const statusBadgeColors = {
+/** Identity / flex columns stay readable but do not absorb leftover table width. */
+const TABLE_IDENTITY_COLUMN_MAX_PX = 280;
+
+function isTableIdentityColumn<T>(column: ColumnDef<T>, index: number): boolean {
+  return Boolean(column.flex) || (index === 0 && !column.width);
+}
+
+function isTableActionsColumn<T>(column: ColumnDef<T>): boolean {
+  return column.key === "actions" || column.header === "";
+}
+
+export function getDefaultTableMinWidth<T>(
+  columns: ColumnDef<T>[],
+  showCheckbox = false,
+): number {
+  let minWidth = showCheckbox ? 56 : 0;
+  for (const [index, column] of columns.entries()) {
+    if (isTableIdentityColumn(column, index)) minWidth += 240;
+    else if (isTableActionsColumn(column)) minWidth += 88;
+    else minWidth += 128;
+  }
+  return minWidth;
+}
+
+function tableColumnClass<T>(
+  column: ColumnDef<T>,
+  index: number,
+  variant: "header" | "body",
+) {
+  const identity = isTableIdentityColumn(column, index);
+  return cn(
+    variant === "header"
+      ? "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap"
+      : "px-5 py-3.5",
+    "min-w-0",
+    identity ? "w-[1%] max-w-[280px] overflow-hidden" : "whitespace-nowrap",
+    column.width,
+  );
+}
+
+function tableColumnStyle<T>(
+  column: ColumnDef<T>,
+  index: number,
+): CSSProperties | undefined {
+  return isTableIdentityColumn(column, index)
+    ? { maxWidth: TABLE_IDENTITY_COLUMN_MAX_PX }
+    : undefined;
+}
+
+const statusBadgeSolidColors = {
   purple: "bg-fg-violet",
   blue: "bg-fg-blue-500",
   yellow: "bg-fg-yellow",
@@ -132,24 +183,45 @@ const statusBadgeColors = {
   grey: "bg-fg-grey-500",
 } as const;
 
-export type StatusBadgeColor = keyof typeof statusBadgeColors;
+const statusBadgeSoftColors = {
+  purple: { bg: "bg-fg-violet-50", outline: "outline-fg-violet-200", text: "text-fg-violet" },
+  blue: { bg: "bg-fg-blue-50", outline: "outline-fg-blue-200", text: "text-fg-blue-500" },
+  yellow: { bg: "bg-fg-yellow-50", outline: "outline-fg-yellow-200", text: "text-fg-yellow-700" },
+  cyan: { bg: "bg-fg-cyan-50", outline: "outline-fg-cyan-200", text: "text-fg-cyan-500" },
+  green: { bg: "bg-fg-green-50", outline: "outline-fg-green-200", text: "text-fg-green-500" },
+  red: { bg: "bg-fg-red-50", outline: "outline-fg-red-200", text: "text-fg-red" },
+  grey: { bg: "bg-fg-grey-50", outline: "outline-fg-grey-200", text: "text-fg-grey-700" },
+} as const;
+
+export type StatusBadgeColor = keyof typeof statusBadgeSolidColors;
+export type StatusBadgeVariant = "soft" | "solid";
 
 export function StatusBadge({
   label,
-  color = "green",
+  color = "grey",
+  variant = "soft",
 }: {
   label: string;
   color?: StatusBadgeColor;
+  variant?: StatusBadgeVariant;
 }) {
+  const soft = variant === "soft" ? statusBadgeSoftColors[color] : null;
   return (
     <div className="h-10 flex justify-center items-center gap-2">
       <div
         className={cn(
           "px-2 py-1 rounded-full inline-flex flex-col justify-center items-center gap-2",
-          statusBadgeColors[color]
+          soft
+            ? cn(soft.bg, "outline outline-1 outline-offset-[-1px]", soft.outline)
+            : statusBadgeSolidColors[color],
         )}
       >
-        <span className="text-center justify-center text-white text-xs font-semibold leading-4.5 tracking-fg">
+        <span
+          className={cn(
+            "text-center justify-center text-xs font-semibold leading-4.5 tracking-fg",
+            soft ? soft.text : "text-white",
+          )}
+        >
           {label}
         </span>
       </div>
@@ -209,7 +281,7 @@ export function CellText({ children }: { children: ReactNode }) {
   return (
     <div className="flex-1 h-10 flex justify-start items-center gap-2">
       <div className="flex-1 inline-flex flex-col justify-start items-start gap-1">
-        <div className="self-stretch justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg line-clamp-1">
+        <div className="self-stretch justify-start text-fg-black text-sm font-medium leading-5 tracking-fg line-clamp-1">
           {children}
         </div>
       </div>
@@ -227,7 +299,7 @@ export function CellTextSubtitle({
   return (
     <div className="flex-1 flex justify-start items-center gap-2">
       <div className="flex-1 inline-flex flex-col justify-center items-start gap-1">
-        <div className="self-stretch justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg line-clamp-1">
+        <div className="self-stretch justify-start text-fg-black text-sm font-medium leading-5 tracking-fg line-clamp-1">
           {title}
         </div>
         {subtitle && (
@@ -244,7 +316,7 @@ export function CellMuted({ children }: { children: ReactNode }) {
   return (
     <div className="flex-1 h-10 flex justify-start items-center gap-2">
       <div className="flex-1 inline-flex flex-col justify-start items-start gap-1">
-        <div className="self-stretch justify-start text-fg-grey-900 text-sm font-medium leading-5 tracking-fg line-clamp-1">
+        <div className="self-stretch justify-start text-fg-grey-700 text-sm font-normal leading-5 tracking-fg line-clamp-1">
           {children}
         </div>
       </div>
@@ -268,7 +340,7 @@ export function CellImageText({
     <div className="flex-1 flex justify-start items-center gap-2">
       <img className={cn("w-10 h-10", imgClass)} src={src} alt={title} />
       <div className="flex-1 inline-flex flex-col justify-start items-start gap-1">
-        <div className="self-stretch justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg line-clamp-1">
+        <div className="self-stretch justify-start text-fg-black text-sm font-medium leading-5 tracking-fg line-clamp-1">
           {title}
         </div>
         {subtitle && (
@@ -292,7 +364,7 @@ export function CellProgressValue({
 }) {
   return (
     <div className="h-10 flex justify-center items-center gap-1">
-      <div className="justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg">
+      <div className="justify-start text-fg-black text-sm font-medium leading-5 tracking-fg">
         {value}
       </div>
       <ProgressBadge label={badge} color={badgeColor} />
@@ -333,7 +405,7 @@ export type StatusDotColor = keyof typeof statusDotColors;
 
 export function CellStatusDot({
   label,
-  color = "purple",
+  color = "grey",
   emphasis = "strong",
 }: {
   label: string;
@@ -348,7 +420,7 @@ export function CellStatusDot({
         className={cn(
           "text-sm leading-5 tracking-fg line-clamp-1",
           emphasis === "strong"
-            ? "text-fg-black font-semibold"
+            ? "text-fg-black font-medium"
             : "text-fg-grey-900 font-medium"
         )}
       >
@@ -378,7 +450,7 @@ export function CellNumber({
           "text-sm leading-5 tracking-fg",
           subdued
             ? "text-fg-grey-900 font-medium"
-            : "text-fg-black font-semibold"
+            : "text-fg-black font-medium"
         )}
       >
         {value}
@@ -424,7 +496,7 @@ export function CellProgressBar({
 export function CellCode({ code }: { code: string }) {
   return (
     <div className="h-10 flex justify-center items-center gap-2">
-      <div className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+      <div className="text-fg-black text-sm font-medium leading-5 tracking-fg">
         {code}
       </div>
     </div>
@@ -670,7 +742,7 @@ function TableGrid<T>({
   columns,
   rows,
   showCheckbox = false,
-  checkboxColor = "purple",
+  checkboxColor = "black",
   selectedRowKeys,
   selectedRows,
   onSelectedRowKeysChange,
@@ -707,12 +779,14 @@ function TableGrid<T>({
       <table
         data-forge-table-content
         className="w-full border-collapse"
-        style={tableMinWidth ? { minWidth: tableMinWidth } : undefined}
+        style={{
+          minWidth: tableMinWidth ?? getDefaultTableMinWidth(columns, showCheckbox),
+        }}
       >
         <thead>
           <tr className="border-t border-b border-fg-grey-200">
             {showCheckbox && (
-              <th className="w-14 px-4 py-4 bg-white text-left">
+              <th className="w-14 px-6 py-4 bg-white text-left">
                 <Checkbox
                   aria-label="选择全部行"
                   checked={allSelected}
@@ -724,9 +798,10 @@ function TableGrid<T>({
                 />
               </th>
             )}
-            {columns.map((col) => (
+            {columns.map((col, colIndex) => (
               <th
                 key={col.key}
+                data-forge-table-identity={isTableIdentityColumn(col, colIndex) ? "" : undefined}
                 aria-sort={
                   col.sortable && sortColumnKey === col.key
                     ? sortDirection === "asc"
@@ -736,11 +811,8 @@ function TableGrid<T>({
                         : "none"
                     : undefined
                 }
-                className={cn(
-                  "px-5 py-3.5 bg-white text-left text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap",
-                  col.width,
-                )}
-                style={col.flex ? { width: "auto" } : undefined}
+                className={tableColumnClass(col, colIndex, "header")}
+                style={tableColumnStyle(col, colIndex)}
               >
                 <div className="flex items-center gap-2">
                   {col.header}
@@ -778,11 +850,12 @@ function TableGrid<T>({
                   />
                 </td>
               )}
-              {columns.map((col) => (
+              {columns.map((col, colIndex) => (
                 <td
                   key={col.key}
-                  className={cn("px-5 py-3.5", col.width)}
-                  style={col.flex ? { width: "auto" } : undefined}
+                  data-forge-table-identity={isTableIdentityColumn(col, colIndex) ? "" : undefined}
+                  className={tableColumnClass(col, colIndex, "body")}
+                  style={tableColumnStyle(col, colIndex)}
                 >
                   {col.render(row, rowIndex)}
                 </td>
@@ -873,9 +946,9 @@ export function DataTable<T>({
   columns,
   rows,
   headerActions,
-  color = "purple",
+  color = "black",
   showCheckbox = false,
-  checkboxColor = "purple",
+  checkboxColor = "black",
   selectedRowKeys,
   onSelectedRowKeysChange,
   selectedRows,
@@ -992,9 +1065,9 @@ export function FullWidthTable<T>({
   columns,
   rows,
   headerActions,
-  color = "purple",
+  color = "black",
   showCheckbox = true,
-  checkboxColor = "purple",
+  checkboxColor = "black",
   selectedRowKeys,
   onSelectedRowKeysChange,
   selectedRows,

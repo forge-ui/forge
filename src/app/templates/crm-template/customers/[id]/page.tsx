@@ -13,7 +13,6 @@ import {
   Pen2Linear,
   PhoneLinear,
   PlayCircleBold,
-  UsersGroupRoundedLinear,
   VideocameraRecordLinear,
 } from "solar-icon-set";
 import {
@@ -21,7 +20,6 @@ import {
   Button,
   Checkbox,
   FileTypeIcon,
-  IconButton,
   Pagination,
   StatusBadge,
   TabBar,
@@ -220,27 +218,13 @@ function CrmCustomerDetailContent() {
     <CrmTemplateShell>
       <div className="flex flex-col gap-5">
         <CrmPageHeader
+          variant="detail"
           title="Customer Details"
           current="Customer Details"
           parents={[{ label: "Customer", href: "/templates/crm-template/customers" }]}
-          actions={
-            <div className="flex flex-wrap items-center gap-3">
-              <IconButton color="grey" variant="tertiary" shape="circle" aria-label="More actions">
-                <MenuDotsLinear size={20} />
-              </IconButton>
-              <Button
-                color="grey"
-                variant="tertiary"
-                iconLeft={<Pen2Linear size={18} />}
-                onClick={() => router.push("/templates/crm-template/customers?dialog=edit-customer")}
-              >
-                Edit
-              </Button>
-              <Button iconLeft={<AddCircleLinear size={18} />} onClick={openAddDialog}>
-                Add
-              </Button>
-            </div>
-          }
+          menuAction={{ ariaLabel: "More customer actions" }}
+          secondaryAction={{ label: "Edit", icon: <Pen2Linear size={18} />, onClick: () => router.push("/templates/crm-template/customers?dialog=edit-customer") }}
+          primaryAction={{ label: "Add", icon: <AddCircleLinear size={18} />, onClick: openAddDialog }}
         />
 
         <div className={isVer2 ? "grid grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_320px]" : "grid grid-cols-1 items-start gap-4 xl:grid-cols-[300px_minmax(0,1fr)]"}>

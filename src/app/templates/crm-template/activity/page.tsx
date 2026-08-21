@@ -12,7 +12,6 @@ import {
 } from "solar-icon-set";
 import {
   Avatar,
-  Button,
   Checkbox,
   TabBar,
   Toolbar,
@@ -169,14 +168,11 @@ function CrmActivityContent() {
     <CrmTemplateShell>
       <div className="flex flex-col gap-5">
         <CrmPageHeader
+          variant="collection"
           title="Activity"
           current="Activity"
-          actions={
-            <div className="flex flex-wrap items-center gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Export</Button>
-              <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/crm-template/activity?dialog=add-call-schedule")}>Add New</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Export", icon: <CloudDownloadLinear size={18} /> }}
+          primaryAction={{ label: "Add New", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/crm-template/activity?dialog=add-call-schedule") }}
         />
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-[320px_minmax(0,1fr)]">
           <aside className="flex min-h-[680px] flex-col gap-5 rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">

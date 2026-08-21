@@ -12,7 +12,6 @@ import {
   Button,
   Breadcrumbs,
   type BreadcrumbColor,
-  type ButtonColor,
   type ToolbarColor,
   type ToolbarPillTab,
 } from "@forge-ui-official/core";
@@ -163,49 +162,46 @@ export default function ToolbarCasePage() {
         </SubSection>
       </Section>
 
-      {/* ============ Page Title Toolbar (3 colors × 3 content layouts) ============ */}
+      {/* ============ Page Title Toolbar fixed variants ============ */}
       <Section
         title="Page Title Toolbar"
-        description="页面头部：title + subtitle / breadcrumbs / title only，3 色 × 3 内容组合（Figma Page Title 区）。"
+        description="页面头部固定预设：overview / collection / detail / action。业务页选择变体并传入结构化面包屑和操作，不重排标题区。"
       >
         {toolbarColors.map((c) => (
           <SubSection key={c} title={`Color: ${c}`} stack>
             <PageTitleToolbar
-              title="Order Management"
-              subtitle="View and manage all orders across your store."
-              actions={
-                <ToolbarActions>
-                  <ToolbarFavoriteButton />
-                  <Button color={c as ButtonColor} variant="primary" size="lg">
-                    Export
-                  </Button>
-                </ToolbarActions>
-              }
+              variant="overview"
+              color={c}
+              title="Sales Overview"
+              subtitle="Track pipeline health and today's priorities."
+              breadcrumbItems={[{ label: "Dashboard" }, { label: "Sales Overview" }]}
+              dateAction={{ label: "This month", enablePopover: true }}
+              primaryAction={{ label: "Add lead", icon: <AddCircleLinear size={20} /> }}
             />
             <PageTitleToolbar
+              variant="collection"
+              color={c}
+              title="Orders"
+              breadcrumbItems={[{ label: "Dashboard", href: "#" }, { label: "Orders" }]}
+              secondaryAction={{ label: "Export" }}
+              primaryAction={{ label: "New order", icon: <AddCircleLinear size={20} /> }}
+            />
+            <PageTitleToolbar
+              variant="detail"
+              color={c}
               title="Order #302012"
-              breadcrumbs={
-                <Breadcrumbs color={c as BreadcrumbColor} items={breadcrumbItems} />
-              }
-              actions={
-                <ToolbarActions>
-                  <ToolbarKebabButton />
-                  <Button color={c as ButtonColor} variant="secondary" size="lg">
-                    Edit
-                  </Button>
-                  <Button color={c as ButtonColor} variant="primary" size="lg">
-                    Fulfill
-                  </Button>
-                </ToolbarActions>
-              }
+              breadcrumbItems={breadcrumbItems}
+              menuAction={{ ariaLabel: "More order actions" }}
+              secondaryAction={{ label: "Edit" }}
+              primaryAction={{ label: "Fulfill" }}
             />
             <PageTitleToolbar
-              title="Reports"
-              actions={
-                <Button color={c as ButtonColor} variant="primary" size="lg">
-                  New Report
-                </Button>
-              }
+              variant="action"
+              color={c}
+              title="Create order"
+              breadcrumbItems={[{ label: "Orders", href: "#" }, { label: "Create order" }]}
+              secondaryAction={{ label: "Cancel" }}
+              primaryAction={{ label: "Save order", type: "submit", form: "toolbar-case-form" }}
             />
           </SubSection>
         ))}

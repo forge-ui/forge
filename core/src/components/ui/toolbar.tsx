@@ -3,6 +3,8 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { MagniferLinear, CalendarBoldDuotone, FilterBold, AltArrowDownLinear, MenuDotsBold, StarBoldDuotone } from "solar-icon-set";
+import { Breadcrumbs, type BreadcrumbItem } from "./breadcrumbs";
+import { Button } from "./button";
 import { CalendarPopup } from "./calendar-popup";
 
 // ============================================================
@@ -31,7 +33,12 @@ export function Toolbar({
   className?: string;
 }) {
   return (
-    <div className={cn("flex justify-between items-start w-full", className)}>
+    <div
+      className={cn(
+        "flex w-full flex-col items-stretch justify-between gap-3 sm:flex-row sm:items-start",
+        className,
+      )}
+    >
       {left}
       {right}
     </div>
@@ -42,27 +49,49 @@ export function Toolbar({
 
 export function ToolbarSearchInput({
   placeholder = "搜索...",
+  value,
+  defaultValue,
+  onChange,
+  onSubmit,
+  ariaLabel,
   className,
 }: {
   placeholder?: string;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  onSubmit?: (value: string) => void;
+  ariaLabel?: string;
   className?: string;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <div
+    <form
+      role="search"
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit?.(inputRef.current?.value ?? "");
+      }}
       className={cn(
-        "w-full max-w-80 min-w-0 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden",
+        "w-full min-w-0 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden sm:w-80 sm:max-w-80",
         className,
       )}
     >
       <div className="w-6 h-6 flex justify-center items-center">
         <MagniferLinear size={20} color="var(--fg-grey-700)" />
       </div>
-      <div className="flex-1 h-6 flex justify-start items-center gap-2 overflow-hidden">
-        <span className="justify-start text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">
-          {placeholder}
-        </span>
-      </div>
-    </div>
+      <input
+        ref={inputRef}
+        type="search"
+        aria-label={ariaLabel ?? placeholder}
+        placeholder={placeholder}
+        value={value}
+        defaultValue={value === undefined ? defaultValue : undefined}
+        onChange={(event) => onChange?.(event.target.value)}
+        className="h-6 min-w-0 flex-1 bg-transparent text-sm font-normal leading-5 tracking-fg text-fg-black outline-none placeholder:text-fg-grey-700"
+      />
+    </form>
   );
 }
 
@@ -256,7 +285,8 @@ export function ToolbarFilterButton({
       <button
         type="button"
         onClick={handleClick}
-        className="px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
+        disabled={!onClick && panel === undefined}
+        className="px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
       >
         <FilterBold size={20} color="var(--fg-grey-700)" />
         <span className="justify-start text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap">
@@ -311,7 +341,7 @@ export function ToolbarActions({
   className?: string;
 }) {
   return (
-    <div className={cn("flex justify-start items-start gap-3", className)}>
+    <div className={cn("flex w-full min-w-0 max-w-full flex-wrap items-start justify-start gap-3 sm:w-auto sm:flex-nowrap sm:justify-end", className)}>
       {children}
     </div>
   );
@@ -321,14 +351,17 @@ export function ToolbarActions({
 
 export function ToolbarKebabButton({
   onClick,
+  ariaLabel = "更多操作",
   className,
 }: {
   onClick?: () => void;
+  ariaLabel?: string;
   className?: string;
 }) {
   return (
     <button
       type="button"
+      aria-label={ariaLabel}
       onClick={onClick}
       className={cn(
         "p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center cursor-pointer",
@@ -387,7 +420,7 @@ export function ToolbarPillTabs({
   return (
     <div
       className={cn(
-        "p-1 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex justify-start items-start overflow-hidden",
+        "inline-flex max-w-full items-start justify-start overflow-x-auto rounded-full bg-white p-1 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         className,
       )}
     >
@@ -397,7 +430,7 @@ export function ToolbarPillTabs({
           type="button"
           onClick={() => onChange?.(index)}
           className={cn(
-            "px-3.5 py-2.5 rounded-full flex justify-center items-center gap-2 text-sm leading-5 tracking-fg cursor-pointer",
+            "flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm leading-5 tracking-fg",
             tab.active
               ? cn(toolbarPillActive[color], "font-bold")
               : "text-fg-grey-700 font-semibold",
@@ -412,33 +445,215 @@ export function ToolbarPillTabs({
 
 // ── PageTitleToolbar ────────────────────────────────────────
 
-export function PageTitleToolbar({
+export type PageTitleToolbarVariant = "overview" | "collection" | "detail" | "action";
+
+export interface PageTitleToolbarAction {
+  label: string;
+  icon?: ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  form?: string;
+  ariaLabel?: string;
+  testId?: string;
+}
+
+export interface PageTitleToolbarDateAction {
+  label?: string;
+  onClick?: () => void;
+  enablePopover?: boolean;
+}
+
+export interface PageTitleToolbarMenuAction {
+  onClick?: () => void;
+  ariaLabel?: string;
+}
+
+interface PageTitleToolbarPresetBase {
+  title: string;
+  breadcrumbItems: BreadcrumbItem[];
+  color?: ToolbarColor;
+}
+
+interface PageTitleToolbarOverviewProps extends PageTitleToolbarPresetBase {
+  variant: "overview";
+  subtitle?: string;
+  dateAction?: PageTitleToolbarDateAction;
+  primaryAction?: PageTitleToolbarAction;
+  secondaryAction?: never;
+  menuAction?: never;
+}
+
+interface PageTitleToolbarCollectionProps extends PageTitleToolbarPresetBase {
+  variant: "collection";
+  subtitle?: string;
+  dateAction?: PageTitleToolbarDateAction;
+  secondaryAction?: PageTitleToolbarAction;
+  primaryAction?: PageTitleToolbarAction;
+  menuAction?: never;
+}
+
+interface PageTitleToolbarDetailProps extends PageTitleToolbarPresetBase {
+  variant: "detail";
+  subtitle?: string;
+  dateAction?: never;
+  menuAction?: PageTitleToolbarMenuAction;
+  secondaryAction?: PageTitleToolbarAction;
+  primaryAction?: PageTitleToolbarAction;
+}
+
+interface PageTitleToolbarActionProps extends PageTitleToolbarPresetBase {
+  variant: "action";
+  subtitle?: never;
+  dateAction?: never;
+  menuAction?: never;
+  secondaryAction: PageTitleToolbarAction;
+  primaryAction: PageTitleToolbarAction;
+}
+
+export type PageTitleToolbarPresetProps =
+  | PageTitleToolbarOverviewProps
+  | PageTitleToolbarCollectionProps
+  | PageTitleToolbarDetailProps
+  | PageTitleToolbarActionProps;
+
+interface PageTitleToolbarLegacyProps {
+  /** @deprecated Use a fixed `variant` with `breadcrumbItems` and typed actions. */
+  variant?: never;
+  title: string;
+  subtitle?: string;
+  breadcrumbs?: ReactNode;
+  actions?: ReactNode;
+  className?: string;
+}
+
+export type PageTitleToolbarProps = PageTitleToolbarPresetProps | PageTitleToolbarLegacyProps;
+
+export function PageTitleToolbar(props: PageTitleToolbarProps) {
+  if (props.variant) {
+    const {
+      variant,
+      title,
+      subtitle,
+      breadcrumbItems,
+      color = "purple",
+      dateAction,
+      menuAction,
+      secondaryAction,
+      primaryAction,
+    } = props;
+    const hasActions = Boolean(dateAction || menuAction || secondaryAction || primaryAction);
+
+    return (
+      <PageTitleToolbarFrame
+        title={title}
+        subtitle={subtitle}
+        breadcrumbs={
+          <Breadcrumbs
+            items={breadcrumbItems}
+            color={color}
+            className="flex-wrap gap-y-1 [&>span]:whitespace-nowrap"
+          />
+        }
+        actions={hasActions ? (
+          <ToolbarActions className="w-full flex-wrap sm:w-auto sm:shrink-0">
+            {dateAction ? (
+              <ToolbarDatepicker
+                label={dateAction.label}
+                onClick={dateAction.onClick}
+                enablePopover={dateAction.enablePopover}
+              />
+            ) : null}
+            {menuAction ? (
+              <ToolbarKebabButton
+                onClick={menuAction.onClick}
+                ariaLabel={menuAction.ariaLabel}
+              />
+            ) : null}
+            {secondaryAction ? (
+              <PageTitleActionButton action={secondaryAction} color="grey" variant="tertiary" />
+            ) : null}
+            {primaryAction ? (
+              <PageTitleActionButton action={primaryAction} color={color} variant="primary" />
+            ) : null}
+          </ToolbarActions>
+        ) : undefined}
+        className="flex-col items-stretch gap-3 sm:flex-row sm:items-end sm:gap-4 [&>div:first-child]:min-w-0 [&>div:first-child]:w-full"
+        variant={variant}
+      />
+    );
+  }
+
+  const { title, subtitle, breadcrumbs, actions, className } = props;
+
+  return (
+    <PageTitleToolbarFrame
+      title={title}
+      subtitle={subtitle}
+      breadcrumbs={breadcrumbs}
+      actions={actions}
+      className={className}
+    />
+  );
+}
+
+function PageTitleActionButton({
+  action,
+  color,
+  variant,
+}: {
+  action: PageTitleToolbarAction;
+  color: ToolbarColor | "grey";
+  variant: "primary" | "tertiary";
+}) {
+  return (
+    <Button
+      color={color}
+      variant={variant}
+      size="lg"
+      iconLeft={action.icon}
+      onClick={action.onClick}
+      disabled={action.disabled}
+      type={action.type}
+      form={action.form}
+      aria-label={action.ariaLabel}
+      data-testid={action.testId}
+    >
+      {action.label}
+    </Button>
+  );
+}
+
+function PageTitleToolbarFrame({
   title,
   subtitle,
   breadcrumbs,
   actions,
   className,
+  variant,
 }: {
   title: string;
   subtitle?: string;
   breadcrumbs?: ReactNode;
   actions?: ReactNode;
   className?: string;
+  variant?: PageTitleToolbarVariant;
 }) {
   const hasSubContent = subtitle || breadcrumbs;
 
   return (
     <div
+      data-forge-page-title-variant={variant}
       className={cn(
-        "self-stretch inline-flex justify-start items-end gap-4",
+        "flex w-full self-stretch justify-start items-end gap-4",
         !hasSubContent && "items-center",
         className,
       )}
     >
       <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch justify-start text-fg-black text-2xl font-semibold leading-8 tracking-fg">
+        <h1 className="self-stretch justify-start text-fg-black text-2xl font-semibold leading-8 tracking-fg">
           {title}
-        </div>
+        </h1>
         {subtitle && (
           <div className="self-stretch justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
             {subtitle}

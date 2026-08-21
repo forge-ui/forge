@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear, DocumentTextBoldDuotone } from "solar-icon-set";
-import { Button, CellActions, CellImageText, CellText, DataTable, StatusBadge, Toolbar, ToolbarActions, ToolbarDatepicker, ToolbarSearchInput, ToolbarShowSelect } from "@forge-ui-official/core";
+import { CellActions, CellImageText, CellText, DataTable, StatusBadge, Toolbar, ToolbarActions, ToolbarDatepicker, ToolbarSearchInput, ToolbarShowSelect } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import {
   ProtaskDeleteDialog,
@@ -81,14 +81,11 @@ function CrmSalesContent() {
     <CrmTemplateShell>
       <div className="flex flex-col gap-5">
         <CrmPageHeader
+          variant="collection"
           title="Sales"
           current="Sales"
-          actions={
-            <div className="flex flex-wrap items-center gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Export</Button>
-              <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/crm-template/sales/new")}>Add New</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Export", icon: <CloudDownloadLinear size={18} /> }}
+          primaryAction={{ label: "Add New", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/crm-template/sales/new") }}
         />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"
