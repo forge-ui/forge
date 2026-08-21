@@ -2,9 +2,8 @@
 
 import type { ReactNode } from "react";
 import { ChatRoundLineLinear, DocumentTextLinear, FolderOpenLinear, ListCheckLinear } from "solar-icon-set";
-import { AppLayout } from "@forge-ui-official/core";
-import { Breadcrumbs, PageTitleToolbar, SurfaceCard, ToolbarActions } from "@forge-ui-official/core";
-import type { AppLayoutMenuItem } from "@forge-ui-official/core";
+import { AppLayout, PageTitleToolbar, SurfaceCard } from "@forge-ui-official/core";
+import type { AppLayoutMenuItem, PageTitleToolbarPresetProps } from "@forge-ui-official/core";
 import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta } from "./_data";
 
@@ -39,12 +38,20 @@ export function MicellaneousTemplateShell({ children }: { children: ReactNode })
   );
 }
 
-export function MicellaneousPageHeader({ title, current, actions }: { title: string; current: string; actions?: ReactNode }) {
+type WithoutMiscChromeDefaults<T> = T extends unknown
+  ? Omit<T, "breadcrumbItems" | "color">
+  : never;
+
+type MicellaneousPageHeaderProps = WithoutMiscChromeDefaults<PageTitleToolbarPresetProps> & {
+  current: string;
+};
+
+export function MicellaneousPageHeader({ current, ...props }: MicellaneousPageHeaderProps) {
   return (
     <PageTitleToolbar
-      title={title}
-      breadcrumbs={<Breadcrumbs color="purple" items={[{ label: "Dashboard", href: "/templates/micellaneous-template/calendar" }, { label: current }]} />}
-      actions={actions ? <ToolbarActions>{actions}</ToolbarActions> : undefined}
+      {...props}
+      color={"purple" as const}
+      breadcrumbItems={[{ label: "Dashboard", href: "/templates/micellaneous-template/calendar" }, { label: current }]}
     />
   );
 }

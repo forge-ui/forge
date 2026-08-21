@@ -248,7 +248,16 @@ export {
   ToolbarPillTabs,
   PageTitleToolbar,
 } from "./toolbar";
-export type { ToolbarColor, ToolbarPillTab } from "./toolbar";
+export type {
+  ToolbarColor,
+  ToolbarPillTab,
+  PageTitleToolbarVariant,
+  PageTitleToolbarAction,
+  PageTitleToolbarDateAction,
+  PageTitleToolbarMenuAction,
+  PageTitleToolbarPresetProps,
+  PageTitleToolbarProps,
+} from "./toolbar";
 
 // Widget components
 export { CurrencyConverter } from "./currency-converter";
@@ -290,6 +299,7 @@ export type {
   CellContentType,
   ColumnDef,
   StatusBadgeColor,
+  StatusBadgeVariant,
   StatusDotColor,
   ProgressBadgeColor,
   ProgressBarColor,

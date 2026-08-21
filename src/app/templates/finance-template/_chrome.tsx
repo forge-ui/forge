@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import {
-  BillListBoldDuotone,
   CardBoldDuotone,
   CardSendBoldDuotone,
   ChartBoldDuotone,
@@ -10,9 +9,8 @@ import {
   WalletBoldDuotone,
   WidgetBoldDuotone,
 } from "solar-icon-set";
-import { AppLayout } from "@forge-ui-official/core";
-import { Breadcrumbs, PageTitleToolbar, ToolbarActions } from "@forge-ui-official/core";
-import type { AppLayoutMenuItem } from "@forge-ui-official/core";
+import { AppLayout, PageTitleToolbar } from "@forge-ui-official/core";
+import type { AppLayoutMenuItem, PageTitleToolbarPresetProps } from "@forge-ui-official/core";
 import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta } from "./_data";
 
@@ -49,20 +47,20 @@ export function FinanceTemplateShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function FinancePageHeader({
-  title,
-  current,
-  actions,
-}: {
-  title: string;
+type WithoutFinanceChromeDefaults<T> = T extends unknown
+  ? Omit<T, "breadcrumbItems" | "color">
+  : never;
+
+type FinancePageHeaderProps = WithoutFinanceChromeDefaults<PageTitleToolbarPresetProps> & {
   current: string;
-  actions?: ReactNode;
-}) {
+};
+
+export function FinancePageHeader({ current, ...props }: FinancePageHeaderProps) {
   return (
     <PageTitleToolbar
-      title={title}
-      breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "Overview", href: "/templates/finance-template/wealth" }, { label: current }]} />}
-      actions={actions ? <ToolbarActions>{actions}</ToolbarActions> : undefined}
+      {...props}
+      color={"blue" as const}
+      breadcrumbItems={[{ label: "Overview", href: "/templates/finance-template/wealth" }, { label: current }]}
     />
   );
 }

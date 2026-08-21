@@ -29,6 +29,8 @@ import { filterIconIndexes } from "../src/components/ui/forms/icon-selector";
 import {
   DataTable,
   FullWidthTable,
+  StatusBadge,
+  getDefaultTableMinWidth,
   getPaginationSummary,
   type ColumnDef,
 } from "../src/components/ui/data-table";
@@ -39,6 +41,7 @@ import { Datepicker } from "../src/components/ui/forms/datepicker";
 import { TabBar } from "../src/components/ui/tab-bar";
 import { ButtonGroup } from "../src/components/ui/button-group";
 import { PageHeader } from "../src/components/ui/page-header";
+import { PageTitleToolbar } from "../src/components/ui/toolbar";
 import {
   LanguageSwitcher,
   MessageMenu,
@@ -118,6 +121,22 @@ test("Breadcrumbs 和 ProgressBar 提供导航与进度语义", () => {
   const progress = render(ProgressBar, { value: 120, label: "进度" });
   assert.match(progress, /role="progressbar"/);
   assert.match(progress, /aria-valuenow="100"/);
+});
+
+test("PageTitleToolbar 预设固定面包屑和操作区结构", () => {
+  const html = render(PageTitleToolbar, {
+    variant: "collection",
+    title: "客户",
+    breadcrumbItems: [{ label: "销售总览", href: "/" }, { label: "客户" }],
+    secondaryAction: { label: "导出" },
+    primaryAction: { label: "新建客户" },
+  });
+
+  assert.match(html, /data-forge-page-title-variant="collection"/);
+  assert.match(html, /<h1[^>]*>客户<\/h1>/);
+  assert.match(html, /<nav[^>]*aria-label="面包屑导航"/);
+  assert.ok(html.indexOf("导出") < html.indexOf("新建客户"));
+  assert.doesNotMatch(html, /class="[^"]*text-3xl/);
 });
 
 test("SidebarMenu 会把叶子节点的 href 渲染成真实链接", () => {
@@ -357,6 +376,28 @@ test("FullWidthTable 与 DataTable 使用相同的稳定 key 选择语义", () =
   assert.match(rowCheckboxes[1], /aria-checked="false"/);
 });
 
+test("DataTable 复选框表头与数据行使用相同的水平内边距", () => {
+  const html = render(DataTable as React.ElementType, {
+    columns: [
+      {
+        key: "name",
+        header: "名称",
+        render: () => createElement("span", null, "A"),
+      },
+    ],
+    rows: [{ name: "A" }],
+    showCheckbox: true,
+  });
+
+  const headerCell = html.match(/<th[^>]*class="[^"]*w-14[^"]*"[^>]*>/)?.[0];
+  const rowCell = html.match(/<td[^>]*class="[^"]*w-14[^"]*"[^>]*>/)?.[0];
+  assert.ok(headerCell);
+  assert.ok(rowCell);
+  assert.match(headerCell, /\bpx-6\b/);
+  assert.match(rowCell, /\bpx-6\b/);
+  assert.doesNotMatch(headerCell, /\bpx-4\b/);
+});
+
 test("FullWidthTable 渲染继承的左右 footer 内容", () => {
   const html = render(FullWidthTable as React.ElementType, {
     columns: [
@@ -393,6 +434,56 @@ test("DataTable 旧索引模式按可见行逐项判断全选", () => {
 
   assert.ok(selectAll);
   assert.match(selectAll, /aria-checked="false"/);
+});
+
+test("StatusBadge 默认是浅底灰色，实心变体仍可用", () => {
+  const quiet = render(StatusBadge, { label: "草稿" });
+  assert.match(quiet, /bg-fg-grey-50/);
+  assert.match(quiet, /text-fg-grey-700/);
+  assert.doesNotMatch(quiet, /bg-fg-green-500/);
+  assert.doesNotMatch(quiet, /text-white/);
+
+  const solid = render(StatusBadge, { label: "已支付", color: "green", variant: "solid" });
+  assert.match(solid, /bg-fg-green-500/);
+  assert.match(solid, /text-white/);
+});
+
+test("DataTable 默认把首列当成身份列并给出内容最小宽度", () => {
+  const columns: ColumnDef<{ name: string; status: string }>[] = [
+    {
+      key: "name",
+      header: "名称",
+      flex: true,
+      render: (row) => createElement("span", null, row.name),
+    },
+    {
+      key: "status",
+      header: "状态",
+      width: "w-[120px]",
+      render: (row) => createElement("span", null, row.status),
+    },
+    {
+      key: "actions",
+      header: "",
+      width: "w-[80px]",
+      render: () => createElement("span", null, "操作"),
+    },
+  ];
+  const html = render(DataTable as React.ElementType, {
+    columns,
+    rows: [{ name: "很长的客户名称不会撑开整表", status: "就绪" }],
+    showPagination: true,
+    currentPage: 1,
+    totalPages: 3,
+  });
+
+  assert.match(html, /data-forge-table-identity=""/);
+  assert.match(html, /max-w-\[280px\]/);
+  assert.match(html, /min-width:456px/);
+  assert.doesNotMatch(html, /width: auto/);
+  assert.match(html, /bg-fg-black/);
+  assert.doesNotMatch(html, /bg-fg-violet/);
+  assert.equal(getDefaultTableMinWidth(columns), 456);
 });
 
 test("FullWidthTable 旧索引模式不会把无效索引误判为全选", () => {

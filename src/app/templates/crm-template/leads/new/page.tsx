@@ -35,8 +35,14 @@ function CrmLeadFormContent() {
 
   return (
     <CrmTemplateShell>
-      <div className="flex flex-col gap-5">
-        <CrmPageHeader title={isVariant2 ? "Add Leads ver 2" : "Add Leads"} current={isVariant2 ? "Add Leads ver 2" : "Add Leads"} actions={<Button>Save Lead</Button>} />
+      <div className="flex flex-col gap-6">
+        <CrmPageHeader
+          variant="action"
+          title={isVariant2 ? "Add Leads ver 2" : "Add Leads"}
+          current={isVariant2 ? "Add Leads ver 2" : "Add Leads"}
+          secondaryAction={{ label: "Cancel" }}
+          primaryAction={{ label: "Save Lead" }}
+        />
         <CrmSurface>
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             <TextField label="Full Name" value={isFilled ? "Lisa Greg" : ""} />

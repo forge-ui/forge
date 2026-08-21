@@ -67,11 +67,10 @@ function MicellaneousFilesContent() {
     <MicellaneousTemplateShell>
       <div className="flex flex-col gap-5">
         <MicellaneousPageHeader
+          variant="collection"
           title="File Manager"
           current={compactView ? "File Manager-1" : "File Manager"}
-          actions={
-            <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/micellaneous-template/files?dialog=add-files")}>Add File</Button>
-          }
+          primaryAction={{ label: "Add File", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/micellaneous-template/files?dialog=add-files") }}
         />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"

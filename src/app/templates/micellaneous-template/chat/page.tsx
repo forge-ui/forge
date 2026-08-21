@@ -33,9 +33,10 @@ function MicellaneousChatContent() {
     <MicellaneousTemplateShell>
       <div className="flex flex-col gap-5">
         <MicellaneousPageHeader
+          variant="collection"
           title="Chat"
           current={chat === "team" ? "Chat Team" : "Chat Person"}
-          actions={<Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/micellaneous-template/chat?chat=team&details=1&dialog=add-member")}>Add Member</Button>}
+          primaryAction={{ label: "Add Member", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/micellaneous-template/chat?chat=team&details=1&dialog=add-member") }}
         />
         <div className={showDetails ? "grid min-h-[660px] grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)_280px]" : "grid min-h-[660px] grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)]"}>
           <MiscSurface className="p-0">

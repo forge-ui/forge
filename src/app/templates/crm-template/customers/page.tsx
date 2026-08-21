@@ -12,7 +12,6 @@ import {
 import {
   Avatar,
   AvatarGroup,
-  Button,
   CellActions,
   CellImageText,
   CellText,
@@ -95,14 +94,11 @@ function CrmCustomersContent() {
     <CrmTemplateShell>
       <div className="flex flex-col gap-5">
         <CrmPageHeader
+          variant="collection"
           title="Customer"
           current="Customer"
-          actions={
-            <div className="flex flex-wrap items-center gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Export</Button>
-              <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/crm-template/customers/new")}>Add New</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Export", icon: <CloudDownloadLinear size={18} /> }}
+          primaryAction={{ label: "Add New", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/crm-template/customers/new") }}
         />
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <CrmMetricCard
