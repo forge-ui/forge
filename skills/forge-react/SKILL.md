@@ -3,7 +3,7 @@ name: forge-react
 description: "Forge UI Kit for ToB SaaS dashboards — Next.js 16 + React 19 + Tailwind v4 components. Use when building admin consoles, back-office, or ecommerce dashboards with @forge-ui-official/core: AppLayout sidebar shells, DataTable / StatCard / FileUpload / FormField / ChartCard family, fg-* color tokens, Forge auth or ecommerce templates. Keywords: Forge UI Kit, forge-ui, @forge-ui-official/core, AppLayout, fg-violet, fg-grey, Forge dashboard, Forge templates, Forge SaaS."
 metadata:
   author: forge-ui
-  version: "0.1.4"
+  version: "0.1.5"
   docs: "https://forgeui.org/"
 ---
 
@@ -42,6 +42,7 @@ Use `FORGE_SKILLS_DIR=/path/to/skills` for any other agent. Re-run any time to u
 6. **Strict Admin Mode: model the system before JSX.** If the request says system, platform, admin, back-office, 后台, 管理系统, or names a business module, produce the required contracts first: System Brief, Module Contract, Page Flow, Component Mapping, then implement. Use `references/contracts/*.md` and the closest `references/blueprints/*.md`.
 7. **`ConfirmationDialog` is dialog content, not the overlay.** Wrap it with the host app's Radix/Headless UI dialog or native `<dialog>`; don't render it permanently in the page.
 8. **Forge does not export Toast/Snackbar or Drawer/Sheet primitives.** Use the host app's existing toast/drawer system when present; if none exists, ask before adding one. Keep the content inside those shells built from Forge components.
+9. **No colored pills on business pages.** Do not use `StatusBadge` / `Label` (or hand-rolled rounded chips with colored backgrounds) for status, category, role, or tag fields. Render them as plain text with minimal semantic text color: red text (`text-fg-red`) for danger/disabled/rejected, grey (`text-fg-grey-500`) for inactive/cancelled, default black otherwise. Rainbow pills on every enum are a telltale AI smell and must be rewritten.
 
 ---
 
@@ -270,6 +271,7 @@ If a generated admin page feels like a report, stop and add the missing business
 ## Pre-submit checklist
 
 - [ ] No hand-rolled `<div>` reproductions of Kit components
+- [ ] No colored pills (`StatusBadge`/`Label`/hand-rolled chips) on business pages — status and category fields are plain text (red for danger, grey for inactive)
 - [ ] All colors are `fg-*` tokens, no bare Tailwind colors
 - [ ] All icons from `solar-icon-set` with `color` prop (not `className`)
 - [ ] Layout uses `<AppLayout>` or an existing template
