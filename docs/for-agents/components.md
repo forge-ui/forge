@@ -252,7 +252,7 @@
 | `DataTable` | ★ | 业务主表 | `table` |
 | `FullWidthTable` | ○ | 全宽表变体 | `table` |
 | `ProgressBadge` | ◇ | 进度徽章 | `table` |
-| `StatusBadge` | ★ | 状态/严重等级色块 | `table` |
+| `StatusBadge` | ○ | 彩色状态胶囊（**业务页已弃用**：状态/分类一律纯文本，危险态红字、失效态灰字；勿做彩虹胶囊） | `table` |
 | `TableCell` | ○ | 底层单元格 | `table` |
 
 ### tokens-utils
