@@ -21,6 +21,7 @@ export const casesNavGroups: NavGroup[] = [
       { href: "/cases/chat", label: "Chat" },
       { href: "/cases/comment", label: "Comment & Discussion" },
       { href: "/cases/filter", label: "Filter" },
+      { href: "/cases/grid", label: "Grid 栅格" },
       { href: "/cases/history", label: "History" },
       { href: "/cases/input-field", label: "Input Field" },
       { href: "/cases/list", label: "List" },

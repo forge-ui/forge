@@ -3,7 +3,7 @@
 > Forge UI Kit is a React 19 + Tailwind v4 component system for dense admin/SaaS prototypes. Use it with @forge-ui-official/core, Forge Starter, and forge-app-design guardrails.
 
 Website: https://forgeui.org
-Package: @forge-ui-official/core@0.1.6
+Package: @forge-ui-official/core@0.1.10
 Framework: Next.js 16, React 19, Tailwind CSS v4
 
 ## Primary Agent Docs

@@ -288,3 +288,12 @@ node ../forge-readdy/scripts/sync-forge-catalog.mjs --from ./node_modules/@forge
 ```
 
 当前 inventory 同步自 forge-readdy（generatedAt: 2026-08-04T06:13:11.864Z）。
+
+## Layout grid
+
+| Component | Purpose | Reference |
+| --- | --- | --- |
+| `Grid` | Responsive 1–24 tracks and pixel gap presets; default 12 tracks / 16px | `/components/grid` |
+| `GridItem` | Responsive span/start; default full row | `/cases/grid` |
+
+Read `skills/forge-react/references/layout-grid.md` before page composition. AppLayout retains padding ownership; ordinary toolbar rows remain Flex.
