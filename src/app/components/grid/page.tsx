@@ -15,7 +15,8 @@ const itemProps: ApiTableRow[] = [
 ];
 const example = `import { Grid, GridItem, StatCard } from "@forge-ui-official/core";
 
-<Grid gap={{ base: 16, xl: 24 }}>
+// Analytics 模板的比例区域；固定辅助栏保留原模板宽度。
+<Grid gap={16}>
   <GridItem span={{ base: "full", lg: 8 }}>主内容</GridItem>
   <GridItem span={{ base: "full", lg: 4 }}>辅助区</GridItem>
 </Grid>
@@ -26,7 +27,7 @@ const example = `import { Grid, GridItem, StatCard } from "@forge-ui-official/co
 export default function GridDocs() {
   return <>
     <PageHeading title="Grid 栅格" hint="Forge 的响应式 CSS Grid 布局基础。" />
-    <Section title="用法" description="AppLayout 管理页面边距；Grid 管理分栏；GridItem 管理跨度；业务组件适应容器宽度。">
+    <Section title="用法" description="先选择模板并继承宽度与间距。此处展示 Analytics 的比例分栏；商品 280px、卖家 336px 固定辅助栏继续使用静态 CSS Grid / Flex。AppLayout 管理页面边距。">
       <Grid><GridItem span={{ base: "full", lg: 8 }} className="bg-fg-grey-100 p-4">主内容</GridItem><GridItem span={{ base: "full", lg: 4 }} className="bg-fg-grey-100 p-4">辅助区</GridItem></Grid>
       <CodeBlock code={example} />
       <Link className="text-fg-violet" href="/cases/grid">查看完整栅格矩阵 →</Link>

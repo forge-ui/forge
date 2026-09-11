@@ -296,4 +296,4 @@ node ../forge-readdy/scripts/sync-forge-catalog.mjs --from ./node_modules/@forge
 | `Grid` | Responsive 1–24 tracks and pixel gap presets; default 12 tracks / 16px | `/components/grid` |
 | `GridItem` | Responsive span/start; default full row | `/cases/grid` |
 
-Read `skills/forge-react/references/layout-grid.md` before page composition. AppLayout retains padding ownership; ordinary toolbar rows remain Flex.
+Read `skills/forge-react/references/layout-grid.md` before page composition. Choose the source template first and preserve its fixed/proportional columns and spacing. Fixed rails use static CSS Grid/Flex, not forced 8:4 spans. AppLayout retains padding ownership; ordinary toolbar rows remain Flex.

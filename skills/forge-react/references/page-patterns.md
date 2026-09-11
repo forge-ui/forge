@@ -66,12 +66,12 @@ For system generation, combine patterns instead of picking only one: app shell +
 
 ## Layout Integrity
 
-Read [the layout grid contract](layout-grid.md) for Grid/GridItem props, page width ownership and responsive audit steps. Decide the grid and height strategy before composing components. Do not stack arbitrary `div`s and hope the page fills correctly.
+Read [the layout grid contract](layout-grid.md) for Grid/GridItem props, page width ownership and responsive audit steps. Choose the closest template first and inherit its fixed/proportional columns, spacing and breakpoints before composing components. Do not stack arbitrary `div`s and hope the page fills correctly.
 
 Rules:
 
 - Page body should use `w-full`, `min-w-0`, `flex-1`, and `min-h-0` where needed so content can fill and shrink correctly.
-- Use `Grid` (default 12 columns, 16px gap) and responsive `GridItem` spans for dashboard main/aside composition. Use `gap={24}` when the page needs more breathing room.
+- Use `Grid` and responsive `GridItem` spans for proportional dashboard regions, with explicit gaps matching the source template. Preserve fixed form/detail rails (product 280px, seller 336px) with static CSS Grid/Flex and narrow-screen stacking; do not force them into 8:4.
 - If same-row cards have very different content density, do not leave a large blank area. Change the row span, split dense/sparse cards, or use `flex flex-col justify-between h-full` inside the sparse card.
 - Choose equal-height cards only when the row benefits from them; do not force `auto-rows-fr` or minimum heights on every card grid.
 - Charts need stable height, such as `h-[280px]`, `min-h-[320px]`, or `aspect-[16/9]`; do not let SVG/canvas natural height define the layout.
