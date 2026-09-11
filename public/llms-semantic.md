@@ -39,6 +39,7 @@ Never invert this order. A component plan cannot replace business flow, data flo
 - Activity/history/audit: HistoryItem, HistoryGrouped, ActivityCard, NotificationItem.
 - Forms/settings: TextField, TextArea, SelectOption, Datepicker, Checkbox, RadioButton, Toggle, FileUpload, ColorPicker.
 - Navigation/shell: AppLayout, SidebarMenu, TopBar, PageHeader, Breadcrumbs, TabBar, ButtonGroup.
+- Layout: Grid / GridItem for responsive tracks, spans and pixel gaps; AppLayout retains page padding. Read skills/forge-react/references/layout-grid.md. Keep one-dimensional toolbars in Flex.
 
 ## Red Lines
 

@@ -24,6 +24,8 @@ import {
   KebabMenu,
   ListGroup,
   ChartListItem,
+  Grid,
+  GridItem,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@forge-ui-official/core";
 import {
@@ -180,7 +182,7 @@ export default function AnalyticsPage() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <div className="flex items-start justify-between">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Dashboard</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your page</p>
@@ -189,16 +191,16 @@ export default function AnalyticsPage() {
         </div>
 
         {/* 4 progress stats */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
-          <ProgressStatCard className={compactStatCardClass} size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
-          <ProgressStatCard className={compactStatCardClass} size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
-          <ProgressStatCard className={compactStatCardClass} size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
-          <ProgressStatCard className={compactStatCardClass} size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
-        </div>
+        <Grid columns={{ base: 1, sm: 2, lg: 4 }} data-testid="analytics-stats">
+          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
+        </Grid>
 
         {/* Statistic + Campaign */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <Grid data-testid="analytics-primary">
+          <GridItem span={{ base: "full", lg: 8 }}><div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
             <FigmaMetricRow series={groupedStatisticSeries.slice(0, 2)} />
             <FigmaGroupedBarChart
@@ -207,10 +209,10 @@ export default function AnalyticsPage() {
               tooltipItems={groupedStatisticTooltip.slice(0, 2)}
               heightClass="h-56"
             />
-          </div>
+          </div></GridItem>
 
-          <ListGroup
-            className={compactListGroupClass}
+          <GridItem span={{ base: "full", lg: 4 }}><ListGroup
+            className={`w-full ${compactListGroupClass}`}
             title="Campaign"
             subtitle="Active campaign"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -229,11 +231,11 @@ export default function AnalyticsPage() {
                 </div>
               </div>
             }
-          />
-        </div>
+          /></GridItem>
+        </Grid>
 
         {/* Top Region + Visit by Source + Top Category */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <Grid columns={{ base: 1, xl: 3 }}>
           <MapCard
             title="Top Region"
             subtitle="User session in each region"
@@ -245,7 +247,7 @@ export default function AnalyticsPage() {
           />
 
           <ListGroup
-            className={compactListGroupClass}
+            className={`w-full ${compactListGroupClass}`}
             title="Visit by Source"
             subtitle="Link clicked"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -268,7 +270,7 @@ export default function AnalyticsPage() {
           />
 
           <ListGroup
-            className={compactListGroupClass}
+            className={`w-full ${compactListGroupClass}`}
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -289,10 +291,10 @@ export default function AnalyticsPage() {
               </div>
             }
           />
-        </div>
+        </Grid>
 
         {/* Top Referral Pages + Top Performing Pages */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <Grid columns={{ base: 1, xl: 2 }}>
           <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
@@ -330,7 +332,7 @@ export default function AnalyticsPage() {
               paginationLabel="Showing 1-5 from 15"
             />
           </div>
-        </div>
+        </Grid>
       </div>
     </DashboardShell>
   );

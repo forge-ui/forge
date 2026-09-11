@@ -23,18 +23,20 @@ const [pack] = JSON.parse(
   }),
 );
 
+// Grid/GridItem add one public module and static rules for six breakpoints.
+// Budget increase is limited to the measured additive layout payload.
 const limits = {
-  packed: 520_000,
+  packed: 525_000,
   unpacked: 2_150_000,
   entries: 360,
-  sourceMaps: 1_150_000,
+  sourceMaps: 1_165_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 15_000,
+  stylesRaw: 18_000,
 };
 
 const expectedExports = {

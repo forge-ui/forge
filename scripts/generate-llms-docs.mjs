@@ -17,7 +17,14 @@ const registry = readJsonOrDefault(registryPath, { components: [] });
 const blockCatalog = readJsonOrDefault(blockCatalogPath, { blocks: [] });
 
 const site = "https://forgeui.org";
-const components = [...registry.components].sort((a, b) => a.name.localeCompare(b.name));
+const layoutComponents = ["Grid", "GridItem"].map((name) => ({
+  name, category: "layouts", source: "core/src/components/layouts/grid.tsx",
+  purpose: name === "Grid" ? "Responsive CSS Grid tracks and pixel gaps" : "Responsive column span and start",
+  responsive: "base/sm/md/lg/xl/2xl viewport breakpoints",
+  recommendedFor: ["responsive page composition"],
+  requiredUsage: ["Read skills/forge-react/references/layout-grid.md", "AppLayout owns page padding"],
+}));
+const components = [...registry.components.filter((entry) => !layoutComponents.some((layout) => layout.name === entry.name)), ...layoutComponents].sort((a, b) => a.name.localeCompare(b.name));
 const blocks = [...blockCatalog.blocks].sort((a, b) => a.id.localeCompare(b.id));
 
 function listPageRoutes(baseDir, urlPrefix) {
@@ -103,9 +110,31 @@ ${block.firstViewportMustShow ? `- First viewport must show: ${block.firstViewpo
 `;
 }
 
-const componentSummary = components.map(componentLine).join("\n");
-const componentDocs = components.map(componentMarkdown).join("\n");
-const blockDocs = blocks.map(blockMarkdown).join("\n");
+// Optional external catalogs may be absent in a standalone checkout. Preserve
+// previously generated sections rather than silently replacing them with empties.
+function previousSection(file, heading, endHeading) {
+  const source = readFileSync(path.join(publicDir, file), "utf8");
+  const start = source.indexOf(heading);
+  if (start < 0) throw new Error(`Missing cached catalog section: ${file} ${heading}`);
+  const rest = source.slice(start + heading.length);
+  const end = endHeading ? rest.indexOf(endHeading) : -1;
+  return (end < 0 ? rest : rest.slice(0, end)).trim();
+}
+const componentSummary = registryPath
+  ? components.map(componentLine).join("\n")
+  : [...previousSection("llms-full.md", "## Component Catalog Summary\n", "## Case Routes")
+      .split("\n").filter((line) => line && !/^- Grid(?:Item)? \(/.test(line)),
+    ...layoutComponents.map(componentLine)].sort().join("\n");
+const componentDocs = registryPath
+  ? components.map(componentMarkdown).join("\n")
+  : previousSection("llms-components.md", "## ")
+      .replace(/^/, "## ").split(/(?=^## )/m)
+      .filter((section) => !/^## Grid(?:Item)?\n/.test(section)).join("").trim()
+    + "\n\n" + layoutComponents.map(componentMarkdown).join("\n");
+const blockDocs = blockCatalogPath && existsSync(blockCatalogPath)
+  ? blocks.map(blockMarkdown).join("\n")
+  : previousSection("llms-semantic.md", "## Block Catalog\n");
+if (!registryPath) console.log("External catalogs unavailable: preserving cached catalog entries and adding local layout APIs.");
 
 const llmsTxt = `# Forge UI Kit
 
@@ -321,6 +350,7 @@ Never invert this order. A component plan cannot replace business flow, data flo
 - Activity/history/audit: HistoryItem, HistoryGrouped, ActivityCard, NotificationItem.
 - Forms/settings: TextField, TextArea, SelectOption, Datepicker, Checkbox, RadioButton, Toggle, FileUpload, ColorPicker.
 - Navigation/shell: AppLayout, SidebarMenu, TopBar, PageHeader, Breadcrumbs, TabBar, ButtonGroup.
+- Layout: Grid / GridItem for responsive tracks, spans and pixel gaps; AppLayout retains page padding. Read skills/forge-react/references/layout-grid.md. Keep one-dimensional toolbars in Flex.
 
 ## Red Lines
 

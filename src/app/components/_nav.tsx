@@ -28,6 +28,7 @@ export const componentsNavGroups: NavGroup[] = [
       { href: "/components/chat", label: "Chat" },
       { href: "/components/comment", label: "Comment" },
       { href: "/components/filter", label: "Filter" },
+      { href: "/components/grid", label: "Grid 栅格" },
       { href: "/components/history", label: "History" },
       { href: "/components/input-field", label: "Input Field" },
       { href: "/components/list", label: "List" },

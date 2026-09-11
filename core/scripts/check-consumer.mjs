@@ -80,6 +80,8 @@ function verifyScenario({ scenario, tarballPath }) {
     'data-forge-app-layout="true"',
     'data-forge-data-table="true"',
     "bg-fg-violet",
+    'class="forge-grid"',
+    'class="forge-grid-item"',
   ]) {
     if (!html.includes(marker)) {
       throw new Error(`consumer root HTML is missing SSR marker: ${marker}`);
@@ -113,6 +115,9 @@ function verifyScenario({ scenario, tarballPath }) {
     throw new Error("consumer CSS is missing classes discovered from the package dist source");
   }
 
+  for (const marker of [".forge-grid", ".forge-grid-item", "--forge-grid-columns-md", "--forge-grid-row-gap-lg", "--forge-grid-start-xl"]) {
+    if (!css.includes(marker)) throw new Error(`consumer CSS is missing grid styles: ${marker}`);
+  }
   return cssFiles.length;
 }
 

@@ -66,17 +66,17 @@ For system generation, combine patterns instead of picking only one: app shell +
 
 ## Layout Integrity
 
-Decide the grid and height strategy before composing components. Do not stack arbitrary `div`s and hope the page fills correctly.
+Read [the layout grid contract](layout-grid.md) for Grid/GridItem props, page width ownership and responsive audit steps. Decide the grid and height strategy before composing components. Do not stack arbitrary `div`s and hope the page fills correctly.
 
 Rules:
 
 - Page body should use `w-full`, `min-w-0`, `flex-1`, and `min-h-0` where needed so content can fill and shrink correctly.
-- Dashboard bodies should usually use `grid grid-cols-12 gap-6 items-stretch`; cards in the same row should use `h-full`.
+- Use `Grid` (default 12 columns, 16px gap) and responsive `GridItem` spans for dashboard main/aside composition. Use `gap={24}` when the page needs more breathing room.
 - If same-row cards have very different content density, do not leave a large blank area. Change the row span, split dense/sparse cards, or use `flex flex-col justify-between h-full` inside the sparse card.
-- Card grids should use `auto-rows-fr` or explicit `min-h-[...]` values to avoid visual breaks.
+- Choose equal-height cards only when the row benefits from them; do not force `auto-rows-fr` or minimum heights on every card grid.
 - Charts need stable height, such as `h-[280px]`, `min-h-[320px]`, or `aspect-[16/9]`; do not let SVG/canvas natural height define the layout.
 - Right-side todo/message/template cards placed next to large charts need enough visual density: footer actions, status summaries, grouped headings, or a smaller row span.
-- Horizontal card groups should use responsive grid columns, not hand-written percentages. Common breakpoints: `grid-cols-1 md:grid-cols-2 xl:grid-cols-4/5`.
+- Equal-width card groups use `<Grid columns={{ base: 1, sm: 2, lg: 4 }}>` and existing full-width card props. Verify available space with the sidebar expanded.
 - Any `overflow-y-auto` region needs a clear parent height or a `min-h-0` chain, otherwise scroll/fill behavior will break.
 
 Self-check:

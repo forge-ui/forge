@@ -1,10 +1,10 @@
 {
   "package": "@forge-ui-official/core",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "generatedAt": "2026-08-04T06:13:11.864Z",
-  "source": "dist/components/ui/index.d.ts (+ AppLayout from layouts)",
-  "componentCount": 181,
-  "oneShotDefaultCount": 22,
+  "source": "Historical component inventory with incremental Grid/GridItem additions from core/src/components/layouts/grid.tsx",
+  "componentCount": 183,
+  "oneShotDefaultCount": 24,
   "components": [
     {
       "name": "ActivityCard",
@@ -313,6 +313,12 @@
       "oneShotDefault": false
     },
     {
+      "name": "CheckIcon",
+      "module": "plain-icons",
+      "group": "primitives",
+      "oneShotDefault": false
+    },
+    {
       "name": "Checkbox",
       "module": "checkbox",
       "group": "primitives",
@@ -328,12 +334,6 @@
       "name": "CheckboxWithLabel",
       "module": "forms/selection-control",
       "group": "forms",
-      "oneShotDefault": false
-    },
-    {
-      "name": "CheckIcon",
-      "module": "plain-icons",
-      "group": "primitives",
       "oneShotDefault": false
     },
     {
@@ -551,6 +551,18 @@
       "module": "data-table",
       "group": "table",
       "oneShotDefault": false
+    },
+    {
+      "name": "Grid",
+      "module": "../layouts/grid",
+      "group": "layouts",
+      "oneShotDefault": true
+    },
+    {
+      "name": "GridItem",
+      "module": "../layouts/grid",
+      "group": "layouts",
+      "oneShotDefault": true
     },
     {
       "name": "HalfDonutChart",
@@ -1130,7 +1142,9 @@
       "AppLayout",
       "AppLayoutBreadcrumb",
       "AppLayoutMenuItem",
-      "AppLayoutProfile"
+      "AppLayoutProfile",
+      "Grid",
+      "GridItem"
     ],
     "primitives": [
       "ArtisticIcon",

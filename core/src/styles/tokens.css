@@ -439,3 +439,74 @@ body {
 .fg-scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+/* Forge layout grid. Every instance defines its own variables so nested grids
+   do not inherit a parent's responsive configuration. Values are pixel gaps. */
+@layer components {
+  .forge-grid { display: grid; min-width: 0; }
+  .forge-grid > *, .forge-grid-item { min-width: 0; }
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-base), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-base);
+    column-gap: var(--forge-grid-column-gap-base);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-base);
+    grid-column-end: var(--forge-grid-end-base);
+  }
+  @media (min-width: 640px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-sm), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-sm);
+    column-gap: var(--forge-grid-column-gap-sm);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-sm);
+    grid-column-end: var(--forge-grid-end-sm);
+  }
+  }
+  @media (min-width: 768px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-md), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-md);
+    column-gap: var(--forge-grid-column-gap-md);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-md);
+    grid-column-end: var(--forge-grid-end-md);
+  }
+  }
+  @media (min-width: 1024px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-lg), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-lg);
+    column-gap: var(--forge-grid-column-gap-lg);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-lg);
+    grid-column-end: var(--forge-grid-end-lg);
+  }
+  }
+  @media (min-width: 1280px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-xl), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-xl);
+    column-gap: var(--forge-grid-column-gap-xl);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-xl);
+    grid-column-end: var(--forge-grid-end-xl);
+  }
+  }
+  @media (min-width: 1536px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-2xl), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-2xl);
+    column-gap: var(--forge-grid-column-gap-2xl);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-2xl);
+    grid-column-end: var(--forge-grid-end-2xl);
+  }
+  }
+}

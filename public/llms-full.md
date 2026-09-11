@@ -1,6 +1,6 @@
 # Forge UI Kit Agent Context
 
-Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and solar-icon-set. The package is `@forge-ui-official/core@0.1.6`.
+Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and solar-icon-set. The package is `@forge-ui-official/core@0.1.10`.
 
 ## When To Use
 
@@ -78,6 +78,8 @@ import { HomeLinear } from "solar-icon-set";
 - FileUpload (form) — import { FileUpload } from "@forge-ui-official/core"; best for: evidence upload, attachment upload, import file; avoid: none recorded; source: core/src/components/ui/forms/file-upload.tsx
 - FilterPanel (filtering) — import { FilterPanel } from "@forge-ui-official/core"; best for: advanced filter popover, side filter drawer content, operational queue refinement panel; avoid: always-visible first-screen list filters, simple two-control toolbar filters; source: core/src/components/ui/filter-panel.tsx
 - FullWidthTable (data-display) — import { FullWidthTable } from "@forge-ui-official/core"; best for: full-screen data management routes, audit logs; avoid: narrow rail tables, embedded mini-tables; source: core/src/components/ui/data-table.tsx:801-993
+- Grid (layouts) — import { Grid } from "@forge-ui-official/core"; best for: responsive page composition; avoid: none recorded; source: core/src/components/layouts/grid.tsx
+- GridItem (layouts) — import { GridItem } from "@forge-ui-official/core"; best for: responsive page composition; avoid: none recorded; source: core/src/components/layouts/grid.tsx
 - HighlightCard (metric-card) — import { HighlightCard } from "@forge-ui-official/core"; best for: dashboard visual anchor, main signal of the day; avoid: none recorded; source: core/src/components/ui/highlight-card.tsx
 - HistoryGrouped (timeline) — import { HistoryGrouped } from "@forge-ui-official/core"; best for: detail audit rail, long activity history; avoid: none recorded; source: core/src/components/ui/history-grouped.tsx
 - HistoryItem (timeline) — import { HistoryItem } from "@forge-ui-official/core"; best for: recent activity, audit trail, status changes, comments/events; avoid: none recorded; source: core/src/components/ui/history-item.tsx
@@ -123,6 +125,7 @@ import { HomeLinear } from "solar-icon-set";
 - /cases/chat
 - /cases/comment
 - /cases/filter
+- /cases/grid
 - /cases/history
 - /cases/input-field
 - /cases/list
