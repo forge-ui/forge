@@ -2,6 +2,16 @@
 
 Read this before choosing page columns or adapting a page to a narrow viewport. APIs are exported from `@forge-ui-official/core`; see `/components/grid` and `/cases/grid` for runnable examples. Existing consumers need a Core version that actually exports Grid/GridItem; do not invent imports against an older installed package.
 
+## Template first
+
+Choose the closest Forge template and page role before choosing tracks. Inherit its fixed versus proportional columns, spacing density and wide-screen hierarchy. Record the source template and justify breakpoint changes with actual content-width evidence. Grid defaults are API defaults, not permission to replace template spacing.
+
+- Analytics uses four equal metric columns and an 8:4 chart/auxiliary split; its lower rows use three and two equal columns from lg.
+- Product creation uses a flexible main form plus a fixed 280px right rail, 12px outer gap and 8px field/card gaps.
+- Seller detail uses a fixed 336px left rail plus flexible detail content, with 16px outer gap.
+- Keep narrow-screen stacking. Fixed rails may use page-level static CSS Grid or Flex; do not convert them to 8:4 just to use GridItem. Toolbars and automatic-width action columns do not need proportional spans.
+- Case rulers illustrate geometry. Generic 24-column/offset exercises are optional API capabilities, not default template patterns.
+
 ## Ownership
 
 - `AppLayout` owns sidebar, topbar and page padding. Do not add the same padding again to Grid.
@@ -31,16 +41,24 @@ import { Grid, GridItem, StatCard } from "@forge-ui-official/core";
   {metrics.map(metric => <StatCard key={metric.title} {...metric} width="full" />)}
 </Grid>
 
-// GridItem defaults to full-row placement. Specify spans for the wide layout.
-<Grid gap={{ base: 16, xl: 24 }} alignItems="start">
-  <GridItem span={{ base: "full", xl: 8 }}>Main content</GridItem>
-  <GridItem span={{ base: "full", xl: 4 }}>Auxiliary content</GridItem>
+// Analytics proportional chart/auxiliary layout (not a fixed form rail).
+<Grid gap={16} alignItems="start">
+  <GridItem span={{ base: "full", lg: 8 }}>Main content</GridItem>
+  <GridItem span={{ base: "full", lg: 4 }}>Auxiliary content</GridItem>
 </Grid>
+
+// Product template: preserve fixed rail and original density; stack below xl.
+<div className="grid grid-cols-1 items-start gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
+  <div className="min-w-0"><Grid columns={{ base: 1, sm: 2 }} gap={8}>…</Grid></div>
+  <div className="min-w-0">Auxiliary fields</div>
+</div>
 ```
 
 Keep DOM order aligned with reading and keyboard order. Decide equal height per row, not globally; do not force all card grids to auto-rows-fr or fixed minimum heights. Charts need an intentional height. Long identifiers need wrapping/truncation chosen by content meaning; tables keep horizontal scrolling in their own container. `min-width: 0` permits shrinking but does not itself wrap long strings.
 
 ## Layout audit
+
+- Record the source template; compare fixed rail widths, proportional tracks, field/action widths, gaps and breakpoint changes before checking overflow.
 
 - Capture before/after at 375, 768, 1024 and 1440px; also inspect the breakpoints used by the page on both sides.
 - Test expanded/collapsed sidebar and mobile overlay. Check actual content width, not only viewport width.

@@ -235,7 +235,7 @@ export default function AnalyticsPage() {
         </Grid>
 
         {/* Top Region + Visit by Source + Top Category */}
-        <Grid columns={{ base: 1, xl: 3 }}>
+        <Grid columns={{ base: 1, lg: 3 }}>
           <MapCard
             title="Top Region"
             subtitle="User session in each region"
@@ -294,7 +294,7 @@ export default function AnalyticsPage() {
         </Grid>
 
         {/* Top Referral Pages + Top Performing Pages */}
-        <Grid columns={{ base: 1, xl: 2 }}>
+        <Grid columns={{ base: 1, lg: 2 }}>
           <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>

@@ -20,7 +20,6 @@ import {
   CloseIcon,
   CheckIcon,
   Grid,
-  GridItem,
 } from "@forge-ui-official/core";
 
 export default function AddProductPage() {
@@ -75,9 +74,9 @@ export default function AddProductPage() {
       </div>
 
       {/* Form Content */}
-      <Grid alignItems="start" data-testid="product-layout">
+      <div className="grid grid-cols-1 items-start gap-3 xl:grid-cols-[minmax(0,1fr)_280px]" data-testid="product-layout">
         {/* Main Content */}
-        <GridItem span={{ base: "full", xl: 8 }} className="flex flex-col gap-4">
+        <div className="flex min-w-0 flex-col gap-2">
           {/* General Information */}
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">General Information</h3>
@@ -112,7 +111,7 @@ export default function AddProductPage() {
               placeholder="Type base price..."
               shape="pill"
             />
-            <Grid columns={{ base: 1, sm: 2 }} className="mt-3">
+            <Grid columns={{ base: 1, sm: 2 }} gap={8} className="mt-3">
               <SelectOption
                 label="Discount Type"
                 options={[{ label: "Select...", value: "default" }]}
@@ -141,7 +140,7 @@ export default function AddProductPage() {
           {/* Inventory */}
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Inventory</h3>
-            <Grid columns={{ base: 1, sm: 3 }}>
+            <Grid columns={{ base: 1, sm: 3 }} gap={8}>
               <TextField
                 label="SKU"
                 placeholder="Type product SKU here..."
@@ -164,8 +163,8 @@ export default function AddProductPage() {
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Variation</h3>
             {[0, 1].map((rowIndex) => (
-              <Grid key={rowIndex} columns={{ base: 1, sm: 12 }} className={rowIndex > 0 ? "mt-4" : undefined}>
-                <GridItem span={{ base: "full", sm: 4 }}><SelectOption
+              <div key={rowIndex} className={`grid grid-cols-1 gap-2 sm:grid-cols-[repeat(3,minmax(0,1fr))_auto] ${rowIndex > 0 ? "mt-2" : ""}`}>
+                <div className="min-w-0"><SelectOption
                   label={rowIndex === 0 ? "Variation Type" : undefined}
                   options={[
                     { label: "Select...", value: "default" },
@@ -174,23 +173,23 @@ export default function AddProductPage() {
                   ]}
                   placeholder="Select..."
                   shape="pill"
-                /></GridItem>
-                <GridItem span={{ base: "full", sm: 3 }}><TextField
+                /></div>
+                <div className="min-w-0"><TextField
                   label={rowIndex === 0 ? "Variation" : undefined}
                   placeholder="Variation..."
                   shape="pill"
-                /></GridItem>
-                <GridItem span={{ base: "full", sm: 3 }}><TextField
+                /></div>
+                <div className="min-w-0"><TextField
                   label={rowIndex === 0 ? "Quantity" : undefined}
                   placeholder="Variation..."
                   shape="pill"
-                /></GridItem>
-                <GridItem span={{ base: "full", sm: 2 }} className="flex items-end"><div className={`flex items-end ${rowIndex === 0 ? "pb-0" : ""}`}>
+                /></div>
+                <div className="flex items-end"><div className={`flex items-end ${rowIndex === 0 ? "pb-0" : ""}`}>
                   <IconButton variant="tertiary" size="md">
                     <TrashBinMinimalisticLinear size={16} />
                   </IconButton>
-                </div></GridItem>
-              </Grid>
+                </div></div>
+              </div>
             ))}
             <div className="mt-3">
               <Button
@@ -209,17 +208,17 @@ export default function AddProductPage() {
               <Checkbox checked color="purple" />
               <span className="text-sm text-fg-violet">This is a physical product</span>
             </div>
-            <Grid columns={{ base: 1, sm: 2, xl: 4 }}>
+            <Grid columns={{ base: 1, sm: 2, xl: 4 }} gap={8}>
               <TextField label="Weight" placeholder="Product weight..." shape="pill" />
               <TextField label="Height" placeholder="Height (cm)..." shape="pill" />
               <TextField label="Length" placeholder="Length (cm)..." shape="pill" />
               <TextField label="Width" placeholder="Width (cm)..." shape="pill" />
             </Grid>
           </div>
-        </GridItem>
+        </div>
 
         {/* Sidebar */}
-        <GridItem span={{ base: "full", xl: 4 }} className="flex flex-col gap-4">
+        <div className="flex min-w-0 flex-col gap-2">
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Category</h3>
             <SelectOption
@@ -252,8 +251,8 @@ export default function AddProductPage() {
               shape="pill"
             />
           </div>
-        </GridItem>
-      </Grid>
+        </div>
+      </div>
     </div>
   );
 }

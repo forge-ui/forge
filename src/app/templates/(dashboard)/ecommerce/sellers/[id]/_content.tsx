@@ -17,7 +17,6 @@ import {
   ToolbarDatepicker,
   ToolbarFilterButton,
   Grid,
-  GridItem,
 } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
@@ -342,9 +341,9 @@ export default function SellerDetailPage() {
       </div>
 
       {/* Content */}
-      <Grid alignItems="start" data-testid="seller-layout">
+      <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-[336px_minmax(0,1fr)]" data-testid="seller-layout">
         {/* Left Sidebar */}
-        <GridItem span={{ base: "full", xl: 4 }} className="rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
+        <div className="min-w-0 rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
           <div className="absolute left-[7px] right-[7px] top-[7px] h-[109px] rounded-xl bg-gradient-to-r from-fg-violet via-purple-300 to-fg-yellow-100" />
 
           <div className="relative z-10 flex flex-col items-center gap-3 pt-10">
@@ -424,10 +423,10 @@ export default function SellerDetailPage() {
               <p className="mt-1 text-sm font-medium text-fg-black">{display.added}</p>
             </div>
           </div>
-        </GridItem>
+        </div>
 
         {/* Right Panel */}
-        <GridItem span={{ base: "full", xl: 8 }}>
+        <div className="min-w-0">
           {/* Stat Cards */}
           <Grid columns={{ base: 1, sm: 3 }}>
             {statCards.map((card) => (
@@ -586,8 +585,8 @@ export default function SellerDetailPage() {
               </div>
             )}
           </div>
-        </GridItem>
-      </Grid>
+        </div>
+      </div>
     </div>
   );
 }
