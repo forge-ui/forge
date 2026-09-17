@@ -133,10 +133,16 @@ export default function PageHeaderCasePage() {
   askAi={{
     context: "项目概览 / projects",
     suggestions: ["这个页面可以做什么？", "下一步该做什么？"],
-    onSend: (message, request) => askYourAiService(message, request),
+    onSend: async (message, request) => ({
+      text: await askYourAiService(message, request),
+      links: [
+        { label: "查看项目", href: "/projects" },
+        { label: "查看任务", href: "/tasks" },
+      ],
+    }),
   }}
 />`} />
-          <p className="text-sm text-fg-grey-700">AppLayout 支持同名 askAi 配置；也可独立导入 AskAi。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。业务通过 onSend 返回纯文本回复，signal 可传给 fetch。</p>
+          <p className="text-sm text-fg-grey-700">AppLayout 支持同名 askAi 配置；也可独立导入 AskAi。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
           <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
         </SubSection>
 
