@@ -121,3 +121,51 @@ test("Both PageHeader variants opt in to Ask AI with isolated SVG image resource
   await act(async () => root.unmount());
   dom.window.close();
 });
+
+test("PageHeader built-in Ask AI accepts structured replies and renders at most two route links", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  await act(async () => root.render(createElement(PageHeader, {
+    title: "Projects", primaryAction: { label: "新建项目" },
+    askAi: {
+      suggestions: ["下一步"],
+      onSend: async () => ({ text: "请选择下一步", links: [
+        { label: "项目", href: "/projects?status=active" },
+        { label: "任务", href: "/tasks#pending" },
+        { label: "额外入口", href: "/extra" },
+      ] }),
+    },
+  })));
+  assert.ok([...document.querySelectorAll("button")].some((button) => button.textContent === "新建项目"));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  await act(async () => [...document.querySelectorAll("dialog button")].find((button) => button.textContent === "下一步")!.dispatchEvent(new MouseEvent("click", { bubbles: true })));
+  const log = document.querySelector('[role="log"]')!;
+  assert.ok(log.textContent?.includes("请选择下一步"));
+  assert.deepEqual([...log.querySelectorAll("a")].map((link) => [link.textContent, link.getAttribute("href")]), [
+    ["项目", "/projects?status=active"], ["任务", "/tasks#pending"],
+  ]);
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("Structured replies omit unsafe or empty links and support text-only objects", async () => {
+  for (const links of [undefined, [], [
+    { label: "脚本", href: "javascript:alert(1)" },
+    { label: "数据", href: "data:text/html,test" },
+    { label: "", href: "/empty-label" },
+    { label: "空地址", href: " " },
+    { label: "有效路由", href: "/valid" },
+  ]]) {
+    const dom = installDom();
+    const root = createRoot(document.querySelector("#root")!);
+    await act(async () => root.render(createElement(AskAi, {
+      suggestions: ["提问"], onSend: () => ({ text: "对象回复", links }),
+    })));
+    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+    await act(async () => [...document.querySelectorAll("dialog button")].find((button) => button.textContent === "提问")!.dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    assert.ok(document.querySelector('[role="log"]')?.textContent?.includes("对象回复"));
+    assert.deepEqual([...document.querySelectorAll('dialog a')].map((link) => link.getAttribute("href")), links?.length ? ["/valid"] : []);
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
+});

@@ -8,9 +8,20 @@ import { cn } from "../../lib/utils";
 import { Button } from "./button";
 import { Checkbox } from "./checkbox";
 
+export interface AskAiLink {
+  label: string;
+  href: string;
+}
+
+export interface AskAiResponse {
+  text: string;
+  links?: AskAiLink[];
+}
+
 export interface AskAiMessage {
   role: "user" | "assistant";
   content: string;
+  links?: AskAiLink[];
 }
 
 export interface AskAiRequest {
@@ -26,10 +37,21 @@ export interface AskAiProps {
   context?: string;
   suggestions?: string[];
   placeholder?: string;
-  /** Connect your AI service here. Returns the assistant's plain-text response. */
-  onSend: (message: string, request: AskAiRequest) => string | Promise<string>;
+  /** Return plain text or text with business links. At most two safe links are shown. */
+  onSend: (message: string, request: AskAiRequest) => string | AskAiResponse | Promise<string | AskAiResponse>;
   disabled?: boolean;
   className?: string;
+}
+
+function responseLinks(links: AskAiLink[] = []): AskAiLink[] {
+  return links.filter(({ label, href }) => {
+    if (!label.trim() || !href.trim()) return false;
+    try {
+      return ["http:", "https:"].includes(new URL(href, "https://forge.local").protocol);
+    } catch {
+      return false;
+    }
+  }).slice(0, 2).map(({ label, href }) => ({ label: label.trim(), href: href.trim() }));
 }
 
 /** Header entry and modal conversation drawer. No network calls or page scraping. */
@@ -86,12 +108,14 @@ export function AskAi({ label = "Ask AI", context, suggestions = ["这个页面�
     try {
       const response = await onSend(text, {
         context: includeContext ? context : undefined,
-        messages: history.map((message) => ({ ...message })),
+        messages: history.map((message) => ({ ...message, ...(message.links && { links: message.links.map((link) => ({ ...link })) }) })),
         signal: controller.signal,
       });
       if (controller.signal.aborted) return;
-      if (!response.trim()) throw new Error("Empty response");
-      setMessages([...history, { role: "assistant", content: response }]);
+      const reply = typeof response === "string" ? { text: response } : response;
+      if (!reply.text.trim()) throw new Error("Empty response");
+      const links = responseLinks(reply.links);
+      setMessages([...history, { role: "assistant", content: reply.text, ...(links.length > 0 && { links }) }]);
     } catch {
       if (!controller.signal.aborted) {
         setError("回复暂时未能完成，请重试。");
@@ -153,6 +177,9 @@ export function AskAi({ label = "Ask AI", context, suggestions = ["这个页面�
                 {messages.map((message, index) => <div key={index} className={cn("flex flex-col gap-1.5", message.role === "user" && "items-end")}>
                   <span className="text-xs text-fg-grey-500">{message.role === "user" ? "你" : label}</span>
                   <p className={cn("max-w-full whitespace-pre-wrap break-words text-sm leading-6", message.role === "user" && "rounded-2xl bg-fg-grey-100 px-4 py-3")}>{message.content}</p>
+                  {message.role === "assistant" && message.links && <div className="flex flex-wrap gap-2">
+                    {message.links.map((link, linkIndex) => <a key={linkIndex} href={link.href} className="max-w-full break-words rounded-xl border border-fg-grey-200 px-3 py-2 text-sm font-semibold text-fg-grey-700 hover:bg-fg-grey-100 focus-visible:outline-2 focus-visible:outline-fg-grey-500">{link.label}</a>)}
+                  </div>}
                 </div>)}
               </div>
               {pending && <p role="status" className="mt-5 text-sm text-fg-grey-500">正在思考…</p>}
