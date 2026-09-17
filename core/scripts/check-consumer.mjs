@@ -77,6 +77,7 @@ function verifyScenario({ scenario, tarballPath }) {
   const html = fs.readFileSync(htmlPath, "utf8");
   for (const marker of [
     "Forge Core tarball consumer",
+    'aria-label="Ask AI"',
     'data-forge-app-layout="true"',
     'data-forge-data-table="true"',
     "bg-fg-violet",

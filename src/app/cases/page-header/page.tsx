@@ -6,6 +6,7 @@ import {
   PageHeader,
   type PageHeaderColor,
 } from "@forge-ui-official/core";
+import { AskAiDemo } from "../../components/page-header/ask-ai-demo";
 import { Logout3Linear } from "solar-icon-set";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
@@ -58,6 +59,10 @@ export default function PageHeaderCasePage() {
         title="Page Header"
         hint="Breadcrumbs · TopBar · PageHeader (Search & Widget · Page Title)"
       />
+
+      <Section title="Ask AI" description="点击入口直接打开右侧对话框，支持当前页上下文与连续提问。">
+        <AskAiDemo />
+      </Section>
 
       <Section title="Breadcrumbs" description="Colors: purple, blue, black">
         <SubSection title="All colors">

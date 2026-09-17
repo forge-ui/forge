@@ -16,6 +16,7 @@ import {
   StarBoldDuotone,
 } from "solar-icon-set";
 import { accentColors } from "../components/ui/accent-utils";
+import { AskAi } from "../components/ui/ask-ai";
 import { CalendarPopup } from "../components/ui/calendar-popup";
 import type { PageHeaderProps } from "../components/ui/page-header";
 import { PlusIcon } from "../components/ui/plain-icons";
@@ -65,6 +66,7 @@ function HeaderMenuButton({
 
 export function SearchHeader({
   color = "purple",
+  askAi,
   leftMode = "search",
   onHamburgerClick,
   showMobileMenuButton = false,
@@ -140,6 +142,8 @@ export function SearchHeader({
             </div>
           </div>
         )}
+
+        {askAi && <AskAi {...askAi} className={cn("ml-auto", askAi.className)} />}
 
         {/* Right actions */}
         <div
@@ -272,6 +276,7 @@ export function SearchHeader({
 
 export function TitleHeader({
   color = "purple",
+  askAi,
   title,
   onHamburgerClick,
   showMobileMenuButton = false,
@@ -400,6 +405,8 @@ export function TitleHeader({
             <span className="text-fg-grey-700 text-sm font-bold leading-5 tracking-fg">{secondaryAction.label}</span>
           </button>
         )}
+
+        {askAi && <AskAi {...askAi} />}
 
         {/* Primary action — Figma: accent bg + Linear plus icon */}
         {primaryAction && (

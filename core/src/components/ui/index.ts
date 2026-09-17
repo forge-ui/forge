@@ -356,3 +356,6 @@ export type { ColorScaleStop, ColorSwatchSize } from "./style-guide";
 // Layout templates
 export { AppLayout } from "../layouts/app-layout";
 export type { AppLayoutMode, AppLayoutProfilePosition, AppLayoutAccentColor, AppLayoutMenuItem, AppLayoutProfile, AppLayoutBreadcrumb, AppLayoutPageHeaderVariant } from "../layouts/app-layout";
+
+export { AskAi } from "./ask-ai";
+export type { AskAiProps, AskAiRequest, AskAiMessage } from "./ask-ai";
