@@ -49,6 +49,7 @@ export default function Home() {
             showFilters={false}
             showKebab={false}
             showFavorite={false}
+            askAi={{ context: "真实包消费", onSend: async () => "Ask AI consumer response" }}
             primaryAction={{ label: "新建" }}
           />
           <Grid columns={{ base: 1, md: 12 }} gap={{ base: 8, lg: 24 }}>

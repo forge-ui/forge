@@ -13,6 +13,7 @@ import {
   BellBold,
   LetterBold,
 } from "solar-icon-set";
+import type { AskAiProps } from "../ui/ask-ai";
 import { PageHeader } from "../ui/page-header";
 import { Breadcrumbs } from "../ui/breadcrumbs";
 import {
@@ -98,6 +99,8 @@ export interface AppLayoutProps {
   defaultLanguage?: AppLayoutLanguage;
   onLanguageChange?: (language: AppLayoutLanguage) => void;
   pageHeaderVariant?: AppLayoutPageHeaderVariant;
+  /** Optional Ask AI conversation drawer for every header variant. */
+  askAi?: AskAiProps;
   onBack?: () => void;
   primaryAction?: { label: string; onClick?: () => void };
   secondaryAction?: { label: string; onClick?: () => void };
@@ -170,6 +173,7 @@ export function AppLayout({
   pageTitle,
   breadcrumbs,
   pageHeaderVariant = "home",
+  askAi,
   onBack,
   primaryAction,
   secondaryAction,
@@ -656,6 +660,7 @@ export function AppLayout({
             /* --- Topbar with search + icons + profile (using PageHeader) --- */
             <div className="relative">
               <PageHeader
+                askAi={askAi}
                 variant="search"
                 color={topbarAccent ?? accent}
                 leftMode={topbarLeftMode}
@@ -723,6 +728,7 @@ export function AppLayout({
           ) : pageHeaderVariant === "detail" ? (
             /* --- Detail Page Header (using PageHeader) --- */
             <PageHeader
+              askAi={askAi}
               variant="title"
               color={accent}
               title={pageTitle}
@@ -743,6 +749,7 @@ export function AppLayout({
           ) : (
             /* --- Home Page Header (using PageHeader) --- */
             <PageHeader
+              askAi={askAi}
               variant="title"
               color={accent}
               title={pageTitle}

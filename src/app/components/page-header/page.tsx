@@ -1,5 +1,6 @@
 "use client";
 
+import { AskAiDemo } from "./ask-ai-demo";
 import Link from "next/link";
 import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
@@ -41,6 +42,7 @@ const CODE_BREADCRUMB_USAGE = `<Breadcrumbs
 const CODE_BREADCRUMB_COLOR = `<Breadcrumbs color="purple" items={items} />`;
 
 const HEADER_PROPS: ApiTableRow[] = [
+  { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 AI 对话抽屉。必填 onSend(message, { context?, messages, signal }) 返回回复；可选 context、suggestions、label、placeholder、disabled、className。未配置时隐藏。" },
   { attr: "variant", type: "'search' | 'title'", defaultValue: "'title'", description: "两种布局：search（全局 header 带搜索 + 通知 + profile）与 title（页面标题 + 返回 + actions）。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色（影响通知徽标等）。" },
   { attr: "searchPlaceholder", type: "string", defaultValue: "—", description: "search 变体：搜索框占位。" },
@@ -122,6 +124,20 @@ export default function PageHeaderCasePage() {
               />
             </div>
           </PreviewBlock>
+        </SubSection>
+
+        <SubSection title="Ask AI" stack>
+          <AskAiDemo />
+          <CodeBlock code={`<PageHeader
+  title="项目概览"
+  askAi={{
+    context: "项目概览 / projects",
+    suggestions: ["这个页面可以做什么？", "下一步该做什么？"],
+    onSend: (message, request) => askYourAiService(message, request),
+  }}
+/>`} />
+          <p className="text-sm text-fg-grey-700">AppLayout 支持同名 askAi 配置；也可独立导入 AskAi。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。业务通过 onSend 返回纯文本回复，signal 可传给 fetch。</p>
+          <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
         </SubSection>
 
         <SubSection title="API" stack>

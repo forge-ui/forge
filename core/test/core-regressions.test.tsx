@@ -571,16 +571,23 @@ test("PageHeader 拆分前后保留 search 与 title 两种公共渲染入口", 
   assert.match(title, /data-forge-page-title/);
 });
 
-test("Sidebar popover 公共导出与语言别名保持兼容", () => {
+test("语言菜单默认只显示中英文，保留旧语言资源兼容", () => {
   assert.equal(languageMarkDataUrl, chinaFlagDataUrl);
   assert.equal(languageFlagDataUrls["zh-CN"], chinaFlagDataUrl);
+  for (const code of ["zh-CN", "en-US", "zh-TW", "ja-JP"] as const) {
+    assert.match(languageFlagDataUrls[code], /^data:image\/svg\+xml,/);
+  }
   const language = render(LanguageSwitcher, { accentBg: "bg-fg-violet" });
-  assert.match(language, /data-language-code="zh-CN"/);
-  assert.match(language, /data-language-code="zh-TW"/);
-  assert.match(language, /data-language-code="en-US"/);
-  assert.match(language, /data-language-code="ja-JP"/);
-  assert.match(language, /role="menu"/);
-  assert.match(language, /role="menuitemradio"/);
+  const dom = new JSDOM(language);
+  const options = [...dom.window.document.querySelectorAll('[role="menuitemradio"]')];
+  assert.deepEqual(options.map((option) => option.getAttribute("data-language-code")), ["zh-CN", "en-US"]);
+  assert.equal(options[0].getAttribute("aria-checked"), "true");
+  assert.equal(options[1].getAttribute("aria-checked"), "false");
+  assert.ok(dom.window.document.querySelector('[role="menu"]'));
+  dom.window.close();
+});
+
+test("Sidebar popover 公共导出保留交互语义", () => {
   assert.match(render(MessageMenu), /role="menu"/);
   assert.match(render(NotificationPanel, { onClose: () => undefined }), /role="dialog"/);
   assert.match(render(ProfileDropdown), /role="menu"/);

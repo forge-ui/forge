@@ -17,7 +17,6 @@ import {
   EyeLinear,
   PenLinear,
   TrashBinTrashLinear,
-  ArrowRightUpLinear,
 } from "solar-icon-set";
 import { Checkbox, type CheckboxColor } from "./checkbox";
 import { FileTypeIcon } from "./forms";
@@ -637,7 +636,7 @@ export function CellLink({
       )}
     >
       {label}
-      <ArrowRightUpLinear size={16} color={c.cssVar} />
+      <EyeLinear size={16} color={c.cssVar} />
     </button>
   );
 }
