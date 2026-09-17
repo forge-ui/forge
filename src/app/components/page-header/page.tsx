@@ -1,6 +1,6 @@
 "use client";
 
-import { AskAiDemo } from "./ask-ai-demo";
+import { askAiExample } from "./ask-ai-example";
 import Link from "next/link";
 import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
@@ -10,6 +10,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";`;
 
 const CODE_HEADER_SEARCH = `<PageHeader
+  askAi={{ onSend: (message, request) => askYourAiService(message, request) }}
   variant="search"
   searchPlaceholder="Search anything..."
   notifications={3}
@@ -23,6 +24,7 @@ const CODE_HEADER_SEARCH = `<PageHeader
 />`;
 
 const CODE_HEADER_TITLE = `<PageHeader
+  askAi={{ onSend: (message, request) => askYourAiService(message, request) }}
   variant="title"
   title="Projects"
   showBackButton
@@ -93,6 +95,7 @@ export default function PageHeaderCasePage() {
           <PreviewBlock code={CODE_HEADER_SEARCH} minHeight={120}>
             <div className="w-full">
               <PageHeader
+                askAi={askAiExample}
                 variant="search"
                 searchPlaceholder="Search anything..."
                 notifications={3}
@@ -115,6 +118,7 @@ export default function PageHeaderCasePage() {
           <PreviewBlock code={CODE_HEADER_TITLE} minHeight={120}>
             <div className="w-full">
               <PageHeader
+                askAi={askAiExample}
                 variant="title"
                 title="Projects"
                 showBackButton
@@ -127,7 +131,6 @@ export default function PageHeaderCasePage() {
         </SubSection>
 
         <SubSection title="Ask AI" stack>
-          <AskAiDemo />
           <CodeBlock code={`<PageHeader
   title="项目概览"
   askAi={{
@@ -142,7 +145,7 @@ export default function PageHeaderCasePage() {
     }),
   }}
 />`} />
-          <p className="text-sm text-fg-grey-700">AppLayout 支持同名 askAi 配置；也可独立导入 AskAi。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
+          <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
           <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
         </SubSection>
 
