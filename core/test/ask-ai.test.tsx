@@ -169,3 +169,28 @@ test("Structured replies omit unsafe or empty links and support text-only object
     dom.window.close();
   }
 });
+
+
+test("Ask AI controls follow both PageHeader variants and update with their accent", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  try {
+    for (const variant of ["search", "title"] as const) {
+      for (const [color, token] of [["purple", "bg-fg-violet"], ["blue", "bg-fg-blue"], ["black", "bg-fg-black"]] as const) {
+        await act(async () => root.render(createElement(PageHeader, {
+          variant, color, askAi: { context: "/projects", onSend: () => "回复" },
+        })));
+        if (!document.querySelector("dialog")) {
+          await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+        }
+        const dialog = document.querySelector("dialog")!;
+        assert.ok(dialog.querySelector('button[type="submit"]')!.classList.contains(token));
+        assert.ok(dialog.querySelector(`[role="checkbox"] .${token}`));
+        assert.equal(dialog.querySelector("img")!.getAttribute("src"), document.querySelector('[aria-label="Ask AI"] img')!.getAttribute("src"));
+      }
+    }
+  } finally {
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
+});
