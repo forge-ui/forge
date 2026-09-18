@@ -16,6 +16,7 @@ import {
   ToolbarSearchInput,
   ToolbarDatepicker,
   ToolbarFilterButton,
+  Grid,
 } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
@@ -318,7 +319,7 @@ export default function SellerDetailPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
           <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">
             Seller Details
@@ -340,10 +341,10 @@ export default function SellerDetailPage() {
       </div>
 
       {/* Content */}
-      <div className="flex items-start gap-4">
+      <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-[336px_minmax(0,1fr)]" data-testid="seller-layout">
         {/* Left Sidebar */}
-        <div className="w-[336px] rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative">
-          <div className="absolute left-[7px] top-[7px] h-[109px] w-[320px] rounded-xl bg-gradient-to-r from-fg-violet via-purple-300 to-fg-yellow-100" />
+        <div className="min-w-0 rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
+          <div className="absolute left-[7px] right-[7px] top-[7px] h-[109px] rounded-xl bg-gradient-to-r from-fg-violet via-purple-300 to-fg-yellow-100" />
 
           <div className="relative z-10 flex flex-col items-center gap-3 pt-10">
             <div className="relative">
@@ -367,12 +368,12 @@ export default function SellerDetailPage() {
             </div>
           </div>
 
-          <div className="relative z-10 mt-6 grid grid-cols-2 gap-3">
+          <Grid columns={{ base: 1, sm: 2 }} gap={12} className="relative z-10 mt-6">
             <Button variant="tertiary" iconLeft={<PhoneCallingLinear size={16} />}>
               Call
             </Button>
             <Button iconLeft={<ChatRoundLinear size={16} />}>Message</Button>
-          </div>
+          </Grid>
 
           <div className="relative z-10 mt-5 space-y-4 border-t border-fg-grey-200 pt-5">
             <div>
@@ -425,9 +426,9 @@ export default function SellerDetailPage() {
         </div>
 
         {/* Right Panel */}
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0">
           {/* Stat Cards */}
-          <div className="grid grid-cols-3 gap-4">
+          <Grid columns={{ base: 1, sm: 3 }}>
             {statCards.map((card) => (
               <StatCard
                 key={card.title}
@@ -440,7 +441,7 @@ export default function SellerDetailPage() {
                 className="flex-1"
               />
             ))}
-          </div>
+          </Grid>
 
           {/* Tabbed Content */}
           <div className="mt-4 rounded-card border border-fg-grey-200 bg-white overflow-hidden">
@@ -456,7 +457,7 @@ export default function SellerDetailPage() {
             {/* Orders Tab */}
             {activeTab === "Orders" && (
               <div>
-                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
                   <ToolbarSearchInput placeholder="Search..." />
                   <div className="flex items-center gap-3">
                     <ToolbarDatepicker enablePopover />
@@ -478,7 +479,7 @@ export default function SellerDetailPage() {
             {/* Product Tab */}
             {activeTab === "Product" && (
               <div>
-                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
                   <ToolbarSearchInput placeholder="Search..." />
                   <div className="flex items-center gap-3">
                     <ToolbarDatepicker enablePopover />
@@ -500,7 +501,7 @@ export default function SellerDetailPage() {
             {/* Reviews Tab */}
             {activeTab === "Reviews" && (
               <div>
-                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
                   <ToolbarSearchInput placeholder="Search..." />
                   <div className="flex items-center gap-3">
                     <ToolbarFilterButton panel={(close) => <MockFilterPanel close={close} />} />
@@ -527,13 +528,13 @@ export default function SellerDetailPage() {
             {/* Attachment Tab */}
             {activeTab === "Attachment" && (
               <div>
-                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
                   <ToolbarSearchInput placeholder="Search..." />
                   <div className="flex items-center gap-3">
                     <ToolbarFilterButton panel={(close) => <MockFilterPanel close={close} />} />
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 px-5 pb-5">
+                <Grid columns={{ base: 1, sm: 2, xl: 3 }} className="px-5 pb-5">
                   {sellerAttachments.map((item) => (
                     <div
                       key={item.id}
@@ -580,7 +581,7 @@ export default function SellerDetailPage() {
                       </div>
                     </div>
                   ))}
-                </div>
+                </Grid>
               </div>
             )}
           </div>

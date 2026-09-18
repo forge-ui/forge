@@ -9,10 +9,11 @@ import {
   AltArrowDownLinear,
   HamburgerMenuLinear,
   CloseSquareLinear,
-  CalendarBoldDuotone,
-  BellBoldDuotone,
-  LetterBoldDuotone,
+  CalendarBold,
+  BellBold,
+  LetterBold,
 } from "../../icons";
+import type { AskAiProps } from "../ui/ask-ai";
 import { PageHeader } from "../ui/page-header";
 import { Breadcrumbs } from "../ui/breadcrumbs";
 import {
@@ -28,7 +29,7 @@ import {
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
 import { forgeLogoDataUrl } from "../../assets/_inlined";
-import { accentTokens, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
+import { accentTokens, findActiveSidebarMenuItem, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
 import { languageLabels } from "../../internal/sidebar-popover-data";
 
 export type { Team };
@@ -98,6 +99,8 @@ export interface AppLayoutProps {
   defaultLanguage?: AppLayoutLanguage;
   onLanguageChange?: (language: AppLayoutLanguage) => void;
   pageHeaderVariant?: AppLayoutPageHeaderVariant;
+  /** Optional Ask AI conversation drawer for every header variant. */
+  askAi?: AskAiProps;
   onBack?: () => void;
   primaryAction?: { label: string; onClick?: () => void };
   secondaryAction?: { label: string; onClick?: () => void };
@@ -110,6 +113,8 @@ export interface AppLayoutProps {
   showDatePicker?: boolean;
   /** 是否在 page header 显示三点菜单（默认 true） */
   showKebab?: boolean;
+  /** 是否在 page header 显示收藏操作（默认：home variant 不显示，detail variant 显示） */
+  showFavorite?: boolean;
   /** 完全隐藏 page header 区（标题 / 按钮 / 边框）。chat / 沉浸式页面用 */
   hideHeader?: boolean;
   /** 完全自定义 sidebar 主体（替换主菜单 + menuItems + favoriteItems 那块）。
@@ -123,6 +128,11 @@ export interface AppLayoutProps {
   hideSidebarWidgets?: boolean;
   /** 自定义 team switcher 下拉里 invite / settings / createNew 按钮的文案 */
   teamLabels?: TeamSwitcherLabels;
+  /**
+   * Team switcher 是否显示邀请 / 设置 / 新建。
+   * false = 仅当前工作区标题 + teams 列表（应用切换器用）。默认 true。
+   */
+  showTeamActions?: boolean;
 }
 
 // ============================================================
@@ -163,17 +173,20 @@ export function AppLayout({
   pageTitle,
   breadcrumbs,
   pageHeaderVariant = "home",
+  askAi,
   onBack,
   primaryAction,
   secondaryAction,
   showDatePicker,
   showKebab = true,
+  showFavorite,
   hideHeader,
   sidebarSlot,
   sidebarWidth = "16rem",
   collapsedSidebarWidth = "5rem",
   hideSidebarWidgets,
   teamLabels,
+  showTeamActions = true,
 }: AppLayoutProps) {
   const pathname = usePathname();
   const config = modeConfig[mode];
@@ -181,6 +194,10 @@ export function AppLayout({
 
   const accentActive = config.useAccentBgForActive ? accentCfg.activeBgLight : accentCfg.activeBgDark;
   const accentBar = config.useAccentBgForActive ? accentCfg.accentBar : accentCfg.accentBarDark;
+  const activeSidebarItem = findActiveSidebarMenuItem(
+    [...(menuItems ?? []), ...(favoriteItems ?? [])],
+    pathname,
+  );
 
   // In dark mode, sidebar bg follows accent (purple → violet, blue → blue, black → black)
   const sidebarBg = mode === "dark" ? accentCfg.activeBg : config.sidebar;
@@ -409,7 +426,7 @@ export function AppLayout({
             inert={sidebarCollapsed ? true : undefined}
             className={cn("flex-1 flex items-center gap-2 overflow-hidden", sidebarCollapsed && "justify-center")}
           >
-            {logo ?? <img src={forgeLogoDataUrl} alt="Forge" className="w-8 h-8 shrink-0" />}
+            {logo ?? <img src={forgeLogoDataUrl} alt="Forge" className={cn("w-8 h-8 shrink-0", mode === "dark" && "invert")} />}
             {!sidebarCollapsed && (
               <span className={cn("min-w-0 truncate whitespace-nowrap text-2xl font-semibold leading-8 tracking-fg", config.logoText)}>{logoText}</span>
             )}
@@ -427,7 +444,7 @@ export function AppLayout({
               type="button"
               aria-label={isMobile ? "关闭主导航" : "收起主导航"}
               onClick={() => isMobile ? setMobileSidebarOpen(false) : setSidebarCollapsed(true)}
-              className={cn("w-5 h-5 transition-colors shrink-0", config.hamburger)}
+              className={cn("w-5 h-5 flex items-center justify-center transition-colors shrink-0", config.hamburger)}
             >
               {isMobile ? <CloseSquareLinear size={20} /> : <HamburgerMenuLinear size={20} />}
             </button>
@@ -467,6 +484,7 @@ export function AppLayout({
                   teamSubtitle={teamSubtitle}
                   teams={teams}
                   labels={teamLabels}
+                  showActions={showTeamActions}
                 />
               </div>
             )}
@@ -474,7 +492,10 @@ export function AppLayout({
         )}
 
         {/* Menu sections */}
-        <div className={cn("fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}>
+        <div
+          data-forge-sidebar-scroll
+          className={cn("fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}
+        >
           {sidebarSlot ? (
             sidebarSlot
           ) : (
@@ -486,7 +507,7 @@ export function AppLayout({
                   </div>
                 )}
                 {(menuItems ?? []).map((item, i) => (
-                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
+                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                 ))}
               </div>
 
@@ -498,7 +519,7 @@ export function AppLayout({
                     </div>
                   )}
                   {favoriteItems.map((item, i) => (
-                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} collapsed={sidebarCollapsed} />
+                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                   ))}
                 </div>
               )}
@@ -533,7 +554,7 @@ export function AppLayout({
                   onClick={() => togglePopover("calendar")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("calendar"))}
                 >
-                  <CalendarBoldDuotone size={20} />
+                  <CalendarBold size={20} />
                 </button>
                 <button
                   type="button"
@@ -544,7 +565,7 @@ export function AppLayout({
                   onClick={() => togglePopover("notifications")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("notifications"))}
                 >
-                  <BellBoldDuotone size={20} />
+                  <BellBold size={20} />
                   {notifications !== undefined && notifications > 0 && openPopover !== "notifications" && (
                     <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{notifications}</span>
                   )}
@@ -558,7 +579,7 @@ export function AppLayout({
                   onClick={() => togglePopover("messages")}
                   className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("messages"))}
                 >
-                  <LetterBoldDuotone size={20} />
+                  <LetterBold size={20} />
                   {messages !== undefined && messages > 0 && openPopover !== "messages" && (
                     <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{messages}</span>
                   )}
@@ -635,10 +656,11 @@ export function AppLayout({
         <div className={cn("min-w-0 flex-1 flex flex-col max-md:rounded-none max-md:outline-none", config.contentArea)}>
 
           {/* Topbar: depends on profilePosition */}
-          {profilePosition === "topbar" ? (
+          {hideHeader ? null : profilePosition === "topbar" ? (
             /* --- Topbar with search + icons + profile (using PageHeader) --- */
             <div className="relative">
               <PageHeader
+                askAi={askAi}
                 variant="search"
                 color={topbarAccent ?? accent}
                 leftMode={topbarLeftMode}
@@ -703,9 +725,10 @@ export function AppLayout({
                 </div>
               )}
             </div>
-          ) : hideHeader ? null : pageHeaderVariant === "detail" ? (
+          ) : pageHeaderVariant === "detail" ? (
             /* --- Detail Page Header (using PageHeader) --- */
             <PageHeader
+              askAi={askAi}
               variant="title"
               color={accent}
               title={pageTitle}
@@ -719,13 +742,14 @@ export function AppLayout({
               showDatePicker={showDatePicker ?? false}
               showFilters={false}
               showKebab={showKebab}
-              showFavorite
+              showFavorite={showFavorite ?? true}
               secondaryAction={secondaryAction ? { label: secondaryAction.label, onClick: secondaryAction.onClick } : undefined}
               primaryAction={primaryAction ? { label: primaryAction.label, onClick: primaryAction.onClick } : undefined}
             />
           ) : (
             /* --- Home Page Header (using PageHeader) --- */
             <PageHeader
+              askAi={askAi}
               variant="title"
               color={accent}
               title={pageTitle}
@@ -738,7 +762,8 @@ export function AppLayout({
               showDatePicker={showDatePicker ?? true}
               showFilters={false}
               showKebab={showKebab}
-              showFavorite={false}
+              showFavorite={showFavorite ?? false}
+              secondaryAction={secondaryAction ? { label: secondaryAction.label, onClick: secondaryAction.onClick } : undefined}
               primaryAction={primaryAction ? { label: primaryAction.label, onClick: primaryAction.onClick } : undefined}
             />
           )}

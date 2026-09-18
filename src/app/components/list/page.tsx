@@ -109,6 +109,7 @@ const LISTGROUP_PROPS: ApiTableRow[] = [
   { attr: "onTabChange", type: "(value: string) => void", defaultValue: "—", description: "tab 切换回调。" },
   { attr: "closable", type: "boolean", defaultValue: "false", description: "是否渲染右上 close 按钮（覆盖 action 槽）。" },
   { attr: "onClose", type: "() => void", defaultValue: "—", description: "close 回调。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧标题、标签页和内容区留白。" },
 ];
 
 const CONTACT_PROPS: ApiTableRow[] = [

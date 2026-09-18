@@ -14,7 +14,7 @@ export function FinanceSurface({
   children: ReactNode;
   className?: string;
 }) {
-  const padding = className.includes("p-0") ? "none" : "md";
+  const padding = className.includes("p-0") ? "none" : "sm";
   const shellClassName = className.replace(/\bp-0\b/g, "").trim();
 
   return (
@@ -108,20 +108,20 @@ export function FinanceMetricCard({
   }[chartColor];
 
   return (
-    <div className="relative min-h-[238px] overflow-hidden rounded-[22px] border border-fg-grey-200 bg-white p-7">
-      <div className="absolute right-7 top-7 flex size-12 items-center justify-center rounded-full bg-fg-grey-50">
+    <div className="relative min-h-[196px] overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white p-5">
+      <div className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-fg-grey-50">
         <span className={`block size-4 rounded-[5px] ${chartColor === "blue" ? "bg-fg-blue-500" : chartColor === "green" ? "bg-fg-green-500" : "bg-fg-red"}`} />
       </div>
-      <div className="relative flex h-full min-h-[184px] items-end justify-between gap-5">
+      <div className="relative flex h-full min-h-[154px] items-end justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-xl font-semibold tracking-fg text-fg-black">{title}</p>
-          <p className="mt-4 text-sm font-medium text-fg-grey-500">2 Jul - Today</p>
-          <p className="mt-20 text-4xl font-semibold tracking-fg text-fg-black">{value}</p>
-          <p className={`mt-5 text-sm font-semibold ${colorClass}`}>
+          <p className="text-lg font-semibold tracking-fg text-fg-black">{title}</p>
+          <p className="mt-2 text-sm font-medium text-fg-grey-500">2 Jul - Today</p>
+          <p className="mt-10 text-3xl font-semibold tracking-fg text-fg-black">{value}</p>
+          <p className={`mt-3 text-sm font-semibold ${colorClass}`}>
             {trend} <span className="font-medium text-fg-grey-500">{note}</span>
           </p>
         </div>
-        <svg className="mb-8 h-16 w-36 shrink-0" viewBox="0 0 144 64" fill="none" aria-hidden="true">
+        <svg className="mb-5 h-14 w-32 shrink-0" viewBox="0 0 144 64" fill="none" aria-hidden="true">
           <path d="M4 24C17 36 25 20 36 34C47 48 58 42 68 40C78 38 88 30 99 33C110 36 118 23 140 20" stroke={lineStroke} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M4 62H140V22C118 25 110 38 99 35C88 32 78 40 68 42C58 44 47 50 36 36C25 22 17 38 4 26V62Z" fill={lineStroke} opacity="0.08" />
         </svg>
@@ -217,7 +217,7 @@ export function FinanceExpenseGauge() {
         <div className="absolute bottom-0 h-56 w-56 rounded-full border-[34px] border-fg-blue-500 border-b-fg-grey-100 border-l-fg-grey-100 border-r-fg-yellow" />
         <div className="absolute bottom-0 right-8 z-0 h-24 w-24 rounded-full border-[16px] border-fg-red border-b-fg-cyan-500 border-l-fg-green-500 border-t-fg-red" />
         <div className="relative z-10 rounded-full bg-white/90 px-3 text-center">
-          <p className="text-4xl font-semibold text-fg-black">$3.1k</p>
+          <p className="text-3xl font-semibold text-fg-black">$3.1k</p>
           <p className="mt-3 text-sm font-semibold text-fg-green-500">10% <span className="font-medium text-fg-grey-500">+$181</span></p>
         </div>
       </div>
@@ -246,7 +246,7 @@ export function FinanceExpenseGauge() {
 
 export function FinanceBudgetPanel() {
   return (
-    <div className="rounded-[22px] border border-fg-grey-200 bg-white p-7">
+    <div className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xl font-semibold text-fg-black">Budget</p>
@@ -254,14 +254,14 @@ export function FinanceBudgetPanel() {
         </div>
         <ToolbarKebabButton />
       </div>
-      <div className="mt-8 h-20 overflow-hidden rounded-[14px] bg-fg-grey-100">
+      <div className="mt-5 h-16 overflow-hidden rounded-[14px] bg-fg-grey-100">
         <div className="flex h-full w-3/4 items-center justify-center rounded-[14px] bg-fg-blue-500 text-base font-semibold text-white">75%</div>
       </div>
       <div className="mt-5 flex items-center justify-between text-sm">
         <span className="font-medium text-fg-grey-500">+$181 today</span>
         <span className="font-semibold text-fg-green-500">10%</span>
       </div>
-      <div className="mt-7 grid grid-cols-2 gap-4">
+      <div className="mt-5 grid grid-cols-2 gap-4">
         <div className="text-center">
           <p className="text-xs font-medium text-fg-grey-500">Spent</p>
           <p className="mt-2 text-2xl font-semibold text-fg-black">$3,125</p>

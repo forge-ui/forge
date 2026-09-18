@@ -15,7 +15,7 @@ import {
 } from "../src/components/ui/data-table";
 import { PageHeader } from "../src/components/ui/page-header";
 import { AppLayout } from "../src/components/layouts/app-layout";
-import { SidebarMenuItemRow, modeConfig } from "../src/internal/app-layout-sidebar";
+import { findActiveSidebarMenuItem, SidebarMenuItemRow, modeConfig } from "../src/internal/app-layout-sidebar";
 import { Button } from "../src/components/ui/button";
 import { TabBar } from "../src/components/ui/tab-bar";
 import { SelectOption } from "../src/components/ui/forms/select-option";
@@ -43,6 +43,7 @@ function installDom({ mobile = false }: { mobile?: boolean } = {}) {
 
   Object.assign(globalThis, {
     IS_REACT_ACT_ENVIRONMENT: true,
+    self: dom.window,
     window: dom.window,
     document: dom.window.document,
     HTMLElement: dom.window.HTMLElement,
@@ -530,11 +531,132 @@ test("SidebarMenuItemRow 在 pathname 激活子项时自动展开", async () => 
   dom.window.close();
 });
 
-test("AppLayout hideHeader 在移动端也不会注入 page header", async () => {
+test("SidebarMenuItemRow 统一尾斜杠、查询和 hash，并保持根路径与父子路径边界", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  const props = {
+    config: modeConfig.light,
+    accentActive: "bg-fg-violet",
+    accentBar: "bg-fg-violet",
+  };
+
+  async function expectActive(pathname: string, href: string, expected: boolean) {
+    await act(async () => {
+      root.render(createElement(SidebarMenuItemRow, {
+        ...props,
+        pathname,
+        item: { label: href, href },
+      }));
+    });
+    const link = document.querySelector<HTMLAnchorElement>("a[href]");
+    assert.ok(link);
+    assert.equal(link.getAttribute("aria-current") === "page", expected, `${href} @ ${pathname}`);
+  }
+
+  await expectActive("/appointments", "/appointments/", true);
+  await expectActive("/appointments/?view=today#queue", "/appointments?tab=open#top", true);
+  await expectActive("/projects/detail", "/projects", true);
+  await expectActive("/", "/", true);
+  await expectActive("/projects", "/", false);
+  await expectActive("/project-settings", "/projects", false);
+
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("SidebarMenuItemRow 只把最长匹配的可导航叶子标记为当前页", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  const props = {
+    config: modeConfig.light,
+    accentActive: "bg-fg-violet",
+    accentBar: "bg-fg-violet",
+  };
+  const items = [
+    { label: "项目", href: "/projects" },
+    { label: "项目设置", href: "/projects/settings" },
+  ];
+  const activeItem = findActiveSidebarMenuItem(items, "/projects/settings");
+  assert.equal(activeItem, items[1]);
+
+  await act(async () => {
+    root.render(createElement("div", null, items.map(item => createElement(SidebarMenuItemRow, {
+      ...props,
+      key: item.href,
+      item,
+      pathname: "/projects/settings",
+      activeItem,
+    }))));
+  });
+  const currentLinks = [...document.querySelectorAll<HTMLAnchorElement>('a[aria-current="page"]')];
+  assert.equal(currentLinks.length, 1);
+  assert.equal(currentLinks[0]?.getAttribute("href"), "/projects/settings");
+
+  const projectOnly = [{ label: "项目", href: "/projects" }];
+  const projectActive = findActiveSidebarMenuItem(projectOnly, "/projects/42");
+  assert.equal(projectActive, projectOnly[0]);
+
+  const grouped = {
+    label: "项目管理",
+    children: [{ label: "项目设置", href: "/projects/settings" }],
+  };
+  const groupedActive = findActiveSidebarMenuItem([grouped], "/projects/settings");
+  await act(async () => {
+    root.render(createElement(SidebarMenuItemRow, {
+      ...props,
+      item: grouped,
+      pathname: "/projects/settings",
+      activeItem: groupedActive,
+    }));
+  });
+  const expandedGroupButton = document.querySelector<HTMLButtonElement>("button[aria-expanded='true']");
+  const expandedActiveLink = document.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
+  assert.ok(expandedGroupButton);
+  assert.ok(expandedActiveLink);
+  assert.equal(expandedGroupButton.className.includes("bg-fg-violet"), false);
+  assert.equal(expandedActiveLink.className.includes("bg-fg-violet"), true);
+
+  await act(async () => {
+    root.render(createElement(SidebarMenuItemRow, {
+      ...props,
+      item: grouped,
+      pathname: "/projects/settings",
+      activeItem: groupedActive,
+      collapsed: true,
+    }));
+  });
+  const collapsedGroupLink = document.querySelector<HTMLAnchorElement>('a[href="/projects/settings"]');
+  assert.ok(collapsedGroupLink);
+  assert.equal(collapsedGroupLink.getAttribute("aria-current"), null);
+
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("AppLayout hideHeader 在默认 topbar 与 sidebar 模式下都不会注入 page header", async () => {
   const dom = installDom({ mobile: true });
   const container = document.querySelector<HTMLDivElement>("#root");
   assert.ok(container);
   const root = createRoot(container);
+
+  await act(async () => {
+    root.render(createElement(
+      AppLayout as React.ElementType,
+      {
+        hideHeader: true,
+        pageTitle: "沉浸式页面",
+      },
+      createElement("main", null, "沉浸式内容"),
+    ));
+  });
+
+  assert.equal(document.querySelector("[data-forge-menu-trigger]"), null);
+  assert.equal(document.body.textContent?.includes("沉浸式页面"), false);
+  assert.equal(document.body.textContent?.includes("沉浸式内容"), true);
 
   await act(async () => {
     root.render(createElement(
@@ -551,6 +673,80 @@ test("AppLayout hideHeader 在移动端也不会注入 page header", async () =>
   assert.equal(document.querySelector("[data-forge-menu-trigger]"), null);
   assert.equal(document.body.textContent?.includes("沉浸式页面"), false);
   assert.equal(document.body.textContent?.includes("沉浸式内容"), true);
+
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("AppLayout home header 同时透传次要与主要操作", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  let secondaryClicks = 0;
+  let primaryClicks = 0;
+
+  await act(async () => {
+    root.render(createElement(
+      AppLayout as React.ElementType,
+      {
+        profilePosition: "sidebar",
+        pageHeaderVariant: "home",
+        pageTitle: "预约履约",
+        secondaryAction: { label: "导出", onClick: () => { secondaryClicks += 1; } },
+        primaryAction: { label: "新建预约", onClick: () => { primaryClicks += 1; } },
+      },
+      createElement("main", null, "内容"),
+    ));
+  });
+
+  const actionButtons = [...document.querySelectorAll<HTMLButtonElement>("button")];
+  const secondary = actionButtons.find(button => button.textContent?.trim() === "导出");
+  const primary = actionButtons.find(button => button.textContent?.trim() === "新建预约");
+  assert.ok(secondary);
+  assert.ok(primary);
+  assert.ok(actionButtons.indexOf(secondary) < actionButtons.indexOf(primary));
+
+  await act(async () => secondary.click());
+  await act(async () => primary.click());
+  assert.equal(secondaryClicks, 1);
+  assert.equal(primaryClicks, 1);
+
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("AppLayout showFavorite 保留 variant 默认值并允许显式关闭", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  const baseProps = {
+    profilePosition: "sidebar",
+    pageTitle: "项目",
+    showDatePicker: false,
+    showKebab: false,
+  };
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, baseProps, createElement("main", null, "内容")));
+  });
+  assert.equal(document.querySelector('[aria-label="收藏"]'), null);
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, { ...baseProps, showFavorite: true }, createElement("main", null, "内容")));
+  });
+  assert.ok(document.querySelector('[aria-label="收藏"]'));
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, { ...baseProps, pageHeaderVariant: "detail" }, createElement("main", null, "内容")));
+  });
+  assert.ok(document.querySelector('[aria-label="收藏"]'));
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, { ...baseProps, pageHeaderVariant: "detail", showFavorite: false }, createElement("main", null, "内容")));
+  });
+  assert.equal(document.querySelector('[aria-label="收藏"]'), null);
 
   await act(async () => root.unmount());
   dom.window.close();

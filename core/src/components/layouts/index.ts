@@ -1,4 +1,6 @@
 export { AppLayout } from "./app-layout";
+export { Grid, GridItem } from "./grid";
+export type { GridProps, GridItemProps, GridBreakpoint, GridResponsive, GridColumns, GridGap, GridSpan } from "./grid";
 export type {
   AppLayoutMode,
   AppLayoutProfilePosition,

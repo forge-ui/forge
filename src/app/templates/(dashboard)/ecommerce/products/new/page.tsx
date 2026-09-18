@@ -19,6 +19,7 @@ import {
   PlusIcon,
   CloseIcon,
   CheckIcon,
+  Grid,
 } from "@forge-ui-official/core";
 
 export default function AddProductPage() {
@@ -46,7 +47,7 @@ export default function AddProductPage() {
       )}
 
       {/* Page Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
             <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => router.push("/templates/ecommerce/products")}>
@@ -73,9 +74,9 @@ export default function AddProductPage() {
       </div>
 
       {/* Form Content */}
-      <div className="flex gap-3 items-start">
+      <div className="grid grid-cols-1 items-start gap-3 xl:grid-cols-[minmax(0,1fr)_280px]" data-testid="product-layout">
         {/* Main Content */}
-        <div className="flex-1 min-w-0 flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           {/* General Information */}
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">General Information</h3>
@@ -110,7 +111,7 @@ export default function AddProductPage() {
               placeholder="Type base price..."
               shape="pill"
             />
-            <div className="grid grid-cols-2 gap-2 mt-3">
+            <Grid columns={{ base: 1, sm: 2 }} gap={8} className="mt-3">
               <SelectOption
                 label="Discount Type"
                 options={[{ label: "Select...", value: "default" }]}
@@ -133,13 +134,13 @@ export default function AddProductPage() {
                 placeholder="Type VAT amount..."
                 shape="pill"
               />
-            </div>
+            </Grid>
           </div>
 
           {/* Inventory */}
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Inventory</h3>
-            <div className="grid grid-cols-3 gap-2">
+            <Grid columns={{ base: 1, sm: 3 }} gap={8}>
               <TextField
                 label="SKU"
                 placeholder="Type product SKU here..."
@@ -155,15 +156,15 @@ export default function AddProductPage() {
                 placeholder="Type product quantity here..."
                 shape="pill"
               />
-            </div>
+            </Grid>
           </div>
 
           {/* Variation */}
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Variation</h3>
             {[0, 1].map((rowIndex) => (
-              <div key={rowIndex} className={`grid grid-cols-[1fr_1fr_1fr_auto] gap-2 ${rowIndex > 0 ? "mt-2" : ""}`}>
-                <SelectOption
+              <div key={rowIndex} className={`grid grid-cols-1 gap-2 sm:grid-cols-[repeat(3,minmax(0,1fr))_auto] ${rowIndex > 0 ? "mt-2" : ""}`}>
+                <div className="min-w-0"><SelectOption
                   label={rowIndex === 0 ? "Variation Type" : undefined}
                   options={[
                     { label: "Select...", value: "default" },
@@ -172,22 +173,22 @@ export default function AddProductPage() {
                   ]}
                   placeholder="Select..."
                   shape="pill"
-                />
-                <TextField
+                /></div>
+                <div className="min-w-0"><TextField
                   label={rowIndex === 0 ? "Variation" : undefined}
                   placeholder="Variation..."
                   shape="pill"
-                />
-                <TextField
+                /></div>
+                <div className="min-w-0"><TextField
                   label={rowIndex === 0 ? "Quantity" : undefined}
                   placeholder="Variation..."
                   shape="pill"
-                />
-                <div className={`flex items-end ${rowIndex === 0 ? "pb-0" : ""}`}>
+                /></div>
+                <div className="flex items-end"><div className={`flex items-end ${rowIndex === 0 ? "pb-0" : ""}`}>
                   <IconButton variant="tertiary" size="md">
                     <TrashBinMinimalisticLinear size={16} />
                   </IconButton>
-                </div>
+                </div></div>
               </div>
             ))}
             <div className="mt-3">
@@ -207,17 +208,17 @@ export default function AddProductPage() {
               <Checkbox checked color="purple" />
               <span className="text-sm text-fg-violet">This is a physical product</span>
             </div>
-            <div className="grid grid-cols-4 gap-2">
+            <Grid columns={{ base: 1, sm: 2, xl: 4 }} gap={8}>
               <TextField label="Weight" placeholder="Product weight..." shape="pill" />
               <TextField label="Height" placeholder="Height (cm)..." shape="pill" />
               <TextField label="Length" placeholder="Length (cm)..." shape="pill" />
               <TextField label="Width" placeholder="Width (cm)..." shape="pill" />
-            </div>
+            </Grid>
           </div>
         </div>
 
         {/* Sidebar */}
-        <div className="w-[280px] flex-shrink-0 flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Category</h3>
             <SelectOption

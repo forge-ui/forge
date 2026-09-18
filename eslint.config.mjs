@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
     "core/dist/**",
     "core/tmp/**",
     "tmp/**",
+    "tmp-audit/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

@@ -39,6 +39,7 @@ export function BalanceCard({
   cardIcon,
   onTransfer,
   onRequest,
+  density = "default",
   width,
   className,
 }: {
@@ -53,6 +54,7 @@ export function BalanceCard({
   cardIcon?: string;
   onTransfer?: () => void;
   onRequest?: () => void;
+  density?: "default" | "compact";
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -60,6 +62,7 @@ export function BalanceCard({
   const themeKey = resolveCardTheme(theme);
   const cfg = cardThemes[themeKey];
   const isWhite = themeKey === "white";
+  const isCompact = density === "compact";
 
   const transferBtn = isWhite
     ? "bg-fg-violet text-white"
@@ -73,7 +76,8 @@ export function BalanceCard({
   return (
     <div
       className={cn(
-        "p-6 rounded-card flex-col gap-5 overflow-hidden relative",
+        "rounded-card flex-col overflow-hidden relative",
+        isCompact ? "gap-3 p-4" : "gap-5 p-6",
         resolveCardWidthClass(width, "w-80"),
         cfg.bg,
         className,
@@ -82,16 +86,16 @@ export function BalanceCard({
       <CardGlow theme={cfg} />
 
       {cardNumber && (
-        <div className="absolute top-5 right-5 flex items-center gap-2 z-10">
-          {cardIcon && <img className="w-6 h-6 rounded" src={cardIcon} alt="" />}
+        <div className={cn("absolute flex items-center gap-2 z-10", isCompact ? "right-4 top-4" : "right-5 top-5")}>
+          {cardIcon && <img className={cn("rounded", isCompact ? "size-5" : "size-6")} src={cardIcon} alt="" />}
           <span className={cn("text-sm font-medium leading-5 tracking-fg", cardNumColor)}>{cardNumber}</span>
           <span className={cardNumColor}><AltArrowDownLinear size={16} /></span>
         </div>
       )}
 
-      <div className="self-stretch flex flex-col gap-2 relative z-10">
+      <div className={cn("self-stretch flex flex-col relative z-10", isCompact ? "gap-1" : "gap-2")}>
         <span className={cn("text-sm font-medium leading-5 tracking-fg", cfg.titleColor)}>{title}</span>
-        <div className={cn("self-stretch text-4xl font-semibold leading-11 tracking-fg", cfg.valueColor)}>
+        <div className={cn("self-stretch font-semibold tracking-fg", isCompact ? "text-3xl leading-9" : "text-4xl leading-11", cfg.valueColor)}>
           {balanceHidden ? "$*****" : balance}
         </div>
       </div>
@@ -101,12 +105,12 @@ export function BalanceCard({
       <div className={cn("self-stretch h-0 outline outline-1 outline-offset-[-0.50px] relative z-10", divider)} />
 
       <div className="self-stretch inline-flex gap-3 relative z-10">
-        <button type="button" onClick={onTransfer} className={cn("flex-1 h-10 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", transferBtn)}>
-          <RoundTransferHorizontalLinear size={20} />
+        <button type="button" onClick={onTransfer} className={cn("flex-1 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", isCompact ? "h-9" : "h-10", transferBtn)}>
+          <RoundTransferHorizontalLinear size={isCompact ? 18 : 20} />
           转账
         </button>
-        <button type="button" onClick={onRequest} className={cn("flex-1 h-10 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", requestBtn)}>
-          <DownloadLinear size={20} />
+        <button type="button" onClick={onRequest} className={cn("flex-1 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", isCompact ? "h-9" : "h-10", requestBtn)}>
+          <DownloadLinear size={isCompact ? 18 : 20} />
           收款
         </button>
       </div>

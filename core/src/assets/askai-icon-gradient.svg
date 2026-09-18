@@ -1,0 +1,55 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+xmlns="http://www.w3.org/2000/svg">
+  <title>AskAI Icon — Gradient</title>
+  <defs>
+    <linearGradient id="mainGradient" x1="2.5" y1="6" x2="14.5" y2="17.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.36" stop-color="#3B82F6"/>
+      <stop offset="0.68" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="mediumGradient" x1="13.5" y1="3" x2="20" y2="9" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="0.48" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#C026D3"/>
+    </linearGradient>
+    <linearGradient id="smallGradient" x1="18" y1="8.5" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.55" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#F472B6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main sparkle -->
+  <path fill="url(#mainGradient)" d="M9.56 5.55
+    C10.17 7.98 11.55 9.36 13.98 9.97
+    C15.38 10.32 15.38 12.20 13.98 12.55
+    C11.55 13.16 10.17 14.54 9.56 16.97
+    C9.21 18.37 7.33 18.37 6.98 16.97
+    C6.37 14.54 4.99 13.16 2.56 12.55
+    C1.16 12.20 1.16 10.32 2.56 9.97
+    C4.99 9.36 6.37 7.98 6.98 5.55
+    C7.33 4.15 9.21 4.15 9.56 5.55Z"/>
+
+  <!-- Medium sparkle -->
+  <path fill="url(#mediumGradient)" d="M17.18 2.87
+    C17.48 4.08 18.17 4.77 19.38 5.07
+    C20.08 5.25 20.08 6.19 19.38 6.36
+    C18.17 6.67 17.48 7.36 17.18 8.57
+    C17.00 9.27 16.06 9.27 15.89 8.57
+    C15.58 7.36 14.89 6.67 13.68 6.36
+    C12.98 6.19 12.98 5.25 13.68 5.07
+    C14.89 4.77 15.58 4.08 15.89 2.87
+    C16.06 2.17 17.00 2.17 17.18 2.87Z"/>
+
+  <!-- Small sparkle -->
+  <path fill="url(#smallGradient)" d="M20.35 8.52
+    C20.54 9.28 20.97 9.71 21.73 9.90
+    C22.17 10.01 22.17 10.60 21.73 10.71
+    C20.97 10.90 20.54 11.33 20.35 12.09
+    C20.24 12.53 19.65 12.53 19.54 12.09
+    C19.35 11.33 18.92 10.90 18.16 10.71
+    C17.72 10.60 17.72 10.01 18.16 9.90
+    C18.92 9.71 19.35 9.28 19.54 8.52
+    C19.65 8.08 20.24 8.08 20.35 8.52Z"/>
+</svg>

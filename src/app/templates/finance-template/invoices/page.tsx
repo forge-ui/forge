@@ -4,7 +4,6 @@ import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear } from "@forge-ui-official/core/icons";
 import {
-  Button,
   CellActions,
   CellImageText,
   CellText,
@@ -79,11 +78,12 @@ function FinanceInvoicesContent() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <FinancePageHeader
+          variant="collection"
           title="Invoice"
           current="Invoice"
-          actions={<Button color="blue" iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/finance-template/invoices/new")}>Add Invoice</Button>}
+          primaryAction={{ label: "Add Invoice", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/finance-template/invoices/new") }}
         />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"

@@ -16,6 +16,7 @@ import {
   StarBoldDuotone,
 } from "../icons";
 import { accentColors } from "../components/ui/accent-utils";
+import { AskAi } from "../components/ui/ask-ai";
 import { CalendarPopup } from "../components/ui/calendar-popup";
 import type { PageHeaderProps } from "../components/ui/page-header";
 import { PlusIcon } from "../components/ui/plain-icons";
@@ -65,6 +66,7 @@ function HeaderMenuButton({
 
 export function SearchHeader({
   color = "purple",
+  askAi,
   leftMode = "search",
   onHamburgerClick,
   showMobileMenuButton = false,
@@ -140,6 +142,8 @@ export function SearchHeader({
             </div>
           </div>
         )}
+
+        {askAi && <AskAi {...askAi} color={color} className={cn("ml-auto", askAi.className)} />}
 
         {/* Right actions */}
         <div
@@ -272,6 +276,7 @@ export function SearchHeader({
 
 export function TitleHeader({
   color = "purple",
+  askAi,
   title,
   onHamburgerClick,
   showMobileMenuButton = false,
@@ -300,7 +305,7 @@ export function TitleHeader({
   const accent = accentColors[color!];
 
   return (
-    <div className={cn("w-full px-4 py-3 md:px-5 md:py-4 border-b border-fg-grey-200 flex flex-col items-stretch gap-3 md:inline-flex md:flex-row md:items-center md:gap-4", className)}>
+    <div data-forge-page-header className={cn("w-full px-4 py-3 md:px-5 md:py-4 border-b border-fg-grey-200 flex flex-col items-stretch gap-3 md:inline-flex md:flex-row md:items-center md:gap-4", className)}>
       {/* Left: back button + optional avatar + title */}
       <div className="flex min-w-0 w-full flex-1 justify-start items-center gap-3">
         {showMobileMenuButton && (
@@ -326,7 +331,7 @@ export function TitleHeader({
           <img className="w-12 h-12 rounded-full" src={titleAvatar} alt="" />
         )}
         {title && (
-          <div className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</div>
+          <div data-forge-page-title className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</div>
         )}
       </div>
 
@@ -400,6 +405,8 @@ export function TitleHeader({
             <span className="text-fg-grey-700 text-sm font-bold leading-5 tracking-fg">{secondaryAction.label}</span>
           </button>
         )}
+
+        {askAi && <AskAi {...askAi} color={color} />}
 
         {/* Primary action — Figma: accent bg + Linear plus icon */}
         {primaryAction && (

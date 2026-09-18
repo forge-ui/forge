@@ -6,6 +6,7 @@ import { Button, CellActions, DataTable, StatusBadge, ToolbarDatepicker, Toolbar
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { clients, projects } from "../_data";
+import { projectPageStackClass } from "../_density";
 import { TemplateDeleteDialog } from "../_modals";
 
 type Invoice = { id: string; client: string; project: string; amount: string; due: string; status: "Paid" | "Pending" | "Overdue" };
@@ -32,7 +33,7 @@ export default function InvoicesPage() {
   ];
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop title="Invoice" current="Invoice" actions={<Button iconLeft={<AddCircleLinear size={18} />}>Create Invoice</Button>} />
         <div className="flex justify-end gap-4"><ToolbarDatepicker label="Select Dates" /><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
         <DataTable<Invoice> columns={columns} rows={invoices} color="purple" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-10 from 100" />

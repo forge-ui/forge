@@ -27,6 +27,7 @@ import {
 import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { projects, type Project, type ProjectStatus } from "../_data";
+import { projectPageStackClass, projectStatCardClass } from "../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";
 import { ProjectLogo } from "../_logos";
 
@@ -107,7 +108,7 @@ export default function ProjectTemplatePage() {
 
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop
           title="Project"
           current="Project"
@@ -119,11 +120,11 @@ export default function ProjectTemplatePage() {
           }
         />
 
-        <div className="grid grid-cols-4 gap-6">
-          <LineChartStatCard size="wide" theme="white" title="Total Project" value="6,784" trend="4%" trendDirection="up" subtitle="+150 today" chartColor="purple" series={[18, 28, 21, 30, 29, 38, 33, 35, 52, 36, 41, 43, 44, 58]} />
-          <LineChartStatCard size="wide" theme="white" title="In Progress" value="4,412" trend="10%" trendDirection="up" subtitle="+150 today" chartColor="cyan" series={[20, 24, 18, 29, 23, 32, 30, 44, 36, 42, 39, 51, 55, 66]} />
-          <LineChartStatCard size="wide" theme="white" title="Completed" value="1,920" trend="2%" trendDirection="down" subtitle="+150 today" chartColor="green" series={[50, 48, 35, 30, 42, 39, 41, 48, 54, 46, 52, 51, 55, 53]} />
-          <LineChartStatCard size="wide" theme="white" title="Blocked" value="140" trend="0%" trendDirection="down" subtitle="+50 today" chartColor="red" series={[60, 49, 45, 31, 28, 32, 30, 22, 18, 20, 16, 17, 15, 14]} />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Total Project" value="6,784" trend="4%" trendDirection="up" subtitle="+150 today" chartColor="purple" series={[18, 28, 21, 30, 29, 38, 33, 35, 52, 36, 41, 43, 44, 58]} />
+          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="In Progress" value="4,412" trend="10%" trendDirection="up" subtitle="+150 today" chartColor="cyan" series={[20, 24, 18, 29, 23, 32, 30, 44, 36, 42, 39, 51, 55, 66]} />
+          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Completed" value="1,920" trend="2%" trendDirection="down" subtitle="+150 today" chartColor="green" series={[50, 48, 35, 30, 42, 39, 41, 48, 54, 46, 52, 51, 55, 53]} />
+          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Blocked" value="140" trend="0%" trendDirection="down" subtitle="+50 today" chartColor="red" series={[60, 49, 45, 31, 28, 32, 30, 22, 18, 20, 16, 17, 15, 14]} />
         </div>
 
         <div className="h-px bg-fg-grey-200" />
@@ -189,9 +190,9 @@ function ProjectCardGrid({
   const router = useRouter();
 
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {projects.map((project) => (
-        <article key={project.id} className="rounded-[28px] border border-fg-grey-200 bg-white p-6">
+        <article key={project.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
           <div className="flex items-start justify-between">
             <ProjectLogo name={project.logo} />
             <CellActions
@@ -203,22 +204,22 @@ function ProjectCardGrid({
               }}
             />
           </div>
-          <button type="button" className="mt-5 text-left" onClick={() => router.push(`/templates/project-template/projects/${project.id}`)}>
+          <button type="button" className="mt-3 text-left" onClick={() => router.push(`/templates/project-template/projects/${project.id}`)}>
             <h2 className="text-xl font-semibold text-fg-black">{project.name}</h2>
             <p className="mt-1 text-sm text-fg-grey-500">{project.client}</p>
           </button>
-          <div className="mt-5 flex items-center justify-between">
+          <div className="mt-3 flex items-center justify-between">
             <StatusBadge label={project.status} color={statusColors[project.status]} />
             <span className="text-sm text-fg-grey-500">{project.dueDate}</span>
           </div>
-          <div className="mt-5">
+          <div className="mt-3">
             <div className="mb-2 flex items-center justify-between text-sm">
               <span className="text-fg-grey-500">Progress</span>
               <span className="font-semibold text-fg-black">{project.progress}%</span>
             </div>
             <ProgressBar value={project.progress} color={project.status === "Blocked" ? "red" : project.status === "Completed" ? "green" : "purple"} />
           </div>
-          <div className="mt-5 flex items-center justify-between">
+          <div className="mt-3 flex items-center justify-between">
             <AvatarGroup overflowCount={project.memberOverflow}>
               {project.members.map((src, index) => <Avatar key={index} src={src} size="sm" />)}
             </AvatarGroup>
