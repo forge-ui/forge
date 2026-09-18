@@ -6,6 +6,7 @@ import {
   PageHeader,
   type PageHeaderColor,
 } from "@forge-ui-official/core";
+import { askAiExample } from "../../components/page-header/ask-ai-example";
 import { Logout3Linear } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
@@ -92,7 +93,7 @@ export default function PageHeaderCasePage() {
 
       <Section
         title="PageHeader · Search & Widget"
-        description="3 colors × 8 layouts (search/hamburger × +button on/off × profile on/off)"
+        description="原有搜索顶栏加入 Ask AI；点击打开右侧对话框。3 colors × 8 layouts。"
       >
         {HEADER_COLORS.map((color) => (
           <SubSection key={color} title={color}>
@@ -103,6 +104,7 @@ export default function PageHeaderCasePage() {
                   className="w-full bg-white rounded-xl border border-fg-grey-200 overflow-hidden"
                 >
                   <PageHeader
+                    askAi={askAiExample}
                     variant="search"
                     color={color as PageHeaderColor}
                     leftMode={row.leftMode}
@@ -123,7 +125,7 @@ export default function PageHeaderCasePage() {
 
       <Section
         title="PageHeader · Page Title"
-        description="3 colors × 3 layouts (back+title · title only · back+avatar+title)"
+        description="原有标题顶栏加入 Ask AI，主次操作保留。3 colors × 3 layouts。"
       >
         {HEADER_COLORS.map((color) => (
           <SubSection key={color} title={color}>
@@ -134,6 +136,7 @@ export default function PageHeaderCasePage() {
                   className="w-full bg-white rounded-xl border border-fg-grey-200 overflow-hidden"
                 >
                   <PageHeader
+                    askAi={askAiExample}
                     variant="title"
                     color={color as PageHeaderColor}
                     title="Page Title"

@@ -823,3 +823,29 @@ Use this file for quick component selection. For stricter generation, read the e
 - Avoid for: dense list rows
 - Required usage: Use Forge tokens, inherited parent width, and component props before custom markup.; Do not force fixed pixel width unless explicitly building a component showcase.
 - Forbidden usage: do not rebuild existing Forge primitives with ad hoc markup
+
+## Grid
+
+- Category: layouts
+- Import: `import { Grid } from "@forge-ui-official/core"`
+- Responsive: base/sm/md/lg/xl/2xl viewport breakpoints
+- Density: not recorded
+- Source: `core/src/components/layouts/grid.tsx`
+- Purpose: Responsive CSS Grid tracks and pixel gaps
+- Best for: responsive page composition
+- Avoid for: none recorded
+- Required usage: Read skills/forge-react/references/layout-grid.md; AppLayout owns page padding
+- Forbidden usage: do not rebuild existing Forge primitives with ad hoc markup
+
+## GridItem
+
+- Category: layouts
+- Import: `import { GridItem } from "@forge-ui-official/core"`
+- Responsive: base/sm/md/lg/xl/2xl viewport breakpoints
+- Density: not recorded
+- Source: `core/src/components/layouts/grid.tsx`
+- Purpose: Responsive column span and start
+- Best for: responsive page composition
+- Avoid for: none recorded
+- Required usage: Read skills/forge-react/references/layout-grid.md; AppLayout owns page padding
+- Forbidden usage: do not rebuild existing Forge primitives with ad hoc markup

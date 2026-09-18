@@ -11,6 +11,51 @@
    -------------------------------------------------------------------------- */
 
 :root {
+  /*
+   * Typography conformance contract.
+   * Consumers must read these values from the installed Core stylesheet instead
+   * of duplicating Forge metrics in their own validators.
+   */
+  --forge-typography-contract-version: 1;
+  --forge-font-sans-family: "Manrope Variable";
+  --forge-font-display-family: "Plus Jakarta Sans Variable";
+  --forge-text-2xs-size: 10px;
+  --forge-text-xs-size: 12px;
+  --forge-text-sm-size: 14px;
+  --forge-text-base-size: 16px;
+  --forge-text-lg-size: 18px;
+  --forge-text-xl-size: 20px;
+  --forge-text-2xl-size: 24px;
+  --forge-text-3xl-size: 30px;
+  --forge-text-4xl-size: 36px;
+  --forge-text-5xl-size: 48px;
+  --forge-text-8xl-size: 96px;
+  --forge-text-display-l-size: 28px;
+  --forge-text-arbitrary-10-size: 10px;
+  --forge-text-arbitrary-15-size: 15px;
+  --forge-font-normal-weight: 400;
+  --forge-font-medium-weight: 500;
+  --forge-font-semibold-weight: 600;
+  --forge-font-bold-weight: 700;
+  --forge-leading-3: 12px;
+  --forge-leading-3_5: 14px;
+  --forge-leading-4: 16px;
+  --forge-leading-4_5: 18px;
+  --forge-leading-5: 20px;
+  --forge-leading-6: 24px;
+  --forge-leading-7: 28px;
+  --forge-leading-7_5: 30px;
+  --forge-leading-8: 32px;
+  --forge-leading-9: 36px;
+  --forge-leading-11: 44px;
+  --forge-leading-arbitrary-18: 18px;
+  --forge-leading-arbitrary-60: 60px;
+  --forge-leading-arbitrary-140: 140px;
+  --forge-leading-tight-factor: 1.25;
+  --forge-tracking-fg: 0.5px;
+  --forge-tracking-tight-factor: -0.025;
+  --forge-tracking-wide-factor: 0.025;
+
   /* Violet (Figma "Purple") */
   --fg-violet-50:  #F1EBFD;
   --fg-violet-100: #D3C2F8;
@@ -393,4 +438,75 @@ body {
 
 .fg-scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+
+/* Forge layout grid. Every instance defines its own variables so nested grids
+   do not inherit a parent's responsive configuration. Values are pixel gaps. */
+@layer components {
+  .forge-grid { display: grid; min-width: 0; }
+  .forge-grid > *, .forge-grid-item { min-width: 0; }
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-base), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-base);
+    column-gap: var(--forge-grid-column-gap-base);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-base);
+    grid-column-end: var(--forge-grid-end-base);
+  }
+  @media (min-width: 640px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-sm), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-sm);
+    column-gap: var(--forge-grid-column-gap-sm);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-sm);
+    grid-column-end: var(--forge-grid-end-sm);
+  }
+  }
+  @media (min-width: 768px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-md), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-md);
+    column-gap: var(--forge-grid-column-gap-md);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-md);
+    grid-column-end: var(--forge-grid-end-md);
+  }
+  }
+  @media (min-width: 1024px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-lg), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-lg);
+    column-gap: var(--forge-grid-column-gap-lg);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-lg);
+    grid-column-end: var(--forge-grid-end-lg);
+  }
+  }
+  @media (min-width: 1280px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-xl), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-xl);
+    column-gap: var(--forge-grid-column-gap-xl);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-xl);
+    grid-column-end: var(--forge-grid-end-xl);
+  }
+  }
+  @media (min-width: 1536px) {
+  .forge-grid {
+    grid-template-columns: repeat(var(--forge-grid-columns-2xl), minmax(0, 1fr));
+    row-gap: var(--forge-grid-row-gap-2xl);
+    column-gap: var(--forge-grid-column-gap-2xl);
+  }
+  .forge-grid-item {
+    grid-column-start: var(--forge-grid-start-2xl);
+    grid-column-end: var(--forge-grid-end-2xl);
+  }
+  }
 }

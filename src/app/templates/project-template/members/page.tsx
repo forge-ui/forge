@@ -7,6 +7,7 @@ import { Avatar, Button, ButtonGroup, CellActions, CellMuted, CellTextSubtitle, 
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { members, type Member } from "../_data";
+import { projectPageStackClass } from "../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";
 
 export default function MembersPage() {
@@ -30,7 +31,7 @@ export default function MembersPage() {
 
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop title="Team Member" current="Team Members" actions={<div className="flex gap-4"><Button variant="tertiary" iconLeft={<CloudDownloadLinear size={20} />}>Export</Button><Button iconLeft={<AddCircleLinear size={20} />} onClick={() => openModal("add")}>Add New</Button></div>} />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -59,19 +60,19 @@ export default function MembersPage() {
 
 function MemberCards({ members, onOpen, onEdit, onDelete }: { members: Member[]; onOpen: (member: Member) => void; onEdit: (member: Member) => void; onDelete: (member: Member) => void }) {
   return (
-    <div className="grid grid-cols-5 gap-6">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {members.concat(members.slice(0, 5)).map((member, index) => (
-        <article key={`${member.id}-${index}`} className="rounded-[28px] border border-fg-grey-200 bg-white p-6">
+        <article key={`${member.id}-${index}`} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
           <div className="flex items-center justify-between">
             <button type="button" className="size-8 rounded-lg border border-fg-grey-300" aria-label="Select member" />
             <CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") onOpen(member); if (action === "pen") onEdit(member); if (action === "trash") onDelete(member); }} />
           </div>
-          <button type="button" className="mt-4 flex w-full flex-col items-center text-center" onClick={() => onOpen(member)}>
+          <button type="button" className="mt-3 flex w-full flex-col items-center text-center" onClick={() => onOpen(member)}>
             <Avatar src={member.avatar} size="lg" />
-            <h2 className="mt-5 text-xl font-semibold text-fg-black">{member.name}</h2>
+            <h2 className="mt-3 text-lg font-semibold text-fg-black">{member.name}</h2>
             <p className="mt-1 text-fg-grey-500">{member.role}</p>
           </button>
-          <div className="mt-6 border-t border-fg-grey-200 pt-5">
+          <div className="mt-4 border-t border-fg-grey-200 pt-3">
             <InfoLine label={index % 2 === 0 ? "Oksy.co" : "Target"} value={member.email} />
             <InfoLine label="Phone" value={member.phone} />
           </div>
@@ -82,5 +83,5 @@ function MemberCards({ members, onOpen, onEdit, onDelete }: { members: Member[];
 }
 
 function InfoLine({ label, value }: { label: string; value: string }) {
-  return <div className="mt-3 flex items-center justify-between gap-4"><span className="text-fg-grey-500">{label}</span><span className="truncate text-fg-black">{value}</span></div>;
+  return <div className="mt-2 flex items-center justify-between gap-3 text-sm"><span className="text-fg-grey-500">{label}</span><span className="truncate text-fg-black">{value}</span></div>;
 }

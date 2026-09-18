@@ -27,6 +27,7 @@ import {
 import type { StatusBadgeColor } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, fileItems, members, projects, tasks, type ProjectStatus, type Task } from "../../_data";
+import { projectPageStackClass, projectPanelClass } from "../../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../../_modals";
 import { ProjectLogo } from "../../_logos";
 
@@ -53,7 +54,7 @@ export default function ProjectDetailPage() {
 
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop
           title="Project Details"
           parent="Overview / Project"
@@ -66,13 +67,13 @@ export default function ProjectDetailPage() {
           }
         />
 
-        <section className="rounded-[32px] bg-fg-grey-50 p-8">
+        <section className="rounded-[24px] bg-fg-grey-50 p-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-7">
+            <div className="flex items-center gap-4">
               <ProjectLogo name={project.logo} size="lg" />
               <div>
-                <h2 className="text-4xl font-semibold text-fg-black">{project.name.replace("...", "orm")}</h2>
-                <div className="mt-5 flex items-center gap-5">
+                <h2 className="text-3xl font-semibold text-fg-black">{project.name.replace("...", "orm")}</h2>
+                <div className="mt-3 flex items-center gap-3">
                   <StatusBadge label={project.status} color={statusColors[project.status]} />
                   <AvatarGroup overflowCount={project.memberOverflow}>
                     {project.members.map((src, index) => <Avatar key={index} src={src} size="sm" />)}
@@ -93,8 +94,8 @@ export default function ProjectDetailPage() {
         />
 
         {tab === "overview" && (
-          <div className="grid grid-cols-[420px_1fr] gap-6">
-            <aside className="flex flex-col gap-6">
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
+            <aside className="flex flex-col gap-4">
               <Panel title="General Information">
                 <Info label="Status" value={project.status} />
                 <Info label="Client" value={project.client} />
@@ -103,8 +104,8 @@ export default function ProjectDetailPage() {
               </Panel>
               <Panel title="Teams" action={<Button variant="tertiary" onClick={() => setModal("member")}><AddCircleLinear size={18} /></Button>}>
                 {members.slice(0, 4).map((member) => (
-                  <button key={member.id} type="button" onClick={() => router.push(`/templates/project-template/members/${member.id}`)} className="flex items-center gap-4 py-3 text-left">
-                    <Avatar src={member.avatar} size="md" />
+                  <button key={member.id} type="button" onClick={() => router.push(`/templates/project-template/members/${member.id}`)} className="flex items-center gap-3 py-2 text-left">
+                    <Avatar src={member.avatar} size="sm" />
                     <div>
                       <div className="font-semibold text-fg-black">{member.name}</div>
                       <div className="text-sm text-fg-grey-500">{member.role}</div>
@@ -116,23 +117,23 @@ export default function ProjectDetailPage() {
                 {fileItems.map((file, index) => <FileCard key={index} file={{ id: file.name, name: file.name, size: file.size, state: "uploaded" }} />)}
               </Panel>
             </aside>
-            <main className="flex flex-col gap-6">
-              <div className="grid grid-cols-2 gap-6">
+            <main className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <Metric title="Progress" value={project.spent} progress={project.progress} />
                 <Metric title="Budget Spent" value={project.spent} progress={project.progress} color="red" />
               </div>
-              <Panel title="Description"><p className="text-lg leading-8 text-fg-grey-700">{project.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></Panel>
+              <Panel title="Description"><p className="leading-6 text-fg-grey-700">{project.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></Panel>
               <Panel title="Activity"><ActivityList /></Panel>
               <Panel title="Comments">
                 {members.slice(0, 2).map((member, index) => (
-                  <div key={member.id} className="flex gap-4 rounded-2xl border border-fg-grey-200 p-4">
-                    <Avatar src={member.avatar} size="md" />
+                  <div key={member.id} className="flex gap-3 rounded-xl border border-fg-grey-200 p-3">
+                    <Avatar src={member.avatar} size="sm" />
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <h4 className="font-semibold text-fg-black">{member.name}</h4>
                         <span className="text-sm text-fg-grey-500">{index === 0 ? "25 Jan 2022 08:30" : "23 Jan 2022 14:00"}</span>
                       </div>
-                      <p className="mt-2 text-fg-grey-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                      <p className="mt-1 text-sm text-fg-grey-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                     </div>
                   </div>
                 ))}
@@ -143,7 +144,7 @@ export default function ProjectDetailPage() {
         )}
 
         {tab === "task" && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div className="max-w-[360px]">
                 <TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color="#71717A" />} />
@@ -167,14 +168,14 @@ export default function ProjectDetailPage() {
                 <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => setModal("attachment")}>Upload</Button>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-3 gap-4">
               {attachmentRows.map((file) => <AttachmentTile key={file.name} file={file} onDelete={() => setModal("delete")} />)}
             </div>
           </div>
         )}
 
         {tab === "teams" && (
-          <div className="grid grid-cols-[1fr_380px] gap-6">
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
             <KanbanBoard onOpenTask={(task) => router.push(`/templates/project-template/tasks/${task.id}`)} onAddTask={() => setModal("task")} compact />
             <TeamDrawer onAddMember={() => setModal("member")} />
           </div>
@@ -198,19 +199,19 @@ export default function ProjectDetailPage() {
 }
 
 function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
-  return <section className="rounded-[28px] border border-fg-grey-200 bg-white p-6"><div className="mb-5 flex items-center justify-between"><h3 className="text-2xl font-semibold text-fg-black">{title}</h3>{action}</div><div className="flex flex-col gap-4">{children}</div></section>;
+  return <section className={projectPanelClass}><div className="mb-3 flex items-center justify-between"><h3 className="text-lg font-semibold text-fg-black">{title}</h3>{action}</div><div className="flex flex-col gap-3">{children}</div></section>;
 }
 
 function Info({ label, value }: { label: string; value: string }) {
-  return <div><div className="text-fg-grey-500">{label}</div><div className="mt-1 text-lg text-fg-black">{value}</div></div>;
+  return <div><div className="text-sm text-fg-grey-500">{label}</div><div className="mt-0.5 text-fg-black">{value}</div></div>;
 }
 
 function Metric({ title, value, progress, color = "purple" }: { title: string; value: string; progress: number; color?: "purple" | "red" }) {
-  return <Panel title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-5xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></Panel>;
+  return <Panel title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-3xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></Panel>;
 }
 
 function ActivityList() {
-  return <div className="relative flex flex-col gap-8 border-l border-dashed border-fg-grey-300 pl-6">{activityItems.map((item) => <div key={item.title} className="relative"><span className="absolute -left-[34px] top-1 size-5 rounded-full border-4 border-fg-violet-100 bg-fg-violet" /><div className="flex justify-between"><h4 className="text-xl font-semibold text-fg-black">{item.title}</h4><span className="text-fg-grey-500">{item.time}</span></div><p className="mt-2 text-fg-grey-700"><span className="font-semibold text-fg-violet">Jay Parker</span> {item.body.replace("Jay Parker ", "")}</p></div>)}</div>;
+  return <div className="relative flex flex-col gap-5 border-l border-dashed border-fg-grey-300 pl-5">{activityItems.map((item) => <div key={item.title} className="relative"><span className="absolute -left-[27px] top-1 size-3 rounded-full border-2 border-fg-violet-100 bg-fg-violet" /><div className="flex justify-between"><h4 className="font-semibold text-fg-black">{item.title}</h4><span className="text-sm text-fg-grey-500">{item.time}</span></div><p className="mt-1 text-sm text-fg-grey-700"><span className="font-semibold text-fg-violet">Jay Parker</span> {item.body.replace("Jay Parker ", "")}</p></div>)}</div>;
 }
 
 const boardGroups = [
@@ -222,9 +223,9 @@ const boardGroups = [
 
 function KanbanBoard({ onOpenTask, onAddTask, compact = false }: { onOpenTask: (task: Task) => void; onAddTask: () => void; compact?: boolean }) {
   return (
-    <div className={`grid gap-5 ${compact ? "grid-cols-2" : "grid-cols-4"}`}>
+    <div className={`grid gap-4 ${compact ? "grid-cols-2" : "grid-cols-4"}`}>
       {boardGroups.map((group) => (
-        <section key={group.title} className="flex flex-col gap-4">
+        <section key={group.title} className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-fg-black">{group.title} ({group.tasks.length})</h3>
             <Button variant="tertiary" onClick={onAddTask}><AddCircleLinear size={18} /></Button>
@@ -239,23 +240,23 @@ function KanbanBoard({ onOpenTask, onAddTask, compact = false }: { onOpenTask: (
 function TaskBoardCard({ task, tone, onOpen }: { task: Task; tone: "grey" | "yellow" | "green" | "red"; onOpen: () => void }) {
   const progressColor = task.progress === 100 ? "green" : task.priority === "High" ? "red" : "yellow";
   return (
-    <article className="rounded-[24px] border border-fg-grey-200 bg-white p-5">
+    <article className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
       <div className="flex items-start justify-between">
         <StatusBadge label={task.priority} color={task.priority === "High" ? "red" : task.priority === "Medium" ? "yellow" : "green"} />
         <CellActions actions={["pen"]} />
       </div>
-      <button type="button" className="mt-4 text-left" onClick={onOpen}>
+      <button type="button" className="mt-3 text-left" onClick={onOpen}>
         <h4 className="text-lg font-semibold text-fg-black">{task.name.replace("...", "")}</h4>
-        <p className="mt-2 text-sm leading-6 text-fg-grey-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel hendrerit ipsum.</p>
+        <p className="mt-1 text-sm leading-5 text-fg-grey-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel hendrerit ipsum.</p>
       </button>
-      <div className="mt-4">
+      <div className="mt-3">
         <div className="mb-2 flex items-center justify-between text-sm">
           <span className="text-fg-grey-500">Progress</span>
           <span className={`font-semibold ${tone === "red" ? "text-fg-red" : tone === "green" ? "text-fg-green-500" : "text-fg-yellow"}`}>{task.progress === 45 ? "Blocked" : `${task.progress}%`}</span>
         </div>
         <ProgressBar value={task.progress || 8} color={progressColor} />
       </div>
-      <div className="mt-5 flex items-center justify-between">
+      <div className="mt-3 flex items-center justify-between">
         <AvatarGroup overflowCount={task.memberOverflow}>{task.members.slice(0, 3).map((src, index) => <Avatar key={index} src={src} size="sm" />)}</AvatarGroup>
         <span className="text-sm text-fg-grey-500">{task.dueDate}</span>
       </div>
@@ -277,8 +278,8 @@ const attachmentRows = [
 
 function AttachmentTile({ file, onDelete }: { file: { name: string; size: string }; onDelete: () => void }) {
   return (
-    <div className="flex items-center justify-between rounded-[20px] border border-fg-grey-200 bg-white p-5">
-      <div className="flex items-center gap-4">
+    <div className="flex items-center justify-between rounded-2xl border border-fg-grey-200 bg-white p-4">
+      <div className="flex items-center gap-3">
         <FileTypeIcon fileName={file.name} />
         <div>
           <div className="font-semibold text-fg-black">{file.name}</div>
@@ -292,16 +293,16 @@ function AttachmentTile({ file, onDelete }: { file: { name: string; size: string
 
 function TeamDrawer({ onAddMember }: { onAddMember: () => void }) {
   return (
-    <aside className="rounded-[28px] border border-fg-grey-200 bg-white p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <h3 className="text-2xl font-semibold text-fg-black">Members</h3>
+    <aside className={projectPanelClass}>
+      <div className="mb-4 flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-fg-black">Members</h3>
         <Button variant="tertiary" onClick={onAddMember}><AddCircleLinear size={18} /></Button>
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-4">
         {members.map((member) => (
           <div key={member.id} className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Avatar src={member.avatar} size="md" />
+            <div className="flex items-center gap-3">
+              <Avatar src={member.avatar} size="sm" />
               <div>
                 <div className="font-semibold text-fg-black">{member.name}</div>
                 <div className="text-sm text-fg-grey-500">{member.role}</div>
@@ -311,7 +312,7 @@ function TeamDrawer({ onAddMember }: { onAddMember: () => void }) {
           </div>
         ))}
       </div>
-      <Button className="mt-8 w-full" iconLeft={<UserPlusLinear size={18} />} onClick={onAddMember}>Add Member</Button>
+      <Button className="mt-5 w-full" iconLeft={<UserPlusLinear size={18} />} onClick={onAddMember}>Add Member</Button>
     </aside>
   );
 }

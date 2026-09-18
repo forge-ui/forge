@@ -7,6 +7,7 @@ import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard,
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, members, projects, tasks, type Project, type Task } from "../../_data";
+import { projectPageStackClass, projectPanelClass, projectStatCardClass } from "../../_density";
 import { ProjectLogo } from "../../_logos";
 
 const memberTabs = [
@@ -34,27 +35,27 @@ export default function MemberDetailPage() {
 
   return (
     <ProjectTemplateShell>
-      <div className="flex flex-col gap-8">
+      <div className={projectPageStackClass}>
         <PageTop title="Member Details" parent="Overview / Team Members" current="Member Details" actions={<Button iconLeft={<Pen2Linear size={18} />}>Edit</Button>} />
-        <section className="grid grid-cols-[420px_1fr] gap-6">
-          <aside className="rounded-[28px] border border-fg-grey-200 bg-white p-6 text-center">
-            <div className="h-36 rounded-2xl bg-gradient-to-r from-fg-violet to-fg-yellow-100" />
+        <section className="grid grid-cols-1 gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
+          <aside className={`${projectPanelClass} text-center`}>
+            <div className="h-24 rounded-xl bg-gradient-to-r from-fg-violet to-fg-yellow-100" />
             <Avatar src={member.avatar} size="lg" />
-            <h2 className="mt-4 text-2xl font-semibold text-fg-black">{member.name}</h2>
+            <h2 className="mt-3 text-xl font-semibold text-fg-black">{member.name}</h2>
             <p className="text-fg-grey-500">ID: {member.handle}</p>
-            <div className="mt-8 space-y-4 text-left"><Info label="Member ID" value="ID011221" /><Info label="Role" value={member.role} /><Info label="Project Assigned" value={`${member.assigned} Project`} /><Info label="Email" value={member.email} /><Info label="Phone Number" value={member.phone} /><Info label="Last Online" value={member.lastOnline} /><Info label="Joined" value={member.joined} /></div>
+            <div className="mt-5 space-y-3 text-left"><Info label="Member ID" value="ID011221" /><Info label="Role" value={member.role} /><Info label="Project Assigned" value={`${member.assigned} Project`} /><Info label="Email" value={member.email} /><Info label="Phone Number" value={member.phone} /><Info label="Last Online" value={member.lastOnline} /><Info label="Joined" value={member.joined} /></div>
           </aside>
-          <main className="flex flex-col gap-6">
-            <div className="grid grid-cols-3 gap-6">
-              <LineChartStatCard size="wide" theme="white" title="In Progress" value="11" trend="5%" trendDirection="up" subtitle="+2 today" chartColor="red" />
-              <LineChartStatCard size="wide" theme="white" title="Not Started" value="4" trend="25%" trendDirection="up" subtitle="+1 today" chartColor="purple" />
-              <LineChartStatCard size="wide" theme="white" title="Finished" value="28" trend="2%" trendDirection="up" subtitle="+2 today" chartColor="green" />
+          <main className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+              <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="In Progress" value="11" trend="5%" trendDirection="up" subtitle="+2 today" chartColor="red" />
+              <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Not Started" value="4" trend="25%" trendDirection="up" subtitle="+1 today" chartColor="purple" />
+              <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Finished" value="28" trend="2%" trendDirection="up" subtitle="+2 today" chartColor="green" />
             </div>
             <TabBar color="purple" surface="page" tabs={memberTabs.map((item) => ({ label: item.label, active: tab === item.value }))} onChange={(index) => setTab(memberTabs[index]?.value ?? "project")} />
             {tab === "project" && <DataTable<Project> columns={projectColumns} rows={projects.slice(0, 5)} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
             {tab === "task" && <DataTable<Task> columns={taskColumns} rows={tasks} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
-            {tab === "activity" && <section className="rounded-[28px] border border-fg-grey-200 bg-white p-6">{activityItems.map((item) => <div key={item.title} className="border-b border-fg-grey-200 py-4"><h3 className="text-xl font-semibold text-fg-black">{item.title}</h3><p className="text-fg-grey-700">{item.body}</p></div>)}</section>}
-            {tab === "chat" && <section className="rounded-[28px] border border-fg-grey-200 bg-white p-6"><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="purple" variant="text" content="Oke thank you ~~" /><ChatInputBar placeholder="Type a message..." /></section>}
+            {tab === "activity" && <section className={projectPanelClass}>{activityItems.map((item) => <div key={item.title} className="border-b border-fg-grey-200 py-3"><h3 className="font-semibold text-fg-black">{item.title}</h3><p className="text-sm text-fg-grey-700">{item.body}</p></div>)}</section>}
+            {tab === "chat" && <section className={projectPanelClass}><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="purple" variant="text" content="Oke thank you ~~" /><ChatInputBar placeholder="Type a message..." /></section>}
           </main>
         </section>
       </div>
@@ -63,5 +64,5 @@ export default function MemberDetailPage() {
 }
 
 function Info({ label, value }: { label: string; value: string }) {
-  return <div><div className="text-fg-grey-500">{label}</div><div className="text-lg text-fg-black">{value}</div></div>;
+  return <div><div className="text-sm text-fg-grey-500">{label}</div><div className="text-fg-black">{value}</div></div>;
 }

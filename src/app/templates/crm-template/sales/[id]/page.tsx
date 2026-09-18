@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "@forge-ui-official/core/icons";
-import { Button, ProgressBar, StatusBadge } from "@forge-ui-official/core";
+import { ProgressBar, StatusBadge } from "@forge-ui-official/core";
 import { CrmSurface, DetailLine } from "../../_components";
 import { CrmPageHeader, CrmTemplateShell, saleStatusColor } from "../../_chrome";
 import { sales } from "../../_data";
@@ -16,7 +16,12 @@ export default function CrmSaleDetailPage() {
   return (
     <CrmTemplateShell>
       <div className="flex flex-col gap-6">
-        <CrmPageHeader title="Sales Details" current="Sales Details" actions={<Button iconLeft={<Pen2Linear size={18} />} onClick={() => router.push("/templates/crm-template/sales/new")}>Edit Sales</Button>} />
+        <CrmPageHeader
+          variant="detail"
+          title="Sales Details"
+          current="Sales Details"
+          primaryAction={{ label: "Edit Sales", icon: <Pen2Linear size={18} />, onClick: () => router.push("/templates/crm-template/sales/new") }}
+        />
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
           <main className="flex min-w-0 flex-col gap-5">
             <CrmSurface>

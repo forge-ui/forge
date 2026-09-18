@@ -35,20 +35,17 @@ export default function FinanceInvoiceDetailPage() {
 
   return (
     <FinanceTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <FinancePageHeader
+          variant="detail"
           title="Invoice Details"
           current="Invoice Details"
-          actions={
-            <div className="flex flex-wrap items-center gap-3">
-              <Button color="grey" variant="tertiary" iconLeft={<CloudDownloadLinear size={18} />}>Download</Button>
-              <Button color="blue" iconLeft={<Pen2Linear size={18} />} onClick={() => router.push("/templates/finance-template/invoices/new")}>Edit Invoice</Button>
-            </div>
-          }
+          secondaryAction={{ label: "Download", icon: <CloudDownloadLinear size={18} /> }}
+          primaryAction={{ label: "Edit Invoice", icon: <Pen2Linear size={18} />, onClick: () => router.push("/templates/finance-template/invoices/new") }}
         />
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
           <FinanceSurface className="min-w-0">
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-col justify-between gap-5 border-b border-fg-grey-200 pb-6 lg:flex-row lg:items-start">
                 <div>
                   <p className="text-sm font-medium text-fg-grey-500">Invoice Number</p>

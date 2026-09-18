@@ -45,6 +45,9 @@ import {
   orders,
   upsideDownBarData,
   FigmaUpsideDownBarChart,
+  compactHighlightCardClass,
+  compactImageStatCardClass,
+  compactStatCardClass,
   type OrderRow,
 } from "../_shared";
 
@@ -135,10 +138,11 @@ export default function Ecommerce1Page() {
       pageTitle="Dashboard"
       primaryAction={{ label: "Add Order" }}
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 [&>*]:!w-full">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 [&>*]:!w-full">
           <WheelChartStatCard
+            className={compactStatCardClass}
             title="Total Revenue"
             subtitle="2 Jul - Today"
             value="$32,200"
@@ -150,6 +154,7 @@ export default function Ecommerce1Page() {
             wheelPercent={75}
           />
           <LineChartStatCard
+            className={compactStatCardClass}
             title="Orders"
             subtitle="1 Jan - Today"
             value="31,300"
@@ -160,6 +165,7 @@ export default function Ecommerce1Page() {
             chartDirection="down"
           />
           <ImageStatCard
+            className={compactImageStatCardClass}
             title="Customers"
             subtitle="2 Jul - Today"
             value="14,000"
@@ -172,16 +178,16 @@ export default function Ecommerce1Page() {
         </div>
 
         {/* Statistic + Top Product */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">Statistic</h3>
+                <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
             </div>
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-6">
               <div className="flex items-center gap-3">
                 <div className="size-10 rounded-full bg-fg-blue-50 flex items-center justify-center text-fg-blue">
                   <ArrowRightUpLinear size={18} />
@@ -214,11 +220,12 @@ export default function Ecommerce1Page() {
               tooltipLowerValue="$280"
               upperColor="bg-fg-blue"
               lowerColor="bg-fg-red"
-              heightClass="h-[280px]"
+              heightClass="h-56"
             />
           </div>
 
           <HighlightCard
+            className={compactHighlightCardClass}
             title="Top Product"
             theme="blue"
             image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80&auto=format&fit=crop"
@@ -235,21 +242,21 @@ export default function Ecommerce1Page() {
         </div>
 
         {/* Top Region + Recent Orders */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <MapCard
             title="Top Region"
             subtitle="Sales by region"
             color="blue"
-            variant="md"
+            variant="sm"
             regions={regionsForMap}
             highlights={["north-america", "europe", "asia", "oceania"]}
             onMenuClick={() => {}}
           />
 
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-6 flex flex-col gap-5">
+          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-fg-black">Recent Orders</h3>
+                <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
                 <p className="text-sm text-fg-grey-500">Recent orders</p>
               </div>
               <div className="flex items-center gap-2">

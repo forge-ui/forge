@@ -65,13 +65,12 @@ function MicellaneousFilesContent() {
 
   return (
     <MicellaneousTemplateShell>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <MicellaneousPageHeader
+          variant="collection"
           title="File Manager"
           current={compactView ? "File Manager-1" : "File Manager"}
-          actions={
-            <Button iconLeft={<AddCircleLinear size={18} />} onClick={() => router.push("/templates/micellaneous-template/files?dialog=add-files")}>Add File</Button>
-          }
+          primaryAction={{ label: "Add File", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/micellaneous-template/files?dialog=add-files") }}
         />
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"
@@ -102,7 +101,7 @@ function MicellaneousFilesContent() {
         />
         <Modal open={uploadOpen || isUploadDialog} onClose={closeState} title="Add Files" width="w-[620px]">
           <div className="flex flex-col gap-5 p-6">
-            <div className="rounded-2xl border border-dashed border-fg-violet-300 bg-fg-violet-100 p-8 text-center">
+            <div className="rounded-2xl border border-dashed border-fg-violet-300 bg-fg-violet-100 p-5 text-center">
               <CloudUploadLinear size={32} color="var(--fg-violet)" />
               <p className="mt-3 text-sm font-semibold leading-5 tracking-fg text-fg-black">
                 Drop files here or browse from your device
@@ -131,7 +130,7 @@ function FileManagerTile({ tile, onDelete }: { tile: FileTile; onDelete: () => v
   const iconFileName = tile.kind === "folder" ? "folder" : `${tile.name}.${tile.kind}`;
 
   return (
-    <div className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
+    <div className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
       <div className="flex items-start justify-between">
         <Checkbox />
         <CellActions actions={[]} onKebab={onDelete} />

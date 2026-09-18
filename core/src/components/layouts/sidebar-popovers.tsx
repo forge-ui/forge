@@ -6,13 +6,13 @@ import { type KeyboardEvent, useState } from "react";
 import { cn } from "../../lib/utils";
 import {
   CloseCircleLinear,
-  CheckCircleBoldDuotone,
-  AddCircleBoldDuotone,
-  UserPlusBoldDuotone,
-  PenBoldDuotone,
-  LockPasswordBoldDuotone,
-  SettingsBoldDuotone,
-  Logout2BoldDuotone,
+  CheckCircleBold,
+  AddCircleBold,
+  UserPlusBold,
+  PenBold,
+  LockPasswordBold,
+  SettingsBold,
+  Logout2Bold,
 } from "../../icons";
 import {
   languageOptions,
@@ -195,10 +195,10 @@ export function LanguageSwitcher({
 
 export function ProfileDropdown() {
   const items = [
-    { label: "编辑资料", icon: <PenBoldDuotone size={20} />, color: "text-fg-grey-700" },
-    { label: "修改密码", icon: <LockPasswordBoldDuotone size={20} />, color: "text-fg-grey-700" },
-    { label: "系统设置", icon: <SettingsBoldDuotone size={20} />, color: "text-fg-grey-700" },
-    { label: "退出登录", icon: <Logout2BoldDuotone size={20} />, color: "text-fg-red" },
+    { label: "编辑资料", icon: <PenBold size={20} />, color: "text-fg-grey-700" },
+    { label: "修改密码", icon: <LockPasswordBold size={20} />, color: "text-fg-grey-700" },
+    { label: "系统设置", icon: <SettingsBold size={20} />, color: "text-fg-grey-700" },
+    { label: "退出登录", icon: <Logout2Bold size={20} />, color: "text-fg-red" },
   ];
 
   return (
@@ -236,6 +236,8 @@ export function TeamSwitcherDropdown({
   teamSubtitle,
   teams,
   labels,
+  /** When false, only header + teams list (app switcher). Default true. */
+  showActions = true,
 }: {
   teamName: string;
   teamAvatar?: string;
@@ -245,10 +247,13 @@ export function TeamSwitcherDropdown({
   teams?: Team[];
   /** 自定义三个内置按钮的文案（邀请 / 设置 / 新建） */
   labels?: TeamSwitcherLabels;
+  showActions?: boolean;
 }) {
   const inviteLabel = labels?.invite ?? "邀请成员";
   const settingsLabel = labels?.settings ?? "设置";
   const createNewLabel = labels?.createNew ?? "新建团队";
+  const hasTeams = Boolean(teams && teams.length > 0);
+
   return (
     <div role="menu" aria-label="团队" onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
@@ -268,28 +273,34 @@ export function TeamSwitcherDropdown({
         </div>
       </div>
 
-      {/* Actions */}
-      <div className="self-stretch flex flex-col justify-start items-start">
-        <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
-          <span className="w-6 h-6 flex justify-center items-center"><UserPlusBoldDuotone size={20} /></span>
-          <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{inviteLabel}</span>
-        </button>
-        <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
-          <span className="w-6 h-6 flex justify-center items-center"><SettingsBoldDuotone size={20} /></span>
-          <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{settingsLabel}</span>
-        </button>
-      </div>
-
-      {/* Divider */}
-      <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
-      </div>
-
-      {/* Team list — only renders when consumer supplies `teams` */}
-      {teams && teams.length > 0 && (
+      {showActions ? (
         <>
+          <div className="self-stretch flex flex-col justify-start items-start">
+            <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
+              <span className="w-6 h-6 flex justify-center items-center"><UserPlusBold size={20} /></span>
+              <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{inviteLabel}</span>
+            </button>
+            <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
+              <span className="w-6 h-6 flex justify-center items-center"><SettingsBold size={20} /></span>
+              <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{settingsLabel}</span>
+            </button>
+          </div>
+          <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
+            <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+          </div>
+        </>
+      ) : null}
+
+      {/* Team / app list — only when consumer supplies `teams` */}
+      {hasTeams ? (
+        <>
+          {!showActions ? (
+            <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
+              <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+            </div>
+          ) : null}
           <div className="self-stretch flex flex-col justify-center items-start">
-            {teams.map((team) => (
+            {teams!.map((team) => (
               <button
                 key={team.id}
                 type="button"
@@ -306,23 +317,24 @@ export function TeamSwitcherDropdown({
                   )}
                 </span>
                 <span className={cn("flex-1 text-sm leading-5 tracking-fg text-left line-clamp-1", team.active ? "font-bold" : "font-semibold")}>{team.name}</span>
-                {team.active && <CheckCircleBoldDuotone size={20} />}
+                {team.active && <CheckCircleBold size={20} />}
               </button>
             ))}
           </div>
-
-          {/* Divider */}
-          <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
-            <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
-          </div>
+          {showActions ? (
+            <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
+              <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+            </div>
+          ) : null}
         </>
-      )}
+      ) : null}
 
-      {/* Create new */}
-      <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
-        <span className="w-6 h-6 flex justify-center items-center"><AddCircleBoldDuotone size={20} /></span>
-        <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{createNewLabel}</span>
-      </button>
+      {showActions ? (
+        <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
+          <span className="w-6 h-6 flex justify-center items-center"><AddCircleBold size={20} /></span>
+          <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{createNewLabel}</span>
+        </button>
+      ) : null}
     </div>
   );
 }

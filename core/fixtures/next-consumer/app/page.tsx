@@ -3,6 +3,8 @@
 import { useState, type Key } from "react";
 import {
   Button,
+  Grid,
+  GridItem,
   DataTable,
   type ColumnDef,
 } from "@forge-ui-official/core";
@@ -48,11 +50,13 @@ export default function Home() {
             showFilters={false}
             showKebab={false}
             showFavorite={false}
+            askAi={{ context: "真实包消费", onSend: async () => ({ text: "Ask AI consumer response", links: [{ label: "返回首页", href: "/" }] }) }}
             primaryAction={{ label: "新建" }}
           />
-          <Button color="purple" iconLeft={<BellBoldDuotone aria-label="Forge MIT icon" />}>
-            根入口组件
-          </Button>
+          <Grid columns={{ base: 1, md: 12 }} gap={{ base: 8, lg: 24 }}>
+            <GridItem span={{ base: "full", md: 8 }}><Button color="purple" iconLeft={<BellBoldDuotone aria-label="Forge MIT icon" />}>根入口组件</Button></GridItem>
+            <GridItem span={{ base: "full", md: 4 }}>Grid consumer</GridItem>
+          </Grid>
           <DataTable
             columns={columns}
             rows={rows}

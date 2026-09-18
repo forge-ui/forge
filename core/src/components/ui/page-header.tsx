@@ -1,5 +1,6 @@
 "use client";
 
+import type { AskAiProps } from "./ask-ai";
 import type { ReactNode } from "react";
 import { SearchHeader, TitleHeader } from "../../internal/page-header-variants";
 
@@ -30,6 +31,9 @@ export interface PageHeaderProps {
   variant?: PageHeaderVariant;
   color?: PageHeaderColor;
   className?: string;
+
+  /** Optional AI conversation drawer; the application supplies the response handler. */
+  askAi?: AskAiProps;
 
   // --- Search variant props ---
   /** "search" renders search input (default), "hamburger" renders compact menu button. */

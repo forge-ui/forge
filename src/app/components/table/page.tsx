@@ -261,7 +261,7 @@ const CODE_RATING = `<CellRating score="5.0" />`;
 const CODE_COLUMNS = `const columns: ColumnDef<OrderRow>[] = [
   { key: "invoice", header: "Invoice", sortable: true, width: "w-28",
     render: (row) => <CellText>{row.invoice}</CellText> },
-  { key: "product", header: "Product", flex: true,
+  { key: "product", header: "Product", flex: true, // 身份列，最宽 280px
     render: (row) => <CellImageText src={row.image} title={row.product} /> },
   { key: "status", header: "Status", width: "w-32",
     render: (row) => <StatusBadge label={row.status} color={row.statusColor} /> },
@@ -315,17 +315,18 @@ const HEADER_CELL_PROPS: ApiTableRow[] = [
   { attr: "checkbox", type: "boolean", defaultValue: "false", description: "是否显示左侧勾选框。" },
   { attr: "checked", type: "boolean", defaultValue: "false", description: "勾选状态。" },
   { attr: "onCheckedChange", type: "(checked) => void", defaultValue: "—", description: "勾选回调。" },
-  { attr: "checkboxColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'black'", defaultValue: "'purple'", description: "勾选框语义色（CheckboxColor）。" },
+  { attr: "checkboxColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'black'", defaultValue: "'black'", description: "勾选框语义色（CheckboxColor）。" },
 ];
 
 const STATUS_PROPS: ApiTableRow[] = [
   { attr: "label", type: "string", defaultValue: "—", description: "徽章文字。" },
-  { attr: "color", type: "'purple' | 'blue' | 'yellow' | 'cyan' | 'green' | 'red' | 'grey'", defaultValue: "'green'", description: "语义色，7 色对应 Figma Label Badge 分类。" },
+  { attr: "color", type: "'purple' | 'blue' | 'yellow' | 'cyan' | 'green' | 'red' | 'grey'", defaultValue: "'grey'", description: "语义色。表格里优先用 green / yellow / red / grey。" },
+  { attr: "variant", type: "'soft' | 'solid'", defaultValue: "'soft'", description: "soft 是浅底描边，solid 是实心白字胶囊。" },
 ];
 
 const STATUS_DOT_PROPS: ApiTableRow[] = [
   { attr: "label", type: "string", defaultValue: "—", description: "状态文字。" },
-  { attr: "color", type: "'purple' | 'blue' | 'green' | 'red' | 'yellow' | 'cyan' | 'grey' | 'black'", defaultValue: "'purple'", description: "圆点语义色，8 色。" },
+  { attr: "color", type: "'purple' | 'blue' | 'green' | 'red' | 'yellow' | 'cyan' | 'grey' | 'black'", defaultValue: "'grey'", description: "圆点语义色，8 色。" },
   { attr: "emphasis", type: "'strong' | 'subtle'", defaultValue: "'strong'", description: "文字权重：strong = fg-black semibold，subtle = fg-grey-900 medium。" },
 ];
 
@@ -395,8 +396,9 @@ const DATATABLE_PROPS: ApiTableRow[] = [
   { attr: "title", type: "string", defaultValue: "—", description: "表头标题。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "表头副标题。" },
   { attr: "badge", type: "ReactNode", defaultValue: "—", description: "title 右侧的 Label / 计数徽章。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "强调色，影响 checkbox / action 按钮。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'black'", description: "强调色，影响分页当前页。" },
   { attr: "showCheckbox", type: "boolean", defaultValue: "false", description: "是否显示首列勾选框。" },
+  { attr: "checkboxColor", type: "CheckboxColor", defaultValue: "'black'", description: "勾选框颜色，默认跟随克制表体，不另开一套强调色。" },
   { attr: "selectedRowKeys", type: "ReadonlySet<Key>", defaultValue: "—", description: "推荐：按稳定业务 key 控制选中状态，排序、过滤和分页后仍对应同一记录。" },
   { attr: "onSelectedRowKeysChange", type: "(keys: Set<Key>) => void", defaultValue: "—", description: "key 模式选择回调；始终返回新 Set，不修改传入集合。" },
   { attr: "selectedRows", type: "Set<number>", defaultValue: "—", description: "兼容旧版的索引集合；新代码优先使用 selectedRowKeys。" },
@@ -407,7 +409,7 @@ const DATATABLE_PROPS: ApiTableRow[] = [
   { attr: "showPagination", type: "boolean", defaultValue: "false", description: "底部是否显示翻页。" },
   { attr: "currentPage / totalPages", type: "number", defaultValue: "—", description: "当前页与总页数。" },
   { attr: "paginationLabel", type: "string", defaultValue: "—", description: "左下角范围说明文字。" },
-  { attr: "tableMinWidth", type: "CSSProperties['minWidth']", defaultValue: "—", description: "表格内容最小宽度；超出时只在组件内部横向滚动。" },
+  { attr: "tableMinWidth", type: "CSSProperties['minWidth']", defaultValue: "按列数估算", description: "表格内容最小宽度；不传时按列角色估算，超出只在组件内部横向滚动。" },
 ];
 
 const FULLWIDTH_PROPS: ApiTableRow[] = [
@@ -605,7 +607,7 @@ export default function TableCasePage() {
 
         <SubSection title="9 · Label Badge" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            实心胶囊徽章，底层 <InlineCode>StatusBadge</InlineCode>，也可在 Status 列 pill 形式复用。完整 7 色见 API 表 <InlineCode>color</InlineCode>。
+            默认浅底描边徽章。表格状态优先 green / yellow / red / grey；<InlineCode>variant="solid"</InlineCode> 才是实心白字胶囊。
           </p>
           <PreviewBlock code={CODE_LABEL_BADGE} minHeight={120}>
             <StatusBadge label="Text Here" color="purple" />

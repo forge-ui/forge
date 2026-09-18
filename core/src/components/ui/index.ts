@@ -248,7 +248,16 @@ export {
   ToolbarPillTabs,
   PageTitleToolbar,
 } from "./toolbar";
-export type { ToolbarColor, ToolbarPillTab } from "./toolbar";
+export type {
+  ToolbarColor,
+  ToolbarPillTab,
+  PageTitleToolbarVariant,
+  PageTitleToolbarAction,
+  PageTitleToolbarDateAction,
+  PageTitleToolbarMenuAction,
+  PageTitleToolbarPresetProps,
+  PageTitleToolbarProps,
+} from "./toolbar";
 
 // Widget components
 export { CurrencyConverter } from "./currency-converter";
@@ -290,6 +299,7 @@ export type {
   CellContentType,
   ColumnDef,
   StatusBadgeColor,
+  StatusBadgeVariant,
   StatusDotColor,
   ProgressBadgeColor,
   ProgressBarColor,
@@ -346,3 +356,6 @@ export type { ColorScaleStop, ColorSwatchSize } from "./style-guide";
 // Layout templates
 export { AppLayout } from "../layouts/app-layout";
 export type { AppLayoutMode, AppLayoutProfilePosition, AppLayoutAccentColor, AppLayoutMenuItem, AppLayoutProfile, AppLayoutBreadcrumb, AppLayoutPageHeaderVariant } from "../layouts/app-layout";
+
+export { AskAi } from "./ask-ai";
+export type { AskAiProps, AskAiRequest, AskAiMessage, AskAiResponse, AskAiLink } from "./ask-ai";

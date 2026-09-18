@@ -41,6 +41,7 @@ export function ImageStatCard({
   avatars = [],
   backgroundImage,
   backgroundImageAlt = "",
+  density = "default",
   width,
   className,
 }: {
@@ -63,6 +64,8 @@ export function ImageStatCard({
    * card's bottom-right; text content stays in the left half above it. */
   backgroundImage?: string;
   backgroundImageAlt?: string;
+  /** Use compact inside dense dashboards while preserving the default Figma showcase scale. */
+  density?: "default" | "compact";
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -70,18 +73,24 @@ export function ImageStatCard({
   const themeKey = resolveCardTheme(theme);
   const cfg = cardThemes[themeKey];
   const isWide = size === "wide";
+  const isCompact = density === "compact";
   const hasImage = Boolean(backgroundImage);
   // Use default tailwind tokens (not arbitrary values) so the CSS is
   // generated even when this component is consumed from node_modules.
   // min-h-80 = 320px, min-h-72 = 288px.
-  const minHeight = hasImage ? (isWide ? "min-h-80" : "min-h-72") : "";
+  const minHeight = hasImage
+    ? isCompact
+      ? isWide ? "min-h-56" : "min-h-52"
+      : isWide ? "min-h-80" : "min-h-72"
+    : "";
 
   const actionNode = action ?? (onKebabClick ? <CardKebabButton theme={cfg} onClick={onKebabClick} /> : null);
 
   return (
     <div
       className={cn(
-        "rounded-card flex-col justify-between gap-6 overflow-hidden relative p-6",
+        "rounded-card flex-col justify-between overflow-hidden relative",
+        isCompact ? "gap-3 p-4" : "gap-6 p-6",
         resolveCardWidthClass(isWide ? "full" : width, "w-90"),
         minHeight,
         cfg.bg,
@@ -122,7 +131,7 @@ export function ImageStatCard({
       {/* Bottom row: value + trend left / avatars right */}
       <div className="self-stretch inline-flex justify-between items-end gap-3 relative z-10">
         <div className="flex-1 flex flex-col gap-1 min-w-0">
-          <div className={cn("text-4xl font-semibold leading-11 tracking-fg", cfg.valueColor)}>
+          <div className={cn("font-semibold tracking-fg", isCompact ? "text-2xl leading-8" : "text-4xl leading-11", cfg.valueColor)}>
             {value}
           </div>
           <CardTrend
@@ -132,7 +141,7 @@ export function ImageStatCard({
             theme={cfg}
           />
         </div>
-        {!hasImage && <CardAvatarGroup avatars={avatars} theme={cfg} size={40} />}
+        {!hasImage && <CardAvatarGroup avatars={avatars} theme={cfg} size={isCompact ? 32 : 40} />}
       </div>
     </div>
   );

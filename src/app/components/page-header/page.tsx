@@ -1,5 +1,6 @@
 "use client";
 
+import { askAiExample } from "./ask-ai-example";
 import Link from "next/link";
 import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
@@ -9,6 +10,7 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";`;
 
 const CODE_HEADER_SEARCH = `<PageHeader
+  askAi={{ onSend: (message, request) => askYourAiService(message, request) }}
   variant="search"
   searchPlaceholder="Search anything..."
   notifications={3}
@@ -22,6 +24,7 @@ const CODE_HEADER_SEARCH = `<PageHeader
 />`;
 
 const CODE_HEADER_TITLE = `<PageHeader
+  askAi={{ onSend: (message, request) => askYourAiService(message, request) }}
   variant="title"
   title="Projects"
   showBackButton
@@ -41,6 +44,7 @@ const CODE_BREADCRUMB_USAGE = `<Breadcrumbs
 const CODE_BREADCRUMB_COLOR = `<Breadcrumbs color="purple" items={items} />`;
 
 const HEADER_PROPS: ApiTableRow[] = [
+  { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 AI 对话抽屉。必填 onSend(message, { context?, messages, signal }) 返回回复；可选 context、suggestions、label、placeholder、disabled、className。未配置时隐藏。" },
   { attr: "variant", type: "'search' | 'title'", defaultValue: "'title'", description: "两种布局：search（全局 header 带搜索 + 通知 + profile）与 title（页面标题 + 返回 + actions）。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色（影响通知徽标等）。" },
   { attr: "searchPlaceholder", type: "string", defaultValue: "—", description: "search 变体：搜索框占位。" },
@@ -91,6 +95,7 @@ export default function PageHeaderCasePage() {
           <PreviewBlock code={CODE_HEADER_SEARCH} minHeight={120}>
             <div className="w-full">
               <PageHeader
+                askAi={askAiExample}
                 variant="search"
                 searchPlaceholder="Search anything..."
                 notifications={3}
@@ -113,6 +118,7 @@ export default function PageHeaderCasePage() {
           <PreviewBlock code={CODE_HEADER_TITLE} minHeight={120}>
             <div className="w-full">
               <PageHeader
+                askAi={askAiExample}
                 variant="title"
                 title="Projects"
                 showBackButton
@@ -122,6 +128,25 @@ export default function PageHeaderCasePage() {
               />
             </div>
           </PreviewBlock>
+        </SubSection>
+
+        <SubSection title="Ask AI" stack>
+          <CodeBlock code={`<PageHeader
+  title="项目概览"
+  askAi={{
+    context: "项目概览 / projects",
+    suggestions: ["这个页面可以做什么？", "下一步该做什么？"],
+    onSend: async (message, request) => ({
+      text: await askYourAiService(message, request),
+      links: [
+        { label: "查看项目", href: "/projects" },
+        { label: "查看任务", href: "/tasks" },
+      ],
+    }),
+  }}
+/>`} />
+          <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。发送按钮和复选框跟随 PageHeader 的 color，图标保留原有渐变色。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
+          <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
         </SubSection>
 
         <SubSection title="API" stack>

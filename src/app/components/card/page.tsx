@@ -76,6 +76,7 @@ const STATCARD_PROPS: ApiTableRow[] = [
   { attr: "subtitle", type: "string", defaultValue: "—", description: "底部描述文本。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "8 种主题色。" },
   { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和字号；默认宽度填满父级。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、字号和图标尺寸。" },
   { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "icon", type: "ReactNode", defaultValue: "—", description: "左上角图标槽。" },
   { attr: "badgeVariant", type: "'greyBg' | 'solid' | 'opacity' | 'white'", defaultValue: "'greyBg'", description: "trend badge 外观。" },
@@ -95,6 +96,7 @@ const CODE_PROGRESS_STAT_USAGE = `<ProgressStatCard
 
 const PROGRESS_STAT_PROPS: ApiTableRow[] = [
   { attr: "title / value / trend / subtitle / theme / size / width / icon", type: "同 StatCard", defaultValue: "—", description: "基础字段与 StatCard 一致。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、字号和图标尺寸。" },
   { attr: "progressValue", type: "number", defaultValue: "0", description: "进度条数值 0-100。" },
   { attr: "progressColor", type: "ProgressColor", defaultValue: "'purple'", description: "进度条颜色。" },
 ];
@@ -110,6 +112,7 @@ const LINE_CHART_STAT_PROPS: ApiTableRow[] = [
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
   { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和图表布局（无 md 档）。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、字号和图标尺寸。" },
   { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "chartColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "折线与渐变底色。" },
   { attr: "chartDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "折线走势方向。" },
@@ -121,6 +124,7 @@ const WHEEL_CHART_STAT_PROPS: ApiTableRow[] = [
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
   { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和图表布局（无 md 档）。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、字号和图标尺寸。" },
   { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "wheelColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "甜甜圈主色。" },
   { attr: "wheelPercent", type: "number", defaultValue: "70", description: "0-100 填充百分比。" },
@@ -132,6 +136,7 @@ const BAR_CHART_STAT_PROPS: ApiTableRow[] = [
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
   { attr: "size", type: "'sm' | 'lg' | 'wide'", defaultValue: "'sm'", description: "控制内部密度和图表布局（无 md 档）。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、字号和图标尺寸。" },
   { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "barColor", type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'purple'", description: "柱子主色。" },
   { attr: "bars", type: "number[]", defaultValue: "[16,24,32,20,40]", description: "迷你柱状图数据数组。" },
@@ -151,6 +156,7 @@ const CODE_IMAGE_STAT_USAGE = `<ImageStatCard
 const IMAGE_STAT_PROPS: ApiTableRow[] = [
   { attr: "title / subtitle / value / trend / theme", type: "同 StatCard", defaultValue: "—", description: "基础字段。" },
   { attr: "size", type: "'lg' | 'wide'", defaultValue: "'lg'", description: "内部布局尺寸。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、主数据字号和图片卡高度。" },
   { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 grid/flex 列；仅组件展示原始 Figma 尺寸时用 fixed。" },
   { attr: "trendSubtitle", type: "string", defaultValue: "—", description: "趋势下方的小字。" },
   { attr: "avatars", type: "string[]", defaultValue: "—", description: "右侧用户头像组 URL 列表。" },
@@ -172,6 +178,7 @@ const BALANCE_PROPS: ApiTableRow[] = [
   { attr: "cardNumber", type: "string", defaultValue: "—", description: "卡号末 4 位。" },
   { attr: "cardIcon", type: "string", defaultValue: "—", description: "卡号旁的品牌 icon 图片 URL（24×24 渲染）。" },
   { attr: "onTransfer / onRequest", type: "() => void", defaultValue: "—", description: "Transfer / Request 按钮回调。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧留白、余额字号和操作按钮高度。" },
   { attr: "width", type: "'full' | 'fixed'", defaultValue: "'full'", description: "默认填满 dashboard/grid 单元；仅组件展示原始尺寸时用 fixed。" },
 ];
 
@@ -270,6 +277,7 @@ const HIGHLIGHT_PROPS: ApiTableRow[] = [
   { attr: "image", type: "string", defaultValue: "—", description: "主展示图 URL。" },
   { attr: "annotations", type: "{ label, value, position }[]", defaultValue: "—", description: "图片上的浮动注解。" },
   { attr: "products", type: "{ image, name, subtitle?, value }[]", defaultValue: "—", description: "下方的产品缩略图列表。" },
+  { attr: "density", type: "'default' | 'compact'", defaultValue: "'default'", description: "紧凑模式会收紧卡片高度和留白。" },
 ];
 
 // ActivityCard

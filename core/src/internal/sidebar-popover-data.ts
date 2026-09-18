@@ -57,7 +57,8 @@ export const japanFlagDataUrl = svgDataUrl(`
 /** @deprecated Use chinaFlagDataUrl. Kept for source compatibility. */
 export const languageMarkDataUrl = chinaFlagDataUrl;
 
-export type LanguageCode = "zh-CN" | "zh-TW" | "en-US" | "ja-JP";
+/** Starter products only need 中 / 英. Keep optional codes for type compat if needed later. */
+export type LanguageCode = "zh-CN" | "en-US" | "zh-TW" | "ja-JP";
 
 export const languageFlagDataUrls: Record<LanguageCode, string> = {
   "zh-CN": chinaFlagDataUrl,
@@ -69,7 +70,7 @@ export const languageFlagDataUrls: Record<LanguageCode, string> = {
 export const languageLabels: Record<LanguageCode, string> = {
   "zh-CN": "简体中文",
   "zh-TW": "繁体中文",
-  "en-US": "英文（美国）",
+  "en-US": "English",
   "ja-JP": "日文",
 };
 
@@ -107,13 +108,12 @@ export const notificationItems = [
   },
 ];
 
+/** Default language menu: Simplified Chinese + English only */
 export const languageOptions: ReadonlyArray<{
   code: LanguageCode;
   label: string;
   flagUrl: string;
 }> = [
   { code: "zh-CN", label: languageLabels["zh-CN"], flagUrl: languageFlagDataUrls["zh-CN"] },
-  { code: "zh-TW", label: languageLabels["zh-TW"], flagUrl: languageFlagDataUrls["zh-TW"] },
   { code: "en-US", label: languageLabels["en-US"], flagUrl: languageFlagDataUrls["en-US"] },
-  { code: "ja-JP", label: languageLabels["ja-JP"], flagUrl: languageFlagDataUrls["ja-JP"] },
 ];
