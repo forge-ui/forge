@@ -1,5 +1,7 @@
 # Forge
 
+面向企业后台和业务系统的 React 组件库，提供常用界面组件、统一的设计规范和页面模板，帮助开发者更快构建清晰、一致的产品界面。
+
 面向 SaaS 后台和 ToB 业务系统的开源 React 组件库与模板工程。
 
 Forge 把团队做后台产品时反复重建的东西整理成一套可直接使用的工程资产：设计 token、React 组件、AppLayout、数据密集型 UI、完整业务模板，以及一份给 AI coding agent 使用的 Forge Skill。
