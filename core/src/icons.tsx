@@ -41,6 +41,9 @@ import {
   DownloadSimpleIcon,
   EnvelopeIcon,
   EyeIcon,
+  EyeClosedIcon,
+  ShieldCheckeredIcon,
+  ShieldStarIcon,
   FileIcon,
   FileTextIcon,
   FlagIcon,
@@ -322,3 +325,11 @@ export const WalletLinear = createForgeIcon(WalletIcon, "regular", "WalletLinear
 export const WalletMoneyBoldDuotone = createForgeIcon(MoneyIcon, "duotone", "WalletMoneyBoldDuotone");
 export const WalletMoneyLinear = createForgeIcon(MoneyIcon, "regular", "WalletMoneyLinear");
 export const WidgetBoldDuotone = createForgeIcon(SquaresFourIcon, "duotone", "WidgetBoldDuotone");
+export const BoxLinear = createForgeIcon(CubeIcon, "regular", "BoxLinear");
+export const EyeClosedLinear = createForgeIcon(EyeClosedIcon, "regular", "EyeClosedLinear");
+export const FolderLinear = createForgeIcon(FolderIcon, "regular", "FolderLinear");
+export const HamburgerMenuBoldDuotone = createForgeIcon(ListIcon, "duotone", "HamburgerMenuBoldDuotone");
+export const InfoCircleLinear = createForgeIcon(InfoIcon, "regular", "InfoCircleLinear");
+export const ShieldKeyholeBoldDuotone = createForgeIcon(ShieldCheckeredIcon, "duotone", "ShieldKeyholeBoldDuotone");
+export const ShieldUserBoldDuotone = createForgeIcon(ShieldStarIcon, "duotone", "ShieldUserBoldDuotone");
+export const WidgetLinear = createForgeIcon(SquaresFourIcon, "regular", "WidgetLinear");

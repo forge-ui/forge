@@ -1,6 +1,6 @@
 {
   "name": "@forge-ui-official/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Forge UI Kit — React 19 + Tailwind v4 components",
   "license": "MIT",
   "private": false,
@@ -66,23 +66,23 @@
   "devDependencies": {
     "@phosphor-icons/react": "2.1.10",
     "@types/jsdom": "^28.0.3",
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^22.20.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "jsdom": "^29.1.1",
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwindcss": "^4",
-    "tsup": "^8.3.5",
-    "typescript": "^5"
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwindcss": "^4.3.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/forge-ui/forge.git",
+    "url": "git+https://atomgit.com/bitlink/forge.git",
     "directory": "core"
   }
 }

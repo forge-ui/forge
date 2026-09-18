@@ -11,11 +11,11 @@ import * as icons from "../src/icons";
 import { BellBoldDuotone, MagniferLinear, PlusLinear } from "../src/icons";
 
 test("Forge icon compatibility layer exposes the complete stable icon surface", () => {
-  assert.equal(Object.keys(icons).length, 169);
+  assert.equal(Object.keys(icons).length, 177);
   assert.ok(BellBoldDuotone);
   assert.ok(MagniferLinear);
   assert.ok(PlusLinear);
-  for (const name of ["CalendarBold", "LetterBold", "AddCircleBold", "UserPlusBold", "PenBold", "LockPasswordBold", "SettingsBold", "Logout2Bold"] as const) {
+  for (const name of ["BoxLinear", "EyeClosedLinear", "FolderLinear", "HamburgerMenuBoldDuotone", "InfoCircleLinear", "ShieldKeyholeBoldDuotone", "ShieldUserBoldDuotone", "WidgetLinear", "CalendarBold", "LetterBold", "AddCircleBold", "UserPlusBold", "PenBold", "LockPasswordBold", "SettingsBold", "Logout2Bold"] as const) {
     const html = renderToStaticMarkup(createElement(icons[name], { size: 20, color: "#71717A" }));
     assert.match(html, /<svg/);
     assert.match(html, /width="20"/);

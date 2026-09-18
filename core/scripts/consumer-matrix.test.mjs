@@ -10,8 +10,8 @@ import {
 
 test("consumer matrix covers the first supported minor of Next 15 and Next 16", () => {
   assert.deepEqual(consumerScenarios, [
-    { name: "next-15", next: "15.0.8" },
-    { name: "next-16", next: "16.0.11" },
+    { name: "next-15", next: "15.5.24" },
+    { name: "next-16", next: "16.3.5" },
   ]);
 });
 
@@ -25,7 +25,7 @@ test("consumer package pins every external dependency while keeping the tarball 
     "file:/tmp/forge-core.tgz",
   );
 
-  assert.equal(packageJson.dependencies.next, "15.0.8");
+  assert.equal(packageJson.dependencies.next, "15.5.24");
   assert.equal(packageJson.dependencies["@forge-ui-official/core"], "file:/tmp/forge-core.tgz");
   assert.deepEqual(findUnpinnedExternalDependencies(packageJson), []);
 });
