@@ -143,7 +143,7 @@ export function SearchHeader({
           </div>
         )}
 
-        {askAi && <AskAi {...askAi} className={cn("ml-auto", askAi.className)} />}
+        {askAi && <AskAi {...askAi} color={color} className={cn("ml-auto", askAi.className)} />}
 
         {/* Right actions */}
         <div
@@ -406,7 +406,7 @@ export function TitleHeader({
           </button>
         )}
 
-        {askAi && <AskAi {...askAi} />}
+        {askAi && <AskAi {...askAi} color={color} />}
 
         {/* Primary action — Figma: accent bg + Linear plus icon */}
         {primaryAction && (

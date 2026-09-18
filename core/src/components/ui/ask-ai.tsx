@@ -6,6 +6,7 @@ import { CloseCircleLinear } from "solar-icon-set";
 import { AskAiIcon } from "../../internal/ask-ai-icon";
 import { cn } from "../../lib/utils";
 import { Button } from "./button";
+import type { AccentColor } from "./accent-utils";
 import { Checkbox } from "./checkbox";
 
 export interface AskAiLink {
@@ -32,6 +33,8 @@ export interface AskAiRequest {
 }
 
 export interface AskAiProps {
+  /** Accent for controls; PageHeader supplies its own color when embedded. */
+  color?: AccentColor;
   label?: string;
   /** Human-readable page title or path; supplied explicitly by the application. */
   context?: string;
@@ -55,7 +58,7 @@ function responseLinks(links: AskAiLink[] = []): AskAiLink[] {
 }
 
 /** Header entry and modal conversation drawer. No network calls or page scraping. */
-export function AskAi({ label = "Ask AI", context, suggestions = ["这个页面可以做什么？", "下一步该做什么？", "帮我总结当前内容"], placeholder = "输入问题…", onSend, disabled, className }: AskAiProps) {
+export function AskAi({ color = "purple", label = "Ask AI", context, suggestions = ["这个页面可以做什么？", "下一步该做什么？", "帮我总结当前内容"], placeholder = "输入问题…", onSend, disabled, className }: AskAiProps) {
   const id = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -163,7 +166,7 @@ export function AskAi({ label = "Ask AI", context, suggestions = ["这个页面�
             {context && <div className="mx-4 mt-4 flex shrink-0 items-center gap-3 rounded-xl border border-dashed border-fg-grey-200 bg-fg-grey-50 px-3 py-3">
               <span className="shrink-0 text-xs font-semibold text-fg-grey-700">当前页</span>
               <span title={context} className="min-w-0 flex-1 truncate text-xs text-fg-grey-500">{context}</span>
-              <Checkbox aria-label="带当前页" checked={includeContext} onChange={setIncludeContext} disabled={pending} />
+              <Checkbox color={color} aria-label="带当前页" checked={includeContext} onChange={setIncludeContext} disabled={pending} />
               <span className="shrink-0 text-xs text-fg-grey-700">带当前页</span>
             </div>}
             <div ref={conversationRef} className="min-h-0 flex-1 overflow-y-auto p-5">
@@ -192,7 +195,7 @@ export function AskAi({ label = "Ask AI", context, suggestions = ["这个页面�
                   if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); void send(draft); }
                 }}
                 className="min-w-0 flex-1 resize-none rounded-xl border border-fg-grey-200 px-3 py-2.5 text-sm leading-5 placeholder:text-fg-grey-500 focus:outline-fg-grey-500" />
-              <Button type="submit" size="md" disabled={pending || disabled || !draft.trim()}>发送</Button>
+              <Button color={color} type="submit" size="md" disabled={pending || disabled || !draft.trim()}>发送</Button>
             </form>
           </div>
         </dialog>, document.body,
