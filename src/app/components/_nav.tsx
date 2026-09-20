@@ -8,7 +8,7 @@ import { cn } from "@forge-ui-official/core";
 type NavItem = { href: string; label: string; external?: boolean };
 type NavGroup = { title: string; items: NavItem[] };
 
-// Foundations 单列分组（Style Guide + File Type），其余 22 个按字母序
+// Foundations 单列分组（Style Guide + File Type），其余按字母序
 export const componentsNavGroups: NavGroup[] = [
   {
     title: "Foundations",
@@ -20,12 +20,14 @@ export const componentsNavGroups: NavGroup[] = [
   {
     title: "Components",
     items: [
+      { href: "/components/agent", label: "Agent" },
       { href: "/components/badge", label: "Badge" },
       { href: "/components/button-link", label: "Button & Link" },
       { href: "/components/calendar", label: "Calendar" },
       { href: "/components/card", label: "Card" },
       { href: "/components/chart", label: "Chart" },
       { href: "/components/chat", label: "Chat" },
+      { href: "/components/checklist", label: "Checklist" },
       { href: "/components/comment", label: "Comment" },
       { href: "/components/filter", label: "Filter" },
       { href: "/components/grid", label: "Grid 栅格" },

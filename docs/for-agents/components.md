@@ -160,6 +160,24 @@
 |------|------|----------|------|
 | `IconTrigger` | ○ | 图标触发器 | `menu` |
 
+### agent
+
+| 组件 | 标记 | 典型用途 | Case |
+|------|------|----------|------|
+| `ThinkingTrace` | ◇ | Agent 思考痕迹（steps / reasoning / search / coding） | `agent` |
+| `StreamingAnswer` | ◇ | 流式回答 + 来源 + follow-up | `agent` |
+| `ApprovalCard` | ◇ | 行动前 HITL 选择题 | `agent` |
+| `ToolChips` | ◇ | 工具调用 / 代码编辑 chip | `agent` |
+| `AgentTaskRows` | ◇ | Agent 任务 running / failed / completed | `agent` |
+| `PromptBar` | ◇ | @ 来源、/ 命令、模型选择；不替代 ChatInputBar | `agent` |
+| `ContextCards` | ○ | 检索片段 + 来源 | `agent` |
+| `RecommendationCard` | ○ | 建议 + 置信度 + Accept | `agent` |
+| `AgentDiffTable` | ◇ | Agent 提议的表格增删，不替代 DataTable | `agent` |
+| `AgentCodeBlock` | ◇ | 代码 listing + 统一 diff | `agent` |
+| `InsightCards` | ○ | 洞察轮播 + spark / bars / segments | `agent` |
+| `CommandSearch` | ○ | 命令过滤，不替代 ToolbarSearchInput | `agent` |
+| `AgentFlowchart` | ○ | 可选中工作流节点，不做拖拽画布 | `agent` |
+
 ### patterns
 
 | 组件 | 标记 | 典型用途 | Case |
@@ -196,6 +214,8 @@
 | `ListGroup` | ○ | 见 case / 源码 | `list` |
 | `ListGroupTab` | ○ | 见 case / 源码 | — |
 | `ListItem` | ○ | 见 case / 源码 | `list` |
+| `Checklist` | ◇ | 勾选后划掉并沉底；不替代 TaskCard / AgentTaskRows / Checkbox | `checklist` |
+| `ChecklistItem` | ○ | 单行清单，不重排 | `checklist` |
 | `MenuItem` | ○ | 菜单项 | `menu` |
 | `NotificationItem` | ○ | 通知行 | `menu` |
 | `ProductRow` | ○ | 商品行（电商） | — |
@@ -252,7 +272,7 @@
 | `DataTable` | ★ | 业务主表 | `table` |
 | `FullWidthTable` | ○ | 全宽表变体 | `table` |
 | `ProgressBadge` | ◇ | 进度徽章 | `table` |
-| `StatusBadge` | ○ | 彩色状态胶囊（**业务页已弃用**：状态/分类一律纯文本，危险态红字、失效态灰字；勿做彩虹胶囊） | `table` |
+| `StatusBadge` | ○ | 语义状态胶囊，默认 `variant="soft"`（浅底+细边+同色字，对齐 finance Transaction）。禁止 `solid` / 给分类刷彩虹 | `table` |
 | `TableCell` | ○ | 底层单元格 | `table` |
 
 ### tokens-utils

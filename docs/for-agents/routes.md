@@ -12,12 +12,14 @@
 | Case | 路由 | 源码 | 覆盖组件（摘要） |
 |------|------|------|------------------|
 | index | `/cases` | `src/app/cases/page.tsx` | 总览导航 |
+| agent | `/cases/agent` | `src/app/cases/agent/page.tsx` | `ThinkingTrace` / `StreamingAnswer` / `ApprovalCard` / `ToolChips` / `AgentTaskRows` / `PromptBar` / `ContextCards` / `RecommendationCard` / `AgentDiffTable` / `AgentCodeBlock` / `InsightCards` / `CommandSearch` / `AgentFlowchart` |
 | badge | `/cases/badge` | `src/app/cases/badge/page.tsx` | `NotificationBadge` / `Label` / `CircleIcon` / `ArtisticIcon` |
 | button-link | `/cases/button-link` | `src/app/cases/button-link/page.tsx` | `Button` / `IconButton` / `StyledLink` |
 | calendar | `/cases/calendar` | `src/app/cases/calendar/page.tsx` | `SmallCalendar` / `SmallDailyCalendar` / `FullCalendar` / `CalendarDayCell` / `CalendarWeekRow` / `EventCard` / `EventTag` |
 | card | `/cases/card` | `src/app/cases/card/page.tsx` | `StatCard` / `ProgressStatCard` / `LineChartStatCard` / `WheelChartStatCard` / `BarChartStatCard` / `ImageStatCard` / `BalanceCard` / `DebitCard` … |
 | chart | `/cases/chart` | `src/app/cases/chart/page.tsx` | `MeterChart` / `HalfDonutChart` / `DashedHalfDonutChart` / `DonutChart` / `PieChart` / `MultilayerDonutChart` / `BubbleChart` / `BarChart` … |
 | chat | `/cases/chat` | `src/app/cases/chat/page.tsx` | `ContactItem` / `ChatBubble` / `ChatInputBar` |
+| checklist | `/cases/checklist` | `src/app/cases/checklist/page.tsx` | `Checklist` / `ChecklistItem` |
 | comment | `/cases/comment` | `src/app/cases/comment/page.tsx` | `CommentItem` / `ReviewItem` |
 | filter | `/cases/filter` | `src/app/cases/filter/page.tsx` | `FilterGroup` / `FilterTrigger` / `FilterPanel` |
 | history | `/cases/history` | `src/app/cases/history/page.tsx` | `HistoryItem` / `HistoryGrouped` |
@@ -51,6 +53,7 @@
 | 分页 / 步骤条 | `pagination-stepper` |
 | 日历 | `calendar` |
 | 聊天 | `chat` |
+| Agent / 思考 / 流式 / HITL | `agent` |
 
 ## Templates（页面骨架，可选）
 
@@ -61,6 +64,7 @@
 | 看板 | `templates/(dashboards)/dashboards/` | KPI + 图表 |
 | 电商 CRUD | `templates/(dashboard)/ecommerce/` | 列表 / 详情 / 新建 |
 | CRM | `templates/crm-template/` | 线索客户 |
+| Agent | `templates/agent/` | 思考痕迹 + 流式回答 + HITL |
 | 项目 | `templates/project-template/` | 任务成员文件 |
 
 Starter 后台更优先抄 **forge-starter** 的 `accounts` / `approvals` 样板，再回 monorepo 查 props。

@@ -1,0 +1,16 @@
+Third-party notices
+===================
+
+Beautiful UI interaction patterns
+Copyright (c) 2026 Shane Levine
+https://www.beautifului.dev
+https://github.com/slev12397/beautiful-ui
+
+Licensed under the MIT License.
+
+Forge reimplements a subset of these AI-native interaction patterns
+(thinking traces, streamed answers, human-in-the-loop approvals, tool
+chips, agent task rows, prompt bar, context cards, recommendation cards,
+diff tables, code blocks, insight cards, command search, and flowcharts)
+with Forge design tokens (`fg-*`) and `solar-icon-set`. This is not a
+vendor copy of Beautiful UI source, tokens, or commercial icon assets.

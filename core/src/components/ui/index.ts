@@ -19,6 +19,9 @@ export type { ProgressColor, ProgressSize, ProgressLabelVariant, ProgressLabelSi
 export { Checkbox } from "./checkbox";
 export type { CheckboxColor } from "./checkbox";
 
+export { Checklist, ChecklistItem } from "./checklist";
+export type { ChecklistColor, ChecklistSize, ChecklistTask } from "./checklist";
+
 export { Avatar, AvatarGroup } from "./avatar";
 export type { AvatarSize, AvatarInitialColor } from "./avatar";
 
@@ -359,3 +362,52 @@ export type { AppLayoutMode, AppLayoutProfilePosition, AppLayoutAccentColor, App
 
 export { AskAi } from "./ask-ai";
 export type { AskAiProps, AskAiRequest, AskAiMessage, AskAiResponse, AskAiLink } from "./ask-ai";
+
+export {
+  ThinkingTrace,
+  StreamingAnswer,
+  ApprovalCard,
+  ToolChips,
+  AgentTaskRows,
+  PromptBar,
+  ContextCards,
+  RecommendationCard,
+  AgentDiffTable,
+  AgentCodeBlock,
+  InsightCards,
+  CommandSearch,
+  AgentFlowchart,
+} from "./agent";
+export type {
+  ThinkingVariant,
+  ThinkingRow,
+  StreamingSource,
+  ApprovalQuestion,
+  ToolChipKind,
+  ToolChipDetail,
+  ToolChipItem,
+  ToolDiffChip,
+  AgentTaskStatus,
+  AgentTaskChild,
+  AgentTask,
+  PromptSource,
+  PromptCommand,
+  PromptModel,
+  ContextChunk,
+  RecommendationConfidence,
+  RecommendationOption,
+  AgentDiffColumn,
+  AgentDiffChange,
+  AgentDiffRow,
+  AgentCodeDiffType,
+  AgentCodePiece,
+  AgentCodeDiffRow,
+  InsightTone,
+  InsightSeries,
+  InsightChart,
+  InsightCard,
+  CommandSearchItem,
+  AgentFlowKind,
+  AgentFlowNode,
+  AgentFlowEdge,
+} from "./agent";
