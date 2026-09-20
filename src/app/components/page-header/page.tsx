@@ -44,7 +44,7 @@ const CODE_BREADCRUMB_USAGE = `<Breadcrumbs
 const CODE_BREADCRUMB_COLOR = `<Breadcrumbs color="purple" items={items} />`;
 
 const HEADER_PROPS: ApiTableRow[] = [
-  { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 AI 对话抽屉。必填 onSend(message, { context?, messages, signal }) 返回回复；可选 context、suggestions、label、placeholder、disabled、className。未配置时隐藏。" },
+  { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 Ask AI 壳。默认右侧抽屉；可切独立全屏层。必填 onSend；可选 context、suggestions、槽位与 fullscreen / sessions。未配置时隐藏。" },
   { attr: "variant", type: "'search' | 'title'", defaultValue: "'title'", description: "两种布局：search（全局 header 带搜索 + 通知 + profile）与 title（页面标题 + 返回 + actions）。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色（影响通知徽标等）。" },
   { attr: "searchPlaceholder", type: "string", defaultValue: "—", description: "search 变体：搜索框占位。" },
@@ -146,7 +146,27 @@ export default function PageHeaderCasePage() {
   }}
 />`} />
           <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。发送按钮和复选框跟随 PageHeader 的 color，图标保留原有渐变色。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
-          <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
+          <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。抽屉标题栏默认带全屏钮，打开的是独立全视口层（不是把 dialog 拉成 100vw）。</p>
+        </SubSection>
+
+        <SubSection title="Ask AI 全屏与槽位" stack>
+          <CodeBlock code={`<AskAi
+  onSend={(message, request) => askYourAiService(message, request)}
+  fullscreen={open}
+  onFullscreenChange={setOpen}
+  sessions={[{ id: "s1", title: "上周的探索" }]}
+  currentSessionId={currentId}
+  searchQuery={query}
+  onSearchQueryChange={setQuery}
+  onNewSession={startNew}
+  onSelectSession={openSession}
+  brand={<YourMark />}
+  session={<YourSessionRail />}
+  messages={<YourTranscript />}
+  composer={<PromptBar onSend={send} />}
+/>`} />
+          <p className="text-sm text-fg-grey-700">全屏受控用 <InlineCode>fullscreen</InlineCode> + <InlineCode>onFullscreenChange</InlineCode>；不传则抽屉内「全屏」钮走内部 state。会话列表只吃 props：<InlineCode>sessions</InlineCode> / <InlineCode>currentSessionId</InlineCode> / <InlineCode>onNewSession</InlineCode> / <InlineCode>onSelectSession</InlineCode> / <InlineCode>searchQuery</InlineCode>。core 不读 localStorage、不调网络、不按标题过滤（过滤留给消费方）。</p>
+          <p className="text-sm text-fg-grey-700"><InlineCode>header</InlineCode> / <InlineCode>brand</InlineCode> / <InlineCode>session</InlineCode> / <InlineCode>messages</InlineCode> / <InlineCode>composer</InlineCode> 可覆盖默认区；未传则保持现有抽屉 UI。默认 composer 是圆角 textarea + Button，视觉对齐即将发版的 agent <InlineCode>PromptBar</InlineCode>（低对比 <InlineCode>border-fg-grey-200</InlineCode>、fg token）。agent 包发版后把 PromptBar 放进 <InlineCode>composer</InlineCode> 即可，不要把未发布的 agent/* 打进本包。</p>
         </SubSection>
 
         <SubSection title="API" stack>

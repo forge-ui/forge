@@ -24,14 +24,14 @@ const [pack] = JSON.parse(
 );
 
 // Grid/GridItem add one public module and static rules for six breakpoints.
-// AskAi adds the conversation drawer and the supplied SVG asset. Measured package:
-// 532,324 B packed / 2,162,397 B unpacked / 1,173,755 B sourcemaps.
+// AskAi drawer + fullscreen shell. Measured package:
+// 543,901 B packed / 2,216,867 B unpacked / 1,203,918 B sourcemaps.
 // Reserve only the additive feature payload; retain per-module and entry limits.
 const limits = {
-  packed: 535_000,
-  unpacked: 2_180_000,
+  packed: 547_000,
+  unpacked: 2_225_000,
   entries: 360,
-  sourceMaps: 1_185_000,
+  sourceMaps: 1_210_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,

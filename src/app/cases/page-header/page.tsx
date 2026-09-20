@@ -93,7 +93,7 @@ export default function PageHeaderCasePage() {
 
       <Section
         title="PageHeader · Search & Widget"
-        description="原有搜索顶栏加入 Ask AI；点击打开右侧对话框。3 colors × 8 layouts。"
+        description="原有搜索顶栏加入 Ask AI；点击打开右侧抽屉，标题栏可进独立全屏层。3 colors × 8 layouts。"
       >
         {HEADER_COLORS.map((color) => (
           <SubSection key={color} title={color}>
