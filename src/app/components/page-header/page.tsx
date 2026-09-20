@@ -145,7 +145,7 @@ export default function PageHeaderCasePage() {
     }),
   }}
 />`} />
-          <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。发送按钮和复选框跟随 PageHeader 的 color，图标保留原有渐变色。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
+          <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。发送按钮跟随 PageHeader 的 color，图标保留原有渐变色。点击直接打开右侧对话框，支持快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。可选 context 仍会随请求传给 onSend，抽屉里不再展示当前页条。</p>
           <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。抽屉标题栏默认带全屏钮，打开的是独立全视口层（不是把 dialog 拉成 100vw）。</p>
         </SubSection>
 
