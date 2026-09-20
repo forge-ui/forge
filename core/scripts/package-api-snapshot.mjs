@@ -493,7 +493,7 @@ export const expectedWildcardApi = [
   "./components/ui/icon-trigger:ef726d41348a83861558b3f71f1130f78cccd68539d4e72467bf59116b6ebc1f",
   "./components/ui/image-grid:142f66a1b94749daa6d5fcf0637ba96915ee966ab2e0a1a76cb830c589e084d6",
   "./components/ui/image-stat-card:58153e50891ff3b9de7bfdb9541bdb9454f4ad120cc9495b4e259a68b5e37c90",
-  "./components/ui/index:313b70bde1575f28d6dc212e9ed770e696b2999f430a815cf1b2fc7491f97fb4",
+  "./components/ui/index:88a4dd2e5d1029981dce9570b67b78cbd0f400b81f160b5a455fee5eb9a88770",
   "./components/ui/kebab-menu:961d50324aa38f2145b2f03b3ce6c7fb518485c8ab02911db9ac6f2f1b4f5c5b",
   "./components/ui/line-chart-stat-card:1ea617bce79863253b6e7687a99ef0628aa32e8575ebbb78ad09e0dbdf44ba01",
   "./components/ui/link:2eec7f6327b2d7e3917eea52c516e2d378fb79647a78f278f878945990b80649",

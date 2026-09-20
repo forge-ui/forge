@@ -23,22 +23,21 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Grid/GridItem add one public module and static rules for six breakpoints.
-// AskAi drawer + fullscreen shell. Measured package:
-// 543,901 B packed / 2,216,867 B unpacked / 1,203,918 B sourcemaps.
-// Reserve only the additive feature payload; retain per-module and entry limits.
+// Agent primitives + Checklist + AskAi fullscreen shell. Measured package:
+// 592,324 B packed / 2,412,656 B unpacked / 1,316,276 B sourcemaps / 405 entries.
+// Reserve only the additive feature payload; retain per-module limits.
 const limits = {
-  packed: 547_000,
-  unpacked: 2_225_000,
-  entries: 360,
-  sourceMaps: 1_210_000,
+  packed: 596_000,
+  unpacked: 2_430_000,
+  entries: 410,
+  sourceMaps: 1_330_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 18_000,
+  stylesRaw: 20_000,
 };
 
 const expectedExports = {
