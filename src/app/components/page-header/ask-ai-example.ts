@@ -4,6 +4,12 @@ import type { AskAiProps } from "@forge-ui-official/core";
 export const askAiExample: AskAiProps = {
   context: "项目概览 / projects",
   suggestions: ["这个页面可以做什么？", "下一步该做什么？", "帮我总结当前内容"],
+  sessions: [
+    { id: "demo-1", title: "这个页面可以做什么？" },
+    { id: "demo-2", title: "帮我总结当前内容" },
+  ],
+  currentSessionId: "demo-1",
+  landingTitle: "今天想做什么？",
   onSend: async (question, request) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     return {

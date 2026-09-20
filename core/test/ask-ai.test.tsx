@@ -8,7 +8,7 @@ const nodeProtocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${nodeProtocol}test`);
 
-import { AskAi, type AskAiRequest } from "../src/components/ui/ask-ai";
+import { AskAi, ASK_AI_FS_LAYER_ATTR, type AskAiRequest } from "../src/components/ui/ask-ai";
 import { PageHeader } from "../src/components/ui/page-header";
 
 function installDom() {
@@ -193,4 +193,95 @@ test("Ask AI controls follow both PageHeader variants and update with their acce
     await act(async () => root.unmount());
     dom.window.close();
   }
+});
+
+test("Ask AI opens an independent fullscreen layer from the drawer and can return", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  await act(async () => root.render(createElement(AskAi, {
+    suggestions: ["总结"],
+    onSend: () => "回复",
+  })));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  assert.ok(document.querySelector("dialog"));
+  await act(async () => document.querySelector<HTMLButtonElement>("[data-ask-ai-fullscreen]")!.click());
+  assert.equal(document.querySelector("dialog"), null);
+  const layer = document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`);
+  assert.ok(layer);
+  assert.ok(layer?.querySelector("[data-ask-ai-fs-rail]"));
+  assert.ok(layer?.querySelector("[data-ask-ai-fs-landing]"));
+  assert.match(layer?.querySelector("h2")?.className ?? "", /text-3xl/);
+  assert.equal(layer?.querySelector("[data-ask-ai-fs-new]")?.className.includes("bg-transparent"), true);
+  await act(async () => document.querySelector<HTMLButtonElement>("[data-ask-ai-exit-fullscreen]")!.click());
+  assert.equal(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`), null);
+  assert.ok(document.querySelector("dialog"));
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("Ask AI fullscreen is controlled and accepts session props plus slots", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  const selected: string[] = [];
+  const news: string[] = [];
+  let fullscreen = true;
+  function render() {
+    return createElement(AskAi, {
+      fullscreen,
+      onFullscreenChange: (open: boolean) => { fullscreen = open; },
+      onSend: () => "回复",
+      sessions: [
+        { id: "s1", title: "上周的探索" },
+        { id: "s2", title: "版本对比" },
+      ],
+      currentSessionId: "s1",
+      searchQuery: "版本",
+      onNewSession: () => { news.push("new"); },
+      onSelectSession: (id: string) => { selected.push(id); },
+      brand: createElement("div", { "data-ask-ai-brand-slot": "" }, "Brand"),
+      messages: createElement("div", { "data-ask-ai-messages-slot": "" }, "Messages"),
+      composer: createElement("div", { "data-ask-ai-composer-slot": "" }, "Composer"),
+    });
+  }
+  await act(async () => root.render(render()));
+  const layer = document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`)!;
+  assert.equal(document.querySelector("dialog"), null);
+  assert.ok(layer.querySelector("[data-ask-ai-brand-slot]"));
+  assert.ok(layer.querySelector("[data-ask-ai-messages-slot]"));
+  assert.ok(layer.querySelector("[data-ask-ai-composer-slot]"));
+  assert.ok(layer.querySelector("[data-ask-ai-fs-chat]"));
+  assert.equal(layer.querySelector("[data-ask-ai-fs-landing]"), null);
+  const active = layer.querySelector<HTMLButtonElement>("[data-ask-ai-fs-hist='s1']")!;
+  assert.match(active.className, /bg-fg-grey-50/);
+  await act(async () => layer.querySelector<HTMLButtonElement>("[data-ask-ai-fs-hist='s2']")!.click());
+  assert.deepEqual(selected, ["s2"]);
+  await act(async () => layer.querySelector<HTMLButtonElement>("[data-ask-ai-fs-new]")!.click());
+  assert.deepEqual(news, ["new"]);
+  const search = layer.querySelector<HTMLInputElement>("[data-ask-ai-fs-rail-search] input")!;
+  assert.equal(search.getAttribute("aria-label"), "搜索历史");
+  assert.equal(search.value, "版本");
+  await act(async () => document.querySelector<HTMLButtonElement>("[data-ask-ai-exit-fullscreen]")!.click());
+  assert.equal(fullscreen, false);
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("Ask AI drawer slots replace default regions without opening fullscreen", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  await act(async () => root.render(createElement(AskAi, {
+    onSend: () => "回复",
+    header: createElement("div", { "data-ask-ai-header-slot": "" }, "Header"),
+    messages: createElement("div", { "data-ask-ai-messages-slot": "" }, "Body"),
+    composer: createElement("div", { "data-ask-ai-composer-slot": "" }, "Input"),
+  })));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  const dialog = document.querySelector("dialog")!;
+  assert.ok(dialog.querySelector("[data-ask-ai-header-slot]"));
+  assert.ok(dialog.querySelector("[data-ask-ai-messages-slot]"));
+  assert.ok(dialog.querySelector("[data-ask-ai-composer-slot]"));
+  assert.equal(dialog.querySelector('[aria-label="关闭 Ask AI"]'), null);
+  assert.equal(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`), null);
+  await act(async () => root.unmount());
+  dom.window.close();
 });
