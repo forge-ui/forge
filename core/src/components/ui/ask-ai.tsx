@@ -19,7 +19,6 @@ import type {
 import { cn } from "../../lib/utils";
 import type { AccentColor } from "./accent-utils";
 import { Button } from "./button";
-import { Checkbox } from "./checkbox";
 import { IconButton } from "./icon-button";
 
 export { ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH };
@@ -131,7 +130,6 @@ export function AskAi({
   const enteredFromDrawerRef = useRef(false);
   const skipTriggerFocusRef = useRef(false);
   const [open, setOpen] = useState(false);
-  const [includeContext, setIncludeContext] = useState(true);
   const [draft, setDraft] = useState("");
   const [conversation, setConversation] = useState<AskAiMessage[]>([]);
   const [pending, setPending] = useState(false);
@@ -241,7 +239,7 @@ export function AskAi({
     setPending(true);
     try {
       const response = await onSend(text, {
-        context: includeContext ? context : undefined,
+        context,
         messages: history.map((message) => ({ ...message, ...(message.links && { links: message.links.map((link) => ({ ...link })) }) })),
         signal: controller.signal,
       });
@@ -329,15 +327,9 @@ export function AskAi({
             </header>
             {messagesSlot ?? (
               <>
-                {context && <div className="mx-4 mt-4 flex shrink-0 items-center gap-3 rounded-xl border border-dashed border-fg-grey-200 bg-fg-grey-50 px-3 py-3">
-                  <span className="shrink-0 text-xs font-semibold text-fg-grey-700">当前页</span>
-                  <span title={context} className="min-w-0 flex-1 truncate text-xs text-fg-grey-500">{context}</span>
-                  <Checkbox color={color} aria-label="带当前页" checked={includeContext} onChange={setIncludeContext} disabled={pending} />
-                  <span className="shrink-0 text-xs text-fg-grey-700">带当前页</span>
-                </div>}
                 <div ref={conversationRef} className="min-h-0 flex-1 overflow-y-auto p-5">
                   {conversation.length === 0 && <div className="flex flex-col gap-5">
-                    <p className="text-sm leading-6 text-fg-grey-700">{context && includeContext ? "结合当前页面，帮你理解内容、梳理步骤和解答问题。" : "告诉我你想了解什么，我来帮你梳理。"}</p>
+                    <p className="text-sm leading-6 text-fg-grey-700">告诉我你想了解什么，我来帮你梳理。</p>
                     <div className="flex flex-col gap-2">
                       {suggestions.map((question, index) => <button key={`${index}-${question}`} type="button" disabled={disabled} onClick={() => void send(question)} className="rounded-xl border border-fg-grey-200 px-3 py-3 text-left text-sm text-fg-grey-700 hover:bg-fg-grey-100 disabled:opacity-50">{question}</button>)}
                     </div>

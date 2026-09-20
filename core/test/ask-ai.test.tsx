@@ -74,7 +74,7 @@ test("Ask AI opens a modal drawer, sends context, retries failures and preserves
   dom.window.close();
 });
 
-test("Ask AI omits unchecked context, blocks duplicate sends and aborts on unmount", async () => {
+test("Ask AI hides the current-page chip, still sends context, blocks duplicate sends and aborts on unmount", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
   let request: AskAiRequest | undefined;
@@ -84,11 +84,13 @@ test("Ask AI omits unchecked context, blocks duplicate sends and aborts on unmou
     onSend: (_message, value) => { count++; request = value; return new Promise<string>(() => {}); },
   })));
   await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  await act(async () => document.querySelector<HTMLButtonElement>('[role="checkbox"]')!.click());
+  const dialog = document.querySelector("dialog")!;
+  assert.equal(dialog.textContent?.includes("当前页"), false);
+  assert.equal(dialog.querySelector('[role="checkbox"]'), null);
   const suggestion = [...document.querySelectorAll("button")].find((item) => item.textContent === "总结")!;
   await act(async () => { suggestion.click(); suggestion.click(); });
   assert.equal(count, 1);
-  assert.equal(request?.context, undefined);
+  assert.equal(request?.context, "/private-page");
   assert.ok(document.querySelector('[role="status"]'));
   await act(async () => root.unmount());
   assert.equal(request?.signal.aborted, true);
@@ -185,7 +187,6 @@ test("Ask AI controls follow both PageHeader variants and update with their acce
         }
         const dialog = document.querySelector("dialog")!;
         assert.ok(dialog.querySelector('button[type="submit"]')!.classList.contains(token));
-        assert.ok(dialog.querySelector(`[role="checkbox"] .${token}`));
         assert.equal(dialog.querySelector("img")!.getAttribute("src"), document.querySelector('[aria-label="Ask AI"] img')!.getAttribute("src"));
       }
     }
