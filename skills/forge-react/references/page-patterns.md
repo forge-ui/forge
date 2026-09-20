@@ -46,11 +46,12 @@ For system generation, combine patterns instead of picking only one: app shell +
 | Settings | grouped settings + tabs + controls + danger zone | `TabBar`, `ListGroup`, `ListItem`, `TextField`, `SelectOption`, `Toggle`, `ConfirmationDialog` | `cases/tab`, `cases/list`, `cases/input-field` |
 | Stepper / wizard | stepper + current step form + previous/next/save draft | `Stepper`, forms, `Button`, `ProgressBar`, `DescriptionItem` | `cases/pagination-stepper`, `cases/input-field` |
 | Card / kanban | toolbar + filters + grid/columns + card actions | `ProjectCard`, `TaskCard`, `UserCard`, `ProgressCard`, `FilterGroup`, `KebabMenu` | `cases/card`, `cases/filter` |
-| Chat / agent | conversation sidebar + message stream + input + result panel | `ContactItem`, `ChatBubble`, `ChatInputBar`, `TabBar`, `DataTable`, charts, `ListGroup` | `cases/chat`, `cases/list` |
+| Chat / IM | conversation sidebar + message stream + input | `ContactItem`, `ChatBubble`, `ChatInputBar`, `TabBar` | `cases/chat` |
+| Agent workspace | thread list + thinking / tools / streamed answer + HITL + prompt bar | `AppLayout`, `ThinkingTrace`, `ToolChips`, `StreamingAnswer`, `ApprovalCard`, `RecommendationCard`, `ContextCards`, `AgentTaskRows`, `PromptBar`, `AgentDiffTable`, `AgentCodeBlock`, `InsightCards`, `CommandSearch`, `AgentFlowchart`, `ChatBubble` | `cases/agent`, `templates/agent` |
 | Audit / activity | filters + timeline + actor + object + before/after summary | `HistoryGrouped`, `HistoryItem`, `ActivityCard`, `ToolbarDatepicker`, `ToolbarFilterButton` | `cases/history` |
 | Search results | search + category filters + list/table results + empty state | `ToolbarSearchInput`, `FilterGroup`, `ListGroup`, `DataTable`, `Pagination` | `cases/filter`, `cases/list` |
 | Async job center | job list + progress/status + failure report + retry/download | `DataTable`, `StatusBadge`, `ProgressBar`, `NotificationItem`, `Button` | import/export/generate/report workflows |
-| First-run / empty setup | empty state + guided primary action + sample/import option | `AppLayout`, `Button`, `FileUpload`, `Stepper`, `ListGroup` | create/import onboarding flows |
+| First-run / empty setup | empty state + guided primary action + sample/import option | `AppLayout`, `Button`, `FileUpload`, `Stepper`, `ListGroup`, `Checklist` | create/import onboarding flows; `cases/checklist` |
 
 ## Universal Admin Skeleton
 

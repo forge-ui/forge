@@ -15,6 +15,12 @@ type ShowcaseItem = {
 
 const items: ShowcaseItem[] = [
   {
+    href: "/templates/agent",
+    title: "Agent Screen",
+    description:
+      "用 ThinkingTrace、ToolChips、StreamingAnswer、ApprovalCard、AgentDiffTable 和 PromptBar 拼起来的 Agent 工作台，脚本演示一轮对话。",
+  },
+  {
     href: "/templates/project-template",
     title: "Project Management",
     description:

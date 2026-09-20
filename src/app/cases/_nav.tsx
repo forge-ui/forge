@@ -8,17 +8,19 @@ import { cn } from "@forge-ui-official/core";
 type NavItem = { href: string; label: string; external?: boolean };
 type NavGroup = { title: string; items: NavItem[] };
 
-// cases 矩阵：22 个组件按字母序（Foundations 已挪到 components 侧）。
+// cases 矩阵：组件按字母序（Foundations 已挪到 components 侧）。
 export const casesNavGroups: NavGroup[] = [
   {
     title: "Components",
     items: [
+      { href: "/cases/agent", label: "Agent" },
       { href: "/cases/badge", label: "Badge" },
       { href: "/cases/button-link", label: "Button & Link" },
       { href: "/cases/calendar", label: "Calendar" },
       { href: "/cases/card", label: "Card" },
       { href: "/cases/chart", label: "Chart" },
       { href: "/cases/chat", label: "Chat" },
+      { href: "/cases/checklist", label: "Checklist" },
       { href: "/cases/comment", label: "Comment & Discussion" },
       { href: "/cases/filter", label: "Filter" },
       { href: "/cases/grid", label: "Grid 栅格" },
