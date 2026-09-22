@@ -5,7 +5,7 @@
  * Forge rewrite: fg-* tokens + solar-icon-set. Does not replace ChatInputBar.
  */
 
-import { useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useMemo, useState, type KeyboardEvent, type ReactNode, type Ref } from "react";
 import {
   AltArrowDownLinear,
   ArrowUpLinear,
@@ -16,6 +16,7 @@ import {
   PaperclipLinear,
 } from "solar-icon-set";
 import { cn } from "../../../lib/utils";
+import { accentColors, type AccentColor } from "../accent-utils";
 
 export type PromptSource = {
   id: string;
@@ -47,6 +48,12 @@ export function PromptBar({
   onModelChange,
   disabled,
   className = "",
+  color,
+  showAttach = true,
+  showDictate = true,
+  inputLabel,
+  inputRef,
+  rows = 3,
 }: {
   value?: string;
   onChange?: (value: string) => void;
@@ -59,6 +66,15 @@ export function PromptBar({
   onModelChange?: (id: string) => void;
   disabled?: boolean;
   className?: string;
+  /** Send button accent. Omit to keep the generic accent token. */
+  color?: AccentColor;
+  /** Paperclip chip. Ask shells turn this off; there is no attachment pipeline. */
+  showAttach?: boolean;
+  /** Microphone chip. Ask shells turn this off; there is no dictation pipeline. */
+  showDictate?: boolean;
+  inputLabel?: string;
+  inputRef?: Ref<HTMLTextAreaElement>;
+  rows?: number;
 }) {
   const [uncontrolled, setUncontrolled] = useState("");
   const [panel, setPanel] = useState<"sources" | "commands" | "models" | null>(null);
@@ -150,10 +166,12 @@ export function PromptBar({
       )}
 
       <textarea
+        ref={inputRef}
+        aria-label={inputLabel}
         value={value}
         disabled={disabled}
         placeholder={placeholder}
-        rows={3}
+        rows={rows}
         onChange={(event) => setValue(event.target.value)}
         onKeyDown={handleKeyDown}
         className="w-full resize-none bg-transparent px-4 pt-4 text-[15px] leading-7 text-fg-black placeholder:text-fg-grey-500 focus:outline-none disabled:opacity-50"
@@ -161,9 +179,11 @@ export function PromptBar({
 
       <div className="flex items-center justify-between gap-2 px-3 pb-3">
         <div className="flex flex-wrap items-center gap-1.5">
-          <IconChip label="Attach" onClick={() => undefined}>
-            <PaperclipLinear size={14} color="var(--fg-grey-700)" />
-          </IconChip>
+          {showAttach && (
+            <IconChip label="Attach" onClick={() => undefined}>
+              <PaperclipLinear size={14} color="var(--fg-grey-700)" />
+            </IconChip>
+          )}
           {sources.length > 0 && (
             <IconChip label="@ sources" active={openPanel === "sources"} onClick={() => setPanel((v) => (v === "sources" ? null : "sources"))}>
               <HashtagLinear size={14} color="var(--fg-grey-700)" />
@@ -176,9 +196,11 @@ export function PromptBar({
               <span>Commands</span>
             </IconChip>
           )}
-          <IconChip label="Dictate">
-            <MicrophoneLinear size={14} color="var(--fg-grey-700)" />
-          </IconChip>
+          {showDictate && (
+            <IconChip label="Dictate">
+              <MicrophoneLinear size={14} color="var(--fg-grey-700)" />
+            </IconChip>
+          )}
         </div>
         <div className="flex items-center gap-2">
           {models.length > 0 && (
@@ -196,7 +218,10 @@ export function PromptBar({
             disabled={!canSend}
             onClick={send}
             aria-label="Send"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-white hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
+            className={cn(
+              "flex h-9 w-9 items-center justify-center rounded-full text-white hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300",
+              color ? accentColors[color].bg : "bg-accent",
+            )}
           >
             <ArrowUpLinear size={16} color="var(--fg-white)" />
           </button>

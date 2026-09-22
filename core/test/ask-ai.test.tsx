@@ -184,7 +184,9 @@ test("Ask AI controls follow both PageHeader variants and update with their acce
           await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
         }
         const dialog = document.querySelector("dialog")!;
-        assert.ok(dialog.querySelector('button[type="submit"]')!.classList.contains(token));
+        assert.ok(dialog.querySelector('button[aria-label="Send"]')!.classList.contains(token));
+        assert.equal(dialog.querySelector('[aria-label="Attach"]'), null);
+        assert.equal(dialog.querySelector('[aria-label="Dictate"]'), null);
         assert.ok(dialog.querySelector(`[role="checkbox"] .${token}`));
         assert.equal(dialog.querySelector("img")!.getAttribute("src"), document.querySelector('[aria-label="Ask AI"] img')!.getAttribute("src"));
       }
@@ -193,4 +195,159 @@ test("Ask AI controls follow both PageHeader variants and update with their acce
     await act(async () => root.unmount());
     dom.window.close();
   }
+});
+
+function buttonByText(root: ParentNode, label: string) {
+  const found = [...root.querySelectorAll("button")].find((item) => item.textContent === label);
+  assert.ok(found, `missing button ${label}`);
+  return found as HTMLButtonElement;
+}
+
+function buttonByName(root: ParentNode, label: string) {
+  const found = root.querySelector<HTMLButtonElement>(`button[aria-label="${label}"]`);
+  assert.ok(found, `missing button ${label}`);
+  return found;
+}
+
+test("empty Ask shell shows landing in the drawer and keeps search out of the session menu", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  await act(async () => root.render(createElement(AskAi, { suggestions: ["下一步？"], onSend: () => "回复" })));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  const dialog = document.querySelector("dialog")!;
+  assert.equal(dialog.getAttribute("data-ask-surface"), "drawer");
+  const landing = dialog.querySelector('[data-ask-region="landing"]')!;
+  assert.equal(landing.querySelector('[data-ask-part="title"]')?.textContent, "你好");
+  assert.equal(landing.querySelector('[data-ask-part="status"]')?.textContent, "已就绪");
+  assert.match(landing.querySelector('[data-ask-part="hint"]')?.textContent ?? "", /说一句话/);
+  assert.equal(buttonByText(landing, "下一步？").textContent, "下一步？");
+  assert.ok(dialog.querySelector('[data-ask-region="composer"] textarea'));
+  assert.equal(dialog.querySelector('[data-ask-region="messages"]'), null);
+  assert.equal(dialog.querySelector("input"), null);
+  assert.equal(/数据集|标注任务|质检|qwen/.test(dialog.textContent ?? ""), false);
+  await act(async () => buttonByText(dialog, "新对话").click());
+  const menu = dialog.querySelector('[data-ask-region="session-menu"]')!;
+  assert.equal(menu.querySelector("input"), null);
+  assert.match(menu.textContent ?? "", /新建对话/);
+  assert.match(menu.textContent ?? "", /暂无最近对话/);
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("drawer and fullscreen share landing and messages", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  const created: string[] = [];
+  await act(async () => root.render(createElement(AskAi, {
+    suggestions: ["建议一"],
+    onCreateSession: (session) => { created.push(session.title); },
+    onSend: () => "已回复",
+  })));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  const dialog = () => document.querySelector("dialog")!;
+  await act(async () => buttonByName(dialog(), "全屏").click());
+  assert.equal(dialog().getAttribute("data-ask-surface"), "fullscreen");
+  const landing = dialog().querySelector('[data-ask-region="landing"]')!;
+  assert.equal(landing.querySelector('[data-ask-part="title"]')?.textContent, "今天想做什么？");
+  assert.equal(landing.querySelector('[data-ask-part="status"]')?.textContent, "已就绪");
+  assert.match(landing.querySelector('[data-ask-part="hint"]')?.textContent ?? "", /左侧建议/);
+  const rail = dialog().querySelector('[data-ask-region="rail"]')!;
+  assert.ok(rail.querySelector('input[aria-label="搜索"]'));
+  assert.match(rail.textContent ?? "", /新建对话/);
+  assert.equal(buttonByText(rail, "建议一").textContent, "建议一");
+  assert.equal(dialog().querySelector('[data-ask-region="session-menu"]'), null);
+  const search = rail.querySelector<HTMLInputElement>('input[aria-label="搜索"]')!;
+  async function setSearch(value: string) {
+    await act(async () => {
+      search.focus();
+      search.dispatchEvent(new Event("focusin", { bubbles: true }));
+    });
+    await act(async () => {
+      const setValue = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set;
+      setValue?.call(search, value);
+      search.dispatchEvent(new Event("input", { bubbles: true }));
+      search.dispatchEvent(new KeyboardEvent("keyup", { bubbles: true }));
+    });
+  }
+  await setSearch("没有这条");
+  assert.match(rail.textContent ?? "", /暂无最近对话/);
+  assert.equal([...rail.querySelectorAll("button")].some((item) => item.textContent === "建议一"), false);
+  await setSearch("");
+  await act(async () => buttonByText(rail, "建议一").click());
+  assert.deepEqual(created, ["建议一"]);
+  assert.equal(dialog().querySelector('[data-ask-region="landing"]'), null);
+  assert.match(dialog().querySelector('[data-ask-region="messages"]')?.textContent ?? "", /已回复/);
+  await act(async () => buttonByName(dialog(), "退出全屏").click());
+  assert.equal(dialog().getAttribute("data-ask-surface"), "drawer");
+  assert.equal(dialog().querySelector("input"), null);
+  assert.match(dialog().querySelector('[data-ask-region="messages"]')?.textContent ?? "", /已回复/);
+  await act(async () => dialog().querySelector<HTMLButtonElement>('[aria-haspopup="listbox"]')!.click());
+  await act(async () => buttonByText(dialog(), "＋ 新建对话").click());
+  assert.equal(dialog().querySelector('[data-ask-region="landing"]')?.querySelector('[data-ask-part="title"]')?.textContent, "你好");
+  await act(async () => buttonByText(dialog(), "新对话").click());
+  await act(async () => buttonByText(dialog().querySelector('[data-ask-region="session-menu"]')!, "建议一").click());
+  assert.match(dialog().querySelector('[data-ask-region="messages"]')?.textContent ?? "", /已回复/);
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("landing props and slots replace copy without dropping the shell regions", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  const sent: string[] = [];
+  await act(async () => root.render(createElement(AskAi, {
+    landing: {
+      title: "自定义标题",
+      fullscreenTitle: "全屏标题",
+      status: "状态短句",
+      hint: "说明短句",
+      fullscreenHint: "全屏说明",
+      suggestions: [{ label: "卡片文案", prompt: "实际发送" }],
+    },
+    onSend: (message) => { sent.push(message); return "好"; },
+  })));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  const dialog = () => document.querySelector("dialog")!;
+  assert.equal(dialog().querySelector('[data-ask-part="title"]')?.textContent, "自定义标题");
+  assert.equal(dialog().querySelector('[data-ask-part="status"]')?.textContent, "状态短句");
+  assert.equal(dialog().querySelector('[data-ask-part="hint"]')?.textContent, "说明短句");
+  await act(async () => buttonByText(dialog(), "卡片文案").click());
+  assert.deepEqual(sent, ["实际发送"]);
+  await act(async () => dialog().querySelector<HTMLButtonElement>('[aria-haspopup="listbox"]')!.click());
+  await act(async () => buttonByText(dialog(), "＋ 新建对话").click());
+  await act(async () => buttonByName(dialog(), "全屏").click());
+  assert.equal(dialog().querySelector('[data-ask-part="title"]')?.textContent, "全屏标题");
+  assert.equal(dialog().querySelector('[data-ask-part="hint"]')?.textContent, "全屏说明");
+  await act(async () => buttonByName(dialog(), "退出全屏").click());
+  await act(async () => root.render(createElement(AskAi, {
+    slots: {
+      landing: createElement("p", null, "槽位落地"),
+      messages: createElement("p", null, "宿主消息"),
+      composer: createElement("p", null, "宿主输入"),
+      rail: createElement("p", null, "宿主左栏"),
+    },
+    sessions: [{ id: "s1", title: "已有会话" }],
+    activeSessionId: null,
+    onSend: () => "不会显示",
+  })));
+  assert.match(dialog().textContent ?? "", /槽位落地/);
+  assert.equal(dialog().querySelector('[data-ask-part="title"]'), null);
+  assert.match(dialog().textContent ?? "", /宿主输入/);
+  assert.equal(dialog().querySelector('[aria-label="Send"]'), null);
+  await act(async () => root.render(createElement(AskAi, {
+    slots: {
+      landing: createElement("p", null, "槽位落地"),
+      messages: createElement("p", null, "宿主消息"),
+    },
+    sessions: [{ id: "s1", title: "已有会话" }],
+    activeSessionId: "s1",
+    onSend: () => "不会显示",
+  })));
+  assert.match(dialog().querySelector('[data-ask-region="messages"]')?.textContent ?? "", /宿主消息/);
+  assert.equal(dialog().querySelector('[data-ask-region="landing"]'), null);
+  await act(async () => buttonByName(dialog(), "全屏").click());
+  assert.match(dialog().querySelector('[data-ask-region="messages"]')?.textContent ?? "", /宿主消息/);
+  assert.match(dialog().querySelector('[data-ask-region="rail"]')?.textContent ?? "", /已有会话/);
+  await act(async () => root.unmount());
+  dom.window.close();
 });

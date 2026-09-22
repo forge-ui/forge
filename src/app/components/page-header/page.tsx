@@ -44,7 +44,7 @@ const CODE_BREADCRUMB_USAGE = `<Breadcrumbs
 const CODE_BREADCRUMB_COLOR = `<Breadcrumbs color="purple" items={items} />`;
 
 const HEADER_PROPS: ApiTableRow[] = [
-  { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 AI 对话抽屉。必填 onSend(message, { context?, messages, signal }) 返回回复；可选 context、suggestions、label、placeholder、disabled、className。未配置时隐藏。" },
+  { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 Ask 纯壳，抽屉与全屏同一内容模型。无会话是 landing（短标题、短状态、短说明、建议卡）加 composer；有会话是 messages。全屏左栏为标题胶囊、新建、搜索、列表；抽屉历史下拉无搜索。composer 为 PromptBar，强调色跟随 color，不渲染附件和语音。必填 onSend；可用 landing 与 slots（brand/session/rail/landing/messages/composer）注入文案。未配置时隐藏。" },
   { attr: "variant", type: "'search' | 'title'", defaultValue: "'title'", description: "两种布局：search（全局 header 带搜索 + 通知 + profile）与 title（页面标题 + 返回 + actions）。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色（影响通知徽标等）。" },
   { attr: "searchPlaceholder", type: "string", defaultValue: "—", description: "search 变体：搜索框占位。" },
@@ -145,8 +145,8 @@ export default function PageHeaderCasePage() {
     }),
   }}
 />`} />
-          <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。发送按钮和复选框跟随 PageHeader 的 color，图标保留原有渐变色。点击直接打开右侧对话框，支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。</p>
-          <p className="text-sm text-fg-grey-700">移动端对话框铺满屏幕；Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
+          <p className="text-sm text-fg-grey-700">直接给现有 PageHeader 传入 askAi 配置即可，AppLayout 支持同名配置。点击打开右侧抽屉；顶栏可进入全屏。无会话时中区是短标题、短状态、短说明和建议卡，有会话时同一块区域换成消息。全屏左栏提供新建、搜索和列表；抽屉里的会话下拉不带搜索。发送按钮和当前页复选框跟随 PageHeader 的 color，图标保留原有渐变色。composer 是 PromptBar，不显示附件和语音。支持当前页开关、快捷提问、连续对话、加载与失败重试。onSend 兼容 string 或 <code>{"{ text, links? }"}</code>（同步或 Promise），每条回复最多显示两个有效链接；相对业务路由和 HTTP(S) 链接在当前窗口打开。signal 可传给 fetch。业务文案用 landing 或 slots 注入，kit 不写问数、代做或审批。</p>
+          <p className="text-sm text-fg-grey-700">窄屏抽屉铺满宽度，全屏覆盖视口。Esc、关闭按钮或点击遮罩退出并返回入口焦点。Enter 发送，Shift + Enter 换行。</p>
         </SubSection>
 
         <SubSection title="API" stack>
