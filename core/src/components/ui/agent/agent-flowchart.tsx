@@ -33,7 +33,7 @@ const KIND_LABEL: Record<AgentFlowKind, string> = {
 };
 
 const KIND_CLASS: Record<AgentFlowKind, string> = {
-  trigger: "bg-fg-violet-50 text-fg-violet",
+  trigger: "bg-accent-soft text-accent",
   action: "bg-fg-green-50 text-fg-green-500",
   condition: "bg-fg-yellow-50 text-fg-yellow-700",
 };
@@ -75,8 +75,8 @@ export function AgentFlowchart({
                   type="button"
                   onClick={() => select(node.id)}
                   className={cn(
-                    "w-full rounded-2xl bg-white p-4 text-left outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
-                    selectedId === node.id && "outline-fg-violet",
+                    "w-full rounded-2xl bg-white p-4 text-left outline outline-1 outline-offset-[-1px]",
+                    selectedId === node.id ? "outline-accent" : "outline-fg-grey-200",
                   )}
                 >
                   <span className={cn("inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold", KIND_CLASS[node.kind])}>

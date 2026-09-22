@@ -109,7 +109,7 @@ export function ThinkingTrace({
         onClick={() => setExpanded((v) => !v)}
         className="flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-left text-fg-grey-700 hover:bg-fg-grey-100"
       >
-        <StarsLinear size={16} color="var(--fg-violet)" />
+        <StarsLinear size={16} color="var(--accent)" />
         <span className={cn("font-medium", working && "forge-shimmer")}>
           {working ? (activeLabel ?? labels.active) : (doneLabel ?? labels.done)}
         </span>
@@ -150,7 +150,7 @@ function ThinkingRowView({
     ) : variant === "coding" ? (
       <CodeLinear size={14} color="var(--fg-grey-500)" />
     ) : last ? (
-      <LightbulbLinear size={14} color="var(--fg-violet)" />
+      <LightbulbLinear size={14} color="var(--accent)" />
     ) : (
       <CheckCircleLinear size={14} color="var(--fg-green-500)" />
     );
