@@ -32,7 +32,7 @@ export interface PageHeaderProps {
   color?: PageHeaderColor;
   className?: string;
 
-  /** Optional AI conversation drawer; the application supplies the response handler. */
+  /** Optional Ask shell (drawer and fullscreen). The application supplies the response handler. */
   askAi?: AskAiProps;
 
   // --- Search variant props ---

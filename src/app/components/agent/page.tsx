@@ -66,6 +66,8 @@ const PROMPT_PROPS: ApiTableRow[] = [
   { attr: "sources", type: "PromptSource[]", defaultValue: "[]", description: "@ 来源。" },
   { attr: "commands", type: "PromptCommand[]", defaultValue: "[]", description: "/ 命令。" },
   { attr: "models", type: "PromptModel[]", defaultValue: "[]", description: "模型列表。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "—", description: "发送按钮强调色。不传时用 bg-accent。" },
+  { attr: "showAttach / showDictate", type: "boolean", defaultValue: "true", description: "附件与语音芯片。没有真实管线时是占位；Ask 壳会关掉。" },
 ];
 
 const DIFF_PROPS: ApiTableRow[] = [

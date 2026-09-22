@@ -21,6 +21,16 @@ src/index.ts         包导出入口
 - 组件内部优先使用 Forge token 和语义 class，不引入 Tailwind 默认色系来绕过设计系统。
 - 如果业务页面需要反复覆盖同一类组件的字号、颜色、宽度或状态样式，应回到 `core` 扩组件或 token，而不是在页面里手搓局部样式。
 
+## Ask AI 纯壳
+
+`AskAi` 是抽屉和全屏共用的对话壳，不内置问答、代做或查数。
+
+- 无会话显示 `landing`：短标题、短状态、短说明、建议卡，下面是 composer。
+- 有会话显示 `messages`。两个表面用同一套会话状态。
+- 全屏左栏是标题胶囊、新建、搜索、列表。抽屉里的历史下拉只有新建和列表，没有搜索。
+- composer 使用 `PromptBar`。强调色跟随 `color`。Ask 壳关闭 Attach / Dictate。
+- 用 `landing` 改文案和建议。用 `slots.brand`、`session`、`rail`、`landing`、`messages`、`composer` 替换对应区域。`onSend` 和 `sessions` 由宿主注入。
+
 ## 开发
 
 仓库工具链要求 Node.js `>=22.13.0`，并由根目录 `packageManager` 固定 pnpm 版本。
