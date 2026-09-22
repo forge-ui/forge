@@ -3,10 +3,9 @@
 import {
   Breadcrumbs,
   TopBar,
-  PageHeader,
   type PageHeaderColor,
 } from "@forge-ui-official/core";
-import { askAiExample } from "../../components/page-header/ask-ai-example";
+import { DemoPageHeader } from "../../components/page-header/ask-ai-example";
 import { Logout3Linear } from "solar-icon-set";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
@@ -103,8 +102,7 @@ export default function PageHeaderCasePage() {
                   key={i}
                   className="w-full bg-white rounded-xl border border-fg-grey-200 overflow-hidden"
                 >
-                  <PageHeader
-                    askAi={askAiExample}
+                  <DemoPageHeader
                     variant="search"
                     color={color as PageHeaderColor}
                     leftMode={row.leftMode}
@@ -135,8 +133,7 @@ export default function PageHeaderCasePage() {
                   key={i}
                   className="w-full bg-white rounded-xl border border-fg-grey-200 overflow-hidden"
                 >
-                  <PageHeader
-                    askAi={askAiExample}
+                  <DemoPageHeader
                     variant="title"
                     color={color as PageHeaderColor}
                     title="Page Title"

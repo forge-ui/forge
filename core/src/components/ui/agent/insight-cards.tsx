@@ -7,7 +7,6 @@
 
 import { useState } from "react";
 import { AltArrowLeftLinear, AltArrowRightLinear, StarsLinear } from "solar-icon-set";
-import { Button } from "../button";
 import { SurfaceCard } from "../surface-card";
 
 export type InsightTone = "violet" | "green" | "yellow" | "blue";
@@ -32,7 +31,7 @@ export type InsightCard = {
 };
 
 const TONE: Record<InsightTone, string> = {
-  violet: "var(--fg-violet)",
+  violet: "var(--accent)",
   green: "var(--fg-green-500)",
   yellow: "var(--fg-yellow-700)",
   blue: "var(--fg-blue)",
@@ -74,7 +73,7 @@ function Bars({ values }: { values: number[] }) {
       {values.map((value, index) => (
         <div
           key={`${value}-${index}`}
-          className="flex-1 rounded-t-md bg-fg-violet-100"
+          className="flex-1 rounded-t-md bg-accent-soft"
           style={{ height: `${Math.max((value / max) * 100, 8)}%` }}
         />
       ))}
@@ -152,16 +151,14 @@ export function InsightCards({
         {card.chart?.kind === "segments" && <Segments items={card.chart.items} />}
         <p className="text-sm leading-6 text-fg-grey-700">{card.body}</p>
         {card.prompt && (
-          <Button
-            size="sm"
-            color="purple"
-            variant="secondary"
-            className="self-start"
-            iconLeft={<StarsLinear size={14} color="var(--fg-violet)" />}
+          <button
+            type="button"
+            className="inline-flex items-center gap-1 self-start rounded-full bg-accent-soft py-2.5 pl-2.5 pr-3 text-xs font-bold leading-4 tracking-fg text-accent"
             onClick={() => onAsk?.(card.prompt!, card)}
           >
+            <StarsLinear size={14} color="var(--accent)" />
             {card.prompt}
-          </Button>
+          </button>
         )}
       </div>
     </SurfaceCard>

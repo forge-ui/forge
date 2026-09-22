@@ -14,7 +14,6 @@ export const ASK_AI_FS_LAYER_ATTR = "data-ask-ai-fs-layer";
 export const ASK_AI_FULLSCREEN_RAIL_WIDTH = "16rem";
 
 function AskAiFullscreenComposer({
-  color,
   draft,
   onDraftChange,
   pending,
@@ -23,7 +22,6 @@ function AskAiFullscreenComposer({
   tall,
   onSubmit,
 }: {
-  color: AccentColor;
   draft: string;
   onDraftChange: (value: string) => void;
   pending: boolean;
@@ -69,9 +67,9 @@ function AskAiFullscreenComposer({
           onKeyDown={onKeyDown}
         />
         <div className="flex items-center justify-end">
-          <Button type="submit" size="sm" color={color} disabled={pending || disabled || !draft.trim()}>
+          <button type="submit" disabled={pending || disabled || !draft.trim()} className="rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60">
             发送
-          </Button>
+          </button>
         </div>
       </div>
     </form>
@@ -161,7 +159,7 @@ export function AskAiFullscreenLayer({
   onSuggestion,
   onExit,
 }: {
-  color: AccentColor;
+  color?: AccentColor;
   label: string;
   railLabel?: string;
   landingTitle?: string;
@@ -197,7 +195,6 @@ export function AskAiFullscreenLayer({
   const inConversation = hasConversation ?? conversation.length > 0;
   const defaultComposer = (
     <AskAiFullscreenComposer
-      color={color}
       draft={draft}
       onDraftChange={onDraftChange}
       pending={pending}
@@ -216,6 +213,7 @@ export function AskAiFullscreenLayer({
   return (
     <div
       {...{ [ASK_AI_FS_LAYER_ATTR]: "" }}
+      data-accent={color}
       role="dialog"
       aria-modal="true"
       aria-label={`${label} 全屏`}
@@ -268,7 +266,7 @@ export function AskAiFullscreenLayer({
                     data-ask-ai-fs-hist={item.id}
                     className={cn(
                       "block w-full truncate rounded-lg px-2.5 py-2.5 text-left text-sm leading-6 hover:bg-fg-grey-50 focus-visible:outline-2 focus-visible:outline-fg-grey-500",
-                      currentSessionId === item.id ? "bg-fg-grey-50 text-fg-black" : "text-fg-grey-700",
+                      currentSessionId === item.id ? "bg-accent-soft font-medium text-accent" : "text-fg-grey-700",
                     )}
                     onClick={() => onSelectSession?.(item.id)}
                   >

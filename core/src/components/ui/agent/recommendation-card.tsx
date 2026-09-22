@@ -4,7 +4,6 @@
  */
 
 import { cn } from "../../../lib/utils";
-import { Button } from "../button";
 import { StatusBadge, type StatusBadgeColor } from "../data-table";
 import { SurfaceCard } from "../surface-card";
 
@@ -57,9 +56,13 @@ export function RecommendationCard({
       action={<StatusBadge label={confidenceLabel ?? CONFIDENCE_LABEL[confidence]} color={CONFIDENCE_COLOR[confidence]} />}
       footer={
         <div className="flex justify-end">
-          <Button size="sm" color="purple" onClick={onAccept}>
+          <button
+            type="button"
+            onClick={onAccept}
+            className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground"
+          >
             {acceptLabel}
-          </Button>
+          </button>
         </div>
       }
     >
