@@ -114,9 +114,14 @@ export function ApprovalCard({
             <Button size="sm" color="grey" variant="tertiary" onClick={advance}>
               {skipLabel}
             </Button>
-            <Button size="sm" color="purple" onClick={advance} disabled={!multiple && selected.length === 0}>
+            <button
+              type="button"
+              onClick={advance}
+              disabled={!multiple && selected.length === 0}
+              className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
+            >
               {last ? sendLabel : continueLabel}
-            </Button>
+            </button>
           </div>
         </div>
       }
@@ -132,14 +137,14 @@ export function ApprovalCard({
               onClick={() => toggle(option.id)}
               className={cn(
                 "flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm transition-colors",
-                on ? "bg-fg-violet-50 text-fg-violet" : "text-fg-black hover:bg-fg-grey-100",
+                on ? "bg-accent-soft text-accent" : "text-fg-black hover:bg-fg-grey-100",
               )}
             >
               <span
                 className={cn(
                   "flex h-4 w-4 shrink-0 items-center justify-center outline outline-1 outline-offset-[-1px]",
                   multiple ? "rounded-md" : "rounded-full",
-                  on ? "bg-fg-violet outline-fg-violet" : "outline-fg-grey-300",
+                  on ? "bg-accent outline-accent" : "outline-fg-grey-300",
                 )}
               >
                 {on && <span className={cn("bg-white", multiple ? "h-1.5 w-1.5" : "h-1.5 w-1.5 rounded-full")} />}

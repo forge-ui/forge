@@ -23,12 +23,12 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Agent primitives + Checklist + AskAi fullscreen shell. Measured package:
-// 592,324 B packed / 2,412,656 B unpacked / 1,316,276 B sourcemaps / 405 entries.
+// Agent primitives + Checklist + AskAi history. Measured package:
+// 597,897 B packed / 2,435,075 B unpacked.
 // Reserve only the additive feature payload; retain per-module limits.
 const limits = {
-  packed: 596_000,
-  unpacked: 2_430_000,
+  packed: 602_000,
+  unpacked: 2_440_000,
   entries: 410,
   sourceMaps: 1_330_000,
   normalJsRaw: 40_000,

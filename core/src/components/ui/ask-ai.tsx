@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { CloseCircleLinear, FullScreenLinear } from "solar-icon-set";
 import { AskAiIcon } from "../../internal/ask-ai-icon";
+import { AskHistoryDropdown } from "../../internal/ask-ai-history";
 import {
   ASK_AI_FS_LAYER_ATTR,
   ASK_AI_FULLSCREEN_RAIL_WIDTH,
@@ -21,6 +22,8 @@ import type { AccentColor } from "./accent-utils";
 import { Button } from "./button";
 import { IconButton } from "./icon-button";
 
+const EMPTY_MESSAGES: AskAiMessage[] = [];
+
 export { ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH };
 export type {
   AskAiLink,
@@ -31,11 +34,9 @@ export type {
 } from "../../internal/ask-ai-types";
 
 export interface AskAiProps {
-  /** Accent for controls; PageHeader supplies its own color when embedded. */
+  /** Overrides the surrounding accent. Omit to follow the nearest data-accent, or the kit default. */
   color?: AccentColor;
   label?: string;
-  /** Human-readable page title or path; supplied explicitly by the application. */
-  context?: string;
   suggestions?: string[];
   placeholder?: string;
   /** Return plain text or text with business links. At most two safe links are shown. */
@@ -94,9 +95,8 @@ const DEFAULT_SUGGESTIONS = ["这个页面可以做什么？", "下一步该做�
 
 /** Header entry, modal conversation drawer, and optional fullscreen shell. No network calls or page scraping. */
 export function AskAi({
-  color = "purple",
+  color,
   label = "Ask AI",
-  context,
   suggestions = DEFAULT_SUGGESTIONS,
   placeholder = "输入问题…",
   onSend,
@@ -130,8 +130,19 @@ export function AskAi({
   const enteredFromDrawerRef = useRef(false);
   const skipTriggerFocusRef = useRef(false);
   const [open, setOpen] = useState(false);
+  const [inheritedAccent, setInheritedAccent] = useState<AccentColor | undefined>();
+  const accent = color ?? inheritedAccent;
   const [draft, setDraft] = useState("");
-  const [conversation, setConversation] = useState<AskAiMessage[]>([]);
+  const sessionsControlled = sessions !== undefined;
+  const [internalSessions, setInternalSessions] = useState<AskAiSessionItem[]>([]);
+  const sessionList = sessions ?? internalSessions;
+  const [pickedId, setPickedId] = useState<string | null>(currentSessionId ?? null);
+  const activeId = currentSessionId !== undefined ? currentSessionId : pickedId;
+  const threadKey = activeId || "default";
+  const [threads, setThreads] = useState<Record<string, AskAiMessage[]>>({});
+  const threadsRef = useRef(threads);
+  threadsRef.current = threads;
+  const conversation = threads[threadKey] ?? EMPTY_MESSAGES;
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [failedQuestion, setFailedQuestion] = useState<string | null>(null);
@@ -164,15 +175,36 @@ export function AskAi({
     if (fromDrawer) setOpen(true);
   }
 
-  function startNewSession() {
-    setDraft("");
-    setConversation([]);
+  function writeThread(key: string, next: AskAiMessage[]) {
+    const updated = { ...threadsRef.current, [key]: next };
+    threadsRef.current = updated;
+    setThreads(updated);
+  }
+
+  function selectSession(id: string) {
+    if (currentSessionId === undefined) setPickedId(id);
     setError(null);
     setFailedQuestion(null);
+    onSelectSession?.(id);
+  }
+
+  function startNewSession() {
+    setDraft("");
+    setError(null);
+    setFailedQuestion(null);
+    if (!sessionsControlled) {
+      const id = `ask-${Date.now()}`;
+      setInternalSessions((prev) => [{ id, title: "新对话" }, ...prev]);
+      setPickedId(id);
+    }
     onNewSession?.();
   }
 
   useEffect(() => () => requestRef.current?.abort(), []);
+  useLayoutEffect(() => {
+    const value = triggerRef.current?.closest("[data-accent]")?.getAttribute("data-accent");
+    setInheritedAccent(value === "purple" || value === "blue" || value === "black" ? value : undefined);
+  }, [open, fullscreenOpen]);
   useEffect(() => {
     if (fullscreenOpen && open) {
       enteredFromDrawerRef.current = true;
@@ -231,15 +263,23 @@ export function AskAi({
     if (!text || requestRef.current || disabled) return;
     const controller = new AbortController();
     requestRef.current = controller;
-    const history: AskAiMessage[] = retry ? conversation : [...conversation, { role: "user", content: text }];
-    setConversation(history);
+    const sentKey = threadKey;
+    const prior = threadsRef.current[sentKey] ?? [];
+    const history: AskAiMessage[] = retry ? prior : [...prior, { role: "user", content: text }];
+    writeThread(sentKey, history);
+    if (!sessionsControlled && activeId) {
+      setInternalSessions((prev) => prev.map((item) => (
+        item.id === activeId && item.title === "新对话"
+          ? { ...item, title: text.replace(/\s+/g, " ").slice(0, 80) }
+          : item
+      )));
+    }
     setDraft("");
     setError(null);
     setFailedQuestion(null);
     setPending(true);
     try {
       const response = await onSend(text, {
-        context,
         messages: history.map((message) => ({ ...message, ...(message.links && { links: message.links.map((link) => ({ ...link })) }) })),
         signal: controller.signal,
       });
@@ -247,7 +287,7 @@ export function AskAi({
       const reply = typeof response === "string" ? { text: response } : response;
       if (!reply.text.trim()) throw new Error("Empty response");
       const links = responseLinks(reply.links);
-      setConversation([...history, { role: "assistant", content: reply.text, ...(links.length > 0 && { links }) }]);
+      writeThread(sentKey, [...history, { role: "assistant", content: reply.text, ...(links.length > 0 && { links }) }]);
     } catch {
       if (!controller.signal.aborted) {
         setError("回复暂时未能完成，请重试。");
@@ -302,7 +342,7 @@ export function AskAi({
         <span className="hidden md:inline text-sm font-semibold whitespace-nowrap">{label}</span>
       </button>
       {open && typeof document !== "undefined" && createPortal(
-        <dialog ref={dialogRef} id={`${id}-dialog`} aria-labelledby={`${id}-title`} aria-modal="true"
+        <dialog ref={dialogRef} id={`${id}-dialog`} data-accent={accent} aria-labelledby={`${id}-title`} aria-modal="true"
           onKeyDown={(event) => {
             if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); setOpen(false); }
           }}
@@ -319,7 +359,14 @@ export function AskAi({
                 <>
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     {brand ? <div id={`${id}-title`}>{brand}</div> : defaultBrand}
-                    {session}
+                    {session ?? (
+                      <AskHistoryDropdown
+                        sessions={sessionList}
+                        currentSessionId={activeId ?? undefined}
+                        onNewSession={startNewSession}
+                        onSelectSession={selectSession}
+                      />
+                    )}
                   </div>
                   {headerTools}
                 </>
@@ -356,7 +403,7 @@ export function AskAi({
                     if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); void send(draft); }
                   }}
                   className="min-w-0 flex-1 resize-none rounded-xl border border-fg-grey-200 px-3 py-2.5 text-sm leading-5 placeholder:text-fg-grey-500 focus:outline-fg-grey-500" />
-                <Button color={color} type="submit" size="md" disabled={pending || disabled || !draft.trim()}>发送</Button>
+                <button type="submit" disabled={pending || disabled || !draft.trim()} className="rounded-full bg-accent px-3.5 py-3 text-sm font-bold leading-5 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60">发送</button>
               </form>
             )}
           </div>
@@ -364,7 +411,7 @@ export function AskAi({
       )}
       {fullscreenOpen && typeof document !== "undefined" && createPortal(
         <AskAiFullscreenLayer
-          color={color}
+          color={accent}
           label={label}
           railLabel={railLabel}
           landingTitle={landingTitle}
@@ -373,10 +420,10 @@ export function AskAi({
           session={session}
           messages={messagesSlot}
           composer={composer}
-          sessions={sessions}
-          currentSessionId={currentSessionId}
+          sessions={sessionList}
+          currentSessionId={activeId ?? undefined}
           onNewSession={startNewSession}
-          onSelectSession={onSelectSession}
+          onSelectSession={selectSession}
           searchQuery={searchQuery}
           onSearchQueryChange={onSearchQueryChange}
           suggestions={suggestions}

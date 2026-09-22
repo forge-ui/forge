@@ -42,7 +42,7 @@ function highlight(text: string): ReactNode[] {
     const color = /^["'`]/.test(token) || /^\d/.test(token)
       ? "text-fg-yellow-700"
       : KEYWORDS.has(token)
-        ? "text-fg-violet"
+        ? "text-accent"
         : "font-medium text-fg-black";
     nodes.push(
       <span key={`${index}-${token}`} className={color}>

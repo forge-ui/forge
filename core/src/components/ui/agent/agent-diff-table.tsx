@@ -7,7 +7,6 @@
 
 import { useState } from "react";
 import { cn } from "../../../lib/utils";
-import { Button } from "../button";
 import { SurfaceCard } from "../surface-card";
 
 export type AgentDiffColumn = {
@@ -70,17 +69,17 @@ export function AgentDiffTable({
               {removals} {removals === 1 ? "removal" : "removals"} · {additions}{" "}
               {additions === 1 ? "addition" : "additions"}
             </p>
-            <Button
-              size="sm"
-              color="purple"
+            <button
+              type="button"
               disabled={changed.length === 0}
               onClick={() => {
                 setApplied(true);
                 onApply?.(changed.map((row) => row.id));
               }}
+              className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
             >
               {applyLabel.replace("changes", `${changed.length} ${changed.length === 1 ? "change" : "changes"}`)}
-            </Button>
+            </button>
           </div>
         )
       }

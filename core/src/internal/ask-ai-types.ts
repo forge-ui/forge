@@ -15,8 +15,6 @@ export interface AskAiMessage {
 }
 
 export interface AskAiRequest {
-  /** Only included when the user enables page context. */
-  context?: string;
   messages: AskAiMessage[];
   signal: AbortSignal;
 }
