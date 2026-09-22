@@ -16,6 +16,7 @@ import {
   PaperclipLinear,
 } from "solar-icon-set";
 import { cn } from "../../../lib/utils";
+import type { AccentColor } from "../accent-utils";
 
 export type PromptSource = {
   id: string;
@@ -39,6 +40,8 @@ export function PromptBar({
   value: controlledValue,
   onChange,
   onSend,
+  onAttach,
+  onDictate,
   placeholder = "Ask the agent…",
   sources = [],
   commands = [],
@@ -46,11 +49,14 @@ export function PromptBar({
   model,
   onModelChange,
   disabled,
+  color,
   className = "",
 }: {
   value?: string;
   onChange?: (value: string) => void;
   onSend?: (message: string) => void;
+  onAttach?: () => void;
+  onDictate?: () => void;
   placeholder?: string;
   sources?: PromptSource[];
   commands?: PromptCommand[];
@@ -58,6 +64,8 @@ export function PromptBar({
   model?: string;
   onModelChange?: (id: string) => void;
   disabled?: boolean;
+  /** Maps `--accent` so the send button follows AppLayout / site accent. */
+  color?: AccentColor;
   className?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState("");
@@ -104,7 +112,10 @@ export function PromptBar({
   const canSend = value.trim().length > 0 && !disabled;
 
   return (
-    <div className={cn("relative rounded-2xl bg-white outline outline-1 outline-fg-grey-200", className)}>
+    <div
+      data-accent={color}
+      className={cn("relative rounded-2xl bg-white outline outline-1 outline-fg-grey-200", className)}
+    >
       {openPanel === "sources" && filteredSources.length > 0 && (
         <Picker
           title="Sources"
@@ -161,9 +172,11 @@ export function PromptBar({
 
       <div className="flex items-center justify-between gap-2 px-3 pb-3">
         <div className="flex flex-wrap items-center gap-1.5">
-          <IconChip label="Attach" onClick={() => undefined}>
-            <PaperclipLinear size={14} color="var(--fg-grey-700)" />
-          </IconChip>
+          {onAttach ? (
+            <IconChip label="Attach" onClick={onAttach}>
+              <PaperclipLinear size={14} color="var(--fg-grey-700)" />
+            </IconChip>
+          ) : null}
           {sources.length > 0 && (
             <IconChip label="@ sources" active={openPanel === "sources"} onClick={() => setPanel((v) => (v === "sources" ? null : "sources"))}>
               <HashtagLinear size={14} color="var(--fg-grey-700)" />
@@ -176,9 +189,11 @@ export function PromptBar({
               <span>Commands</span>
             </IconChip>
           )}
-          <IconChip label="Dictate">
-            <MicrophoneLinear size={14} color="var(--fg-grey-700)" />
-          </IconChip>
+          {onDictate ? (
+            <IconChip label="Dictate" onClick={onDictate}>
+              <MicrophoneLinear size={14} color="var(--fg-grey-700)" />
+            </IconChip>
+          ) : null}
         </div>
         <div className="flex items-center gap-2">
           {models.length > 0 && (
@@ -196,7 +211,7 @@ export function PromptBar({
             disabled={!canSend}
             onClick={send}
             aria-label="Send"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-white hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
           >
             <ArrowUpLinear size={16} color="var(--fg-white)" />
           </button>
@@ -224,7 +239,7 @@ function IconChip({
       onClick={onClick}
       className={cn(
         "inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors",
-        active ? "bg-fg-violet-50 text-fg-violet" : "text-fg-grey-700 hover:bg-fg-grey-100",
+        active ? "bg-accent-soft text-accent" : "text-fg-grey-700 hover:bg-fg-grey-100",
       )}
     >
       {children}

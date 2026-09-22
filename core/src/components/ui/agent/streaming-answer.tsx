@@ -83,7 +83,7 @@ export function StreamingAnswer({
           </span>
         ))}
         {streaming && !done && (
-          <span className="forge-pulse-dot inline-block h-4 w-1.5 translate-y-0.5 rounded-sm bg-fg-violet" />
+          <span className="forge-pulse-dot inline-block h-4 w-1.5 translate-y-0.5 rounded-sm bg-accent" />
         )}
       </p>
 
