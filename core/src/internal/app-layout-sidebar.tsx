@@ -1,5 +1,8 @@
 "use client";
 
+import type { MotionPreference } from "../lib/motion";
+import { MotionCollapse } from "./motion";
+
 import { useState } from "react";
 import NextLink from "next/link";
 import { AltArrowDownLinear } from "../icons";
@@ -158,6 +161,7 @@ export function SidebarMenuItemRow({
   activeItem,
   depth = 0,
   collapsed = false,
+  motion = "auto",
 }: {
   item: AppLayoutMenuItem;
   config: (typeof modeConfig)[AppLayoutMode];
@@ -167,6 +171,7 @@ export function SidebarMenuItemRow({
   activeItem?: AppLayoutMenuItem | null;
   depth?: number;
   collapsed?: boolean;
+  motion?: MotionPreference;
 }) {
   const childItems = item.children ?? [];
   const hasChildren = childItems.length > 0;
@@ -231,7 +236,7 @@ export function SidebarMenuItemRow({
       )}
       {hasChildren && (
         <span className="w-6 h-6 flex justify-center items-center shrink-0">
-          <span className={cn("transition-transform inline-flex", expanded && "rotate-180")}>
+          <span className="forge-chevron inline-flex" data-motion={motion} data-expanded={expanded}>
             <AltArrowDownLinear size={16} />
           </span>
         </span>
@@ -263,12 +268,12 @@ export function SidebarMenuItemRow({
     </span>
   );
 
-  const children = hasChildren && expanded && (
-    <div className="flex flex-col">
+  const children = hasChildren && (
+    <MotionCollapse open={expanded} motion={motion}><div className="flex flex-col">
       {childItems.map((child, i) => (
-        <SidebarMenuItemRow key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} />
+        <SidebarMenuItemRow motion={motion} key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} />
       ))}
-    </div>
+    </div></MotionCollapse>
   );
 
   return <div className="flex flex-col">{row}{children}</div>;

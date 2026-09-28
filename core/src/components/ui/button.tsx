@@ -1,3 +1,4 @@
+import type { MotionPreference } from "../../lib/motion";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
@@ -75,6 +76,7 @@ export function Button({
   size = "lg",
   type = "button",
   disabled = false,
+  motion = "auto",
   iconLeft,
   iconRight,
   className = "",
@@ -84,6 +86,8 @@ export function Button({
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /** Subtle press feedback; auto respects prefers-reduced-motion. */
+  motion?: MotionPreference;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   className?: string;
@@ -96,11 +100,12 @@ export function Button({
     <button
       type={type}
       disabled={disabled}
+      data-motion={motion}
       className={cn(
         sizeConfig.base,
         paddingClass,
         buttonVariants[color][variant],
-        "rounded-full inline-flex justify-center items-center overflow-hidden font-bold tracking-fg",
+        "forge-button rounded-full inline-flex justify-center items-center overflow-hidden font-bold tracking-fg",
         hasIcon ? "gap-1" : "gap-2",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
         className

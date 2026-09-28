@@ -14,7 +14,7 @@ import {
   LinkLinear,
   MicrophoneLinear,
   PaperclipLinear,
-} from "solar-icon-set";
+} from "../../../icons";
 import { cn } from "../../../lib/utils";
 import type { AccentColor } from "../accent-utils";
 

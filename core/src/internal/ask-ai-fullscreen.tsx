@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
-import { MagniferLinear, QuitFullScreenLinear, SidebarMinimalisticLinear } from "solar-icon-set";
+import { MagniferLinear, QuitFullScreenLinear, SidebarMinimalisticLinear } from "../icons";
 import { AskAiIcon } from "./ask-ai-icon";
 import { cn } from "../lib/utils";
 import { Button } from "../components/ui/button";

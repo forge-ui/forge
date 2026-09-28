@@ -2,6 +2,12 @@ import { forwardRef } from "react";
 import type { Icon, IconProps, IconWeight } from "@phosphor-icons/react";
 import {
   ArrowBendUpLeftIcon,
+  SidebarSimpleIcon,
+  ArrowsInIcon,
+  MicrophoneIcon,
+  LightbulbIcon,
+  CommandIcon,
+  CodeIcon,
   ArrowClockwiseIcon,
   ArrowCounterClockwiseIcon,
   ArrowDownRightIcon,
@@ -336,3 +342,12 @@ export const ShieldUserBoldDuotone = createForgeIcon(ShieldStarIcon, "duotone", 
 export const WidgetLinear = createForgeIcon(SquaresFourIcon, "regular", "WidgetLinear");
 
 export const FullScreenLinear = createForgeIcon(ArrowsOutIcon, "regular", "FullScreenLinear");
+export const CodeLinear = createForgeIcon(CodeIcon, "regular", "CodeLinear");
+export const CommandLinear = createForgeIcon(CommandIcon, "regular", "CommandLinear");
+export const HashtagLinear = createForgeIcon(HashIcon, "regular", "HashtagLinear");
+export const LightbulbLinear = createForgeIcon(LightbulbIcon, "regular", "LightbulbLinear");
+export const LinkLinear = createForgeIcon(LinkIcon, "regular", "LinkLinear");
+export const MicrophoneLinear = createForgeIcon(MicrophoneIcon, "regular", "MicrophoneLinear");
+export const QuitFullScreenLinear = createForgeIcon(ArrowsInIcon, "regular", "QuitFullScreenLinear");
+export const SidebarMinimalisticLinear = createForgeIcon(SidebarSimpleIcon, "regular", "SidebarMinimalisticLinear");
+export const StarsLinear = createForgeIcon(SparkleIcon, "regular", "StarsLinear");

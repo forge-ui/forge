@@ -1,6 +1,6 @@
 # Forge UI Kit Agent Context
 
-Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and an MIT-licensed Phosphor-backed icon compatibility layer. The package is `@forge-ui-official/core@0.2.0`.
+Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and an MIT-licensed Phosphor-backed icon compatibility layer. The package is `@forge-ui-official/core@0.3.0`.
 
 ## When To Use
 
@@ -117,12 +117,14 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 
 ## Case Routes
 
+- /cases/agent
 - /cases/badge
 - /cases/button-link
 - /cases/calendar
 - /cases/card
 - /cases/chart
 - /cases/chat
+- /cases/checklist
 - /cases/comment
 - /cases/filter
 - /cases/grid
@@ -132,6 +134,7 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 - /cases/map
 - /cases/menu
 - /cases/modal
+- /cases/motion
 - /cases/other-widget
 - /cases/page-header
 - /cases
@@ -171,6 +174,7 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 - /templates/dashboards
 - /templates/dashboards/project-1
 - /templates/dashboards/project-2
+- /templates/agent
 - /templates/crm-template/activity
 - /templates/crm-template/customers/[id]
 - /templates/crm-template/customers/new

@@ -6,7 +6,7 @@
  */
 
 import { useMemo, useState } from "react";
-import { MagniferLinear } from "solar-icon-set";
+import { MagniferLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { SurfaceCard } from "../surface-card";
 

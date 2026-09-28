@@ -23,21 +23,21 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Agent primitives + Checklist + AskAi history. Measured package:
-// 597,897 B packed / 2,435,075 B unpacked.
-// Reserve only the additive feature payload; retain per-module limits.
+// Motion primitives + merged MIT icon adapters, measured for 0.3.0:
+// 638,030 B packed / 2,593,483 B unpacked / 1,409,249 B sourcemaps.
+// Narrow additive allowance; retain all per-module JavaScript limits.
 const limits = {
-  packed: 602_000,
-  unpacked: 2_440_000,
-  entries: 410,
-  sourceMaps: 1_330_000,
+  packed: 645_000,
+  unpacked: 2_620_000,
+  entries: 440,
+  sourceMaps: 1_430_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 20_000,
+  stylesRaw: 27_500,
 };
 
 const expectedExports = {

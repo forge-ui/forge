@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AltArrowDownLinear, CopyLinear, LinkLinear } from "solar-icon-set";
+import { AltArrowDownLinear, CopyLinear, LinkLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 
 export type StreamingSource = {

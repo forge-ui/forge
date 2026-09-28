@@ -1,8 +1,11 @@
 "use client";
 
+import type { MotionPreference } from "../../../lib/motion";
+import { MotionPresence, MotionMenu } from "../../../internal/motion";
+
 import { useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
-import { AltArrowDownLinear, AltArrowUpLinear } from "../../../icons";
+import { AltArrowDownLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
 import { FieldFrame, FieldTag } from "./field-utils";
 
@@ -91,6 +94,7 @@ function OptionItem({
 
 type BaseProps = {
   options: SelectOptionItem[];
+  motion?: MotionPreference;
   placeholder?: string;
   label?: string;
   errorMessage?: string;
@@ -122,6 +126,7 @@ export type SelectOptionProps = SingleProps | MultipleProps;
 export function SelectOption(props: SelectOptionProps) {
   const {
     options,
+    motion = "auto",
     placeholder = "请选择...",
     label,
     errorMessage,
@@ -289,7 +294,7 @@ export function SelectOption(props: SelectOptionProps) {
     !isError && !isDisabled && !isOpen && cn(isGrey ? "bg-fg-grey-50" : "bg-white", "outline-fg-grey-100"),
   );
 
-  const ChevronIcon = isOpen ? AltArrowUpLinear : AltArrowDownLinear;
+  const ChevronIcon = AltArrowDownLinear;
 
   return (
     <FieldFrame
@@ -312,7 +317,8 @@ export function SelectOption(props: SelectOptionProps) {
           aria-label={label ?? placeholder}
           aria-disabled={isDisabled}
           aria-invalid={isError}
-          className={cn(triggerBase, triggerState)}
+          data-motion={motion}
+          className={cn("forge-motion-trigger", triggerBase, triggerState)}
           style={triggerStyle}
           onClick={() => !isDisabled && setOpen(!open)}
           onKeyDown={handleTriggerKeyDown}
@@ -356,14 +362,13 @@ export function SelectOption(props: SelectOptionProps) {
           )}
 
           {/* Chevron */}
-          <span className="w-6 h-6 flex items-center justify-center shrink-0">
+          <span className="forge-chevron w-6 h-6 flex items-center justify-center shrink-0" data-motion={motion} data-expanded={isOpen}>
             <ChevronIcon size={20} className={isError ? "text-fg-red" : "text-fg-grey-700"} />
           </span>
         </div>
 
         {/* Dropdown — 宽度跟 trigger 一致 */}
-        {isOpen && (
-          <div
+        <MotionPresence open={isOpen} motion={motion}
             id={listboxId}
             role="listbox"
             aria-multiselectable={isMultiple || undefined}
@@ -371,7 +376,7 @@ export function SelectOption(props: SelectOptionProps) {
             className="absolute top-full left-0 mt-1 py-2 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden"
             style={triggerStyle}
           >
-            <div className="flex-1 flex flex-col overflow-y-auto max-h-60">
+            <MotionMenu motion={motion} className="flex-1 flex flex-col overflow-y-auto max-h-60">
               {options.map((option) => (
                 <OptionItem
                   key={option.value}
@@ -379,18 +384,17 @@ export function SelectOption(props: SelectOptionProps) {
                   selected={selectedValues.includes(option.value)}
                   color={color}
                   isImage={isImage}
-                  onClick={() => isMultiple ? toggleMultiple(option.value) : selectSingle(option.value)}
+                  onClick={() => { if (isOpen) { if (isMultiple) toggleMultiple(option.value); else selectSingle(option.value); } }}
                 />
               ))}
-            </div>
+            </MotionMenu>
             {/* Scrollbar track with accent thumb */}
             {options.length > 4 && (
               <div className="w-1 bg-fg-grey-100 self-stretch shrink-0 relative">
                 <div className={cn("absolute top-2 left-0 right-0 h-14 rounded-full", accent.bg)} />
               </div>
             )}
-          </div>
-        )}
+          </MotionPresence>
       </div>
     </FieldFrame>
   );

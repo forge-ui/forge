@@ -12,7 +12,7 @@ import {
   DocumentTextLinear,
   LightbulbLinear,
   PlayBoldDuotone,
-} from "solar-icon-set";
+} from "../../../icons";
 import { cn } from "../../../lib/utils";
 
 export type ToolChipKind = "think" | "write" | "run" | "read" | "edit";

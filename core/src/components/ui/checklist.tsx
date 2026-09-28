@@ -1,5 +1,8 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+import { useReducedMotion } from "../../internal/motion";
+
 /**
  * Complete-to-bottom checklist. Forge rewrite: Checkbox geometry,
  * fg-* tokens, CSS + Web Animations. No Motion dependency.
@@ -38,19 +41,6 @@ const SIZE: Record<ChecklistSize, { row: string; text: string; line: string }> =
   sm: { row: "gap-2.5 rounded-xl px-3 py-2", text: "text-sm leading-5", line: "1.5px" },
   md: { row: "gap-3 rounded-[14px] px-3.5 py-2.5", text: "text-[15px] leading-6", line: "2px" },
 };
-
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(() =>
-    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduced(media.matches);
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
-  }, []);
-  return reduced;
-}
 
 function ChecklistMark({
   filled,
@@ -95,6 +85,7 @@ export function ChecklistItem({
   onSettled,
   onReverted,
   className = "",
+  motion = "auto",
 }: {
   label: string;
   checked?: boolean;
@@ -105,8 +96,9 @@ export function ChecklistItem({
   onSettled?: () => void;
   onReverted?: () => void;
   className?: string;
+  motion?: MotionPreference;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotion(motion);
   const [own, setOwn] = useState(defaultChecked);
   const done = checked ?? own;
   const [stage, setStage] = useState<Stage>(done ? "settled" : "idle");
@@ -179,6 +171,7 @@ export function ChecklistItem({
     <button
       type="button"
       role="checkbox"
+      data-motion={motion}
       aria-checked={done}
       onClick={() => {
         const next = !done;
@@ -186,7 +179,7 @@ export function ChecklistItem({
         onCheckedChange?.(next);
       }}
       className={cn(
-        "flex w-fit max-w-full cursor-pointer items-start text-left outline-none",
+        "forge-checklist-motion flex w-fit max-w-full cursor-pointer items-start text-left outline-none",
         "rounded-[14px] bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         "hover:bg-fg-grey-50 focus-visible:outline-fg-violet",
         SIZE[size].row,
@@ -210,14 +203,15 @@ export function ChecklistItem({
   );
 }
 
-function useFlip(orderKey: string) {
+function useFlip(orderKey: string, motion: MotionPreference) {
   const ref = useRef<HTMLUListElement>(null);
   const prev = useRef<Map<string, number>>(new Map());
+  const reduced = useReducedMotion(motion);
 
   useLayoutEffect(() => {
     const root = ref.current;
     if (!root) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const animations: Animation[] = [];
     const next = new Map<string, number>();
     for (const node of root.querySelectorAll<HTMLElement>("[data-checklist-row]")) {
       const id = node.dataset.checklistRow;
@@ -225,18 +219,19 @@ function useFlip(orderKey: string) {
       const top = node.getBoundingClientRect().top;
       next.set(id, top);
       const first = prev.current.get(id);
-      if (first !== undefined && !reduced) {
+      if (first !== undefined && !reduced && typeof node.animate === "function") {
         const dy = first - top;
         if (Math.abs(dy) > 1) {
-          node.animate(
+          animations.push(node.animate(
             [{ transform: `translateY(${dy}px)` }, { transform: "none" }],
             { duration: 320, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
-          );
+          ));
         }
       }
     }
     prev.current = next;
-  }, [orderKey]);
+    return () => animations.forEach(animation => animation.cancel());
+  }, [orderKey, reduced]);
 
   return ref;
 }
@@ -248,6 +243,7 @@ export function Checklist({
   color = "purple",
   onTasksChange,
   className = "",
+  motion = "auto",
 }: {
   tasks?: ChecklistTask[];
   defaultTasks?: ChecklistTask[];
@@ -255,6 +251,7 @@ export function Checklist({
   color?: ChecklistColor;
   onTasksChange?: (tasks: ChecklistTask[]) => void;
   className?: string;
+  motion?: MotionPreference;
 }) {
   const [own, setOwn] = useState(defaultTasks);
   const current = tasks ?? own;
@@ -268,7 +265,7 @@ export function Checklist({
     .filter((task): task is ChecklistTask => task?.done === true);
   const open = current.filter((task) => !finished.some((item) => item.id === task.id));
   const visible = [...open, ...finished];
-  const listRef = useFlip(visible.map((task) => task.id).join("|"));
+  const listRef = useFlip(visible.map((task) => task.id).join("|"), motion);
 
   function toggle(task: ChecklistTask, done: boolean) {
     const next = current.map((item) => (item.id === task.id ? { ...item, done } : item));
@@ -283,6 +280,7 @@ export function Checklist({
         {visible.map((task) => (
           <li key={task.id} data-checklist-row={task.id} className="max-w-full">
             <ChecklistItem
+              motion={motion}
               label={task.label}
               checked={Boolean(task.done)}
               size={size}

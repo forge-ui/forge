@@ -21,7 +21,7 @@ import {
   ClipboardListBoldDuotone,
   StarsLinear,
   WidgetBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { ProtaskLogoMark } from "../_shared/protask-logo";
 
 const menuItems: AppLayoutMenuItem[] = [

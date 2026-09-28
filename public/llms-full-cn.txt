@@ -1,6 +1,6 @@
 # Forge UI Kit Agent 上下文
 
-Forge UI Kit 是面向后台管理系统和 SaaS 原型的 React 19 + Next.js 16 + Tailwind v4 组件库。核心包是 `@forge-ui-official/core@0.2.0`。
+Forge UI Kit 是面向后台管理系统和 SaaS 原型的 React 19 + Next.js 16 + Tailwind v4 组件库。核心包是 `@forge-ui-official/core@0.3.0`。
 
 ## 使用边界
 
@@ -116,12 +116,14 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 
 ## Case 路由
 
+- /cases/agent
 - /cases/badge
 - /cases/button-link
 - /cases/calendar
 - /cases/card
 - /cases/chart
 - /cases/chat
+- /cases/checklist
 - /cases/comment
 - /cases/filter
 - /cases/grid
@@ -131,6 +133,7 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 - /cases/map
 - /cases/menu
 - /cases/modal
+- /cases/motion
 - /cases/other-widget
 - /cases/page-header
 - /cases
@@ -170,6 +173,7 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 - /templates/dashboards
 - /templates/dashboards/project-1
 - /templates/dashboards/project-2
+- /templates/agent
 - /templates/crm-template/activity
 - /templates/crm-template/customers/[id]
 - /templates/crm-template/customers/new
