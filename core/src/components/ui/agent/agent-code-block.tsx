@@ -6,7 +6,7 @@
  */
 
 import { useState, type ReactNode } from "react";
-import { CheckCircleLinear, CopyLinear, DocumentTextLinear } from "solar-icon-set";
+import { CheckCircleLinear, CopyLinear, DocumentTextLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { SurfaceCard } from "../surface-card";
 

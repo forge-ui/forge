@@ -14,7 +14,7 @@ import {
   LinkLinear,
   MagniferLinear,
   StarsLinear,
-} from "solar-icon-set";
+} from "../../../icons";
 import { cn } from "../../../lib/utils";
 
 export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";

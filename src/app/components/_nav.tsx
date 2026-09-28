@@ -37,6 +37,7 @@ export const componentsNavGroups: NavGroup[] = [
       { href: "/components/map", label: "Map" },
       { href: "/components/menu", label: "Menu" },
       { href: "/components/modal", label: "Modal" },
+      { href: "/components/motion", label: "Motion · 交互动效" },
       { href: "/components/other-widget", label: "Other Widget" },
       { href: "/components/page-header", label: "Page Header" },
       { href: "/components/pagination-stepper", label: "Pagination & Stepper" },

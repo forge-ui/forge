@@ -1,5 +1,8 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+import { MotionPresence, MotionMenu, useMovingIndicator } from "../../internal/motion";
+
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { MagniferLinear, CalendarBoldDuotone, FilterBold, AltArrowDownLinear, MenuDotsBold, StarBoldDuotone } from "../../icons";
@@ -128,6 +131,7 @@ export function ToolbarSelectDropdown({
   options,
   onChange,
   className,
+  motion = "auto",
 }: {
   placeholder?: string;
   value?: string;
@@ -138,6 +142,7 @@ export function ToolbarSelectDropdown({
   options?: ToolbarSelectOption[];
   onChange?: (value: string) => void;
   className?: string;
+  motion?: MotionPreference;
 }) {
   const [open, setOpen] = useState(false);
   const usingInternal = !onClick && options !== undefined;
@@ -153,10 +158,12 @@ export function ToolbarSelectDropdown({
   };
 
   return (
-    <div className={cn("relative inline-flex", className)} ref={wrapRef}>
+    <div className={cn("relative inline-flex", className)} ref={wrapRef} onKeyDown={(event) => { if (event.key === "Escape") { setOpen(false); wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus(); } }}>
       <button
         type="button"
         onClick={handleClick}
+        aria-expanded={usingInternal ? open : undefined}
+        onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
         className={cn(
           "px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-2 overflow-hidden cursor-pointer",
           fixedWidth && "w-20",
@@ -172,19 +179,22 @@ export function ToolbarSelectDropdown({
             {displayText}
           </span>
         </div>
-        <div className="w-6 h-6 flex justify-center items-center">
+        <div className="forge-chevron w-6 h-6 flex justify-center items-center" data-motion={motion} data-expanded={open}>
           <AltArrowDownLinear size={20} color="var(--fg-grey-700)" />
         </div>
       </button>
-      {usingInternal && open && options && (
-        <div className="absolute right-0 top-full mt-2 z-50 min-w-full bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-2 flex flex-col gap-1">
+      {usingInternal && options && (
+        <MotionPresence open={open} motion={motion} className="absolute right-0 top-full mt-2 z-50 min-w-full bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-2 flex flex-col gap-1">
+          <MotionMenu motion={motion} className="flex flex-col gap-1" >
           {options.map((opt) => (
             <button
               key={opt.value}
               type="button"
               onClick={() => {
+                if (!open) return;
                 onChange?.(opt.value);
                 setOpen(false);
+                wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
               }}
               className={cn(
                 "px-3 py-2 rounded-xl text-left text-sm leading-5 tracking-fg transition-colors whitespace-nowrap",
@@ -194,7 +204,8 @@ export function ToolbarSelectDropdown({
               {opt.label}
             </button>
           ))}
-        </div>
+          </MotionMenu>
+        </MotionPresence>
       )}
     </div>
   );
@@ -411,28 +422,35 @@ export function ToolbarPillTabs({
   color = "purple",
   onChange,
   className,
+  motion = "auto",
 }: {
   tabs: ToolbarPillTab[];
   color?: ToolbarColor;
   onChange?: (index: number) => void;
   className?: string;
+  motion?: MotionPreference;
 }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const activeIndex = tabs.findIndex((tab) => tab.active);
+  const indicator = useMovingIndicator(rootRef, "[aria-pressed='true']", activeIndex);
   return (
-    <div
+    <div ref={rootRef} data-motion={motion}
       className={cn(
-        "inline-flex max-w-full items-start justify-start overflow-x-auto rounded-full bg-white p-1 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+        "relative isolate inline-flex max-w-full items-start justify-start overflow-x-auto rounded-full bg-white p-1 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         className,
       )}
     >
+      <span ref={indicator} aria-hidden className={cn("forge-moving-indicator forge-pill-indicator rounded-full", toolbarPillActive[color])} />
       {tabs.map((tab, index) => (
         <button
           key={index}
           type="button"
+          aria-pressed={!!tab.active}
           onClick={() => onChange?.(index)}
           className={cn(
-            "flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm leading-5 tracking-fg",
+            "relative z-[1] flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm leading-5 tracking-fg",
             tab.active
-              ? cn(toolbarPillActive[color], "font-bold")
+              ? cn(toolbarPillActive[color].split(" ").filter((value) => !value.startsWith("bg-")).join(" "), "font-bold")
               : "text-fg-grey-700 font-semibold",
           )}
         >

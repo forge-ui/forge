@@ -514,18 +514,19 @@ test("SidebarMenuItemRow 在 pathname 激活子项时自动展开", async () => 
   await act(async () => {
     root.render(createElement(SidebarMenuItemRow, { ...props, pathname: "/overview" }));
   });
-  assert.equal(document.querySelector('a[href="/projects/detail"]'), null);
+  assert.ok(document.querySelector('a[href="/projects/detail"]')?.closest('[inert][aria-hidden="true"]'));
 
   await act(async () => {
     root.render(createElement(SidebarMenuItemRow, { ...props, pathname: "/projects/detail" }));
   });
   assert.ok(document.querySelector('a[href="/projects/detail"]'));
+  assert.equal(document.querySelector('a[href="/projects/detail"]')?.closest("[inert]"), null);
 
   const activeBranch = document.querySelector<HTMLButtonElement>('button[aria-expanded="true"]');
   assert.ok(activeBranch);
   await act(async () => activeBranch.click());
   assert.equal(activeBranch.getAttribute("aria-expanded"), "false");
-  assert.equal(document.querySelector('a[href="/projects/detail"]'), null);
+  assert.ok(document.querySelector('a[href="/projects/detail"]')?.closest('[inert][aria-hidden="true"]'));
 
   await act(async () => root.unmount());
   dom.window.close();

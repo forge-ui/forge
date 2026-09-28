@@ -1,15 +1,18 @@
 "use client";
 
 import {
+  createContext, useContext, useEffect, useMemo, useRef,
   Children,
   cloneElement,
   isValidElement,
-  type FocusEvent,
+  type ButtonHTMLAttributes,
   type ReactElement,
   type ReactNode,
   useId,
   useState,
 } from "react";
+import type { MotionPreference } from "../../lib/motion";
+import { MotionPresence } from "../../internal/motion";
 import { cn } from "../../lib/utils";
 
 // ============================================================
@@ -87,65 +90,67 @@ const wrapperOffsets: Record<TooltipPosition, string> = {
  */
 type TriggerProps = {
   "aria-describedby"?: string;
-  onFocus?: (e: FocusEvent<HTMLElement>) => void;
-  onBlur?: (e: FocusEvent<HTMLElement>) => void;
 };
 
+const TooltipTimingContext = createContext<{ delay: number; isWarm: () => boolean; setOpen: (id: string, open: boolean) => void } | null>(null);
+
+function createTooltipTiming(delay: number, warmWindow: number) {
+  const state = { open: new Set<string>(), warmUntil: 0 };
+  return { delay, isWarm: () => state.open.size > 0 || Date.now() < state.warmUntil, setOpen: (id: string, visible: boolean) => {
+    if (visible) state.open.add(id);
+    else if (state.open.delete(id)) state.warmUntil = Date.now() + warmWindow;
+  } };
+}
+
+/** Share the initial hover delay within a toolbar; keyboard focus is immediate. */
+export function TooltipGroup({ children, delay = 200, warmWindow = 500 }: { children: ReactNode; delay?: number; warmWindow?: number }) {
+  const value = useMemo(() => createTooltipTiming(delay, warmWindow), [delay, warmWindow]);
+  return <TooltipTimingContext.Provider value={value}>{children}</TooltipTimingContext.Provider>;
+}
+
 export function Tooltip({
-  content,
-  position = "top",
-  size = "sm",
-  open,
-  children,
+  content, position = "top", size = "sm", open, children, motion = "auto", delay,
 }: {
   content: string;
   position?: TooltipPosition;
   size?: TooltipSize;
-  /** Controlled visibility. When undefined, tooltip follows hover/focus. */
   open?: boolean;
   children: ReactNode;
+  motion?: MotionPreference;
+  /** Initial pointer delay in milliseconds. Focus always opens immediately. */
+  delay?: number;
 }) {
+  const timing = useContext(TooltipTimingContext);
   const [active, setActive] = useState(false);
   const visible = open ?? active;
   const tooltipId = useId();
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hovered = useRef(false);
+  const focused = useRef(false);
+  function cancel() { if (timer.current !== null) { clearTimeout(timer.current); timer.current = null; } }
+  function show() { cancel(); setActive(true); }
+  function hide() { cancel(); setActive(false); }
+  useEffect(() => () => { if (timer.current !== null) clearTimeout(timer.current); }, []);
+  // A removed visible tooltip must not keep its group warm forever.
+  useEffect(() => { timing?.setOpen(tooltipId, visible); return () => timing?.setOpen(tooltipId, false); }, [timing, visible, tooltipId]);
 
-  // Inject aria-describedby + focus handlers onto the real trigger element
-  // so screen readers associate the tooltip with the focusable element
-  // (e.g. a button), not the wrapper div.
   const onlyChild = Children.only(children);
-  const trigger =
-    isValidElement(onlyChild)
-      ? cloneElement(onlyChild as ReactElement<TriggerProps>, {
-          "aria-describedby": visible ? tooltipId : undefined,
-          onFocus: (e: FocusEvent<HTMLElement>) => {
-            (onlyChild.props as TriggerProps).onFocus?.(e);
-            setActive(true);
-          },
-          onBlur: (e: FocusEvent<HTMLElement>) => {
-            (onlyChild.props as TriggerProps).onBlur?.(e);
-            setActive(false);
-          },
-        })
-      : onlyChild;
-
-  return (
-    <div
-      className="relative inline-flex"
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-    >
-      {trigger}
-      {visible && (
-        <div
-          id={tooltipId}
-          role="tooltip"
-          className={cn("absolute z-50 pointer-events-none", wrapperOffsets[position])}
-        >
-          <TooltipBubble content={content} position={position} size={size} />
-        </div>
-      )}
-    </div>
-  );
+  const trigger = isValidElement(onlyChild)
+    ? cloneElement(onlyChild as ReactElement<TriggerProps>, {
+        "aria-describedby": [(onlyChild.props as TriggerProps)["aria-describedby"], visible ? tooltipId : undefined].filter(Boolean).join(" ") || undefined,
+      })
+    : onlyChild;
+  return <div className="relative inline-flex"
+    onFocusCapture={() => { focused.current = true; show(); }}
+    onBlurCapture={() => { focused.current = false; if (!hovered.current) hide(); }}
+    onMouseEnter={() => { hovered.current = true; cancel(); const wait = timing?.isWarm() ? 0 : (delay ?? timing?.delay ?? 200); if (wait <= 0) show(); else timer.current = setTimeout(show, wait); }}
+    onMouseLeave={() => { hovered.current = false; if (!focused.current) hide(); }}
+    onKeyDown={(event) => { if (event.key === "Escape") hide(); }}>
+    {trigger}
+    <MotionPresence open={visible} motion={motion} id={tooltipId} role="tooltip" className={cn("absolute z-50 pointer-events-none", wrapperOffsets[position])}>
+      <TooltipBubble content={content} position={position} size={size} />
+    </MotionPresence>
+  </div>;
 }
 
 // ============================================================
@@ -161,7 +166,8 @@ export function TooltipAnchor({
   state = "idle",
   className,
   onClick,
-}: {
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement> & {
   icon: ReactNode;
   state?: TooltipAnchorState;
   className?: string;
@@ -169,6 +175,7 @@ export function TooltipAnchor({
 }) {
   return (
     <button
+      {...props}
       type="button"
       onClick={onClick}
       className={cn(

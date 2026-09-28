@@ -1,5 +1,8 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+import { MotionCollapse } from "../../internal/motion";
+
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, type ReactNode, useState } from "react";
@@ -28,11 +31,13 @@ function SidebarRow({
   accent,
   surface,
   isChild = false,
+  motion = "auto",
 }: {
   item: SidebarMenuItem;
   accent: SidebarMenuAccent;
   surface: "default" | "onColoredBg";
   isChild?: boolean;
+  motion?: MotionPreference;
 }) {
   const [expanded, setExpanded] = useState(item.expanded ?? false);
   const hasChildren = item.children && item.children.length > 0;
@@ -41,6 +46,7 @@ function SidebarRow({
   return (
     <div className="flex flex-col gap-1">
       <MenuItem
+        motion={motion}
         lead={item.icon ? { kind: "icon", icon: item.icon } : undefined}
         label={item.label}
         active={item.active}
@@ -54,10 +60,11 @@ function SidebarRow({
           if (hasChildren) setExpanded((v) => !v);
         }}
       />
-      {hasChildren && expanded && (
-        <div className="flex flex-col gap-1">
+      {hasChildren && (
+        <MotionCollapse open={expanded} motion={motion}><div className="flex flex-col gap-1">
           {item.children!.map((child, i) => (
             <SidebarRow
+              motion={motion}
               key={child.href ?? `${child.label}-${i}`}
               item={child}
               accent={accent}
@@ -65,7 +72,7 @@ function SidebarRow({
               isChild
             />
           ))}
-        </div>
+        </div></MotionCollapse>
       )}
     </div>
   );
@@ -87,6 +94,7 @@ export function SidebarMenu({
   railWidth,
   onMenuCollapse,
   className,
+  motion = "auto",
 }: {
   logo?: ReactNode;
   logoText?: string;
@@ -105,6 +113,7 @@ export function SidebarMenu({
   railWidth?: string;
   onMenuCollapse?: () => void;
   className?: string;
+  motion?: MotionPreference;
 }) {
   const accentTheme = accentColors[accent];
   const surface: "default" | "onColoredBg" =
@@ -277,7 +286,7 @@ export function SidebarMenu({
             </span>
           </div>
           {mainMenuItems.map((item, i) => (
-            <SidebarRow key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
+            <SidebarRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
           ))}
         </div>
 
@@ -294,7 +303,7 @@ export function SidebarMenu({
               </span>
             </div>
             {favoriteItems.map((item, i) => (
-              <SidebarRow key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
+              <SidebarRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
             ))}
           </div>
         )}

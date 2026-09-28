@@ -1,5 +1,7 @@
 "use client";
 
+import type { MotionPreference } from "../../../lib/motion";
+
 /* eslint-disable @next/next/no-img-element */
 
 import { type ReactNode } from "react";
@@ -21,6 +23,7 @@ export type ControlColor = FormAccentColor;
 
 export function Toggle({
   checked = false,
+  motion = "auto",
   onChange,
   color = "purple",
   disabled = false,
@@ -28,6 +31,7 @@ export function Toggle({
   ariaLabel = "开关",
 }: {
   checked?: boolean;
+  motion?: MotionPreference;
   onChange?: (checked: boolean) => void;
   color?: ControlColor;
   disabled?: boolean;
@@ -40,20 +44,22 @@ export function Toggle({
     <button
       type="button"
       role="switch"
+      data-motion={motion}
       aria-label={ariaLabel}
       aria-checked={checked}
       disabled={disabled}
       onClick={() => onChange?.(!checked)}
       className={cn(
-        "p-1 rounded-full inline-flex items-start transition-colors",
+        "forge-toggle p-1 rounded-full inline-flex items-start",
         isMd ? "w-9" : "w-8",
-        checked ? cn(formAccents[color].bg, "justify-end") : "bg-fg-grey-300 justify-start",
+        checked ? formAccents[color].bg : "bg-fg-grey-300",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
       )}
     >
       <div
+        style={{ translate: checked ? (isMd ? "16px" : "12px") : "0px" }}
         className={cn(
-          "rounded-full",
+          "forge-toggle-thumb rounded-full",
           isMd ? "w-3 h-3" : "w-3 h-3",
           checked ? "bg-white" : "bg-fg-grey-50",
         )}
@@ -183,6 +189,7 @@ export { Checkbox as CheckboxControl } from "../checkbox";
 
 export function CheckboxWithLabel({
   checked = false,
+  motion = "auto",
   onChange,
   label,
   color = "purple",
@@ -194,6 +201,7 @@ export function CheckboxWithLabel({
   className,
 }: {
   checked?: boolean;
+  motion?: MotionPreference;
   onChange?: (checked: boolean) => void;
   label: string;
   color?: ControlColor;
@@ -208,7 +216,7 @@ export function CheckboxWithLabel({
 
   const checkboxEl = (
     <span aria-hidden className="w-5 h-5 relative shrink-0">
-      <CheckboxVisual checked={checked} color={color} />
+      <CheckboxVisual checked={checked} color={color} motion={motion} />
     </span>
   );
 

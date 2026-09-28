@@ -1,5 +1,7 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback } from "react";
@@ -73,6 +75,8 @@ export interface AppLayoutBreadcrumb {
 }
 
 export interface AppLayoutProps {
+  /** Motion for the navigation shell and its nested menu branches. */
+  motion?: MotionPreference;
   mode?: AppLayoutMode;
   profilePosition?: AppLayoutProfilePosition;
   accent?: AppLayoutAccentColor;
@@ -146,6 +150,7 @@ type PopoverId = "calendar" | "messages" | "notifications" | "language" | "profi
 // ============================================================
 
 export function AppLayout({
+  motion = "auto",
   mode = "light",
   profilePosition = "topbar",
   accent = "purple",
@@ -404,6 +409,7 @@ export function AppLayout({
         ref={sidebarRef}
         id="forge-app-sidebar"
         data-forge-app-sidebar
+        data-motion={motion}
         role="navigation"
         aria-label="主导航"
         aria-hidden={isMobile && !mobileSidebarOpen ? true : undefined}
@@ -415,7 +421,7 @@ export function AppLayout({
         }}
         style={sidebarStyle}
         className={cn(
-          "fixed inset-y-0 left-0 h-dvh flex flex-col shrink-0 z-50 transition-[width,transform] duration-300 md:sticky md:top-0 md:z-30 md:h-screen md:translate-x-0",
+          "forge-sidebar-motion fixed inset-y-0 left-0 h-dvh flex flex-col shrink-0 z-50 transition-[width,transform] duration-300 md:sticky md:top-0 md:z-30 md:h-screen md:translate-x-0",
           "w-[var(--forge-sidebar-expanded-width)] max-w-[calc(100vw-3rem)] overflow-visible",
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
           sidebarCollapsed
@@ -511,7 +517,7 @@ export function AppLayout({
                   </div>
                 )}
                 {(menuItems ?? []).map((item, i) => (
-                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
+                  <SidebarMenuItemRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                 ))}
               </div>
 
@@ -523,7 +529,7 @@ export function AppLayout({
                     </div>
                   )}
                   {favoriteItems.map((item, i) => (
-                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
+                    <SidebarMenuItemRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                   ))}
                 </div>
               )}

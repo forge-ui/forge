@@ -141,7 +141,7 @@ export function AskAi({
   const threadKey = activeId || "default";
   const [threads, setThreads] = useState<Record<string, AskAiMessage[]>>({});
   const threadsRef = useRef(threads);
-  threadsRef.current = threads;
+  useLayoutEffect(() => { threadsRef.current = threads; }, [threads]);
   const conversation = threads[threadKey] ?? EMPTY_MESSAGES;
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -151,8 +151,10 @@ export function AskAi({
   const fullscreenOpen = fullscreenControlled ? fullscreen : internalFullscreen;
   const fullscreenControlledRef = useRef(fullscreenControlled);
   const onFullscreenChangeRef = useRef(onFullscreenChange);
-  fullscreenControlledRef.current = fullscreenControlled;
-  onFullscreenChangeRef.current = onFullscreenChange;
+  useLayoutEffect(() => {
+    fullscreenControlledRef.current = fullscreenControlled;
+    onFullscreenChangeRef.current = onFullscreenChange;
+  }, [fullscreenControlled, onFullscreenChange]);
 
   function setFullscreenOpen(next: boolean) {
     if (!fullscreenControlled) setInternalFullscreen(next);
@@ -209,6 +211,8 @@ export function AskAi({
     if (fullscreenOpen && open) {
       enteredFromDrawerRef.current = true;
       skipTriggerFocusRef.current = true;
+      // External fullscreen activation must close the competing drawer.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setOpen(false);
     }
   }, [fullscreenOpen, open]);

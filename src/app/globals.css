@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /* Forge 设计 token 与基础 body reset */
-@import "@forge-ui-official/core/styles.css";
+@import "../../core/src/styles/tokens.css";
 
-/* 让 Tailwind v4 扫描 @forge-ui-official/core 产物里的 utility class */
-@source "../../node_modules/@forge-ui-official/core/dist";
+/* Showcase 与 TypeScript alias 一致，直接展示当前 Core 源码。 */
+@source "../../core/src";
 
 @keyframes twinkle {
   0%,

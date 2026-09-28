@@ -1,3 +1,4 @@
+import type { MotionPreference } from "../../lib/motion";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 
 // ============================================================
@@ -89,6 +90,7 @@ export function IconButton({
   shape = "circle",
   type = "button",
   disabled = false,
+  motion = "auto",
   className = "",
   ...props
 }: {
@@ -97,13 +99,15 @@ export function IconButton({
   variant?: IconButtonVariant;
   size?: IconButtonSize;
   shape?: IconButtonShape;
+  motion?: MotionPreference;
   className?: string;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">) {
   return (
     <button
       type={type}
       disabled={disabled}
-      className={`${iconButtonSizes[size]} ${iconButtonVariants[color][variant]} ${iconButtonShapes[shape]} inline-flex justify-center items-center gap-1 overflow-hidden transition-colors ${disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${className}`}
+      data-motion={motion}
+      className={`${iconButtonSizes[size]} ${iconButtonVariants[color][variant]} ${iconButtonShapes[shape]} inline-flex justify-center items-center gap-1 overflow-hidden forge-button ${disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${className}`}
       {...props}
     >
       <span className="w-5 h-5 flex items-center justify-center">{children}</span>

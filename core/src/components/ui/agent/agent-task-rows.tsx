@@ -5,7 +5,7 @@
  * Forge rewrite: fg-* tokens + solar-icon-set.
  */
 
-import { CheckCircleLinear, CloseCircleLinear } from "solar-icon-set";
+import { CheckCircleLinear, CloseCircleLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { StatusBadge, type StatusBadgeColor } from "../data-table";
 
