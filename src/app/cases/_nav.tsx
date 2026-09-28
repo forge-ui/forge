@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRightUpLinear } from "solar-icon-set";
+import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
 
 type NavItem = { href: string; label: string; external?: boolean };

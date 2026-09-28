@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ArrowRightUpLinear } from "solar-icon-set";
+import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
 
 type Trend = "up" | "down";
 

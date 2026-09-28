@@ -12,7 +12,7 @@ import {
   ArrowRightUpLinear,
   PhoneCallingLinear,
   LetterLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   ProgressStatCard,
   LineChartStatCard,

@@ -1,4 +1,4 @@
-import { BellBoldDuotone } from "solar-icon-set";
+import { BellBoldDuotone } from "@forge-ui-official/core/icons";
 import {
   NotificationBadge,
   Label,
@@ -37,7 +37,7 @@ const artisticColors: ArtisticIconColor[] = [
 ];
 const artisticVariants: ArtisticIconVariant[] = ["gradient", "orbs"];
 
-// solar icon 默认带 inline color，variant 内部需要手动传 color 才能跟随主题
+// Forge icon 默认继承 currentColor，variant 内部显式传 color 以固定主题色
 function DemoGlyph({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
   return <BellBoldDuotone size={size} color={color} />;
 }

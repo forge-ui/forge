@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { AddCircleLinear, CloudDownloadLinear } from "solar-icon-set";
+import { AddCircleLinear, CloudDownloadLinear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, CellActions, FullCalendar, SurfaceCard } from "@forge-ui-official/core";
 import { MicellaneousPageHeader, MicellaneousTemplateShell } from "../_chrome";
 import { calendarEvents, contacts } from "../_data";

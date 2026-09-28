@@ -6,7 +6,7 @@ import {
   DownloadMinimalisticLinear,
   PenLinear,
   TrashBinMinimalisticLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PlusIcon } from "@forge-ui-official/core";
 import {
   PageHeader,

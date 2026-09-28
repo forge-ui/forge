@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import NextLink from "next/link";
-import { AltArrowDownLinear } from "solar-icon-set";
+import { AltArrowDownLinear } from "../icons";
 import type { AppLayoutMenuItem, AppLayoutMode } from "../components/layouts/app-layout";
 import { cn } from "../lib/utils";
 

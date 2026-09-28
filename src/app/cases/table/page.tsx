@@ -36,7 +36,7 @@ import {
   type CellActionKey,
   type CellLinkColor,
 } from "@forge-ui-official/core";
-import { CardBold } from "solar-icon-set";
+import { CardBold } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 // ── Mock data for composite tables ─────────────────────────

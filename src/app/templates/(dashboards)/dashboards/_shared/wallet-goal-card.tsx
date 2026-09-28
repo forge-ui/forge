@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarMinimalisticLinear } from "solar-icon-set";
+import { CalendarMinimalisticLinear } from "@forge-ui-official/core/icons";
 import { Button, KebabMenu, ProgressBar } from "@forge-ui-official/core";
 
 interface WalletGoalCardProps {

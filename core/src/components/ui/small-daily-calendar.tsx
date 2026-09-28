@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "../../lib/utils";
-import { MenuDotsBold } from "solar-icon-set";
+import { MenuDotsBold } from "../../icons";
 import { type AccentColor } from "./accent-utils";
 import { EventCard, type EventCardColor } from "./event-card";
 

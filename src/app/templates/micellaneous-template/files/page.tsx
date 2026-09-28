@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, CloudUploadLinear } from "solar-icon-set";
+import { AddCircleLinear, CloudUploadLinear } from "@forge-ui-official/core/icons";
 import { Button, CellActions, Checkbox, FileCard, FileTypeIcon, Toolbar, ToolbarActions, ToolbarDatepicker, ToolbarSearchInput } from "@forge-ui-official/core";
 import {
   ProtaskDeleteDialog,

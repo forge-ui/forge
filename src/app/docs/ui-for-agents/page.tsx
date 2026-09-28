@@ -87,7 +87,7 @@ export default function UIForAgentsPage() {
           <li>Forge UI Kit 安装与接入指南</li>
           <li>组件规格页、case 页、业务模板页索引</li>
           <li>颜色 token 全表（8 色 × 10 shade）与字体 token</li>
-          <li>Icon（solar-icon-set）用法与常见踩坑</li>
+          <li>Icon（@forge-ui-official/core/icons）用法与常见踩坑</li>
           <li>
             布局模板（
             <code className="font-mono text-[13px]">AppLayout</code> / 登录套件 / 电商业务骨架）

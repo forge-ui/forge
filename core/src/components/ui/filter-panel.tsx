@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { RestartCircleLinear } from "solar-icon-set";
+import { RestartCircleLinear } from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 
 export function FilterPanel({

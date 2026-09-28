@@ -13,7 +13,7 @@ import {
   LockPasswordBold,
   SettingsBold,
   Logout2Bold,
-} from "solar-icon-set";
+} from "../../icons";
 import {
   languageOptions,
   messageMenuItems,

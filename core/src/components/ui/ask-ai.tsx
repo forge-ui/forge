@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { CloseCircleLinear, FullScreenLinear } from "solar-icon-set";
+import { CloseCircleLinear, FullScreenLinear } from "../../icons";
 import { AskAiIcon } from "../../internal/ask-ai-icon";
 import { AskHistoryDropdown } from "../../internal/ask-ai-history";
 import {

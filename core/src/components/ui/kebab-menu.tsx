@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { MenuDotsBold } from "solar-icon-set";
+import { MenuDotsBold } from "../../icons";
 import { cn } from "../../lib/utils";
 import { MenuItem } from "./menu-item";
 import { DropdownPanel } from "./dropdown-panel";

@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { cn } from "../../lib/utils";
-import { MenuDotsBold, MagniferLinear } from "solar-icon-set";
+import { MenuDotsBold, MagniferLinear } from "../../icons";
 import { type AccentColor } from "./accent-utils";
 import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 import { MAP_PATHS, MAP_VIEWBOX } from "./map-data";

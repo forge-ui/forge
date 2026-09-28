@@ -12,7 +12,7 @@ import {
   CalendarBold,
   BellBold,
   LetterBold,
-} from "solar-icon-set";
+} from "../../icons";
 import type { AskAiProps } from "../ui/ask-ai";
 import { PageHeader } from "../ui/page-header";
 import { Breadcrumbs } from "../ui/breadcrumbs";
@@ -234,6 +234,8 @@ export function AppLayout({
   }, []);
 
   useEffect(() => {
+    // Navigation closes the modal sidebar and releases its body scroll lock.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileSidebarOpen(false);
   }, [pathname]);
 
@@ -292,6 +294,8 @@ export function AppLayout({
   }, [mobileSidebarOpen]);
 
   useEffect(() => {
+    // Closing the mobile modal also dismisses popovers mounted inside it.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isMobile && !mobileSidebarOpen) setOpenPopover(null);
   }, [isMobile, mobileSidebarOpen]);
 

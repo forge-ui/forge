@@ -8,7 +8,7 @@ import {
   MagniferLinear,
   StarBold,
   ArrowLeftLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Breadcrumbs,
   Button,

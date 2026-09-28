@@ -9,7 +9,7 @@ import {
   DocumentTextLinear,
   UsersGroupRoundedLinear,
   VideocameraRecordLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Avatar,
   Checkbox,

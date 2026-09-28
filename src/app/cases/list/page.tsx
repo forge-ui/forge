@@ -19,7 +19,7 @@ import {
   CartBoldDuotone,
   PenLinear,
   MenuDotsBold,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const groupColors = ["purple", "blue", "black"] as const satisfies readonly AccentColor[];

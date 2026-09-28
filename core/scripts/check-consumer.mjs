@@ -80,6 +80,7 @@ function verifyScenario({ scenario, tarballPath }) {
     'aria-label="Ask AI"',
     'data-forge-app-layout="true"',
     'data-forge-data-table="true"',
+    'aria-label="Forge MIT icon"',
     "bg-fg-violet",
     'class="forge-grid"',
     'class="forge-grid-item"',

@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, type ReactNode, useState } from "react";
-import { HamburgerMenuLinear } from "solar-icon-set";
+import { HamburgerMenuLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 import { MenuItem } from "./menu-item";
 import { ProfileCard } from "./profile-card";

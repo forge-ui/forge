@@ -8,7 +8,7 @@ import {
   TransferHorizontalBoldDuotone,
   WalletBoldDuotone,
   WidgetBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { AppLayout, PageTitleToolbar } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem, PageTitleToolbarPresetProps } from "@forge-ui-official/core";
 import { ProtaskLogoMark } from "../_shared/protask-logo";

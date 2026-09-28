@@ -6,7 +6,7 @@ import {
   type PageHeaderColor,
 } from "@forge-ui-official/core";
 import { DemoPageHeader } from "../../components/page-header/ask-ai-example";
-import { Logout3Linear } from "solar-icon-set";
+import { Logout3Linear } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const HEADER_COLORS = ["purple", "blue", "black"] as const;

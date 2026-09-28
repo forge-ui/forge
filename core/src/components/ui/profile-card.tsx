@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { AltArrowDownLinear } from "solar-icon-set";
+import { AltArrowDownLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 import { accentColors, type AccentColor } from "./accent-utils";
 

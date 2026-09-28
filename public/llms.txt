@@ -3,7 +3,7 @@
 > Forge UI Kit is a React 19 + Tailwind v4 component system for dense admin/SaaS prototypes. Use it with @forge-ui-official/core, Forge Starter, and forge-app-design guardrails.
 
 Website: https://forgeui.org
-Package: @forge-ui-official/core@0.1.10
+Package: @forge-ui-official/core@0.2.0
 Framework: Next.js 16, React 19, Tailwind CSS v4
 
 ## Primary Agent Docs
@@ -24,7 +24,7 @@ Framework: Next.js 16, React 19, Tailwind CSS v4
 - Import components only from @forge-ui-official/core.
 - Import styles with @import "@forge-ui-official/core/styles.css" and Tailwind v4 @source for the package dist.
 - Use fg-* design tokens; do not use Tailwind default colors for Forge surfaces.
-- Use solar-icon-set for icons; pass size and color props directly.
+- Use @forge-ui-official/core/icons for icons; pass size and color props directly.
 - Use AppLayout for admin shells; do not rebuild sidebar, topbar, or profile areas.
 - Design the business module, data flow, fields, actions, and page role before choosing components.
 - Prefer existing cases, templates, precedents, component registry, and Forge Starter before freehand composition.

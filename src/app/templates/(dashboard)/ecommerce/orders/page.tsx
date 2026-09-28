@@ -33,7 +33,7 @@ import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import {
   DownloadMinimalisticLinear,
   TrashBinTrashLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PlusIcon } from "@forge-ui-official/core";
 
 interface OrderItem {
