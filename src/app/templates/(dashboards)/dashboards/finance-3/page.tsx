@@ -16,7 +16,7 @@ import {
   FilterLinear,
   AltArrowRightLinear,
   RefreshLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   ListGroup,

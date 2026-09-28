@@ -45,6 +45,10 @@ const expectedExports = {
     types: "./dist/index.d.ts",
     import: "./dist/index.js",
   },
+  "./icons": {
+    types: "./dist/icons.d.ts",
+    import: "./dist/icons.js",
+  },
   "./components/ui/*": {
     types: "./dist/components/ui/*.d.ts",
     import: "./dist/components/ui/*.js",
@@ -62,10 +66,10 @@ const expectedManifestFields = {
   types: "./dist/index.d.ts",
   sideEffects: ["**/*.css"],
   peerDependencies: {
+    "@phosphor-icons/react": "^2.1.10",
     next: ">=15",
     react: ">=19",
     "react-dom": ">=19",
-    "solar-icon-set": "^2",
     tailwindcss: "^4",
   },
   peerDependenciesMeta: undefined,
@@ -87,7 +91,7 @@ if (pack.entryCount !== pack.files.length) {
   errors.push(`entryCount (${pack.entryCount}) does not match files.length (${pack.files.length})`);
 }
 
-const allowedPathPattern = /^(?:README\.md|LICENSE(?:\.md)?|package\.json|dist\/(?:styles\.css|.+\.(?:js|js\.map|d\.ts)))$/;
+const allowedPathPattern = /^(?:README\.md|LICENSE(?:\.md)?|THIRD_PARTY_NOTICES\.md|package\.json|dist\/(?:styles\.css|.+\.(?:js|js\.map|d\.ts)))$/;
 for (const file of pack.files) {
   if (!allowedPathPattern.test(file.path)) {
     errors.push(`unexpected packed file: ${file.path}`);
@@ -97,8 +101,10 @@ for (const file of pack.files) {
 if (!isDeepStrictEqual(pkg.exports, expectedExports)) {
   errors.push("package exports changed; update the compatibility snapshot deliberately");
 }
-if (!isDeepStrictEqual(pkg.files, ["dist"])) {
-  errors.push(`package files must remain ["dist"], received ${JSON.stringify(pkg.files)}`);
+if (!isDeepStrictEqual(pkg.files, ["dist", "LICENSE", "THIRD_PARTY_NOTICES.md"])) {
+  errors.push(
+    `package files must include dist and legal notices, received ${JSON.stringify(pkg.files)}`,
+  );
 }
 for (const [field, expected] of Object.entries(expectedManifestFields)) {
   if (!isDeepStrictEqual(pkg[field], expected)) {
@@ -152,6 +158,10 @@ if (!isDeepStrictEqual(actualWildcardApi, expectedWildcardApi)) {
 }
 
 for (const requiredPath of [
+  "LICENSE",
+  "THIRD_PARTY_NOTICES.md",
+  "dist/icons.js",
+  "dist/icons.d.ts",
   "dist/components/layouts/app-layout.js",
   "dist/components/layouts/app-layout.d.ts",
   "dist/components/layouts/sidebar-popovers.js",

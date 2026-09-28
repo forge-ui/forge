@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@forge-ui-official/core": ["./core/src/index.ts"]
+      "@forge-ui-official/core": ["./core/src/index.ts"],
+      "@forge-ui-official/core/*": ["./core/src/*"]
     }
   },
   "include": [

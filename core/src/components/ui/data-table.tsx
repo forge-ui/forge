@@ -17,7 +17,7 @@ import {
   EyeLinear,
   PenLinear,
   TrashBinTrashLinear,
-} from "solar-icon-set";
+} from "../../icons";
 import { Checkbox, type CheckboxColor } from "./checkbox";
 import { FileTypeIcon } from "./forms";
 import { ProgressBar, type ProgressColor } from "./progress-bar";

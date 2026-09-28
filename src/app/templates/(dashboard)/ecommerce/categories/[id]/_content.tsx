@@ -6,7 +6,7 @@ import {
   PenNewSquareLinear,
   MenuDotsBold,
   ArrowLeftLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Breadcrumbs,
   Button,

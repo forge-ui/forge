@@ -8,7 +8,7 @@ import {
   UserBoldDuotone,
   UsersGroupTwoRoundedBoldDuotone,
   WidgetBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { AppLayout } from "@forge-ui-official/core";
 import { PageTitleToolbar } from "@forge-ui-official/core";
 import type {

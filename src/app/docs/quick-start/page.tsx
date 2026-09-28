@@ -111,7 +111,7 @@ export default function QuickStartPage() {
               让 Claude Code / Cursor / Codex 看懂 Forge 的规矩——组件从{" "}
               <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui-official/core</code> 拿、颜色走{" "}
               <code className="rounded bg-fg-grey-100 px-1 text-xs">fg-*</code> token、icon 走{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">solar-icon-set</code>，不再手搓 div 复刻组件。装完重启一下 agent。
+              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui-official/core/icons</code>，不再手搓 div 复刻组件。装完重启一下 agent。
             </>
           }
           code={INSTALL_SKILL}

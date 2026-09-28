@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { type ReactNode } from "react";
-import { AltArrowUpBold, AltArrowDownBold } from "solar-icon-set";
+import { AltArrowUpBold, AltArrowDownBold } from "../../icons";
 import { cn } from "../../lib/utils";
 import {
   CircleIcon,

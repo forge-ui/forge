@@ -9,6 +9,7 @@ import {
   type ColumnDef,
 } from "@forge-ui-official/core";
 import { AppLayout } from "@forge-ui-official/core/components/layouts/app-layout";
+import { BellBoldDuotone } from "@forge-ui-official/core/icons";
 import { PageHeader } from "@forge-ui-official/core/components/ui/page-header";
 
 type Row = {
@@ -53,7 +54,7 @@ export default function Home() {
             primaryAction={{ label: "新建" }}
           />
           <Grid columns={{ base: 1, md: 12 }} gap={{ base: 8, lg: 24 }}>
-            <GridItem span={{ base: "full", md: 8 }}><Button color="purple">根入口组件</Button></GridItem>
+            <GridItem span={{ base: "full", md: 8 }}><Button color="purple" iconLeft={<BellBoldDuotone aria-label="Forge MIT icon" />}>根入口组件</Button></GridItem>
             <GridItem span={{ base: "full", md: 4 }}>Grid consumer</GridItem>
           </Grid>
           <DataTable

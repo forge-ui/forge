@@ -6,7 +6,7 @@ import {
   DangerTriangleBold,
   RocketBold,
   BellBold,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -75,7 +75,7 @@ const PROPS: ApiTableRow[] = [
     attr: "icon",
     type: "ReactNode",
     defaultValue: "—",
-    description: "左上方的 32px 图标，建议 solar-icon-set Bold 系列。",
+    description: "左上方的 32px 图标，建议 @forge-ui-official/core/icons Bold 系列。",
   },
   {
     attr: "onConfirm",

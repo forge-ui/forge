@@ -1,6 +1,6 @@
 "use client";
 
-import { ChatDotsLinear, ArrowRightUpLinear } from "solar-icon-set";
+import { ChatDotsLinear, ArrowRightUpLinear } from "@forge-ui-official/core/icons";
 
 export interface TocItem {
   id: string;

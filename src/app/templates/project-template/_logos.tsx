@@ -10,7 +10,7 @@ import {
   StarsBold,
   TargetBold,
   TickerStarBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import type { ProjectLogoKey } from "./_data";
 
 export function ProjectLogo({ name, size = "md" }: { name: ProjectLogoKey; size?: "sm" | "md" | "lg" }) {
