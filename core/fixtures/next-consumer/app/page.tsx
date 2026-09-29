@@ -7,6 +7,7 @@ import {
   GridItem,
   DataTable,
   type ColumnDef,
+  type AppLayoutMenuSection,
 } from "@forge-ui-official/core";
 import { AppLayout } from "@forge-ui-official/core/components/layouts/app-layout";
 import { BellBoldDuotone } from "@forge-ui-official/core/icons";
@@ -30,6 +31,12 @@ const columns: ColumnDef<Row>[] = [
   },
 ];
 
+const menuSections: AppLayoutMenuSection[] = [
+  { label: "工作区", items: [{ label: "数据集", href: "/" }] },
+  { label: "智能体", items: [{ label: "智能体", href: "/agents" }] },
+  { label: "平台", items: [{ label: "设置", href: "/settings" }] },
+];
+
 export default function Home() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<Set<Key>>(new Set());
 
@@ -37,7 +44,7 @@ export default function Home() {
     <AppLayout
       profilePosition="sidebar"
       pageTitle="真实包消费"
-      menuItems={[{ label: "数据集", href: "/" }]}
+      menuSections={menuSections}
       hideSidebarWidgets
     >
       <main className="min-h-screen bg-fg-grey-50 p-6">
