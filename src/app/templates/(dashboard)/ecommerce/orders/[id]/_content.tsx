@@ -27,7 +27,7 @@ import {
   MapPointBoldDuotone,
   DocumentBoldDuotone,
   MenuDotsLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { Panel, Modal, InfoRow } from "@/app/templates/_shared";
 
 interface OrderLineItem {

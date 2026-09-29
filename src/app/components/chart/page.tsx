@@ -20,7 +20,7 @@ import {
   BarUpsideDownChart,
   SmoothLineChart,
 } from "@forge-ui-official/core";
-import { WalletLinear } from "solar-icon-set";
+import { WalletLinear } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, SubSectionGrid } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -201,7 +201,7 @@ const BUBBLE_PROPS: ApiTableRow[] = [
 ];
 
 const LISTITEM_PROPS: ApiTableRow[] = [
-  { attr: "icon", type: "ComponentType<{ size?, color? }>", defaultValue: "—", description: "传 solar-icon-set 组件本身（不实例化），accent 驱动颜色与底色。" },
+  { attr: "icon", type: "ComponentType<{ size?, color? }>", defaultValue: "—", description: "传 @forge-ui-official/core/icons 组件本身（不实例化），accent 驱动颜色与底色。" },
   { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "图标颜色 ramp。" },
   { attr: "title", type: "string", defaultValue: "—", description: "条目标题。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "副标题。" },
@@ -290,7 +290,7 @@ export default function ChartCasePage() {
         <SubSectionGrid cols={2}>
         <SubSection title="ChartListItem" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            带图标的 legend 行。<InlineCode>icon</InlineCode> 传 solar-icon-set 组件本身（不实例化）。
+            带图标的 legend 行。<InlineCode>icon</InlineCode> 传 @forge-ui-official/core/icons 组件本身（不实例化）。
           </p>
           <PreviewBlock code={CODE_LISTITEM} minHeight={120}>
             <div className="w-72">

@@ -16,7 +16,7 @@ import {
   MenuDotsBold,
   CloseSquareLinear,
   UserLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 const COLORS = ["purple", "blue", "black"] as const;
 const AVATAR = "https://i.pravatar.cc/100?img=10";

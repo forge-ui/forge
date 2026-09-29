@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeftLinear } from "solar-icon-set";
+import { ArrowLeftLinear } from "@forge-ui-official/core/icons";
 import {
   Breadcrumbs,
   Button,

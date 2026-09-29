@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { AltArrowUpLinear, AltArrowDownLinear, MenuDotsBold } from "solar-icon-set";
+import { AltArrowUpLinear, AltArrowDownLinear, MenuDotsBold } from "../../icons";
 
 // ============================================================
 // Card utilities — shared primitives for statistic & data cards.

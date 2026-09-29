@@ -6,7 +6,7 @@
  */
 
 import { useState } from "react";
-import { AltArrowLeftLinear, AltArrowRightLinear, StarsLinear } from "solar-icon-set";
+import { AltArrowLeftLinear, AltArrowRightLinear, StarsLinear } from "../../../icons";
 import { SurfaceCard } from "../surface-card";
 
 export type InsightTone = "violet" | "green" | "yellow" | "blue";

@@ -179,6 +179,7 @@ export default function AgentCasePage() {
       </Section>
 
       <Section title="PromptBar" description="点 Sources / Commands，或输入 @ /。">
+        <a href="/cases/prompt-bar" className="text-accent underline">模型菜单：抽屉、全屏与窄屏回归验证</a>
         <SubSection title="Composer" stack>
           <PromptBar
             value={prompt}

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Pen2Linear } from "solar-icon-set";
+import { Pen2Linear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard, TabBar } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";

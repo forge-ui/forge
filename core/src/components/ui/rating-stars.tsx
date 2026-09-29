@@ -1,7 +1,7 @@
-import { StarBold } from "solar-icon-set";
+import { StarBold } from "../../icons";
 
 // ============================================================
-// RatingStars — 评分星级展示（value/total + N 颗 solar StarBold）
+// RatingStars — 评分星级展示（value/total + N 颗 Forge StarBold）
 // Figma: "4.0/5 ★★★★☆" 一行，数字 + 16×16 stars, gap-1
 // ============================================================
 

@@ -2,7 +2,7 @@
 
 import { type ReactNode, useState, useRef, useEffect, useId } from "react";
 import { cn } from "../../../lib/utils";
-import { MagniferLinear, AddCircleLinear } from "solar-icon-set";
+import { MagniferLinear, AddCircleLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
 
 // ============================================================

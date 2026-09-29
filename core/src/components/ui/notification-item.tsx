@@ -3,7 +3,7 @@ import {
   TagLinear,
   ClockCircleLinear,
   CheckCircleLinear,
-} from "solar-icon-set";
+} from "../../icons";
 import { cn } from "../../lib/utils";
 import { accentColors, type AccentColor } from "./accent-utils";
 

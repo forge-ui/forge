@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AddCircleLinear, CloudDownloadLinear, MagniferLinear } from "solar-icon-set";
+import { AddCircleLinear, CloudDownloadLinear, MagniferLinear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, ButtonGroup, CellActions, CellMuted, CellTextSubtitle, DataTable, TextField, ToolbarDatepicker, ToolbarFilterButton, ToolbarShowSelect } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";

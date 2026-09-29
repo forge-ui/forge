@@ -1,5 +1,9 @@
 "use client";
 
+import { useRef } from "react";
+import type { MotionPreference } from "../../lib/motion";
+import { useMovingIndicator } from "../../internal/motion";
+
 import { cn } from "../../lib/utils";
 
 // ============================================================
@@ -28,6 +32,7 @@ export function ButtonGroup({
   shape = "rounded",
   onChange,
   className,
+  motion = "auto",
   ariaLabel = "选项组",
 }: {
   items: ButtonGroupItem[];
@@ -36,20 +41,26 @@ export function ButtonGroup({
   shape?: ButtonGroupShape;
   onChange?: (index: number) => void;
   className?: string;
+  motion?: MotionPreference;
   ariaLabel?: string;
 }) {
   const isPill = shape === "pill";
 
+  const rootRef = useRef<HTMLDivElement>(null);
+  const indicator = useMovingIndicator(rootRef, "[aria-pressed='true']", activeIndex);
   return (
     <div
+      ref={rootRef}
+      data-motion={motion}
       role="group"
       aria-label={ariaLabel}
       className={cn(
-        "p-1 bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
+        "relative isolate p-1 bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
         isPill ? "rounded-full" : "rounded-xl",
         className
       )}
     >
+      <span aria-hidden ref={indicator} className={cn("forge-moving-indicator forge-pill-indicator", activeItemColors[color], isPill ? "rounded-full" : "rounded-lg")} />
       {items.map((item, index) => (
         <button
           key={index}
@@ -57,10 +68,10 @@ export function ButtonGroup({
           aria-pressed={index === activeIndex}
           onClick={() => onChange?.(index)}
           className={cn(
-            "px-4 py-2 text-sm leading-5 cursor-pointer whitespace-nowrap",
+            "relative z-[1] px-4 py-2 text-sm leading-5 cursor-pointer whitespace-nowrap",
             isPill ? "rounded-full" : "rounded-lg",
             index === activeIndex
-              ? `${activeItemColors[color]} font-bold`
+              ? `${activeItemColors[color].split(" ").filter((value) => !value.startsWith("bg-")).join(" ")} font-bold`
               : "text-fg-grey-700 font-semibold"
           )}
         >

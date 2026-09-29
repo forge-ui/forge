@@ -1,3 +1,7 @@
+"use client";
+
+import { DialogSurface } from "../../internal/dialog-surface";
+import type { MotionPreference } from "../../lib/motion";
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
@@ -45,6 +49,7 @@ export function ConfirmationDialog({
   onConfirm,
   onCancel,
   className,
+  open, onOpenChange, motion = "auto",
 }: {
   title: string;
   description: string;
@@ -56,8 +61,12 @@ export function ConfirmationDialog({
   onConfirm?: () => void;
   onCancel?: () => void;
   className?: string;
+  /** Omit open for the existing inline card. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  motion?: MotionPreference;
 }) {
-  return (
+  const content = (
     <div
       className={cn(
         "w-full max-w-[480px] p-6 bg-white rounded-card flex flex-col items-center gap-8",
@@ -115,16 +124,18 @@ export function ConfirmationDialog({
       >
         <button
           type="button"
-          onClick={onCancel}
-          className="w-32 px-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700 font-bold text-sm cursor-pointer"
+          data-motion={motion}
+          onClick={() => { onCancel?.(); onOpenChange?.(false); }}
+          className="forge-button w-32 px-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700 font-bold text-sm cursor-pointer"
         >
           {cancelLabel}
         </button>
         <button
           type="button"
+          data-motion={motion}
           onClick={onConfirm}
           className={cn(
-            "w-32 px-4 py-3.5 rounded-full text-white font-bold text-sm cursor-pointer",
+            "forge-button w-32 px-4 py-3.5 rounded-full text-white font-bold text-sm cursor-pointer",
             confirmBgColors[color]
           )}
         >
@@ -133,4 +144,5 @@ export function ConfirmationDialog({
       </div>
     </div>
   );
+  return open === undefined ? content : <DialogSurface open={open} onOpenChange={(next) => { onOpenChange?.(next); if (!next) onCancel?.(); }} label={title} motion={motion}>{content}</DialogSurface>;
 }

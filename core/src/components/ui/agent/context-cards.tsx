@@ -3,7 +3,7 @@
  * Forge rewrite: fg-* tokens + solar-icon-set.
  */
 
-import { DocumentTextLinear } from "solar-icon-set";
+import { DocumentTextLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { SurfaceCard } from "../surface-card";
 

@@ -14,7 +14,7 @@
 
 1. **组件只从 `@forge-ui-official/core` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
 2. **颜色只用 `fg-*` token**。禁用 Tailwind 默认色（如 `text-blue-500` `bg-gray-100`），全部换成 `text-fg-violet` `bg-fg-grey-100`。没对上的颜色去 `src/app/globals.css` 的 `@theme inline` 里扩 token，不要就地写 hex。
-3. **Icon 用 `solar-icon-set`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾。颜色必须用 `color="#HEX"` prop，不要用 className 上的 `text-*`——库里 fill 写死了，className 不生效。尺寸用 `size={N}` prop。
+3. **Icon 用 `@forge-ui-official/core/icons`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾，底层是 Solar Icons（React 实现为 MIT，480 Design 图形为 CC BY 4.0）。优先用 `size={N}` 和 `color="#HEX"` prop 保证渲染稳定；兼容层也支持 `currentColor` 和标准 SVG props。
 4. **布局用 `<AppLayout>`**（`@forge-ui-official/core`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
 5. **不确定就看 `/cases/<name>`**。Forge 每个组件都有一页示例（`src/app/cases/<name>/page.tsx`），去读它，比凭想象写 props 靠谱十倍。
 
@@ -95,10 +95,10 @@
 - 运行时取 hex：`var(--fg-violet)` / `var(--fg-grey-700)`
 - 深浅调性通常：`50/100` 作浅底、`500` 作主色、`700+` 作深底或高对比文字
 
-### Icon（`solar-icon-set`）
+### Icon（`@forge-ui-official/core/icons`）
 
 ```tsx
-import { MagniferLinear, BellBoldDuotone } from "solar-icon-set";
+import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
 
 <MagniferLinear size={16} color="#71717A" />
 <BellBoldDuotone size={24} color="var(--fg-violet)" />
@@ -107,7 +107,7 @@ import { MagniferLinear, BellBoldDuotone } from "solar-icon-set";
 **项目内默认灰色 icon 色值**：`#71717A`（对应 `fg-grey-700` 附近），保持全站一致。
 
 **踩坑（常犯）**：
-1. `className="text-fg-red"` 对 solar icon **不生效**——库里 fill 写死，颜色必须走 `color` prop。
+1. 未传 `color` 时 icon 会继承父级 `currentColor`；语义色应显式传 `color` prop，避免上下文改变颜色。
 2. 外层 wrapper 给了 `p-Y`（上下 padding）或固定 height 会**压扁 SVG**。icon 外包装只给 `w-X h-X` 的正方形 box，或者 `inline-flex items-center`。
 
 ### 布局（`AppLayout`）
@@ -177,7 +177,7 @@ badge / button-link / calendar / card / chart / chat / comment / filter / histor
 - 先写页面骨架（AppLayout + Toolbar + 主内容容器）
 - 主内容按区块拆：每块对应一个 Kit 组件或组件组合
 - 遇到不确定的组件 → 打开 `/cases/<name>` 对应示例页复制用法
-- 颜色选 `fg-*`，icon 选 `solar-icon-set`
+- 颜色选 `fg-*`，icon 选 `@forge-ui-official/core/icons`
 
 **Step 4. 缺件停下**
 如果 Kit 里没有合适组件（不是变体缺失，是真的没有），**立即停下问人**。不要自己手搓 div 复刻。用户会判断要不要扩 Kit。
@@ -191,7 +191,7 @@ badge / button-link / calendar / card / chart / chat / comment / filter / histor
 
 - [ ] 没有手搓 div 复刻 Kit 已有组件
 - [ ] 颜色全部走 `fg-*` token，无裸 Tailwind 默认色
-- [ ] Icon 全部 `solar-icon-set` + `color` prop
+- [ ] Icon 全部 `@forge-ui-official/core/icons` + `color` prop
 - [ ] 布局用 `<AppLayout>` 或继承自模板
 - [ ] tsc 通过
 - [ ] 截图与设计对照过

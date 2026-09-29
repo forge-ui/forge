@@ -10,7 +10,7 @@ import {
   MouseBoldDuotone,
   GameboyBoldDuotone,
   KeyboardBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 
 const menuItems: AppLayoutMenuItem[] = [

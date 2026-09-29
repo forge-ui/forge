@@ -1,5 +1,8 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+import { MotionPresence } from "../../internal/motion";
+
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { accentColors, type AccentColor } from "./accent-utils";
@@ -22,6 +25,7 @@ export function IconTrigger({
   onClick,
   ariaLabel,
   className,
+  motion = "auto",
   panel,
   panelPlacement = "bottom",
 }: {
@@ -36,6 +40,7 @@ export function IconTrigger({
   onClick?: () => void;
   ariaLabel?: string;
   className?: string;
+  motion?: MotionPreference;
   /** Optional panel. `ReactNode` or `(close) => ReactNode` so inner elements can close it. */
   panel?: IconTriggerPanel;
   panelPlacement?: IconTriggerPanelPlacement;
@@ -54,8 +59,10 @@ export function IconTrigger({
         setInternalOpen(false);
       }
     }
+    function escape(event: KeyboardEvent) { if (event.key === "Escape") { setInternalOpen(false); wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus(); } }
+    document.addEventListener("keydown", escape);
     document.addEventListener("mousedown", handleOutside);
-    return () => document.removeEventListener("mousedown", handleOutside);
+    return () => { document.removeEventListener("mousedown", handleOutside); document.removeEventListener("keydown", escape); };
   }, [usingInternal, internalOpen]);
 
   const accentTheme = accentColors[accent];
@@ -90,11 +97,13 @@ export function IconTrigger({
   return (
     <div className={cn("relative inline-flex", className)} ref={wrapRef}>
       <button
+        data-motion={motion}
+        aria-expanded={usingInternal ? internalOpen : stateProp !== undefined ? stateProp === "open" : undefined}
         type="button"
         onClick={handleClick}
         aria-label={ariaLabel ?? tooltip}
         className={cn(
-          "relative p-3 rounded-full inline-flex items-center justify-center transition-colors",
+          "forge-button relative p-3 rounded-full inline-flex items-center justify-center",
           stateClass
         )}
       >
@@ -121,8 +130,8 @@ export function IconTrigger({
         </div>
       )}
 
-      {usingInternal && internalOpen && (
-        <div
+      {usingInternal && (
+        <MotionPresence open={internalOpen} motion={motion}
           className={cn(
             "absolute z-50",
             panelPlacement === "top" && "bottom-full left-1/2 -translate-x-1/2 mb-2",
@@ -132,7 +141,7 @@ export function IconTrigger({
           )}
         >
           {renderedPanel}
-        </div>
+        </MotionPresence>
       )}
     </div>
   );

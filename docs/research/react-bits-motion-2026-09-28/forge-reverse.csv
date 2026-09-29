@@ -1,0 +1,174 @@
+﻿Forge 组件或视觉导出,源码,React Bits 全部参考,其中核心优先或可选,说明
+ActivityCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/activity-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+AgentCodeBlock,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/agent-code-block.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+AgentDiffTable,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/agent-diff-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+AgentFlowchart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/agent-flowchart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+AgentTaskRows,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/agent-task-rows.tsx,"AnimatedList, StatusMark, SwipeRow, LatticeLoader","AnimatedList, StatusMark, SwipeRow, LatticeLoader",有映射；以逐项归属为准
+AppLayout,/Users/hesong/Documents/gihub_space/forge/core/src/components/layouts/app-layout.tsx,"LineSidebar, BubbleMenu, StaggeredMenu, BranchedMenu","LineSidebar, StaggeredMenu, BranchedMenu",有映射；以逐项归属为准
+ApprovalCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/approval-card.tsx,"SlideCommit, HoldButton",HoldButton,有映射；以逐项归属为准
+ArtisticIcon,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/badge.tsx,"StickerPeel, GlassIcons",,有映射；以逐项归属为准
+AskAi,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/ask-ai.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Avatar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/avatar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+AvatarGroup,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/avatar.tsx,"OrbitImages, LogoLoop",,有映射；以逐项归属为准
+BalanceCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/balance-card.tsx,"CountUp, Counter","CountUp, Counter",有映射；以逐项归属为准
+BarChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+BarChartStatCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/bar-chart-stat-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+BarHorizontalChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-horizontal-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+BarUpsideDownChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-upside-down-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Breadcrumbs,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/breadcrumbs.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+BubbleChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bubble-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Button,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/button.tsx,"GlareHover, ClickSpark, Magnet, StarBorder, SpecularButton, GlideSelect, DodgeField, FuseButton, HoldButton","GlareHover, SpecularButton, GlideSelect, FuseButton, HoldButton",有映射；以逐项归属为准
+ButtonGroup,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/button-group.tsx,"PillNav, JellyRadio, RubberSegment","PillNav, JellyRadio, RubberSegment",有映射；以逐项归属为准
+CalendarDayCell,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/calendar-day-cell.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CalendarWeekRow,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/calendar-week-row.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CardAvatarGroup,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CardGlow,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CardIconChip,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CardKebabButton,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CardTrend,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellActions,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellCode,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellFile,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellImageText,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellKebabMenu,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellLink,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellMuted,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellNumber,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,Counter,Counter,有映射；以逐项归属为准
+CellProgressBar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellProgressValue,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellRating,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,PeekRating,,有映射；以逐项归属为准
+CellStatusDot,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellText,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CellTextSubtitle,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChartCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/chart-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChartLegendItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/chart-legend-item.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChartListItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/chart-list-item.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChartStatFooter,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/chart-stat-footer.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChartTooltip,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/chart-tooltip.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChartValueRow,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/chart-value-row.tsx,"CountUp, Counter","CountUp, Counter",有映射；以逐项归属为准
+ChatBubble,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/chat-bubble.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ChatInputBar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/chat-input-bar.tsx,"CurvedInput, VoicePill, PromptBar, SlingButton","VoicePill, PromptBar",有映射；以逐项归属为准
+CheckIcon,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/plain-icons.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Checkbox,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/checkbox.tsx,SpringCheck,SpringCheck,有映射；以逐项归属为准
+CheckboxControl,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/selection-control.tsx,SpringCheck,SpringCheck,有映射；以逐项归属为准
+CheckboxWithLabel,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/selection-control.tsx,SpringCheck,SpringCheck,有映射；以逐项归属为准
+Checklist,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/checklist.tsx,SpringCheck,SpringCheck,有映射；以逐项归属为准
+ChecklistItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/checklist.tsx,SpringCheck,SpringCheck,有映射；以逐项归属为准
+CircleIcon,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/badge.tsx,GlassIcons,,有映射；以逐项归属为准
+CloseIcon,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/plain-icons.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ColorPicker,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/icon-selector.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ColorSection,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/style-guide.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ColorSwatch,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/style-guide.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CommandSearch,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/command-search.tsx,AnimatedList,AnimatedList,有映射；以逐项归属为准
+CommentItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/comment-item.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ConfirmationDialog,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/confirmation-dialog.tsx,"AnimatedContent, FadeContent, SlideCommit, HoldButton","AnimatedContent, FadeContent, HoldButton",有映射；以逐项归属为准
+ContactItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/contact-item.tsx,SwipeRow,SwipeRow,有映射；以逐项归属为准
+ContextCards,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/context-cards.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+CreditCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/credit-card.tsx,"ReflectiveCard, FlipCard",FlipCard,有映射；以逐项归属为准
+CurrencyConverter,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/currency-converter.tsx,ScrubField,,有映射；以逐项归属为准
+DashedHalfDonutChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/dashed-half-donut-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+DataTable,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Datepicker,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/datepicker.tsx,"AnimatedContent, OptionWheel",AnimatedContent,有映射；以逐项归属为准
+DebitCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/debit-card.tsx,"ReflectiveCard, FlipCard",FlipCard,有映射；以逐项归属为准
+DescriptionItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/list-item.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+DonutChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/donut-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+DropdownDivider,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/dropdown-panel.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+DropdownPanel,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/dropdown-panel.tsx,"AnimatedContent, FadeContent, CardNav, GlideSelect","AnimatedContent, FadeContent, GlideSelect",有映射；以逐项归属为准
+EventCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/event-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+EventTag,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/event-tag.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+FieldTag,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/field-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+FileCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/file-upload.tsx,"Folder, Shredder, FolderFloat",Folder,有映射；以逐项归属为准
+FileTypeIcon,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/file-upload.tsx,Folder,Folder,有映射；以逐项归属为准
+FileUpload,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/file-upload.tsx,FolderFloat,,有映射；以逐项归属为准
+FilterGroup,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/filter-group.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+FilterPanel,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/filter-panel.tsx,AnimatedContent,AnimatedContent,有映射；以逐项归属为准
+FilterTrigger,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/filter-trigger.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+FinancialOrbs,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+FullCalendar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/full-calendar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+FullWidthTable,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Grid,/Users/hesong/Documents/gihub_space/forge/core/src/components/layouts/grid.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+GridItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/layouts/grid.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+HalfDonutChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/half-donut-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+HighlightCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/highlight-card.tsx,"GradientText, ElectricBorder, GlareHover, StarBorder, PixelCard, SpotlightCard, BorderGlow","GlareHover, SpotlightCard",有映射；以逐项归属为准
+HistoryGrouped,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/history-grouped.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+HistoryItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/history-item.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+IconButton,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/icon-button.tsx,"ClickSpark, Magnet, SpecularButton, Dock, GlassIcons, SlingButton, BellToggle, GlideSelect, DodgeField, PulseHeart","SpecularButton, BellToggle, GlideSelect, PulseHeart",有映射；以逐项归属为准
+IconPicker,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/icon-selector.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+IconSelector,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/icon-selector.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+IconTrigger,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/icon-trigger.tsx,GlideSelect,GlideSelect,有映射；以逐项归属为准
+ImageGrid,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/image-grid.tsx,"DitherVeil, ScrollExpand, RippleDistortion, HalftoneReveal, PixelSwap, OrbitImages, PixelTransition, GradualBlur, FlexCarousel, InfiniteSpiral, DepthCarousel, MorphSlider, DriftWall, AccordionGallery, CircularGallery, Stack, Masonry, DomeGallery, ChromaGrid, Carousel, FlyingPosters, DecayCard, InfiniteMenu, PaperCrumple, RefineFrame","GradualBlur, RefineFrame",有映射；以逐项归属为准
+ImageStatCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/image-stat-card.tsx,"DitherVeil, ScrollExpand, HalftoneReveal, PixelTransition, TiltedCard, DecayCard, PaperCrumple, RefineFrame",RefineFrame,有映射；以逐项归属为准
+InsightCards,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/insight-cards.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+KebabMenu,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/kebab-menu.tsx,GlideSelect,GlideSelect,有映射；以逐项归属为准
+Label,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/badge.tsx,StickerPeel,,有映射；以逐项归属为准
+LineChartStatCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/line-chart-stat-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ListGroup,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/list-group.tsx,"AnimatedContent, GradualBlur, AnimatedList","AnimatedContent, GradualBlur, AnimatedList",有映射；以逐项归属为准
+ListItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/list-item.tsx,"AnimatedList, Shredder, SwipeRow","AnimatedList, SwipeRow",有映射；以逐项归属为准
+MapCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/map-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+MastercardLogo,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+MediaUpload,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/media-upload.tsx,RefineFrame,RefineFrame,有映射；以逐项归属为准
+MenuItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/menu-item.tsx,"FlowingMenu, GlideSelect",GlideSelect,有映射；以逐项归属为准
+MeterChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/meter-chart.tsx,"SloshGauge, CometDial",SloshGauge,有映射；以逐项归属为准
+MultilayerDonutChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/multilayer-donut-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+NotificationBadge,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/badge.tsx,BellToggle,BellToggle,有映射；以逐项归属为准
+NotificationItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/notification-item.tsx,"AnimatedList, SwipeRow, FuseButton","AnimatedList, SwipeRow, FuseButton",有映射；以逐项归属为准
+PageDot,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/page-dot.tsx,"DepthCarousel, Carousel",,有映射；以逐项归属为准
+PageHeader,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/page-header.tsx,"TechText, MaskedHeading, ParticleText, SplitFlapText, WarpText, StrokeText, DepthText, FoldText, EchoText, SplitText, BlurText, Shuffle, TextPressure, FuzzyText, GradientText, DecryptedText, TrueFocus, ScrollFloat, ScrollReveal, ASCIIText, ScrambledText, RotatingText, GlitchText, VariableProximity",,有映射；以逐项归属为准
+PageTitleToolbar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Pagination,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/pagination.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+PieChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/pie-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+PlusIcon,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/plain-icons.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ProductRow,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/product-row.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ProfileCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/profile-card.tsx,"TiltedCard, Lanyard, ProfileCard, FlipCard",FlipCard,有映射；以逐项归属为准
+ProfileImgUpload,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/media-upload.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ProgressBadge,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ProgressBar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/progress-bar.tsx,"SloshGauge, StatusMark","SloshGauge, StatusMark",有映射；以逐项归属为准
+ProgressCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/progress-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ProgressStatCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/progress-stat-card.tsx,"CountUp, SloshGauge","CountUp, SloshGauge",有映射；以逐项归属为准
+ProjectCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/project-card.tsx,"ScrollStack, MagicBento, SpotlightCard, CardSwap, BounceCards",SpotlightCard,有映射；以逐项归属为准
+PromptBar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/prompt-bar.tsx,"VoicePill, PromptBar, SlingButton","VoicePill, PromptBar",有映射；以逐项归属为准
+RadioButton,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/selection-control.tsx,JellyRadio,JellyRadio,有映射；以逐项归属为准
+RadioWithLabel,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/selection-control.tsx,JellyRadio,JellyRadio,有映射；以逐项归属为准
+RatingStars,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/rating-stars.tsx,PeekRating,,有映射；以逐项归属为准
+RecommendationCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/recommendation-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ReviewItem,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/review-item.tsx,"PulseHeart, PeekRating",PulseHeart,有映射；以逐项归属为准
+SelectOption,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/select-option.tsx,"OptionWheel, GlideSelect",GlideSelect,有映射；以逐项归属为准
+SidebarMenu,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/sidebar-menu.tsx,"LineSidebar, StaggeredMenu, FlowingMenu, BranchedMenu","LineSidebar, StaggeredMenu, BranchedMenu",有映射；以逐项归属为准
+SmallCalendar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/small-calendar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+SmallDailyCalendar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/small-daily-calendar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+SmoothLineChart,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/smooth-line-chart.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+StatCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/stat-card.tsx,"SplitFlapText, CountUp, MagicBento, Counter","CountUp, Counter",有映射；以逐项归属为准
+StatCardShell,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/card-utils.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+StatusBadge,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Stepper,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/stepper.tsx,Stepper,Stepper,有映射；以逐项归属为准
+StreamingAnswer,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/streaming-answer.tsx,TextType,TextType,有映射；以逐项归属为准
+StyledLink,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/link.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+SurfaceCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/surface-card.tsx,"PixelSwap, GlareHover, ScrollStack, MagicBento, Stack, FluidGlass, GlassSurface, PixelCard, SpotlightCard, BorderGlow, CardSwap, BounceCards, FlipCard","GlareHover, SpotlightCard, FlipCard",有映射；以逐项归属为准
+TabBar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/tab-bar.tsx,"PillNav, GooeyNav, RubberSegment","PillNav, GooeyNav, RubberSegment",有映射；以逐项归属为准
+TableCell,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/data-table.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+TaskCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/task-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+TextArea,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/text-area.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+TextField,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/text-field.tsx,"CurvedInput, CodeSlots, ScrubField",,有映射；以逐项归属为准
+TextFieldSelectSuffix,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/text-field-select.tsx,GlideSelect,GlideSelect,有映射；以逐项归属为准
+ThinkingTrace,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/thinking-trace.tsx,"TextType, ShinyText, ThoughtLine, LatticeLoader","TextType, ShinyText, ThoughtLine, LatticeLoader",有映射；以逐项归属为准
+Toggle,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/selection-control.tsx,SquishSwitch,SquishSwitch,有映射；以逐项归属为准
+ToolChips,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/agent/tool-chips.tsx,"ShinyText, CallChip, StatusMark, LatticeLoader","ShinyText, CallChip, StatusMark, LatticeLoader",有映射；以逐项归属为准
+Toolbar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,Dock,,有映射；以逐项归属为准
+ToolbarActions,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ToolbarDatepicker,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,AnimatedContent,AnimatedContent,有映射；以逐项归属为准
+ToolbarFavoriteButton,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,PulseHeart,PulseHeart,有映射；以逐项归属为准
+ToolbarFilterButton,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ToolbarKebabButton,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ToolbarPillTabs,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,"GooeyNav, RubberSegment","GooeyNav, RubberSegment",有映射；以逐项归属为准
+ToolbarSearchInput,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+ToolbarSelectDropdown,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,GlideSelect,GlideSelect,有映射；以逐项归属为准
+ToolbarShowSelect,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/toolbar.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+Tooltip,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/tooltip.tsx,WarmTooltip,WarmTooltip,有映射；以逐项归属为准
+TooltipAnchor,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/tooltip.tsx,WarmTooltip,WarmTooltip,有映射；以逐项归属为准
+TooltipBubble,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/tooltip.tsx,"FadeContent, WarmTooltip","FadeContent, WarmTooltip",有映射；以逐项归属为准
+TopBar,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/topbar.tsx,"BubbleMenu, CardNav, PillNav, GlassSurface, Dock, BellToggle","PillNav, BellToggle",有映射；以逐项归属为准
+TypefaceBlock,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/style-guide.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+TypographySizeRow,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/style-guide.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+TypographyWeightSample,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/style-guide.tsx,,,主库无直接对应；按现有组件语义补充统一动效
+UserCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/user-card.tsx,"TiltedCard, ChromaGrid, Lanyard, ProfileCard, BounceCards",,有映射；以逐项归属为准
+WheelChartStatCard,/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/wheel-chart-stat-card.tsx,,,主库无直接对应；按现有组件语义补充统一动效

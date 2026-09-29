@@ -1,5 +1,7 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+
 import { type ButtonHTMLAttributes } from "react";
 import { cn } from "../../lib/utils";
 
@@ -23,30 +25,20 @@ export type CheckboxColor = keyof typeof checkboxColors;
 export function CheckboxVisual({
   checked,
   color = "purple",
+  motion = "auto",
 }: {
   checked: boolean;
   color?: CheckboxColor;
+  motion?: MotionPreference;
 }) {
-  return checked ? (
-    <>
-      <span className={cn("absolute inset-0 rounded-md", checkboxColors[color])} />
-      <svg
-        aria-hidden
-        className="absolute inset-0 w-5 h-5"
-        viewBox="0 0 20 20"
-        fill="none"
-      >
-        <path
-          d="M5.28 10.36L8.33 13.22L14.72 6.86"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+  return (
+    <span aria-hidden className="forge-check-visual absolute inset-0" data-motion={motion} data-checked={checked}>
+      <span className="absolute inset-0 bg-white rounded-md border-2 border-fg-grey-300" />
+      <span className={cn("forge-check-fill absolute inset-0 rounded-md", checkboxColors[color])} />
+      <svg className="absolute inset-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
+        <path className="forge-check-tick" pathLength="1" d="M5.28 10.36L8.33 13.22L14.72 6.86" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-    </>
-  ) : (
-    <span className="absolute inset-0 bg-white rounded-md border-2 border-fg-grey-300" />
+    </span>
   );
 }
 
@@ -55,6 +47,7 @@ export function Checkbox({
   color = "purple",
   onChange,
   disabled = false,
+  motion = "auto",
   className,
   onClick,
   "aria-label": ariaLabel,
@@ -63,6 +56,7 @@ export function Checkbox({
   checked?: boolean;
   color?: CheckboxColor;
   onChange?: (checked: boolean) => void;
+  motion?: MotionPreference;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type">) {
   return (
     <button
@@ -82,7 +76,7 @@ export function Checkbox({
         className,
       )}
     >
-      <CheckboxVisual checked={checked} color={color} />
+      <CheckboxVisual checked={checked} color={color} motion={motion} />
     </button>
   );
 }

@@ -6,7 +6,7 @@
  */
 
 import { useState } from "react";
-import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "solar-icon-set";
+import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { Button } from "../button";
 import { SurfaceCard } from "../surface-card";

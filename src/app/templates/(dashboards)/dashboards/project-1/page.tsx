@@ -14,7 +14,7 @@ import {
   AltArrowRightLinear,
   PhoneCallingLinear,
   LetterLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   StatCard,

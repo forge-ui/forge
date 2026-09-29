@@ -1,6 +1,6 @@
 {
   "name": "@forge-ui-official/core",
-  "version": "0.1.18",
+  "version": "0.3.3",
   "description": "Forge UI Kit — React 19 + Tailwind v4 components",
   "license": "MIT",
   "private": false,
@@ -12,6 +12,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./icons": {
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.js"
     },
     "./components/ui/*": {
       "types": "./dist/components/ui/*.d.ts",
@@ -25,7 +29,9 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "sideEffects": [
     "**/*.css"
@@ -33,7 +39,7 @@
   "scripts": {
     "prebuild": "node scripts/gen-assets.mjs",
     "build": "tsup && cp src/styles/tokens.css dist/styles.css",
-    "test": "tsup test/*.test.tsx --no-config --format cjs --platform node --target node22 --out-dir tmp/core-tests --clean --external jsdom && node --test tmp/core-tests/*.test.cjs",
+    "test": "tsup --config tsup.test.config.ts && node --test tmp/core-tests/*.test.cjs",
     "test:audit": "node --test scripts/*.test.mjs",
     "check:package": "node scripts/check-package.mjs",
     "check:consumer": "node scripts/check-consumer.mjs",
@@ -54,29 +60,29 @@
     "next": ">=15",
     "react": ">=19",
     "react-dom": ">=19",
-    "solar-icon-set": "^2",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "@solar-icons/react": "^2.3.2"
   },
   "devDependencies": {
     "@types/jsdom": "^28.0.3",
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^22.20.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "jsdom": "^29.1.1",
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "solar-icon-set": "^2.0.1",
-    "tailwindcss": "^4",
-    "tsup": "^8.3.5",
-    "typescript": "^5"
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwindcss": "^4.3.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "@solar-icons/react": "2.3.2"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/forge-ui/forge.git",
+    "url": "git+https://atomgit.com/bitlink/forge.git",
     "directory": "core"
   }
 }

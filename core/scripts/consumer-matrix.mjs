@@ -1,6 +1,6 @@
 export const consumerScenarios = [
-  { name: "next-15", next: "15.0.8" },
-  { name: "next-16", next: "16.0.11" },
+  { name: "next-15", next: "15.5.24" },
+  { name: "next-16", next: "16.3.5" },
 ];
 
 const exactVersionPattern = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;

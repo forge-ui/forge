@@ -13,7 +13,7 @@ import {
   CalendarMinimalisticLinear,
   VideocameraRecordLinear,
   PhoneLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   ProgressStatCard,

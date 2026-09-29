@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { AltArrowDownLinear } from "solar-icon-set";
+import { AltArrowDownLinear } from "../icons";
 import { DropdownDivider, DropdownPanel } from "../components/ui/dropdown-panel";
 import { PlusIcon } from "../components/ui/plain-icons";
 import type { AskAiSessionItem } from "./ask-ai-types";

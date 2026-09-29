@@ -8,7 +8,7 @@ import {
   CloseCircleBoldDuotone,
   CloudDownloadLinear,
   UsersGroupTwoRoundedBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Avatar,
   AvatarGroup,

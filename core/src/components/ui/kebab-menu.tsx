@@ -1,5 +1,8 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+import { MotionPresence } from "../../internal/motion";
+
 import {
   type ReactNode,
   useCallback,
@@ -9,7 +12,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { MenuDotsBold } from "solar-icon-set";
+import { MenuDotsBold } from "../../icons";
 import { cn } from "../../lib/utils";
 import { MenuItem } from "./menu-item";
 import { DropdownPanel } from "./dropdown-panel";
@@ -42,12 +45,14 @@ export function KebabMenu({
   surface = "default",
   align = "right",
   className,
+  motion = "auto",
 }: {
   items: KebabMenuItem[];
   accent?: KebabMenuAccent;
   surface?: IconTriggerSurface;
   align?: "left" | "right";
   className?: string;
+  motion?: MotionPreference;
 }) {
   const [open, setOpen] = useState(false);
   const [position, setPosition] = useState<FloatingPosition>(initialPosition);
@@ -61,15 +66,18 @@ export function KebabMenu({
 
     const triggerRect = trigger.getBoundingClientRect();
     const menuRect = menu.getBoundingClientRect();
+    // Measure layout size so the entry scale cannot shift edge alignment.
+    const menuWidth = menu.offsetWidth || menuRect.width;
+    const menuHeight = menu.offsetHeight || menuRect.height;
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
     const desiredLeft = align === "right"
-      ? triggerRect.right - menuRect.width
+      ? triggerRect.right - menuWidth
       : triggerRect.left;
     const maxLeft = Math.max(
       VIEWPORT_PADDING,
-      viewportWidth - menuRect.width - VIEWPORT_PADDING,
+      viewportWidth - menuWidth - VIEWPORT_PADDING,
     );
     const left = Math.min(
       Math.max(desiredLeft, VIEWPORT_PADDING),
@@ -77,13 +85,13 @@ export function KebabMenu({
     );
 
     const below = triggerRect.bottom + MENU_GAP;
-    const above = triggerRect.top - MENU_GAP - menuRect.height;
-    const fitsBelow = below + menuRect.height <= viewportHeight - VIEWPORT_PADDING;
+    const above = triggerRect.top - MENU_GAP - menuHeight;
+    const fitsBelow = below + menuHeight <= viewportHeight - VIEWPORT_PADDING;
     const fitsAbove = above >= VIEWPORT_PADDING;
     const desiredTop = !fitsBelow && fitsAbove ? above : below;
     const maxTop = Math.max(
       VIEWPORT_PADDING,
-      viewportHeight - menuRect.height - VIEWPORT_PADDING,
+      viewportHeight - menuHeight - VIEWPORT_PADDING,
     );
     const top = Math.min(
       Math.max(desiredTop, VIEWPORT_PADDING),
@@ -123,6 +131,7 @@ export function KebabMenu({
 
   useLayoutEffect(() => {
     if (!open) return;
+    // Position the portal before paint to avoid a visible jump at viewport edges.
     updatePosition();
 
     if (typeof ResizeObserver === "undefined") return;
@@ -142,9 +151,9 @@ export function KebabMenu({
     };
   }, [open, updatePosition]);
 
-  const menu = open && typeof document !== "undefined"
+  const menu = typeof document !== "undefined"
     ? createPortal(
-        <div
+        <MotionPresence open={open} motion={motion}
           ref={menuRef}
           className="z-50"
           style={{
@@ -154,7 +163,7 @@ export function KebabMenu({
             visibility: position.ready ? "visible" : "hidden",
           }}
         >
-          <DropdownPanel>
+          <DropdownPanel motion={motion}>
             {items.map((item, i) => (
               <MenuItem
                 key={i}
@@ -162,14 +171,17 @@ export function KebabMenu({
                 label={item.label}
                 accent={accent}
                 intent={item.danger ? "danger" : "default"}
+                motion={motion}
                 onClick={() => {
+                  if (!open) return;
                   item.onSelect?.();
                   setOpen(false);
+                  ref.current?.querySelector<HTMLButtonElement>("button")?.focus();
                 }}
               />
             ))}
           </DropdownPanel>
-        </div>,
+        </MotionPresence>,
         document.body,
       )
     : null;
@@ -177,6 +189,7 @@ export function KebabMenu({
   return (
     <div ref={ref} className={cn("relative inline-block", className)}>
       <IconTrigger
+        motion={motion}
         icon={
           <span className="inline-flex rotate-90">
             <MenuDotsBold size={16} />
@@ -186,7 +199,7 @@ export function KebabMenu({
         surface={surface}
         state={open ? "open" : "idle"}
         onClick={() => {
-          setPosition(initialPosition);
+          if (!open) setPosition(initialPosition);
           setOpen((value) => !value);
         }}
         ariaLabel="更多操作"

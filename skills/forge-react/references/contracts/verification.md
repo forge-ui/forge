@@ -18,10 +18,9 @@ Use this before claiming an admin system or module is complete.
 - [ ] `AppLayout` wraps authenticated admin pages.
 - [ ] Lists use `FullWidthTable` or `DataTable`, not hand-rolled table-like divs.
 - [ ] Colors use `fg-*` tokens only.
-- [ ] Icons come from `solar-icon-set` and use numeric `size` plus `color`.
+- [ ] Icons come from `@forge-ui-official/core/icons` and use numeric `size` plus `color`.
 - [ ] `ConfirmationDialog` is inside a real dialog shell.
 - [ ] Form errors map to fields.
 - [ ] Operational list state is URL-backed when users need to share or revisit the view.
 - [ ] Typecheck/build passes.
 - [ ] Browser screenshot confirms Forge styles are loaded and layout fills the viewport.
-

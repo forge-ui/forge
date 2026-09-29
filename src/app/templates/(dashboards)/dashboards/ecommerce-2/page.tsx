@@ -13,7 +13,7 @@ import {
   AltArrowRightLinear,
   FilterLinear,
   ArrowRightUpLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   ProgressStatCard,

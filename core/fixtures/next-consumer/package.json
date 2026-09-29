@@ -7,10 +7,10 @@
   },
   "dependencies": {
     "@forge-ui-official/core": "0.0.0-tarball",
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "solar-icon-set": "2.0.1"
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "@solar-icons/react": "2.3.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.2.2",
