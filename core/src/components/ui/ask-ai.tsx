@@ -220,7 +220,7 @@ export function AskAi({
     if (fullscreenOpen) {
       const previousOverflow = document.body.style.overflow;
       const escape = (event: KeyboardEvent) => {
-        if (event.key !== "Escape") return;
+        if (event.key !== "Escape" || event.defaultPrevented) return;
         event.preventDefault();
         event.stopImmediatePropagation();
         const fromDrawer = enteredFromDrawerRef.current;
@@ -229,10 +229,11 @@ export function AskAi({
         onFullscreenChangeRef.current?.(false);
         if (fromDrawer) setOpen(true);
       };
-      document.addEventListener("keydown", escape, true);
+      // Let nested menus handle Escape before the fullscreen host.
+      document.addEventListener("keydown", escape);
       document.body.style.overflow = "hidden";
       return () => {
-        document.removeEventListener("keydown", escape, true);
+        document.removeEventListener("keydown", escape);
         document.body.style.overflow = previousOverflow;
       };
     }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1
+
+- Anchor the PromptBar model menu above the model button with right alignment, viewport collision handling, and a bounded width and height. Hide scrollbars while retaining scrolling and keyboard access.
+- Show the selected model with a trailing check and support keyboard navigation, outside dismissal, Escape, and focus restoration. Add optional modelMenuLabel for accessible naming.
+- Use native Popover top-layer rendering to preserve host theme and focus scope while escaping ancestor clipping. Full clipping protection requires Popover API support.
+- Let nested menus consume Escape before the AskAi fullscreen host. Keep Sources and Commands as input suggestion panels.
+- Add regression tests and a case covering ordinary pages, AskAi drawer/fullscreen, narrow viewports, and long model lists.
+
 ## 0.3.0
 
 - Add Modal and Drawer with native modal semantics, keyboard focus cycling, Escape/backdrop dismissal and animated entry/exit.
