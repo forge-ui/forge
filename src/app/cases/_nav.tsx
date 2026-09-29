@@ -29,6 +29,7 @@ export const casesNavGroups: NavGroup[] = [
       { href: "/cases/list", label: "List" },
       { href: "/cases/map", label: "Map" },
       { href: "/cases/menu", label: "Menu" },
+      { href: "/cases/menu-sections", label: "Menu Sections" },
       { href: "/cases/modal", label: "Modal" },
       { href: "/cases/motion", label: "Motion · 交互动效" },
       { href: "/cases/other-widget", label: "Other Widget" },

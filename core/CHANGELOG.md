@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3
+
+- Add `AppLayout.menuSections` and export `AppLayoutMenuSection` for any number of ordered sidebar groups. The same active-item, nested-menu, collapsed, and mobile behaviors apply across all groups.
+- Keep the legacy two-group layout when `menuSections` is omitted. Empty labels no longer render an empty title container, and empty new sections are skipped.
+
 ## 0.3.2
 
 - Restore original Solar artwork across all 187 Forge icon exports, including the sidebar calendar and mail buttons, using `@solar-icons/react` 2.3.2.

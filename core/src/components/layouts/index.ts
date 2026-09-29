@@ -7,6 +7,7 @@ export type {
   AppLayoutAccentColor,
   AppLayoutLanguage,
   AppLayoutMenuItem,
+  AppLayoutMenuSection,
   AppLayoutProfile,
   AppLayoutBreadcrumb,
   AppLayoutPageHeaderVariant,

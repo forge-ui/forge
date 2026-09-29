@@ -15,6 +15,8 @@ import {
 } from "../src/components/ui/data-table";
 import { PageHeader } from "../src/components/ui/page-header";
 import { AppLayout } from "../src/components/layouts/app-layout";
+import type { AppLayoutMenuSection } from "../src";
+import { PathnameContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
 import { findActiveSidebarMenuItem, SidebarMenuItemRow, modeConfig } from "../src/internal/app-layout-sidebar";
 import { Button } from "../src/components/ui/button";
 import { TabBar } from "../src/components/ui/tab-bar";
@@ -493,6 +495,146 @@ test("AppLayout 桌面折叠态提供可聚焦的展开导航按钮", async () =
 
   await act(async () => root.unmount());
   dom.window.close();
+});
+
+test("AppLayout 三个分组按序渲染，并只高亮最长路径命中的子项", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  const sections: AppLayoutMenuSection[] = [
+    { label: "工作区", items: [{ label: "工作台", href: "/platform" }] },
+    { label: "智能体", items: [{ label: "智能体列表", href: "/platform/agents" }] },
+    { label: "平台", items: [{ label: "平台管理", children: [{ label: "智能体详情", href: "/platform/agents/detail" }] }] },
+  ];
+
+  await act(async () => {
+    root.render(createElement(PathnameContext.Provider, { value: "/platform/agents/detail" },
+      createElement(AppLayout as React.ElementType, { menuSections: sections, menuItems: [{ label: "旧菜单", href: "/legacy" }], favoriteItems: [{ label: "旧收藏", href: "/favorite" }] }, createElement("main", null, "内容")),
+    ));
+  });
+
+  const scroll = document.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  const groups = [...scroll.children] as HTMLElement[];
+  assert.deepEqual(groups.map((group) => group.querySelector(":scope > .px-3")?.textContent), ["工作区", "智能体", "平台"]);
+  assert.deepEqual(groups.map((group) => group.querySelectorAll("a[href]").length), [1, 1, 1]);
+  assert.equal(scroll.textContent?.includes("旧菜单"), false);
+  assert.equal(scroll.textContent?.includes("旧收藏"), false);
+  const currentLinks = [...scroll.querySelectorAll<HTMLAnchorElement>('a[aria-current="page"]')];
+  assert.equal(currentLinks.length, 1);
+  assert.equal(currentLinks[0]?.getAttribute("href"), "/platform/agents/detail");
+  const activeBranch = groups[2]?.querySelector<HTMLButtonElement>('button[aria-expanded="true"]');
+  assert.ok(activeBranch);
+  assert.equal(currentLinks[0]?.closest("[inert]"), null);
+
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("AppLayout 省略或清空标题不占位，空分组不渲染，旧双分组保持默认标题", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  const content = createElement("main", null, "内容");
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, {
+      menuSections: [
+        { label: "", items: [{ label: "无标题菜单", href: "/untitled" }] },
+        { label: "空组", items: [] },
+        { items: [{ label: "省略标题菜单", href: "/missing-label" }] },
+      ],
+    }, content));
+  });
+  let scroll = document.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  assert.equal(scroll.children.length, 2);
+  assert.equal(scroll.querySelectorAll(":scope > div > .px-3").length, 0);
+  assert.equal(scroll.textContent?.includes("空组"), false);
+  assert.ok(scroll.querySelector('a[href="/untitled"]'));
+  assert.ok(scroll.querySelector('a[href="/missing-label"]'));
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, {
+      menuItems: [{ label: "总览", href: "/overview" }],
+      favoriteItems: [{ label: "收藏", href: "/favorite" }],
+    }, content));
+  });
+  scroll = document.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  assert.deepEqual([...scroll.children].map((group) => group.querySelector(":scope > .px-3")?.textContent), ["主菜单", "常用项目"]);
+  assert.ok(scroll.querySelector('a[href="/overview"]'));
+  assert.ok(scroll.querySelector('a[href="/favorite"]'));
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, {
+      menuSectionLabel: "",
+      menuItems: [{ label: "总览", href: "/overview" }],
+      favoriteItems: [{ label: "收藏", href: "/favorite" }],
+      favoriteSectionLabel: "",
+    }, content));
+  });
+  scroll = document.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  assert.equal(scroll.children.length, 2);
+  assert.equal(scroll.querySelectorAll(":scope > div > .px-3").length, 0);
+
+  await act(async () => {
+    root.render(createElement(AppLayout as React.ElementType, {
+      sidebarSlot: createElement("span", null, "自定义侧栏"),
+      menuSections: [{ label: "新分组", items: [{ label: "新菜单", href: "/new" }] }],
+      menuItems: [{ label: "旧菜单", href: "/old" }],
+    }, content));
+  });
+  scroll = document.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  assert.equal(scroll.textContent, "自定义侧栏");
+
+  await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("AppLayout 收窄后保留分组间距但隐藏标题，移动抽屉沿用分组", async () => {
+  const sections: AppLayoutMenuSection[] = [
+    { label: "工作区", items: [{ label: "工作台", href: "/workspace" }] },
+    { label: "智能体", items: [{ label: "智能体", href: "/agents" }] },
+    { label: "平台", items: [{ label: "设置", href: "/settings" }] },
+  ];
+  const desktop = installDom();
+  let container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  let root = createRoot(container);
+  await act(async () => root.render(createElement(AppLayout as React.ElementType, { menuSections: sections }, createElement("main", null, "内容"))));
+  const collapse = document.querySelector<HTMLButtonElement>('[aria-label="收起主导航"]');
+  assert.ok(collapse);
+  await act(async () => collapse.click());
+  let scroll = document.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  assert.ok(scroll.className.includes("gap-6"));
+  assert.equal(scroll.children.length, 3);
+  assert.equal(scroll.querySelectorAll(":scope > div > .px-3").length, 0);
+  assert.deepEqual([...scroll.querySelectorAll("a[title]")].map((link) => link.getAttribute("title")), ["工作台", "智能体", "设置"]);
+  await act(async () => root.unmount());
+  desktop.window.close();
+
+  const mobile = installDom({ mobile: true });
+  container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  root = createRoot(container);
+  await act(async () => root.render(createElement(AppLayout as React.ElementType, { menuSections: sections }, createElement("main", null, "内容"))));
+  const trigger = document.querySelector<HTMLButtonElement>("[data-forge-menu-trigger]");
+  assert.ok(trigger);
+  await act(async () => trigger.click());
+  const sidebar = document.querySelector<HTMLElement>("[data-forge-app-sidebar]");
+  assert.ok(sidebar);
+  assert.equal(sidebar.getAttribute("aria-hidden"), null);
+  scroll = sidebar.querySelector<HTMLElement>("[data-forge-sidebar-scroll]");
+  assert.ok(scroll);
+  assert.deepEqual([...scroll.children].map((group) => group.querySelector(":scope > .px-3")?.textContent), ["工作区", "智能体", "平台"]);
+  await act(async () => root.unmount());
+  mobile.window.close();
 });
 
 test("SidebarMenuItemRow 在 pathname 激活子项时自动展开", async () => {
