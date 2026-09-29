@@ -168,4 +168,4 @@ curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-
 
 ## License
 
-Forge 源码使用 [MIT License](./LICENSE)。底层图标使用 MIT 许可的 Phosphor Icons，完整声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+Forge 源码使用 [MIT License](./LICENSE)。底层图标使用 Solar Icons（React 实现为 MIT；480 Design 的图形为 CC BY 4.0），完整声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。

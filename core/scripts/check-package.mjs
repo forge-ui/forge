@@ -23,14 +23,14 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Motion primitives + merged MIT icon adapters, measured for 0.3.0:
-// 638,030 B packed / 2,593,483 B unpacked / 1,409,249 B sourcemaps.
+// Solar style-specific imports and attribution, measured for 0.3.2:
+// 647,691 B packed / 2,648,997 B unpacked / 1,439,603 B sourcemaps.
 // Narrow additive allowance; retain all per-module JavaScript limits.
 const limits = {
-  packed: 645_000,
-  unpacked: 2_620_000,
+  packed: 655_000,
+  unpacked: 2_675_000,
   entries: 440,
-  sourceMaps: 1_430_000,
+  sourceMaps: 1_455_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
@@ -66,7 +66,7 @@ const expectedManifestFields = {
   types: "./dist/index.d.ts",
   sideEffects: ["**/*.css"],
   peerDependencies: {
-    "@phosphor-icons/react": "^2.1.10",
+    "@solar-icons/react": "^2.3.2",
     next: ">=15",
     react: ">=19",
     "react-dom": ">=19",

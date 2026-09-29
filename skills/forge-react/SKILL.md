@@ -36,7 +36,7 @@ Use `FORGE_SKILLS_DIR=/path/to/skills` for any other agent. Re-run any time to u
 
 1. **Components come from `@forge-ui-official/core` first.** Do **not** hand-roll raw Tailwind recreations of Kit primitives such as cards, status badges, toolbars, dialogs, forms, tables, or app chrome. Composing Kit components into new business layouts is expected.
 2. **Colors come from `fg-*` tokens.** Never use Tailwind's default palette (`text-blue-500`, `bg-gray-100`). Use `text-fg-violet`, `bg-fg-grey-100`, etc. When a shade doesn't exist, stop and ask before adding one.
-3. **Icons come from `@forge-ui-official/core/icons`.** The stable Forge names end in `Linear` / `Bold` / `BoldDuotone` / `LineDuotone`, while the implementation uses MIT-licensed Phosphor Icons. Prefer explicit `size` and `color` props for deterministic rendering; `currentColor` inheritance is also supported. Common sizes are 14/16/18/20/24. Default muted icon color: `#71717A`.
+3. **Icons come from `@forge-ui-official/core/icons`.** The stable Forge names end in `Linear` / `Bold` / `BoldDuotone` / `LineDuotone`, while the implementation uses Solar Icons (MIT React implementation; CC BY 4.0 artwork by 480 Design). Prefer explicit `size` and `color` props for deterministic rendering; `currentColor` inheritance is also supported. Common sizes are 14/16/18/20/24. Default muted icon color: `#71717A`.
 4. **Layout uses `<AppLayout>`. For page columns, spans and responsive spacing, read [layout-grid](references/layout-grid.md) and inherit the closest template’s fixed/proportional columns, gaps and breakpoints before using `Grid` / `GridItem`. Preserve fixed rails with static CSS Grid/Flex; keep one-dimensional toolbars in Flex.** Don't assemble sidebar + topbar from scratch. Auth forms currently have no ready-made Forge template; compose them from `TextField`, `Checkbox`, `Button`, and `StyledLink`.
 5. **When in doubt, read the matching case page** (`src/app/cases/<name>/page.tsx`). Cases show real prop combinations. Guessing props wastes everyone's time.
 6. **Strict Admin Mode: model the system before JSX.** If the request says system, platform, admin, back-office, 后台, 管理系统, or names a business module, produce the required contracts first: System Brief, Module Contract, Page Flow, Component Mapping, then implement. Use `references/contracts/*.md` and the closest `references/blueprints/*.md`.
@@ -58,7 +58,7 @@ See https://forgeui.org/docs/quick-start/ for the full walk-through. Summary:
    @source "../../node_modules/@forge-ui-official/core/dist";
    ```
 
-Peer deps (consumer-provided): `react>=19`, `react-dom>=19`, `tailwindcss^4`, `@phosphor-icons/react^2.1.10`, `next>=15` (optional, needed if you use `AppLayout` or any component that imports `next/link`). Import Forge icons from `@forge-ui-official/core/icons`, not directly from the peer package.
+Peer deps (consumer-provided): `react>=19`, `react-dom>=19`, `tailwindcss^4`, `@solar-icons/react^2.3.2`, `next>=15` (optional, needed if you use `AppLayout` or any component that imports `next/link`). Import Forge icons from `@forge-ui-official/core/icons`, not directly from the peer package.
 
 Tailwind v4 also needs the PostCSS plugin in real Next projects:
 

@@ -14,7 +14,7 @@
 
 1. **组件只从 `@forge-ui-official/core` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
 2. **颜色只用 `fg-*` token**。禁用 Tailwind 默认色（如 `text-blue-500` `bg-gray-100`），全部换成 `text-fg-violet` `bg-fg-grey-100`。没对上的颜色去 `src/app/globals.css` 的 `@theme inline` 里扩 token，不要就地写 hex。
-3. **Icon 用 `@forge-ui-official/core/icons`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾，底层是 MIT 许可的 Phosphor Icons。优先用 `size={N}` 和 `color="#HEX"` prop 保证渲染稳定；兼容层也支持 `currentColor` 和标准 SVG props。
+3. **Icon 用 `@forge-ui-official/core/icons`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾，底层是 Solar Icons（React 实现为 MIT，480 Design 图形为 CC BY 4.0）。优先用 `size={N}` 和 `color="#HEX"` prop 保证渲染稳定；兼容层也支持 `currentColor` 和标准 SVG props。
 4. **布局用 `<AppLayout>`**（`@forge-ui-official/core`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
 5. **不确定就看 `/cases/<name>`**。Forge 每个组件都有一页示例（`src/app/cases/<name>/page.tsx`），去读它，比凭想象写 props 靠谱十倍。
 

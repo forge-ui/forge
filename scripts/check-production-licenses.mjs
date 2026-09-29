@@ -24,10 +24,10 @@ if (removedSolar) {
   violations.push(`solar-icon-set is still present (${removedSolar.license})`);
 }
 
-const phosphor = packages.find((entry) => entry.name === "@phosphor-icons/react");
-if (!phosphor) violations.push("@phosphor-icons/react is missing from production dependencies");
-else if (phosphor.license !== "MIT") {
-  violations.push(`@phosphor-icons/react must remain MIT, received ${phosphor.license}`);
+const solar = packages.find((entry) => entry.name === "@solar-icons/react");
+if (!solar) violations.push("@solar-icons/react is missing from production dependencies");
+else if (solar.license !== "MIT") {
+  violations.push(`@solar-icons/react implementation must remain MIT, received ${solar.license}`);
 }
 
 if (violations.length > 0) {
@@ -37,6 +37,6 @@ if (violations.length > 0) {
 } else {
   const licenseCount = Object.keys(report).length;
   console.log(
-    `Production license check passed: ${packages.length} packages across ${licenseCount} license expressions; Phosphor is MIT and no GPL/AGPL/SSPL dependency was found.`,
+    `Production license check passed: ${packages.length} packages across ${licenseCount} license expressions; Solar React implementation is MIT; artwork attribution is in THIRD_PARTY_NOTICES.md and no GPL/AGPL/SSPL dependency was found.`,
   );
 }

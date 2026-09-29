@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+- Restore original Solar artwork across all 187 Forge icon exports, including the sidebar calendar and mail buttons, using `@solar-icons/react` 2.3.2.
+- Replace the Phosphor peer with `@solar-icons/react` ^2.3.2. Import paths and icon names remain unchanged; icon props now follow Solar rather than Phosphor.
+- Include attribution for Solar artwork by 480 Design (CC BY 4.0) and the MIT React implementation.
+
 ## 0.3.1
 
 - Anchor the PromptBar model menu above the model button with right alignment, viewport collision handling, and a bounded width and height. Hide scrollbars while retaining scrolling and keyboard access.
