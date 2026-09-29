@@ -7,7 +7,6 @@
 
 import { useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import {
-  AltArrowDownLinear,
   ArrowUpLinear,
   CommandLinear,
   HashtagLinear,
@@ -17,6 +16,7 @@ import {
 } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import type { AccentColor } from "../accent-utils";
+import { PromptModelMenu } from "../../../internal/prompt-model-menu";
 
 export type PromptSource = {
   id: string;
@@ -48,6 +48,7 @@ export function PromptBar({
   models = [],
   model,
   onModelChange,
+  modelMenuLabel = "Model",
   disabled,
   color,
   className = "",
@@ -63,6 +64,8 @@ export function PromptBar({
   models?: PromptModel[];
   model?: string;
   onModelChange?: (id: string) => void;
+  /** Accessible name for the model menu and its trigger. */
+  modelMenuLabel?: string;
   disabled?: boolean;
   /** Maps `--accent` so the send button follows AppLayout / site accent. */
   color?: AccentColor;
@@ -149,16 +152,7 @@ export function PromptBar({
           }}
         />
       )}
-      {openPanel === "models" && models.length > 0 && (
-        <Picker
-          title="Model"
-          items={models.map((item) => ({ id: item.id, label: item.label }))}
-          onPick={(id) => {
-            onModelChange?.(id);
-            setPanel(null);
-          }}
-        />
-      )}
+
 
       <textarea
         value={value}
@@ -195,23 +189,24 @@ export function PromptBar({
             </IconChip>
           ) : null}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 items-center gap-2">
           {models.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setPanel((v) => (v === "models" ? null : "models"))}
-              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100"
-            >
-              {models.find((item) => item.id === model)?.label ?? models[0]?.label}
-              <AltArrowDownLinear size={12} color="var(--fg-grey-500)" />
-            </button>
+            <PromptModelMenu
+              models={models}
+              model={model}
+              label={modelMenuLabel}
+              disabled={disabled}
+              open={panel === "models"}
+              onOpenChange={(open) => setPanel(open ? "models" : null)}
+              onModelChange={onModelChange}
+            />
           )}
           <button
             type="button"
             disabled={!canSend}
             onClick={send}
             aria-label="Send"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
           >
             <ArrowUpLinear size={16} color="var(--fg-white)" />
           </button>
