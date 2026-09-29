@@ -1,6 +1,6 @@
 # Forge UI Kit Agent 上下文
 
-Forge UI Kit 是面向后台管理系统和 SaaS 原型的 React 19 + Next.js 16 + Tailwind v4 组件库。核心包是 `@forge-ui-official/core@0.1.10`。
+Forge UI Kit 是面向后台管理系统和 SaaS 原型的 React 19 + Next.js 16 + Tailwind v4 组件库。核心包是 `@forge-ui-official/core@0.3.3`。
 
 ## 使用边界
 
@@ -20,10 +20,10 @@ Forge UI Kit 是面向后台管理系统和 SaaS 原型的 React 19 + Next.js 16
 import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
 ```
 
-Icon 使用 `solar-icon-set`：
+Icon 使用 `@forge-ui-official/core/icons`：
 
 ```tsx
-import { HomeLinear } from "solar-icon-set";
+import { HomeLinear } from "@forge-ui-official/core/icons";
 
 <HomeLinear size={20} color="#71717A" />
 ```
@@ -32,7 +32,7 @@ import { HomeLinear } from "solar-icon-set";
 
 - 组件只从 `@forge-ui-official/core` 导入。
 - 颜色只用 `fg-*` token，不在业务页使用 Tailwind 默认色或裸 hex。
-- Icon 用 `solar-icon-set`，通过 `size` / `color` prop 控制。
+- Icon 用 `@forge-ui-official/core/icons`，通过 `size` / `color` prop 控制。
 - 后台壳层用 `AppLayout`，不要在业务页重写 sidebar/topbar/profile。
 - 页面保持后台系统密度：字号克制、颜色不过深、卡片不写死宽度、表格首屏要有有效行、右 rail 要服务决策。
 - 缺组件时回到 core 扩展或记录 ForgeUI gap，不在业务页手搓通用 primitive。
@@ -116,12 +116,14 @@ import { HomeLinear } from "solar-icon-set";
 
 ## Case 路由
 
+- /cases/agent
 - /cases/badge
 - /cases/button-link
 - /cases/calendar
 - /cases/card
 - /cases/chart
 - /cases/chat
+- /cases/checklist
 - /cases/comment
 - /cases/filter
 - /cases/grid
@@ -130,12 +132,16 @@ import { HomeLinear } from "solar-icon-set";
 - /cases/list
 - /cases/map
 - /cases/menu
+- /cases/menu-sections/[view]
+- /cases/menu-sections
 - /cases/modal
+- /cases/motion
 - /cases/other-widget
 - /cases/page-header
 - /cases
 - /cases/pagination-stepper
 - /cases/progress
+- /cases/prompt-bar
 - /cases/tab
 - /cases/table
 - /cases/toolbar
@@ -170,6 +176,7 @@ import { HomeLinear } from "solar-icon-set";
 - /templates/dashboards
 - /templates/dashboards/project-1
 - /templates/dashboards/project-2
+- /templates/agent
 - /templates/crm-template/activity
 - /templates/crm-template/customers/[id]
 - /templates/crm-template/customers/new

@@ -14,7 +14,7 @@ import {
   VideocameraRecordLinear,
   UsersGroupRoundedLinear,
   DocumentTextLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Button,
   BarChartStatCard,

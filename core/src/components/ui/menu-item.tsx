@@ -1,6 +1,7 @@
+import type { MotionPreference } from "../../lib/motion";
 /* eslint-disable @next/next/no-img-element */
 import { type ReactNode } from "react";
-import { AltArrowDownLinear } from "solar-icon-set";
+import { AltArrowDownLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 import { accentColors, type AccentColor } from "./accent-utils";
 
@@ -28,6 +29,7 @@ export function MenuItem({
   ariaLabel,
   expanded,
   className,
+  motion = "auto",
   onClick,
 }: {
   accent?: MenuItemAccent;
@@ -44,6 +46,7 @@ export function MenuItem({
   ariaLabel?: string;
   expanded?: boolean;
   className?: string;
+  motion?: MotionPreference;
   onClick?: () => void;
 }) {
   const resolvedState = active ? "active" : state;
@@ -155,9 +158,11 @@ export function MenuItem({
       {showSubmenuArrow && (
         <span
           aria-hidden
+          data-motion={motion}
+          data-expanded={expanded}
           className={cn(
-            "w-6 h-6 flex items-center justify-center shrink-0",
-            expanded && "rotate-180",
+            "forge-chevron w-6 h-6 flex items-center justify-center shrink-0",
+
             resolvedState === "active"
               ? "text-white"
               : surface === "onColoredBg"
@@ -172,7 +177,7 @@ export function MenuItem({
   );
 
   const interactiveClassName = cn(
-    "relative rounded-full inline-flex items-center gap-2 transition-colors",
+    "forge-menu-item relative rounded-full inline-flex items-center gap-2",
     hasText && "w-full",
     kind === "submenu" ? submenuPadding : basePadding,
     stateClass,
@@ -182,6 +187,7 @@ export function MenuItem({
   if (href && resolvedState !== "disabled") {
     return (
       <a
+        data-motion={motion}
         href={href}
         aria-label={ariaLabel}
         aria-current={resolvedState === "active" ? "page" : undefined}
@@ -195,6 +201,7 @@ export function MenuItem({
 
   return (
     <button
+      data-motion={motion}
       type="button"
       aria-label={ariaLabel}
       aria-expanded={kind === "dropdown" ? expanded : undefined}

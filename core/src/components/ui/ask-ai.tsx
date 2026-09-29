@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { CloseCircleLinear, FullScreenLinear } from "solar-icon-set";
+import { CloseCircleLinear, FullScreenLinear } from "../../icons";
 import { AskAiIcon } from "../../internal/ask-ai-icon";
 import { AskHistoryDropdown } from "../../internal/ask-ai-history";
 import {
@@ -141,7 +141,7 @@ export function AskAi({
   const threadKey = activeId || "default";
   const [threads, setThreads] = useState<Record<string, AskAiMessage[]>>({});
   const threadsRef = useRef(threads);
-  threadsRef.current = threads;
+  useLayoutEffect(() => { threadsRef.current = threads; }, [threads]);
   const conversation = threads[threadKey] ?? EMPTY_MESSAGES;
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -151,8 +151,10 @@ export function AskAi({
   const fullscreenOpen = fullscreenControlled ? fullscreen : internalFullscreen;
   const fullscreenControlledRef = useRef(fullscreenControlled);
   const onFullscreenChangeRef = useRef(onFullscreenChange);
-  fullscreenControlledRef.current = fullscreenControlled;
-  onFullscreenChangeRef.current = onFullscreenChange;
+  useLayoutEffect(() => {
+    fullscreenControlledRef.current = fullscreenControlled;
+    onFullscreenChangeRef.current = onFullscreenChange;
+  }, [fullscreenControlled, onFullscreenChange]);
 
   function setFullscreenOpen(next: boolean) {
     if (!fullscreenControlled) setInternalFullscreen(next);
@@ -209,6 +211,8 @@ export function AskAi({
     if (fullscreenOpen && open) {
       enteredFromDrawerRef.current = true;
       skipTriggerFocusRef.current = true;
+      // External fullscreen activation must close the competing drawer.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setOpen(false);
     }
   }, [fullscreenOpen, open]);
@@ -216,7 +220,7 @@ export function AskAi({
     if (fullscreenOpen) {
       const previousOverflow = document.body.style.overflow;
       const escape = (event: KeyboardEvent) => {
-        if (event.key !== "Escape") return;
+        if (event.key !== "Escape" || event.defaultPrevented) return;
         event.preventDefault();
         event.stopImmediatePropagation();
         const fromDrawer = enteredFromDrawerRef.current;
@@ -225,10 +229,11 @@ export function AskAi({
         onFullscreenChangeRef.current?.(false);
         if (fromDrawer) setOpen(true);
       };
-      document.addEventListener("keydown", escape, true);
+      // Let nested menus handle Escape before the fullscreen host.
+      document.addEventListener("keydown", escape);
       document.body.style.overflow = "hidden";
       return () => {
-        document.removeEventListener("keydown", escape, true);
+        document.removeEventListener("keydown", escape);
         document.body.style.overflow = previousOverflow;
       };
     }

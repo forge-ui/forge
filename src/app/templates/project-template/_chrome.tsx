@@ -8,7 +8,7 @@ import {
   StarBoldDuotone,
   UsersGroupTwoRoundedBoldDuotone,
   WidgetBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { AppLayout } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 import { mainProfile, teamMeta } from "./_data";

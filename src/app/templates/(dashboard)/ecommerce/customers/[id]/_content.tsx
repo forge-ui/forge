@@ -29,7 +29,7 @@ import {
   TrashBinMinimalisticLinear,
   CopyLinear,
   CalendarLinear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 
 interface OrderHistoryItem {
   id: string;

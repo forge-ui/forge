@@ -1,5 +1,7 @@
 "use client";
 
+import type { MotionPreference } from "../../lib/motion";
+
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback } from "react";
@@ -12,7 +14,7 @@ import {
   CalendarBold,
   BellBold,
   LetterBold,
-} from "solar-icon-set";
+} from "../../icons";
 import type { AskAiProps } from "../ui/ask-ai";
 import { PageHeader } from "../ui/page-header";
 import { Breadcrumbs } from "../ui/breadcrumbs";
@@ -59,6 +61,12 @@ export type AppLayoutMenuItem =
       children: AppLayoutMenuItem[];
     });
 
+export type AppLayoutMenuSection = {
+  /** 空字符串或省略时不渲染标题行 */
+  label?: string;
+  items: AppLayoutMenuItem[];
+};
+
 export interface AppLayoutProfile {
   avatar: string;
   name: string;
@@ -73,6 +81,8 @@ export interface AppLayoutBreadcrumb {
 }
 
 export interface AppLayoutProps {
+  /** Motion for the navigation shell and its nested menu branches. */
+  motion?: MotionPreference;
   mode?: AppLayoutMode;
   profilePosition?: AppLayoutProfilePosition;
   accent?: AppLayoutAccentColor;
@@ -89,9 +99,11 @@ export interface AppLayoutProps {
   /** 自定义 sidebar 收藏分组标题 */
   favoriteSectionLabel?: string;
   teams?: Team[];
-  /** 默认 sidebar 主菜单。如果传了 sidebarSlot，这个会被忽略 */
+  /** 默认 sidebar 主菜单。如果传了 menuSections 或 sidebarSlot，这个会被忽略 */
   menuItems?: AppLayoutMenuItem[];
   favoriteItems?: AppLayoutMenuItem[];
+  /** 按顺序渲染的侧栏分组。传入后忽略旧的菜单项和分组标题；sidebarSlot 优先级更高。 */
+  menuSections?: AppLayoutMenuSection[];
   profile?: AppLayoutProfile;
   notifications?: number;
   messages?: number;
@@ -117,8 +129,7 @@ export interface AppLayoutProps {
   showFavorite?: boolean;
   /** 完全隐藏 page header 区（标题 / 按钮 / 边框）。chat / 沉浸式页面用 */
   hideHeader?: boolean;
-  /** 完全自定义 sidebar 主体（替换主菜单 + menuItems + favoriteItems 那块）。
-   *  传了就用 slot；没传 fallback 到 menuItems / favoriteItems 老逻辑。 */
+  /** 完全自定义 sidebar 主体，优先于 menuSections 和旧的两个菜单分组。 */
   sidebarSlot?: ReactNode;
   /** Expanded sidebar width. Accepts any CSS length; default keeps the Forge starter density. */
   sidebarWidth?: string;
@@ -146,6 +157,7 @@ type PopoverId = "calendar" | "messages" | "notifications" | "language" | "profi
 // ============================================================
 
 export function AppLayout({
+  motion = "auto",
   mode = "light",
   profilePosition = "topbar",
   accent = "purple",
@@ -161,6 +173,7 @@ export function AppLayout({
   teams,
   menuItems,
   favoriteItems,
+  menuSections,
   profile,
   notifications,
   messages,
@@ -194,8 +207,14 @@ export function AppLayout({
 
   const accentActive = config.useAccentBgForActive ? accentCfg.activeBgLight : accentCfg.activeBgDark;
   const accentBar = config.useAccentBgForActive ? accentCfg.accentBar : accentCfg.accentBarDark;
+  const sidebarSections: AppLayoutMenuSection[] = menuSections === undefined
+    ? [
+        { label: menuSectionLabel, items: menuItems ?? [] },
+        ...(favoriteItems?.length ? [{ label: favoriteSectionLabel, items: favoriteItems }] : []),
+      ]
+    : menuSections.filter((section) => section.items.length > 0);
   const activeSidebarItem = findActiveSidebarMenuItem(
-    [...(menuItems ?? []), ...(favoriteItems ?? [])],
+    sidebarSections.flatMap((section) => section.items),
     pathname,
   );
 
@@ -234,6 +253,8 @@ export function AppLayout({
   }, []);
 
   useEffect(() => {
+    // Navigation closes the modal sidebar and releases its body scroll lock.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileSidebarOpen(false);
   }, [pathname]);
 
@@ -292,6 +313,8 @@ export function AppLayout({
   }, [mobileSidebarOpen]);
 
   useEffect(() => {
+    // Closing the mobile modal also dismisses popovers mounted inside it.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isMobile && !mobileSidebarOpen) setOpenPopover(null);
   }, [isMobile, mobileSidebarOpen]);
 
@@ -400,6 +423,7 @@ export function AppLayout({
         ref={sidebarRef}
         id="forge-app-sidebar"
         data-forge-app-sidebar
+        data-motion={motion}
         role="navigation"
         aria-label="主导航"
         aria-hidden={isMobile && !mobileSidebarOpen ? true : undefined}
@@ -411,7 +435,7 @@ export function AppLayout({
         }}
         style={sidebarStyle}
         className={cn(
-          "fixed inset-y-0 left-0 h-dvh flex flex-col shrink-0 z-50 transition-[width,transform] duration-300 md:sticky md:top-0 md:z-30 md:h-screen md:translate-x-0",
+          "forge-sidebar-motion fixed inset-y-0 left-0 h-dvh flex flex-col shrink-0 z-50 transition-[width,transform] duration-300 md:sticky md:top-0 md:z-30 md:h-screen md:translate-x-0",
           "w-[var(--forge-sidebar-expanded-width)] max-w-[calc(100vw-3rem)] overflow-visible",
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
           sidebarCollapsed
@@ -500,29 +524,18 @@ export function AppLayout({
             sidebarSlot
           ) : (
             <>
-              <div className="flex flex-col gap-3">
-                {!sidebarCollapsed && (
-                  <div className="px-3">
-                    <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>{menuSectionLabel}</span>
-                  </div>
-                )}
-                {(menuItems ?? []).map((item, i) => (
-                  <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
-                ))}
-              </div>
-
-              {favoriteItems && favoriteItems.length > 0 && (
-                <div className="flex flex-col gap-3">
-                  {!sidebarCollapsed && (
+              {sidebarSections.map((section, sectionIndex) => (
+                <div className="flex flex-col gap-3" key={sectionIndex}>
+                  {!sidebarCollapsed && section.label && (
                     <div className="px-3">
-                      <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>{favoriteSectionLabel}</span>
+                      <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>{section.label}</span>
                     </div>
                   )}
-                  {favoriteItems.map((item, i) => (
-                    <SidebarMenuItemRow key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
+                  {section.items.map((item, i) => (
+                    <SidebarMenuItemRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                   ))}
                 </div>
-              )}
+              ))}
             </>
           )}
         </div>

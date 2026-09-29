@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRightUpLinear } from "solar-icon-set";
+import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
 
 type NavItem = { href: string; label: string; external?: boolean };
@@ -37,6 +37,7 @@ export const componentsNavGroups: NavGroup[] = [
       { href: "/components/map", label: "Map" },
       { href: "/components/menu", label: "Menu" },
       { href: "/components/modal", label: "Modal" },
+      { href: "/components/motion", label: "Motion · 交互动效" },
       { href: "/components/other-widget", label: "Other Widget" },
       { href: "/components/page-header", label: "Page Header" },
       { href: "/components/pagination-stepper", label: "Pagination & Stepper" },

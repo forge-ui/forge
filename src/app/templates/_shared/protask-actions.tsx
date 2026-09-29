@@ -13,7 +13,7 @@ import {
   TextField,
   type AccentColor,
 } from "@forge-ui-official/core";
-import { CalendarMinimalisticLinear, CloudUploadLinear, Pen2Linear, TrashBinMinimalisticLinear } from "solar-icon-set";
+import { CalendarMinimalisticLinear, CloudUploadLinear, Pen2Linear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
 import { Modal } from "./modal";
 
 export function normalizeProtaskActivityDialogId(dialogId?: string | null) {

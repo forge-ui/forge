@@ -10,7 +10,7 @@ import {
   StarBoldDuotone,
   MagniferBoldDuotone,
   SettingsBoldDuotone,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import type {
   AppLayoutMenuItem,
   AppLayoutMode,

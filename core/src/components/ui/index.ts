@@ -210,7 +210,7 @@ export type {
 export { ConfirmationDialog } from "./confirmation-dialog";
 export type { ConfirmationDialogColor, ConfirmationDialogLayout } from "./confirmation-dialog";
 
-export { Tooltip, TooltipBubble, TooltipAnchor } from "./tooltip";
+export { Tooltip, TooltipBubble, TooltipAnchor, TooltipGroup } from "./tooltip";
 export type { TooltipPosition, TooltipSize, TooltipAnchorState } from "./tooltip";
 
 // Navigation & Controls
@@ -418,3 +418,15 @@ export type {
   AgentFlowNode,
   AgentFlowEdge,
 } from "./agent";
+
+// Overlay, disclosure, content transitions and notifications.
+export { Modal } from "./modal";
+export type { ModalProps } from "./modal";
+export { Drawer } from "./drawer";
+export type { DrawerProps } from "./drawer";
+export { Accordion } from "./accordion";
+export type { AccordionItem, AccordionProps } from "./accordion";
+export { TabsContent } from "./tabs-content";
+export type { TabsContentProps } from "./tabs-content";
+export { ToastProvider, useToast } from "./toast";
+export type { ToastOptions, ToastApi } from "./toast";

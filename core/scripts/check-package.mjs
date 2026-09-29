@@ -23,27 +23,31 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Agent primitives + Checklist + AskAi history. Measured package:
-// 597,897 B packed / 2,435,075 B unpacked.
-// Reserve only the additive feature payload; retain per-module limits.
+// Solar style-specific imports and attribution, measured for 0.3.2:
+// 647,691 B packed / 2,648,997 B unpacked / 1,439,603 B sourcemaps.
+// Narrow additive allowance; retain all per-module JavaScript limits.
 const limits = {
-  packed: 602_000,
-  unpacked: 2_440_000,
-  entries: 410,
-  sourceMaps: 1_330_000,
+  packed: 655_000,
+  unpacked: 2_675_000,
+  entries: 440,
+  sourceMaps: 1_455_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 20_000,
+  stylesRaw: 27_500,
 };
 
 const expectedExports = {
   ".": {
     types: "./dist/index.d.ts",
     import: "./dist/index.js",
+  },
+  "./icons": {
+    types: "./dist/icons.d.ts",
+    import: "./dist/icons.js",
   },
   "./components/ui/*": {
     types: "./dist/components/ui/*.d.ts",
@@ -62,10 +66,10 @@ const expectedManifestFields = {
   types: "./dist/index.d.ts",
   sideEffects: ["**/*.css"],
   peerDependencies: {
+    "@solar-icons/react": "^2.3.2",
     next: ">=15",
     react: ">=19",
     "react-dom": ">=19",
-    "solar-icon-set": "^2",
     tailwindcss: "^4",
   },
   peerDependenciesMeta: undefined,
@@ -87,7 +91,7 @@ if (pack.entryCount !== pack.files.length) {
   errors.push(`entryCount (${pack.entryCount}) does not match files.length (${pack.files.length})`);
 }
 
-const allowedPathPattern = /^(?:README\.md|LICENSE(?:\.md)?|package\.json|dist\/(?:styles\.css|.+\.(?:js|js\.map|d\.ts)))$/;
+const allowedPathPattern = /^(?:README\.md|LICENSE(?:\.md)?|THIRD_PARTY_NOTICES\.md|package\.json|dist\/(?:styles\.css|.+\.(?:js|js\.map|d\.ts)))$/;
 for (const file of pack.files) {
   if (!allowedPathPattern.test(file.path)) {
     errors.push(`unexpected packed file: ${file.path}`);
@@ -97,8 +101,10 @@ for (const file of pack.files) {
 if (!isDeepStrictEqual(pkg.exports, expectedExports)) {
   errors.push("package exports changed; update the compatibility snapshot deliberately");
 }
-if (!isDeepStrictEqual(pkg.files, ["dist"])) {
-  errors.push(`package files must remain ["dist"], received ${JSON.stringify(pkg.files)}`);
+if (!isDeepStrictEqual(pkg.files, ["dist", "LICENSE", "THIRD_PARTY_NOTICES.md"])) {
+  errors.push(
+    `package files must include dist and legal notices, received ${JSON.stringify(pkg.files)}`,
+  );
 }
 for (const [field, expected] of Object.entries(expectedManifestFields)) {
   if (!isDeepStrictEqual(pkg[field], expected)) {
@@ -152,6 +158,10 @@ if (!isDeepStrictEqual(actualWildcardApi, expectedWildcardApi)) {
 }
 
 for (const requiredPath of [
+  "LICENSE",
+  "THIRD_PARTY_NOTICES.md",
+  "dist/icons.js",
+  "dist/icons.d.ts",
   "dist/components/layouts/app-layout.js",
   "dist/components/layouts/app-layout.d.ts",
   "dist/components/layouts/sidebar-popovers.js",

@@ -6,7 +6,7 @@ import {
   AddCircleLinear,
   CloudDownloadLinear,
   Pen2Linear,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import {
   Avatar,
   AvatarGroup,

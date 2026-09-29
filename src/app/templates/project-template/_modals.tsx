@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Button, ConfirmationDialog, TextField } from "@forge-ui-official/core";
-import { TrashBinMinimalisticLinear } from "solar-icon-set";
+import { TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
 import { Modal } from "../_shared/modal";
 
 export type TemplateFormField = {

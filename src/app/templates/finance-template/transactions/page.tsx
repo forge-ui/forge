@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, CloudDownloadLinear } from "solar-icon-set";
+import { AddCircleLinear, CloudDownloadLinear } from "@forge-ui-official/core/icons";
 import {
   CellActions,
   CellTextSubtitle,

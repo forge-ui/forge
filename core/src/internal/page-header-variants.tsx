@@ -14,7 +14,7 @@ import {
   MenuDotsBold,
   SortFromTopToBottomBold,
   StarBoldDuotone,
-} from "solar-icon-set";
+} from "../icons";
 import { accentColors } from "../components/ui/accent-utils";
 import { AskAi } from "../components/ui/ask-ai";
 import { CalendarPopup } from "../components/ui/calendar-popup";

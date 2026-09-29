@@ -11,7 +11,7 @@ import {
   DangerTriangleBold,
   CrownBold,
   ShieldCheckBold,
-} from "solar-icon-set";
+} from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 type DialogSpec = {

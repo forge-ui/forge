@@ -4,7 +4,7 @@
 // 不是 tab 切换，两个区并存在一个卡片里
 
 import { useState, type ReactNode } from "react";
-import { CopyLinear, CheckCircleLinear } from "solar-icon-set";
+import { CopyLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
 
 const COLLAPSED_HEIGHT = 180;

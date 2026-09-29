@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { MenuDotsBold, CalendarLinear } from "solar-icon-set";
+import { MenuDotsBold, CalendarLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 

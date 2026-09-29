@@ -6,7 +6,7 @@ import { accentColors, type AccentColor } from "../accent-utils";
 type IconComponent = ComponentType<{ size?: number; color?: string }>;
 
 interface ChartListItemProps {
-  /** Solar icon component reference (e.g. `WalletLinear`). Accent drives its color + bg. */
+  /** Forge icon component reference (e.g. `WalletLinear`). Accent drives its color + bg. */
   icon?: IconComponent;
   accent?: AccentColor;
   title: string;

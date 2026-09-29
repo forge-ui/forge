@@ -21,6 +21,24 @@ src/index.ts         包导出入口
 - 组件内部优先使用 Forge token 和语义 class，不引入 Tailwind 默认色系来绕过设计系统。
 - 如果业务页面需要反复覆盖同一类组件的字号、颜色、宽度或状态样式，应回到 `core` 扩组件或 token，而不是在页面里手搓局部样式。
 
+## AppLayout 侧栏分组
+
+`menuSections` 按数组顺序渲染任意多个侧栏分组，沿用菜单项的选中高亮、子菜单展开、收窄图标模式和移动端抽屉。空 `items` 分组会被跳过；`label` 省略或传空字符串时，只渲染菜单项，不渲染标题行。
+
+```tsx
+import { AppLayout, type AppLayoutMenuSection } from "@forge-ui-official/core";
+
+const menuSections: AppLayoutMenuSection[] = [
+  { label: "工作区", items: [{ label: "总览", href: "/workspace" }] },
+  { label: "智能体", items: [{ label: "智能体列表", href: "/agents" }] },
+  { label: "平台", items: [{ label: "设置", href: "/settings" }] },
+];
+
+<AppLayout menuSections={menuSections}>页面内容</AppLayout>;
+```
+
+优先级为 `sidebarSlot`、`menuSections`、旧的 `menuItems` 与 `favoriteItems`。不传 `menuSections` 时仍使用默认的「主菜单」和「常用项目」；旧的分组标题传空字符串时也不占位。
+
 ## 开发
 
 仓库工具链要求 Node.js `>=22.13.0`，并由根目录 `packageManager` 固定 pnpm 版本。

@@ -1,5 +1,9 @@
 "use client";
 
+import { useRef } from "react";
+import type { MotionPreference } from "../../lib/motion";
+import { useMovingIndicator } from "../../internal/motion";
+
 import { cn } from "../../lib/utils";
 
 // ============================================================
@@ -35,6 +39,7 @@ export function TabBar({
   surface = "inline",
   onChange,
   className,
+  motion = "auto",
   ariaLabel = "标签页",
 }: {
   tabs: TabItem[];
@@ -42,22 +47,28 @@ export function TabBar({
   surface?: TabBarSurface;
   onChange?: (index: number) => void;
   className?: string;
+  motion?: MotionPreference;
   ariaLabel?: string;
 }) {
   const isPage = surface === "page";
   const activeIndex = tabs.findIndex((tab) => tab.active);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const indicator = useMovingIndicator(rootRef, "[aria-selected='true']", activeIndex);
   return (
     <div
+      ref={rootRef}
+      data-motion={motion}
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        "border-b border-fg-grey-200",
+        "relative isolate border-b border-fg-grey-200",
         isPage
           ? "flex w-full bg-white px-6 pt-4"
           : "inline-flex",
         className,
       )}
     >
+      <span aria-hidden ref={indicator} className={cn("forge-moving-indicator forge-tab-indicator", tabBorderColors[color])} />
       {tabs.map((tab, index) => (
         <button
           key={index}
@@ -102,14 +113,7 @@ export function TabBar({
               {tab.badge}
             </span>
           )}
-          {tab.active && (
-            <div
-              className={cn(
-                "absolute bottom-0 left-0 right-0 h-0.5",
-                tabBorderColors[color]
-              )}
-            />
-          )}
+
         </button>
       ))}
     </div>

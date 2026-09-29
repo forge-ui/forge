@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, CloudDownloadLinear, DocumentTextBoldDuotone } from "solar-icon-set";
+import { AddCircleLinear, CloudDownloadLinear, DocumentTextBoldDuotone } from "@forge-ui-official/core/icons";
 import { CellActions, CellImageText, CellText, DataTable, StatusBadge, Toolbar, ToolbarActions, ToolbarDatepicker, ToolbarSearchInput, ToolbarShowSelect } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import {

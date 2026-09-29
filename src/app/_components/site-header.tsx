@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MagniferLinear } from "solar-icon-set";
+import { MagniferLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
 import { asset } from "@/lib/asset";
 
