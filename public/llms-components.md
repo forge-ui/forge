@@ -1,7 +1,7 @@
 # Forge UI Generated Component Catalog
 
 Source: `forge-app-design/references/component-registry-lite.json`
-Package: `@forge-ui-official/core@0.3.0`
+Package: `@forge-ui-official/core@0.3.2`
 
 Use this file for quick component selection. For stricter generation, read the external `forge-app-design/references/component-registry.json`.
 

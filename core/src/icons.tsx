@@ -1,158 +1,203 @@
 import { forwardRef } from "react";
-import type { Icon, IconProps, IconWeight } from "@phosphor-icons/react";
-import {
-  ArrowBendUpLeftIcon,
-  SidebarSimpleIcon,
-  ArrowsInIcon,
-  MicrophoneIcon,
-  LightbulbIcon,
-  CommandIcon,
-  CodeIcon,
-  ArrowClockwiseIcon,
-  ArrowCounterClockwiseIcon,
-  ArrowDownRightIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowUpIcon,
-  ArrowUpRightIcon,
-  ArrowsDownUpIcon,
-  ArrowsOutIcon,
-  ArrowsLeftRightIcon,
-  BagIcon,
-  BellIcon,
-  BookOpenIcon,
-  BookmarkSimpleIcon,
-  CalendarBlankIcon,
-  CalendarDotsIcon,
-  CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  CaretUpIcon,
-  ChartBarIcon,
-  ChartLineUpIcon,
-  ChartPieSliceIcon,
-  ChatCircleIcon,
-  ChatCircleDotsIcon,
-  ChatDotsIcon,
-  CheckCircleIcon,
-  ClipboardTextIcon,
-  ClockIcon,
-  CloudArrowDownIcon,
-  CloudArrowUpIcon,
-  ContactlessPaymentIcon,
-  CopyIcon,
-  CreditCardIcon,
-  CrownIcon,
-  CubeIcon,
-  DotsThreeIcon,
-  DownloadSimpleIcon,
-  EnvelopeIcon,
-  EyeIcon,
-  EyeClosedIcon,
-  ShieldCheckeredIcon,
-  ShieldStarIcon,
-  FileIcon,
-  FileTextIcon,
-  FlagIcon,
-  FolderIcon,
-  FolderOpenIcon,
-  FoldersIcon,
-  FunnelIcon,
-  GameControllerIcon,
-  GearSixIcon,
-  HashIcon,
-  HeartIcon,
-  HouseIcon,
-  HouseLineIcon,
-  InfoIcon,
-  KeyboardIcon,
-  LinkIcon,
-  ListIcon,
-  ListChecksIcon,
-  LockKeyIcon,
-  MagnifyingGlassIcon,
-  MailboxIcon,
-  MapPinIcon,
-  MinusSquareIcon,
-  MoneyIcon,
-  MouseIcon,
-  NotePencilIcon,
-  PaperPlaneTiltIcon,
-  PaperclipIcon,
-  PasswordIcon,
-  PencilIcon,
-  PencilSimpleIcon,
-  PhoneIcon,
-  PhoneCallIcon,
-  PlayIcon,
-  PlayCircleIcon,
-  PlusIcon,
-  PlusCircleIcon,
-  PlusSquareIcon,
-  PrinterIcon,
-  PushPinIcon,
-  QuestionIcon,
-  ReceiptIcon,
-  RecordIcon,
-  RocketIcon,
-  RocketLaunchIcon,
-  ShareNetworkIcon,
-  ShieldIcon,
-  ShieldCheckIcon,
-  ShoppingCartIcon,
-  ShoppingCartSimpleIcon,
-  SignInIcon,
-  SignOutIcon,
-  SlidersHorizontalIcon,
-  SortDescendingIcon,
-  SparkleIcon,
-  SquaresFourIcon,
-  StarIcon,
-  StorefrontIcon,
-  TagIcon,
-  TargetIcon,
-  TicketIcon,
-  TrashIcon,
-  TrashSimpleIcon,
-  TrayIcon,
-  UserIcon,
-  UserCheckIcon,
-  UserPlusIcon,
-  UsersIcon,
-  UsersThreeIcon,
-  VideoCameraIcon,
-  WalletIcon,
-  WarningIcon,
-  WarningCircleIcon,
-  WarningOctagonIcon,
-  XCircleIcon,
-  XSquareIcon,
-} from "@phosphor-icons/react/ssr";
+import type { Icon, IconProps } from "@solar-icons/react/lib/types";
+import { AddCircleIcon as SolarAddCircleBoldDuotone } from "@solar-icons/react/bold-duotone/add-circle";
+import { AddCircleIcon as SolarAddCircleBold } from "@solar-icons/react/bold/add-circle";
+import { AddCircleIcon as SolarAddCircleLinear } from "@solar-icons/react/linear/add-circle";
+import { AddSquareIcon as SolarAddSquareLinear } from "@solar-icons/react/linear/add-square";
+import { AltArrowDownIcon as SolarAltArrowDownBold } from "@solar-icons/react/bold/alt-arrow-down";
+import { AltArrowDownIcon as SolarAltArrowDownLinear } from "@solar-icons/react/linear/alt-arrow-down";
+import { AltArrowLeftIcon as SolarAltArrowLeftLinear } from "@solar-icons/react/linear/alt-arrow-left";
+import { AltArrowRightIcon as SolarAltArrowRightLinear } from "@solar-icons/react/linear/alt-arrow-right";
+import { AltArrowUpIcon as SolarAltArrowUpBold } from "@solar-icons/react/bold/alt-arrow-up";
+import { AltArrowUpIcon as SolarAltArrowUpLinear } from "@solar-icons/react/linear/alt-arrow-up";
+import { ArrowLeftIcon as SolarArrowLeftLinear } from "@solar-icons/react/linear/arrow-left";
+import { ArrowRightDownIcon as SolarArrowRightDownLinear } from "@solar-icons/react/linear/arrow-right-down";
+import { ArrowRightIcon as SolarArrowRightLinear } from "@solar-icons/react/linear/arrow-right";
+import { ArrowRightUpIcon as SolarArrowRightUpLinear } from "@solar-icons/react/linear/arrow-right-up";
+import { ArrowUpIcon as SolarArrowUpLinear } from "@solar-icons/react/linear/arrow-up";
+import { BagIcon as SolarBagBoldDuotone } from "@solar-icons/react/bold-duotone/bag";
+import { BellIcon as SolarBellBold } from "@solar-icons/react/bold/bell";
+import { BellIcon as SolarBellBoldDuotone } from "@solar-icons/react/bold-duotone/bell";
+import { BellIcon as SolarBellLinear } from "@solar-icons/react/linear/bell";
+import { BillCheckIcon as SolarBillCheckBoldDuotone } from "@solar-icons/react/bold-duotone/bill-check";
+import { BillListIcon as SolarBillListBoldDuotone } from "@solar-icons/react/bold-duotone/bill-list";
+import { BookIcon as SolarBookBoldDuotone } from "@solar-icons/react/bold-duotone/book";
+import { BookmarkIcon as SolarBookmarkLinear } from "@solar-icons/react/linear/bookmark";
+import { BoxIcon as SolarBoxBoldDuotone } from "@solar-icons/react/bold-duotone/box";
+import { CalendarIcon as SolarCalendarBoldDuotone } from "@solar-icons/react/bold-duotone/calendar";
+import { CalendarIcon as SolarCalendarBold } from "@solar-icons/react/bold/calendar";
+import { CalendarIcon as SolarCalendarLinear } from "@solar-icons/react/linear/calendar";
+import { CalendarMinimalisticIcon as SolarCalendarMinimalisticLinear } from "@solar-icons/react/linear/calendar-minimalistic";
+import { CardIcon as SolarCardBold } from "@solar-icons/react/bold/card";
+import { CardIcon as SolarCardBoldDuotone } from "@solar-icons/react/bold-duotone/card";
+import { CardSendIcon as SolarCardSendBoldDuotone } from "@solar-icons/react/bold-duotone/card-send";
+import { CartIcon as SolarCartBoldDuotone } from "@solar-icons/react/bold-duotone/cart";
+import { CartLargeIcon as SolarCartLargeBoldDuotone } from "@solar-icons/react/bold-duotone/cart-large";
+import { CartPlusIcon as SolarCartPlusLinear } from "@solar-icons/react/linear/cart-plus";
+import { ChartIcon as SolarChartBoldDuotone } from "@solar-icons/react/bold-duotone/chart";
+import { ChartSquareIcon as SolarChartSquareBoldDuotone } from "@solar-icons/react/bold-duotone/chart-square";
+import { ChartSquareIcon as SolarChartSquareLinear } from "@solar-icons/react/linear/chart-square";
+import { ChatDotsIcon as SolarChatDotsLinear } from "@solar-icons/react/linear/chat-dots";
+import { ChatRoundLineIcon as SolarChatRoundLineLinear } from "@solar-icons/react/linear/chat-round-line";
+import { ChatRoundIcon as SolarChatRoundLinear } from "@solar-icons/react/linear/chat-round";
+import { CheckCircleIcon as SolarCheckCircleBold } from "@solar-icons/react/bold/check-circle";
+import { CheckCircleIcon as SolarCheckCircleBoldDuotone } from "@solar-icons/react/bold-duotone/check-circle";
+import { CheckCircleIcon as SolarCheckCircleLinear } from "@solar-icons/react/linear/check-circle";
+import { ClipboardListIcon as SolarClipboardListBoldDuotone } from "@solar-icons/react/bold-duotone/clipboard-list";
+import { ClockCircleIcon as SolarClockCircleBoldDuotone } from "@solar-icons/react/bold-duotone/clock-circle";
+import { ClockCircleIcon as SolarClockCircleLinear } from "@solar-icons/react/linear/clock-circle";
+import { CloseCircleIcon as SolarCloseCircleBoldDuotone } from "@solar-icons/react/bold-duotone/close-circle";
+import { CloseCircleIcon as SolarCloseCircleLinear } from "@solar-icons/react/linear/close-circle";
+import { CloseSquareIcon as SolarCloseSquareLinear } from "@solar-icons/react/linear/close-square";
+import { CloudDownloadIcon as SolarCloudDownloadLinear } from "@solar-icons/react/linear/cloud-download";
+import { CloudUploadIcon as SolarCloudUploadLinear } from "@solar-icons/react/linear/cloud-upload";
+import { CopyIcon as SolarCopyBoldDuotone } from "@solar-icons/react/bold-duotone/copy";
+import { CopyIcon as SolarCopyLinear } from "@solar-icons/react/linear/copy";
+import { CrownIcon as SolarCrownBold } from "@solar-icons/react/bold/crown";
+import { DangerIcon as SolarDangerBold } from "@solar-icons/react/bold/danger";
+import { DangerCircleIcon as SolarDangerCircleBoldDuotone } from "@solar-icons/react/bold-duotone/danger-circle";
+import { DangerTriangleIcon as SolarDangerTriangleBold } from "@solar-icons/react/bold/danger-triangle";
+import { DangerTriangleIcon as SolarDangerTriangleLinear } from "@solar-icons/react/linear/danger-triangle";
+import { DocumentIcon as SolarDocumentBoldDuotone } from "@solar-icons/react/bold-duotone/document";
+import { DocumentTextIcon as SolarDocumentTextBoldDuotone } from "@solar-icons/react/bold-duotone/document-text";
+import { DocumentTextIcon as SolarDocumentTextLinear } from "@solar-icons/react/linear/document-text";
+import { DownloadIcon as SolarDownloadLinear } from "@solar-icons/react/linear/download";
+import { DownloadMinimalisticIcon as SolarDownloadMinimalisticLinear } from "@solar-icons/react/linear/download-minimalistic";
+import { EyeIcon as SolarEyeBoldDuotone } from "@solar-icons/react/bold-duotone/eye";
+import { EyeIcon as SolarEyeLinear } from "@solar-icons/react/linear/eye";
+import { FileTextIcon as SolarFileTextBoldDuotone } from "@solar-icons/react/bold-duotone/file-text";
+import { FileTextIcon as SolarFileTextLinear } from "@solar-icons/react/linear/file-text";
+import { FilterIcon as SolarFilterBold } from "@solar-icons/react/bold/filter";
+import { FilterIcon as SolarFilterLinear } from "@solar-icons/react/linear/filter";
+import { FiltersIcon as SolarFiltersLinear } from "@solar-icons/react/linear/filters";
+import { FlagIcon as SolarFlagLinear } from "@solar-icons/react/linear/flag";
+import { FolderIcon as SolarFolderBoldDuotone } from "@solar-icons/react/bold-duotone/folder";
+import { FolderOpenIcon as SolarFolderOpenLinear } from "@solar-icons/react/linear/folder-open";
+import { FolderWithFilesIcon as SolarFolderWithFilesBoldDuotone } from "@solar-icons/react/bold-duotone/folder-with-files";
+import { GameboyIcon as SolarGameboyBoldDuotone } from "@solar-icons/react/bold-duotone/gameboy";
+import { HamburgerMenuIcon as SolarHamburgerMenuLinear } from "@solar-icons/react/linear/hamburger-menu";
+import { HashtagIcon as SolarHashtagBoldDuotone } from "@solar-icons/react/bold-duotone/hashtag";
+import { HeartIcon as SolarHeartBoldDuotone } from "@solar-icons/react/bold-duotone/heart";
+import { HeartIcon as SolarHeartLinear } from "@solar-icons/react/linear/heart";
+import { HomeIcon as SolarHomeBoldDuotone } from "@solar-icons/react/bold-duotone/home";
+import { HomeIcon as SolarHomeLinear } from "@solar-icons/react/linear/home";
+import { HomeSmileIcon as SolarHomeSmileBoldDuotone } from "@solar-icons/react/bold-duotone/home-smile";
+import { InboxIcon as SolarInboxBoldDuotone } from "@solar-icons/react/bold-duotone/inbox";
+import { InfoCircleIcon as SolarInfoCircleBoldDuotone } from "@solar-icons/react/bold-duotone/info-circle";
+import { KeyboardIcon as SolarKeyboardBoldDuotone } from "@solar-icons/react/bold-duotone/keyboard";
+import { LetterIcon as SolarLetterBoldDuotone } from "@solar-icons/react/bold-duotone/letter";
+import { LetterIcon as SolarLetterBold } from "@solar-icons/react/bold/letter";
+import { LetterIcon as SolarLetterLinear } from "@solar-icons/react/linear/letter";
+import { LinkRoundAngleIcon as SolarLinkRoundAngleLinear } from "@solar-icons/react/linear/link-round-angle";
+import { ListCheckIcon as SolarListCheckLinear } from "@solar-icons/react/linear/list-check";
+import { LockKeyholeIcon as SolarLockKeyholeLinear } from "@solar-icons/react/linear/lock-keyhole";
+import { LockPasswordIcon as SolarLockPasswordBoldDuotone } from "@solar-icons/react/bold-duotone/lock-password";
+import { LockPasswordIcon as SolarLockPasswordBold } from "@solar-icons/react/bold/lock-password";
+import { Login2Icon as SolarLogin2Linear } from "@solar-icons/react/linear/login-2";
+import { Logout2Icon as SolarLogout2BoldDuotone } from "@solar-icons/react/bold-duotone/logout-2";
+import { Logout2Icon as SolarLogout2Bold } from "@solar-icons/react/bold/logout-2";
+import { Logout3Icon as SolarLogout3BoldDuotone } from "@solar-icons/react/bold-duotone/logout-3";
+import { Logout3Icon as SolarLogout3Linear } from "@solar-icons/react/linear/logout-3";
+import { MagnifierIcon as SolarMagniferBoldDuotone } from "@solar-icons/react/bold-duotone/magnifier";
+import { MagnifierIcon as SolarMagniferLinear } from "@solar-icons/react/linear/magnifier";
+import { MailboxIcon as SolarMailboxLinear } from "@solar-icons/react/linear/mailbox";
+import { MapPointIcon as SolarMapPointBoldDuotone } from "@solar-icons/react/bold-duotone/map-point";
+import { MenuDotsIcon as SolarMenuDotsBold } from "@solar-icons/react/bold/menu-dots";
+import { MenuDotsIcon as SolarMenuDotsLinear } from "@solar-icons/react/linear/menu-dots";
+import { MinusSquareIcon as SolarMinusSquareLinear } from "@solar-icons/react/linear/minus-square";
+import { MouseIcon as SolarMouseBoldDuotone } from "@solar-icons/react/bold-duotone/mouse";
+import { PaperclipIcon as SolarPaperclipLinear } from "@solar-icons/react/linear/paperclip";
+import { Pen2Icon as SolarPen2Linear } from "@solar-icons/react/linear/pen-2";
+import { PenIcon as SolarPenBoldDuotone } from "@solar-icons/react/bold-duotone/pen";
+import { PenIcon as SolarPenBold } from "@solar-icons/react/bold/pen";
+import { PenIcon as SolarPenLinear } from "@solar-icons/react/linear/pen";
+import { PenNewSquareIcon as SolarPenNewSquareBoldDuotone } from "@solar-icons/react/bold-duotone/pen-new-square";
+import { PenNewSquareIcon as SolarPenNewSquareLinear } from "@solar-icons/react/linear/pen-new-square";
+import { PhoneIcon as SolarPhoneBoldDuotone } from "@solar-icons/react/bold-duotone/phone";
+import { PhoneCallingIcon as SolarPhoneCallingLinear } from "@solar-icons/react/linear/phone-calling";
+import { PhoneCallingRoundedIcon as SolarPhoneCallingRoundedLinear } from "@solar-icons/react/linear/phone-calling-rounded";
+import { PhoneIcon as SolarPhoneLinear } from "@solar-icons/react/linear/phone";
+import { PieChart3Icon as SolarPieChart3BoldDuotone } from "@solar-icons/react/bold-duotone/pie-chart-3";
+import { PinIcon as SolarPinLinear } from "@solar-icons/react/linear/pin";
+import { PlaneIcon as SolarPlainBold } from "@solar-icons/react/bold/plane";
+import { PlaneIcon as SolarPlainLinear } from "@solar-icons/react/linear/plane";
+import { PlayIcon as SolarPlayBoldDuotone } from "@solar-icons/react/bold-duotone/play";
+import { PlayCircleIcon as SolarPlayCircleBold } from "@solar-icons/react/bold/play-circle";
+import { AddIcon as SolarPlusLinear } from "@solar-icons/react/linear/add";
+import { PrinterIcon as SolarPrinterLinear } from "@solar-icons/react/linear/printer";
+import { QuestionCircleIcon as SolarQuestionCircleBoldDuotone } from "@solar-icons/react/bold-duotone/question-circle";
+import { RefreshIcon as SolarRefreshLinear } from "@solar-icons/react/linear/refresh";
+import { ReplyIcon as SolarReplyLinear } from "@solar-icons/react/linear/reply";
+import { RestartCircleIcon as SolarRestartCircleLinear } from "@solar-icons/react/linear/restart-circle";
+import { Rocket2Icon as SolarRocket2Bold } from "@solar-icons/react/bold/rocket-2";
+import { RocketIcon as SolarRocketBold } from "@solar-icons/react/bold/rocket";
+import { RoundTransferHorizontalIcon as SolarRoundTransferHorizontalLinear } from "@solar-icons/react/linear/round-transfer-horizontal";
+import { SettingsIcon as SolarSettingsBoldDuotone } from "@solar-icons/react/bold-duotone/settings";
+import { SettingsIcon as SolarSettingsBold } from "@solar-icons/react/bold/settings";
+import { ShareIcon as SolarShareLinear } from "@solar-icons/react/linear/share";
+import { ShieldCheckIcon as SolarShieldCheckBold } from "@solar-icons/react/bold/shield-check";
+import { ShieldUpIcon as SolarShieldUpBold } from "@solar-icons/react/bold/shield-up";
+import { ShopIcon as SolarShopBoldDuotone } from "@solar-icons/react/bold-duotone/shop";
+import { SortFromTopToBottomIcon as SolarSortFromTopToBottomBold } from "@solar-icons/react/bold/sort-from-top-to-bottom";
+import { StarIcon as SolarStarBold } from "@solar-icons/react/bold/star";
+import { StarIcon as SolarStarBoldDuotone } from "@solar-icons/react/bold-duotone/star";
+import { StarIcon as SolarStarLinear } from "@solar-icons/react/linear/star";
+import { StarsIcon as SolarStarsBold } from "@solar-icons/react/bold/stars";
+import { TagIcon as SolarTagBoldDuotone } from "@solar-icons/react/bold-duotone/tag";
+import { TagIcon as SolarTagLinear } from "@solar-icons/react/linear/tag";
+import { TargetIcon as SolarTargetBold } from "@solar-icons/react/bold/target";
+import { TickerStarIcon as SolarTickerStarBoldDuotone } from "@solar-icons/react/bold-duotone/ticker-star";
+import { TransferHorizontalIcon as SolarTransferHorizontalBoldDuotone } from "@solar-icons/react/bold-duotone/transfer-horizontal";
+import { TransferVerticalIcon as SolarTransferVerticalLinear } from "@solar-icons/react/linear/transfer-vertical";
+import { TrashBinMinimalisticIcon as SolarTrashBinMinimalisticBold } from "@solar-icons/react/bold/trash-bin-minimalistic";
+import { TrashBinMinimalisticIcon as SolarTrashBinMinimalisticLinear } from "@solar-icons/react/linear/trash-bin-minimalistic";
+import { TrashBinTrashIcon as SolarTrashBinTrashBoldDuotone } from "@solar-icons/react/bold-duotone/trash-bin-trash";
+import { TrashBinTrashIcon as SolarTrashBinTrashLinear } from "@solar-icons/react/linear/trash-bin-trash";
+import { UserIcon as SolarUserBoldDuotone } from "@solar-icons/react/bold-duotone/user";
+import { UserCheckIcon as SolarUserCheckLinear } from "@solar-icons/react/linear/user-check";
+import { UserIcon as SolarUserLinear } from "@solar-icons/react/linear/user";
+import { UserPlusIcon as SolarUserPlusBoldDuotone } from "@solar-icons/react/bold-duotone/user-plus";
+import { UserPlusIcon as SolarUserPlusBold } from "@solar-icons/react/bold/user-plus";
+import { UserPlusIcon as SolarUserPlusLinear } from "@solar-icons/react/linear/user-plus";
+import { UsersGroupRoundedIcon as SolarUsersGroupRoundedBoldDuotone } from "@solar-icons/react/bold-duotone/users-group-rounded";
+import { UsersGroupRoundedIcon as SolarUsersGroupRoundedLinear } from "@solar-icons/react/linear/users-group-rounded";
+import { UsersGroupTwoRoundedIcon as SolarUsersGroupTwoRoundedBoldDuotone } from "@solar-icons/react/bold-duotone/users-group-two-rounded";
+import { VideocameraIcon as SolarVideocameraBoldDuotone } from "@solar-icons/react/bold-duotone/videocamera";
+import { VideocameraRecordIcon as SolarVideocameraRecordLinear } from "@solar-icons/react/linear/videocamera-record";
+import { WalletIcon as SolarWalletBoldDuotone } from "@solar-icons/react/bold-duotone/wallet";
+import { WalletIcon as SolarWalletLinear } from "@solar-icons/react/linear/wallet";
+import { WalletMoneyIcon as SolarWalletMoneyBoldDuotone } from "@solar-icons/react/bold-duotone/wallet-money";
+import { WalletMoneyIcon as SolarWalletMoneyLinear } from "@solar-icons/react/linear/wallet-money";
+import { WidgetIcon as SolarWidgetBoldDuotone } from "@solar-icons/react/bold-duotone/widget";
+import { BoxIcon as SolarBoxLinear } from "@solar-icons/react/linear/box";
+import { EyeClosedIcon as SolarEyeClosedLinear } from "@solar-icons/react/linear/eye-closed";
+import { FolderIcon as SolarFolderLinear } from "@solar-icons/react/linear/folder";
+import { HamburgerMenuIcon as SolarHamburgerMenuBoldDuotone } from "@solar-icons/react/bold-duotone/hamburger-menu";
+import { InfoCircleIcon as SolarInfoCircleLinear } from "@solar-icons/react/linear/info-circle";
+import { ShieldKeyholeIcon as SolarShieldKeyholeBoldDuotone } from "@solar-icons/react/bold-duotone/shield-keyhole";
+import { ShieldUserIcon as SolarShieldUserBoldDuotone } from "@solar-icons/react/bold-duotone/shield-user";
+import { WidgetIcon as SolarWidgetLinear } from "@solar-icons/react/linear/widget";
+import { FullScreenIcon as SolarFullScreenLinear } from "@solar-icons/react/linear/full-screen";
+import { CodeIcon as SolarCodeLinear } from "@solar-icons/react/linear/code";
+import { CommandIcon as SolarCommandLinear } from "@solar-icons/react/linear/command";
+import { HashtagIcon as SolarHashtagLinear } from "@solar-icons/react/linear/hashtag";
+import { LightbulbIcon as SolarLightbulbLinear } from "@solar-icons/react/linear/lightbulb";
+import { LinkIcon as SolarLinkLinear } from "@solar-icons/react/linear/link";
+import { MicrophoneIcon as SolarMicrophoneLinear } from "@solar-icons/react/linear/microphone";
+import { QuitFullScreenIcon as SolarQuitFullScreenLinear } from "@solar-icons/react/linear/quit-full-screen";
+import { SidebarMinimalisticIcon as SolarSidebarMinimalisticLinear } from "@solar-icons/react/linear/sidebar-minimalistic";
+import { StarsIcon as SolarStarsLinear } from "@solar-icons/react/linear/stars";
 
 export type ForgeIconProps = IconProps;
 
-function createForgeIcon(
-  Source: Icon,
-  defaultWeight: IconWeight,
-  displayName: string,
-): Icon {
+function createForgeIcon(Source: Icon, displayName: string): Icon {
   const Component = forwardRef<SVGSVGElement, IconProps>(
-    (
-      {
-        color = "currentColor",
-        size = 16,
-        style,
-        weight = defaultWeight,
-        ...props
-      },
-      ref,
-    ) => (
+    ({ color = "currentColor", size = 16, style, ...props }, ref) => (
       <Source
         ref={ref}
         color={color}
         size={size}
         style={{ display: "inline-block", ...style }}
-        weight={weight}
         {...props}
       />
     ),
@@ -161,193 +206,191 @@ function createForgeIcon(
   return Component;
 }
 
-// These stable Forge names preserve the existing component API while the
-// implementation is backed entirely by the MIT-licensed Phosphor icon set.
-export const AddCircleBoldDuotone = createForgeIcon(PlusCircleIcon, "duotone", "AddCircleBoldDuotone");
-export const AddCircleBold = createForgeIcon(PlusCircleIcon, "fill", "AddCircleBold");
-export const AddCircleLinear = createForgeIcon(PlusCircleIcon, "regular", "AddCircleLinear");
-export const AddSquareLinear = createForgeIcon(PlusSquareIcon, "regular", "AddSquareLinear");
-export const AltArrowDownBold = createForgeIcon(CaretDownIcon, "fill", "AltArrowDownBold");
-export const AltArrowDownLinear = createForgeIcon(CaretDownIcon, "regular", "AltArrowDownLinear");
-export const AltArrowLeftLinear = createForgeIcon(CaretLeftIcon, "regular", "AltArrowLeftLinear");
-export const AltArrowRightLinear = createForgeIcon(CaretRightIcon, "regular", "AltArrowRightLinear");
-export const AltArrowUpBold = createForgeIcon(CaretUpIcon, "fill", "AltArrowUpBold");
-export const AltArrowUpLinear = createForgeIcon(CaretUpIcon, "regular", "AltArrowUpLinear");
-export const ArrowLeftLinear = createForgeIcon(ArrowLeftIcon, "regular", "ArrowLeftLinear");
-export const ArrowRightDownLinear = createForgeIcon(ArrowDownRightIcon, "regular", "ArrowRightDownLinear");
-export const ArrowRightLinear = createForgeIcon(ArrowRightIcon, "regular", "ArrowRightLinear");
-export const ArrowRightUpLinear = createForgeIcon(ArrowUpRightIcon, "regular", "ArrowRightUpLinear");
-export const ArrowUpLinear = createForgeIcon(ArrowUpIcon, "regular", "ArrowUpLinear");
-export const BagBoldDuotone = createForgeIcon(BagIcon, "duotone", "BagBoldDuotone");
-export const BellBold = createForgeIcon(BellIcon, "fill", "BellBold");
-export const BellBoldDuotone = createForgeIcon(BellIcon, "duotone", "BellBoldDuotone");
-export const BellLinear = createForgeIcon(BellIcon, "regular", "BellLinear");
-export const BillCheckBoldDuotone = createForgeIcon(ReceiptIcon, "duotone", "BillCheckBoldDuotone");
-export const BillListBoldDuotone = createForgeIcon(ReceiptIcon, "duotone", "BillListBoldDuotone");
-export const BookBoldDuotone = createForgeIcon(BookOpenIcon, "duotone", "BookBoldDuotone");
-export const BookmarkLinear = createForgeIcon(BookmarkSimpleIcon, "regular", "BookmarkLinear");
-export const BoxBoldDuotone = createForgeIcon(CubeIcon, "duotone", "BoxBoldDuotone");
-export const CalendarBoldDuotone = createForgeIcon(CalendarBlankIcon, "duotone", "CalendarBoldDuotone");
-export const CalendarBold = createForgeIcon(CalendarBlankIcon, "fill", "CalendarBold");
-export const CalendarLinear = createForgeIcon(CalendarBlankIcon, "regular", "CalendarLinear");
-export const CalendarMinimalisticLinear = createForgeIcon(CalendarDotsIcon, "regular", "CalendarMinimalisticLinear");
-export const CardBold = createForgeIcon(CreditCardIcon, "fill", "CardBold");
-export const CardBoldDuotone = createForgeIcon(CreditCardIcon, "duotone", "CardBoldDuotone");
-export const CardSendBoldDuotone = createForgeIcon(ContactlessPaymentIcon, "duotone", "CardSendBoldDuotone");
-export const CartBoldDuotone = createForgeIcon(ShoppingCartIcon, "duotone", "CartBoldDuotone");
-export const CartLargeBoldDuotone = createForgeIcon(ShoppingCartSimpleIcon, "duotone", "CartLargeBoldDuotone");
-export const CartPlusLinear = createForgeIcon(ShoppingCartIcon, "regular", "CartPlusLinear");
-export const ChartBoldDuotone = createForgeIcon(ChartLineUpIcon, "duotone", "ChartBoldDuotone");
-export const ChartSquareBoldDuotone = createForgeIcon(ChartBarIcon, "duotone", "ChartSquareBoldDuotone");
-export const ChartSquareLinear = createForgeIcon(ChartBarIcon, "regular", "ChartSquareLinear");
-export const ChatDotsLinear = createForgeIcon(ChatDotsIcon, "regular", "ChatDotsLinear");
-export const ChatRoundLineLinear = createForgeIcon(ChatCircleDotsIcon, "regular", "ChatRoundLineLinear");
-export const ChatRoundLinear = createForgeIcon(ChatCircleIcon, "regular", "ChatRoundLinear");
-export const CheckCircleBold = createForgeIcon(CheckCircleIcon, "fill", "CheckCircleBold");
-export const CheckCircleBoldDuotone = createForgeIcon(CheckCircleIcon, "duotone", "CheckCircleBoldDuotone");
-export const CheckCircleLinear = createForgeIcon(CheckCircleIcon, "regular", "CheckCircleLinear");
-export const ClipboardListBoldDuotone = createForgeIcon(ClipboardTextIcon, "duotone", "ClipboardListBoldDuotone");
-export const ClockCircleBoldDuotone = createForgeIcon(ClockIcon, "duotone", "ClockCircleBoldDuotone");
-export const ClockCircleLinear = createForgeIcon(ClockIcon, "regular", "ClockCircleLinear");
-export const CloseCircleBoldDuotone = createForgeIcon(XCircleIcon, "duotone", "CloseCircleBoldDuotone");
-export const CloseCircleLinear = createForgeIcon(XCircleIcon, "regular", "CloseCircleLinear");
-export const CloseSquareLinear = createForgeIcon(XSquareIcon, "regular", "CloseSquareLinear");
-export const CloudDownloadLinear = createForgeIcon(CloudArrowDownIcon, "regular", "CloudDownloadLinear");
-export const CloudUploadLinear = createForgeIcon(CloudArrowUpIcon, "regular", "CloudUploadLinear");
-export const CopyBoldDuotone = createForgeIcon(CopyIcon, "duotone", "CopyBoldDuotone");
-export const CopyLinear = createForgeIcon(CopyIcon, "regular", "CopyLinear");
-export const CrownBold = createForgeIcon(CrownIcon, "fill", "CrownBold");
-export const DangerBold = createForgeIcon(WarningOctagonIcon, "fill", "DangerBold");
-export const DangerCircleBoldDuotone = createForgeIcon(WarningCircleIcon, "duotone", "DangerCircleBoldDuotone");
-export const DangerTriangleBold = createForgeIcon(WarningIcon, "fill", "DangerTriangleBold");
-export const DangerTriangleLinear = createForgeIcon(WarningIcon, "regular", "DangerTriangleLinear");
-export const DocumentBoldDuotone = createForgeIcon(FileIcon, "duotone", "DocumentBoldDuotone");
-export const DocumentTextBoldDuotone = createForgeIcon(FileTextIcon, "duotone", "DocumentTextBoldDuotone");
-export const DocumentTextLinear = createForgeIcon(FileTextIcon, "regular", "DocumentTextLinear");
-export const DownloadLinear = createForgeIcon(DownloadSimpleIcon, "regular", "DownloadLinear");
-export const DownloadMinimalisticLinear = createForgeIcon(DownloadSimpleIcon, "regular", "DownloadMinimalisticLinear");
-export const EyeBoldDuotone = createForgeIcon(EyeIcon, "duotone", "EyeBoldDuotone");
-export const EyeLinear = createForgeIcon(EyeIcon, "regular", "EyeLinear");
-export const FileTextBoldDuotone = createForgeIcon(FileTextIcon, "duotone", "FileTextBoldDuotone");
-export const FileTextLinear = createForgeIcon(FileTextIcon, "regular", "FileTextLinear");
-export const FilterBold = createForgeIcon(FunnelIcon, "fill", "FilterBold");
-export const FilterLinear = createForgeIcon(FunnelIcon, "regular", "FilterLinear");
-export const FiltersLinear = createForgeIcon(SlidersHorizontalIcon, "regular", "FiltersLinear");
-export const FlagLinear = createForgeIcon(FlagIcon, "regular", "FlagLinear");
-export const FolderBoldDuotone = createForgeIcon(FolderIcon, "duotone", "FolderBoldDuotone");
-export const FolderOpenLinear = createForgeIcon(FolderOpenIcon, "regular", "FolderOpenLinear");
-export const FolderWithFilesBoldDuotone = createForgeIcon(FoldersIcon, "duotone", "FolderWithFilesBoldDuotone");
-export const GameboyBoldDuotone = createForgeIcon(GameControllerIcon, "duotone", "GameboyBoldDuotone");
-export const HamburgerMenuLinear = createForgeIcon(ListIcon, "regular", "HamburgerMenuLinear");
-export const HashtagBoldDuotone = createForgeIcon(HashIcon, "duotone", "HashtagBoldDuotone");
-export const HeartBoldDuotone = createForgeIcon(HeartIcon, "duotone", "HeartBoldDuotone");
-export const HeartLinear = createForgeIcon(HeartIcon, "regular", "HeartLinear");
-export const HomeBoldDuotone = createForgeIcon(HouseIcon, "duotone", "HomeBoldDuotone");
-export const HomeLinear = createForgeIcon(HouseIcon, "regular", "HomeLinear");
-export const HomeSmileBoldDuotone = createForgeIcon(HouseLineIcon, "duotone", "HomeSmileBoldDuotone");
-export const InboxBoldDuotone = createForgeIcon(TrayIcon, "duotone", "InboxBoldDuotone");
-export const InfoCircleBoldDuotone = createForgeIcon(InfoIcon, "duotone", "InfoCircleBoldDuotone");
-export const KeyboardBoldDuotone = createForgeIcon(KeyboardIcon, "duotone", "KeyboardBoldDuotone");
-export const LetterBoldDuotone = createForgeIcon(EnvelopeIcon, "duotone", "LetterBoldDuotone");
-export const LetterBold = createForgeIcon(EnvelopeIcon, "fill", "LetterBold");
-export const LetterLinear = createForgeIcon(EnvelopeIcon, "regular", "LetterLinear");
-export const LinkRoundAngleLinear = createForgeIcon(LinkIcon, "regular", "LinkRoundAngleLinear");
-export const ListCheckLinear = createForgeIcon(ListChecksIcon, "regular", "ListCheckLinear");
-export const LockKeyholeLinear = createForgeIcon(LockKeyIcon, "regular", "LockKeyholeLinear");
-export const LockPasswordBoldDuotone = createForgeIcon(PasswordIcon, "duotone", "LockPasswordBoldDuotone");
-export const LockPasswordBold = createForgeIcon(PasswordIcon, "fill", "LockPasswordBold");
-export const Login2Linear = createForgeIcon(SignInIcon, "regular", "Login2Linear");
-export const Logout2BoldDuotone = createForgeIcon(SignOutIcon, "duotone", "Logout2BoldDuotone");
-export const Logout2Bold = createForgeIcon(SignOutIcon, "fill", "Logout2Bold");
-export const Logout3BoldDuotone = createForgeIcon(SignOutIcon, "duotone", "Logout3BoldDuotone");
-export const Logout3Linear = createForgeIcon(SignOutIcon, "regular", "Logout3Linear");
-export const MagniferBoldDuotone = createForgeIcon(MagnifyingGlassIcon, "duotone", "MagniferBoldDuotone");
-export const MagniferLinear = createForgeIcon(MagnifyingGlassIcon, "regular", "MagniferLinear");
-export const MailboxLinear = createForgeIcon(MailboxIcon, "regular", "MailboxLinear");
-export const MapPointBoldDuotone = createForgeIcon(MapPinIcon, "duotone", "MapPointBoldDuotone");
-export const MenuDotsBold = createForgeIcon(DotsThreeIcon, "fill", "MenuDotsBold");
-export const MenuDotsLinear = createForgeIcon(DotsThreeIcon, "regular", "MenuDotsLinear");
-export const MinusSquareLinear = createForgeIcon(MinusSquareIcon, "regular", "MinusSquareLinear");
-export const MouseBoldDuotone = createForgeIcon(MouseIcon, "duotone", "MouseBoldDuotone");
-export const PaperclipLinear = createForgeIcon(PaperclipIcon, "regular", "PaperclipLinear");
-export const Pen2Linear = createForgeIcon(PencilIcon, "regular", "Pen2Linear");
-export const PenBoldDuotone = createForgeIcon(PencilSimpleIcon, "duotone", "PenBoldDuotone");
-export const PenBold = createForgeIcon(PencilSimpleIcon, "fill", "PenBold");
-export const PenLinear = createForgeIcon(PencilSimpleIcon, "regular", "PenLinear");
-export const PenNewSquareBoldDuotone = createForgeIcon(NotePencilIcon, "duotone", "PenNewSquareBoldDuotone");
-export const PenNewSquareLinear = createForgeIcon(NotePencilIcon, "regular", "PenNewSquareLinear");
-export const PhoneBoldDuotone = createForgeIcon(PhoneIcon, "duotone", "PhoneBoldDuotone");
-export const PhoneCallingLinear = createForgeIcon(PhoneCallIcon, "regular", "PhoneCallingLinear");
-export const PhoneCallingRoundedLinear = createForgeIcon(PhoneCallIcon, "regular", "PhoneCallingRoundedLinear");
-export const PhoneLinear = createForgeIcon(PhoneIcon, "regular", "PhoneLinear");
-export const PieChart3BoldDuotone = createForgeIcon(ChartPieSliceIcon, "duotone", "PieChart3BoldDuotone");
-export const PinLinear = createForgeIcon(PushPinIcon, "regular", "PinLinear");
-export const PlainBold = createForgeIcon(PaperPlaneTiltIcon, "fill", "PlainBold");
-export const PlainLinear = createForgeIcon(PaperPlaneTiltIcon, "regular", "PlainLinear");
-export const PlayBoldDuotone = createForgeIcon(PlayIcon, "duotone", "PlayBoldDuotone");
-export const PlayCircleBold = createForgeIcon(PlayCircleIcon, "fill", "PlayCircleBold");
-export const PlusLinear = createForgeIcon(PlusIcon, "regular", "PlusLinear");
-export const PrinterLinear = createForgeIcon(PrinterIcon, "regular", "PrinterLinear");
-export const QuestionCircleBoldDuotone = createForgeIcon(QuestionIcon, "duotone", "QuestionCircleBoldDuotone");
-export const RefreshLinear = createForgeIcon(ArrowClockwiseIcon, "regular", "RefreshLinear");
-export const ReplyLinear = createForgeIcon(ArrowBendUpLeftIcon, "regular", "ReplyLinear");
-export const RestartCircleLinear = createForgeIcon(ArrowCounterClockwiseIcon, "regular", "RestartCircleLinear");
-export const Rocket2Bold = createForgeIcon(RocketIcon, "fill", "Rocket2Bold");
-export const RocketBold = createForgeIcon(RocketLaunchIcon, "fill", "RocketBold");
-export const RoundTransferHorizontalLinear = createForgeIcon(ArrowsLeftRightIcon, "regular", "RoundTransferHorizontalLinear");
-export const SettingsBoldDuotone = createForgeIcon(GearSixIcon, "duotone", "SettingsBoldDuotone");
-export const SettingsBold = createForgeIcon(GearSixIcon, "fill", "SettingsBold");
-export const ShareLinear = createForgeIcon(ShareNetworkIcon, "regular", "ShareLinear");
-export const ShieldCheckBold = createForgeIcon(ShieldCheckIcon, "fill", "ShieldCheckBold");
-export const ShieldUpBold = createForgeIcon(ShieldIcon, "fill", "ShieldUpBold");
-export const ShopBoldDuotone = createForgeIcon(StorefrontIcon, "duotone", "ShopBoldDuotone");
-export const SortFromTopToBottomBold = createForgeIcon(SortDescendingIcon, "fill", "SortFromTopToBottomBold");
-export const StarBold = createForgeIcon(StarIcon, "fill", "StarBold");
-export const StarBoldDuotone = createForgeIcon(StarIcon, "duotone", "StarBoldDuotone");
-export const StarLinear = createForgeIcon(StarIcon, "regular", "StarLinear");
-export const StarsBold = createForgeIcon(SparkleIcon, "fill", "StarsBold");
-export const TagBoldDuotone = createForgeIcon(TagIcon, "duotone", "TagBoldDuotone");
-export const TagLinear = createForgeIcon(TagIcon, "regular", "TagLinear");
-export const TargetBold = createForgeIcon(TargetIcon, "fill", "TargetBold");
-export const TickerStarBoldDuotone = createForgeIcon(TicketIcon, "duotone", "TickerStarBoldDuotone");
-export const TransferHorizontalBoldDuotone = createForgeIcon(ArrowsLeftRightIcon, "duotone", "TransferHorizontalBoldDuotone");
-export const TransferVerticalLinear = createForgeIcon(ArrowsDownUpIcon, "regular", "TransferVerticalLinear");
-export const TrashBinMinimalisticBold = createForgeIcon(TrashSimpleIcon, "fill", "TrashBinMinimalisticBold");
-export const TrashBinMinimalisticLinear = createForgeIcon(TrashSimpleIcon, "regular", "TrashBinMinimalisticLinear");
-export const TrashBinTrashBoldDuotone = createForgeIcon(TrashIcon, "duotone", "TrashBinTrashBoldDuotone");
-export const TrashBinTrashLinear = createForgeIcon(TrashIcon, "regular", "TrashBinTrashLinear");
-export const UserBoldDuotone = createForgeIcon(UserIcon, "duotone", "UserBoldDuotone");
-export const UserCheckLinear = createForgeIcon(UserCheckIcon, "regular", "UserCheckLinear");
-export const UserLinear = createForgeIcon(UserIcon, "regular", "UserLinear");
-export const UserPlusBoldDuotone = createForgeIcon(UserPlusIcon, "duotone", "UserPlusBoldDuotone");
-export const UserPlusBold = createForgeIcon(UserPlusIcon, "fill", "UserPlusBold");
-export const UserPlusLinear = createForgeIcon(UserPlusIcon, "regular", "UserPlusLinear");
-export const UsersGroupRoundedBoldDuotone = createForgeIcon(UsersIcon, "duotone", "UsersGroupRoundedBoldDuotone");
-export const UsersGroupRoundedLinear = createForgeIcon(UsersIcon, "regular", "UsersGroupRoundedLinear");
-export const UsersGroupTwoRoundedBoldDuotone = createForgeIcon(UsersThreeIcon, "duotone", "UsersGroupTwoRoundedBoldDuotone");
-export const VideocameraBoldDuotone = createForgeIcon(VideoCameraIcon, "duotone", "VideocameraBoldDuotone");
-export const VideocameraRecordLinear = createForgeIcon(RecordIcon, "regular", "VideocameraRecordLinear");
-export const WalletBoldDuotone = createForgeIcon(WalletIcon, "duotone", "WalletBoldDuotone");
-export const WalletLinear = createForgeIcon(WalletIcon, "regular", "WalletLinear");
-export const WalletMoneyBoldDuotone = createForgeIcon(MoneyIcon, "duotone", "WalletMoneyBoldDuotone");
-export const WalletMoneyLinear = createForgeIcon(MoneyIcon, "regular", "WalletMoneyLinear");
-export const WidgetBoldDuotone = createForgeIcon(SquaresFourIcon, "duotone", "WidgetBoldDuotone");
-export const BoxLinear = createForgeIcon(CubeIcon, "regular", "BoxLinear");
-export const EyeClosedLinear = createForgeIcon(EyeClosedIcon, "regular", "EyeClosedLinear");
-export const FolderLinear = createForgeIcon(FolderIcon, "regular", "FolderLinear");
-export const HamburgerMenuBoldDuotone = createForgeIcon(ListIcon, "duotone", "HamburgerMenuBoldDuotone");
-export const InfoCircleLinear = createForgeIcon(InfoIcon, "regular", "InfoCircleLinear");
-export const ShieldKeyholeBoldDuotone = createForgeIcon(ShieldCheckeredIcon, "duotone", "ShieldKeyholeBoldDuotone");
-export const ShieldUserBoldDuotone = createForgeIcon(ShieldStarIcon, "duotone", "ShieldUserBoldDuotone");
-export const WidgetLinear = createForgeIcon(SquaresFourIcon, "regular", "WidgetLinear");
-
-export const FullScreenLinear = createForgeIcon(ArrowsOutIcon, "regular", "FullScreenLinear");
-export const CodeLinear = createForgeIcon(CodeIcon, "regular", "CodeLinear");
-export const CommandLinear = createForgeIcon(CommandIcon, "regular", "CommandLinear");
-export const HashtagLinear = createForgeIcon(HashIcon, "regular", "HashtagLinear");
-export const LightbulbLinear = createForgeIcon(LightbulbIcon, "regular", "LightbulbLinear");
-export const LinkLinear = createForgeIcon(LinkIcon, "regular", "LinkLinear");
-export const MicrophoneLinear = createForgeIcon(MicrophoneIcon, "regular", "MicrophoneLinear");
-export const QuitFullScreenLinear = createForgeIcon(ArrowsInIcon, "regular", "QuitFullScreenLinear");
-export const SidebarMinimalisticLinear = createForgeIcon(SidebarSimpleIcon, "regular", "SidebarMinimalisticLinear");
-export const StarsLinear = createForgeIcon(SparkleIcon, "regular", "StarsLinear");
+// Keep the stable Forge names, including legacy spellings, with original Solar artwork.
+export const AddCircleBoldDuotone = createForgeIcon(SolarAddCircleBoldDuotone, "AddCircleBoldDuotone");
+export const AddCircleBold = createForgeIcon(SolarAddCircleBold, "AddCircleBold");
+export const AddCircleLinear = createForgeIcon(SolarAddCircleLinear, "AddCircleLinear");
+export const AddSquareLinear = createForgeIcon(SolarAddSquareLinear, "AddSquareLinear");
+export const AltArrowDownBold = createForgeIcon(SolarAltArrowDownBold, "AltArrowDownBold");
+export const AltArrowDownLinear = createForgeIcon(SolarAltArrowDownLinear, "AltArrowDownLinear");
+export const AltArrowLeftLinear = createForgeIcon(SolarAltArrowLeftLinear, "AltArrowLeftLinear");
+export const AltArrowRightLinear = createForgeIcon(SolarAltArrowRightLinear, "AltArrowRightLinear");
+export const AltArrowUpBold = createForgeIcon(SolarAltArrowUpBold, "AltArrowUpBold");
+export const AltArrowUpLinear = createForgeIcon(SolarAltArrowUpLinear, "AltArrowUpLinear");
+export const ArrowLeftLinear = createForgeIcon(SolarArrowLeftLinear, "ArrowLeftLinear");
+export const ArrowRightDownLinear = createForgeIcon(SolarArrowRightDownLinear, "ArrowRightDownLinear");
+export const ArrowRightLinear = createForgeIcon(SolarArrowRightLinear, "ArrowRightLinear");
+export const ArrowRightUpLinear = createForgeIcon(SolarArrowRightUpLinear, "ArrowRightUpLinear");
+export const ArrowUpLinear = createForgeIcon(SolarArrowUpLinear, "ArrowUpLinear");
+export const BagBoldDuotone = createForgeIcon(SolarBagBoldDuotone, "BagBoldDuotone");
+export const BellBold = createForgeIcon(SolarBellBold, "BellBold");
+export const BellBoldDuotone = createForgeIcon(SolarBellBoldDuotone, "BellBoldDuotone");
+export const BellLinear = createForgeIcon(SolarBellLinear, "BellLinear");
+export const BillCheckBoldDuotone = createForgeIcon(SolarBillCheckBoldDuotone, "BillCheckBoldDuotone");
+export const BillListBoldDuotone = createForgeIcon(SolarBillListBoldDuotone, "BillListBoldDuotone");
+export const BookBoldDuotone = createForgeIcon(SolarBookBoldDuotone, "BookBoldDuotone");
+export const BookmarkLinear = createForgeIcon(SolarBookmarkLinear, "BookmarkLinear");
+export const BoxBoldDuotone = createForgeIcon(SolarBoxBoldDuotone, "BoxBoldDuotone");
+export const CalendarBoldDuotone = createForgeIcon(SolarCalendarBoldDuotone, "CalendarBoldDuotone");
+export const CalendarBold = createForgeIcon(SolarCalendarBold, "CalendarBold");
+export const CalendarLinear = createForgeIcon(SolarCalendarLinear, "CalendarLinear");
+export const CalendarMinimalisticLinear = createForgeIcon(SolarCalendarMinimalisticLinear, "CalendarMinimalisticLinear");
+export const CardBold = createForgeIcon(SolarCardBold, "CardBold");
+export const CardBoldDuotone = createForgeIcon(SolarCardBoldDuotone, "CardBoldDuotone");
+export const CardSendBoldDuotone = createForgeIcon(SolarCardSendBoldDuotone, "CardSendBoldDuotone");
+export const CartBoldDuotone = createForgeIcon(SolarCartBoldDuotone, "CartBoldDuotone");
+export const CartLargeBoldDuotone = createForgeIcon(SolarCartLargeBoldDuotone, "CartLargeBoldDuotone");
+export const CartPlusLinear = createForgeIcon(SolarCartPlusLinear, "CartPlusLinear");
+export const ChartBoldDuotone = createForgeIcon(SolarChartBoldDuotone, "ChartBoldDuotone");
+export const ChartSquareBoldDuotone = createForgeIcon(SolarChartSquareBoldDuotone, "ChartSquareBoldDuotone");
+export const ChartSquareLinear = createForgeIcon(SolarChartSquareLinear, "ChartSquareLinear");
+export const ChatDotsLinear = createForgeIcon(SolarChatDotsLinear, "ChatDotsLinear");
+export const ChatRoundLineLinear = createForgeIcon(SolarChatRoundLineLinear, "ChatRoundLineLinear");
+export const ChatRoundLinear = createForgeIcon(SolarChatRoundLinear, "ChatRoundLinear");
+export const CheckCircleBold = createForgeIcon(SolarCheckCircleBold, "CheckCircleBold");
+export const CheckCircleBoldDuotone = createForgeIcon(SolarCheckCircleBoldDuotone, "CheckCircleBoldDuotone");
+export const CheckCircleLinear = createForgeIcon(SolarCheckCircleLinear, "CheckCircleLinear");
+export const ClipboardListBoldDuotone = createForgeIcon(SolarClipboardListBoldDuotone, "ClipboardListBoldDuotone");
+export const ClockCircleBoldDuotone = createForgeIcon(SolarClockCircleBoldDuotone, "ClockCircleBoldDuotone");
+export const ClockCircleLinear = createForgeIcon(SolarClockCircleLinear, "ClockCircleLinear");
+export const CloseCircleBoldDuotone = createForgeIcon(SolarCloseCircleBoldDuotone, "CloseCircleBoldDuotone");
+export const CloseCircleLinear = createForgeIcon(SolarCloseCircleLinear, "CloseCircleLinear");
+export const CloseSquareLinear = createForgeIcon(SolarCloseSquareLinear, "CloseSquareLinear");
+export const CloudDownloadLinear = createForgeIcon(SolarCloudDownloadLinear, "CloudDownloadLinear");
+export const CloudUploadLinear = createForgeIcon(SolarCloudUploadLinear, "CloudUploadLinear");
+export const CopyBoldDuotone = createForgeIcon(SolarCopyBoldDuotone, "CopyBoldDuotone");
+export const CopyLinear = createForgeIcon(SolarCopyLinear, "CopyLinear");
+export const CrownBold = createForgeIcon(SolarCrownBold, "CrownBold");
+export const DangerBold = createForgeIcon(SolarDangerBold, "DangerBold");
+export const DangerCircleBoldDuotone = createForgeIcon(SolarDangerCircleBoldDuotone, "DangerCircleBoldDuotone");
+export const DangerTriangleBold = createForgeIcon(SolarDangerTriangleBold, "DangerTriangleBold");
+export const DangerTriangleLinear = createForgeIcon(SolarDangerTriangleLinear, "DangerTriangleLinear");
+export const DocumentBoldDuotone = createForgeIcon(SolarDocumentBoldDuotone, "DocumentBoldDuotone");
+export const DocumentTextBoldDuotone = createForgeIcon(SolarDocumentTextBoldDuotone, "DocumentTextBoldDuotone");
+export const DocumentTextLinear = createForgeIcon(SolarDocumentTextLinear, "DocumentTextLinear");
+export const DownloadLinear = createForgeIcon(SolarDownloadLinear, "DownloadLinear");
+export const DownloadMinimalisticLinear = createForgeIcon(SolarDownloadMinimalisticLinear, "DownloadMinimalisticLinear");
+export const EyeBoldDuotone = createForgeIcon(SolarEyeBoldDuotone, "EyeBoldDuotone");
+export const EyeLinear = createForgeIcon(SolarEyeLinear, "EyeLinear");
+export const FileTextBoldDuotone = createForgeIcon(SolarFileTextBoldDuotone, "FileTextBoldDuotone");
+export const FileTextLinear = createForgeIcon(SolarFileTextLinear, "FileTextLinear");
+export const FilterBold = createForgeIcon(SolarFilterBold, "FilterBold");
+export const FilterLinear = createForgeIcon(SolarFilterLinear, "FilterLinear");
+export const FiltersLinear = createForgeIcon(SolarFiltersLinear, "FiltersLinear");
+export const FlagLinear = createForgeIcon(SolarFlagLinear, "FlagLinear");
+export const FolderBoldDuotone = createForgeIcon(SolarFolderBoldDuotone, "FolderBoldDuotone");
+export const FolderOpenLinear = createForgeIcon(SolarFolderOpenLinear, "FolderOpenLinear");
+export const FolderWithFilesBoldDuotone = createForgeIcon(SolarFolderWithFilesBoldDuotone, "FolderWithFilesBoldDuotone");
+export const GameboyBoldDuotone = createForgeIcon(SolarGameboyBoldDuotone, "GameboyBoldDuotone");
+export const HamburgerMenuLinear = createForgeIcon(SolarHamburgerMenuLinear, "HamburgerMenuLinear");
+export const HashtagBoldDuotone = createForgeIcon(SolarHashtagBoldDuotone, "HashtagBoldDuotone");
+export const HeartBoldDuotone = createForgeIcon(SolarHeartBoldDuotone, "HeartBoldDuotone");
+export const HeartLinear = createForgeIcon(SolarHeartLinear, "HeartLinear");
+export const HomeBoldDuotone = createForgeIcon(SolarHomeBoldDuotone, "HomeBoldDuotone");
+export const HomeLinear = createForgeIcon(SolarHomeLinear, "HomeLinear");
+export const HomeSmileBoldDuotone = createForgeIcon(SolarHomeSmileBoldDuotone, "HomeSmileBoldDuotone");
+export const InboxBoldDuotone = createForgeIcon(SolarInboxBoldDuotone, "InboxBoldDuotone");
+export const InfoCircleBoldDuotone = createForgeIcon(SolarInfoCircleBoldDuotone, "InfoCircleBoldDuotone");
+export const KeyboardBoldDuotone = createForgeIcon(SolarKeyboardBoldDuotone, "KeyboardBoldDuotone");
+export const LetterBoldDuotone = createForgeIcon(SolarLetterBoldDuotone, "LetterBoldDuotone");
+export const LetterBold = createForgeIcon(SolarLetterBold, "LetterBold");
+export const LetterLinear = createForgeIcon(SolarLetterLinear, "LetterLinear");
+export const LinkRoundAngleLinear = createForgeIcon(SolarLinkRoundAngleLinear, "LinkRoundAngleLinear");
+export const ListCheckLinear = createForgeIcon(SolarListCheckLinear, "ListCheckLinear");
+export const LockKeyholeLinear = createForgeIcon(SolarLockKeyholeLinear, "LockKeyholeLinear");
+export const LockPasswordBoldDuotone = createForgeIcon(SolarLockPasswordBoldDuotone, "LockPasswordBoldDuotone");
+export const LockPasswordBold = createForgeIcon(SolarLockPasswordBold, "LockPasswordBold");
+export const Login2Linear = createForgeIcon(SolarLogin2Linear, "Login2Linear");
+export const Logout2BoldDuotone = createForgeIcon(SolarLogout2BoldDuotone, "Logout2BoldDuotone");
+export const Logout2Bold = createForgeIcon(SolarLogout2Bold, "Logout2Bold");
+export const Logout3BoldDuotone = createForgeIcon(SolarLogout3BoldDuotone, "Logout3BoldDuotone");
+export const Logout3Linear = createForgeIcon(SolarLogout3Linear, "Logout3Linear");
+export const MagniferBoldDuotone = createForgeIcon(SolarMagniferBoldDuotone, "MagniferBoldDuotone");
+export const MagniferLinear = createForgeIcon(SolarMagniferLinear, "MagniferLinear");
+export const MailboxLinear = createForgeIcon(SolarMailboxLinear, "MailboxLinear");
+export const MapPointBoldDuotone = createForgeIcon(SolarMapPointBoldDuotone, "MapPointBoldDuotone");
+export const MenuDotsBold = createForgeIcon(SolarMenuDotsBold, "MenuDotsBold");
+export const MenuDotsLinear = createForgeIcon(SolarMenuDotsLinear, "MenuDotsLinear");
+export const MinusSquareLinear = createForgeIcon(SolarMinusSquareLinear, "MinusSquareLinear");
+export const MouseBoldDuotone = createForgeIcon(SolarMouseBoldDuotone, "MouseBoldDuotone");
+export const PaperclipLinear = createForgeIcon(SolarPaperclipLinear, "PaperclipLinear");
+export const Pen2Linear = createForgeIcon(SolarPen2Linear, "Pen2Linear");
+export const PenBoldDuotone = createForgeIcon(SolarPenBoldDuotone, "PenBoldDuotone");
+export const PenBold = createForgeIcon(SolarPenBold, "PenBold");
+export const PenLinear = createForgeIcon(SolarPenLinear, "PenLinear");
+export const PenNewSquareBoldDuotone = createForgeIcon(SolarPenNewSquareBoldDuotone, "PenNewSquareBoldDuotone");
+export const PenNewSquareLinear = createForgeIcon(SolarPenNewSquareLinear, "PenNewSquareLinear");
+export const PhoneBoldDuotone = createForgeIcon(SolarPhoneBoldDuotone, "PhoneBoldDuotone");
+export const PhoneCallingLinear = createForgeIcon(SolarPhoneCallingLinear, "PhoneCallingLinear");
+export const PhoneCallingRoundedLinear = createForgeIcon(SolarPhoneCallingRoundedLinear, "PhoneCallingRoundedLinear");
+export const PhoneLinear = createForgeIcon(SolarPhoneLinear, "PhoneLinear");
+export const PieChart3BoldDuotone = createForgeIcon(SolarPieChart3BoldDuotone, "PieChart3BoldDuotone");
+export const PinLinear = createForgeIcon(SolarPinLinear, "PinLinear");
+export const PlainBold = createForgeIcon(SolarPlainBold, "PlainBold");
+export const PlainLinear = createForgeIcon(SolarPlainLinear, "PlainLinear");
+export const PlayBoldDuotone = createForgeIcon(SolarPlayBoldDuotone, "PlayBoldDuotone");
+export const PlayCircleBold = createForgeIcon(SolarPlayCircleBold, "PlayCircleBold");
+export const PlusLinear = createForgeIcon(SolarPlusLinear, "PlusLinear");
+export const PrinterLinear = createForgeIcon(SolarPrinterLinear, "PrinterLinear");
+export const QuestionCircleBoldDuotone = createForgeIcon(SolarQuestionCircleBoldDuotone, "QuestionCircleBoldDuotone");
+export const RefreshLinear = createForgeIcon(SolarRefreshLinear, "RefreshLinear");
+export const ReplyLinear = createForgeIcon(SolarReplyLinear, "ReplyLinear");
+export const RestartCircleLinear = createForgeIcon(SolarRestartCircleLinear, "RestartCircleLinear");
+export const Rocket2Bold = createForgeIcon(SolarRocket2Bold, "Rocket2Bold");
+export const RocketBold = createForgeIcon(SolarRocketBold, "RocketBold");
+export const RoundTransferHorizontalLinear = createForgeIcon(SolarRoundTransferHorizontalLinear, "RoundTransferHorizontalLinear");
+export const SettingsBoldDuotone = createForgeIcon(SolarSettingsBoldDuotone, "SettingsBoldDuotone");
+export const SettingsBold = createForgeIcon(SolarSettingsBold, "SettingsBold");
+export const ShareLinear = createForgeIcon(SolarShareLinear, "ShareLinear");
+export const ShieldCheckBold = createForgeIcon(SolarShieldCheckBold, "ShieldCheckBold");
+export const ShieldUpBold = createForgeIcon(SolarShieldUpBold, "ShieldUpBold");
+export const ShopBoldDuotone = createForgeIcon(SolarShopBoldDuotone, "ShopBoldDuotone");
+export const SortFromTopToBottomBold = createForgeIcon(SolarSortFromTopToBottomBold, "SortFromTopToBottomBold");
+export const StarBold = createForgeIcon(SolarStarBold, "StarBold");
+export const StarBoldDuotone = createForgeIcon(SolarStarBoldDuotone, "StarBoldDuotone");
+export const StarLinear = createForgeIcon(SolarStarLinear, "StarLinear");
+export const StarsBold = createForgeIcon(SolarStarsBold, "StarsBold");
+export const TagBoldDuotone = createForgeIcon(SolarTagBoldDuotone, "TagBoldDuotone");
+export const TagLinear = createForgeIcon(SolarTagLinear, "TagLinear");
+export const TargetBold = createForgeIcon(SolarTargetBold, "TargetBold");
+export const TickerStarBoldDuotone = createForgeIcon(SolarTickerStarBoldDuotone, "TickerStarBoldDuotone");
+export const TransferHorizontalBoldDuotone = createForgeIcon(SolarTransferHorizontalBoldDuotone, "TransferHorizontalBoldDuotone");
+export const TransferVerticalLinear = createForgeIcon(SolarTransferVerticalLinear, "TransferVerticalLinear");
+export const TrashBinMinimalisticBold = createForgeIcon(SolarTrashBinMinimalisticBold, "TrashBinMinimalisticBold");
+export const TrashBinMinimalisticLinear = createForgeIcon(SolarTrashBinMinimalisticLinear, "TrashBinMinimalisticLinear");
+export const TrashBinTrashBoldDuotone = createForgeIcon(SolarTrashBinTrashBoldDuotone, "TrashBinTrashBoldDuotone");
+export const TrashBinTrashLinear = createForgeIcon(SolarTrashBinTrashLinear, "TrashBinTrashLinear");
+export const UserBoldDuotone = createForgeIcon(SolarUserBoldDuotone, "UserBoldDuotone");
+export const UserCheckLinear = createForgeIcon(SolarUserCheckLinear, "UserCheckLinear");
+export const UserLinear = createForgeIcon(SolarUserLinear, "UserLinear");
+export const UserPlusBoldDuotone = createForgeIcon(SolarUserPlusBoldDuotone, "UserPlusBoldDuotone");
+export const UserPlusBold = createForgeIcon(SolarUserPlusBold, "UserPlusBold");
+export const UserPlusLinear = createForgeIcon(SolarUserPlusLinear, "UserPlusLinear");
+export const UsersGroupRoundedBoldDuotone = createForgeIcon(SolarUsersGroupRoundedBoldDuotone, "UsersGroupRoundedBoldDuotone");
+export const UsersGroupRoundedLinear = createForgeIcon(SolarUsersGroupRoundedLinear, "UsersGroupRoundedLinear");
+export const UsersGroupTwoRoundedBoldDuotone = createForgeIcon(SolarUsersGroupTwoRoundedBoldDuotone, "UsersGroupTwoRoundedBoldDuotone");
+export const VideocameraBoldDuotone = createForgeIcon(SolarVideocameraBoldDuotone, "VideocameraBoldDuotone");
+export const VideocameraRecordLinear = createForgeIcon(SolarVideocameraRecordLinear, "VideocameraRecordLinear");
+export const WalletBoldDuotone = createForgeIcon(SolarWalletBoldDuotone, "WalletBoldDuotone");
+export const WalletLinear = createForgeIcon(SolarWalletLinear, "WalletLinear");
+export const WalletMoneyBoldDuotone = createForgeIcon(SolarWalletMoneyBoldDuotone, "WalletMoneyBoldDuotone");
+export const WalletMoneyLinear = createForgeIcon(SolarWalletMoneyLinear, "WalletMoneyLinear");
+export const WidgetBoldDuotone = createForgeIcon(SolarWidgetBoldDuotone, "WidgetBoldDuotone");
+export const BoxLinear = createForgeIcon(SolarBoxLinear, "BoxLinear");
+export const EyeClosedLinear = createForgeIcon(SolarEyeClosedLinear, "EyeClosedLinear");
+export const FolderLinear = createForgeIcon(SolarFolderLinear, "FolderLinear");
+export const HamburgerMenuBoldDuotone = createForgeIcon(SolarHamburgerMenuBoldDuotone, "HamburgerMenuBoldDuotone");
+export const InfoCircleLinear = createForgeIcon(SolarInfoCircleLinear, "InfoCircleLinear");
+export const ShieldKeyholeBoldDuotone = createForgeIcon(SolarShieldKeyholeBoldDuotone, "ShieldKeyholeBoldDuotone");
+export const ShieldUserBoldDuotone = createForgeIcon(SolarShieldUserBoldDuotone, "ShieldUserBoldDuotone");
+export const WidgetLinear = createForgeIcon(SolarWidgetLinear, "WidgetLinear");
+export const FullScreenLinear = createForgeIcon(SolarFullScreenLinear, "FullScreenLinear");
+export const CodeLinear = createForgeIcon(SolarCodeLinear, "CodeLinear");
+export const CommandLinear = createForgeIcon(SolarCommandLinear, "CommandLinear");
+export const HashtagLinear = createForgeIcon(SolarHashtagLinear, "HashtagLinear");
+export const LightbulbLinear = createForgeIcon(SolarLightbulbLinear, "LightbulbLinear");
+export const LinkLinear = createForgeIcon(SolarLinkLinear, "LinkLinear");
+export const MicrophoneLinear = createForgeIcon(SolarMicrophoneLinear, "MicrophoneLinear");
+export const QuitFullScreenLinear = createForgeIcon(SolarQuitFullScreenLinear, "QuitFullScreenLinear");
+export const SidebarMinimalisticLinear = createForgeIcon(SolarSidebarMinimalisticLinear, "SidebarMinimalisticLinear");
+export const StarsLinear = createForgeIcon(SolarStarsLinear, "StarsLinear");

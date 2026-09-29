@@ -8,5 +8,5 @@ export default defineConfig({
   outDir: "tmp/core-tests",
   clean: true,
   external: ["jsdom"],
-  noExternal: [/^@phosphor-icons\/react/],
+  noExternal: [/^@solar-icons\/react/],
 });

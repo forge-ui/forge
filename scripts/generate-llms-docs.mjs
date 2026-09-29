@@ -180,7 +180,7 @@ Framework: Next.js 16, React 19, Tailwind CSS v4
 
 const fullEn = `# Forge UI Kit Agent Context
 
-Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and an MIT-licensed Phosphor-backed icon compatibility layer. The package is \`@forge-ui-official/core@${corePackage.version}\`.
+Forge UI Kit is a component library for building operational admin systems with React 19, Next.js 16, Tailwind v4, and a Solar-backed icon compatibility layer (MIT React implementation; CC BY 4.0 artwork by 480 Design). The package is \`@forge-ui-official/core@${corePackage.version}\`.
 
 ## When To Use
 

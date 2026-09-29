@@ -75,7 +75,7 @@ export default function InstallationPage() {
             <code>tailwindcss</code> ^4（以及 <code>@tailwindcss/postcss</code>）
           </li>
           <li>
-            <code>@phosphor-icons/react</code> ^2.1.10（MIT；Forge 图标兼容层的底层实现）
+            <code>@solar-icons/react</code> ^2.3.2（React 实现为 MIT；Solar 图形由 480 Design 提供，采用 CC BY 4.0）
           </li>
           <li>
             <code>next</code> {">="}15（core 根入口包含 AppLayout 与 StyledLink，因此是必需 peer dependency）

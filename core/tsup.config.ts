@@ -28,8 +28,7 @@ export default defineConfig({
     "react",
     "react-dom",
     "next",
-    "@phosphor-icons/react",
-    "@phosphor-icons/react/ssr",
+    "@solar-icons/react",
   ],
   tsconfig: "tsconfig.build.json",
 });
