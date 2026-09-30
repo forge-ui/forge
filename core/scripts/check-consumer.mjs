@@ -89,6 +89,8 @@ function verifyScenario({ scenario, tarballPath }) {
     'class="forge-grid-item"',
     "Streaming consumer",
     'data-streaming-state="complete"',
+    'data-prompt-status="running"',
+    'aria-label="Stop consumer task"',
   ]) {
     if (!html.includes(marker)) {
       throw new Error(`consumer root HTML is missing SSR marker: ${marker}`);

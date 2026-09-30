@@ -182,8 +182,8 @@ export default function AgentCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="PromptBar" description="点 Sources / Commands，或输入 @ /。">
-        <a href="/cases/prompt-bar" className="text-accent underline">模型菜单：抽屉、全屏与窄屏回归验证</a>
+      <Section title="PromptBar" description="点 Sources / Commands，或输入 @ /；通过 status 和 onStop 接入任务停止。">
+        <a href="/cases/prompt-bar" className="text-accent underline">发送与停止交互、模型菜单、抽屉、全屏与窄屏演示</a>
         <SubSection title="Composer" stack>
           <PromptBar
             value={prompt}

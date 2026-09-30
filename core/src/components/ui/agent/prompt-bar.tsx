@@ -13,6 +13,8 @@ import {
   LinkLinear,
   MicrophoneLinear,
   PaperclipLinear,
+  RefreshLinear,
+  StopBold,
 } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import type { AccentColor } from "../accent-utils";
@@ -36,10 +38,17 @@ export type PromptModel = {
   label: string;
 };
 
+export type PromptBarStatus = "idle" | "running" | "stopping";
+
 export function PromptBar({
   value: controlledValue,
   onChange,
   onSend,
+  status = "idle",
+  onStop,
+  sendLabel = "Send",
+  stopLabel = "停止生成",
+  stoppingLabel = "正在停止…",
   onAttach,
   onDictate,
   placeholder = "Ask the agent…",
@@ -56,6 +65,13 @@ export function PromptBar({
   value?: string;
   onChange?: (value: string) => void;
   onSend?: (message: string) => void;
+  /** Controlled task state. Running includes waiting for the first response. */
+  status?: PromptBarStatus;
+  /** Request cancellation; the caller sets stopping, then idle after confirmation. */
+  onStop?: () => void;
+  sendLabel?: string;
+  stopLabel?: string;
+  stoppingLabel?: string;
   onAttach?: () => void;
   onDictate?: () => void;
   placeholder?: string;
@@ -66,6 +82,7 @@ export function PromptBar({
   onModelChange?: (id: string) => void;
   /** Accessible name for the model menu and its trigger. */
   modelMenuLabel?: string;
+  /** Disable editing/sending and model selection; an active task can still be stopped. */
   disabled?: boolean;
   /** Maps `--accent` so the send button follows AppLayout / site accent. */
   color?: AccentColor;
@@ -87,7 +104,7 @@ export function PromptBar({
 
   function send() {
     const trimmed = value.trim();
-    if (!trimmed || disabled) return;
+    if (!trimmed || disabled || status !== "idle") return;
     onSend?.(trimmed);
     setValue("");
     setPanel(null);
@@ -112,11 +129,15 @@ export function PromptBar({
   );
   const openPanel =
     panel ?? (query?.kind === "@" && sources.length ? "sources" : query?.kind === "/" && commands.length ? "commands" : null);
-  const canSend = value.trim().length > 0 && !disabled;
+  const active = status !== "idle";
+  const canSend = value.trim().length > 0 && !disabled && !active;
+  const canStop = status === "running" && Boolean(onStop);
+  const actionLabel = status === "stopping" ? stoppingLabel : active ? stopLabel : sendLabel;
 
   return (
     <div
       data-accent={color}
+      data-prompt-status={status}
       className={cn("relative rounded-2xl bg-white outline outline-1 outline-fg-grey-200", className)}
     >
       {openPanel === "sources" && filteredSources.length > 0 && (
@@ -203,15 +224,27 @@ export function PromptBar({
           )}
           <button
             type="button"
-            disabled={!canSend}
-            onClick={send}
-            aria-label="Send"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
+            disabled={active ? !canStop : !canSend}
+            onClick={active ? () => { if (canStop) onStop?.(); } : send}
+            aria-label={actionLabel}
+            aria-busy={status === "stopping" || undefined}
+            title={actionLabel}
+            className={cn(
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-full hover:brightness-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:bg-fg-grey-300",
+              active ? "bg-fg-black text-fg-white" : "bg-accent text-accent-foreground",
+            )}
           >
-            <ArrowUpLinear size={16} color="var(--fg-white)" />
+            {status === "stopping" ? (
+              <RefreshLinear size={16} color="var(--fg-white)" className="motion-safe:animate-spin" />
+            ) : active ? (
+              <StopBold size={16} color="var(--fg-white)" />
+            ) : (
+              <ArrowUpLinear size={16} color="var(--fg-white)" />
+            )}
           </button>
         </div>
       </div>
+      <span role="status" className="sr-only">{status === "stopping" ? stoppingLabel : ""}</span>
     </div>
   );
 }
