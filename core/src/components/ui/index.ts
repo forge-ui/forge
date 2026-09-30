@@ -389,6 +389,8 @@ export type {
   ThinkingVariant,
   ThinkingRow,
   StreamingSource,
+  StreamingAnswerProps,
+  StreamingAnswerStatus,
   ApprovalQuestion,
   ToolChipKind,
   ToolChipDetail,

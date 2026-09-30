@@ -39,6 +39,34 @@ const menuSections: AppLayoutMenuSection[] = [
 
 优先级为 `sidebarSlot`、`menuSections`、旧的 `menuItems` 与 `favoriteItems`。不传 `menuSections` 时仍使用默认的「主菜单」和「常用项目」；旧的分组标题传空字符串时也不占位。
 
+## StreamingAnswer 流式回答
+
+默认使用 `500ms` 线性淡入，新到达的内容平滑出现，已显示内容保持稳定。纯文本模式为默认值；传 `format="markdown"` 可渲染标题、列表、链接、表格和代码块。
+
+```tsx
+import { StreamingAnswer } from "@forge-ui-official/core";
+
+<StreamingAnswer
+  key={message.id}
+  text={message.text}
+  status={message.status}
+  format="markdown"
+  onDone={() => showMessageActions(message.id)}
+/>;
+```
+
+宿主负责接收流并追加 `text`，通过 `status` 告诉组件接收进度：
+
+- `streaming`：仍在接收。网络暂停、暂时没有新文字时也保持此状态。
+- `complete`：接收完毕。组件展示剩余缓冲并等待最后一批淡入结束，随后调用一次 `onDone`，显示追问。
+- `stopped`：保留已经显示的内容，停止继续呈现，不调用 `onDone`。宿主同时取消网络请求。
+
+每条新回答或重播使用新的 React `key`。不传 `status` 时，`streaming` 仍可播放预先准备好的完整文本；两者都省略则直接显示静态回答。
+
+`animation="blur"` 可切换为模糊渐显；`duration` 调整动画毫秒数。`motion="auto"` 遵循系统减弱动态效果偏好，`motion="none"` 或 `duration={0}` 直接显示收到的文本。来源、追问及其回调保留原有用法。
+
+Markdown 渲染通过运行时依赖 `streamdown` 提供。样式包含在 Forge 的 `styles.css`，消费方沿用现有 Forge CSS 接入即可。演示地址：`/prototype/streaming?variant=fade`；组件参数见 `/components/agent`。
+
 ## 开发
 
 仓库工具链要求 Node.js `>=22.13.0`，并由根目录 `packageManager` 固定 pnpm 版本。

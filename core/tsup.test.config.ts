@@ -8,5 +8,5 @@ export default defineConfig({
   outDir: "tmp/core-tests",
   clean: true,
   external: ["jsdom"],
-  noExternal: [/^@solar-icons\/react/],
+  noExternal: [/^@solar-icons\/react/, /^streamdown$/],
 });

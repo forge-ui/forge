@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useId, type ForwardRefExoticComponent, type InputHTMLAttributes, type ReactNode, type RefAttributes } from "react";
 import { cn } from "../../../lib/utils";
 import {
   FieldFrame,
@@ -37,7 +37,7 @@ export type TextFieldProps = {
   inputClassName?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "color" | "size" | "onChange">;
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField({
+export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, TextFieldProps>(function TextField({
   placeholder,
   value,
   state = "idle",

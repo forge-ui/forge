@@ -1,6 +1,6 @@
 {
   "name": "@forge-ui-official/core",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Forge UI Kit — React 19 + Tailwind v4 components",
   "license": "MIT",
   "private": false,
@@ -84,5 +84,8 @@
     "type": "git",
     "url": "git+https://atomgit.com/bitlink/forge.git",
     "directory": "core"
+  },
+  "dependencies": {
+    "streamdown": "2.6.0"
   }
 }
