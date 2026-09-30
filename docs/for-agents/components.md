@@ -169,7 +169,7 @@
 | `ApprovalCard` | ◇ | 行动前 HITL 选择题 | `agent` |
 | `ToolChips` | ◇ | 工具调用 / 代码编辑 chip | `agent` |
 | `AgentTaskRows` | ◇ | Agent 任务 running / failed / completed | `agent` |
-| `PromptBar` | ◇ | @ 来源、/ 命令、模型选择；不替代 ChatInputBar | `agent` |
+| `PromptBar` | ◇ | @ 来源、/ 命令、模型选择；`status`（idle / running / stopping）切换发送与停止，`onStop` 由业务层取消任务；保留生成中草稿 | `prompt-bar` / `agent` |
 | `ContextCards` | ○ | 检索片段 + 来源 | `agent` |
 | `RecommendationCard` | ○ | 建议 + 置信度 + Accept | `agent` |
 | `AgentDiffTable` | ◇ | Agent 提议的表格增删，不替代 DataTable | `agent` |
@@ -177,6 +177,8 @@
 | `InsightCards` | ○ | 洞察轮播 + spark / bars / segments | `agent` |
 | `CommandSearch` | ○ | 命令过滤，不替代 ToolbarSearchInput | `agent` |
 | `AgentFlowchart` | ○ | 可选中工作流节点，不做拖拽画布 | `agent` |
+
+`PromptBar` 默认 `status="idle"`，兼容原有发送行为。请求发出时设为 `running`（包括等待首字阶段），传入 `onStop`；收到停止请求后设为 `stopping`，在取消完成或任务完成后恢复 `idle`。运行中允许编辑草稿，Enter 和发送按钮只在 `idle` 时发送。`disabled` 禁用输入与发送，仍可通过 `onStop` 停止运行中的任务。`sendLabel` 默认 `Send`，`stopLabel` 默认 `停止生成`，`stoppingLabel` 默认 `正在停止…`；这些标签用于按钮提示和无障碍名称。组件只发出停止回调，实际请求取消、回答保留和结束状态由业务层管理，参见 `/cases/prompt-bar` 本地模拟示例。
 
 ### patterns
 

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { AskAi, Button, PromptBar } from "@forge-ui-official/core";
 import { PageHeading, Section } from "../_shared";
+import { PromptBarGenerationDemo } from "./_generation-demo";
 
 const models = [
   { id: "auto", label: "Auto" },
@@ -20,7 +21,10 @@ export default function PromptBarCase() {
   const prompt = <PromptBar models={models} model={model} onModelChange={change} modelMenuLabel="选择模型"
     sources={[{id: "docs", label: "Documents"}]} commands={[{id: "summarize", label: "Summarize"}]} />;
   return <div className="flex flex-col gap-8">
-    <PageHeading title="PromptBar 模型菜单" hint="按钮锚定 · 键盘导航 · 溢出裁切 · Ask AI 抽屉 · 全屏" />
+    <PageHeading title="PromptBar" hint="发送与停止 · 草稿保留 · 模型菜单 · Ask AI 抽屉 · 全屏" />
+    <Section title="发送、生成与停止" description="发送后即可停止；运行中可编辑草稿，确认停止后恢复发送。">
+      <PromptBarGenerationDemo />
+    </Section>
     <div className="flex flex-wrap gap-3">
       <AskAi label="打开 Ask AI 抽屉" color="blue" onSend={() => "Case reply"} composer={<div className="shrink-0 overflow-hidden p-4">{prompt}</div>} fullscreen={full} onFullscreenChange={setFull} messages={<div className="min-h-0 flex-1 overflow-y-auto p-5"><p role="status">当前模型：{model} · 回调：{changes}</p></div>} />
       <Button onClick={() => setFull(true)}>打开全屏面板</Button>

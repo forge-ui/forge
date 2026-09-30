@@ -402,6 +402,7 @@ export type {
   PromptSource,
   PromptCommand,
   PromptModel,
+  PromptBarStatus,
   ContextChunk,
   RecommendationConfidence,
   RecommendationOption,
