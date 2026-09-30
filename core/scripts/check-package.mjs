@@ -23,21 +23,20 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Solar style-specific imports and attribution, measured for 0.3.2:
-// 647,691 B packed / 2,648,997 B unpacked / 1,439,603 B sourcemaps.
-// Narrow additive allowance; retain all per-module JavaScript limits.
+// StreamingAnswer adds one internal playout module, scoped Markdown CSS and
+// public prop types. Keep a narrow additive allowance and the JS module limits.
 const limits = {
-  packed: 655_000,
-  unpacked: 2_675_000,
-  entries: 440,
-  sourceMaps: 1_455_000,
+  packed: 665_000,
+  unpacked: 2_705_000,
+  entries: 443,
+  sourceMaps: 1_470_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 27_500,
+  stylesRaw: 30_000,
 };
 
 const expectedExports = {

@@ -17,6 +17,7 @@ import {
   AgentFlowchart,
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
+import { StreamingAnswerDemo } from "./_streaming-demo";
 
 const TASKS = [
   {
@@ -70,7 +71,10 @@ export default function AgentCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="StreamingAnswer" description="来源可展开，follow-up 可点。">
+      <Section title="StreamingAnswer" description="增量正文自然淡入；支持停止、重播、来源与追问。">
+        <SubSection title="流式淡入 · 交互示例" stack>
+          <StreamingAnswerDemo />
+        </SubSection>
         <SubSection title="With sources" stack>
           <StreamingAnswer
             text="Pistachio is your fastest-growing flavor — sales are up 23% this month and margins beat vanilla by 8 points."

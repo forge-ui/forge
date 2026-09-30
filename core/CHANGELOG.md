@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.4
+
+- Add smooth buffered playback and a 500ms linear fade to `StreamingAnswer`, with explicit streaming, complete, and stopped states. Keep the existing full-text replay API.
+- Add optional Markdown rendering through Streamdown, preserve Unicode grapheme clusters, and support reduced motion and server hydration.
+- Export `StreamingAnswerProps` and `StreamingAnswerStatus`. Completion waits for the final fade; stopping preserves the visible answer.
+- Add interactive Chinese and English examples to the Agent showcase, plus streaming regression tests and Next.js 15/16 package-consumer checks.
+- Stabilize generated `TextField` declarations so package API checks do not depend on inferred union ordering; its props and behavior are unchanged.
+
 ## 0.3.3
 
 - Add `AppLayout.menuSections` and export `AppLayoutMenuSection` for any number of ordered sidebar groups. The same active-item, nested-menu, collapsed, and mobile behaviors apply across all groups.

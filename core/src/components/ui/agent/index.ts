@@ -2,7 +2,7 @@ export { ThinkingTrace } from "./thinking-trace";
 export type { ThinkingVariant, ThinkingRow } from "./thinking-trace";
 
 export { StreamingAnswer } from "./streaming-answer";
-export type { StreamingSource } from "./streaming-answer";
+export type { StreamingSource, StreamingAnswerProps, StreamingAnswerStatus } from "./streaming-answer";
 
 export { ApprovalCard } from "./approval-card";
 export type { ApprovalQuestion } from "./approval-card";

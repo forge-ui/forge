@@ -87,6 +87,8 @@ function verifyScenario({ scenario, tarballPath }) {
     "bg-fg-violet",
     'class="forge-grid"',
     'class="forge-grid-item"',
+    "Streaming consumer",
+    'data-streaming-state="complete"',
   ]) {
     if (!html.includes(marker)) {
       throw new Error(`consumer root HTML is missing SSR marker: ${marker}`);
@@ -122,6 +124,9 @@ function verifyScenario({ scenario, tarballPath }) {
 
   for (const marker of [".forge-grid", ".forge-grid-item", "--forge-grid-columns-md", "--forge-grid-row-gap-lg", "--forge-grid-start-xl"]) {
     if (!css.includes(marker)) throw new Error(`consumer CSS is missing grid styles: ${marker}`);
+  }
+  for (const marker of [".forge-streaming-markdown", "sd-forge-answer-in", "[data-sd-animate]"]) {
+    if (!css.includes(marker)) throw new Error(`consumer CSS is missing streaming styles: ${marker}`);
   }
   return cssFiles.length;
 }

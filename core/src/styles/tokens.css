@@ -717,3 +717,34 @@ body {
   .forge-drawer[data-motion="auto"][data-state="closed"] { animation: forge-drawer-out var(--forge-motion-exit-duration) ease both; }
 }
 .forge-toast .forge-motion-collapse[data-state="closed"] { transition-duration: var(--forge-motion-exit-duration); }
+
+/* StreamingAnswer owns its Markdown styles; consumers only scan Forge dist. */
+@keyframes sd-forge-answer-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sd-forge-answer-blur { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: blur(0); } }
+.forge-answer-segment { animation: var(--forge-answer-animation) var(--forge-answer-duration) linear both; }
+.forge-streaming-answer [data-sd-animate] { animation: var(--sd-animation) var(--sd-duration) var(--sd-easing) var(--sd-delay, 0ms) both; }
+.forge-streaming-body { overflow-wrap: anywhere; min-width: 0; }
+.forge-streaming-markdown > * + * { margin-top: 1.25rem; }
+.forge-streaming-markdown :is(h1,h2,h3,h4,h5,h6) { font-weight: 650; line-height: 1.5; margin-block: 1.5rem .75rem; }
+.forge-streaming-markdown h1 { font-size: 1.3em; }
+.forge-streaming-markdown h2 { font-size: 1.2em; }
+.forge-streaming-markdown :is(h3,h4,h5,h6) { font-size: 1.1em; }
+.forge-streaming-markdown [data-streamdown="strong"] { font-weight: 650; }
+.forge-streaming-markdown ul { list-style: disc; padding-left: 1.5rem; }
+.forge-streaming-markdown ol { list-style: decimal; padding-left: 1.5rem; }
+.forge-streaming-markdown li { margin-block: .5rem; padding-left: .25rem; }
+.forge-streaming-markdown li > p { margin: 0; }
+.forge-streaming-markdown a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.forge-streaming-markdown blockquote { border-left: 2px solid var(--fg-grey-300); padding-left: 1rem; color: var(--fg-grey-700); }
+.forge-streaming-markdown pre { overflow: auto; padding: 1rem; border: 1px solid var(--fg-grey-200); border-radius: 10px; background: var(--fg-grey-50); line-height: 1.8; }
+.forge-streaming-markdown code { font-family: ui-monospace, monospace; font-size: .86em; }
+.forge-streaming-markdown :not(pre) > code { background: var(--fg-grey-100); border-radius: 3px; padding: 2px 4px; }
+.forge-streaming-markdown [data-streamdown="table-wrapper"] { overflow-x: auto; }
+.forge-streaming-markdown table { width: 100%; border-collapse: collapse; text-align: left; font-size: .9em; }
+.forge-streaming-markdown :is(th,td) { border-bottom: 1px solid var(--fg-grey-200); padding: .5rem .75rem; }
+.forge-streaming-markdown th { background: var(--fg-grey-50); font-weight: 600; }
+.forge-streaming-markdown hr { border: 0; border-top: 1px solid var(--fg-grey-200); margin-block: 1.5rem; }
+.forge-streaming-answer[data-motion="none"] :is(.forge-answer-segment,[data-sd-animate],.forge-fade-up) { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .forge-streaming-answer :is(.forge-answer-segment,[data-sd-animate],.forge-fade-up) { animation: none; }
+}

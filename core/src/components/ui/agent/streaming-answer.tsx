@@ -5,8 +5,12 @@
  * Forge rewrite: fg-* tokens + solar-icon-set.
  */
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { Block, Streamdown, type BlockProps } from "streamdown";
 import { AltArrowDownLinear, CopyLinear, LinkLinear } from "../../../icons";
+import { useReducedMotion } from "../../../internal/motion";
+import { segmentGraphemes, useStreamingText } from "../../../internal/streaming-text";
+import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 
 export type StreamingSource = {
@@ -15,9 +19,93 @@ export type StreamingSource = {
   href?: string;
 };
 
+export type StreamingAnswerStatus = "streaming" | "complete" | "stopped";
+
+export type StreamingAnswerProps = {
+  text: string;
+  /** Replay a complete string. For a live response, use status instead. */
+  streaming?: boolean;
+  /** Transport state. Complete drains the display buffer; stopped freezes it. */
+  status?: StreamingAnswerStatus;
+  /** Plain preserves literal text and whitespace; Markdown is opt-in. */
+  format?: "plain" | "markdown";
+  animation?: "fade" | "blur";
+  /** Fade duration in milliseconds; zero shows incoming content immediately. */
+  duration?: number;
+  motion?: MotionPreference;
+  sources?: StreamingSource[];
+  sourcesLabel?: string;
+  followUps?: string[];
+  followUpsLabel?: string;
+  onFollowUp?: (text: string, index: number) => void;
+  /** Called once per completed answer after its final fade, never on stop. */
+  onDone?: () => void;
+  className?: string;
+};
+
+function plainSegments(text: string) {
+  const segments: { value: string; offset: number }[] = [];
+  const word = /^[\p{Script=Latin}\p{Number}\p{Mark}'’_-]+$/u;
+  for (const item of segmentGraphemes(text)) {
+    const previous = segments.at(-1);
+    if (previous && word.test(previous.value) && word.test(item.segment)) previous.value += item.segment;
+    else segments.push({ value: item.segment, offset: item.index });
+  }
+  return segments;
+}
+
+type TextTree = { type: string; tagName?: string; value?: string; properties?: Record<string, unknown>; children?: TextTree[] };
+
+// Streamdown's char separator uses code points. Merge adjacent animated spans
+// at grapheme boundaries so emoji joins and combining marks share one glyph.
+function keepAnimatedGraphemes() {
+  return function transform(tree: TextTree) {
+    if (!tree.children) return;
+    const output: TextTree[] = [];
+    for (let index = 0; index < tree.children.length;) {
+      const run: TextTree[] = [];
+      while (index < tree.children.length) {
+        const child = tree.children[index];
+        if (child.tagName !== "span" || !child.properties?.["data-sd-animate"] || child.children?.length !== 1 || child.children[0].type !== "text") break;
+        run.push(child);
+        index++;
+      }
+      if (!run.length) {
+        const child = tree.children[index++];
+        transform(child);
+        output.push(child);
+        continue;
+      }
+      const value = run.map((node) => node.children![0].value ?? "").join("");
+      const ends = new Set(segmentGraphemes(value).map((item) => item.index + item.segment.length));
+      let position = 0;
+      let pending: TextTree | undefined;
+      for (const node of run) {
+        const fragment = node.children![0].value ?? "";
+        position += fragment.length;
+        if (pending) pending.children![0].value += fragment;
+        else pending = { ...node, children: [{ type: "text", value: fragment }] };
+        if (ends.has(position)) { output.push(pending); pending = undefined; }
+      }
+      if (pending) output.push(pending);
+    }
+    tree.children = output;
+  };
+}
+
+function AnswerBlock(props: BlockProps) {
+  const plugins = useMemo(() => [...(props.rehypePlugins ?? []), keepAnimatedGraphemes], [props.rehypePlugins]);
+  return <Block {...props} rehypePlugins={plugins} />;
+}
+
 export function StreamingAnswer({
   text,
   streaming = false,
+  status,
+  format = "plain",
+  animation = "fade",
+  duration = 500,
+  motion = "auto",
   sources = [],
   sourcesLabel,
   followUps = [],
@@ -25,67 +113,41 @@ export function StreamingAnswer({
   onFollowUp,
   onDone,
   className = "",
-}: {
-  text: string;
-  /** Reveal the answer word by word. Host should pass the growing string when driving a real stream. */
-  streaming?: boolean;
-  sources?: StreamingSource[];
-  sourcesLabel?: string;
-  followUps?: string[];
-  followUpsLabel?: string;
-  onFollowUp?: (text: string, index: number) => void;
-  onDone?: () => void;
-  className?: string;
-}) {
-  const words = useMemo(() => text.trim().split(/\s+/).filter(Boolean), [text]);
-  const [revealed, setRevealed] = useState(0);
-  const [prevText, setPrevText] = useState(text);
-  const [prevStreaming, setPrevStreaming] = useState(streaming);
-  if (text !== prevText) {
-    setPrevText(text);
-    setRevealed(0);
-  }
-  if (streaming !== prevStreaming) {
-    setPrevStreaming(streaming);
-    setRevealed(0);
-  }
-  const count = streaming ? Math.min(revealed, words.length) : words.length;
+}: StreamingAnswerProps) {
+  const reduced = useReducedMotion(motion);
+  const fadeDuration = Number.isFinite(duration) ? Math.max(0, duration) : 500;
+  const playout = useStreamingText({ text, streaming, status, reducedMotion: reduced, duration: fadeDuration });
+  const segments = useMemo(() => plainSegments(playout.text), [playout.text]);
+  const animate = playout.busy && !playout.motionDisabled && !reduced && fadeDuration > 0;
   const [sourcesOpen, setSourcesOpen] = useState(false);
-  const done = count >= words.length;
+  const notified = useRef<{ generation: number; text: string } | null>(null);
 
-  const doneRef = useRef(false);
   useEffect(() => {
-    if (!streaming) {
-      if (!doneRef.current) {
-        doneRef.current = true;
-        onDone?.();
-      }
-      return;
+    if (playout.done && (notified.current?.generation !== playout.generation || notified.current?.text !== text)) {
+      notified.current = { generation: playout.generation, text };
+      onDone?.();
     }
-    if (done) {
-      if (!doneRef.current) {
-        doneRef.current = true;
-        onDone?.();
-      }
-      return;
-    }
-    doneRef.current = false;
-    const t = setTimeout(() => setRevealed((n) => n + 1), 55);
-    return () => clearTimeout(t);
-  }, [streaming, done, revealed, onDone]);
+  }, [playout.done, playout.generation, text, onDone]);
 
   return (
-    <div className={cn("flex flex-col gap-3 text-sm", className)}>
-      <p className="whitespace-pre-wrap text-[15px] leading-7 tracking-fg text-fg-black">
-        {words.slice(0, count).map((word, i) => (
-          <span key={`${word}-${i}`} className="forge-stream-in">
-            {word}{" "}
-          </span>
-        ))}
-        {streaming && !done && (
-          <span className="forge-pulse-dot inline-block h-4 w-1.5 translate-y-0.5 rounded-sm bg-accent" />
-        )}
-      </p>
+    <div className={cn("forge-streaming-answer flex flex-col gap-3 text-sm", className)} data-motion={motion} data-streaming-state={status === "stopped" ? "stopped" : playout.busy ? "streaming" : "complete"} aria-busy={playout.busy}>
+      {format === "markdown" ? (
+        <Streamdown
+          key={playout.generation}
+          className="forge-streaming-body forge-streaming-markdown text-[15px] leading-7 tracking-fg text-fg-black"
+          mode="streaming"
+          BlockComponent={AnswerBlock}
+          isAnimating={animate}
+          animated={animate ? { animation: animation === "blur" ? "forge-answer-blur" : "forge-answer-in", duration: fadeDuration, easing: "linear", sep: "char", stagger: 0 } : false}
+          controls={false}
+          linkSafety={{ enabled: false }}
+          skipHtml
+        >{playout.text}</Streamdown>
+      ) : (
+        <p key={playout.generation} className="forge-streaming-body whitespace-pre-wrap text-[15px] leading-7 tracking-fg text-fg-black">
+          {animate ? segments.map((segment) => <span key={segment.offset} className="forge-answer-segment" style={{ "--forge-answer-duration": `${fadeDuration}ms`, "--forge-answer-animation": animation === "blur" ? "sd-forge-answer-blur" : "sd-forge-answer-in" } as CSSProperties}>{segment.value}</span>) : playout.text}
+        </p>
+      )}
 
       {sources.length > 0 && (
         <div className="flex flex-col gap-2">
@@ -136,7 +198,7 @@ export function StreamingAnswer({
         </div>
       )}
 
-      {done && followUps.length > 0 && (
+      {playout.done && followUps.length > 0 && (
         <div className="flex flex-col gap-1">
           <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">{followUpsLabel}</p>
           {followUps.map((item, index) => (

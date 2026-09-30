@@ -45,10 +45,16 @@ const THINKING_PROPS: ApiTableRow[] = [
 ];
 
 const STREAM_PROPS: ApiTableRow[] = [
-  { attr: "text", type: "string", defaultValue: "—", description: "回答正文。" },
-  { attr: "streaming", type: "boolean", defaultValue: "false", description: "按词揭示；真实流式由宿主改 text。" },
+  { attr: "text", type: "string", defaultValue: "—", description: "完整正文，或持续追加的已接收正文。" },
+  { attr: "streaming", type: "boolean", defaultValue: "false", description: "播放预先准备好的完整文本；接真实流时使用 status。" },
+  { attr: "status", type: "'streaming' | 'complete' | 'stopped'", defaultValue: "—", description: "宿主的接收状态。complete 等待正文呈现完毕；stopped 保留已显示内容。" },
+  { attr: "format", type: "'plain' | 'markdown'", defaultValue: "'plain'", description: "纯文本保留字面内容与空白；markdown 支持标题、列表、链接、表格和代码块。" },
+  { attr: "animation", type: "'fade' | 'blur'", defaultValue: "'fade'", description: "新增内容的线性淡入，或模糊渐显。" },
+  { attr: "duration", type: "number", defaultValue: "500", description: "淡入时长，单位 ms；0 表示直接显示。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "auto 尊重系统减弱动态效果偏好；none 直接显示收到的内容。" },
   { attr: "sources", type: "StreamingSource[]", defaultValue: "[]", description: "行内来源列表。" },
   { attr: "followUps", type: "string[]", defaultValue: "[]", description: "完成后的追问。" },
+  { attr: "onDone", type: "() => void", defaultValue: "—", description: "回答完成且最后一批淡入结束后回调一次，停止时不触发。" },
 ];
 
 const APPROVAL_PROPS: ApiTableRow[] = [
@@ -168,6 +174,22 @@ export default function AgentSpecPage() {
               />
             </div>
           </PreviewBlock>
+        </SubSection>
+        <SubSection title="真实流接入" stack>
+          <p className="text-sm leading-[1.7] text-fg-grey-900">
+            持续追加 <InlineCode>text</InlineCode>，接收结束后把 <InlineCode>status</InlineCode> 设为 complete。
+            网络停顿时保持 streaming；点击停止后由宿主取消请求并设为 stopped。每条新回答使用独立的 React key。
+          </p>
+          <CodeBlock code={`<StreamingAnswer
+  key={message.id}
+  text={message.text}
+  status={message.status}
+  format="markdown"
+  onDone={() => showMessageActions(message.id)}
+/>`} />
+          <Link href="/cases/agent#streaminganswer" className="text-sm text-fg-black underline underline-offset-4">
+            在 Showcase 中体验：中英文、停止重播与网络停顿
+          </Link>
         </SubSection>
         <SubSection title="API" stack>
           <ApiTable rows={STREAM_PROPS} />

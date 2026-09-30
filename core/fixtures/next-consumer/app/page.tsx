@@ -6,6 +6,7 @@ import {
   Grid,
   GridItem,
   DataTable,
+  StreamingAnswer,
   type ColumnDef,
   type AppLayoutMenuSection,
 } from "@forge-ui-official/core";
@@ -72,6 +73,7 @@ export default function Home() {
             selectedRowKeys={selectedRowKeys}
             onSelectedRowKeysChange={setSelectedRowKeys}
           />
+          <StreamingAnswer text={"## Streaming consumer\n\n中文与 **Markdown** 随 Core 安装。"} format="markdown" />
         </div>
       </main>
     </AppLayout>
