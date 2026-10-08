@@ -25,6 +25,7 @@ export function CommandSearch({
   query: controlledQuery,
   onQueryChange,
   onSelect,
+  groupLabel = "Commands",
   className = "",
 }: {
   items: CommandSearchItem[];
@@ -33,6 +34,8 @@ export function CommandSearch({
   query?: string;
   onQueryChange?: (query: string) => void;
   onSelect?: (item: CommandSearchItem) => void;
+  /** Heading for items without an explicit group. */
+  groupLabel?: string;
   className?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState("");
@@ -47,7 +50,7 @@ export function CommandSearch({
     );
   }, [items, query]);
   const groups = matched.reduce<Record<string, CommandSearchItem[]>>((acc, item) => {
-    const key = item.group ?? "Commands";
+    const key = item.group ?? groupLabel;
     acc[key] = [...(acc[key] ?? []), item];
     return acc;
   }, {});

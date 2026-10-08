@@ -62,6 +62,9 @@ export function PromptBar({
   modelMenuLabel = "Model",
   disabled,
   color,
+  connectedLabel = "Connected",
+  attachLabel = "Attach",
+  dictateLabel = "Dictate",
   className = "",
 }: {
   value?: string;
@@ -92,6 +95,9 @@ export function PromptBar({
   disabled?: boolean;
   /** Maps `--accent` so the send button follows AppLayout / site accent. */
   color?: AccentColor;
+  connectedLabel?: string;
+  attachLabel?: string;
+  dictateLabel?: string;
   className?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState("");
@@ -153,7 +159,7 @@ export function PromptBar({
             id: item.id,
             label: item.label,
             description: item.description,
-            badge: item.connected ? "Connected" : undefined,
+            badge: item.connected ? connectedLabel : undefined,
           }))}
           onPick={(id) => {
             const source = sources.find((item) => item.id === id);
@@ -194,7 +200,7 @@ export function PromptBar({
       <div className="flex items-center justify-between gap-2 px-3 pb-3">
         <div className="flex flex-wrap items-center gap-1.5">
           {onAttach ? (
-            <IconChip label="Attach" onClick={onAttach}>
+            <IconChip label={attachLabel} onClick={onAttach}>
               <PaperclipLinear size={14} color="var(--fg-grey-700)" />
             </IconChip>
           ) : null}
@@ -211,7 +217,7 @@ export function PromptBar({
             </IconChip>
           )}
           {onDictate ? (
-            <IconChip label="Dictate" onClick={onDictate}>
+            <IconChip label={dictateLabel} onClick={onDictate}>
               <MicrophoneLinear size={14} color="var(--fg-grey-700)" />
             </IconChip>
           ) : null}

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.7
+
+- Add translation overrides for AgentTaskRows states, code actions, workflow kinds, context labels, command groups, recommendation confidence, PromptBar controls, and navigation accessible names.
+- Add count formatters and a translated toggle hint to AgentDiffTable. Preserve all existing defaults; translations update with props.
+
 ## 0.3.6
 
 - Add `PromptBar.sourcesLabel` and `commandsLabel` to translate toolbar buttons, picker titles and accessible names. Labels update when the application language changes; English defaults remain compatible.

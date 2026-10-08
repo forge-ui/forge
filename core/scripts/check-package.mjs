@@ -26,7 +26,7 @@ const [pack] = JSON.parse(
 // StreamingAnswer adds one internal playout module, scoped Markdown CSS and
 // public prop types. Keep a narrow additive allowance and the JS module limits.
 const limits = {
-  packed: 665_000,
+  packed: 670_000,
   unpacked: 2_705_000,
   entries: 443,
   sourceMaps: 1_470_000,

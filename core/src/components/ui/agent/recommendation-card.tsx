@@ -37,6 +37,8 @@ export function RecommendationCard({
   acceptLabel = "Accept",
   onAccept,
   onSelectAlternative,
+  confidenceLabels,
+  alternativesLabel = "Other options",
   className = "",
 }: {
   title: string;
@@ -47,13 +49,15 @@ export function RecommendationCard({
   acceptLabel?: string;
   onAccept?: () => void;
   onSelectAlternative?: (id: string) => void;
+  confidenceLabels?: Partial<Record<RecommendationConfidence, string>>;
+  alternativesLabel?: string;
   className?: string;
 }) {
   return (
     <SurfaceCard
       className={className}
       title={title}
-      action={<StatusBadge label={confidenceLabel ?? CONFIDENCE_LABEL[confidence]} color={CONFIDENCE_COLOR[confidence]} />}
+      action={<StatusBadge label={confidenceLabel ?? confidenceLabels?.[confidence] ?? CONFIDENCE_LABEL[confidence]} color={CONFIDENCE_COLOR[confidence]} />}
       footer={
         <div className="flex justify-end">
           <button
@@ -69,7 +73,7 @@ export function RecommendationCard({
       <p className="text-sm leading-6 text-fg-black">{body}</p>
       {alternatives.length > 0 && (
         <div className="mt-4 flex flex-col gap-2">
-          <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">Other options</p>
+          <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">{alternativesLabel}</p>
           {alternatives.map((option) => (
             <button
               key={option.id}
@@ -85,7 +89,7 @@ export function RecommendationCard({
               </span>
               {option.confidence && (
                 <StatusBadge
-                  label={CONFIDENCE_LABEL[option.confidence]}
+                  label={confidenceLabels?.[option.confidence] ?? CONFIDENCE_LABEL[option.confidence]}
                   color={CONFIDENCE_COLOR[option.confidence]}
                 />
               )}

@@ -25,6 +25,8 @@ export function ApprovalCard({
   sendLabel = "Send",
   sentLabel = "Answers sent",
   onSubmitted,
+  previousQuestionLabel = "Previous question",
+  nextQuestionLabel = "Next question",
   className = "",
 }: {
   questions: ApprovalQuestion[];
@@ -33,6 +35,8 @@ export function ApprovalCard({
   sendLabel?: string;
   sentLabel?: string;
   onSubmitted?: (answers: Record<string, string[]>) => void;
+  previousQuestionLabel?: string;
+  nextQuestionLabel?: string;
   className?: string;
 }) {
   const [index, setIndex] = useState(0);
@@ -90,7 +94,7 @@ export function ApprovalCard({
           <div className="flex items-center gap-1 text-xs text-fg-grey-500">
             <button
               type="button"
-              aria-label="Previous question"
+              aria-label={previousQuestionLabel}
               disabled={index === 0}
               onClick={() => setIndex((n) => Math.max(0, n - 1))}
               className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30"
@@ -102,7 +106,7 @@ export function ApprovalCard({
             </span>
             <button
               type="button"
-              aria-label="Next question"
+              aria-label={nextQuestionLabel}
               disabled={last}
               onClick={() => setIndex((n) => Math.min(questions.length - 1, n + 1))}
               className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30"

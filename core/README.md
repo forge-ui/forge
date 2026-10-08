@@ -174,3 +174,33 @@ Pass your current language translations to `sourcesLabel` and `commandsLabel`. U
   commands={commands}
 />
 ```
+
+### Agent component translations
+
+All built-in agent UI text can be overridden with the current application's translations. Defaults remain compatible; update the props when language changes. User-provided titles, rows, descriptions, file counts and options should also be translated by the application.
+
+| Component | Translation props |
+| --- | --- |
+| AgentTaskRows | `statusLabels` (partial running/failed/completed map) |
+| AgentCodeBlock | `codeLabel`, `diffLabel`, `copyLabel`, `copiedLabel` |
+| AgentFlowchart | `title`, `kindLabels` (partial trigger/action/condition map), `selectedLabel`, `nextLabel` |
+| ContextCards | `allChunksLabel`, `charactersLabel` |
+| CommandSearch | `placeholder`, `emptyLabel`, `groupLabel` |
+| RecommendationCard | `confidenceLabel`, `confidenceLabels` (partial high/review/none map, including alternatives), `alternativesLabel`, `acceptLabel` |
+| AgentDiffTable | `toggleHint`, `applyLabel`, `appliedLabel`, `formatApplyLabel(count)`, `formatAppliedLabel(count)` |
+| PromptBar | `sourcesLabel`, `commandsLabel`, `connectedLabel`, `attachLabel`, `dictateLabel`, `modelMenuLabel`, `placeholder`, `sendLabel`, `stopLabel`, `stoppingLabel` |
+| ApprovalCard | `skipLabel`, `continueLabel`, `sendLabel`, `sentLabel`, `previousQuestionLabel`, `nextQuestionLabel` |
+| InsightCards | `previousInsightLabel`, `nextInsightLabel` |
+| ThinkingTrace | `activeLabel`, `doneLabel`, `rows` |
+| StreamingAnswer | `sourcesLabel`, `followUpsLabel` |
+| ToolChips | `summary` |
+
+```tsx
+<AgentTaskRows tasks={tasks} statusLabels={{ running: "运行中", failed: "失败", completed: "已完成" }} />
+<AgentDiffTable title="变更" columns={columns} rows={rows}
+  toggleHint="点击变更行切换是否应用"
+  formatApplyLabel={count => `应用 ${count} 项变更`}
+  formatAppliedLabel={count => `已应用 ${count} 项变更`} />
+```
+
+For count-bearing translations, use the AgentDiffTable formatters to control word order and pluralization. Supply client-side formatters inside a client component.
