@@ -161,3 +161,16 @@ pnpm core:check-consumer
   `pnpm typecheck`、`pnpm build`。
 - 不把 npm token 写入仓库或全局 npmrc。短期手动发布可用临时 npmrc；
   长期优先迁移到 npm trusted publishing。
+
+### PromptBar language labels
+
+Pass your current language translations to `sourcesLabel` and `commandsLabel`. Updating these props switches both toolbar labels and picker titles (including accessible names). Defaults remain `Sources` and `Commands`.
+
+```tsx
+<PromptBar
+  sourcesLabel={language === "zh-CN" ? "来源" : "Sources"}
+  commandsLabel={language === "zh-CN" ? "指令" : "Commands"}
+  sources={sources}
+  commands={commands}
+/>
+```

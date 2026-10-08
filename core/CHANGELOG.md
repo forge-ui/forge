@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.6
+
+- Add `PromptBar.sourcesLabel` and `commandsLabel` to translate toolbar buttons, picker titles and accessible names. Labels update when the application language changes; English defaults remain compatible.
+
 ## 0.3.4
 
 - Add smooth buffered playback and a 500ms linear fade to `StreamingAnswer`, with explicit streaming, complete, and stopped states. Keep the existing full-text replay API.

@@ -52,6 +52,8 @@ export function PromptBar({
   onAttach,
   onDictate,
   placeholder = "Ask the agent…",
+  sourcesLabel = "Sources",
+  commandsLabel = "Commands",
   sources = [],
   commands = [],
   models = [],
@@ -75,6 +77,10 @@ export function PromptBar({
   onAttach?: () => void;
   onDictate?: () => void;
   placeholder?: string;
+  /** Visible label, picker title and accessible name; pass translated text for the current language. */
+  sourcesLabel?: string;
+  /** Visible label, picker title and accessible name; pass translated text for the current language. */
+  commandsLabel?: string;
   sources?: PromptSource[];
   commands?: PromptCommand[];
   models?: PromptModel[];
@@ -142,7 +148,7 @@ export function PromptBar({
     >
       {openPanel === "sources" && filteredSources.length > 0 && (
         <Picker
-          title="Sources"
+          title={sourcesLabel}
           items={filteredSources.map((item) => ({
             id: item.id,
             label: item.label,
@@ -159,7 +165,7 @@ export function PromptBar({
       )}
       {openPanel === "commands" && filteredCommands.length > 0 && (
         <Picker
-          title="Commands"
+          title={commandsLabel}
           items={filteredCommands.map((item) => ({
             id: item.id,
             label: item.label,
@@ -193,15 +199,15 @@ export function PromptBar({
             </IconChip>
           ) : null}
           {sources.length > 0 && (
-            <IconChip label="@ sources" active={openPanel === "sources"} onClick={() => setPanel((v) => (v === "sources" ? null : "sources"))}>
+            <IconChip label={`@ ${sourcesLabel === "Sources" ? "sources" : sourcesLabel}`} active={openPanel === "sources"} onClick={() => setPanel((v) => (v === "sources" ? null : "sources"))}>
               <HashtagLinear size={14} color="var(--fg-grey-700)" />
-              <span>Sources</span>
+              <span>{sourcesLabel}</span>
             </IconChip>
           )}
           {commands.length > 0 && (
-            <IconChip label="/ commands" active={openPanel === "commands"} onClick={() => setPanel((v) => (v === "commands" ? null : "commands"))}>
+            <IconChip label={`/ ${commandsLabel === "Commands" ? "commands" : commandsLabel}`} active={openPanel === "commands"} onClick={() => setPanel((v) => (v === "commands" ? null : "commands"))}>
               <CommandLinear size={14} color="var(--fg-grey-700)" />
-              <span>Commands</span>
+              <span>{commandsLabel}</span>
             </IconChip>
           )}
           {onDictate ? (
