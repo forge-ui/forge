@@ -116,3 +116,22 @@ test("real AskAi fullscreen lets menu consume first Escape before exiting host",
     assert.equal(exited, 1);
   } finally { await env.cleanup(); }
 });
+
+test("source and command labels switch language in toolbar, picker and accessible names", async () => {
+  const env = setup();
+  const items = { sources: [{ id: "s", label: "Docs" }], commands: [{ id: "c", label: "Summarize" }] };
+  try {
+    await act(async () => env.root.render(<PromptBar {...items} />));
+    assert.ok(document.querySelector('[aria-label="@ sources"]'));
+    assert.ok(document.querySelector('[aria-label="/ commands"]'));
+    await click(document.querySelector<HTMLButtonElement>('[aria-label="@ sources"]')!);
+    await act(async () => env.root.render(<PromptBar {...items} sourcesLabel="来源" commandsLabel="指令" />));
+    assert.equal(document.querySelector('[aria-label="@ 来源"]')?.textContent, "来源");
+    assert.equal(document.querySelector('[aria-label="/ 指令"]')?.textContent, "指令");
+    assert.ok(document.body.textContent?.includes("来源"));
+    assert.ok(!document.body.textContent?.includes("Sources"));
+    await click(document.querySelector<HTMLButtonElement>('[aria-label="/ 指令"]')!);
+    assert.ok(!document.body.textContent?.includes("Commands"));
+    assert.equal(document.querySelectorAll('button[aria-label="/ 指令"]').length, 1);
+  } finally { await env.cleanup(); }
+});
