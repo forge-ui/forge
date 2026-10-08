@@ -61,6 +61,10 @@ export function AgentCodeBlock({
   diff,
   view: controlledView,
   onViewChange,
+  codeLabel = "Code",
+  diffLabel = "Diff",
+  copyLabel = "Copy",
+  copiedLabel = "Copied",
   className = "",
 }: {
   filename: string;
@@ -68,6 +72,10 @@ export function AgentCodeBlock({
   diff?: AgentCodeDiffRow[];
   view?: "code" | "diff";
   onViewChange?: (view: "code" | "diff") => void;
+  codeLabel?: string;
+  diffLabel?: string;
+  copyLabel?: string;
+  copiedLabel?: string;
   className?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState<"code" | "diff">(diff && !lines ? "diff" : "code");
@@ -114,7 +122,7 @@ export function AgentCodeBlock({
                     view === option ? "bg-white text-fg-black" : "text-fg-grey-700",
                   )}
                 >
-                  {option === "code" ? "Code" : "Diff"}
+                  {option === "code" ? codeLabel : diffLabel}
                 </button>
               ))}
             </div>
@@ -131,7 +139,7 @@ export function AgentCodeBlock({
               className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100"
             >
               {copied ? <CheckCircleLinear size={14} color="var(--fg-green-500)" /> : <CopyLinear size={14} color="var(--fg-grey-700)" />}
-              {copied ? "Copied" : "Copy"}
+              {copied ? copiedLabel : copyLabel}
             </button>
           )}
         </div>

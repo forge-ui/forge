@@ -29,6 +29,9 @@ export function AgentDiffTable({
   applyLabel = "Apply changes",
   appliedLabel = "edits applied",
   onApply,
+  toggleHint = "Click changed rows to toggle",
+  formatApplyLabel,
+  formatAppliedLabel,
   className = "",
 }: {
   title: string;
@@ -37,6 +40,11 @@ export function AgentDiffTable({
   applyLabel?: string;
   appliedLabel?: string;
   onApply?: (includedIds: string[]) => void;
+  toggleHint?: string;
+  /** Format the complete button text, including count and pluralization. */
+  formatApplyLabel?: (count: number) => string;
+  /** Format the complete completion text, including count. */
+  formatAppliedLabel?: (count: number) => string;
   className?: string;
 }) {
   const [included, setIncluded] = useState<Record<string, boolean>>(() =>
@@ -56,12 +64,12 @@ export function AgentDiffTable({
     <SurfaceCard
       className={className}
       title={title}
-      subtitle={applied ? undefined : "Click changed rows to toggle"}
+      subtitle={applied ? undefined : toggleHint}
       padding="none"
       footer={
         applied ? (
           <p className="text-sm font-medium text-fg-green-500">
-            {changed.length} {appliedLabel}
+            {formatAppliedLabel ? formatAppliedLabel(changed.length) : `${changed.length} ${appliedLabel}`}
           </p>
         ) : (
           <div className="flex items-center justify-between gap-3">
@@ -78,7 +86,7 @@ export function AgentDiffTable({
               }}
               className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {applyLabel.replace("changes", `${changed.length} ${changed.length === 1 ? "change" : "changes"}`)}
+              {formatApplyLabel ? formatApplyLabel(changed.length) : applyLabel.replace("changes", `${changed.length} ${changed.length === 1 ? "change" : "changes"}`)}
             </button>
           </div>
         )

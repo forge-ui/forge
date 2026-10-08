@@ -108,12 +108,16 @@ export function InsightCards({
   index: controlledIndex,
   onIndexChange,
   onAsk,
+  previousInsightLabel = "Previous insight",
+  nextInsightLabel = "Next insight",
   className = "",
 }: {
   cards: InsightCard[];
   index?: number;
   onIndexChange?: (index: number) => void;
   onAsk?: (prompt: string, card: InsightCard) => void;
+  previousInsightLabel?: string;
+  nextInsightLabel?: string;
   className?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState(0);
@@ -135,10 +139,10 @@ export function InsightCards({
       action={
         cards.length > 1 ? (
           <div className="flex items-center gap-1">
-            <button type="button" onClick={() => go(index - 1)} className="rounded-lg p-1 hover:bg-fg-grey-100" aria-label="Previous insight">
+            <button type="button" onClick={() => go(index - 1)} className="rounded-lg p-1 hover:bg-fg-grey-100" aria-label={previousInsightLabel}>
               <AltArrowLeftLinear size={14} color="var(--fg-grey-700)" />
             </button>
-            <button type="button" onClick={() => go(index + 1)} className="rounded-lg p-1 hover:bg-fg-grey-100" aria-label="Next insight">
+            <button type="button" onClick={() => go(index + 1)} className="rounded-lg p-1 hover:bg-fg-grey-100" aria-label={nextInsightLabel}>
               <AltArrowRightLinear size={14} color="var(--fg-grey-700)" />
             </button>
           </div>

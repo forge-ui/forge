@@ -40,10 +40,13 @@ const STATUS_LABEL: Record<AgentTaskStatus, string> = {
 export function AgentTaskRows({
   tasks,
   variant = "list",
+  statusLabels,
   className = "",
 }: {
   tasks: AgentTask[];
   variant?: "list" | "capsules";
+  /** Translations for task states in both layouts. Missing entries keep the English default. */
+  statusLabels?: Partial<Record<AgentTaskStatus, string>>;
   className?: string;
 }) {
   if (variant === "capsules") {
@@ -56,7 +59,7 @@ export function AgentTaskRows({
           >
             <span className="text-sm font-medium text-fg-black">{task.title}</span>
             {task.meta && <span className="text-xs text-fg-grey-500">{task.meta}</span>}
-            <StatusBadge label={STATUS_LABEL[task.status]} color={STATUS_COLOR[task.status]} />
+            <StatusBadge label={statusLabels?.[task.status] ?? STATUS_LABEL[task.status]} color={STATUS_COLOR[task.status]} />
           </div>
         ))}
       </div>
@@ -75,7 +78,7 @@ export function AgentTaskRows({
               <p className="truncate text-sm font-semibold text-fg-black">{task.title}</p>
               {task.meta && <p className="text-xs text-fg-grey-500">{task.meta}</p>}
             </div>
-            <StatusBadge label={STATUS_LABEL[task.status]} color={STATUS_COLOR[task.status]} />
+            <StatusBadge label={statusLabels?.[task.status] ?? STATUS_LABEL[task.status]} color={STATUS_COLOR[task.status]} />
           </div>
           {task.children && task.children.length > 0 && (
             <ul className="mt-2 flex flex-col gap-1 border-t border-fg-grey-100 pt-2">

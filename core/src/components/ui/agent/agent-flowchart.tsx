@@ -44,6 +44,9 @@ export function AgentFlowchart({
   edges = [],
   selectedId: controlledId,
   onSelect,
+  kindLabels,
+  selectedLabel = "Selected",
+  nextLabel = "Next",
   className = "",
 }: {
   title?: string;
@@ -51,6 +54,9 @@ export function AgentFlowchart({
   edges?: AgentFlowEdge[];
   selectedId?: string;
   onSelect?: (id: string) => void;
+  kindLabels?: Partial<Record<AgentFlowNode["kind"], string>>;
+  selectedLabel?: string;
+  nextLabel?: string;
   className?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState(nodes[0]?.id);
@@ -80,7 +86,7 @@ export function AgentFlowchart({
                   )}
                 >
                   <span className={cn("inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold", KIND_CLASS[node.kind])}>
-                    {KIND_LABEL[node.kind]}
+                    {kindLabels?.[node.kind] ?? KIND_LABEL[node.kind]}
                   </span>
                   <p className="mt-2 text-sm font-semibold text-fg-black">{node.title}</p>
                   {node.body && <p className="mt-1 text-xs leading-5 text-fg-grey-700">{node.body}</p>}
@@ -99,11 +105,11 @@ export function AgentFlowchart({
       </div>
       {selected && (
         <div className="border-t border-fg-grey-200 px-5 py-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-fg-grey-500">Selected</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-fg-grey-500">{selectedLabel}</p>
           <p className="mt-1 text-sm font-medium text-fg-black">{selected.title}</p>
           {outgoing.length > 0 && (
             <p className="mt-1 text-xs text-fg-grey-700">
-              Next: {outgoing.map((edge) => edge.label ?? nodes.find((node) => node.id === edge.to)?.title).join(" · ")}
+              {nextLabel}: {outgoing.map((edge) => edge.label ?? nodes.find((node) => node.id === edge.to)?.title).join(" · ")}
             </p>
           )}
         </div>
