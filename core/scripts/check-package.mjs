@@ -27,7 +27,8 @@ const [pack] = JSON.parse(
 // public prop types. Keep a narrow additive allowance and the JS module limits.
 const limits = {
   packed: 670_000,
-  unpacked: 2_705_000,
+  // Application switcher adds public declarations and implementation.
+  unpacked: 2_710_000,
   entries: 443,
   sourceMaps: 1_470_000,
   normalJsRaw: 40_000,
