@@ -216,7 +216,11 @@ export function AppLayout({
 }: AppLayoutProps) {
   const teamName = appName ?? legacyTeamName;
   const teamAvatar = appIcon ?? legacyTeamAvatar;
-  const teamSubtitle = appSubtitle ?? legacyTeamSubtitle ?? "当前应用";
+  const teamSubtitle = appSubtitle ?? legacyTeamSubtitle ?? (
+    !appName && showTeamActions && teamMemberCount !== undefined
+      ? `${teamMemberCount} 名成员`
+      : "当前应用"
+  );
   const teams = apps ?? legacyTeams;
   const pathname = usePathname();
   const config = modeConfig[mode];

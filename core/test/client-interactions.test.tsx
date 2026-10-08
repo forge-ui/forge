@@ -1364,3 +1364,29 @@ test("Datepicker 选择和 Escape 关闭后恢复触发焦点", async () => {
   await act(async () => root.unmount());
   dom.window.close();
 });
+
+
+test("AppLayout application selection closes the menu and legacy team actions retain member counts", async () => {
+  const dom = installDom();
+  const root = createRoot(document.getElementById("root")!);
+  const app = { id: "studio", name: "Studio", active: true };
+  let selected: unknown;
+  try {
+    await act(async () => root.render(<AppLayout appName="Console" teamName="Legacy" apps={[app]} teams={[{ id: "old", name: "Old" }]} onAppChange={value => { selected = value; }}><main>Content</main></AppLayout>));
+    const trigger = document.querySelector<HTMLButtonElement>('[data-popover-trigger="team"]')!;
+    assert.ok(trigger);
+    assert.ok(trigger.textContent?.includes("Console"));
+    await act(async () => trigger.click());
+    const item = document.querySelector<HTMLButtonElement>('[role="menuitemradio"]')!;
+    assert.equal(item.textContent, "Studio");
+    assert.equal(item.getAttribute("aria-checked"), "true");
+    await act(async () => item.click());
+    assert.equal(selected, app);
+    assert.equal(document.querySelector('[data-popover="team"]'), null);
+    await act(async () => root.render(<AppLayout teamName="Legacy" teamMemberCount={12} showTeamActions><main>Content</main></AppLayout>));
+    assert.ok(document.body.textContent?.includes("12 名成员"));
+    await act(async () => document.querySelector<HTMLButtonElement>('[data-popover-trigger="team"]')!.click());
+    assert.ok(document.querySelector('[data-popover="team"]')?.textContent?.includes("12 名成员"));
+    assert.ok(document.body.textContent?.includes("邀请成员"));
+  } finally { await act(async () => root.unmount()); dom.window.close(); }
+});
