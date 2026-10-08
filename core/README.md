@@ -204,3 +204,18 @@ All built-in agent UI text can be overridden with the current application's tran
 ```
 
 For count-bearing translations, use the AgentDiffTable formatters to control word order and pluralization. Supply client-side formatters inside a client component.
+
+### Application switcher
+
+```tsx
+<AppLayout
+  appName={currentApp.name}
+  appIcon={currentApp.avatar}
+  apps={apps.map(app => ({ ...app, active: app.id === currentApp.id }))}
+  onAppChange={setCurrentApp}
+>
+  {children}
+</AppLayout>
+```
+
+The consumer controls the active application and handles navigation or data changes. Selecting an application closes the menu. The subtitle defaults to “当前应用”; override it with `appSubtitle`. Legacy `teamName`, `teamAvatar`, `teamSubtitle`, and `teams` remain supported. Team actions are hidden by default; legacy consumers can explicitly set `showTeamActions`.

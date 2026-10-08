@@ -28,6 +28,7 @@ import {
   languageFlagDataUrls,
   type LanguageCode,
   type Team,
+  type AppSwitcherItem,
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
 import { forgeLogoDataUrl } from "../../assets/_inlined";
@@ -89,6 +90,13 @@ export interface AppLayoutProps {
   children: ReactNode;
   logo?: ReactNode;
   logoText?: string;
+  appName?: string;
+  appIcon?: string;
+  appSubtitle?: string;
+  apps?: AppSwitcherItem[];
+  /** Called on selection; the consumer controls the current application. */
+  onAppChange?: (app: AppSwitcherItem) => void;
+  /** @deprecated Use appName. */
   teamName?: string;
   teamAvatar?: string;
   teamMemberCount?: number;
@@ -141,7 +149,7 @@ export interface AppLayoutProps {
   teamLabels?: TeamSwitcherLabels;
   /**
    * Team switcher 是否显示邀请 / 设置 / 新建。
-   * false = 仅当前工作区标题 + teams 列表（应用切换器用）。默认 true。
+   * false = 仅当前工作区标题 + teams 列表（应用切换器用）。默认 false。
    */
   showTeamActions?: boolean;
 }
@@ -164,13 +172,18 @@ export function AppLayout({
   children,
   logo,
   logoText = "Forge",
-  teamName,
-  teamAvatar,
+  appName,
+  appIcon,
+  appSubtitle,
+  apps,
+  onAppChange,
+  teamName: legacyTeamName,
+  teamAvatar: legacyTeamAvatar,
   teamMemberCount,
-  teamSubtitle,
+  teamSubtitle: legacyTeamSubtitle,
   menuSectionLabel = "主菜单",
   favoriteSectionLabel = "常用项目",
-  teams,
+  teams: legacyTeams,
   menuItems,
   favoriteItems,
   menuSections,
@@ -199,8 +212,12 @@ export function AppLayout({
   collapsedSidebarWidth = "5rem",
   hideSidebarWidgets,
   teamLabels,
-  showTeamActions = true,
+  showTeamActions = false,
 }: AppLayoutProps) {
+  const teamName = appName ?? legacyTeamName;
+  const teamAvatar = appIcon ?? legacyTeamAvatar;
+  const teamSubtitle = appSubtitle ?? legacyTeamSubtitle ?? "当前应用";
+  const teams = apps ?? legacyTeams;
   const pathname = usePathname();
   const config = modeConfig[mode];
   const accentCfg = accentTokens[accent];
@@ -508,7 +525,11 @@ export function AppLayout({
                   teamSubtitle={teamSubtitle}
                   teams={teams}
                   labels={teamLabels}
-                  showActions={showTeamActions}
+                  showActions={appName ? false : showTeamActions}
+                  onAppChange={(app) => {
+                    setOpenPopover(null);
+                    onAppChange?.(app);
+                  }}
                 />
               </div>
             )}
