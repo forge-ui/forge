@@ -15,3 +15,6 @@ export type {
   Team,
 } from "./app-layout";
 export type { TeamSwitcherLabels } from "./sidebar-popovers";
+
+export { AppSwitcherDropdown } from "./sidebar-popovers";
+export type { AppSwitcherItem } from "./sidebar-popovers";

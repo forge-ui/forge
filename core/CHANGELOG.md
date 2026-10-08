@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.8
+
+- Replace the default team menu with an application switcher: current application, selectable applications, and active selection. Team management actions are hidden by default.
+- Add AppSwitcherDropdown, AppSwitcherItem and AppLayout appName/appIcon/appSubtitle/apps/onAppChange. Selection closes the layout menu and calls the consumer callback; current application is controlled by the consumer.
+- Preserve legacy Team props and explicit showTeamActions opt-in.
+
 ## 0.3.7
 
 - Add translation overrides for AgentTaskRows states, code actions, workflow kinds, context labels, command groups, recommendation confidence, PromptBar controls, and navigation accessible names.

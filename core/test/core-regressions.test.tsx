@@ -48,6 +48,7 @@ import {
   NotificationPanel,
   ProfileDropdown,
   TeamSwitcherDropdown,
+  AppSwitcherDropdown,
   chinaFlagDataUrl,
   languageFlagDataUrls,
   languageMarkDataUrl,
@@ -592,4 +593,40 @@ test("Sidebar popover 公共导出保留交互语义", () => {
   assert.match(render(NotificationPanel, { onClose: () => undefined }), /role="dialog"/);
   assert.match(render(ProfileDropdown), /role="menu"/);
   assert.match(render(TeamSwitcherDropdown, { teamName: "Forge 团队" }), /role="menu"/);
+});
+
+test("Application switcher exposes selected apps without team management actions", () => {
+  const html = render(AppSwitcherDropdown, {
+    appName: "Console",
+    apps: [{ id: "console", name: "Console", active: true }, { id: "studio", name: "Studio" }],
+  });
+  const dom = new JSDOM(html);
+  assert.equal(dom.window.document.querySelector('[role="menu"]')?.getAttribute("aria-label"), "应用切换");
+  assert.equal(dom.window.document.querySelectorAll('[role="menuitemradio"]').length, 2);
+  assert.equal(dom.window.document.querySelector('[aria-checked="true"]')?.textContent, "Console");
+  assert.match(html, /当前应用/);
+  assert.doesNotMatch(html, /邀请成员|新建团队|设置/);
+  assert.doesNotMatch(render(TeamSwitcherDropdown, { teamName: "Legacy" }), /邀请成员|新建团队/);
+  dom.window.close();
+});
+
+test("Application selection delivers the selected item to its consumer", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  const app = { id: "studio", name: "Studio" };
+  let selected: unknown;
+  try {
+    await act(async () => root.render(createElement(AppSwitcherDropdown, {
+      appName: "Console", apps: [app], onAppChange: value => { selected = value; },
+    })));
+    const item = container.querySelector<HTMLButtonElement>('[role="menuitemradio"]');
+    assert.ok(item);
+    await act(async () => item.click());
+    assert.equal(selected, app);
+  } finally {
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
 });

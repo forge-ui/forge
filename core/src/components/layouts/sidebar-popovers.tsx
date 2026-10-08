@@ -31,12 +31,15 @@ export {
 } from "../../internal/sidebar-popover-data";
 export type { LanguageCode } from "../../internal/sidebar-popover-data";
 
-export type Team = {
+export type AppSwitcherItem = {
   id: string;
   name: string;
   avatar?: string;
   active?: boolean;
 };
+
+/** @deprecated Use AppSwitcherItem. */
+export type Team = AppSwitcherItem;
 
 function handleMenuKeyDown(event: KeyboardEvent<HTMLDivElement>) {
   if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
@@ -236,8 +239,9 @@ export function TeamSwitcherDropdown({
   teamSubtitle,
   teams,
   labels,
-  /** When false, only header + teams list (app switcher). Default true. */
-  showActions = true,
+  /** When false, only header + teams list (app switcher). Default false. */
+  showActions = false,
+  onAppChange,
 }: {
   teamName: string;
   teamAvatar?: string;
@@ -248,14 +252,16 @@ export function TeamSwitcherDropdown({
   /** 自定义三个内置按钮的文案（邀请 / 设置 / 新建） */
   labels?: TeamSwitcherLabels;
   showActions?: boolean;
+  onAppChange?: (app: AppSwitcherItem) => void;
 }) {
   const inviteLabel = labels?.invite ?? "邀请成员";
   const settingsLabel = labels?.settings ?? "设置";
   const createNewLabel = labels?.createNew ?? "新建团队";
   const hasTeams = Boolean(teams && teams.length > 0);
+  const subtitle = teamSubtitle ?? (showActions && teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : "当前应用");
 
   return (
-    <div role="menu" aria-label="团队" onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
+    <div role="menu" aria-label="应用切换" onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
       <div className="self-stretch pt-2 flex flex-col justify-start items-center gap-3">
         {teamAvatar && (
@@ -265,9 +271,9 @@ export function TeamSwitcherDropdown({
         )}
         <div className="self-stretch flex flex-col justify-center items-center gap-1">
           <span className="self-stretch text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{teamName}</span>
-          {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : null)) && (
+          {subtitle && (
             <span className="self-stretch text-center text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
-              {teamSubtitle ?? `${teamMemberCount} 名成员`}
+              {subtitle}
             </span>
           )}
         </div>
@@ -299,13 +305,14 @@ export function TeamSwitcherDropdown({
               <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
             </div>
           ) : null}
-          <div className="self-stretch flex flex-col justify-center items-start">
+          <div className="self-stretch max-h-72 overflow-y-auto flex flex-col items-start">
             {teams!.map((team) => (
               <button
                 key={team.id}
                 type="button"
                 role="menuitemradio"
                 aria-checked={!!team.active}
+                onClick={() => onAppChange?.(team)}
                 className={cn(
                   "self-stretch px-2.5 py-3 inline-flex justify-start items-center gap-2 transition-colors",
                   team.active ? "text-accent" : "text-fg-grey-700 hover:bg-fg-grey-100"
@@ -337,4 +344,17 @@ export function TeamSwitcherDropdown({
       ) : null}
     </div>
   );
+}
+
+/** Application switcher with a controlled current application. */
+export function AppSwitcherDropdown({
+  appName, appIcon, appSubtitle = "当前应用", apps, onAppChange,
+}: {
+  appName: string;
+  appIcon?: string;
+  appSubtitle?: string;
+  apps?: AppSwitcherItem[];
+  onAppChange?: (app: AppSwitcherItem) => void;
+}) {
+  return <TeamSwitcherDropdown teamName={appName} teamAvatar={appIcon} teamSubtitle={appSubtitle} teams={apps} showActions={false} onAppChange={onAppChange} />;
 }
