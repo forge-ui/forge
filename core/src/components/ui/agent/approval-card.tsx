@@ -76,7 +76,7 @@ export function ApprovalCard({
 
   if (sent) {
     return (
-      <SurfaceCard className={className} padding="md">
+      <SurfaceCard className={cn("forge-ask-ai-compact-response", className)} padding="md">
         <div className="flex items-center gap-2 text-sm font-medium text-fg-green-500">
           <CheckCircleLinear size={18} color="var(--fg-green-500)" />
           {sentLabel}
@@ -87,7 +87,7 @@ export function ApprovalCard({
 
   return (
     <SurfaceCard
-      className={className}
+      className={cn("forge-ask-ai-compact-response", className)}
       padding="md"
       footer={
         <div className="flex items-center justify-between gap-3">

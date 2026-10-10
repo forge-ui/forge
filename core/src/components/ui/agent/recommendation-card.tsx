@@ -55,7 +55,7 @@ export function RecommendationCard({
 }) {
   return (
     <SurfaceCard
-      className={className}
+      className={cn("forge-ask-ai-compact-response", className)}
       title={title}
       action={<StatusBadge label={confidenceLabel ?? confidenceLabels?.[confidence] ?? CONFIDENCE_LABEL[confidence]} color={CONFIDENCE_COLOR[confidence]} />}
       footer={

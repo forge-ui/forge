@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { CloseCircleLinear, FullScreenLinear } from "../../icons";
+import { AskAiCompactComposerContext } from "../../internal/ask-ai-composer-context";
 import { AskAiIcon } from "../../internal/ask-ai-icon";
 import { AskHistoryDropdown } from "../../internal/ask-ai-history";
 import {
@@ -23,6 +24,9 @@ import { Button } from "./button";
 import { IconButton } from "./icon-button";
 
 const EMPTY_MESSAGES: AskAiMessage[] = [];
+const subscribeToClient = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
 
 export { ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH };
 export type {
@@ -49,11 +53,17 @@ export interface AskAiProps {
   brand?: ReactNode;
   /** Replace session chrome (drawer header extras / fullscreen history). */
   session?: ReactNode;
-  /** Replace the conversation / empty-state body. */
+  /** Replace the conversation / empty-state body.
+   * Fullscreen: content-only, natural height; no h-full, flex-1 or vertical
+   * overflow container. Core owns [data-ask-ai-fs-scroll], follow and jump-to-latest.
+   * Use currentSessionId to reset follow when switching external transcripts.
+   */
   messages?: ReactNode;
   /**
    * Replace the default composer (textarea + 发送).
-   * Consumers can swap in PromptBar once the agent package is published.
+   * Fullscreen: content-only, no outer bottom padding/margin or fixed positioning.
+   * Core owns the bottom gap (16px or safe-area, whichever is larger).
+   * Consumers sharing slots with the drawer should branch on fullscreen state.
    */
   composer?: ReactNode;
   /** Controlled fullscreen layer. Independent of the drawer — not a stretched dialog. */
@@ -121,6 +131,7 @@ export function AskAi({
   landingTitle,
   railLabel,
 }: AskAiProps) {
+  const clientReady = useSyncExternalStore(subscribeToClient, clientSnapshot, serverSnapshot);
   const id = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -400,7 +411,7 @@ export function AskAi({
                 </div>
               </>
             )}
-            {composer ?? (
+            {composer ? <AskAiCompactComposerContext value={true}>{composer}</AskAiCompactComposerContext> : (
               <form onSubmit={submit} className="flex shrink-0 items-end gap-2 border-t border-fg-grey-200 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
                 <textarea ref={inputRef} aria-label="向 AI 提问" placeholder={placeholder} rows={2} value={draft}
                   onChange={(event) => setDraft(event.target.value)}
@@ -414,7 +425,7 @@ export function AskAi({
           </div>
         </dialog>, document.body,
       )}
-      {fullscreenOpen && typeof document !== "undefined" && createPortal(
+      {fullscreenOpen && clientReady && createPortal(
         <AskAiFullscreenLayer
           color={accent}
           label={label}

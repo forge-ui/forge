@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act } from "react";
+import { AskAiCompactComposerContext } from "../src/internal/ask-ai-composer-context";
 import { PromptBar } from "../src/components/ui/agent/prompt-bar";
 
 const protocol = "node:";
@@ -209,5 +210,49 @@ test("PromptBar Escape closes the command picker without stopping the request or
     assert.equal(textarea().value, "A draft to keep");
     await key(textarea(), "Escape");
     assert.equal(stopped, 0);
+  } finally { await env.cleanup(); }
+});
+
+
+test("Fullscreen plus menu retains tools and @ / pickers filter and support keyboard dismissal", async () => {
+  const env = await setup();
+  let attached = 0;
+  try {
+    await act(async () => env.root.render(<AskAiCompactComposerContext value={true}>
+      <PromptBar onAttach={() => attached++} sources={[
+        {id:"project",label:"项目资料"},{id:"knowledge",label:"知识库"},
+      ]} commands={[{id:"plan",label:"plan"},{id:"summary",label:"summarize"}]} />
+    </AskAiCompactComposerContext>));
+    await click(button("添加内容和工具"));
+    assert.equal(button("添加内容和工具").getAttribute("aria-expanded"), "true");
+    assert.equal(document.activeElement?.textContent, "Attach");
+    await key(document.activeElement!, "ArrowDown");
+    assert.equal(document.activeElement?.textContent, "项目资料");
+    await key(document.activeElement!, "Escape");
+    assert.equal(document.activeElement, button("添加内容和工具"));
+    assert.equal(document.querySelector('[role="menu"]'), null);
+    await click(button("添加内容和工具"));
+    await click(document.querySelector<HTMLButtonElement>('[role="menuitem"]')!);
+    assert.equal(attached, 1);
+    assert.equal(document.querySelector('[role="menu"]'), null);
+
+    await typeText("@知");
+    assert.equal(document.querySelectorAll('[data-prompt-picker] [role="menuitem"]').length, 1);
+    await key(textarea(), "ArrowDown");
+    assert.equal(document.activeElement?.textContent, "知识库");
+    await click(document.activeElement as HTMLElement);
+    assert.match(textarea().value, /@知识库/);
+    assert.equal(document.activeElement, textarea());
+
+    await typeText("/pl");
+    assert.equal(document.querySelectorAll('[data-prompt-picker] [role="menuitem"]').length, 1);
+    assert.match(document.querySelector('[data-prompt-picker]')?.textContent ?? "", /plan/);
+    await key(textarea(), "Escape");
+    assert.equal(document.querySelector('[data-prompt-picker]'), null);
+    await typeText("/pla");
+    assert.ok(document.querySelector('[data-prompt-picker]'));
+    await key(textarea(), "ArrowDown");
+    await click(document.activeElement as HTMLElement);
+    assert.equal(textarea().value, "/plan ");
   } finally { await env.cleanup(); }
 });

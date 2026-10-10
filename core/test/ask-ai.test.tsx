@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act, createElement } from "react";
+import { renderToString } from "react-dom/server";
 import { createRoot } from "react-dom/client";
 
 const nodeProtocol = "node:";
@@ -336,5 +337,104 @@ test("Ask AI drawer slots replace default regions without opening fullscreen", a
   assert.equal(dialog.querySelector('[aria-label="关闭 Ask AI"]'), null);
   assert.equal(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`), null);
   await act(async () => root.unmount());
+  dom.window.close();
+});
+
+test("Fullscreen follows slot growth, preserves reading position and resets on session change", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  const callbacks: (() => void)[] = [];
+  let disconnected = 0;
+  const previousObserver = globalThis.ResizeObserver;
+  globalThis.ResizeObserver = class {
+    constructor(callback: () => void) { callbacks.push(callback); }
+    observe() {}
+    unobserve() {}
+    disconnect() { disconnected++; }
+  } as unknown as typeof ResizeObserver;
+  function render(id: string, text: string) {
+    return createElement(AskAi, { fullscreen: true, currentSessionId: id,
+      onSend: () => "reply", messages: createElement("div", null, text) });
+  }
+  try {
+    await act(async () => root.render(render("one", "first")));
+    const host = document.querySelector<HTMLElement>("[data-ask-ai-fs-scroll]")!;
+    const composerRegion = document.querySelector<HTMLElement>("[data-ask-ai-fs-composer-region]")!;
+    let composerHeight = 68;
+    composerRegion.getBoundingClientRect = () => ({ height: composerHeight } as DOMRect);
+    let height = 1000;
+    Object.defineProperties(host, {
+      scrollHeight: { get: () => height }, clientHeight: { get: () => 300 },
+    });
+    await act(async () => callbacks.forEach(callback => callback()));
+    assert.equal(host.scrollTop, 1000);
+    assert.equal(document.querySelector<HTMLElement>("[data-ask-ai-fs-messages]")!.style.paddingBottom, "88px");
+    assert.equal(host.style.scrollPaddingBottom, "88px");
+    host.scrollTop = 200;
+    await act(async () => host.dispatchEvent(new Event("scroll")));
+    height = 1400;
+    composerHeight = 160;
+    await act(async () => root.render(render("one", "streamed content")));
+    await act(async () => callbacks.forEach(callback => callback()));
+    assert.equal(host.scrollTop, 200);
+    assert.equal(document.querySelector<HTMLElement>("[data-ask-ai-fs-messages]")!.style.paddingBottom, "180px");
+    const latest = [...document.querySelectorAll("button")].find(button => button.textContent === "回到最新")!;
+    assert.ok(latest);
+    await act(async () => latest.click());
+    assert.equal(host.scrollTop, 1400);
+    assert.equal([...document.querySelectorAll("button")].some(button => button.textContent === "回到最新"), false);
+    host.scrollTop = 100;
+    await act(async () => host.dispatchEvent(new Event("scroll")));
+    await act(async () => root.render(render("two", "another session")));
+    assert.equal(host.scrollTop, 1400);
+    await act(async () => root.unmount());
+    assert.ok(disconnected > 0);
+  } finally {
+    globalThis.ResizeObserver = previousObserver;
+    dom.window.close();
+  }
+});
+
+
+test("Initially controlled fullscreen defers its portal during server rendering", () => {
+  const dom = installDom();
+  try {
+    const html = renderToString(createElement(AskAi, { fullscreen: true, onSend: () => "reply" }));
+    assert.ok(html.includes("Ask AI"));
+    assert.equal(html.includes(ASK_AI_FS_LAYER_ATTR), false);
+  } finally {
+    dom.window.close();
+  }
+});
+
+
+test("Fullscreen rail adapts across breakpoints and preserves manual toggles within a breakpoint", async () => {
+  const dom = installDom();
+  let narrow = true;
+  let listener: (() => void) | undefined;
+  Object.defineProperty(window, "matchMedia", { value: () => ({
+    get matches() { return narrow; },
+    addEventListener: (_event: string, callback: () => void) => { listener = callback; },
+    removeEventListener: () => { listener = undefined; },
+  }) });
+  const root = createRoot(document.querySelector("#root")!);
+  await act(async () => root.render(createElement(AskAi, { fullscreen: true, onSend: async () => "回复" })));
+  const rail = () => document.querySelector("[data-ask-ai-fs-rail]");
+  const toggle = () => document.querySelector<HTMLButtonElement>('button[aria-label$="会话栏"]')!;
+  assert.equal(rail(), null);
+  await act(async () => { narrow = false; listener?.(); });
+  assert.ok(rail());
+  await act(async () => toggle().click());
+  assert.equal(rail(), null);
+  await act(async () => toggle().click());
+  assert.ok(rail());
+  await act(async () => { narrow = true; listener?.(); });
+  assert.equal(rail(), null);
+  await act(async () => toggle().click());
+  assert.ok(rail());
+  await act(async () => { narrow = false; listener?.(); });
+  assert.ok(rail());
+  await act(async () => root.unmount());
+  assert.equal(listener, undefined);
   dom.window.close();
 });
