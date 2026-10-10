@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.10
+
+- Add optional `PageTitleToolbar.askAi` using `AskAiProps` across all four presets and the legacy actions API. Ask AI can appear without other toolbar actions.
+
 ## 0.3.9
 
 - Refine AskAi fullscreen transcript scrolling: follow new replies while near the bottom, preserve reading position, and jump back to the latest response. Reserve space for the floating composer and adapt the session rail to mobile screens.

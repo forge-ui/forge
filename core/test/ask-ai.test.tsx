@@ -10,6 +10,7 @@ const nodeProtocol = "node:";
 const { test } = require(`${nodeProtocol}test`);
 
 import { AskAi, ASK_AI_FS_LAYER_ATTR, type AskAiRequest } from "../src/components/ui/ask-ai";
+import { PageTitleToolbar } from "../src/components/ui/toolbar";
 import { PageHeader } from "../src/components/ui/page-header";
 
 function installDom() {
@@ -437,4 +438,21 @@ test("Fullscreen rail adapts across breakpoints and preserves manual toggles wit
   await act(async () => root.unmount());
   assert.equal(listener, undefined);
   dom.window.close();
+});
+
+
+test("PageTitleToolbar Ask AI opens, sends through its configured callback and inherits accent", async () => {
+  const dom = installDom();
+  const root = createRoot(document.querySelector("#root")!);
+  const sent: string[] = [];
+  try {
+    await act(async () => root.render(<div data-accent="blue"><PageTitleToolbar variant="overview" title="总览" breadcrumbItems={[]} askAi={{ suggestions: ["查看进度"], onSend: async message => { sent.push(message); return "已完成"; } }} /></div>));
+    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+    const dialog = document.querySelector("dialog")!;
+    assert.ok(dialog.open);
+    assert.equal(dialog.getAttribute("data-accent"), "blue");
+    await act(async () => Array.from(dialog.querySelectorAll("button")).find(button => button.textContent === "查看进度")!.click());
+    assert.deepEqual(sent, ["查看进度"]);
+    assert.ok(dialog.textContent?.includes("已完成"));
+  } finally { await act(async () => root.unmount()); dom.window.close(); }
 });

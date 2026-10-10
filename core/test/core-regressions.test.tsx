@@ -630,3 +630,17 @@ test("Application selection delivers the selected item to its consumer", async (
     dom.window.close();
   }
 });
+
+test("PageTitleToolbar supports optional Ask AI across presets and legacy actions", () => {
+  for (const variant of ["overview", "collection", "detail", "action"]) {
+    const props = { variant, title: "标题", breadcrumbItems: [],
+      ...(variant === "action" ? { secondaryAction: { label: "取消" }, primaryAction: { label: "保存" } } : {}) };
+    const plain = render(PageTitleToolbar, props);
+    assert.doesNotMatch(plain, /aria-label="Ask AI"/);
+    const enabled = render(PageTitleToolbar, { ...props, askAi: { onSend: async () => "回复" } });
+    assert.equal(new JSDOM(enabled).window.document.querySelectorAll('[aria-label="Ask AI"]').length, 1);
+  }
+  const legacy = render(PageTitleToolbar, { title: "旧版", actions: createElement("button", null, "保存"), askAi: { label: "助手", onSend: async () => "回复" } });
+  assert.match(legacy, /aria-label="助手"/);
+  assert.match(legacy, /保存/);
+});
