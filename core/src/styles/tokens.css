@@ -748,3 +748,37 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .forge-streaming-answer :is(.forge-answer-segment,[data-sd-animate],.forge-fade-up) { animation: none; }
 }
+
+/* Fullscreen transcript width contract: compact interactive replies stay readable.
+   Wide code/table/diagram replies keep the full transcript width. */
+[data-ask-ai-fs-messages] :is([data-ask-ai-response="compact"], .forge-ask-ai-compact-response) {
+  width: 100%;
+  max-width: 40rem;
+}
+
+/* Match ChatGPT's 40rem / 48rem transcript and composer width bands.
+   Use the main pane's available width, so the session rail affects the band. */
+.forge-ask-ai-fs-main { container: forge-ask-ai-main / inline-size; }
+.forge-ask-ai-fs-content { max-width: 40rem; }
+.forge-ask-ai-fs-transcript { max-width: 43rem; }
+@container forge-ask-ai-main (min-width: 54rem) {
+  .forge-ask-ai-fs-content { max-width: 48rem; }
+  .forge-ask-ai-fs-transcript { max-width: 51rem; }
+}
+
+/* The transcript scrolls behind a localized floating composer, not a solid footer. */
+.forge-ask-ai-fs-floating-composer { position: relative; isolation: isolate; }
+.forge-ask-ai-fs-floating-composer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: -1.5rem -1rem calc(-1 * max(1rem, env(safe-area-inset-bottom)));
+  background: linear-gradient(to bottom, transparent, var(--background) 75%);
+}
+.forge-ask-ai-fs-scroll { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.forge-ask-ai-fs-scroll:is(:hover, :focus-within) { scrollbar-color: var(--fg-grey-300) transparent; }
+.forge-ask-ai-fs-scroll::-webkit-scrollbar { width: 6px; }
+.forge-ask-ai-fs-scroll::-webkit-scrollbar-track { background: transparent; }
+.forge-ask-ai-fs-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
+.forge-ask-ai-fs-scroll:is(:hover, :focus-within)::-webkit-scrollbar-thumb { background: var(--fg-grey-300); }

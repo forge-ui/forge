@@ -51,7 +51,7 @@ export function AgentTaskRows({
 }) {
   if (variant === "capsules") {
     return (
-      <div className={cn("flex flex-wrap gap-2", className)}>
+      <div data-ask-ai-response="compact" className={cn("flex flex-wrap gap-2", className)}>
         {tasks.map((task) => (
           <div
             key={task.id}
@@ -67,7 +67,7 @@ export function AgentTaskRows({
   }
 
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div data-ask-ai-response="compact" className={cn("flex flex-col gap-2", className)}>
       {tasks.map((task) => (
         <div
           key={task.id}

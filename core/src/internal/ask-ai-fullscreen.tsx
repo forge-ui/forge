@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
 import { MagniferLinear, QuitFullScreenLinear, SidebarMinimalisticLinear } from "../icons";
+import { AskAiCompactComposerContext } from "./ask-ai-composer-context";
 import { AskAiIcon } from "./ask-ai-icon";
 import { cn } from "../lib/utils";
 import { Button } from "../components/ui/button";
@@ -30,6 +31,14 @@ function AskAiFullscreenComposer({
   tall?: boolean;
   onSubmit: () => void;
 }) {
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  useLayoutEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    input.style.height = "auto";
+    input.style.height = `${Math.min(input.scrollHeight, 192)}px`;
+  }, [draft, tall]);
+
   function onKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
       event.preventDefault();
@@ -49,19 +58,20 @@ function AskAiFullscreenComposer({
       <div
         data-ask-ai-fs-composer-box
         className={cn(
-          "flex flex-col gap-2.5 rounded-2xl border border-fg-grey-200 bg-background px-3.5 pb-2.5 pt-3.5",
-          tall ? "shadow-md" : "shadow-sm",
+          "flex gap-2.5 border border-fg-grey-200 bg-background",
+          tall ? "flex-col rounded-2xl px-3.5 pb-2.5 pt-3.5 shadow-md" : "items-end rounded-[28px] px-3.5 py-2 shadow-sm",
         )}
       >
         <textarea
+          ref={inputRef}
           aria-label="向 AI 提问"
           placeholder={placeholder}
           value={draft}
           disabled={pending || disabled}
-          rows={tall ? 3 : 2}
+          rows={tall ? 3 : 1}
           className={cn(
             "w-full resize-none border-0 bg-transparent text-base leading-6 text-foreground outline-none placeholder:text-fg-grey-400",
-            tall ? "min-h-16" : "min-h-11",
+            tall ? "min-h-16" : "min-h-6 min-w-0 flex-1 py-1.5",
           )}
           onChange={(event) => onDraftChange(event.target.value)}
           onKeyDown={onKeyDown}
@@ -188,11 +198,73 @@ export function AskAiFullscreenLayer({
   onSuggestion: (question: string) => void;
   onExit: () => void;
 }) {
-  const [railOpen, setRailOpen] = useState(true);
+  const [railOpen, setRailOpen] = useState(() => typeof window === "undefined" || !window.matchMedia?.("(max-width: 767px)").matches);
+  useEffect(() => {
+    const breakpoint = window.matchMedia?.("(max-width: 767px)");
+    if (!breakpoint) return;
+    const syncRail = () => setRailOpen(!breakpoint.matches);
+    breakpoint.addEventListener("change", syncRail);
+    return () => breakpoint.removeEventListener("change", syncRail);
+  }, []);
   const searchControlled = searchQuery !== undefined;
   const [internalSearch, setInternalSearch] = useState("");
   const railQuery = searchControlled ? searchQuery : internalSearch;
   const inConversation = hasConversation ?? conversation.length > 0;
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const transcriptRef = useRef<HTMLDivElement>(null);
+  const composerRef = useRef<HTMLDivElement>(null);
+  const followingRef = useRef(true);
+  const [awayFromLatest, setAwayFromLatest] = useState(false);
+
+  function measureComposer() {
+    const height = composerRef.current?.getBoundingClientRect().height ?? 0;
+    const clearance = `${Math.ceil(height) + 20}px`;
+    if (transcriptRef.current) transcriptRef.current.style.paddingBottom = clearance;
+    if (scrollRef.current) scrollRef.current.style.scrollPaddingBottom = clearance;
+  }
+
+  function scrollToLatest() {
+    const host = scrollRef.current;
+    if (!host) return;
+    host.scrollTop = host.scrollHeight;
+    followingRef.current = true;
+    setAwayFromLatest(false);
+  }
+
+  function onTranscriptScroll() {
+    const host = scrollRef.current;
+    if (!host) return;
+    const nearBottom = host.scrollHeight - host.scrollTop - host.clientHeight <= 48;
+    followingRef.current = nearBottom;
+    setAwayFromLatest(!nearBottom);
+  }
+
+  // Session changes start at the latest reply; updates within a session respect
+  // the reader's position. Observe both content growth and composer/viewport resize.
+  useLayoutEffect(() => {
+    followingRef.current = true;
+    measureComposer();
+    scrollToLatest();
+  }, [currentSessionId, inConversation]);
+  useLayoutEffect(() => {
+    measureComposer();
+    if (followingRef.current) scrollToLatest();
+  });
+  useEffect(() => {
+    const host = scrollRef.current;
+    const transcript = transcriptRef.current;
+    if (!host || !transcript || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(() => {
+      measureComposer();
+      if (followingRef.current) scrollToLatest();
+      else onTranscriptScroll();
+    });
+    observer.observe(host);
+    observer.observe(transcript);
+    if (composerRef.current) observer.observe(composerRef.current);
+    return () => observer.disconnect();
+  }, [inConversation]);
+
   const defaultComposer = (
     <AskAiFullscreenComposer
       draft={draft}
@@ -223,7 +295,7 @@ export function AskAiFullscreenLayer({
         <aside
           data-ask-ai-fs-rail
           aria-label="会话栏"
-          className="flex min-h-0 shrink-0 flex-col border-r border-fg-grey-200 bg-background px-3 py-4"
+          className="max-md:absolute max-md:inset-y-0 max-md:left-0 max-md:z-20 max-md:shadow-lg flex min-h-0 shrink-0 flex-col border-r border-fg-grey-200 bg-background px-3 py-4"
           style={{ width: ASK_AI_FULLSCREEN_RAIL_WIDTH }}
         >
           <div className="px-2.5 pb-4 pt-0.5">
@@ -258,7 +330,7 @@ export function AskAiFullscreenLayer({
                   />
                 </label>
               </div>
-              <div className="min-h-0 flex-1 overflow-y-auto px-0.5">
+              <div className="forge-ask-ai-fs-scroll min-h-0 flex-1 overflow-y-auto px-0.5">
                 {sessions.map((item) => (
                   <button
                     key={item.id}
@@ -282,7 +354,7 @@ export function AskAiFullscreenLayer({
         </aside>
       ) : null}
 
-      <div data-ask-ai-fs-main className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-background">
+      <div data-ask-ai-fs-main className="forge-ask-ai-fs-main relative flex min-h-0 min-w-0 flex-1 flex-col bg-background">
         <div className="absolute right-4 top-3 z-10 flex items-center gap-1">
           <button
             type="button"
@@ -307,24 +379,38 @@ export function AskAiFullscreenLayer({
         </div>
 
         {inConversation ? (
-          <div data-ask-ai-fs-chat className="mx-auto flex min-h-0 w-full max-w-3xl flex-1 flex-col px-6">
-            <div data-ask-ai-fs-messages className="min-h-0 flex-1 overflow-y-auto pb-5 pt-14">
-              {messages ?? (
-                <AskAiDefaultTranscript
-                  label={label}
-                  messages={conversation}
-                  pending={pending}
-                  error={error}
-                  failedQuestion={failedQuestion}
-                  onRetry={onRetry}
-                />
-              )}
+          <div data-ask-ai-fs-chat className="relative flex min-h-0 min-w-0 flex-1 flex-col">
+            <div data-ask-ai-fs-scroll ref={scrollRef} onScroll={onTranscriptScroll}
+              tabIndex={0} role="region" aria-label="对话滚动区域"
+              className="forge-ask-ai-fs-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain [overflow-anchor:none] focus-visible:outline-2 focus-visible:outline-fg-grey-300">
+              <div data-ask-ai-fs-messages ref={transcriptRef} className="forge-ask-ai-fs-transcript mx-auto w-full min-w-0 px-6 pb-5 pt-14">
+                {messages ?? (
+                  <AskAiDefaultTranscript
+                    label={label}
+                    messages={conversation}
+                    pending={pending}
+                    error={error}
+                    failedQuestion={failedQuestion}
+                    onRetry={onRetry}
+                  />
+                )}
+              </div>
             </div>
-            <div className="shrink-0 pb-7">{composer ?? defaultComposer}</div>
+            <div data-ask-ai-fs-composer-region ref={composerRef} className="pointer-events-none absolute inset-x-0 bottom-0 px-4 md:px-6"
+              style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}>
+              {awayFromLatest && (
+                <div className="pointer-events-auto absolute inset-x-0 bottom-full flex justify-center pb-2">
+                  <Button size="sm" variant="secondary" color="grey" onClick={scrollToLatest}>回到最新</Button>
+                </div>
+              )}
+              <div className="forge-ask-ai-fs-content forge-ask-ai-fs-floating-composer pointer-events-auto mx-auto w-full">
+                <AskAiCompactComposerContext value={true}>{composer ?? defaultComposer}</AskAiCompactComposerContext>
+              </div>
+            </div>
           </div>
         ) : (
           <div data-ask-ai-fs-landing className="flex min-h-0 flex-1 flex-col items-center overflow-y-auto px-8 pb-10 pt-16">
-            <div data-ask-ai-fs-landing-inner className="flex w-full max-w-3xl flex-col items-center">
+            <div data-ask-ai-fs-landing-inner className="forge-ask-ai-fs-content flex w-full flex-col items-center">
               <h2 className="mb-7 text-center text-3xl font-semibold leading-tight tracking-fg text-fg-black">
                 {landingTitle}
               </h2>

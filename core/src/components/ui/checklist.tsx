@@ -275,7 +275,7 @@ export function Checklist({
   }
 
   return (
-    <div className={cn("flex flex-col", className)}>
+    <div data-ask-ai-response="compact" className={cn("flex flex-col", className)}>
       <ul ref={listRef} className="flex flex-col gap-2">
         {visible.map((task) => (
           <li key={task.id} data-checklist-row={task.id} className="max-w-full">
