@@ -8,6 +8,7 @@ import { cn } from "../../lib/utils";
 import { MagniferLinear, CalendarBoldDuotone, FilterBold, AltArrowDownLinear, MenuDotsBold, StarBoldDuotone } from "../../icons";
 import { Breadcrumbs, type BreadcrumbItem } from "./breadcrumbs";
 import { Button } from "./button";
+import { AskAi, type AskAiProps } from "./ask-ai";
 import { CalendarPopup } from "./calendar-popup";
 
 // ============================================================
@@ -488,6 +489,8 @@ export interface PageTitleToolbarMenuAction {
 }
 
 interface PageTitleToolbarPresetBase {
+  /** Optional Ask AI action, with the same configuration as PageHeader. */
+  askAi?: AskAiProps;
   title: string;
   breadcrumbItems: BreadcrumbItem[];
   color?: ToolbarColor;
@@ -536,6 +539,8 @@ export type PageTitleToolbarPresetProps =
   | PageTitleToolbarActionProps;
 
 interface PageTitleToolbarLegacyProps {
+  /** Optional Ask AI action, with the same configuration as PageHeader. */
+  askAi?: AskAiProps;
   /** @deprecated Use a fixed `variant` with `breadcrumbItems` and typed actions. */
   variant?: never;
   title: string;
@@ -559,8 +564,9 @@ export function PageTitleToolbar(props: PageTitleToolbarProps) {
       menuAction,
       secondaryAction,
       primaryAction,
+      askAi,
     } = props;
-    const hasActions = Boolean(dateAction || menuAction || secondaryAction || primaryAction);
+    const hasActions = Boolean(askAi || dateAction || menuAction || secondaryAction || primaryAction);
 
     return (
       <PageTitleToolbarFrame
@@ -575,6 +581,7 @@ export function PageTitleToolbar(props: PageTitleToolbarProps) {
         }
         actions={hasActions ? (
           <ToolbarActions className="w-full flex-wrap sm:w-auto sm:shrink-0">
+            {askAi && <AskAi {...askAi} />}
             {dateAction ? (
               <ToolbarDatepicker
                 label={dateAction.label}
@@ -602,14 +609,14 @@ export function PageTitleToolbar(props: PageTitleToolbarProps) {
     );
   }
 
-  const { title, subtitle, breadcrumbs, actions, className } = props;
+  const { title, subtitle, breadcrumbs, actions, className, askAi } = props;
 
   return (
     <PageTitleToolbarFrame
       title={title}
       subtitle={subtitle}
       breadcrumbs={breadcrumbs}
-      actions={actions}
+      actions={askAi ? <ToolbarActions><AskAi {...askAi} />{actions}</ToolbarActions> : actions}
       className={className}
     />
   );

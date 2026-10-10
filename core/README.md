@@ -225,3 +225,12 @@ The consumer controls the active application and handles navigation or data chan
 `PromptBar` composer slots inside AskAi use a compact auto-growing input and a tools menu. Translate the compact menu accessible name with `toolsMenuLabel`; existing source, command, attachment and model labels remain supported.
 
 Fullscreen messages should contain naturally sized content; core owns scrolling, reply follow, jump-to-latest and the floating composer clearance. Use `currentSessionId` to reset follow when switching external conversations. See `docs/ask-ai-fullscreen-layout.md` in the source repository for the complete slot contract.
+
+### PageTitleToolbar Ask AI
+
+All four presets and the legacy `actions` API accept optional `askAi: AskAiProps`, matching PageHeader. Ask AI appears before other actions and can be the only action. Omit it to preserve the existing layout.
+
+```tsx
+<PageTitleToolbar variant="overview" title="项目总览" breadcrumbItems={[]}
+  askAi={{ onSend: async (message, request) => askAgent(message, request) }} />
+```
