@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.9
+
+- Refine AskAi fullscreen transcript scrolling: follow new replies while near the bottom, preserve reading position, and jump back to the latest response. Reserve space for the floating composer and adapt the session rail to mobile screens.
+- Add compact PromptBar tools and picker keyboard navigation inside AskAi composer slots, with automatic textarea sizing and a translatable `toolsMenuLabel`. Defer initially open fullscreen portals until the client is ready.
+- Keep compact interactive replies within readable width bands while preserving wide code and table replies. Document the fullscreen slot layout contract.
+
 ## 0.3.8
 
 - Replace the default team menu with an application switcher: current application, selectable applications, and active selection. Team management actions are hidden by default.
