@@ -68,6 +68,7 @@ export function PromptBar({
   connectedLabel = "Connected",
   attachLabel = "Attach",
   dictateLabel = "Dictate",
+  toolsMenuLabel = "添加内容和工具",
   className = "",
 }: {
   value?: string;
@@ -101,6 +102,8 @@ export function PromptBar({
   connectedLabel?: string;
   attachLabel?: string;
   dictateLabel?: string;
+  /** Accessible name for the compact tools trigger and menu inside AskAi. */
+  toolsMenuLabel?: string;
   className?: string;
 }) {
   const compact = useContext(AskAiCompactComposerContext);
@@ -267,7 +270,7 @@ export function PromptBar({
 
       {compact && (onAttach || sources.length > 0 || commands.length > 0) && (
         <>
-          <button ref={toolsTriggerRef} type="button" aria-label="添加内容和工具" aria-haspopup="menu"
+          <button ref={toolsTriggerRef} type="button" aria-label={toolsMenuLabel} aria-haspopup="menu"
             aria-expanded={panel === "tools"} disabled={disabled}
             onClick={() => setPanel(previous => previous === "tools" ? null : "tools")}
             onKeyDown={event => {
@@ -279,7 +282,7 @@ export function PromptBar({
             <PlusIcon size={20} />
           </button>
           {panel === "tools" && (
-            <div ref={toolsMenuRef} role="menu" aria-label="添加内容和工具" onKeyDown={navigateTools}
+            <div ref={toolsMenuRef} role="menu" aria-label={toolsMenuLabel} onKeyDown={navigateTools}
               className="absolute inset-x-0 bottom-full z-10 mb-2">
               <DropdownPanel width="w-full" padding="p-2" className="max-h-[min(24rem,60dvh)] overflow-y-auto">
                 {onAttach && <ToolMenuItem icon={<PaperclipLinear size={18} />} label={attachLabel}

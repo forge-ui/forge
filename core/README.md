@@ -219,3 +219,9 @@ For count-bearing translations, use the AgentDiffTable formatters to control wor
 ```
 
 The consumer controls the active application and handles navigation or data changes. Selecting an application closes the menu. The subtitle defaults to “当前应用”; override it with `appSubtitle`. Legacy `teamName`, `teamAvatar`, `teamSubtitle`, and `teams` remain supported. Team actions are hidden by default; legacy consumers can explicitly set `showTeamActions`.
+
+### AskAi compact composer and fullscreen scrolling
+
+`PromptBar` composer slots inside AskAi use a compact auto-growing input and a tools menu. Translate the compact menu accessible name with `toolsMenuLabel`; existing source, command, attachment and model labels remain supported.
+
+Fullscreen messages should contain naturally sized content; core owns scrolling, reply follow, jump-to-latest and the floating composer clearance. Use `currentSessionId` to reset follow when switching external conversations. See `docs/ask-ai-fullscreen-layout.md` in the source repository for the complete slot contract.

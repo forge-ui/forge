@@ -219,19 +219,19 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
   let attached = 0;
   try {
     await act(async () => env.root.render(<AskAiCompactComposerContext value={true}>
-      <PromptBar onAttach={() => attached++} sources={[
+      <PromptBar toolsMenuLabel="Content and tools" onAttach={() => attached++} sources={[
         {id:"project",label:"项目资料"},{id:"knowledge",label:"知识库"},
       ]} commands={[{id:"plan",label:"plan"},{id:"summary",label:"summarize"}]} />
     </AskAiCompactComposerContext>));
-    await click(button("添加内容和工具"));
-    assert.equal(button("添加内容和工具").getAttribute("aria-expanded"), "true");
+    await click(button("Content and tools"));
+    assert.equal(button("Content and tools").getAttribute("aria-expanded"), "true");
     assert.equal(document.activeElement?.textContent, "Attach");
     await key(document.activeElement!, "ArrowDown");
     assert.equal(document.activeElement?.textContent, "项目资料");
     await key(document.activeElement!, "Escape");
-    assert.equal(document.activeElement, button("添加内容和工具"));
+    assert.equal(document.activeElement, button("Content and tools"));
     assert.equal(document.querySelector('[role="menu"]'), null);
-    await click(button("添加内容和工具"));
+    await click(button("Content and tools"));
     await click(document.querySelector<HTMLButtonElement>('[role="menuitem"]')!);
     assert.equal(attached, 1);
     assert.equal(document.querySelector('[role="menu"]'), null);

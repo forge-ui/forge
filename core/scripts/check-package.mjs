@@ -23,21 +23,21 @@ const [pack] = JSON.parse(
   }),
 );
 
-// StreamingAnswer adds one internal playout module, scoped Markdown CSS and
-// public prop types. Keep a narrow additive allowance and the JS module limits.
+// AskAi compact composer adds one internal context module and scoped fullscreen
+// CSS. Keep a narrow additive allowance and the individual JS module limits.
 const limits = {
-  packed: 670_000,
+  packed: 680_000,
   // Application switcher adds public declarations and implementation.
-  unpacked: 2_710_000,
-  entries: 443,
-  sourceMaps: 1_470_000,
+  unpacked: 2_750_000,
+  entries: 446,
+  sourceMaps: 1_500_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 30_000,
+  stylesRaw: 32_000,
 };
 
 const expectedExports = {

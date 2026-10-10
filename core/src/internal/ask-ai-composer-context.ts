@@ -2,5 +2,5 @@
 
 import { createContext } from "react";
 
-/** Only the fullscreen conversation composer opts into the compact PromptBar. */
+/** AskAi drawer and fullscreen conversation composers opts into the compact PromptBar. */
 export const AskAiCompactComposerContext = createContext(false);
