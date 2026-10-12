@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+- Add configurable ChatInputBar quick actions with animated illustrations, spring-driven card fan behind the input, neighbour displacement, folded corners and reduced-motion support. Selected operations become removable chips with animated placeholder changes and are provided to onSend without changing drafts. Model and permission controls sit on the right; the plus menu sits on the left.
+- Open quick cards automatically only in empty conversations (`hasMessages`), collapse after sending, and allow manual reopening from the plus menu. Clicking blank space anywhere inside the composer focuses its input.
+- Preserve caret-aware insertion and composition protection, using event timestamps for candidate-confirming Enter.
+
 ## 0.4.0
 
 - Consolidate composers into ChatInputBar and remove PromptBar plus PromptSource, PromptCommand, PromptModel and PromptBarStatus exports. Migrate callers to ChatInputBar and ComposerSource, ComposerCommand, ComposerModel, ComposerStatus.

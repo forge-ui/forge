@@ -23,22 +23,22 @@ const [pack] = JSON.parse(
   }),
 );
 
-// AskAi compact composer adds one internal context module and scoped fullscreen
-// CSS. Keep a narrow additive allowance and the individual JS module limits.
+// Animated composer adds one internal artwork module, declarations, sourcemaps
+// and scoped fan CSS. Keep individual JavaScript module limits unchanged.
 const limits = {
-  packed: 685_000,
+  packed: 700_000,
   // Application switcher adds public declarations and implementation.
-  unpacked: 2_770_000,
+  unpacked: 2_830_000,
   // Shared composer types and tools menu replace the removed PromptBar entry.
-  entries: 449,
-  sourceMaps: 1_510_000,
+  entries: 452,
+  sourceMaps: 1_540_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 32_000,
+  stylesRaw: 38_000,
 };
 
 const expectedExports = {

@@ -7,7 +7,8 @@ import { modelMenuPosition } from "./prompt-model-menu";
 import { PlusIcon } from "../components/ui/plain-icons";
 
 /** Shared attachment, mention and command menu. */
-export function ComposerToolsMenu({ label, attachLabel, sourcesLabel, commandsLabel, onOpen, disabled, onAttach, sources, commands, onSource, onCommand }: {
+export function ComposerToolsMenu({ label, attachLabel, sourcesLabel, commandsLabel, onOpen, disabled, onAttach, sources, commands, onSource, onCommand, onQuickActions, quickActionsLabel }: {
+  onQuickActions?: () => void; quickActionsLabel?: string;
   label: string; attachLabel: string; sourcesLabel: string; commandsLabel: string; disabled?: boolean; onOpen?: () => void; onAttach?: () => void;
   sources: ComposerSource[]; commands: ComposerCommand[];
   onSource: (item: ComposerSource) => void; onCommand: (item: ComposerCommand) => void;
@@ -59,13 +60,14 @@ export function ComposerToolsMenu({ label, attachLabel, sourcesLabel, commandsLa
   }
   function choose(action: () => void) { setOpen(false); action(); }
   const itemClass = "flex w-full flex-col rounded-lg px-3 py-2 text-left text-sm text-fg-black hover:bg-fg-grey-100 focus:bg-fg-grey-100";
-  if (!onAttach && !sources.length && !commands.length) return null;
+  if (!onQuickActions && !onAttach && !sources.length && !commands.length) return null;
   return <>
     <button ref={trigger} type="button" aria-label={label} aria-haspopup="menu" aria-expanded={open} disabled={disabled}
       onClick={() => { if (!open) onOpen?.(); setOpen(current => !current); }} onKeyDown={event => { if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); onOpen?.(); setOpen(true); } }}
-      className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-fg-grey-100 disabled:opacity-50"><PlusIcon size={20} /></button>
+      className="forge-composer-plus text-foreground flex h-8 w-8 items-center justify-center rounded-full hover:bg-fg-grey-100 disabled:opacity-50"><PlusIcon size={20} /></button>
     {open && !disabled && <div ref={menu} popover="manual" role="menu" aria-label={label} onKeyDown={navigate} className="fixed z-50 m-0 overflow-y-auto rounded-xl border-0 bg-background p-0 text-foreground shadow-lg">
       <DropdownPanel width="w-full" padding="p-2" className="max-h-56 overflow-y-auto">
+        {onQuickActions && <button type="button" role="menuitem" tabIndex={-1} className={itemClass} onClick={() => choose(() => { onQuickActions(); trigger.current?.focus(); })}>{quickActionsLabel}</button>}
         {onAttach && <button type="button" role="menuitem" aria-label={attachLabel} title={attachLabel} tabIndex={-1} className={itemClass} onClick={() => choose(() => { onAttach(); trigger.current?.focus(); })}>{attachLabel}</button>}
         {sources.length > 0 && <div role="presentation" className="px-3 py-2 text-xs text-fg-grey-500">@ {sourcesLabel}</div>}
         {sources.map(item => <button key={`source-${item.id}`} type="button" role="menuitem" tabIndex={-1} className={itemClass} onClick={() => choose(() => onSource(item))}><span>{item.label}</span>{item.description && <span className="text-xs text-fg-grey-700">{item.description}</span>}</button>)}

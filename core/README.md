@@ -257,3 +257,11 @@ AskAi owns its built-in request lifecycle. Applications with external generation
 ```
 
 Use ChatInputBar for new integrations. It supports `sources` for caret-aware @ mentions, `commands` for slash commands, `onAttach`, `onDictate`, model selection and controlled generation. Optional `permissions`, `permission`, `onPermissionChange`, and `permissionMenuLabel` use the same controlled selection contract as models. Permission enforcement belongs to the caller. All layouts use a shared plus menu for attachments, mentions and commands. `showAttachment` controls whether the attachment action is available alongside `toggles`.
+
+## ChatInputBar 快捷卡片
+
+`quickActions` 配置 `id`、`label`、`kind`、`placeholder`、`icon` 和 `onClick`。`kind` 支持 image、note、event、voice、docs，分别使用动态插画、色带或折角。空会话默认展开卡片，已有消息时收起，从左侧加号的“快捷操作”手动打开。传入 `hasMessages={messages.length > 0}` 可跟随会话状态切换；未传时，首次发送后自动收起。清空会话后会重新默认展开。`defaultQuickActionsOpen={false}` 可关闭空会话的自动展开。
+
+选择卡片会沉入输入框背后，在输入框内显示可移除的操作标签并切换提示语；不会修改已有草稿。`onSend(message, action)` 的第二个参数提供选中操作，`onQuickActionChange` 监听选择与移除。移除按钮、Escape 或空草稿时的 Backspace 恢复卡片。`quickActionsLabel`、`removeQuickActionLabel` 可自定义语言。动态效果遵循减少动态效果设置。输入框内的空白区域均可点击聚焦，按钮、菜单及文本选择保持原有行为。
+
+卡片插画、弹簧动画和选中切换改编自 [Pin UI Prompt Composer](https://www.pinui.xyz/components/prompt-composer)（MIT，见 THIRD_PARTY_NOTICES.md），通过 Motion 驱动。语音、图片生成等业务能力由回调接入，不包含参考示例中的模拟录音或模拟转写。模型、权限、附件、提及、命令及停止生成继续使用原有接口。

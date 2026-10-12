@@ -782,3 +782,55 @@ body {
 .forge-ask-ai-fs-scroll::-webkit-scrollbar-track { background: transparent; }
 .forge-ask-ai-fs-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
 .forge-ask-ai-fs-scroll:is(:hover, :focus-within)::-webkit-scrollbar-thumb { background: var(--fg-grey-300); }
+
+/* Pin UI PromptComposer fan and artwork, adapted to Forge tokens. MIT notices included. */
+.forge-composer-shell { position:relative; isolation:isolate; container-type:inline-size; --forge-quick-space:0px; --forge-quick-card-h:clamp(112px,21cqw,180px); --forge-quick-tuck:clamp(22px,4cqw,36px); --forge-quick-card:var(--surface); --forge-quick-art:var(--border); --forge-quick-art-deep:var(--border-muted); --forge-quick-rule:var(--border); --forge-quick-rec:var(--fg-red); --forge-quick-rec-dot:var(--fg-red-100); }
+.forge-composer-shell[data-quick-open] { --forge-quick-space:calc(var(--forge-quick-card-h) - var(--forge-quick-tuck) + 6px); }
+.forge-composer-shell[data-has-quick] > .forge-composer-surface { margin-top:var(--forge-quick-space); transition:margin-top 420ms cubic-bezier(.2,.85,.25,1); }
+.forge-composer-surface { cursor:text; z-index:20; box-shadow:0 1px 2px #0000000a; }
+.forge-quick-fan { position:absolute; top:6px; left:0; right:0; height:var(--forge-quick-card-h); clip-path:inset(-90px -20px calc(var(--forge-quick-card-h) - var(--forge-quick-space) - 24px) -20px); transition:clip-path 420ms cubic-bezier(.2,.85,.25,1); pointer-events:none; }
+.forge-quick-fan[data-open] { pointer-events:auto; }
+.forge-quick-card { position:absolute; top:0; height:var(--forge-quick-card-h); border:0; padding:0; border-radius:clamp(10px,2.5cqw,15px); transform-origin:50% 100%; translate:-50% 0; box-shadow:0 1px 3px #00000014; cursor:pointer; }
+.forge-quick-card:disabled { cursor:default; }
+.forge-quick-card:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.forge-quick-cardFace { position:absolute; inset:0; overflow:hidden; border-radius:inherit; background:linear-gradient(180deg,var(--surface),var(--surface) 45%,var(--background)); }
+.forge-quick-cardFace::after { content:""; position:absolute; inset:0; border-radius:inherit; box-shadow:inset 0 0 0 1px var(--border),inset 0 1px 0 var(--hover); pointer-events:none; }
+.forge-quick-band { position:absolute; top:0; right:0; left:0; height:15%; box-shadow:inset 0 -1px 0 #00000014; }
+.forge-quick-card--note .forge-quick-band { background:linear-gradient(var(--fg-yellow-200),var(--fg-yellow)); }
+.forge-quick-card--event .forge-quick-band { background:linear-gradient(var(--fg-red-200),var(--fg-red-400)); }
+.forge-quick-label { position:absolute; top:9%; left:8%; right:8%; color:var(--text-secondary); font-size:clamp(10px,1.75cqw,13px); line-height:1.2; text-align:center; }
+.forge-quick-card--note .forge-quick-label,.forge-quick-card--event .forge-quick-label { top:22%; }
+.forge-quick-card--docs .forge-quick-label { right:25%; left:5%; }
+.forge-quick-artBox { position:absolute; top:34%; right:0; bottom:0; left:0; display:flex; justify-content:center; }
+.forge-quick-card--note .forge-quick-artBox,.forge-quick-card--event .forge-quick-artBox { top:40%; }
+.forge-quick-art { display:block; width:64%; height:auto; overflow:visible; }
+.forge-quick-lines { display:flex; flex-direction:column; gap:clamp(6px,1.9cqw,11px); width:82%; padding-top:4%; }
+.forge-quick-line { display:block; height:1.5px; border-radius:1px; background:var(--forge-quick-rule); transform-origin:0 50%; }
+.forge-quick-date { color:var(--forge-quick-art); font-size:clamp(24px,8cqw,65px); font-weight:700; line-height:1; letter-spacing:-.045em; }
+.forge-quick-card--docs .forge-quick-cardFace { --forge-quick-peel-size:calc(26px * var(--forge-quick-peel,1)); mask-image:linear-gradient(225deg,transparent calc(var(--forge-quick-peel-size) * .7071),#000 calc(var(--forge-quick-peel-size) * .7071 + .6px)); }
+.forge-quick-peel { position:absolute; top:0; right:0; z-index:2; width:var(--forge-quick-peel-size); height:var(--forge-quick-peel-size); pointer-events:none; }
+.forge-quick-peel::before,.forge-quick-peel::after { content:""; position:absolute; inset:0; clip-path:polygon(0 0,0 100%,100% 100%); }
+.forge-quick-peel::before { background:#00000014; transform:translate(-1.5px,1.5px); }
+.forge-quick-peel::after { border-bottom-left-radius:28%; background:linear-gradient(225deg,var(--border),var(--surface)); }
+.forge-composer-entry { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.forge-composer-input-wrap { position:relative; flex:1; min-width:120px; }
+.forge-composer-input-wrap input { width:100%; }
+.forge-quick-placeholder { position:absolute; top:0; left:4px; right:4px; font-size:inherit; line-height:28px; color:var(--fg-grey-500); pointer-events:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.forge-quick-chip { display:inline-flex; flex:none; align-items:center; gap:6px; border:0; border-radius:9px; padding:6px 9px; font-size:13px; color:var(--fg-grey-700); background:var(--fg-grey-100); cursor:pointer; }
+.forge-quick-chip svg { width:16px; height:16px; }
+.forge-quick-chip--event { color:var(--fg-red); background:color-mix(in srgb,var(--fg-red) 15%,var(--background)); }
+.forge-quick-chip--note { color:var(--fg-yellow-700); background:color-mix(in srgb,var(--fg-yellow) 15%,var(--background)); }
+.forge-quick-chip--docs { color:var(--fg-blue); background:color-mix(in srgb,var(--fg-blue) 15%,var(--background)); }
+.forge-quick-chip:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.forge-composer-plus { transition:transform 420ms cubic-bezier(.2,.85,.25,1.16); }
+.forge-composer-plus[aria-expanded=true] { transform:rotate(90deg); }
+@media (prefers-reduced-motion:reduce) { .forge-composer-plus,.forge-quick-fan,.forge-composer-shell[data-has-quick] > .forge-composer-surface { transition:none; } }
+
+.forge-composer-shell:not([data-multiline]) .forge-quick-placeholder { line-height:20px; left:0; }
+.forge-quick-chip { max-width:100%; }
+.forge-quick-chip > span:first-of-type { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+.forge-composer-send:disabled { background:var(--hover); color:var(--text-disabled); }
+.forge-composer-send { color:var(--accent-foreground); }
+
+.forge-composer-shell:not([data-multiline]) .forge-composer-surface > .forge-composer-entry { flex:1 1 180px; }

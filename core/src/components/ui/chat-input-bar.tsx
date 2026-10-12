@@ -1,7 +1,10 @@
 "use client";
 
-import { useContext, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import { ArrowUpLinear, PlainLinear, StopBold, RefreshLinear, MicrophoneLinear } from "../../icons";
+import { useContext, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { QuickActionFan, QuickActionGlyph, composerMorph } from "../../internal/composer-quick-actions";
+import { useReducedMotion } from "../../internal/motion";
+import { ArrowUpLinear, StopBold, RefreshLinear, MicrophoneLinear } from "../../icons";
 import type { ComposerModel, ComposerStatus } from "./composer-types";
 import { PromptModelMenu } from "../../internal/prompt-model-menu";
 import { AskAiCompactComposerContext } from "../../internal/ask-ai-composer-context";
@@ -12,6 +15,17 @@ import { DropdownPanel } from "./dropdown-panel";
 export type ComposerSource = { id: string; label: string; description?: string; connected?: boolean };
 export type ComposerCommand = { id: string; label: string; description?: string };
 
+export type ChatInputBarQuickAction = {
+  id: string;
+  label: string;
+  icon?: ReactNode;
+  /** Built-in animated illustration and card treatment. */
+  kind?: "image" | "note" | "event" | "voice" | "docs";
+  /** Hint shown while this operation is selected; never inserted into the draft. */
+  placeholder?: string;
+  onClick?: () => void;
+};
+
 export type ChatInputBarToggle = {
   id: string;
   label: string;
@@ -21,6 +35,12 @@ export type ChatInputBarToggle = {
 };
 
 export function ChatInputBar({
+  quickActions = [],
+  quickActionsLabel = "快捷操作",
+  defaultQuickActionsOpen = true,
+  hasMessages,
+  removeQuickActionLabel = "移除操作",
+  onQuickActionChange,
   placeholder = "输入消息...",
   value: controlledValue,
   onChange,
@@ -63,6 +83,15 @@ export function ChatInputBar({
   color,
   emptySourcesLabel = "没有匹配的提及对象",
 }: {
+  /** Optional animated action cards, opened from the plus menu. */
+  quickActions?: ChatInputBarQuickAction[];
+  quickActionsLabel?: string;
+  /** Whether the conversation already contains messages. Omit to infer after the first send. */
+  hasMessages?: boolean;
+  /** Automatically show configured cards in an empty conversation. */
+  defaultQuickActionsOpen?: boolean;
+  removeQuickActionLabel?: string;
+  onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void;
   commands?: ComposerCommand[];
   commandsLabel?: string;
   emptyCommandsLabel?: string;
@@ -89,7 +118,7 @@ export function ChatInputBar({
   /** Controlled value. Pass with onChange to manage external state. */
   value?: string;
   onChange?: (value: string) => void;
-  onSend?: (message: string) => void;
+  onSend?: (message: string, action?: ChatInputBarQuickAction) => void;
   className?: string;
   /** Render a textarea instead of a single-line input */
   multiline?: boolean;
@@ -118,6 +147,20 @@ export function ChatInputBar({
   sourcesLabel?: string;
   emptySourcesLabel?: string;
 }) {
+  const [hasSent, setHasSent] = useState(false);
+  const conversationHasMessages = hasMessages ?? hasSent;
+  const [quickState, setQuickState] = useState({ hasMessages: conversationHasMessages, open: defaultQuickActionsOpen && !conversationHasMessages });
+  // Reset the automatic presentation only when the conversation changes between empty and non-empty.
+  // Ordinary rerenders must preserve a user's manual open/close choice.
+  if (quickState.hasMessages !== conversationHasMessages) {
+    setQuickState({ hasMessages: conversationHasMessages, open: defaultQuickActionsOpen && !conversationHasMessages });
+  }
+  const quickOpen = quickState.open && !disabled;
+  function setQuickOpen(open: boolean) { setQuickState({ hasMessages: conversationHasMessages, open }); }
+  const [selectedQuickId, setSelectedQuickId] = useState<string | null>(null);
+  const selectedQuick = quickActions.find(action => action.id === selectedQuickId);
+  const reduced = useReducedMotion();
+  const inputPlaceholder = selectedQuick?.placeholder ?? placeholder;
   const compact = useContext(AskAiCompactComposerContext) || density === "compact";
   const [commandOpen, setCommandOpen] = useState(false);
   const [permissionOpen, setPermissionOpen] = useState(false);
@@ -127,6 +170,8 @@ export function ChatInputBar({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const composingRef = useRef(false);
+  const compositionEndedAt = useRef(-Infinity);
   const listId = useId();
   const [modelOpen, setModelOpen] = useState(false);
   const [mentionOpen, setMentionOpen] = useState(false);
@@ -240,14 +285,24 @@ export function ChatInputBar({
   function handleSend() {
     const trimmed = value.trim();
     if (!trimmed || disabled || sendDisabled || status !== "idle") return;
-    onSend?.(trimmed);
-    if (clearOnSend) { setValue(""); setCaret(0); }
+    onSend?.(trimmed, selectedQuick);
+    setHasSent(true);
+    setQuickOpen(false);
+    if (clearOnSend) {
+      setValue(""); setCaret(0); setSelectedQuickId(null);
+      if (selectedQuick) onQuickActionChange?.(null);
+    }
     setMentionOpen(false);
     setCommandOpen(false);
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
+    // Some browsers end composition before delivering the candidate-confirming Enter.
+    if (composingRef.current || e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229 ||
+      (e.key === "Enter" && e.timeStamp - compositionEndedAt.current < 80)) return;
+    if (selectedQuick && (e.key === "Escape" || (e.key === "Backspace" && value === ""))) {
+      e.preventDefault(); e.stopPropagation(); clearQuick(); return;
+    }
     if (commandOpen) {
       if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); setCommandOpen(false); return; }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); setActiveIndex(index => commandMatches.length ? (index + (e.key === "ArrowDown" ? 1 : -1) + commandMatches.length) % commandMatches.length : 0); return; }
@@ -284,6 +339,41 @@ export function ChatInputBar({
     {onDictate && <button type="button" aria-label={dictateLabel} title={dictateLabel} onClick={onDictate} disabled={disabled} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-fg-grey-100"><MicrophoneLinear size={18} color="currentColor" /></button>}
   </>;
   const actionProps = { status, onStop, stopLabel, stoppingLabel };
+  function focusInput() { inputRef.current?.focus({ preventScroll: true }); }
+  function focusFromBlankArea(event: ReactPointerEvent<HTMLDivElement>) {
+    const target = event.target as HTMLElement;
+    if (disabled || event.button !== 0 || typeof target.closest !== "function") return;
+    // Keep native caret placement, selection, menus and controls in charge of their own focus.
+    const interactive = target.closest('button, input, textarea, select, a, [role], [tabindex], [contenteditable]:not([contenteditable="false"])');
+    if (interactive && event.currentTarget.contains(interactive)) return;
+    event.preventDefault();
+    focusInput();
+  }
+  function clearQuick() { setSelectedQuickId(null); setQuickOpen(true); onQuickActionChange?.(null); focusInput(); }
+  function chooseQuick(action: ChatInputBarQuickAction) {
+    setSelectedQuickId(action.id); setQuickOpen(false); setMentionOpen(false); setCommandOpen(false);
+    onQuickActionChange?.(action); action.onClick?.(); focusInput();
+  }
+  const quickTray = quickActions.length ? <QuickActionFan actions={quickActions} open={quickOpen} selectedId={selectedQuick?.id} disabled={disabled} label={quickActionsLabel}
+    onChoose={chooseQuick} onClose={() => { setQuickOpen(false); focusInput(); }} /> : null;
+  const selectedChip = <AnimatePresence initial={false} mode={reduced ? "sync" : "popLayout"}>
+    {selectedQuick && <motion.button key={selectedQuick.id} type="button" disabled={disabled} onClick={clearQuick} aria-label={`${removeQuickActionLabel}：${selectedQuick.label}`}
+      className={`forge-quick-chip forge-quick-chip--${selectedQuick.kind ?? "custom"}`}
+      whileTap={reduced ? undefined : { scale: 0.94 }}
+      initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.6, y: -10, filter: "blur(6px)" }} animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+      exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.7, filter: "blur(6px)" }}
+      transition={reduced ? { duration: 0 } : { ...composerMorph, delay: 0.12, opacity: { duration: 0.22, delay: 0.12 }, filter: { duration: 0.22, delay: 0.12 } }}>
+      {selectedQuick.icon ?? (selectedQuick.kind && <QuickActionGlyph id={selectedQuick.kind} />)}<span>{selectedQuick.label}</span><span aria-hidden="true">×</span>
+    </motion.button>}
+  </AnimatePresence>;
+  const animatedPlaceholder = <AnimatePresence initial={false} mode={reduced ? "sync" : "popLayout"}>{!value && <motion.span key={inputPlaceholder} aria-hidden="true" className="forge-quick-placeholder"
+    initial={reduced ? { opacity: 0 } : { opacity: 0, x: 8, filter: "blur(4px)" }} animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+    exit={reduced ? { opacity: 0 } : { opacity: 0, x: -8, filter: "blur(4px)" }} transition={reduced ? { duration: 0 } : { ...composerMorph, opacity: { duration: 0.22 }, filter: { duration: 0.22 } }}>{inputPlaceholder}</motion.span>}</AnimatePresence>;
+  const toolsMenu = <ComposerToolsMenu label={toolsMenuLabel} attachLabel={attachLabel} sourcesLabel={sourcesLabel} commandsLabel={commandsLabel}
+    quickActionsLabel={quickActionsLabel} onQuickActions={quickActions.length ? () => { if (selectedQuick) clearQuick(); else setQuickOpen(!quickOpen); } : undefined}
+    onOpen={() => { setCaret(inputRef.current?.selectionStart ?? value.length); setMentionOpen(false); setCommandOpen(false); }} disabled={disabled}
+    onAttach={showAttachment ? onAttach : undefined} sources={sources} commands={commands} onSource={chooseMention} onCommand={chooseCommand} />;
+
 
   if (multiline) {
     return (
@@ -291,9 +381,15 @@ export function ChatInputBar({
         ref={containerRef}
         data-accent={color}
         data-prompt-status={status}
-        className={`relative bg-white rounded-2xl outline outline-1 outline-fg-grey-200 ${compact ? "p-3 gap-2" : "p-4 gap-3"} flex flex-col ${className}`}
+        data-has-quick={quickActions.length > 0 || undefined}
+        data-quick-open={quickActions.length > 0 && quickOpen || undefined}
+        data-multiline={multiline || undefined}
+        className={`forge-composer-shell ${className}`}
       >
+        {quickTray}
+        <div onPointerDown={focusFromBlankArea} className={`forge-composer-surface relative bg-background rounded-2xl outline outline-1 outline-border ${compact ? "p-3 gap-2" : "p-4 gap-3"} flex flex-col`}>
         {mentionPanel}{commandPanel}
+        <div className="forge-composer-entry">{selectedChip}<motion.div layout={reduced ? false : "position"} transition={reduced ? { duration: 0 } : composerMorph} className="forge-composer-input-wrap">{animatedPlaceholder}
         <textarea
           ref={element => { inputRef.current = element; }}
           aria-haspopup={sources.length || commands.length ? "listbox" : undefined}
@@ -301,20 +397,21 @@ export function ChatInputBar({
           aria-activedescendant={commandOpen && commandMatches[activeIndex] ? `${listId}-command-${activeIndex}` : mentionOpen && matches[activeIndex] ? `${listId}-${activeIndex}` : undefined}
           aria-autocomplete={sources.length || commands.length ? "list" : undefined}
           onSelect={event => setCaret(event.currentTarget.selectionStart)}
-          onCompositionEnd={event => updateInput(event.currentTarget)}
+          onCompositionStart={() => { composingRef.current = true; }}
+          onCompositionEnd={event => { composingRef.current = false; compositionEndedAt.current = event.timeStamp; updateInput(event.currentTarget); }}
           aria-label={inputLabel}
           value={value}
           onChange={(e) => updateInput(e.currentTarget, (e.nativeEvent as InputEvent).isComposing)}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
+          placeholder={inputPlaceholder}
           rows={compact ? 1 : rows}
           disabled={disabled}
-          className="w-full resize-none border-0 bg-transparent px-1 py-0 text-[15px] leading-7 text-fg-black placeholder:text-fg-grey-500 focus:outline-none disabled:opacity-50"
+          className="w-full resize-none border-0 bg-transparent px-1 py-0 text-[15px] leading-7 text-foreground placeholder:text-transparent focus:outline-none disabled:opacity-50"
         />
+        </motion.div></div>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <ComposerToolsMenu label={toolsMenuLabel} attachLabel={attachLabel} sourcesLabel={sourcesLabel} commandsLabel={commandsLabel} onOpen={() => { setCaret(inputRef.current?.selectionStart ?? value.length); setMentionOpen(false); setCommandOpen(false); }} disabled={disabled} onAttach={showAttachment ? onAttach : undefined} sources={sources} commands={commands} onSource={chooseMention} onCommand={chooseCommand} />
-            {extraTools}
+            {toolsMenu}
             {toggles?.map((t) => (
               <ToggleButton
                 key={t.id}
@@ -328,7 +425,8 @@ export function ChatInputBar({
               </ToggleButton>
             ))}
           </div>
-          <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} /></div>
+          <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}{extraTools}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} /></div>
+        </div>
         </div>
       </div>
     );
@@ -339,14 +437,21 @@ export function ChatInputBar({
       ref={containerRef}
       data-accent={color}
       data-prompt-status={status}
-      className={`relative px-4 py-3 bg-white rounded-xl outline outline-1 outline-fg-grey-200 flex items-center gap-2 ${className}`}
+        data-has-quick={quickActions.length > 0 || undefined}
+        data-quick-open={quickActions.length > 0 && quickOpen || undefined}
+        data-multiline={multiline || undefined}
+        className={`forge-composer-shell ${className}`}
     >
-      <ComposerToolsMenu label={toolsMenuLabel} attachLabel={attachLabel} sourcesLabel={sourcesLabel} commandsLabel={commandsLabel} onOpen={() => { setCaret(inputRef.current?.selectionStart ?? value.length); setMentionOpen(false); setCommandOpen(false); }} disabled={disabled} onAttach={showAttachment ? onAttach : undefined} sources={sources} commands={commands} onSource={chooseMention} onCommand={chooseCommand} />
+      {quickTray}
+      <div onPointerDown={focusFromBlankArea} className="forge-composer-surface relative px-4 py-3 bg-background rounded-xl outline outline-1 outline-border flex flex-wrap items-center gap-2">
       {mentionPanel}{commandPanel}
+      {toolsMenu}
+      <div className="forge-composer-entry min-w-0 flex-1">{selectedChip}<motion.div layout={reduced ? false : "position"} transition={reduced ? { duration: 0 } : composerMorph} className="forge-composer-input-wrap">{animatedPlaceholder}
       <input
         ref={element => { inputRef.current = element; }}
         onSelect={event => setCaret(event.currentTarget.selectionStart ?? value.length)}
-        onCompositionEnd={event => updateInput(event.currentTarget)}
+        onCompositionStart={() => { composingRef.current = true; }}
+        onCompositionEnd={event => { composingRef.current = false; compositionEndedAt.current = event.timeStamp; updateInput(event.currentTarget); }}
         aria-haspopup={sources.length || commands.length ? "listbox" : undefined}
         aria-controls={commandOpen ? `${listId}-commands` : mentionOpen ? listId : undefined}
         aria-activedescendant={commandOpen && commandMatches[activeIndex] ? `${listId}-command-${activeIndex}` : mentionOpen && matches[activeIndex] ? `${listId}-${activeIndex}` : undefined}
@@ -356,11 +461,13 @@ export function ChatInputBar({
         value={value}
         onChange={(e) => updateInput(e.currentTarget, (e.nativeEvent as InputEvent).isComposing)}
         onKeyDown={handleKeyDown}
-        placeholder={placeholder}
+        placeholder={inputPlaceholder}
         disabled={disabled}
-        className="flex-1 text-sm text-fg-black placeholder:text-fg-grey-500 outline-none bg-transparent disabled:opacity-50"
+        className="min-w-0 flex-1 text-sm text-foreground placeholder:text-transparent outline-none bg-transparent disabled:opacity-50"
       />
-      {extraTools}{permissionPicker}{modelPicker}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} compact />
+      </motion.div></div>
+      <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}{extraTools}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} compact /></div>
+      </div>
     </div>
   );
 }
@@ -415,17 +522,18 @@ function SendButton({
   sendLabel?: string;
   compact?: boolean;
 }) {
+  const reduced = useReducedMotion();
   if (status !== "idle") {
     const stopping = status === "stopping";
     const label = stopping ? stoppingLabel : stopLabel;
-    return <button type="button" aria-label={label} title={label} aria-busy={stopping || undefined} disabled={stopping || !onStop}
+    return <motion.button whileTap={reduced ? undefined : { scale: 0.88 }} transition={reduced ? { duration: 0 } : composerMorph} type="button" aria-label={label} title={label} aria-busy={stopping || undefined} disabled={stopping || !onStop}
       onClick={() => onStop?.()} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fg-black text-fg-white disabled:cursor-not-allowed disabled:opacity-50">
       {stopping ? <RefreshLinear size={16} color="currentColor" /> : <StopBold size={16} color="currentColor" />}
-    </button>;
+    </motion.button>;
   }
   if (sendLabel) {
     return (
-      <button
+      <motion.button whileTap={reduced ? undefined : { scale: 0.88 }} transition={reduced ? { duration: 0 } : composerMorph}
         type="button"
         aria-label={sendLabel}
         onClick={onClick}
@@ -434,19 +542,19 @@ function SendButton({
       >
         {sendLabel}
         <ArrowUpLinear size={15} color="var(--fg-white)" />
-      </button>
+      </motion.button>
     );
   }
   return (
-    <button
+    <motion.button whileTap={reduced ? undefined : { scale: 0.88 }} transition={reduced ? { duration: 0 } : composerMorph}
       type="button"
       aria-label="发送消息"
       title="发送消息"
       onClick={onClick}
       disabled={disabled}
-      className={`shrink-0 ${compact ? "w-9 h-9" : "w-10 h-10"} bg-accent rounded-full flex items-center justify-center transition hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300`}
+      className={`forge-composer-send shrink-0 ${compact ? "w-9 h-9" : "w-10 h-10"} bg-accent rounded-full flex items-center justify-center transition hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300`}
     >
-      <PlainLinear size={compact ? 16 : 18} color="white" />
-    </button>
+      <motion.span aria-hidden="true" animate={!disabled && !reduced ? { y: [0, -1.5, 0] } : { y: 0 }} transition={{ duration: reduced ? 0 : 0.35, ease: "easeOut" }}><ArrowUpLinear size={compact ? 16 : 18} color="currentColor" /></motion.span>
+    </motion.button>
   );
 }

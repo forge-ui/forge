@@ -57,7 +57,7 @@ export { ActivityCard } from "./activity-card";
 export { ContactItem } from "./contact-item";
 export { ChatBubble } from "./chat-bubble";
 export { ChatInputBar } from "./chat-input-bar";
-export type { ChatInputBarToggle, ComposerSource, ComposerCommand } from "./chat-input-bar";
+export type { ChatInputBarToggle, ChatInputBarQuickAction, ComposerSource, ComposerCommand } from "./chat-input-bar";
 export { CommentItem } from "./comment-item";
 export type { CommentData, CommentReply } from "./comment-item";
 export { ReviewItem } from "./review-item";
