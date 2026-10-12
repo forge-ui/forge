@@ -264,4 +264,25 @@ Use ChatInputBar for new integrations. It supports `sources` for caret-aware @ m
 
 选择卡片会沉入输入框背后，在输入框内显示可移除的操作标签并切换提示语；不会修改已有草稿。`onSend(message, action)` 的第二个参数提供选中操作，`onQuickActionChange` 监听选择与移除。移除按钮、Escape 或空草稿时的 Backspace 恢复卡片。`quickActionsLabel`、`removeQuickActionLabel` 可自定义语言。动态效果遵循减少动态效果设置。输入框内的空白区域均可点击聚焦，按钮、菜单及文本选择保持原有行为。
 
-卡片插画、弹簧动画和选中切换改编自 [Pin UI Prompt Composer](https://www.pinui.xyz/components/prompt-composer)（MIT，见 THIRD_PARTY_NOTICES.md），通过 Motion 驱动。语音、图片生成等业务能力由回调接入，不包含参考示例中的模拟录音或模拟转写。模型、权限、附件、提及、命令及停止生成继续使用原有接口。
+卡片插画、弹簧动画和选中切换通过 Motion 驱动。语音、图片生成等业务能力由回调接入，不包含参考示例中的模拟录音或模拟转写。模型、权限、附件、提及、命令及停止生成继续使用原有接口。
+
+
+## 交互动效组件
+
+`OtpInput`、`CalendarCard`、`LiquidTabs`、`AddMember` 均从 core 根入口及同名 kebab-case 组件入口导出，沿用现有 Motion 依赖。样式随 `styles.css` 提供，自动继承 Forge 主题；系统设置“减少动态效果”时停用位移和形变。交互示例：`/cases/motion#otpinput`。
+
+```tsx
+import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-official/core";
+
+<OtpInput length={6} verify={checkCodeOnServer} onSuccess={finishSignIn} />
+<CalendarCard value={date} onChange={setDate} locale="zh-CN" />
+<LiquidTabs tabs={notificationTabs} value={tabId} onValueChange={setTabId} onSelect={openNotification} />
+<AddMember members={members} selectedIds={ids} onSelectionChange={setIds} onAdd={addMembersToProject} />
+```
+
+- **OtpInput**：2–10 位数字，支持粘贴、`one-time-code` 自动填充、`value/defaultValue`、`onChange`、`name` 和 `disabled`。填满时触发 `onComplete`；只有传入 `verify` 才会校验，Promise 待定时锁定输入，返回 `true` 才触发 `onSuccess`。失败或异常显示蛋壳裂开反馈，保留内容供编辑重试。组件内没有内置验证码。`inputLabel`、`hint`、`verifyingLabel`、`successLabel`、`errorLabel` 均可替换。
+- **CalendarCard**：`value/defaultDate` 为本地日期，`onChange` 返回新的 `Date`。未传日期时在客户端读取今天，SSR 不猜测用户时区。日期按钮支持方向键、Page Up/Down 翻月、Home/End 跳至月初/月末；月份选择器可用 Escape 关闭。导航范围为 1900–2100，月底翻月自动截到有效日期，支持闰年。`locale` 控制日期语言，`labels` 控制按钮文案；没有 `value` 时自行保存选择。
+- **LiquidTabs**：`tabs` 为 `{ id, label, items, disabled? }[]`，其中 `items` 为 `{ id, title, subtitle?, time?, icon?, disabled? }[]`。`value/defaultValue`、`onValueChange` 控制活动标签；`onSelect(item, tabId)` 返回所选行及标签 ID。默认显示三个标签，其余从菜单切换；`visibleCount`、`rows`、`corner` 可调整。方向键、Home/End 切换标签，菜单支持上下方向键和 Escape。`label/moreLabel/emptyLabel` 可本地化，不内置业务通知。
+- **AddMember**：`members` 为 `{ id, name, role?, avatar?, status?, disabled? }[]`，身份以稳定 `id` 为准。`selectedIds/defaultSelectedIds` 与 `onSelectionChange` 支持跨页、跨搜索多选；`open/defaultOpen/onOpenChange` 控制展开状态。`onAdd(ids)` 可返回 Promise，等待成功才显示成功，拒绝时保留选择供重试；`clearOnAdd={false}` 可在成功后保留选择。`rows/search/disabled` 控制显示和可用状态，所有功能文案可通过 `labels` 替换。只调用业务回调，不自行发送邀请。
+
+四者均接受 `className` 和 `motion="auto" | "none"`，与其他交互动效组件使用同一动效偏好；`none` 关闭动效但保留当前交互状态。受控模式下，业务方需在对应变更回调里更新传入值。

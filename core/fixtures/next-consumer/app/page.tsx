@@ -8,6 +8,8 @@ import {
   DataTable,
   StreamingAnswer,
   ChatInputBar,
+  OtpInput,
+  CalendarCard,
   type ComposerStatus,
   type ColumnDef,
   type AppLayoutMenuSection,
@@ -15,6 +17,8 @@ import {
 import { AppLayout } from "@forge-ui-official/core/components/layouts/app-layout";
 import { BellBoldDuotone } from "@forge-ui-official/core/icons";
 import { PageHeader } from "@forge-ui-official/core/components/ui/page-header";
+import { LiquidTabs } from "@forge-ui-official/core/components/ui/liquid-tabs";
+import { AddMember } from "@forge-ui-official/core/components/ui/add-member";
 
 type Row = {
   id: string;
@@ -78,6 +82,10 @@ export default function Home() {
           />
           <StreamingAnswer text={"## Streaming consumer\n\n中文与 **Markdown** 随 Core 安装。"} format="markdown" />
           <ChatInputBar multiline sendOnEnter status={promptStatus} onStop={() => setPromptStatus("idle")} stopLabel="Stop consumer task" />
+          <OtpInput inputLabel="Consumer passcode" />
+          <CalendarCard defaultDate={new Date(2026, 9, 12)} />
+          <LiquidTabs tabs={[{ id: "consumer", label: "Consumer notifications", items: [] }]} />
+          <AddMember members={[{ id: "member", name: "Consumer member" }]} defaultOpen />
         </div>
       </main>
     </AppLayout>

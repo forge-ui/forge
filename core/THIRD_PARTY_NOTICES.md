@@ -61,11 +61,16 @@ List of Third-Party Elements:
 Attribution Instructions:
 When using the icons, please attribute the original authors in a visible way according to the terms of the CC BY 4.0 license.
 
-## Pin UI Prompt Composer
+## Pin UI Components
 
-The card artwork, spring animation and selection transitions in ChatInputBar are adapted from Pin UI's PromptComposer by Rachit Thakur (@Rachit315) and contributors.
+The artwork, layouts and motion choreography in ChatInputBar, OtpInput, CalendarCard, LiquidTabs and AddMember are adapted from Pin UI by Rachit Thakur (@Rachit315) and contributors. Forge replaces demonstration data and callbacks with reusable APIs, uses its own theme tokens and Solar control icons, and adds keyboard and reduced-motion handling.
 
-Source: https://www.pinui.xyz/r/prompt-composer.json
+Sources:
+- https://www.pinui.xyz/r/prompt-composer.json
+- https://www.pinui.xyz/r/otp-input.json
+- https://www.pinui.xyz/r/calendar-card.json
+- https://www.pinui.xyz/r/liquid-tabs.json
+- https://www.pinui.xyz/r/add-member.json
 License declaration: https://github.com/Rachit315/Pin-UI#license and https://www.pinui.xyz/terms
 
 Copyright (c) Pin UI contributors.
