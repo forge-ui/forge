@@ -157,6 +157,8 @@ export function FileCard({
         {isError && onRetry && (
           <button
             type="button"
+            aria-label={`重试上传 ${file.name}`}
+            title="重试上传"
             onClick={() => onRetry(file.id)}
             className="w-5 h-5 flex items-center justify-center text-fg-grey-700 cursor-pointer hover:text-fg-black"
           >
@@ -166,6 +168,8 @@ export function FileCard({
         {onRemove && (
           <button
             type="button"
+            aria-label={`移除附件 ${file.name}`}
+            title="移除附件"
             onClick={() => onRemove(file.id)}
             className="w-5 h-5 flex items-center justify-center text-fg-grey-700 cursor-pointer hover:text-fg-black"
           >
