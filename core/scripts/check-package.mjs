@@ -29,7 +29,8 @@ const limits = {
   packed: 685_000,
   // Application switcher adds public declarations and implementation.
   unpacked: 2_770_000,
-  entries: 446,
+  // Shared composer types and tools menu replace the removed PromptBar entry.
+  entries: 449,
   sourceMaps: 1_510_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,

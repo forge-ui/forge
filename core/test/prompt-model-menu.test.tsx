@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { PromptBar } from "../src/components/ui/agent/prompt-bar";
+import { ChatInputBar } from "../src/components/ui/chat-input-bar";
 import { AskAi } from "../src/components/ui/ask-ai";
 import { modelMenuPosition } from "../src/internal/prompt-model-menu";
 const protocol = "node:";
@@ -25,10 +25,10 @@ const click = (element: HTMLElement) => act(async () => element.click());
 
 test("model menu is scoped, selected, navigable and invokes controlled callback once", async () => {
   const env = setup(); const calls: string[] = [];
-  function Example() { const [model, setModel] = useState("b"); return <div data-theme="dark" data-accent="blue"><PromptBar models={models} model={model} onModelChange={id => { calls.push(id); setModel(id); }} /></div>; }
+  function Example() { const [model, setModel] = useState("b"); return <div data-theme="dark" data-accent="blue"><ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={models} model={model} onModelChange={id => { calls.push(id); setModel(id); }} /></div>; }
   try {
     await act(async () => env.root.render(<Example />));
-    const trigger = document.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')!;
+    const trigger = document.querySelector<HTMLButtonElement>('[aria-label^="Model:"]')!;
     assert.equal(trigger.getAttribute("aria-expanded"), "false");
     await key(trigger, "ArrowDown");
     const menu = document.querySelector<HTMLElement>('[role="menu"]')!;
@@ -53,8 +53,8 @@ test("model menu is scoped, selected, navigable and invokes controlled callback 
 test("Escape stays inside menu, outside focus dismisses, Tab restores origin, input panels stay separate", async () => {
   const env = setup(); let escaped = 0;
   try {
-    await act(async () => env.root.render(<div onKeyDown={e => { if (e.key === "Escape") escaped++; }}><PromptBar models={models} sources={[{ id: "s", label: "Docs" }]} commands={[{ id: "c", label: "Summarize" }]} /></div>));
-    const trigger = document.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')!;
+    await act(async () => env.root.render(<div onKeyDown={e => { if (e.key === "Escape") escaped++; }}><ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={models} sources={[{ id: "s", label: "Docs" }]} commands={[{ id: "c", label: "Summarize" }]} /></div>));
+    const trigger = document.querySelector<HTMLButtonElement>('[aria-label^="Model:"]')!;
     await key(trigger, "ArrowUp"); assert.equal(document.activeElement?.textContent, "Long model name");
     await key(document.activeElement!, "Escape");
     assert.equal(escaped, 0); assert.equal(document.activeElement, trigger);
@@ -69,25 +69,28 @@ test("Escape stays inside menu, outside focus dismisses, Tab restores origin, in
     await click(trigger);
     await act(async () => { document.getElementById("outside")!.dispatchEvent(new Event("pointerdown", { bubbles: true })); });
     assert.equal(document.querySelector('[role="menu"]'), null);
-    await click(document.querySelector<HTMLButtonElement>('[aria-label="@ sources"]')!);
-    assert.ok(document.querySelector('.absolute.inset-x-3.bottom-full'));
+    const tools = document.querySelector<HTMLButtonElement>('[aria-label="添加内容和工具"]')!;
+    await click(tools);
+    assert.equal(tools.getAttribute("aria-expanded"), "true");
+    assert.ok(document.querySelector('[role="menu"]')?.textContent?.includes("Docs"));
+    assert.ok(document.querySelector('[role="menu"]')?.textContent?.includes("Summarize"));
+    await key(document.activeElement!, "Escape");
     assert.equal(document.querySelector('[role="menu"]'), null);
-    await click(document.querySelector<HTMLButtonElement>('[aria-label="/ commands"]')!);
-    assert.ok(document.querySelector('.absolute.inset-x-3.bottom-full')?.textContent?.includes("Summarize"));
+    assert.equal(document.activeElement, tools);
   } finally { await env.cleanup(); }
 });
 
 test("fallback model, disabled and empty model list", async () => {
   const env = setup();
   try {
-    await act(async () => env.root.render(<PromptBar models={models} model="missing" />));
-    const trigger = document.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')!;
+    await act(async () => env.root.render(<ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={models} model="missing" />));
+    const trigger = document.querySelector<HTMLButtonElement>('[aria-label^="Model:"]')!;
     assert.equal(trigger.getAttribute("aria-label"), "Model: Alpha");
     await click(trigger); assert.equal(document.querySelector('[aria-checked="true"]')?.textContent, "Alpha");
-    await act(async () => env.root.render(<PromptBar models={models} disabled />));
+    await act(async () => env.root.render(<ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={models} disabled />));
     assert.equal(trigger.disabled, true); assert.equal(document.querySelector('[role="menu"]'), null);
-    await act(async () => env.root.render(<PromptBar models={[]} />));
-    assert.equal(document.querySelector('[aria-haspopup="menu"]'), null);
+    await act(async () => env.root.render(<ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={[]} />));
+    assert.equal(document.querySelector('[aria-label^="Model:"]'), null);
   } finally { await env.cleanup(); }
 });
 
@@ -105,8 +108,8 @@ test("position prefers above/right, flips below, clamps viewport and constrains 
 test("real AskAi fullscreen lets menu consume first Escape before exiting host", async () => {
   const env = setup(); let exited = 0;
   try {
-    await act(async () => env.root.render(<AskAi fullscreen onFullscreenChange={() => exited++} onSend={() => ""} composer={<PromptBar models={models} />} />));
-    const trigger = document.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')!;
+    await act(async () => env.root.render(<AskAi fullscreen onFullscreenChange={() => exited++} onSend={() => ""} composer={<ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={models} />} />));
+    const trigger = document.querySelector<HTMLButtonElement>('[aria-label^="Model:"]')!;
     await click(trigger);
     await key(document.activeElement!, "Escape");
     assert.equal(exited, 0);
@@ -117,21 +120,17 @@ test("real AskAi fullscreen lets menu consume first Escape before exiting host",
   } finally { await env.cleanup(); }
 });
 
-test("source and command labels switch language in toolbar, picker and accessible names", async () => {
+test("source and command groups switch language in the shared plus menu", async () => {
   const env = setup();
   const items = { sources: [{ id: "s", label: "Docs" }], commands: [{ id: "c", label: "Summarize" }] };
   try {
-    await act(async () => env.root.render(<PromptBar {...items} />));
-    assert.ok(document.querySelector('[aria-label="@ sources"]'));
-    assert.ok(document.querySelector('[aria-label="/ commands"]'));
-    await click(document.querySelector<HTMLButtonElement>('[aria-label="@ sources"]')!);
-    await act(async () => env.root.render(<PromptBar {...items} sourcesLabel="来源" commandsLabel="指令" />));
-    assert.equal(document.querySelector('[aria-label="@ 来源"]')?.textContent, "来源");
-    assert.equal(document.querySelector('[aria-label="/ 指令"]')?.textContent, "指令");
-    assert.ok(document.body.textContent?.includes("来源"));
-    assert.ok(!document.body.textContent?.includes("Sources"));
-    await click(document.querySelector<HTMLButtonElement>('[aria-label="/ 指令"]')!);
-    assert.ok(!document.body.textContent?.includes("Commands"));
-    assert.equal(document.querySelectorAll('button[aria-label="/ 指令"]').length, 1);
+    await act(async () => env.root.render(<ChatInputBar multiline {...items} sourcesLabel="Sources" commandsLabel="Commands" />));
+    await click(document.querySelector<HTMLButtonElement>('[aria-label="添加内容和工具"]')!);
+    assert.ok(document.querySelector('[role="menu"]')?.textContent?.includes("@ Sources"));
+    await act(async () => env.root.render(<ChatInputBar multiline {...items} sourcesLabel="来源" commandsLabel="指令" />));
+    const text = document.querySelector('[role="menu"]')?.textContent ?? "";
+    assert.ok(text.includes("@ 来源") && text.includes("/ 指令"));
+    assert.ok(!text.includes("Sources") && !text.includes("Commands"));
+    assert.equal(document.querySelectorAll('button[aria-label="添加内容和工具"]').length, 1);
   } finally { await env.cleanup(); }
 });

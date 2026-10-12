@@ -13,8 +13,6 @@ export type { ToolChipKind, ToolChipDetail, ToolChipItem, ToolDiffChip } from ".
 export { AgentTaskRows } from "./agent-task-rows";
 export type { AgentTaskStatus, AgentTaskChild, AgentTask } from "./agent-task-rows";
 
-export { PromptBar } from "./prompt-bar";
-export type { PromptSource, PromptCommand, PromptModel, PromptBarStatus } from "./prompt-bar";
 
 export { ContextCards } from "./context-cards";
 export type { ContextChunk } from "./context-cards";

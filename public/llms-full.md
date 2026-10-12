@@ -142,7 +142,7 @@ import { HomeLinear } from "@forge-ui-official/core/icons";
 - /cases
 - /cases/pagination-stepper
 - /cases/progress
-- /cases/prompt-bar
+- /cases/chat-input-bar
 - /cases/tab
 - /cases/table
 - /cases/toolbar

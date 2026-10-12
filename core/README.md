@@ -162,12 +162,12 @@ pnpm core:check-consumer
 - 不把 npm token 写入仓库或全局 npmrc。短期手动发布可用临时 npmrc；
   长期优先迁移到 npm trusted publishing。
 
-### PromptBar language labels
+### ChatInputBar language labels
 
-Pass your current language translations to `sourcesLabel` and `commandsLabel`. Updating these props switches both toolbar labels and picker titles (including accessible names). Defaults remain `Sources` and `Commands`.
+Pass your current language translations to `sourcesLabel` and `commandsLabel`. Updating these props switches both tools menu group labels and picker titles (including accessible names). Defaults are `提及` and `命令`.
 
 ```tsx
-<PromptBar
+<ChatInputBar multiline sendOnEnter
   sourcesLabel={language === "zh-CN" ? "来源" : "Sources"}
   commandsLabel={language === "zh-CN" ? "指令" : "Commands"}
   sources={sources}
@@ -188,7 +188,7 @@ All built-in agent UI text can be overridden with the current application's tran
 | CommandSearch | `placeholder`, `emptyLabel`, `groupLabel` |
 | RecommendationCard | `confidenceLabel`, `confidenceLabels` (partial high/review/none map, including alternatives), `alternativesLabel`, `acceptLabel` |
 | AgentDiffTable | `toggleHint`, `applyLabel`, `appliedLabel`, `formatApplyLabel(count)`, `formatAppliedLabel(count)` |
-| PromptBar | `sourcesLabel`, `commandsLabel`, `connectedLabel`, `attachLabel`, `dictateLabel`, `modelMenuLabel`, `placeholder`, `sendLabel`, `stopLabel`, `stoppingLabel` |
+| ChatInputBar | `sourcesLabel`, `commandsLabel`, `connectedLabel`, `attachLabel`, `dictateLabel`, `modelMenuLabel`, `placeholder`, `sendLabel`, `stopLabel`, `stoppingLabel` |
 | ApprovalCard | `skipLabel`, `continueLabel`, `sendLabel`, `sentLabel`, `previousQuestionLabel`, `nextQuestionLabel` |
 | InsightCards | `previousInsightLabel`, `nextInsightLabel` |
 | ThinkingTrace | `activeLabel`, `doneLabel`, `rows` |
@@ -222,7 +222,7 @@ The consumer controls the active application and handles navigation or data chan
 
 ### AskAi compact composer and fullscreen scrolling
 
-`PromptBar` composer slots inside AskAi use a compact auto-growing input and a tools menu. Translate the compact menu accessible name with `toolsMenuLabel`; existing source, command, attachment and model labels remain supported.
+`ChatInputBar` composer slots inside AskAi use a compact auto-growing input and a tools menu. Translate the compact menu accessible name with `toolsMenuLabel`; existing source, command, attachment and model labels remain supported.
 
 Fullscreen messages should contain naturally sized content; core owns scrolling, reply follow, jump-to-latest and the floating composer clearance. Use `currentSessionId` to reset follow when switching external conversations. See `docs/ask-ai-fullscreen-layout.md` in the source repository for the complete slot contract.
 
@@ -238,3 +238,22 @@ All four presets and the legacy `actions` API accept optional `askAi: AskAiProps
 ### ChatInputBar mentions and compact input
 
 Use `density="compact"` with `multiline`, `sendOnEnter` for Enter-to-send (Shift+Enter retains a newline), and `onAttach` for the attachment action. `sendDisabled` keeps the draft editable; `clearOnSend={false}` lets async callers clear only after success. `sources` provides mention suggestions inserted at the caret. Translate `sourcesLabel`, `emptySourcesLabel`, `inputLabel`, `attachLabel` and `sendLabel` for the current language.
+
+### Unified composer
+
+`ChatInputBar` uses `ComposerStatus` (`idle | running | stopping`) and `ComposerModel` (`{ id, label }`). It supports `status`, `onStop`, `stopLabel`, `stoppingLabel`, `models`, `model`, `onModelChange`, `modelMenuLabel`, `sendDisabled`, `clearOnSend`, `sendOnEnter`, and `inputLabel`.
+
+The caller owns generation state: set `running` before awaiting a response, set `stopping` when cancellation is requested, and return to `idle` after cancellation completes. Stop remains available while editing is `disabled`; sending is blocked during `running` and `stopping`. `sendDisabled` blocks only sending. `clearOnSend={false}` lets controlled callers retain drafts until success. Model selection is controlled and does not clear the draft.
+
+Multiline ChatInputBar uses Ctrl/Cmd+Enter unless `sendOnEnter` is enabled. Shift+Enter remains a newline. Single-line and multiline layouts share the same tools menu. PromptBar and its legacy types have been removed; migrate to ChatInputBar with `multiline sendOnEnter` when retaining the former keyboard behavior.
+
+AskAi owns its built-in request lifecycle. Applications with external generation/model state can pass ChatInputBar through `AskAi.composer`; the slot owns its callbacks and state.
+
+```tsx
+<ChatInputBar multiline status={status} onStop={cancelGeneration}
+  models={models} model={model} onModelChange={setModel}
+  value={draft} onChange={setDraft} onSend={sendMessage}
+  clearOnSend={false} sendOnEnter />
+```
+
+Use ChatInputBar for new integrations. It supports `sources` for caret-aware @ mentions, `commands` for slash commands, `onAttach`, `onDictate`, model selection and controlled generation. Optional `permissions`, `permission`, `onPermissionChange`, and `permissionMenuLabel` use the same controlled selection contract as models. Permission enforcement belongs to the caller. All layouts use a shared plus menu for attachments, mentions and commands. `showAttachment` controls whether the attachment action is available alongside `toggles`.

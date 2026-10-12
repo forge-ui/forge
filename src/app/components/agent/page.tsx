@@ -7,7 +7,7 @@ import {
   ApprovalCard,
   ToolChips,
   AgentTaskRows,
-  PromptBar,
+  ChatInputBar,
   ContextCards,
   RecommendationCard,
   AgentDiffTable,
@@ -26,7 +26,7 @@ const CODE_IMPORT = `import {
   ApprovalCard,
   ToolChips,
   AgentTaskRows,
-  PromptBar,
+  ChatInputBar,
   ContextCards,
   RecommendationCard,
   AgentDiffTable,
@@ -67,11 +67,11 @@ const TASK_PROPS: ApiTableRow[] = [
   { attr: "variant", type: "'list' | 'capsules'", defaultValue: "'list'", description: "列表或胶囊。" },
 ];
 
-const PROMPT_PROPS: ApiTableRow[] = [
+const COMPOSER_PROPS: ApiTableRow[] = [
   { attr: "onSend", type: "(message: string) => void", defaultValue: "—", description: "发送回调。" },
-  { attr: "sources", type: "PromptSource[]", defaultValue: "[]", description: "@ 来源。" },
-  { attr: "commands", type: "PromptCommand[]", defaultValue: "[]", description: "/ 命令。" },
-  { attr: "models", type: "PromptModel[]", defaultValue: "[]", description: "模型列表。" },
+  { attr: "sources", type: "ComposerSource[]", defaultValue: "[]", description: "@ 来源。" },
+  { attr: "commands", type: "ComposerCommand[]", defaultValue: "[]", description: "/ 命令。" },
+  { attr: "models", type: "ComposerModel[]", defaultValue: "[]", description: "模型列表。" },
 ];
 
 const DIFF_PROPS: ApiTableRow[] = [
@@ -128,7 +128,7 @@ export default function AgentSpecPage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="Agent"
-        hint="AI 原语：思考痕迹、流式回答、工具调用、HITL 审批、任务行、Prompt Bar、检索卡片、建议卡、diff、代码、洞察、命令搜索和流程图。IM 气泡仍用 ChatBubble / ChatInputBar。"
+        hint="AI 原语：思考痕迹、流式回答、工具调用、HITL 审批、任务行、统一输入框、检索卡片、建议卡、diff、代码、洞察、命令搜索和流程图。对话输入统一使用 ChatInputBar。"
       />
 
       <Section title="Import" description="一律从 @forge-ui-official/core 引入。">
@@ -289,11 +289,11 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="PromptBar" description="@ 来源、/ 命令、模型选择。不替换 ChatInputBar。">
+      <Section title="ChatInputBar" description="@ 来源、/ 命令、模型选择。附件、提及、命令统一收纳在加号菜单。">
         <SubSection title="Usage" stack>
-          <PreviewBlock code={`<PromptBar sources={...} commands={...} models={...} />`} minHeight={200}>
+          <PreviewBlock code={`<ChatInputBar multiline sendOnEnter sources={...} commands={...} models={...} />`} minHeight={200}>
             <div className="w-full max-w-lg">
-              <PromptBar
+              <ChatInputBar multiline sendOnEnter
                 sources={[{ id: "sales", label: "Scoop Data", description: "Sales & churn metrics", connected: true }]}
                 commands={[{ id: "plan", label: "plan", description: "Draft a launch plan" }]}
                 models={[
@@ -306,7 +306,7 @@ export default function AgentSpecPage() {
           </PreviewBlock>
         </SubSection>
         <SubSection title="API" stack>
-          <ApiTable rows={PROMPT_PROPS} />
+          <ApiTable rows={COMPOSER_PROPS} />
         </SubSection>
       </Section>
 

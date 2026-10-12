@@ -10,7 +10,7 @@ import { ContextCards } from "../src/components/ui/agent/context-cards";
 import { CommandSearch } from "../src/components/ui/agent/command-search";
 import { RecommendationCard } from "../src/components/ui/agent/recommendation-card";
 import { AgentDiffTable } from "../src/components/ui/agent/agent-diff-table";
-import { PromptBar } from "../src/components/ui/agent/prompt-bar";
+import { ChatInputBar } from "../src/components/ui/chat-input-bar";
 import { ApprovalCard } from "../src/components/ui/agent/approval-card";
 import { InsightCards } from "../src/components/ui/agent/insight-cards";
 const protocol = "node:";
@@ -36,7 +36,7 @@ test("agent built-in headings, actions, counts and accessible names accept trans
     <CommandSearch items={[{ id: "a", label: "A" }]} groupLabel="指令" placeholder="搜索" />
     <RecommendationCard title="A" body="B" confidenceLabels={{ high: "高置信度", review: "待审核" }} alternativesLabel="其他选项" alternatives={[{ id: "a", label: "A", confidence: "review" }]} />
     <AgentDiffTable title="A" columns={[]} rows={[{ id: "a", cells: {}, change: "add" }]} toggleHint="点击切换" formatApplyLabel={count => `应用 ${count} 项`} />
-    <PromptBar onAttach={() => {}} onDictate={() => {}} attachLabel="附件" dictateLabel="语音" />
+    <ChatInputBar multiline sendOnEnter onAttach={() => {}} onDictate={() => {}} toolsMenuLabel="附件和工具" attachLabel="附件" dictateLabel="语音" />
     <ApprovalCard questions={[{ id: "a", prompt: "A", options: [] }, { id: "b", prompt: "B", options: [] }]} previousQuestionLabel="上一题" nextQuestionLabel="下一题" />
     <InsightCards cards={[{ id: "a", title: "A", body: "B" }, { id: "b", title: "B", body: "C" }]} previousInsightLabel="上一条" nextInsightLabel="下一条" />
   </>);

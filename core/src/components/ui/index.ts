@@ -57,7 +57,7 @@ export { ActivityCard } from "./activity-card";
 export { ContactItem } from "./contact-item";
 export { ChatBubble } from "./chat-bubble";
 export { ChatInputBar } from "./chat-input-bar";
-export type { ChatInputBarToggle } from "./chat-input-bar";
+export type { ChatInputBarToggle, ComposerSource, ComposerCommand } from "./chat-input-bar";
 export { CommentItem } from "./comment-item";
 export type { CommentData, CommentReply } from "./comment-item";
 export { ReviewItem } from "./review-item";
@@ -376,7 +376,6 @@ export {
   ApprovalCard,
   ToolChips,
   AgentTaskRows,
-  PromptBar,
   ContextCards,
   RecommendationCard,
   AgentDiffTable,
@@ -399,10 +398,6 @@ export type {
   AgentTaskStatus,
   AgentTaskChild,
   AgentTask,
-  PromptSource,
-  PromptCommand,
-  PromptModel,
-  PromptBarStatus,
   ContextChunk,
   RecommendationConfidence,
   RecommendationOption,
@@ -433,3 +428,5 @@ export { TabsContent } from "./tabs-content";
 export type { TabsContentProps } from "./tabs-content";
 export { ToastProvider, useToast } from "./toast";
 export type { ToastOptions, ToastApi } from "./toast";
+
+export type { ComposerStatus, ComposerModel } from "./composer-types";

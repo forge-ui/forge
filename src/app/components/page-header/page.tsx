@@ -160,10 +160,10 @@ export default function PageHeaderCasePage() {
   brand={<YourMark />}
   session={<YourSessionRail />}
   messages={<YourTranscript />}
-  composer={<PromptBar onSend={send} />}
+  composer={<ChatInputBar multiline sendOnEnter onSend={send} />}
 />`} />
           <p className="text-sm text-fg-grey-700">全屏受控用 <InlineCode>fullscreen</InlineCode> + <InlineCode>onFullscreenChange</InlineCode>；不传则抽屉内「全屏」钮走内部 state。会话列表只吃 props：<InlineCode>sessions</InlineCode> / <InlineCode>currentSessionId</InlineCode> / <InlineCode>onNewSession</InlineCode> / <InlineCode>onSelectSession</InlineCode> / <InlineCode>searchQuery</InlineCode>。core 不读 localStorage、不调网络、不按标题过滤（过滤留给消费方）。</p>
-          <p className="text-sm text-fg-grey-700"><InlineCode>header</InlineCode> / <InlineCode>brand</InlineCode> / <InlineCode>session</InlineCode> / <InlineCode>messages</InlineCode> / <InlineCode>composer</InlineCode> 可覆盖默认区；未传则保持现有抽屉 UI。默认 composer 是圆角 textarea + Button，视觉对齐即将发版的 agent <InlineCode>PromptBar</InlineCode>（低对比 <InlineCode>border-fg-grey-200</InlineCode>、fg token）。agent 包发版后把 PromptBar 放进 <InlineCode>composer</InlineCode> 即可，不要把未发布的 agent/* 打进本包。</p>
+          <p className="text-sm text-fg-grey-700"><InlineCode>header</InlineCode> / <InlineCode>brand</InlineCode> / <InlineCode>session</InlineCode> / <InlineCode>messages</InlineCode> / <InlineCode>composer</InlineCode> 可覆盖默认区；未传则保持现有抽屉 UI。可通过 <InlineCode>composer</InlineCode> 传入统一的 <InlineCode>ChatInputBar</InlineCode>，接入附件、提及、命令、模型和停止生成。</p>
         </SubSection>
 
         <SubSection title="API" stack>
