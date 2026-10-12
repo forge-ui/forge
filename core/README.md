@@ -234,3 +234,7 @@ All four presets and the legacy `actions` API accept optional `askAi: AskAiProps
 <PageTitleToolbar variant="overview" title="项目总览" breadcrumbItems={[]}
   askAi={{ onSend: async (message, request) => askAgent(message, request) }} />
 ```
+
+### ChatInputBar mentions and compact input
+
+Use `density="compact"` with `multiline`, `sendOnEnter` for Enter-to-send (Shift+Enter retains a newline), and `onAttach` for the attachment action. `sendDisabled` keeps the draft editable; `clearOnSend={false}` lets async callers clear only after success. `sources` provides mention suggestions inserted at the caret. Translate `sourcesLabel`, `emptySourcesLabel`, `inputLabel`, `attachLabel` and `sendLabel` for the current language.

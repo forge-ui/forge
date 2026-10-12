@@ -33,6 +33,7 @@ export function ChatInputBar({
   density = "default",
   sources = [],
   sourcesLabel = "提及",
+  emptySourcesLabel = "没有匹配的提及对象",
 }: {
   placeholder?: string;
   /** Controlled value. Pass with onChange to manage external state. */
@@ -65,6 +66,7 @@ export function ChatInputBar({
   /** Mention suggestions displayed above the composer, inserted at the caret. */
   sources?: { id: string; label: string; description?: string }[];
   sourcesLabel?: string;
+  emptySourcesLabel?: string;
 }) {
   const [uncontrolled, setUncontrolled] = useState("");
   const isControlled = controlledValue !== undefined;
@@ -123,7 +125,7 @@ export function ChatInputBar({
             <span className="w-full break-words text-fg-black">{source.label}</span>
             {source.description && <span className="text-xs text-fg-grey-700">{source.description}</span>}
           </button>
-        )) : <div className="px-3 py-4 text-sm text-fg-grey-700">没有匹配的提及对象</div>}
+        )) : <div className="px-3 py-4 text-sm text-fg-grey-700">{emptySourcesLabel}</div>}
       </div>
     </DropdownPanel>
     </div>
@@ -138,13 +140,14 @@ export function ChatInputBar({
     const trimmed = value.trim();
     if (!trimmed || disabled || sendDisabled) return;
     onSend?.(trimmed);
-    if (clearOnSend) setValue("");
+    if (clearOnSend) { setValue(""); setCaret(0); }
+    setMentionOpen(false);
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) {
     if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
     if (mentionOpen) {
-      if (e.key === "Escape") { e.preventDefault(); setMentionOpen(false); return; }
+      if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); setMentionOpen(false); return; }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
         const next = matches.length ? (activeIndex + (e.key === "ArrowDown" ? 1 : -1) + matches.length) % matches.length : 0;
@@ -177,7 +180,7 @@ export function ChatInputBar({
         {mentionPanel}
         <textarea
           ref={element => { inputRef.current = element; }}
-          aria-expanded={mentionOpen}
+          aria-haspopup={sources.length ? "listbox" : undefined}
           aria-controls={mentionOpen ? listId : undefined}
           aria-activedescendant={mentionOpen && matches[activeIndex] ? `${listId}-${activeIndex}` : undefined}
           aria-autocomplete={sources.length ? "list" : undefined}
@@ -244,7 +247,7 @@ export function ChatInputBar({
         ref={element => { inputRef.current = element; }}
         onSelect={event => setCaret(event.currentTarget.selectionStart ?? value.length)}
         onCompositionEnd={event => updateInput(event.currentTarget)}
-        aria-expanded={mentionOpen}
+        aria-haspopup={sources.length ? "listbox" : undefined}
         aria-controls={mentionOpen ? listId : undefined}
         aria-activedescendant={mentionOpen && matches[activeIndex] ? `${listId}-${activeIndex}` : undefined}
         aria-autocomplete={sources.length ? "list" : undefined}

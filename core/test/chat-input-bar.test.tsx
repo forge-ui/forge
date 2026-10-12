@@ -29,6 +29,8 @@ test("ChatInputBar respects IME, Shift+Enter, attachment and async draft ownersh
     await act(async () => mentionInput.dispatchEvent(new dom.window.Event("select", { bubbles: true })));
     await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="@ 提及"]')!.click());
     assert.ok(document.querySelector('[role="listbox"]'));
+    assert.equal(mentionInput.getAttribute("aria-haspopup"), "listbox");
+    assert.equal(mentionInput.hasAttribute("aria-expanded"), false);
     await key({});
     assert.equal(sent.length, 1, "Enter picks a mention instead of sending");
     assert.ok(changes.at(-1)?.includes("@张三"));

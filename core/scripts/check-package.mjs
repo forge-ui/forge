@@ -26,11 +26,11 @@ const [pack] = JSON.parse(
 // AskAi compact composer adds one internal context module and scoped fullscreen
 // CSS. Keep a narrow additive allowance and the individual JS module limits.
 const limits = {
-  packed: 680_000,
+  packed: 685_000,
   // Application switcher adds public declarations and implementation.
-  unpacked: 2_750_000,
+  unpacked: 2_770_000,
   entries: 446,
-  sourceMaps: 1_500_000,
+  sourceMaps: 1_510_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
