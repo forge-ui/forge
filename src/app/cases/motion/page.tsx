@@ -6,11 +6,14 @@ import type { MotionPreference } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { MotionOverlays, MotionAccordion, MotionTabContents, MotionToasts, MotionControl, MotionButtons, MotionMenus, MotionTabs, MotionNavigation, MotionTooltips, MotionSelection } from "../../_components/motion-demos";
 
+import { AnimatedWidgetDemos } from "../../_components/animated-widget-demos";
+
 export default function MotionCasePage() {
   const [motion, setMotion] = useState<MotionPreference>("auto");
   return <div className="flex flex-col gap-10">
-    <PageHeading title="Motion · 交互动效" hint="集中体验 Core 默认交互。切换动效开关，比较同一组件的过渡与即时反馈；操作状态保留。" />
+    <PageHeading title="交互动效" hint="集中体验 Core 默认交互。切换动效开关，比较同一组件的过渡与即时反馈；操作状态保留。" />
     <MotionControl value={motion} onChange={setMotion} />
+    <AnimatedWidgetDemos motion={motion} />
     <Section title="Buttons" description="按压、键盘焦点和禁用状态。"><SubSection title="Button / IconButton" stack><MotionButtons motion={motion} /></SubSection></Section>
     <Section title="Menus" description="打开下拉、移动高亮，选择或按 Escape 关闭；也可以在退场完成前再次打开。"><SubSection title="Select / Kebab / IconTrigger / Suffix" stack><div className="min-h-72"><MotionMenus motion={motion} /></div></SubSection></Section>
     <Section title="Tabs" description="点击不同长度的标签；TabBar 也支持方向键。"><SubSection title="TabBar / ButtonGroup / ToolbarPillTabs" stack><MotionTabs motion={motion} /></SubSection></Section>

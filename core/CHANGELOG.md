@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2
+
+- Add OtpInput, CalendarCard, LiquidTabs and AddMember, with egg-shell feedback, calendar odometer and tear-off, liquid tab surfaces, and member avatar flight.
+- Provide real data/callback APIs, controlled state, inherited Forge themes, customizable Chinese/English labels, keyboard navigation and reduced-motion support.
+- Integrate the four widget demos into Motion with the shared auto/none preference, preserving interaction state when animations are disabled.
+
 ## 0.4.1
 
 - Add configurable ChatInputBar quick actions with animated illustrations, spring-driven card fan behind the input, neighbour displacement, folded corners and reduced-motion support. Selected operations become removable chips with animated placeholder changes and are provided to onSend without changing drafts. Model and permission controls sit on the right; the plus menu sits on the left.

@@ -23,22 +23,21 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Animated composer adds one internal artwork module, declarations, sourcemaps
-// and scoped fan CSS. Keep individual JavaScript module limits unchanged.
+// Four animated widgets add four public modules (JS/declarations/maps) and scoped
+// artwork CSS. Measured package: ~738 KB packed, 2.99 MB unpacked, 69.7 KB CSS.
+// Keep individual JavaScript module limits unchanged.
 const limits = {
-  packed: 700_000,
-  // Application switcher adds public declarations and implementation.
-  unpacked: 2_830_000,
-  // Shared composer types and tools menu replace the removed PromptBar entry.
-  entries: 452,
-  sourceMaps: 1_540_000,
+  packed: 750_000,
+  unpacked: 3_020_000,
+  entries: 464,
+  sourceMaps: 1_620_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 38_000,
+  stylesRaw: 72_000,
 };
 
 const expectedExports = {

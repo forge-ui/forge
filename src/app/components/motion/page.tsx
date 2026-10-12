@@ -11,10 +11,14 @@ import { MotionOverlays, MotionAccordion, MotionTabContents, MotionToasts, Motio
 export default function MotionPage() {
   const [motion, setMotion] = useState<MotionPreference>("auto");
   return <div className="flex flex-col gap-10">
-    <PageHeading title="Motion · 交互动效" hint="按钮按压、菜单展开、标签切换与完成反馈。Core 默认开启轻量动效，并跟随系统减少动态效果的偏好。" />
+    <PageHeading title="交互动效" hint="按钮按压、菜单展开、标签切换与完成反馈。Core 默认开启轻量动效，并跟随系统减少动态效果的偏好。" />
     <MotionControl value={motion} onChange={setMotion} />
     <Section title="Usage" description="无需额外动画依赖。省略 motion 即为 auto；传入 none 可关闭单个组件的动效。">
       <CodeBlock code={'import { Button, Tooltip, TooltipGroup } from "@forge-ui-official/core";\n\n<Button>默认动效</Button>\n<Button motion="none">即时反馈</Button>'} />
+    </Section>
+    <Section title="Animated widgets" description="验证码蛋壳反馈、日历翻页、液态标签和成员头像飞入，同样支持 motion 偏好。">
+      <CodeBlock code={'import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-official/core";\n\n<OtpInput verify={checkCode} motion="auto" />\n<CalendarCard value={date} onChange={setDate} motion="none" />\n<LiquidTabs tabs={tabs} motion="auto" />\n<AddMember members={members} onAdd={addMembers} motion="auto" />'} />
+      <Link href="/cases/motion#otpinput" className="text-sm text-fg-violet hover:underline">体验四个动效组件 →</Link>
     </Section>
     <Section title="Buttons" description="鼠标按压轻微缩放，键盘焦点保持清晰；禁用按钮不响应操作。">
       <PreviewBlock code={'<Button>保存修改</Button>\n<Button motion="none">关闭动效</Button>'}><MotionButtons motion={motion} /></PreviewBlock>

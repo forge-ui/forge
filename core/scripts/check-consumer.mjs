@@ -91,6 +91,10 @@ function verifyScenario({ scenario, tarballPath }) {
     'data-streaming-state="complete"',
     'data-prompt-status="running"',
     'aria-label="Stop consumer task"',
+    'aria-label="Consumer passcode"',
+    'class="forge-calendar ',
+    'Consumer notifications',
+    'Consumer member',
   ]) {
     if (!html.includes(marker)) {
       throw new Error(`consumer root HTML is missing SSR marker: ${marker}`);
@@ -129,6 +133,9 @@ function verifyScenario({ scenario, tarballPath }) {
   }
   for (const marker of [".forge-streaming-markdown", "sd-forge-answer-in", "[data-sd-animate]"]) {
     if (!css.includes(marker)) throw new Error(`consumer CSS is missing streaming styles: ${marker}`);
+  }
+  for (const marker of [".forge-otp__egg", ".forge-calendar__date", ".forge-liquid__blob", ".forge-member__chip"]) {
+    if (!css.includes(marker)) throw new Error(`consumer CSS is missing animated widget styles: ${marker}`);
   }
   return cssFiles.length;
 }

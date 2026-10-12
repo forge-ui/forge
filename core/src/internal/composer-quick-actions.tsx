@@ -1,6 +1,6 @@
 "use client";
 
-// Adapted from Pin UI PromptComposer. MIT attribution: core/THIRD_PARTY_NOTICES.md.
+// Third-party license notices: core/THIRD_PARTY_NOTICES.md.
 import { motion, type Transition } from "motion/react";
 import { useId, useState, type ReactNode } from "react";
 import { useReducedMotion } from "./motion";
