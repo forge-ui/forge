@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act } from "react";
-import { ChatInputBar } from "../src/components/ui/chat-input-bar";
+import { ChatInputBar, type ChatInputBarSendContext } from "../src/components/ui/chat-input-bar";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
@@ -194,3 +194,37 @@ for (const multiline of [false, true]) {
     } finally { await act(async () => root.unmount()); dom.window.close(); }
   });
 }
+
+for (const multiline of [false, true]) test(`typed mention chips preserve draft and provide structured send context (${multiline})`, async () => {
+  const dom = new JSDOM('<div id="root"></div>', { url: 'http://localhost', pretendToBeVisual: true });
+  Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true, window: dom.window, self: dom.window, document: dom.window.document, requestAnimationFrame: dom.window.requestAnimationFrame.bind(dom.window), HTMLElement: dom.window.HTMLElement });
+  const { createRoot } = await import('react-dom/client'); const root = createRoot(document.getElementById('root')!);
+  const source = { id: 'skill:feedback', label: '反馈问题', kind: 'skill' as const, placeholder: '描述现象' };
+  const sent: string[] = [], ids: string[][] = [];
+  const props = { multiline, sources: [source], onSend: (message: string, _action: unknown, context?: ChatInputBarSendContext) => { sent.push(message); ids.push(context?.sources.map(item => item.id) ?? []); } };
+  const choose = async () => {
+    await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
+    await act(async () => [...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(item => item.textContent?.includes('反馈问题'))!.click());
+  };
+  try {
+    await act(async () => root.render(<ChatInputBar {...props} value="原有草稿" clearOnSend={false} />));
+    await choose(); await choose();
+    assert.equal(document.querySelectorAll('[data-composer-source]').length, 1, 'deduplicate by stable ID');
+    assert.equal(document.querySelector('input,textarea')!.getAttribute('value') ?? (document.querySelector('textarea') as HTMLTextAreaElement)?.value, '原有草稿');
+    await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="发送消息"]')!.click());
+    assert.deepEqual(sent, ['原有草稿']); assert.deepEqual(ids, [['skill:feedback']]);
+    assert.equal(document.querySelectorAll('[data-composer-source]').length, 1);
+    await act(async () => root.render(<ChatInputBar {...props} value="" />));
+    assert.equal(document.querySelector('input,textarea')!.getAttribute('placeholder'), '描述现象');
+    await act(async () => document.querySelector('input,textarea')!.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true, cancelable: true })));
+    assert.equal(document.querySelectorAll('[data-composer-source]').length, 0);
+    await choose(); await act(async () => root.render(<ChatInputBar {...props} value="发送后清空" />));
+    await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="发送消息"]')!.click());
+    assert.deepEqual(ids.at(-1), ['skill:feedback']); assert.equal(document.querySelectorAll('[data-composer-source]').length, 0);
+    const agent = { id: 'agent:design', kind: 'agent' as const, label: '设计智能体', avatarSrc: '/agent.png' };
+    await act(async () => root.render(<ChatInputBar key="agent" multiline={multiline} defaultSelectedSources={[agent]} />));
+    const chip = document.querySelector('[data-composer-source="agent:design"]')!;
+    assert.equal(chip.querySelector('img')?.getAttribute('src'), '/agent.png');
+    assert.ok(chip.textContent?.includes('设计智能体'));
+  } finally { await act(async () => root.unmount()); dom.window.close(); }
+});

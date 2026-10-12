@@ -182,6 +182,13 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
+      <SubSection title="@ 智能体、Skill 和工具标签">
+        <ChatInputBar multiline sendOnEnter sources={[
+          { id: "agent:design", kind: "agent", label: "设计智能体", avatarSrc: AVATAR, description: "协助设计评审" },
+          { id: "skill:feedback", kind: "skill", label: "反馈问题", placeholder: "描述现象、影响和期望", description: "整理问题反馈" },
+          { id: "tool:search", kind: "tool", label: "知识库搜索", description: "查找工作区资料" },
+        ]} />
+      </SubSection>
       <SubSection title="ChatInputBar">
         <div className="max-w-xl">
           <ChatInputBar placeholder="Type a message..." />
