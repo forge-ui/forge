@@ -12,7 +12,7 @@
 | Case | 路由 | 源码 | 覆盖组件（摘要） |
 |------|------|------|------------------|
 | index | `/cases` | `src/app/cases/page.tsx` | 总览导航 |
-| agent | `/cases/agent` | `src/app/cases/agent/page.tsx` | `ThinkingTrace` / `StreamingAnswer` / `ApprovalCard` / `ToolChips` / `AgentTaskRows` / `PromptBar` / `ContextCards` / `RecommendationCard` / `AgentDiffTable` / `AgentCodeBlock` / `InsightCards` / `CommandSearch` / `AgentFlowchart` |
+| agent | `/cases/agent` | `src/app/cases/agent/page.tsx` | `ThinkingTrace` / `StreamingAnswer` / `ApprovalCard` / `ToolChips` / `AgentTaskRows` / `ChatInputBar` / `ContextCards` / `RecommendationCard` / `AgentDiffTable` / `AgentCodeBlock` / `InsightCards` / `CommandSearch` / `AgentFlowchart` |
 | badge | `/cases/badge` | `src/app/cases/badge/page.tsx` | `NotificationBadge` / `Label` / `CircleIcon` / `ArtisticIcon` |
 | button-link | `/cases/button-link` | `src/app/cases/button-link/page.tsx` | `Button` / `IconButton` / `StyledLink` |
 | calendar | `/cases/calendar` | `src/app/cases/calendar/page.tsx` | `SmallCalendar` / `SmallDailyCalendar` / `FullCalendar` / `CalendarDayCell` / `CalendarWeekRow` / `EventCard` / `EventTag` |

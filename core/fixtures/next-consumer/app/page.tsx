@@ -7,8 +7,8 @@ import {
   GridItem,
   DataTable,
   StreamingAnswer,
-  PromptBar,
-  type PromptBarStatus,
+  ChatInputBar,
+  type ComposerStatus,
   type ColumnDef,
   type AppLayoutMenuSection,
 } from "@forge-ui-official/core";
@@ -42,7 +42,7 @@ const menuSections: AppLayoutMenuSection[] = [
 
 export default function Home() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<Set<Key>>(new Set());
-  const [promptStatus, setPromptStatus] = useState<PromptBarStatus>("running");
+  const [promptStatus, setPromptStatus] = useState<ComposerStatus>("running");
 
   return (
     <AppLayout
@@ -77,7 +77,7 @@ export default function Home() {
             onSelectedRowKeysChange={setSelectedRowKeys}
           />
           <StreamingAnswer text={"## Streaming consumer\n\n中文与 **Markdown** 随 Core 安装。"} format="markdown" />
-          <PromptBar status={promptStatus} onStop={() => setPromptStatus("idle")} stopLabel="Stop consumer task" />
+          <ChatInputBar multiline sendOnEnter status={promptStatus} onStop={() => setPromptStatus("idle")} stopLabel="Stop consumer task" />
         </div>
       </main>
     </AppLayout>

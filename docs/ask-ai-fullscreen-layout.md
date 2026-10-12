@@ -9,7 +9,7 @@
 - `[data-ask-ai-fs-messages]` 只承载自然高度内容，不再承担滚动。按主区域可用宽度分档：小于 54rem 时正文上限 40rem（640px），达到 54rem 时上限 48rem（768px）；正文左右 gutter 各 24px。此宽度取代第一轮的 1040px，按用户后续要求对齐 Chrome 中的 ChatGPT 实测结果。输入区左右 gutter 至少各 16px。
 - `[data-ask-ai-fs-composer-region]` 是滚动宿主上方的绝对定位浮动层，不再作为 flex 底部白色区域占位。主滚动宿主贯穿全高；仅输入框附近有局部渐隐。ResizeObserver 测量整个 composer region 的实际高度，将正文末尾 padding 和宿主 scroll-padding 设置为该高度加 20px，避免最后一条回复被遮挡。底部距离为 `max(1rem, env(safe-area-inset-bottom))`，桌面默认 16px。
 - composer slot 保留自身输入框内部 padding，但不要再添加外部底部 padding/margin、fixed/sticky 定位或 safe-area 留白。
-- 默认全屏输入框从一行开始，随内容增长，最多 192px；Shift+Enter 换行，Enter 发送，输入法 composing 时不发送。注入的 Forge PromptBar 在全屏会话中自动使用紧凑单行布局并随内容增高；抽屉和独立使用时保留原布局。其他自定义 composer 的输入高度与键盘行为仍由消费组件自己负责。
+- 默认全屏输入框从一行开始，随内容增长，最多 192px；Shift+Enter 换行，Enter 发送，输入法 composing 时不发送。注入的 Forge ChatInputBar 在全屏会话中自动使用紧凑单行布局并随内容增高；抽屉和独立使用时保留原布局。其他自定义 composer 的输入高度与键盘行为仍由消费组件自己负责。
 - 桌面会话栏默认展开；小于 768px 时默认收起，展开后覆盖左侧而不挤窄正文。
 
 自动跟随由 core 管理：初次进入与 `currentSessionId` 变化时定位最新；距底部 48px 内继续跟随。用户上滚后暂停跟随，显示“回到最新”。正文 ResizeObserver 处理消费组件内部流式更新、展开卡片、异步内容尺寸变化；滚动宿主 ResizeObserver 处理 composer 增高与视口变化。禁止消费方同时执行另一个自动 scrollIntoView/scrollTop 循环。
@@ -35,7 +35,7 @@ const [fullscreen, setFullscreen] = useState(false);
   }
   composer={
     <div className={fullscreen ? "" : "pb-7"}>
-      <PromptBar value={draft} onChange={setDraft} onSend={sendPrompt} />
+      <ChatInputBar multiline sendOnEnter value={draft} onChange={setDraft} onSend={sendPrompt} />
     </div>
   }
 />
@@ -94,27 +94,27 @@ safe-area 公式已实现；本次 Chrome 不支持 `Emulation.setSafeAreaInsets
 
 ## 后续：浮动底部输入区
 
-按用户截图进一步调整：主区域滚动占据整个高度，输入框悬浮其上，透明外层不再形成通栏白色底座。输入框附近使用局部渐变与阴影。默认 composer 与通过 slot 注入的 Forge PromptBar 在全屏会话中均以约 52px 的紧凑高度开始；PromptBar 的多行增高上限 192px。通过内部 React context 限定作用域，不改变 PromptBar 的公开 API，也不改变抽屉与独立场景。
+按用户截图进一步调整：主区域滚动占据整个高度，输入框悬浮其上，透明外层不再形成通栏白色底座。输入框附近使用局部渐变与阴影。默认 composer 与通过 slot 注入的 Forge ChatInputBar 在全屏会话中均以约 52px 的紧凑高度开始；ChatInputBar 的多行增高上限 192px。通过内部 React context 限定作用域，不改变 ChatInputBar 的公开 API，也不改变抽屉与独立场景。
 
 正文末尾安全占位由 core 根据 composer 实测高度维护（包括 safe-area/底部间距，再加 20px 消息间距）。消费方不要再自行添加输入框占位 spacer 或复制这段 padding；仍需移除消息容器的独立纵向滚动及 composer 外部底部 padding。
 
 滚动宿主仍在主区域右边缘，使用原生 `scrollbar-width:thin` 轨道（WebKit fallback 为 6px，平台实际宽度可能不同），静止时透明，悬停/键盘焦点时显示；没有设置 overflow:hidden 或 scrollbar-width:none。窄屏正文 gutter 调整为 24px，在本次 390px Chrome 下正文约 331px，输入框 358px。
 
-Chrome 实测：1440×900 时主滚动宿主高度 900px，空 PromptBar 高 52px，composer region 高 68px，正文末尾占位 88px；五行输入时 region 增至 180px，末尾占位同步为 200px。回到最新后最后一条消息底边 812px，输入框顶边 832px，保留 20px 间距。
+Chrome 实测：1440×900 时主滚动宿主高度 900px，空 ChatInputBar 高 52px，composer region 高 68px，正文末尾占位 88px；五行输入时 region 增至 180px，末尾占位同步为 200px。回到最新后最后一条消息底边 812px，输入框顶边 832px，保留 20px 间距。
 
 最新截图：`artifacts/ask-ai-fullscreen/floating-composer-wide.jpg`、`floating-composer-narrow.jpg`。
 
-## 完整 PromptBar 工具预览
+## 完整 ChatInputBar 工具预览
 
 验收页已传入 `sources`（项目资料/知识库）、`commands`（plan/summarize）、`models`（快速模式/深度思考）、`onAttach`、`onDictate`，补齐原组件的工具入口。来源与指令选择会插入输入内容，模型选择维护受控状态；附件与听写只触发本地提示，不上传文件或启用麦克风。
 
-实测全部工具开启时：1440px 宽屏输入框仍约 52px，输入和工具同一行；390px 窄屏约 104px，输入与工具各一行。紧凑模式工具按钮减少水平 padding，确保整组工具不额外拆成第三行。模型菜单在窄屏位于 x=8..296、y=690..782，没有越过视口边界。独立/抽屉 PromptBar 的工具间距保持原样。
+实测全部工具开启时：1440px 宽屏输入框仍约 52px，输入和工具同一行；390px 窄屏约 104px，输入与工具各一行。紧凑模式工具按钮减少水平 padding，确保整组工具不额外拆成第三行。模型菜单在窄屏位于 x=8..296、y=690..782，没有越过视口边界。独立/抽屉 ChatInputBar 的工具间距保持原样。
 
 最新截图：`artifacts/ask-ai-fullscreen/full-tools-wide.jpg`、`full-tools-narrow.jpg`。本地预览为 `/dev/ask-ai-fullscreen`。
 
 ## 最终交互：加号菜单与 @ / 自动筛选
 
-参考用户提供的 ChatGPT 菜单截图，全屏紧凑 PromptBar 将附件、来源和指令收进左侧“＋”（可访问名称“添加内容和工具”）；模型、发送/停止位于右侧。验收页按最新要求去掉语音/听写入口；共享 PromptBar 的可选接口保留，抽屉行为不变。宽窄屏均为一行初始约 52px 的输入框；长文本仍自动增高。抽屉及独立场景保留原附件/来源/指令工具栏。
+参考用户提供的 ChatGPT 菜单截图，全屏紧凑 ChatInputBar 将附件、来源和指令收进左侧“＋”（可访问名称“添加内容和工具”）；模型、发送/停止位于右侧。验收页按最新要求去掉语音/听写入口；共享 ChatInputBar 的可选接口保留，抽屉行为不变。宽窄屏均为一行初始约 52px 的输入框；长文本仍自动增高。抽屉及独立场景保留原附件/来源/指令工具栏。
 
 - 点击“＋”：可视化选择已配置的附件入口、来源、指令。没有创建图像、搜索、研究等未配置的新能力。
 - 输入 `@`：来源候选自动出现，并随后续文字按来源名称过滤，例如 `@知` 仅显示知识库。
@@ -137,4 +137,4 @@ Chrome 实测：1440×900 时主滚动宿主高度 900px，空 PromptBar 高 52p
 
 ## 最终抽屉输入框行为
 
-按用户后续确认，AskAi 抽屉的 composer slot 也提供紧凑布局上下文。注入 PromptBar 时，附件、来源、指令统一进入加号菜单，支持 `@` / `/` 自动筛选；模型选择及发送/停止保留。独立 PromptBar 默认布局与 AskAi 内置无工具输入框不变。验收页不配置语音。最终 `core:check` 通过，浏览器已验证抽屉加号菜单。截图保存在本地 artifacts，不随代码提交。
+按用户后续确认，AskAi 抽屉的 composer slot 也提供紧凑布局上下文。注入 ChatInputBar 时，附件、来源、指令统一进入加号菜单，支持 `@` / `/` 自动筛选；模型选择及发送/停止保留。独立 ChatInputBar 默认布局与 AskAi 内置无工具输入框不变。验收页不配置语音。最终 `core:check` 通过，浏览器已验证抽屉加号菜单。截图保存在本地 artifacts，不随代码提交。

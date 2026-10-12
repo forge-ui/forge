@@ -3,7 +3,7 @@
 import { useId, useLayoutEffect, useRef, type KeyboardEvent } from "react";
 import { AltArrowDownLinear, CheckCircleLinear } from "../icons";
 import { DropdownPanel } from "../components/ui/dropdown-panel";
-import type { PromptModel } from "../components/ui/agent/prompt-bar";
+import type { ComposerModel } from "../components/ui/composer-types";
 
 const GAP = 6;
 const EDGE = 8;
@@ -20,7 +20,7 @@ export function modelMenuPosition(anchor: { top: number; bottom: number; right: 
 }
 
 export function PromptModelMenu({ models, model, label, disabled, open, onOpenChange, onModelChange }: {
-  models: PromptModel[]; model?: string; label: string; disabled?: boolean; open: boolean;
+  models: ComposerModel[]; model?: string; label: string; disabled?: boolean; open: boolean;
   onOpenChange: (open: boolean) => void; onModelChange?: (id: string) => void;
 }) {
   const id = useId();

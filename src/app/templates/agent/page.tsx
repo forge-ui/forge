@@ -13,7 +13,7 @@ import {
   AgentDiffTable,
   AgentCodeBlock,
   InsightCards,
-  PromptBar,
+  ChatInputBar,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem } from "@forge-ui-official/core";
 import {
@@ -175,7 +175,7 @@ export default function AgentTemplatePage() {
 
         <div className="sticky bottom-0 border-t border-fg-grey-200 bg-fg-grey-50 px-4 py-4">
           <div className="mx-auto w-full max-w-3xl">
-            <PromptBar
+            <ChatInputBar multiline sendOnEnter
               value={draft}
               onChange={setDraft}
               onSend={(message) => setTurns((current) => [...current, message])}

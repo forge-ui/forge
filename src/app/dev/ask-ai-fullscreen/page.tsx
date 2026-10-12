@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { AskAi, Button, AgentTaskRows, ApprovalCard, RecommendationCard, AgentCodeBlock, AgentFlowchart, PromptBar } from "@forge-ui-official/core";
+import { AskAi, Button, AgentTaskRows, ApprovalCard, RecommendationCard, AgentCodeBlock, AgentFlowchart, ChatInputBar } from "@forge-ui-official/core";
 
 export default function AskAiFullscreenReview() {
   const [fullscreen, setFullscreen] = useState(true);
@@ -27,7 +27,7 @@ export default function AskAiFullscreenReview() {
         {i === count-1 && growth > 0 && <p className="whitespace-pre-wrap text-sm leading-6">{"逐段增长的回复正文\n".repeat(growth)}</p>}
       </section>)}
     </div>}
-    composer={nativeComposer ? undefined : <div className={!fullscreen ? "shrink-0 px-5 pb-5 pt-3" : legacy ? "pb-7" : ""}>{toolNotice && <div role="status" className="mb-2 flex items-center justify-between gap-3 rounded-lg bg-background px-3 py-2 text-xs text-fg-grey-700"><span>{toolNotice}</span><Button size="sm" variant="tertiary" color="grey" onClick={() => setToolNotice("")}>关闭提示</Button></div>}<PromptBar
+    composer={nativeComposer ? undefined : <div className={!fullscreen ? "shrink-0 px-5 pb-5 pt-3" : legacy ? "pb-7" : ""}>{toolNotice && <div role="status" className="mb-2 flex items-center justify-between gap-3 rounded-lg bg-background px-3 py-2 text-xs text-fg-grey-700"><span>{toolNotice}</span><Button size="sm" variant="tertiary" color="grey" onClick={() => setToolNotice("")}>关闭提示</Button></div>}<ChatInputBar multiline sendOnEnter
       onAttach={() => setToolNotice("已点击附件入口（本地演示）")}
       attachLabel="添加附件"
       sourcesLabel="来源" commandsLabel="指令" modelMenuLabel="选择模型"

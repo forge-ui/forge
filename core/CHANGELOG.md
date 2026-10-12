@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Consolidate composers into ChatInputBar and remove PromptBar plus PromptSource, PromptCommand, PromptModel and PromptBarStatus exports. Migrate callers to ChatInputBar and ComposerSource, ComposerCommand, ComposerModel, ComposerStatus.
+- Add model selection, controlled permission selection, slash commands, dictation, connected source labels and stop/stopping states. Place attachments, @ mentions and commands in the plus menu across all layouts.
+
 ## 0.3.11
 
 - Add ChatInputBar compact density, attachment callbacks, optional Enter-to-send, send-only disabling and async draft ownership. Add caret-aware mention insertion with keyboard selection, IME handling and translated empty-state labels.

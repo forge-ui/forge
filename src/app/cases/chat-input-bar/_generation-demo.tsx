@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Checkbox, PromptBar, StreamingAnswer } from "@forge-ui-official/core";
+import { Checkbox, ChatInputBar, StreamingAnswer } from "@forge-ui-official/core";
 import { useDemoStream } from "@/app/_demos/use-demo-stream";
 
 const SAMPLE_ANSWER = `一个舒服的阅读角，可以从一张桌子、一盏灯和几本书开始。
@@ -26,7 +26,7 @@ const PHASE_LABELS = {
 };
 
 /** Local transport simulation: the caller owns cancellation and stop acknowledgement. */
-export function PromptBarGenerationDemo() {
+export function ChatInputBarGenerationDemo() {
   const [draft, setDraft] = useState("为团队规划一个阅读角");
   const [submitted, setSubmitted] = useState("");
   const [stopping, setStopping] = useState(false);
@@ -63,7 +63,7 @@ export function PromptBarGenerationDemo() {
         </label>
       </div>
 
-      <div className="min-h-48 border-t border-fg-grey-200 pt-5" aria-label="PromptBar 回答预览">
+      <div className="min-h-48 border-t border-fg-grey-200 pt-5" aria-label="ChatInputBar 回答预览">
         {submitted && <p className="mb-4 text-sm font-medium text-fg-black">{submitted}</p>}
         {stream.phase === "idle" ? (
           <p className="text-sm leading-7 text-fg-grey-700">发送后，右下角切换为停止按钮。等待回答时即可停止，也可以继续编辑下一条草稿。</p>
@@ -81,7 +81,7 @@ export function PromptBarGenerationDemo() {
         )}
       </div>
 
-      <PromptBar
+      <ChatInputBar multiline sendOnEnter
         value={draft}
         onChange={setDraft}
         onSend={(message) => { setSubmitted(message); stream.start(); }}
