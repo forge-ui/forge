@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.11
+
+- Add ChatInputBar compact density, attachment callbacks, optional Enter-to-send, send-only disabling and async draft ownership. Add caret-aware mention insertion with keyboard selection, IME handling and translated empty-state labels.
+- Add accessible attachment retry/remove names to FileCard. Preserve existing input defaults and correct mention popup ARIA semantics.
+
 ## 0.3.10
 
 - Add optional `PageTitleToolbar.askAi` using `AskAiProps` across all four presets and the legacy actions API. Ask AI can appear without other toolbar actions.
