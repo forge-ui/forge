@@ -286,3 +286,8 @@ import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-officia
 - **AddMember**：`members` 为 `{ id, name, role?, avatar?, status?, disabled? }[]`，身份以稳定 `id` 为准。`selectedIds/defaultSelectedIds` 与 `onSelectionChange` 支持跨页、跨搜索多选；`open/defaultOpen/onOpenChange` 控制展开状态。`onAdd(ids)` 可返回 Promise，等待成功才显示成功，拒绝时保留选择供重试；`clearOnAdd={false}` 可在成功后保留选择。`rows/search/disabled` 控制显示和可用状态，所有功能文案可通过 `labels` 替换。只调用业务回调，不自行发送邀请。
 
 四者均接受 `className` 和 `motion="auto" | "none"`，与其他交互动效组件使用同一动效偏好；`none` 关闭动效但保留当前交互状态。受控模式下，业务方需在对应变更回调里更新传入值。
+
+
+`ChatInputBar.sources` 的对象可指定 `kind: "agent" | "skill" | "tool"`，选中后显示可移除的标签；智能体可通过 `avatarSrc` 设置头像，在候选列表和标签中显示头像与名字。`icon` 可自定义图标，`placeholder` 可定制选中后的提示语。未指定 kind 的对象继续插入普通 @ 文本。
+
+`selectedSources/defaultSelectedSources/onSourcesChange` 控制已选对象，按 id 去重。`onSend(message, action, context)` 的第三个参数通过 `context.sources` 提供完整对象，业务方可据此调用智能体或工具。`clearOnSend` 控制发送后是否清空标签；空草稿按 Backspace 移除最后一个标签，移除按钮文案可通过 `removeSourceLabel` 设置。

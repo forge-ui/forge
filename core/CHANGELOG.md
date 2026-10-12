@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.3
+
+- Render typed agent, skill and tool mentions as removable composer chips and provide structured send context.
+- Show agent avatars alongside names in mention choices and selected chips; support multiple deduplicated mentions, removal and contextual placeholders.
+
 ## 0.4.2
 
 - Add OtpInput, CalendarCard, LiquidTabs and AddMember, with egg-shell feedback, calendar odometer and tear-off, liquid tab surfaces, and member avatar flight.

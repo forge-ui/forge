@@ -1080,3 +1080,9 @@ body {
 @container (max-width:280px){.forge-member__card{padding-inline:10px;}.forge-member__row{gap:8px;}.forge-member__foot{min-height:52px;height:auto;gap:8px;padding:8px 4px;}.forge-member__all{flex:1;min-width:0;text-align:left;white-space:normal;}.forge-member__avatar{width:36px;height:36px;}}
 
 :is(.forge-otp,.forge-calendar,.forge-liquid,.forge-member)[data-motion="none"],:is(.forge-otp,.forge-calendar,.forge-liquid,.forge-member)[data-motion="none"] *,:is(.forge-otp,.forge-calendar,.forge-liquid,.forge-member)[data-motion="none"] *::before,:is(.forge-otp,.forge-calendar,.forge-liquid,.forge-member)[data-motion="none"] *::after{animation:none!important;transition:none!important;}
+
+.forge-source-chip--agent{color:var(--accent-soft-foreground);background:var(--accent-soft);}
+.forge-composer-shell[data-multiline] .forge-composer-entry{align-items:flex-start;}
+.forge-source-chip img{flex:none;}
+.forge-source-chip--skill{color:var(--fg-yellow-700);background:color-mix(in srgb,var(--fg-yellow) 15%,var(--background));}
+.forge-source-chip--tool{color:var(--fg-blue);background:color-mix(in srgb,var(--fg-blue) 15%,var(--background));}
