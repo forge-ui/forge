@@ -291,3 +291,30 @@ import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-officia
 `ChatInputBar.sources` 的对象可指定 `kind: "agent" | "skill" | "tool"`，选中后显示可移除的标签；智能体可通过 `avatarSrc` 设置头像，在候选列表和标签中显示头像与名字。`icon` 可自定义图标，`placeholder` 可定制选中后的提示语。未指定 kind 的对象继续插入普通 @ 文本。
 
 `selectedSources/defaultSelectedSources/onSourcesChange` 控制已选对象，按 id 去重。`onSend(message, action, context)` 的第三个参数通过 `context.sources` 提供完整对象，业务方可据此调用智能体或工具。`clearOnSend` 控制发送后是否清空标签；空草稿按 Backspace 移除最后一个标签，移除按钮文案可通过 `removeSourceLabel` 设置。
+
+### CalendarCard 外观参数
+
+```tsx
+import { CalendarCard, DropdownPanel, type ButtonColor } from "@forge-ui-official/core";
+
+// 保留原来的 300px 双层红色卡片，字体继承应用。
+<CalendarCard value={date} onChange={setDate} />
+
+// 320px 表单日期面板，无需覆盖 .forge-calendar__*。
+<DropdownPanel width="w-80" className="!items-stretch">
+  <CalendarCard size="compact" variant="plain" color="blue"
+    value={date} onChange={setDate} locale="zh-CN" />
+</DropdownPanel>
+```
+
+| 属性 | 类型 | 默认值 | 行为 |
+| --- | --- | --- | --- |
+| `size` | `"default" \| "compact"` | `"default"` | default 保留原有尺寸；compact 日期、星期、年月使用 14px/20–24px token，大日期为 24px/32px。日期点击区域高 32px，支持六行月份。 |
+| `variant` | `"card" \| "plain"` | `"card"` | plain 去掉内外卡片的背景、边框、阴影和装饰留白，宽度随父容器；保留装饰日历、选中、hover 和键盘焦点反馈。 |
+| `color` | `ButtonColor` | `"red"` | purple、dark、blue、red、green、yellow、grey、black、blue-dark。选中日期/月、今天文字、焦点、进度条、日历顶栏/撕页/点和选中阴影共用主题 token。yellow 配深色选中文字，black 随明暗主题反转。 |
+
+原有 `value`、`defaultDate`、`onChange`、`locale`、`labels`、`disabled`、`motion`、`className` 不变。默认模式保留已有非标准字号和行高作为组件兼容 token；compact 完整使用 core 规范字号、字重、行高。两种模式都继承应用字体栈。`motion="none"` 与系统 reduced-motion 同时关闭 JS 动效及 CSS 过渡。
+
+`plain` 负责日历内容外观，弹层定位、打开关闭、确认/取消和焦点限制由业务或 Popover 管理。DropdownPanel 的共享菜单高亮不再套用到嵌入的 core Button 和 CalendarCard。业务升级后可删除用于字体、两层卡片表面和红色替换的 `.forge-calendar__*` 覆盖。
+
+交互示例：`/cases/motion#calendarcard`（默认）、`/cases/motion#calendarcard-表单弹层`（compact + plain + blue）。

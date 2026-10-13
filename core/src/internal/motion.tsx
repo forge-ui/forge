@@ -97,7 +97,7 @@ export function MotionMenu({ motion = "auto", children, className }: { motion?: 
     const indicator = layer.current;
     if (!container || !indicator) return;
     const item = element?.closest<HTMLElement>("button, a[href], [role='option']");
-    const usable = item && container.contains(item) && !item.matches(":disabled, [aria-disabled='true']");
+    const usable = item && item.closest(".forge-motion-menu") === container && !item.closest(".forge-calendar") && !item.matches(".forge-button") && !item.matches(":disabled, [aria-disabled='true']");
     target.current = usable ? item : null;
     indicator.style.visibility = usable ? "visible" : "hidden";
     if (!usable) return;

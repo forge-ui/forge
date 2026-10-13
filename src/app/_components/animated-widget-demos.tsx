@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AddMember, Button, CalendarCard, LiquidTabs, OtpInput, type MotionPreference, type AddMemberItem, type LiquidTabsTab } from "@forge-ui-official/core";
+import { AddMember, Button, CalendarCard, DropdownPanel, MenuItem, LiquidTabs, OtpInput, type MotionPreference, type AddMemberItem, type LiquidTabsTab } from "@forge-ui-official/core";
 import { BellLinear, ChatRoundLinear, SettingsBold } from "@forge-ui-official/core/icons";
 import { Section } from "../cases/_shared";
 
@@ -35,6 +35,16 @@ export function AnimatedWidgetDemos({ motion }: { motion: MotionPreference }) {
       <Section title="CalendarCard" description="点击日期滑动高亮；点击右上角日历撕页翻月，点击月份选择年月。支持方向键和 Page Up / Down。">
         <CalendarCard motion={motion} value={date} onChange={setDate} locale={english ? "en-US" : "zh-CN"} labels={english ? { changeMonth: "Change month and year", previousMonth: "Previous month", nextMonth: "Next month", previousYear: "Previous year", nextYear: "Next year" } : undefined} />
         <p role="status" className="text-sm text-text-secondary">{date.toLocaleDateString(english ? "en-US" : "zh-CN")}</p>
+      </Section>
+      <Section title="CalendarCard 表单弹层" description="320px 容器；compact + plain + blue，无内部类覆盖。菜单行保留高亮，日历和底部按钮各自负责反馈。">
+        <DropdownPanel width="w-80" className="!items-stretch !bg-surface !outline-border">
+          <MenuItem label="选择日期" />
+          <CalendarCard size="compact" variant="plain" color="blue" motion={motion} value={date} onChange={setDate} locale={english ? "en-US" : "zh-CN"} />
+          <div className="flex justify-end gap-2 border-t border-border pt-2">
+            <Button size="sm" variant="tertiary" color="blue" motion={motion}>取消</Button>
+            <Button size="sm" color="blue" motion={motion}>确定</Button>
+          </div>
+        </DropdownPanel>
       </Section>
       <Section title="LiquidTabs" description="液态标签与卡片融为一体，内容随切换方向滑入；更多分类支持键盘操作。">
         <LiquidTabs motion={motion} tabs={tabs} rows={3} label={english ? "Notifications" : "消息分类"} moreLabel={english ? "More tabs" : "更多分类"} emptyLabel={english ? "No notifications" : "暂无内容"} onSelect={item => setNotification(item.title)} />

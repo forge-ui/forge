@@ -37,7 +37,8 @@ const limits = {
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  stylesRaw: 72_000,
+  // CalendarCard appearance variants add ~6.5 KB of scoped form/typography CSS.
+  stylesRaw: 77_000,
 };
 
 const expectedExports = {

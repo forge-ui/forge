@@ -20,6 +20,18 @@ export default function MotionPage() {
       <CodeBlock code={'import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-official/core";\n\n<OtpInput verify={checkCode} motion="auto" />\n<CalendarCard value={date} onChange={setDate} motion="none" />\n<LiquidTabs tabs={tabs} motion="auto" />\n<AddMember members={members} onAdd={addMembers} motion="auto" />'} />
       <Link href="/cases/motion#otpinput" className="text-sm text-fg-violet hover:underline">体验四个动效组件 →</Link>
     </Section>
+    <Section title="CalendarCard API" description="默认保留双层红色卡片；业务日期弹层直接使用 compact + plain + blue。字体继承应用。">
+      <CodeBlock code={'<CalendarCard value={date} onChange={setDate} />\n\n<DropdownPanel width="w-80" className="!items-stretch">\n  <CalendarCard size="compact" variant="plain" color="blue"\n    value={date} onChange={setDate} />\n</DropdownPanel>'} />
+      <ApiTable rows={[
+        { attr: "size", type: "'default' | 'compact'", defaultValue: "'default'", description: "compact 使用 14px 正文、24px 大日期；保留 32px 日期点击区域和六行月份空间。" },
+        { attr: "variant", type: "'card' | 'plain'", defaultValue: "'card'", description: "plain 移除内外卡片表面、边框、阴影和留白，宽度随父容器。" },
+        { attr: "color", type: "ButtonColor", defaultValue: "'red'", description: "沿用 Button 主题色类型；选中、今天、进度、装饰日历、撕页和焦点统一取色。" },
+        { attr: "value / defaultDate", type: "Date", defaultValue: "客户端今天", description: "value 受控；defaultDate 非受控初始日期。SSR 不猜用户时区。" },
+        { attr: "onChange", type: "(date: Date) => void", defaultValue: "—", description: "返回本地日期；导航范围 1900–2100，翻月时截到有效日期。" },
+        { attr: "locale / labels", type: "string / Partial<CalendarCardLabels>", defaultValue: "zh-CN / 中文按钮文案", description: "日期语言与导航可访问名称。" },
+        { attr: "disabled / motion / className", type: "boolean / MotionPreference / string", defaultValue: "false / auto / ''", description: "保留现有行为；auto 遵循系统 reduced-motion。" },
+      ]} />
+    </Section>
     <Section title="Buttons" description="鼠标按压轻微缩放，键盘焦点保持清晰；禁用按钮不响应操作。">
       <PreviewBlock code={'<Button>保存修改</Button>\n<Button motion="none">关闭动效</Button>'}><MotionButtons motion={motion} /></PreviewBlock>
     </Section>

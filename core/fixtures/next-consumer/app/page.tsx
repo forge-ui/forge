@@ -84,6 +84,7 @@ export default function Home() {
           <ChatInputBar multiline sendOnEnter status={promptStatus} onStop={() => setPromptStatus("idle")} stopLabel="Stop consumer task" />
           <OtpInput inputLabel="Consumer passcode" />
           <CalendarCard defaultDate={new Date(2026, 9, 12)} />
+          <CalendarCard size="compact" variant="plain" color="blue" defaultDate={new Date(2026, 9, 12)} />
           <LiquidTabs tabs={[{ id: "consumer", label: "Consumer notifications", items: [] }]} />
           <AddMember members={[{ id: "member", name: "Consumer member" }]} defaultOpen />
         </div>

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act } from "react";
 import { createRoot } from "react-dom/client";
-import { MotionPresence } from "../src/internal/motion";
+import { MotionMenu, MotionPresence } from "../src/internal/motion";
 import { Tooltip, TooltipAnchor, TooltipGroup } from "../src/components/ui/tooltip";
 import { KebabMenu } from "../src/components/ui/kebab-menu";
 import { SelectOption } from "../src/components/ui/forms/select-option";
@@ -101,5 +101,25 @@ test("Kebab trigger close preserves visible exit and publishes collapsed state",
     assert.equal(surface.style.visibility, "visible");
     assert.ok(surface.hasAttribute("inert"));
     await wait(150); assert.equal(document.querySelector('.forge-motion-surface'), null);
+  } finally { await env.cleanup(); }
+});
+
+test("menu row highlight excludes embedded Button, CalendarCard and nested menus", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<MotionMenu motion="none">
+      <button id="row">Menu row</button>
+      <button className="forge-button" id="cancel">Cancel</button>
+      <div className="forge-calendar"><button id="date">13</button></div>
+      <MotionMenu><button id="nested">Nested row</button></MotionMenu>
+    </MotionMenu>));
+    const indicator = document.querySelector<HTMLElement>('.forge-menu-indicator')!;
+    const focus = (id: string) => act(async () => document.getElementById(id)!.focus());
+    await focus('row'); assert.equal(indicator.style.visibility, 'visible');
+    await focus('cancel'); assert.equal(indicator.style.visibility, 'hidden');
+    await focus('row'); await focus('date'); assert.equal(indicator.style.visibility, 'hidden');
+    await focus('nested'); assert.equal(indicator.style.visibility, 'hidden');
+    assert.equal(document.querySelectorAll<HTMLElement>('.forge-menu-indicator')[1].style.visibility, 'visible');
+    await focus('row'); assert.equal(indicator.style.visibility, 'visible');
   } finally { await env.cleanup(); }
 });
