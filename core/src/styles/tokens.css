@@ -672,7 +672,7 @@ body {
 }
 .forge-tab-indicator { top: auto; bottom: 0; height: 2px; translate: var(--forge-indicator-x, 0px) 0; }
 .forge-motion-menu > :not(.forge-moving-indicator) { position: relative; z-index: 1; }
-.forge-motion-menu button:hover:not(:disabled):not([aria-disabled="true"]) { background-color: transparent; }
+.forge-motion-menu button:not(.forge-button):not(.forge-calendar button):hover:not(:disabled):not([aria-disabled="true"]) { background-color: transparent; }
 .forge-check-fill { scale: 0; }
 .forge-check-tick { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .forge-check-visual[data-checked="true"] .forge-check-fill { scale: 1; }
@@ -869,46 +869,46 @@ body {
 .forge-otp__digit{ font-size: 22px;}
 .forge-otp__sep{ width: 11px; font-size: 16px;}}
 /* calendar-card — license notices: THIRD_PARTY_NOTICES.md. */
-.forge-calendar{ --forge-calendar-shell:var(--surface); --forge-calendar-shell-edge:var(--border); --forge-calendar-card:var(--background); --forge-calendar-card-edge:var(--border-muted); --forge-calendar-ink:var(--foreground); --forge-calendar-quiet:var(--text-secondary); --forge-calendar-red:var(--fg-red); --forge-calendar-red-ink:var(--fg-white); --forge-calendar-track:var(--border-muted); --forge-calendar-hover:var(--hover); --forge-calendar-icon:var(--surface); --forge-calendar-icon-edge:var(--border); --forge-calendar-dot:var(--border); --forge-calendar-shadow: 0 1px 1px rgb(0 0 0 / 0.02), 0 10px 30px -12px rgb(0 0 0 / 0.12), 0 30px 60px -30px rgb(0 0 0 / 0.1); display: flex; justify-content: center; color: var(--forge-calendar-ink); font-family:inherit; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;}
+.forge-calendar{ --forge-calendar-default-month-size:21px; --forge-calendar-default-year-size:17px; --forge-calendar-default-date-size:17.5px; --forge-calendar-default-date-weight:450; --forge-calendar-default-day-leading:40px; --forge-calendar-default-month-leading:26px; --forge-calendar-default-year-leading:22px; --forge-calendar-shell:var(--surface); --forge-calendar-shell-edge:var(--border); --forge-calendar-card:var(--background); --forge-calendar-card-edge:var(--border-muted); --forge-calendar-ink:var(--foreground); --forge-calendar-quiet:var(--text-secondary); --forge-calendar-accent:var(--fg-red); --forge-calendar-accent-ink:var(--fg-white); --forge-calendar-track:var(--border-muted); --forge-calendar-hover:var(--hover); --forge-calendar-icon:var(--surface); --forge-calendar-icon-edge:var(--border); --forge-calendar-dot:var(--border); --forge-calendar-shadow: 0 1px 1px rgb(0 0 0 / 0.02), 0 10px 30px -12px rgb(0 0 0 / 0.12), 0 30px 60px -30px rgb(0 0 0 / 0.1); display: flex; justify-content: center; color: var(--forge-calendar-ink); font-family:inherit; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;}
 .forge-calendar *, .forge-calendar *::before, .forge-calendar *::after{ box-sizing: border-box;}
 .forge-calendar button{ margin: 0; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer;}
 .forge-calendar__shell{ width: 300px; padding: 8.5px; border-radius: 40px; background: var(--forge-calendar-shell); box-shadow: inset 0 0 0 1px var(--forge-calendar-shell-edge), var(--forge-calendar-shadow); transition: background-color 0.35s ease, box-shadow 0.35s ease;}
 .forge-calendar__card{ padding: 27px 20px 22px; border-radius: 32px; background: var(--forge-calendar-card); box-shadow: inset 0 0 0 1px var(--forge-calendar-card-edge), 0 1px 2px rgb(0 0 0 / 0.04); transition: background-color 0.35s ease;}
 .forge-calendar__head{ display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 0 6px 0 6px;}
 .forge-calendar__title{ display: flex; flex-direction: column; min-width: 0;}
-.forge-calendar__day{ position: relative; display: inline-flex; overflow: hidden; height: 40px; font-size: 36px; font-weight: 600; line-height: 40px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;}
+.forge-calendar__day{ position: relative; display: inline-flex; overflow: hidden; height: 40px; font-size: var(--forge-text-4xl-size); font-weight: var(--forge-font-semibold-weight); line-height: var(--forge-calendar-default-day-leading); letter-spacing: -0.02em; font-variant-numeric: tabular-nums;}
 .forge-calendar__digit{ display: inline-block;}
-.forge-calendar__month{ position: relative; display: block; height: 27px; margin-top: 5px; overflow: hidden; color: var(--forge-calendar-quiet); font-size: 21px; font-weight: 400; line-height: 26px; letter-spacing: -0.01em; white-space: nowrap;}
+.forge-calendar__month{ position: relative; display: block; height: 27px; margin-top: 5px; overflow: hidden; color: var(--forge-calendar-quiet); font-size: var(--forge-calendar-default-month-size); font-weight: var(--forge-font-normal-weight); line-height: var(--forge-calendar-default-month-leading); letter-spacing: -0.01em; white-space: nowrap;}
 .forge-calendar__monthName{ display: block;}
 .forge-calendar__icon{ position: relative; flex: none; width: 54px; height: 53px; overflow: hidden; border-radius: 11px; background: var(--forge-calendar-icon); box-shadow: inset 0 0 0 1px var(--forge-calendar-icon-edge), 0 2px 6px -2px rgb(0 0 0 / 0.12); perspective: 140px; transition: background-color 0.35s ease;}
-.forge-calendar__icon:focus-visible, .forge-calendar__gridWrap:focus-visible{ outline: 2px solid var(--forge-calendar-red); outline-offset: 3px;}
-.forge-calendar__iconTop{ position: absolute; top: 3px; left: 3px; right: 3px; height: 15px; border-radius: 8px 8px 2px 2px; background: var(--forge-calendar-red);}
-.forge-calendar__leaf{ position: absolute; top: 3px; left: 3px; right: 3px; height: 15px; border-radius: 8px 8px 2px 2px; background: var(--forge-calendar-red); transform-origin: 50% 0; pointer-events: none;}
+.forge-calendar__icon:focus-visible, .forge-calendar__gridWrap:focus-visible{ outline: 2px solid var(--forge-calendar-accent); outline-offset: 3px;}
+.forge-calendar__iconTop{ position: absolute; top: 3px; left: 3px; right: 3px; height: 15px; border-radius: 8px 8px 2px 2px; background: var(--forge-calendar-accent);}
+.forge-calendar__leaf{ position: absolute; top: 3px; left: 3px; right: 3px; height: 15px; border-radius: 8px 8px 2px 2px; background: var(--forge-calendar-accent); transform-origin: 50% 0; pointer-events: none;}
 .forge-calendar__icon::after{ content: ""; position: absolute; top: 20px; left: 6px; right: 6px; border-top: 1px dotted var(--forge-calendar-dot); opacity: 0.8;}
 .forge-calendar__dots{ position: absolute; top: 26px; left: 9px; right: 9px; display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 4.5px; justify-items: center;}
 .forge-calendar__dot{ display: block; width: 3px; height: 3px; border-radius: 50%; background: var(--forge-calendar-dot);}
-.forge-calendar__dot[data-on]{ background: var(--forge-calendar-red);}
+.forge-calendar__dot[data-on]{ background: var(--forge-calendar-accent);}
 .forge-calendar__progress{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.5px; margin: 26px 6px 0;}
 .forge-calendar__seg{ position: relative; height: 5px; overflow: hidden; border-radius: 999px; background: var(--forge-calendar-track); transition: background-color 0.35s ease;}
-.forge-calendar__segFill{ position: absolute; inset: 0; border-radius: inherit; background: var(--forge-calendar-red); transform-origin: 0 50%;}
+.forge-calendar__segFill{ position: absolute; inset: 0; border-radius: inherit; background: var(--forge-calendar-accent); transform-origin: 0 50%;}
 .forge-calendar__week, .forge-calendar__grid{ display: grid; grid-template-columns: repeat(7, 1fr);}
-.forge-calendar__week{ margin-top: 30px; color: var(--forge-calendar-quiet); font-size: 16px; font-weight: 500; line-height: 20px; text-align: center;}
+.forge-calendar__week{ margin-top: 30px; color: var(--forge-calendar-quiet); font-size: var(--forge-text-base-size); font-weight: var(--forge-font-medium-weight); line-height: var(--forge-leading-5); text-align: center;}
 .forge-calendar__gridWrap{ position: relative; margin-top: 13px; height: 195px; border-radius: 8px; outline: none;}
 .forge-calendar__grid{ row-gap: 0;}
 .forge-calendar__cell{ position: relative; display: grid; place-items: center; height: 32.5px;}
-.forge-calendar .forge-calendar__date{ color: var(--forge-calendar-ink); font-size: 17.5px; font-weight: 450; font-variant-numeric: tabular-nums; line-height: 1;}
+.forge-calendar .forge-calendar__date{ color: var(--forge-calendar-ink); font-size: var(--forge-calendar-default-date-size); font-weight: var(--forge-calendar-default-date-weight); font-variant-numeric: tabular-nums; line-height: var(--forge-calendar-default-date-size);}
 .forge-calendar__num{ position: relative; z-index: 1; transition: color 0.2s ease;}
-.forge-calendar__date[data-selected] .forge-calendar__num{ color: var(--forge-calendar-red-ink);}
+.forge-calendar__date[data-selected] .forge-calendar__num{ color: var(--forge-calendar-accent-ink);}
 .forge-calendar__selected, .forge-calendar__hover{ position: absolute; top: 50%; left: 50%; width: 32px; height: 25px; margin: -12.5px 0 0 -16px; border-radius: 6px;}
-.forge-calendar__selected{ background: var(--forge-calendar-red); box-shadow: 0 3px 8px -3px rgb(245 74 63 / 0.55);}
+.forge-calendar__selected{ background: var(--forge-calendar-accent); box-shadow: 0 3px 8px -3px color-mix(in srgb, var(--forge-calendar-accent) 55%, transparent);}
 .forge-calendar__hover{ background: var(--forge-calendar-hover);}
 @media (prefers-reduced-motion: reduce){ .forge-calendar__shell, .forge-calendar__card, .forge-calendar__num{ transition: none;}}
 .forge-calendar .forge-calendar__monthBtn{ display: inline-flex; align-items: baseline; gap: 5px; max-width: calc(100% + 6px); margin: 5px 0 0 -5px; padding: 0 5px; border-radius: 8px; color: var(--forge-calendar-quiet); transition: background-color 0.2s ease, color 0.2s ease;}
 .forge-calendar .forge-calendar__monthBtn .forge-calendar__month{ flex: none; margin-top: 0; color: inherit; transition: color 0.2s ease;}
-.forge-calendar__year{ position: relative; flex: none; display: inline-flex; height: 22px; overflow: hidden; color: var(--forge-calendar-quiet); opacity: 0.6; font-size: 17px; line-height: 22px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums;}
+.forge-calendar__year{ position: relative; flex: none; display: inline-flex; height: 22px; overflow: hidden; color: var(--forge-calendar-quiet); opacity: 0.6; font-size: var(--forge-calendar-default-year-size); line-height: var(--forge-calendar-default-year-leading); letter-spacing: -0.01em; font-variant-numeric: tabular-nums;}
 .forge-calendar__chevron{ flex: none; align-self: center; width: 12px; height: 12px; margin-left: -2px; opacity: 0.7;}
 @media (hover: hover){ .forge-calendar .forge-calendar__monthBtn:hover{ background: var(--forge-calendar-hover); color: var(--forge-calendar-ink);}}
-.forge-calendar .forge-calendar__monthBtn:focus-visible, .forge-calendar .forge-calendar__step:focus-visible, .forge-calendar .forge-calendar__monthCell:focus-visible{ outline: 2px solid var(--forge-calendar-red); outline-offset: 2px;}
+.forge-calendar .forge-calendar__monthBtn:focus-visible, .forge-calendar .forge-calendar__step:focus-visible, .forge-calendar .forge-calendar__monthCell:focus-visible{ outline: 2px solid var(--forge-calendar-accent); outline-offset: 2px;}
 .forge-calendar__body{ position: relative; height: 258px;}
 .forge-calendar__days{ display: flow-root;}
 .forge-calendar__picker{ display: flex; flex-direction: column; padding-top: 22px;}
@@ -917,15 +917,54 @@ body {
 .forge-calendar .forge-calendar__step svg{ width: 13px; height: 13px;}
 @media (hover: hover){ .forge-calendar .forge-calendar__step:not(:disabled):hover{ background: var(--forge-calendar-track);}}
 .forge-calendar .forge-calendar__step:disabled{ opacity: 0.35; cursor: default;}
-.forge-calendar__yearBig{ position: relative; display: inline-flex; height: 32px; overflow: hidden; color: var(--forge-calendar-ink); font-size: 24px; font-weight: 600; line-height: 32px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;}
+.forge-calendar__yearBig{ position: relative; display: inline-flex; height: 32px; overflow: hidden; color: var(--forge-calendar-ink); font-size: var(--forge-text-2xl-size); font-weight: var(--forge-font-semibold-weight); line-height: var(--forge-leading-8); letter-spacing: -0.02em; font-variant-numeric: tabular-nums;}
 .forge-calendar__months{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 16px;}
-.forge-calendar .forge-calendar__monthCell{ position: relative; display: grid; place-items: center; height: 41px; color: var(--forge-calendar-ink); font-size: 16px; font-weight: 450;}
-.forge-calendar__monthCell[data-selected] .forge-calendar__num{ color: var(--forge-calendar-red-ink);}
+.forge-calendar .forge-calendar__monthCell{ position: relative; display: grid; place-items: center; height: 41px; color: var(--forge-calendar-ink); font-size: var(--forge-text-base-size); font-weight: var(--forge-calendar-default-date-weight);}
+.forge-calendar__monthCell[data-selected] .forge-calendar__num{ color: var(--forge-calendar-accent-ink);}
 .forge-calendar__mSelected, .forge-calendar__mHover{ position: absolute; inset: 4px 8px; border-radius: 9px;}
-.forge-calendar__mSelected{ background: var(--forge-calendar-red); box-shadow: 0 3px 8px -3px rgb(245 74 63 / 0.55);}
+.forge-calendar__mSelected{ background: var(--forge-calendar-accent); box-shadow: 0 3px 8px -3px color-mix(in srgb, var(--forge-calendar-accent) 55%, transparent);}
 .forge-calendar__mHover{ background: var(--forge-calendar-hover);}
 .forge-calendar__ghost{ width: 300px; height: 427px;}
-.forge-calendar__date[data-today]:not([data-selected]) .forge-calendar__num, .forge-calendar__monthCell[data-today]:not([data-selected]) .forge-calendar__num{ color: var(--forge-calendar-red); font-weight: 600;}
+.forge-calendar__date[data-today]:not([data-selected]) .forge-calendar__num, .forge-calendar__monthCell[data-today]:not([data-selected]) .forge-calendar__num{ color: var(--forge-calendar-accent); font-weight: var(--forge-font-semibold-weight);}
+/* Form appearance: inherited font, standard 14/24px scale, six full date rows. */
+.forge-calendar[data-size="compact"] .forge-calendar__shell{ width:300px; max-width:100%; padding:6px; border-radius:20px; }
+.forge-calendar[data-size="compact"] .forge-calendar__card{ padding:16px 12px 12px; border-radius:14px; }
+.forge-calendar[data-size="compact"] .forge-calendar__head{ padding:0; }
+.forge-calendar[data-size="compact"] .forge-calendar__day{ height:var(--forge-leading-8); font-size:var(--forge-text-2xl-size); line-height:var(--forge-leading-8); font-weight:var(--forge-font-semibold-weight); }
+.forge-calendar[data-size="compact"] .forge-calendar__month,
+.forge-calendar[data-size="compact"] .forge-calendar__year{ height:var(--forge-leading-6); font-size:var(--forge-text-sm-size); font-weight:var(--forge-font-normal-weight); line-height:var(--forge-leading-6); }
+.forge-calendar[data-size="compact"] .forge-calendar__monthBtn{ min-height:32px; margin-top:0; align-items:center; }
+.forge-calendar[data-size="compact"] .forge-calendar__monthBtn .forge-calendar__month{ flex:1; min-width:0; }
+.forge-calendar[data-size="compact"] .forge-calendar__monthName{ overflow:hidden; text-overflow:ellipsis; }
+.forge-calendar[data-size="compact"] .forge-calendar__navigation{ display:flex; align-items:center; gap:4px; flex:none; }
+.forge-calendar[data-size="compact"] .forge-calendar__back{ display:grid; place-items:center; width:32px; height:32px; border-radius:8px; }
+.forge-calendar[data-size="compact"] .forge-calendar__progress{ margin:12px 0 0; }
+.forge-calendar[data-size="compact"] .forge-calendar__body{ height:232px; }
+.forge-calendar[data-size="compact"] .forge-calendar__week{ margin-top:12px; font-size:var(--forge-text-sm-size); line-height:var(--forge-leading-5); }
+.forge-calendar[data-size="compact"] .forge-calendar__gridWrap{ margin-top:8px; height:192px; }
+.forge-calendar[data-size="compact"] .forge-calendar__cell{ height:32px; }
+.forge-calendar[data-size="compact"] .forge-calendar__date,
+.forge-calendar[data-size="compact"] .forge-calendar__monthCell{ font-size:var(--forge-text-sm-size); font-weight:var(--forge-font-normal-weight); line-height:var(--forge-leading-5); }
+.forge-calendar[data-size="compact"] .forge-calendar__picker{ padding-top:12px; }
+.forge-calendar[data-size="compact"] .forge-calendar__yearBig{ height:var(--forge-leading-6); font-size:var(--forge-text-sm-size); line-height:var(--forge-leading-6); }
+.forge-calendar[data-size="compact"] .forge-calendar__months{ margin-top:12px; gap:4px; }
+.forge-calendar[data-size="compact"] .forge-calendar__monthCell{ height:40px; }
+.forge-calendar[data-size="compact"] .forge-calendar__ghost{ width:300px; max-width:100%; height:345px; }
+.forge-calendar[data-variant="plain"] .forge-calendar__shell,
+.forge-calendar[data-variant="plain"] .forge-calendar__card{ width:100%; margin:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+.forge-calendar[data-variant="plain"] .forge-calendar__head{ padding:0; }
+.forge-calendar[data-variant="plain"] .forge-calendar__progress{ margin-inline:0; }
+.forge-calendar[data-size="compact"][data-variant="plain"] .forge-calendar__ghost{ width:100%; height:313px; }
+.forge-calendar .forge-calendar__date:focus-visible,
+.forge-calendar .forge-calendar__back:focus-visible{ outline:2px solid var(--forge-calendar-accent); outline-offset:-2px; border-radius:6px; }
+.forge-calendar button:disabled{ cursor:default; }
+.forge-calendar[data-disabled]{ opacity:.6; }
+@media (hover:hover){
+  .forge-calendar .forge-calendar__monthCell:not(:disabled):not([data-selected]):hover,
+  .forge-calendar .forge-calendar__back:not(:disabled):hover{ background:var(--forge-calendar-hover); border-radius:8px; }
+}
+.forge-calendar[data-motion="none"] *, .forge-calendar[data-motion="none"] *::after{ transition:none; }
+@media (prefers-reduced-motion:reduce){ .forge-calendar *, .forge-calendar *::after{ transition:none; } }
 /* liquid-tabs — license notices: THIRD_PARTY_NOTICES.md. */
 .forge-liquid{ --forge-liquid-card:var(--background); --forge-liquid-strip:var(--border); --forge-liquid-text:var(--foreground); --forge-liquid-tab-idle:var(--text-secondary); --forge-liquid-muted:var(--text-secondary); --forge-liquid-faint:var(--text-secondary); --forge-liquid-divider:var(--border-muted); --forge-liquid-hover:var(--hover); --forge-liquid-ring:var(--accent); --forge-liquid-avatar:var(--surface); --forge-liquid-avatar-fg:var(--foreground); --forge-liquid-avatar-on:var(--foreground); --forge-liquid-avatar-on-fg:var(--background); --forge-liquid-card-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.04)) drop-shadow(0 8px 22px rgb(0 0 0 / 0.08)); --forge-liquid-menu-shadow: 0 10px 30px rgb(0 0 0 / 0.12); position: relative; width: 100%; max-width: 380px; color: var(--forge-liquid-text); font-family:inherit; -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;}
 .forge-liquid__defs{ position: absolute; width: 0; height: 0; pointer-events: none;}

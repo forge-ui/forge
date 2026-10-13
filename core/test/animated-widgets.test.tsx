@@ -109,6 +109,36 @@ test('CalendarCard clamps end-of-month, moves keyboard focus, supports locale an
     assert.equal(button('下个月').disabled, true);
   } finally { await env.close(); }
 });
+test('compact plain CalendarCard retains keyboard, picker focus, disabled and controlled behavior', async () => {
+  const env = await setup(); const values: Date[] = [];
+  const props = { size: 'compact', variant: 'plain', color: 'blue', motion: 'none' } as const;
+  try {
+    await env.render(<CalendarCard {...props} defaultDate={new Date(2024, 0, 31)} onChange={date => values.push(date)} className="consumer-calendar" />);
+    await click(button('下个月'));
+    assert.equal(values.at(-1)!.getDate(), 29);
+    const selected = () => document.querySelector<HTMLButtonElement>('.forge-calendar__date[aria-pressed="true"]')!;
+    await key(env.dom, selected(), 'ArrowRight');
+    assert.equal(values.at(-1)!.getMonth(), 2); assert.equal(document.activeElement, selected());
+    await key(env.dom, selected(), 'PageUp'); assert.equal(values.at(-1)!.getMonth(), 1);
+    await key(env.dom, selected(), 'End'); assert.equal(values.at(-1)!.getDate(), 29);
+    await key(env.dom, selected(), 'Home'); assert.equal(values.at(-1)!.getDate(), 1);
+    await click(button('选择月份和年份'));
+    assert.equal(document.activeElement?.textContent, '二月');
+    await click(button('下一年')); await click(button('二月'));
+    assert.equal(values.at(-1)!.getFullYear(), 2025); assert.equal(document.activeElement, selected());
+    await click(button('选择月份和年份')); await key(env.dom, document.activeElement!, 'Escape');
+    assert.equal(document.activeElement, button('选择月份和年份'));
+    await env.render(<CalendarCard {...props} value={new Date(2030, 0, 31)} onChange={date => values.push(date)} />);
+    await click(button('下个月'));
+    assert.equal(values.at(-1)!.getDate(), 28); assert.equal(selected().textContent, '31');
+    await env.render(<CalendarCard {...props} value={new Date(2030, 0, 31)} disabled onChange={date => values.push(date)} />);
+    const count = values.length;
+    await key(env.dom, selected(), 'ArrowRight');
+    assert.equal(values.length, count);
+    assert.ok([...document.querySelectorAll<HTMLButtonElement>('.forge-calendar button')].every(e => e.disabled));
+    assert.equal(document.querySelector('.forge-calendar__leaf'), null);
+  } finally { await env.close(); }
+});
 const tabs: LiquidTabsTab[] = [
   { id: 'a', label: '甲', items: [{ id: 'same', title: '第一组' }] }, { id: 'b', label: '乙', items: [{ id: 'same', title: '第二组' }] },
   { id: 'c', label: '丙', items: [] }, { id: 'd', label: '丁', items: [{ id: 'other', title: '第四组' }] },
