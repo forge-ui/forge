@@ -10,5 +10,5 @@ export interface TabsContentProps {
   id?: string; labelledBy?: string; ariaLabel?: string; className?: string;
 }
 export function TabsContent({ activeKey, children, motion = "auto", id, labelledBy, ariaLabel = "标签内容", className }: TabsContentProps) {
-  return <div key={activeKey} id={id} role="tabpanel" tabIndex={0} aria-labelledby={labelledBy} aria-label={labelledBy ? undefined : ariaLabel} data-motion={motion} data-state="open" className={cn("forge-motion-surface", className)}>{children}</div>;
+  return <div key={activeKey} id={id} role="tabpanel" tabIndex={0} aria-labelledby={labelledBy} aria-label={labelledBy ? undefined : ariaLabel} data-motion={motion} data-state="open" className={cn("forge-tabs-content", className)}>{children}</div>;
 }

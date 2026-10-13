@@ -1,7 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import {
   TabBar,
+  TabsContent,
+  SurfaceCard,
+  Checkbox,
   ButtonGroup,
   type TabBarColor,
   type ButtonGroupColor,
@@ -28,12 +32,34 @@ const mkItems = (count: number): ButtonGroupItem[] =>
   Array.from({ length: count }, () => ({ label: "Text Here" }));
 
 export default function TabCasePage() {
+  const [active, setActive] = useState(0);
+  const [withoutMotion, setWithoutMotion] = useState(false);
+  const panels = [
+    { label: "概览", title: "项目概览", text: "查看项目进度与当前工作安排。" },
+    { label: "成员", title: "项目成员", text: "查看团队成员与协作分工情况。" },
+    { label: "设置", title: "项目设置", text: "查看项目配置与通知接收方式。" },
+  ];
+  const motion = withoutMotion ? "none" : "auto";
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
         title="Tab"
         hint="TabBar / ButtonGroup — 下划线标签栏 + pill 分段控制器。"
       />
+
+      <Section title="TabsContent 原地淡入" description="点击标签，或使用左右方向键、Home / End 切换；可快速连续操作。内容仅淡入 180ms，系统减少动态效果时直接显示。">
+        <label className="flex items-center gap-2 text-sm text-fg-grey-700">
+          <Checkbox checked={withoutMotion} onChange={setWithoutMotion} aria-label="关闭内容动效" />
+          关闭内容动效（motion=&quot;none&quot;）
+        </label>
+        <TabBar ariaLabel="内容切换演示" tabs={panels.map((panel, index) => ({ label: panel.label, active: active === index }))} onChange={setActive} motion={motion} />
+        <TabsContent activeKey={active} ariaLabel={`${panels[active].label}内容`} motion={motion}>
+          <SurfaceCard title={panels[active].title}>
+            <p className="text-sm leading-6 text-fg-black">{panels[active].text}</p>
+          </SurfaceCard>
+        </TabsContent>
+        <p className="text-sm text-fg-grey-700">布局参照线：切换时本行、卡片边缘与文字尺寸保持稳定。</p>
+      </Section>
 
       {/* ============ TabBar - Single ============ */}
       <Section
