@@ -65,9 +65,20 @@ test("TabsContent replaces previous panel content and keeps supplied label", asy
  try {
   await act(async()=>env.root.render(<TabsContent activeKey="a" ariaLabel="Details">Alpha</TabsContent>));
   const previous=document.querySelector('[role="tabpanel"]');
+  assert.ok(previous?.classList.contains('forge-tabs-content'));
+  assert.equal(previous?.classList.contains('forge-motion-surface'), false);
   await act(async()=>env.root.render(<TabsContent activeKey="b" ariaLabel="Details">Beta</TabsContent>));
   assert.notEqual(previous,document.querySelector('[role="tabpanel"]'));
   assert.equal(document.querySelector('[role="tabpanel"]')?.textContent,'Beta');
   assert.equal(document.querySelector('[role="tabpanel"]')?.getAttribute('aria-label'),'Details');
+  const current=document.querySelector('[role="tabpanel"]');
+  await act(async()=>env.root.render(<TabsContent activeKey="b" motion="none" ariaLabel="Details">Updated</TabsContent>));
+  assert.equal(document.querySelector('[role="tabpanel"]'),current);
+  assert.equal(current?.getAttribute('data-motion'),'none');
+  for (const activeKey of ['c','a','b','c']) {
+    await act(async()=>env.root.render(<TabsContent activeKey={activeKey} motion="none" ariaLabel="Details">{activeKey}</TabsContent>));
+    assert.equal(document.querySelectorAll('[role="tabpanel"]').length,1);
+    assert.equal(document.querySelector('[role="tabpanel"]')?.textContent,activeKey);
+  }
  } finally { await env.cleanup(); }
 });

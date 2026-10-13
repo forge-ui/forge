@@ -657,6 +657,8 @@ body {
   --forge-motion-layout-duration: 200ms;
 }
 .forge-motion-surface { transform-origin: top center; }
+.forge-tabs-content { transform: none; }
+@keyframes forge-tabs-content-in { from { opacity: 0; } to { opacity: 1; } }
 .forge-motion-surface[data-state="closed"] { pointer-events: none; }
 @keyframes forge-surface-in { from { opacity: 0; transform: translateY(4px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes forge-surface-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(2px) scale(.98); } }
@@ -678,6 +680,7 @@ body {
 .forge-check-visual[data-checked="true"] .forge-check-fill { scale: 1; }
 .forge-check-visual[data-checked="true"] .forge-check-tick { stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: no-preference) {
+  .forge-tabs-content[data-motion="auto"][data-state="open"] { animation: forge-tabs-content-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
   .forge-motion-surface[data-motion="auto"][data-state="open"] { animation: forge-surface-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
   .forge-motion-surface[data-motion="auto"][data-state="closed"] { animation: forge-surface-out var(--forge-motion-exit-duration) ease-in both; }
   .forge-motion-collapse[data-motion="auto"] { transition: grid-template-rows var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
