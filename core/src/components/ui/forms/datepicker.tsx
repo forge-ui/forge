@@ -96,9 +96,19 @@ export function Datepicker({
   const [viewMonth, setViewMonth] = useState(initDate.getMonth());
   const [pickingEnd, setPickingEnd] = useState(false);
   const [draft, setDraft] = useState<{ start?: Date; end?: Date }>({ start: rangeStart, end: rangeEnd });
+  const externalKey = `${value?.getTime() ?? ""}/${rangeStart?.getTime() ?? ""}/${rangeEnd?.getTime() ?? ""}`;
+  const [syncedKey, setSyncedKey] = useState(externalKey);
   const [hoverDate, setHoverDate] = useState<Date | undefined>();
   const [focusedDate, setFocusedDate] = useState(initDate);
   const focusRequested = useRef(false);
+  if (syncedKey !== externalKey) {
+    setSyncedKey(externalKey);
+    setDraft({ start: rangeStart, end: rangeEnd });
+    setPickingEnd(false);
+    setHoverDate(undefined);
+    const next = value ?? rangeStart;
+    if (next) { setViewYear(next.getFullYear()); setViewMonth(next.getMonth()); setFocusedDate(next); }
+  }
   const pickedStart = confirmSelection ? draft.start : rangeStart;
   const pickedEnd = confirmSelection ? draft.end : rangeEnd;
   const visible = inline || open;
@@ -161,7 +171,7 @@ export function Datepicker({
     if (offset !== undefined) next.setDate(next.getDate() + offset);
     else if (event.key === "Home") next.setDate(1);
     else if (event.key === "End") next.setDate(getDaysInMonth(next.getFullYear(), next.getMonth()));
-    else next.setMonth(next.getMonth() + (event.key === "PageDown" ? 1 : -1));
+    else { const day = next.getDate(); next.setDate(1); next.setMonth(next.getMonth() + (event.key === "PageDown" ? 1 : -1)); next.setDate(Math.min(day, getDaysInMonth(next.getFullYear(), next.getMonth()))); }
     if (blocked(next)) return;
     setViewYear(next.getFullYear()); setViewMonth(next.getMonth()); setFocusedDate(next); focusRequested.current = true;
     if (pickingEnd) setHoverDate(next);
@@ -180,6 +190,8 @@ export function Datepicker({
 
   const today = new Date();
   const daysInMonth = getDaysInMonth(viewYear, viewMonth);
+  const focusInMonth = focusedDate.getMonth() === viewMonth && focusedDate.getFullYear() === viewYear && !blocked(focusedDate);
+  const tabDay = focusInMonth ? focusedDate.getDate() : Array.from({ length: daysInMonth }, (_, index) => index + 1).find(day => !blocked(new Date(viewYear, viewMonth, day)));
   const firstDay = getFirstDayOfMonth(viewYear, viewMonth);
 
   function prevMonth() {
@@ -251,7 +263,7 @@ export function Datepicker({
         <label htmlFor={triggerId} className="text-sm font-medium text-fg-black mb-1">{label}</label>
       )}
       <div className="relative">
-        {mode === "range" && rangeLabels ? <div className="grid grid-cols-2 gap-2">{rangeLabels.map((text, i) => <button key={text} ref={i === 0 ? triggerRef : undefined} id={i === 0 ? triggerId : undefined} type="button" disabled={isDisabled} aria-expanded={visible} aria-controls={dialogId} onClick={() => { if (!open) { setDraft({ start: rangeStart, end: rangeEnd }); setOpen(true); } setPickingEnd(i === 1 && Boolean(pickedStart)); }} className={cn(wrapperClass, "flex-col items-start")}><span className="text-xs text-fg-grey-700">{text}</span><span className="text-sm">{(i === 0 ? pickedStart : pickedEnd) ? formatDate((i === 0 ? pickedStart : pickedEnd)!, locale) : placeholder}</span></button>)}</div> : <button
+        {mode === "range" && rangeLabels ? <div className="grid grid-cols-2 gap-2">{rangeLabels.map((text, i) => <button key={text} ref={i === 0 ? triggerRef : undefined} id={i === 0 ? triggerId : undefined} type="button" disabled={isDisabled} aria-expanded={visible} aria-controls={dialogId} onClick={() => { if (!inline && !open) { setDraft({ start: rangeStart, end: rangeEnd }); setOpen(true); } setPickingEnd(i === 1 && Boolean(pickedStart)); }} className={cn(wrapperClass, "flex-col items-start")}><span className="text-xs text-fg-grey-700">{text}</span><span className="text-sm">{(i === 0 ? pickedStart : pickedEnd) ? formatDate((i === 0 ? pickedStart : pickedEnd)!, locale) : placeholder}</span></button>)}</div> : <button
           ref={triggerRef}
           id={triggerId}
           type="button"
@@ -387,7 +399,7 @@ export function Datepicker({
                             type="button"
                             aria-label={formatDate(new Date(viewYear, viewMonth, day), locale)}
                             data-date={toDateNum(new Date(viewYear, viewMonth, day))}
-                            tabIndex={day === (focusedDate.getMonth() === viewMonth && focusedDate.getFullYear() === viewYear ? focusedDate.getDate() : 1) ? 0 : -1}
+                            tabIndex={day === tabDay ? 0 : -1}
                             disabled={blocked(new Date(viewYear, viewMonth, day))}
                             onKeyDown={event => dayKey(event, new Date(viewYear, viewMonth, day))}
                             onPointerEnter={() => pickingEnd && setHoverDate(new Date(viewYear, viewMonth, day))}

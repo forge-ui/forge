@@ -1228,7 +1228,7 @@ body {
 .forge-button[data-effect="burst"][data-active] .forge-action-icon{animation:forge-heart-pop .5s;filter:drop-shadow(0 0 0 currentColor)}
 .forge-button[data-effect="burst"][data-action-pressed]:after{content:"";position:absolute;inset:2px;border-radius:50%;border:2px solid currentColor;animation:forge-burst .6s both;pointer-events:none}
 .forge-surface-card[data-effect]{position:relative;isolation:isolate;transform:perspective(900px) rotateX(var(--forge-tilt-x,0deg)) rotateY(var(--forge-tilt-y,0deg));transition:transform .35s ease-out}
-.forge-surface-card[data-effect="tilt"]:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(240px circle at var(--forge-pointer-x,50%) var(--forge-pointer-y,0%),color-mix(in srgb,var(--color-fg-blue) 8%,transparent),transparent 80%);opacity:0;transition:opacity .25s}
+.forge-surface-card[data-effect="tilt"]:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(240px circle at var(--forge-pointer-x,50%) var(--forge-pointer-y,0%),color-mix(in srgb,var(--forge-surface-accent,var(--accent,var(--color-fg-blue))) 8%,transparent),transparent 80%);opacity:0;transition:opacity .25s}
 .forge-surface-card[data-effect="tilt"]:hover:before{opacity:1}
 .forge-surface-card[data-effect="layered"]:before,.forge-surface-card[data-effect="layered"]:after{content:"";position:absolute;inset:0;z-index:-1;border:1px solid var(--color-fg-grey-200);border-radius:inherit;background:var(--color-white,#fff);transform:translateY(5px) scale(.98)}
 .forge-surface-card[data-effect="layered"]:after{transform:translateY(10px) scale(.96);z-index:-2}

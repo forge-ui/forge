@@ -30,7 +30,7 @@ export function ChatReactions({ reactions, options, onChange, locale, motion }: 
     {options.length > 0 && <button ref={trigger} type="button" className="rounded-lg p-1 text-fg-grey-700" aria-label={locale === "zh" ? "添加反应" : "Add reaction"} aria-haspopup="dialog" aria-expanded={open} aria-controls={id} onClick={() => { setOpen(!open); setCursor(0); }}><AddCircleLinear size={20} /></button>}
     {open && <div id={id} role="dialog" aria-label={locale === "zh" ? "选择反应" : "Choose a reaction"} className="forge-chat-reaction-picker absolute bottom-full left-0 z-20 mb-2 grid w-64 max-w-[calc(100vw-3rem)] grid-cols-6 gap-1 rounded-xl border border-fg-grey-200 bg-white p-2 shadow-sm" onKeyDown={event => {
       const delta = ({ ArrowRight: 1, ArrowLeft: -1, ArrowDown: 6, ArrowUp: -6 } as Record<string, number>)[event.key];
-      if (delta !== undefined) { event.preventDefault(); const next = (cursor + delta + options.length) % options.length; setCursor(next); event.currentTarget.querySelectorAll<HTMLButtonElement>("button")[next]?.focus(); }
+      if (delta !== undefined) { event.preventDefault(); const next = ((cursor + delta) % options.length + options.length) % options.length; setCursor(next); event.currentTarget.querySelectorAll<HTMLButtonElement>("button")[next]?.focus(); }
     }}>{options.map((item, index) => <button key={item.id} type="button" autoFocus={index === 0} tabIndex={cursor === index ? 0 : -1} onFocus={() => setCursor(index)} aria-label={item.label} className="h-9 w-full min-w-0 rounded-lg text-lg hover:bg-fg-grey-100" onClick={() => { onChange(item.id); setOpen(false); trigger.current?.focus(); }}>{item.content}</button>)}</div>}
   </div>;
 }

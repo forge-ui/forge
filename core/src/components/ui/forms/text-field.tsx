@@ -104,7 +104,7 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
                 color={color}
                 selected={activeTag === tag.value}
                 locale={locale}
-                onRemove={onRemoveTag ? () => onRemoveTag(tag.value) : undefined}
+                onRemove={!isDisabled && onRemoveTag ? () => onRemoveTag(tag.value) : undefined}
               />
             ))}
           <input

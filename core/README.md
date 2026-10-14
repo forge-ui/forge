@@ -285,7 +285,7 @@ import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-officia
 - **OtpInput**：2–10 位数字，支持粘贴、`one-time-code` 自动填充、`value/defaultValue`、`onChange`、`name` 和 `disabled`。填满时触发 `onComplete`；只有传入 `verify` 才会校验，Promise 待定时锁定输入，返回 `true` 才触发 `onSuccess`。失败或异常显示蛋壳裂开反馈，保留内容供编辑重试。组件内没有内置验证码。`inputLabel`、`hint`、`verifyingLabel`、`successLabel`、`errorLabel` 均可替换。
 - **CalendarCard**：`value/defaultDate` 为本地日期，`onChange` 返回新的 `Date`。未传日期时在客户端读取今天，SSR 不猜测用户时区。日期按钮支持方向键、Page Up/Down 翻月、Home/End 跳至月初/月末；月份选择器可用 Escape 关闭。导航范围为 1900–2100，月底翻月自动截到有效日期，支持闰年。`locale` 控制日期语言，`labels` 控制按钮文案；没有 `value` 时自行保存选择。
 - **LiquidTabs**：`tabs` 为 `{ id, label, items, disabled? }[]`，其中 `items` 为 `{ id, title, subtitle?, time?, icon?, disabled? }[]`。`value/defaultValue`、`onValueChange` 控制活动标签；`onSelect(item, tabId)` 返回所选行及标签 ID。默认显示三个标签，其余从菜单切换；`visibleCount`、`rows`、`corner` 可调整。方向键、Home/End 切换标签，菜单支持上下方向键和 Escape。`label/moreLabel/emptyLabel` 可本地化，不内置业务通知。
-- **AddMember**：`members` 为 `{ id, name, role?, avatar?, status?, disabled? }[]`，身份以稳定 `id` 为准。`selectedIds/defaultSelectedIds` 与 `onSelectionChange` 支持跨页、跨搜索多选；`open/defaultOpen/onOpenChange` 控制展开状态。`onAdd(ids)` 可返回 Promise，等待成功才显示成功，拒绝时保留选择供重试；`clearOnAdd={false}` 可在成功后保留选择。`rows/search/disabled` 控制显示和可用状态，所有功能文案可通过 `labels` 替换。只调用业务回调，不自行发送邀请。
+- **AddMember**：`members` 为 `{ id, name, role?, avatar?, status?, disabled? }[]`，身份以稳定 `id` 为准。`selectedIds/defaultSelectedIds` 与 `onSelectionChange` 支持跨页、跨搜索多选；`open/defaultOpen/onOpenChange` 控制展开状态。`onAdd(ids)` 可返回 Promise，等待成功才显示成功，拒绝时保留选择供重试；`clearOnAdd={false}` 可在成功后保留选择。`accent="blue" | "purple" | "black"` 让面板跟随 Forge 主题，省略时保留原配色。`rows/search/disabled` 控制显示和可用状态，所有功能文案可通过 `labels` 替换。只调用业务回调，不自行发送邀请。
 
 四者均接受 `className` 和 `motion="auto" | "none"`，与其他交互动效组件使用同一动效偏好；`none` 关闭动效但保留当前交互状态。受控模式下，业务方需在对应变更回调里更新传入值。
 
@@ -361,3 +361,10 @@ Toolbar 不传 selection 时保留原结构。启用批量模式后持续传入�
 
 
 新增按钮与图标按钮效果、真实上传进度、日期区间草稿确认、标签输入、可编辑评分、滑动页签、堆叠通知与滑动操作；聊天支持引用回复、反应和语音状态接口；图表支持真实累计面积、预测置信带、目标刻度和独立活动环；代码块支持嵌套折叠。现有组件默认呈现与受控契约保留，可选功能按需启用。组合案例的模拟上传、登录、审批和队列仅说明宿主状态管理，不代替业务后端。
+
+### 融合交互的边界约定
+
+- `Datepicker` 使用 `inline` + `confirmSelection` 时，切换起止日期保留草稿；外部日期值变化会替换草稿，相同时间戳的重新渲染不会丢失编辑。
+- `AppLayout` 的个人菜单和导航名称跟随 `language`；单独使用 `ProfileDropdown`、`AppSwitcherDropdown` 或 `TeamSwitcherDropdown` 时可传 `locale="en"`，默认中文。
+- `ReviewItem variant="card"` 仅在传入 `onMenuClick` 时显示菜单按钮，可用 `menuLabel` 设置本地化名称。
+- `SurfaceCard effect="tilt"` 的光斑默认继承 `--accent`，也可通过 `--forge-surface-accent` 单独指定主题色。
