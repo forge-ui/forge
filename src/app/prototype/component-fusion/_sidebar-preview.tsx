@@ -121,6 +121,7 @@ export function EmbeddedSidebarPreview() {
 
   return <div lang={settings.locale === "zh" ? "zh-CN" : "en"}>
     <AppLayout
+      language={zh ? "zh-CN" : "en-US"}
       menuSections={sections}
       mode={mode}
       accent={settings.color}

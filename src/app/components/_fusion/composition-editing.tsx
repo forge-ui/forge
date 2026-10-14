@@ -37,12 +37,13 @@ export function MarkdownExample({ locale, color, motion }: FusionSettings) {
 
 export function DiffReviewExample({ locale, color, motion }: FusionSettings) {
   const zh = locale === "zh";
+  const [view, setView] = useState<"code" | "diff">("diff");
   const [decision, setDecision] = useState<"pending" | "accept" | "keep">("pending");
   const before = ["function waterGarden() {", "  return 7;", "}"];
   const after = ["function waterGarden() {", "  return 3;", "}"];
   return <div className="flex w-full flex-col gap-4">
     <AgentCodeBlock filename="garden.ts" locale={locale} lines={decision === "accept" ? after : before}
-      view={decision === "pending" ? "diff" : "code"}
+      view={decision === "pending" ? view : "code"} onViewChange={setView}
       diff={decision === "pending" ? [{ old: 1, cur: 1, type: "ctx", pieces: [{ text: before[0] }] }, { old: 2, cur: null, type: "del", pieces: [{ text: before[1], change: "del" }] }, { old: null, cur: 2, type: "add", pieces: [{ text: after[1], change: "add" }] }, { old: 3, cur: 3, type: "ctx", pieces: [{ text: "}" }] }] : undefined} />
     <div className="flex flex-wrap items-center gap-2">
       {decision === "pending" ? <><Button motion={motion} size="sm" color={color} onClick={() => setDecision("accept")}>{zh ? "接受变更" : "Accept change"}</Button><Button motion={motion} size="sm" color="black" variant="tertiary" onClick={() => setDecision("keep")}>{zh ? "保留原文" : "Keep original"}</Button></> : <Button motion={motion} size="sm" color={color} variant="tertiary" onClick={() => setDecision("pending")}>{zh ? "撤销决定" : "Undo decision"}</Button>}

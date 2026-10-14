@@ -66,6 +66,7 @@ interface ReviewItemRegular extends ReviewItemBase {
 interface ReviewItemCard extends ReviewItemBase {
   variant: "card";
   onMenuClick?: () => void;
+  menuLabel?: string;
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
 }
@@ -145,6 +146,7 @@ function CardVariant({
   images,
   overflowImageCount,
   onMenuClick,
+  menuLabel = "更多操作",
   width,
   className = "",
 }: ReviewItemCard) {
@@ -173,15 +175,16 @@ function CardVariant({
             </span>
           </div>
         </div>
-        <button
+        {onMenuClick && <button
           type="button"
+          aria-label={menuLabel}
           onClick={onMenuClick}
           className="w-6 h-6 flex items-center justify-center cursor-pointer"
         >
           <span className="rotate-90">
             <MenuDotsBold size={16} color="var(--fg-grey-700)" />
           </span>
-        </button>
+        </button>}
       </div>
       {/* Divider */}
       <div className="self-stretch h-px bg-fg-grey-200" />

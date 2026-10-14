@@ -116,3 +116,34 @@ test("formal compositions change their data and recover it through undo, reset, 
     for (const [name, descriptor] of saved) { if (descriptor) Object.defineProperty(globalThis, name, descriptor); else delete globalThis[name]; }
   }
 });
+
+// Exercise consumer wiring as well as rendering: a controlled demo can look
+// correct in SSR while its controls never update, or lose focus on deletion.
+test("audit regressions: code view switches and deletion/undo retain list focus", async () => {
+  const { JSDOM } = require("./core/node_modules/jsdom");
+  const dom = new JSDOM('<div id="audit-root"></div>', { url: "http://localhost", pretendToBeVisual: true });
+  dom.window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} });
+  const saved = new Map();
+  const globals = { window: dom.window, self: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, Element: dom.window.Element, SVGElement: dom.window.SVGElement, getComputedStyle: dom.window.getComputedStyle.bind(dom.window), requestAnimationFrame: dom.window.requestAnimationFrame.bind(dom.window), cancelAnimationFrame: dom.window.cancelAnimationFrame.bind(dom.window), IS_REACT_ACT_ENVIRONMENT: true };
+  for (const [key,value] of Object.entries(globals)) { saved.set(key,Object.getOwnPropertyDescriptor(globalThis,key)); Object.defineProperty(globalThis,key,{value,configurable:true,writable:true}); }
+  const { createRoot } = await import("react-dom/client");
+  const app = createRoot(document.getElementById("audit-root"));
+  const render = (Component,id) => React.act(async () => app.render(React.createElement(Component,{key:id,id,locale:"en",color:"blue",motion:"none"})));
+  const findButton = text => [...document.querySelectorAll("button")].find(node => node.textContent.trim() === text || node.getAttribute("aria-label") === text);
+  try {
+    await render(examples.CompositionExamples,"127");
+    assert.match(document.querySelector("pre").textContent,/return 3/);
+    await React.act(async()=>findButton("Code").click());
+    assert.doesNotMatch(document.querySelector("pre").textContent,/return 3/);
+    await React.act(async()=>findButton("Diff").click());
+    assert.match(document.querySelector("pre").textContent,/return 3/);
+    await render(examples.ActionsExamples,"071");
+    await React.act(async()=>{ findButton("Delete message").focus(); findButton("Delete message").click(); });
+    assert.equal(document.activeElement.closest("[data-mail-id]")?.getAttribute("data-mail-id"),"1");
+    await React.act(async()=>findButton("Undo").click());
+    assert.equal(document.activeElement.closest("[data-mail-id]")?.getAttribute("data-mail-id"),"0");
+  } finally {
+    await React.act(async()=>app.unmount()); dom.window.close();
+    for (const [key,descriptor] of saved) { if(descriptor) Object.defineProperty(globalThis,key,descriptor); else delete globalThis[key]; }
+  }
+});

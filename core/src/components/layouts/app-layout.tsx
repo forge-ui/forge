@@ -250,6 +250,8 @@ export function AppLayout({
   const [isMobile, setIsMobile] = useState(false);
   const [internalLanguage, setInternalLanguage] = useState<AppLayoutLanguage>(defaultLanguage);
   const activeLanguage = language ?? internalLanguage;
+  const english = activeLanguage === "en-US";
+  const locale = english ? "en" : "zh";
   const activeLanguageLabel = languageLabels[activeLanguage];
   const sidebarStyle = {
     "--forge-sidebar-expanded-width": sidebarWidth,
@@ -435,7 +437,7 @@ export function AppLayout({
       {mobileSidebarOpen && (
         <button
           type="button"
-          aria-label="关闭主导航"
+          aria-label={english ? "Close main navigation" : "关闭主导航"}
           data-forge-app-overlay
           className="fixed inset-0 z-40 bg-black/40 md:hidden"
           onClick={() => setMobileSidebarOpen(false)}
@@ -450,7 +452,7 @@ export function AppLayout({
         data-collapsed={sidebarCollapsed}
         data-motion={motion}
         role="navigation"
-        aria-label="主导航"
+        aria-label={english ? "Main navigation" : "主导航"}
         aria-hidden={isMobile && !mobileSidebarOpen ? true : undefined}
         inert={isMobile && !mobileSidebarOpen ? true : undefined}
         onClickCapture={(event) => {
@@ -480,7 +482,7 @@ export function AppLayout({
           </div>
           <button
             type="button"
-            aria-label={isMobile ? "关闭主导航" : sidebarCollapsed ? "展开主导航" : "收起主导航"}
+            aria-label={english ? (isMobile ? "Close main navigation" : sidebarCollapsed ? "Expand main navigation" : "Collapse main navigation") : (isMobile ? "关闭主导航" : sidebarCollapsed ? "展开主导航" : "收起主导航")}
             aria-expanded={isMobile ? undefined : !sidebarCollapsed}
             aria-controls="forge-app-sidebar"
             onClick={() => isMobile ? setMobileSidebarOpen(false) : toggleSidebar()}
@@ -523,6 +525,7 @@ export function AppLayout({
             {openPopover === "team" && (
               <div data-popover="team" className="absolute left-4 top-full mt-2 z-[60] md:left-full md:top-0 md:ml-2 md:mt-0 md:z-50">
                 <TeamSwitcherDropdown
+                  locale={locale}
                   teamName={teamName}
                   teamAvatar={teamAvatar}
                   teamMemberCount={teamMemberCount}
@@ -579,7 +582,7 @@ export function AppLayout({
                   <div className={cn("flex items-center justify-between", profile && "pb-4")}>
                     <button
                       type="button"
-                      aria-label={`切换语言，当前${activeLanguageLabel}`}
+                      aria-label={english ? `Change language, current ${activeLanguageLabel}` : `切换语言，当前${activeLanguageLabel}`}
                       aria-haspopup="menu"
                       aria-expanded={openPopover === "language"}
                       data-language-code={activeLanguage}
@@ -591,7 +594,7 @@ export function AppLayout({
                     </button>
                     <button
                       type="button"
-                      aria-label="打开日历"
+                      aria-label={english ? "Open calendar" : "打开日历"}
                       aria-haspopup="dialog"
                       aria-expanded={openPopover === "calendar"}
                       data-popover-trigger="calendar"
@@ -602,7 +605,7 @@ export function AppLayout({
                     </button>
                     <button
                       type="button"
-                      aria-label={`通知${notifications && notifications > 0 ? `，${notifications} 条未读` : ""}`}
+                      aria-label={english ? `Notifications${notifications ? `, ${notifications} unread` : ""}` : `通知${notifications && notifications > 0 ? `，${notifications} 条未读` : ""}`}
                       aria-haspopup="dialog"
                       aria-expanded={openPopover === "notifications"}
                       data-popover-trigger="notifications"
@@ -616,7 +619,7 @@ export function AppLayout({
                     </button>
                     <button
                       type="button"
-                      aria-label={`消息${messages && messages > 0 ? `，${messages} 条未读` : ""}`}
+                      aria-label={english ? `Messages${messages ? `, ${messages} unread` : ""}` : `消息${messages && messages > 0 ? `，${messages} 条未读` : ""}`}
                       aria-haspopup="menu"
                       aria-expanded={openPopover === "messages"}
                       data-popover-trigger="messages"
@@ -637,7 +640,7 @@ export function AppLayout({
             {profile && (
               <button
                 type="button"
-                aria-label={`打开 ${profile.name} 的个人菜单`}
+                aria-label={english ? `Open profile menu for ${profile.name}` : `打开 ${profile.name} 的个人菜单`}
                 aria-haspopup="menu"
                 aria-expanded={openPopover === "profile"}
                 data-popover-trigger="profile"
@@ -690,7 +693,7 @@ export function AppLayout({
             )}
             {openPopover === "profile" && (
               <div data-popover="profile" className="absolute left-4 bottom-4 z-[60] md:left-full md:ml-4 md:z-50">
-                <ProfileDropdown />
+                <ProfileDropdown locale={locale} />
               </div>
             )}
           </div>
@@ -731,7 +734,7 @@ export function AppLayout({
                 onLanguageClick={() => togglePopover("language")}
                 languageExpanded={openPopover === "language"}
                 languageButtonClassName={iconActive("language")}
-                languageFlag={<img data-forge-language-flag={activeLanguage} src={languageFlagDataUrls[activeLanguage]} alt={`切换语言，当前${activeLanguageLabel}`} className="w-5 h-5 rounded-full object-cover" />}
+                languageFlag={<img data-forge-language-flag={activeLanguage} src={languageFlagDataUrls[activeLanguage]} alt={english ? `Change language, current ${activeLanguageLabel}` : `切换语言，当前${activeLanguageLabel}`} className="w-5 h-5 rounded-full object-cover" />}
                 showProfile={!!profile}
                 profile={profile ? { name: profile.name, role: profile.role, avatar: profile.avatar } : undefined}
                 onProfileClick={() => togglePopover("profile")}
@@ -767,7 +770,7 @@ export function AppLayout({
               )}
               {!isMobile && openPopover === "profile" && (
                 <div data-popover="profile" className="absolute top-full right-0 mt-0 z-50">
-                  <ProfileDropdown />
+                  <ProfileDropdown locale={locale} />
                 </div>
               )}
             </div>

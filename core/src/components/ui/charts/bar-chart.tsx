@@ -57,11 +57,12 @@ export function BarChart({
   const resolvedInactiveColor = inactiveColor ?? activeColor;
   const maxValue = domain?.[1] ?? Math.max(...data.map((d) => d.value), 1);
   const minValue = domain?.[0] ?? 0;
+  const hasLabels = showLabels && data.some(item => item.label);
   const percent = (value: number) => Math.max(0, Math.min(100, (value - minValue) / (maxValue - minValue || 1) * 100));
 
   return (
     <div role={interactive ? "group" : "img"} aria-label={ariaLabel} className={cn("relative inline-flex w-full items-end", height)} onPointerLeave={() => onActiveIndexChange?.(undefined)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) onActiveIndexChange?.(undefined); }}>
-      {referenceValue !== undefined && <span className="pointer-events-none absolute left-0 right-0 z-10 border-t border-dashed border-fg-grey-400 text-xs text-fg-grey-500" style={{ bottom: `${percent(referenceValue)}%` }}>{referenceLabel}</span>}
+      {referenceValue !== undefined && <div data-chart-reference-layer className="pointer-events-none absolute inset-x-0 top-0 z-10" style={{ bottom: hasLabels ? "1.5rem" : 0 }}><span data-chart-reference className="absolute inset-x-0 h-0 border-t border-dashed border-fg-grey-400" style={{ top: `${100 - percent(referenceValue)}%` }}><span className="absolute left-0 top-0 text-xs text-fg-grey-500">{referenceLabel}</span></span></div>}
       {data.map((item, i) => {
         const isActive = i === activeIndex;
         const heightPct = percent(item.value);
@@ -74,7 +75,7 @@ export function BarChart({
             onPointerEnter={() => onActiveIndexChange?.(i)} onFocus={() => onActiveIndexChange?.(i)} onClick={() => onSelect?.(i)}
             onKeyDown={event => { const next = event.key === "ArrowRight" ? i + 1 : event.key === "ArrowLeft" ? i - 1 : event.key === "Home" ? 0 : event.key === "End" ? data.length - 1 : undefined; if (next !== undefined) { event.preventDefault(); const index = Math.max(0, Math.min(data.length - 1, next)); onActiveIndexChange?.(index); event.currentTarget.parentElement?.querySelectorAll<HTMLElement>('[role="button"]')[index]?.focus(); } else if (event.key === " " || event.key === "Enter") { event.preventDefault(); onSelect?.(i); } }}
             className={cn(
-              "relative flex flex-1 flex-col items-center justify-end",
+              "relative flex min-w-0 flex-1 flex-col items-center justify-end",
               height,
             )}
           >
@@ -93,10 +94,10 @@ export function BarChart({
               </div>
             )}
 
-            <div className="flex flex-1 items-end justify-center">
+            <div className="flex min-h-0 w-full flex-1 items-end justify-center">
               <div
                 className={cn(
-                  barColor,
+                  "max-w-[80%]", barColor,
                   barWidth === "thin"
                     ? "w-2 rounded-full"
                     : "w-8 rounded-lg",
@@ -105,9 +106,9 @@ export function BarChart({
               />
             </div>
 
-            {showLabels && item.label && (
+            {hasLabels && (
               <span
-                className={cn("mt-2", isActive ? LABEL_TEXT_ACTIVE : LABEL_TEXT)}
+                className={cn("mt-2 h-4 w-full shrink-0 truncate text-center", isActive ? LABEL_TEXT_ACTIVE : LABEL_TEXT)}
                 style={isActive ? { color: resolveColor(activeColor) } : undefined}
               >
                 {item.label}
