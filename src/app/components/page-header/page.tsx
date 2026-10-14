@@ -76,13 +76,13 @@ export default function PageHeaderCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Page Header"
-        hint="PageHeader 页面顶栏（search / title 两变体，装着搜索、通知、profile、actions），Breadcrumbs 面包屑。"
+        title="页面顶栏"
+        hint="组织页面标题、搜索、通知和常用操作，明确当前位置。"
       />
 
       <Section
         title="PageHeader"
-        description="2 个 Figma 预设 variant × 3 色 × 若干按钮开关。Figma 里的 Back / Bookmark / Favorite 三个分类是 IconButton 样张，不是 PageHeader 整体变体。"
+        description="组织标题、搜索、通知、个人信息和页面操作。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -173,7 +173,7 @@ export default function PageHeaderCasePage() {
 
       <Section
         title="Breadcrumbs"
-        description="链路导航。<code>items</code> 末项自动渲染为灰色当前页，前面自动变成主色链接。3 色。"
+        description="展示页面层级，点击上级名称返回对应页面。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

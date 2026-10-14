@@ -24,7 +24,7 @@ export { AgentDiffTable } from "./agent-diff-table";
 export type { AgentDiffColumn, AgentDiffChange, AgentDiffRow } from "./agent-diff-table";
 
 export { AgentCodeBlock } from "./agent-code-block";
-export type { AgentCodeDiffType, AgentCodePiece, AgentCodeDiffRow } from "./agent-code-block";
+export type { AgentCodeDiffType, AgentCodePiece, AgentCodeDiffRow, AgentCodeFoldRange } from "./agent-code-block";
 
 export { InsightCards } from "./insight-cards";
 export type { InsightTone, InsightSeries, InsightChart, InsightCard } from "./insight-cards";

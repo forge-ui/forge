@@ -207,8 +207,8 @@ export default function HistoryCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="History"
-        hint="HistoryItem × 3 variants × 8 colors × 4 structure cols × 6 content rows · HistoryGrouped"
+        title="历史记录"
+        hint="按时间展示操作和事件，支持分组和进度信息。"
       />
 
       {/* ───────── 1. Regular ───────── */}

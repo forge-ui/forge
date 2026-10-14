@@ -18,8 +18,8 @@ export default function ProgressCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Progress"
-        hint="ProgressBar — 8 色 × 2 size × label / value 变体 × onDark 两种背景。"
+        title="进度"
+        hint="展示任务完成度、使用配额和当前进展。"
       />
 
       {/* ============ Bar — Colors × Sizes ============ */}

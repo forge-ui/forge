@@ -247,11 +247,11 @@ export default function ChartCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Chart"
-        hint="17 种 chart 构件：Tooltip / Card / 5 种 list 原子 + 11 种 chart 本体（Meter / HalfDonut / DashedHalfDonut / Donut / Pie / MultilayerDonut / Bubble / Bar / BarHorizontal / BarUpsideDown / SmoothLine）。"
+        title="图表"
+        hint="展示趋势、占比和分布，支持图例、提示和多组数据。"
       />
 
-      <Section title="ChartTooltip" description="深色 tooltip，含颜色点 + 可选 label + 值 + 趋势箭头。">
+      <Section title="ChartTooltip" description="查看数据点的名称、数值和变化趋势。">
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
@@ -272,7 +272,7 @@ export default function ChartCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="ChartCard" description="白底卡片，装 chart 主体 + footer。默认填满父级列；4col/6col/8col 已废弃，仅在显式 width='fixed' 时用于组件展示固定尺寸。">
+      <Section title="ChartCard" description="组织图表、图例和补充信息，默认适应父容器宽度。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_CARD} minHeight={360}>
             <ChartCard title="Revenue" subtitle="Monthly">
@@ -286,7 +286,7 @@ export default function ChartCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="List Atoms" description="五个 list 原子，常用在 ChartCard footer / 右侧 legend 区。">
+      <Section title="List Atoms" description="展示图表图例、数据摘要和补充说明。">
         <SubSectionGrid cols={2}>
         <SubSection title="ChartListItem" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -334,7 +334,7 @@ export default function ChartCasePage() {
         </SubSectionGrid>
       </Section>
 
-      <Section title="Donut 系列" description="六种环形 chart：Meter（水平进度条）/ HalfDonut / DashedHalfDonut / Donut / Pie / MultilayerDonut。每个组件 props 各不相同，分别列出。">
+      <Section title="Donut 系列" description="用进度条、环形图和饼图展示完成度与数据占比。">
         <SubSectionGrid cols={2}>
         <SubSection title="MeterChart" stack>
           <PreviewBlock code={CODE_METER} minHeight={140}>
@@ -389,7 +389,7 @@ export default function ChartCasePage() {
         </SubSectionGrid>
       </Section>
 
-      <Section title="Bar / Bubble 系列" description="柱状与气泡图。每个组件 props 不同，分别列出。">
+      <Section title="Bar / Bubble 系列" description="用柱状图和气泡图比较数量与分布。">
         <SubSectionGrid cols={2}>
         <SubSection title="BarChart" stack>
           <PreviewBlock code={CODE_BAR} minHeight={200}>
@@ -434,7 +434,7 @@ export default function ChartCasePage() {
         </SubSectionGrid>
       </Section>
 
-      <Section title="SmoothLineChart" description="平滑曲线，支持多 series、填充面积、x/y 轴标签、tooltip。">
+      <Section title="SmoothLineChart" description="展示多组数据的变化趋势，支持面积填充、坐标标签和提示。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_LINE} minHeight={220}>
             <div className="w-[500px]">

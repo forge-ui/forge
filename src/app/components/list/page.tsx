@@ -1,5 +1,6 @@
 "use client";
 
+import { MigrationPreview } from "../_migration-previews";
 import { useState } from "react";
 import Link from "next/link";
 import {
@@ -150,11 +151,19 @@ export default function ListCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="List"
-        hint="列表族：ListItem / DescriptionItem / ListGroup / ContactItem / NotificationItem / ProfileCard。"
+        title="列表"
+        hint="组织条目、详情字段、联系人和通知，便于浏览与操作。"
       />
 
-      <Section title="ListItem" description="通用列表行，左 lead + 中标题副标题 + 右尾部 value / trend。">
+      <Section title="选择与批量操作" description="选择文档后显示批量操作，清空选择后恢复普通工具栏。">
+        <MigrationPreview kind="selection" />
+        <CodeBlock code={'<Toolbar\n  left={<span>选择后可批量归档</span>}\n  selection={{\n    count: selectedIds.length,\n    onClear: () => setSelectedIds([]),\n    actions: <Button onClick={archiveSelected}>归档</Button>,\n  }}\n/>'} />
+      </Section>
+      <Section title="列表空态与恢复" description="通过现有列表、搜索和按钮，组织首次使用、搜索无结果及加载重试。">
+        <MigrationPreview kind="empty" />
+      </Section>
+
+      <Section title="ListItem" description="展示条目名称、说明、图标和右侧补充信息。">
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
@@ -192,7 +201,7 @@ export default function ListCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="DescriptionItem" description="字段展示行：标签（灰）+ 主内容 + 可选 actions。用于详情页字段组。">
+      <Section title="DescriptionItem" description="展示详情字段的名称、内容和可选操作。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_DESCITEM_USAGE}>
             <div className="w-full max-w-md">
@@ -210,7 +219,7 @@ export default function ListCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="ListGroup" description="白底卡片容器，装一组 ListItem / DescriptionItem。Figma 两种预设：「Without Tab」纯列表 / 「With Tab」头部带 tab 切换。">
+      <Section title="ListGroup" description="将一组条目组织在卡片内，可通过页签切换内容。">
         <SubSection title="Without Tab" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             纯列表模式：title + subtitle + badge + 一组 items。
@@ -264,7 +273,7 @@ export default function ListCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="ContactItem" description="IM 联系人行。头像 / 姓名 / 最新消息 / 时间 / 未读徽标 / 在线点。">
+      <Section title="ContactItem" description="展示联系人、最新消息、时间和未读状态。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_CONTACT_USAGE}>
             <div className="w-full max-w-md">
@@ -278,7 +287,7 @@ export default function ListCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="NotificationItem" description="通知中心单条。未读态浅黄背景，含 tag / time / title / body / Mark as Read。">
+      <Section title="NotificationItem" description="展示通知标题、正文、时间和已读状态。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_NOTIF_USAGE} minHeight={200}>
             <div className="w-full max-w-md">
@@ -299,7 +308,7 @@ export default function ListCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="ProfileCard" description="profile 选择器行。头像 + 姓名 + 副标题 + 下拉箭头，3 种 state。">
+      <Section title="ProfileCard" description="展示当前成员信息，作为身份或账号切换入口。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_PROFILE_USAGE} minHeight={200}>
             <div className="w-full max-w-md flex flex-col gap-3">

@@ -72,8 +72,8 @@ export default function ModalCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Modal"
-        hint="ConfirmationDialog — 5 色 × 2 布局（spread 居中两端分布 / right 左对齐右端按钮）。"
+        title="确认弹窗"
+        hint="在删除、发送等重要操作前说明结果并请求确认。"
       />
 
       {dialogSpecs.map((spec) => (

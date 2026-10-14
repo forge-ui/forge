@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { MigrationPreview } from "../_migration-previews";
 import { useState } from "react";
 import {
   TextField,
@@ -120,7 +121,8 @@ const CODE_SELECT_SHAPES = `<SelectOption shape="rounded" options={options} />
 <SelectOption shape="pill" options={options} />`;
 
 const SELECT_PROPS: ApiTableRow[] = [
-  { attr: "options", type: "{ label: string; value: string }[]", defaultValue: "—", description: "下拉选项列表。" },
+  { attr: "options", type: "SelectOptionItem[]", defaultValue: "—", description: "下拉选项列表，每项包含 value、label，可附 image、icon、description。" },
+  { attr: "options[].icon / description", type: "ReactNode / string", defaultValue: "—", description: "可选图标和说明文字；普通选项保持原尺寸。" },
   { attr: "type", type: "'general' | 'single' | 'multiple' | 'image'", defaultValue: "'general'", description: "general / single 单选（行为一致）/ multiple 多选（tag 展示）/ image 图片选项。" },
   { attr: "value", type: "string | string[]", defaultValue: "—", description: "当前选中值，multiple 时为数组。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "高亮色。" },
@@ -148,7 +150,8 @@ const DP_PROPS: ApiTableRow[] = [
 
 const CODE_TOGGLE_USAGE = `<Toggle checked={on} onChange={setOn} />
 <Toggle checked={on} color="blue" />
-<Toggle checked={on} size="sm" />`;
+<Toggle checked={on} size="sm" />
+<Toggle checked={on} onChange={setOn} draggable />`;
 
 const CODE_RADIO_USAGE = `<RadioButton checked={value === "a"} onChange={() => setValue("a")} />
 <RadioButton checked={value === "b"} onChange={() => setValue("b")} color="blue" />`;
@@ -157,6 +160,9 @@ const CODE_CHECKBOX_USAGE = `<CheckboxControl checked={on} onChange={setOn} />
 <CheckboxWithLabel label="I agree" checked={on} onChange={setOn} />`;
 
 const TOGGLE_PROPS: ApiTableRow[] = [
+  { attr: "defaultChecked", type: "boolean", defaultValue: "false", description: "未传 checked 时的初始状态。" },
+  { attr: "draggable", type: "boolean", defaultValue: "false", description: "允许拖动手柄切换；取消拖动会恢复原状态。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "滑动与回弹遵循系统动效偏好，或立即呈现结果。" },
   { attr: "checked", type: "boolean", defaultValue: "false", description: "开关状态。" },
   { attr: "onChange", type: "(checked: boolean) => void", defaultValue: "—", description: "切换回调。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "选中态主色。" },
@@ -262,13 +268,13 @@ export default function InputFieldCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Input Field"
-        hint="表单元素大全：文本输入、选择器、日期、上传、开关、单选、复选、图标/颜色选择器。"
+        title="表单与输入"
+        hint="收集文本、选项、日期和文件，提供校验与状态反馈。"
       />
 
       <Section
         title="TextField"
-        description="单行文本输入，3 色 × 5 状态 × 2 形状，支持左右图标与后缀。"
+        description="输入单行文本，支持图标、后缀和校验状态。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -347,7 +353,7 @@ export default function InputFieldCasePage() {
 
       <Section
         title="TextArea"
-        description="多行文本输入，支持 label + headerAction，其余 props 与 TextField 对齐。"
+        description="输入多行文本，可附带标题和辅助操作。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -368,7 +374,7 @@ export default function InputFieldCasePage() {
 
       <Section
         title="SelectOption"
-        description="下拉选择，支持单选 / 多选（tag 展示）/ 图片选项三种类型。"
+        description="从下拉列表中选择一项或多项，支持图片选项。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -397,11 +403,14 @@ export default function InputFieldCasePage() {
         <SubSection title="API" stack>
           <ApiTable rows={SELECT_PROPS} />
         </SubSection>
+        <SubSection title="带图标和说明" stack>
+          <MigrationPreview kind="select" />
+        </SubSection>
       </Section>
 
       <Section
         title="Datepicker"
-        description="日期选择，支持单日与区间两种模式。"
+        description="选择单个日期或日期区间。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -422,7 +431,7 @@ export default function InputFieldCasePage() {
 
       <Section
         title="Selection Controls"
-        description="Toggle / RadioButton / CheckboxControl / CheckboxWithLabel 四类轻量控件，统一 3 色主色。"
+        description="通过开关、单选和复选控件选择选项。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="Toggle" stack>
@@ -433,6 +442,7 @@ export default function InputFieldCasePage() {
             <Toggle checked={toggled} onChange={setToggled} />
           </PreviewBlock>
           <ApiTable rows={TOGGLE_PROPS} />
+          <MigrationPreview kind="toggle" />
         </SubSection>
 
         <SubSection title="RadioButton" stack>
@@ -480,7 +490,7 @@ export default function InputFieldCasePage() {
 
       <Section
         title="Upload"
-        description="三种上传区：MediaUpload 多图网格、ProfileImgUpload 头像单图、FileUpload 文件列表。"
+        description="上传图片、头像或文件，并查看已选内容。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="MediaUpload" stack>
@@ -517,7 +527,7 @@ export default function InputFieldCasePage() {
 
       <Section
         title="Pickers"
-        description="ColorPicker / IconPicker / IconSelector —— 三类可视化选择器。"
+        description="选择颜色或图标。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="ColorPicker" stack>

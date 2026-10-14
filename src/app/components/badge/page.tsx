@@ -113,13 +113,13 @@ export default function BadgeCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Badge"
-        hint="Badge 家族：NotificationBadge 计数徽章、Label 文字标签、CircleIcon 圆形图标、ArtisticIcon 装饰图标。"
+        title="徽章与标签"
+        hint="展示数量、状态和分类，或用图标强调重要入口。"
       />
 
       <Section
         title="NotificationBadge"
-        description="右上角计数小徽章，6 种颜色。"
+        description="用数字标记未读数量或待处理事项。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -157,7 +157,7 @@ export default function BadgeCasePage() {
 
       <Section
         title="Label"
-        description="文字标签，7 色 × 3 尺寸 × outline/solid，适合 Status、Tag、Category 场景。"
+        description="用文字标签标记状态、分类和类别。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -215,7 +215,7 @@ export default function BadgeCasePage() {
 
       <Section
         title="CircleIcon"
-        description="圆形图标容器，8 色 × 3 变体 × 4 尺寸，常用于 List / Card 的头像位。"
+        description="将图标放在圆形容器中，适合列表和卡片入口。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -294,7 +294,7 @@ export default function BadgeCasePage() {
 
       <Section
         title="ArtisticIcon"
-        description="48px 带渐变/光球装饰的图标容器，7 色 × 2 变体，用于强调入口（Feature Highlight）。"
+        description="用带装饰效果的图标强调功能入口。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

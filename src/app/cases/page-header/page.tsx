@@ -55,8 +55,8 @@ export default function PageHeaderCasePage() {
   return (
     <div className="flex flex-col gap-8">
       <PageHeading
-        title="Page Header"
-        hint="Breadcrumbs · TopBar · PageHeader (Search & Widget · Page Title)"
+        title="页面顶栏"
+        hint="组织页面标题、搜索、通知和常用操作，明确当前位置。"
       />
 
       <Section title="Breadcrumbs" description="Colors: purple, blue, black">

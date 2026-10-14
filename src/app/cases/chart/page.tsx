@@ -24,8 +24,8 @@ export default function ChartCasePage() {
   return (
     <div className="flex flex-col gap-8">
       <PageHeading
-        title="Chart"
-        hint="ChartTooltip · ChartCard · ChartListItem · ChartStatFooter · MeterChart · HalfDonutChart · DashedHalfDonutChart · DonutChart · PieChart · MultilayerDonutChart · BubbleChart · BarChart · BarHorizontalChart · BarUpsideDownChart · SmoothLineChart"
+        title="图表"
+        hint="展示趋势、占比和分布，支持图例、提示和多组数据。"
       />
 
       <Section title="ChartTooltip" description="Dark tooltip for charts">

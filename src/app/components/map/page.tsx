@@ -101,13 +101,13 @@ export default function MapCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Map"
-        hint="MapCard 世界地图卡片，高亮大洲 + 区域销量列表，用于 dashboard 的地理分布模块。"
+        title="地图"
+        hint="在世界地图上高亮区域，并展示对应的统计数据。"
       />
 
       <Section
         title="MapCard"
-        description="内置 SVG 世界地图，3 种尺寸 × 3 种主色，支持自定义高亮大洲与区域列表。"
+        description="高亮世界地图中的区域，并显示对应统计信息。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />

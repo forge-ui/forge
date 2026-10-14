@@ -77,13 +77,13 @@ export default function CommentCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Comment & Review"
-        hint="CommentItem 讨论评论（支持回复嵌套），ReviewItem 用户评价（含星级）。"
+        title="评论与评价"
+        hint="展示讨论、回复和评分，支持头像、时间和附图。"
       />
 
       <Section
         title="CommentItem"
-        description="标准评论，含头像 / 作者 / 时间 / 正文 / Reply 按钮，可选附图和多条回复。"
+        description="展示作者、时间和评论正文，支持附图与嵌套回复。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -131,7 +131,7 @@ export default function CommentCasePage() {
 
       <Section
         title="ReviewItem"
-        description="商品评价。头像 + 姓名 + 星级 + 正文，可选副标题、日期、附图与 +N 溢出。"
+        description="展示用户评分、评价正文和附图。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_REVIEW_USAGE}>

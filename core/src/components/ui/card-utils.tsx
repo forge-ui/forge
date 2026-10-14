@@ -477,7 +477,7 @@ export function StatCardShell({
   className,
 }: {
   title: string;
-  value: string;
+  value: ReactNode;
   trend?: string;
   trendDirection?: TrendDirection;
   subtitle?: string;

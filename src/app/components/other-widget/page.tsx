@@ -70,13 +70,13 @@ export default function OtherWidgetCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Other Widget"
-        hint="四个独立小部件：CurrencyConverter / RatingStars / ImageGrid / ProductRow。"
+        title="实用组件"
+        hint="提供货币换算、星级评分、图片排列和产品条目。"
       />
 
       <Section
         title="CurrencyConverter"
-        description="货币兑换卡片。两个输入 + 汇率说明 + Convert 按钮。3 种按钮色。"
+        description="输入金额并选择币种，查看汇率和换算结果。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -101,7 +101,7 @@ export default function OtherWidgetCasePage() {
 
       <Section
         title="RatingStars"
-        description="评分星级。数字 + N 颗星（@forge-ui-official/core/icons StarBold）。"
+        description="用星级和数字展示评分。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_RATING_USAGE}>
@@ -127,7 +127,7 @@ export default function OtherWidgetCasePage() {
 
       <Section
         title="ImageGrid"
-        description="水平图片排列，支持尾部 +N 占位。"
+        description="横向排列图片，超出部分可显示剩余数量。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_IMAGEGRID_USAGE}>
@@ -142,7 +142,7 @@ export default function OtherWidgetCasePage() {
 
       <Section
         title="ProductRow"
-        description="紧凑产品行：44×44 缩略图 + 标题 + 副标题。无外框，常用在 list / dropdown 里。"
+        description="用缩略图、名称和说明展示一项产品。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_PRODUCTROW_USAGE}>

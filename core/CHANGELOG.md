@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- 将 99 项交互融合为 54 项既有组件增强与 45 项正式组合案例，官网沿用原组件分类，默认中文并支持英文、蓝/紫/黑主题及减少动效。
+- 增强 Button/IconButton 的可选效果和异步反馈、SurfaceCard、Toast、Tooltip、ListItem、Stepper；增加拖动开关、日期区间确认、浮动标签、真实上传进度、可编辑评分和滑动页签。
+- 增强 ChatBubble/ChatInputBar 的反应、引用回复、语音与发送状态；工具步骤支持受控状态；图表支持动画数据、累计面积、置信带、目标线和独立目标环。
+- AgentCodeBlock 支持嵌套折叠与复制失败重试；指标卡支持可选数字过渡；Toolbar 支持列表选择操作；AppLayout 融合已验收的侧栏连续伸缩。
+- 提供正式交互总览、逐项迁移对照和 API 用法。23 项暂缓与 1 项排除保持原决策；不新增平行公共组件。
+
 ## 0.4.3
 
 - Render typed agent, skill and tool mentions as removable composer chips and provide structured send context.

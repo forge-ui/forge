@@ -60,10 +60,16 @@ test("Select Escape restores focus and retained options cannot select", async ()
     await act(async () => { option.focus(); option.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); });
     assert.equal(trigger.getAttribute("aria-expanded"), "false");
     assert.equal(document.activeElement, trigger);
+    const closing = option.closest<HTMLElement>(".forge-motion-surface")!;
     assert.ok(option.closest('[inert]'));
+    assert.equal(closing.getAttribute("aria-hidden"), "true");
+    const duration = getComputedStyle(closing).getPropertyValue("--forge-motion-exit-duration").trim();
+    const milliseconds = Number.parseFloat(duration) * (duration.endsWith("ms") ? 1 : 1000);
+    assert.ok(Number.isFinite(milliseconds) && milliseconds >= 0);
     await act(async () => option.click());
     assert.equal(selected, 0);
-    await wait(150); assert.equal(document.querySelector('[role="option"]'), null);
+    await wait(milliseconds + 30);
+    assert.equal(Boolean(document.querySelector('[role="option"]')), false);
   } finally { await env.cleanup(); }
 });
 

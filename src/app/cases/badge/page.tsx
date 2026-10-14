@@ -46,8 +46,8 @@ export default function BadgeCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Badge"
-        hint="NotificationBadge / Label / CircleIcon / ArtisticIcon — 圆形数字徽章、文字标签、图标容器、渐变装饰。"
+        title="徽章与标签"
+        hint="展示数量、状态和分类，或用图标强调重要入口。"
       />
 
       {/* ============ NotificationBadge ============ */}

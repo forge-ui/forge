@@ -86,13 +86,13 @@ export default function ProgressCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Progress"
-        hint="ProgressBar 线性进度条，8 色 × 2 尺寸，支持 label、百分比与深色底。"
+        title="进度"
+        hint="展示任务完成度、使用配额和当前进展。"
       />
 
       <Section
         title="ProgressBar"
-        description="最基础的进度展示元素，常用于 dashboard、卡片、任务完成度等场景。"
+        description="展示完成比例，可附带文字和百分比。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />

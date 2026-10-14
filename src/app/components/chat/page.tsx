@@ -48,13 +48,13 @@ export default function ChatCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Chat"
-        hint="ChatBubble 支持 text / voice / file / image 四变体，ChatInputBar 是底部输入。"
+        title="聊天"
+        hint="展示文字、语音、图片和文件消息，提供统一的消息输入栏。"
       />
 
       <Section
         title="ChatBubble"
-        description="IM 气泡，左右方向 × 4 变体 × 3 主色。received 渲染白底 + 头像，sent 渲染主色底。"
+        description="展示收到或发出的文字、语音、文件和图片消息。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -112,7 +112,7 @@ export default function ChatCasePage() {
 
       <Section
         title="ChatInputBar"
-        description="底部输入栏：附件按钮 + 输入框 + 紫色发送按钮，回车即发。"
+        description="输入和发送消息，支持附件、提及、命令、模型选择和停止生成。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_INPUT_USAGE}>

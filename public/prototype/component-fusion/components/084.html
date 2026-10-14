@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>语音响应圆点</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"084",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"084",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"084",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"084",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"084"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u084{position:relative;width:340px;height:380px;display:flex;flex-direction:column;align-items:center;padding:28px 24px 26px;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 60px -36px var(--ux-shadow-strong);overflow:hidden;text-align:center}
+.u084-lab{font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);letter-spacing:.06em;color:var(--ux-ink-3);transition:color .3s}
+.u084[data-s="listen"] .u084-lab{color:var(--ux-danger)}
+.u084-dots{display:flex;align-items:center;justify-content:center;gap:12px;height:100px;margin-top:14px}
+.u084-dots i{width:22px;height:calc(22px + var(--h,0) * 70px);border-radius:999px;background:linear-gradient(180deg,var(--c1),var(--c2));transition:height .12s linear}
+.u084-dots i:nth-child(1){--c1:var(--fg-green-500);--c2:var(--accent)}
+.u084-dots i:nth-child(2){--c1:var(--accent);--c2:var(--accent)}
+.u084-dots i:nth-child(3){--c1:var(--accent);--c2:var(--accent)}
+.u084-dots i:nth-child(4){--c1:var(--fg-red);--c2:var(--fg-red)}
+.u084-dots i:nth-child(5){--c1:var(--fg-yellow-700);--c2:var(--fg-red)}
+.u084[data-s="idle"] .u084-dots i{animation:u084-breath 2.4s ease-in-out infinite;animation-delay:calc(var(--i) * .12s)}
+@keyframes u084-breath{50%{transform:scale(1.15);opacity:.75}}
+.u084[data-s="think"] .u084-dots i{height:22px;animation:u084-wave 1s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * .1s)}
+@keyframes u084-wave{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-18px)}}
+.u084-say{min-height:48px;margin:16px 0 0;font-size:var(--forge-text-base-size);line-height:1.45;font-weight:var(--forge-font-bold-weight);letter-spacing:-.03em}
+.u084-say .c{display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:var(--ux-accent);animation:u084-caret 1s steps(1) infinite}
+@keyframes u084-caret{50%{opacity:0}}
+.u084-say.dim{color:var(--ux-ink-3);font-weight:var(--forge-font-semibold-weight);font-size:var(--forge-text-sm-size)}
+.u084-mic{position:relative;width:76px;height:76px;margin-top:auto;border:0;padding:0;border-radius:50%;display:grid;place-items:center;background:var(--ux-ink);color:var(--ux-page);touch-action:none;user-select:none;-webkit-user-select:none;transition:transform .35s var(--ux-spring),background-color .3s}
+.u084-mic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.u084-mic::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--ux-danger);opacity:0;transform:scale(calc(1 + var(--lv,0) * .35));transition:opacity .2s}
+.u084[data-s="listen"] .u084-mic{background:var(--ux-danger);color:var(--accent-foreground);transform:scale(1.08)}
+.u084[data-s="listen"] .u084-mic::before{opacity:.5}
+.u084-mic:focus-visible{outline:2px solid var(--ux-accent);outline-offset:6px}
+.u084-hint{margin-top:18px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-3)}
+</style>
+<div class="ux u084" data-s="idle">
+  <span class="u084-lab" aria-live="polite">Idle</span>
+  <div class="u084-dots" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></div>
+  <p class="u084-say dim" aria-live="polite">Listening while you hold</p>
+  <button class="u084-mic" type="button" aria-label="Hold to talk"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="10" y="4" width="8" height="13" rx="4"/><path d="M6.5 13.5a7.5 7.5 0 0 0 15 0M14 21v3"/></svg></button>
+  <span class="u084-hint" aria-hidden="true">Press and hold to talk</span>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var dots = root.querySelectorAll('.u084-dots i'), mic = root.querySelector('.u084-mic'), say = root.querySelector('.u084-say'), lab = root.querySelector('.u084-lab');
+
+  var ANS = ['Add a design review tomorrow at 10 AM', 'What’s the weather in Jeju this Saturday?', 'Tell Doyun Han I sent the draft'];
+  var raf = 0, t0 = 0, ts = [], n = 0, held = false;
+  function set(s, label) { root.setAttribute('data-s', s); lab.textContent = label; }
+  // 듣는 동안에는 여러 사인파를 섞은 가짜 음량으로 점의 높이를 바꿉니다
+  function listen(now) {
+    if (!root.isConnected || root.getAttribute('data-s') !== 'listen') return;
+    var t = (now - t0) / 1000, lv = 0;
+    dots.forEach(function (d, i) {
+      var v = Math.abs(Math.sin(t * 7 + i * 1.3) * 0.6 + Math.sin(t * 13 + i * 2.1) * 0.3 + Math.sin(t * 3.1) * 0.2);
+      v = window.forgeReduced() ? 0.4 : Math.min(1, v * (0.7 + 0.3 * Math.sin(t * 2 + i)));
+      d.style.setProperty('--h', v.toFixed(3)); lv += v;
+    });
+    mic.style.setProperty('--lv', (lv / 5).toFixed(3));
+    raf = requestAnimationFrame(listen);
+  }
+  function down() {
+    if (held) return;
+    held = true;
+    ts.forEach(clearTimeout); ts = [];
+    set('listen', 'Listening');
+    say.className = 'u084-say dim'; say.textContent = 'Go ahead…';
+    t0 = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(listen);
+  }
+  function up() {
+    if (!held) return;
+    held = false;
+    cancelAnimationFrame(raf);
+    dots.forEach(function (d) { d.style.setProperty('--h', 0); });
+    mic.style.setProperty('--lv', 0);
+    set('think', 'Thinking');
+    say.textContent = '';
+    var txt = ANS[n++ % ANS.length];
+    ts.push(setTimeout(function () {
+      if (!root.isConnected) return;
+      set('idle', 'Got it');
+      say.className = 'u084-say';
+      // 받아 적은 문장은 한 글자씩 흘러나옵니다
+      var k = 0;
+      (function type() {
+        if (!root.isConnected) return;
+        say.innerHTML = '';
+        say.appendChild(document.createTextNode(txt.slice(0, k)));
+        if (k < txt.length) { var c = document.createElement('span'); c.className = 'c'; say.appendChild(c); k++; ts.push(setTimeout(type, window.forgeReduced() ? 0 : 38)); }
+      })();
+    }, window.forgeReduced() ? 300 : 1600));
+  }
+  mic.addEventListener('pointerdown', function (e) { if (e.button !== 0) return; mic.setPointerCapture(e.pointerId); down(); });
+  mic.addEventListener('pointerup', up);
+  mic.addEventListener('pointercancel', up);
+  mic.addEventListener('keydown', function (e) { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); down(); } });
+  mic.addEventListener('keyup', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); up(); } });
+  mic.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+})();</script></body></html>

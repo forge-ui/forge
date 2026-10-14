@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-14",
+  "batch": 2,
+  "baseHead": "54598df83bfaa8a3580355d8952d558f79e24525",
+  "itemIds": [
+    "013",
+    "043",
+    "044"
+  ],
+  "preview": "http://localhost:3001/prototype/component-fusion",
+  "version": "0.4.5",
+  "committed": false,
+  "published": false,
+  "userAccepted": true,
+  "checks": {
+    "coreCheck": {
+      "passed": true,
+      "componentTests": 220,
+      "auditTests": 17,
+      "auditErrors": 0,
+      "existingWarnings": [
+        "ask-ai-history.tsx:114 w-72"
+      ]
+    },
+    "coreBuild": true,
+    "websiteTypecheck": true,
+    "targetedEslint": true,
+    "diffCheck": true,
+    "packageApiSnapshot": {
+      "rootExports": 441,
+      "wildcardEntries": 134
+    },
+    "packageCheck": {
+      "passed": false,
+      "failures": [
+        {
+          "metric": "packed bytes",
+          "actual": 769568,
+          "limit": 750000
+        },
+        {
+          "metric": "unpacked bytes",
+          "actual": 3101074,
+          "limit": 3020000
+        },
+        {
+          "metric": "entry count",
+          "actual": 473,
+          "limit": 464
+        },
+        {
+          "metric": "JavaScript sourcemap bytes",
+          "actual": 1659356,
+          "limit": 1620000
+        },
+        {
+          "metric": "styles.css raw bytes",
+          "actual": 82762,
+          "limit": 77000
+        }
+      ],
+      "note": "Only budget failures reported; thresholds unchanged. This is local preview validation, not release readiness."
+    }
+  },
+  "browser": {
+    "browser": "Existing stable Google Chrome session",
+    "checks": [
+      "Toggle click, Space, disabled state and real pointer drag across midpoint update the setting.",
+      "Accordion nested steps expand, switching closes the prior panel, End focuses the final title.",
+      "Pagination updates document rows, disables next on page 20, clamps page to 7 when total shrinks.",
+      "300px container and 390px viewport fit without horizontal overflow; numeric buttons remain 40px.",
+      "Chinese/English labels, blue/purple/black controls, and explicit motion none verified.",
+      "Runtime prefers-reduced-motion change disables Toggle immediately after replacing the non-reactive hook; transition is none. Pagination indicator and Accordion height transitions also stop.",
+      "Final reload has no new warning/error logs."
+    ],
+    "viewportOverridesRestored": true,
+    "mediaOverridesRestored": true,
+    "screenshot": "artifacts/component-fusion/batch-2.png"
+  },
+  "scopeNote": "New interactions enhance existing Toggle, Pagination and Accordion. No new public component or navigation category. Prior user approval of three unspecified previews is retained without guessing their IDs.",
+  "acceptance": {
+    "date": "2026-10-14",
+    "userStatement": "OK，过"
+  }
+}

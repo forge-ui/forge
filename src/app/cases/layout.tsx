@@ -1,3 +1,4 @@
+import { FusionFamilyExamples } from "../components/_fusion/family-examples";
 import { SiteHeader } from "../_components/site-header";
 import { CasesNav } from "./_nav";
 import { CasesToc } from "./_toc";
@@ -16,6 +17,7 @@ export default function CasesLayout({
           <div className="mx-auto flex w-full max-w-5xl gap-16">
             <article className="flex min-w-0 flex-1 flex-col gap-10">
               {children}
+              <FusionFamilyExamples />
             </article>
             <CasesToc />
           </div>

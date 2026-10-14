@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TabBar, ButtonGroup } from "@forge-ui-official/core";
+import { MigrationPreview } from "../_migration-previews";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -10,10 +11,10 @@ const CODE_IMPORT = `import { TabBar, ButtonGroup } from "@forge-ui-official/cor
 
 const CODE_TABBAR_USAGE = `<TabBar
   tabs={[
-    { label: "Overview", active: true, badge: 3 },
-    { label: "Analytics", badge: 12 },
-    { label: "Reports" },
-    { label: "Settings" },
+    { label: "概览", active: true, badge: 3 },
+    { label: "分析", badge: 12 },
+    { label: "报告" },
+    { label: "设置" },
   ]}
 />`;
 
@@ -23,25 +24,25 @@ const CODE_TABBAR_COLORS = `<TabBar color="purple" tabs={tabs} />
 
 const CODE_TABBAR_BADGE = `<TabBar
   tabs={[
-    { label: "All", active: true, badge: 128 },
-    { label: "Active", badge: 32 },
-    { label: "Closed", badge: 96 },
+    { label: "全部", active: true, badge: 128 },
+    { label: "进行中", badge: 32 },
+    { label: "已归档", badge: 96 },
   ]}
 />`;
 
 const TABS_SAMPLE = [
-  { label: "Overview", active: true, badge: 3 },
-  { label: "Analytics", badge: 12 },
-  { label: "Reports" },
-  { label: "Settings" },
+  { label: "概览", active: true, badge: 3 },
+  { label: "分析", badge: 12 },
+  { label: "报告" },
+  { label: "设置" },
 ];
 
 const TABBAR_PROPS: ApiTableRow[] = [
   {
     attr: "tabs",
-    type: "{ label: string; active?: boolean; badge?: number }[]",
+    type: "{ label: string; active?: boolean; badge?: number; id?: string; controls?: string }[]",
     defaultValue: "—",
-    description: "页签列表，active 为 true 的项高亮，badge 显示右上角数字。",
+    description: "页签列表；id 和 controls 可与 TabsContent 的 labelledBy 和 id 关联。",
   },
   {
     attr: "color",
@@ -124,13 +125,13 @@ export default function TabCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Tab"
-        hint="页签组件家族：TabBar 用于页面主导航，ButtonGroup 用于小范围切换视图。"
+        title="页签与切换"
+        hint="在同一页面中切换内容、分类或视图。"
       />
 
       <Section
         title="TabBar"
-        description="顶部页签导航，对应 Figma 「Page Tab」。3 种主色，可选 badge。"
+        description="切换页面内容，支持显示数量标记。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -165,9 +166,9 @@ export default function TabCasePage() {
           <PreviewBlock code={CODE_TABBAR_BADGE} minHeight={140}>
             <TabBar
               tabs={[
-                { label: "All", active: true, badge: 128 },
-                { label: "Active", badge: 32 },
-                { label: "Closed", badge: 96 },
+                { label: "全部", active: true, badge: 128 },
+                { label: "进行中", badge: 32 },
+                { label: "已归档", badge: 96 },
               ]}
             />
           </PreviewBlock>
@@ -178,9 +179,19 @@ export default function TabCasePage() {
         </SubSection>
       </Section>
 
+      <Section title="页签内容切换" description="将标签栏与内容面板关联，切换时衔接方向与高度。">
+        <MigrationPreview kind="tabs" />
+        <ApiTable rows={[
+          { attr: "TabsContent.activeKey", type: "string | number", defaultValue: "—", description: "切换内容的键；表单与任务状态由外层保存。" },
+          { attr: "TabsContent.transition", type: "'fade' | 'slide'", defaultValue: "'fade'", description: "slide 先退场再进入新内容，快速切换以最后一次选择为准。" },
+          { attr: "TabsContent.direction", type: "'forward' | 'backward'", defaultValue: "数字键自动推断", description: "指定切换方向；字符串键可显式传入。" },
+          { attr: "TabsContent.motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "关闭动效时立即切换；auto 遵循系统减弱动效设置。" },
+        ]} />
+      </Section>
+
       <Section
         title="ButtonGroup"
-        description="分段控制器，对应 Figma 「In Group」。用于切换过滤维度或视图模式。"
+        description="在多个筛选维度或视图模式之间切换。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

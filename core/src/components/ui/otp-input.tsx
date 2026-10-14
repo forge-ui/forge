@@ -8,6 +8,7 @@ import type { MotionPreference } from "../../lib/motion";
 
 export type OtpInputProps = {
   length?: number;
+  locale?: "zh" | "en";
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
@@ -32,9 +33,9 @@ const halves = [`polygon(0% 0%, ${edge}, 0% 100%)`, `polygon(100% 0%, ${edge}, 1
 const crack = `M ${teeth.map(([x, y]) => `${x * .54} ${y * .68}`).join(" L ")}`;
 const ease = [.16, 1, .3, 1] as const;
 
-export function OtpInput({ length = 6, value: controlled, defaultValue = "", onChange, onComplete, verify, onSuccess,
-  disabled = false, autoFocus = false, name, inputLabel = "验证码", hint = "请输入验证码", verifyingLabel = "正在验证…",
-  successLabel = "验证成功", errorLabel = "验证码不正确，请重试", motion: motionPreference = "auto", className = "" }: OtpInputProps) {
+export function OtpInput({ length = 6, locale = "zh", value: controlled, defaultValue = "", onChange, onComplete, verify, onSuccess,
+  disabled = false, autoFocus = false, name, inputLabel = locale === "zh" ? "验证码" : "Verification code", hint = locale === "zh" ? "请输入验证码" : "Enter your verification code", verifyingLabel = locale === "zh" ? "正在验证…" : "Verifying…",
+  successLabel = locale === "zh" ? "验证成功" : "Verified", errorLabel = locale === "zh" ? "验证码不正确，请重试" : "Incorrect code. Try again", motion: motionPreference = "auto", className = "" }: OtpInputProps) {
   const size = Number.isFinite(length) ? Math.max(2, Math.min(10, Math.round(length))) : 6;
   const clean = (text: string) => text.replace(/\D/g, "").slice(0, size);
   const [internal, setInternal] = useState(defaultValue);

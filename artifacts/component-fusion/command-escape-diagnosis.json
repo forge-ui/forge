@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-14T06:45:28.355461+00:00",
+  "component": "CommandMotionPreview + CommandSearch + Modal",
+  "purpose": "诊断 Escape 从已聚焦搜索框冒泡后是否关闭示例；不将模拟事件等同于当前 Chrome 的键盘投递验收。",
+  "sourceInspection": {
+    "commandSearch": "Escape 不被输入框键盘 switch 拦截，按默认分支返回并保留冒泡。",
+    "dialogSurface": "keydown 仅处理 Tab；原生 cancel 调用 onOpenChange(false)。",
+    "preview": "局部 Escape 在 open、非 defaultPrevented、非 isComposing 时 preventDefault、stopPropagation 并 setOpen(false)。"
+  },
+  "simulatedVerification": {
+    "environment": "Node 22.23.2 + JSDOM，渲染实际 React 示例与组件；HTMLDialogElement.showModal/close 以属性及 close 事件模拟，motion=none。",
+    "exitCode": 0,
+    "repeatedOpenEscapeCycles": 3,
+    "results": {
+      "dialogOpen": false,
+      "dialogDataState": "closed",
+      "escapeDefaultPrevented": true,
+      "focusRestoredToTrigger": true,
+      "captureKey": "Escape",
+      "captureIsComposing": false,
+      "captureTarget": "INPUT"
+    },
+    "imeGuard": "isComposing=true 的 Escape 保持打开；随后普通 Escape 关闭，断言通过。",
+    "limitation": "证明 React 事件冒泡、状态更新及 close 监听恢复焦点逻辑；不证明浏览器原生 cancel 行为或当前 Chrome 键盘事件投递。"
+  },
+  "browserVerification": {
+    "escapeDeliveryConfirmed": false,
+    "observation": "搜索输入框聚焦时按 Escape 后焦点变为 body，dialog 仍 open；关闭按钮聚焦时按 Escape 可关闭并恢复触发按钮焦点，Tab 焦点循环正常。",
+    "cause": "未确定，不归因为浏览器扩展或输入法；未修改浏览器扩展配置。",
+    "closeButtonFocusedEscapePassed": true
+  },
+  "disposition": "仅保留诊断证据；组件模拟验证通过，当前浏览器 Escape 投递未确认。临时诊断源码与构建产物已清理，未再改组件。"
+}

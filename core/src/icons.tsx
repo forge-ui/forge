@@ -1,3 +1,8 @@
+import { DeliveryIcon as SolarDeliveryLinear } from "@solar-icons/react/linear/delivery";
+import { CompassIcon as SolarCompassLinear } from "@solar-icons/react/linear/compass";
+import { PauseIcon as SolarPauseLinear } from "@solar-icons/react/linear/pause";
+import { MoonIcon as SolarMoonLinear } from "@solar-icons/react/linear/moon";
+import { SunIcon as SolarSunLinear } from "@solar-icons/react/linear/sun";
 import { forwardRef } from "react";
 import type { Icon, IconProps } from "@solar-icons/react/lib/types";
 import { AddCircleIcon as SolarAddCircleBoldDuotone } from "@solar-icons/react/bold-duotone/add-circle";
@@ -396,3 +401,13 @@ export const MicrophoneLinear = createForgeIcon(SolarMicrophoneLinear, "Micropho
 export const QuitFullScreenLinear = createForgeIcon(SolarQuitFullScreenLinear, "QuitFullScreenLinear");
 export const SidebarMinimalisticLinear = createForgeIcon(SolarSidebarMinimalisticLinear, "SidebarMinimalisticLinear");
 export const StarsLinear = createForgeIcon(SolarStarsLinear, "StarsLinear");
+
+export const SunLinear = createForgeIcon(SolarSunLinear, "SunLinear");
+
+export const MoonLinear = createForgeIcon(SolarMoonLinear, "MoonLinear");
+
+export const PauseLinear = createForgeIcon(SolarPauseLinear, "PauseLinear");
+
+export const CompassLinear = createForgeIcon(SolarCompassLinear, "CompassLinear");
+
+export const DeliveryLinear = createForgeIcon(SolarDeliveryLinear, "DeliveryLinear");

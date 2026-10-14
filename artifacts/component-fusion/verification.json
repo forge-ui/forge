@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-14",
+  "coreVersion": "0.4.5",
+  "scope": [
+    "003",
+    "088",
+    "098",
+    "F03",
+    "178"
+  ],
+  "partialExamples": [
+    "090",
+    "092",
+    "F06"
+  ],
+  "preview": "http://localhost:3001/prototype/component-fusion",
+  "userAccepted": false,
+  "previouslyAccepted": [
+    "040"
+  ],
+  "checks": {
+    "coreCheck": {
+      "passed": true,
+      "componentTests": 206,
+      "auditTests": 17,
+      "componentAuditErrors": 0,
+      "existingWarnings": [
+        "ask-ai-history.tsx w-72 fixed-width-review"
+      ]
+    },
+    "coreBuild": true,
+    "websiteTypecheck": true,
+    "previewEslint": true,
+    "diffCheck": true,
+    "consumerNext15And16": true
+  },
+  "browser": {
+    "viewport390NoOverflow": true,
+    "numberUpdateAndFormat": true,
+    "selectionArchiveUndoEscape": true,
+    "folderButtonFlightAndCreation": true,
+    "searchAndRetryRecovery": true,
+    "hold250msCancels1400msConfirmsAndUndoRestores": true,
+    "zhEnAndThreeThemes": true,
+    "reducedMotion": true,
+    "emulationReset": true,
+    "screenshot": "artifacts/component-fusion/overview.png"
+  },
+  "packageCheck": {
+    "passed": false,
+    "contractErrors": [],
+    "overBudget": {
+      "packed": {
+        "actual": 761481,
+        "limit": 750000
+      },
+      "unpacked": {
+        "actual": 3071815,
+        "limit": 3020000
+      },
+      "entries": {
+        "actual": 473,
+        "limit": 464
+      },
+      "sourceMaps": {
+        "actual": 1642467,
+        "limit": 1620000
+      },
+      "styles": {
+        "actual": 82762,
+        "limit": 77000
+      }
+    },
+    "thresholdsChanged": false
+  },
+  "additionalFix": "ChatInputBar pending focus is cancelled when its tools menu reopens; deterministic mention/command tests plus asynchronous browser clocks.",
+  "committed": false,
+  "published": false
+}

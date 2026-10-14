@@ -109,11 +109,11 @@ export default function CalendarCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Calendar"
-        hint="日历家族：EventTag / CalendarDayCell / EventCard / SmallCalendar / FullCalendar。"
+        title="日历与日程"
+        hint="选择日期、浏览日程，并在月、周、日视图中查看事件。"
       />
 
-      <Section title="EventTag" description="日历事件标签。7 色 × 2 variant × 2 size。">
+      <Section title="EventTag" description="在日历中标记事件，支持不同颜色、尺寸和样式。">
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
@@ -130,7 +130,7 @@ export default function CalendarCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="CalendarDayCell" description="月视图里的单元格。含今日 / 选中 / 非本月 三态 + 事件 tag 列表 + +N More。">
+      <Section title="CalendarDayCell" description="展示一天的日期和事件，区分今天、选中日期和其他月份。">
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>events</InlineCode> 数组超过 <InlineCode>maxVisible</InlineCode> 自动折叠为 +N。
@@ -154,7 +154,7 @@ export default function CalendarCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="EventCard" description="独立事件卡。标题 + 时间段 + 头像组 + 底部彩色强调条。8 色。">
+      <Section title="EventCard" description="展示事件名称、时间和参与成员。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_EVENTCARD_USAGE} minHeight={200}>
             <EventCard
@@ -172,7 +172,7 @@ export default function CalendarCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="SmallCalendar" description="紧凑月日历卡。月份导航 + 日期网格 + 选中日事件列表。3 主色。">
+      <Section title="SmallCalendar" description="紧凑月日历，支持切换月份、选择日期和查看当天事件。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_SMALL_USAGE} minHeight={480}>
             <SmallCalendar
@@ -189,7 +189,7 @@ export default function CalendarCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="FullCalendar" description="完整日历容器。3 view（month / week / day）× 3 色 × 可选 detail 浮层。">
+      <Section title="FullCalendar" description="在月、周、日视图中浏览事件，可显示事件详情。">
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>view</InlineCode> 受控从外部驱动，下面展示 month 视图。其余见 cases。

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { MigrationPreview } from "../_migration-previews";
 import { useState } from "react";
 import { Pagination, Stepper, PageDot } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
@@ -22,6 +23,8 @@ const CODE_PAGEDOT_USAGE = `<PageDot active>1</PageDot>
 <PageDot>...</PageDot>`;
 
 const PAGINATION_PROPS: ApiTableRow[] = [
+  { attr: "locale", type: "'zh' | 'en'", defaultValue: "'zh'", description: "前后翻页与当前页的可访问名称。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "选中背景平滑移动；none 立即切换。" },
   { attr: "totalPages", type: "number", defaultValue: "—", description: "总页数。" },
   { attr: "currentPage", type: "number", defaultValue: "—", description: "当前页码（1-based）。" },
   { attr: "onPageChange", type: "(page: number) => void", defaultValue: "—", description: "切换页码回调。" },
@@ -49,13 +52,13 @@ export default function PaginationStepperCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Pagination & Stepper"
-        hint="Pagination 分页器 · Stepper 进度点指示器 · PageDot 原子单元。"
+        title="分页与步骤"
+        hint="切换列表页码，或展示分步流程的当前位置。"
       />
 
       <Section
         title="Pagination"
-        description="完整分页控件，前后箭头 + 页码窗口 + ellipsis，3 色（purple/blue/black）。"
+        description="切换页码，支持前后翻页和页码省略。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -82,11 +85,14 @@ export default function PaginationStepperCasePage() {
         <SubSection title="API" stack>
           <ApiTable rows={PAGINATION_PROPS} />
         </SubSection>
+        <SubSection title="列表翻页" stack>
+          <MigrationPreview kind="pagination" />
+        </SubSection>
       </Section>
 
       <Section
         title="Stepper"
-        description="onboarding 底部用的 1/N 进度胶囊，active 胶囊变宽。"
+        description="展示分步流程的当前位置。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_STEPPER_USAGE}>
@@ -110,7 +116,7 @@ export default function PaginationStepperCasePage() {
 
       <Section
         title="PageDot"
-        description="Pagination 的原子单元，圆形 pill，支持 active / idle / ellipsis 三种渲染。"
+        description="分页和步骤指示中的单个位置标记。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>阅读进度卡</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"058",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"058",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"058",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"058",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"058"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u058{position:relative;width:340px;height:500px;display:flex;flex-direction:column;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 60px -36px var(--ux-shadow-strong);overflow:hidden}
+.u058-bar{position:absolute;left:0;top:0;height:3px;width:100%;background:var(--ux-grad);transform-origin:0 50%;transform:scaleX(var(--p,0));z-index:2}
+.u058-head{display:flex;align-items:center;gap:12px;padding:18px 18px 10px}
+.u058-head div{flex:1;min-width:0}
+.u058-head small{display:block;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);letter-spacing:.06em;color:var(--ux-ink-3)}
+.u058-head b{display:block;margin-top:2px;font-size:var(--forge-text-base-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.u058-ring{position:relative;width:48px;height:48px;flex:none}
+.u058-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.u058-ring circle{fill:none;stroke-width:4}
+.u058-ring .t{stroke:var(--ux-surface-3)}
+.u058-ring .p{stroke:var(--ux-accent);stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0) * 100);transition:stroke .4s}
+.u058-ring span{position:absolute;inset:0;display:grid;place-items:center;font-size:var(--forge-text-arbitrary-10-size);font-weight:var(--forge-font-bold-weight);font-variant-numeric:tabular-nums;transition:opacity .3s,transform .4s var(--ux-spring)}
+.u058-ring i{position:absolute;inset:0;display:grid;place-items:center;color:var(--ux-mint);opacity:0;transform:scale(.4);transition:opacity .3s,transform .5s var(--ux-spring)}
+.u058-ring i svg{width:22px;height:22px;transform:none;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.u058.is-done .u058-ring .p{stroke:var(--ux-mint)}
+.u058.is-done .u058-ring span{opacity:0;transform:scale(.4)}
+.u058.is-done .u058-ring i{opacity:1;transform:none}
+.u058-toc{position:relative;display:flex;gap:4px;margin:0 14px 6px;padding:4px;border-radius:14px;background:var(--ux-surface-2)}
+.u058-pill{position:absolute;top:4px;bottom:4px;left:0;width:var(--w,60px);border-radius:10px;background:var(--ux-surface);box-shadow:0 2px 8px -4px var(--ux-shadow-strong);transform:translateX(var(--x,4px));transition:transform .45s var(--ux-spring),width .45s var(--ux-spring)}
+.u058-toc button{position:relative;flex:1;height:32px;border:0;padding:0;border-radius:10px;background:none;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-3);transition:color .3s}
+.u058-toc button[aria-current="true"]{color:var(--ux-ink)}
+.u058-toc button:focus-visible{outline:2px solid var(--ux-accent);outline-offset:1px}
+.u058-body{position:relative;flex:1;overflow-y:auto;padding:8px 20px 20px;scrollbar-width:thin;scrollbar-color:var(--ux-line-2) transparent;overscroll-behavior:contain}
+.u058-body:focus-visible{outline:2px solid var(--ux-accent);outline-offset:-4px;border-radius:16px}
+.u058-body h4{margin:18px 0 6px;font-size:var(--forge-text-base-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.03em;scroll-margin-top:8px}
+.u058-body h4:first-child{margin-top:6px}
+.u058-body p{margin:0 0 10px;font-size:var(--forge-text-sm-size);line-height:1.72;color:var(--ux-ink-2)}
+.u058-fig{height:120px;margin:12px 0;border-radius:18px;background:var(--accent);position:relative;overflow:hidden}
+.u058-fig::after{content:"";position:absolute;width:120px;height:120px;right:-20px;top:-40px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--background) 55.00%,transparent),transparent 65%)}
+.u058-end{margin-top:18px;padding:16px;border-radius:18px;background:color-mix(in srgb,var(--ux-mint) 12%,transparent);text-align:center;font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-mint);transform:scale(.94);opacity:.4;transition:transform .5s var(--ux-spring),opacity .4s}
+.u058.is-done .u058-end{transform:none;opacity:1}
+</style>
+<div class="ux u058">
+  <span class="u058-bar" aria-hidden="true"></span>
+  <div class="u058-head"><div><small>DESIGN NOTE · 4 MIN</small><b>Motion that doesn’t wait</b></div><span class="u058-ring" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="t" cx="24" cy="24" r="20"/><circle class="p" cx="24" cy="24" r="20" pathLength="100"/></svg><span aria-hidden="true">0%</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg></i></span></div>
+  <nav class="u058-toc" aria-label="Contents"><span class="u058-pill" aria-hidden="true"></span></nav>
+  <div class="u058-body" tabindex="0" aria-label="Article">
+    <h4>Intro</h4>
+    <p>The 0.3 seconds after a tap when nothing happens is longer than you think. People read that brief silence as “broken.”</p>
+    <p>So good transitions respond first and show the result later. When something moves the instant you press, waiting stops feeling like waiting.</p>
+    <h4>Three principles</h4>
+    <p>First, start where the finger landed. Second, move only what changes. Third, when stopping, overshoot slightly and settle back.</p>
+    <div class="u058-fig" aria-hidden="true"></div>
+    <p>Keep just these three and a screen feels far less stiff. The third one in particular adds a sense of weight.</p>
+    <h4>In practice</h4>
+    <p>When a product flies into the cart icon, people follow the result with their eyes. It leads to fewer mistakes than a number quietly changing.</p>
+    <p>When the highlight slides between tabs, you can still tell where you came from. It keeps people from getting lost.</p>
+    <p>The same goes for deleting from a list. When the items below slowly close the gap, you naturally see what was removed.</p>
+    <h4>Wrap-up</h4>
+    <p>Transitions aren’t decoration but explanation — the shortest sentence for what went where.</p>
+    <p>Too long and it turns into waiting; too short and no one sees it. Most answers lie between 0.2 and 0.5 seconds.</p>
+    <p>And for people who prefer less motion, deliver the same information without it. That is part of a good transition too.</p>
+    <div class="u058-end">You reached the end · Here’s what to read next</div>
+  </div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var body = root.querySelector('.u058-body'), toc = root.querySelector('.u058-toc'), pill = root.querySelector('.u058-pill');
+  var ring = root.querySelector('.u058-ring'), pct = ring.querySelector('span');
+
+  var hs = Array.prototype.slice.call(body.querySelectorAll('h4'));
+  var btns = hs.map(function (h, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = ['Intro', 'Principles', 'Examples', 'Wrap-up'][i];
+    b.setAttribute('aria-label', 'Go to ' + h.textContent);
+    b.addEventListener('click', function () { body.scrollTo({ top: h.offsetTop - 8, behavior: window.forgeReduced() ? 'auto' : 'smooth' }); });
+    toc.appendChild(b);
+    return b;
+  });
+  var act = -1;
+  function mark(i) {
+    if (i === act) return;
+    act = i;
+    btns.forEach(function (b, k) { b.setAttribute('aria-current', String(k === i)); });
+    pill.style.setProperty('--x', btns[i].offsetLeft + 'px');
+    pill.style.setProperty('--w', btns[i].offsetWidth + 'px');
+  }
+  // 스크롤한 만큼 선과 링을 채우고, 화면 위쪽에 걸린 소제목을 목차에서 강조합니다
+  function sync() {
+    var max = body.scrollHeight - body.clientHeight, p = max > 0 ? Math.min(1, body.scrollTop / max) : 1;
+    root.style.setProperty('--p', p.toFixed(4));
+    ring.style.setProperty('--p', p.toFixed(4));
+    pct.textContent = Math.round(p * 100) + '%';
+    ring.setAttribute('aria-valuenow', Math.round(p * 100));
+    root.classList.toggle('is-done', p > 0.985);
+    var i = 0;
+    hs.forEach(function (h, k) { if (h.offsetTop - 60 <= body.scrollTop) i = k; });
+    if (p > 0.985) i = hs.length - 1;
+    mark(i);
+  }
+  body.addEventListener('scroll', sync, { passive: true });
+  sync();
+  if (window.ResizeObserver) new ResizeObserver(function () { var a = act; act = -1; mark(a); }).observe(toc);
+})();</script></body></html>

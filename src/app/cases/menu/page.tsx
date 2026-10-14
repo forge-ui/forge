@@ -84,8 +84,8 @@ export default function MenuCasePage() {
   return (
     <div className="flex flex-col gap-8">
       <PageHeading
-        title="Menu"
-        hint="MenuItem · DropdownPanel · IconTrigger · ProfileCard · NotificationItem · KebabMenu · SidebarMenu"
+        title="菜单"
+        hint="提供下拉菜单、菜单条目和图标入口，支持选中与禁用状态。"
       />
 
       <MenuItemSection />

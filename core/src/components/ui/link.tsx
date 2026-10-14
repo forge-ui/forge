@@ -1,5 +1,8 @@
+"use client";
 import NextLink from "next/link";
 import { type ReactNode } from "react";
+import { useActionEffect } from "../../internal/action-effect";
+import type { MotionPreference } from "../../lib/motion";
 
 // ============================================================
 // StyledLink - 文字链接
@@ -32,6 +35,7 @@ export function StyledLink({
   iconLeft,
   iconRight,
   className = "",
+  effect, motion = "auto",
 }: {
   children: ReactNode;
   href: string;
@@ -40,7 +44,10 @@ export function StyledLink({
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   className?: string;
+  effect?: "magnetic" | "roll";
+  motion?: MotionPreference;
 }) {
+  const effects = useActionEffect(effect, motion, disabled);
   if (disabled) {
     return (
       <span
@@ -56,10 +63,12 @@ export function StyledLink({
   return (
     <NextLink
       href={href}
-      className={`inline-flex items-start gap-1 ${linkColors[color]} text-sm font-bold leading-5 tracking-fg hover:underline ${className}`}
+      data-effect={effect} data-motion={motion}
+      onPointerMove={effects.move} onPointerLeave={effects.leave}
+      className={`forge-styled-link inline-flex items-start gap-1 ${linkColors[color]} text-sm font-bold leading-5 tracking-fg hover:underline ${className}`}
     >
       {iconLeft && <span className="w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
-      <span>{children}</span>
+      <span className="forge-action-label">{effect === "roll" && typeof children === "string" ? Array.from(children).map((letter, index) => <span className="forge-roll-letter" key={index} data-letter={letter} style={{ transitionDelay: `${index * 18}ms` }}>{letter === " " ? "\u00a0" : letter}</span>) : children}</span>
       {iconRight && <span className="w-5 h-5 flex items-center justify-center">{iconRight}</span>}
     </NextLink>
   );

@@ -11,7 +11,7 @@ import { AnimatedWidgetDemos } from "../../_components/animated-widget-demos";
 export default function MotionCasePage() {
   const [motion, setMotion] = useState<MotionPreference>("auto");
   return <div className="flex flex-col gap-10">
-    <PageHeading title="交互动效" hint="集中体验 Core 默认交互。切换动效开关，比较同一组件的过渡与即时反馈；操作状态保留。" />
+    <PageHeading title="交互动效" hint="通过按压、展开、切换和完成反馈，让操作变化更容易理解。" />
     <MotionControl value={motion} onChange={setMotion} />
     <AnimatedWidgetDemos motion={motion} />
     <Section title="Buttons" description="按压、键盘焦点和禁用状态。"><SubSection title="Button / IconButton" stack><MotionButtons motion={motion} /></SubSection></Section>

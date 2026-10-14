@@ -8,7 +8,7 @@ const COLORS: CurrencyConverterColor[] = ["purple", "blue", "dark"];
 export default function OtherWidgetCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Other Widget" hint="CurrencyConverter" />
+      <PageHeading title="实用组件" hint="提供货币换算、星级评分、图片排列和产品条目。" />
 
       <Section
         title="Currency Converter"

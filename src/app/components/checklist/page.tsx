@@ -33,8 +33,8 @@ export default function ChecklistSpecPage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Checklist"
-        hint="勾选 → 划掉 → 轻甩 → 沉底。不替代 TaskCard / AgentTaskRows / Checkbox。"
+        title="待办清单"
+        hint="勾选待办事项，已完成的内容自动移到列表底部。"
       />
 
       <Section title="Import" description="一律从 @forge-ui-official/core 引入。">
@@ -43,7 +43,7 @@ export default function ChecklistSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="Checklist" description="完成后沉到底。点一行可反勾。">
+      <Section title="Checklist" description="勾选待办事项，已完成项自动移到列表底部，可再次点击恢复。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<Checklist defaultTasks={[{ id, label, done }]} />`} minHeight={280}>
             <Checklist defaultTasks={DEMO} />
@@ -54,7 +54,7 @@ export default function ChecklistSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="ChecklistItem" description="单行，不沉底。">
+      <Section title="ChecklistItem" description="展示一项可勾选的待办事项。">
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             勾选视觉跟 <InlineCode>Checkbox</InlineCode> 同一套几何；动效用 CSS，不加 Motion。

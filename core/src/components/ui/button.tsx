@@ -1,6 +1,10 @@
+"use client";
+
+import { HoldButton } from "../../internal/hold-button";
 import type { MotionPreference } from "../../lib/motion";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
+import { ActionStatus, useActionEffect, type ActionResult } from "../../internal/action-effect";
 
 // ============================================================
 // Button — Forge UI Kit text button
@@ -66,7 +70,19 @@ const buttonSizes = {
 } as const;
 
 export type ButtonColor = keyof typeof buttonVariants;
-export type ButtonVariant = "primary" | "secondary" | "tertiary";
+export type ButtonVariant = "primary" | "secondary" | "tertiary" | "hold";
+export type ButtonHoldLabels = { idle?: string; done?: string; undo?: string };
+export type ButtonEffect = "glass" | "magnetic" | "ripple" | "roll";
+export type ButtonProps = {
+  children?: ReactNode; color?: ButtonColor; variant?: ButtonVariant; size?: ButtonSize;
+  motion?: MotionPreference; iconLeft?: ReactNode; iconRight?: ReactNode; className?: string;
+  /** Only used by variant="hold"; milliseconds. */
+  holdDuration?: number; onConfirm?: () => void; onUndo?: () => void;
+  confirmed?: boolean; locale?: "zh" | "en"; holdLabels?: ButtonHoldLabels;
+  effect?: ButtonEffect; loading?: boolean; result?: ActionResult;
+  /** Controlled progress, from 0 to 100. */
+  progress?: number; loadingLabel?: ReactNode; resultLabel?: ReactNode;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">;
 export type ButtonSize = keyof typeof buttonSizes;
 
 export function Button({
@@ -80,18 +96,12 @@ export function Button({
   iconLeft,
   iconRight,
   className = "",
+  holdDuration, onConfirm, onUndo, confirmed, locale, holdLabels,
+  effect, loading = false, result = "idle", progress, loadingLabel, resultLabel,
   ...props
-}: {
-  children?: ReactNode;
-  color?: ButtonColor;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  /** Subtle press feedback; auto respects prefers-reduced-motion. */
-  motion?: MotionPreference;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
-  className?: string;
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">) {
+}: ButtonProps) {
+  const effects = useActionEffect(effect, motion, disabled || loading);
+  if (variant === "hold") return <HoldButton {...props} type={type} disabled={disabled} color={color} size={size} motion={motion} iconLeft={iconLeft} iconRight={iconRight} className={className} holdDuration={holdDuration} onConfirm={onConfirm} onUndo={onUndo} confirmed={confirmed} locale={locale} holdLabels={holdLabels}>{children}</HoldButton>;
   const sizeConfig = buttonSizes[size];
   const hasIcon = !!(iconLeft || iconRight);
   const paddingClass = iconLeft ? sizeConfig.iconLeft : iconRight ? sizeConfig.iconRight : sizeConfig.noIcon;
@@ -99,8 +109,12 @@ export function Button({
   return (
     <button
       type={type}
-      disabled={disabled}
+      disabled={disabled || loading}
       data-motion={motion}
+      data-effect={effect}
+      data-result={result === "idle" ? undefined : result}
+      data-loading={loading || undefined}
+      aria-busy={loading || undefined}
       className={cn(
         sizeConfig.base,
         paddingClass,
@@ -111,10 +125,16 @@ export function Button({
         className
       )}
       {...props}
+      onPointerMove={(event) => { effects.move(event); props.onPointerMove?.(event); }}
+      onPointerLeave={(event) => { effects.leave(event); props.onPointerLeave?.(event); }}
+      onPointerDown={(event) => { effects.move(event); props.onPointerDown?.(event); }}
+      onClick={(event) => { effects.press(event.currentTarget); props.onClick?.(event); }}
     >
-      {iconLeft && <span className="w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
-      {children && <span>{children}</span>}
-      {iconRight && <span className="w-5 h-5 flex items-center justify-center">{iconRight}</span>}
+      {progress !== undefined && <span aria-hidden className="forge-action-progress" style={{ width: `${Number.isFinite(progress) ? Math.min(100, Math.max(0, progress)) : 0}%` }} />}
+      {(loading || result !== "idle") && <ActionStatus loading={loading} result={result} motion={motion} />}
+      {iconLeft && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
+      <span className="forge-action-label">{loading ? loadingLabel ?? (locale === "en" ? "Processing…" : "处理中…") : result !== "idle" ? resultLabel ?? (result === "success" ? (locale === "en" ? "Done" : "已完成") : (locale === "en" ? "Try again" : "请重试")) : effect === "roll" && typeof children === "string" ? Array.from(children).map((letter, index) => <span className="forge-roll-letter" style={{ transitionDelay: `${index * 18}ms` }} data-letter={letter} key={index}>{letter === " " ? "\u00a0" : letter}</span>) : children}</span>
+      {iconRight && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconRight}</span>}
     </button>
   );
 }

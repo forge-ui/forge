@@ -22,8 +22,8 @@ export default function MapCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Map"
-        hint="MapCard — 世界地图 + 区域销售列表。3 variants (sm / md / lg) × 3 colors (purple / blue / black)。"
+        title="地图"
+        hint="在世界地图上高亮区域，并展示对应的统计数据。"
       />
 
       {/* ============ Variants × Colors ============ */}

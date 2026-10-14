@@ -434,8 +434,8 @@ export default function TableCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Table"
-        hint="数据表家族：1 类 Header Cell + 14 类 Body Cell（对齐 Figma 全量）· DataTable 标准表 · FullWidthTable 宽版。"
+        title="数据表格"
+        hint="按行列展示数据，支持选择、排序、分页和自定义单元格。"
       />
 
       <Section
@@ -447,7 +447,7 @@ export default function TableCasePage() {
 
       <Section
         title="Header Cell"
-        description="表头单元格。通过 TableCell variant='header' + checkbox / leadIcon / sortable / children 自由裁剪出 Figma 全部形态。下方展示最完整组合 1 个，其余形态去掉对应 prop 即可。"
+        description="展示列名，支持选择框、图标和排序操作。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_HEADER_CELL} minHeight={120}>
@@ -468,7 +468,7 @@ export default function TableCasePage() {
 
       <Section
         title="Body Cell"
-        description="表体单元格的 14 个内容分类（Figma Cell 页全量），每类列出代表变体。直接塞进 ColumnDef.render。"
+        description="展示文本、头像、状态、数值和操作等单元格内容。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="1 · Reg Text" stack>
@@ -607,7 +607,7 @@ export default function TableCasePage() {
 
         <SubSection title="9 · Label Badge" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            默认浅底描边徽章。表格状态优先 green / yellow / red / grey；<InlineCode>variant="solid"</InlineCode> 才是实心白字胶囊。
+            默认浅底描边徽章。表格状态优先 green / yellow / red / grey；<InlineCode>{'variant="solid"'}</InlineCode> 才是实心白字胶囊。
           </p>
           <PreviewBlock code={CODE_LABEL_BADGE} minHeight={120}>
             <StatusBadge label="Text Here" color="purple" />
@@ -688,7 +688,7 @@ export default function TableCasePage() {
 
       <Section
         title="DataTable"
-        description="标准表，支持 title / subtitle / badge / checkbox / 翻页，适合中等宽度面板。"
+        description="展示结构化数据，支持行选择、分页和自定义内容。"
       >
         <SubSection title="Column Definition" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -742,7 +742,7 @@ export default function TableCasePage() {
 
       <Section
         title="FullWidthTable"
-        description="宽版表格，额外提供 Show N 每页行数选择器，适合全屏数据管理页。"
+        description="适合宽屏数据管理页，可切换每页显示数量。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

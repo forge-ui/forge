@@ -6,7 +6,7 @@ const COLORS = ["purple", "blue", "black"] as const;
 export default function PaginationStepperCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Pagination & Stepper" hint="PageDot · Pagination · Stepper" />
+      <PageHeading title="分页与步骤" hint="切换列表页码，或展示分步流程的当前位置。" />
 
       <Section
         title="Indicator (PageDot atomic)"

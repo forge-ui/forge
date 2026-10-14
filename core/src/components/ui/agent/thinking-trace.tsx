@@ -15,6 +15,8 @@ import {
   MagniferLinear,
   StarsLinear,
 } from "../../../icons";
+import { useReducedMotion } from "../../../internal/motion";
+import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 
 export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";
@@ -60,6 +62,7 @@ const LABELS: Record<ThinkingVariant, { active: string; done: string }> = {
 
 export function ThinkingTrace({
   variant = "steps",
+  locale = "zh", motion = "auto",
   rows,
   activeLabel,
   doneLabel,
@@ -70,6 +73,8 @@ export function ThinkingTrace({
   className = "",
 }: {
   variant?: ThinkingVariant;
+  locale?: "zh" | "en";
+  motion?: MotionPreference;
   rows?: ThinkingRow[];
   activeLabel?: string;
   doneLabel?: string;
@@ -81,19 +86,25 @@ export function ThinkingTrace({
   onSettled?: () => void;
   className?: string;
 }) {
-  const list = rows ?? DEFAULT_ROWS[variant];
-  const labels = LABELS[variant];
+  const reduced = useReducedMotion(motion);
+  const list = rows ?? (locale === "zh" ? {
+    steps: [{ primary: "读取资料" }, { primary: "检索相关信息" }, { primary: "对比分析" }, { primary: "整理结果" }],
+    reasoning: [{ primary: "整理问题与已知信息" }, { primary: "对比可行方案" }],
+    search: [{ primary: "检索工作区文档" }, { primary: "核对来源" }],
+    coding: [{ primary: "读取", secondary: "source.ts", mono: true }, { primary: "编辑", secondary: "component.tsx", mono: true }, { primary: "运行检查", secondary: "pnpm test", mono: true }],
+  }[variant] : DEFAULT_ROWS[variant]);
+  const labels = locale === "zh" ? { active: variant === "search" ? "正在搜索" : variant === "coding" ? "正在运行工具" : "正在思考", done: variant === "search" ? "搜索完成" : variant === "coding" ? "工具运行完成" : "思考完成" } : LABELS[variant];
   const [visible, setVisible] = useState(0);
   const [expanded, setExpanded] = useState(true);
-  const shown = settled || !play ? list.length : visible;
+  const shown = settled || !play || reduced ? list.length : visible;
   const working = !settled && play && shown < list.length;
 
   useEffect(() => {
-    if (settled || !play) return;
+    if (settled || !play || reduced) return;
     if (visible >= list.length) return;
     const t = setTimeout(() => setVisible((n) => n + 1), 700);
     return () => clearTimeout(t);
-  }, [settled, play, visible, list.length]);
+  }, [settled, play, visible, list.length, reduced]);
 
   const settledRef = useRef(false);
   useEffect(() => {
@@ -103,9 +114,10 @@ export function ThinkingTrace({
   }, [working, onSettled]);
 
   return (
-    <div className={cn("flex flex-col gap-1.5 text-sm", className)}>
+    <div className={cn("flex flex-col gap-1.5 text-sm", className)} data-motion={reduced ? "none" : motion}>
       <button
         type="button"
+        aria-expanded={expanded}
         onClick={() => setExpanded((v) => !v)}
         className="flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-left text-fg-grey-700 hover:bg-fg-grey-100"
       >

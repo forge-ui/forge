@@ -1,4 +1,6 @@
 import { cn } from "../../lib/utils";
+import type { MotionPreference } from "../../lib/motion";
+import type { ReactNode } from "react";
 
 // ============================================================
 // ProgressBar
@@ -21,6 +23,7 @@ const progressColors = {
   yellow: "bg-fg-yellow",        // Figma Yellow 500
   cyan:   "bg-fg-cyan-500",      // Figma Cyan 500
   gray:   "bg-fg-grey-700",
+  black: "bg-fg-black",
 } as const;
 
 const progressTextColors = {
@@ -32,6 +35,7 @@ const progressTextColors = {
   yellow: "text-fg-yellow",
   cyan:   "text-fg-cyan-500",
   gray:   "text-fg-grey-700",
+  black: "text-fg-black",
 } as const;
 
 const progressSizes = {
@@ -53,6 +57,7 @@ export function ProgressBar({
   labelSize = "sm",
   showPercentage = false,
   onDark = false,
+  variant = "linear", indeterminate = false, motion = "auto", locale = "zh", children, className,
 }: {
   value?: number;
   color?: ProgressColor;
@@ -62,8 +67,15 @@ export function ProgressBar({
   labelSize?: ProgressLabelSize;
   showPercentage?: boolean;
   onDark?: boolean;
+  variant?: "linear" | "ring";
+  indeterminate?: boolean;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  /** Content centered in a ring, such as a remaining-time label. */
+  children?: ReactNode;
+  className?: string;
 }) {
-  const clampedValue = Math.min(100, Math.max(0, value));
+  const clampedValue = Number.isFinite(value) ? Math.min(100, Math.max(0, value)) : 0;
 
   const labelTextSize = labelSize === "xs" ? "text-xs leading-4" : "text-sm leading-5";
 
@@ -84,8 +96,13 @@ export function ProgressBar({
 
   const trackClass = onDark ? "bg-fg-grey-200/25" : "bg-fg-grey-200";
 
+  if (variant === "ring") return <div className={cn("forge-progress-ring", progressTextColors[color], className)} data-motion={motion} data-indeterminate={indeterminate || undefined} role="progressbar" aria-label={label ?? (locale === "en" ? "Progress" : "进度")} aria-valuemin={0} aria-valuemax={100} aria-valuenow={indeterminate ? undefined : clampedValue}>
+    <svg viewBox="0 0 100 100" aria-hidden><circle className="forge-progress-ring-track" cx="50" cy="50" r="44" /><circle className="forge-progress-ring-fill" cx="50" cy="50" r="44" pathLength="100" strokeDasharray="100" strokeDashoffset={indeterminate ? 65 : 100 - clampedValue} /></svg>
+    <span>{children ?? (showPercentage && !indeterminate ? `${clampedValue}%` : null)}</span>
+  </div>;
+
   return (
-    <div className="w-full flex flex-col justify-start items-start gap-2">
+    <div className={cn("forge-progress w-full flex flex-col justify-start items-start gap-2", className)} data-motion={motion} data-indeterminate={indeterminate || undefined}>
       {(label || showPercentage) && (
         <div className="self-stretch inline-flex justify-start items-start gap-2">
           {label && (
@@ -93,7 +110,7 @@ export function ProgressBar({
               {label}
             </span>
           )}
-          {showPercentage && (
+          {showPercentage && !indeterminate && (
             <span className={cn("tracking-fg", labelTextSize, percentClass)}>
               {clampedValue}%
             </span>
@@ -102,15 +119,15 @@ export function ProgressBar({
       )}
       <div
         role="progressbar"
-        aria-label={label ?? "进度"}
+        aria-label={label ?? (locale === "en" ? "Progress" : "进度")}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-valuenow={clampedValue}
+        aria-valuenow={indeterminate ? undefined : clampedValue}
         className={cn("self-stretch rounded-full overflow-hidden", progressSizes[size], trackClass)}
       >
         <div
-          className={cn("rounded-full transition-all", progressSizes[size], progressColors[color])}
-          style={{ width: `${clampedValue}%` }}
+          className={cn("forge-progress-fill rounded-full transition-all", progressSizes[size], progressColors[color])}
+          style={{ width: indeterminate ? "35%" : `${clampedValue}%` }}
         />
       </div>
     </div>

@@ -70,8 +70,8 @@ export default function CardCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Card"
-        hint="15+ 种卡片组件：StatCard 系列 / 金融卡 / Project / Task / User / Event / Profile / Highlight / Activity。"
+        title="卡片"
+        hint="用卡片组织统计、项目、任务、成员和文件信息。"
       />
 
       {/* ============ SurfaceCard ============ */}

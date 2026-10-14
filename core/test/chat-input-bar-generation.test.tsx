@@ -9,14 +9,15 @@ const protocol = "node:";
 const { test } = require(`${protocol}test`);
 
 async function setup() {
-  const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost" });
+  const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
   Object.assign(globalThis, {
     IS_REACT_ACT_ENVIRONMENT: true,
     window: dom.window,
     self: dom.window,
     document: dom.window.document,
     HTMLElement: dom.window.HTMLElement,
-    requestAnimationFrame: (callback: FrameRequestCallback) => { callback(0); return 0; },
+    requestAnimationFrame: dom.window.requestAnimationFrame.bind(dom.window),
+    cancelAnimationFrame: dom.window.cancelAnimationFrame.bind(dom.window),
     Event: dom.window.Event,
     KeyboardEvent: dom.window.KeyboardEvent,
   });
@@ -26,6 +27,8 @@ async function setup() {
   const root = createRoot(document.getElementById("root")!);
   return {
     root,
+    // Advance a real asynchronous browser frame instead of recursively invoking RAF callbacks.
+    frame: () => act(async () => { await new Promise<void>(resolve => dom.window.requestAnimationFrame(() => resolve())); }),
     cleanup: async () => {
       await act(async () => root.unmount());
       dom.window.close();
@@ -243,6 +246,7 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
     await key(textarea(), "ArrowDown");
     assert.equal(textarea().getAttribute("aria-activedescendant"), document.querySelector('[data-prompt-picker] [role="option"]')?.id);
     await key(textarea(), "Enter");
+    await env.frame();
     assert.match(textarea().value, /@知识库/);
     assert.equal(document.activeElement, textarea());
 
@@ -255,6 +259,7 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
     assert.ok(document.querySelector('[data-prompt-picker]'));
     await key(textarea(), "ArrowDown");
     await key(textarea(), "Enter");
+    await env.frame();
     assert.equal(textarea().value, "/plan ");
   } finally { await env.cleanup(); }
 });

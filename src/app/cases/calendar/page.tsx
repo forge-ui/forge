@@ -129,8 +129,8 @@ export default function CalendarCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Calendar"
-        hint="EventTag · CalendarDayCell · EventCard · SmallCalendar · SmallDailyCalendar · FullCalendar"
+        title="日历与日程"
+        hint="选择日期、浏览日程，并在月、周、日视图中查看事件。"
       />
 
       {/* ─── EventTag ─── */}

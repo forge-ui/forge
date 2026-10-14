@@ -23,6 +23,7 @@ export type StreamingAnswerStatus = "streaming" | "complete" | "stopped";
 
 export type StreamingAnswerProps = {
   text: string;
+  locale?: "zh" | "en";
   /** Replay a complete string. For a live response, use status instead. */
   streaming?: boolean;
   /** Transport state. Complete drains the display buffer; stopped freezes it. */
@@ -100,6 +101,7 @@ function AnswerBlock(props: BlockProps) {
 
 export function StreamingAnswer({
   text,
+  locale = "zh",
   streaming = false,
   status,
   format = "plain",
@@ -109,7 +111,7 @@ export function StreamingAnswer({
   sources = [],
   sourcesLabel,
   followUps = [],
-  followUpsLabel = "Follow-ups",
+  followUpsLabel,
   onFollowUp,
   onDone,
   className = "",
@@ -153,6 +155,7 @@ export function StreamingAnswer({
         <div className="flex flex-col gap-2">
           <button
             type="button"
+            aria-expanded={sourcesOpen}
             onClick={() => setSourcesOpen((v) => !v)}
             className="flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100"
           >
@@ -166,7 +169,7 @@ export function StreamingAnswer({
                 </span>
               ))}
             </span>
-            {sourcesLabel ?? `${sources.length} sources`}
+            {sourcesLabel ?? (locale === "zh" ? `${sources.length} 个来源` : `${sources.length} sources`)}
             <AltArrowDownLinear size={12} color="var(--fg-grey-500)" />
           </button>
           {sourcesOpen && (
@@ -200,7 +203,7 @@ export function StreamingAnswer({
 
       {playout.done && followUps.length > 0 && (
         <div className="flex flex-col gap-1">
-          <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">{followUpsLabel}</p>
+          <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">{followUpsLabel ?? (locale === "zh" ? "继续提问" : "Follow-ups")}</p>
           {followUps.map((item, index) => (
             <button
               key={item}

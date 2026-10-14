@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-14",
+  "batch": 3,
+  "baseHead": "54598df83bfaa8a3580355d8952d558f79e24525",
+  "itemIds": [
+    "031",
+    "039",
+    "046"
+  ],
+  "preview": "http://localhost:3001/prototype/component-fusion",
+  "version": "0.4.5",
+  "committed": false,
+  "published": false,
+  "userAccepted": true,
+  "checks": {
+    "coreCheck": {
+      "passed": true,
+      "componentTests": 235,
+      "auditTests": 17,
+      "auditErrors": 0,
+      "existingWarnings": [
+        "ask-ai-history.tsx:114 w-72"
+      ]
+    },
+    "coreBuild": true,
+    "websiteTypecheck": true,
+    "targetedEslint": true,
+    "diffCheck": true,
+    "packageApiSnapshot": {
+      "rootExports": 441,
+      "wildcardEntries": 134
+    },
+    "packageCheck": {
+      "passed": false,
+      "failures": [
+        {
+          "metric": "packed bytes",
+          "actual": 783361,
+          "limit": 750000
+        },
+        {
+          "metric": "unpacked bytes",
+          "actual": 3148759,
+          "limit": 3020000
+        },
+        {
+          "metric": "entry count",
+          "actual": 473,
+          "limit": 464
+        },
+        {
+          "metric": "JavaScript sourcemap bytes",
+          "actual": 1687028,
+          "limit": 1620000
+        },
+        {
+          "metric": "styles.css raw bytes",
+          "actual": 82762,
+          "limit": 77000
+        }
+      ],
+      "note": "Only budget failures reported; thresholds unchanged. This is local preview validation, not release readiness."
+    }
+  },
+  "browser": {
+    "browser": "Existing stable Google Chrome session",
+    "checks": [
+      "Tabs: task checkbox updates overview from 1/3 to 2/3; Home/End and rapid tab changes work; one tabpanel and no duplicate IDs.",
+      "CommandSearch: open focuses input, End scrolls final item into view, Enter toggles notifications or creates a local document, unmatched query removes aria-activedescendant and shows empty message.",
+      "CommandSearch: local Ctrl+K opens the panel; close button and reopening work; English dialog has localized close label.",
+      "SelectOption: keyboard End scrolls final item into view, Enter selects, reopening focuses selection, Escape returns to trigger. Disabled/enabled toggle verified.",
+      "Chinese/English, blue/purple/black controls, explicit motion none and runtime prefers-reduced-motion verified for all three previews.",
+      "390px viewport and narrow select fit without horizontal overflow; command dialog is 337px wide with no internal horizontal overflow.",
+      "Final reload produced no new warning/error log; one earlier HMR dependency-array error is historical.",
+      "Command modal Tab traps focus between input and close button; Escape from close button closes modal and restores trigger focus."
+    ],
+    "limitations": [
+      "With search input focused, Escape did not close the modal in current Chrome; with close button focused, Escape did close and restore focus. Full-preview simulated Escape passes 3 cycles and IME guard. Cause not established; do not count input-focused browser Escape as passed."
+    ],
+    "viewportOverridesRestored": true,
+    "mediaOverridesRestored": true,
+    "screenshot": "artifacts/component-fusion/batch-3.png",
+    "escapeDiagnosis": "artifacts/component-fusion/command-escape-diagnosis.json"
+  },
+  "scopeNote": "Enhances existing SelectOption, TabBar/TabsContent and CommandSearch/Modal. No new public component or navigation category. User accepted batch 3 on 2026-10-14. Acceptance does not resolve the recorded input-focused Escape browser limitation or package budget failures.",
+  "acceptance": {
+    "date": "2026-10-14",
+    "userStatement": "OK，过，其他的也都放到这里吧，我一次性看完",
+    "scope": "第三批集中预览的 SelectOption、TabBar / TabsContent、CommandSearch / Modal 三项",
+    "note": "记录用户视觉与交互认可；不改变搜索框聚焦时 Escape 未通过的浏览器记录及包预算超限结论。"
+  }
+}

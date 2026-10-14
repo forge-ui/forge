@@ -21,16 +21,16 @@ export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
         <thead>
           <tr className="border-b border-fg-grey-200 bg-fg-grey-50">
             <th className="px-4 py-2.5 text-xs font-semibold uppercase tracking-fg text-fg-grey-700">
-              Attribute
+              参数
             </th>
             <th className="px-4 py-2.5 text-xs font-semibold uppercase tracking-fg text-fg-grey-700">
-              Type
+              类型
             </th>
             <th className="px-4 py-2.5 text-xs font-semibold uppercase tracking-fg text-fg-grey-700">
-              Default
+              默认值
             </th>
             <th className="px-4 py-2.5 text-xs font-semibold uppercase tracking-fg text-fg-grey-700">
-              Description
+              说明
             </th>
           </tr>
         </thead>

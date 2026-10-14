@@ -25,6 +25,10 @@ export type TextFieldProps = {
   shape?: TextFieldShape;
   color?: TextFieldColor;
   label?: string;
+  labelPlacement?: "outside" | "floating";
+  locale?: "zh" | "en";
+  /** Tag highlighted before removal, controlled by the caller. */
+  activeTag?: string;
   errorMessage?: string;
   headerAction?: ReactNode;
   iconLeft?: ReactNode;
@@ -44,6 +48,9 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
   shape = "rounded",
   color = "purple",
   label,
+  labelPlacement = "outside",
+  locale = "zh",
+  activeTag,
   errorMessage,
   headerAction,
   iconLeft,
@@ -67,20 +74,22 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
   const { wrapper, text } = getFieldClasses({ state, shape, color });
   const isDisabled = state === "disabled" || disabled;
   const hasTags = tags && tags.length > 0;
+  const floating = labelPlacement === "floating" && Boolean(label) && !hasTags;
   // Tag chips already have internal padding (p-2), so the outer wrapper uses
   // tighter p-2 to match Figma's "Multiple" variant height exactly.
   const padding = hasTags ? "p-2" : "px-4 py-3";
 
   return (
     <FieldFrame
-      label={label}
+      label={floating ? undefined : label}
       headerAction={headerAction}
       errorMessage={errorMessage}
       showError={state === "error"}
       errorId={errorId}
       inputId={inputId}
     >
-      <div className={cn("flex items-center gap-1", padding, wrapper, className)}>
+      <div className={cn("relative flex items-center gap-1", padding, wrapper, floating && "forge-field-floating", className)}>
+        {floating && <label htmlFor={inputId} className="forge-field-floating-label">{label}</label>}
         {iconLeft && (
           <span className="w-5 h-5 flex items-center justify-center text-fg-grey-700 shrink-0">
             {iconLeft}
@@ -93,6 +102,8 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
                 key={tag.value}
                 label={tag.label}
                 color={color}
+                selected={activeTag === tag.value}
+                locale={locale}
                 onRemove={onRemoveTag ? () => onRemoveTag(tag.value) : undefined}
               />
             ))}
@@ -100,13 +111,13 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
             id={inputId}
             ref={ref}
             type={type}
-            placeholder={placeholder}
+            placeholder={floating ? placeholder ?? " " : placeholder}
             value={value}
             disabled={isDisabled}
             aria-invalid={ariaInvalid ?? (state === "error")}
             aria-describedby={[ariaDescribedBy, state === "error" && errorMessage ? errorId : undefined].filter(Boolean).join(" ") || undefined}
             onChange={(e) => onChange?.(e.target.value)}
-            className={cn("min-w-0 flex-1", text, inputClassName)}
+            className={cn("min-w-0 flex-1", text, floating && "forge-field-floating-input", inputClassName)}
             {...inputProps}
           />
         </div>

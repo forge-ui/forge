@@ -52,6 +52,7 @@ interface ReviewItemBase {
   date: string;
   rating: number;
   content: string;
+  ratingLabel?: string;
   images?: string[];
   overflowImageCount?: number;
   className?: string;
@@ -81,6 +82,7 @@ function RegularVariant({
   date,
   rating,
   content,
+  ratingLabel = "评分",
   images,
   overflowImageCount,
   className = "",
@@ -98,7 +100,7 @@ function RegularVariant({
           <div className="self-stretch inline-flex justify-between items-center">
             <div className="flex justify-start items-center gap-1">
               <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
-                Rating:
+                {ratingLabel}:
               </span>
               <StarRow rating={rating} size={16} />
             </div>

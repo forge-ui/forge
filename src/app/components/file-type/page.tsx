@@ -47,13 +47,13 @@ export default function FileTypeCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="File Type"
-        hint="FileTypeIcon 按后缀映射 21 种文件图标，FileCard 封装图标 + 文件名 + 大小 + 状态。"
+        title="文件展示"
+        hint="按文件类型展示图标、名称、大小和上传状态。"
       />
 
       <Section
         title="FileTypeIcon"
-        description="按文件名后缀解析图标。支持 pdf / doc / xls / ppt / 图片 / 视频 / 音频 / 压缩包 / 设计稿 / folder 等 22 种。"
+        description="根据文件扩展名显示对应图标。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -110,7 +110,7 @@ export default function FileTypeCasePage() {
 
       <Section
         title="FileCard"
-        description="单行文件卡：图标 + 文件名 + 大小 + 状态 action。4 种 state：uploaded / success / uploading / error。"
+        description="展示文件名称、大小、类型及上传状态。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_FILECARD_USAGE}>

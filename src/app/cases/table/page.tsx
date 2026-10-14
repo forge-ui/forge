@@ -157,8 +157,8 @@ export default function TableCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Table"
-        hint="Header / Body Cell 全变体 + DataTable (6/8 列) + FullWidthTable。"
+        title="数据表格"
+        hint="按行列展示数据，支持选择、排序、分页和自定义单元格。"
       />
 
       {/* ============ Header Cell ============ */}

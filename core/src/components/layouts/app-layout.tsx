@@ -4,7 +4,7 @@ import type { MotionPreference } from "../../lib/motion";
 
 /* eslint-disable @next/next/no-img-element */
 
-import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback } from "react";
+import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback, useId } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "../../lib/utils";
 import {
@@ -234,6 +234,7 @@ export function AppLayout({
         ...(favoriteItems?.length ? [{ label: favoriteSectionLabel, items: favoriteItems }] : []),
       ]
     : menuSections.filter((section) => section.items.length > 0);
+  const sidebarIndicatorId = useId();
   const activeSidebarItem = findActiveSidebarMenuItem(
     sidebarSections.flatMap((section) => section.items),
     pathname,
@@ -291,7 +292,8 @@ export function AppLayout({
       '[tabindex]:not([tabindex="-1"])',
     ].join(",");
     const getFocusable = () =>
-      [...(sidebarRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? [])];
+      [...(sidebarRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? [])]
+        .filter((element) => !element.closest('[inert], [aria-hidden="true"]'));
     const focusable = getFocusable();
     focusable[0]?.focus();
 
@@ -415,6 +417,7 @@ export function AppLayout({
       setMobileSidebarOpen((open) => !open);
       return;
     }
+    setOpenPopover(null);
     setSidebarCollapsed((collapsed) => !collapsed);
   };
 
@@ -444,13 +447,14 @@ export function AppLayout({
         ref={sidebarRef}
         id="forge-app-sidebar"
         data-forge-app-sidebar
+        data-collapsed={sidebarCollapsed}
         data-motion={motion}
         role="navigation"
         aria-label="主导航"
         aria-hidden={isMobile && !mobileSidebarOpen ? true : undefined}
         inert={isMobile && !mobileSidebarOpen ? true : undefined}
         onClickCapture={(event) => {
-          if (isMobile && (event.target as HTMLElement).closest("a[href]")) {
+          if (isMobile && (event.target as HTMLElement).closest('a[href]:not([role="button"])')) {
             setMobileSidebarOpen(false);
           }
         }}
@@ -460,66 +464,62 @@ export function AppLayout({
           "w-[var(--forge-sidebar-expanded-width)] max-w-[calc(100vw-3rem)] overflow-visible",
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
           sidebarCollapsed
-            ? "md:w-[var(--forge-sidebar-collapsed-width)] md:overflow-hidden"
+            ? "md:w-[var(--forge-sidebar-collapsed-width)]"
             : "md:w-[var(--forge-sidebar-expanded-width)] md:overflow-visible",
           sidebarBg
         )}
       >
         {/* Logo */}
-        <div className="relative h-20 p-6 flex items-center gap-2.5">
+        <div className="relative h-20 shrink-0 p-6 flex items-center gap-2.5">
           <div
             inert={sidebarCollapsed ? true : undefined}
-            className={cn("flex-1 flex items-center gap-2 overflow-hidden", sidebarCollapsed && "justify-center")}
+            className="min-w-0 flex-1 flex items-center gap-2 overflow-hidden"
           >
             {logo ?? <img src={forgeLogoDataUrl} alt="Forge" className={cn("w-8 h-8 shrink-0", mode === "dark" && "invert")} />}
-            {!sidebarCollapsed && (
-              <span className={cn("min-w-0 truncate whitespace-nowrap text-2xl font-semibold leading-8 tracking-fg", config.logoText)}>{logoText}</span>
-            )}
+            <span aria-hidden={sidebarCollapsed || undefined} className={cn("forge-sidebar-logo min-w-0 truncate whitespace-nowrap text-2xl font-semibold leading-8 tracking-fg", config.logoText)}>{logoText}</span>
           </div>
-          {sidebarCollapsed && (
-            <button
-              type="button"
-              aria-label="展开主导航"
-              onClick={() => setSidebarCollapsed(false)}
-              className="absolute inset-0 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-fg-violet"
-            />
-          )}
-          {!sidebarCollapsed && (
-            <button
-              type="button"
-              aria-label={isMobile ? "关闭主导航" : "收起主导航"}
-              onClick={() => isMobile ? setMobileSidebarOpen(false) : setSidebarCollapsed(true)}
-              className={cn("w-5 h-5 flex items-center justify-center transition-colors shrink-0", config.hamburger)}
-            >
-              {isMobile ? <CloseSquareLinear size={20} /> : <HamburgerMenuLinear size={20} />}
-            </button>
-          )}
+          <button
+            type="button"
+            aria-label={isMobile ? "关闭主导航" : sidebarCollapsed ? "展开主导航" : "收起主导航"}
+            aria-expanded={isMobile ? undefined : !sidebarCollapsed}
+            aria-controls="forge-app-sidebar"
+            onClick={() => isMobile ? setMobileSidebarOpen(false) : toggleSidebar()}
+            className={cn("forge-sidebar-toggle absolute right-0 top-6 w-7 h-8 rounded-l-lg flex items-center justify-center focus-visible:outline-2 focus-visible:outline-fg-violet", config.hamburger, sidebarBg)}
+          >
+            {isMobile ? <CloseSquareLinear size={20} /> : <HamburgerMenuLinear size={20} />}
+          </button>
         </div>
 
         {/* Team switcher */}
-        {teamName && !sidebarCollapsed && (
-          <div className="px-4 py-3 relative">
-            <button
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded={openPopover === "team"}
-              data-popover-trigger="team"
-              onClick={() => togglePopover("team")}
-              className={cn("w-full p-4 rounded-xl flex items-center gap-3 transition-colors", config.teamSwitcher)}
-            >
-              {teamAvatar && <img src={teamAvatar} alt={teamName} className="w-10 h-10 rounded-full object-cover shrink-0" />}
-              <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                <span className={cn("text-sm font-semibold leading-5 tracking-fg line-clamp-1", config.teamName)}>{teamName}</span>
-                {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : null)) && (
-                  <span className={cn("text-xs font-medium leading-4.5 tracking-fg line-clamp-1", config.teamCount)}>
-                    {teamSubtitle ?? `${teamMemberCount} 名成员`}
-                  </span>
-                )}
+        {teamName && (
+          <div className="relative shrink-0">
+            <div className="forge-sidebar-disclosure" data-state={sidebarCollapsed ? "closed" : "open"} aria-hidden={sidebarCollapsed || undefined} inert={sidebarCollapsed || undefined}>
+              <div className="min-h-0 overflow-hidden">
+                <div className="px-4 py-3">
+                  <button
+                    type="button"
+                    aria-haspopup="menu"
+                    aria-expanded={openPopover === "team"}
+                    data-popover-trigger="team"
+                    onClick={() => togglePopover("team")}
+                    className={cn("w-full p-4 rounded-xl flex items-center gap-3 transition-colors", config.teamSwitcher)}
+                  >
+                    {teamAvatar && <img src={teamAvatar} alt={teamName} className="w-10 h-10 rounded-full object-cover shrink-0" />}
+                    <div className="flex-1 flex flex-col gap-0.5 min-w-0 whitespace-nowrap">
+                      <span className={cn("text-sm font-semibold leading-5 tracking-fg line-clamp-1", config.teamName)}>{teamName}</span>
+                      {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : null)) && (
+                        <span className={cn("text-xs font-medium leading-4.5 tracking-fg line-clamp-1", config.teamCount)}>
+                          {teamSubtitle ?? `${teamMemberCount} 名成员`}
+                        </span>
+                      )}
+                    </div>
+                    <span className={cn("w-6 h-6 flex justify-center items-center shrink-0", config.teamChevron)}>
+                      <AltArrowDownLinear size={16} />
+                    </span>
+                  </button>
+                </div>
               </div>
-              <span className={cn("w-6 h-6 flex justify-center items-center shrink-0", config.teamChevron)}>
-                <AltArrowDownLinear size={16} />
-              </span>
-            </button>
+            </div>
             {openPopover === "team" && (
               <div data-popover="team" className="absolute left-4 top-full mt-2 z-[60] md:left-full md:top-0 md:ml-2 md:mt-0 md:z-50">
                 <TeamSwitcherDropdown
@@ -543,22 +543,26 @@ export function AppLayout({
         {/* Menu sections */}
         <div
           data-forge-sidebar-scroll
-          className={cn("fg-scrollbar-hidden flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto", sidebarCollapsed && "items-center px-2")}
+          className="fg-scrollbar-hidden min-h-0 flex-1 p-4 flex flex-col gap-6 overflow-hidden overflow-y-auto"
         >
           {sidebarSlot ? (
             sidebarSlot
           ) : (
             <>
               {sidebarSections.map((section, sectionIndex) => (
-                <div className="flex flex-col gap-3" key={sectionIndex}>
-                  {!sidebarCollapsed && section.label && (
-                    <div className="px-3">
-                      <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase", config.sectionTitle)}>{section.label}</span>
+                <div className="w-full flex flex-col shrink-0" key={sectionIndex}>
+                  {section.label && (
+                    <div className="forge-sidebar-section-title forge-sidebar-disclosure px-3" data-state={sidebarCollapsed ? "closed" : "open"} aria-hidden={sidebarCollapsed || undefined} inert={sidebarCollapsed || undefined}>
+                      <div className="min-h-0 overflow-hidden"><div className="pb-3">
+                        <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase whitespace-nowrap", config.sectionTitle)}>{section.label}</span>
+                      </div></div>
                     </div>
                   )}
-                  {section.items.map((item, i) => (
-                    <SidebarMenuItemRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
-                  ))}
+                  <div className="flex flex-col gap-3">
+                    {section.items.map((item, i) => (
+                      <SidebarMenuItemRow motion={motion} indicatorId={sidebarIndicatorId} index={sidebarSections.slice(0, sectionIndex).reduce((count, previous) => count + previous.items.length, i)} key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
+                    ))}
+                  </div>
                 </div>
               ))}
             </>
@@ -566,62 +570,66 @@ export function AppLayout({
         </div>
 
         {/* Secondary menu + Profile (when profilePosition === "sidebar") */}
-        {(profilePosition === "sidebar" || isMobile) && !sidebarCollapsed && (
-          <div className="relative p-4 flex flex-col gap-4">
+        {(profilePosition === "sidebar" || isMobile) && (
+          <div className="relative p-4 shrink-0 flex flex-col">
             {/* Widget row: language, calendar, notifications, messages */}
             {!hideSidebarWidgets && (
-              <div className="flex items-center justify-between">
-                <button
-                  type="button"
-                  aria-label={`切换语言，当前${activeLanguageLabel}`}
-                  aria-haspopup="menu"
-                  aria-expanded={openPopover === "language"}
-                  data-language-code={activeLanguage}
-                  data-popover-trigger="language"
-                  onClick={() => togglePopover("language")}
-                  className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("language"))}
-                >
-                  <img data-forge-language-flag={activeLanguage} src={languageFlagDataUrls[activeLanguage]} alt="" className="w-5 h-5 rounded-full object-cover" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="打开日历"
-                  aria-haspopup="dialog"
-                  aria-expanded={openPopover === "calendar"}
-                  data-popover-trigger="calendar"
-                  onClick={() => togglePopover("calendar")}
-                  className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("calendar"))}
-                >
-                  <CalendarBold size={20} />
-                </button>
-                <button
-                  type="button"
-                  aria-label={`通知${notifications && notifications > 0 ? `，${notifications} 条未读` : ""}`}
-                  aria-haspopup="dialog"
-                  aria-expanded={openPopover === "notifications"}
-                  data-popover-trigger="notifications"
-                  onClick={() => togglePopover("notifications")}
-                  className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("notifications"))}
-                >
-                  <BellBold size={20} />
-                  {notifications !== undefined && notifications > 0 && openPopover !== "notifications" && (
-                    <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{notifications}</span>
-                  )}
-                </button>
-                <button
-                  type="button"
-                  aria-label={`消息${messages && messages > 0 ? `，${messages} 条未读` : ""}`}
-                  aria-haspopup="menu"
-                  aria-expanded={openPopover === "messages"}
-                  data-popover-trigger="messages"
-                  onClick={() => togglePopover("messages")}
-                  className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("messages"))}
-                >
-                  <LetterBold size={20} />
-                  {messages !== undefined && messages > 0 && openPopover !== "messages" && (
-                    <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{messages}</span>
-                  )}
-                </button>
+              <div className="forge-sidebar-disclosure" data-state={sidebarCollapsed ? "closed" : "open"} aria-hidden={sidebarCollapsed || undefined} inert={sidebarCollapsed || undefined}>
+                <div className="min-h-0 overflow-hidden">
+                  <div className={cn("flex items-center justify-between", profile && "pb-4")}>
+                    <button
+                      type="button"
+                      aria-label={`切换语言，当前${activeLanguageLabel}`}
+                      aria-haspopup="menu"
+                      aria-expanded={openPopover === "language"}
+                      data-language-code={activeLanguage}
+                      data-popover-trigger="language"
+                      onClick={() => togglePopover("language")}
+                      className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("language"))}
+                    >
+                      <img data-forge-language-flag={activeLanguage} src={languageFlagDataUrls[activeLanguage]} alt="" className="w-5 h-5 rounded-full object-cover" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="打开日历"
+                      aria-haspopup="dialog"
+                      aria-expanded={openPopover === "calendar"}
+                      data-popover-trigger="calendar"
+                      onClick={() => togglePopover("calendar")}
+                      className={cn("p-3 rounded-full flex items-center justify-center transition-colors shrink-0", iconActive("calendar"))}
+                    >
+                      <CalendarBold size={20} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`通知${notifications && notifications > 0 ? `，${notifications} 条未读` : ""}`}
+                      aria-haspopup="dialog"
+                      aria-expanded={openPopover === "notifications"}
+                      data-popover-trigger="notifications"
+                      onClick={() => togglePopover("notifications")}
+                      className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("notifications"))}
+                    >
+                      <BellBold size={20} />
+                      {notifications !== undefined && notifications > 0 && openPopover !== "notifications" && (
+                        <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{notifications}</span>
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`消息${messages && messages > 0 ? `，${messages} 条未读` : ""}`}
+                      aria-haspopup="menu"
+                      aria-expanded={openPopover === "messages"}
+                      data-popover-trigger="messages"
+                      onClick={() => togglePopover("messages")}
+                      className={cn("p-3 rounded-full flex items-center justify-center transition-colors relative shrink-0", iconActive("messages"))}
+                    >
+                      <LetterBold size={20} />
+                      {messages !== undefined && messages > 0 && openPopover !== "messages" && (
+                        <span className="absolute -right-1.5 top-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-2xs font-semibold leading-3.5 tracking-fg">{messages}</span>
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -635,12 +643,12 @@ export function AppLayout({
                 data-popover-trigger="profile"
                 onClick={() => togglePopover("profile")}
                 className={cn(
-                  "w-full p-4 rounded-xl flex items-center gap-3 transition-colors",
+                  "forge-sidebar-profile w-full p-4 rounded-xl flex items-center gap-3 overflow-hidden transition-colors",
                   openPopover === "profile" ? cn(accentCfg.activeBg, "text-white") : config.profileBg
                 )}
               >
                 <img src={profile.avatar} alt={profile.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
-                <div className="flex-1 flex flex-col gap-0.5 min-w-0">
+                <div aria-hidden={sidebarCollapsed || undefined} className="forge-sidebar-label flex-1 flex flex-col gap-0.5 min-w-0 whitespace-nowrap">
                   <span className={cn(
                     "text-sm font-semibold leading-5 tracking-fg line-clamp-1 text-left",
                     openPopover === "profile" ? "text-white" : config.profileName
@@ -651,7 +659,7 @@ export function AppLayout({
                   )}>{profile.role}</span>
                 </div>
                 <span className={cn(
-                  "w-6 h-6 flex justify-center items-center shrink-0 transition-transform",
+                  "forge-sidebar-label w-6 h-6 flex justify-center items-center shrink-0 transition-transform",
                   openPopover === "profile" ? "text-white rotate-180" : config.profileChevron
                 )}>
                   <AltArrowDownLinear size={22} />

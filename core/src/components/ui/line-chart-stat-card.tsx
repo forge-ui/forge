@@ -1,4 +1,6 @@
 import { useId, type ReactNode } from "react";
+import { AnimatedNumber } from "../../internal/animated-number";
+import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
 import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
 
@@ -140,6 +142,10 @@ function WideLineChartSlot({
 export function LineChartStatCard({
   title,
   value,
+  animateValue = false,
+  locale = "zh-CN",
+  numberFormat,
+  motion = "auto",
   trend,
   trendDirection = "up",
   subtitle,
@@ -154,7 +160,13 @@ export function LineChartStatCard({
   className,
 }: {
   title: string;
-  value: string;
+  value: ReactNode;
+  /** Roll numeric values when they change. Strings and custom content stay unchanged. */
+  animateValue?: boolean;
+  /** Locale for numeric values when animation or numberFormat is enabled. */
+  locale?: string;
+  numberFormat?: Intl.NumberFormatOptions;
+  motion?: MotionPreference;
   trend?: string;
   trendDirection?: TrendDirection;
   subtitle?: string;
@@ -172,6 +184,9 @@ export function LineChartStatCard({
   className?: string;
 }) {
   const themeKey = resolveCardTheme(theme);
+  const renderedValue = typeof value === "number" && (animateValue || numberFormat)
+    ? <AnimatedNumber value={value} locale={locale} formatOptions={numberFormat} motion={animateValue ? motion : "none"} />
+    : value;
   const chartSlot = size === "wide"
     ? <WideLineChartSlot chartColor={chartColor} themeKey={themeKey} direction={chartDirection} series={series} />
     : <CompactLineChartSlot chartColor={chartColor} themeKey={themeKey} direction={chartDirection} />;
@@ -179,7 +194,7 @@ export function LineChartStatCard({
   return (
     <StatCardShell
       title={title}
-      value={value}
+      value={renderedValue}
       trend={trend}
       trendDirection={trendDirection}
       subtitle={subtitle}
