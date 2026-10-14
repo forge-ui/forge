@@ -95,13 +95,13 @@ export default function ModalCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Modal"
-        hint="弹窗家族，当前提供 ConfirmationDialog 预设 5 种语义色 × 2 种布局。"
+        title="确认弹窗"
+        hint="在删除、发送等重要操作前说明结果并请求确认。"
       />
 
       <Section
         title="ConfirmationDialog"
-        description="确认对话框，用于关键动作二次确认（删除 / 发送 / 保存 / 升级 / 激活 等）。"
+        description="在重要操作前说明影响，让用户确认或取消。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />

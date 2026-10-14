@@ -1,0 +1,107 @@
+# 99 项正式融合对照表
+
+分支：`codex/component-fusion-migration`。54 项增强现有组件、45 项组合案例；23 项暂缓和 186 排除项不迁移。此表记录实现，不新增用户逐项验收结论。
+
+正式总览：`/components/interactions`。原集中评审入口 `/prototype/component-fusion` 已切换为同一份 React 实现；仅暂缓区保留 HTML 快照。040 为实际 AppLayout 页面嵌入，其余 98 项直接挂载 React。
+
+| 编号 | 名称 | 方式 | 组件 | 正式页面 | 实现入口 |
+| --- | --- | --- | --- | --- | --- |
+| 001 | 液态玻璃按钮 | 增强现有组件 | Button | `/components/button-link#interaction-001` | `src/app/components/_fusion/actions.tsx` |
+| 002 | 磁吸箭头按钮 | 增强现有组件 | Button、StyledLink | `/components/button-link#interaction-002` | `src/app/components/_fusion/actions.tsx` |
+| 003 | 长按删除 | 增强现有组件 | Button | `/components/button-link#interaction-003` | `src/app/components/_migration-previews.tsx` |
+| 004 | 下载进度按钮 | 增强现有组件 | Button、ProgressBar | `/components/button-link#interaction-004` | `src/app/components/_fusion/actions.tsx` |
+| 005 | 纸飞机发送 | 增强现有组件 | IconButton、Button | `/components/button-link#interaction-005` | `src/app/components/_fusion/actions.tsx` |
+| 006 | 墨水涟漪按钮 | 增强现有组件 | Button | `/components/button-link#interaction-006` | `src/app/components/_fusion/actions.tsx` |
+| 007 | 播放暂停变形 | 增强现有组件 | IconButton | `/components/button-link#interaction-007` | `src/app/components/_fusion/actions.tsx` |
+| 008 | 复制完成反馈 | 组合案例 | IconButton、Button、ButtonGroup | `/cases/button-link#interaction-008` | `src/app/components/_fusion/actions.tsx` |
+| 009 | 文字滚动按钮 | 增强现有组件 | Button、StyledLink | `/components/button-link#interaction-009` | `src/app/components/_fusion/actions.tsx` |
+| 010 | 组合操作按钮 | 组合案例 | Button、IconTrigger、DropdownPanel、MenuItem | `/cases/button-link#interaction-010` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 011 | 扇形快捷操作 | 组合案例 | IconButton、IconTrigger | `/cases/menu#interaction-011` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 012 | 书签丝带 | 增强现有组件 | IconButton | `/components/button-link#interaction-012` | `src/app/components/_fusion/actions.tsx` |
+| 013 | 弹性开关 | 增强现有组件 | Toggle | `/components/input-field#interaction-013` | `src/app/components/_migration-previews.tsx` |
+| 014 | 待办清单 | 增强现有组件 | Checklist | `/components/checklist#interaction-014` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 015 | 套餐选择卡 | 组合案例 | RadioWithLabel、RadioButton、SurfaceCard | `/cases/input-field#interaction-015` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 016 | 星级评价 | 增强现有组件 | RatingStars | `/components/comment#interaction-016` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 018 | 滚动数量步进 | 组合案例 | IconButton | `/cases/input-field#interaction-018` | `src/app/components/_fusion/actions.tsx` |
+| 019 | 兴趣多选 | 组合案例 | CheckboxControl、CheckboxWithLabel | `/cases/input-field#interaction-019` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 021 | 日夜切换 | 增强现有组件 | Toggle | `/components/input-field#interaction-021` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 022 | 点赞心形绽放 | 增强现有组件 | IconButton | `/components/button-link#interaction-022` | `src/app/components/_fusion/actions.tsx` |
+| 023 | 通知设置展开 | 组合案例 | Toggle、ButtonGroup、Accordion | `/cases/input-field#interaction-023` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 025 | 浮动标签输入 | 增强现有组件 | TextField | `/components/input-field#interaction-025` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 026 | 验证码输入 | 增强现有组件 | OtpInput | `/components/input-field#interaction-026` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 027 | 顶栏搜索展开 | 组合案例 | ToolbarSearchInput、CommandSearch、IconButton | `/cases/page-header#interaction-027` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 028 | 自动伸展评论框 | 组合案例 | TextArea、CommentItem、Button | `/cases/comment#interaction-028` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 029 | 标签输入 | 增强现有组件 | TextField | `/components/input-field#interaction-029` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 030 | 日期区间日历 | 增强现有组件 | Datepicker | `/components/input-field#interaction-030` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 031 | 自定义选择器 | 增强现有组件 | SelectOption | `/components/input-field#interaction-031` | `src/app/components/_migration-previews.tsx` |
+| 032 | 拖拽上传 | 增强现有组件 | FileUpload、FileCard | `/components/input-field#interaction-032` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 033 | 标题内联编辑 | 组合案例 | TextField、IconButton | `/cases/input-field#interaction-033` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 036 | 密码强度 | 组合案例 | TextField、IconButton、ProgressBar | `/cases/input-field#interaction-036` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 037 | 账号切换 | 组合案例 | AppLayout、AppSwitcherDropdown、ProfileCard、MenuItem | `/cases/menu#interaction-037` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 039 | 滑动选中标签 | 增强现有组件 | TabBar、TabsContent | `/components/tab#interaction-039` | `src/app/components/_migration-previews.tsx` |
+| 040 | AppLayout 侧栏动效 | 增强现有组件 | AppLayout | `/components/menu#interaction-040` | `src/app/components/_migration-previews.tsx` |
+| 041 | 底部导航凹槽 | 增强现有组件 | TabBar | `/components/menu#interaction-041` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 042 | 分步向导 | 组合案例 | Stepper、TextField、SelectOption、Button | `/cases/pagination-stepper#interaction-042` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 043 | 分页伸缩 | 增强现有组件 | Pagination | `/components/pagination-stepper#interaction-043` | `src/app/components/_migration-previews.tsx` |
+| 044 | 问答折叠 | 增强现有组件 | Accordion | `/components/motion#interaction-044` | `src/app/components/_migration-previews.tsx` |
+| 045 | 菜单由按钮展开 | 组合案例 | IconTrigger、Drawer、MenuItem | `/cases/menu#interaction-045` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 046 | 命令面板 | 增强现有组件 | CommandSearch、Modal | `/components/menu#interaction-046` | `src/app/components/_migration-previews.tsx` |
+| 047 | 时间区间切换 | 增强现有组件 | ButtonGroup | `/components/tab#interaction-047` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 048 | 滑动联动标签 | 增强现有组件 | TabBar、TabsContent | `/components/tab#interaction-048` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 049 | 层叠内容卡 | 增强现有组件 | SurfaceCard、IconButton、Button | `/components/card#interaction-049` | `src/app/components/_fusion/actions.tsx` |
+| 050 | 光照倾斜卡 | 增强现有组件 | SurfaceCard、Button | `/components/card#interaction-050` | `src/app/components/_fusion/actions.tsx` |
+| 054 | 关注个人卡 | 组合案例 | Avatar、Button、SurfaceCard | `/cases/card#interaction-054` | `src/app/components/_fusion/actions.tsx` |
+| 056 | 月年计费切换 | 组合案例 | ButtonGroup、RadioButton、TextField、Button | `/cases/input-field#interaction-056` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 057 | 头像评价轮播 | 组合案例 | ReviewItem、Avatar、IconButton | `/cases/comment#interaction-057` | `src/app/components/_fusion/compositions.tsx` |
+| 058 | 阅读进度卡 | 组合案例 | ProgressBar、Button、SurfaceCard | `/cases/progress#interaction-058` | `src/app/components/_fusion/actions.tsx` |
+| 059 | 活动报名卡 | 组合案例 | EventCard、ButtonGroup、AvatarGroup、Button | `/cases/calendar#interaction-059` | `src/app/components/_fusion/compositions.tsx` |
+| 062 | 登录反馈 | 组合案例 | TextField、Button | `/cases/input-field#interaction-062` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 063 | 逐题注册 | 组合案例 | TextField、Button、Stepper | `/cases/input-field#interaction-063` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 066 | 社交登录按钮 | 组合案例 | Button、Avatar | `/cases/button-link#interaction-066` | `src/app/components/_fusion/actions.tsx` |
+| 067 | 锁定倒计时 | 组合案例 | Button | `/cases/button-link#interaction-067` | `src/app/components/_fusion/actions.tsx` |
+| 070 | 堆叠通知 | 增强现有组件 | ToastProvider、useToast | `/components/modal#interaction-070` | `src/app/components/_fusion/actions.tsx` |
+| 071 | 滑动删除与撤销 | 增强现有组件 | ListItem、ToastProvider、useToast | `/components/list#interaction-071` | `src/app/components/_fusion/actions.tsx` |
+| 074 | 通知铃菜单 | 组合案例 | IconTrigger、NotificationItem、NotificationBadge、TabBar、DropdownPanel | `/cases/list#interaction-074` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 075 | 上传进度面板 | 组合案例 | FileUpload、FileCard、ProgressBar、Accordion | `/cases/input-field#interaction-075` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 076 | 跟随工具提示 | 增强现有组件 | Tooltip、TooltipGroup | `/components/tooltip#interaction-076` | `src/app/components/_fusion/actions.tsx` |
+| 077 | 表情反应面板 | 增强现有组件 | ChatBubble、IconTrigger、IconButton | `/components/chat#interaction-077` | `src/app/components/_fusion/agent-charts.tsx` |
+| 078 | 滑动回复 | 增强现有组件 | ChatBubble、ChatInputBar | `/components/chat#interaction-078` | `src/app/components/_fusion/agent-charts.tsx` |
+| 080 | 轨道同步指示 | 组合案例 | SurfaceCard、Button、ProgressBar | `/cases/progress#interaction-080` | `src/app/components/_fusion/actions.tsx` |
+| 081 | 环形完成反馈 | 增强现有组件 | Button、ProgressBar | `/components/button-link#interaction-081` | `src/app/components/_fusion/actions.tsx` |
+| 083 | 队列进度转换 | 增强现有组件 | ProgressBar | `/components/progress#interaction-083` | `src/app/components/_fusion/actions.tsx` |
+| 084 | 语音响应圆点 | 增强现有组件 | ChatInputBar | `/components/chat#interaction-084` | `src/app/components/_fusion/agent-charts.tsx` |
+| 086 | AI 流式回答 | 增强现有组件 | StreamingAnswer、ChatInputBar | `/components/agent#interaction-086` | `src/app/components/_fusion/agent-charts.tsx` |
+| 087 | 配送步骤 | 增强现有组件 | Stepper、HistoryGrouped | `/components/pagination-stepper#interaction-087` | `src/app/components/_fusion/actions.tsx` |
+| 088 | 资料夹空态 | 组合案例 | ListGroup、ListItem、Button | `/cases/list#interaction-088` | `src/app/components/_migration-previews.tsx` |
+| 089 | 404 纠错 | 组合案例 | SurfaceCard、Button | `/cases/modal#interaction-089` | `src/app/components/_fusion/actions.tsx` |
+| 090 | 可重试错误卡 | 组合案例 | SurfaceCard、Button、BarChart、StatCard | `/cases/card#interaction-090` | `src/app/components/_fusion/actions.tsx` |
+| 091 | 离线消息队列 | 增强现有组件 | ChatBubble、ChatInputBar | `/components/chat#interaction-091` | `src/app/components/_fusion/agent-charts.tsx` |
+| 092 | 筛选空态恢复 | 组合案例 | FilterPanel、ToolbarSearchInput、ListGroup、Button | `/cases/filter#interaction-092` | `src/app/components/_fusion/compositions.tsx` |
+| 093 | 完成庆祝 | 组合案例 | Checklist、ProgressBar、Button | `/cases/checklist#interaction-093` | `src/app/components/_fusion/forms-navigation.tsx` |
+| 095 | 形态切换柱图 | 增强现有组件 | BarChart、ChartTooltip、TabBar | `/components/chart#interaction-095` | `src/app/components/_fusion/agent-charts.tsx` |
+| 096 | 滑动股票折线 | 增强现有组件 | SmoothLineChart、ChartTooltip、TabBar | `/components/chart#interaction-096` | `src/app/components/_fusion/agent-charts.tsx` |
+| 097 | 重排环图 | 增强现有组件 | DonutChart、ChartLegendItem | `/components/chart#interaction-097` | `src/app/components/_fusion/agent-charts.tsx` |
+| 098 | 实时数字滚动 | 增强现有组件 | StatCard、LineChartStatCard | `/components/card#interaction-098` | `src/app/components/_migration-previews.tsx` |
+| 099 | 活动环 | 增强现有组件 | MultilayerDonutChart | `/components/chart#interaction-099` | `src/app/components/_fusion/agent-charts.tsx` |
+| 108 | 时区交集 | 组合案例 | SurfaceCard、Button | `/cases/calendar#interaction-108` | `src/app/components/_fusion/compositions.tsx` |
+| 110 | 日程冲突修复 | 组合案例 | EventTag、SurfaceCard、Button | `/cases/calendar#interaction-110` | `src/app/components/_fusion/compositions.tsx` |
+| 126 | Markdown 编辑与预览 | 组合案例 | TextArea、StreamingAnswer、Button | `/cases/agent#interaction-126` | `src/app/components/_fusion/compositions.tsx` |
+| 127 | 变更片段审核 | 组合案例 | AgentCodeBlock、Button | `/cases/agent#interaction-127` | `src/app/components/_fusion/compositions.tsx` |
+| 128 | 查找替换 | 组合案例 | TextField、TextArea、Button | `/cases/agent#interaction-128` | `src/app/components/_fusion/compositions.tsx` |
+| 129 | 代码折叠 | 增强现有组件 | AgentCodeBlock | `/components/agent#interaction-129` | `src/app/components/_fusion/compositions.tsx` |
+| 157 | 层叠用量面积 | 增强现有组件 | SmoothLineChart、ChartCard、ChartLegendItem | `/components/chart#interaction-157` | `src/app/components/_fusion/agent-charts.tsx` |
+| 163 | 目标刻度 | 增强现有组件 | BarHorizontalChart、ChartCard | `/components/chart#interaction-163` | `src/app/components/_fusion/agent-charts.tsx` |
+| 165 | 预测置信带 | 增强现有组件 | SmoothLineChart、ChartCard、ButtonGroup | `/components/chart#interaction-165` | `src/app/components/_fusion/agent-charts.tsx` |
+| 176 | 版本胶片 | 组合案例 | HistoryGrouped、SurfaceCard、Button | `/cases/history#interaction-176` | `src/app/components/_fusion/compositions.tsx` |
+| 177 | 撤销重做历史 | 组合案例 | Toolbar、IconButton | `/cases/history#interaction-177` | `src/app/components/_fusion/compositions.tsx` |
+| 178 | 批量选择操作台 | 增强现有组件 | Toolbar、Button、Checkbox、FileTypeIcon | `/components/list#interaction-178` | `src/app/components/_migration-previews.tsx` |
+| 179 | 文字片段拼接 | 组合案例 | SurfaceCard、Button | `/cases/agent#interaction-179` | `src/app/components/_fusion/compositions.tsx` |
+| 180 | 审批签署 | 组合案例 | Avatar、Button、SurfaceCard | `/cases/card#interaction-180` | `src/app/components/_fusion/compositions.tsx` |
+| 181 | 工作分派 | 组合案例 | TaskCard、Avatar、ProgressBar、Button | `/cases/card#interaction-181` | `src/app/components/_fusion/compositions.tsx` |
+| 184 | 角色权限矩阵 | 组合案例 | DataTable、Checkbox | `/cases/table#interaction-184` | `src/app/components/_fusion/compositions.tsx` |
+| F01 | 附件队列 | 增强现有组件 | FileUpload、FileCard、ChatInputBar | `/components/chat#interaction-F01` | `src/app/components/_fusion/agent-charts.tsx` |
+| F02 | 工具运行卡 | 增强现有组件 | ThinkingTrace、ToolChips | `/components/agent#interaction-F02` | `src/app/components/_fusion/agent-charts.tsx` |
+| F03 | 列表批量操作 | 增强现有组件 | Toolbar、Button、ListGroup、ListItem | `/components/list#interaction-F03` | `src/app/components/_migration-previews.tsx` |
+| F04 | 生成内容审核 | 组合案例 | SurfaceCard、Button | `/cases/agent#interaction-F04` | `src/app/components/_fusion/compositions.tsx` |
+| F05 | 协作席位 | 组合案例 | AddMember、Avatar、AvatarGroup、Button | `/cases/agent#interaction-F05` | `src/app/components/_fusion/compositions.tsx` |
+| F06 | 搜索无结果恢复 | 组合案例 | FilterPanel、ToolbarSearchInput、ListGroup、Button | `/cases/filter#interaction-F06` | `src/app/components/_fusion/compositions.tsx` |

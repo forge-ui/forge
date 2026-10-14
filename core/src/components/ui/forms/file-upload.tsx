@@ -5,6 +5,7 @@ import { cn } from "../../../lib/utils";
 import {
   CloseCircleLinear,
   RefreshLinear,
+  CheckCircleLinear,
 } from "../../../icons";
 
 // ============================================================
@@ -25,6 +26,10 @@ export interface FileItem {
   name: string;
   size: string;
   state?: FileState;
+  /** Upload progress supplied by the caller, from 0 to 100. */
+  progress?: number;
+  uploadedBytes?: number;
+  totalBytes?: number;
 }
 
 // ── FileTypeIcon — inline SVG assets bundled into the package ──
@@ -82,9 +87,13 @@ export function FileCard({
   file,
   onRemove,
   onRetry,
+  locale = "zh",
+  color = "purple",
   className,
 }: {
   file: FileItem;
+  locale?: "zh" | "en";
+  color?: FileUploadColor;
   onRemove?: (id: string) => void;
   onRetry?: (id: string) => void;
   className?: string;
@@ -93,6 +102,8 @@ export function FileCard({
   const isUploading = state === "uploading";
   const isSuccess = state === "success";
   const isError = state === "error";
+  const progress = typeof file.progress === "number" && Number.isFinite(file.progress) ? Math.max(0, Math.min(100, file.progress)) : undefined;
+  const en = locale === "en";
 
   return (
     <div
@@ -118,12 +129,10 @@ export function FileCard({
                 {isSuccess && (
                   <>
                     <div className="p-1 bg-fg-green-500 rounded-full flex items-center justify-center">
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M2 5.5L4 7.5L8 3.5" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <CheckCircleLinear size={12} color="currentColor" />
                     </div>
                     <span className="text-fg-green-500 text-xs font-medium leading-4 tracking-fg">
-                      已上传
+                      {en ? "Uploaded" : "已上传"}
                     </span>
                   </>
                 )}
@@ -133,7 +142,7 @@ export function FileCard({
                       <RefreshLinear size={10} />
                     </div>
                     <span className="text-fg-yellow text-xs font-medium leading-4 tracking-fg">
-                      上传中
+                      {en ? "Uploading" : "上传中"}
                     </span>
                   </>
                 )}
@@ -143,7 +152,7 @@ export function FileCard({
                       <CloseCircleLinear size={10} />
                     </div>
                     <span className="text-fg-red text-xs font-medium leading-4 tracking-fg">
-                      上传失败
+                      {en ? "Upload failed" : "上传失败"}
                     </span>
                   </>
                 )}
@@ -151,14 +160,18 @@ export function FileCard({
             </>
           )}
         </div>
+        {progress !== undefined && <div className="w-full mt-1" data-file-progress={progress}>
+          <div className="mb-1 flex justify-between text-xs text-fg-grey-700"><span>{file.uploadedBytes !== undefined && file.totalBytes !== undefined ? `${new Intl.NumberFormat(locale).format(file.uploadedBytes)} / ${new Intl.NumberFormat(locale).format(file.totalBytes)} B` : en ? "Upload progress" : "上传进度"}</span><span>{Math.round(progress)}%</span></div>
+          <div role="progressbar" aria-label={`${file.name} ${en ? "upload progress" : "上传进度"}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} className="h-1 w-full overflow-hidden rounded-full bg-fg-grey-200"><div className={cn("h-full rounded-full transition-[width] motion-reduce:transition-none", accentColors[color].bg)} style={{ width: `${progress}%` }} /></div>
+        </div>}
       </div>
 
       <div className="flex items-center gap-2 shrink-0">
         {isError && onRetry && (
           <button
             type="button"
-            aria-label={`重试上传 ${file.name}`}
-            title="重试上传"
+            aria-label={`${en ? "Retry upload" : "重试上传"} ${file.name}`}
+            title={en ? "Retry upload" : "重试上传"}
             onClick={() => onRetry(file.id)}
             className="w-5 h-5 flex items-center justify-center text-fg-grey-700 cursor-pointer hover:text-fg-black"
           >
@@ -168,8 +181,8 @@ export function FileCard({
         {onRemove && (
           <button
             type="button"
-            aria-label={`移除附件 ${file.name}`}
-            title="移除附件"
+            aria-label={`${en ? "Remove attachment" : "移除附件"} ${file.name}`}
+            title={en ? "Remove attachment" : "移除附件"}
             onClick={() => onRemove(file.id)}
             className="w-5 h-5 flex items-center justify-center text-fg-grey-700 cursor-pointer hover:text-fg-black"
           >
@@ -186,7 +199,8 @@ export function FileCard({
 export function FileUpload({
   files = [],
   label,
-  buttonLabel = "添加文件",
+  buttonLabel,
+  locale = "zh",
   color = "purple",
   onUpload,
   onRemove,
@@ -196,6 +210,7 @@ export function FileUpload({
   files?: FileItem[];
   label?: string;
   buttonLabel?: string;
+  locale?: "zh" | "en";
   color?: FileUploadColor;
   onUpload?: (files: FileList) => void;
   onRemove?: (id: string) => void;
@@ -235,6 +250,8 @@ export function FileUpload({
               <FileCard
                 key={file.id}
                 file={file}
+                locale={locale}
+                color={color}
                 onRemove={onRemove}
                 onRetry={onRetry}
               />
@@ -251,7 +268,7 @@ export function FileUpload({
           )}
         >
           <span className="text-white text-sm font-bold leading-5 tracking-fg">
-            {buttonLabel}
+            {buttonLabel ?? (locale === "en" ? "Add files" : "添加文件")}
           </span>
         </button>
 
@@ -262,6 +279,7 @@ export function FileUpload({
           className="hidden"
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) onUpload?.(e.target.files);
+            e.target.value = "";
           }}
         />
       </div>

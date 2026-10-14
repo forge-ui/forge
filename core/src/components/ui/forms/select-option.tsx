@@ -1,11 +1,11 @@
 "use client";
 
 import type { MotionPreference } from "../../../lib/motion";
-import { MotionPresence, MotionMenu } from "../../../internal/motion";
+import { MotionPresence, MotionMenu, useReducedMotion } from "../../../internal/motion";
 
-import { useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
+import { useState, useRef, useEffect, useLayoutEffect, useId, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
-import { AltArrowDownLinear } from "../../../icons";
+import { AltArrowDownLinear, CheckCircleLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
 import { FieldFrame, FieldTag } from "./field-utils";
 
@@ -29,6 +29,10 @@ export interface SelectOptionItem {
   value: string;
   label: string;
   image?: string;
+  /** 图标建议使用 Solar；image 类型传入 image 时优先显示图片。 */
+  icon?: ReactNode;
+  /** 菜单项与单选触发器中的辅助说明。 */
+  description?: string;
 }
 
 // ── Option Item (dropdown row) ──────────────────────────────
@@ -39,12 +43,14 @@ function OptionItem({
   color,
   isImage,
   onClick,
+  reduced,
 }: {
   item: SelectOptionItem;
   selected: boolean;
   color: SelectOptionColor;
   isImage?: boolean;
   onClick: () => void;
+  reduced: boolean;
 }) {
   const accent = formAccents[color];
   return (
@@ -54,37 +60,30 @@ function OptionItem({
       tabIndex={-1}
       aria-selected={selected}
       onClick={onClick}
-      className="flex h-12 w-full cursor-pointer items-center gap-2 px-4 py-3 text-left transition-colors hover:bg-fg-grey-100"
+      className={cn("flex w-full shrink-0 cursor-pointer items-center gap-2 px-4 text-left transition-colors hover:bg-fg-grey-100 outline-none", item.description ? "min-h-12 py-2" : "h-12 py-3")}
     >
-      {isImage && item.image && (
+      {isImage && item.image ? (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img src={item.image} alt="" className="size-5 shrink-0 rounded-full object-cover" />
-      )}
-      <span
-        className={cn(
-          "min-w-0 flex-1 text-left text-sm leading-5 tracking-fg truncate",
-          selected ? cn("font-bold", accent.text) : "font-semibold text-fg-grey-700",
-        )}
-      >
-        {item.label}
+      ) : item.icon ? (
+        <span aria-hidden className={cn("inline-flex size-5 shrink-0 items-center justify-center", selected ? accent.text : "text-fg-grey-700")}>{item.icon}</span>
+      ) : null}
+      <span className="min-w-0 flex-1 text-left">
+        <span
+          className={cn(
+            "block truncate text-sm leading-5 tracking-fg",
+            selected ? cn("font-bold", accent.text) : "font-semibold text-fg-grey-700",
+          )}
+        >{item.label}</span>
+        {item.description && <span className="block whitespace-normal break-words text-xs font-normal leading-4 tracking-fg text-fg-grey-600">{item.description}</span>}
       </span>
-      {/* Reserve check column so selected/unselected labels share the same left edge */}
+      {/* Reserve the same check column for all rows. */}
       <span
-        className={cn(
-          "inline-flex size-[22px] shrink-0 items-center justify-center",
-          selected ? accent.text : "text-transparent",
-        )}
-        aria-hidden={!selected}
+        className={cn("inline-flex size-[22px] shrink-0 items-center justify-center", accent.text)}
+        aria-hidden
+        style={{ opacity: selected ? 1 : 0, scale: selected ? 1 : .65, transition: reduced ? "none" : "opacity 160ms ease, scale 320ms cubic-bezier(.34,1.16,.64,1)" }}
       >
-        <svg className="size-[22px]" viewBox="0 0 22 22" fill="none">
-          <path
-            d="M5.5 11.5L9 15L16.5 7.5"
-            stroke="currentColor"
-            strokeWidth="1.75"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <CheckCircleLinear size={22} />
       </span>
     </button>
   );
@@ -143,7 +142,11 @@ export function SelectOption(props: SelectOptionProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
-  const pendingOptionFocusRef = useRef<"first" | "last" | null>(null);
+  const pendingOptionFocusRef = useRef<"first" | "last" | "selected" | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const typeaheadRef = useRef({ text: "", time: 0 });
+  const reduced = useReducedMotion(motion);
+  const effectiveMotion = reduced ? "none" : motion;
   const listboxId = useId();
   const accent = formAccents[color];
 
@@ -162,40 +165,49 @@ export function SelectOption(props: SelectOptionProps) {
       : [];
   }
 
-  function focusBoundaryOption(target: "first" | "last") {
+  function focusOption(element?: HTMLElement) {
+    element?.focus({ preventScroll: true });
+    element?.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
+  }
+
+  function focusBoundaryOption(target: "first" | "last" | "selected") {
     const optionElements = getOptionElements();
-    const targetIndex = target === "first" ? 0 : optionElements.length - 1;
-    optionElements[targetIndex]?.focus();
+    const selectedIndex = optionElements.findIndex(item => item.getAttribute("aria-selected") === "true");
+    const targetIndex = target === "last" ? optionElements.length - 1 : target === "selected" ? Math.max(0, selectedIndex) : 0;
+    focusOption(optionElements[targetIndex]);
   }
 
   useEffect(() => {
-    if (!open) return;
-    function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key !== "Escape") return;
-      e.preventDefault();
-      setOpen(false);
-      triggerRef.current?.focus();
+    if (!isOpen) return;
+    typeaheadRef.current = { text: "", time: 0 };
+    function handleClickOutside(e: MouseEvent | PointerEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("pointerdown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("pointerdown", handleClickOutside);
     };
-  }, [open]);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isDisabled || !open) return;
+    pendingOptionFocusRef.current = null;
+    // A disabled field must not reopen when it becomes enabled again.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false);
+  }, [isDisabled, open]);
 
   useEffect(() => {
     if (!isOpen || pendingOptionFocusRef.current === null) return;
-    const optionElements = ref.current
-      ? [...ref.current.querySelectorAll<HTMLElement>('[role="option"]')]
-      : [];
-    const targetIndex = pendingOptionFocusRef.current === "first" ? 0 : optionElements.length - 1;
-    optionElements[targetIndex]?.focus();
+    const optionElements = ref.current ? [...ref.current.querySelectorAll<HTMLElement>('[role="option"]')] : [];
+    const selectedIndex = optionElements.findIndex(item => item.getAttribute("aria-selected") === "true");
+    const target = pendingOptionFocusRef.current;
+    const targetIndex = target === "last" ? optionElements.length - 1 : target === "selected" ? Math.max(0, selectedIndex) : 0;
+    const element = optionElements[targetIndex];
+    element?.focus({ preventScroll: true });
+    element?.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
     pendingOptionFocusRef.current = null;
   }, [isOpen, options.length]);
 
@@ -206,15 +218,33 @@ export function SelectOption(props: SelectOptionProps) {
       : [];
   const selectedItems = options.filter((o) => selectedValues.includes(o.value));
 
-  function selectSingle(v: string) {
-    if (isMultiple) return;
-    (props.onChange as ((value: string) => void) | undefined)?.(v);
+  const selectionKey = selectedValues.join("\u0000");
+  const previousSelection = useRef(selectionKey);
+  useLayoutEffect(() => {
+    const changed = previousSelection.current !== selectionKey;
+    previousSelection.current = selectionKey;
+    if (!changed || reduced || isMultiple) return;
+    const animation = contentRef.current?.animate?.([
+      { opacity: .4, transform: "translateY(5px)" },
+      { opacity: 1, transform: "translateY(0)" },
+    ], { duration: 320, easing: "cubic-bezier(.2,.8,.2,1)" });
+    return () => animation?.cancel();
+  }, [selectionKey, reduced, isMultiple]);
+
+  function closeMenu(restoreFocus = true) {
+    pendingOptionFocusRef.current = null;
     setOpen(false);
-    triggerRef.current?.focus();
+    if (restoreFocus && !isDisabled) triggerRef.current?.focus({ preventScroll: true });
+  }
+
+  function selectSingle(v: string) {
+    if (isMultiple || isDisabled || !isOpen) return;
+    (props.onChange as ((value: string) => void) | undefined)?.(v);
+    closeMenu();
   }
 
   function toggleMultiple(v: string) {
-    if (!isMultiple) return;
+    if (!isMultiple || isDisabled) return;
     const next = selectedValues.includes(v)
       ? selectedValues.filter((x) => x !== v)
       : [...selectedValues, v];
@@ -222,14 +252,20 @@ export function SelectOption(props: SelectOptionProps) {
   }
 
   function removeTag(v: string) {
-    if (!isMultiple) return;
+    if (!isMultiple || isDisabled) return;
     const next = selectedValues.filter((x) => x !== v);
     (props.onChange as ((value: string[]) => void) | undefined)?.(next);
   }
 
   function handleTriggerKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
-    if (event.target !== event.currentTarget) return;
+    if (event.target !== event.currentTarget || event.nativeEvent.isComposing) return;
     if (isDisabled) return;
+    if (event.key === "Escape" && isOpen) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeMenu();
+      return;
+    }
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
       const target = event.key === "ArrowDown" ? "first" : "last";
@@ -243,11 +279,13 @@ export function SelectOption(props: SelectOptionProps) {
     }
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      setOpen(true);
+      if (isOpen) focusBoundaryOption("selected");
+      else { pendingOptionFocusRef.current = "selected"; setOpen(true); }
     }
   }
 
   function handleListboxKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+    if (event.nativeEvent.isComposing) return;
     const currentOption = (event.target as HTMLElement).closest<HTMLElement>('[role="option"]');
     if (!currentOption || !event.currentTarget.contains(currentOption)) return;
 
@@ -255,8 +293,22 @@ export function SelectOption(props: SelectOptionProps) {
     const currentIndex = optionElements.indexOf(currentOption);
     if (currentIndex < 0 || optionElements.length === 0) return;
 
+    if (!isOpen || isDisabled) return;
     let nextIndex: number;
     switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        if (!event.repeat) currentOption.click();
+        return;
+      case "Escape":
+        event.preventDefault();
+        event.stopPropagation();
+        closeMenu();
+        return;
+      case "Tab":
+        closeMenu();
+        return;
       case "ArrowDown":
         nextIndex = (currentIndex + 1) % optionElements.length;
         break;
@@ -269,12 +321,24 @@ export function SelectOption(props: SelectOptionProps) {
       case "End":
         nextIndex = optionElements.length - 1;
         break;
-      default:
-        return;
+      default: {
+        if (event.key.length !== 1 || event.altKey || event.ctrlKey || event.metaKey) return;
+        const now = event.timeStamp;
+        const old = typeaheadRef.current;
+        const text = now - old.time < 600 ? old.text + event.key.toLocaleLowerCase() : event.key.toLocaleLowerCase();
+        typeaheadRef.current = { text, time: now };
+        const query = [...text].every(character => character === text[0]) ? text[0] : text;
+        nextIndex = -1;
+        for (let offset = 1; offset <= options.length; offset++) {
+          const index = (currentIndex + offset) % options.length;
+          if (options[index].label.toLocaleLowerCase().startsWith(query)) { nextIndex = index; break; }
+        }
+        if (nextIndex < 0) return;
+      }
     }
 
     event.preventDefault();
-    optionElements[nextIndex]?.focus();
+    focusOption(optionElements[nextIndex]);
   }
 
   // Trigger styling (exactly per Figma: outline-based border)
@@ -283,9 +347,16 @@ export function SelectOption(props: SelectOptionProps) {
   const triggerBase = cn(
     "flex items-center gap-2 px-4 py-3 outline outline-1 outline-offset-[-1px] transition-all cursor-pointer overflow-hidden",
     shapeClass,
-    isMultiple ? "min-h-12" : "h-12",
+    isMultiple ? "min-h-12" : selectedItems[0]?.description ? "min-h-12 py-2" : "h-12",
   );
-  const triggerStyle = { width: width ?? defaultWidth };
+  const triggerStyle = { width: width ?? defaultWidth, maxWidth: "100%" };
+  const surfaceStyle = {
+    width: "100%",
+    "--forge-motion-enter-duration": "280ms",
+    "--forge-motion-exit-duration": "160ms",
+    "--forge-motion-layout-duration": "320ms",
+    "--forge-motion-feedback-ease": "cubic-bezier(.2,.8,.2,1)",
+  } as CSSProperties;
 
   const triggerState = cn(
     isError && "bg-fg-red-50 outline-fg-red",
@@ -304,9 +375,11 @@ export function SelectOption(props: SelectOptionProps) {
       errorMessage={errorMessage}
       showError={isError}
       display="inline-flex"
-      className={className}
+      className={cn("max-w-full", className)}
     >
-      <div className="relative">
+      <div className="relative min-w-0" style={triggerStyle} onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}>
         <div
           ref={triggerRef}
           role="combobox"
@@ -317,10 +390,14 @@ export function SelectOption(props: SelectOptionProps) {
           aria-label={label ?? placeholder}
           aria-disabled={isDisabled}
           aria-invalid={isError}
-          data-motion={motion}
+          data-motion={effectiveMotion}
           className={cn("forge-motion-trigger", triggerBase, triggerState)}
-          style={triggerStyle}
-          onClick={() => !isDisabled && setOpen(!open)}
+          style={{ width: "100%", maxWidth: "100%" }}
+          onClick={() => {
+            if (isDisabled) return;
+            if (isOpen) closeMenu();
+            else { pendingOptionFocusRef.current = "selected"; setOpen(true); }
+          }}
           onKeyDown={handleTriggerKeyDown}
         >
           {/* Content */}
@@ -331,69 +408,60 @@ export function SelectOption(props: SelectOptionProps) {
                   key={item.value}
                   label={item.label}
                   color={color}
-                  onRemove={() => removeTag(item.value)}
+                  onRemove={isDisabled ? undefined : () => removeTag(item.value)}
                 />
               ))}
             </div>
-          ) : isImage && selectedItems[0] ? (
-            <>
-              {selectedItems[0].image && (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={selectedItems[0].image} alt="" className="w-[22px] h-[22px] rounded-full shrink-0 object-cover" />
-              )}
-              <span className="flex-1 text-sm font-normal leading-5 tracking-fg text-fg-black truncate">
-                {selectedItems[0].label}
-              </span>
-            </>
           ) : (
-            <div className="flex-1 h-6 flex items-center overflow-hidden">
-              <span
-                className={cn(
-                  "text-sm font-normal leading-5 tracking-fg truncate",
-                  isError && "text-fg-red",
-                  isDisabled && "text-fg-grey-700",
-                  !selectedItems.length && !isError && "text-fg-grey-700",
-                  selectedItems.length > 0 && !isError && !isDisabled && "text-fg-black",
-                )}
-              >
-                {selectedItems[0]?.label ?? placeholder}
+            <div ref={contentRef} className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
+              {isImage && selectedItems[0]?.image ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src={selectedItems[0].image} alt="" className="size-[22px] shrink-0 rounded-full object-cover" />
+              ) : selectedItems[0]?.icon ? <span aria-hidden className="inline-flex size-5 shrink-0 items-center justify-center text-fg-grey-700">{selectedItems[0].icon}</span> : null}
+              <span className="min-w-0 flex-1">
+                <span
+                  className={cn(
+                    "block truncate text-sm font-normal leading-5 tracking-fg",
+                    isError && "text-fg-red",
+                    isDisabled && "text-fg-grey-700",
+                    !selectedItems.length && !isError && "text-fg-grey-700",
+                    selectedItems.length > 0 && !isError && !isDisabled && "text-fg-black",
+                  )}
+                >{selectedItems[0]?.label ?? placeholder}</span>
+                {selectedItems[0]?.description && <span className="block truncate text-xs font-normal leading-4 tracking-fg text-fg-grey-600">{selectedItems[0].description}</span>}
               </span>
             </div>
           )}
 
           {/* Chevron */}
-          <span className="forge-chevron w-6 h-6 flex items-center justify-center shrink-0" data-motion={motion} data-expanded={isOpen}>
+          <span className="forge-chevron w-6 h-6 flex items-center justify-center shrink-0" data-motion={effectiveMotion} data-expanded={isOpen}>
             <ChevronIcon size={20} className={isError ? "text-fg-red" : "text-fg-grey-700"} />
           </span>
         </div>
 
         {/* Dropdown — 宽度跟 trigger 一致 */}
-        <MotionPresence open={isOpen} motion={motion}
+        <MotionPresence open={isOpen} motion={effectiveMotion}
             id={listboxId}
             role="listbox"
+            aria-label={label ?? placeholder}
             aria-multiselectable={isMultiple || undefined}
             onKeyDown={handleListboxKeyDown}
             className="absolute top-full left-0 mt-1 py-2 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden"
-            style={triggerStyle}
+            style={surfaceStyle}
           >
-            <MotionMenu motion={motion} className="flex-1 flex flex-col overflow-y-auto max-h-60">
+            <MotionMenu motion={effectiveMotion} className="flex-1 flex flex-col overflow-y-auto max-h-60">
               {options.map((option) => (
                 <OptionItem
                   key={option.value}
                   item={option}
                   selected={selectedValues.includes(option.value)}
                   color={color}
+                  reduced={reduced}
                   isImage={isImage}
                   onClick={() => { if (isOpen) { if (isMultiple) toggleMultiple(option.value); else selectSingle(option.value); } }}
                 />
               ))}
             </MotionMenu>
-            {/* Scrollbar track with accent thumb */}
-            {options.length > 4 && (
-              <div className="w-1 bg-fg-grey-100 self-stretch shrink-0 relative">
-                <div className={cn("absolute top-2 left-0 right-0 h-14 rounded-full", accent.bg)} />
-              </div>
-            )}
           </MotionPresence>
       </div>
     </FieldFrame>

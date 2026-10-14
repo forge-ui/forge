@@ -56,8 +56,8 @@ export default function AgentCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Agent"
-        hint="ThinkingTrace · StreamingAnswer · ApprovalCard · ToolChips · AgentTaskRows · ChatInputBar · ContextCards · RecommendationCard · AgentDiffTable · AgentCodeBlock · InsightCards · CommandSearch · AgentFlowchart"
+        title="智能体"
+        hint="展示智能体的思考、回答、工具调用、任务和审批过程。"
       />
 
       <Section title="ThinkingTrace" description="四种痕迹。点标题可折叠。">

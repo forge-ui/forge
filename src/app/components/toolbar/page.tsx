@@ -112,6 +112,8 @@ const CODE_PILL_USAGE = `<ToolbarPillTabs color="purple" tabs={[
 const TOOLBAR_PROPS: ApiTableRow[] = [
   { attr: "left", type: "ReactNode", defaultValue: "—", description: "左侧插槽，常放 SearchInput 或 PillTabs。" },
   { attr: "right", type: "ReactNode", defaultValue: "—", description: "右侧插槽，常用 ToolbarActions 包一组控件。" },
+  { attr: "selection", type: "{ count, onClear, actions, label?, clearLabel? }", defaultValue: "—", description: "有选中项时展示批量操作；count 为 0 时恢复原有插槽。完整交互见列表页。" },
+  { attr: "locale / motion", type: "'zh' | 'en' / 'auto' | 'none'", defaultValue: "'zh' / 'auto'", description: "批量操作文案语言和过渡偏好。" },
   { attr: "className", type: "string", defaultValue: "—", description: "额外 className。" },
 ];
 
@@ -198,13 +200,13 @@ export default function ToolbarCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Toolbar"
-        hint="Toolbar 家族：Breadcrumbs · Search & Filter Toolbar 预设组合 · Toolbar 底层容器 · ToolbarPillTabs · PageTitleToolbar · 7 个 Toolbar* 子控件。"
+        title="工具栏"
+        hint="集中放置搜索、筛选、视图切换和页面操作。"
       />
 
       <Section
         title="Interactive Demo"
-        description="全部 Toolbar 子控件真实联动：ToolbarSelectDropdown / ToolbarDatepicker / ToolbarFilterButton / ToolbarShowSelect 均可点击展开。"
+        description="体验搜索、筛选、日期选择和显示数量的联动操作。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -217,7 +219,7 @@ export default function ToolbarCasePage() {
 
       <Section
         title="Breadcrumbs"
-        description="层级导航，最后一段为当前页，其余为可点链接。"
+        description="展示页面层级，点击上级名称返回对应页面。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -248,7 +250,7 @@ export default function ToolbarCasePage() {
 
       <Section
         title="Search & Filter Toolbar"
-        description="Figma 预设变体：双行组合 —— 第一行搜索 + 一组筛选 + 主按钮，第二行 PillTabs + 同款筛选。直接抄即可，下方 Toolbar (low-level) 是底层容器。"
+        description="将搜索、筛选、分类切换和主要操作组合为工具栏。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_SEARCH_FILTER_USAGE} minHeight={260}>
@@ -297,7 +299,7 @@ export default function ToolbarCasePage() {
 
       <Section
         title="Toolbar (low-level)"
-        description="底层 left + right 两槽容器。需要自由组装时用，开箱即用预设见上方 Search & Filter Toolbar。"
+        description="分别在左侧和右侧放置控件，自由组合工具栏。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_TOOLBAR_USAGE} minHeight={140}>
@@ -322,7 +324,7 @@ export default function ToolbarCasePage() {
 
       <Section
         title="ToolbarPillTabs"
-        description="胶囊 Tab，常用于 Toolbar left 槽作为分类切换。"
+        description="在工具栏中切换分类或视图。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -344,7 +346,7 @@ export default function ToolbarCasePage() {
 
       <Section
         title="PageTitleToolbar"
-        description="固定页面标题、面包屑和操作顺序。业务页只选择预设并传结构化数据，不开放布局插槽。"
+        description="组织页面标题、面包屑和常用操作。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -371,7 +373,7 @@ export default function ToolbarCasePage() {
 
       <Section
         title="Toolbar Controls"
-        description="7 个原子控件，用于 Toolbar 的 left / right 槽。每个组件独立 props，分别列出。需要联动请参考最上方 Interactive Demo。"
+        description="按需组合搜索、选择、日期、筛选等工具栏控件。"
       >
         <SubSection title="ToolbarSearchInput" stack>
           <PreviewBlock code={CODE_CONTROLS_USAGE} minHeight={120}>

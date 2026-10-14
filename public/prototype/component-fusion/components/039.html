@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>滑动选中标签</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"039",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"039",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"039",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"039",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"039"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u039{position:relative;width:340px;height:380px}
+.u039-tabs{position:relative;display:flex;padding:5px;border-radius:999px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line)}
+.u039-pill{position:absolute;left:0;top:5px;bottom:5px;width:var(--w,80px);border-radius:999px;background:var(--ux-ink);transform:translateX(var(--x,5px));box-shadow:0 8px 16px -10px var(--ux-shadow-strong);transition:transform .5s var(--ux-spring),width .5s var(--ux-spring)}
+.u039-tab{position:relative;flex:1;height:42px;border:0;padding:0;border-radius:999px;background:none;font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-2);white-space:nowrap;transition:color .35s var(--ux-ease)}
+.u039-tab[aria-selected="true"]{color:var(--ux-page)}
+.u039-tab:focus-visible{outline:2px solid var(--ux-accent);outline-offset:2px}
+.u039-panel{position:relative;height:312px;margin-top:14px;overflow:hidden;border-radius:22px}
+.u039-list{position:absolute;inset:0;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.u039-row{display:flex;align-items:center;gap:12px;padding:10px;border-radius:18px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line);transition:transform .55s var(--ux-spring),opacity .35s var(--ux-ease)}
+.u039-art{position:relative;width:52px;height:52px;flex:none;border-radius:14px;background:var(--g);overflow:hidden}
+.u039-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,color-mix(in srgb,var(--background) 45.00%,transparent),transparent 55%)}
+.u039-row b{display:block;font-size:var(--forge-text-arbitrary-15-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.02em}
+.u039-row small{display:block;margin-top:3px;font-size:var(--forge-text-xs-size);color:var(--ux-ink-3)}
+.u039-row em{margin-left:auto;font-style:normal;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-3);font-variant-numeric:tabular-nums}
+.u039-badge{margin-left:6px;padding:2px 6px;border-radius:6px;font-size:var(--forge-text-arbitrary-10-size);font-weight:var(--forge-font-bold-weight);background:var(--ux-accent-soft);color:var(--ux-accent);vertical-align:2px}
+</style>
+<div class="ux u039">
+  <div class="u039-tabs" role="tablist" aria-label="Library">
+    <span class="u039-pill" aria-hidden="true"></span>
+    <button class="u039-tab" type="button" role="tab" aria-selected="true">All</button>
+    <button class="u039-tab" type="button" role="tab" aria-selected="false">Music</button>
+    <button class="u039-tab" type="button" role="tab" aria-selected="false">Podcasts</button>
+    <button class="u039-tab" type="button" role="tab" aria-selected="false">Audiobooks</button>
+  </div>
+  <div class="u039-panel" role="tabpanel"></div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('.u039-tab'));
+  var pill = root.querySelector('.u039-pill');
+  var panel = root.querySelector('.u039-panel');
+
+  var DATA = [
+    [['Midnight Drive', 'Lumen · Album', '3:40', 'linear-gradient(140deg,#8B6CFF,#FF6B8B)'], ['Design Talk #42', 'Motion Lab · Podcast', '48m', 'linear-gradient(140deg,#22C3A6,#3D8BFF)'], ['Walking Slowly', 'Audiobook · Chapter 2', '1h 12m', 'linear-gradient(140deg,#FFB547,#FF7A45)'], ['Neon Garden', 'Kiri · Single', '2:58', 'linear-gradient(140deg,#3D8BFF,#B04FD0)']],
+    [['Midnight Drive', 'Lumen · Album', '3:40', 'linear-gradient(140deg,#8B6CFF,#FF6B8B)'], ['Neon Garden', 'Kiri · Single', '2:58', 'linear-gradient(140deg,#3D8BFF,#B04FD0)'], ['Paper Moon', 'Haru · EP', '4:12', 'linear-gradient(140deg,#FF8A65,#FFC24B)'], ['Blue Hour', 'Sola · Album', '3:05', 'linear-gradient(140deg,#0EA5E9,#22C3A6)']],
+    [['Design Talk #42', 'Motion Lab · New episode', '48m', 'linear-gradient(140deg,#22C3A6,#3D8BFF)'], ['People at Work', 'Studio F · Ep. 18', '36m', 'linear-gradient(140deg,#FF7A93,#8B6CFF)'], ['Code Review Radio', 'Devcast · Ep. 7', '52m', 'linear-gradient(140deg,#5B8CFF,#22C3A6)'], ['Morning Briefing', 'Daily · Today', '12m', 'linear-gradient(140deg,#FFB547,#E5484D)']],
+    [['Walking Slowly', 'Audiobook · On chapter 2', '1h 12m', 'linear-gradient(140deg,#FFB547,#FF7A45)'], ['Small Habits', 'Audiobook · Not started', '6h', 'linear-gradient(140deg,#8B6CFF,#3D8BFF)'], ['Ocean Hours', 'Audiobook · Finished', '4h 30m', 'linear-gradient(140deg,#0EA5E9,#5B8CFF)'], ['Night Library', 'Audiobook · New', '8h', 'linear-gradient(140deg,#B04FD0,#FF6B8B)']]
+  ];
+  var cur = 0, list = null;
+  function movePill(animate) {
+    var t = tabs[cur];
+    if (!animate) pill.style.transition = 'none';
+    pill.style.setProperty('--x', t.offsetLeft + 'px');
+    pill.style.setProperty('--w', t.offsetWidth + 'px');
+    if (!animate) { void pill.offsetWidth; pill.style.transition = ''; }
+  }
+  function make(i) {
+    var ul = document.createElement('ul');
+    ul.className = 'u039-list';
+    ul.innerHTML = DATA[i].map(function (r, k) {
+      return '<li class="u039-row" style="transition-delay:' + (k * 45) + 'ms"><span class="u039-art" style="--g:' + r[3] + '" aria-hidden="true"></span><span><b>' + r[0] + (i === 0 && k === 0 ? '<span class="u039-badge">Playing</span>' : '') + '</b><small>' + r[1] + '</small></span><em>' + r[2] + '</em></li>';
+    }).join('');
+    return ul;
+  }
+  // 새 목록은 이동한 방향에서 들어오고, 이전 목록은 반대쪽으로 빠집니다. 줄마다 조금씩 늦게 움직입니다
+  function select(i, focus) {
+    if (i === cur && list) return;
+    var dir = i > cur ? 1 : -1;
+    cur = i;
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+    if (focus) tabs[i].focus();
+    movePill(true);
+    var next = make(i), old = list;
+    list = next;
+    if (!old || window.forgeReduced()) { if (old) old.remove(); panel.appendChild(next); return; }
+    Array.prototype.forEach.call(next.children, function (r) { r.style.transform = 'translateX(' + (dir * 70) + '%)'; r.style.opacity = '0'; });
+    panel.appendChild(next);
+    void next.offsetWidth;
+    Array.prototype.forEach.call(next.children, function (r) { r.style.transform = ''; r.style.opacity = ''; });
+    Array.prototype.forEach.call(old.children, function (r) { r.style.transform = 'translateX(' + (-dir * 60) + '%)'; r.style.opacity = '0'; });
+    setTimeout(function () { old.remove(); }, 700);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); select((i + d + tabs.length) % tabs.length, true); }
+    });
+  });
+  var uid = 'u039-' + Math.random().toString(36).slice(2, 7);
+  panel.id = uid;
+  tabs.forEach(function (t) { t.setAttribute('aria-controls', uid); });
+  list = make(0);
+  panel.appendChild(list);
+  tabs.forEach(function (t, k) { t.tabIndex = k === 0 ? 0 : -1; });
+  movePill(false);
+})();</script></body></html>

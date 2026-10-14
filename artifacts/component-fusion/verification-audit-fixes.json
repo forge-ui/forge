@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-14",
+  "status": "fixed_and_verified",
+  "scope": "component-fusion local review gallery",
+  "coreVersion": "0.4.5",
+  "committed": false,
+  "published": false,
+  "fixes": [
+    {
+      "id": "language-remount",
+      "status": "fixed",
+      "files": [
+        "src/app/prototype/component-fusion/_lab-preview.tsx"
+      ],
+      "evidence": "Chrome: 086 English -> Regenerate -> completion -> Chinese produces a complete Chinese answer without mixed-language spans."
+    },
+    {
+      "id": "theme-initialization",
+      "status": "fixed",
+      "files": [
+        "src/app/prototype/component-fusion/_lab-preview.tsx"
+      ],
+      "evidence": "Chrome: 097 purple -> reset keeps both accent arcs rgb(114, 57, 234); black gives rgb(0, 10, 25). Initial iframe query includes lang/accent/motion/theme."
+    },
+    {
+      "id": "review-storage-failure",
+      "status": "fixed",
+      "files": [
+        "src/app/prototype/component-fusion/_review-store.ts",
+        "src/app/prototype/component-fusion/_gallery.tsx"
+      ],
+      "evidence": "Six tests cover readable stale data with failed write, in-memory edits, retry recovery, later-edit recovery, unavailable storage, cross-tab sync and existing accepted IDs."
+    },
+    {
+      "id": "focused-frame-unload",
+      "status": "fixed",
+      "files": [
+        "src/app/prototype/component-fusion/_lab-preview.tsx"
+      ],
+      "evidence": "Actual React component tests with simulated timers: focused frame survives 10 seconds offscreen, then unloads after focus leaves on the next one-second recheck; re-entry and unmount cancel timers."
+    }
+  ],
+  "checks": {
+    "previewRegressionTests": {
+      "command": "node --test scripts/test-component-fusion-previews.mjs",
+      "passed": 7
+    },
+    "reviewStoreRegressionTests": {
+      "command": "node scripts/test-component-fusion-review-store.mjs",
+      "passed": 6
+    },
+    "websiteTypecheck": true,
+    "targetedEslint": true,
+    "independentFollowupReview": "All four findings resolved; no new concrete regression found in three source files and two test scripts."
+  },
+  "behaviorNote": "Changing prototype language, theme or motion restarts its demo; review decisions and notes remain unchanged.",
+  "browser": {
+    "session": "existing stable Google Chrome",
+    "temporaryReviewDataWritten": false,
+    "screenshot": "artifacts/component-fusion/screenshot-audit-fixes.png",
+    "full122PrototypeQa": false
+  },
+  "unchangedLimitations": [
+    "Existing CommandSearch input-focused Escape issue",
+    "Existing core package budget failure"
+  ]
+}

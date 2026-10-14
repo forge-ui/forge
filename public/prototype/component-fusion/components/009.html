@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>文字滚动按钮</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"009",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"009",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"009",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"009",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"009"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u009{position:relative;width:320px;height:160px;display:grid;place-items:center}
+.u009-btn{position:relative;display:flex;align-items:center;gap:16px;height:68px;padding:0 10px 0 30px;border:0;border-radius:999px;background:transparent;color:var(--ux-ink);overflow:hidden;isolation:isolate;
+  box-shadow:inset 0 0 0 1.5px var(--ux-ink);transition:transform .5s var(--ux-spring),color .45s var(--ux-ease)}
+.u009-btn:active{transform:scale(.96)}
+.u009-btn:focus-visible{outline:2px solid var(--ux-accent);outline-offset:5px}
+.u009-fill{position:absolute;inset:0;z-index:-1;background:var(--ux-ink);border-radius:50% 50% 0 0/40% 40% 0 0;transform:translateY(102%);transition:transform .7s var(--ux-ease),border-radius .7s var(--ux-ease)}
+.u009.is-on .u009-fill{transform:none;border-radius:0}
+.u009.is-on .u009-btn{color:var(--ux-page)}
+.u009-word{position:relative;display:flex;height:26px;overflow:hidden;font-size:var(--forge-text-xl-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.03em;line-height:var(--forge-leading-6)}
+.u009-face>span{display:flex;flex-direction:column;transition:transform .55s var(--ux-ease);transition-delay:calc(var(--i) * 22ms)}
+.u009-face>span::after{content:attr(data-c);display:block}
+.u009-btn:hover .u009-face>span,.u009-btn:focus-visible .u009-face>span{transform:translateY(-26px)}
+.u009-face{display:flex;transition:transform .6s var(--ux-spring),opacity .3s var(--ux-ease)}
+.u009-face+.u009-face{position:absolute;left:0;top:0;transform:translateY(110%);opacity:0}
+.u009.is-on .u009-face:first-child{transform:translateY(-110%);opacity:0}
+.u009.is-on .u009-face+.u009-face{transform:none;opacity:1}
+.u009-orb{position:relative;width:48px;height:48px;flex:none;border-radius:50%;background:var(--ux-grad);color:var(--accent-foreground);box-shadow:0 8px 18px -8px color-mix(in srgb,var(--foreground) 16%,transparent);overflow:hidden;transition:background-color .45s var(--ux-ease),color .45s var(--ux-ease),transform .6s var(--ux-spring)}
+.u009.is-on .u009-orb{transform:rotate(90deg)}
+.u009-orb svg{position:absolute;left:13px;top:13px;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .55s var(--ux-ease)}
+.u009-orb svg+svg{transform:translate(-36px,36px)}
+.u009-btn:hover .u009-orb svg:first-child{transform:translate(36px,-36px)}
+.u009-btn:hover .u009-orb svg+svg{transform:none;transition-delay:.08s}
+.u009-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+</style>
+<div class="ux u009">
+  <button class="u009-btn" type="button" aria-pressed="false">
+    <span class="u009-fill" aria-hidden="true"></span>
+    <span class="u009-word" aria-hidden="true">
+      <span class="u009-face" data-t="See our work"></span>
+      <span class="u009-face" data-t="Browsing"></span>
+    </span>
+    <span class="u009-sr">See our work</span>
+    <span class="u009-orb" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </button>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var btn = root.querySelector('.u009-btn');
+  var sr = root.querySelector('.u009-sr');
+  // 문구를 글자 단위로 쪼개, 각 글자 아래에 같은 글자를 하나 더 둡니다. 올리면 차례로 굴러 올라갑니다
+  Array.prototype.forEach.call(root.querySelectorAll('.u009-face'), function (face) {
+    Array.from(face.dataset.t).forEach(function (ch, i) {
+      var s = document.createElement('span');
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.dataset.c = ch === ' ' ? ' ' : ch;
+      s.style.setProperty('--i', i);
+      face.appendChild(s);
+    });
+  });
+  btn.addEventListener('click', function () {
+    var on = !root.classList.contains('is-on');
+    root.classList.toggle('is-on', on);
+    btn.setAttribute('aria-pressed', String(on));
+    sr.textContent = on ? 'Browsing' : 'See our work';
+  });
+})();</script></body></html>

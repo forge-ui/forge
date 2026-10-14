@@ -44,7 +44,7 @@ const radioOptions = [
 export default function FilterCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Filter" hint="FilterGroup · FilterTrigger · FilterPanel" />
+      <PageHeading title="筛选" hint="用分组条件和筛选面板缩小结果范围，支持重置和应用。" />
 
       <Section
         title="Filter Group"

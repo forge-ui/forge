@@ -1,0 +1,35 @@
+:root{--forge-workflow-arrow:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20aria-hidden%3D%22true%22%20class%3D%22solar%20solar-arrow-right-linear%20forge-workflow-icon%22%20style%3D%22color%3AcurrentColor%3Bwidth%3A20px%3Bheight%3A20px%22%20stroke-width%3D%22var%28--solar-stroke-width%2C%201.5%29%22%3E%3Cpath%20d%3D%22M4%2012H20M14%2018L20%2012L14%206%22%20stroke%3D%22currentColor%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C/path%3E%3C/svg%3E")}/* Workflow demos share Forge control surfaces and Solar glyphs. */
+html .ux{--a:var(--accent);--soft:var(--accent-soft);max-width:360px;line-height:var(--forge-leading-5)}
+html .ux button{font-family:var(--forge-font-sans-family),"PingFang SC",sans-serif;font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-medium-weight);letter-spacing:0;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:8px}
+html .ux button:not(:disabled):hover{background:var(--hover)}
+html .ux button.primary,html .u189 .promote,html .u188 .deploy,html .u178 .archive{background:var(--accent);color:var(--accent-foreground);border:1px solid var(--accent);min-height:40px;padding:8px 16px}
+html .ux button.primary:hover,html .u189 .promote:hover,html .u188 .deploy:hover,html .u178 .archive:hover{background:var(--accent);filter:brightness(.96)}
+.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}
+html .u176 .poster{border-radius:12px;border:1px solid var(--border);box-shadow:none;background:var(--surface)}
+html .u176 .poster strong{font-family:var(--forge-font-display-family),"PingFang SC",sans-serif;font-style:normal;letter-spacing:-.025em}
+html .u176 .v{border:1px solid var(--border);border-radius:8px;background:var(--background);justify-content:flex-start;padding:10px}
+html .u176 .v[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+html .u177 .history-tools .undo,html .u177 .history-tools .redo,html .u188 .rollback{border:1px solid var(--border);background:var(--background);width:40px;height:40px;border-radius:8px}
+html .u177 .shape{background:var(--accent);box-shadow:8px 10px 0 var(--accent-soft)}
+html .u178 .file{border:1px solid var(--border);border-radius:12px;background:var(--background);display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between}
+html .u178 .file[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);color:var(--foreground)}
+html .u178 .file i{color:var(--text-secondary);font-family:var(--forge-font-sans-family),sans-serif;font-style:normal}
+html .u178 .file::after{content:none}html .u178 .dock{background:var(--surface);border:1px solid var(--border);color:var(--foreground);border-radius:12px}
+html .u179 .shelf{border-bottom:1px solid var(--border);box-shadow:none}
+html .u179 .clip{border:1px solid var(--border);border-radius:12px;background:var(--background);color:var(--foreground);box-shadow:0 2px 8px var(--ux-shadow)}
+html .u179 .clip[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);box-shadow:none}
+html .u180 .paper{border:1px solid var(--border);border-radius:12px;box-shadow:none;background:var(--background)}
+html .u180 .seal{border-color:var(--border);color:var(--text-secondary);font-family:var(--forge-font-sans-family),sans-serif;border-radius:10px}
+html .u180 .done .seal{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+html .u181 .task,html .u181 .person{border-radius:12px;border-color:var(--border)}
+html .u184 .cell{border-radius:8px;border:1px solid var(--border);background:var(--background)}
+html .u184 .cell[aria-pressed=true]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent);transform:none}
+html .u184 .cell[disabled]{background:var(--surface);color:var(--text-secondary);border-style:solid}
+html .u186 .core{background:var(--accent);color:var(--accent-foreground);border-radius:10px}
+html .u186 .device{border:1px solid var(--border);background:var(--background)}
+html .u186 .device[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+html .u188 .cover output{font-family:var(--forge-font-display-family),sans-serif;letter-spacing:-.025em}
+html .u188 .fleet i.on{background:var(--accent);box-shadow:none}
+html .u189 .environments::before{display:none}html .u189 .portal{border-radius:12px;font-family:var(--forge-font-sans-family),sans-serif;font-size:var(--forge-text-sm-size);box-shadow:none}
+html .u189 .env.on .portal{border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent)}
+html .u189 .env:not(:last-child)::after{content:'';position:absolute;right:-20px;top:28px;width:20px;height:20px;background:var(--text-secondary);mask:var(--forge-workflow-arrow) center/20px no-repeat}

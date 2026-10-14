@@ -12,6 +12,7 @@
 // 供 `_toc.tsx` 抽取右侧 TOC。
 
 import { type ReactNode } from "react";
+import { componentLabel } from "../components/_labels";
 import { cn } from "@forge-ui-official/core";
 
 export function slugify(text: string): string {
@@ -34,12 +35,12 @@ export function Section({
   return (
     <section
       id={id}
-      data-case-section={title}
+      data-case-section={componentLabel(title)}
       className="flex scroll-mt-24 flex-col gap-5"
     >
       <div className="flex flex-col gap-1.5">
         <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
-          {title}
+          {componentLabel(title)}
         </h2>
         {description && (
           <p className="text-base font-normal leading-[1.8] text-fg-grey-900">
@@ -64,7 +65,7 @@ export function SubSection({
   return (
     <div className="flex flex-col gap-2">
       <h3 className="text-sm font-semibold text-fg-grey-700 uppercase tracking-fg">
-        {title}
+        {componentLabel(title)}
       </h3>
       <div
         className={
@@ -98,7 +99,7 @@ export function PageHeading({ title, hint }: { title: string; hint?: string }) {
   return (
     <header className="flex flex-col gap-5">
       <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">
-        {title}
+        {componentLabel(title)}
       </h1>
       {hint && (
         <p className="max-w-2xl text-base font-normal leading-[1.8] text-fg-grey-900">
@@ -124,11 +125,11 @@ export function BareSection({
   return (
     <section
       id={id}
-      data-case-section={title}
+      data-case-section={componentLabel(title)}
       className={cn("flex scroll-mt-24 flex-col gap-6", className)}
     >
       <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
-        {title}
+        {componentLabel(title)}
       </h2>
       {children}
     </section>
@@ -194,7 +195,7 @@ export function DemoCard({
         className,
       )}
     >
-      <span className="text-sm font-semibold text-fg-black tracking-fg">{title}</span>
+      <span className="text-sm font-semibold text-fg-black tracking-fg">{componentLabel(title)}</span>
       {children}
     </div>
   );

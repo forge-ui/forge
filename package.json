@@ -22,18 +22,20 @@
     "core:check-package": "pnpm --filter @forge-ui-official/core check:package",
     "core:check-consumer": "pnpm --filter @forge-ui-official/core check:consumer",
     "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",
-    "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase"
+    "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase",
+    "test:interactions": "node --test scripts/test-component-fusion-*.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.2.8",
     "@fontsource-variable/plus-jakarta-sans": "5.2.8",
     "@forge-ui-official/core": "workspace:*",
+    "@solar-icons/react": "2.3.2",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "motion": "14.1.0",
     "next": "16.3.5",
     "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "@solar-icons/react": "2.3.2"
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

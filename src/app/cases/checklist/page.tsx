@@ -20,8 +20,8 @@ export default function ChecklistCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Checklist"
-        hint="Checklist · ChecklistItem · md/sm · purple/blue"
+        title="待办清单"
+        hint="勾选待办事项，已完成的内容自动移到列表底部。"
       />
 
       <Section title="Complete to bottom" description="点未完成行，等划线结束后沉底。">

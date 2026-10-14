@@ -37,6 +37,7 @@ export interface CalendarEvent {
 }
 
 const barBg: Record<EventTagColor, string> = {
+  black: "bg-fg-black",
   purple: "bg-fg-violet",
   blue: "bg-fg-blue",
   green: "bg-fg-green-500",

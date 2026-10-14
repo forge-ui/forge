@@ -70,7 +70,7 @@ const kebabActions = (
 export default function ListCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="List" hint="ListItem · DescriptionItem · ListGroup" />
+      <PageHeading title="列表" hint="组织条目、详情字段、联系人和通知，便于浏览与操作。" />
 
       <Section
         title="2 Column"

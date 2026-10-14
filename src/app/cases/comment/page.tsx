@@ -14,7 +14,7 @@ const avatarUrls = [
 export default function CommentCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Comment & Discussion" hint="CommentItem · ReviewItem" />
+      <PageHeading title="评论与评价" hint="展示讨论、回复和评分，支持头像、时间和附图。" />
 
       <Section title="CommentItem" description="Comment with replies and images">
         <SubSection title="Example">

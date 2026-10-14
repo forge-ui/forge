@@ -2,6 +2,7 @@
 import { cn } from "../../lib/utils";
 
 const solidColors = {
+  black: "bg-fg-black text-white",
   purple: "bg-fg-violet text-white",
   green: "bg-fg-green-500 text-white",
   red: "bg-fg-red text-white",
@@ -12,6 +13,7 @@ const solidColors = {
 } as const;
 
 const outlineColors = {
+  black: "bg-fg-grey-100 outline outline-1 outline-offset-[-1px] outline-fg-grey-300 text-fg-black",
   purple: "bg-fg-violet-100 outline outline-1 outline-offset-[-1px] outline-fg-violet-300 text-fg-violet",
   green: "bg-fg-green-50 outline outline-1 outline-offset-[-1px] outline-fg-green-200 text-fg-green-500",
   red: "bg-fg-red-100 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-red",

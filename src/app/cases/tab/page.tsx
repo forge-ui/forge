@@ -43,8 +43,8 @@ export default function TabCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Tab"
-        hint="TabBar / ButtonGroup — 下划线标签栏 + pill 分段控制器。"
+        title="页签与切换"
+        hint="在同一页面中切换内容、分类或视图。"
       />
 
       <Section title="TabsContent 原地淡入" description="点击标签，或使用左右方向键、Home / End 切换；可快速连续操作。内容仅淡入 180ms，系统减少动态效果时直接显示。">

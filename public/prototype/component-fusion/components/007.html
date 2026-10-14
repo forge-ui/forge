@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>播放暂停变形</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"007",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"007",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"007",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"007",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"007"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>.u007-btn polygon{visibility:hidden}.forge-solar-play,.forge-solar-pause{transform:translate(5px,5px) scale(1.25);fill:none;stroke:currentColor;stroke-width:1.5;transition:opacity .3s,transform .3s}.forge-solar-pause{opacity:0}.is-play .forge-solar-play{opacity:0}.is-play .forge-solar-pause{opacity:1}</style><style>
+.u007{--grad1:var(--accent);--grad2:var(--fg-red);position:relative;width:320px;height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.u007-info{text-align:center}
+.u007-info b{display:block;font-size:var(--forge-text-lg-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.03em}
+.u007-info span{display:block;margin-top:4px;font-size:var(--forge-text-sm-size);color:var(--ux-ink-3)}
+.u007-disc{position:relative;width:160px;height:160px;margin:18px 0 16px;display:grid;place-items:center}
+.u007-ring{position:absolute;inset:0;transform:rotate(-90deg)}
+.u007-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
+.u007-ring .u007-track{stroke:var(--ux-line-2)}
+.u007-ring .u007-arc{stroke:url(#u007-g);stroke-dasharray:452.4;stroke-dashoffset:calc(452.4 * (1 - var(--p,0)))}
+.u007-btn{position:relative;width:112px;height:112px;border:0;padding:0;border-radius:50%;color:var(--accent-foreground);background:linear-gradient(145deg,var(--grad1),var(--grad2));
+  box-shadow:inset 0 1.5px 0 color-mix(in srgb,var(--background) 40.00%,transparent),inset 0 -10px 18px -10px color-mix(in srgb,var(--foreground) 16%,transparent),0 24px 44px -20px color-mix(in srgb,var(--grad1) 80%,transparent);
+  transition:transform .5s var(--ux-spring),box-shadow .5s var(--ux-ease)}
+.u007-btn:hover{transform:scale(1.04)}
+.u007-btn:active{transform:scale(.92)}
+.u007-btn:focus-visible{outline:2px solid var(--ux-accent);outline-offset:6px}
+.u007-btn svg{width:46px;height:46px;display:block;margin:auto}
+.u007-btn polygon{fill:currentColor;stroke:currentColor;stroke-width:2.4;stroke-linejoin:round}
+.u007-pulse{position:absolute;inset:6px;border-radius:50%;background:linear-gradient(145deg,var(--grad1),var(--grad2));opacity:0;z-index:-1}
+.u007.is-play .u007-pulse{animation:u007-pulse 2.4s var(--ux-ease) infinite}
+@keyframes u007-pulse{0%{opacity:.45;transform:scale(.9)}100%{opacity:0;transform:scale(1.5)}}
+.u007-wave{display:flex;align-items:center;gap:3px;height:40px;width:270px;cursor:pointer;touch-action:none;border-radius:8px}
+.u007-wave:focus-visible{outline:2px solid var(--ux-accent);outline-offset:4px}
+.u007-wave i{flex:1;height:calc(var(--h) * 1%);min-height:4px;border-radius:3px;background:var(--ux-line-2);transform-origin:50% 50%;transition:background-color .25s var(--ux-ease)}
+.u007-wave i.on{background:linear-gradient(180deg,var(--grad1),var(--grad2))}
+.u007.is-play .u007-wave i.on:nth-last-child(-n+40){animation:u007-eq .9s ease-in-out infinite alternate;animation-delay:calc(var(--d) * -1s)}
+@keyframes u007-eq{from{transform:scaleY(.82)}to{transform:scaleY(1.06)}}
+.u007-time{display:flex;justify-content:space-between;width:270px;margin-top:8px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-3);font-variant-numeric:tabular-nums}
+.u007-time b{color:var(--ux-ink-2);font-weight:var(--forge-font-semibold-weight)}
+</style>
+<div class="ux u007">
+  <div class="u007-info"><b>Midnight Drive</b><span>Lumen · Synthwave</span></div>
+  <div class="u007-disc">
+    <svg class="u007-ring" viewBox="0 0 160 160" aria-hidden="true">
+      <defs><linearGradient id="u007-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--fg-red)"/></linearGradient></defs>
+      <circle class="u007-track" cx="80" cy="80" r="72"/><circle class="u007-arc" cx="80" cy="80" r="72"/>
+    </svg>
+    <span class="u007-pulse" aria-hidden="true"></span>
+    <button class="u007-btn" type="button" aria-label="播放" aria-pressed="false">
+      <svg class="solar" data-solar-checked="Play / Pause" viewBox="0 0 40 40" aria-hidden="true"><g class="forge-solar-play"><path d="M20.4086 9.35258C22.5305 10.5065 22.5305 13.4935 20.4086 14.6474L7.59662 21.6145C5.53435 22.736 3 21.2763 3 18.9671L3 5.0329C3 2.72368 5.53435 1.26402 7.59661 2.38548L20.4086 9.35258Z" stroke="currentColor" stroke-linecap="round"></path></g><g class="forge-solar-pause"><path d="M2 6C2 4.11438 2 3.17157 2.58579 2.58579C3.17157 2 4.11438 2 6 2C7.88562 2 8.82843 2 9.41421 2.58579C10 3.17157 10 4.11438 10 6V18C10 19.8856 10 20.8284 9.41421 21.4142C8.82843 22 7.88562 22 6 22C4.11438 22 3.17157 22 2.58579 21.4142C2 20.8284 2 19.8856 2 18V6Z" stroke="currentColor" stroke-linecap="round"></path><path d="M14 6C14 4.11438 14 3.17157 14.5858 2.58579C15.1716 2 16.1144 2 18 2C19.8856 2 20.8284 2 21.4142 2.58579C22 3.17157 22 4.11438 22 6V18C22 19.8856 22 20.8284 21.4142 21.4142C20.8284 22 19.8856 22 18 22C16.1144 22 15.1716 22 14.5858 21.4142C14 20.8284 14 19.8856 14 18V6Z" stroke="currentColor" stroke-linecap="round"></path></g><polygon class="u007-l"/><polygon class="u007-r"/></svg>
+    </button>
+  </div>
+  <div class="u007-wave" role="slider" tabindex="0" aria-label="Playback position" aria-valuemin="0" aria-valuemax="220" aria-valuenow="72" aria-valuetext="1 min 12 s"></div>
+  <div class="u007-time"><b class="u007-now">1:12</b><span>3:40</span></div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var btn = root.querySelector('.u007-btn');
+  var L = root.querySelector('.u007-l'), R = root.querySelector('.u007-r');
+  var wave = root.querySelector('.u007-wave');
+  var nowEl = root.querySelector('.u007-now');
+
+  // 그라디언트 id가 여러 개 생겨도 겹치지 않게 이 요소만의 id를 붙입니다
+  var gid = 'u007-g-' + Math.random().toString(36).slice(2, 7);
+  root.querySelector('linearGradient').id = gid;
+  root.querySelector('.u007-arc').style.stroke = 'url(#' + gid + ')';
+
+  // 삼각형을 두 조각으로 나눠, 각 꼭짓점을 暂停 막대의 꼭짓점으로 옮깁니다
+  var PLAY = [[[13, 8], [22.5, 13.6], [22.5, 26.4], [13, 32]], [[22.5, 13.6], [32, 20], [32, 20], [22.5, 26.4]]];
+  var PAUSE = [[[11, 9], [17, 9], [17, 31], [11, 31]], [[23, 9], [29, 9], [29, 31], [23, 31]]];
+  var shape = 0, raf = 0;
+  function draw(t) {
+    [L, R].forEach(function (poly, k) {
+      poly.setAttribute('points', PLAY[k].map(function (p, j) {
+        var q = PAUSE[k][j];
+        return (p[0] + (q[0] - p[0]) * t).toFixed(2) + ',' + (p[1] + (q[1] - p[1]) * t).toFixed(2);
+      }).join(' '));
+    });
+  }
+  function morph(to) {
+    cancelAnimationFrame(raf);
+    var from = shape, t0 = performance.now(), D = window.forgeReduced() ? 1 : 420;
+    (function f(now) {
+      var x = Math.min(1, (now - t0) / D);
+      var e = 1 + 2.2 * Math.pow(x - 1, 3) + 1.2 * Math.pow(x - 1, 2); // 살짝 넘쳤다 돌아오는 곡선
+      shape = from + (to - from) * e;
+      draw(shape);
+      if (x < 1) raf = requestAnimationFrame(f);
+    })(t0);
+  }
+  draw(0);
+
+  // 파형 막대 44개. 播放한 구간만 색이 찹니다
+  var N = 44, bars = [];
+  for (var i = 0; i < N; i++) {
+    var b = document.createElement('i');
+    var h = 30 + Math.abs(Math.sin(i * 0.9) * 46 + Math.sin(i * 0.37) * 24);
+    b.style.setProperty('--h', Math.min(100, h).toFixed(0));
+    b.style.setProperty('--d', (i % 7) / 7);
+    wave.appendChild(b);
+    bars.push(b);
+  }
+  var TOTAL = 220, pos = 72, playing = false, last = 0, loop = 0;
+  function fmt(s) { s = Math.floor(s); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  function render() {
+    var p = pos / TOTAL;
+    root.style.setProperty('--p', p.toFixed(4));
+    var on = Math.round(p * N);
+    bars.forEach(function (b, k) { b.classList.toggle('on', k < on); });
+    nowEl.textContent = fmt(pos);
+    wave.setAttribute('aria-valuenow', String(Math.floor(pos)));
+    wave.setAttribute('aria-valuetext', Math.floor(pos / 60) + ' min ' + Math.floor(pos % 60) + ' s');
+  }
+  function tick(now) {
+    if (!root.isConnected || !playing) return;
+    pos += (now - (last || now)) / 1000;
+    last = now;
+    if (pos >= TOTAL) { pos = 0; }
+    render();
+    loop = requestAnimationFrame(tick);
+  }
+  function setPlay(v) {
+    playing = v;
+    root.classList.toggle('is-play', v);
+    btn.setAttribute('aria-pressed', String(v));
+    btn.setAttribute('aria-label', v ? '暂停' : '播放');
+    morph(v ? 1 : 0);
+    cancelAnimationFrame(loop);
+    if (v) { last = 0; loop = requestAnimationFrame(tick); }
+  }
+  btn.addEventListener('click', function () { setPlay(!playing); });
+
+  // 파형을 누르거나 끌어서 위치를 옮깁니다. 방향키는 5초씩 움직입니다
+  function seek(x) {
+    var r = wave.getBoundingClientRect();
+    pos = Math.max(0, Math.min(1, (x - r.left) / r.width)) * TOTAL;
+    render();
+  }
+  wave.addEventListener('pointerdown', function (e) { wave.setPointerCapture(e.pointerId); seek(e.clientX); });
+  wave.addEventListener('pointermove', function (e) { if (wave.hasPointerCapture(e.pointerId)) seek(e.clientX); });
+  wave.addEventListener('keydown', function (e) {
+    var d = { ArrowRight: 5, ArrowUp: 5, ArrowLeft: -5, ArrowDown: -5 }[e.key];
+    if (e.key === 'Home') d = -TOTAL; if (e.key === 'End') d = TOTAL;
+    if (d) { e.preventDefault(); pos = Math.max(0, Math.min(TOTAL - 1, pos + d)); render(); }
+  });
+  render();
+})();</script></body></html>

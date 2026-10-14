@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>待办清单</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"014",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"014",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"014",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"014",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"014"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u014{position:relative;width:330px;padding:22px 22px 14px;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 60px -36px var(--ux-shadow-strong)}
+.u014-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.u014-head b{display:block;font-size:var(--forge-text-xl-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.035em}
+.u014-sub{position:relative;display:block;width:210px;height:19px;margin-top:4px;overflow:hidden;white-space:nowrap;font-size:var(--forge-text-sm-size);color:var(--ux-ink-3)}
+.u014-sub span{display:block;line-height:var(--forge-leading-arbitrary-18);transition:transform .5s var(--ux-spring),opacity .3s var(--ux-ease)}
+.u014-sub span+span{position:absolute;left:0;top:0;transform:translateY(100%);opacity:0;color:var(--ux-mint);font-weight:var(--forge-font-semibold-weight)}
+.u014.is-all .u014-sub span:first-child{transform:translateY(-100%);opacity:0}
+.u014.is-all .u014-sub span+span{transform:none;opacity:1}
+.u014-ring{position:relative;width:48px;height:48px;flex:none}
+.u014-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.u014-ring circle{fill:none;stroke-width:5;stroke-linecap:round}
+.u014-ring .bg{stroke:var(--ux-surface-3)}
+.u014-ring .fg{stroke:var(--ux-accent);stroke-dasharray:125.7;stroke-dashoffset:calc(125.7 * (1 - var(--p,0)));transition:stroke-dashoffset .7s var(--ux-spring),stroke .4s var(--ux-ease)}
+.u014.is-all .u014-ring .fg{stroke:var(--ux-mint)}
+.u014-num{position:absolute;inset:0;display:grid;place-items:center;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);font-variant-numeric:tabular-nums;transition:opacity .3s,transform .5s var(--ux-spring)}
+.u014-done{position:absolute;inset:9px;border-radius:50%;display:grid;place-items:center;background:var(--ux-mint);color:var(--ux-accent-ink);transform:scale(0);transition:transform .55s var(--ux-spring)}
+.u014-done svg{width:16px;height:16px;transform:none;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.u014.is-all .u014-num{opacity:0;transform:scale(.5)}
+.u014.is-all .u014-done{transform:none}
+.u014-list{margin:0;padding:0;list-style:none}
+.u014-row{position:relative;display:flex;align-items:center;gap:14px;padding:12px 4px;cursor:pointer;user-select:none;-webkit-user-select:none;border-top:1px solid var(--ux-line)}
+.u014-in{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.u014-box{position:relative;width:26px;height:26px;flex:none;border-radius:50%;box-shadow:inset 0 0 0 2px var(--ux-line-2);transition:box-shadow .3s var(--ux-ease),transform .45s var(--ux-spring)}
+.u014-box::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .45s var(--ux-spring)}
+.u014-box svg{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:var(--accent-foreground);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.u014-box path{stroke-dasharray:18;stroke-dashoffset:18;transition:stroke-dashoffset .35s var(--ux-ease)}
+.u014-row:hover .u014-box{box-shadow:inset 0 0 0 2px var(--ux-accent)}
+.u014-row:active .u014-box{transform:scale(.86)}
+.u014-in:focus-visible+.u014-box{outline:2px solid var(--ux-accent);outline-offset:3px}
+.u014-in:checked+.u014-box{box-shadow:none}
+.u014-in:checked+.u014-box::before{transform:scale(1)}
+.u014-in:checked+.u014-box path{stroke-dashoffset:0;transition-delay:.12s}
+.u014-t{position:relative;font-size:var(--forge-text-arbitrary-15-size);font-weight:var(--forge-font-semibold-weight);letter-spacing:-.02em;color:var(--ux-ink);transition:color .4s var(--ux-ease)}
+.u014-t::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;border-radius:2px;background:var(--ux-ink-3);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ux-ease)}
+.u014-in:checked~.u014-t{color:var(--ux-ink-3)}
+.u014-in:checked~.u014-t::after{transform:scaleX(1);transition-delay:.18s}
+.u014-tag{margin-left:auto;padding:4px 9px;border-radius:999px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-semibold-weight);background:color-mix(in srgb,var(--k) 15%,transparent);color:var(--k);white-space:nowrap;transition:opacity .4s var(--ux-ease)}
+.u014-in:checked~.u014-tag{opacity:.4}
+</style>
+<div class="ux u014">
+  <div class="u014-head">
+    <div>
+      <b>Today</b>
+      <span class="u014-sub" aria-live="polite"><span>Friday, October 10</span><span>All done for today</span></span>
+    </div>
+    <div class="u014-ring" aria-hidden="true">
+      <svg viewBox="0 0 48 48"><circle class="bg" cx="24" cy="24" r="20"/><circle class="fg" cx="24" cy="24" r="20"/></svg>
+      <span class="u014-num">1/4</span>
+      <span class="u014-done"><svg viewBox="0 0 16 16"><path d="M3.5 8.4l3 3 6-6.4"/></svg></span>
+    </div>
+  </div>
+  <ul class="u014-list">
+    <li><label class="u014-row"><input class="u014-in" type="checkbox" checked><span class="u014-box" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M7.5 13.5l3.8 3.8 7.4-8"/></svg></span><span class="u014-t">Design review meeting</span><span class="u014-tag" style="--k:var(--ux-accent)">10:00</span></label></li>
+    <li><label class="u014-row"><input class="u014-in" type="checkbox"><span class="u014-box" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M7.5 13.5l3.8 3.8 7.4-8"/></svg></span><span class="u014-t">Polish onboarding copy</span><span class="u014-tag" style="--k:var(--ux-warn)">Urgent</span></label></li>
+    <li><label class="u014-row"><input class="u014-in" type="checkbox"><span class="u014-box" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M7.5 13.5l3.8 3.8 7.4-8"/></svg></span><span class="u014-t">Write release notes</span><span class="u014-tag" style="--k:var(--ux-mint)">Docs</span></label></li>
+    <li><label class="u014-row"><input class="u014-in" type="checkbox"><span class="u014-box" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M7.5 13.5l3.8 3.8 7.4-8"/></svg></span><span class="u014-t">Evening run, 5 km</span><span class="u014-tag" style="--k:var(--ux-danger)">Personal</span></label></li>
+  </ul>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var ins = Array.prototype.slice.call(root.querySelectorAll('.u014-in'));
+  var num = root.querySelector('.u014-num');
+  // 체크한 개수에 맞춰 진행 고리와 숫자를 바꾸고, 모두 끝나면 완료 표시로 바꿉니다
+  function update() {
+    var n = ins.filter(function (i) { return i.checked; }).length;
+    root.style.setProperty('--p', (n / ins.length).toFixed(3));
+    num.textContent = n + '/' + ins.length;
+    root.classList.toggle('is-all', n === ins.length);
+  }
+  ins.forEach(function (i) { i.addEventListener('change', update); });
+  update();
+})();</script></body></html>

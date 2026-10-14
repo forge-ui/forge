@@ -1,3 +1,4 @@
+import { MigrationPreview } from "../_migration-previews";
 import Link from "next/link";
 import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";
 import {
@@ -59,7 +60,7 @@ const BUTTON_PROPS: ApiTableRow[] = [
   },
   {
     attr: "variant",
-    type: "'primary' | 'secondary' | 'tertiary'",
+    type: "'primary' | 'secondary' | 'tertiary' | 'hold'",
     defaultValue: "'primary'",
     description: "实底 / 浅底 / 描边 三种样式。",
   },
@@ -299,15 +300,17 @@ export default function ButtonLinkCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Button & Link"
-        hint="Button / IconButton 触发动作，StyledLink 用于跳转，ButtonGroup 用于分段切换。"
+        title="按钮与链接"
+        hint="触发操作、跳转页面或切换视图，支持图标和禁用状态。"
       />
 
       {/* ────────── Button 段 ────────── */}
 
+      <Section title="长按删除（Button hold）" description="持续按住填满按钮后删除，支持完成反馈和撤销。"><MigrationPreview kind="hold" /><CodeBlock code={'<Button variant="hold" color="blue" holdDuration={1200} onConfirm={deleteFile} onUndo={restoreFile} />'} /><p className="text-sm text-fg-grey-600">holdDuration 以毫秒计；confirmed 可由宿主控制，holdLabels 可覆盖删除、完成和撤销文案。</p></Section>
+
       <Section
         title="Button"
-        description="最常用的点击元素，支持 9 种颜色、3 种变体和 3 种尺寸，可附带左右图标与禁用态。"
+        description="触发操作，支持文字、图标、不同样式和禁用状态。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -397,7 +400,7 @@ export default function ButtonLinkCasePage() {
 
       <Section
         title="IconButton"
-        description="纯图标按钮，继承 Button 的 9 色与 3 变体，额外提供 ghost 变体与 square 形状用于表格 actions。"
+        description="用图标触发操作，适合工具栏和紧凑操作区域。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -493,7 +496,7 @@ export default function ButtonLinkCasePage() {
 
       <Section
         title="StyledLink"
-        description="文字链接，9 种颜色，支持左右图标与禁用态，内部使用 next/link 跳转。"
+        description="跳转到页面或资源，支持图标和禁用状态。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -549,7 +552,7 @@ export default function ButtonLinkCasePage() {
 
       <Section
         title="ButtonGroup"
-        description="分段控制器，3 色 × 2 形状，受控组件通过 activeIndex + onChange 使用。"
+        description="在多个筛选维度或视图模式之间切换。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

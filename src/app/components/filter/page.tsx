@@ -77,13 +77,13 @@ export default function FilterCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Filter"
-        hint="FilterGroup 单个可折叠分组（checkbox / radio / range / empty），FilterTrigger 按钮，FilterPanel 完整面板。"
+        title="筛选"
+        hint="用分组条件和筛选面板缩小结果范围，支持重置和应用。"
       />
 
       <Section
         title="FilterGroup"
-        description="折叠分组卡。通过 content 判别联合切换类型，3 主色。"
+        description="折叠展示一组筛选条件，支持单选、多选和范围选择。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -142,7 +142,7 @@ export default function FilterCasePage() {
 
       <Section
         title="FilterTrigger"
-        description="圆角按钮触发器，含计数徽标与 open 状态高亮。"
+        description="打开筛选面板，并显示已选条件数量。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_TRIGGER_USAGE}>
@@ -157,7 +157,7 @@ export default function FilterCasePage() {
 
       <Section
         title="FilterPanel"
-        description="完整筛选面板：标题 + Reset + 内容区（装 FilterGroup）+ Cancel / Apply。"
+        description="组织筛选条件，提供重置、取消和应用操作。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_PANEL_USAGE} minHeight={340}>

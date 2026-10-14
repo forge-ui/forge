@@ -109,8 +109,8 @@ export default function InputFieldCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Input Field"
-        hint="TextField / TextArea / SelectOption / Datepicker / MediaUpload / FileUpload / Selection Control / Icon Selector。"
+        title="表单与输入"
+        hint="收集文本、选项、日期和文件，提供校验与状态反馈。"
       />
 
       {/* ============ Text Field - States ============ */}

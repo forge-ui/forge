@@ -53,8 +53,8 @@ export default function ButtonLinkCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Button & Link"
-        hint="Button / IconButton / StyledLink — 文字按钮、图标按钮、文字链接。"
+        title="按钮与链接"
+        hint="触发操作、跳转页面或切换视图，支持图标和禁用状态。"
       />
 
       {/* ============ Button - Variants ============ */}

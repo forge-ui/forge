@@ -1,17 +1,19 @@
 "use client";
 
-import { useContext, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useCallback, useContext, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { QuickActionFan, QuickActionGlyph, composerMorph } from "../../internal/composer-quick-actions";
 import { useReducedMotion } from "../../internal/motion";
 import { ArrowUpLinear, StopBold, RefreshLinear, MicrophoneLinear, UserLinear, WidgetLinear } from "../../icons";
-import type { ComposerModel, ComposerStatus } from "./composer-types";
+import type { ComposerModel, ComposerStatus, ComposerReply, ComposerVoiceState } from "./composer-types";
 import { PromptModelMenu } from "../../internal/prompt-model-menu";
 import { AskAiCompactComposerContext } from "../../internal/ask-ai-composer-context";
 import { ComposerToolsMenu } from "../../internal/composer-tools-menu";
 import type { AccentColor } from "./accent-utils";
 import { DropdownPanel } from "./dropdown-panel";
 import { Avatar } from "./avatar";
+import { ComposerContext, ComposerVoice } from "../../internal/chat-interactions";
+import type { MotionPreference } from "../../lib/motion";
 
 export type ComposerSource = {
   id: string; label: string; description?: string; connected?: boolean;
@@ -22,7 +24,7 @@ export type ComposerSource = {
   avatarSrc?: string;
   placeholder?: string;
 };
-export type ChatInputBarSendContext = { sources: ComposerSource[] };
+export type ChatInputBarSendContext = { sources: ComposerSource[]; replyTo?: ComposerReply };
 export type ComposerCommand = { id: string; label: string; description?: string };
 
 export type ChatInputBarQuickAction = {
@@ -45,6 +47,9 @@ export type ChatInputBarToggle = {
 };
 
 export function ChatInputBar({
+  locale = "zh",
+  motion: motionPreference = "auto",
+  replyTo, onCancelReply, attachments, voiceState = "idle", voiceLevel, onVoiceStart, onVoiceEnd, onVoiceCancel,
   quickActions = [],
   quickActionsLabel = "快捷操作",
   defaultQuickActionsOpen = true,
@@ -97,6 +102,18 @@ export function ChatInputBar({
   color,
   emptySourcesLabel = "没有匹配的提及对象",
 }: {
+  locale?: "zh" | "en";
+  motion?: MotionPreference;
+  replyTo?: ComposerReply;
+  onCancelReply?: () => void;
+  /** Controlled attachment queue, rendered inside the composer surface. */
+  attachments?: ReactNode;
+  /** Recording/transcription remains owned by the host; no microphone access is requested. */
+  voiceState?: ComposerVoiceState;
+  voiceLevel?: number;
+  onVoiceStart?: () => void;
+  onVoiceEnd?: () => void;
+  onVoiceCancel?: () => void;
   /** Optional animated action cards, opened from the plus menu. */
   quickActions?: ChatInputBarQuickAction[];
   quickActionsLabel?: string;
@@ -177,7 +194,7 @@ export function ChatInputBar({
   function setQuickOpen(open: boolean) { setQuickState({ hasMessages: conversationHasMessages, open }); }
   const [selectedQuickId, setSelectedQuickId] = useState<string | null>(null);
   const selectedQuick = quickActions.find(action => action.id === selectedQuickId);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotion(motionPreference);
   const [internalSources, setInternalSources] = useState(defaultSelectedSources);
   const selectedSources = (controlledSources ?? internalSources).filter((source, index, all) => all.findIndex(item => item.id === source.id) === index);
   function changeSources(next: ComposerSource[]) { if (controlledSources === undefined) setInternalSources(next); onSourcesChange?.(next); }
@@ -192,6 +209,24 @@ export function ChatInputBar({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const inputFocusFrame = useRef<number | null>(null);
+  const cancelInputFocus = useCallback(() => {
+    if (inputFocusFrame.current !== null) window.cancelAnimationFrame(inputFocusFrame.current);
+    inputFocusFrame.current = null;
+  }, []);
+  useLayoutEffect(() => cancelInputFocus, [disabled, cancelInputFocus]);
+  function deferInputFocus(position: number) {
+    cancelInputFocus();
+    const frame = window.requestAnimationFrame(() => {
+      if (inputFocusFrame.current !== frame) return;
+      inputFocusFrame.current = null;
+      const input = inputRef.current;
+      if (!input || input.disabled) return;
+      input.focus();
+      input.setSelectionRange(position, position);
+    });
+    inputFocusFrame.current = frame;
+  }
   const composingRef = useRef(false);
   const compositionEndedAt = useRef(-Infinity);
   const listId = useId();
@@ -242,10 +277,7 @@ export function ChatInputBar({
     setCaret(prefix.length + inserted.length);
     setCommandOpen(false);
     setMentionOpen(false);
-    requestAnimationFrame(() => {
-      inputRef.current?.focus();
-      inputRef.current?.setSelectionRange(prefix.length + inserted.length, prefix.length + inserted.length);
-    });
+    deferInputFocus(prefix.length + inserted.length);
   }
 
   function chooseMention(source: (typeof sources)[number]) {
@@ -259,10 +291,7 @@ export function ChatInputBar({
     setCaret(nextCaret);
     setMentionOpen(false);
     setCommandOpen(false);
-    requestAnimationFrame(() => {
-      inputRef.current?.focus();
-      inputRef.current?.setSelectionRange(nextCaret, nextCaret);
-    });
+    deferInputFocus(nextCaret);
   }
 
   function updateInput(element: HTMLInputElement | HTMLTextAreaElement, composing = false) {
@@ -308,7 +337,7 @@ export function ChatInputBar({
   function handleSend() {
     const trimmed = value.trim();
     if (!trimmed || disabled || sendDisabled || status !== "idle") return;
-    onSend?.(trimmed, selectedQuick, { sources: [...selectedSources] });
+    onSend?.(trimmed, selectedQuick, { sources: [...selectedSources], ...(replyTo ? { replyTo } : {}) });
     setHasSent(true);
     setQuickOpen(false);
     if (clearOnSend) {
@@ -324,6 +353,7 @@ export function ChatInputBar({
     // Some browsers end composition before delivering the candidate-confirming Enter.
     if (composingRef.current || e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229 ||
       (e.key === "Enter" && e.timeStamp - compositionEndedAt.current < 80)) return;
+    if (!disabled && replyTo && onCancelReply && !mentionOpen && !commandOpen && e.key === "Escape") { e.preventDefault(); e.stopPropagation(); onCancelReply(); return; }
     if (!disabled && selectedSources.length && !mentionOpen && !commandOpen && e.key === "Backspace" && value === "") {
       e.preventDefault(); removeSource(selectedSources.at(-1)!.id); return;
     }
@@ -365,8 +395,10 @@ export function ChatInputBar({
   const extraTools = <>
     {onDictate && <button type="button" aria-label={dictateLabel} title={dictateLabel} onClick={onDictate} disabled={disabled} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-fg-grey-100"><MicrophoneLinear size={18} color="currentColor" /></button>}
   </>;
+  const contextPanel = <ComposerContext replyTo={replyTo} onCancelReply={onCancelReply} attachments={attachments} locale={locale} />;
+  const voiceControl = onVoiceStart ? <ComposerVoice state={voiceState} level={voiceLevel} onStart={onVoiceStart} onEnd={onVoiceEnd} onCancel={onVoiceCancel} disabled={disabled} locale={locale} motion={motionPreference} /> : null;
   const actionProps = { status, onStop, stopLabel, stoppingLabel };
-  function focusInput() { inputRef.current?.focus({ preventScroll: true }); }
+  function focusInput() { cancelInputFocus(); inputRef.current?.focus({ preventScroll: true }); }
   function focusFromBlankArea(event: ReactPointerEvent<HTMLDivElement>) {
     const target = event.target as HTMLElement;
     if (disabled || event.button !== 0 || typeof target.closest !== "function") return;
@@ -406,7 +438,8 @@ export function ChatInputBar({
     exit={reduced ? { opacity: 0 } : { opacity: 0, x: -8, filter: "blur(4px)" }} transition={reduced ? { duration: 0 } : { ...composerMorph, opacity: { duration: 0.22 }, filter: { duration: 0.22 } }}>{inputPlaceholder}</motion.span>}</AnimatePresence>;
   const toolsMenu = <ComposerToolsMenu label={toolsMenuLabel} attachLabel={attachLabel} sourcesLabel={sourcesLabel} commandsLabel={commandsLabel}
     quickActionsLabel={quickActionsLabel} onQuickActions={quickActions.length ? () => { if (selectedQuick) clearQuick(); else setQuickOpen(!quickOpen); } : undefined}
-    onOpen={() => { setCaret(inputRef.current?.selectionStart ?? value.length); setMentionOpen(false); setCommandOpen(false); }} disabled={disabled}
+    // A previous selection's deferred focus must not dismiss the newly opened menu.
+    onOpen={() => { cancelInputFocus(); setCaret(inputRef.current?.selectionStart ?? value.length); setMentionOpen(false); setCommandOpen(false); }} disabled={disabled}
     onAttach={showAttachment ? onAttach : undefined} sources={sources} commands={commands} onSource={chooseMention} onCommand={chooseCommand} />;
 
 
@@ -423,7 +456,7 @@ export function ChatInputBar({
       >
         {quickTray}
         <div onPointerDown={focusFromBlankArea} className={`forge-composer-surface relative bg-background rounded-2xl outline outline-1 outline-border ${compact ? "p-3 gap-2" : "p-4 gap-3"} flex flex-col`}>
-        {mentionPanel}{commandPanel}
+        {contextPanel}{mentionPanel}{commandPanel}
         <div className="forge-composer-entry">{selectedChip}{sourceChips}<motion.div layout={reduced ? false : "position"} transition={reduced ? { duration: 0 } : composerMorph} className="forge-composer-input-wrap">{animatedPlaceholder}
         <textarea
           ref={element => { inputRef.current = element; }}
@@ -460,7 +493,7 @@ export function ChatInputBar({
               </ToggleButton>
             ))}
           </div>
-          <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}{extraTools}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} /></div>
+          <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}{extraTools}{voiceControl}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} /></div>
         </div>
         </div>
       </div>
@@ -479,7 +512,7 @@ export function ChatInputBar({
     >
       {quickTray}
       <div onPointerDown={focusFromBlankArea} className="forge-composer-surface relative px-4 py-3 bg-background rounded-xl outline outline-1 outline-border flex flex-wrap items-center gap-2">
-      {mentionPanel}{commandPanel}
+      {contextPanel}{mentionPanel}{commandPanel}
       {toolsMenu}
       <div className="forge-composer-entry min-w-0 flex-1">{selectedChip}{sourceChips}<motion.div layout={reduced ? false : "position"} transition={reduced ? { duration: 0 } : composerMorph} className="forge-composer-input-wrap">{animatedPlaceholder}
       <input
@@ -501,7 +534,7 @@ export function ChatInputBar({
         className="min-w-0 flex-1 text-sm text-foreground placeholder:text-transparent outline-none bg-transparent disabled:opacity-50"
       />
       </motion.div></div>
-      <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}{extraTools}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} compact /></div>
+      <div className="ml-auto flex min-w-0 max-w-full items-center gap-2">{permissionPicker}{modelPicker}{extraTools}{voiceControl}<SendButton {...actionProps} onClick={handleSend} disabled={!canSend} sendLabel={sendLabel} compact /></div>
       </div>
     </div>
   );

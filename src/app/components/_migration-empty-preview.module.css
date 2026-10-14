@@ -1,0 +1,21 @@
+.example { position: relative; }
+.folderEmpty { display: flex; min-height: 306px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding-block: 8px 16px; text-align: center; }
+.folder { position: relative; width: 168px; height: 138px; }
+.folder svg { display: block; width: 168px; height: 128px; overflow: visible; transform-origin: 50% 92%; }
+.float { animation: float 5s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-7px); } }
+.shadow { position: absolute; left: 34px; right: 34px; bottom: 0; height: 10px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--fg-black) 16%, transparent), transparent); animation: shadow 5s ease-in-out infinite; }
+@keyframes shadow { 50% { transform: scaleX(.8); opacity: .6; } }
+.front, .paperA, .paperB { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.34, 1.16, .64, 1); }
+.paperB { transition-delay: .04s; }
+.folderEmpty:has(button:hover, button:focus-visible) .front { transform: skewX(-7deg) scaleY(.86); }
+.folderEmpty:has(button:hover, button:focus-visible) .paperA { transform: translateY(-10px) rotate(-5deg); }
+.folderEmpty:has(button:hover, button:focus-visible) .paperB { transform: translateY(-6px) rotate(4deg); }
+.folderEmpty[data-phase="flight"] .front { transform: skewX(-12deg) scaleY(.74); }
+.folderEmpty[data-phase="flight"] .paperA { transform: translateY(-14px) rotate(-7deg); }
+.folderEmpty[data-phase="flight"] .paperB { transform: translateY(-10px) rotate(6deg); }
+.folderEmpty[data-phase="gulp"] .folder svg { animation: gulp .6s cubic-bezier(.2, .8, .2, 1); }
+@keyframes gulp { 30% { transform: scale(1.08, .88); } 62% { transform: scale(.97, 1.05); } }
+.flyingPaper { position: absolute; top: 0; left: 0; z-index: 2; width: 26px; height: 32px; border-radius: 5px; border-top: 7px solid currentColor; background: repeating-linear-gradient(180deg, transparent 0 5px, var(--fg-grey-200) 5px 7px) 5px 4px / 16px 18px no-repeat, var(--fg-white); box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--fg-black) 16%, transparent); opacity: 0; pointer-events: none; }
+.example[data-reduced] * { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) { .example * { animation: none !important; transition: none !important; } }

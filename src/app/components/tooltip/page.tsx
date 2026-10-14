@@ -108,13 +108,13 @@ export default function TooltipCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Tooltip"
-        hint="气泡提示家族：TooltipBubble 独立气泡、TooltipAnchor 触发图标、Tooltip 包裹触发元素的复合组件。"
+        title="提示气泡"
+        hint="在悬停或聚焦时补充简短说明，帮助用户理解操作。"
       />
 
       <Section
         title="TooltipBubble"
-        description="纯气泡组件，可独立渲染用于静态展示箭头方向与尺寸；实际业务中一般由 Tooltip 内部调用。"
+        description="展示简短说明气泡，可单独预览方向和尺寸。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -165,7 +165,7 @@ export default function TooltipCasePage() {
 
       <Section
         title="TooltipAnchor"
-        description="14×14 的圆形 icon 触发器，提供 idle / active 两种状态。"
+        description="用小图标作为提示气泡的触发入口。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -188,7 +188,7 @@ export default function TooltipCasePage() {
 
       <Section
         title="Tooltip"
-        description="复合组件：将 TooltipAnchor 包裹在 Tooltip 内即可实现 hover 弹出气泡，也可通过 open 受控。"
+        description="悬停或聚焦时显示说明，也可由外部控制显示状态。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

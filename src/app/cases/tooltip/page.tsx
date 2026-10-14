@@ -33,8 +33,8 @@ export default function TooltipCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Tooltip"
-        hint="TooltipBubble / Tooltip / TooltipAnchor — 静态气泡、悬浮提示、图标触发器。"
+        title="提示气泡"
+        hint="在悬停或聚焦时补充简短说明，帮助用户理解操作。"
       />
 
       {/* ============ Tooltip Bubble ============ */}

@@ -41,8 +41,8 @@ export default function ToolbarCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Toolbar"
-        hint="Breadcrumbs / Toolbar / Search & Filter / Pill Tabs / PageTitleToolbar — 页面顶部工具栏组合。"
+        title="工具栏"
+        hint="集中放置搜索、筛选、视图切换和页面操作。"
       />
 
       {/* ============ Breadcrumbs ============ */}

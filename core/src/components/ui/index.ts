@@ -3,12 +3,12 @@ export { NotificationBadge, Label, CircleIcon, ArtisticIcon } from "./badge";
 export type { NotificationBadgeColor, LabelColor, LabelSize, LabelVariant, CircleIconColor, CircleIconSize, CircleIconVariant, ArtisticIconColor, ArtisticIconVariant } from "./badge";
 
 export { Button } from "./button";
-export type { ButtonColor, ButtonVariant, ButtonSize } from "./button";
+export type { ButtonColor, ButtonVariant, ButtonSize, ButtonEffect } from "./button";
 
 export { PlusIcon, CloseIcon, CheckIcon } from "./plain-icons";
 
 export { IconButton } from "./icon-button";
-export type { IconButtonColor, IconButtonVariant, IconButtonSize, IconButtonShape } from "./icon-button";
+export type { IconButtonColor, IconButtonVariant, IconButtonSize, IconButtonShape, IconButtonEffect } from "./icon-button";
 
 export { StyledLink } from "./link";
 export type { LinkColor } from "./link";
@@ -56,6 +56,7 @@ export { ActivityCard } from "./activity-card";
 // Chat & social components
 export { ContactItem } from "./contact-item";
 export { ChatBubble } from "./chat-bubble";
+export type { ChatReaction, ChatReactionOption } from "./chat-bubble";
 export { ChatInputBar } from "./chat-input-bar";
 export type { ChatInputBarToggle, ChatInputBarQuickAction, ChatInputBarSendContext, ComposerSource, ComposerCommand } from "./chat-input-bar";
 export { CommentItem } from "./comment-item";
@@ -178,6 +179,7 @@ export {
   TextFieldSelectSuffix,
 } from "./forms";
 export type {
+  ToggleProps,
   TextFieldState,
   TextFieldShape,
   TextFieldColor,
@@ -221,7 +223,7 @@ export { Pagination } from "./pagination";
 export type { PaginationColor } from "./pagination";
 
 export { Stepper } from "./stepper";
-export type { StepperColor } from "./stepper";
+export type { StepperColor, StepperItem } from "./stepper";
 
 export { TabBar } from "./tab-bar";
 export type { TabBarColor, TabBarSurface, TabItem } from "./tab-bar";
@@ -253,6 +255,8 @@ export {
 } from "./toolbar";
 export type {
   ToolbarColor,
+  ToolbarProps,
+  ToolbarSelectionOptions,
   ToolbarPillTab,
   PageTitleToolbarVariant,
   PageTitleToolbarAction,
@@ -404,6 +408,7 @@ export type {
   AgentDiffColumn,
   AgentDiffChange,
   AgentDiffRow,
+  AgentCodeFoldRange,
   AgentCodeDiffType,
   AgentCodePiece,
   AgentCodeDiffRow,
@@ -429,7 +434,7 @@ export type { TabsContentProps } from "./tabs-content";
 export { ToastProvider, useToast } from "./toast";
 export type { ToastOptions, ToastApi } from "./toast";
 
-export type { ComposerStatus, ComposerModel } from "./composer-types";
+export type { ComposerStatus, ComposerModel, ComposerReply, ComposerVoiceState } from "./composer-types";
 
 export { OtpInput } from "./otp-input";
 export type { OtpInputProps } from "./otp-input";
@@ -439,3 +444,5 @@ export { LiquidTabs } from "./liquid-tabs";
 export type { LiquidTabsProps, LiquidTabsTab, LiquidTabsItem } from "./liquid-tabs";
 export { AddMember } from "./add-member";
 export type { AddMemberProps, AddMemberItem, AddMemberLabels } from "./add-member";
+
+export type { ButtonProps, ButtonHoldLabels } from "./button";

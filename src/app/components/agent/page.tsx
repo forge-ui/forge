@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { MigrationPreview } from "../_migration-previews";
 import {
   ThinkingTrace,
   StreamingAnswer,
@@ -95,6 +96,10 @@ const INSIGHT_PROPS: ApiTableRow[] = [
 const SEARCH_PROPS: ApiTableRow[] = [
   { attr: "items", type: "CommandSearchItem[]", defaultValue: "—", description: "可搜索命令。" },
   { attr: "onSelect", type: "(item) => void", defaultValue: "—", description: "选中命令。" },
+  { attr: "items[].icon / shortcut", type: "ReactNode / string", defaultValue: "—", description: "可选图标和快捷键提示；实际快捷键由宿主处理。" },
+  { attr: "locale", type: "'zh' | 'en'", defaultValue: "'zh'", description: "默认提示文字的语言，支持单独覆盖文案。" },
+  { attr: "color / motion", type: "'blue' | 'purple' | 'black' / 'auto' | 'none'", defaultValue: "'blue' / 'auto'", description: "选中反馈的主题与动效偏好。" },
+  { attr: "autoFocus", type: "boolean", defaultValue: "false", description: "挂载时聚焦搜索框，可用于弹窗内搜索。" },
 ];
 
 const FLOW_PROPS: ApiTableRow[] = [
@@ -127,8 +132,8 @@ export default function AgentSpecPage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Agent"
-        hint="AI 原语：思考痕迹、流式回答、工具调用、HITL 审批、任务行、统一输入框、检索卡片、建议卡、diff、代码、洞察、命令搜索和流程图。对话输入统一使用 ChatInputBar。"
+        title="智能体"
+        hint="展示智能体的思考、回答、工具调用、任务和审批过程。"
       />
 
       <Section title="Import" description="一律从 @forge-ui-official/core 引入。">
@@ -137,7 +142,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="ThinkingTrace" description="可展开 traces。Steps / Reasoning / Search / Coding。">
+      <Section title="ThinkingTrace" description="展开查看智能体的处理步骤和推理过程。">
         <SubSection title="Steps" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>settled</InlineCode> 跳过动画，直接显示完成态。
@@ -153,7 +158,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="StreamingAnswer" description="流式正文 + 来源 + follow-up。">
+      <Section title="StreamingAnswer" description="逐步显示回答正文、来源和后续建议。">
         <SubSection title="Usage" stack>
           <PreviewBlock
             code={`<StreamingAnswer
@@ -196,7 +201,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="ApprovalCard" description="行动前的 human-in-the-loop 选择题。">
+      <Section title="ApprovalCard" description="在执行操作前展示选项，交由用户确认。">
         <SubSection title="Usage" stack>
           <PreviewBlock
             code={`<ApprovalCard questions={[{ id: "n", prompt: "How many flavors?", options: [...] }]} />`}
@@ -224,7 +229,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="ToolChips" description="工具调用与文件 diff 摘要。">
+      <Section title="ToolChips" description="展示工具调用和文件修改摘要。">
         <SubSection title="Usage" stack>
           <PreviewBlock
             code={`<ToolChips items={[{ id: "1", kind: "write", label: "Write 204 lines", chip: "schedule.tsx" }]} />`}
@@ -257,7 +262,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="AgentTaskRows" description="Agent 任务状态，和业务 TaskCard 分开。">
+      <Section title="AgentTaskRows" description="展示智能体任务的运行状态、进度和结果。">
         <SubSection title="List" stack>
           <PreviewBlock code={`<AgentTaskRows tasks={tasks} />`} minHeight={200}>
             <div className="w-full max-w-lg">
@@ -289,7 +294,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="ChatInputBar" description="@ 来源、/ 命令、模型选择。附件、提及、命令统一收纳在加号菜单。">
+      <Section title="ChatInputBar" description="输入和发送消息，支持附件、提及、命令、模型选择和停止生成。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<ChatInputBar multiline sendOnEnter sources={...} commands={...} models={...} />`} minHeight={200}>
             <div className="w-full max-w-lg">
@@ -310,7 +315,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="ContextCards" description="检索片段及其来源。">
+      <Section title="ContextCards" description="展示检索到的内容片段及来源。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<ContextCards chunks={chunks} total={32} />`} minHeight={200}>
             <div className="w-full max-w-lg">
@@ -332,7 +337,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="RecommendationCard" description="建议 + 置信度 + Accept / 备选。">
+      <Section title="RecommendationCard" description="展示建议及可信度，支持接受建议或选择备选方案。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<RecommendationCard title="Want me to place this restock order?" body="..." />`} minHeight={240}>
             <div className="w-full max-w-lg">
@@ -349,7 +354,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="AgentDiffTable" description="Agent 提议的表格变更。不替代 DataTable。">
+      <Section title="AgentDiffTable" description="查看并审核智能体提出的表格修改。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<AgentDiffTable title="Flavor schedule" columns={...} rows={...} />`} minHeight={280}>
             <div className="w-full max-w-2xl">
@@ -370,7 +375,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="AgentCodeBlock" description="代码 listing + 统一 diff。">
+      <Section title="AgentCodeBlock" description="展示代码和修改差异。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<AgentCodeBlock filename="lib/reorder.ts" lines={...} diff={...} />`} minHeight={280}>
             <div className="w-full max-w-2xl">
@@ -383,7 +388,7 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="InsightCards" description="带 spark / bars / segments 的洞察轮播。">
+      <Section title="InsightCards" description="通过小型图表和摘要展示分析发现。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<InsightCards cards={[{ title, body, chart }]} />`} minHeight={280}>
             <div className="w-full max-w-lg">
@@ -426,16 +431,16 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="CommandSearch" description="命令过滤。不替代 ToolbarSearchInput。">
+      <Section title="CommandSearch" description="搜索和选择可执行的命令。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<CommandSearch items={[{ id, label, group }]} />`} minHeight={280}>
             <div className="w-full max-w-lg">
               <CommandSearch
                 items={[
-                  { id: "plan", label: "Draft a flavor launch plan", hint: "/plan", group: "Planning" },
-                  { id: "compare", label: "Compare mint chip to last summer", hint: "/compare", group: "Planning" },
-                  { id: "pos", label: "Open POS export", hint: "CSV", group: "Data" },
-                  { id: "reorder", label: "Queue pistachio reorder", hint: "workflow", group: "Workflow" },
+                  { id: "plan", label: "起草项目计划", hint: "/plan", group: "规划" },
+                  { id: "compare", label: "对比上季度数据", hint: "/compare", group: "规划" },
+                  { id: "pos", label: "打开销售报表", hint: "CSV", group: "数据" },
+                  { id: "reorder", label: "创建采购任务", hint: "/task", group: "流程" },
                 ]}
               />
             </div>
@@ -444,9 +449,12 @@ export default function AgentSpecPage() {
         <SubSection title="API" stack>
           <ApiTable rows={SEARCH_PROPS} />
         </SubSection>
+        <SubSection title="搜索与执行" stack>
+          <MigrationPreview kind="command" />
+        </SubSection>
       </Section>
 
-      <Section title="AgentFlowchart" description="可选中的工作流节点，不做拖拽画布。">
+      <Section title="AgentFlowchart" description="查看流程节点并选择节点查看详情。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={`<AgentFlowchart nodes={...} edges={...} />`} minHeight={360}>
             <div className="w-full max-w-lg">

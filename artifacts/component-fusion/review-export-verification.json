@@ -1,0 +1,982 @@
+{
+  "version": 1,
+  "exportedAt": "2026-10-14T07:11:31.895Z",
+  "items": [
+    {
+      "id": "001",
+      "name": "液态玻璃按钮",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "002",
+      "name": "磁吸箭头按钮",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "003",
+      "name": "长按删除",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "004",
+      "name": "下载进度按钮",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "005",
+      "name": "纸飞机发送",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "006",
+      "name": "墨水涟漪按钮",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "007",
+      "name": "播放暂停变形",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "008",
+      "name": "复制完成反馈",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "009",
+      "name": "文字滚动按钮",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "010",
+      "name": "组合操作按钮",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "011",
+      "name": "扇形快捷操作",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "012",
+      "name": "书签丝带",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "013",
+      "name": "弹性开关",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "014",
+      "name": "待办清单",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "015",
+      "name": "套餐选择卡",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "016",
+      "name": "星级评价",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "018",
+      "name": "滚动数量步进",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "019",
+      "name": "兴趣多选",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "021",
+      "name": "日夜切换",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "022",
+      "name": "点赞心形绽放",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "023",
+      "name": "通知设置展开",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "024",
+      "name": "价格分布筛选",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "025",
+      "name": "浮动标签输入",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "026",
+      "name": "验证码输入",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "027",
+      "name": "顶栏搜索展开",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "028",
+      "name": "自动伸展评论框",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "029",
+      "name": "标签输入",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "030",
+      "name": "日期区间日历",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "031",
+      "name": "自定义选择器",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "032",
+      "name": "拖拽上传",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "033",
+      "name": "标题内联编辑",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "036",
+      "name": "密码强度",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "037",
+      "name": "账号切换",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "038",
+      "name": "右键菜单",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "039",
+      "name": "滑动选中标签",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "040",
+      "name": "AppLayout 侧栏动效",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "041",
+      "name": "底部导航凹槽",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "042",
+      "name": "分步向导",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "043",
+      "name": "分页伸缩",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "044",
+      "name": "问答折叠",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "045",
+      "name": "菜单由按钮展开",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "046",
+      "name": "命令面板",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "accepted",
+      "note": ""
+    },
+    {
+      "id": "047",
+      "name": "时间区间切换",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "048",
+      "name": "滑动联动标签",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "049",
+      "name": "层叠内容卡",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "050",
+      "name": "光照倾斜卡",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "053",
+      "name": "可拖拽卡片堆",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "054",
+      "name": "关注个人卡",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "056",
+      "name": "月年计费切换",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "057",
+      "name": "头像评价轮播",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "058",
+      "name": "阅读进度卡",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "059",
+      "name": "活动报名卡",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "061",
+      "name": "缩略图展开",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "062",
+      "name": "登录反馈",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "063",
+      "name": "逐题注册",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "066",
+      "name": "社交登录按钮",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "067",
+      "name": "锁定倒计时",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "069",
+      "name": "头像裁剪",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "070",
+      "name": "堆叠通知",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "071",
+      "name": "滑动删除与撤销",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "072",
+      "name": "内联提示收拢",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "073",
+      "name": "公告滚动",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "074",
+      "name": "通知铃菜单",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "075",
+      "name": "上传进度面板",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "076",
+      "name": "跟随工具提示",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "077",
+      "name": "表情反应面板",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "078",
+      "name": "滑动回复",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "079",
+      "name": "骨架内容显现",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "080",
+      "name": "轨道同步指示",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "081",
+      "name": "环形完成反馈",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "083",
+      "name": "队列进度转换",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "084",
+      "name": "语音响应圆点",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "085",
+      "name": "下拉刷新",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "086",
+      "name": "AI 流式回答",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "087",
+      "name": "配送步骤",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "088",
+      "name": "资料夹空态",
+      "mode": "compose",
+      "preview": "integrated",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "089",
+      "name": "404 纠错",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "090",
+      "name": "可重试错误卡",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "091",
+      "name": "离线消息队列",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "092",
+      "name": "筛选空态恢复",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "093",
+      "name": "完成庆祝",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "095",
+      "name": "形态切换柱图",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "096",
+      "name": "滑动股票折线",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "097",
+      "name": "重排环图",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "098",
+      "name": "实时数字滚动",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "099",
+      "name": "活动环",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "100",
+      "name": "翻页计时器",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "101",
+      "name": "分栏工作区",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "102",
+      "name": "嵌套文件树",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "108",
+      "name": "时区交集",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "109",
+      "name": "可用时间涂选",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "110",
+      "name": "日程冲突修复",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "111",
+      "name": "任务时长编辑",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "126",
+      "name": "Markdown 编辑与预览",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "127",
+      "name": "变更片段审核",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "128",
+      "name": "查找替换",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "129",
+      "name": "代码折叠",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "140",
+      "name": "选中文字格式",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "146",
+      "name": "JSON 树编辑",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "149",
+      "name": "冲突文本合并",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "151",
+      "name": "贡献热力格",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "154",
+      "name": "能力雷达",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "157",
+      "name": "层叠用量面积",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "160",
+      "name": "转化漏斗",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "161",
+      "name": "留存队列",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "163",
+      "name": "目标刻度",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "165",
+      "name": "预测置信带",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "176",
+      "name": "版本胶片",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "177",
+      "name": "撤销重做历史",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "178",
+      "name": "批量选择操作台",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "179",
+      "name": "文字片段拼接",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "180",
+      "name": "审批签署",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "181",
+      "name": "工作分派",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "184",
+      "name": "角色权限矩阵",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "188",
+      "name": "灰度发布",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "189",
+      "name": "环境晋级",
+      "mode": "defer",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "F01",
+      "name": "附件队列",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "F02",
+      "name": "工具运行卡",
+      "mode": "enhance",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "F03",
+      "name": "列表批量操作",
+      "mode": "enhance",
+      "preview": "integrated",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "F04",
+      "name": "生成内容审核",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "F05",
+      "name": "协作席位",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    },
+    {
+      "id": "F06",
+      "name": "搜索无结果恢复",
+      "mode": "compose",
+      "preview": "prototype",
+      "decision": "pending",
+      "note": ""
+    }
+  ]
+}

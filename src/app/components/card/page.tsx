@@ -1,5 +1,6 @@
 "use client";
 
+import { MigrationPreview } from "../_migration-previews";
 import Link from "next/link";
 import {
   StatCard,
@@ -71,7 +72,10 @@ const CODE_STATCARD_SIZES = `<StatCard size="sm" ... />
 
 const STATCARD_PROPS: ApiTableRow[] = [
   { attr: "title", type: "string", defaultValue: "—", description: "卡片标题。" },
-  { attr: "value", type: "string", defaultValue: "—", description: "主数据值。" },
+  { attr: "value", type: "ReactNode", defaultValue: "—", description: "主数据值，支持数字、文字和自定义内容。" },
+  { attr: "animateValue", type: "boolean", defaultValue: "false", description: "数字更新时逐位过渡；文字和自定义内容保持原样。" },
+  { attr: "locale / numberFormat", type: "string / Intl.NumberFormatOptions", defaultValue: "'zh-CN' / —", description: "数字的地区、货币和小数格式。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "数值动效跟随系统或立即显示最终值。" },
   { attr: "trend", type: "string", defaultValue: "—", description: "趋势百分比，会作为右上角 badge。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "底部描述文本。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "8 种主题色。" },
@@ -107,7 +111,11 @@ const CODE_CHART_USAGE = `<LineChartStatCard chartColor="purple" ... />
 <BarChartStatCard barColor="green" ... />`;
 
 const LINE_CHART_STAT_PROPS: ApiTableRow[] = [
-  { attr: "title / value / subtitle", type: "string", defaultValue: "—", description: "基础文案。" },
+  { attr: "title / subtitle", type: "string", defaultValue: "—", description: "基础文案。" },
+  { attr: "value", type: "ReactNode", defaultValue: "—", description: "指标数值、文字或自定义内容。" },
+  { attr: "animateValue", type: "boolean", defaultValue: "false", description: "数字更新时逐位过渡，保留原有卡片样式。" },
+  { attr: "locale / numberFormat", type: "string / Intl.NumberFormatOptions", defaultValue: "'zh-CN' / —", description: "数字的地区、货币和小数格式。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "数值动效遵循系统设置，或立即显示结果。" },
   { attr: "trend", type: "string", defaultValue: "—", description: "趋势文案，如 +10%。" },
   { attr: "trendDirection", type: "'up' | 'down'", defaultValue: "'up'", description: "趋势方向。" },
   { attr: "theme", type: "'white' | 'dark' | 'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan'", defaultValue: "'white'", description: "卡片主题色。" },
@@ -303,16 +311,22 @@ export default function CardCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Cards"
-        hint="卡片家族：Stat 统计 · Chart Stat 图表统计 · Financial 金融 · Project / Task / User 业务 · Activity 事件 · File 文件 · Highlight 高亮。"
+        title="卡片"
+        hint="用卡片组织统计、项目、任务、成员和文件信息。"
       />
 
       <Section
         title="StatCard"
-        description="基础统计卡，8 主题 × 2 尺寸，支持 icon / kebab / badge 变体。"
+        description="展示一项关键指标，可附带图标、变化趋势和操作菜单。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
+        </SubSection>
+
+        <SubSection title="统计数值过渡" stack>
+          <p className="text-sm leading-5 text-fg-grey-600">统计卡片的数据更新时逐位滚动，屏幕阅读器读取最终值。</p>
+          <MigrationPreview kind="number" />
+          <CodeBlock code={'<StatCard title="实时访客" value={visitors} animateValue />\n<LineChartStatCard title="项目收入" value={revenue} animateValue\n  locale="zh-CN" numberFormat={{ style: "currency", currency: "CNY" }} />'} />
         </SubSection>
 
         <SubSection title="Usage" stack>
@@ -364,7 +378,7 @@ export default function CardCasePage() {
 
       <Section
         title="ProgressStatCard"
-        description="StatCard 加上一条水平进度条，用于表达配额或进度。"
+        description="在统计指标旁展示配额或任务进度。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -391,7 +405,7 @@ export default function CardCasePage() {
 
       <Section
         title="Chart Stat Cards"
-        description="三种带 mini chart 的统计卡：折线 / 甜甜圈 / 柱状。基础字段一致，chart 字段各不同。"
+        description="用小型折线、环图或柱图补充统计指标。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="LineChartStatCard" stack>
@@ -453,7 +467,7 @@ export default function CardCasePage() {
 
       <Section
         title="ImageStatCard"
-        description="大号统计卡，右侧挂头像组，强调团队场景。"
+        description="在统计卡片中展示成员头像，适合团队数据。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -479,7 +493,7 @@ export default function CardCasePage() {
 
       <Section
         title="Financial Cards"
-        description="BalanceCard / DebitCard / CreditCard —— 三类金融展示卡，7 种主题色，Debit/Credit 再分 glow / gradient / flat 三种质感。"
+        description="展示余额和银行卡信息，支持多种主题与卡面样式。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="BalanceCard" stack>
@@ -516,7 +530,7 @@ export default function CardCasePage() {
 
       <Section
         title="ProgressCard"
-        description="带分项进度条的汇总卡，适合任务拆解 / 执行进度总览。"
+        description="汇总多个项目的完成进度。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -546,7 +560,7 @@ export default function CardCasePage() {
 
       <Section
         title="ProjectCard / TaskCard"
-        description="两个业务卡：ProjectCard 带 logo，TaskCard 无 logo。业务页面默认填满父级列，组件展示才使用 fixed 原始尺寸。"
+        description="展示项目或任务的主要信息、成员和进度。"
       >
         <SubSectionGrid cols={2}>
         <SubSection title="ProjectCard" stack>
@@ -573,7 +587,7 @@ export default function CardCasePage() {
 
       <Section
         title="UserCard"
-        description="个人卡，支持头像或首字母底色，展示姓名 + 徽章 + 自定义统计字段。"
+        description="展示成员姓名、头像和自定义统计信息。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -594,7 +608,7 @@ export default function CardCasePage() {
 
       <Section
         title="FileCard"
-        description="文件卡片，根据扩展名展示对应图标，支持 success / uploading / error 三种状态。"
+        description="展示文件名称、大小、类型及上传状态。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -616,7 +630,7 @@ export default function CardCasePage() {
 
       <Section
         title="HighlightCard"
-        description="高亮展示卡，主图 + 浮动注解 + 底部产品列表，常用于电商榜单。"
+        description="突出展示主图、注解和产品信息。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -645,7 +659,7 @@ export default function CardCasePage() {
 
       <Section
         title="ActivityCard"
-        description="事件流卡片，顶部事件类型 + 时间，中部标题描述，底部键值对。"
+        description="展示事件类型、时间、说明和相关信息。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">

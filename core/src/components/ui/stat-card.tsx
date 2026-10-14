@@ -1,4 +1,6 @@
 import { type ReactNode } from "react";
+import { AnimatedNumber } from "../../internal/animated-number";
+import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
 import {
   cardThemes,
@@ -32,6 +34,10 @@ type StatCardTheme = CardTheme | LegacyTheme;
 export function StatCard({
   title,
   value,
+  animateValue = false,
+  locale = "zh-CN",
+  numberFormat,
+  motion = "auto",
   trend,
   trendDirection = "up",
   subtitle,
@@ -46,7 +52,13 @@ export function StatCard({
   className,
 }: {
   title: string;
-  value: string;
+  value: ReactNode;
+  /** Roll numeric values when they change. Strings and custom content stay unchanged. */
+  animateValue?: boolean;
+  /** Locale for numeric values when animation or numberFormat is enabled. */
+  locale?: string;
+  numberFormat?: Intl.NumberFormatOptions;
+  motion?: MotionPreference;
   trend?: string;
   trendDirection?: TrendDirection;
   subtitle?: string;
@@ -72,6 +84,9 @@ export function StatCard({
   const isWide = size === "wide";
   const isCompact = density === "compact";
   const iconSize = size === "lg" && !isCompact ? 48 : isCompact ? 36 : 40;
+  const renderedValue = typeof value === "number" && (animateValue || numberFormat)
+    ? <AnimatedNumber value={value} locale={locale} formatOptions={numberFormat} motion={animateValue ? motion : "none"} />
+    : value;
 
   const actionNode = action ?? (onKebabClick ? <CardKebabButton theme={cfg} onClick={onKebabClick} /> : null);
 
@@ -106,7 +121,7 @@ export function StatCard({
             ) : null}
           </div>
           <div className={cn("self-stretch font-semibold tracking-fg relative z-10", isCompact ? "text-2xl leading-8" : sz.value, cfg.valueColor)}>
-            {value}
+            {renderedValue}
           </div>
         </>
       ) : (
@@ -119,7 +134,7 @@ export function StatCard({
               </span>
             </div>
             <div className={cn("self-stretch font-semibold tracking-fg", isCompact ? "text-2xl leading-8" : sz.value, cfg.valueColor)}>
-              {value}
+              {renderedValue}
             </div>
           </div>
           {actionNode && <div className="shrink-0">{actionNode}</div>}

@@ -37,7 +37,7 @@ export const docsNavGroups: NavGroup[] = [
     title: "参考",
     items: [
       { href: "/docs", label: "组件示例", external: true },
-      { href: "/templates", label: "模版", external: true },
+      { href: "/templates", label: "模板", external: true },
     ],
   },
 ];

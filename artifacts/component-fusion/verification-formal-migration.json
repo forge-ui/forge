@@ -1,0 +1,227 @@
+{
+  "recordedAt": "2026-10-14T09:03:41.232999+00:00",
+  "branch": "codex/component-fusion-migration",
+  "baseCommit": "54598df8",
+  "status": "implemented_verified_pending_user_review",
+  "packageVersion": "0.4.5",
+  "scope": {
+    "integrated": 99,
+    "enhancedExistingComponents": 54,
+    "compositionCases": 45,
+    "deferred": 23,
+    "excluded": [
+      "186"
+    ],
+    "newParallelPublicComponents": 0
+  },
+  "entryPoints": {
+    "directory": "/components/interactions",
+    "review": "/prototype/component-fusion",
+    "socialLogin": "/cases/button-link#interaction-066"
+  },
+  "verification": {
+    "coreCheck": {
+      "passed": true,
+      "componentTests": 264,
+      "auditTests": 17,
+      "componentAuditErrors": 0,
+      "existingWarnings": [
+        "src/internal/ask-ai-history.tsx:114 w-72"
+      ]
+    },
+    "coreBuild": {
+      "passed": true
+    },
+    "websiteTypecheck": {
+      "passed": true
+    },
+    "websiteTargetedEslint": {
+      "passed": true,
+      "warnings": 0
+    },
+    "websiteInteractionTests": {
+      "passed": true,
+      "tests": 114,
+      "coverage": [
+        "99 IDs render real React/core implementations in Chinese and English across blue, purple and black",
+        "registry completeness and unique IDs, 23 deferred, 186 excluded",
+        "composition state transitions: find/replace and undo, review, ordered clips, bounded undo/redo and branching, version restore, conflict repair, approvals, search recovery, permissions",
+        "review persistence and prototype lifecycle regression"
+      ]
+    },
+    "packageContract": {
+      "passed": true,
+      "rootExports": 449,
+      "wildcardEntries": 134,
+      "packedBytes": 841552,
+      "unpackedBytes": 3373223,
+      "files": 488,
+      "sourceMapBytes": 1809589,
+      "stylesBytes": 96423
+    },
+    "tarballConsumers": {
+      "passed": true,
+      "next15": "15.5.24",
+      "next16": "16.3.5",
+      "verifiedCssFilesPerConsumer": 1
+    },
+    "standalonePrototypeBuild": {
+      "passed": true,
+      "command": "node private/component-fusion-lab/build.mjs",
+      "requiresExternalLabCheckout": false,
+      "localSnapshots": 122
+    },
+    "gitDiffCheck": {
+      "passed": true
+    },
+    "rootExportCompatibility": {
+      "removedExports": [],
+      "addedNames": [
+        "AgentCodeFoldRange",
+        "ButtonEffect",
+        "ButtonHoldLabels",
+        "ButtonProps",
+        "ChatReaction",
+        "ChatReactionOption",
+        "ComposerReply",
+        "ComposerVoiceState",
+        "IconButtonEffect",
+        "StepperItem",
+        "ToggleProps",
+        "ToolbarProps",
+        "ToolbarSelectionOptions"
+      ]
+    },
+    "finalReviewFixes": [
+      "Tooltip joins the owning native dialog top layer, tracks its transform on every opening, and hydrates without pre-rendering a portal.",
+      "Button/IconButton loading and Toast expiry visuals respond to runtime system reduced motion; automatic dismissal remains enabled."
+    ]
+  },
+  "packageBudgetChange": {
+    "reason": "The complete 99-interaction migration extends existing primitives and internal helpers. Aggregate budgets were deliberately revised for measured output; per-module JS and inlined map limits are unchanged. Website-only scene CSS and prototype assets are not published.",
+    "before": {
+      "packed": 750000,
+      "unpacked": 3020000,
+      "entries": 464,
+      "sourceMaps": 1620000,
+      "stylesRaw": 77000
+    },
+    "after": {
+      "packed": 870000,
+      "unpacked": 3500000,
+      "entries": 488,
+      "sourceMaps": 1900000,
+      "stylesRaw": 100000
+    }
+  },
+  "browser": {
+    "runtime": "existing stable Google Chrome through installed browser extension; no separately launched system Chrome/profile",
+    "targetedFlows": [
+      "011 expand, select a radial action, collapse and restore focus",
+      "030 choose October 15 through 18, confirm three nights and applied label",
+      "066 brand assets, last-used badge, email entry, provider collapse, connecting/account row, reset/focus restoration and official route anchor",
+      "077 real pointer reaction selection and cancellation after fixing compressed picker geometry",
+      "078 quoted reply selection/cancel/send metadata",
+      "084 keyboard voice-state interactions",
+      "086 streaming stop/regenerate/question change",
+      "091 offline queue then reconnect/delivery",
+      "F01 attachments upload-state retry/removal and send",
+      "F02 tool retry/cancel preserves completed steps",
+      "095 cycle and keyboard tracking",
+      "096 first-point navigation, intervals and themes",
+      "097 SVG arc pointer and Enter selection, exclusion recomputes total from 10800 to 5980",
+      "099 full rings and overflow beyond target",
+      "157 cumulative series filtering",
+      "163 fixed-domain target/threshold control",
+      "165 confidence intervals and theme changes"
+    ],
+    "responsive": {
+      "viewportWidth": 390,
+      "documentClientWidth": 375,
+      "documentScrollWidth": 375,
+      "routes": [
+        "/cases/button-link#interaction-066",
+        "/components/chat#interaction-078",
+        "/components/chart#interaction-097"
+      ],
+      "navigation": [
+        "/docs",
+        "/components",
+        "/cases",
+        "/templates"
+      ],
+      "allNavigationLinksVisibleAndClicked": true,
+      "viewportRestored": true
+    },
+    "earlierAcceptedFlows": "See verification-batch-2.json, verification-batch-3.json and earlier sidebar records.",
+    "notClaimed": "No claim of manual visual/interaction acceptance of all 99 items, real OAuth, server upload, voice service, payment or business backend integration.",
+    "finalRegressionChecks": {
+      "modalAndDrawerTooltips": {
+        "passed": true,
+        "controlledOpenInitialClosed": true,
+        "closeClearsPopover": true,
+        "reopenRestoresPopover": true,
+        "anchorGapPx": 8,
+        "modalFocus": true,
+        "drawerHover": true
+      },
+      "runtimeSystemReducedMotion": {
+        "passed": true,
+        "plainButtonLoading": "animation-name: none",
+        "plainIconButtonLoading": "animation-name: none",
+        "toastLoading": "animation-name: none",
+        "toastTimer": "animation-name: none",
+        "clearedOverrideRestores": [
+          "forge-action-spin",
+          "forge-toast-expiry"
+        ]
+      },
+      "consoleErrors": 0
+    },
+    "temporaryRegressionPageRemoved": true
+  },
+  "socialLoginCorrection": {
+    "cause": "Migration oversimplified the original interaction, replacing provider brands and losing collapse/account states.",
+    "restored": [
+      "Kakao/Google/Apple brand marks",
+      "last-used hint",
+      "email entry",
+      "smooth collapse of unselected options",
+      "pending and account confirmation row",
+      "switch method with focus restoration"
+    ]
+  },
+  "knownLimitations": [
+    {
+      "item": "046",
+      "status": "browser_keyboard_delivery_unconfirmed",
+      "detail": "Escape with the search field focused remains unconfirmed in the current Chrome session; repeated simulated Escape/IME and focus restoration checks pass. Close button and button-focused Escape work. No cause assigned without evidence.",
+      "evidence": "artifacts/component-fusion/command-escape-diagnosis.json"
+    }
+  ],
+  "acceptance": {
+    "allItemsUserAccepted": false,
+    "previousExplicitlyAcceptedIds": [
+      "040",
+      "013",
+      "043",
+      "044",
+      "031",
+      "039",
+      "046"
+    ],
+    "localReviewMarksPreserved": true
+  },
+  "release": {
+    "mergedToMain": false,
+    "pushed": false,
+    "npmPublished": false
+  },
+  "screenshots": [
+    "artifacts/component-fusion/screenshot-social-integrated.png",
+    "artifacts/component-fusion/c-reaction-picker-verified.png",
+    "artifacts/component-fusion/c-official-mobile-header-verified.png",
+    "artifacts/component-fusion/tooltip-dialog-regression.png"
+  ],
+  "implementationSourceSha256": "231b3ebde8b38a8cd1d32c517c67e8973a9adc1e31fa03c196196899c27dbe9c"
+}

@@ -2,6 +2,7 @@
 
 import type { MotionPreference } from "../../lib/motion";
 import { MotionPresence, MotionMenu, useMovingIndicator } from "../../internal/motion";
+import { ToolbarSelection } from "../../internal/toolbar-selection";
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
@@ -27,15 +28,34 @@ const toolbarPillActive = {
 
 // ── Toolbar (generic flex row) ──────────────────────────────
 
+export type ToolbarSelectionOptions = {
+  /** Selected item count, controlled by the consumer. Non-finite and negative values become zero. */
+  count: number;
+  onClear: () => void;
+  actions: ReactNode;
+  label?: string;
+  clearLabel?: string;
+};
+
+export type ToolbarProps = {
+  left?: ReactNode;
+  right?: ReactNode;
+  className?: string;
+  /** Replaces the normal toolbar while count is greater than zero. Keep this configuration present and set count to zero to exit without remounting normal inputs. */
+  selection?: ToolbarSelectionOptions;
+  locale?: "zh" | "en";
+  motion?: MotionPreference;
+};
+
 export function Toolbar({
   left,
   right,
   className,
-}: {
-  left?: ReactNode;
-  right?: ReactNode;
-  className?: string;
-}) {
+  selection,
+  locale = "zh",
+  motion = "auto",
+}: ToolbarProps) {
+  if (selection) return <ToolbarSelection selection={selection} locale={locale} motion={motion} className={className} left={left} right={right} />;
   return (
     <div
       className={cn(

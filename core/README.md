@@ -39,6 +39,8 @@ const menuSections: AppLayoutMenuSection[] = [
 
 优先级为 `sidebarSlot`、`menuSections`、旧的 `menuItems` 与 `favoriteItems`。不传 `menuSections` 时仍使用默认的「主菜单」和「常用项目」；旧的分组标题传空字符串时也不占位。
 
+侧栏动效直接内置于 `AppLayout`：宽度、分组和团队区域同步收展，菜单行保持高度，文字延迟渐入，角标与底部头像持续可见。顶部折叠按钮保留原有 Solar 菜单图标，收展时沿用同一按钮并保留键盘焦点，当前页背景在菜单间平滑移动。沿用 `motion="auto" | "none"`，关闭动效或系统启用减少动态效果时即时切换；不增加独立侧栏组件，原有宽度、路由与移动抽屉 API 不变。本地预览位于 `/prototype/sidebar-motion`。
+
 ## StreamingAnswer 流式回答
 
 默认使用 `500ms` 线性淡入，新到达的内容平滑出现，已显示内容保持稳定。纯文本模式为默认值；传 `format="markdown"` 可渲染标题、列表、链接、表格和代码块。
@@ -318,3 +320,44 @@ import { CalendarCard, DropdownPanel, type ButtonColor } from "@forge-ui-officia
 `plain` 负责日历内容外观，弹层定位、打开关闭、确认/取消和焦点限制由业务或 Popover 管理。DropdownPanel 的共享菜单高亮不再套用到嵌入的 core Button 和 CalendarCard。业务升级后可删除用于字体、两层卡片表面和红色替换的 `.forge-calendar__*` 覆盖。
 
 交互示例：`/cases/motion#calendarcard`（默认）、`/cases/motion#calendarcard-表单弹层`（compact + plain + blue）。
+
+### 组件交互融合（迁移分支，未发布）
+
+99 项交互融合为 54 项现有组件增强和 45 项组合案例，默认中文并支持语言切换。正式总览 `/components/interactions`，各示例也归入原有 `/components` 或 `/cases` 页面；集中评审入口 `/prototype/component-fusion` 使用同一实现。
+
+完整 [API 用法与业务接入边界](../docs/design/component-fusion-api-guide.md)、[99 项对照关系](../docs/design/component-fusion-implementation.md)。玻璃按钮的装饰背景仅属于官网示例，npm Button 只包含玻璃材质；磁吸按钮不带扩散光晕。
+
+| 组件 | 用途 | 主要参数 |
+| --- | --- | --- |
+| `SelectOption` | 在原选择器内展示 Solar 图标、选项说明与选中反馈 | `options[].icon`、`options[].description`；既有 `value` / `onChange`、`width`、单选/多选参数不变 |
+| `TabBar` / `TabsContent` | 指示器与内容衔接，业务内容先退场再进入 | `TabsContent.transition`（默认 fade，可选 slide）、`direction`（forward / backward）、`motion` |
+| `CommandSearch` / `Modal` | 搜索文档和命令，支持键盘选择并执行 | CommandSearch 的 `locale`、`color`、`motion`、`autoFocus`；item 的 `icon`、`shortcut`；Modal 的 `locale`、`closeLabel` |
+| `Toggle` | 现有开关加入手柄回弹，可选拖动切换 | `draggable`（默认 false）、`checked` / `defaultChecked`、`onChange`、`motion`、`ariaLabel` |
+| `Accordion` | 单项展开时衔接高度、正文和 Solar 箭头过渡 | `items`、`value` / `defaultValue`、`onValueChange`、`motion`；公开参数不变 |
+| `Pagination` | 按真实按钮位置移动选中背景，保留原分页样式 | `currentPage`、`totalPages`、`onPageChange`、`locale`（默认 zh）、`motion`（默认 auto） |
+| `Button variant="hold"` | 鼠标、触摸或空格/回车持续按住后确认 | `onConfirm`、`holdDuration`（毫秒，默认 1200）、`disabled`、`holdLabels`、`confirmed`、`onUndo`、`locale`、`color` |
+| `StatCard` / `LineChartStatCard` | 在原指标卡内逐位滚动数字 | `value`、`animateValue`（默认 false）、`locale`（默认 zh-CN）、`numberFormat` |
+| `Toolbar` | 选中列表项目后切换为批量操作栏 | `selection={{ count, onClear, actions, label?, clearLabel? }}`、`locale` |
+
+以上交互支持 `motion="auto" | "none"`，auto 遵循系统减少动态效果偏好。Button、Toolbar、Pagination、CommandSearch、Modal 使用 zh/en；指标卡使用 Intl locale。SelectOption 的选项文案、TabBar 的标签、Toggle 的 ariaLabel 与 Accordion 的 items 内容由调用方提供。指标卡默认呈现不变；数字值启用 `animateValue` 才逐位滚动，字符串和自定义节点保持原样。`numberFormat` 用于金额、小数等格式。
+
+SelectOptionItem 仅新增可选 `icon: ReactNode` 和 `description: string`。菜单项与单选触发器可显示图标、说明；图片模式提供 image 时保留图片优先。选中标记使用 Solar CheckCircle，既有 width、value/onChange、单多选模式不变，业务语言与数据映射仍由调用方管理。
+
+TabsContent 默认仍为 `transition="fade"`；传 `transition="slide"` 后，当前内容约 140ms 退场，再让新内容约 300ms 入场，并衔接容器高度。同一时间只挂载一份业务 children，退出内容立即 inert；快速切换以最终选择为准，减少动效时即时切换。`direction` 可指定 forward/backward；不传时数字 activeKey 自动判断方向，字符串默认向前。表单和任务状态应放在宿主，避免切换 activeKey 重挂载后丢失。TabBar 沿用现有滑动指示器。
+
+CommandSearch 默认中文，可通过 `locale="en"` 切换内置文案，既有 placeholder、emptyLabel、groupLabel 覆盖优先。方向键循环选择，Home/End 跳首尾，Enter 执行并避开输入法组词；活动项保持滚动可见，过滤后失效的 active descendant 会清除。`shortcut` 只展示快捷键，注册快捷键由宿主负责。官网组合 Modal 展示真实本地文档与创建、提醒操作，Cmd/Ctrl+K 仅在当前示例内响应；每次打开聚焦搜索，关闭恢复触发按钮。Modal 支持 locale/closeLabel，关闭图标使用 Solar。
+
+Toggle 默认仍为点击或键盘切换；传 `draggable` 后，手柄随指针移动，越过轨道中点后松开才提交新值。pointercancel、丢失指针捕获和 Escape 取消拖动；受控值由调用方更新，禁用状态不提交。开关尺寸、配色和 switch 语义保持不变。
+
+Accordion 沿用单项展开与既有排版，在可反向的高度过渡上加入正文轻移淡入；字符箭头改为 Solar 图标。收起时内容立即 inert，受控关闭会将内部焦点退回标题；方向键、Home、End 只在本级可用标题间移动。不增加 FAQ 组件、编号或装饰卡片。
+
+Pagination 新增 `locale` 和 `motion`，保留 currentPage/totalPages/onPageChange 的受控契约与原页码窗口规则。选中背景按实际按钮位置测量，父容器变窄时减少可见页码，保留 40px 点击区域；首尾边界禁用和 aria-current="page" 不变。页码对应的列表内容和数据请求仍由宿主处理。
+
+Toolbar 不传 selection 时保留原结构。启用批量模式后持续传入配置对象，以 count=0 退出；动态增删 selection 会重建工具栏，不用于切换选中状态。count 为 0 时显示原 left/right 内容，大于 0 时显示批量操作。清空选择、Escape 和操作完成后的数据更新由宿主回调控制，退出中的隐藏操作不可聚焦或点击。官网示例组合 ListGroup、Checkbox 和 Toolbar，展示选择、归档与撤销。
+
+长按组件失焦、松开、Escape 或变为禁用均取消当前操作；单击不会触发确认。hold 变体保留整面填色、过半抖动、完成后撤销；文件退场属于业务示例，通过 onConfirm/onUndo 驱动。传 confirmed 时由业务决定是否完成，不会提前宣告删除成功。
+
+空文件夹、搜索无结果和加载失败是官网组合案例，复用 ListGroup、ToolbarSearchInput 和 Button，不增加公共 EmptyState 入口。空文件夹支持从实际模板按钮飞入纸张再创建项目；搜索清除后恢复列表；加载失败支持重试与成功恢复。
+
+
+新增按钮与图标按钮效果、真实上传进度、日期区间草稿确认、标签输入、可编辑评分、滑动页签、堆叠通知与滑动操作；聊天支持引用回复、反应和语音状态接口；图表支持真实累计面积、预测置信带、目标刻度和独立活动环；代码块支持嵌套折叠。现有组件默认呈现与受控契约保留，可选功能按需启用。组合案例的模拟上传、登录、审批和队列仅说明宿主状态管理，不代替业务后端。

@@ -91,13 +91,13 @@ export default function StyleGuideCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Style Guide"
-        hint="Design tokens（Color Ramp + Typography Scale）与 5 个展示原子组件的 API。"
+        title="设计规范"
+        hint="了解 Forge 的颜色、字体、字号和字重，建立一致的界面风格。"
       />
 
       <Section
         title="Color System"
-        description="Forge 色板：8 色 × 10 档（50 / 100–900）+ White。"
+        description="查看 Forge 的色系、色阶和基础颜色。"
       >
         <div className="flex flex-col gap-8 w-full">
           {colorFamilies.map((f) => (
@@ -117,7 +117,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="Typography Scale"
-        description="Plus Jakarta Sans（Display）+ Manrope（Text）。每行自动铺 700 / 600 / 500 / 400 四档字重。"
+        description="查看标题与正文的字体、字号和四档字重。"
       >
         <div className="flex flex-col gap-10 w-full">
           <TypefaceBlock name="Plus Jakarta Sans" />
@@ -145,7 +145,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="ColorSwatch"
-        description="单个色块，左上 label + 右下 HEX pill，纯白自动描边。"
+        description="展示颜色名称和色值。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -167,7 +167,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="ColorSection"
-        description="一行色系，左侧标题 + 10 档色阶，自动根据 darkLabelUntil 翻转字色。"
+        description="展示同一色系的各档色阶。"
       >
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -187,7 +187,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="TypefaceBlock"
-        description="字体样张，大号 Aa + 字体名展示。"
+        description="查看字体名称和字形样张。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_TYPEFACE} minHeight={200}>
@@ -202,7 +202,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="TypographyWeightSample"
-        description="单字重样本，用于多字重横向对比。"
+        description="比较同一字号下的不同字重。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_WEIGHT} minHeight={140}>
@@ -217,7 +217,7 @@ export default function StyleGuideCasePage() {
 
       <Section
         title="TypographySizeRow"
-        description="一行字号展示，自动铺 700 / 600 / 500 / 400 四档字重。"
+        description="比较不同字号和字重的文字效果。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_SIZE_ROW} minHeight={180}>

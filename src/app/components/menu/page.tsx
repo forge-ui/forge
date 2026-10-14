@@ -97,11 +97,11 @@ export default function MenuCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Menu"
-        hint="MenuItem / DropdownPanel / DropdownDivider / IconTrigger / KebabMenu — 菜单构件族。"
+        title="菜单"
+        hint="提供下拉菜单、菜单条目和图标入口，支持选中与禁用状态。"
       />
 
-      <Section title="MenuItem" description="菜单行。3 kind × 4 state × 2 surface × 2 intent。">
+      <Section title="MenuItem" description="展示菜单选项，支持图标、选中、禁用和危险操作。">
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
@@ -143,7 +143,7 @@ export default function MenuCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="DropdownPanel" description="白底圆角浮层容器，装一组 MenuItem + DropdownDivider。">
+      <Section title="DropdownPanel" description="承载下拉菜单条目和分隔线。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_DROPDOWN_USAGE} minHeight={300}>
             <DropdownPanel>
@@ -161,7 +161,7 @@ export default function MenuCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="IconTrigger" description="圆形图标按钮，可选 badge / tooltip / 内置 panel。">
+      <Section title="IconTrigger" description="通过图标打开浮层，可附带数量标记和提示。">
         <SubSection title="Usage" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             hover 自动显示 <InlineCode>tooltip</InlineCode>。传 <InlineCode>panel</InlineCode> 后点击切换内置浮层。
@@ -177,7 +177,7 @@ export default function MenuCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="KebabMenu" description="三点展开菜单。内部装 IconTrigger + DropdownPanel，items 传配置即可。">
+      <Section title="KebabMenu" description="通过三点按钮展开操作菜单。">
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_KEBAB_USAGE} minHeight={180}>
             <KebabMenu

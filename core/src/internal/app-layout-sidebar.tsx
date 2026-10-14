@@ -1,9 +1,10 @@
 "use client";
 
 import type { MotionPreference } from "../lib/motion";
-import { MotionCollapse } from "./motion";
+import { MotionCollapse, useReducedMotion } from "./motion";
+import { motion as animated } from "motion/react";
 
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 import NextLink from "next/link";
 import { AltArrowDownLinear } from "../icons";
 import type { AppLayoutMenuItem, AppLayoutMode } from "../components/layouts/app-layout";
@@ -162,6 +163,8 @@ export function SidebarMenuItemRow({
   depth = 0,
   collapsed = false,
   motion = "auto",
+  indicatorId,
+  index = 0,
 }: {
   item: AppLayoutMenuItem;
   config: (typeof modeConfig)[AppLayoutMode];
@@ -172,7 +175,10 @@ export function SidebarMenuItemRow({
   depth?: number;
   collapsed?: boolean;
   motion?: MotionPreference;
+  indicatorId?: string;
+  index?: number;
 }) {
+  const reduced = useReducedMotion(motion);
   const childItems = item.children ?? [];
   const hasChildren = childItems.length > 0;
   const resolvedActiveItem = activeItem === undefined
@@ -189,53 +195,54 @@ export function SidebarMenuItemRow({
     ? manualExpansion.expanded
     : isBranchActive;
 
-  if (collapsed && depth === 0) {
-    const link = hasChildren ? findFirstChildNavigableHref(item) ?? item.href : item.href;
-    const iconOnly = (
-      <span className={cn(
-        "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-        isBranchActive ? cn(accentActive, "text-white") : config.menuItem
-      )}>
-        {item.icon}
-      </span>
-    );
-    return link ? (
-      <NextLink
-        href={link}
-        prefetch
-        aria-current={!hasChildren && isActive ? "page" : undefined}
-        className="flex justify-center"
-        title={item.label}
-      >
-        {iconOnly}
-      </NextLink>
-    ) : (
-      <span className="flex justify-center" title={item.label}>
-        {iconOnly}
-      </span>
-    );
-  }
-
+  const rail = collapsed && depth === 0;
+  const highlighted = rail ? isBranchActive : !collapsed && isActive;
+  const link = hasChildren ? findFirstChildNavigableHref(item) ?? item.href : item.href;
+  const disclosure = hasChildren && !rail;
+  const toggleExpanded = () => setManualExpansion({ pathname, expanded: !expanded });
   const rowClassName = cn(
-    "self-stretch px-3.5 py-3 rounded-full inline-flex items-center gap-2 transition-colors relative",
+    "forge-sidebar-row relative isolate self-stretch inline-flex items-center gap-2 rounded-full px-3.5 py-3 transition-colors",
     depth > 0 && "pl-[46px]",
-    isActive ? cn(accentActive, config.menuItemActiveText) : config.menuItem
+    highlighted ? config.menuItemActiveText : config.menuItem
   );
+  const rowProps = {
+    className: rowClassName,
+    "data-collapsed": rail,
+    "data-motion": motion,
+    "data-branch": hasChildren,
+    "data-badge": item.badge !== undefined && item.badge > 0,
+    title: rail ? item.label : undefined,
+    "aria-label": rail ? `${item.label}${item.badge ? `，${item.badge}` : ""}` : undefined,
+    style: { "--forge-sidebar-label-delay": `${120 + Math.min(index, 8) * 35}ms` } as CSSProperties,
+  };
 
   const rowContent = (
     <>
-      {isActive && depth === 0 && (
+      {highlighted && (
+        <animated.span
+          aria-hidden="true"
+          data-forge-sidebar-highlight
+          layout="position"
+          layoutId={reduced ? undefined : indicatorId}
+          initial={false}
+          transition={reduced ? { duration: 0 } : { type: "tween", duration: 0.5, ease: [0.34, 1.16, 0.64, 1] }}
+          // The sidebar width already transitions in CSS. Keep its live radius
+          // out of Motion's scale correction, which uses a stale width snapshot.
+          className={cn("pointer-events-none absolute inset-0 -z-10 rounded-[inherit]", accentActive)}
+        />
+      )}
+      {isActive && depth === 0 && !rail && (
         <div className={cn("w-1 h-12 absolute left-[-16px] top-0 rounded-tr-lg rounded-br-lg", accentBar)} />
       )}
       {item.icon && <span className="w-6 h-6 flex justify-center items-center shrink-0">{item.icon}</span>}
-      <span className="flex-1 text-sm font-semibold leading-5 tracking-fg line-clamp-1 text-left">{item.label}</span>
+      <span aria-hidden={rail || undefined} className="forge-sidebar-label forge-sidebar-item-label min-w-0 flex-1 whitespace-nowrap text-sm font-semibold leading-5 tracking-fg line-clamp-1 text-left">{item.label}</span>
       {item.badge !== undefined && item.badge > 0 && (
-        <span className={cn("px-1.5 py-0.5 rounded-full inline-flex flex-col justify-center items-center gap-2", config.badgeBg)}>
+        <span className={cn("forge-sidebar-badge px-1.5 py-0.5 rounded-full inline-flex flex-col justify-center items-center gap-2", config.badgeBg)}>
           <span className="text-white text-2xs font-semibold leading-3.5 tracking-fg">{item.badge}</span>
         </span>
       )}
       {hasChildren && (
-        <span className="w-6 h-6 flex justify-center items-center shrink-0">
+        <span aria-hidden={rail || undefined} className="forge-sidebar-label w-6 h-6 flex justify-center items-center shrink-0">
           <span className="forge-chevron inline-flex" data-motion={motion} data-expanded={expanded}>
             <AltArrowDownLinear size={16} />
           </span>
@@ -244,34 +251,43 @@ export function SidebarMenuItemRow({
     </>
   );
 
-  const row = item.href && !hasChildren ? (
+  // Keep the same row and contents while its interaction changes from disclosure
+  // to navigation; replacing button with link interrupts every CSS transition.
+  const row = link ? (
     <NextLink
-      href={item.href}
+      href={link}
       prefetch
+      role={disclosure ? "button" : undefined}
+      aria-expanded={disclosure ? expanded : undefined}
+      onClick={disclosure ? (event) => { event.preventDefault(); toggleExpanded(); } : undefined}
+      onKeyDown={disclosure ? (event) => {
+        if (event.key === " ") { event.preventDefault(); if (!event.repeat) toggleExpanded(); }
+      } : undefined}
       aria-current={isActive ? "page" : undefined}
-      className={rowClassName}
+      {...rowProps}
     >
       {rowContent}
     </NextLink>
   ) : hasChildren ? (
     <button
       type="button"
-      aria-expanded={expanded}
-      onClick={() => setManualExpansion({ pathname, expanded: !expanded })}
-      className={rowClassName}
+      aria-expanded={rail ? undefined : expanded}
+      disabled={rail}
+      onClick={toggleExpanded}
+      {...rowProps}
     >
       {rowContent}
     </button>
   ) : (
-    <span className={cn(rowClassName, "cursor-default opacity-70")} aria-disabled="true">
+    <span {...rowProps} className={cn(rowClassName, "cursor-default opacity-70")} aria-disabled="true">
       {rowContent}
     </span>
   );
 
   const children = hasChildren && (
-    <MotionCollapse open={expanded} motion={motion}><div className="flex flex-col">
+    <MotionCollapse open={expanded && !collapsed} motion={motion}><div className="flex flex-col">
       {childItems.map((child, i) => (
-        <SidebarMenuItemRow motion={motion} key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} />
+        <SidebarMenuItemRow motion={motion} indicatorId={indicatorId} index={i} key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} collapsed={collapsed} />
       ))}
     </div></MotionCollapse>
   );

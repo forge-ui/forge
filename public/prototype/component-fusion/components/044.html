@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>问答折叠</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"044",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"044",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"044",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"044",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"044"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u044{position:relative;width:350px;height:400px;display:flex;flex-direction:column;gap:8px}
+.u044-it{position:relative;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line);transition:background-color .4s var(--ux-ease),box-shadow .5s var(--ux-ease),transform .5s var(--ux-spring)}
+.u044-it.open{box-shadow:0 0 0 1px var(--ux-line-2),0 22px 40px -22px var(--ux-shadow-strong);transform:translateY(-2px)}
+.u044-q{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:58px;padding:0 14px 0 16px;border:0;border-radius:16px;background:none;font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.02em;color:var(--ux-ink);text-align:left}
+.u044-q:focus-visible{outline:2px solid var(--ux-accent);outline-offset:2px}
+.u044-n{font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-3);font-variant-numeric:tabular-nums;transition:color .3s}
+.u044-it.open .u044-n{color:var(--ux-accent)}
+.u044-t{flex:1}
+.u044-pm{position:relative;width:30px;height:30px;flex:none;border-radius:50%;background:var(--ux-surface-2);box-shadow:none;transition:background-color .35s var(--ux-ease),box-shadow .35s,transform .45s var(--ux-spring)}
+.u044-q:hover .u044-pm{transform:scale(1.1)}
+.u044-q:active .u044-pm{transform:scale(.9)}
+.u044-pm::before,.u044-pm::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:2px;margin:-1px 0 0 -5.5px;border-radius:2px;background:var(--ux-ink);transition:transform .5s var(--ux-spring),background-color .3s}
+.u044-pm::after{transform:rotate(90deg)}
+.u044-it.open .u044-pm{background:var(--ux-ink);box-shadow:none}
+.u044-it.open .u044-pm::before,.u044-it.open .u044-pm::after{background:var(--ux-page)}
+.u044-it.open .u044-pm::after{transform:rotate(180deg)}
+.u044-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ux-ease)}
+.u044-it.open .u044-body{grid-template-rows:1fr}
+.u044-body>div{overflow:hidden;min-height:0}
+.u044-a{padding:0 18px 16px 42px;opacity:0;transform:translateY(-8px);transition:opacity .25s var(--ux-ease),transform .45s var(--ux-spring)}
+.u044-it.open .u044-a{opacity:1;transform:none;transition-delay:.12s}
+.u044-a p{margin:0;font-size:var(--forge-text-sm-size);line-height:1.62;color:var(--ux-ink-2)}
+.u044-a a{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-accent);text-decoration:none}
+.u044-a a:focus-visible{outline:2px solid var(--ux-accent);outline-offset:2px;border-radius:4px}
+.u044-a a i{font-style:normal;transition:transform .3s var(--ux-spring)}
+.u044-a a:hover i{transform:translateX(3px)}
+</style>
+<div class="ux u044">
+  <div class="u044-it open">
+    <button class="u044-q" type="button" aria-expanded="true"><span class="u044-n">01</span><span class="u044-t">Can I cancel anytime?</span><span class="u044-pm" aria-hidden="true"></span></button>
+    <div class="u044-body" role="region"><div><div class="u044-a"><p>Yes — cancel right from Billing in Settings. You keep access until your next billing date.</p><a href="#">How to cancel <i aria-hidden="true">→</i></a></div></div></div>
+  </div>
+  <div class="u044-it">
+    <button class="u044-q" type="button" aria-expanded="false"><span class="u044-n">02</span><span class="u044-t">How many people can I invite?</span><span class="u044-pm" aria-hidden="true"></span></button>
+    <div class="u044-body" role="region"><div><div class="u044-a"><p>The Team plan allows up to 40 people. Added seats apply from your next bill.</p><a href="#">Compare plans <i aria-hidden="true">→</i></a></div></div></div>
+  </div>
+  <div class="u044-it">
+    <button class="u044-q" type="button" aria-expanded="false"><span class="u044-n">03</span><span class="u044-t">Where are my files saved?</span><span class="u044-pm" aria-hidden="true"></span></button>
+    <div class="u044-body" role="region"><div><div class="u044-a"><p>Everything saves to its project automatically, and you can restore versions for 30 days.</p><a href="#">About version history <i aria-hidden="true">→</i></a></div></div></div>
+  </div>
+  <div class="u044-it">
+    <button class="u044-q" type="button" aria-expanded="false"><span class="u044-n">04</span><span class="u044-t">Is there a student discount?</span><span class="u044-pm" aria-hidden="true"></span></button>
+    <div class="u044-body" role="region"><div><div class="u044-a"><p>Verify with a school email and get Pro free for a year.</p><a href="#">Verify student status <i aria-hidden="true">→</i></a></div></div></div>
+  </div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var items = Array.prototype.slice.call(root.querySelectorAll('.u044-it'));
+  var qs = items.map(function (it) { return it.querySelector('.u044-q'); });
+  var uid = 'u044-' + Math.random().toString(36).slice(2, 7);
+  // 같은 요소가 여러 번 놓여도 id가 겹치지 않게 합니다
+  items.forEach(function (it, i) {
+    var q = qs[i], body = it.querySelector('.u044-body');
+    q.id = uid + '-q' + i; body.id = uid + '-a' + i;
+    q.setAttribute('aria-controls', body.id); body.setAttribute('aria-labelledby', q.id);
+  });
+  function set(it, open) {
+    it.classList.toggle('open', open);
+    it.querySelector('.u044-q').setAttribute('aria-expanded', String(open));
+    // 접힌 답변 속 링크는 탭 순서에서 빠집니다
+    it.querySelector('.u044-a a').tabIndex = open ? 0 : -1;
+  }
+  items.forEach(function (it, i) {
+    set(it, it.classList.contains('open'));
+    qs[i].addEventListener('click', function () {
+      var willOpen = !it.classList.contains('open');
+      items.forEach(function (o) { if (o !== it) set(o, false); });
+      set(it, willOpen);
+    });
+    qs[i].addEventListener('keydown', function (e) {
+      var n = e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? qs.length - 1 : -2;
+      if (n === -2) return;
+      e.preventDefault();
+      qs[(n + qs.length) % qs.length].focus();
+    });
+    it.querySelector('.u044-a a').addEventListener('click', function (e) { e.preventDefault(); });
+  });
+})();</script></body></html>

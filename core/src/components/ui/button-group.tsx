@@ -67,6 +67,11 @@ export function ButtonGroup({
           type="button"
           aria-pressed={index === activeIndex}
           onClick={() => onChange?.(index)}
+          onKeyDown={event => {
+            const next = event.key === "ArrowRight" || event.key === "ArrowDown" ? (index + 1) % items.length : event.key === "ArrowLeft" || event.key === "ArrowUp" ? (index - 1 + items.length) % items.length : event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : -1;
+            if (next < 0) return;
+            event.preventDefault(); onChange?.(next); rootRef.current?.querySelectorAll<HTMLButtonElement>("button")[next]?.focus();
+          }}
           className={cn(
             "relative z-[1] px-4 py-2 text-sm leading-5 cursor-pointer whitespace-nowrap",
             isPill ? "rounded-full" : "rounded-lg",

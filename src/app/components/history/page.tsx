@@ -66,13 +66,13 @@ export default function HistoryCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="History"
-        hint="HistoryItem 时间轴条目（3 变体 × 8 色），HistoryGrouped 分组容器 + 右侧进度柱。"
+        title="历史记录"
+        hint="按时间展示操作和事件，支持分组和进度信息。"
       />
 
       <Section
         title="HistoryItem"
-        description="时间轴条目。3 变体（regular / badge / profile）× 8 色。"
+        description="按时间展示一项操作或事件。"
       >
         <SubSection title="Import" stack>
           <CodeBlock code={CODE_IMPORT} />
@@ -121,7 +121,7 @@ export default function HistoryCasePage() {
 
       <Section
         title="HistoryGrouped"
-        description="时间轴容器卡：header + 副标题 + 条目列表 + 右侧进度柱。"
+        description="将历史记录按组展示，并附带标题和进度信息。"
       >
         <SubSection title="Usage" stack>
           <PreviewBlock code={CODE_GROUPED_USAGE} minHeight={360}>
