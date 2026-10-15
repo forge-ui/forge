@@ -115,7 +115,7 @@ export function Labeled({
   return (
     <div className="flex flex-col items-center gap-1">
       {children}
-      <span className="text-2xs text-fg-grey-500 font-medium">{label}</span>
+      <span className="text-2xs text-fg-grey-500 font-medium">{componentLabel(label)}</span>
     </div>
   );
 }

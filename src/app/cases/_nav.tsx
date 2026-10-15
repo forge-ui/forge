@@ -11,7 +11,7 @@ type NavGroup = { title: string; items: NavItem[] };
 // cases 矩阵：组件按字母序（Foundations 已挪到 components 侧）。
 export const casesNavGroups: NavGroup[] = [
   {
-    title: "组件",
+    title: "组件案例",
     items: [
       { href: "/cases/agent", label: "智能体" },
       { href: "/cases/badge", label: "徽章与标签" },
@@ -31,7 +31,6 @@ export const casesNavGroups: NavGroup[] = [
       { href: "/cases/menu", label: "菜单" },
       { href: "/cases/menu-sections", label: "侧栏分组" },
       { href: "/cases/modal", label: "确认弹窗" },
-      { href: "/cases/motion", label: "交互动效" },
       { href: "/cases/other-widget", label: "实用组件" },
       { href: "/cases/page-header", label: "页面顶栏" },
       { href: "/cases/pagination-stepper", label: "分页与步骤" },

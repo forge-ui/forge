@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion as m, useReducedMotion } from "motion/react";
-import { AddMember, Avatar, AvatarGroup, Button, ButtonGroup, Checkbox, DataTable, EventCard, EventTag, IconButton, ProgressBar, ReviewItem, SurfaceCard, TaskCard, TextField, type ColumnDef } from "@forge-ui-official/core";
+import { AddMember, Avatar, AvatarGroup, Datepicker, Button, ButtonGroup, Checkbox, DataTable, EventCard, EventTag, IconButton, ProgressBar, ReviewItem, SurfaceCard, type ColumnDef } from "@forge-ui-official/core";
 import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear, CloseCircleLinear, CalendarLinear } from "@forge-ui-official/core/icons";
 import type { FusionSettings } from "./types";
 
@@ -64,7 +64,7 @@ export function TimeZoneExample({ locale, color }: FusionSettings) {
   });
   return <SurfaceCard title={zh ? "查找共同工作时间" : "Find shared working hours"}>
     <div className="flex flex-col gap-5">
-      <TextField type="date" label={zh ? "日期" : "Date"} value={day} color={color} onChange={value => { if (/^\d{4}-\d{2}-\d{2}$/.test(value)) setDay(value); }} />
+      <Datepicker label={zh ? "日期" : "Date"} locale={locale} value={new Date(`${day}T12:00:00`)} color={color} onChange={value => setDay(`${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`)} />
       <label className="flex flex-col gap-2 text-sm text-fg-grey-700">UTC {String(hour).padStart(2, "0")}:00<input type="range" min={0} max={23} step={1} value={hour} aria-label={zh ? "UTC 小时" : "UTC hour"} onChange={event => setHour(Number(event.target.value))} style={{ accentColor: accent(color) }} /></label>
       {times.map(time => <div key={time.name} className="flex flex-col gap-2"><div className="flex flex-wrap justify-between gap-2 text-sm"><span className="font-medium text-fg-black">{time.name}</span><span className="text-fg-grey-700">{time.display} · {time.available ? (zh ? "工作时间" : "Working") : (zh ? "非工作时间" : "Off hours")}</span></div><div className="relative h-3 overflow-hidden rounded-full bg-fg-grey-100"><span className="absolute inset-y-0 left-[37.5%] w-[37.5%] bg-fg-grey-300" /><span className="absolute inset-y-0 w-1 rounded-full" style={{ left: `${time.localHour / 24 * 100}%`, background: accent(color) }} /></div></div>)}
       <p role="status" className="text-sm font-medium text-fg-grey-900">{zh ? "当前处于工作时间的城市" : "Cities in working hours"}：{times.filter(time => time.available).length} / 3</p>
@@ -108,14 +108,15 @@ export function WorkAssignmentExample({ locale, color, motion }: FusionSettings)
   const zh = locale === "zh";
   const [loads, setLoads] = useState([2, 1, 3]);
   const [task, setTask] = useState(0);
-  const [last, setLast] = useState<number | null>(null);
+  const [last, setLast] = useState<{ member: number; job: string } | null>(null);
   const names = zh ? ["林晓", "陈凡", "周宁"] : ["Alex Lin", "Chris Chen", "Jamie Zhou"];
-  const jobs = zh ? ["首页无障碍检查", "整理品牌规范", "检查移动端菜单", "统一图标样式"] : ["Homepage accessibility", "Tidy the brand guide", "Review the mobile menu", "Align the icon set"];
+  const jobs = zh ? ["首页无障碍检查", "整理品牌规范", "检查移动端菜单", "统一图标样式", "补充表单校验", "检查日历交互", "完善空态文案", "复核图表单位", "检查键盘导航"] : ["Homepage accessibility", "Tidy the brand guide", "Review the mobile menu", "Align the icon set", "Add form validation", "Review calendar interactions", "Improve empty-state copy", "Verify chart units", "Check keyboard navigation"];
   const exhausted = loads.every(load => load >= 5);
   return <div className="flex w-full flex-col gap-4">
-    <TaskCard width="full" title={exhausted ? (zh ? "成员容量已满" : "All members are at capacity") : jobs[task % jobs.length]} description={zh ? "选择有剩余容量的成员" : "Choose a member with available capacity"} progress={task / 9 * 100} progressColor={color === "black" ? "gray" : color} />
-    {names.map((name, i) => <SurfaceCard key={name} padding="sm"><div className="flex items-center gap-3"><Avatar src={portraits[i]} alt={name} size="sm" /><span className="min-w-0 flex-1 text-sm font-medium">{name}</span><span className="text-xs text-fg-grey-700">{loads[i]} / 5</span><Button motion={motion} size="sm" variant="secondary" color={color} disabled={loads[i] >= 5} onClick={() => { setLoads(current => current.map((load, j) => i === j ? load + 1 : load)); setTask(task + 1); setLast(i); }}>{zh ? "分派" : "Assign"}</Button></div><div className="mt-3"><ProgressBar value={loads[i] / 5 * 100} color={color} /></div></SurfaceCard>)}
-    <p role="status" className="text-xs text-fg-grey-700">{last === null ? (zh ? "尚未分派新任务" : "No new assignments") : (zh ? `已分派给${names[last]}` : `Assigned to ${names[last]}`)}</p>
+    <div className="flex flex-col gap-2"><p className="text-sm font-medium">{zh ? `已分派 ${task} / ${jobs.length} 项任务` : `${task} / ${jobs.length} tasks assigned`}</p><ProgressBar value={task / jobs.length * 100} color={color} motion={motion} label={zh ? "总分派进度" : "Overall assignment progress"} /></div>
+    <SurfaceCard title={exhausted ? (zh ? "全部任务已分派" : "All tasks assigned") : jobs[task]}><p className="text-sm text-fg-grey-700">{exhausted ? (zh ? "成员容量已满，可重置后重新体验。" : "Members are at capacity. Reset to try again.") : (zh ? "待分派任务：选择有剩余容量的成员" : "Next task: choose a member with available capacity")}</p></SurfaceCard>
+    {names.map((name, i) => <SurfaceCard key={name} padding="sm"><div className="flex items-center gap-3"><Avatar src={portraits[i]} alt={name} size="sm" /><span className="min-w-0 flex-1 text-sm font-medium">{name}</span><span className="text-xs text-fg-grey-700">{loads[i]} / 5</span><Button motion={motion} size="sm" variant="secondary" color={color} disabled={loads[i] >= 5} onClick={() => { setLoads(current => current.map((load, j) => i === j ? load + 1 : load)); setTask(task + 1); setLast({ member: i, job: jobs[task] }); }}>{zh ? "分派" : "Assign"}</Button></div><div className="mt-3"><ProgressBar value={loads[i] / 5 * 100} color={color} /></div></SurfaceCard>)}
+    <p role="status" className="text-xs text-fg-grey-700">{last === null ? (zh ? "尚未分派新任务" : "No new assignments") : (zh ? `已将“${last.job}”分派给${names[last.member]}` : `Assigned “${last.job}” to ${names[last.member]}`)}</p>
     <Button motion={motion} size="sm" color="black" variant="tertiary" onClick={() => { setLoads([2, 1, 3]); setTask(0); setLast(null); }}>{zh ? "重置任务" : "Reset assignments"}</Button>
   </div>;
 }

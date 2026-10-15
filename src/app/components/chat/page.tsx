@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ChatBubble, ChatInputBar } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -8,17 +7,17 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 
 const CODE_IMPORT = `import { ChatBubble, ChatInputBar } from "@forge-ui-official/core";`;
 
-const CODE_BUBBLE_USAGE = `<ChatBubble type="received" avatar={avatar} senderName="Alex" content="Hey, how's it going?" />
-<ChatBubble type="sent" content="All good, working on the new design." time="10:32" />`;
+const CODE_BUBBLE_USAGE = `<ChatBubble type="received" avatar={avatar} senderName="林晓" content="最近进展怎么样？" />
+<ChatBubble type="sent" content="进展顺利，正在完善新的设计方案。" time="10:32" />`;
 
 const CODE_BUBBLE_VOICE = `<ChatBubble type="received" variant="voice" voiceDuration="0:15" avatar={avatar} />
 <ChatBubble type="sent" variant="voice" voiceDuration="0:08" />`;
 
 const CODE_BUBBLE_FILE = `<ChatBubble type="received" variant="file" fileName="brief.pdf" fileSize="2.4 MB" avatar={avatar} />`;
 
-const CODE_BUBBLE_COLOR = `<ChatBubble type="sent" color="purple" content="Purple" />
-<ChatBubble type="sent" color="blue" content="Blue" />
-<ChatBubble type="sent" color="black" content="Black" />`;
+const CODE_BUBBLE_COLOR = `<ChatBubble type="sent" color="purple" content="紫色" />
+<ChatBubble type="sent" color="blue" content="蓝色" />
+<ChatBubble type="sent" color="black" content="黑色" />`;
 
 const CODE_INPUT_USAGE = `<ChatInputBar onSend={(msg) => console.log(msg)} />`;
 
@@ -37,7 +36,7 @@ const BUBBLE_PROPS: ApiTableRow[] = [
 ];
 
 const INPUT_PROPS: ApiTableRow[] = [
-  { attr: "placeholder", type: "string", defaultValue: "'Type a message...'", description: "输入框占位符。" },
+  { attr: "placeholder", type: "string", defaultValue: "'输入消息...'", description: "输入框占位符。" },
   { attr: "onSend", type: "(message: string) => void", defaultValue: "—", description: "发送回调，Enter 或点按钮触发。" },
   { attr: "className", type: "string", defaultValue: "''", description: "额外 className。" },
 ];
@@ -56,23 +55,23 @@ export default function ChatCasePage() {
         title="ChatBubble"
         description="展示收到或发出的文字、语音、文件和图片消息。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Text Usage" stack>
+        <SubSection title="文本消息" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>type</InlineCode> 控制方向，<InlineCode>variant=&quot;text&quot;</InlineCode> 为默认。
           </p>
           <PreviewBlock code={CODE_BUBBLE_USAGE} minHeight={200}>
             <div className="w-full max-w-md flex flex-col gap-3">
-              <ChatBubble type="received" avatar={avatar} senderName="Alex" content="Hey, how's it going?" />
-              <ChatBubble type="sent" content="All good, working on the new design." time="10:32" />
+              <ChatBubble type="received" avatar={avatar} senderName="林晓" content="最近进展怎么样？" />
+              <ChatBubble type="sent" content="进展顺利，正在完善新的设计方案。" time="10:32" />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Voice" stack>
+        <SubSection title="语音" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>variant=&quot;voice&quot;</InlineCode> 渲染播放按钮 + 21 条波形柱 + 可选时长。
           </p>
@@ -84,7 +83,7 @@ export default function ChatCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="File" stack>
+        <SubSection title="文件" stack>
           <PreviewBlock code={CODE_BUBBLE_FILE} minHeight={160}>
             <div className="w-full max-w-md">
               <ChatBubble type="received" variant="file" fileName="brief.pdf" fileSize="2.4 MB" avatar={avatar} />
@@ -92,15 +91,15 @@ export default function ChatCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 主色，下方示意 sent 气泡（received 始终白底）。
           </p>
           <PreviewBlock code={CODE_BUBBLE_COLOR} minHeight={180}>
             <div className="w-full max-w-md flex flex-col gap-3">
-              <ChatBubble type="sent" color="purple" content="Purple" />
-              <ChatBubble type="sent" color="blue" content="Blue" />
-              <ChatBubble type="sent" color="black" content="Black" />
+              <ChatBubble type="sent" color="purple" content="紫色" />
+              <ChatBubble type="sent" color="blue" content="蓝色" />
+              <ChatBubble type="sent" color="black" content="黑色" />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -114,7 +113,7 @@ export default function ChatCasePage() {
         title="ChatInputBar"
         description="输入和发送消息，支持附件、提及、命令、模型选择和停止生成。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_INPUT_USAGE}>
             <div className="w-full max-w-md">
               <ChatInputBar />
@@ -126,10 +125,6 @@ export default function ChatCasePage() {
           <ApiTable rows={INPUT_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/chat" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

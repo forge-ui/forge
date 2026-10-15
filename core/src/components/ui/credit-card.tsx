@@ -21,6 +21,9 @@ function formatCardNumber(last4: string) {
 }
 
 export function CreditCard({
+  locale = "zh",
+  cardNumberLabel,
+  holderNameLabel,
   cardNumber = "9090",
   holderName = "张三",
   expiry = "07/25",
@@ -29,6 +32,9 @@ export function CreditCard({
   width,
   className,
 }: {
+  locale?: "zh" | "en";
+  cardNumberLabel?: string;
+  holderNameLabel?: string;
   cardNumber?: string;
   holderName?: string;
   expiry?: string;
@@ -54,7 +60,7 @@ export function CreditCard({
       <div className="flex justify-between items-start relative z-10">
         <div className="flex flex-col gap-1">
           <span className={cn("text-xs font-medium leading-4.5 tracking-fg", cfg.labelColor)}>
-            卡号
+            {cardNumberLabel ?? (locale === "en" ? "Card number" : "卡号")}
           </span>
           <span className={cn("text-sm font-semibold leading-5 tracking-fg", cfg.textColor)}>
             {formatCardNumber(cardNumber)}
@@ -66,7 +72,7 @@ export function CreditCard({
       <div className="flex justify-between items-end relative z-10">
         <div className="flex flex-col gap-1">
           <span className={cn("text-xs font-medium leading-4.5 tracking-fg", cfg.labelColor)}>
-            姓名
+            {holderNameLabel ?? (locale === "en" ? "Name" : "姓名")}
           </span>
           <span className={cn("text-sm font-medium leading-5 tracking-fg", cfg.textColor)}>
             {holderName}

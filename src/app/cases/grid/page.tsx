@@ -48,7 +48,7 @@ const sources = [
 ];
 const gapOptions: GridGap[] = [0, 8, 16, 24, 32];
 
-export default function GridCases() {
+export default function GridCases({ embedded = false }: { embedded?: boolean } = {}) {
   const [gapIndex, setGapIndex] = useState(2);
   const [guides, setGuides] = useState(true);
   const [layoutIndex, setLayoutIndex] = useState(0);
@@ -56,7 +56,7 @@ export default function GridCases() {
   const activeSplit: GridColumns[] = [[8, 4], [6, 6], [3, 6, 3]][layoutIndex] as GridColumns[];
 
   return <>
-    <PageHeading title="布局栅格" hint="通过响应式分栏安排主内容和辅助区域。" />
+    {!embedded && <PageHeading title="布局栅格" hint="通过响应式分栏安排主内容和辅助区域。" />}
 
     <Section title="模板中的比例布局" description="将 Forge 模板的分栏映射到 12 列。色块保留比例关系，点击来源可查看完整页面。">
       <div className="flex flex-wrap items-center justify-between gap-4">

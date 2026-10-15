@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   ChartTooltip,
   ChartCard,
@@ -34,29 +33,29 @@ const CODE_IMPORT = `import {
 
 const CODE_TOOLTIP = `<ChartTooltip
   items={[
-    { color: "bg-fg-violet", label: "Revenue", value: "$4,200", trend: "up" },
-    { color: "bg-blue-600", label: "Expenses", value: "$1,800", trend: "down" },
+    { color: "bg-fg-violet", label: "收入", value: "$4,200", trend: "up" },
+    { color: "bg-blue-600", label: "支出", value: "$1,800", trend: "down" },
   ]}
 />`;
 
-const CODE_CARD = `<ChartCard title="Revenue" subtitle="Monthly">
+const CODE_CARD = `<ChartCard title="收入" subtitle="每月">
   <DonutChart segments={[{ value: 60 }, { value: 40 }]} centerValue="$8.4k" size="sm" />
 </ChartCard>`;
 
-const CODE_LISTITEM = `<ChartListItem icon={WalletLinear} title="Revenue" subtitle="This month" value="$12,500" trend="+12.5%" trendDirection="up" />`;
+const CODE_LISTITEM = `<ChartListItem icon={WalletLinear} title="收入" subtitle="本月" value="$12,500" trend="+12.5%" trendDirection="up" />`;
 
-const CODE_LEGEND = `<ChartLegendItem color="bg-fg-violet" label="Revenue" value="$4,200" />`;
+const CODE_LEGEND = `<ChartLegendItem color="bg-fg-violet" label="收入" value="$4,200" />`;
 
-const CODE_VALUEROW = `<ChartValueRow label="Revenue" value="$12,500" color="bg-fg-violet" />`;
+const CODE_VALUEROW = `<ChartValueRow label="收入" value="$12,500" color="bg-fg-violet" />`;
 
 const CODE_STATFOOTER = `<ChartStatFooter
   items={[
-    { label: "Revenue", value: "$12.5k", color: "bg-fg-violet", trend: "+12%", trendDirection: "up" },
-    { label: "Profit", value: "$9.3k", color: "bg-emerald-500", trend: "+18%", trendDirection: "up" },
+    { label: "收入", value: "$12.5k", color: "bg-fg-violet", trend: "+12%", trendDirection: "up" },
+    { label: "利润", value: "$9.3k", color: "bg-emerald-500", trend: "+18%", trendDirection: "up" },
   ]}
 />`;
 
-const CODE_METER = `<MeterChart segments={[{ value: 50 }, { value: 30 }, { value: 20 }]} trend="10%" trendDirection="up" subtitle="+$181 today" />`;
+const CODE_METER = `<MeterChart segments={[{ value: 50 }, { value: 30 }, { value: 20 }]} trend="10%" trendDirection="up" subtitle="今日增加 ¥181" />`;
 
 const CODE_HALFDONUT = `<HalfDonutChart segments={[{ value: 75 }]} centerValue="75%" trend="10%" trendDirection="up" />`;
 
@@ -252,16 +251,16 @@ export default function ChartCasePage() {
       />
 
       <Section title="ChartTooltip" description="查看数据点的名称、数值和变化趋势。">
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_TOOLTIP} minHeight={160}>
             <ChartTooltip
               items={[
-                { color: "bg-fg-violet", label: "Revenue", value: "$4,200", trend: "up" },
-                { color: "bg-blue-600", label: "Expenses", value: "$1,800", trend: "down" },
+                { color: "bg-fg-violet", label: "收入", value: "$4,200", trend: "up" },
+                { color: "bg-blue-600", label: "支出", value: "$1,800", trend: "down" },
               ]}
             />
           </PreviewBlock>
@@ -273,9 +272,9 @@ export default function ChartCasePage() {
       </Section>
 
       <Section title="ChartCard" description="组织图表、图例和补充信息，默认适应父容器宽度。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_CARD} minHeight={360}>
-            <ChartCard title="Revenue" subtitle="Monthly">
+            <ChartCard title="收入" subtitle="每月">
               <DonutChart segments={[{ value: 60 }, { value: 40 }]} centerValue="$8.4k" size="sm" />
             </ChartCard>
           </PreviewBlock>
@@ -286,7 +285,7 @@ export default function ChartCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="List Atoms" description="展示图表图例、数据摘要和补充说明。">
+      <Section title="列表基础元素" description="展示图表图例、数据摘要和补充说明。">
         <SubSectionGrid cols={2}>
         <SubSection title="ChartListItem" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -294,7 +293,7 @@ export default function ChartCasePage() {
           </p>
           <PreviewBlock code={CODE_LISTITEM} minHeight={120}>
             <div className="w-72">
-              <ChartListItem icon={WalletLinear} title="Revenue" subtitle="This month" value="$12,500" trend="+12.5%" trendDirection="up" />
+              <ChartListItem icon={WalletLinear} title="收入" subtitle="本月" value="$12,500" trend="+12.5%" trendDirection="up" />
             </div>
           </PreviewBlock>
           <ApiTable rows={LISTITEM_PROPS} />
@@ -303,7 +302,7 @@ export default function ChartCasePage() {
         <SubSection title="ChartLegendItem" stack>
           <PreviewBlock code={CODE_LEGEND} minHeight={120}>
             <div className="w-72">
-              <ChartLegendItem color="bg-fg-violet" label="Revenue" value="$4,200" />
+              <ChartLegendItem color="bg-fg-violet" label="收入" value="$4,200" />
             </div>
           </PreviewBlock>
           <ApiTable rows={LEGEND_PROPS} />
@@ -312,7 +311,7 @@ export default function ChartCasePage() {
         <SubSection title="ChartValueRow" stack>
           <PreviewBlock code={CODE_VALUEROW} minHeight={120}>
             <div className="w-64">
-              <ChartValueRow label="Revenue" value="$12,500" color="bg-fg-violet" />
+              <ChartValueRow label="收入" value="$12,500" color="bg-fg-violet" />
             </div>
           </PreviewBlock>
           <ApiTable rows={VALUEROW_PROPS} />
@@ -323,8 +322,8 @@ export default function ChartCasePage() {
             <div className="w-96">
               <ChartStatFooter
                 items={[
-                  { label: "Revenue", value: "$12.5k", color: "bg-fg-violet", trend: "+12%", trendDirection: "up" },
-                  { label: "Profit", value: "$9.3k", color: "bg-emerald-500", trend: "+18%", trendDirection: "up" },
+                  { label: "收入", value: "$12.5k", color: "bg-fg-violet", trend: "+12%", trendDirection: "up" },
+                  { label: "利润", value: "$9.3k", color: "bg-emerald-500", trend: "+18%", trendDirection: "up" },
                 ]}
               />
             </div>
@@ -339,7 +338,7 @@ export default function ChartCasePage() {
         <SubSection title="MeterChart" stack>
           <PreviewBlock code={CODE_METER} minHeight={140}>
             <div className="w-96">
-              <MeterChart segments={[{ value: 50 }, { value: 30 }, { value: 20 }]} trend="10%" trendDirection="up" subtitle="+$181 today" />
+              <MeterChart segments={[{ value: 50 }, { value: 30 }, { value: 20 }]} trend="10%" trendDirection="up" subtitle="今日增加 ¥181" />
             </div>
           </PreviewBlock>
           <ApiTable rows={METER_PROPS} />
@@ -435,7 +434,7 @@ export default function ChartCasePage() {
       </Section>
 
       <Section title="SmoothLineChart" description="展示多组数据的变化趋势，支持面积填充、坐标标签和提示。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_LINE} minHeight={220}>
             <div className="w-[500px]">
               <SmoothLineChart series={[{ data: [10, 20, 15, 25, 18, 30, 22], fillArea: true }]} />
@@ -447,10 +446,6 @@ export default function ChartCasePage() {
           <ApiTable rows={LINE_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/chart" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

@@ -1,0 +1,596 @@
+{
+  "commit": "1795b1bacf055684f2cc4e666ac8c65d4cbec20a",
+  "scope": "14 agent/chart + 18 composition cases; read-only audit",
+  "count": 32,
+  "findings": [
+    {
+      "id": "AC-01",
+      "priority": "P2",
+      "title": "少于六项的反应面板向上导航会产生负索引",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/internal/chat-interactions.tsx",
+      "line": 32,
+      "endLine": 34,
+      "trigger": "给ChatBubble提供5个reactionOptions，打开面板，首项按ArrowUp。",
+      "impact": "cursor=-1，焦点留首项且全部按钮tabIndex=-1，roving focus失效。",
+      "evidence": "独立/tmp/forge-audit-c/run.mjs：before=0 after=0 tabs=[-1,-1,-1,-1,-1]。默认12项掩盖边界。",
+      "recommendation": "使用双取模归一化或按实际行列夹取；增加1/3/5项键盘测试。",
+      "status": "confirmed"
+    },
+    {
+      "id": "AC-02",
+      "priority": "P2",
+      "title": "年度柱图固定柱宽撑破窄屏页面",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-chart.tsx",
+      "line": 95,
+      "endLine": 102,
+      "trigger": "390px视口打开095，切年。",
+      "impact": "12根固定w-8柱加标签最小宽度大于绘图区，整页横向溢出，末月份超屏。",
+      "evidence": "root Chrome：document.scrollWidth458/client375；case.clientWidth311/scrollWidth426；10/11/12月右缘394/426/458；/tmp/forge-audit-chart-095.png。",
+      "recommendation": "柱列min-w-0，并按可用槽位限制柱宽或明确局部横向滚动，避免页面溢出。",
+      "status": "confirmed"
+    },
+    {
+      "id": "AC-03",
+      "priority": "P2",
+      "title": "柱图参考线与柱形不共用数值坐标",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-chart.tsx",
+      "line": 63,
+      "endLine": 64,
+      "trigger": "095显示标签及均值参考线，比较参考线位置与柱形绘图区比例。",
+      "impact": "参考值用含标签整高定位，border位于有文本高度span顶部；参考值位置不等于数据值对应y，误导均值比较。",
+      "evidence": "root Chrome年度：外容器192px、柱区168px、参考比例62.9808%、span高17px；实测lineTop=-2568.8047，按柱区应=-2560.6905，偏8.114px。无标签时仍有span高度偏移。",
+      "recommendation": "将reference放入与柱相同绘图区，线用零高层定位、文字独立放置。",
+      "status": "confirmed"
+    },
+    {
+      "id": "AC-04",
+      "priority": "P2",
+      "title": "变更审核中的代码/差异切换没有接入状态",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "line": 44,
+      "endLine": 46,
+      "trigger": "打开127待审核状态，点击代码（Code）。",
+      "impact": "可点击tab无反应，无法查看代码视图；示例传递错误的受控组件用法。",
+      "evidence": "/tmp/forge-audit-c/interaction.mjs：点击Code前后pre完全一样，同时显示return7删除行和return3新增行。",
+      "recommendation": "用独立view state和onViewChange，或在固定diff展示时不显示不可用切换控件。",
+      "status": "confirmed"
+    },
+    {
+      "id": "AC-05",
+      "priority": "P2",
+      "title": "协作席位的添加成员面板没有跟随三主题",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/styles/tokens.css",
+      "line": 1016,
+      "endLine": 1021,
+      "trigger": "F05将主题由蓝切到紫或黑。",
+      "impact": "席位切主题但添加成员面板持续青蓝，与本轮蓝/紫/黑约束及主题选择器不一致。",
+      "evidence": "root Chrome：--accent=#7239ea，.forge-member__shell background=rgb(105,216,223)，--forge-member-panel=#69d8df。既有AddMember默认CSS被新case直接带入。",
+      "recommendation": "为AddMember公开/透传accent或在正式组合中明确接入theme变量；保持原生结构动效。",
+      "status": "confirmed"
+    },
+    {
+      "id": "AC-06",
+      "priority": "P3",
+      "title": "目标刻度的可视金额与朗读单位相差十倍",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "line": 81,
+      "endLine": 81,
+      "trigger": "163读滑杆无障碍名称，对比可见Target ¥70K。",
+      "impact": "可见值单位千元，aria-label中英文写万元/10K，辅助技术给出错误金额尺度。",
+      "evidence": "源码和SSR：visible ¥74K / ¥70K，aria-label 季度目标（万元）/Quarterly target (10K)；原型$K一致。",
+      "recommendation": "统一为千元/K，或者整体数值与可见单位都用万元。",
+      "status": "confirmed"
+    },
+    {
+      "id": "AC-07",
+      "priority": "P3",
+      "title": "评价轮播带有未命名且无效的更多按钮",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "line": 28,
+      "endLine": 28,
+      "trigger": "057评价卡右上更多按钮，鼠标点击或键盘聚焦。",
+      "impact": "按钮无可访问名称且无handler；给用户和读屏提供无效操作。",
+      "evidence": "192次SSR仅057出现无名button；JSDOM读取React props确认onClick为undefined；源core review-item.tsx176–185总渲染该按钮。",
+      "recommendation": "不传onMenuClick时隐藏原生菜单按钮，或case提供真正菜单和本地化名称。",
+      "status": "confirmed"
+    }
+  ],
+  "coverage": [
+    {
+      "id": "077",
+      "name": "表情反应面板",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatBubble",
+        "IconTrigger",
+        "IconButton"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/077.html",
+      "review": "核对计数增减、选中态、选项加入/移除、受控回调、Esc/点击外侧、焦点恢复；原型12项键盘网格迁入ChatReactions。5项复用发现负索引。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-01"
+      ],
+      "result": "issues_found"
+    },
+    {
+      "id": "078",
+      "name": "滑动回复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/078.html",
+      "review": "核对60px滑动阈值、pointercancel/lostcapture不重复回复、引用上下文随消息发送、回复清空、typing定时器unmount清理。原型自动聚焦输入未保留，列体验核对，不夸大为功能阻断。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "084",
+      "name": "语音响应圆点",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/084.html",
+      "review": "核对按住/松开/取消/blur/unmount回调守卫、录音音量RAF清理、识别计时器清理、系统reduced与none；本地模拟音量/文字有明确说明。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "086",
+      "name": "AI 流式回答",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "StreamingAnswer",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/086.html",
+      "review": "核对streaming/stopped/complete、停止保留、重新生成key、新问题重置、35ms更新清理；StreamingAnswer保留grapheme、流状态与减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "091",
+      "name": "离线消息队列",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/091.html",
+      "review": "核对offline→connecting→online、连接中再次断开、按序发送queued、重新断开取消计时器、unmount清理；不把未接真实网络当缺陷。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "F01",
+      "name": "附件队列",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "FileUpload",
+        "FileCard",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对多文件唯一ID、重选同文件input复位、失败仅一个uploading项、retry重置0、删除/发送清空、未完成禁止发送；与原型同样需要正文。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "F02",
+      "name": "工具运行卡",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ThinkingTrace",
+        "ToolChips"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对idle/running/error/cancelled/success、失败保留完成步骤、重试当前步骤、停止/重置、展开明细保留状态，Solar状态图标。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "095",
+      "name": "形态切换柱图",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "BarChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/095.html",
+      "review": "核对周/月/年总额/均值/较前项、切周期清pin/active、受控键盘首尾/左右/Enter固定；Chrome发现年度窄屏溢出及均值线坐标错位。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-02",
+        "AC-03"
+      ],
+      "result": "issues_found"
+    },
+    {
+      "id": "096",
+      "name": "滑动股票折线",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "SmoothLineChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/096.html",
+      "review": "核对61点种子固定、首尾值、今日时间映射、事件index提示、切周期active复位、键盘边界、曲线分段高亮；插值RAF取消与数据变更。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "097",
+      "name": "重排环图",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "DonutChart",
+        "ChartLegendItem"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/097.html",
+      "review": "核对排除分类后分母重算、至少保留一类、hover/focus中心值及占比、独立环段键盘Enter/空格；动画中值非数据真值不误报。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "099",
+      "name": "活动环",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "MultilayerDonutChart"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/099.html",
+      "review": "核对7日×3指标、目标500/30/12、>100额外环、天数计数、日期roving tabindex、Home/End、聚焦指标高亮。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "157",
+      "name": "层叠用量面积",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ChartLegendItem"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/157.html",
+      "review": "核对逐层累计上下界、隔离时回到原始序列/固定0–180domain、周总和与占比实时计算、再次选择恢复全部。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "163",
+      "name": "目标刻度",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "BarHorizontalChart",
+        "ChartCard"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/163.html",
+      "review": "核对固定0–100横轴、目标40–100步长2、阈值50/75/100、差额/达成率；发现可见K与无障碍万元单位不一致。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-06"
+      ],
+      "result": "issues_found"
+    },
+    {
+      "id": "165",
+      "name": "预测置信带",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ButtonGroup"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/165.html",
+      "review": "核对forecastFrom=4实/虚线边界、历史区间零宽、末端80%±14/95%±26、固定0–160domain及带闭合几何。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "057",
+      "name": "头像评价轮播",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "ReviewItem",
+        "Avatar",
+        "IconButton"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/057.html",
+      "review": "核对头像/前后切换、5.2s轮播、hover/focus/reduced暂停、cleanup；现用ReviewItem多渲染无名无handler菜单按钮。原型拖动切换/计时视觉没有保留，仅列保真核对。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-07"
+      ],
+      "result": "issues_found"
+    },
+    {
+      "id": "059",
+      "name": "活动报名卡",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "EventCard",
+        "ButtonGroup",
+        "AvatarGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/059.html",
+      "review": "核对RSVP 3态、参加人数/剩余名额一致、calendar切换和aria-pressed、ButtonGroup键盘；本地日程状态演示不要求真实日历服务。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "092",
+      "name": "筛选空态恢复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-recovery.tsx",
+      "targets": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/092.html",
+      "review": "核对错词纠正、3条件真实过滤、每项放宽计数、草稿筛选应用/取消/重置、清空聚焦、显示结果；范围由原型逻辑扩充。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "108",
+      "name": "时区交集",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/108.html",
+      "review": "核对UTC小时0–23、日期、Intl跨日/DST本地时间、9≤hour<18工作窗；浏览器原生date约束，暂无确定失败。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "110",
+      "name": "日程冲突修复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "EventTag",
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/110.html",
+      "review": "核对14:30–15:30与14:00–15:00重叠30分钟，移动15点及撤销；颜色语义和reduced。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "126",
+      "name": "Markdown 编辑与预览",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "TextArea",
+        "StreamingAnswer",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/126.html",
+      "review": "核对编辑/预览切换、Markdown保留/安全skipHtml、autoFocus/Esc、动画mode wait与none；未把简化编辑器当缺陷。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "127",
+      "name": "变更片段审核",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "AgentCodeBlock",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/127.html",
+      "review": "核对接受/保留/撤销正文变化；发现代码/差异控件因固定受控view且缺少onViewChange无效，JSDOM确定复现。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-04"
+      ],
+      "result": "issues_found"
+    },
+    {
+      "id": "128",
+      "name": "查找替换",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "TextField",
+        "TextArea",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/128.html",
+      "review": "核对字面split而非regex、0匹配禁用、全部替换、单步撤销，转义由React处理。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "129",
+      "name": "代码折叠",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "AgentCodeBlock"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/129.html",
+      "review": "核对1-based折叠区间、首行保留、全折/全开、嵌套允许交叉拒绝/重复过滤、controlled回调、复制完整代码及失败状态和timer清理。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "176",
+      "name": "版本胶片",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "HistoryGrouped",
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/176.html",
+      "review": "核对选中预览独立live版本、恢复/当前禁用、切换后标记、radius/angle在none与system reduced时duration0。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "177",
+      "name": "撤销重做历史",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "Toolbar",
+        "IconButton"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/177.html",
+      "review": "核对最多12历史、undo/redo边界、分支编辑抛弃redo、edits计数不因截断停滞、三种形状操作、减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "179",
+      "name": "文字片段拼接",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/179.html",
+      "review": "核对选择顺序拼接、再次选择删除、清空禁用/恢复、中文无空格英文空格、Solar清空图标及状态。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "180",
+      "name": "审批签署",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/180.html",
+      "review": "核对起草→复核→批准、通过/重置状态、三人完成标记及Solar箭头，减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "181",
+      "name": "工作分派",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "TaskCard",
+        "Avatar",
+        "ProgressBar",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/181.html",
+      "review": "核对初始负载2/1/3、上限5、共9次可分派、全部满载提示、任务进度和reset、真实TaskCard/ProgressBar组合。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "184",
+      "name": "角色权限矩阵",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "DataTable",
+        "Checkbox"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/184.html",
+      "review": "核对3×3受控权限、所有者锁定、可操作项aria-label明确、table横向滚动边界、全状态无业务权限副作用。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "F04",
+      "name": "生成内容审核",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-recovery.tsx",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对两项独立接受/保留/撤销、删除新增内容显隐、已审核计数、移除动画保留原内容状态，减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    },
+    {
+      "id": "F05",
+      "name": "协作席位",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "AddMember",
+        "Avatar",
+        "AvatarGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对移除负责人后切下一人、移除全部后添加恢复负责人、候选人不重复、AddMember异步状态/清空选择；Chrome确认面板主题未接入。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-05"
+      ],
+      "result": "issues_found"
+    },
+    {
+      "id": "F06",
+      "name": "搜索无结果恢复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-recovery.tsx",
+      "targets": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对设计错词纠正、PDF/最近/团队真实数据过滤、放宽恢复数、草稿应用与取消。原型空态插画动效未保留，列保真核对。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope"
+    }
+  ],
+  "evidenceFiles": [
+    "/tmp/forge-audit-c/run.mjs",
+    "/tmp/forge-audit-c/results.log",
+    "/tmp/forge-audit-c/ssr.json",
+    "/tmp/forge-audit-c/interaction.mjs",
+    "/tmp/forge-audit-chart-095.png"
+  ],
+  "limits": [
+    "192 SSR renders do not prove visual theme correctness; browser findings attributed to root Chrome verification.",
+    "No product code, tests, git commits, push or npm changed.",
+    "No claim every gesture was browser exercised. Source review inspected each case, core capability, original prototype logic; user acceptance remains separate."
+  ],
+  "designReview": [
+    "F05 native AddMember typography 17px/800 title and15.5px/700 names differs from nearby case typography; needs design comparison, not filed as definite bug.",
+    "057 original swipe/progress timing decoration and F06 animated empty illustration omitted. Functional catalog promises retained; visual fidelity should be reviewed if original motion is acceptance baseline."
+  ]
+}

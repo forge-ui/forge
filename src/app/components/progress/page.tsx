@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ProgressBar } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -8,7 +7,7 @@ const CODE_IMPORT = `import { ProgressBar } from "@forge-ui-official/core";`;
 
 const CODE_USAGE = `<ProgressBar value={45} />
 <ProgressBar value={75} showPercentage />
-<ProgressBar value={60} label="Progress" showPercentage />`;
+<ProgressBar value={60} label="进度" showPercentage />`;
 
 const CODE_COLORS = `<ProgressBar value={60} color="purple" />
 <ProgressBar value={60} color="blue" />
@@ -18,17 +17,17 @@ const CODE_COLORS = `<ProgressBar value={60} color="purple" />
 <ProgressBar value={60} color="cyan" />
 <ProgressBar value={60} color="gray" />`;
 
-const CODE_SIZES = `<ProgressBar value={75} size="sm" label="Small" showPercentage />
-<ProgressBar value={75} size="md" label="Medium" showPercentage />`;
+const CODE_SIZES = `<ProgressBar value={75} size="sm" label="小" showPercentage />
+<ProgressBar value={75} size="md" label="中" showPercentage />`;
 
-const CODE_LABELS = `<ProgressBar value={45} label="Progress" showPercentage />
+const CODE_LABELS = `<ProgressBar value={45} label="进度" showPercentage />
 <ProgressBar value={45} label="$400" labelVariant="value" showPercentage />`;
 
-const CODE_LABEL_SIZE = `<ProgressBar value={45} label="Progress" labelSize="xs" showPercentage />
-<ProgressBar value={45} label="Progress" labelSize="sm" showPercentage />`;
+const CODE_LABEL_SIZE = `<ProgressBar value={45} label="进度" labelSize="xs" showPercentage />
+<ProgressBar value={45} label="进度" labelSize="sm" showPercentage />`;
 
 const CODE_DARK = `<div className="bg-fg-black p-6 rounded-xl">
-  <ProgressBar value={60} color="purple" label="Progress" showPercentage onDark />
+  <ProgressBar value={60} color="purple" label="进度" showPercentage onDark />
 </div>`;
 
 const PROGRESS_PROPS: ApiTableRow[] = [
@@ -94,11 +93,11 @@ export default function ProgressCasePage() {
         title="ProgressBar"
         description="展示完成比例，可附带文字和百分比。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             最简用法只需传 <InlineCode>value</InlineCode>，配合 <InlineCode>label</InlineCode> 与 <InlineCode>showPercentage</InlineCode> 组合出完整条目。
           </p>
@@ -106,12 +105,12 @@ export default function ProgressCasePage() {
             <div className="flex w-full max-w-md flex-col gap-4">
               <ProgressBar value={45} />
               <ProgressBar value={75} showPercentage />
-              <ProgressBar value={60} label="Progress" showPercentage />
+              <ProgressBar value={60} label="进度" showPercentage />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             8 种色：purple / blue / green / red / orange / yellow / cyan / gray。
           </p>
@@ -128,49 +127,49 @@ export default function ProgressCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>sm</InlineCode> 8px 高，<InlineCode>md</InlineCode> 12px 高。
           </p>
           <PreviewBlock code={CODE_SIZES} minHeight={180}>
             <div className="flex w-full max-w-md flex-col gap-4">
-              <ProgressBar value={75} size="sm" label="Small" showPercentage />
-              <ProgressBar value={75} size="md" label="Medium" showPercentage />
+              <ProgressBar value={75} size="sm" label="小" showPercentage />
+              <ProgressBar value={75} size="md" label="中" showPercentage />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Label variants" stack>
+        <SubSection title="标签样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>default</InlineCode> 灰色 medium 适合描述文本；<InlineCode>value</InlineCode> 黑色 semibold 适合展示金额 / 数值。
+            <InlineCode>default</InlineCode> 灰色中等字重适合描述文本；<InlineCode>value</InlineCode> 黑色半粗字重适合展示金额或数值。
           </p>
           <PreviewBlock code={CODE_LABELS} minHeight={180}>
             <div className="flex w-full max-w-md flex-col gap-4">
-              <ProgressBar value={45} label="Progress" showPercentage />
+              <ProgressBar value={45} label="进度" showPercentage />
               <ProgressBar value={45} label="$400" labelVariant="value" showPercentage />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Label size" stack>
+        <SubSection title="标签尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             label 与百分比字号联动，<InlineCode>xs</InlineCode> 用于紧凑卡片，<InlineCode>sm</InlineCode> 为默认。
           </p>
           <PreviewBlock code={CODE_LABEL_SIZE} minHeight={180}>
             <div className="flex w-full max-w-md flex-col gap-4">
-              <ProgressBar value={45} label="Progress" labelSize="xs" showPercentage />
-              <ProgressBar value={45} label="Progress" labelSize="sm" showPercentage />
+              <ProgressBar value={45} label="进度" labelSize="xs" showPercentage />
+              <ProgressBar value={45} label="进度" labelSize="sm" showPercentage />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="On dark" stack>
+        <SubSection title="深色背景" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>onDark</InlineCode> 用于深色卡片 / dashboard，轨道变半透明，文字转白色。
+            <InlineCode>onDark</InlineCode> 用于深色卡片或仪表盘，轨道变半透明，文字转白色。
           </p>
           <PreviewBlock code={CODE_DARK} minHeight={180}>
             <div className="w-full max-w-md rounded-xl bg-fg-black p-6">
-              <ProgressBar value={60} color="purple" label="Progress" showPercentage onDark />
+              <ProgressBar value={60} color="purple" label="进度" showPercentage onDark />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -179,10 +178,6 @@ export default function ProgressCasePage() {
           <ApiTable rows={PROGRESS_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/progress" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

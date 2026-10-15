@@ -55,11 +55,11 @@ export default function FileTypeCasePage() {
         title="FileTypeIcon"
         description="根据文件扩展名显示对应图标。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             传 <InlineCode>fileName</InlineCode>，组件自己取 ext 查表。未知后缀回落到 txt。
           </p>
@@ -68,25 +68,25 @@ export default function FileTypeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Design & Image" stack>
+        <SubSection title="设计与图片" stack>
           <div className="flex flex-wrap items-start gap-3">
             {designFiles.map((ext) => <IconTile key={ext} ext={ext} />)}
           </div>
         </SubSection>
 
-        <SubSection title="Document" stack>
+        <SubSection title="文档" stack>
           <div className="flex flex-wrap items-start gap-3">
             {documentFiles.map((ext) => <IconTile key={ext} ext={ext} />)}
           </div>
         </SubSection>
 
-        <SubSection title="Media" stack>
+        <SubSection title="媒体" stack>
           <div className="flex flex-wrap items-start gap-3">
             {mediaFiles.map((ext) => <IconTile key={ext} ext={ext} />)}
           </div>
         </SubSection>
 
-        <SubSection title="Folder" stack>
+        <SubSection title="文件夹" stack>
           <div className="flex flex-wrap items-start gap-3">
             <Labeled label="folder">
               <FileTypeIcon fileName="folder" />
@@ -94,7 +94,7 @@ export default function FileTypeCasePage() {
           </div>
         </SubSection>
 
-        <SubSection title="Dim" stack>
+        <SubSection title="弱化" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>dim</InlineCode> 让图标半透明，用于上传中态。
           </p>
@@ -112,7 +112,7 @@ export default function FileTypeCasePage() {
         title="FileCard"
         description="展示文件名称、大小、类型及上传状态。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_FILECARD_USAGE}>
             <div className="w-96">
               <FileCard file={{ id: "1", name: "brief.pdf", size: "2.4 MB", state: "uploaded" }} onRemove={() => {}} />
@@ -120,7 +120,7 @@ export default function FileTypeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="States" stack>
+        <SubSection title="状态" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>uploading</InlineCode> 显示进度条，<InlineCode>success</InlineCode> 绿勾，<InlineCode>error</InlineCode> 显示重试。
           </p>

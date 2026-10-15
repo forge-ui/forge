@@ -112,6 +112,7 @@ export function Button({
       disabled={disabled || loading}
       data-motion={motion}
       data-effect={effect}
+      data-size={effect === "glass" ? size : undefined}
       data-result={result === "idle" ? undefined : result}
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
@@ -130,10 +131,11 @@ export function Button({
       onPointerDown={(event) => { effects.move(event); props.onPointerDown?.(event); }}
       onClick={(event) => { effects.press(event.currentTarget); props.onClick?.(event); }}
     >
+      {effect === "glass" && <span aria-hidden className="forge-glass-sheen" />}
       {progress !== undefined && <span aria-hidden className="forge-action-progress" style={{ width: `${Number.isFinite(progress) ? Math.min(100, Math.max(0, progress)) : 0}%` }} />}
       {(loading || result !== "idle") && <ActionStatus loading={loading} result={result} motion={motion} />}
       {iconLeft && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
-      <span className="forge-action-label">{loading ? loadingLabel ?? (locale === "en" ? "Processing…" : "处理中…") : result !== "idle" ? resultLabel ?? (result === "success" ? (locale === "en" ? "Done" : "已完成") : (locale === "en" ? "Try again" : "请重试")) : effect === "roll" && typeof children === "string" ? Array.from(children).map((letter, index) => <span className="forge-roll-letter" style={{ transitionDelay: `${index * 18}ms` }} data-letter={letter} key={index}>{letter === " " ? "\u00a0" : letter}</span>) : children}</span>
+      <span className="forge-action-label">{loading ? loadingLabel ?? (locale === "en" ? "Processing…" : "处理中…") : result !== "idle" ? resultLabel ?? (result === "success" ? (locale === "en" ? "Done" : "已完成") : (locale === "en" ? "Try again" : "请重试")) : effect === "roll" && typeof children === "string" ? <><span className="sr-only">{children}</span>{Array.from(children).map((letter, index) => <span aria-hidden="true" className="forge-roll-letter" style={{ transitionDelay: `${index * 18}ms` }} data-letter={letter} key={index}>{letter === " " ? "\u00a0" : letter}</span>)}</> : children}</span>
       {iconRight && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconRight}</span>}
     </button>
   );

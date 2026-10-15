@@ -49,7 +49,7 @@ export type ChatInputBarToggle = {
 export function ChatInputBar({
   locale = "zh",
   motion: motionPreference = "auto",
-  replyTo, onCancelReply, attachments, voiceState = "idle", voiceLevel, onVoiceStart, onVoiceEnd, onVoiceCancel,
+  replyTo, onCancelReply, attachments, hasAttachments = false, voiceState = "idle", voiceLevel, onVoiceStart, onVoiceEnd, onVoiceCancel,
   quickActions = [],
   quickActionsLabel = "快捷操作",
   defaultQuickActionsOpen = true,
@@ -108,6 +108,8 @@ export function ChatInputBar({
   onCancelReply?: () => void;
   /** Controlled attachment queue, rendered inside the composer surface. */
   attachments?: ReactNode;
+  /** Whether the host has sendable attachments. Combine with sendDisabled while uploading. */
+  hasAttachments?: boolean;
   /** Recording/transcription remains owned by the host; no microphone access is requested. */
   voiceState?: ComposerVoiceState;
   voiceLevel?: number;
@@ -149,6 +151,7 @@ export function ChatInputBar({
   /** Controlled value. Pass with onChange to manage external state. */
   value?: string;
   onChange?: (value: string) => void;
+  /** message may be empty for attachment-only sends when hasAttachments is true. */
   onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void;
   className?: string;
   /** Render a textarea instead of a single-line input */
@@ -336,7 +339,7 @@ export function ChatInputBar({
 
   function handleSend() {
     const trimmed = value.trim();
-    if (!trimmed || disabled || sendDisabled || status !== "idle") return;
+    if ((!trimmed && !hasAttachments) || disabled || sendDisabled || status !== "idle") return;
     onSend?.(trimmed, selectedQuick, { sources: [...selectedSources], ...(replyTo ? { replyTo } : {}) });
     setHasSent(true);
     setQuickOpen(false);
@@ -388,7 +391,7 @@ export function ChatInputBar({
     }
   }
 
-  const canSend = value.trim().length > 0 && !disabled && !sendDisabled && status === "idle";
+  const canSend = (value.trim().length > 0 || hasAttachments) && !disabled && !sendDisabled && status === "idle";
 
   const modelPicker = models.length > 0 ? <PromptModelMenu models={models} model={model} label={modelMenuLabel} disabled={disabled} open={modelOpen} onOpenChange={setModelOpen} onModelChange={onModelChange} /> : null;
   const permissionPicker = permissions.length ? <PromptModelMenu models={permissions} model={permission} label={permissionMenuLabel} disabled={disabled} open={permissionOpen} onOpenChange={setPermissionOpen} onModelChange={onPermissionChange} /> : null;

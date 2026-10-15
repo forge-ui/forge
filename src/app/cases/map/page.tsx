@@ -11,11 +11,11 @@ import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 const mapColors: AccentColor[] = ["purple", "blue", "black"];
 
 const demoRegions: MapRegion[] = [
-  { name: "USA", flag: "https://flagcdn.com/w80/us.png", salesLabel: "340 Sales", value: "$17,678" },
-  { name: "Germany", flag: "https://flagcdn.com/w80/de.png", salesLabel: "220 Sales", value: "$11,420" },
-  { name: "Indonesia", flag: "https://flagcdn.com/w80/id.png", salesLabel: "180 Sales", value: "$9,210" },
-  { name: "France", flag: "https://flagcdn.com/w80/fr.png", salesLabel: "140 Sales", value: "$7,450" },
-  { name: "Spain", flag: "https://flagcdn.com/w80/es.png", salesLabel: "98 Sales", value: "$5,120" },
+  { name: "美国", flag: "https://flagcdn.com/w80/us.png", salesLabel: "340 Sales", value: "$17,678" },
+  { name: "德国", flag: "https://flagcdn.com/w80/de.png", salesLabel: "220 Sales", value: "$11,420" },
+  { name: "印度尼西亚", flag: "https://flagcdn.com/w80/id.png", salesLabel: "180 Sales", value: "$9,210" },
+  { name: "法国", flag: "https://flagcdn.com/w80/fr.png", salesLabel: "售出 140 件", value: "$7,450" },
+  { name: "西班牙", flag: "https://flagcdn.com/w80/es.png", salesLabel: "98 Sales", value: "$5,120" },
 ];
 
 export default function MapCasePage() {
@@ -38,8 +38,8 @@ export default function MapCasePage() {
                 <MapCard
                   variant={v}
                   color={c}
-                  title="Top Region"
-                  subtitle="Sales by region"
+                  title="主要地区"
+                  subtitle="按地区统计销售额"
                   regions={v === "sm" ? demoRegions : demoRegions.slice(0, 4)}
                   highlights={["north-america", "oceania"]}
                   onMenuClick={() => {}}
@@ -60,8 +60,8 @@ export default function MapCasePage() {
             <MapCard
               variant="lg"
               color={c}
-              title="Global Sales"
-              subtitle="Top performing regions this month"
+              title="全球销售额"
+              subtitle="本月表现最佳的地区"
               regions={demoRegions}
               highlights={["north-america", "europe", "asia"]}
               onMenuClick={() => {}}
@@ -72,11 +72,11 @@ export default function MapCasePage() {
 
       {/* ============ Highlights variations ============ */}
       <Section
-        title="Continent Highlights"
+        title="重点区域"
         description="highlights prop 按大洲组合高亮——可自由挑几个大洲着色。"
       >
         <SubSection title="Different continent combos (purple, sm)" >
-          <Labeled label="Americas only">
+          <Labeled label="仅美洲">
             <MapCard
               variant="sm"
               color="purple"
@@ -84,7 +84,7 @@ export default function MapCasePage() {
               highlights={["north-america", "south-america"]}
             />
           </Labeled>
-          <Labeled label="Europe + Asia">
+          <Labeled label="欧洲与亚洲">
             <MapCard
               variant="sm"
               color="purple"
@@ -92,7 +92,7 @@ export default function MapCasePage() {
               highlights={["europe", "asia"]}
             />
           </Labeled>
-          <Labeled label="All continents">
+          <Labeled label="全部地区">
             <MapCard
               variant="sm"
               color="purple"

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button, SelectOption, TextField } from "@forge-ui-official/core";
 import { MagniferLinear, RestartCircleLinear } from "@forge-ui-official/core/icons";
-import { fusionFamilies, fusionItems, officialHref } from "./registry";
+import { fusionFamilies, fusionItems, officialCategory, officialHref } from "./registry";
 import { VisibleExample } from "./family-examples";
 import type { FusionSettings } from "./types";
 
@@ -17,7 +17,7 @@ export function InteractionDirectory() {
   const [epochs, setEpochs] = useState<Record<string, number>>({});
   const zh = locale === "zh";
   const needle = query.trim().toLocaleLowerCase();
-  const items = fusionItems.filter(item => (family === "all" || item.family === family) && (!needle || [item.name, item.english, item.description, item.descriptionEn, ...item.target].some(value => value.toLocaleLowerCase().includes(needle))));
+  const items = fusionItems.filter(item => (family === "all" || officialCategory(item) === family) && (!needle || [item.name, item.english, item.description, item.descriptionEn, ...item.target].some(value => value.toLocaleLowerCase().includes(needle))));
   return <div className="flex min-w-0 flex-col gap-8">
     <header className="flex flex-col gap-3"><h1 className="font-display text-4xl font-semibold tracking-fg">{zh ? "交互示例" : "Interaction examples"}</h1><p className="text-base leading-7 text-fg-grey-700">{zh ? "体验按钮、表单、聊天和图表的交互细节，找到适合产品的组件与组合。" : "Explore interactions for buttons, forms, chat and charts, and find the right components for your product."}</p></header>
     <div className="flex flex-col gap-4 rounded-2xl border border-fg-grey-200 bg-fg-white p-4">

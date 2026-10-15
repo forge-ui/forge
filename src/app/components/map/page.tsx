@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { MapCard } from "@forge-ui-official/core";
 import type { MapRegion } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
@@ -16,10 +15,10 @@ const FLAGS = {
 };
 
 const REGIONS: MapRegion[] = [
-  { name: "United Kingdom", flag: FLAGS.uk, salesLabel: "340 Sales", value: "$17,678" },
-  { name: "Spain", flag: FLAGS.spain, salesLabel: "100 Sales", value: "$5,500" },
-  { name: "Indonesia", flag: FLAGS.indonesia, salesLabel: "50 Sales", value: "$2,500" },
-  { name: "France", flag: FLAGS.france, salesLabel: "147 Sales", value: "$7,456" },
+  { name: "英国", flag: FLAGS.uk, salesLabel: "340 笔销售", value: "$17,678" },
+  { name: "西班牙", flag: FLAGS.spain, salesLabel: "100 笔销售", value: "$5,500" },
+  { name: "印度尼西亚", flag: FLAGS.indonesia, salesLabel: "50 笔销售", value: "$2,500" },
+  { name: "法国", flag: FLAGS.france, salesLabel: "147 笔销售", value: "$7,456" },
 ];
 
 const CODE_IMPORT = `import { MapCard } from "@forge-ui-official/core";
@@ -109,11 +108,11 @@ export default function MapCasePage() {
         title="MapCard"
         description="高亮世界地图中的区域，并显示对应统计信息。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             传入 <InlineCode>regions</InlineCode> 与 <InlineCode>highlights</InlineCode> 即可渲染。
           </p>
@@ -128,7 +127,7 @@ export default function MapCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Variants" stack>
+        <SubSection title="样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>sm</InlineCode> / <InlineCode>md</InlineCode> 为竖向卡片，<InlineCode>lg</InlineCode> 为全宽地图 + 右上浮动搜索面板。
           </p>
@@ -140,7 +139,7 @@ export default function MapCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种主色：<InlineCode>purple</InlineCode>（默认） / <InlineCode>blue</InlineCode> / <InlineCode>black</InlineCode>，影响高亮大洲的填充色。
           </p>
@@ -153,7 +152,7 @@ export default function MapCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Large variant" stack>
+        <SubSection title="大尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>lg</InlineCode> 适合主区域卡，地图铺满顶部，搜索 + 区域列表浮在右上角。
           </p>
@@ -171,7 +170,7 @@ export default function MapCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Highlights" stack>
+        <SubSection title="重点区域" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>highlights</InlineCode> 指定需着色的大洲，支持任意组合。
           </p>
@@ -189,10 +188,6 @@ export default function MapCasePage() {
           <ApiTable rows={MAP_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/map" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

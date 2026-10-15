@@ -4,16 +4,16 @@ import { Checklist, ChecklistItem } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const ONBOARDING = [
-  { id: "vendor", label: "Review vendor contacts", done: true },
-  { id: "certs", label: "Confirm cold-chain certificates" },
-  { id: "windows", label: "Publish weekend freezer windows" },
-  { id: "reorder", label: "Send Cone King reorder" },
+  { id: "vendor", label: "核对供应商联系人", done: true },
+  { id: "certs", label: "核验冷链证书" },
+  { id: "windows", label: "发布周末冷库作业时段" },
+  { id: "reorder", label: "发送华丰食品补货单" },
 ];
 
 const SETUP = [
-  { id: "profile", label: "Add a shop display name" },
-  { id: "hours", label: "Set weekend opening hours" },
-  { id: "pos", label: "Connect the POS export" },
+  { id: "profile", label: "填写门店名称" },
+  { id: "hours", label: "设置周末营业时间" },
+  { id: "pos", label: "接入收银导出数据" },
 ];
 
 export default function ChecklistCasePage() {
@@ -24,29 +24,29 @@ export default function ChecklistCasePage() {
         hint="勾选待办事项，已完成的内容自动移到列表底部。"
       />
 
-      <Section title="Complete to bottom" description="点未完成行，等划线结束后沉底。">
-        <SubSection title="Onboarding" stack>
+      <Section title="完成后移至底部" description="点未完成行，等划线结束后沉底。">
+        <SubSection title="入门引导" stack>
           <Checklist defaultTasks={ONBOARDING} />
         </SubSection>
       </Section>
 
-      <Section title="Sizes" description="sm 更紧，适合设置页侧栏。">
+      <Section title="尺寸" description="sm 更紧，适合设置页侧栏。">
         <SubSection title="sm" stack>
           <Checklist size="sm" defaultTasks={SETUP} />
         </SubSection>
       </Section>
 
-      <Section title="Color" description="勾选色与 Checkbox 对齐。">
+      <Section title="颜色" description="勾选色与 Checkbox 对齐。">
         <SubSection title="blue" stack>
           <Checklist color="blue" defaultTasks={SETUP} />
         </SubSection>
       </Section>
 
       <Section title="ChecklistItem" description="单独一行，不重排。">
-        <SubSection title="Standalone" stack>
+        <SubSection title="独立使用" stack>
           <div className="flex flex-col gap-2">
-            <ChecklistItem label="Draft the pistachio weekend note" />
-            <ChecklistItem label="Already sent" defaultChecked />
+            <ChecklistItem label="起草开心果口味周末促销说明" />
+            <ChecklistItem label="已发送" defaultChecked />
           </div>
         </SubSection>
       </Section>

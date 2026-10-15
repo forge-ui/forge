@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Checklist, ChecklistItem } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -23,10 +22,10 @@ const ITEM_PROPS: ApiTableRow[] = [
 ];
 
 const DEMO = [
-  { id: "vendor", label: "Review vendor contacts", done: true },
-  { id: "certs", label: "Confirm cold-chain certificates" },
-  { id: "windows", label: "Publish weekend freezer windows" },
-  { id: "reorder", label: "Send Cone King reorder" },
+  { id: "vendor", label: "核对供应商联系人", done: true },
+  { id: "certs", label: "核验冷链证书" },
+  { id: "windows", label: "发布周末冷库作业时段" },
+  { id: "reorder", label: "发送华丰食品补货单" },
 ];
 
 export default function ChecklistSpecPage() {
@@ -37,14 +36,14 @@ export default function ChecklistSpecPage() {
         hint="勾选待办事项，已完成的内容自动移到列表底部。"
       />
 
-      <Section title="Import" description="一律从 @forge-ui-official/core 引入。">
-        <SubSection title="Usage" stack>
+      <Section title="导入组件" description="从 @forge-ui-official/core 导入所需组件。">
+        <SubSection title="使用方法" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
       </Section>
 
       <Section title="Checklist" description="勾选待办事项，已完成项自动移到列表底部，可再次点击恢复。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={`<Checklist defaultTasks={[{ id, label, done }]} />`} minHeight={280}>
             <Checklist defaultTasks={DEMO} />
           </PreviewBlock>
@@ -55,22 +54,18 @@ export default function ChecklistSpecPage() {
       </Section>
 
       <Section title="ChecklistItem" description="展示一项可勾选的待办事项。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             勾选视觉跟 <InlineCode>Checkbox</InlineCode> 同一套几何；动效用 CSS，不加 Motion。
           </p>
-          <PreviewBlock code={`<ChecklistItem label="Confirm cold-chain certificates" />`} minHeight={120}>
-            <ChecklistItem label="Confirm cold-chain certificates" />
+          <PreviewBlock code={`<ChecklistItem label="核验冷链证书" />`} minHeight={120}>
+            <ChecklistItem label="核验冷链证书" />
           </PreviewBlock>
         </SubSection>
         <SubSection title="API" stack>
           <ApiTable rows={ITEM_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/checklist" className="text-xs text-fg-grey-700 hover:underline">
-        看交互变体 →
-      </Link>
     </div>
   );
 }

@@ -18,8 +18,8 @@ const positions: TooltipPosition[] = ["top", "right", "bottom", "left"];
 const sizes: TooltipSize[] = ["sm", "lg"];
 const anchorStates: TooltipAnchorState[] = ["idle", "active"];
 
-const shortText = "Text Here";
-const longText = "Text Here Lorem Ipsum Dolor Sit Amet";
+const shortText = "示例文本";
+const longText = "这里展示详细说明，帮助你了解当前操作。";
 
 // 让 open 态的 tooltip 有足够的空间显示，避免跨出 Labeled 边界撞到邻居
 const positionPadding: Record<TooltipPosition, string> = {

@@ -147,6 +147,8 @@ function SwipeTabsContent({ activeKey, panels = [], onActiveKeyChange, onProgres
   const root = useRef<HTMLDivElement>(null);
   const index = Math.max(0, panels.findIndex(panel => panel.key === activeKey));
   const reported = useRef(activeKey);
+  // Intermediate scroll positions must not replace a controlled tab request.
+  const requestedIndex = useRef<number | null>(null);
   const activeIndex = useRef(index);
   useLayoutEffect(() => { activeIndex.current = index; }, [index]);
   const gesture = useRef<{ id: number; x: number; left: number; moved: boolean } | null>(null);
@@ -157,6 +159,8 @@ function SwipeTabsContent({ activeKey, panels = [], onActiveKeyChange, onProgres
     const el = root.current;
     if (!el) return;
     if (reported.current !== activeKey || !el.dataset.positioned) {
+      requestedIndex.current = reduced || !el.dataset.positioned ? null : index;
+      reported.current = activeKey;
       el.scrollTo?.({ left: index * el.clientWidth, behavior: reduced || !el.dataset.positioned ? "instant" : "smooth" });
       el.dataset.positioned = "true";
       reported.current = activeKey;
@@ -176,6 +180,10 @@ function SwipeTabsContent({ activeKey, panels = [], onActiveKeyChange, onProgres
     if (!el || !el.clientWidth || !panels.length) return;
     const progress = Math.max(0, Math.min(panels.length - 1, el.scrollLeft / el.clientWidth));
     onProgressChange?.(progress);
+    if (requestedIndex.current !== null) {
+      if (Math.abs(el.scrollLeft - requestedIndex.current * el.clientWidth) > 1) return;
+      requestedIndex.current = null;
+    }
     const nearest = panels[Math.round(progress)];
     if (nearest && nearest.key !== reported.current) { reported.current = nearest.key; onActiveKeyChange?.(nearest.key); }
   }
@@ -192,8 +200,10 @@ function SwipeTabsContent({ activeKey, panels = [], onActiveKeyChange, onProgres
   }
   return <div ref={root} data-tabs-transition="swipe" data-motion={reduced ? "none" : motion} data-dragging={dragging || undefined}
     className={cn("forge-tabs-swipe", className)} onScroll={sync}
+    onWheel={() => { requestedIndex.current = null; }}
     onClickCapture={event => { if (skipClick.current) { event.preventDefault(); event.stopPropagation(); skipClick.current = false; } }}
     onPointerDown={event => {
+      requestedIndex.current = null;
       if (event.pointerType !== "mouse" || event.button !== 0 || (event.target as HTMLElement).closest("button,input,textarea,select,a,[contenteditable=true]")) return;
       if (settle.current) clearTimeout(settle.current);
       gesture.current = { id: event.pointerId, x: event.clientX, left: event.currentTarget.scrollLeft, moved: false };

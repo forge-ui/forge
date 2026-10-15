@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import { InteractionDirectory } from "../_fusion/directory";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "交互示例 · Forge" };
-export default function InteractionsPage() { return <InteractionDirectory />; }
+export default function InteractionsPage() { redirect("/cases"); }

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   NotificationBadge,
   Label,
@@ -17,7 +16,7 @@ const CODE_IMPORT = `import { NotificationBadge, Label, CircleIcon, ArtisticIcon
 // NotificationBadge
 const CODE_NB_USAGE = `<NotificationBadge>99+</NotificationBadge>
 <NotificationBadge color="orange">5</NotificationBadge>
-<NotificationBadge color="green">NEW</NotificationBadge>`;
+<NotificationBadge color="green">新增</NotificationBadge>`;
 
 const CODE_NB_COLORS = `<NotificationBadge color="purple">99+</NotificationBadge>
 <NotificationBadge color="orange">99+</NotificationBadge>
@@ -33,24 +32,24 @@ const NB_PROPS: ApiTableRow[] = [
 ];
 
 // Label
-const CODE_LABEL_USAGE = `<Label>Default</Label>
-<Label color="blue" variant="outline">Outline</Label>
-<Label color="green" variant="solid">Solid</Label>`;
+const CODE_LABEL_USAGE = `<Label>默认</Label>
+<Label color="blue" variant="outline">描边</Label>
+<Label color="green" variant="solid">实底</Label>`;
 
-const CODE_LABEL_COLORS = `<Label color="purple">Purple</Label>
-<Label color="blue">Blue</Label>
-<Label color="cyan">Cyan</Label>
-<Label color="green">Green</Label>
-<Label color="red">Red</Label>
-<Label color="yellow">Yellow</Label>
-<Label color="gray">Gray</Label>`;
+const CODE_LABEL_COLORS = `<Label color="purple">紫色</Label>
+<Label color="blue">蓝色</Label>
+<Label color="cyan">青色</Label>
+<Label color="green">绿色</Label>
+<Label color="red">红色</Label>
+<Label color="yellow">黄色</Label>
+<Label color="gray">灰色</Label>`;
 
-const CODE_LABEL_SIZES = `<Label size="lg">Large</Label>
-<Label size="md">Medium</Label>
-<Label size="sm">Small</Label>`;
+const CODE_LABEL_SIZES = `<Label size="lg">大</Label>
+<Label size="md">中</Label>
+<Label size="sm">小</Label>`;
 
-const CODE_LABEL_VARIANT = `<Label variant="outline">Outline</Label>
-<Label variant="solid">Solid</Label>`;
+const CODE_LABEL_VARIANT = `<Label variant="outline">描边</Label>
+<Label variant="solid">实底</Label>`;
 
 const LABEL_PROPS: ApiTableRow[] = [
   { attr: "children", type: "ReactNode", defaultValue: "—", description: "标签内容。" },
@@ -121,22 +120,22 @@ export default function BadgeCasePage() {
         title="NotificationBadge"
         description="用数字标记未读数量或待处理事项。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             通过 children 传数字或极短文字，<InlineCode>color</InlineCode> 切换主色。
           </p>
           <PreviewBlock code={CODE_NB_USAGE} minHeight={140}>
             <NotificationBadge>99+</NotificationBadge>
             <NotificationBadge color="orange">5</NotificationBadge>
-            <NotificationBadge color="green">NEW</NotificationBadge>
+            <NotificationBadge color="green">新增</NotificationBadge>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             6 种颜色：purple / orange / green / yellow / cyan / black。
           </p>
@@ -159,52 +158,52 @@ export default function BadgeCasePage() {
         title="Label"
         description="用文字标签标记状态、分类和类别。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             通过 <InlineCode>color</InlineCode> / <InlineCode>variant</InlineCode> / <InlineCode>size</InlineCode> 三维控制。
           </p>
           <PreviewBlock code={CODE_LABEL_USAGE} minHeight={140}>
-            <Label>Default</Label>
-            <Label color="blue" variant="outline">Outline</Label>
-            <Label color="green" variant="solid">Solid</Label>
+            <Label>默认</Label>
+            <Label color="blue" variant="outline">描边</Label>
+            <Label color="green" variant="solid">实底</Label>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             7 种主色：purple / blue / cyan / green / red / yellow / gray。
           </p>
           <PreviewBlock code={CODE_LABEL_COLORS} minHeight={140}>
-            <Label color="purple">Purple</Label>
-            <Label color="blue">Blue</Label>
-            <Label color="cyan">Cyan</Label>
-            <Label color="green">Green</Label>
-            <Label color="red">Red</Label>
-            <Label color="yellow">Yellow</Label>
-            <Label color="gray">Gray</Label>
+            <Label color="purple">紫色</Label>
+            <Label color="blue">蓝色</Label>
+            <Label color="cyan">青色</Label>
+            <Label color="green">绿色</Label>
+            <Label color="red">红色</Label>
+            <Label color="yellow">黄色</Label>
+            <Label color="gray">灰色</Label>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种尺寸：<InlineCode>lg</InlineCode> / <InlineCode>md</InlineCode> / <InlineCode>sm</InlineCode>。
           </p>
           <PreviewBlock code={CODE_LABEL_SIZES} minHeight={140}>
-            <Label size="lg">Large</Label>
-            <Label size="md">Medium</Label>
-            <Label size="sm">Small</Label>
+            <Label size="lg">大</Label>
+            <Label size="md">中</Label>
+            <Label size="sm">小</Label>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Variant" stack>
+        <SubSection title="样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>outline</InlineCode> 浅底描边（默认），<InlineCode>solid</InlineCode> 实底强调。
           </p>
           <PreviewBlock code={CODE_LABEL_VARIANT} minHeight={140}>
-            <Label color="purple" variant="outline">Outline</Label>
-            <Label color="purple" variant="solid">Solid</Label>
-            <Label color="green" variant="outline">Outline</Label>
-            <Label color="green" variant="solid">Solid</Label>
+            <Label color="purple" variant="outline">描边</Label>
+            <Label color="purple" variant="solid">实底</Label>
+            <Label color="green" variant="outline">描边</Label>
+            <Label color="green" variant="solid">实底</Label>
           </PreviewBlock>
         </SubSection>
 
@@ -217,7 +216,7 @@ export default function BadgeCasePage() {
         title="CircleIcon"
         description="将图标放在圆形容器中，适合列表和卡片入口。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             以 children 传入 @forge-ui-official/core/icons 图标即可，尺寸随 <InlineCode>size</InlineCode> 自动协调。
           </p>
@@ -234,7 +233,7 @@ export default function BadgeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Variants" stack>
+        <SubSection title="样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>solid</InlineCode> 实底，<InlineCode>light</InlineCode> 浅底，<InlineCode>neutral</InlineCode> 中性灰底。
           </p>
@@ -251,7 +250,7 @@ export default function BadgeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             4 种尺寸：lg / md / sm / xs，图标大小需手动协调。
           </p>
@@ -271,7 +270,7 @@ export default function BadgeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             8 种主色，示例为 solid 变体。
           </p>
@@ -296,7 +295,7 @@ export default function BadgeCasePage() {
         title="ArtisticIcon"
         description="用带装饰效果的图标强调功能入口。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             body 传入 24px 图标，<InlineCode>variant</InlineCode> 切换渐变或光球。
           </p>
@@ -310,7 +309,7 @@ export default function BadgeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Variants" stack>
+        <SubSection title="样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>gradient</InlineCode> 平滑渐变底；<InlineCode>orbs</InlineCode> 附加浮动高光球。
           </p>
@@ -324,7 +323,7 @@ export default function BadgeCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             7 种主色。
           </p>
@@ -343,10 +342,6 @@ export default function BadgeCasePage() {
           <ApiTable rows={ART_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/badge" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

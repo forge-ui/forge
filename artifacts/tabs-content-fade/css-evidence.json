@@ -1,0 +1,8 @@
+{
+  "animation": "0.18s cubic-bezier(0.2, 0.8, 0.2, 1) both forge-tabs-content-in",
+  "duration": ".18s",
+  "keyframes": [
+    "@keyframes forge-tabs-content-in { \n  0% { opacity: 0; }\n  100% { opacity: 1; }\n}",
+    "@keyframes forge-surface-in { \n  0% { opacity: 0; transform: translateY(4px) scale(0.98); }\n  100% { opacity: 1; transform: none; }\n}"
+  ]
+}

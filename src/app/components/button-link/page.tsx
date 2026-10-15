@@ -1,5 +1,3 @@
-import { MigrationPreview } from "../_migration-previews";
-import Link from "next/link";
 import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";
 import {
   StarLinear,
@@ -16,36 +14,40 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 
 const CODE_IMPORT = `import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";`;
 
-const CODE_BUTTON_USAGE = `<Button>Button</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>`;
+const CODE_BUTTON_USAGE = `<Button>保存修改</Button>
+<Button variant="secondary">次要按钮</Button>
+<Button variant="tertiary">轻量按钮</Button>`;
 
-const CODE_BUTTON_SIZES = `<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>`;
+const CODE_BUTTON_SIZES = `<Button size="sm">小</Button>
+<Button size="md">中</Button>
+<Button size="lg">大</Button>`;
 
-const CODE_BUTTON_COLORS = `<Button color="purple">Purple</Button>
-<Button color="dark">Dark</Button>
-<Button color="blue">Blue</Button>
-<Button color="blue-dark">Blue Dark</Button>
-<Button color="red">Red</Button>
-<Button color="green">Green</Button>
-<Button color="yellow">Yellow</Button>
-<Button color="grey">Grey</Button>
-<Button color="black">Black</Button>`;
+const CODE_BUTTON_COLORS = `<Button color="purple">紫色</Button>
+<Button color="dark">深色</Button>
+<Button color="blue">蓝色</Button>
+<Button color="blue-dark">深蓝</Button>
+<Button color="red">红色</Button>
+<Button color="green">绿色</Button>
+<Button color="yellow">黄色</Button>
+<Button color="grey">灰色</Button>
+<Button color="black">黑色</Button>`;
 
-const CODE_BUTTON_VARIANTS = `<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>`;
+const CODE_BUTTON_VARIANTS = `<Button variant="primary">主要按钮</Button>
+<Button variant="secondary">次要按钮</Button>
+<Button variant="tertiary">轻量按钮</Button>`;
 
-const CODE_BUTTON_ICON = `<Button iconLeft={<StarLinear size={16} />}>Star it</Button>
-<Button iconRight={<ArrowRightLinear size={16} />}>Next</Button>`;
+const CODE_BUTTON_ICON = `<Button iconLeft={<StarLinear size={16} />}>收藏</Button>
+<Button iconRight={<ArrowRightLinear size={16} />}>下一步</Button>`;
 
-const CODE_BUTTON_DISABLED = `<Button disabled>Disabled</Button>
-<Button variant="secondary" disabled>Disabled</Button>
-<Button variant="tertiary" disabled>Disabled</Button>`;
+const CODE_BUTTON_DISABLED = `<Button disabled>禁用</Button>
+<Button variant="secondary" disabled>禁用</Button>
+<Button variant="tertiary" disabled>禁用</Button>`;
 
 const BUTTON_PROPS: ApiTableRow[] = [
+  { attr: "effect", type: "'glass' | 'magnetic' | 'ripple' | 'roll'", defaultValue: "—", description: "可选视觉与交互效果。" },
+  { attr: "loading / result", type: "boolean / 'idle' | 'success' | 'error'", defaultValue: "false / 'idle'", description: "展示处理中或操作结果。" },
+  { attr: "holdDuration", type: "number", defaultValue: "1200", description: "长按确认所需时间，单位毫秒。" },
+  { attr: "onConfirm / onUndo", type: "() => void", defaultValue: "—", description: "完成长按或撤销时触发，由应用执行实际操作。" },
   {
     attr: "children",
     type: "ReactNode",
@@ -62,7 +64,7 @@ const BUTTON_PROPS: ApiTableRow[] = [
     attr: "variant",
     type: "'primary' | 'secondary' | 'tertiary' | 'hold'",
     defaultValue: "'primary'",
-    description: "实底 / 浅底 / 描边 三种样式。",
+    description: "实底、浅底、描边或长按确认样式。",
   },
   {
     attr: "size",
@@ -125,6 +127,8 @@ const CODE_ICONBUTTON_GHOST = `<IconButton variant="ghost"><StarLinear size={20}
 <IconButton variant="ghost" shape="square"><HeartLinear size={20} /></IconButton>`;
 
 const ICONBUTTON_PROPS: ApiTableRow[] = [
+  { attr: "effect", type: "'morph' | 'send' | 'bookmark' | 'burst'", defaultValue: "—", description: "变形、发送、收藏或粒子反馈效果。" },
+  { attr: "active", type: "boolean", defaultValue: "—", description: "由应用管理收藏、点赞等切换状态。" },
   {
     attr: "children",
     type: "ReactNode",
@@ -171,22 +175,22 @@ const ICONBUTTON_PROPS: ApiTableRow[] = [
 
 // ─── StyledLink 段 ───
 
-const CODE_LINK_USAGE = `<StyledLink href="#">Link</StyledLink>
-<StyledLink href="#" color="blue">Blue Link</StyledLink>
-<StyledLink href="#" color="green">Green Link</StyledLink>`;
+const CODE_LINK_USAGE = `<StyledLink href="#">链接</StyledLink>
+<StyledLink href="#" color="blue">蓝色链接</StyledLink>
+<StyledLink href="#" color="green">绿色链接</StyledLink>`;
 
-const CODE_LINK_COLORS = `<StyledLink href="#" color="purple">Purple</StyledLink>
-<StyledLink href="#" color="blue">Blue</StyledLink>
-<StyledLink href="#" color="green">Green</StyledLink>
-<StyledLink href="#" color="red">Red</StyledLink>
-<StyledLink href="#" color="yellow">Yellow</StyledLink>
-<StyledLink href="#" color="cyan">Cyan</StyledLink>
-<StyledLink href="#" color="gray">Gray</StyledLink>`;
+const CODE_LINK_COLORS = `<StyledLink href="#" color="purple">紫色</StyledLink>
+<StyledLink href="#" color="blue">蓝色</StyledLink>
+<StyledLink href="#" color="green">绿色</StyledLink>
+<StyledLink href="#" color="red">红色</StyledLink>
+<StyledLink href="#" color="yellow">黄色</StyledLink>
+<StyledLink href="#" color="cyan">青色</StyledLink>
+<StyledLink href="#" color="gray">灰色</StyledLink>`;
 
-const CODE_LINK_ICON = `<StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>Read more</StyledLink>
-<StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>Add item</StyledLink>`;
+const CODE_LINK_ICON = `<StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>查看详情</StyledLink>
+<StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>添加项目</StyledLink>`;
 
-const CODE_LINK_DISABLED = `<StyledLink href="#" disabled>Disabled</StyledLink>`;
+const CODE_LINK_DISABLED = `<StyledLink href="#" disabled>禁用</StyledLink>`;
 
 const LINK_PROPS: ApiTableRow[] = [
   {
@@ -238,9 +242,9 @@ const LINK_PROPS: ApiTableRow[] = [
 const CODE_BUTTONGROUP_USAGE = `<ButtonGroup
   activeIndex={1}
   items={[
-    { label: "Day" },
-    { label: "Week" },
-    { label: "Month" },
+    { label: "日" },
+    { label: "周" },
+    { label: "月" },
   ]}
 />`;
 
@@ -252,9 +256,9 @@ const CODE_BUTTONGROUP_SHAPE = `<ButtonGroup shape="rounded" activeIndex={1} ite
 <ButtonGroup shape="pill" activeIndex={1} items={items} />`;
 
 const BUTTONGROUP_ITEMS = [
-  { label: "Day" },
-  { label: "Week" },
-  { label: "Month" },
+  { label: "日" },
+  { label: "周" },
+  { label: "月" },
 ];
 
 const BUTTONGROUP_PROPS: ApiTableRow[] = [
@@ -306,87 +310,87 @@ export default function ButtonLinkCasePage() {
 
       {/* ────────── Button 段 ────────── */}
 
-      <Section title="长按删除（Button hold）" description="持续按住填满按钮后删除，支持完成反馈和撤销。"><MigrationPreview kind="hold" /><CodeBlock code={'<Button variant="hold" color="blue" holdDuration={1200} onConfirm={deleteFile} onUndo={restoreFile} />'} /><p className="text-sm text-fg-grey-600">holdDuration 以毫秒计；confirmed 可由宿主控制，holdLabels 可覆盖删除、完成和撤销文案。</p></Section>
+
 
       <Section
         title="Button"
         description="触发操作，支持文字、图标、不同样式和禁用状态。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             默认渲染紫色实底按钮。通过 <InlineCode>variant</InlineCode> 切换实底 / 浅底 / 描边三种观感。
           </p>
           <PreviewBlock code={CODE_BUTTON_USAGE}>
-            <Button>Button</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="tertiary">Tertiary</Button>
+            <Button>保存修改</Button>
+            <Button variant="secondary">次要按钮</Button>
+            <Button variant="tertiary">轻量按钮</Button>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             通过 <InlineCode>size</InlineCode> 控制高度与字号，可选 <InlineCode>sm</InlineCode> / <InlineCode>md</InlineCode> / <InlineCode>lg</InlineCode>，默认 <InlineCode>lg</InlineCode>。
           </p>
           <PreviewBlock code={CODE_BUTTON_SIZES}>
-            <Button size="sm">Small</Button>
-            <Button size="md">Medium</Button>
-            <Button size="lg">Large</Button>
+            <Button size="sm">小</Button>
+            <Button size="md">中</Button>
+            <Button size="lg">大</Button>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             9 种语义色：品牌紫（默认）、深紫、蓝、深蓝、红、绿、黄、灰、黑。
           </p>
           <PreviewBlock code={CODE_BUTTON_COLORS}>
-            <Button color="purple">Purple</Button>
-            <Button color="dark">Dark</Button>
-            <Button color="blue">Blue</Button>
-            <Button color="blue-dark">Blue Dark</Button>
-            <Button color="red">Red</Button>
-            <Button color="green">Green</Button>
-            <Button color="yellow">Yellow</Button>
-            <Button color="grey">Grey</Button>
-            <Button color="black">Black</Button>
+            <Button color="purple">紫色</Button>
+            <Button color="dark">深色</Button>
+            <Button color="blue">蓝色</Button>
+            <Button color="blue-dark">深蓝</Button>
+            <Button color="red">红色</Button>
+            <Button color="green">绿色</Button>
+            <Button color="yellow">黄色</Button>
+            <Button color="grey">灰色</Button>
+            <Button color="black">黑色</Button>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Variants" stack>
+        <SubSection title="样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>primary</InlineCode> 用于主要动作，<InlineCode>secondary</InlineCode> 用于次级动作，<InlineCode>tertiary</InlineCode> 用于边缘场景。
           </p>
           <PreviewBlock code={CODE_BUTTON_VARIANTS}>
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="tertiary">Tertiary</Button>
+            <Button variant="primary">主要按钮</Button>
+            <Button variant="secondary">次要按钮</Button>
+            <Button variant="tertiary">轻量按钮</Button>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="With Icon" stack>
+        <SubSection title="带图标" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             使用 <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 插入图标，推荐 @forge-ui-official/core/icons 16px 图标以匹配内边距。
           </p>
           <PreviewBlock code={CODE_BUTTON_ICON}>
-            <Button iconLeft={<StarLinear size={16} />}>Star it</Button>
-            <Button iconRight={<ArrowRightLinear size={16} />}>Next</Button>
+            <Button iconLeft={<StarLinear size={16} />}>收藏</Button>
+            <Button iconRight={<ArrowRightLinear size={16} />}>下一步</Button>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Disabled" stack>
+        <SubSection title="禁用" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             传入 <InlineCode>disabled</InlineCode> 后降低透明度并禁用点击。
           </p>
           <PreviewBlock code={CODE_BUTTON_DISABLED}>
-            <Button disabled>Disabled</Button>
+            <Button disabled>禁用</Button>
             <Button variant="secondary" disabled>
-              Disabled
+              禁用
             </Button>
             <Button variant="tertiary" disabled>
-              Disabled
+              禁用
             </Button>
           </PreviewBlock>
         </SubSection>
@@ -402,7 +406,7 @@ export default function ButtonLinkCasePage() {
         title="IconButton"
         description="用图标触发操作，适合工具栏和紧凑操作区域。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             传入任一 icon 作为 children 即可。默认 <InlineCode>md</InlineCode> 尺寸建议搭配 20px 图标。
           </p>
@@ -419,7 +423,7 @@ export default function ButtonLinkCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种尺寸：<InlineCode>sm</InlineCode> 32px / <InlineCode>md</InlineCode> 40px / <InlineCode>lg</InlineCode> 48px。
           </p>
@@ -436,7 +440,7 @@ export default function ButtonLinkCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             颜色集合与 Button 一致，共 9 种，这里示意 5 种常用色。
           </p>
@@ -459,7 +463,7 @@ export default function ButtonLinkCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Shape" stack>
+        <SubSection title="形状" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>circle</InlineCode>（默认）和 <InlineCode>square</InlineCode>，后者常用于表格 actions 列。
           </p>
@@ -473,7 +477,7 @@ export default function ButtonLinkCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Ghost" stack>
+        <SubSection title="透明" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>variant=&quot;ghost&quot;</InlineCode> 透明底 + 灰图标 + hover 浅灰，适合列表尾部静默按钮。
           </p>
@@ -498,48 +502,48 @@ export default function ButtonLinkCasePage() {
         title="StyledLink"
         description="跳转到页面或资源，支持图标和禁用状态。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>href</InlineCode> 必填，通过 <InlineCode>color</InlineCode> 控制文字颜色。
           </p>
           <PreviewBlock code={CODE_LINK_USAGE} minHeight={140}>
-            <StyledLink href="#">Link</StyledLink>
-            <StyledLink href="#" color="blue">Blue Link</StyledLink>
-            <StyledLink href="#" color="green">Green Link</StyledLink>
+            <StyledLink href="#">链接</StyledLink>
+            <StyledLink href="#" color="blue">蓝色链接</StyledLink>
+            <StyledLink href="#" color="green">绿色链接</StyledLink>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             9 种颜色：purple / dark / blue / green / red / orange / yellow / cyan / gray。
           </p>
           <PreviewBlock code={CODE_LINK_COLORS} minHeight={140}>
-            <StyledLink href="#" color="purple">Purple</StyledLink>
-            <StyledLink href="#" color="blue">Blue</StyledLink>
-            <StyledLink href="#" color="green">Green</StyledLink>
-            <StyledLink href="#" color="red">Red</StyledLink>
-            <StyledLink href="#" color="yellow">Yellow</StyledLink>
-            <StyledLink href="#" color="cyan">Cyan</StyledLink>
-            <StyledLink href="#" color="gray">Gray</StyledLink>
+            <StyledLink href="#" color="purple">紫色</StyledLink>
+            <StyledLink href="#" color="blue">蓝色</StyledLink>
+            <StyledLink href="#" color="green">绿色</StyledLink>
+            <StyledLink href="#" color="red">红色</StyledLink>
+            <StyledLink href="#" color="yellow">黄色</StyledLink>
+            <StyledLink href="#" color="cyan">青色</StyledLink>
+            <StyledLink href="#" color="gray">灰色</StyledLink>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="With Icon" stack>
+        <SubSection title="带图标" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 支持插槽，推荐 16px 图标。
           </p>
           <PreviewBlock code={CODE_LINK_ICON} minHeight={140}>
-            <StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>Read more</StyledLink>
-            <StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>Add item</StyledLink>
+            <StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>查看详情</StyledLink>
+            <StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>添加项目</StyledLink>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Disabled" stack>
+        <SubSection title="禁用" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>disabled</InlineCode> 渲染为 span，降低透明度且无 hover。
           </p>
           <PreviewBlock code={CODE_LINK_DISABLED} minHeight={140}>
-            <StyledLink href="#" disabled>Disabled</StyledLink>
+            <StyledLink href="#" disabled>禁用</StyledLink>
           </PreviewBlock>
         </SubSection>
 
@@ -554,7 +558,7 @@ export default function ButtonLinkCasePage() {
         title="ButtonGroup"
         description="在多个筛选维度或视图模式之间切换。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             通过 <InlineCode>items</InlineCode> 传入标签数组，<InlineCode>activeIndex</InlineCode> 指定选中项。
           </p>
@@ -563,7 +567,7 @@ export default function ButtonLinkCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种选中态颜色：purple / blue / black。
           </p>
@@ -574,7 +578,7 @@ export default function ButtonLinkCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Shape" stack>
+        <SubSection title="形状" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>rounded</InlineCode>（圆角矩形）或 <InlineCode>pill</InlineCode>（胶囊）。
           </p>
@@ -588,10 +592,6 @@ export default function ButtonLinkCasePage() {
           <ApiTable rows={BUTTONGROUP_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/button-link" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

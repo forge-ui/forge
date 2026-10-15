@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { MigrationPreview } from "../_migration-previews";
 import { useState } from "react";
 import {
   TextField,
@@ -37,9 +35,9 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 // ─── 共享 sample 数据 ───
 
 const sampleOptions = [
-  { label: "Option 1", value: "o1" },
-  { label: "Option 2", value: "o2" },
-  { label: "Option 3", value: "o3" },
+  { label: "选项一", value: "o1" },
+  { label: "选项二", value: "o2" },
+  { label: "选项三", value: "o3" },
 ];
 
 const iconList = [
@@ -63,26 +61,26 @@ const CODE_IMPORT = `import {
   IconSelector, IconPicker, ColorPicker,
 } from "@forge-ui-official/core";`;
 
-const CODE_TF_USAGE = `<TextField placeholder="Placeholder text. . ." />
-<TextField state="filled" value="Filled text" />
-<TextField state="error" placeholder="Input" errorMessage="Error message" />`;
+const CODE_TF_USAGE = `<TextField placeholder="请输入内容…" />
+<TextField state="filled" value="已输入内容" />
+<TextField state="error" placeholder="输入内容" errorMessage="请输入有效内容" />`;
 
-const CODE_TF_COLORS = `<TextField color="purple" placeholder="Purple" />
-<TextField color="blue" placeholder="Blue" />
-<TextField color="black" placeholder="Black" />`;
+const CODE_TF_COLORS = `<TextField color="purple" placeholder="紫色" />
+<TextField color="blue" placeholder="蓝色" />
+<TextField color="black" placeholder="黑色" />`;
 
-const CODE_TF_STATES = `<TextField placeholder="Idle" />
-<TextField state="filled" value="Filled text" />
-<TextField state="focus" placeholder="Focus" />
-<TextField state="disabled" placeholder="Disabled" />
-<TextField state="error" placeholder="Input" errorMessage="Error message" />`;
+const CODE_TF_STATES = `<TextField placeholder="默认" />
+<TextField state="filled" value="已输入内容" />
+<TextField state="focus" placeholder="聚焦" />
+<TextField state="disabled" placeholder="禁用" />
+<TextField state="error" placeholder="输入内容" errorMessage="请输入有效内容" />`;
 
-const CODE_TF_ICON = `<TextField iconLeft={<MagniferLinear size={20} />} placeholder="Search. . ." />
-<TextField iconRight={<MagniferLinear size={20} />} placeholder="Input" />
-<TextField suffix="cm" placeholder="Input length" />`;
+const CODE_TF_ICON = `<TextField iconLeft={<MagniferLinear size={20} />} placeholder="搜索…" />
+<TextField iconRight={<MagniferLinear size={20} />} placeholder="输入内容" />
+<TextField suffix="cm" placeholder="输入长度" />`;
 
-const CODE_TF_SHAPE = `<TextField shape="rounded" placeholder="Rounded" />
-<TextField shape="pill" placeholder="Pill" />`;
+const CODE_TF_SHAPE = `<TextField shape="rounded" placeholder="圆角矩形" />
+<TextField shape="pill" placeholder="胶囊" />`;
 
 const TF_PROPS: ApiTableRow[] = [
   { attr: "value", type: "string", defaultValue: "—", description: "当前值（受控）。" },
@@ -98,8 +96,8 @@ const TF_PROPS: ApiTableRow[] = [
 
 // ─── TextArea ───
 
-const CODE_TA_USAGE = `<TextArea placeholder="Placeholder text. . ." />
-<TextArea label="Bio" placeholder="Tell us about yourself..." />`;
+const CODE_TA_USAGE = `<TextArea placeholder="请输入内容…" />
+<TextArea label="个人简介" placeholder="介绍一下自己…" />`;
 
 const TA_PROPS: ApiTableRow[] = [
   { attr: "value", type: "string", defaultValue: "—", description: "当前值。" },
@@ -133,14 +131,14 @@ const SELECT_PROPS: ApiTableRow[] = [
 
 // ─── Datepicker ───
 
-const CODE_DP_USAGE = `<Datepicker label="Select date" />
-<Datepicker label="Date range" mode="range" />`;
+const CODE_DP_USAGE = `<Datepicker label="选择日期" />
+<Datepicker label="日期区间" mode="range" />`;
 
 const DP_PROPS: ApiTableRow[] = [
   { attr: "label", type: "string", defaultValue: "—", description: "顶部标签文字。" },
   { attr: "mode", type: "'single' | 'range'", defaultValue: "'single'", description: "单日或区间选择。" },
-  { attr: "value", type: "Date", defaultValue: "—", description: "single 模式的选中日期。" },
-  { attr: "rangeStart / rangeEnd", type: "Date", defaultValue: "—", description: "range 模式的起止日期。" },
+  { attr: "value", type: "日期", defaultValue: "—", description: "single 模式的选中日期。" },
+  { attr: "rangeStart / rangeEnd", type: "日期", defaultValue: "—", description: "range 模式的起止日期。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "高亮色。" },
   { attr: "onChange", type: "(date: Date) => void", defaultValue: "—", description: "single 模式选中回调。" },
   { attr: "onRangeChange", type: "(start: Date, end: Date | null) => void", defaultValue: "—", description: "range 模式：第一次点击 end 为 null，第二次给完整区间。" },
@@ -197,9 +195,9 @@ const CHECKBOX_LABEL_PROPS: ApiTableRow[] = [
 
 // ─── Upload ───
 
-const CODE_UPLOAD_USAGE = `<MediaUpload label="Images" />
-<ProfileImgUpload label="Avatar" />
-<FileUpload label="Attachments" />`;
+const CODE_UPLOAD_USAGE = `<MediaUpload label="图片" />
+<ProfileImgUpload label="头像" />
+<FileUpload label="附件" />`;
 
 const MEDIAUPLOAD_PROPS: ApiTableRow[] = [
   { attr: "items", type: "MediaItem[]", defaultValue: "[]", description: "已上传图片数组（含 src / state / progress）。" },
@@ -233,7 +231,7 @@ const FILEUPLOAD_PROPS: ApiTableRow[] = [
 
 const CODE_PICKER_USAGE = `<ColorPicker selectedIndex={0} />
 <IconPicker icons={iconList} selectedIndex={0} onChange={setIndex} />
-<IconSelector label="Icons" icons={iconList} labels={iconLabels} selectedIndex={0} onChange={setIndex} />`;
+<IconSelector label="图标" icons={iconList} labels={iconLabels} selectedIndex={0} onChange={setIndex} />`;
 
 const COLORPICKER_PROPS: ApiTableRow[] = [
   { attr: "colors", type: "string[]", defaultValue: "default palette", description: "色板（每项为 Tailwind bg-* class）。" },
@@ -255,7 +253,7 @@ const ICONSELECTOR_PROPS: ApiTableRow[] = [
   { attr: "onChange", type: "(index: number) => void", defaultValue: "—", description: "切换回调。" },
   { attr: "label", type: "string", defaultValue: "—", description: "组件上方标签。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "选中态主色。" },
-  { attr: "searchPlaceholder", type: "string", defaultValue: "'Search icon. . .'", description: "popover 内搜索框占位。" },
+  { attr: "searchPlaceholder", type: "string", defaultValue: "'搜索图标...'", description: "图标搜索面板中的输入提示。" },
 ];
 
 export default function InputFieldCasePage() {
@@ -276,72 +274,72 @@ export default function InputFieldCasePage() {
         title="TextField"
         description="输入单行文本，支持图标、后缀和校验状态。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             最小可用：只传 <InlineCode>placeholder</InlineCode>。受控时用 <InlineCode>value</InlineCode> + <InlineCode>onChange</InlineCode>。
           </p>
           <PreviewBlock code={CODE_TF_USAGE}>
             <div className="flex flex-col gap-3">
-              <TextField placeholder="Placeholder text. . ." className="w-72" />
-              <TextField state="filled" value="Filled text" className="w-72" />
-              <TextField state="error" placeholder="Input" errorMessage="Error message" className="w-72" />
+              <TextField placeholder="请输入内容…" className="w-72" />
+              <TextField state="filled" value="已输入内容" className="w-72" />
+              <TextField state="error" placeholder="输入内容" errorMessage="请输入有效内容" className="w-72" />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种 focus 色：<InlineCode>purple</InlineCode> / <InlineCode>blue</InlineCode> / <InlineCode>black</InlineCode>。
           </p>
           <PreviewBlock code={CODE_TF_COLORS}>
             <div className="flex flex-col gap-3">
-              <TextField color="purple" state="focus" placeholder="Purple focus" className="w-72" />
-              <TextField color="blue" state="focus" placeholder="Blue focus" className="w-72" />
-              <TextField color="black" state="focus" placeholder="Black focus" className="w-72" />
+              <TextField color="purple" state="focus" placeholder="紫色聚焦" className="w-72" />
+              <TextField color="blue" state="focus" placeholder="蓝色聚焦" className="w-72" />
+              <TextField color="black" state="focus" placeholder="黑色聚焦" className="w-72" />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="States" stack>
+        <SubSection title="状态" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             5 种状态：<InlineCode>idle</InlineCode> / <InlineCode>filled</InlineCode> / <InlineCode>focus</InlineCode> / <InlineCode>disabled</InlineCode> / <InlineCode>error</InlineCode>。
           </p>
           <PreviewBlock code={CODE_TF_STATES}>
             <div className="flex flex-col gap-3">
-              <TextField placeholder="Idle" className="w-72" />
-              <TextField state="filled" value="Filled text" className="w-72" />
-              <TextField state="focus" placeholder="Focus" className="w-72" />
-              <TextField state="disabled" placeholder="Disabled" className="w-72" />
-              <TextField state="error" placeholder="Input" errorMessage="Error message" className="w-72" />
+              <TextField placeholder="默认" className="w-72" />
+              <TextField state="filled" value="已输入内容" className="w-72" />
+              <TextField state="focus" placeholder="聚焦" className="w-72" />
+              <TextField state="disabled" placeholder="禁用" className="w-72" />
+              <TextField state="error" placeholder="输入内容" errorMessage="请输入有效内容" className="w-72" />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="With Icon / Suffix" stack>
+        <SubSection title="图标与后缀" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 放搜索、筛选、清空图标；<InlineCode>suffix</InlineCode> 放单位或选择器。
           </p>
           <PreviewBlock code={CODE_TF_ICON}>
             <div className="flex flex-col gap-3">
-              <TextField iconLeft={<MagniferLinear size={20} />} placeholder="Search. . ." className="w-72" />
-              <TextField iconRight={<MagniferLinear size={20} />} placeholder="Input" className="w-72" />
-              <TextField suffix="cm" placeholder="Input length" className="w-72" />
+              <TextField iconLeft={<MagniferLinear size={20} />} placeholder="搜索…" className="w-72" />
+              <TextField iconRight={<MagniferLinear size={20} />} placeholder="输入内容" className="w-72" />
+              <TextField suffix="cm" placeholder="输入长度" className="w-72" />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Shape" stack>
+        <SubSection title="形状" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             圆角矩形或胶囊，通过 <InlineCode>shape</InlineCode> 切换。
           </p>
           <PreviewBlock code={CODE_TF_SHAPE}>
             <div className="flex flex-col gap-3">
-              <TextField shape="rounded" placeholder="Rounded" className="w-72" />
-              <TextField shape="pill" placeholder="Pill" className="w-72" />
+              <TextField shape="rounded" placeholder="圆角矩形" className="w-72" />
+              <TextField shape="pill" placeholder="胶囊" className="w-72" />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -355,14 +353,14 @@ export default function InputFieldCasePage() {
         title="TextArea"
         description="输入多行文本，可附带标题和辅助操作。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             带 <InlineCode>label</InlineCode> 可充当 form field 的完整单元。
           </p>
           <PreviewBlock code={CODE_TA_USAGE}>
             <div className="flex flex-col gap-3">
-              <TextArea placeholder="Placeholder text. . ." className="w-80" />
-              <TextArea label="Bio" placeholder="Tell us about yourself..." className="w-80" />
+              <TextArea placeholder="请输入内容…" className="w-80" />
+              <TextArea label="个人简介" placeholder="介绍一下自己…" className="w-80" />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -376,7 +374,7 @@ export default function InputFieldCasePage() {
         title="SelectOption"
         description="从下拉列表中选择一项或多项，支持图片选项。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             通过 <InlineCode>type</InlineCode> 切换模式，<InlineCode>value</InlineCode> 为选中值。
           </p>
@@ -388,7 +386,7 @@ export default function InputFieldCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Shape" stack>
+        <SubSection title="形状" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             圆角矩形或胶囊。
           </p>
@@ -403,23 +401,21 @@ export default function InputFieldCasePage() {
         <SubSection title="API" stack>
           <ApiTable rows={SELECT_PROPS} />
         </SubSection>
-        <SubSection title="带图标和说明" stack>
-          <MigrationPreview kind="select" />
-        </SubSection>
+
       </Section>
 
       <Section
         title="Datepicker"
         description="选择单个日期或日期区间。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             点击触发后弹出日历面板，支持 single / range 两种模式。
           </p>
           <PreviewBlock code={CODE_DP_USAGE} minHeight={200}>
             <div className="flex flex-wrap items-start gap-4">
-              <Datepicker label="Select date" />
-              <Datepicker label="Date range" mode="range" />
+              <Datepicker label="选择日期" />
+              <Datepicker label="日期区间" mode="range" />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -430,20 +426,11 @@ export default function InputFieldCasePage() {
       </Section>
 
       <Section
-        title="Selection Controls"
+        title="选择控件"
         description="通过开关、单选和复选控件选择选项。"
       >
         <SubSectionGrid cols={2}>
-        <SubSection title="Toggle" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            开关，<InlineCode>size</InlineCode> 支持 md / sm。
-          </p>
-          <PreviewBlock code={CODE_TOGGLE_USAGE} minHeight={120}>
-            <Toggle checked={toggled} onChange={setToggled} />
-          </PreviewBlock>
-          <ApiTable rows={TOGGLE_PROPS} />
-          <MigrationPreview kind="toggle" />
-        </SubSection>
+
 
         <SubSection title="RadioButton" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
@@ -478,7 +465,7 @@ export default function InputFieldCasePage() {
           </p>
           <PreviewBlock code={CODE_CHECKBOX_USAGE} minHeight={120}>
             <CheckboxWithLabel
-              label="I agree to the terms"
+              label="我已阅读并同意条款"
               checked={agreed}
               onChange={setAgreed}
             />
@@ -489,7 +476,7 @@ export default function InputFieldCasePage() {
       </Section>
 
       <Section
-        title="Upload"
+        title="上传"
         description="上传图片、头像或文件，并查看已选内容。"
       >
         <SubSectionGrid cols={2}>
@@ -498,7 +485,7 @@ export default function InputFieldCasePage() {
             多图上传，传 <InlineCode>items</InlineCode> 注入已上传缩略图。
           </p>
           <PreviewBlock code={CODE_UPLOAD_USAGE} minHeight={240}>
-            <MediaUpload label="Images" color="purple" />
+            <MediaUpload label="图片" color="purple" />
           </PreviewBlock>
           <ApiTable rows={MEDIAUPLOAD_PROPS} />
         </SubSection>
@@ -508,7 +495,7 @@ export default function InputFieldCasePage() {
             单张头像上传，<InlineCode>src</InlineCode> 为已有头像 URL。
           </p>
           <PreviewBlock code={CODE_UPLOAD_USAGE} minHeight={140}>
-            <ProfileImgUpload label="Avatar" color="blue" />
+            <ProfileImgUpload label="头像" color="blue" />
           </PreviewBlock>
           <ApiTable rows={PROFILEIMG_PROPS} />
         </SubSection>
@@ -518,7 +505,7 @@ export default function InputFieldCasePage() {
             通用文件上传，<InlineCode>files</InlineCode> 数组带 progress / state / 失败重传。
           </p>
           <PreviewBlock code={CODE_UPLOAD_USAGE} minHeight={200}>
-            <FileUpload label="Attachments" color="black" />
+            <FileUpload label="附件" color="black" />
           </PreviewBlock>
           <ApiTable rows={FILEUPLOAD_PROPS} />
         </SubSection>
@@ -526,7 +513,7 @@ export default function InputFieldCasePage() {
       </Section>
 
       <Section
-        title="Pickers"
+        title="选择器"
         description="选择颜色或图标。"
       >
         <SubSectionGrid cols={2}>
@@ -552,19 +539,15 @@ export default function InputFieldCasePage() {
 
         <SubSection title="IconSelector" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            带 label 的完整卡片，点击 <InlineCode>Select</InlineCode> 弹出搜索 popover。
+            带 label 的完整卡片，点击 <InlineCode>选择</InlineCode> 弹出搜索 popover。
           </p>
           <PreviewBlock code={CODE_PICKER_USAGE} minHeight={180}>
-            <IconSelector label="Icons" icons={iconList} labels={iconLabels} selectedIndex={selectedIcon} onChange={setSelectedIcon} />
+            <IconSelector label="图标" icons={iconList} labels={iconLabels} selectedIndex={selectedIcon} onChange={setSelectedIcon} />
           </PreviewBlock>
           <ApiTable rows={ICONSELECTOR_PROPS} />
         </SubSection>
         </SubSectionGrid>
       </Section>
-
-      <Link href="/cases/input-field" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

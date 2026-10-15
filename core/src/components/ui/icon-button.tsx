@@ -121,6 +121,7 @@ export function IconButton({
       {...props}
       onClick={(event) => { effects.press(event.currentTarget); props.onClick?.(event); }}
     >
+      {active && (effect === "burst" || effect === "bookmark") && <span aria-hidden="true" className="forge-action-particles">{Array.from({ length: 6 }, (_, i) => <i key={i} style={{ rotate: `${i * 60}deg` }} />)}</span>}
       {progress !== undefined && <svg className="forge-icon-progress" viewBox="0 0 48 48" aria-hidden><circle cx="24" cy="24" r="22" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - Math.min(100, Math.max(0, Number.isFinite(progress) ? progress : 0))} /></svg>}
       <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{loading || result !== "idle" ? <ActionStatus loading={loading} result={result} motion={motion} /> : children}</span>
     </button>

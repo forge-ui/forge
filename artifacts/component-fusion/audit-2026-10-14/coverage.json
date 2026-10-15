@@ -1,0 +1,1970 @@
+{
+  "commit": "1795b1ba",
+  "scope": "99 formal integrations and related core implementations",
+  "coverage": [
+    {
+      "id": "001",
+      "name": "液态玻璃按钮",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/001.html",
+      "checks": "Button glass/loading/result; background remains case-owned; cancel clears staged timers; reduced CSS decorations disabled",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行取消通过；静态未发现功能缺陷",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-001"
+    },
+    {
+      "id": "002",
+      "name": "磁吸箭头按钮",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/002.html",
+      "checks": "Button magnetic mouse move/leave, disabled/reduced guards, pointer direction, theme and onclick state",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "未发现确定功能缺陷；真实指针物理效果留浏览器",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-002"
+    },
+    {
+      "id": "003",
+      "name": "长按删除",
+      "case": "src/app/components/_migration-previews.tsx",
+      "implementation": "core/src/internal/hold-button.tsx",
+      "prototype": "public/prototype/component-fusion/components/003.html",
+      "checks": "1200ms长按；提前松开/blur/escape取消；disabled和卸载timer；controlled confirmed；undo焦点；减少动效保留长按时序",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/button-link#长按删除-button-hold#interaction-003"
+    },
+    {
+      "id": "004",
+      "name": "下载进度按钮",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/004.html",
+      "checks": "download progress finite/clamped, loading duplicate click blocking, cancellation before completion and reset",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行取消通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-004"
+    },
+    {
+      "id": "005",
+      "name": "纸飞机发送",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/005.html",
+      "checks": "send→loading→success state; cancel invalidates delayed loading; icon result public API",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行取消通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-005"
+    },
+    {
+      "id": "006",
+      "name": "墨水涟漪按钮",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/006.html",
+      "checks": "subscribe/unsubscribe, aria-pressed, count +1/-1, ripple reduced guard",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行双向toggle通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-006"
+    },
+    {
+      "id": "007",
+      "name": "播放暂停变形",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/007.html",
+      "checks": "play/pause interval cleanup, range input accessible name/keyboard, 100% restart and icon progress",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态未发现确定功能缺陷；连续path morph已改为Solar替换与旋转",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-007"
+    },
+    {
+      "id": "008",
+      "name": "复制完成反馈",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/008.html",
+      "checks": "clipboard rejected/resolved, unmount guard, reset timer, Tooltip keyboard label",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行拒绝分支通过；多包管理器切换未保留，视融合取舍",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-008"
+    },
+    {
+      "id": "009",
+      "name": "文字滚动按钮",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/009.html",
+      "checks": "roll label accessible DOM, hover/focus CSS, reduce removes transitions, toggle content",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态未发现确定功能缺陷；屏幕阅读器对CSS伪元素发音尚未实机验证",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-009"
+    },
+    {
+      "id": "010",
+      "name": "组合操作按钮",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/icon-trigger.tsx",
+      "prototype": "public/prototype/component-fusion/components/010.html",
+      "checks": "选择/执行分离；menuitemradio；初始选中focus；方向键/Home/End；选择后close恢复trigger",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/button-link#interaction-010"
+    },
+    {
+      "id": "011",
+      "name": "扇形快捷操作",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/icon-button.tsx",
+      "prototype": "public/prototype/component-fusion/components/011.html",
+      "checks": "封闭菜单inert+visibility:hidden；方向键roving；Escape/选择恢复trigger；外部pointer关闭；小屏媒体规则",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/menu#interaction-011"
+    },
+    {
+      "id": "012",
+      "name": "书签丝带",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/012.html",
+      "checks": "bookmark state/count symmetry; accessible label and pressed state",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行双向toggle通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-012"
+    },
+    {
+      "id": "013",
+      "name": "弹性开关",
+      "case": "src/app/components/_migration-toggle-preview.tsx",
+      "implementation": "core/src/components/ui/forms/selection-control.tsx",
+      "prototype": "public/prototype/component-fusion/components/013.html",
+      "checks": "拖动阈值/scale修正；pointer cancel；受控更新取消拖动；skipClick；键盘；禁用逻辑",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#toggle#interaction-013"
+    },
+    {
+      "id": "014",
+      "name": "待办清单",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/checklist.tsx",
+      "prototype": "public/prototype/component-fusion/components/014.html",
+      "checks": "稳定task id映射；完成延迟排序与反选；完成计数；locale状态播报；计时器清理",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/checklist#interaction-014"
+    },
+    {
+      "id": "015",
+      "name": "套餐选择卡",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/selection-control.tsx",
+      "prototype": "public/prototype/component-fusion/components/015.html",
+      "checks": "radiogroup方向键和循环；选中受控；价格与计划一致；三色token",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/card#interaction-015"
+    },
+    {
+      "id": "016",
+      "name": "星级评价",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/rating-stars.tsx",
+      "prototype": "public/prototype/component-fusion/components/016.html",
+      "checks": "只读默认；键盘0/End/方向键；hover预览与真实值分离；disabled；SSR和DOM测试",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/other-widget#interaction-016"
+    },
+    {
+      "id": "018",
+      "name": "滚动数量步进",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/018.html",
+      "checks": "1–10 seat limits, disabled bounds, quantity output/total",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行越界重复点击通过；原逐位滚数变成整体淡入位移",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/input-field#interaction-018"
+    },
+    {
+      "id": "019",
+      "name": "兴趣多选",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/checkbox.tsx",
+      "prototype": "public/prototype/component-fusion/components/019.html",
+      "checks": "5项上限；重复取消；第6项不改变选择；警告status；可访问名称",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-019"
+    },
+    {
+      "id": "021",
+      "name": "日夜切换",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/selection-control.tsx",
+      "prototype": "public/prototype/component-fusion/components/021.html",
+      "checks": "昼夜状态和Solar图标；可访问switch；CSS减少动效与三色景色",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-021"
+    },
+    {
+      "id": "022",
+      "name": "点赞心形绽放",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/022.html",
+      "checks": "like/count symmetry, Solar outline/duotone, pressed accessibility",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行双向toggle通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-022"
+    },
+    {
+      "id": "023",
+      "name": "通知设置展开",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/button-group.tsx",
+      "prototype": "public/prototype/component-fusion/components/023.html",
+      "checks": "email内容关闭inert/aria-hidden；频率保留；全部关闭；toggle键盘与计数",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-023"
+    },
+    {
+      "id": "025",
+      "name": "浮动标签输入",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/text-field.tsx",
+      "prototype": "public/prototype/component-fusion/components/025.html",
+      "checks": "真实label绑定；required/email原生约束；浮动标签CSS；修改后清除成功状态",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-025"
+    },
+    {
+      "id": "026",
+      "name": "验证码输入",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/otp-input.tsx",
+      "prototype": "public/prototype/component-fusion/components/026.html",
+      "checks": "外部Promise验证；pending只读；请求generation和卸载失效；数字清洗；重发计时清理；中英文默认",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-026"
+    },
+    {
+      "id": "027",
+      "name": "顶栏搜索展开",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/agent/command-search.tsx",
+      "prototype": "public/prototype/component-fusion/components/027.html",
+      "checks": "展开受控；选择结果；Escape/外部点击关闭；搜索筛选/键盘；检查CSS入场触发时机",
+      "status": "findings",
+      "findingIds": [
+        "FORM-06"
+      ],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [
+        "FORM-06"
+      ],
+      "href": "/components/toolbar#interaction-027"
+    },
+    {
+      "id": "028",
+      "name": "自动伸展评论框",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/text-area.tsx",
+      "prototype": "public/prototype/component-fusion/components/028.html",
+      "checks": "maxLength500；空白禁发；发布追加+清空+focus；autoGrow受控value重新测量",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/comment#interaction-028"
+    },
+    {
+      "id": "029",
+      "name": "标签输入",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/text-field.tsx",
+      "prototype": "public/prototype/component-fusion/components/029.html",
+      "checks": "标签数量6上限/大小写去重；中文IME跳过快捷键；两次Backspace；删除按钮；disabled边界",
+      "status": "findings",
+      "findingIds": [
+        "FORM-05"
+      ],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [
+        "FORM-05"
+      ],
+      "href": "/components/input-field#interaction-029"
+    },
+    {
+      "id": "030",
+      "name": "日期区间日历",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/datepicker.tsx",
+      "prototype": "public/prototype/component-fusion/components/030.html",
+      "checks": "区间draft/Apply；倒序归一；hover；min/max；键盘跨月；外部reset；标签重新定位，5项DOM探针中4项日历缺陷",
+      "status": "findings",
+      "findingIds": [
+        "FORM-01",
+        "FORM-02",
+        "FORM-03",
+        "FORM-04"
+      ],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": "root confirmed draft reset",
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [
+        "FORM-01",
+        "FORM-02",
+        "FORM-03",
+        "FORM-04"
+      ],
+      "href": "/components/calendar#interaction-030"
+    },
+    {
+      "id": "031",
+      "name": "自定义选择器",
+      "case": "src/app/components/_migration-select-preview.tsx",
+      "implementation": "core/src/components/ui/forms/select-option.tsx",
+      "prototype": "public/prototype/component-fusion/components/031.html",
+      "checks": "selected/disabled受控；全部选项滚动；方向键/typeahead/Enter/Escape/Tab；关闭inert；新增description兼容普通选项",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#selectoption#interaction-031"
+    },
+    {
+      "id": "032",
+      "name": "拖拽上传",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/file-upload.tsx",
+      "prototype": "public/prototype/component-fusion/components/032.html",
+      "checks": "本地FileReader真实进度；50MB筛选；唯一id；abort/remove/retry；卸载清理；上传状态与外部数值clamp",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-032"
+    },
+    {
+      "id": "033",
+      "name": "标题内联编辑",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/text-field.tsx",
+      "prototype": "public/prototype/component-fusion/components/033.html",
+      "checks": "编辑聚焦/select；Enter保存/Escape撤销；空值错误；onBlur提交；与原型保存/取消按钮对照（移动取消路径需设计确认）",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-033"
+    },
+    {
+      "id": "036",
+      "name": "密码强度",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/text-field.tsx",
+      "prototype": "public/prototype/component-fusion/components/036.html",
+      "checks": "4项格式条件；可见密码toggle；aria-pressed；提示未误称安全评级；Solar状态图标",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-036"
+    },
+    {
+      "id": "037",
+      "name": "账号切换",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/layouts/sidebar-popovers.tsx",
+      "prototype": "public/prototype/component-fusion/components/037.html",
+      "checks": "应用受控选中；open后focus选中；切换恢复trigger；Escape/外部点击；英语内部aria缺口",
+      "status": "findings",
+      "findingIds": [
+        "FORM-07"
+      ],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [
+        "FORM-07"
+      ],
+      "href": "/components/menu#interaction-037"
+    },
+    {
+      "id": "039",
+      "name": "滑动选中标签",
+      "case": "src/app/components/_migration-tabs-preview.tsx",
+      "implementation": "core/src/components/ui/tabs-content.tsx",
+      "prototype": "public/prototype/component-fusion/components/039.html",
+      "checks": "切换动画单个业务子树；快速反向中断；焦点/inert；任务状态在上层保留；tab id关联",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/tab#tabbar#interaction-039"
+    },
+    {
+      "id": "040",
+      "name": "AppLayout 侧栏动效",
+      "case": "src/app/prototype/component-fusion/_sidebar-preview.tsx",
+      "implementation": "core/src/components/layouts/app-layout.tsx",
+      "prototype": "public/prototype/component-fusion/components/040.html",
+      "checks": "嵌入真实AppLayout；postMessage origin/source校验；菜单最长路径匹配；折叠保持DOM；手机inert和菜单关闭；英语内置个人菜单缺口",
+      "status": "findings",
+      "findingIds": [
+        "FORM-07"
+      ],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [
+        "FORM-07"
+      ],
+      "href": "/prototype/sidebar-motion#interaction-040"
+    },
+    {
+      "id": "041",
+      "name": "底部导航凹槽",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/tab-bar.tsx",
+      "prototype": "public/prototype/component-fusion/components/041.html",
+      "checks": "dock样式；tab-panel关联；方向键/Home/End；badge；滑动panel出口inert",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/menu#interaction-041"
+    },
+    {
+      "id": "042",
+      "name": "分步向导",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/tabs-content.tsx",
+      "prototype": "public/prototype/component-fusion/components/042.html",
+      "checks": "4步form；required/email校验；角色；后退状态保留；出口单一子树和焦点；动效中下一步输入焦点需浏览器验证",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/pagination-stepper#interaction-042"
+    },
+    {
+      "id": "043",
+      "name": "分页伸缩",
+      "case": "src/app/components/_migration-pagination-preview.tsx",
+      "implementation": "core/src/components/ui/pagination.tsx",
+      "prototype": "public/prototype/component-fusion/components/043.html",
+      "checks": "自适应数字窗口；parent ResizeObserver；page受控；缩总页数case同步clamp；first/last按钮；中文ARIA",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/pagination-stepper#pagination#interaction-043"
+    },
+    {
+      "id": "044",
+      "name": "问答折叠",
+      "case": "src/app/components/_migration-accordion-preview.tsx",
+      "implementation": "core/src/components/ui/accordion.tsx",
+      "prototype": "public/prototype/component-fusion/components/044.html",
+      "checks": "单项受控/非受控；动态内容高度；关闭focus回标题；嵌套heading过滤；键盘；减少动效",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/motion#accordion#interaction-044"
+    },
+    {
+      "id": "045",
+      "name": "菜单由按钮展开",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/drawer.tsx",
+      "prototype": "public/prototype/component-fusion/components/045.html",
+      "checks": "revealOrigin视口换算；dialog/native cancel；关闭按钮；子菜单选择关闭；reduced时无WAAPI",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/menu#interaction-045"
+    },
+    {
+      "id": "046",
+      "name": "命令面板",
+      "case": "src/app/components/_migration-command-preview.tsx",
+      "implementation": "core/src/components/ui/agent/command-search.tsx",
+      "prototype": "public/prototype/component-fusion/components/046.html",
+      "checks": "按group展现顺序导航；IME保护；空态；新建文档/静音状态；native dialog和Escape；root报告真实Chrome Escape异常",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。 root已报告Escape浏览器异常，根因尚未定位。",
+      "findings": [],
+      "href": "/components/agent#commandsearch#interaction-046"
+    },
+    {
+      "id": "047",
+      "name": "时间区间切换",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/button-group.tsx",
+      "prototype": "public/prototype/component-fusion/components/047.html",
+      "checks": "4组数据与收入求和；周期键盘切换；图表固定yDomain；三主题",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/tab#interaction-047"
+    },
+    {
+      "id": "048",
+      "name": "滑动联动标签",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/tabs-content.tsx",
+      "prototype": "public/prototype/component-fusion/components/048.html",
+      "checks": "scroll fractional progress；active controlled反馈；mouse drag/cancel/skipClick；resize回位；非active panel inert；触摸惯性需浏览器",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/tab#interaction-048"
+    },
+    {
+      "id": "049",
+      "name": "层叠内容卡",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-cards.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/049.html",
+      "checks": "SurfaceCard layered effect, hover/focus preview, bookmark, expand button, original versus official reveal",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态检查；失焦后不自动收起与原版不同，非阻断取舍",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/card#interaction-049"
+    },
+    {
+      "id": "050",
+      "name": "光照倾斜卡",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-cards.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/050.html",
+      "checks": "SurfaceCard tilt reduced/touch guards, read/unread button, theme variables",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "A4主题光斑固定蓝色",
+      "findings": [
+        "A4"
+      ],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/card#interaction-050"
+    },
+    {
+      "id": "054",
+      "name": "关注个人卡",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-cards.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/054.html",
+      "checks": "follow count, recommendation state, lang switching identity, prior prototype odometer",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "直接props切语言复现推荐关注状态丢失；正式wrapper整体重挂载掩盖，记录观察",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/card#interaction-054"
+    },
+    {
+      "id": "056",
+      "name": "月年计费切换",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/button-group.tsx",
+      "prototype": "public/prototype/component-fusion/components/056.html",
+      "checks": "月/年倍率10；plan和席位约束；键盘radio/ButtonGroup；确认状态随选择重置",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-056"
+    },
+    {
+      "id": "057",
+      "name": "头像评价轮播",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "ReviewItem",
+        "Avatar",
+        "IconButton"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/057.html",
+      "review": "核对头像/前后切换、5.2s轮播、hover/focus/reduced暂停、cleanup；现用ReviewItem多渲染无名无handler菜单按钮。原型拖动切换/计时视觉没有保留，仅列保真核对。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-07"
+      ],
+      "result": "issues_found",
+      "href": "/components/card#interaction-057"
+    },
+    {
+      "id": "058",
+      "name": "阅读进度卡",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/058.html",
+      "checks": "scroll offset, current section, progress ring and time estimate, keyboard focus container",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "A1浏览器确认重复减坐标",
+      "findings": [
+        "A1"
+      ],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/progress#interaction-058"
+    },
+    {
+      "id": "059",
+      "name": "活动报名卡",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "EventCard",
+        "ButtonGroup",
+        "AvatarGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/059.html",
+      "review": "核对RSVP 3态、参加人数/剩余名额一致、calendar切换和aria-pressed、ButtonGroup键盘；本地日程状态演示不要求真实日历服务。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/card#interaction-059"
+    },
+    {
+      "id": "062",
+      "name": "登录反馈",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/text-field.tsx",
+      "prototype": "public/prototype/component-fusion/components/062.html",
+      "checks": "email/required/minLength原生校验；CapsLock键盘检测；autocomplete；明确区分输入校验和认证结果",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-062"
+    },
+    {
+      "id": "063",
+      "name": "逐题注册",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/stepper.tsx",
+      "prototype": "public/prototype/component-fusion/components/063.html",
+      "checks": "3步状态边界；后退保留输入；required/email/password约束；末页和重新填写；输入焦点effect",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-063"
+    },
+    {
+      "id": "066",
+      "name": "社交登录按钮",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/066.html",
+      "checks": "provider collapse inert, connecting lock, cancel timer, reset focus, email required/type validation, brand assets exception",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行连接中取消/Apple焦点恢复通过；原核心交互已保留",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/button-link#interaction-066"
+    },
+    {
+      "id": "067",
+      "name": "锁定倒计时",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/067.html",
+      "checks": "countdown timer cleanup, sign-in disabled before zero, password email one-shot",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态未发现确定功能缺陷；12秒完整解锁未额外运行",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/input-field#interaction-067"
+    },
+    {
+      "id": "070",
+      "name": "堆叠通知",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/070.html",
+      "checks": "toast provider update identity, loading indefinite→success timeout, stacked CSS, action callbacks, pointer cancellation, focus/hover pause",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态未发现确定功能缺陷；多条堆叠视觉和dialog内toast层级未实机覆盖",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/modal#interaction-070"
+    },
+    {
+      "id": "071",
+      "name": "滑动删除与撤销",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/071.html",
+      "checks": "swipe threshold/direction/cancel, multi-pointer identity, secondary mouse, delete/undo focus flow",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "A2右键/跨pointer错误删除，A3删除丢键盘焦点；运行undo通过",
+      "findings": [
+        "A2",
+        "A3"
+      ],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/list#interaction-071"
+    },
+    {
+      "id": "074",
+      "name": "通知铃菜单",
+      "case": "src/app/components/_fusion/forms-navigation-menus.tsx",
+      "implementation": "core/src/components/ui/icon-trigger.tsx",
+      "prototype": "public/prototype/component-fusion/components/074.html",
+      "checks": "未读去重；全部已读；mentions过滤；首次focus；关闭Escape；弹层max宽度；英文ButtonGroup默认aria标签待完善",
+      "status": "findings",
+      "findingIds": [
+        "FORM-07"
+      ],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [
+        "FORM-07"
+      ],
+      "href": "/components/menu#interaction-074"
+    },
+    {
+      "id": "075",
+      "name": "上传进度面板",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/forms/file-upload.tsx",
+      "prototype": "public/prototype/component-fusion/components/075.html",
+      "checks": "复用上传队列+Accordion；折叠隐藏不可聚焦；进度外部驱动；remove/abort/retry生命周期",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/input-field#interaction-075"
+    },
+    {
+      "id": "076",
+      "name": "跟随工具提示",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/076.html",
+      "checks": "TooltipGroup warm delay, keyboard immediate show/Escape, viewport clamping, portal/dialog ownership and cleanup",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态检查未发现本轮新确定问题；真实边缘/弹层交叉仍由root覆盖",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/tooltip#interaction-076"
+    },
+    {
+      "id": "077",
+      "name": "表情反应面板",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatBubble",
+        "IconTrigger",
+        "IconButton"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/077.html",
+      "review": "核对计数增减、选中态、选项加入/移除、受控回调、Esc/点击外侧、焦点恢复；原型12项键盘网格迁入ChatReactions。5项复用发现负索引。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-01"
+      ],
+      "result": "issues_found",
+      "href": "/components/chat#interaction-077"
+    },
+    {
+      "id": "078",
+      "name": "滑动回复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/078.html",
+      "review": "核对60px滑动阈值、pointercancel/lostcapture不重复回复、引用上下文随消息发送、回复清空、typing定时器unmount清理。原型自动聚焦输入未保留，列体验核对，不夸大为功能阻断。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chat#interaction-078"
+    },
+    {
+      "id": "080",
+      "name": "轨道同步指示",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/080.html",
+      "checks": "sync tick cleanup, pause/resume/done restart, orbit animation reduced rules",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "静态未发现确定功能缺陷；到90%显示all up to date较早，文案观察非阻断",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/progress#interaction-080"
+    },
+    {
+      "id": "081",
+      "name": "环形完成反馈",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-buttons.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/081.html",
+      "checks": "payment progress/step/receipt state, loading lock, cancel/replay",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行取消通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/progress#interaction-081"
+    },
+    {
+      "id": "083",
+      "name": "队列进度转换",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/083.html",
+      "checks": "queued→building→done and queued/building cancel cleanup, indeterminate aria and logs",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行队列取消后1.7秒不重启通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/progress#interaction-083"
+    },
+    {
+      "id": "084",
+      "name": "语音响应圆点",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/084.html",
+      "review": "核对按住/松开/取消/blur/unmount回调守卫、录音音量RAF清理、识别计时器清理、系统reduced与none；本地模拟音量/文字有明确说明。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/progress#interaction-084"
+    },
+    {
+      "id": "086",
+      "name": "AI 流式回答",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "StreamingAnswer",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/086.html",
+      "review": "核对streaming/stopped/complete、停止保留、重新生成key、新问题重置、35ms更新清理；StreamingAnswer保留grapheme、流状态与减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-086"
+    },
+    {
+      "id": "087",
+      "name": "配送步骤",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/087.html",
+      "checks": "Stepper item current single marker, moving indicator, chronological logs, replay, legacy dots compatibility",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行4步及回放通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/progress#interaction-087"
+    },
+    {
+      "id": "088",
+      "name": "资料夹空态",
+      "case": "src/app/components/_migration-empty-preview.tsx",
+      "implementation": "core/src/components/ui/list-item.tsx",
+      "prototype": "public/prototype/component-fusion/components/088.html",
+      "checks": "创建5上限/序号；删除focus；模拟重试/空搜索恢复；定时器/WAAPI清理；关动效立即完成；退场按钮可达性需浏览器",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/list#列表空态与恢复#interaction-088"
+    },
+    {
+      "id": "089",
+      "name": "404 纠错",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/089.html",
+      "checks": "correction frame timers, choosing during typing disabled, corrected/reset state, compass mouse/reduce handling",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行纠正/回放通过；系统reduce打字timer未加速，装饰差异观察",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/card#interaction-089"
+    },
+    {
+      "id": "090",
+      "name": "可重试错误卡",
+      "implementation": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/090.html",
+      "checks": "countdown immediate retry cancel, first retry failure second success, disable duplicates, unmount cleanup/error details",
+      "commonChecks": [
+        "zh/en and blue/purple/black SSR independently executed",
+        "functional icons imported from Solar export; brand logos are exceptions",
+        "timer cleanup and motion none/system CSS read",
+        "prototype behavior implementation read",
+        "underlying core implementation read and parent-commit diff reviewed"
+      ],
+      "result": "运行失败→重试→成功通过",
+      "findings": [],
+      "notVerified": "本子agent未启动浏览器；所有26项完整鼠标/触屏/屏幕阅读器视觉验收不宣称已完成",
+      "href": "/components/card#interaction-090"
+    },
+    {
+      "id": "091",
+      "name": "离线消息队列",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/091.html",
+      "review": "核对offline→connecting→online、连接中再次断开、按序发送queued、重新断开取消计时器、unmount清理；不把未接真实网络当缺陷。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chat#interaction-091"
+    },
+    {
+      "id": "092",
+      "name": "筛选空态恢复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-recovery.tsx",
+      "targets": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/092.html",
+      "review": "核对错词纠正、3条件真实过滤、每项放宽计数、草稿筛选应用/取消/重置、清空聚焦、显示结果；范围由原型逻辑扩充。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/filter#interaction-092"
+    },
+    {
+      "id": "093",
+      "name": "完成庆祝",
+      "case": "src/app/components/_fusion/forms-navigation-forms.tsx",
+      "implementation": "core/src/components/ui/checklist.tsx",
+      "prototype": "public/prototype/component-fusion/components/093.html",
+      "checks": "4/4庆祝条件；重新开始重置；CSS动画关闭；checklist延迟归位期间状态映射",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/modal#interaction-093"
+    },
+    {
+      "id": "095",
+      "name": "形态切换柱图",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "BarChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/095.html",
+      "review": "核对周/月/年总额/均值/较前项、切周期清pin/active、受控键盘首尾/左右/Enter固定；Chrome发现年度窄屏溢出及均值线坐标错位。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-02",
+        "AC-03"
+      ],
+      "result": "issues_found",
+      "href": "/components/chart#interaction-095"
+    },
+    {
+      "id": "096",
+      "name": "滑动股票折线",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "SmoothLineChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/096.html",
+      "review": "核对61点种子固定、首尾值、今日时间映射、事件index提示、切周期active复位、键盘边界、曲线分段高亮；插值RAF取消与数据变更。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chart#interaction-096"
+    },
+    {
+      "id": "097",
+      "name": "重排环图",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "DonutChart",
+        "ChartLegendItem"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/097.html",
+      "review": "核对排除分类后分母重算、至少保留一类、hover/focus中心值及占比、独立环段键盘Enter/空格；动画中值非数据真值不误报。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chart#interaction-097"
+    },
+    {
+      "id": "098",
+      "name": "实时数字滚动",
+      "case": "src/app/components/_migration-number-preview.tsx",
+      "implementation": "core/src/internal/animated-number.tsx",
+      "prototype": "public/prototype/component-fusion/components/098.html",
+      "checks": "Intl parts；位数key；负号/小数/币种；sr-only一次完整读数；减少动效；图表跟随收入",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/card#statcard#interaction-098"
+    },
+    {
+      "id": "099",
+      "name": "活动环",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "MultilayerDonutChart"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/099.html",
+      "review": "核对7日×3指标、目标500/30/12、>100额外环、天数计数、日期roving tabindex、Home/End、聚焦指标高亮。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chart#interaction-099"
+    },
+    {
+      "id": "108",
+      "name": "时区交集",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/108.html",
+      "review": "核对UTC小时0–23、日期、Intl跨日/DST本地时间、9≤hour<18工作窗；浏览器原生date约束，暂无确定失败。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/calendar#interaction-108"
+    },
+    {
+      "id": "110",
+      "name": "日程冲突修复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "EventTag",
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/110.html",
+      "review": "核对14:30–15:30与14:00–15:00重叠30分钟，移动15点及撤销；颜色语义和reduced。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/calendar#interaction-110"
+    },
+    {
+      "id": "126",
+      "name": "Markdown 编辑与预览",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "TextArea",
+        "StreamingAnswer",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/126.html",
+      "review": "核对编辑/预览切换、Markdown保留/安全skipHtml、autoFocus/Esc、动画mode wait与none；未把简化编辑器当缺陷。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-126"
+    },
+    {
+      "id": "127",
+      "name": "变更片段审核",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "AgentCodeBlock",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/127.html",
+      "review": "核对接受/保留/撤销正文变化；发现代码/差异控件因固定受控view且缺少onViewChange无效，JSDOM确定复现。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-04"
+      ],
+      "result": "issues_found",
+      "href": "/components/agent#interaction-127"
+    },
+    {
+      "id": "128",
+      "name": "查找替换",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "TextField",
+        "TextArea",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/128.html",
+      "review": "核对字面split而非regex、0匹配禁用、全部替换、单步撤销，转义由React处理。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-128"
+    },
+    {
+      "id": "129",
+      "name": "代码折叠",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "AgentCodeBlock"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/129.html",
+      "review": "核对1-based折叠区间、首行保留、全折/全开、嵌套允许交叉拒绝/重复过滤、controlled回调、复制完整代码及失败状态和timer清理。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-129"
+    },
+    {
+      "id": "157",
+      "name": "层叠用量面积",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ChartLegendItem"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/157.html",
+      "review": "核对逐层累计上下界、隔离时回到原始序列/固定0–180domain、周总和与占比实时计算、再次选择恢复全部。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chart#interaction-157"
+    },
+    {
+      "id": "163",
+      "name": "目标刻度",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "BarHorizontalChart",
+        "ChartCard"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/163.html",
+      "review": "核对固定0–100横轴、目标40–100步长2、阈值50/75/100、差额/达成率；发现可见K与无障碍万元单位不一致。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-06"
+      ],
+      "result": "issues_found",
+      "href": "/components/chart#interaction-163"
+    },
+    {
+      "id": "165",
+      "name": "预测置信带",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "targets": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ButtonGroup"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/165.html",
+      "review": "核对forecastFrom=4实/虚线边界、历史区间零宽、末端80%±14/95%±26、固定0–160domain及带闭合几何。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chart#interaction-165"
+    },
+    {
+      "id": "176",
+      "name": "版本胶片",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "HistoryGrouped",
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/176.html",
+      "review": "核对选中预览独立live版本、恢复/当前禁用、切换后标记、radius/angle在none与system reduced时duration0。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/history#interaction-176"
+    },
+    {
+      "id": "177",
+      "name": "撤销重做历史",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "Toolbar",
+        "IconButton"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/177.html",
+      "review": "核对最多12历史、undo/redo边界、分支编辑抛弃redo、edits计数不因截断停滞、三种形状操作、减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/history#interaction-177"
+    },
+    {
+      "id": "178",
+      "name": "批量选择操作台",
+      "case": "src/app/components/_migration-selection-preview.tsx",
+      "implementation": "core/src/internal/toolbar-selection.tsx",
+      "prototype": "public/prototype/component-fusion/components/178.html",
+      "checks": "受控选择/全选；归档与撤销；隐藏toolbar inert；焦点恢复；退出row inert；count非法输入归一",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/list#选择与批量操作#interaction-178"
+    },
+    {
+      "id": "179",
+      "name": "文字片段拼接",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/179.html",
+      "review": "核对选择顺序拼接、再次选择删除、清空禁用/恢复、中文无空格英文空格、Solar清空图标及状态。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/other-widget#interaction-179"
+    },
+    {
+      "id": "180",
+      "name": "审批签署",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/180.html",
+      "review": "核对起草→复核→批准、通过/重置状态、三人完成标记及Solar箭头，减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-180"
+    },
+    {
+      "id": "181",
+      "name": "工作分派",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "TaskCard",
+        "Avatar",
+        "ProgressBar",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/181.html",
+      "review": "核对初始负载2/1/3、上限5、共9次可分派、全部满载提示、任务进度和reset、真实TaskCard/ProgressBar组合。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-181"
+    },
+    {
+      "id": "184",
+      "name": "角色权限矩阵",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "DataTable",
+        "Checkbox"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/public/prototype/component-fusion/components/184.html",
+      "review": "核对3×3受控权限、所有者锁定、可操作项aria-label明确、table横向滚动边界、全状态无业务权限副作用。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/table#interaction-184"
+    },
+    {
+      "id": "F01",
+      "name": "附件队列",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "FileUpload",
+        "FileCard",
+        "ChatInputBar"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对多文件唯一ID、重选同文件input复位、失败仅一个uploading项、retry重置0、删除/发送清空、未完成禁止发送；与原型同样需要正文。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/chat#interaction-F01"
+    },
+    {
+      "id": "F02",
+      "name": "工具运行卡",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts.tsx",
+      "targets": [
+        "ThinkingTrace",
+        "ToolChips"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对idle/running/error/cancelled/success、失败保留完成步骤、重试当前步骤、停止/重置、展开明细保留状态，Solar状态图标。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-F02"
+    },
+    {
+      "id": "F03",
+      "name": "列表批量操作",
+      "case": "src/app/components/_migration-selection-preview.tsx",
+      "implementation": "core/src/internal/toolbar-selection.tsx",
+      "prototype": "public/prototype/component-fusion/components/F03.html",
+      "checks": "复用178同一正式组合；选择/清空/归档/撤销；原型非HTML依赖；批量行为非新公共组件",
+      "status": "no_additional_confirmed_finding",
+      "findingIds": [],
+      "sourceReviewed": true,
+      "prototypeCompared": true,
+      "browserVerified": false,
+      "limitations": "本子agent未运行浏览器；所有视觉过渡、手机触摸/真实焦点需由root集中验收。",
+      "findings": [],
+      "href": "/components/list#选择与批量操作#interaction-F03"
+    },
+    {
+      "id": "F04",
+      "name": "生成内容审核",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-recovery.tsx",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对两项独立接受/保留/撤销、删除新增内容显隐、已审核计数、移除动画保留原内容状态，减少动效。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/agent#interaction-F04"
+    },
+    {
+      "id": "F05",
+      "name": "协作席位",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "targets": [
+        "AddMember",
+        "Avatar",
+        "AvatarGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对移除负责人后切下一人、移除全部后添加恢复负责人、候选人不重复、AddMember异步状态/清空选择；Chrome确认面板主题未接入。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [
+        "AC-05"
+      ],
+      "result": "issues_found",
+      "href": "/components/agent#interaction-F05"
+    },
+    {
+      "id": "F06",
+      "name": "搜索无结果恢复",
+      "source": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-recovery.tsx",
+      "targets": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "prototype": "/Users/hesong/Documents/gihub_space/forge/private/component-fusion-lab/features.tsx",
+      "review": "核对设计错词纠正、PDF/最近/团队真实数据过滤、放宽恢复数、草稿应用与取消。原型空态插画动效未保留，列保真核对。",
+      "ssr": "6/6 zh/en x blue/purple/black, actual React markup; no NaN/undefined%",
+      "findings": [],
+      "result": "no_confirmed_issue_in_reviewed_scope",
+      "href": "/components/filter#interaction-F06"
+    }
+  ],
+  "findings": [
+    {
+      "id": "A1",
+      "priority": "P2",
+      "items": [
+        "058"
+      ],
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "line": 15,
+      "title": "章节导航重复扣除滚动容器偏移",
+      "trigger": "点击阅读卡片“精简/验证”或滚动切换当前章节",
+      "impact": "章节跳转位置提前约132px，当前章节高亮提前切换",
+      "evidence": "root Chrome: article.offsetTop=132, section.offsetTop=223, clicked scrollTop=91; 标题距可视区域顶部132.49px。section.offsetTop已相对position:relative article。",
+      "fix": "滚动及current判定使用section.offsetTop，同一坐标系并处理最后一节。"
+    },
+    {
+      "id": "A2",
+      "priority": "P2",
+      "items": [
+        "071"
+      ],
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/internal/swipe-row.tsx",
+      "line": 10,
+      "endLine": 12,
+      "title": "滑动删除接受右键和不匹配的pointerup",
+      "trigger": "右键按下并左拖超过100px；或pointer1拖动后pointer2抬起",
+      "impact": "非主操作/其他手指能够调用不可逆业务onAction",
+      "evidence": "独立JSDOM /tmp/forge-audit-actions-swipe.mjs: RIGHT_DRAG_DELETE_COUNT 1; UNRELATED_POINTER_UP_DELETE_COUNT 2。原型071明确拒绝e.button!==0。",
+      "fix": "down过滤主按钮/isPrimary，up和cancel匹配pointerId，释放capture。"
+    },
+    {
+      "id": "A3",
+      "priority": "P2",
+      "items": [
+        "071"
+      ],
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/actions-feedback.tsx",
+      "line": 31,
+      "endLine": 32,
+      "title": "键盘删除邮件后焦点掉回body",
+      "trigger": "Tab聚焦任一删除按钮并按Enter/Space",
+      "impact": "按钮随行卸载，键盘用户失去列表位置；撤销也未恢复该行焦点",
+      "evidence": "/tmp/forge-audit-actions-flows.log: 071_AFTER_DELETE_ACTIVE_ELEMENT BODY；原型071会聚焦下一行及撤销后的首行。",
+      "fix": "删除前记录邻项/按钮ref，删除后移至下项、上项或空态/撤销；undo聚焦恢复行。"
+    },
+    {
+      "id": "A4",
+      "priority": "P3",
+      "items": [
+        "050"
+      ],
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/styles/tokens.css",
+      "line": 1231,
+      "title": "倾斜卡片光斑写死蓝色",
+      "trigger": "050切换紫色或黑色并悬停卡片",
+      "impact": "主体主题已切换，光斑仍为blue，不符合主题一致性",
+      "evidence": "forge-surface-card[data-effect=\"tilt\"]:before radial-gradient直接使用--color-fg-blue；SurfaceCard无color/token override，case只设置--fusion-accent。静态确定，浏览器截图未采集。",
+      "fix": "使用可覆盖的主题CSS变量并让case传当前主题。"
+    },
+    {
+      "id": "FORM-01",
+      "priority": "P2",
+      "items": [
+        "030"
+      ],
+      "title": "内联日期点击起止标签会清空尚未应用的区间",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/datepicker.tsx",
+      "line": 254,
+      "introduced": true,
+      "evidence": "inline=true时日历已显示但open初值false；选择14–17后点击End，before=[StartOct14,EndOct17]，after=[StartSelect date,EndSelect date]且Apply disabled=true。",
+      "cause": "rangeLabels handler用!open判定重开，未排除inline，setDraft覆盖未提交选择。",
+      "verification": "/tmp/forge-audit-forms-runtime.log INLINE_END_TRIGGER_RESETS_DRAFT; root Chrome confirmed 14–17=3 nights then End resets both and disables Apply",
+      "recommendation": "inline内切换端点不得重新初始化草稿；仅由真正关闭到打开时同步已提交值。",
+      "trigger": "inline=true时日历已显示但open初值false；选择14–17后点击End，before=[StartOct14,EndOct17]，after=[StartSelect date,EndSelect date]且Apply disabled=true。",
+      "impact": "rangeLabels handler用!open判定重开，未排除inline，setDraft覆盖未提交选择。"
+    },
+    {
+      "id": "FORM-02",
+      "priority": "P2",
+      "items": [
+        "030"
+      ],
+      "title": "受控日期外部更新不会同步确认草稿",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/datepicker.tsx",
+      "line": 98,
+      "introduced": true,
+      "evidence": "rangeStart/end由2026-10-14/17改成11-10/12，inline confirmSelection仍显示10月并Apply回调旧值。",
+      "cause": "draft仅useState初始化及toggleOpen同步，始终内联显示无同步路径。",
+      "verification": "/tmp/forge-audit-forms-runtime.log CONTROLLED_RESET",
+      "recommendation": "定义并实现外部值变化与正在编辑draft的同步/取消策略，覆盖异步加载和重置。",
+      "trigger": "rangeStart/end由2026-10-14/17改成11-10/12，inline confirmSelection仍显示10月并Apply回调旧值。",
+      "impact": "draft仅useState初始化及toggleOpen同步，始终内联显示无同步路径。"
+    },
+    {
+      "id": "FORM-03",
+      "priority": "P2",
+      "items": [
+        "030"
+      ],
+      "title": "禁用焦点日期后没有键盘可进入的日期",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/datepicker.tsx",
+      "line": 390,
+      "introduced": true,
+      "evidence": "value=Oct1,minDate=Oct15,inline：31个day中enabledTabStops=0，唯一tabIndex0是disabled Oct1。",
+      "cause": "roving tabIndex基于focusedDate或月初，未寻找当前月可用日期。",
+      "verification": "/tmp/forge-audit-forms-runtime.log MIN_DATE_FOCUS",
+      "recommendation": "聚焦项先clamp到合法范围/首个可选日，月份导航后维持至少一个可用tab stop。",
+      "trigger": "value=Oct1,minDate=Oct15,inline：31个day中enabledTabStops=0，唯一tabIndex0是disabled Oct1。",
+      "impact": "roving tabIndex基于focusedDate或月初，未寻找当前月可用日期。"
+    },
+    {
+      "id": "FORM-04",
+      "priority": "P2",
+      "items": [
+        "030"
+      ],
+      "title": "月末PageDown跳过整个月",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/datepicker.tsx",
+      "line": 164,
+      "introduced": true,
+      "evidence": "2026-01-31按PageDown得到Mar3,2026，无法按预期跳到Feb28。",
+      "cause": "Date.setMonth保留31号产生溢出，PageUp也有同类问题。",
+      "verification": "/tmp/forge-audit-forms-runtime.log PAGE_DOWN_FROM_JAN31",
+      "recommendation": "先设置目标年月，再将日clamp到该月最后一天。",
+      "trigger": "2026-01-31按PageDown得到Mar3,2026，无法按预期跳到Feb28。",
+      "impact": "Date.setMonth保留31号产生溢出，PageUp也有同类问题。"
+    },
+    {
+      "id": "FORM-05",
+      "priority": "P2",
+      "items": [
+        "029"
+      ],
+      "title": "禁用TextField仍允许删除标签",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/forms/text-field.tsx",
+      "line": 107,
+      "introduced": false,
+      "evidence": "disabled=true且传onRemoveTag：input.disabled=true但点移除Forge会调用onRemoveTag一次。54598df8同样存在。",
+      "cause": "onRemove传递未检查isDisabled；标签按钮保持可聚焦/可点击。",
+      "verification": "/tmp/forge-audit-forms-runtime.log DISABLED_TAG_REMOVAL",
+      "recommendation": "禁用状态不渲染可操作移除按钮或禁用按钮并阻止回调；覆盖state=disabled与disabled两入口。",
+      "trigger": "disabled=true且传onRemoveTag：input.disabled=true但点移除Forge会调用onRemoveTag一次。54598df8同样存在。",
+      "impact": "onRemove传递未检查isDisabled；标签按钮保持可聚焦/可点击。"
+    },
+    {
+      "id": "FORM-06",
+      "priority": "P2",
+      "items": [
+        "027"
+      ],
+      "title": "搜索展开动效在空容器初次挂载时就已播放",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/forms-navigation-menus.tsx",
+      "line": 72,
+      "introduced": true,
+      "evidence": "forge-fn-search容器始终挂载，只有内部CommandSearch随open挂载；CSS33行animation无条件声明，data-open未参与任何动画选择器。点击展开只加入内容，无法重启动画。",
+      "verification": "Root Chrome computed animationName forge-fn-search-in / duration .35s unchanged before/after open; source confirms persistent container; no frame-by-frame capture.",
+      "recommendation": "让动画随open进入/退出触发，或用保留退出的MotionPresence；覆盖第二次展开。",
+      "trigger": "forge-fn-search容器始终挂载，只有内部CommandSearch随open挂载；CSS33行animation无条件声明，data-open未参与任何动画选择器。点击展开只加入内容，无法重启动画。",
+      "impact": "搜索展开动效在空容器初次挂载时就已播放"
+    },
+    {
+      "id": "FORM-07",
+      "priority": "P2",
+      "items": [
+        "040",
+        "037",
+        "074"
+      ],
+      "title": "英语case仍暴露内置中文菜单和可访问名称",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/layouts/sidebar-popovers.tsx",
+      "line": 199,
+      "introduced": false,
+      "evidence": "040切英语后ProfileDropdown硬编码编辑资料/修改密码/系统设置/退出登录，无locale可传；导航/折叠aria中文。037 menu aria-label应用切换固定；074未传ButtonGroup ariaLabel默认选项组。",
+      "verification": "源码确认；root可点击040英语头像验证可见文本",
+      "recommendation": "将内置菜单与导航标签纳入本地化，并在正式case传入locale/可访问label。",
+      "trigger": "040切英语后ProfileDropdown硬编码编辑资料/修改密码/系统设置/退出登录，无locale可传；导航/折叠aria中文。037 menu aria-label应用切换固定；074未传ButtonGroup ariaLabel默认选项组。",
+      "impact": "英语case仍暴露内置中文菜单和可访问名称"
+    },
+    {
+      "id": "AC-01",
+      "priority": "P2",
+      "title": "少于六项的反应面板向上导航会产生负索引",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/internal/chat-interactions.tsx",
+      "line": 32,
+      "endLine": 34,
+      "trigger": "给ChatBubble提供5个reactionOptions，打开面板，首项按ArrowUp。",
+      "impact": "cursor=-1，焦点留首项且全部按钮tabIndex=-1，roving focus失效。",
+      "evidence": "独立/tmp/forge-audit-c/run.mjs：before=0 after=0 tabs=[-1,-1,-1,-1,-1]。默认12项掩盖边界。",
+      "recommendation": "使用双取模归一化或按实际行列夹取；增加1/3/5项键盘测试。",
+      "status": "confirmed",
+      "items": [
+        "077"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "priority": "P2",
+      "title": "年度柱图固定柱宽撑破窄屏页面",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-chart.tsx",
+      "line": 95,
+      "endLine": 102,
+      "trigger": "390px视口打开095，切年。",
+      "impact": "12根固定w-8柱加标签最小宽度大于绘图区，整页横向溢出，末月份超屏。",
+      "evidence": "root Chrome：document.scrollWidth458/client375；case.clientWidth311/scrollWidth426；10/11/12月右缘394/426/458；/tmp/forge-audit-chart-095.png。",
+      "recommendation": "柱列min-w-0，并按可用槽位限制柱宽或明确局部横向滚动，避免页面溢出。",
+      "status": "confirmed",
+      "items": [
+        "095"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "priority": "P2",
+      "title": "柱图参考线与柱形不共用数值坐标",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/components/ui/charts/bar-chart.tsx",
+      "line": 63,
+      "endLine": 64,
+      "trigger": "095显示标签及均值参考线，比较参考线位置与柱形绘图区比例。",
+      "impact": "参考值用含标签整高定位，border位于有文本高度span顶部；参考值位置不等于数据值对应y，误导均值比较。",
+      "evidence": "root Chrome年度：外容器192px、柱区168px、参考比例62.9808%、span高17px；实测lineTop=-2568.8047，按柱区应=-2560.6905，偏8.114px。无标签时仍有span高度偏移。",
+      "recommendation": "将reference放入与柱相同绘图区，线用零高层定位、文字独立放置。",
+      "status": "confirmed",
+      "items": [
+        "095"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "priority": "P2",
+      "title": "变更审核中的代码/差异切换没有接入状态",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-editing.tsx",
+      "line": 44,
+      "endLine": 46,
+      "trigger": "打开127待审核状态，点击代码（Code）。",
+      "impact": "可点击tab无反应，无法查看代码视图；示例传递错误的受控组件用法。",
+      "evidence": "/tmp/forge-audit-c/interaction.mjs：点击Code前后pre完全一样，同时显示return7删除行和return3新增行。",
+      "recommendation": "用独立view state和onViewChange，或在固定diff展示时不显示不可用切换控件。",
+      "status": "confirmed",
+      "items": [
+        "127"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "priority": "P2",
+      "title": "协作席位的添加成员面板没有跟随三主题",
+      "file": "/Users/hesong/Documents/gihub_space/forge/core/src/styles/tokens.css",
+      "line": 1016,
+      "endLine": 1021,
+      "trigger": "F05将主题由蓝切到紫或黑。",
+      "impact": "席位切主题但添加成员面板持续青蓝，与本轮蓝/紫/黑约束及主题选择器不一致。",
+      "evidence": "root Chrome：--accent=#7239ea，.forge-member__shell background=rgb(105,216,223)，--forge-member-panel=#69d8df。既有AddMember默认CSS被新case直接带入。",
+      "recommendation": "为AddMember公开/透传accent或在正式组合中明确接入theme变量；保持原生结构动效。",
+      "status": "confirmed",
+      "items": [
+        "F05"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "priority": "P3",
+      "title": "目标刻度的可视金额与朗读单位相差十倍",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/agent-charts-plots.tsx",
+      "line": 81,
+      "endLine": 81,
+      "trigger": "163读滑杆无障碍名称，对比可见Target ¥70K。",
+      "impact": "可见值单位千元，aria-label中英文写万元/10K，辅助技术给出错误金额尺度。",
+      "evidence": "源码和SSR：visible ¥74K / ¥70K，aria-label 季度目标（万元）/Quarterly target (10K)；原型$K一致。",
+      "recommendation": "统一为千元/K，或者整体数值与可见单位都用万元。",
+      "status": "confirmed",
+      "items": [
+        "163"
+      ]
+    },
+    {
+      "id": "AC-07",
+      "priority": "P3",
+      "title": "评价轮播带有未命名且无效的更多按钮",
+      "file": "/Users/hesong/Documents/gihub_space/forge/src/app/components/_fusion/composition-workflow.tsx",
+      "line": 28,
+      "endLine": 28,
+      "trigger": "057评价卡右上更多按钮，鼠标点击或键盘聚焦。",
+      "impact": "按钮无可访问名称且无handler；给用户和读屏提供无效操作。",
+      "evidence": "192次SSR仅057出现无名button；JSDOM读取React props确认onClick为undefined；源core review-item.tsx176–185总渲染该按钮。",
+      "recommendation": "不传onMenuClick时隐藏原生菜单按钮，或case提供真正菜单和本地化名称。",
+      "status": "confirmed",
+      "items": [
+        "057"
+      ]
+    }
+  ]
+}

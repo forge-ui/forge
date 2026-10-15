@@ -39,11 +39,11 @@ export function Section({
       className="flex scroll-mt-24 flex-col gap-5"
     >
       <div className="flex flex-col gap-1.5">
-        <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
+        <h2 className="font-display text-xl font-semibold tracking-fg text-fg-black">
           {componentLabel(title)}
         </h2>
         {description && (
-          <p className="text-base font-normal leading-[1.8] text-fg-grey-900">
+          <p className="text-sm font-normal leading-6 text-fg-grey-900">
             {description}
           </p>
         )}
@@ -64,14 +64,14 @@ export function SubSection({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="text-sm font-semibold text-fg-grey-700 uppercase tracking-fg">
+      <h3 className="text-xs font-medium text-fg-grey-700 tracking-fg">
         {componentLabel(title)}
       </h3>
       <div
         className={
           stack
             ? "flex flex-col items-stretch gap-6 w-full"
-            : "flex flex-wrap items-start gap-3"
+            : "flex flex-wrap items-start gap-6"
         }
       >
         {children}
@@ -88,9 +88,9 @@ export function Labeled({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex min-w-0 max-w-full flex-col items-center gap-2">
       {children}
-      <span className="text-2xs text-fg-grey-500 font-medium">{label}</span>
+      <span className="text-xs text-fg-grey-700 font-normal">{label}</span>
     </div>
   );
 }
@@ -102,7 +102,7 @@ export function PageHeading({ title, hint }: { title: string; hint?: string }) {
         {componentLabel(title)}
       </h1>
       {hint && (
-        <p className="max-w-2xl text-base font-normal leading-[1.8] text-fg-grey-900">
+        <p className="max-w-2xl text-sm font-normal leading-6 text-fg-grey-900">
           {hint}
         </p>
       )}
@@ -128,7 +128,7 @@ export function BareSection({
       data-case-section={componentLabel(title)}
       className={cn("flex scroll-mt-24 flex-col gap-6", className)}
     >
-      <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
+      <h2 className="font-display text-xl font-semibold tracking-fg text-fg-black">
         {componentLabel(title)}
       </h2>
       {children}
@@ -140,8 +140,8 @@ export function BareSection({
 
 export function BarLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="px-6 py-4 bg-fg-grey-100 rounded-lg">
-      <span className="text-fg-black text-base font-bold leading-6 tracking-fg">
+    <div className="py-2 border-b border-fg-grey-200">
+      <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
         {children}
       </span>
     </div>

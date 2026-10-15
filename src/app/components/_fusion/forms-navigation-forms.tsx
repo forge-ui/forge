@@ -5,6 +5,7 @@ import { Accordion, Button, ButtonGroup, CheckboxControl, Checklist, CommentItem
 import { CheckCircleLinear, EyeLinear, LockKeyholeLinear, PenLinear, SunLinear, MoonLinear } from "@forge-ui-official/core/icons";
 import type { FusionExampleProps } from "./types";
 
+import { useActionTimers } from "./actions-shared";
 type Props = FusionExampleProps;
 const text = (p: Props, zh: string, en: string) => p.locale === "zh" ? zh : en;
 const avatar = "/images/protask/crm/linda-blair-avatar.png";
@@ -89,13 +90,15 @@ function ThemeExample(p: Props) {
 }
 
 function NotificationSettings(p: Props) {
+  const { clear, later } = useActionTimers();
+  const [closing, setClosing] = useState(false);
   const [push, setPush] = useState(true), [email, setEmail] = useState(false), [save, setSave] = useState(true), [frequency, setFrequency] = useState(1);
   return <SurfaceCard title={text(p, "通知设置", "Notifications")} action={<span className="text-xs text-fg-grey-700">{Number(push) + Number(email) + Number(save)} {text(p, "项开启", "enabled")}</span>}><div className="flex flex-col gap-5">
-    <div className="flex justify-between gap-4"><div><p>{text(p, "推送通知", "Push notifications")}</p><Note>{text(p, "仅接收提及和回复", "Mentions and replies only")}</Note></div><Toggle checked={push} onChange={setPush} color={p.color} motion={p.motion} ariaLabel={text(p, "推送通知", "Push notifications")} /></div>
-    <div className="flex justify-between gap-4"><p>{text(p, "邮件摘要", "Email digest")}</p><Toggle checked={email} onChange={setEmail} color={p.color} motion={p.motion} ariaLabel={text(p, "邮件摘要", "Email digest")} /></div>
+    <div className="flex justify-between gap-4"><div><p>{text(p, "推送通知", "Push notifications")}</p><Note>{text(p, "仅接收提及和回复", "Mentions and replies only")}</Note></div><Toggle disabled={closing} checked={push} onChange={setPush} color={p.color} motion={p.motion} ariaLabel={text(p, "推送通知", "Push notifications")} /></div>
+    <div className="flex justify-between gap-4"><p>{text(p, "邮件摘要", "Email digest")}</p><Toggle disabled={closing} checked={email} onChange={setEmail} color={p.color} motion={p.motion} ariaLabel={text(p, "邮件摘要", "Email digest")} /></div>
     <div className="forge-fn-collapse" data-open={email} inert={!email || undefined} aria-hidden={!email || undefined}><div><ButtonGroup items={(p.locale === "zh" ? ["每天", "每周", "每月"] : ["Daily", "Weekly", "Monthly"]).map(label => ({ label }))} activeIndex={frequency} onChange={setFrequency} color={p.color} motion={p.motion} ariaLabel={text(p, "摘要频率", "Digest frequency")} /></div></div>
-    <div className="flex justify-between gap-4"><p>{text(p, "自动保存", "Autosave")}</p><Toggle checked={save} onChange={setSave} color={p.color} motion={p.motion} ariaLabel={text(p, "自动保存", "Autosave")} /></div>
-    <Button variant="tertiary" color={p.color} motion={p.motion} onClick={() => { setPush(false); setEmail(false); setSave(false); }}>{text(p, "全部关闭", "Turn all off")}</Button>
+    <div className="flex justify-between gap-4"><p>{text(p, "自动保存", "Autosave")}</p><Toggle disabled={closing} checked={save} onChange={setSave} color={p.color} motion={p.motion} ariaLabel={text(p, "自动保存", "Autosave")} /></div>
+    <Button variant="tertiary" color={p.color} motion={p.motion} disabled={closing} onClick={() => { clear(); setClosing(true); setPush(false); later(() => setEmail(false), p.motion === "none" ? 0 : 160); later(() => { setSave(false); setClosing(false); }, p.motion === "none" ? 0 : 320); }}>{text(p, "全部关闭", "Turn all off")}</Button>
   </div></SurfaceCard>;
 }
 
@@ -180,15 +183,31 @@ function PasswordExample(p: Props) {
 }
 
 function LoginExample(p: Props) {
-  const [email, setEmail] = useState(""), [password, setPassword] = useState(""), [caps, setCaps] = useState(false), [submitted, setSubmitted] = useState(false);
-  return <SurfaceCard title={text(p, "欢迎回来", "Welcome back")}><form className="flex flex-col gap-4" onSubmit={event => { event.preventDefault(); setSubmitted(true); }}><TextField label={text(p, "邮箱", "Email")} type="email" required value={email} onChange={value => { setEmail(value); setSubmitted(false); }} color={p.color} autoComplete="email" /><TextField label={text(p, "密码", "Password")} type="password" required minLength={8} value={password} onChange={value => { setPassword(value); setSubmitted(false); }} color={p.color} autoComplete="current-password" onKeyUp={event => setCaps(event.getModifierState("CapsLock"))} onBlur={() => setCaps(false)} />{caps && <Note>{text(p, "大写锁定已开启", "Caps Lock is on")}</Note>}<Button type="submit" color={p.color} motion={p.motion}>{text(p, "校验登录信息", "Validate sign-in details")}</Button>{submitted && <div className="forge-fn-feedback"><Note>{text(p, "输入已校验，登录结果须由认证服务返回。", "Inputs validated. Your authentication service supplies the sign-in result.")}</Note></div>}</form></SurfaceCard>;
+  const [email, setEmail] = useState(""), [password, setPassword] = useState(""), [caps, setCaps] = useState(false);
+  const [state, setState] = useState<"idle" | "loading" | "error" | "success">("idle");
+  const [fail, setFail] = useState(false);
+  const { clear, later } = useActionTimers();
+  const busy = state === "loading";
+  const edit = (update: () => void) => { clear(); update(); setState("idle"); };
+  return <SurfaceCard title={text(p, "欢迎回来", "Welcome back")}><form className="flex flex-col gap-4" aria-busy={busy} onSubmit={event => { event.preventDefault(); clear(); setState("loading"); later(() => setState(fail ? "error" : "success"), 1200); }}>
+    <TextField label={text(p, "邮箱", "Email")} type="email" required disabled={busy} value={email} onChange={value => edit(() => setEmail(value))} color={p.color} autoComplete="email" />
+    <TextField label={text(p, "密码", "Password")} type="password" required minLength={8} disabled={busy} value={password} onChange={value => edit(() => setPassword(value))} color={p.color} autoComplete="current-password" onKeyUp={event => setCaps(event.getModifierState("CapsLock"))} onBlur={() => setCaps(false)} />
+    {caps && <Note>{text(p, "大写锁定已开启", "Caps Lock is on")}</Note>}
+    <label className="flex items-center gap-2 text-sm"><CheckboxControl checked={fail} onChange={setFail} disabled={busy} aria-label={text(p, "模拟登录失败", "Simulate sign-in failure")} color={p.color} />{text(p, "模拟登录失败", "Simulate sign-in failure")}</label>
+    <Button type="submit" locale={p.locale} color={p.color} motion={p.motion} loading={busy} loadingLabel={text(p, "正在登录…", "Signing in…")} result={state === "success" ? "success" : state === "error" ? "error" : "idle"} resultLabel={state === "error" ? text(p, "重试登录", "Try again") : text(p, "登录成功", "Signed in")}>{text(p, "登录", "Sign in")}</Button>
+    {state === "error" && <p role="alert" className="text-sm text-fg-red">{text(p, "登录失败，请检查信息后重试。", "Sign-in failed. Check your details and try again.")}</p>}
+    {state === "success" && <Note>{text(p, "登录成功，欢迎回来。", "Signed in. Welcome back.")}</Note>}
+    <Note>{text(p, "本地交互演示，不会发送登录信息。", "Local interaction demo. No credentials are sent.")}</Note>
+  </form></SurfaceCard>;
 }
 
 function RegistrationExample(p: Props) {
   const [step, setStep] = useState(0), [values, setValues] = useState(["", "", ""]);
   const labels = p.locale === "zh" ? ["怎么称呼你？", "使用哪个邮箱？", "设置密码"] : ["What should we call you?", "Which email will you use?", "Choose a password"];
   const input = useRef<HTMLInputElement>(null);
-  useEffect(() => { input.current?.focus(); }, [step]);
-  function next(event: FormEvent) { event.preventDefault(); setStep(value => Math.min(3, value + 1)); }
-  return <SurfaceCard title={step < 3 ? labels[step] : text(p, "信息已准备好", "Details ready")}><div className="flex flex-col gap-4"><Stepper total={3} current={Math.min(3, step + 1)} color={p.color} />{step < 3 ? <form onSubmit={next} className="flex flex-col gap-4" key={step}><TextField ref={input} value={values[step]} onChange={value => setValues(items => items.map((item, i) => i === step ? value : item))} type={step === 1 ? "email" : step === 2 ? "password" : "text"} label={labels[step]} color={p.color} required minLength={step === 2 ? 8 : 1} /><Actions>{step > 0 && <Button variant="tertiary" color={p.color} onClick={() => setStep(step - 1)}>{text(p, "上一步", "Back")}</Button>}<Button type="submit" color={p.color}>{text(p, "下一步", "Next")}</Button></Actions></form> : <><Note>{text(p, "资料已完成校验。账号创建和邮件发送由业务接口执行。", "Details validated. Account creation and email delivery belong to your application.")}</Note><Button color={p.color} variant="tertiary" onClick={() => setStep(0)}>{text(p, "重新填写", "Start over")}</Button></>}</div></SurfaceCard>;
+  const focusRequested = useRef(false);
+  useEffect(() => { if (focusRequested.current) { input.current?.focus({ preventScroll: true }); focusRequested.current = false; } }, [step]);
+  function moveTo(nextStep: number) { focusRequested.current = true; setStep(nextStep); }
+  function next(event: FormEvent) { event.preventDefault(); moveTo(Math.min(3, step + 1)); }
+  return <SurfaceCard title={step < 3 ? labels[step] : text(p, "信息已准备好", "Details ready")}><div className="flex flex-col gap-4"><Stepper total={3} current={Math.min(3, step + 1)} color={p.color} />{step < 3 ? <form onSubmit={next} className="flex flex-col gap-4" key={step}><TextField ref={input} value={values[step]} onChange={value => setValues(items => items.map((item, i) => i === step ? value : item))} type={step === 1 ? "email" : step === 2 ? "password" : "text"} label={labels[step]} color={p.color} required minLength={step === 2 ? 8 : 1} /><Actions>{step > 0 && <Button variant="tertiary" color={p.color} onClick={() => moveTo(step - 1)}>{text(p, "上一步", "Back")}</Button>}<Button type="submit" color={p.color}>{text(p, "下一步", "Next")}</Button></Actions></form> : <><Note>{text(p, "资料已完成校验。账号创建和邮件发送由业务接口执行。", "Details validated. Account creation and email delivery belong to your application.")}</Note><Button color={p.color} variant="tertiary" onClick={() => moveTo(0)}>{text(p, "重新填写", "Start over")}</Button></>}</div></SurfaceCard>;
 }

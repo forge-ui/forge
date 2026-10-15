@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { MigrationPreview } from "../_migration-previews";
 import { useState } from "react";
 import { Pagination, Stepper, PageDot } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
@@ -60,11 +58,11 @@ export default function PaginationStepperCasePage() {
         title="Pagination"
         description="切换页码，支持前后翻页和页码省略。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>totalPages</InlineCode> + <InlineCode>currentPage</InlineCode> 受控驱动，<InlineCode>onPageChange</InlineCode> 捕获点击。
           </p>
@@ -73,7 +71,7 @@ export default function PaginationStepperCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种主色。示例用 purple，其余见 cases。
           </p>
@@ -85,22 +83,20 @@ export default function PaginationStepperCasePage() {
         <SubSection title="API" stack>
           <ApiTable rows={PAGINATION_PROPS} />
         </SubSection>
-        <SubSection title="列表翻页" stack>
-          <MigrationPreview kind="pagination" />
-        </SubSection>
+
       </Section>
 
       <Section
         title="Stepper"
         description="展示分步流程的当前位置。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_STEPPER_USAGE}>
             <Stepper total={5} current={3} />
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 色可选，示例为 purple。
           </p>
@@ -118,7 +114,7 @@ export default function PaginationStepperCasePage() {
         title="PageDot"
         description="分页和步骤指示中的单个位置标记。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             传 <InlineCode>onClick</InlineCode> 渲染为 button，否则是 span（用于 ellipsis 或静态展示）。
           </p>
@@ -133,10 +129,6 @@ export default function PaginationStepperCasePage() {
           <ApiTable rows={PAGEDOT_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/pagination-stepper" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

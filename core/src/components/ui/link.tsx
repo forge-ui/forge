@@ -68,7 +68,7 @@ export function StyledLink({
       className={`forge-styled-link inline-flex items-start gap-1 ${linkColors[color]} text-sm font-bold leading-5 tracking-fg hover:underline ${className}`}
     >
       {iconLeft && <span className="w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
-      <span className="forge-action-label">{effect === "roll" && typeof children === "string" ? Array.from(children).map((letter, index) => <span className="forge-roll-letter" key={index} data-letter={letter} style={{ transitionDelay: `${index * 18}ms` }}>{letter === " " ? "\u00a0" : letter}</span>) : children}</span>
+      <span className="forge-action-label">{effect === "roll" && typeof children === "string" ? <><span className="sr-only">{children}</span>{Array.from(children).map((letter, index) => <span aria-hidden="true" className="forge-roll-letter" key={index} data-letter={letter} style={{ transitionDelay: `${index * 18}ms` }}>{letter === " " ? "\u00a0" : letter}</span>)}</> : children}</span>
       {iconRight && <span className="w-5 h-5 flex items-center justify-center">{iconRight}</span>}
     </NextLink>
   );

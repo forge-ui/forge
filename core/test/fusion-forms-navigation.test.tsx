@@ -2,12 +2,16 @@ import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act, useState, type ReactNode } from "react";
 import { renderToString } from "react-dom/server";
+import { DebitCard } from "../src/components/ui/debit-card";
+import { CreditCard } from "../src/components/ui/credit-card";
 import { FileCard } from "../src/components/ui/forms/file-upload";
 import { TextField } from "../src/components/ui/forms/text-field";
 import { Datepicker } from "../src/components/ui/forms/datepicker";
 import { RatingStars } from "../src/components/ui/rating-stars";
 import { TabsContent } from "../src/components/ui/tabs-content";
 import { ButtonGroup } from "../src/components/ui/button-group";
+import { TaskCard } from "../src/components/ui/task-card";
+import { Button } from "../src/components/ui/button";
 import { OtpInput } from "../src/components/ui/otp-input";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -15,7 +19,7 @@ const { test } = require(`${protocol}test`);
 
 async function setup() {
   const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
-  Object.defineProperty(dom.window, "matchMedia", { value: () => ({ matches: true, addEventListener() {}, removeEventListener() {} }) });
+  Object.defineProperty(dom.window, "matchMedia", { configurable: true, value: () => ({ matches: true, addEventListener() {}, removeEventListener() {} }) });
   Object.assign(globalThis, { window: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, Node: dom.window.Node, Element: dom.window.Element, getComputedStyle: dom.window.getComputedStyle.bind(dom.window), IS_REACT_ACT_ENVIRONMENT: true });
   dom.window.HTMLElement.prototype.scrollTo = function (options?: ScrollToOptions | number) { if (options && typeof options === "object") this.scrollLeft = options.left ?? this.scrollLeft; };
   const { createRoot } = await import("react-dom/client");
@@ -112,4 +116,105 @@ test("ButtonGroup supports arrows and Home/End without changing the controlled s
 test("OtpInput English defaults include the accessible input and hint", () => {
   const html = renderToString(<OtpInput locale="en" motion="none" />);
   assert.match(html, /Verification code/); assert.match(html, /Enter your verification code/); assert.doesNotMatch(html, /验证码/);
+});
+
+test("TabsContent keeps the latest controlled request through intermediate smooth-scroll events", async () => {
+  const env = await setup(), changes: (string | number)[] = [];
+  Object.defineProperty(env.dom.window, "matchMedia", { configurable: true, value: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) });
+  env.dom.window.HTMLElement.prototype.scrollTo = function () {};
+  const panels = [0, 1, 2, 3].map(key => ({ key, content: `Panel ${key}` }));
+  try {
+    await env.render(<TabsContent activeKey={0} panels={panels} onActiveKeyChange={key => changes.push(key)} />);
+    const scroller = document.querySelector<HTMLElement>('[data-tabs-transition="swipe"]')!;
+    Object.defineProperty(scroller, "clientWidth", { value: 300 });
+    await env.render(<TabsContent activeKey={3} panels={panels} onActiveKeyChange={key => changes.push(key)} />);
+    await env.render(<TabsContent activeKey={1} panels={panels} onActiveKeyChange={key => changes.push(key)} />);
+    await act(async () => { scroller.scrollLeft = 600; scroller.dispatchEvent(new env.dom.window.Event("scroll", { bubbles: true })); });
+    assert.deepEqual(changes, []);
+    await act(async () => { scroller.scrollLeft = 300; scroller.dispatchEvent(new env.dom.window.Event("scroll", { bubbles: true })); });
+    assert.deepEqual(changes, []);
+    await act(async () => { scroller.dispatchEvent(new env.dom.window.Event("wheel", { bubbles: true })); scroller.scrollLeft = 600; scroller.dispatchEvent(new env.dom.window.Event("scroll", { bubbles: true })); });
+    assert.deepEqual(changes, [2]);
+  } finally { await env.close(); }
+});
+
+ test("TaskCard formats finite bounded progress and localizes its label", () => {
+  const html = renderToString(<TaskCard title="Task" progress={100 / 9} locale="en" />);
+  assert.match(html, /Progress/); assert.match(html, /11<!-- -->%/); assert.doesNotMatch(html, /111111/);
+  assert.match(renderToString(<TaskCard title="任务" progress={Infinity} />), /0<!-- -->%/);
+});
+ test("rolling button keeps a single readable label and hides decorative letter copies", () => {
+  const dom = new JSDOM(renderToString(<Button effect="roll">浏览作品</Button>));
+  assert.equal(dom.window.document.querySelector(".sr-only")?.textContent, "浏览作品");
+  assert.equal(dom.window.document.querySelectorAll('.forge-roll-letter[aria-hidden="true"]').length, 4);
+  dom.window.close();
+});
+
+test("OtpInput error reset never clears a newer edited code", async () => {
+  const env = await setup();
+  try {
+    await env.render(<OtpInput verify={() => false} />);
+    const input = document.querySelector<HTMLInputElement>('input')!;
+    const setter = Object.getOwnPropertyDescriptor(env.dom.window.HTMLInputElement.prototype, "value")!.set!;
+    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    assert.equal(document.querySelector(".forge-otp")?.getAttribute("data-status"), "err");
+    await act(async () => { setter.call(input, "12"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 400)); });
+    assert.equal(input.value, "12");
+  } finally { await env.close(); }
+});
+
+test("OtpInput controlled error reset survives unrelated parent updates and uses the latest callback", async () => {
+  const env = await setup();
+  let refresh: () => void = () => {};
+  const clearedAt: number[] = [];
+  function Parent() {
+    const [code, setCode] = useState("");
+    const [tick, setTick] = useState(0);
+    refresh = () => setTick(value => value + 1);
+    return <OtpInput value={code} motion="none" verify={() => false} onChange={value => { setCode(value); if (!value) clearedAt.push(tick); }} />;
+  }
+  try {
+    await env.render(<Parent />);
+    const input = document.querySelector<HTMLInputElement>("input")!;
+    const setter = Object.getOwnPropertyDescriptor(env.dom.window.HTMLInputElement.prototype, "value")!.set!;
+    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    assert.equal(document.querySelector(".forge-otp")?.getAttribute("data-status"), "err");
+    for (let i = 0; i < 16; i++) {
+      await act(async () => { await new Promise(resolve => setTimeout(resolve, 100)); refresh(); });
+      if (i === 3) assert.equal(input.value, "000000", "reduced motion keeps the error readable");
+    }
+    assert.equal(input.value, "");
+    assert.equal(clearedAt.length, 1);
+    assert.ok(clearedAt[0] > 0, "reset calls the latest callback, not the first render's closure");
+  } finally { await env.close(); }
+});
+
+test("OtpInput preserves the full error animation and does not steal focus on reset", async () => {
+  const env = await setup();
+  Object.defineProperty(env.dom.window, "matchMedia", { configurable: true, value: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) });
+  try {
+    await env.render(<><OtpInput verify={() => false} /><button>Continue elsewhere</button></>);
+    const input = document.querySelector<HTMLInputElement>("input")!;
+    const setter = Object.getOwnPropertyDescriptor(env.dom.window.HTMLInputElement.prototype, "value")!.set!;
+    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    const next = document.querySelector<HTMLButtonElement>("button")!;
+    next.focus();
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 1200)); });
+    assert.equal(input.value, "000000", "error does not clear at the old 1100ms cutoff");
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 350)); });
+    assert.equal(input.value, "");
+    assert.equal(document.activeElement, next);
+  } finally { await env.close(); }
+});
+
+
+test("financial card labels default to Chinese and allow English or custom wording", () => {
+  assert.match(renderToString(<DebitCard />), /余额/);
+  assert.match(renderToString(<DebitCard locale="en" />), /Balance/);
+  assert.match(renderToString(<DebitCard balanceLabel="可用金额" />), /可用金额/);
+  const english = renderToString(<CreditCard locale="en" />);
+  assert.match(english, /Card number/);
+  assert.match(english, /Name/);
+  assert.match(renderToString(<CreditCard holderNameLabel="持卡人" />), /持卡人/);
 });

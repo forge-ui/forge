@@ -368,3 +368,28 @@ Toolbar 不传 selection 时保留原结构。启用批量模式后持续传入�
 - `AppLayout` 的个人菜单和导航名称跟随 `language`；单独使用 `ProfileDropdown`、`AppSwitcherDropdown` 或 `TeamSwitcherDropdown` 时可传 `locale="en"`，默认中文。
 - `ReviewItem variant="card"` 仅在传入 `onMenuClick` 时显示菜单按钮，可用 `menuLabel` 设置本地化名称。
 - `SurfaceCard effect="tilt"` 的光斑默认继承 `--accent`，也可通过 `--forge-surface-accent` 单独指定主题色。
+
+### 任务进度与验证码反馈
+
+`TaskCard` 支持 `locale="zh" | "en"`（默认中文）及 `progressLabel` 自定义进度标题。百分比按整数显示，并限制在 0–100；无效数值显示 0。
+
+`OtpInput` 验证失败后会在错误反馈结束后清空输入；传 `clearOnError={false}` 可保留输入供用户编辑。受控模式通过 `onChange("")` 通知业务方清空，业务方仍持有最终值。
+
+### 仅发送附件
+
+`ChatInputBar` 的附件队列由业务方管理。附件已准备好时传 `hasAttachments`，即可在没有文字时发送；上传中或失败时通过 `sendDisabled` 阻止发送。此时 `onSend` 的 `message` 可以为空字符串，业务方从自己的队列读取附件，并在发送成功后清空队列。仅传 `attachments` 展示节点不会自动开启发送。
+
+```tsx
+<ChatInputBar
+  attachments={<AttachmentQueue files={files} />}
+  hasAttachments={files.length > 0}
+  sendDisabled={files.some(file => file.state !== "success")}
+  onSend={message => sendMessage({ message, files })}
+/>
+```
+
+### 智能体界面的默认文案
+
+`AgentTaskRows`、`ApprovalCard`、`ContextCards`、`RecommendationCard`、`InsightCards`、`AgentFlowchart`、`AgentDiffTable` 默认中文，传 `locale="en"` 切换内置英文；已有文案覆盖参数优先。`DebitCard` 和 `CreditCard` 同样支持 `locale` 及标签覆盖。业务传入的任务、选项和内容仍由业务方翻译。
+
+`ApprovalCard` 选中后留在当前题，通过“继续”前进，可返回修改；“跳过”会清除当前题答案。最后一题分别显示“提交”和“跳过并提交”，提交成功后播报结果并承接焦点；`skipSubmitLabel` 可覆盖最后一题跳过按钮。

@@ -16,25 +16,17 @@ import {
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
-const notificationColors: NotificationBadgeColor[] = [
-  "purple", "orange", "green", "yellow", "cyan", "black",
-];
+const notificationColors: NotificationBadgeColor[] = ["purple", "black"];
 
-const labelColors: LabelColor[] = [
-  "purple", "blue", "cyan", "green", "red", "yellow", "gray",
-];
+const labelColors: LabelColor[] = ["purple", "blue", "gray"];
 const labelSizes: LabelSize[] = ["sm", "md", "lg"];
 const labelVariants: LabelVariant[] = ["outline", "solid"];
 
-const circleColors: CircleIconColor[] = [
-  "purple", "blue", "red", "orange", "green", "yellow", "cyan", "black",
-];
+const circleColors: CircleIconColor[] = ["purple", "blue", "black"];
 const circleSizes: CircleIconSize[] = ["xs", "sm", "md", "lg"];
 const circleVariants: CircleIconVariant[] = ["solid", "light", "neutral"];
 
-const artisticColors: ArtisticIconColor[] = [
-  "black", "blue", "purple", "green", "red", "yellow", "cyan",
-];
+const artisticColors: ArtisticIconColor[] = ["black", "blue", "purple"];
 const artisticVariants: ArtisticIconVariant[] = ["gradient", "orbs"];
 
 // Forge icon 默认继承 currentColor，variant 内部显式传 color 以固定主题色
@@ -51,8 +43,8 @@ export default function BadgeCasePage() {
       />
 
       {/* ============ NotificationBadge ============ */}
-      <Section title="Notification" description="圆形数字徽章，6 色。">
-        <SubSection title="Colors">
+      <Section title="通知" description="圆形数字徽章，6 色。">
+        <SubSection title="颜色">
           {notificationColors.map((c) => (
             <Labeled key={c} label={c}>
               <NotificationBadge color={c}>99+</NotificationBadge>
@@ -66,7 +58,7 @@ export default function BadgeCasePage() {
         <SubSection title="Variants (purple, md)">
           {labelVariants.map((v) => (
             <Labeled key={v} label={v}>
-              <Label color="purple" variant={v} size="md">Purple</Label>
+              <Label color="purple" variant={v} size="md">紫色</Label>
             </Labeled>
           ))}
         </SubSection>
@@ -74,7 +66,7 @@ export default function BadgeCasePage() {
         <SubSection title="Sizes (purple, outline)">
           {labelSizes.map((s) => (
             <Labeled key={s} label={s}>
-              <Label color="purple" variant="outline" size={s}>Purple</Label>
+              <Label color="purple" variant="outline" size={s}>紫色</Label>
             </Labeled>
           ))}
         </SubSection>

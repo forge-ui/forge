@@ -18,9 +18,15 @@ export const componentsNavGroups: NavGroup[] = [
     ],
   },
   {
+    title: "智能体",
+    items: [
+      { href: "/components/agent", label: "智能体组件" },
+      { href: "/components/chat-input-bar", label: "消息输入栏" },
+    ],
+  },
+  {
     title: "组件",
     items: [
-      { href: "/components/agent", label: "智能体" },
       { href: "/components/badge", label: "徽章与标签" },
       { href: "/components/button-link", label: "按钮与链接" },
       { href: "/components/calendar", label: "日历与日程" },
@@ -36,9 +42,8 @@ export const componentsNavGroups: NavGroup[] = [
       { href: "/components/list", label: "列表" },
       { href: "/components/map", label: "地图" },
       { href: "/components/menu", label: "菜单" },
+      { href: "/components/menu-sections", label: "应用布局" },
       { href: "/components/modal", label: "确认弹窗" },
-      { href: "/components/motion", label: "交互动效" },
-      { href: "/components/other-widget", label: "实用组件" },
       { href: "/components/page-header", label: "页面顶栏" },
       { href: "/components/pagination-stepper", label: "分页与步骤" },
       { href: "/components/progress", label: "进度" },
@@ -51,8 +56,6 @@ export const componentsNavGroups: NavGroup[] = [
   {
     title: "参考",
     items: [
-      { href: "/components/interactions", label: "交互示例" },
-      { href: "/cases", label: "组件矩阵", external: true },
       { href: "/docs", label: "文档", external: true },
       { href: "/templates", label: "模板", external: true },
     ],

@@ -41,6 +41,8 @@ test("99 planned interactions have one implementation, valid family routes, and 
   assert.equal(ids.includes("186"), false);
   for (const item of examples.fusionItems) {
     const route = examples.officialHref(item).split("#")[0];
+    assert.ok(route.startsWith("/components/"), `${item.id}: every example belongs beside its component`);
+    assert.notEqual(examples.officialCategory(item), "motion");
     assert.ok(existsSync(resolve(root, `src/app${route}/page.tsx`)), `${item.id}: ${route}`);
   }
 });
@@ -145,5 +147,13 @@ test("audit regressions: code view switches and deletion/undo retain list focus"
   } finally {
     await React.act(async()=>app.unmount()); dom.window.close();
     for (const [key,descriptor] of saved) { if(descriptor) Object.defineProperty(globalThis,key,descriptor); else delete globalThis[key]; }
+  }
+});
+
+
+test("published example code matches the running source files", () => {
+  const sources = JSON.parse(readFileSync(resolve(root, "src/app/components/_example-sources.json"), "utf8"));
+  for (const [file, content] of Object.entries(sources)) {
+    assert.equal(content, readFileSync(resolve(root, file), "utf8"), `${file}: regenerate pnpm docs:examples after changing an example`);
   }
 });

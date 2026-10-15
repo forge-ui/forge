@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Checkbox, ChatInputBar, StreamingAnswer } from "@forge-ui-official/core";
+import { demoSources } from "./_sources";
 import { useDemoStream } from "@/app/_demos/use-demo-stream";
 
 const SAMPLE_ANSWER = `一个舒服的阅读角，可以从一张桌子、一盏灯和几本书开始。
@@ -81,7 +82,7 @@ export function ChatInputBarGenerationDemo() {
         )}
       </div>
 
-      <ChatInputBar multiline sendOnEnter
+      <ChatInputBar sources={demoSources} multiline sendOnEnter
         value={draft}
         onChange={setDraft}
         onSend={(message) => { setSubmitted(message); stream.start(); }}

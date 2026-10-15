@@ -8,12 +8,13 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "pnpm core:build && next dev",
-    "build": "pnpm core:build && next build",
+    "dev": "pnpm docs:examples && pnpm core:build && next dev",
+    "build": "pnpm docs:examples && pnpm core:build && next build",
     "start": "next start",
     "lint": "eslint",
     "license:check": "node scripts/check-production-licenses.mjs",
     "typecheck": "pnpm core:typecheck && tsc --noEmit",
+    "docs:examples": "node scripts/generate-component-example-sources.mjs",
     "docs:llms": "node scripts/generate-llms-docs.mjs",
     "core:build": "pnpm --filter @forge-ui-official/core build",
     "core:typecheck": "pnpm --filter @forge-ui-official/core typecheck",
