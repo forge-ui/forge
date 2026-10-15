@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ConfirmationDialog } from "@forge-ui-official/core";
 import {
   DangerBold,
@@ -18,10 +17,10 @@ const CODE_IMPORT = `import { ConfirmationDialog } from "@forge-ui-official/core
 const CODE_USAGE = `<ConfirmationDialog
   color="red"
   layout="spread"
-  title="Delete this item?"
-  description="This action can't be undone"
-  confirmLabel="Delete"
-  cancelLabel="Cancel"
+  title="确认删除此项？"
+  description="此操作无法撤销"
+  confirmLabel="删除"
+  cancelLabel="取消"
   icon={<DangerBold size={32} color="currentColor" />}
 />`;
 
@@ -103,11 +102,11 @@ export default function ModalCasePage() {
         title="ConfirmationDialog"
         description="在重要操作前说明影响，让用户确认或取消。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             传入 <InlineCode>title</InlineCode> / <InlineCode>description</InlineCode> / <InlineCode>icon</InlineCode>，color 决定主按钮色。
           </p>
@@ -115,16 +114,16 @@ export default function ModalCasePage() {
             <ConfirmationDialog
               color="red"
               layout="spread"
-              title="Delete this item?"
-              description="Lorem ipsum dolor sit amet lorem? This action can't be undone"
-              confirmLabel="Delete"
-              cancelLabel="Cancel"
+              title="确认删除此项？"
+              description="删除后无法恢复，请确认是否继续。"
+              confirmLabel="删除"
+              cancelLabel="取消"
               icon={<DangerBold size={32} color="currentColor" />}
             />
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             5 种语义色：<InlineCode>red</InlineCode> 危险 / <InlineCode>green</InlineCode> 成功 / <InlineCode>yellow</InlineCode> 警示 / <InlineCode>purple</InlineCode> 推广 / <InlineCode>blue</InlineCode> 通知。
           </p>
@@ -133,53 +132,53 @@ export default function ModalCasePage() {
               <ConfirmationDialog
                 color="red"
                 layout="spread"
-                title="Delete?"
-                description="This action can't be undone"
-                confirmLabel="Delete"
-                cancelLabel="Cancel"
+                title="确认删除？"
+                description="此操作无法撤销"
+                confirmLabel="删除"
+                cancelLabel="取消"
                 icon={<DangerBold size={32} color="currentColor" />}
               />
               <ConfirmationDialog
                 color="green"
                 layout="spread"
-                title="Send message?"
-                description="Your reply will be visible to all members"
-                confirmLabel="Send"
-                cancelLabel="Cancel"
+                title="发送消息？"
+                description="所有成员都能看到你的回复"
+                confirmLabel="发送"
+                cancelLabel="取消"
                 icon={<PlainBold size={32} color="currentColor" />}
               />
               <ConfirmationDialog
                 color="yellow"
                 layout="spread"
-                title="Unsaved changes"
-                description="Do you want to save before leaving?"
-                confirmLabel="Yes, Save"
-                cancelLabel="Don't Save"
+                title="有未保存的修改"
+                description="离开前要保存修改吗？"
+                confirmLabel="保存修改"
+                cancelLabel="不保存"
                 icon={<DangerTriangleBold size={32} color="currentColor" />}
               />
               <ConfirmationDialog
                 color="purple"
                 layout="spread"
-                title="Upgrade now?"
-                description="Unlock all Pro features for $12/month"
-                confirmLabel="Upgrade"
-                cancelLabel="Cancel"
+                title="立即升级？"
+                description="每月 ¥88，解锁全部专业版功能"
+                confirmLabel="升级"
+                cancelLabel="取消"
                 icon={<RocketBold size={32} color="currentColor" />}
               />
               <ConfirmationDialog
                 color="blue"
                 layout="spread"
-                title="Enable notifications?"
-                description="You'll get alerts for key activities"
-                confirmLabel="Activate"
-                cancelLabel="Cancel"
+                title="开启通知？"
+                description="重要动态发生时会收到提醒"
+                confirmLabel="开启"
+                cancelLabel="取消"
                 icon={<BellBold size={32} color="currentColor" />}
               />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Layout" stack>
+        <SubSection title="布局" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>spread</InlineCode> 居中对齐，按钮左右铺开；<InlineCode>right</InlineCode> 文案左对齐，按钮靠右。
           </p>
@@ -188,19 +187,19 @@ export default function ModalCasePage() {
               <ConfirmationDialog
                 color="red"
                 layout="spread"
-                title="Spread layout"
-                description="Centered, buttons span full width"
-                confirmLabel="Delete"
-                cancelLabel="Cancel"
+                title="两端展开布局"
+                description="内容居中，按钮铺满宽度"
+                confirmLabel="删除"
+                cancelLabel="取消"
                 icon={<DangerBold size={32} color="currentColor" />}
               />
               <ConfirmationDialog
                 color="red"
                 layout="right"
-                title="Right layout"
-                description="Text left-aligned, buttons on the right"
-                confirmLabel="Delete"
-                cancelLabel="Cancel"
+                title="右侧操作布局"
+                description="文案左对齐，操作按钮位于右侧"
+                confirmLabel="删除"
+                cancelLabel="取消"
                 icon={<DangerBold size={32} color="currentColor" />}
               />
             </div>
@@ -211,10 +210,6 @@ export default function ModalCasePage() {
           <ApiTable rows={PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/modal" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

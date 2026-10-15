@@ -7,9 +7,7 @@ import {
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
-const progressColors: ProgressColor[] = [
-  "purple", "blue", "green", "red", "orange", "yellow", "cyan", "gray",
-];
+const progressColors: ProgressColor[] = ["purple", "blue", "gray"];
 const progressSizes: ProgressSize[] = ["sm", "md"];
 const labelVariants: ProgressLabelVariant[] = ["default", "value"];
 const labelSizes: ProgressLabelSize[] = ["xs", "sm"];
@@ -53,7 +51,7 @@ export default function ProgressCasePage() {
                   <ProgressBar
                     value={65}
                     color="purple"
-                    label={v === "value" ? "$400" : "Progress"}
+                    label={v === "value" ? "$400" : "进度"}
                     labelVariant={v}
                     labelSize={ls}
                     showPercentage
@@ -77,7 +75,7 @@ export default function ProgressCasePage() {
                 <ProgressBar
                   value={65}
                   color={c}
-                  label="Progress"
+                  label="进度"
                   labelVariant="default"
                   showPercentage
                 />
@@ -107,13 +105,13 @@ export default function ProgressCasePage() {
         title="Progress Bar — On Dark"
         description="深色卡片背景上使用，track 半透明，label / % 变白。"
       >
-        <SubSection title="Dark surface" >
+        <SubSection title="深色背景" >
           {progressColors.map((c) => (
             <div key={c} className="p-5 bg-fg-black rounded-xl w-64">
               <ProgressBar
                 value={65}
                 color={c}
-                label="Progress"
+                label="进度"
                 labelVariant="default"
                 showPercentage
                 onDark

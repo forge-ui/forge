@@ -63,15 +63,15 @@ const selectTypes: SelectOptionType[] = ["general", "single", "multiple", "image
 const controlColors: ControlColor[] = ["purple", "blue", "black"];
 
 const demoOptions = [
-  { value: "a", label: "Option A" },
-  { value: "b", label: "Option B" },
-  { value: "c", label: "Option C" },
+  { value: "a", label: "选项甲" },
+  { value: "b", label: "选项乙" },
+  { value: "c", label: "选项丙" },
 ];
 
 const imageOptions = [
-  { value: "1", label: "Sneakers", image: "https://placehold.co/40x40/EBEBEB/333?text=1" },
-  { value: "2", label: "Bag", image: "https://placehold.co/40x40/EBEBEB/333?text=2" },
-  { value: "3", label: "Watch", image: "https://placehold.co/40x40/EBEBEB/333?text=3" },
+  { value: "1", label: "运动鞋", image: "https://placehold.co/40x40/EBEBEB/333?text=1" },
+  { value: "2", label: "背包", image: "https://placehold.co/40x40/EBEBEB/333?text=2" },
+  { value: "3", label: "手表", image: "https://placehold.co/40x40/EBEBEB/333?text=3" },
 ];
 
 const demoFiles: FileItem[] = [
@@ -127,7 +127,7 @@ export default function InputFieldCasePage() {
                     color={c}
                     state={st}
                     shape="rounded"
-                    placeholder="Placeholder"
+                    placeholder="请输入内容"
                     value={st === "filled" ? "Entered text" : undefined}
                     errorMessage={st === "error" ? "Error message goes here" : undefined}
                   />
@@ -145,7 +145,7 @@ export default function InputFieldCasePage() {
                     color={c}
                     state={st}
                     shape="pill"
-                    placeholder="Placeholder"
+                    placeholder="请输入内容"
                     value={st === "filled" ? "Entered text" : undefined}
                     errorMessage={st === "error" ? "Error message goes here" : undefined}
                   />
@@ -165,7 +165,7 @@ export default function InputFieldCasePage() {
           <Labeled label="icon-left">
             <div className="w-64">
               <TextField
-                placeholder="Search..."
+                placeholder="搜索…"
                 iconLeft={<MagniferLinear size={18} color="currentColor" />}
               />
             </div>
@@ -180,13 +180,13 @@ export default function InputFieldCasePage() {
           </Labeled>
           <Labeled label="suffix unit">
             <div className="w-64">
-              <TextField placeholder="Height" suffix="cm" />
+              <TextField placeholder="高度" suffix="cm" />
             </div>
           </Labeled>
           <Labeled label="password">
             <div className="w-64">
               <TextField
-                placeholder="Password"
+                placeholder="密码"
                 iconRight={<EyeLinear size={18} color="currentColor" />}
               />
             </div>
@@ -199,20 +199,20 @@ export default function InputFieldCasePage() {
         title="Text Field - With Label"
         description="带 label 的输入框，可加 headerAction（帮助链接等）。"
       >
-        <SubSection title="Inside Label">
+        <SubSection title="内嵌标签">
           <Labeled label="plain">
             <div className="w-64">
-              <TextField label="Email" placeholder="you@example.com" />
+              <TextField label="邮箱" placeholder="you@example.com" />
             </div>
           </Labeled>
           <Labeled label="with helper link">
             <div className="w-64">
               <TextField
-                label="Password"
+                label="密码"
                 placeholder="••••••••"
                 headerAction={
                   <a href="#" className="text-xs font-semibold text-fg-violet hover:underline">
-                    Forgot?
+                    忘记密码？
                   </a>
                 }
               />
@@ -221,7 +221,7 @@ export default function InputFieldCasePage() {
           <Labeled label="error with message">
             <div className="w-64">
               <TextField
-                label="Username"
+                label="用户名"
                 state="error"
                 value="inv@lid"
                 errorMessage="Only letters and numbers allowed"
@@ -244,11 +244,11 @@ export default function InputFieldCasePage() {
                   color={c}
                   state="filled"
                   tags={[
-                    { label: "Design", value: "design" },
-                    { label: "Product", value: "product" },
-                    { label: "Research", value: "research" },
+                    { label: "设计", value: "design" },
+                    { label: "商品", value: "product" },
+                    { label: "调研", value: "research" },
                   ]}
-                  placeholder="Add tag..."
+                  placeholder="添加标签…"
                 />
               </div>
             </Labeled>
@@ -261,11 +261,11 @@ export default function InputFieldCasePage() {
         title="Text Field + Select Suffix"
         description="输入 + 尾部下拉，常用于币种/单位切换。Suffix 组件挂在 TextField 的 suffix slot 里。"
       >
-        <SubSection title="Currency amount">
+        <SubSection title="金额">
           <Labeled label="USD / EUR / CNY">
             <div className="w-72">
               <TextField
-                label="Amount"
+                label="金额"
                 placeholder="0.00"
                 suffix={
                   <TextFieldSelectSuffix
@@ -290,7 +290,7 @@ export default function InputFieldCasePage() {
               <div className="w-72">
                 <TextArea
                   state={st}
-                  placeholder="Write a short description..."
+                  placeholder="填写简短说明…"
                   value={st === "filled" ? "Entered multiline text goes here." : undefined}
                   errorMessage={st === "error" ? "This field is required" : undefined}
                   rows={4}
@@ -302,7 +302,7 @@ export default function InputFieldCasePage() {
         <SubSection title="With label">
           <Labeled label="plain">
             <div className="w-72">
-              <TextArea label="Description" placeholder="Enter description" rows={4} />
+              <TextArea label="说明" placeholder="输入说明" rows={4} />
             </div>
           </Labeled>
         </SubSection>
@@ -338,7 +338,7 @@ export default function InputFieldCasePage() {
               <SelectOption
                 type="single"
                 options={demoOptions}
-                placeholder="Select option"
+                placeholder="选择选项"
                 value={st === "disabled" ? "a" : undefined}
                 state={st}
                 color="purple"
@@ -356,11 +356,11 @@ export default function InputFieldCasePage() {
       >
         <SubSection title="BG variants">
           <Labeled label="white bg">
-            <SelectOption type="general" options={demoOptions} placeholder="White bg" bgVariant="white" />
+            <SelectOption type="general" options={demoOptions} placeholder="白色背景" bgVariant="white" />
           </Labeled>
           <Labeled label="grey bg (in grey section)">
             <div className="p-4 bg-fg-grey-100 rounded-xl">
-              <SelectOption type="general" options={demoOptions} placeholder="Grey section" bgVariant="grey" />
+              <SelectOption type="general" options={demoOptions} placeholder="灰色区域" bgVariant="grey" />
             </div>
           </Labeled>
         </SubSection>
@@ -374,7 +374,7 @@ export default function InputFieldCasePage() {
         <SubSection title="States (purple, rounded)">
           {(["idle", "focus", "filled", "disabled", "error"] as DatepickerState[]).map((st) => (
             <Labeled key={st} label={st}>
-              <Datepicker state={st} placeholder="Select date" color="purple" />
+              <Datepicker state={st} placeholder="选择日期" color="purple" />
             </Labeled>
           ))}
         </SubSection>
@@ -382,7 +382,7 @@ export default function InputFieldCasePage() {
           {fieldColors.map((c) =>
             (["rounded", "pill"] as DatepickerShape[]).map((sh) => (
               <Labeled key={`${c}-${sh}`} label={`${c} / ${sh}`}>
-                <Datepicker color={c as DatepickerColor} shape={sh} placeholder="Pick date" />
+                <Datepicker color={c as DatepickerColor} shape={sh} placeholder="选择日期" />
               </Labeled>
             )),
           )}
@@ -394,10 +394,10 @@ export default function InputFieldCasePage() {
         title="Media Upload"
         description="图片拖拽上传，3 色。ProfileImgUpload 是头像版。"
       >
-        <SubSection title="Colors">
+        <SubSection title="颜色">
           {(["purple", "blue", "black"] as MediaUploadColor[]).map((c) => (
             <Labeled key={c} label={c}>
-              <MediaUpload color={c} label="Product images" items={demoMedia} />
+              <MediaUpload color={c} label="商品图片" items={demoMedia} />
             </Labeled>
           ))}
         </SubSection>
@@ -417,7 +417,7 @@ export default function InputFieldCasePage() {
         description="FileUpload（列表 + 按钮）+ FileCard（单条）+ FileTypeIcon（图标）。"
       >
         <SubSection title="File Upload (purple, with files)">
-          <FileUpload label="Attachments" color="purple" files={demoFiles} />
+          <FileUpload label="附件" color="purple" files={demoFiles} />
         </SubSection>
         <SubSection title="Colors (2 files each)">
           {(["purple", "blue", "black"] as FileUploadColor[]).map((c) => (
@@ -485,10 +485,10 @@ export default function InputFieldCasePage() {
 
         <SubSection title="Checkbox With Label">
           <Labeled label="left">
-            <CheckboxWithLabel checked label="Subscribe to updates" />
+            <CheckboxWithLabel checked label="订阅更新" />
           </Labeled>
           <Labeled label="right">
-            <CheckboxWithLabel checked label="I agree to terms" checkboxPosition="right" />
+            <CheckboxWithLabel checked label="我同意服务条款" checkboxPosition="right" />
           </Labeled>
         </SubSection>
       </Section>
@@ -520,7 +520,7 @@ export default function InputFieldCasePage() {
 
         <SubSection title="Icon Selector (full, 点击展开)">
           <IconSelector
-            label="Select an icon"
+            label="选择图标"
             icons={iconSet}
             labels={iconLabels}
             selectedIndex={selectedIcon}

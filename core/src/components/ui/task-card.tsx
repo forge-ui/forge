@@ -30,6 +30,8 @@ export function TaskCard({
   labelColor = "red",
   progress = 0,
   progressColor = "purple",
+  locale = "zh",
+  progressLabel,
   avatars = [],
   overflowCount,
   date,
@@ -43,6 +45,8 @@ export function TaskCard({
   labelColor?: TaskCardColor;
   progress?: number;
   progressColor?: TaskCardColor;
+  locale?: "zh" | "en";
+  progressLabel?: string;
   avatars?: string[];
   overflowCount?: number;
   date?: string;
@@ -51,6 +55,7 @@ export function TaskCard({
   width?: CardWidth;
   className?: string;
 }) {
+  const percentage = Number.isFinite(progress) ? Math.round(Math.min(100, Math.max(0, progress))) : 0;
   const pColor = cardColors[progressColor];
   const lColor = cardColors[labelColor];
 
@@ -71,7 +76,7 @@ export function TaskCard({
             </div>
           )}
           {onMenuClick && (
-            <button type="button" aria-label="更多操作" onClick={onMenuClick} className="w-6 h-6 p-2 flex justify-center items-center cursor-pointer">
+            <button type="button" aria-label={locale === "en" ? "More actions" : "更多操作"} onClick={onMenuClick} className="w-6 h-6 p-2 flex justify-center items-center cursor-pointer">
               <span className="rotate-90">
                 <MenuDotsBold size={16} color="var(--fg-grey-700)" />
               </span>
@@ -89,15 +94,15 @@ export function TaskCard({
       {/* Progress */}
       <div className="self-stretch flex flex-col justify-start items-start gap-2">
         <div className="self-stretch inline-flex justify-start items-start gap-2">
-          <span className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">进度</span>
-          <span className={`${progress === 0 ? "text-fg-grey-700" : pColor.text} text-sm font-bold leading-5 tracking-fg`}>
-            {progress}%
+          <span className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{progressLabel ?? (locale === "en" ? "Progress" : "进度")}</span>
+          <span className={`${percentage === 0 ? "text-fg-grey-700" : pColor.text} text-sm font-bold leading-5 tracking-fg`}>
+            {percentage}%
           </span>
         </div>
         <div className="self-stretch h-2 bg-fg-grey-200 rounded-full overflow-hidden">
           <div
             className={`h-2 ${pColor.bar} rounded-full transition-all`}
-            style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+            style={{ width: `${percentage}%` }}
           />
         </div>
       </div>

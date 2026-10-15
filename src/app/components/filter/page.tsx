@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -9,41 +8,41 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui-official/core";`;
 
 const CODE_GROUP_CHECKBOX = `<FilterGroup
-  title="Category"
+  title="分类"
   content={{
     type: "checkbox",
     options: [
-      { value: "a", label: "Option A", checked: false },
-      { value: "b", label: "Option B", checked: true },
+      { value: "a", label: "选项甲", checked: false },
+      { value: "b", label: "选项乙", checked: true },
     ],
   }}
 />`;
 
 const CODE_GROUP_RADIO = `<FilterGroup
-  title="Status"
+  title="状态"
   content={{
     type: "radio",
     options: [
-      { value: "1", label: "Active", checked: true },
-      { value: "2", label: "Archived" },
+      { value: "1", label: "使用中", checked: true },
+      { value: "2", label: "已归档" },
     ],
   }}
 />`;
 
 const CODE_GROUP_RANGE = `<FilterGroup
-  title="Price"
+  title="价格"
   content={{ type: "range", minValue: "0", maxValue: "999" }}
   hasSelection
 />`;
 
 const CODE_TRIGGER_USAGE = `<FilterTrigger count={8} onClick={() => {}} />`;
 
-const CODE_PANEL_USAGE = `<FilterPanel title="Filters" onReset={() => {}} onApply={() => {}} onCancel={() => {}}>
-  <FilterGroup title="Category" content={{ type: "checkbox", options }} />
+const CODE_PANEL_USAGE = `<FilterPanel title="筛选条件" onReset={() => {}} onApply={() => {}} onCancel={() => {}}>
+  <FilterGroup title="分类" content={{ type: "checkbox", options }} />
 </FilterPanel>`;
 
 const GROUP_PROPS: ApiTableRow[] = [
-  { attr: "title", type: "string", defaultValue: "'Filter Group'", description: "折叠面板标题。" },
+  { attr: "title", type: "string", defaultValue: "'筛选分组'", description: "折叠面板标题。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色。" },
   { attr: "content", type: "FilterGroupContent", defaultValue: "{ type: 'empty' }", description: "内容判别联合：empty / checkbox / radio / range。" },
   { attr: "defaultOpen", type: "boolean", defaultValue: "auto", description: "初始展开态，默认非 empty 自动展开。" },
@@ -51,7 +50,7 @@ const GROUP_PROPS: ApiTableRow[] = [
 ];
 
 const TRIGGER_PROPS: ApiTableRow[] = [
-  { attr: "label", type: "string", defaultValue: "'Filters'", description: "按钮文案。" },
+  { attr: "label", type: "string", defaultValue: "'筛选'", description: "按钮文案。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "open 态主色。" },
   { attr: "count", type: "number", defaultValue: "—", description: "右侧红色计数徽标，> 0 时显示。" },
   { attr: "open", type: "boolean", defaultValue: "false", description: "受控 open 状态。" },
@@ -60,17 +59,17 @@ const TRIGGER_PROPS: ApiTableRow[] = [
 ];
 
 const PANEL_PROPS: ApiTableRow[] = [
-  { attr: "title", type: "string", defaultValue: "'Filters'", description: "顶部标题。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "Apply 按钮主色。" },
+  { attr: "title", type: "string", defaultValue: "'筛选'", description: "顶部标题。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "应用筛选按钮的主题色。" },
   { attr: "children", type: "ReactNode", defaultValue: "—", description: "面板主体（通常是若干 FilterGroup）。" },
   { attr: "onReset / onCancel / onApply", type: "() => void", defaultValue: "—", description: "三个操作回调。" },
   { attr: "applyLabel / cancelLabel / resetLabel", type: "string", defaultValue: "—", description: "对应按钮文案。" },
 ];
 
 const checkboxOptions = [
-  { value: "a", label: "Option A", checked: false },
-  { value: "b", label: "Option B", checked: true },
-  { value: "c", label: "Option C", checked: false },
+  { value: "a", label: "选项甲", checked: false },
+  { value: "b", label: "选项乙", checked: true },
+  { value: "c", label: "选项丙", checked: false },
 ];
 
 export default function FilterCasePage() {
@@ -85,7 +84,7 @@ export default function FilterCasePage() {
         title="FilterGroup"
         description="折叠展示一组筛选条件，支持单选、多选和范围选择。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
@@ -96,23 +95,23 @@ export default function FilterCasePage() {
           <PreviewBlock code={CODE_GROUP_CHECKBOX} minHeight={240}>
             <div className="w-72">
               <FilterGroup
-                title="Category"
+                title="分类"
                 content={{ type: "checkbox", options: checkboxOptions }}
               />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Radio" stack>
+        <SubSection title="单选" stack>
           <PreviewBlock code={CODE_GROUP_RADIO} minHeight={200}>
             <div className="w-72">
               <FilterGroup
-                title="Status"
+                title="状态"
                 content={{
                   type: "radio",
                   options: [
-                    { value: "1", label: "Active", checked: true },
-                    { value: "2", label: "Archived" },
+                    { value: "1", label: "使用中", checked: true },
+                    { value: "2", label: "已归档" },
                   ],
                 }}
               />
@@ -120,14 +119,14 @@ export default function FilterCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Range" stack>
+        <SubSection title="范围" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             数值区间，两个输入 + minLabel / maxLabel。
           </p>
           <PreviewBlock code={CODE_GROUP_RANGE} minHeight={200}>
             <div className="w-72">
               <FilterGroup
-                title="Price"
+                title="价格"
                 content={{ type: "range", minValue: "0", maxValue: "999" }}
                 hasSelection
               />
@@ -144,7 +143,7 @@ export default function FilterCasePage() {
         title="FilterTrigger"
         description="打开筛选面板，并显示已选条件数量。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_TRIGGER_USAGE}>
             <FilterTrigger count={8} />
           </PreviewBlock>
@@ -159,11 +158,11 @@ export default function FilterCasePage() {
         title="FilterPanel"
         description="组织筛选条件，提供重置、取消和应用操作。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_PANEL_USAGE} minHeight={340}>
-            <FilterPanel title="Filters" onReset={() => {}} onApply={() => {}} onCancel={() => {}}>
+            <FilterPanel title="筛选条件" onReset={() => {}} onApply={() => {}} onCancel={() => {}}>
               <FilterGroup
-                title="Category"
+                title="分类"
                 content={{ type: "checkbox", options: checkboxOptions }}
               />
             </FilterPanel>
@@ -174,10 +173,6 @@ export default function FilterCasePage() {
           <ApiTable rows={PANEL_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/filter" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -9,8 +8,8 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";`;
 
 const CODE_CURRENCY_USAGE = `<CurrencyConverter
-  title="Exchange"
-  subtitle="Live rates"
+  title="兑换"
+  subtitle="实时汇率"
   fromCurrency="USD"
   toCurrency="EUR"
   exchangeRateText="1 USD = 0.92 EUR"
@@ -26,13 +25,13 @@ const CODE_IMAGEGRID_USAGE = `<ImageGrid images={urls} overflowCount={3} />`;
 
 const CODE_PRODUCTROW_USAGE = `<ProductRow
   image="https://i.pravatar.cc/44?img=20"
-  title="Product Name"
-  subtitle="3 Variants"
+  title="商品名称"
+  subtitle="3 种规格"
 />`;
 
 const CURRENCY_PROPS: ApiTableRow[] = [
-  { attr: "title / subtitle", type: "string", defaultValue: "'Title Here' / 'Text here'", description: "卡片头部文案。" },
-  { attr: "color", type: "'purple' | 'blue' | 'dark'", defaultValue: "'purple'", description: "Convert 按钮颜色。" },
+  { attr: "title / subtitle", type: "string", defaultValue: "'汇率换算' / '实时估算仅供参考'", description: "卡片头部文案。" },
+  { attr: "color", type: "'purple' | 'blue' | 'dark'", defaultValue: "'purple'", description: "换算按钮的颜色。" },
   { attr: "fromCurrency / toCurrency", type: "string", defaultValue: "'USD'", description: "两个输入框的货币代码。" },
   { attr: "fromValue / toValue", type: "string", defaultValue: "—", description: "受控值。传了就用 controlled 模式，不传用 placeholder。" },
   { attr: "exchangeRateText", type: "string", defaultValue: "'1 EUR = 1.09 USD'", description: "底部汇率说明。" },
@@ -78,15 +77,15 @@ export default function OtherWidgetCasePage() {
         title="CurrencyConverter"
         description="输入金额并选择币种，查看汇率和换算结果。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_CURRENCY_USAGE} minHeight={360}>
             <CurrencyConverter
-              title="Exchange"
-              subtitle="Live rates"
+              title="兑换"
+              subtitle="实时汇率"
               fromCurrency="USD"
               toCurrency="EUR"
               exchangeRateText="1 USD = 0.92 EUR"
@@ -103,13 +102,13 @@ export default function OtherWidgetCasePage() {
         title="RatingStars"
         description="用星级和数字展示评分。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_RATING_USAGE}>
             <RatingStars value={4.2} />
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种尺寸，<InlineCode>md</InlineCode> 为默认（16px 星 + 14px 字号）。
           </p>
@@ -129,7 +128,7 @@ export default function OtherWidgetCasePage() {
         title="ImageGrid"
         description="横向排列图片，超出部分可显示剩余数量。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_IMAGEGRID_USAGE}>
             <ImageGrid images={gridImages} overflowCount={3} />
           </PreviewBlock>
@@ -144,12 +143,12 @@ export default function OtherWidgetCasePage() {
         title="ProductRow"
         description="用缩略图、名称和说明展示一项产品。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_PRODUCTROW_USAGE}>
             <ProductRow
               image="https://i.pravatar.cc/44?img=20"
-              title="Product Name"
-              subtitle="3 Variants"
+              title="商品名称"
+              subtitle="3 种规格"
             />
           </PreviewBlock>
         </SubSection>
@@ -158,10 +157,6 @@ export default function OtherWidgetCasePage() {
           <ApiTable rows={PRODUCTROW_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/other-widget" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

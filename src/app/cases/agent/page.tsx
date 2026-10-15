@@ -22,29 +22,29 @@ import { StreamingAnswerDemo } from "./_streaming-demo";
 const TASKS = [
   {
     id: "1",
-    title: "Verified vendor records",
+    title: "已验证供应商资料",
     status: "completed" as const,
-    meta: "12 suppliers",
+    meta: "12 家供应商",
     children: [
-      { label: "Matched tax and contact IDs", value: "12/12", status: "completed" as const },
-      { label: "Flagged stale records", value: "2", status: "failed" as const },
+      { label: "已核对税务编号和联系人", value: "12/12", status: "completed" as const },
+      { label: "已标记过期资料", value: "2", status: "failed" as const },
     ],
   },
   {
     id: "2",
-    title: "Build reorder task list",
+    title: "生成补货任务清单",
     status: "running" as const,
-    meta: "7 SKUs",
+    meta: "7 种商品",
     children: [
-      { label: "Reading POS export", value: "3 files", status: "running" as const },
-      { label: "Scoring stockout risk", value: "68%" },
+      { label: "读取收银导出数据", value: "3 个文件", status: "running" as const },
+      { label: "评估缺货风险", value: "68%" },
     ],
   },
   {
     id: "3",
-    title: "Draft supplier emails",
+    title: "起草供应商邮件",
     status: "failed" as const,
-    meta: "2 messages",
+    meta: "2 条消息",
   },
 ];
 
@@ -52,6 +52,12 @@ export default function AgentCasePage() {
   const [followUp, setFollowUp] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
   const [sent, setSent] = useState<string[]>([]);
+  const [approval, setApproval] = useState<Record<string, string[]> | null>(null);
+  const [recommendation, setRecommendation] = useState("waffle");
+  const [accepted, setAccepted] = useState(false);
+  const [insightPrompt, setInsightPrompt] = useState("");
+  const [command, setCommand] = useState("");
+  const recommendationDetails: Record<string, { title: string; body: string }> = { waffle: { title: "要帮你提交这笔补货订单吗？", body: "向华丰食品补订华夫甜筒，交货周期为 7 天。" }, vanilla: { title: "改用马达加斯加香草", body: "将本次补货方案调整为马达加斯加香草，提交前需复核库存。" }, full: { title: "为全部商品补货", body: "为全部商品生成补货草稿，提交前需复核数量与供应商。" } };
 
   return (
     <div className="flex flex-col gap-10">
@@ -60,12 +66,12 @@ export default function AgentCasePage() {
         hint="展示智能体的思考、回答、工具调用、任务和审批过程。"
       />
 
-      <Section title="ThinkingTrace" description="四种痕迹。点标题可折叠。">
-        <SubSection title="Steps / Reasoning / Search / Coding" stack>
+      <Section title="ThinkingTrace" description="展示分步、推理、搜索和工具运行过程，点击标题可折叠。">
+        <SubSection title="分步、推理、搜索与工具运行" stack>
           <div className="grid gap-6 md:grid-cols-2">
             <ThinkingTrace variant="steps" settled />
             <ThinkingTrace variant="reasoning" settled />
-            <ThinkingTrace variant="search" query="best waffle cone supplier" settled />
+            <ThinkingTrace variant="search" query="华夫甜筒供应商对比" settled />
             <ThinkingTrace variant="coding" settled />
           </div>
         </SubSection>
@@ -75,79 +81,81 @@ export default function AgentCasePage() {
         <SubSection title="流式淡入 · 交互示例" stack>
           <StreamingAnswerDemo />
         </SubSection>
-        <SubSection title="With sources" stack>
+        <SubSection title="附带来源" stack>
           <StreamingAnswer
-            text="Pistachio is your fastest-growing flavor — sales are up 23% this month and margins beat vanilla by 8 points."
+            text="开心果口味增长最快，本月销量提升 23%，利润率比香草高 8 个百分点。"
             sources={[
-              { name: "Scoop Data", domain: "scoopdata.io" },
-              { name: "Trends Index", domain: "trends.google.com" },
-              { name: "Market Basket", domain: "marketbasket.io" },
+              { name: "销量数据", domain: "scoopdata.io" },
+              { name: "趋势指标", domain: "trends.google.com" },
+              { name: "购物篮分析", domain: "marketbasket.io" },
             ]}
-            followUps={["Which flavors sell best in winter", "Compare gelato and soft serve margins"]}
+            followUps={["冬季哪些口味最畅销", "对比意式冰淇淋与软冰淇淋的利润率"]}
             onFollowUp={(text) => setFollowUp(text)}
           />
-          {followUp && <p className="text-sm text-fg-grey-700">Selected: {followUp}</p>}
+          {followUp && <p className="text-sm text-fg-grey-700">已选择： {followUp}</p>}
         </SubSection>
       </Section>
 
-      <Section title="ApprovalCard" description="单选自动前进，多选等 Continue。">
-        <SubSection title="Three questions" stack>
+      <Section title="ApprovalCard" description="选择答案后点击继续，可返回修改；最后一步确认提交。">
+        <SubSection title="三个问题" stack>
           <div className="max-w-lg">
             <ApprovalCard
+              onSubmitted={setApproval}
               questions={[
                 {
                   id: "count",
-                  prompt: "How many flavors should we launch?",
+                  prompt: "我们应该推出几种口味？",
                   options: [
-                    { id: "three", label: "Three (core line)" },
-                    { id: "five", label: "Five (full case)" },
-                    { id: "one", label: "Just one hero" },
+                    { id: "three", label: "三项推荐" },
+                    { id: "five", label: "五项推荐" },
+                    { id: "one", label: "单项重点推荐" },
                   ],
                 },
                 {
                   id: "mixins",
-                  prompt: "Which mix-ins should we stock?",
+                  prompt: "我们应该准备哪些配料？",
                   type: "check",
                   options: [
-                    { id: "chips", label: "Chocolate chips" },
-                    { id: "waffle", label: "Waffle bits" },
-                    { id: "sprinkles", label: "Sprinkles" },
+                    { id: "chips", label: "巧克力碎" },
+                    { id: "waffle", label: "华夫碎" },
+                    { id: "sprinkles", label: "彩糖" },
                   ],
                 },
                 {
                   id: "market",
-                  prompt: "Which market do we enter first?",
+                  prompt: "我们应该先进入哪个市场？",
                   options: [
-                    { id: "trucks", label: "Food trucks" },
-                    { id: "grocery", label: "Grocery freezers" },
-                    { id: "shops", label: "Scoop shops" },
+                    { id: "trucks", label: "流动餐车" },
+                    { id: "grocery", label: "商超冷柜" },
+                    { id: "shops", label: "冰淇淋门店" },
                   ],
                 },
               ]}
             />
+            {approval && <p role="status" className="mt-3 text-sm text-fg-grey-700">已提交 {Object.values(approval).filter(value => value.length > 0).length} / 3 题答案，仅保存在本地示例中。</p>}
           </div>
         </SubSection>
       </Section>
 
       <Section title="ToolChips" description="点行展开工具细节。">
-        <SubSection title="Run" stack>
+        <SubSection title="运行" stack>
           <ToolChips
-            summary="4 tool calls, 2 messages"
+            summary="4 次工具调用，2 条消息"
             items={[
               {
                 id: "think",
                 kind: "think",
-                label: "Thinking",
-                chip: "Planning the churn schedule…",
+                label: "思考中",
+                chip: "正在安排生产计划…",
                 detail: [
-                  { text: "Weekend demand carries pistachio, so it churns first." },
-                  { text: "Batch capacity leaves two evening freezer windows." },
+                  { text: "周末需求带动开心果口味销量，优先安排生产。" },
+                  { text: "按当前批次产能，晚间还有两个冷冻作业时段。" },
                 ],
               },
               {
                 id: "write",
                 kind: "write",
-                label: "Write 204 lines",
+                label: "写入 204 行",
                 chip: "ChurnSchedule.tsx",
                 mono: true,
                 detail: [
@@ -158,10 +166,10 @@ export default function AgentCasePage() {
               {
                 id: "run",
                 kind: "run",
-                label: "Rebuild and verify",
+                label: "重新构建并验证",
                 chip: "npm run freeze",
                 mono: true,
-                detail: [{ text: "✓ built in 1.2s" }, { text: "✓ 34 checks passed" }],
+                detail: [{ text: "✓ 构建完成，用时 1.2 秒" }, { text: "✓ 34 项检查通过" }],
               },
             ]}
             diffs={[
@@ -173,29 +181,29 @@ export default function AgentCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="AgentTaskRows" description="List 与 capsules。">
-        <SubSection title="List" stack>
+      <Section title="AgentTaskRows" description="展示任务列表和紧凑摘要两种样式。">
+        <SubSection title="列表" stack>
           <AgentTaskRows tasks={TASKS} />
         </SubSection>
-        <SubSection title="Capsules" stack>
+        <SubSection title="摘要" stack>
           <AgentTaskRows tasks={TASKS} variant="capsules" />
         </SubSection>
       </Section>
 
-      <Section title="ChatInputBar" description="点 Sources / Commands，或输入 @ /；通过 status 和 onStop 接入任务停止。">
+      <Section title="ChatInputBar" description="使用加号添加附件与工具，输入 @ 引用对象，输入 / 选择命令。">
         <a href="/cases/chat-input-bar" className="text-accent underline">发送与停止交互、模型菜单、抽屉、全屏与窄屏演示</a>
-        <SubSection title="Composer" stack>
+        <SubSection title="消息输入" stack>
           <ChatInputBar multiline sendOnEnter
             value={prompt}
             onChange={setPrompt}
             onSend={(message) => setSent((current) => [...current, message])}
             sources={[
-              { id: "sales", label: "Scoop Data", description: "Sales & churn metrics", connected: true },
-              { id: "flavors", label: "Flavor records", description: "26 makers, tags, links" },
+              { id: "sales", label: "销量数据", description: "销售与流失指标", connected: true },
+              { id: "flavors", label: "口味档案", description: "26 个品牌，含标签和链接" },
             ]}
             commands={[
-              { id: "plan", label: "plan", description: "Draft a flavor launch plan" },
-              { id: "forecast", label: "forecast", description: "Forecast summer demand" },
+              { id: "plan", label: "plan", description: "起草新口味上市计划" },
+              { id: "forecast", label: "forecast", description: "预测夏季需求" },
             ]}
             models={[
               { id: "fast", label: "Forge Fast" },
@@ -206,7 +214,7 @@ export default function AgentCasePage() {
           {sent.length > 0 && (
             <ul className="text-sm text-fg-grey-700">
               {sent.map((item) => (
-                <li key={item}>Sent: {item}</li>
+                <li key={item}>已发送： {item}</li>
               ))}
             </ul>
           )}
@@ -214,24 +222,24 @@ export default function AgentCasePage() {
       </Section>
 
       <Section title="ContextCards" description="检索块。">
-        <SubSection title="Chunks" stack>
+        <SubSection title="知识片段" stack>
           <ContextCards
             total={32}
             chunks={[
               {
                 id: "1",
-                title: "Vendor onboarding rule",
-                body: "Cold-chain certification must be verified before a new dairy can be added to the reorder workflow.",
+                title: "供应商准入规则",
+                body: "新增乳制品供应商前，须核验冷链认证，才可加入补货流程。",
                 sourceKind: "PDF",
-                sourceLabel: "Dairy Onboarding SOP.pdf",
+                sourceLabel: "乳品供应商入驻流程.pdf",
                 charCount: 290,
               },
               {
                 id: "2",
-                title: "Seasonal demand row",
-                body: "Q4 velocity table: pistachio +18%, vanilla +6%, rocky road -11%; retire flavors below 40 scoops weekly.",
+                title: "季节需求数据",
+                body: "第四季度销量：开心果 +18%、香草 +6%、坚果巧克力 -11%；下架周销量不足 40 份的口味。",
                 sourceKind: "CSV",
-                sourceLabel: "Sales Velocity Export.csv",
+                sourceLabel: "销量变化导出.csv",
                 charCount: 1250,
               },
             ]}
@@ -240,42 +248,46 @@ export default function AgentCasePage() {
       </Section>
 
       <Section title="RecommendationCard" description="主建议 + 备选。">
-        <SubSection title="Restock" stack>
+        <SubSection title="补货" stack>
           <div className="max-w-lg">
             <RecommendationCard
-              title="Want me to place this restock order?"
-              body="Reorder waffle cones from Cone King with lead time 7 days."
+              title={recommendationDetails[recommendation].title}
+              body={recommendationDetails[recommendation].body}
+              acceptLabel={accepted ? "已接受建议" : "接受建议"}
+              onAccept={() => setAccepted(true)}
+              onSelectAlternative={id => { setRecommendation(id); setAccepted(false); }}
               alternatives={[
-                { id: "vanilla", label: "Switch to Vanilla Madagascar", confidence: "review" },
-                { id: "full", label: "Full restock across every SKU", confidence: "none" },
+                { id: "vanilla", label: "改用马达加斯加香草", confidence: "review" },
+                { id: "full", label: "为全部商品补货", confidence: "none" },
               ]}
             />
+            <p role="status" className="mt-3 text-sm text-fg-grey-700">{accepted ? `已接受“${recommendationDetails[recommendation].title}”，仅更新本地示例，没有提交采购订单。` : recommendation !== "waffle" ? `已选择“${recommendationDetails[recommendation].title}”，请确认后接受。` : "选择建议或备选方案，体验确认反馈；不会提交订单。"}</p>
           </div>
         </SubSection>
       </Section>
 
-      <Section title="AgentDiffTable" description="点变更行可取消，再 Apply。">
-        <SubSection title="Flavor schedule" stack>
+      <Section title="AgentDiffTable" description="选择需要应用的变更，再点击应用。">
+        <SubSection title="口味排期" stack>
           <div className="max-w-2xl">
             <AgentDiffTable
-              title="Flavor schedule"
+              title="口味排期"
               columns={[
-                { key: "flavor", label: "Flavor" },
-                { key: "scoops", label: "Weekly scoops" },
-                { key: "action", label: "Action" },
+                { key: "flavor", label: "口味" },
+                { key: "scoops", label: "每周销量" },
+                { key: "action", label: "操作" },
               ]}
               rows={[
-                { id: "pistachio", change: "keep", cells: { flavor: "Pistachio", scoops: "186", action: "Keep weekend window" } },
-                { id: "rocky", change: "remove", cells: { flavor: "Rocky Road", scoops: "28", action: "Retire from freezer" } },
-                { id: "mint", change: "add", cells: { flavor: "Mint Chip", scoops: "94", action: "Add Saturday slot" } },
+                { id: "pistachio", change: "keep", cells: { flavor: "开心果", scoops: "186", action: "保留周末时段" } },
+                { id: "rocky", change: "remove", cells: { flavor: "坚果巧克力", scoops: "28", action: "从冷柜下架" } },
+                { id: "mint", change: "add", cells: { flavor: "薄荷巧克力", scoops: "94", action: "添加周六时段" } },
               ]}
             />
           </div>
         </SubSection>
       </Section>
 
-      <Section title="AgentCodeBlock" description="Code / Diff 切换，Copy 复制 listing。">
-        <SubSection title="Reorder scorer" stack>
+      <Section title="AgentCodeBlock" description="切换代码与差异视图，支持复制代码。">
+        <SubSection title="补货评估" stack>
           <div className="max-w-2xl">
             <AgentCodeBlock
               filename="lib/reorder.ts"
@@ -298,58 +310,62 @@ export default function AgentCasePage() {
       </Section>
 
       <Section title="InsightCards" description="左右翻页，点建议问句。">
-        <SubSection title="Seasonal mix" stack>
+        <SubSection title="季节口味组合" stack>
           <div className="max-w-lg">
             <InsightCards
+              onAsk={question => setInsightPrompt(question)}
               cards={[
                 {
                   id: "weekend",
-                  title: "Weekend velocity",
-                  body: "Mint chip now tracks pistachio on Saturdays.",
-                  prompt: "Rebalance weekend freezers",
-                  chart: { kind: "spark", series: [{ name: "Mint", values: [42, 48, 61, 74, 88, 94] }] },
+                  title: "周末销售速度",
+                  body: "薄荷巧克力在周六的销量已接近开心果。",
+                  prompt: "调整周末冷柜库存",
+                  chart: { kind: "spark", series: [{ name: "薄荷", values: [42, 48, 61, 74, 88, 94] }] },
                 },
                 {
                   id: "mix",
-                  title: "Flavor mix",
-                  body: "Rocky road dropped below the 40-scoop floor.",
-                  prompt: "Retire rocky road",
+                  title: "口味组合",
+                  body: "坚果巧克力口味的周销量已低于 40 份。",
+                  prompt: "下架坚果巧克力口味",
                   chart: { kind: "bars", values: [86, 72, 54, 28, 41] },
                 },
               ]}
             />
+            {insightPrompt && <p role="status" className="mt-3 text-sm text-fg-grey-700">已生成追问草稿：{insightPrompt}</p>}
           </div>
         </SubSection>
       </Section>
 
       <Section title="CommandSearch" description="输入过滤命令。">
-        <SubSection title="Palette" stack>
+        <SubSection title="配色" stack>
           <div className="max-w-lg">
             <CommandSearch
+              onSelect={item => setCommand(item.label)}
               items={[
-                { id: "plan", label: "Draft a flavor launch plan", hint: "/plan", group: "Planning" },
-                { id: "compare", label: "Compare mint chip to last summer", hint: "/compare", group: "Planning" },
-                { id: "pos", label: "Open POS export", hint: "CSV", group: "Data" },
-                { id: "reorder", label: "Queue pistachio reorder", hint: "workflow", group: "Workflow" },
+                { id: "plan", label: "起草新口味上市计划", hint: "/plan", group: "计划" },
+                { id: "compare", label: "对比薄荷巧克力与去年夏季的销量", hint: "/compare", group: "计划" },
+                { id: "pos", label: "打开收银导出数据", hint: "CSV", group: "数据" },
+                { id: "reorder", label: "安排开心果补货", hint: "工作流", group: "工作流" },
               ]}
             />
+            {command && <p role="status" className="mt-3 text-sm text-fg-grey-700">已选择命令：{command}（本地演示）</p>}
           </div>
         </SubSection>
       </Section>
 
       <Section title="AgentFlowchart" description="点节点看选中态。">
-        <SubSection title="Restock" stack>
+        <SubSection title="补货" stack>
           <div className="max-w-lg">
             <AgentFlowchart
-              title="Restock workflow"
+              title="补货流程"
               nodes={[
-                { id: "spike", kind: "trigger", title: "POS weekend spike", body: "Mint chip crosses 80 scoops." },
-                { id: "check", kind: "condition", title: "Stockout risk?", body: "Lead time longer than 5 days." },
-                { id: "draft", kind: "action", title: "Draft reorder", body: "Cone King, 7-day lead time." },
+                { id: "spike", kind: "trigger", title: "周末收银数据峰值", body: "薄荷巧克力销量超过 80 份。" },
+                { id: "check", kind: "condition", title: "是否存在缺货风险？", body: "交货周期超过 5 天。" },
+                { id: "draft", kind: "action", title: "起草补货单", body: "华丰食品，交货周期 7 天。" },
               ]}
               edges={[
-                { from: "spike", to: "check", label: "always" },
-                { from: "check", to: "draft", label: "if at risk" },
+                { from: "spike", to: "check", label: "继续检查" },
+                { from: "check", to: "draft", label: "有缺货风险时" },
               ]}
             />
           </div>

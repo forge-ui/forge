@@ -12,7 +12,7 @@ export default function PaginationStepperCasePage() {
         title="Indicator (PageDot atomic)"
         description="3 colors × 2 states (default · active)"
       >
-        <SubSection title="All colors">
+        <SubSection title="全部颜色">
           <div className="inline-flex flex-col gap-2">
             {COLORS.map((c) => (
               <div key={c} className="inline-flex items-center gap-2">

@@ -1,8 +1,6 @@
 "use client";
 
-import { MigrationPreview } from "../_migration-previews";
 import { useState } from "react";
-import Link from "next/link";
 import {
   ListItem,
   DescriptionItem,
@@ -29,56 +27,56 @@ const CODE_IMPORT = `import {
 
 const CODE_LISTITEM_USAGE = `<ListItem
   lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }}
-  title="Revenue"
-  subtitle="This month"
+  title="收入"
+  subtitle="本月"
   value="$24,500"
   trend="10%"
   trendDirection="up"
 />`;
 
-const CODE_LISTITEM_LEADS = `<ListItem lead={{ kind: "icon", icon, color: "purple" }} title="Icon lead" />
-<ListItem lead={{ kind: "avatar", src: avatar }} title="Avatar lead" subtitle="Online" />
-<ListItem lead={{ kind: "image", src: imgUrl }} title="Image lead" subtitle="Square 44×44" />`;
+const CODE_LISTITEM_LEADS = `<ListItem lead={{ kind: "icon", icon, color: "purple" }} title="图标前置" />
+<ListItem lead={{ kind: "avatar", src: avatar }} title="头像前置" subtitle="在线" />
+<ListItem lead={{ kind: "image", src: imgUrl }} title="图片前置" subtitle="方形图片 44×44" />`;
 
 const CODE_DESCITEM_USAGE = `<DescriptionItem
-  label="Email"
+  label="邮箱"
   content="jane@example.com"
   lead={{ kind: "icon", icon: <LetterBoldDuotone size={20} />, color: "purple" }}
 />`;
 
 const CODE_LISTGROUP_NO_TAB = `// Without Tab
 <ListGroup
-  title="Favorites"
-  subtitle="Your saved items"
+  title="收藏"
+  subtitle="已收藏的内容"
   badge={<Label color="purple">3</Label>}
   items={<>...</>}
 />`;
 
 const CODE_LISTGROUP_WITH_TAB = `// With Tab
 <ListGroup
-  title="Activity"
+  title="动态"
   tabs={[
-    { value: "all", label: "All" },
-    { value: "unread", label: "Unread" },
+    { value: "all", label: "全部" },
+    { value: "unread", label: "未读" },
   ]}
   activeTab={tab}
   onTabChange={setTab}
   items={<>...</>}
 />`;
 
-const CODE_CONTACT_USAGE = `<ContactItem avatar={avatar} name="Jane Cooper" message="See you tomorrow!" time="10:30" unreadCount={2} online />`;
+const CODE_CONTACT_USAGE = `<ContactItem avatar={avatar} name="林晓" message="明天见！" time="10:30" unreadCount={2} online />`;
 
 const CODE_NOTIF_USAGE = `<NotificationItem
-  tag="System"
-  time="2h ago"
-  title="Your order has been shipped"
-  body="Tracking number: 1Z999AA10123456784"
+  tag="系统"
+  time="2 小时前"
+  title="你的订单已发货"
+  body="物流单号：1Z999AA10123456784"
   unread
   onMarkRead={() => {}}
 />`;
 
-const CODE_PROFILE_USAGE = `<ProfileCard avatar={avatar} name="Jane Cooper" subtitle="Admin" />
-<ProfileCard avatar={avatar} name="Selected" subtitle="Active" state="selected" />`;
+const CODE_PROFILE_USAGE = `<ProfileCard avatar={avatar} name="林晓" subtitle="管理员" />
+<ProfileCard avatar={avatar} name="已选中" subtitle="使用中" state="selected" />`;
 
 const LISTITEM_PROPS: ApiTableRow[] = [
   { attr: "lead", type: "ListItemLead", defaultValue: "—", description: "左侧槽，判别联合：icon / avatar / image 三种。" },
@@ -105,7 +103,7 @@ const LISTGROUP_PROPS: ApiTableRow[] = [
   { attr: "items", type: "ReactNode", defaultValue: "—", description: "列表主体（传一组 ListItem / DescriptionItem 等）。" },
   { attr: "badge", type: "ReactNode", defaultValue: "—", description: "标题旁徽标槽。" },
   { attr: "action", type: "ReactNode", defaultValue: "—", description: "右上角操作槽。" },
-  { attr: "tabs", type: "{ value: string; label: string }[]", defaultValue: "—", description: "可选 tab 数组，传后切换为「With Tab」模式。" },
+  { attr: "tabs", type: "{ value: string; label: string }[]", defaultValue: "—", description: "可选页签数组，提供后在分组顶部显示页签。" },
   { attr: "activeTab", type: "string", defaultValue: "—", description: "当前选中的 tab value（受控）。" },
   { attr: "onTabChange", type: "(value: string) => void", defaultValue: "—", description: "tab 切换回调。" },
   { attr: "closable", type: "boolean", defaultValue: "false", description: "是否渲染右上 close 按钮（覆盖 action 槽）。" },
@@ -131,7 +129,7 @@ const NOTIF_PROPS: ApiTableRow[] = [
   { attr: "body", type: "string", defaultValue: "—", description: "通知正文。" },
   { attr: "unread", type: "boolean", defaultValue: "false", description: "未读态：浅黄色背景。" },
   { attr: "onMarkRead", type: "() => void", defaultValue: "—", description: "标记已读回调，传了才显示按钮。" },
-  { attr: "actionLabel", type: "string", defaultValue: "'Mark as Read'", description: "操作按钮文案。" },
+  { attr: "actionLabel", type: "string", defaultValue: "'标为已读'", description: "操作按钮文案。" },
 ];
 
 const PROFILE_PROPS: ApiTableRow[] = [
@@ -140,7 +138,7 @@ const PROFILE_PROPS: ApiTableRow[] = [
   { attr: "subtitle", type: "string", defaultValue: "—", description: "副标题（角色等）。" },
   { attr: "state", type: "'idle' | 'hover' | 'selected'", defaultValue: "'idle'", description: "视觉状态。" },
   { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "selected 态主色。" },
-  { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "onColoredBg 用于色底 sidebar 内，采用半透明白。" },
+  { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "onColoredBg 用于带主题背景的侧栏 内，采用半透明白。" },
 ];
 
 const avatar = "https://i.pravatar.cc/40?img=5";
@@ -155,26 +153,21 @@ export default function ListCasePage() {
         hint="组织条目、详情字段、联系人和通知，便于浏览与操作。"
       />
 
-      <Section title="选择与批量操作" description="选择文档后显示批量操作，清空选择后恢复普通工具栏。">
-        <MigrationPreview kind="selection" />
-        <CodeBlock code={'<Toolbar\n  left={<span>选择后可批量归档</span>}\n  selection={{\n    count: selectedIds.length,\n    onClear: () => setSelectedIds([]),\n    actions: <Button onClick={archiveSelected}>归档</Button>,\n  }}\n/>'} />
-      </Section>
-      <Section title="列表空态与恢复" description="通过现有列表、搜索和按钮，组织首次使用、搜索无结果及加载重试。">
-        <MigrationPreview kind="empty" />
-      </Section>
+
+
 
       <Section title="ListItem" description="展示条目名称、说明、图标和右侧补充信息。">
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_LISTITEM_USAGE}>
             <div className="w-full max-w-md">
               <ListItem
                 lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }}
-                title="Revenue"
-                subtitle="This month"
+                title="收入"
+                subtitle="本月"
                 value="$24,500"
                 trend="10%"
                 trendDirection="up"
@@ -183,15 +176,15 @@ export default function ListCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Lead Variants" stack>
+        <SubSection title="前置内容样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种 lead：<InlineCode>icon</InlineCode>（圆形彩色图标）/ <InlineCode>avatar</InlineCode>（圆形头像）/ <InlineCode>image</InlineCode>（44×44 方形）。
           </p>
           <PreviewBlock code={CODE_LISTITEM_LEADS} minHeight={220}>
             <div className="w-full max-w-md flex flex-col gap-4">
-              <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="Icon lead" subtitle="Round colored" />
-              <ListItem lead={{ kind: "avatar", src: avatar }} title="Avatar lead" subtitle="Online" />
-              <ListItem lead={{ kind: "image", src: "https://i.pravatar.cc/44?img=30" }} title="Image lead" subtitle="Square 44×44" />
+              <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="图标前置" subtitle="彩色圆形图标" />
+              <ListItem lead={{ kind: "avatar", src: avatar }} title="头像前置" subtitle="在线" />
+              <ListItem lead={{ kind: "image", src: "https://i.pravatar.cc/44?img=30" }} title="图片前置" subtitle="方形图片 44×44" />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -202,11 +195,11 @@ export default function ListCasePage() {
       </Section>
 
       <Section title="DescriptionItem" description="展示详情字段的名称、内容和可选操作。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_DESCITEM_USAGE}>
             <div className="w-full max-w-md">
               <DescriptionItem
-                label="Email"
+                label="邮箱"
                 content="jane@example.com"
                 lead={{ kind: "icon", icon: <LetterBoldDuotone size={20} />, color: "purple" }}
               />
@@ -220,21 +213,21 @@ export default function ListCasePage() {
       </Section>
 
       <Section title="ListGroup" description="将一组条目组织在卡片内，可通过页签切换内容。">
-        <SubSection title="Without Tab" stack>
+        <SubSection title="不带页签" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             纯列表模式：title + subtitle + badge + 一组 items。
           </p>
           <PreviewBlock code={CODE_LISTGROUP_NO_TAB} minHeight={300}>
             <div className="w-full max-w-md">
               <ListGroup
-                title="Favorites"
-                subtitle="Your saved items"
+                title="收藏"
+                subtitle="已收藏的内容"
                 badge={<Label color="purple">3</Label>}
                 items={
                   <>
-                    <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="Revenue" value="$24,500" />
-                    <ListItem lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} />, color: "green" }} title="Analytics" value="$12,000" />
-                    <ListItem lead={{ kind: "icon", icon: <FolderBoldDuotone size={20} />, color: "blue" }} title="Projects" value="18" />
+                    <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="收入" value="$24,500" />
+                    <ListItem lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} />, color: "green" }} title="数据分析" value="$12,000" />
+                    <ListItem lead={{ kind: "icon", icon: <FolderBoldDuotone size={20} />, color: "blue" }} title="项目" value="18" />
                   </>
                 }
               />
@@ -242,25 +235,25 @@ export default function ListCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="With Tab" stack>
+        <SubSection title="带页签" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             头部嵌入 tab：传 <InlineCode>tabs</InlineCode> + <InlineCode>activeTab</InlineCode> + <InlineCode>onTabChange</InlineCode> 即可。
           </p>
           <PreviewBlock code={CODE_LISTGROUP_WITH_TAB} minHeight={300}>
             <div className="w-full max-w-md">
               <ListGroup
-                title="Activity"
+                title="动态"
                 tabs={[
-                  { value: "all", label: "All" },
-                  { value: "unread", label: "Unread" },
-                  { value: "starred", label: "Starred" },
+                  { value: "all", label: "全部" },
+                  { value: "unread", label: "未读" },
+                  { value: "starred", label: "已收藏" },
                 ]}
                 activeTab={listGroupTab}
                 onTabChange={setListGroupTab}
                 items={
                   <>
-                    <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="Payment received" value="$1,200" />
-                    <ListItem lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} />, color: "green" }} title="Report ready" value="View" />
+                    <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="已收到付款" value="$1,200" />
+                    <ListItem lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} />, color: "green" }} title="报告已生成" value="View" />
                   </>
                 }
               />
@@ -274,10 +267,10 @@ export default function ListCasePage() {
       </Section>
 
       <Section title="ContactItem" description="展示联系人、最新消息、时间和未读状态。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_CONTACT_USAGE}>
             <div className="w-full max-w-md">
-              <ContactItem avatar={avatar} name="Jane Cooper" message="See you tomorrow!" time="10:30" unreadCount={2} online />
+              <ContactItem avatar={avatar} name="林晓" message="明天见！" time="10:30" unreadCount={2} online />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -288,14 +281,14 @@ export default function ListCasePage() {
       </Section>
 
       <Section title="NotificationItem" description="展示通知标题、正文、时间和已读状态。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_NOTIF_USAGE} minHeight={200}>
             <div className="w-full max-w-md">
               <NotificationItem
-                tag="System"
-                time="2h ago"
-                title="Your order has been shipped"
-                body="Tracking number: 1Z999AA10123456784"
+                tag="系统"
+                time="2 小时前"
+                title="你的订单已发货"
+                body="物流单号：1Z999AA10123456784"
                 unread
                 onMarkRead={() => {}}
               />
@@ -309,11 +302,11 @@ export default function ListCasePage() {
       </Section>
 
       <Section title="ProfileCard" description="展示当前成员信息，作为身份或账号切换入口。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_PROFILE_USAGE} minHeight={200}>
             <div className="w-full max-w-md flex flex-col gap-3">
-              <ProfileCard avatar={avatar} name="Jane Cooper" subtitle="Admin" />
-              <ProfileCard avatar={avatar2} name="Selected" subtitle="Active" state="selected" />
+              <ProfileCard avatar={avatar} name="林晓" subtitle="管理员" />
+              <ProfileCard avatar={avatar2} name="已选中" subtitle="使用中" state="selected" />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -322,10 +315,6 @@ export default function ListCasePage() {
           <ApiTable rows={PROFILE_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/list" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

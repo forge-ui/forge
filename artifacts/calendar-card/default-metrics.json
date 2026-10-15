@@ -1,0 +1,106 @@
+{
+  "before": {
+    "card": {
+      "bg": "rgb(255, 255, 255)",
+      "font": "16px",
+      "h": 410,
+      "line": "24px",
+      "padding": "27px 20px 22px",
+      "radius": "32px",
+      "w": 283,
+      "weight": "400"
+    },
+    "date": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "17.5px",
+      "h": 32.5,
+      "line": "17.5px",
+      "padding": "0px",
+      "radius": "0px",
+      "w": 34.7109375,
+      "weight": "450"
+    },
+    "day": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "36px",
+      "h": 40,
+      "line": "40px",
+      "padding": "0px",
+      "radius": "0px",
+      "w": 110.0859375,
+      "weight": "600"
+    },
+    "month": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "21px",
+      "h": 27,
+      "line": "26px",
+      "padding": "0px",
+      "radius": "0px",
+      "w": 41.5859375,
+      "weight": "400"
+    },
+    "shell": {
+      "bg": "rgb(250, 250, 250)",
+      "font": "16px",
+      "h": 427,
+      "line": "24px",
+      "padding": "8.5px",
+      "radius": "40px",
+      "w": 300,
+      "weight": "400"
+    }
+  },
+  "after": {
+    "card": {
+      "bg": "rgb(255, 255, 255)",
+      "font": "16px",
+      "h": 410,
+      "line": "24px",
+      "padding": "27px 20px 22px",
+      "radius": "32px",
+      "w": 283,
+      "weight": "400"
+    },
+    "date": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "17.5px",
+      "h": 32.5,
+      "line": "17.5px",
+      "padding": "0px",
+      "radius": "0px",
+      "w": 34.7109375,
+      "weight": "450"
+    },
+    "day": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "36px",
+      "h": 40,
+      "line": "40px",
+      "padding": "0px",
+      "radius": "0px",
+      "w": 110.0859375,
+      "weight": "600"
+    },
+    "month": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "21px",
+      "h": 27,
+      "line": "26px",
+      "padding": "0px",
+      "radius": "0px",
+      "w": 41.5859375,
+      "weight": "400"
+    },
+    "shell": {
+      "bg": "rgb(250, 250, 250)",
+      "font": "16px",
+      "h": 427,
+      "line": "24px",
+      "padding": "8.5px",
+      "radius": "40px",
+      "w": 300,
+      "weight": "400"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+# 迁移清单与公开 API 对照
+
+逐项核对目录中的目标名称是否可从 core 根入口导入。目标对应不代表单个组件本身拥有整套案例交互；组合案例的状态管理仍由应用负责。accepted 是目录原字段，不代替本轮验收。页面路径保留目录声明，实际路由还须结合 registry 的分类覆盖规则。
+
+| 编号 | 案例 | 分类 | 目标组件 | 目录验收标记 |
+|---|---|---|---|---|
+| 001 | 液态玻璃按钮 | button-link | Button | 未标记 |
+| 002 | 磁吸箭头按钮 | button-link | Button、StyledLink | 未标记 |
+| 003 | 长按删除 | button-link | Button | 未标记 |
+| 004 | 下载进度按钮 | button-link | Button、ProgressBar | 未标记 |
+| 005 | 纸飞机发送 | button-link | IconButton、Button | 未标记 |
+| 006 | 墨水涟漪按钮 | button-link | Button | 未标记 |
+| 007 | 播放暂停变形 | button-link | IconButton | 未标记 |
+| 008 | 复制完成反馈 | button-link | IconButton、Button、ButtonGroup | 未标记 |
+| 009 | 文字滚动按钮 | button-link | Button、StyledLink | 未标记 |
+| 010 | 组合操作按钮 | button-link | Button、IconTrigger、DropdownPanel、MenuItem | 未标记 |
+| 011 | 扇形快捷操作 | menu | IconButton、IconTrigger | 未标记 |
+| 012 | 书签丝带 | button-link | IconButton | 未标记 |
+| 013 | 弹性开关 | input-field | Toggle | 已标记 |
+| 014 | 待办清单 | checklist | Checklist | 未标记 |
+| 015 | 套餐选择卡 | input-field | RadioWithLabel、RadioButton、SurfaceCard | 未标记 |
+| 016 | 星级评价 | comment | RatingStars | 未标记 |
+| 018 | 滚动数量步进 | input-field | IconButton | 未标记 |
+| 019 | 兴趣多选 | input-field | CheckboxControl、CheckboxWithLabel | 未标记 |
+| 021 | 日夜切换 | input-field | Toggle | 未标记 |
+| 022 | 点赞心形绽放 | button-link | IconButton | 未标记 |
+| 023 | 通知设置展开 | input-field | Toggle、ButtonGroup、Accordion | 未标记 |
+| 025 | 浮动标签输入 | input-field | TextField | 未标记 |
+| 026 | 验证码输入 | input-field | OtpInput | 未标记 |
+| 027 | 顶栏搜索展开 | page-header | ToolbarSearchInput、CommandSearch、IconButton | 未标记 |
+| 028 | 自动伸展评论框 | comment | TextArea、CommentItem、Button | 未标记 |
+| 029 | 标签输入 | input-field | TextField | 未标记 |
+| 030 | 日期区间日历 | input-field | Datepicker | 未标记 |
+| 031 | 自定义选择器 | input-field | SelectOption | 已标记 |
+| 032 | 拖拽上传 | input-field | FileUpload、FileCard | 未标记 |
+| 033 | 标题内联编辑 | input-field | TextField、IconButton | 未标记 |
+| 036 | 密码强度 | input-field | TextField、IconButton、ProgressBar | 未标记 |
+| 037 | 账号切换 | menu | AppLayout、AppSwitcherDropdown、ProfileCard、MenuItem | 未标记 |
+| 039 | 滑动选中标签 | tab | TabBar、TabsContent | 已标记 |
+| 040 | AppLayout 侧栏动效 | menu | AppLayout | 已标记 |
+| 041 | 底部导航凹槽 | menu | TabBar | 未标记 |
+| 042 | 分步向导 | pagination-stepper | Stepper、TextField、SelectOption、Button | 未标记 |
+| 043 | 分页伸缩 | pagination-stepper | Pagination | 已标记 |
+| 044 | 问答折叠 | grid | Accordion | 已标记 |
+| 045 | 菜单由按钮展开 | menu | IconTrigger、Drawer、MenuItem | 未标记 |
+| 046 | 命令面板 | menu | CommandSearch、Modal | 已标记 |
+| 047 | 时间区间切换 | tab | ButtonGroup | 未标记 |
+| 048 | 滑动联动标签 | tab | TabBar、TabsContent | 未标记 |
+| 049 | 层叠内容卡 | card | SurfaceCard、IconButton、Button | 未标记 |
+| 050 | 光照倾斜卡 | card | SurfaceCard、Button | 未标记 |
+| 054 | 关注个人卡 | card | Avatar、Button、SurfaceCard | 未标记 |
+| 056 | 月年计费切换 | input-field | ButtonGroup、RadioButton、TextField、Button | 未标记 |
+| 057 | 头像评价轮播 | comment | ReviewItem、Avatar、IconButton | 未标记 |
+| 058 | 阅读进度卡 | feedback | ProgressBar、Button、SurfaceCard | 未标记 |
+| 059 | 活动报名卡 | calendar | EventCard、ButtonGroup、AvatarGroup、Button | 未标记 |
+| 062 | 登录反馈 | input-field | TextField、Button | 未标记 |
+| 063 | 逐题注册 | input-field | TextField、Button、Stepper | 未标记 |
+| 066 | 社交登录按钮 | button-link | Button、Avatar | 未标记 |
+| 067 | 锁定倒计时 | feedback | Button | 未标记 |
+| 070 | 堆叠通知 | feedback | ToastProvider、useToast（公开导出，非本脚本识别的组件） | 未标记 |
+| 071 | 滑动删除与撤销 | list | ListItem、ToastProvider、useToast（公开导出，非本脚本识别的组件） | 未标记 |
+| 074 | 通知铃菜单 | list | IconTrigger、NotificationItem、NotificationBadge、TabBar、DropdownPanel | 未标记 |
+| 075 | 上传进度面板 | input-field | FileUpload、FileCard、ProgressBar、Accordion | 未标记 |
+| 076 | 跟随工具提示 | feedback | Tooltip、TooltipGroup | 未标记 |
+| 077 | 表情反应面板 | chat | ChatBubble、IconTrigger、IconButton | 未标记 |
+| 078 | 滑动回复 | chat | ChatBubble、ChatInputBar | 未标记 |
+| 080 | 轨道同步指示 | feedback | SurfaceCard、Button、ProgressBar | 未标记 |
+| 081 | 环形完成反馈 | button-link | Button、ProgressBar | 未标记 |
+| 083 | 队列进度转换 | feedback | ProgressBar | 未标记 |
+| 084 | 语音响应圆点 | chat | ChatInputBar | 未标记 |
+| 086 | AI 流式回答 | agent | StreamingAnswer、ChatInputBar | 未标记 |
+| 087 | 配送步骤 | pagination-stepper | Stepper、HistoryGrouped | 未标记 |
+| 088 | 资料夹空态 | feedback | ListGroup、ListItem、Button | 未标记 |
+| 089 | 404 纠错 | feedback | SurfaceCard、Button | 未标记 |
+| 090 | 可重试错误卡 | feedback | SurfaceCard、Button、BarChart、StatCard | 未标记 |
+| 091 | 离线消息队列 | chat | ChatBubble、ChatInputBar | 未标记 |
+| 092 | 筛选空态恢复 | filter | FilterPanel、ToolbarSearchInput、ListGroup、Button | 未标记 |
+| 093 | 完成庆祝 | checklist | Checklist、ProgressBar、Button | 未标记 |
+| 095 | 形态切换柱图 | chart | BarChart、ChartTooltip、TabBar | 未标记 |
+| 096 | 滑动股票折线 | chart | SmoothLineChart、ChartTooltip、TabBar | 未标记 |
+| 097 | 重排环图 | chart | DonutChart、ChartLegendItem | 未标记 |
+| 098 | 实时数字滚动 | card | StatCard、LineChartStatCard | 未标记 |
+| 099 | 活动环 | chart | MultilayerDonutChart | 未标记 |
+| 108 | 时区交集 | calendar | SurfaceCard、Button | 未标记 |
+| 110 | 日程冲突修复 | calendar | EventTag、SurfaceCard、Button | 未标记 |
+| 126 | Markdown 编辑与预览 | cases | TextArea、StreamingAnswer、Button | 未标记 |
+| 127 | 变更片段审核 | cases | AgentCodeBlock、Button | 未标记 |
+| 128 | 查找替换 | cases | TextField、TextArea、Button | 未标记 |
+| 129 | 代码折叠 | cases | AgentCodeBlock | 未标记 |
+| 157 | 层叠用量面积 | chart | SmoothLineChart、ChartCard、ChartLegendItem | 未标记 |
+| 163 | 目标刻度 | chart | BarHorizontalChart、ChartCard | 未标记 |
+| 165 | 预测置信带 | chart | SmoothLineChart、ChartCard、ButtonGroup | 未标记 |
+| 176 | 版本胶片 | history | HistoryGrouped、SurfaceCard、Button | 未标记 |
+| 177 | 撤销重做历史 | history | Toolbar、IconButton | 未标记 |
+| 178 | 批量选择操作台 | list | Toolbar、Button、Checkbox、FileTypeIcon | 未标记 |
+| 179 | 文字片段拼接 | cases | SurfaceCard、Button | 未标记 |
+| 180 | 审批签署 | cases | Avatar、Button、SurfaceCard | 未标记 |
+| 181 | 工作分派 | cases | SurfaceCard、Avatar、ProgressBar、Button | 未标记 |
+| 184 | 角色权限矩阵 | table | DataTable、Checkbox | 未标记 |
+| F01 | 附件队列 | chat | FileUpload、FileCard、ChatInputBar | 未标记 |
+| F02 | 工具运行卡 | agent | ThinkingTrace、ToolChips | 未标记 |
+| F03 | 列表批量操作 | list | Toolbar、Button、ListGroup、ListItem | 未标记 |
+| F04 | 生成内容审核 | agent | SurfaceCard、Button | 未标记 |
+| F05 | 协作席位 | agent | AddMember、Avatar、AvatarGroup、Button | 未标记 |
+| F06 | 搜索无结果恢复 | filter | FilterPanel、ToolbarSearchInput、ListGroup、Button | 未标记 |

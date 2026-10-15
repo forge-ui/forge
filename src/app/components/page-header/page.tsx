@@ -1,7 +1,6 @@
 "use client";
 
 import { DemoPageHeader } from "./ask-ai-example";
-import Link from "next/link";
 import { Breadcrumbs } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
@@ -12,13 +11,13 @@ const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui-official
 const CODE_HEADER_SEARCH = `<PageHeader
   askAi={{ onSend: (message, request) => askYourAiService(message, request) }}
   variant="search"
-  searchPlaceholder="Search anything..."
+  searchPlaceholder="搜索内容…"
   notifications={3}
   messages={1}
   showProfile
   profile={{
-    name: "Jane Doe",
-    role: "Admin",
+    name: "林晓",
+    role: "管理员",
     avatar: "https://i.pravatar.cc/40?img=5",
   }}
 />`;
@@ -26,18 +25,18 @@ const CODE_HEADER_SEARCH = `<PageHeader
 const CODE_HEADER_TITLE = `<PageHeader
   askAi={{ onSend: (message, request) => askYourAiService(message, request) }}
   variant="title"
-  title="Projects"
+  title="项目"
   showBackButton
   showDatePicker
   datePickerLabel="Mar 2026"
-  primaryAction={{ label: "New Project", onClick: () => {} }}
+  primaryAction={{ label: "新建项目", onClick: () => {} }}
 />`;
 
 const CODE_BREADCRUMB_USAGE = `<Breadcrumbs
   items={[
-    { label: "Home", href: "/" },
-    { label: "Projects", href: "/projects" },
-    { label: "Detail" },
+    { label: "首页", href: "/" },
+    { label: "项目", href: "/projects" },
+    { label: "详情" },
   ]}
 />`;
 
@@ -67,9 +66,9 @@ const BREADCRUMB_PROPS: ApiTableRow[] = [
 ];
 
 const breadcrumbItems = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "Detail" },
+  { label: "首页", href: "/" },
+  { label: "项目", href: "/projects" },
+  { label: "详情" },
 ];
 
 export default function PageHeaderCasePage() {
@@ -84,25 +83,25 @@ export default function PageHeaderCasePage() {
         title="PageHeader"
         description="组织标题、搜索、通知、个人信息和页面操作。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Search & Widget Variant" stack>
+        <SubSection title="搜索与工具区" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            对应 Figma 「Search & Widget」。常用于 app 全局顶栏：左搜索 + 中间功能 icon（calendar / notification / messages / language）+ 右 profile。
+            用于应用级导航，组合搜索、日历、通知、消息、语言和个人入口。
           </p>
           <PreviewBlock code={CODE_HEADER_SEARCH} minHeight={120}>
             <div className="w-full">
               <DemoPageHeader
                 variant="search"
-                searchPlaceholder="Search anything..."
+                searchPlaceholder="搜索内容…"
                 notifications={3}
                 messages={1}
                 showProfile
                 profile={{
-                  name: "Jane Doe",
-                  role: "Admin",
+                  name: "林晓",
+                  role: "管理员",
                   avatar: "https://i.pravatar.cc/40?img=5",
                 }}
               />
@@ -110,7 +109,7 @@ export default function PageHeaderCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Page Title Variant" stack>
+        <SubSection title="页面标题样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             对应 Figma 「Page Title」。页面级标题 + 返回 / 日期 / filter / favorite / 主次 action 等按钮按需开关。
           </p>
@@ -118,11 +117,11 @@ export default function PageHeaderCasePage() {
             <div className="w-full">
               <DemoPageHeader
                 variant="title"
-                title="Projects"
+                title="项目"
                 showBackButton
                 showDatePicker
                 datePickerLabel="Mar 2026"
-                primaryAction={{ label: "New Project", onClick: () => {} }}
+                primaryAction={{ label: "新建项目", onClick: () => {} }}
               />
             </div>
           </PreviewBlock>
@@ -175,7 +174,7 @@ export default function PageHeaderCasePage() {
         title="Breadcrumbs"
         description="展示页面层级，点击上级名称返回对应页面。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>items</InlineCode> 数组，每项可带 <InlineCode>href</InlineCode> 或 <InlineCode>onClick</InlineCode>。
           </p>
@@ -184,7 +183,7 @@ export default function PageHeaderCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 色：purple / blue / black。此处展示 purple，其余见 cases。
           </p>
@@ -197,10 +196,6 @@ export default function PageHeaderCasePage() {
           <ApiTable rows={BREADCRUMB_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/page-header" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

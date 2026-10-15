@@ -14,14 +14,14 @@ export default function OtherWidgetCasePage() {
         title="Currency Converter"
         description="3 colors (purple · blue · dark) — Figma 严格还原"
       >
-        <SubSection title="All colors">
+        <SubSection title="全部颜色">
           <div className="flex flex-wrap gap-4">
             {COLORS.map((c) => (
               <CurrencyConverter
                 key={c}
                 color={c}
-                title="Title Here"
-                subtitle="Text here"
+                title="项目概览"
+                subtitle="示例文本"
                 exchangeRateText="1 EUR = 1.09 USD"
               />
             ))}

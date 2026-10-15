@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   EventTag,
   CalendarDayCell,
@@ -17,20 +16,20 @@ const CODE_IMPORT = `import {
   SmallCalendar, FullCalendar,
 } from "@forge-ui-official/core";`;
 
-const CODE_EVENTTAG_USAGE = `<EventTag label="Meeting Title" color="purple" />
-<EventTag label="Review" color="green" variant="outline" />`;
+const CODE_EVENTTAG_USAGE = `<EventTag label="项目会议" color="purple" />
+<EventTag label="评审" color="green" variant="outline" />`;
 
 const CODE_DAYCELL_USAGE = `<CalendarDayCell
   day={17}
   isToday
   events={[
-    { label: "Standup", color: "purple", avatar },
+    { label: "站会", color: "purple", avatar },
     { label: "1:1", color: "blue", avatar },
   ]}
 />`;
 
 const CODE_EVENTCARD_USAGE = `<EventCard
-  title="Design Check-In"
+  title="设计进度沟通"
   timeRange="10:00-11:00"
   color="purple"
   avatars={[a1, a2, a3]}
@@ -38,8 +37,8 @@ const CODE_EVENTCARD_USAGE = `<EventCard
 />`;
 
 const CODE_SMALL_USAGE = `<SmallCalendar
-  title="Calendar"
-  subtitle="Upcoming"
+  title="日历"
+  subtitle="即将开始"
   color="purple"
   events={events}
 />`;
@@ -60,7 +59,7 @@ const DAYCELL_PROPS: ApiTableRow[] = [
   { attr: "isToday / isSelected / isOtherMonth", type: "boolean", defaultValue: "false", description: "三个互斥态：今日圆点 / 选中浅底 / 非本月斜纹背景。" },
   { attr: "events", type: "{ label, color, avatar? }[]", defaultValue: "[]", description: "当日事件列表（EventTag 风格）。" },
   { attr: "maxVisible", type: "number", defaultValue: "3", description: "最多显示几个 tag 后折叠为 +N More。" },
-  { attr: "moreAvatar", type: "string", defaultValue: "—", description: "+N More 行的头像。" },
+  { attr: "moreAvatar", type: "string", defaultValue: "—", description: "剩余事件提示行中的头像。" },
 ];
 
 const EVENTCARD_PROPS: ApiTableRow[] = [
@@ -72,7 +71,7 @@ const EVENTCARD_PROPS: ApiTableRow[] = [
 ];
 
 const SMALL_PROPS: ApiTableRow[] = [
-  { attr: "title / subtitle", type: "string", defaultValue: "'Calendar' / 'Text Here'", description: "卡片顶部文案。" },
+  { attr: "title / subtitle", type: "string", defaultValue: "'日历' / '本月日程'", description: "卡片顶部文案。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "today 圆点与列表条的主色。" },
   { attr: "events", type: "SmallCalendarEvent[]", defaultValue: "[]", description: "事件数组，day / title / timeRange / color / avatars / overflowCount。" },
   { attr: "onMenuClick", type: "() => void", defaultValue: "—", description: "右上 menu 按钮回调。" },
@@ -94,14 +93,14 @@ const avatars = [
 ];
 
 const smallEvents = [
-  { day: 4, title: "UI Daily Meet", timeRange: "10:00-11:00", color: "purple" as const, avatars, overflowCount: 4 },
-  { day: 11, title: "Sprint Review", timeRange: "09:00-10:00", color: "blue" as const, avatars },
+  { day: 4, title: "界面设计晨会", timeRange: "10:00-11:00", color: "purple" as const, avatars, overflowCount: 4 },
+  { day: 11, title: "迭代评审", timeRange: "09:00-10:00", color: "blue" as const, avatars },
 ];
 
 const fullEvents = [
-  { day: 2, label: "Meeting", color: "purple" as const, avatar: "https://i.pravatar.cc/24?u=1" },
-  { day: 10, label: "Sprint", color: "green" as const, avatar: "https://i.pravatar.cc/24?u=2" },
-  { day: 15, label: "Review", color: "red" as const, avatar: "https://i.pravatar.cc/24?u=3" },
+  { day: 2, label: "会议", color: "purple" as const, avatar: "https://i.pravatar.cc/24?u=1" },
+  { day: 10, label: "迭代", color: "green" as const, avatar: "https://i.pravatar.cc/24?u=2" },
+  { day: 15, label: "评审", color: "red" as const, avatar: "https://i.pravatar.cc/24?u=3" },
   { day: 22, label: "1:1", color: "blue" as const, avatar: "https://i.pravatar.cc/24?u=4" },
 ];
 
@@ -113,15 +112,27 @@ export default function CalendarCasePage() {
         hint="选择日期、浏览日程，并在月、周、日视图中查看事件。"
       />
 
+    <Section title="CalendarCard API" description="支持日历翻页和日期选择，可用于独立卡片或紧凑日期弹层。">
+      <CodeBlock code={'<CalendarCard value={date} onChange={setDate} />\n\n<DropdownPanel width="w-80" className="!items-stretch">\n  <CalendarCard size="compact" variant="plain" color="blue"\n    value={date} onChange={setDate} />\n</DropdownPanel>'} />
+      <ApiTable rows={[
+        { attr: "size", type: "'default' | 'compact'", defaultValue: "'default'", description: "compact 使用 14px 正文、24px 大日期；保留 32px 日期点击区域和六行月份空间。" },
+        { attr: "variant", type: "'card' | 'plain'", defaultValue: "'card'", description: "plain 移除内外卡片表面、边框、阴影和留白，宽度随父容器。" },
+        { attr: "color", type: "ButtonColor", defaultValue: "'red'", description: "沿用 Button 主题色类型；选中、今天、进度、装饰日历、撕页和焦点统一取色。" },
+        { attr: "value / defaultDate", type: "日期", defaultValue: "客户端今天", description: "value 受控；defaultDate 非受控初始日期。SSR 不猜用户时区。" },
+        { attr: "onChange", type: "(date: Date) => void", defaultValue: "—", description: "返回本地日期；导航范围 1900–2100，翻月时截到有效日期。" },
+        { attr: "locale / labels", type: "string / Partial<CalendarCardLabels>", defaultValue: "zh-CN / 中文按钮文案", description: "日期语言与导航可访问名称。" },
+        { attr: "disabled / motion / className", type: "boolean / MotionPreference / string", defaultValue: "false / auto / ''", description: "保留现有行为；auto 遵循系统 reduced-motion。" },
+      ]} />
+    </Section>
       <Section title="EventTag" description="在日历中标记事件，支持不同颜色、尺寸和样式。">
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_EVENTTAG_USAGE}>
-            <EventTag label="Meeting Title" color="purple" />
-            <EventTag label="Review" color="green" variant="outline" />
+            <EventTag label="项目会议" color="purple" />
+            <EventTag label="评审" color="green" variant="outline" />
           </PreviewBlock>
         </SubSection>
 
@@ -131,7 +142,7 @@ export default function CalendarCasePage() {
       </Section>
 
       <Section title="CalendarDayCell" description="展示一天的日期和事件，区分今天、选中日期和其他月份。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>events</InlineCode> 数组超过 <InlineCode>maxVisible</InlineCode> 自动折叠为 +N。
           </p>
@@ -141,7 +152,7 @@ export default function CalendarCasePage() {
                 day={17}
                 isToday
                 events={[
-                  { label: "Standup", color: "purple", avatar: avatars[0] },
+                  { label: "站会", color: "purple", avatar: avatars[0] },
                   { label: "1:1", color: "blue", avatar: avatars[1] },
                 ]}
               />
@@ -155,10 +166,10 @@ export default function CalendarCasePage() {
       </Section>
 
       <Section title="EventCard" description="展示事件名称、时间和参与成员。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_EVENTCARD_USAGE} minHeight={200}>
             <EventCard
-              title="Design Check-In"
+              title="设计进度沟通"
               timeRange="10:00-11:00"
               color="purple"
               avatars={avatars}
@@ -173,11 +184,11 @@ export default function CalendarCasePage() {
       </Section>
 
       <Section title="SmallCalendar" description="紧凑月日历，支持切换月份、选择日期和查看当天事件。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_SMALL_USAGE} minHeight={480}>
             <SmallCalendar
-              title="Calendar"
-              subtitle="Upcoming"
+              title="日历"
+              subtitle="即将开始"
               color="purple"
               events={smallEvents}
             />
@@ -190,7 +201,7 @@ export default function CalendarCasePage() {
       </Section>
 
       <Section title="FullCalendar" description="在月、周、日视图中浏览事件，可显示事件详情。">
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>view</InlineCode> 受控从外部驱动，下面展示 month 视图。其余见 cases。
           </p>
@@ -205,10 +216,6 @@ export default function CalendarCasePage() {
           <ApiTable rows={FULL_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/calendar" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

@@ -18,12 +18,14 @@ export type ContextChunk = {
 
 export function ContextCards({
   chunks,
+  locale = "zh",
   total,
-  allChunksLabel = "All chunks",
-  charactersLabel = "characters",
+  allChunksLabel = locale === "zh" ? "全部片段" : "All chunks",
+  charactersLabel = locale === "zh" ? "字符" : "characters",
   className = "",
 }: {
   chunks: ContextChunk[];
+  locale?: "zh" | "en";
   total?: number;
   allChunksLabel?: string;
   charactersLabel?: string;
@@ -39,7 +41,7 @@ export function ContextCards({
           <div className="mb-2 flex items-start justify-between gap-3">
             <h3 className="text-sm font-semibold text-fg-black">{chunk.title}</h3>
             {chunk.charCount !== undefined && (
-              <span className="shrink-0 text-xs text-fg-grey-500">{chunk.charCount.toLocaleString()} {charactersLabel}</span>
+              <span className="shrink-0 text-xs text-fg-grey-500">{chunk.charCount.toLocaleString(locale === "zh" ? "zh-CN" : "en-US")} {charactersLabel}</span>
             )}
           </div>
           <p className="text-sm leading-6 text-fg-grey-700">{chunk.body}</p>

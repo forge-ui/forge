@@ -7,9 +7,8 @@ import { cn } from "@forge-ui-official/core";
 import { asset } from "@/lib/asset";
 
 const tabs = [
-  { href: "/docs", label: "文档" },
+  { href: "/docs/quick-start", label: "快速开始" },
   { href: "/components", label: "组件" },
-  { href: "/cases", label: "组件案例" },
   { href: "/templates", label: "模板" },
 ] as const;
 
@@ -34,11 +33,16 @@ export function SiteHeader() {
         <div className="flex min-w-0 flex-1 items-center gap-3 pr-3 sm:gap-6 sm:px-8 lg:px-12">
           <nav aria-label="主导航" className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap sm:gap-7">
             {tabs.map((t) => {
-              const active = pathname === t.href || pathname.startsWith(t.href + "/");
+              const active = t.href === "/docs/quick-start"
+                ? pathname === "/docs" || pathname.startsWith("/docs/")
+                : t.href === "/components"
+                  ? pathname === "/components" || pathname.startsWith("/components/") || pathname === "/cases" || pathname.startsWith("/cases/")
+                  : pathname === t.href || pathname.startsWith(t.href + "/");
               return (
                 <Link
                   key={t.label}
                   href={t.href}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
                     "text-sm tracking-fg transition-colors",
                     active

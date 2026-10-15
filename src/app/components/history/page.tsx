@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { HistoryItem, HistoryGrouped } from "@forge-ui-official/core";
 import {
   CheckCircleLinear,
@@ -14,28 +13,28 @@ import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table
 const CODE_IMPORT = `import { HistoryItem, HistoryGrouped } from "@forge-ui-official/core";`;
 
 const CODE_ITEM_USAGE = `<HistoryItem
-  title="Order Placed"
-  description="Your order has been submitted"
+  title="订单已提交"
+  description="你的订单已提交成功"
   datetime="10:30 AM"
   color="purple"
 />`;
 
-const CODE_ITEM_VARIANTS = `<HistoryItem variant="regular" title="Regular" datetime="10:00" />
-<HistoryItem variant="badge" title="Badge" datetime="10:30" icon={<CheckCircleLinear size={20} />} />
-<HistoryItem variant="profile" title="Profile" datetime="11:00" avatar={avatar} />`;
+const CODE_ITEM_VARIANTS = `<HistoryItem variant="regular" title="常规" datetime="10:00" />
+<HistoryItem variant="badge" title="徽章" datetime="10:30" icon={<CheckCircleLinear size={20} />} />
+<HistoryItem variant="profile" title="个人资料" datetime="11:00" avatar={avatar} />`;
 
 const CODE_ITEM_DATETIME = `<HistoryItem title="Item" datetime="10:30" showDatetime="inline" />
 <HistoryItem title="Item" datetime="10:30" showDatetime="bottom" />`;
 
 const CODE_GROUPED_USAGE = `<HistoryGrouped
-  title="Recent Activity"
-  subtitle="Last 24 hours"
+  title="近期动态"
+  subtitle="过去 24 小时"
   color="purple"
   progressHeight="40%"
   items={[
-    { title: "Login", datetime: "10:00" },
-    { title: "Viewed report", datetime: "10:30" },
-    { title: "Logout", datetime: "11:00" },
+    { title: "登录", datetime: "10:00" },
+    { title: "查看报告", datetime: "10:30" },
+    { title: "退出登录", datetime: "11:00" },
   ]}
 />`;
 
@@ -74,16 +73,16 @@ export default function HistoryCasePage() {
         title="HistoryItem"
         description="按时间展示一项操作或事件。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_ITEM_USAGE} minHeight={140}>
             <div className="w-full max-w-md">
               <HistoryItem
-                title="Order Placed"
-                description="Your order has been submitted"
+                title="订单已提交"
+                description="你的订单已提交成功"
                 datetime="10:30 AM"
                 color="purple"
                 showConnector={false}
@@ -92,24 +91,24 @@ export default function HistoryCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Variants" stack>
+        <SubSection title="样式" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种指示器样式。<InlineCode>badge</InlineCode> 需传 <InlineCode>icon</InlineCode>，<InlineCode>profile</InlineCode> 需传 <InlineCode>avatar</InlineCode>。
           </p>
           <PreviewBlock code={CODE_ITEM_VARIANTS} minHeight={300}>
             <div className="w-full max-w-md flex flex-col">
-              <HistoryItem variant="regular" title="Regular" datetime="10:00" />
-              <HistoryItem variant="badge" title="Badge" datetime="10:30" icon={<CheckCircleLinear size={20} />} />
-              <HistoryItem variant="profile" title="Profile" datetime="11:00" avatar="https://i.pravatar.cc/40?img=10" showConnector={false} />
+              <HistoryItem variant="regular" title="常规" datetime="10:00" />
+              <HistoryItem variant="badge" title="徽章" datetime="10:30" icon={<CheckCircleLinear size={20} />} />
+              <HistoryItem variant="profile" title="个人资料" datetime="11:00" avatar="https://i.pravatar.cc/40?img=10" showConnector={false} />
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Datetime Position" stack>
+        <SubSection title="时间位置" stack>
           <PreviewBlock code={CODE_ITEM_DATETIME} minHeight={200}>
             <div className="w-full max-w-md flex flex-col">
-              <HistoryItem title="Inline Time" datetime="10:30" showDatetime="inline" description="Time shown on the right" />
-              <HistoryItem title="Bottom Time" datetime="10:30" showDatetime="bottom" description="Time below description" showConnector={false} />
+              <HistoryItem title="行内时间" datetime="10:30" showDatetime="inline" description="时间显示在右侧" />
+              <HistoryItem title="底部时间" datetime="10:30" showDatetime="bottom" description="时间显示在说明下方" showConnector={false} />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -123,18 +122,18 @@ export default function HistoryCasePage() {
         title="HistoryGrouped"
         description="将历史记录按组展示，并附带标题和进度信息。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_GROUPED_USAGE} minHeight={360}>
             <div className="w-full max-w-lg">
               <HistoryGrouped
-                title="Recent Activity"
-                subtitle="Last 24 hours"
+                title="近期动态"
+                subtitle="过去 24 小时"
                 color="purple"
                 progressHeight="40%"
                 items={[
-                  { variant: "badge", title: "Login", datetime: "10:00", icon: <UserLinear size={20} /> },
-                  { variant: "badge", title: "Viewed report", datetime: "10:30", icon: <DocumentTextLinear size={20} /> },
-                  { title: "Logout", datetime: "11:00" },
+                  { variant: "badge", title: "登录", datetime: "10:00", icon: <UserLinear size={20} /> },
+                  { variant: "badge", title: "查看报告", datetime: "10:30", icon: <DocumentTextLinear size={20} /> },
+                  { title: "退出登录", datetime: "11:00" },
                 ]}
               />
             </div>
@@ -145,10 +144,6 @@ export default function HistoryCasePage() {
           <ApiTable rows={GROUPED_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/history" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

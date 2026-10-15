@@ -15,27 +15,27 @@ const menuSections: AppLayoutMenuSection[] = [
   {
     label: "工作区",
     items: [
-      { icon: <HomeBoldDuotone size={20} />, label: "工作台", href: "/cases/menu-sections" },
-      { icon: <FolderBoldDuotone size={20} />, label: "项目", href: "/cases/menu-sections/projects" },
+      { icon: <HomeBoldDuotone size={20} />, label: "工作台", href: "/components/menu-sections" },
+      { icon: <FolderBoldDuotone size={20} />, label: "项目", href: "/components/menu-sections/projects" },
     ],
   },
   {
     label: "智能体",
     items: [
-      { icon: <UsersGroupRoundedBoldDuotone size={20} />, label: "智能体列表", href: "/cases/menu-sections/agents" },
-      { icon: <ListCheckLinear size={20} />, label: "任务", href: "/cases/menu-sections/tasks" },
+      { icon: <UsersGroupRoundedBoldDuotone size={20} />, label: "智能体列表", href: "/components/menu-sections/agents" },
+      { icon: <ListCheckLinear size={20} />, label: "任务", href: "/components/menu-sections/tasks" },
     ],
   },
   {
     label: "平台",
     items: [
-      { icon: <SettingsBoldDuotone size={20} />, label: "设置", href: "/cases/menu-sections/settings" },
+      { icon: <SettingsBoldDuotone size={20} />, label: "设置", href: "/components/menu-sections/settings" },
       {
         icon: <ShieldCheckBold size={20} />,
         label: "管理",
         children: [
-          { label: "成员", href: "/cases/menu-sections/members" },
-          { label: "权限", href: "/cases/menu-sections/permissions" },
+          { label: "成员", href: "/components/menu-sections/members" },
+          { label: "权限", href: "/components/menu-sections/permissions" },
         ],
       },
     ],

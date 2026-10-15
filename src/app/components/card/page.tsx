@@ -1,7 +1,7 @@
 "use client";
 
-import { MigrationPreview } from "../_migration-previews";
 import Link from "next/link";
+
 import {
   StatCard,
   ProgressStatCard,
@@ -18,12 +18,10 @@ import {
   UserCard,
   HighlightCard,
   ActivityCard,
-  FileCard,
   Label,
 } from "@forge-ui-official/core";
 import {
   ChartSquareBoldDuotone,
-  WalletBoldDuotone,
   VideocameraBoldDuotone,
   PhoneBoldDuotone,
 } from "@forge-ui-official/core/icons";
@@ -51,10 +49,10 @@ const CODE_IMPORT = `import {
 
 // StatCard
 const CODE_STATCARD_USAGE = `<StatCard
-  title="Total Revenue"
+  title="总收入"
   value="$14,000"
   trend="10%"
-  subtitle="+$150 today"
+  subtitle="今日增加 ¥150"
   theme="purple"
   size="lg"
   icon={<ChartSquareBoldDuotone size={20} />}
@@ -89,10 +87,10 @@ const STATCARD_PROPS: ApiTableRow[] = [
 
 // ProgressStatCard
 const CODE_PROGRESS_STAT_USAGE = `<ProgressStatCard
-  title="Active Users"
+  title="活跃用户"
   value="1,250"
   trend="12%"
-  subtitle="+150 today"
+  subtitle="今日新增 150"
   theme="purple"
   progressValue={65}
   progressColor="yellow"
@@ -152,11 +150,11 @@ const BAR_CHART_STAT_PROPS: ApiTableRow[] = [
 
 // ImageStatCard
 const CODE_IMAGE_STAT_USAGE = `<ImageStatCard
-  title="Total Revenue"
-  subtitle="2 Jul - Today"
+  title="总收入"
+  subtitle="7 月 2 日至今"
   value="$14,000"
   trend="10%"
-  trendSubtitle="+$150 today"
+  trendSubtitle="今日增加 ¥150"
   theme="purple"
   avatars={[...]}
 />`;
@@ -174,7 +172,7 @@ const IMAGE_STAT_PROPS: ApiTableRow[] = [
 // BalanceCard / DebitCard / CreditCard
 const CODE_FINANCIAL_USAGE = `<BalanceCard balance="$21,500" trend="10%" theme="purple" cardNumber="9821" />
 <DebitCard balance="$1,200.00" cardNumber="9090" expiry="07/25" theme="blue" variant="glow" />
-<CreditCard cardNumber="9090" holderName="John Doe" expiry="07/25" theme="dark" variant="gradient" />`;
+<CreditCard cardNumber="9090" holderName="张明" expiry="07/25" theme="dark" variant="gradient" />`;
 
 const BALANCE_PROPS: ApiTableRow[] = [
   { attr: "title", type: "string", defaultValue: "'Total Balance'", description: "卡片标题。" },
@@ -208,14 +206,14 @@ const CREDIT_PROPS: ApiTableRow[] = [
 
 // ProjectCard / TaskCard
 const CODE_PROJECT_USAGE = `<ProjectCard
-  title="Website Redesign"
-  description="Landing + marketing pages"
-  labelText="In Progress"
+  title="官网改版"
+  description="首页与营销页面"
+  labelText="进行中"
   labelColor="purple"
   progress={65}
   progressColor="purple"
   avatars={avatars}
-  date="21 Oct 2022"
+  date="2026 年 10 月 21 日"
   onMenuClick={() => {}}
 />`;
 
@@ -251,9 +249,9 @@ const TASKCARD_PROPS: ApiTableRow[] = [
 // UserCard
 const CODE_USER_USAGE = `<UserCard
   avatar="https://..."
-  name="Mohammad Karim"
-  badge={<Label color="purple" size="sm">Pro</Label>}
-  stats={[{ label: "Level", value: "12,091" }]}
+  name="陈明"
+  badge={<Label color="purple" size="sm">专业版</Label>}
+  stats={[{ label: "等级", value: "12,091" }]}
   onMenuClick={() => {}}
 />`;
 
@@ -265,17 +263,6 @@ const USER_PROPS: ApiTableRow[] = [
   { attr: "badge", type: "ReactNode", defaultValue: "—", description: "右上角标签，一般放 <Label />。" },
   { attr: "stats", type: "{ label: string; value: string }[]", defaultValue: "—", description: "下方统计信息。" },
   { attr: "onMenuClick", type: "() => void", defaultValue: "—", description: "kebab 回调。" },
-];
-
-// FileCard
-const CODE_FILE_USAGE = `<FileCard file={{ id: "1", name: "Report.doc", size: "300 KB" }} />
-<FileCard file={{ id: "2", name: "Upload.pdf", size: "800 KB", state: "uploading" }} />
-<FileCard file={{ id: "3", name: "Failed.zip", size: "2 MB", state: "error" }} onRetry={...} onRemove={...} />`;
-
-const FILE_PROPS: ApiTableRow[] = [
-  { attr: "file", type: "{ id, name, size, state? }", defaultValue: "—", description: "文件数据，state 可为 success / uploading / error。" },
-  { attr: "onRetry", type: "(id: string) => void", defaultValue: "—", description: "error 态的重试回调。" },
-  { attr: "onRemove", type: "(id: string) => void", defaultValue: "—", description: "删除回调。" },
 ];
 
 // HighlightCard
@@ -319,26 +306,22 @@ export default function CardCasePage() {
         title="StatCard"
         description="展示一项关键指标，可附带图标、变化趋势和操作菜单。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="统计数值过渡" stack>
-          <p className="text-sm leading-5 text-fg-grey-600">统计卡片的数据更新时逐位滚动，屏幕阅读器读取最终值。</p>
-          <MigrationPreview kind="number" />
-          <CodeBlock code={'<StatCard title="实时访客" value={visitors} animateValue />\n<LineChartStatCard title="项目收入" value={revenue} animateValue\n  locale="zh-CN" numberFormat={{ style: "currency", currency: "CNY" }} />'} />
-        </SubSection>
 
-        <SubSection title="Usage" stack>
+
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             必填 <InlineCode>title</InlineCode> + <InlineCode>value</InlineCode>，其余可选。
           </p>
           <PreviewBlock code={CODE_STATCARD_USAGE} minHeight={220}>
             <StatCard
-              title="Total Revenue"
+              title="总收入"
               value="$14,000"
               trend="10%"
-              subtitle="+$150 today"
+              subtitle="今日增加 ¥150"
               theme="purple"
               size="lg"
               icon={<ChartSquareBoldDuotone size={20} />}
@@ -346,27 +329,27 @@ export default function CardCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Themes" stack>
+        <SubSection title="主题" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             8 种主题色（white / dark / purple / blue / green / orange / yellow / cyan），这里示意 5 种。
           </p>
           <PreviewBlock code={CODE_STATCARD_THEMES} minHeight={260}>
             <div className="flex flex-wrap items-start gap-4">
               {(["white", "purple", "blue", "green", "dark"] as const).map((theme) => (
-                <StatCard key={theme} title="Title" value="$1,000" trend="10%" subtitle="+$150 today" theme={theme} size="sm" />
+                <StatCard key={theme} title="标题" value="$1,000" trend="10%" subtitle="今日增加 ¥150" theme={theme} size="sm" />
               ))}
             </div>
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Sizes" stack>
+        <SubSection title="尺寸" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>sm</InlineCode> 紧凑（dashboard 网格）/ <InlineCode>lg</InlineCode> 完整展开。
           </p>
           <PreviewBlock code={CODE_STATCARD_SIZES} minHeight={260}>
             <div className="flex flex-wrap items-start gap-4">
-              <StatCard title="Title Here" value="$1,000" trend="10%" subtitle="+$150 today" theme="purple" size="sm" />
-              <StatCard title="Total Revenue" value="$14,000" trend="10%" subtitle="+$150 today" theme="purple" size="lg" icon={<ChartSquareBoldDuotone size={20} />} />
+              <StatCard title="项目概览" value="$1,000" trend="10%" subtitle="今日增加 ¥150" theme="purple" size="sm" />
+              <StatCard title="总收入" value="$14,000" trend="10%" subtitle="今日增加 ¥150" theme="purple" size="lg" icon={<ChartSquareBoldDuotone size={20} />} />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -380,16 +363,16 @@ export default function CardCasePage() {
         title="ProgressStatCard"
         description="在统计指标旁展示配额或任务进度。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             继承 StatCard 所有字段，新增 <InlineCode>progressValue</InlineCode> 与 <InlineCode>progressColor</InlineCode>。
           </p>
           <PreviewBlock code={CODE_PROGRESS_STAT_USAGE} minHeight={220}>
             <ProgressStatCard
-              title="Active Users"
+              title="活跃用户"
               value="1,250"
               trend="12%"
-              subtitle="+150 today"
+              subtitle="今日新增 150"
               theme="purple"
               size="lg"
               progressValue={65}
@@ -404,7 +387,7 @@ export default function CardCasePage() {
       </Section>
 
       <Section
-        title="Chart Stat Cards"
+        title="图表统计卡片"
         description="用小型折线、环图或柱图补充统计指标。"
       >
         <SubSectionGrid cols={2}>
@@ -414,10 +397,10 @@ export default function CardCasePage() {
           </p>
           <PreviewBlock code={CODE_CHART_USAGE} minHeight={220}>
             <LineChartStatCard
-              title="Total Revenue"
+              title="总收入"
               value="$14,000"
               trend="10%"
-              subtitle="+$150 today"
+              subtitle="今日增加 ¥150"
               theme="purple"
               size="lg"
               chartColor="purple"
@@ -432,10 +415,10 @@ export default function CardCasePage() {
           </p>
           <PreviewBlock code={CODE_CHART_USAGE} minHeight={220}>
             <WheelChartStatCard
-              title="Storage Used"
+              title="已用存储"
               value="72%"
               trend="5%"
-              subtitle="Out of 1 TB"
+              subtitle="总容量 1 TB"
               theme="blue"
               size="lg"
               wheelPercent={72}
@@ -451,10 +434,10 @@ export default function CardCasePage() {
           </p>
           <PreviewBlock code={CODE_CHART_USAGE} minHeight={220}>
             <BarChartStatCard
-              title="Sessions"
+              title="访问次数"
               value="12,480"
               trend="8%"
-              subtitle="vs last week"
+              subtitle="较上周"
               theme="green"
               size="lg"
               barColor="green"
@@ -469,17 +452,17 @@ export default function CardCasePage() {
         title="ImageStatCard"
         description="在统计卡片中展示成员头像，适合团队数据。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>avatars</InlineCode> 为 URL 数组，右上角自动叠圈。
           </p>
           <PreviewBlock code={CODE_IMAGE_STAT_USAGE} minHeight={220}>
             <ImageStatCard
-              title="Total Revenue"
-              subtitle="2 Jul - Today"
+              title="总收入"
+              subtitle="7 月 2 日至今"
               value="$14,000"
               trend="10%"
-              trendSubtitle="+$150 today"
+              trendSubtitle="今日增加 ¥150"
               theme="purple"
               avatars={avatarSet}
             />
@@ -492,7 +475,7 @@ export default function CardCasePage() {
       </Section>
 
       <Section
-        title="Financial Cards"
+        title="财务卡片"
         description="展示余额和银行卡信息，支持多种主题与卡面样式。"
       >
         <SubSectionGrid cols={2}>
@@ -501,7 +484,7 @@ export default function CardCasePage() {
             余额卡 + Transfer/Request 动作。<InlineCode>balanceHidden</InlineCode> 可隐藏数字。
           </p>
           <PreviewBlock code={CODE_FINANCIAL_USAGE} minHeight={220}>
-            <BalanceCard balance="$21,500" trend="10%" subtitle="+$150 today" theme="purple" cardNumber="9821" onTransfer={() => {}} onRequest={() => {}} />
+            <BalanceCard balance="$21,500" trend="10%" subtitle="今日增加 ¥150" theme="purple" cardNumber="9821" onTransfer={() => {}} onRequest={() => {}} />
           </PreviewBlock>
           <ApiTable rows={BALANCE_PROPS} />
         </SubSection>
@@ -521,7 +504,7 @@ export default function CardCasePage() {
             信用卡，无余额字段，多一个 <InlineCode>holderName</InlineCode> 持卡人姓名。
           </p>
           <PreviewBlock code={CODE_FINANCIAL_USAGE} minHeight={220}>
-            <CreditCard cardNumber="9090" holderName="John Doe" expiry="07/25" theme="dark" variant="glow" />
+            <CreditCard cardNumber="9090" holderName="张明" expiry="07/25" theme="dark" variant="glow" />
           </PreviewBlock>
           <ApiTable rows={CREDIT_PROPS} />
         </SubSection>
@@ -532,22 +515,22 @@ export default function CardCasePage() {
         title="ProgressCard"
         description="汇总多个项目的完成进度。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             主进度 + <InlineCode>items</InlineCode> 分项，每项有独立颜色。
           </p>
-          <PreviewBlock code={`<ProgressCard title="Task Progress" value="75%" progress={75} items={[...]} />`} minHeight={220}>
+          <PreviewBlock code={`<ProgressCard title="任务进度" value="75%" progress={75} items={[...]} />`} minHeight={220}>
             <ProgressCard
-              title="Task Progress"
+              title="任务进度"
               value="75%"
-              subtitle="Updated today"
+              subtitle="今天更新"
               theme="white"
               progress={75}
               progressColor="#7c3aed"
               items={[
-                { label: "Design", value: "100%", color: "#10b981" },
-                { label: "Dev", value: "60%", color: "#7c3aed" },
-                { label: "QA", value: "20%", color: "#f59e0b" },
+                { label: "设计", value: "100%", color: "#10b981" },
+                { label: "开发", value: "60%", color: "#7c3aed" },
+                { label: "测试", value: "20%", color: "#f59e0b" },
               ]}
             />
           </PreviewBlock>
@@ -568,7 +551,7 @@ export default function CardCasePage() {
             项目卡：左上 logo + 标题 + 描述 + 进度 + 成员。
           </p>
           <PreviewBlock code={CODE_PROJECT_USAGE} minHeight={240}>
-            <ProjectCard title="Website Redesign" description="Landing + marketing pages" labelText="In Progress" labelColor="purple" progress={65} progressColor="purple" avatars={avatarSet} date="21 Oct 2022" onMenuClick={() => {}} />
+            <ProjectCard title="官网改版" description="首页与营销页面" labelText="进行中" labelColor="purple" progress={65} progressColor="purple" avatars={avatarSet} date="2026 年 10 月 21 日" onMenuClick={() => {}} />
           </PreviewBlock>
           <ApiTable rows={PROJECTCARD_PROPS} />
         </SubSection>
@@ -578,7 +561,7 @@ export default function CardCasePage() {
             任务卡：无 logo，label 在顶部独立一行，适合填满任务板列。
           </p>
           <PreviewBlock code={CODE_PROJECT_USAGE} minHeight={240}>
-            <TaskCard title="Design review" description="Ship spec by EOW" labelText="Label" labelColor="red" progress={50} progressColor="yellow" avatars={avatarSet} date="21 Oct 2022" onMenuClick={() => {}} />
+            <TaskCard title="设计评审" description="本周内交付设计规范" labelText="Label" labelColor="red" progress={50} progressColor="yellow" avatars={avatarSet} date="2026 年 10 月 21 日" onMenuClick={() => {}} />
           </PreviewBlock>
           <ApiTable rows={TASKCARD_PROPS} />
         </SubSection>
@@ -589,14 +572,14 @@ export default function CardCasePage() {
         title="UserCard"
         description="展示成员姓名、头像和自定义统计信息。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             优先使用 <InlineCode>avatar</InlineCode>，退化到 <InlineCode>initials</InlineCode>。
           </p>
           <PreviewBlock code={CODE_USER_USAGE} minHeight={280}>
             <div className="flex flex-wrap items-start gap-4">
-              <UserCard avatar="https://i.pravatar.cc/160?u=u1" name="Mohammad Karim" badge={<Label color="purple" size="sm">Pro</Label>} stats={[{ label: "Level", value: "12,091" }, { label: "Exp", value: "$12,091" }]} onMenuClick={() => {}} />
-              <UserCard initials="LB" initialsColor="blue" name="Linda Blair" badge={<Label color="blue" size="sm">Label</Label>} stats={[{ label: "Level", value: "12,091" }]} onMenuClick={() => {}} />
+              <UserCard avatar="https://i.pravatar.cc/160?u=u1" name="陈明" badge={<Label color="purple" size="sm">专业版</Label>} stats={[{ label: "等级", value: "12,091" }, { label: "经验", value: "$12,091" }]} onMenuClick={() => {}} />
+              <UserCard initials="LB" initialsColor="blue" name="林晓" badge={<Label color="blue" size="sm">Label</Label>} stats={[{ label: "等级", value: "12,091" }]} onMenuClick={() => {}} />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -606,47 +589,27 @@ export default function CardCasePage() {
         </SubSection>
       </Section>
 
-      <Section
-        title="FileCard"
-        description="展示文件名称、大小、类型及上传状态。"
-      >
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>file</InlineCode> 对象内带 <InlineCode>state</InlineCode> 决定视觉。
-          </p>
-          <PreviewBlock code={CODE_FILE_USAGE} minHeight={220}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <FileCard file={{ id: "1", name: "Report.doc", size: "300 KB" }} />
-              <FileCard file={{ id: "2", name: "Uploading.pdf", size: "800 KB", state: "uploading" }} />
-              <FileCard file={{ id: "3", name: "Failed.zip", size: "2 MB", state: "error" }} onRetry={() => {}} onRemove={() => {}} />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={FILE_PROPS} />
-        </SubSection>
-      </Section>
+      <p id="filecard" className="scroll-mt-24 text-sm leading-6 text-fg-grey-700">文件卡片的展示、用法和参数统一见 <Link href="/components/file-type#filecard" className="text-fg-violet underline underline-offset-4">文件卡片</Link>。</p>
 
       <Section
         title="HighlightCard"
         description="突出展示主图、注解和产品信息。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>annotations</InlineCode> 数组项带 position，可绝对定位在主图上。
           </p>
-          <PreviewBlock code={`<HighlightCard title="Top Product" theme="purple" image="..." annotations={[...]} products={[...]} />`} minHeight={340}>
+          <PreviewBlock code={`<HighlightCard title="热门商品" theme="purple" image="..." annotations={[...]} products={[...]} />`} minHeight={340}>
             <HighlightCard
-              title="Top Product"
+              title="热门商品"
               theme="purple"
               image="https://picsum.photos/400/300?random=highlight"
               annotations={[
-                { label: "JBL Earnote Pro 2", value: "340 Sales | $26,982", position: { bottom: "12px", left: "12px" } },
+                { label: "无线降噪耳机", value: "340 笔销售 | ¥26,982", position: { bottom: "12px", left: "12px" } },
               ]}
               products={[
-                { image: "https://picsum.photos/80/80?random=p1", name: "Logic Wireless Mouse", subtitle: "140 Sales", value: "$17,678" },
-                { image: "https://picsum.photos/80/80?random=p2", name: "PS Controller", subtitle: "105 Sales", value: "$5,500" },
+                { image: "https://picsum.photos/80/80?random=p1", name: "无线鼠标", subtitle: "售出 140 件", value: "$17,678" },
+                { image: "https://picsum.photos/80/80?random=p2", name: "游戏手柄", subtitle: "售出 105 件", value: "$5,500" },
               ]}
             />
           </PreviewBlock>
@@ -661,33 +624,33 @@ export default function CardCasePage() {
         title="ActivityCard"
         description="展示事件类型、时间、说明和相关信息。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             按事件类型传不同 icon，<InlineCode>metadata</InlineCode> 为 label/value 对。
           </p>
-          <PreviewBlock code={`<ActivityCard icon={...} title="Meet Title" metadata={[...]} ... />`} minHeight={320}>
+          <PreviewBlock code={`<ActivityCard icon={...} title="项目讨论会" metadata={[...]} ... />`} minHeight={320}>
             <div className="flex flex-wrap items-start gap-4">
               <ActivityCard
                 icon={<VideocameraBoldDuotone size={20} className="text-fg-violet" />}
-                headerText="Meet schedule created James William"
-                datetime="14 Jan 2025, 10:00"
+                headerText="林晓创建了会议日程"
+                datetime="2025年1月14日 10:00"
                 avatar="https://i.pravatar.cc/40?u=a1"
-                title="Meet Title"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                title="项目讨论会"
+                description="讨论项目进展、关键问题和下一步安排。"
                 metadata={[
-                  { label: "Date", value: "14 Feb 2025, 14:00" },
-                  { label: "Purpose", value: "Follow Up" },
+                  { label: "日期", value: "2025年2月14日 14:00" },
+                  { label: "目的", value: "后续跟进" },
                 ]}
                 onMenuClick={() => {}}
               />
               <ActivityCard
                 icon={<PhoneBoldDuotone size={20} className="text-emerald-500" />}
-                headerText="Call schedule created James William"
-                datetime="14 Jan 2025, 10:00"
+                headerText="林晓创建了通话日程"
+                datetime="2025年1月14日 10:00"
                 avatar="https://i.pravatar.cc/40?u=a2"
-                title="Call Title"
-                description="Lorem ipsum dolor sit amet."
-                metadata={[{ label: "Date", value: "14 Feb 2025, 14:00" }]}
+                title="客户回访"
+                description="确认需求与交付安排。"
+                metadata={[{ label: "日期", value: "2025年2月14日 14:00" }]}
                 onMenuClick={() => {}}
               />
             </div>
@@ -698,10 +661,6 @@ export default function CardCasePage() {
           <ApiTable rows={ACTIVITY_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/card" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

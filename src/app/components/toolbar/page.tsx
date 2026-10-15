@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Login2Linear } from "@forge-ui-official/core/icons";
 import {
   Button,
-  Breadcrumbs,
   Toolbar,
   ToolbarSearchInput,
   ToolbarSelectDropdown,
@@ -23,16 +22,16 @@ import { ToolbarInteractiveDemo } from "./_interactive-demo";
 // ─── 共享 demo 数据 ───
 
 const PILL_TABS = [
-  { label: "All", active: true },
-  { label: "Drafts" },
-  { label: "Published" },
-  { label: "Archived" },
+  { label: "全部", active: true },
+  { label: "草稿" },
+  { label: "已发布" },
+  { label: "已归档" },
 ];
 
 const PAGE_CRUMBS = [
-  { label: "Workspace", href: "#" },
-  { label: "Projects", href: "#" },
-  { label: "Dashboard" },
+  { label: "工作区", href: "#" },
+  { label: "项目", href: "#" },
+  { label: "工作台" },
 ];
 
 const PrimaryIcon = <Login2Linear size={20} color="#FFFFFF" />;
@@ -47,35 +46,17 @@ const CODE_IMPORT = `import {
   PageTitleToolbar,
 } from "@forge-ui-official/core";`;
 
-// Breadcrumbs
-const CODE_CRUMBS_USAGE = `<Breadcrumbs
-  items={[
-    { label: "Workspace", href: "#" },
-    { label: "Projects", href: "#" },
-    { label: "Dashboard" },
-  ]}
-/>`;
-
-const CODE_CRUMBS_COLORS = `<Breadcrumbs color="purple" items={items} />
-<Breadcrumbs color="blue" items={items} />
-<Breadcrumbs color="black" items={items} />`;
-
-const CRUMBS_PROPS: ApiTableRow[] = [
-  { attr: "items", type: "{ label: string; href?: string; onClick?: () => void }[]", defaultValue: "—", description: "层级列表；最后一项通常不带 href / onClick，作为当前页。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "链接主色，末项始终灰色。" },
-];
-
 // Search & Filter Toolbar — Figma 预设双行组合
 const CODE_SEARCH_FILTER_USAGE = `// Row 1: 搜索 + 一组筛选 + 主按钮
 <Toolbar
   left={<ToolbarSearchInput />}
   right={
     <ToolbarActions>
-      <ToolbarSelectDropdown placeholder="Select..." />
+      <ToolbarSelectDropdown placeholder="请选择…" />
       <ToolbarDatepicker />
       <ToolbarFilterButton />
       <ToolbarShowSelect value="1" />
-      <Button color="purple" iconLeft={icon}>Primary</Button>
+      <Button color="purple" iconLeft={icon}>主要按钮</Button>
     </ToolbarActions>
   }
 />
@@ -85,7 +66,7 @@ const CODE_SEARCH_FILTER_USAGE = `// Row 1: 搜索 + 一组筛选 + 主按钮
   left={<ToolbarPillTabs color="purple" tabs={tabs} />}
   right={
     <ToolbarActions>
-      <ToolbarSelectDropdown placeholder="Select..." />
+      <ToolbarSelectDropdown placeholder="请选择…" />
       <ToolbarDatepicker />
       <ToolbarFilterButton />
     </ToolbarActions>
@@ -97,16 +78,16 @@ const CODE_TOOLBAR_USAGE = `<Toolbar
   left={<ToolbarSearchInput />}
   right={
     <ToolbarActions>
-      <ToolbarSelectDropdown placeholder="Select..." />
+      <ToolbarSelectDropdown placeholder="请选择…" />
       <ToolbarFilterButton />
     </ToolbarActions>
   }
 />`;
 
 const CODE_PILL_USAGE = `<ToolbarPillTabs color="purple" tabs={[
-  { label: "All", active: true },
-  { label: "Drafts" },
-  { label: "Published" },
+  { label: "全部", active: true },
+  { label: "草稿" },
+  { label: "已发布" },
 ]} />`;
 
 const TOOLBAR_PROPS: ApiTableRow[] = [
@@ -127,11 +108,11 @@ const PILL_PROPS: ApiTableRow[] = [
 const CODE_PTT_USAGE = `<PageTitleToolbar
   variant="collection"
   color="purple"
-  title="Customer"
-  subtitle="Manage customer relationships and account health."
+  title="客户"
+  subtitle="管理客户关系，了解客户合作情况。"
   breadcrumbItems={crumbs}
-  secondaryAction={{ label: "Export" }}
-  primaryAction={{ label: "Add customer", icon }}
+  secondaryAction={{ label: "导出" }}
+  primaryAction={{ label: "新增客户", icon }}
 />`;
 
 const PTT_PROPS: ApiTableRow[] = [
@@ -148,7 +129,7 @@ const PTT_PROPS: ApiTableRow[] = [
 
 // Toolbar sub-controls
 const CODE_CONTROLS_USAGE = `<ToolbarSearchInput />
-<ToolbarSelectDropdown placeholder="Select..." />
+<ToolbarSelectDropdown placeholder="请选择…" />
 <ToolbarDatepicker />
 <ToolbarFilterButton />
 <ToolbarShowSelect value="1" />
@@ -176,7 +157,7 @@ const DATEPICKER_PROPS: ApiTableRow[] = [
 ];
 
 const FILTERBUTTON_PROPS: ApiTableRow[] = [
-  { attr: "label", type: "string", defaultValue: "'Filters'", description: "按钮文本。" },
+  { attr: "label", type: "string", defaultValue: "'筛选'", description: "按钮文本。" },
   { attr: "panel", type: "ReactNode | (close) => ReactNode", defaultValue: "—", description: "挂载的浮层；函数形式可接收 close 用于内部 Apply/Cancel。" },
   { attr: "onClick", type: "() => void", defaultValue: "—", description: "外接 click handler。" },
 ];
@@ -205,66 +186,37 @@ export default function ToolbarCasePage() {
       />
 
       <Section
-        title="Interactive Demo"
+        title="交互演示"
         description="体验搜索、筛选、日期选择和显示数量的联动操作。"
       >
-        <SubSection title="Import" stack>
+        <SubSection title="导入组件" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
 
-        <SubSection title="All wired up" stack>
+        <SubSection title="完整交互" stack>
           <ToolbarInteractiveDemo />
         </SubSection>
       </Section>
 
-      <Section
-        title="Breadcrumbs"
-        description="展示页面层级，点击上级名称返回对应页面。"
-      >
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            每段一个 <InlineCode>label</InlineCode>，可选 <InlineCode>href</InlineCode>，缺省则为当前页。
-          </p>
-          <PreviewBlock code={CODE_CRUMBS_USAGE} minHeight={140}>
-            <Breadcrumbs items={PAGE_CRUMBS} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Colors" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 种链接色：purple / blue / black。
-          </p>
-          <PreviewBlock code={CODE_CRUMBS_COLORS} minHeight={200}>
-            <div className="flex flex-col items-start gap-3">
-              <Breadcrumbs color="purple" items={PAGE_CRUMBS} />
-              <Breadcrumbs color="blue" items={PAGE_CRUMBS} />
-              <Breadcrumbs color="black" items={PAGE_CRUMBS} />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={CRUMBS_PROPS} />
-        </SubSection>
-      </Section>
+      <p id="breadcrumbs" className="scroll-mt-24 text-sm leading-6 text-fg-grey-700">面包屑的展示、用法和参数统一见 <Link href="/components/page-header#breadcrumbs" className="text-fg-violet underline underline-offset-4">面包屑</Link>。</p>
 
       <Section
-        title="Search & Filter Toolbar"
+        title="搜索与筛选工具栏"
         description="将搜索、筛选、分类切换和主要操作组合为工具栏。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_SEARCH_FILTER_USAGE} minHeight={260}>
             <div className="w-full max-w-5xl flex flex-col gap-4">
               <Toolbar
                 left={<ToolbarSearchInput />}
                 right={
                   <ToolbarActions>
-                    <ToolbarSelectDropdown placeholder="Select..." />
+                    <ToolbarSelectDropdown placeholder="请选择…" />
                     <ToolbarDatepicker />
                     <ToolbarFilterButton />
                     <ToolbarShowSelect value="1" />
                     <Button color="purple" variant="primary" iconLeft={PrimaryIcon}>
-                      Primary
+                      主要按钮
                     </Button>
                   </ToolbarActions>
                 }
@@ -274,16 +226,16 @@ export default function ToolbarCasePage() {
                   <ToolbarPillTabs
                     color="purple"
                     tabs={[
-                      { label: "All", active: true },
-                      { label: "Drafts" },
-                      { label: "Published" },
-                      { label: "Archived" },
+                      { label: "全部", active: true },
+                      { label: "草稿" },
+                      { label: "已发布" },
+                      { label: "已归档" },
                     ]}
                   />
                 }
                 right={
                   <ToolbarActions>
-                    <ToolbarSelectDropdown placeholder="Select..." />
+                    <ToolbarSelectDropdown placeholder="请选择…" />
                     <ToolbarDatepicker />
                     <ToolbarFilterButton />
                   </ToolbarActions>
@@ -301,14 +253,14 @@ export default function ToolbarCasePage() {
         title="Toolbar (low-level)"
         description="分别在左侧和右侧放置控件，自由组合工具栏。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_TOOLBAR_USAGE} minHeight={140}>
             <div className="w-full max-w-4xl">
               <Toolbar
                 left={<ToolbarSearchInput />}
                 right={
                   <ToolbarActions>
-                    <ToolbarSelectDropdown placeholder="Select..." />
+                    <ToolbarSelectDropdown placeholder="请选择…" />
                     <ToolbarFilterButton />
                   </ToolbarActions>
                 }
@@ -326,7 +278,7 @@ export default function ToolbarCasePage() {
         title="ToolbarPillTabs"
         description="在工具栏中切换分类或视图。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             通过 <InlineCode>tabs</InlineCode> 传入数组，<InlineCode>active: true</InlineCode> 标记选中项。
           </p>
@@ -348,7 +300,7 @@ export default function ToolbarCasePage() {
         title="PageTitleToolbar"
         description="组织页面标题、面包屑和常用操作。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             <InlineCode>variant</InlineCode>、<InlineCode>title</InlineCode> 和 <InlineCode>breadcrumbItems</InlineCode> 必填；action 变体同时要求 Cancel/Save 两个操作。
           </p>
@@ -356,11 +308,11 @@ export default function ToolbarCasePage() {
             <div className="w-full max-w-4xl">
               <PageTitleToolbar
                 variant="collection"
-                title="Customer"
-                subtitle="Manage customer relationships and account health."
+                title="客户"
+                subtitle="管理客户关系，了解客户合作情况。"
                 breadcrumbItems={PAGE_CRUMBS}
-                secondaryAction={{ label: "Export" }}
-                primaryAction={{ label: "Add customer", icon: PrimaryIcon }}
+                secondaryAction={{ label: "导出" }}
+                primaryAction={{ label: "新增客户", icon: PrimaryIcon }}
               />
             </div>
           </PreviewBlock>
@@ -372,7 +324,7 @@ export default function ToolbarCasePage() {
       </Section>
 
       <Section
-        title="Toolbar Controls"
+        title="工具栏控件"
         description="按需组合搜索、选择、日期、筛选等工具栏控件。"
       >
         <SubSection title="ToolbarSearchInput" stack>
@@ -384,7 +336,7 @@ export default function ToolbarCasePage() {
 
         <SubSection title="ToolbarSelectDropdown" stack>
           <PreviewBlock code={CODE_CONTROLS_USAGE} minHeight={120}>
-            <ToolbarSelectDropdown placeholder="Select..." />
+            <ToolbarSelectDropdown placeholder="请选择…" />
           </PreviewBlock>
           <ApiTable rows={SELECTDROPDOWN_PROPS} />
         </SubSection>
@@ -424,10 +376,6 @@ export default function ToolbarCasePage() {
           <ApiTable rows={FAVORITEBUTTON_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/toolbar" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

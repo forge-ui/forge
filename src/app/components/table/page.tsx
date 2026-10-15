@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { asset } from "@/lib/asset";
 import {
@@ -64,15 +63,15 @@ type OrderRow = {
 const orderRows: OrderRow[] = [
   {
     invoice: "#302012",
-    product: "Handmade Pouch",
-    productSubtitle: "+3 other products",
+    product: "手工收纳包",
+    productSubtitle: "另有 3 件商品",
     image: asset("/images/stat-card.png"),
-    customer: "Jane Cooper",
+    customer: "林晓",
     email: "jane@example.com",
     initials: "JC",
     avatarColor: "purple",
-    date: "1 min ago",
-    status: "Pending",
+    date: "1 分钟前",
+    status: "待处理",
     statusColor: "yellow",
     amount: "$121.00",
     trend: "+10%",
@@ -80,14 +79,14 @@ const orderRows: OrderRow[] = [
   },
   {
     invoice: "#302011",
-    product: "Smartwatch E2",
+    product: "智能手表 E2",
     productSubtitle: "+1 other products",
     image: asset("/images/stat-card.png"),
     customer: "Wade Warren",
     email: "wade@example.com",
     initials: "WW",
     avatarColor: "blue",
-    date: "1 min ago",
+    date: "1 分钟前",
     status: "Processing",
     statusColor: "cyan",
     amount: "$590.00",
@@ -103,8 +102,8 @@ const orderRows: OrderRow[] = [
     email: "esther@example.com",
     initials: "EH",
     avatarColor: "green",
-    date: "5 hour ago",
-    status: "Completed",
+    date: "5 小时前",
+    status: "已完成",
     statusColor: "green",
     amount: "$125.00",
     trend: "+12%",
@@ -116,15 +115,15 @@ const orderColumns: ColumnDef<OrderRow>[] = [
   { key: "invoice", header: "Invoice", sortable: true, width: "w-28", render: (row) => <CellText>{row.invoice}</CellText> },
   {
     key: "product",
-    header: "Product",
+    header: "商品",
     sortable: true,
     flex: true,
     render: (row) => <CellImageText src={row.image} title={row.product} subtitle={row.productSubtitle || undefined} />,
   },
-  { key: "date", header: "Date", sortable: true, width: "w-32", render: (row) => <CellMuted>{row.date}</CellMuted> },
+  { key: "date", header: "日期", sortable: true, width: "w-32", render: (row) => <CellMuted>{row.date}</CellMuted> },
   {
     key: "customer",
-    header: "Customer",
+    header: "客户",
     flex: true,
     render: (row) => (
       <div className="flex-1 flex items-center gap-2">
@@ -136,10 +135,10 @@ const orderColumns: ColumnDef<OrderRow>[] = [
       </div>
     ),
   },
-  { key: "status", header: "Status", width: "w-32", render: (row) => <StatusBadge label={row.status} color={row.statusColor} /> },
+  { key: "status", header: "状态", width: "w-32", render: (row) => <StatusBadge label={row.status} color={row.statusColor} /> },
   {
     key: "amount",
-    header: "Amount",
+    header: "金额",
     sortable: true,
     width: "w-40",
     render: (row) => <CellProgressValue value={row.amount} badge={row.trend} badgeColor={row.trendColor} />,
@@ -158,12 +157,12 @@ const CODE_IMPORT = `import {
   type ColumnDef,
 } from "@forge-ui-official/core";`;
 
-const CODE_STATUS_USAGE = `<StatusBadge label="Pending" color="yellow" />
+const CODE_STATUS_USAGE = `<StatusBadge label="待处理" color="yellow" />
 <StatusBadge label="Processing" color="cyan" />
-<StatusBadge label="Completed" color="green" />
+<StatusBadge label="已完成" color="green" />
 <StatusBadge label="Refund" color="red" />
 <StatusBadge label="Premium" color="purple" />
-<StatusBadge label="Info" color="blue" />
+<StatusBadge label="信息" color="blue" />
 <StatusBadge label="Draft" color="grey" />`;
 
 const CODE_PROGRESS_USAGE = `<ProgressBadge label="+12%" color="green" />
@@ -181,15 +180,15 @@ const CODE_HEADER_CELL = `// 最完整组合：checkbox + icon + 文字 + 排序
   Product
 </TableCell>`;
 
-const CODE_REG_TEXT = `<CellText>Title Here</CellText>
-<CellMuted>Subtext here</CellMuted>
-<CellTextSubtitle title="Title Here" subtitle="Subtext here" />`;
+const CODE_REG_TEXT = `<CellText>项目概览</CellText>
+<CellMuted>补充说明</CellMuted>
+<CellTextSubtitle title="项目概览" subtitle="补充说明" />`;
 
-const CODE_SQUARE_IMG = `<CellImageText src="/img.png" title="Title Here" subtitle="Subtext here" />`;
+const CODE_SQUARE_IMG = `<CellImageText src="/img.png" title="项目概览" subtitle="补充说明" />`;
 
 const CODE_CIRCLE_IMG = `<CellImageText
   src="/flag-au.png"
-  title="Australia"
+  title="澳大利亚"
   subtitle="ilahmbudi@mail.co..."
   rounded="full"
 />`;
@@ -197,7 +196,7 @@ const CODE_CIRCLE_IMG = `<CellImageText
 const CODE_USER = `<div className="flex items-center gap-2">
   <Avatar initials="IB" color="purple" size="md" />
   <div className="flex flex-col">
-    <span className="text-fg-black text-sm font-semibold">Ilham Budi</span>
+    <span className="text-fg-black text-sm font-semibold">李文</span>
     <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
   </div>
 </div>`;
@@ -211,7 +210,7 @@ const CODE_USER_GROUP = `<AvatarGroup overflowCount={24}>
 const CODE_BADGE = `<div className="flex items-center gap-2">
   <CircleIcon color="purple" size="sm"><StarLinear size={14} /></CircleIcon>
   <div className="flex flex-col">
-    <span className="text-fg-black text-sm font-semibold">Project Name</span>
+    <span className="text-fg-black text-sm font-semibold">项目名称</span>
     <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
   </div>
 </div>`;
@@ -226,13 +225,13 @@ const CODE_NUMBERS = `// 方向箭头变体（trend 为 'up' | 'down'）
 // 涨跌徽章变体（badge + badgeColor）
 <CellNumber value="$400" badge="+10%" badgeColor="green" />`;
 
-const CODE_LABEL_BADGE = `<StatusBadge label="Text Here" color="purple" />
-<StatusBadge label="Text Here" color="blue" />
-<StatusBadge label="Text Here" color="yellow" />
-<StatusBadge label="Text Here" color="red" />
-<StatusBadge label="Text Here" color="cyan" />
-<StatusBadge label="Text Here" color="green" />
-<StatusBadge label="Text Here" color="grey" />`;
+const CODE_LABEL_BADGE = `<StatusBadge label="示例文本" color="purple" />
+<StatusBadge label="示例文本" color="blue" />
+<StatusBadge label="示例文本" color="yellow" />
+<StatusBadge label="示例文本" color="red" />
+<StatusBadge label="示例文本" color="cyan" />
+<StatusBadge label="示例文本" color="green" />
+<StatusBadge label="示例文本" color="grey" />`;
 
 const CODE_STATUS_DOT = `<CellStatusDot label="Text" color="purple" />`;
 
@@ -253,17 +252,17 @@ const CODE_ACTION = `// 图标组（mail/phone/chat/eye/pen/trash + kebab）
 <CellKebabMenu />
 
 // 行内链接动作（5 色）
-<CellLink label="Link" color="green" />
-<CellLink label="Link" color="red" />`;
+<CellLink label="链接" color="green" />
+<CellLink label="链接" color="red" />`;
 
 const CODE_RATING = `<CellRating score="5.0" />`;
 
 const CODE_COLUMNS = `const columns: ColumnDef<OrderRow>[] = [
   { key: "invoice", header: "Invoice", sortable: true, width: "w-28",
     render: (row) => <CellText>{row.invoice}</CellText> },
-  { key: "product", header: "Product", flex: true, // 身份列，最宽 280px
+  { key: "product", header: "商品", flex: true, // 身份列，最宽 280px
     render: (row) => <CellImageText src={row.image} title={row.product} /> },
-  { key: "status", header: "Status", width: "w-32",
+  { key: "status", header: "状态", width: "w-32",
     render: (row) => <StatusBadge label={row.status} color={row.statusColor} /> },
   { key: "actions", header: "", width: "w-16",
     render: () => <CellKebabMenu /> },
@@ -272,8 +271,8 @@ const CODE_COLUMNS = `const columns: ColumnDef<OrderRow>[] = [
 const CODE_DATATABLE_USAGE = `const [selectedRowKeys, setSelectedRowKeys] = useState<Set<Key>>(new Set());
 
 <DataTable<OrderRow>
-  title="Recent Orders"
-  subtitle="Last 30 days"
+  title="近期订单"
+  subtitle="最近 30 天"
   color="blue"
   columns={orderColumns}
   rows={orderRows}
@@ -292,7 +291,7 @@ const CODE_DATATABLE_COLORS = `<DataTable color="purple" ... />
 <DataTable color="black" ... />`;
 
 const CODE_FULLWIDTH_USAGE = `<FullWidthTable<OrderRow>
-  title="Recent Orders"
+  title="近期订单"
   color="black"
   showCheckbox
   getRowKey={(row) => row.invoice}
@@ -414,7 +413,7 @@ const DATATABLE_PROPS: ApiTableRow[] = [
 
 const FULLWIDTH_PROPS: ApiTableRow[] = [
   { attr: "columns / rows", type: "ColumnDef<Row>[] / Row[]", defaultValue: "—", description: "列定义与数据，签名同 DataTable。" },
-  { attr: "showRowCount", type: "boolean", defaultValue: "false", description: "是否显示 Show N 选择器。" },
+  { attr: "showRowCount", type: "boolean", defaultValue: "false", description: "是否显示每页数量选择器。" },
   { attr: "currentRowCount", type: "number", defaultValue: "10", description: "每页行数当前值。" },
   { attr: "rowCountOptions", type: "number[]", defaultValue: "[10, 25, 50]", description: "每页行数选项。" },
   { attr: "totalRows", type: "number", defaultValue: "—", description: "精确总记录数；未提供时摘要只显示当前范围，不再猜测总数。" },
@@ -439,17 +438,17 @@ export default function TableCasePage() {
       />
 
       <Section
-        title="Import"
+        title="导入组件"
         description="从 @forge-ui-official/core 统一导入表格相关组件。"
       >
         <CodeBlock code={CODE_IMPORT} />
       </Section>
 
       <Section
-        title="Header Cell"
+        title="表头单元格"
         description="展示列名，支持选择框、图标和排序操作。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <PreviewBlock code={CODE_HEADER_CELL} minHeight={120}>
             <div className="w-56">
               <TableCell
@@ -458,7 +457,7 @@ export default function TableCasePage() {
                 leadIcon={<CardBold size={20} color="var(--fg-grey-500)" />}
                 sortable
               >
-                Product
+                商品
               </TableCell>
             </div>
           </PreviewBlock>
@@ -467,7 +466,7 @@ export default function TableCasePage() {
       </Section>
 
       <Section
-        title="Body Cell"
+        title="数据单元格"
         description="展示文本、头像、状态、数值和操作等单元格内容。"
       >
         <SubSectionGrid cols={2}>
@@ -477,9 +476,9 @@ export default function TableCasePage() {
           </p>
           <PreviewBlock code={CODE_REG_TEXT} minHeight={220}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellText>Title Here</CellText></CellPreviewRow>
-              <CellPreviewRow><CellMuted>Subtext here</CellMuted></CellPreviewRow>
-              <CellPreviewRow><CellTextSubtitle title="Title Here" subtitle="Subtext here" /></CellPreviewRow>
+              <CellPreviewRow><CellText>项目概览</CellText></CellPreviewRow>
+              <CellPreviewRow><CellMuted>补充说明</CellMuted></CellPreviewRow>
+              <CellPreviewRow><CellTextSubtitle title="项目概览" subtitle="补充说明" /></CellPreviewRow>
             </div>
           </PreviewBlock>
           <ApiTable rows={REGTEXT_PROPS} />
@@ -492,7 +491,7 @@ export default function TableCasePage() {
           <PreviewBlock code={CODE_SQUARE_IMG} minHeight={140}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
               <CellPreviewRow>
-                <CellImageText src={asset("/images/stat-card.png")} title="Handmade Pouch" subtitle="+3 other products" />
+                <CellImageText src={asset("/images/stat-card.png")} title="手工收纳包" subtitle="另有 3 件商品" />
               </CellPreviewRow>
             </div>
           </PreviewBlock>
@@ -506,7 +505,7 @@ export default function TableCasePage() {
           <PreviewBlock code={CODE_CIRCLE_IMG} minHeight={140}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
               <CellPreviewRow>
-                <CellImageText src={asset("/images/stat-card.png")} title="Australia" subtitle="ilahmbudi@mail.co..." rounded="full" />
+                <CellImageText src={asset("/images/stat-card.png")} title="澳大利亚" subtitle="ilahmbudi@mail.co..." rounded="full" />
               </CellPreviewRow>
             </div>
           </PreviewBlock>
@@ -515,7 +514,7 @@ export default function TableCasePage() {
 
         <SubSection title="4 · User" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            头像 + 姓名（可选邮箱）。直接用 Avatar 组合，不需要专用 Cell —— Avatar 的 API 见 <InlineCode>/cases/avatar</InlineCode>。
+            头像 + 姓名（可选邮箱）。直接用 Avatar 组合，不需要专用 Cell —— Avatar 的 API 见 <InlineCode>/components/table</InlineCode>。
           </p>
           <PreviewBlock code={CODE_USER} minHeight={140}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
@@ -523,7 +522,7 @@ export default function TableCasePage() {
                 <div className="flex items-center gap-2">
                   <Avatar initials="IB" color="purple" size="md" />
                   <div className="flex flex-col">
-                    <span className="text-fg-black text-sm font-semibold">Ilham Budi</span>
+                    <span className="text-fg-black text-sm font-semibold">李文</span>
                     <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
                   </div>
                 </div>
@@ -552,7 +551,7 @@ export default function TableCasePage() {
 
         <SubSection title="6 · Badge (Circle Icon + Text)" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
-            小圆 icon 徽章 + 文字。多用于项目、分类列 —— 底层是 <InlineCode>CircleIcon</InlineCode> + 普通文本，API 见 <InlineCode>/cases/badge</InlineCode>。
+            小圆 icon 徽章 + 文字。多用于项目、分类列 —— 底层是 <InlineCode>CircleIcon</InlineCode> + 普通文本，API 见 <InlineCode>/components/badge</InlineCode>。
           </p>
           <PreviewBlock code={CODE_BADGE} minHeight={140}>
             <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
@@ -560,7 +559,7 @@ export default function TableCasePage() {
                 <div className="flex items-center gap-2">
                   <CircleIcon color="green" size="sm"><CheckCircleLinear size={14} color="var(--fg-green-500)" /></CircleIcon>
                   <div className="flex flex-col">
-                    <span className="text-fg-black text-sm font-semibold">Project Name</span>
+                    <span className="text-fg-black text-sm font-semibold">项目名称</span>
                     <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
                   </div>
                 </div>
@@ -610,7 +609,7 @@ export default function TableCasePage() {
             默认浅底描边徽章。表格状态优先 green / yellow / red / grey；<InlineCode>{'variant="solid"'}</InlineCode> 才是实心白字胶囊。
           </p>
           <PreviewBlock code={CODE_LABEL_BADGE} minHeight={120}>
-            <StatusBadge label="Text Here" color="purple" />
+            <StatusBadge label="示例文本" color="purple" />
           </PreviewBlock>
           <ApiTable rows={STATUS_PROPS} />
         </SubSection>
@@ -663,8 +662,8 @@ export default function TableCasePage() {
               <CellPreviewRow><CellKebabMenu /></CellPreviewRow>
               <CellPreviewRow>
                 <div className="flex items-center gap-3">
-                  <CellLink label="Link" color="green" />
-                  <CellLink label="Link" color="red" />
+                  <CellLink label="链接" color="green" />
+                  <CellLink label="链接" color="red" />
                 </div>
               </CellPreviewRow>
             </div>
@@ -690,22 +689,22 @@ export default function TableCasePage() {
         title="DataTable"
         description="展示结构化数据，支持行选择、分页和自定义内容。"
       >
-        <SubSection title="Column Definition" stack>
+        <SubSection title="列定义" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             用 <InlineCode>ColumnDef&lt;Row&gt;[]</InlineCode> 声明列，render 里返回任意 JSX（推荐 Cell* 预设）。
           </p>
           <CodeBlock code={CODE_COLUMNS} />
         </SubSection>
 
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             下方示例为蓝色主题 + 选中 2 行 + 底部翻页的典型订单表。
           </p>
           <PreviewBlock code={CODE_DATATABLE_USAGE} minHeight={480}>
             <div className="w-full overflow-x-auto">
               <DataTable<OrderRow>
-                title="Recent Orders"
-                subtitle="Last 30 days"
+                title="近期订单"
+                subtitle="最近 30 天"
                 badge={<Label color="blue" size="sm" variant="solid">156</Label>}
                 color="blue"
                 showCheckbox
@@ -714,7 +713,7 @@ export default function TableCasePage() {
                 selectedRowKeys={new Set(["#302012", "#302002"])}
                 headerActions={
                   <Button color="blue" size="md" iconLeft={<AddCircleLinear size={20} color="white" />}>
-                    Add Order
+                    新增订单
                   </Button>
                 }
                 columns={orderColumns}
@@ -728,7 +727,7 @@ export default function TableCasePage() {
           </PreviewBlock>
         </SubSection>
 
-        <SubSection title="Colors" stack>
+        <SubSection title="颜色" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             3 种主色：<InlineCode>purple</InlineCode>（默认）/ <InlineCode>blue</InlineCode> / <InlineCode>black</InlineCode>，影响 checkbox 与按钮。
           </p>
@@ -744,16 +743,16 @@ export default function TableCasePage() {
         title="FullWidthTable"
         description="适合宽屏数据管理页，可切换每页显示数量。"
       >
-        <SubSection title="Usage" stack>
+        <SubSection title="使用方法" stack>
           <p className="text-sm leading-[1.7] text-fg-grey-900">
             继承 DataTable 全部能力，新增 <InlineCode>showRowCount</InlineCode> / <InlineCode>rowCountOptions</InlineCode>。
           </p>
           <PreviewBlock code={CODE_FULLWIDTH_USAGE} minHeight={520}>
             <div className="w-full overflow-x-auto">
               <FullWidthTable<OrderRow>
-                title="Recent Orders"
-                subtitle="Text Here"
-                badge={<Label color="green" size="sm" variant="outline">Badge</Label>}
+                title="近期订单"
+                subtitle="示例文本"
+                badge={<Label color="green" size="sm" variant="outline">徽章</Label>}
                 color="black"
                 showCheckbox
                 checkboxColor="purple"
@@ -761,8 +760,8 @@ export default function TableCasePage() {
                 selectedRowKeys={new Set(["#302011"])}
                 headerActions={
                   <div className="flex items-center gap-3">
-                    <ToolbarDatepicker label="Select Dates" />
-                    <ToolbarFilterButton label="Filters" />
+                    <ToolbarDatepicker label="选择日期" />
+                    <ToolbarFilterButton label="筛选条件" />
                     <Button color="black" size="md" iconLeft={<AddCircleLinear size={20} color="white" />}>
                       Button
                     </Button>
@@ -786,10 +785,6 @@ export default function TableCasePage() {
           <ApiTable rows={FULLWIDTH_PROPS} />
         </SubSection>
       </Section>
-
-      <Link href="/cases/table" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

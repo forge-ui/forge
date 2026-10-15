@@ -1,0 +1,7192 @@
+{
+  "baseline": "54598df83bfaa8a3580355d8952d558f79e24525",
+  "summary": {
+    "planned": 99,
+    "enhancements": 54,
+    "compositions": 45,
+    "uniqueDemos": 98,
+    "newExportedComponentsVsMain": 0,
+    "referencedComponents": 71,
+    "referencedHooks": 1,
+    "allTargetParametersListed": 5,
+    "withParameterGapCandidates": 94,
+    "sourceAvailableAndCurrent": 99
+  },
+  "newComponents": [],
+  "priorWidgets": [
+    {
+      "name": "OtpInput",
+      "existedOnMain": true,
+      "missing": [
+        "value",
+        "defaultValue",
+        "onChange",
+        "onComplete",
+        "onSuccess",
+        "disabled",
+        "autoFocus",
+        "name",
+        "inputLabel",
+        "hint",
+        "verifyingLabel",
+        "successLabel",
+        "errorLabel",
+        "clearOnError",
+        "className"
+      ]
+    },
+    {
+      "name": "CalendarCard",
+      "existedOnMain": true,
+      "missing": []
+    },
+    {
+      "name": "LiquidTabs",
+      "existedOnMain": true,
+      "missing": [
+        "visibleCount",
+        "rows",
+        "corner",
+        "label",
+        "moreLabel",
+        "emptyLabel",
+        "disabled",
+        "className"
+      ]
+    },
+    {
+      "name": "AddMember",
+      "existedOnMain": true,
+      "missing": [
+        "accent",
+        "selectedIds",
+        "defaultSelectedIds",
+        "onSelectionChange",
+        "clearOnAdd",
+        "open",
+        "defaultOpen",
+        "onOpenChange",
+        "search",
+        "disabled",
+        "className"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "001",
+      "name": "液态玻璃按钮",
+      "kind": "融合增强",
+      "targets": [
+        "Button"
+      ],
+      "route": "/components/button-link#interaction-001",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "001",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "002",
+      "name": "磁吸箭头按钮",
+      "kind": "融合增强",
+      "targets": [
+        "Button",
+        "StyledLink"
+      ],
+      "route": "/components/button-link#interaction-002",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "002",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "StyledLink",
+          "missing": [
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "003",
+      "name": "长按删除",
+      "kind": "融合增强",
+      "targets": [
+        "Button"
+      ],
+      "route": "/components/button-link#interaction-003",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "003",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-previews.tsx",
+        "src/app/components/_migration-number-preview.tsx",
+        "src/app/components/_migration-selection-preview.tsx",
+        "src/app/components/_migration-empty-preview.tsx",
+        "src/app/components/_migration-toggle-preview.tsx",
+        "src/app/components/_migration-accordion-preview.tsx",
+        "src/app/components/_migration-pagination-preview.tsx",
+        "src/app/components/_migration-tabs-preview.tsx",
+        "src/app/components/_migration-command-preview.tsx",
+        "src/app/components/_migration-select-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "004",
+      "name": "下载进度按钮",
+      "kind": "融合增强",
+      "targets": [
+        "Button",
+        "ProgressBar"
+      ],
+      "route": "/components/button-link#interaction-004",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "004",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "005",
+      "name": "纸飞机发送",
+      "kind": "融合增强",
+      "targets": [
+        "IconButton",
+        "Button"
+      ],
+      "route": "/components/button-link#interaction-005",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "005",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "006",
+      "name": "墨水涟漪按钮",
+      "kind": "融合增强",
+      "targets": [
+        "Button"
+      ],
+      "route": "/components/button-link#interaction-006",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "006",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "007",
+      "name": "播放暂停变形",
+      "kind": "融合增强",
+      "targets": [
+        "IconButton"
+      ],
+      "route": "/components/button-link#interaction-007",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "007",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "008",
+      "name": "复制完成反馈",
+      "kind": "组合案例",
+      "targets": [
+        "IconButton",
+        "Button",
+        "ButtonGroup"
+      ],
+      "route": "/components/button-link#interaction-008",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "008",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "ButtonGroup",
+          "missing": [
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "009",
+      "name": "文字滚动按钮",
+      "kind": "融合增强",
+      "targets": [
+        "Button",
+        "StyledLink"
+      ],
+      "route": "/components/button-link#interaction-009",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "009",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "StyledLink",
+          "missing": [
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "010",
+      "name": "组合操作按钮",
+      "kind": "组合案例",
+      "targets": [
+        "Button",
+        "IconTrigger",
+        "DropdownPanel",
+        "MenuItem"
+      ],
+      "route": "/components/button-link#interaction-010",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "010",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "IconTrigger",
+          "missing": [
+            "onClick",
+            "ariaLabel",
+            "className",
+            "motion",
+            "panelPlacement",
+            "initialFocus",
+            "panelAlign"
+          ],
+          "missingAdded": [
+            "initialFocus",
+            "panelAlign"
+          ]
+        },
+        {
+          "name": "DropdownPanel",
+          "missing": [
+            "className",
+            "motion"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "MenuItem",
+          "missing": [
+            "href",
+            "ariaLabel",
+            "expanded",
+            "className",
+            "motion"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "011",
+      "name": "扇形快捷操作",
+      "kind": "组合案例",
+      "targets": [
+        "IconButton",
+        "IconTrigger"
+      ],
+      "route": "/components/menu#interaction-011",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "011",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        },
+        {
+          "name": "IconTrigger",
+          "missing": [
+            "onClick",
+            "ariaLabel",
+            "className",
+            "motion",
+            "panelPlacement",
+            "initialFocus",
+            "panelAlign"
+          ],
+          "missingAdded": [
+            "initialFocus",
+            "panelAlign"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "012",
+      "name": "书签丝带",
+      "kind": "融合增强",
+      "targets": [
+        "IconButton"
+      ],
+      "route": "/components/button-link#interaction-012",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "012",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "013",
+      "name": "弹性开关",
+      "kind": "融合增强",
+      "targets": [
+        "Toggle"
+      ],
+      "route": "/components/input-field#interaction-013",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "013",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-toggle-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Toggle",
+          "missing": [
+            "checked",
+            "defaultChecked",
+            "motion",
+            "onChange",
+            "color",
+            "disabled",
+            "size",
+            "ariaLabel",
+            "draggable",
+            "thumbIcon"
+          ],
+          "missingAdded": [
+            "defaultChecked",
+            "draggable",
+            "thumbIcon"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "014",
+      "name": "待办清单",
+      "kind": "融合增强",
+      "targets": [
+        "Checklist"
+      ],
+      "route": "/components/checklist#interaction-014",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "014",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Checklist",
+          "missing": [
+            "locale",
+            "className",
+            "motion"
+          ],
+          "missingAdded": [
+            "locale"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "015",
+      "name": "套餐选择卡",
+      "kind": "组合案例",
+      "targets": [
+        "RadioWithLabel",
+        "RadioButton",
+        "SurfaceCard"
+      ],
+      "route": "/components/input-field#interaction-015",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "015",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "RadioWithLabel",
+          "missing": [
+            "checked",
+            "onChange",
+            "label",
+            "color",
+            "radioPosition",
+            "dotColor",
+            "disabled",
+            "className",
+            "tabIndex"
+          ],
+          "missingAdded": [
+            "tabIndex"
+          ]
+        },
+        {
+          "name": "RadioButton",
+          "missing": [
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "016",
+      "name": "星级评价",
+      "kind": "融合增强",
+      "targets": [
+        "RatingStars"
+      ],
+      "route": "/components/comment#interaction-016",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "016",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "RatingStars",
+          "missing": [
+            "className",
+            "onChange",
+            "readOnly",
+            "disabled",
+            "locale",
+            "ariaLabel",
+            "motion"
+          ],
+          "missingAdded": [
+            "onChange",
+            "readOnly",
+            "disabled",
+            "locale",
+            "ariaLabel",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "018",
+      "name": "滚动数量步进",
+      "kind": "组合案例",
+      "targets": [
+        "IconButton"
+      ],
+      "route": "/components/input-field#interaction-018",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "018",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "019",
+      "name": "兴趣多选",
+      "kind": "组合案例",
+      "targets": [
+        "CheckboxControl",
+        "CheckboxWithLabel"
+      ],
+      "route": "/components/input-field#interaction-019",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "019",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "CheckboxControl",
+          "missing": [
+            "motion"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "CheckboxWithLabel",
+          "missing": [
+            "motion",
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "021",
+      "name": "日夜切换",
+      "kind": "融合增强",
+      "targets": [
+        "Toggle"
+      ],
+      "route": "/components/input-field#interaction-021",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "021",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Toggle",
+          "missing": [
+            "checked",
+            "defaultChecked",
+            "motion",
+            "onChange",
+            "color",
+            "disabled",
+            "size",
+            "ariaLabel",
+            "draggable",
+            "thumbIcon"
+          ],
+          "missingAdded": [
+            "defaultChecked",
+            "draggable",
+            "thumbIcon"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "022",
+      "name": "点赞心形绽放",
+      "kind": "融合增强",
+      "targets": [
+        "IconButton"
+      ],
+      "route": "/components/button-link#interaction-022",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "022",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "023",
+      "name": "通知设置展开",
+      "kind": "组合案例",
+      "targets": [
+        "Toggle",
+        "ButtonGroup",
+        "Accordion"
+      ],
+      "route": "/components/input-field#interaction-023",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "023",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Toggle",
+          "missing": [
+            "checked",
+            "defaultChecked",
+            "motion",
+            "onChange",
+            "color",
+            "disabled",
+            "size",
+            "ariaLabel",
+            "draggable",
+            "thumbIcon"
+          ],
+          "missingAdded": [
+            "defaultChecked",
+            "draggable",
+            "thumbIcon"
+          ]
+        },
+        {
+          "name": "ButtonGroup",
+          "missing": [
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Accordion",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "025",
+      "name": "浮动标签输入",
+      "kind": "融合增强",
+      "targets": [
+        "TextField"
+      ],
+      "route": "/components/input-field#interaction-025",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "025",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "026",
+      "name": "验证码输入",
+      "kind": "融合增强",
+      "targets": [
+        "OtpInput"
+      ],
+      "route": "/components/input-field#interaction-026",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "026",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "OtpInput",
+          "missing": [
+            "value",
+            "defaultValue",
+            "onChange",
+            "onComplete",
+            "onSuccess",
+            "disabled",
+            "autoFocus",
+            "name",
+            "inputLabel",
+            "hint",
+            "verifyingLabel",
+            "successLabel",
+            "errorLabel",
+            "clearOnError",
+            "className"
+          ],
+          "missingAdded": [
+            "clearOnError"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "027",
+      "name": "顶栏搜索展开",
+      "kind": "组合案例",
+      "targets": [
+        "ToolbarSearchInput",
+        "CommandSearch",
+        "IconButton"
+      ],
+      "route": "/components/page-header#interaction-027",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "027",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ToolbarSearchInput",
+          "missing": [
+            "value",
+            "defaultValue",
+            "onChange",
+            "onSubmit",
+            "ariaLabel",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "028",
+      "name": "自动伸展评论框",
+      "kind": "组合案例",
+      "targets": [
+        "TextArea",
+        "CommentItem",
+        "Button"
+      ],
+      "route": "/components/comment#interaction-028",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "028",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextArea",
+          "missing": [
+            "shape",
+            "autoGrow",
+            "onChange",
+            "className",
+            "textareaClassName"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "CommentItem",
+          "missing": [
+            "replyLabel"
+          ],
+          "missingAdded": [
+            "replyLabel"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "029",
+      "name": "标签输入",
+      "kind": "融合增强",
+      "targets": [
+        "TextField"
+      ],
+      "route": "/components/input-field#interaction-029",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "029",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "030",
+      "name": "日期区间日历",
+      "kind": "融合增强",
+      "targets": [
+        "Datepicker"
+      ],
+      "route": "/components/input-field#interaction-030",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "030",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Datepicker",
+          "missing": [
+            "locale",
+            "confirmSelection",
+            "rangeLabels",
+            "inline",
+            "minDate",
+            "maxDate",
+            "placeholder",
+            "state",
+            "shape",
+            "className"
+          ],
+          "missingAdded": [
+            "locale",
+            "confirmSelection",
+            "rangeLabels",
+            "inline",
+            "minDate",
+            "maxDate"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "031",
+      "name": "自定义选择器",
+      "kind": "融合增强",
+      "targets": [
+        "SelectOption"
+      ],
+      "route": "/components/input-field#interaction-031",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "031",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-select-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SelectOption",
+          "missing": [
+            "motion",
+            "placeholder",
+            "label",
+            "errorMessage",
+            "width",
+            "className",
+            "headerAction",
+            "onChange"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "032",
+      "name": "拖拽上传",
+      "kind": "融合增强",
+      "targets": [
+        "FileUpload",
+        "FileCard"
+      ],
+      "route": "/components/input-field#interaction-032",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "032",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "FileUpload",
+          "missing": [
+            "locale",
+            "className"
+          ],
+          "missingAdded": [
+            "locale"
+          ]
+        },
+        {
+          "name": "FileCard",
+          "missing": [
+            "locale",
+            "color"
+          ],
+          "missingAdded": [
+            "locale",
+            "color"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "033",
+      "name": "标题内联编辑",
+      "kind": "组合案例",
+      "targets": [
+        "TextField",
+        "IconButton"
+      ],
+      "route": "/components/input-field#interaction-033",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "033",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "036",
+      "name": "密码强度",
+      "kind": "组合案例",
+      "targets": [
+        "TextField",
+        "IconButton",
+        "ProgressBar"
+      ],
+      "route": "/components/input-field#interaction-036",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "036",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "037",
+      "name": "账号切换",
+      "kind": "组合案例",
+      "targets": [
+        "AppLayout",
+        "AppSwitcherDropdown",
+        "ProfileCard",
+        "MenuItem"
+      ],
+      "route": "/components/menu#interaction-037",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "037",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "AppLayout",
+          "missing": [
+            "motion",
+            "mode",
+            "profilePosition",
+            "accent",
+            "children",
+            "logo",
+            "logoText",
+            "appName",
+            "appIcon",
+            "appSubtitle",
+            "apps",
+            "onAppChange",
+            "teamName",
+            "teamAvatar",
+            "teamMemberCount",
+            "teamSubtitle",
+            "menuSectionLabel",
+            "favoriteSectionLabel",
+            "teams",
+            "menuItems",
+            "favoriteItems",
+            "profile",
+            "notifications",
+            "messages",
+            "language",
+            "defaultLanguage",
+            "onLanguageChange",
+            "pageHeaderVariant",
+            "askAi",
+            "onBack",
+            "primaryAction",
+            "secondaryAction",
+            "searchPlaceholder",
+            "topbarLeftMode",
+            "topbarAccent",
+            "pageTitle",
+            "breadcrumbs",
+            "showDatePicker",
+            "showKebab",
+            "showFavorite",
+            "hideHeader",
+            "sidebarWidth",
+            "collapsedSidebarWidth",
+            "hideSidebarWidgets",
+            "teamLabels",
+            "showTeamActions"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "AppSwitcherDropdown",
+          "missing": [
+            "locale",
+            "appName",
+            "appIcon",
+            "appSubtitle",
+            "apps",
+            "onAppChange"
+          ],
+          "missingAdded": [
+            "locale"
+          ]
+        },
+        {
+          "name": "ProfileCard",
+          "missing": [
+            "className",
+            "onClick"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "MenuItem",
+          "missing": [
+            "href",
+            "ariaLabel",
+            "expanded",
+            "className",
+            "motion"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "039",
+      "name": "滑动选中标签",
+      "kind": "融合增强",
+      "targets": [
+        "TabBar",
+        "TabsContent"
+      ],
+      "route": "/components/tab#interaction-039",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "039",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-tabs-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TabBar",
+          "missing": [
+            "surface",
+            "appearance",
+            "progress",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "appearance",
+            "progress"
+          ]
+        },
+        {
+          "name": "TabsContent",
+          "missing": [
+            "children",
+            "onProgressChange",
+            "direction",
+            "id",
+            "labelledBy",
+            "ariaLabel",
+            "className"
+          ],
+          "missingAdded": [
+            "onProgressChange",
+            "direction"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "040",
+      "name": "AppLayout 侧栏动效",
+      "kind": "融合增强",
+      "targets": [
+        "AppLayout"
+      ],
+      "route": "/components/menu#interaction-040",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "040",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/prototype/component-fusion/_sidebar-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "AppLayout",
+          "missing": [
+            "motion",
+            "mode",
+            "profilePosition",
+            "accent",
+            "children",
+            "logo",
+            "logoText",
+            "appName",
+            "appIcon",
+            "appSubtitle",
+            "apps",
+            "onAppChange",
+            "teamName",
+            "teamAvatar",
+            "teamMemberCount",
+            "teamSubtitle",
+            "menuSectionLabel",
+            "favoriteSectionLabel",
+            "teams",
+            "menuItems",
+            "favoriteItems",
+            "profile",
+            "notifications",
+            "messages",
+            "language",
+            "defaultLanguage",
+            "onLanguageChange",
+            "pageHeaderVariant",
+            "askAi",
+            "onBack",
+            "primaryAction",
+            "secondaryAction",
+            "searchPlaceholder",
+            "topbarLeftMode",
+            "topbarAccent",
+            "pageTitle",
+            "breadcrumbs",
+            "showDatePicker",
+            "showKebab",
+            "showFavorite",
+            "hideHeader",
+            "sidebarWidth",
+            "collapsedSidebarWidth",
+            "hideSidebarWidgets",
+            "teamLabels",
+            "showTeamActions"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "041",
+      "name": "底部导航凹槽",
+      "kind": "融合增强",
+      "targets": [
+        "TabBar"
+      ],
+      "route": "/components/menu#interaction-041",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "041",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TabBar",
+          "missing": [
+            "surface",
+            "appearance",
+            "progress",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "appearance",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "042",
+      "name": "分步向导",
+      "kind": "组合案例",
+      "targets": [
+        "Stepper",
+        "TextField",
+        "SelectOption",
+        "Button"
+      ],
+      "route": "/components/pagination-stepper#interaction-042",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "042",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Stepper",
+          "missing": [
+            "items",
+            "onStepChange",
+            "motion",
+            "locale",
+            "indicator"
+          ],
+          "missingAdded": [
+            "items",
+            "onStepChange",
+            "motion",
+            "locale",
+            "indicator"
+          ]
+        },
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "SelectOption",
+          "missing": [
+            "motion",
+            "placeholder",
+            "label",
+            "errorMessage",
+            "width",
+            "className",
+            "headerAction",
+            "onChange"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "043",
+      "name": "分页伸缩",
+      "kind": "融合增强",
+      "targets": [
+        "Pagination"
+      ],
+      "route": "/components/pagination-stepper#interaction-043",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "043",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-pagination-preview.tsx"
+      ],
+      "api": "顶层参数未检出缺项",
+      "gaps": [],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "044",
+      "name": "问答折叠",
+      "kind": "融合增强",
+      "targets": [
+        "Accordion"
+      ],
+      "route": "/components/grid#interaction-044",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "044",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-accordion-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Accordion",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "045",
+      "name": "菜单由按钮展开",
+      "kind": "组合案例",
+      "targets": [
+        "IconTrigger",
+        "Drawer",
+        "MenuItem"
+      ],
+      "route": "/components/menu#interaction-045",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "045",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconTrigger",
+          "missing": [
+            "onClick",
+            "ariaLabel",
+            "className",
+            "motion",
+            "panelPlacement",
+            "initialFocus",
+            "panelAlign"
+          ],
+          "missingAdded": [
+            "initialFocus",
+            "panelAlign"
+          ]
+        },
+        {
+          "name": "Drawer",
+          "missing": [
+            "side",
+            "transition",
+            "revealOrigin",
+            "title",
+            "footer",
+            "locale",
+            "closeLabel",
+            "className"
+          ],
+          "missingAdded": [
+            "transition",
+            "revealOrigin",
+            "locale",
+            "closeLabel"
+          ]
+        },
+        {
+          "name": "MenuItem",
+          "missing": [
+            "href",
+            "ariaLabel",
+            "expanded",
+            "className",
+            "motion"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "046",
+      "name": "命令面板",
+      "kind": "融合增强",
+      "targets": [
+        "CommandSearch",
+        "Modal"
+      ],
+      "route": "/components/menu#interaction-046",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "046",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-command-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Modal",
+          "missing": [
+            "open",
+            "onOpenChange",
+            "title",
+            "children",
+            "footer",
+            "motion",
+            "locale",
+            "closeLabel",
+            "className"
+          ],
+          "missingAdded": [
+            "locale",
+            "closeLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": true
+    },
+    {
+      "id": "047",
+      "name": "时间区间切换",
+      "kind": "融合增强",
+      "targets": [
+        "ButtonGroup"
+      ],
+      "route": "/components/tab#interaction-047",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "047",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ButtonGroup",
+          "missing": [
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "048",
+      "name": "滑动联动标签",
+      "kind": "融合增强",
+      "targets": [
+        "TabBar",
+        "TabsContent"
+      ],
+      "route": "/components/tab#interaction-048",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "048",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TabBar",
+          "missing": [
+            "surface",
+            "appearance",
+            "progress",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "appearance",
+            "progress"
+          ]
+        },
+        {
+          "name": "TabsContent",
+          "missing": [
+            "children",
+            "onProgressChange",
+            "direction",
+            "id",
+            "labelledBy",
+            "ariaLabel",
+            "className"
+          ],
+          "missingAdded": [
+            "onProgressChange",
+            "direction"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "049",
+      "name": "层叠内容卡",
+      "kind": "融合增强",
+      "targets": [
+        "SurfaceCard",
+        "IconButton",
+        "Button"
+      ],
+      "route": "/components/card#interaction-049",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "049",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-cards.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "050",
+      "name": "光照倾斜卡",
+      "kind": "融合增强",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/card#interaction-050",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "050",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-cards.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "054",
+      "name": "关注个人卡",
+      "kind": "组合案例",
+      "targets": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "route": "/components/card#interaction-054",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "054",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-cards.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Avatar",
+          "missing": [
+            "src",
+            "initials",
+            "size",
+            "color",
+            "alt",
+            "online"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "056",
+      "name": "月年计费切换",
+      "kind": "组合案例",
+      "targets": [
+        "ButtonGroup",
+        "RadioButton",
+        "TextField",
+        "Button"
+      ],
+      "route": "/components/input-field#interaction-056",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "056",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ButtonGroup",
+          "missing": [
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "RadioButton",
+          "missing": [
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "057",
+      "name": "头像评价轮播",
+      "kind": "组合案例",
+      "targets": [
+        "ReviewItem",
+        "Avatar",
+        "IconButton"
+      ],
+      "route": "/components/comment#interaction-057",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "057",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ReviewItem",
+          "missing": [
+            "ratingLabel",
+            "className",
+            "onMenuClick",
+            "menuLabel",
+            "width"
+          ],
+          "missingAdded": [
+            "ratingLabel",
+            "menuLabel"
+          ]
+        },
+        {
+          "name": "Avatar",
+          "missing": [
+            "src",
+            "initials",
+            "size",
+            "color",
+            "alt",
+            "online"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "058",
+      "name": "阅读进度卡",
+      "kind": "组合案例",
+      "targets": [
+        "ProgressBar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "route": "/components/progress#interaction-058",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "058",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "059",
+      "name": "活动报名卡",
+      "kind": "组合案例",
+      "targets": [
+        "EventCard",
+        "ButtonGroup",
+        "AvatarGroup",
+        "Button"
+      ],
+      "route": "/components/calendar#interaction-059",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "059",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "EventCard",
+          "missing": [
+            "width",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ButtonGroup",
+          "missing": [
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "062",
+      "name": "登录反馈",
+      "kind": "组合案例",
+      "targets": [
+        "TextField",
+        "Button"
+      ],
+      "route": "/components/input-field#interaction-062",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "062",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "063",
+      "name": "逐题注册",
+      "kind": "组合案例",
+      "targets": [
+        "TextField",
+        "Button",
+        "Stepper"
+      ],
+      "route": "/components/input-field#interaction-063",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "063",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "Stepper",
+          "missing": [
+            "items",
+            "onStepChange",
+            "motion",
+            "locale",
+            "indicator"
+          ],
+          "missingAdded": [
+            "items",
+            "onStepChange",
+            "motion",
+            "locale",
+            "indicator"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "066",
+      "name": "社交登录按钮",
+      "kind": "组合案例",
+      "targets": [
+        "Button",
+        "Avatar"
+      ],
+      "route": "/components/button-link#interaction-066",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "066",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "Avatar",
+          "missing": [
+            "src",
+            "initials",
+            "size",
+            "color",
+            "alt",
+            "online"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "067",
+      "name": "锁定倒计时",
+      "kind": "组合案例",
+      "targets": [
+        "Button"
+      ],
+      "route": "/components/button-link#interaction-067",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "067",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "070",
+      "name": "堆叠通知",
+      "kind": "融合增强",
+      "targets": [
+        "ToastProvider",
+        "useToast"
+      ],
+      "route": "/components/modal#interaction-070",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "070",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ToastProvider",
+          "missing": [
+            "children"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "071",
+      "name": "滑动删除与撤销",
+      "kind": "融合增强",
+      "targets": [
+        "ListItem",
+        "ToastProvider",
+        "useToast"
+      ],
+      "route": "/components/list#interaction-071",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "071",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ListItem",
+          "missing": [
+            "className",
+            "onSwipeAction",
+            "swipeActionLabel",
+            "motion"
+          ],
+          "missingAdded": [
+            "onSwipeAction",
+            "swipeActionLabel",
+            "motion"
+          ]
+        },
+        {
+          "name": "ToastProvider",
+          "missing": [
+            "children"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "074",
+      "name": "通知铃菜单",
+      "kind": "组合案例",
+      "targets": [
+        "IconTrigger",
+        "NotificationItem",
+        "NotificationBadge",
+        "TabBar",
+        "DropdownPanel"
+      ],
+      "route": "/components/list#interaction-074",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "074",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconTrigger",
+          "missing": [
+            "onClick",
+            "ariaLabel",
+            "className",
+            "motion",
+            "panelPlacement",
+            "initialFocus",
+            "panelAlign"
+          ],
+          "missingAdded": [
+            "initialFocus",
+            "panelAlign"
+          ]
+        },
+        {
+          "name": "NotificationItem",
+          "missing": [
+            "color",
+            "className",
+            "leadIcon"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "TabBar",
+          "missing": [
+            "surface",
+            "appearance",
+            "progress",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "appearance",
+            "progress"
+          ]
+        },
+        {
+          "name": "DropdownPanel",
+          "missing": [
+            "className",
+            "motion"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "075",
+      "name": "上传进度面板",
+      "kind": "组合案例",
+      "targets": [
+        "FileUpload",
+        "FileCard",
+        "ProgressBar",
+        "Accordion"
+      ],
+      "route": "/components/input-field#interaction-075",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "075",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "FileUpload",
+          "missing": [
+            "locale",
+            "className"
+          ],
+          "missingAdded": [
+            "locale"
+          ]
+        },
+        {
+          "name": "FileCard",
+          "missing": [
+            "locale",
+            "color"
+          ],
+          "missingAdded": [
+            "locale",
+            "color"
+          ]
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        },
+        {
+          "name": "Accordion",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "076",
+      "name": "跟随工具提示",
+      "kind": "融合增强",
+      "targets": [
+        "Tooltip",
+        "TooltipGroup"
+      ],
+      "route": "/components/tooltip#interaction-076",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "076",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Tooltip",
+          "missing": [
+            "motion",
+            "delay",
+            "followCursor"
+          ],
+          "missingAdded": [
+            "followCursor"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "077",
+      "name": "表情反应面板",
+      "kind": "融合增强",
+      "targets": [
+        "ChatBubble",
+        "IconTrigger",
+        "IconButton"
+      ],
+      "route": "/components/chat#interaction-077",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "077",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ChatBubble",
+          "missing": [
+            "locale",
+            "motion",
+            "reactions",
+            "reactionOptions",
+            "onReaction",
+            "onReply",
+            "replyTo",
+            "delivery",
+            "onFileDownload",
+            "className"
+          ],
+          "missingAdded": [
+            "locale",
+            "motion",
+            "reactions",
+            "reactionOptions",
+            "onReaction",
+            "onReply",
+            "replyTo",
+            "delivery"
+          ]
+        },
+        {
+          "name": "IconTrigger",
+          "missing": [
+            "onClick",
+            "ariaLabel",
+            "className",
+            "motion",
+            "panelPlacement",
+            "initialFocus",
+            "panelAlign"
+          ],
+          "missingAdded": [
+            "initialFocus",
+            "panelAlign"
+          ]
+        },
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "078",
+      "name": "滑动回复",
+      "kind": "融合增强",
+      "targets": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "route": "/components/chat#interaction-078",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "078",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ChatBubble",
+          "missing": [
+            "locale",
+            "motion",
+            "reactions",
+            "reactionOptions",
+            "onReaction",
+            "onReply",
+            "replyTo",
+            "delivery",
+            "onFileDownload",
+            "className"
+          ],
+          "missingAdded": [
+            "locale",
+            "motion",
+            "reactions",
+            "reactionOptions",
+            "onReaction",
+            "onReply",
+            "replyTo",
+            "delivery"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "080",
+      "name": "轨道同步指示",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Button",
+        "ProgressBar"
+      ],
+      "route": "/components/progress#interaction-080",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "080",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "081",
+      "name": "环形完成反馈",
+      "kind": "融合增强",
+      "targets": [
+        "Button",
+        "ProgressBar"
+      ],
+      "route": "/components/button-link#interaction-081",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "081",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-buttons.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "083",
+      "name": "队列进度转换",
+      "kind": "融合增强",
+      "targets": [
+        "ProgressBar"
+      ],
+      "route": "/components/progress#interaction-083",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "083",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "084",
+      "name": "语音响应圆点",
+      "kind": "融合增强",
+      "targets": [
+        "ChatInputBar"
+      ],
+      "route": "/components/chat#interaction-084",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "084",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "顶层参数未检出缺项",
+      "gaps": [],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "086",
+      "name": "AI 流式回答",
+      "kind": "融合增强",
+      "targets": [
+        "StreamingAnswer",
+        "ChatInputBar"
+      ],
+      "route": "/components/agent#interaction-086",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "086",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "顶层参数未检出缺项",
+      "gaps": [],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "087",
+      "name": "配送步骤",
+      "kind": "融合增强",
+      "targets": [
+        "Stepper",
+        "HistoryGrouped"
+      ],
+      "route": "/components/pagination-stepper#interaction-087",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "087",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Stepper",
+          "missing": [
+            "items",
+            "onStepChange",
+            "motion",
+            "locale",
+            "indicator"
+          ],
+          "missingAdded": [
+            "items",
+            "onStepChange",
+            "motion",
+            "locale",
+            "indicator"
+          ]
+        },
+        {
+          "name": "HistoryGrouped",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "088",
+      "name": "资料夹空态",
+      "kind": "组合案例",
+      "targets": [
+        "ListGroup",
+        "ListItem",
+        "Button"
+      ],
+      "route": "/components/list#interaction-088",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "088",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-empty-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ListGroup",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ListItem",
+          "missing": [
+            "className",
+            "onSwipeAction",
+            "swipeActionLabel",
+            "motion"
+          ],
+          "missingAdded": [
+            "onSwipeAction",
+            "swipeActionLabel",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "089",
+      "name": "404 纠错",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/modal#interaction-089",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "089",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "090",
+      "name": "可重试错误卡",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Button",
+        "BarChart",
+        "StatCard"
+      ],
+      "route": "/components/card#interaction-090",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "090",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/actions-feedback.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/actions-examples.css"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "BarChart",
+          "missing": [
+            "onActiveIndexChange",
+            "onSelect",
+            "pinnedIndex",
+            "domain",
+            "referenceValue",
+            "referenceLabel",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "onActiveIndexChange",
+            "onSelect",
+            "pinnedIndex",
+            "domain",
+            "referenceValue",
+            "referenceLabel",
+            "motion",
+            "ariaLabel"
+          ]
+        },
+        {
+          "name": "StatCard",
+          "missing": [
+            "trendDirection",
+            "action",
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "091",
+      "name": "离线消息队列",
+      "kind": "融合增强",
+      "targets": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "route": "/components/chat#interaction-091",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "091",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "ChatBubble",
+          "missing": [
+            "locale",
+            "motion",
+            "reactions",
+            "reactionOptions",
+            "onReaction",
+            "onReply",
+            "replyTo",
+            "delivery",
+            "onFileDownload",
+            "className"
+          ],
+          "missingAdded": [
+            "locale",
+            "motion",
+            "reactions",
+            "reactionOptions",
+            "onReaction",
+            "onReply",
+            "replyTo",
+            "delivery"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "092",
+      "name": "筛选空态恢复",
+      "kind": "组合案例",
+      "targets": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "route": "/components/filter#interaction-092",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "092",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "FilterPanel",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ToolbarSearchInput",
+          "missing": [
+            "value",
+            "defaultValue",
+            "onChange",
+            "onSubmit",
+            "ariaLabel",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ListGroup",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "093",
+      "name": "完成庆祝",
+      "kind": "组合案例",
+      "targets": [
+        "Checklist",
+        "ProgressBar",
+        "Button"
+      ],
+      "route": "/components/checklist#interaction-093",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "093",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/forms-navigation.tsx",
+        "src/app/components/_fusion/forms-navigation-examples.css",
+        "src/app/components/_fusion/forms-navigation-forms.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/actions-shared.tsx",
+        "src/app/components/_fusion/forms-navigation-menus.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Checklist",
+          "missing": [
+            "locale",
+            "className",
+            "motion"
+          ],
+          "missingAdded": [
+            "locale"
+          ]
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "095",
+      "name": "形态切换柱图",
+      "kind": "融合增强",
+      "targets": [
+        "BarChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "route": "/components/chart#interaction-095",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "095",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "BarChart",
+          "missing": [
+            "onActiveIndexChange",
+            "onSelect",
+            "pinnedIndex",
+            "domain",
+            "referenceValue",
+            "referenceLabel",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "onActiveIndexChange",
+            "onSelect",
+            "pinnedIndex",
+            "domain",
+            "referenceValue",
+            "referenceLabel",
+            "motion",
+            "ariaLabel"
+          ]
+        },
+        {
+          "name": "ChartTooltip",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "TabBar",
+          "missing": [
+            "surface",
+            "appearance",
+            "progress",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "appearance",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "096",
+      "name": "滑动股票折线",
+      "kind": "融合增强",
+      "targets": [
+        "SmoothLineChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "route": "/components/chart#interaction-096",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "096",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SmoothLineChart",
+          "missing": [
+            "stacked",
+            "bands",
+            "motion",
+            "onActiveIndexChange",
+            "ariaLabel",
+            "interpolation",
+            "highlightToActive",
+            "markers"
+          ],
+          "missingAdded": [
+            "stacked",
+            "bands",
+            "motion",
+            "onActiveIndexChange",
+            "ariaLabel",
+            "interpolation",
+            "highlightToActive",
+            "markers"
+          ]
+        },
+        {
+          "name": "ChartTooltip",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "TabBar",
+          "missing": [
+            "surface",
+            "appearance",
+            "progress",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "appearance",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "097",
+      "name": "重排环图",
+      "kind": "融合增强",
+      "targets": [
+        "DonutChart",
+        "ChartLegendItem"
+      ],
+      "route": "/components/chart#interaction-097",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "097",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "DonutChart",
+          "missing": [
+            "interactive",
+            "activeIndex",
+            "onActiveIndexChange",
+            "onSegmentToggle",
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "interactive",
+            "activeIndex",
+            "onActiveIndexChange",
+            "onSegmentToggle",
+            "motion",
+            "ariaLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "098",
+      "name": "实时数字滚动",
+      "kind": "融合增强",
+      "targets": [
+        "StatCard",
+        "LineChartStatCard"
+      ],
+      "route": "/components/card#interaction-098",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "098",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-number-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "StatCard",
+          "missing": [
+            "trendDirection",
+            "action",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "LineChartStatCard",
+          "missing": [
+            "series",
+            "icon",
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "099",
+      "name": "活动环",
+      "kind": "融合增强",
+      "targets": [
+        "MultilayerDonutChart"
+      ],
+      "route": "/components/chart#interaction-099",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "099",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "MultilayerDonutChart",
+          "missing": [
+            "sweep",
+            "motion",
+            "activeIndex",
+            "ariaLabel"
+          ],
+          "missingAdded": [
+            "sweep",
+            "motion",
+            "activeIndex",
+            "ariaLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "108",
+      "name": "时区交集",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/calendar#interaction-108",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "108",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "110",
+      "name": "日程冲突修复",
+      "kind": "组合案例",
+      "targets": [
+        "EventTag",
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/calendar#interaction-110",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "110",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "EventTag",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "126",
+      "name": "Markdown 编辑与预览",
+      "kind": "组合案例",
+      "targets": [
+        "TextArea",
+        "StreamingAnswer",
+        "Button"
+      ],
+      "route": "/components/agent#interaction-126",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "126",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextArea",
+          "missing": [
+            "shape",
+            "autoGrow",
+            "onChange",
+            "className",
+            "textareaClassName"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "127",
+      "name": "变更片段审核",
+      "kind": "组合案例",
+      "targets": [
+        "AgentCodeBlock",
+        "Button"
+      ],
+      "route": "/components/agent#interaction-127",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "127",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "128",
+      "name": "查找替换",
+      "kind": "组合案例",
+      "targets": [
+        "TextField",
+        "TextArea",
+        "Button"
+      ],
+      "route": "/components/agent#interaction-128",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "128",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "TextField",
+          "missing": [
+            "label",
+            "labelPlacement",
+            "locale",
+            "activeTag",
+            "headerAction",
+            "tags",
+            "onRemoveTag",
+            "onChange",
+            "className",
+            "inputClassName"
+          ],
+          "missingAdded": [
+            "labelPlacement",
+            "locale",
+            "activeTag"
+          ]
+        },
+        {
+          "name": "TextArea",
+          "missing": [
+            "shape",
+            "autoGrow",
+            "onChange",
+            "className",
+            "textareaClassName"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "129",
+      "name": "代码折叠",
+      "kind": "融合增强",
+      "targets": [
+        "AgentCodeBlock"
+      ],
+      "route": "/components/agent#interaction-129",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "129",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "顶层参数未检出缺项",
+      "gaps": [],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "157",
+      "name": "层叠用量面积",
+      "kind": "融合增强",
+      "targets": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ChartLegendItem"
+      ],
+      "route": "/components/chart#interaction-157",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "157",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SmoothLineChart",
+          "missing": [
+            "stacked",
+            "bands",
+            "motion",
+            "onActiveIndexChange",
+            "ariaLabel",
+            "interpolation",
+            "highlightToActive",
+            "markers"
+          ],
+          "missingAdded": [
+            "stacked",
+            "bands",
+            "motion",
+            "onActiveIndexChange",
+            "ariaLabel",
+            "interpolation",
+            "highlightToActive",
+            "markers"
+          ]
+        },
+        {
+          "name": "ChartCard",
+          "missing": [
+            "action",
+            "minHeight",
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "163",
+      "name": "目标刻度",
+      "kind": "融合增强",
+      "targets": [
+        "BarHorizontalChart",
+        "ChartCard"
+      ],
+      "route": "/components/chart#interaction-163",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "163",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "BarHorizontalChart",
+          "missing": [
+            "domain",
+            "target",
+            "targetLabel",
+            "ranges",
+            "motion"
+          ],
+          "missingAdded": [
+            "domain",
+            "target",
+            "targetLabel",
+            "ranges",
+            "motion"
+          ]
+        },
+        {
+          "name": "ChartCard",
+          "missing": [
+            "action",
+            "minHeight",
+            "className"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "165",
+      "name": "预测置信带",
+      "kind": "融合增强",
+      "targets": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ButtonGroup"
+      ],
+      "route": "/components/chart#interaction-165",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "165",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SmoothLineChart",
+          "missing": [
+            "stacked",
+            "bands",
+            "motion",
+            "onActiveIndexChange",
+            "ariaLabel",
+            "interpolation",
+            "highlightToActive",
+            "markers"
+          ],
+          "missingAdded": [
+            "stacked",
+            "bands",
+            "motion",
+            "onActiveIndexChange",
+            "ariaLabel",
+            "interpolation",
+            "highlightToActive",
+            "markers"
+          ]
+        },
+        {
+          "name": "ChartCard",
+          "missing": [
+            "action",
+            "minHeight",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ButtonGroup",
+          "missing": [
+            "motion",
+            "ariaLabel"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "176",
+      "name": "版本胶片",
+      "kind": "组合案例",
+      "targets": [
+        "HistoryGrouped",
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/history#interaction-176",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "176",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "HistoryGrouped",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "177",
+      "name": "撤销重做历史",
+      "kind": "组合案例",
+      "targets": [
+        "Toolbar",
+        "IconButton"
+      ],
+      "route": "/components/history#interaction-177",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "177",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "IconButton",
+          "missing": [
+            "motion",
+            "className",
+            "loading",
+            "result",
+            "progress"
+          ],
+          "missingAdded": [
+            "loading",
+            "result",
+            "progress"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "178",
+      "name": "批量选择操作台",
+      "kind": "融合增强",
+      "targets": [
+        "Toolbar",
+        "Button",
+        "Checkbox",
+        "FileTypeIcon"
+      ],
+      "route": "/components/list#interaction-178",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "178",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-selection-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "Checkbox",
+          "missing": [
+            "checked",
+            "color",
+            "onChange",
+            "motion"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "179",
+      "name": "文字片段拼接",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/agent#interaction-179",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "179",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "180",
+      "name": "审批签署",
+      "kind": "组合案例",
+      "targets": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "route": "/components/card#interaction-180",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "180",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Avatar",
+          "missing": [
+            "src",
+            "initials",
+            "size",
+            "color",
+            "alt",
+            "online"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "181",
+      "name": "工作分派",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Avatar",
+        "ProgressBar",
+        "Button"
+      ],
+      "route": "/components/card#interaction-181",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "181",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Avatar",
+          "missing": [
+            "src",
+            "initials",
+            "size",
+            "color",
+            "alt",
+            "online"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ProgressBar",
+          "missing": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ],
+          "missingAdded": [
+            "variant",
+            "indeterminate",
+            "motion",
+            "locale",
+            "children",
+            "className"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "184",
+      "name": "角色权限矩阵",
+      "kind": "组合案例",
+      "targets": [
+        "DataTable",
+        "Checkbox"
+      ],
+      "route": "/components/table#interaction-184",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "184",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "DataTable",
+          "missing": [
+            "onSelectRow",
+            "onSelectAll",
+            "onSort",
+            "footerLeft",
+            "footerRight",
+            "onPageChange",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Checkbox",
+          "missing": [
+            "checked",
+            "color",
+            "onChange",
+            "motion"
+          ],
+          "missingAdded": []
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "F01",
+      "name": "附件队列",
+      "kind": "融合增强",
+      "targets": [
+        "FileUpload",
+        "FileCard",
+        "ChatInputBar"
+      ],
+      "route": "/components/chat#interaction-F01",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "F01",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "FileUpload",
+          "missing": [
+            "locale",
+            "className"
+          ],
+          "missingAdded": [
+            "locale"
+          ]
+        },
+        {
+          "name": "FileCard",
+          "missing": [
+            "locale",
+            "color"
+          ],
+          "missingAdded": [
+            "locale",
+            "color"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "F02",
+      "name": "工具运行卡",
+      "kind": "融合增强",
+      "targets": [
+        "ThinkingTrace",
+        "ToolChips"
+      ],
+      "route": "/components/agent#interaction-F02",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "F02",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/agent-charts.tsx",
+        "src/app/components/_fusion/agent-charts-plots.tsx",
+        "src/app/components/_fusion/types.ts"
+      ],
+      "api": "顶层参数未检出缺项",
+      "gaps": [],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "F03",
+      "name": "列表批量操作",
+      "kind": "融合增强",
+      "targets": [
+        "Toolbar",
+        "Button",
+        "ListGroup",
+        "ListItem"
+      ],
+      "route": "/components/list#interaction-178",
+      "demo": "与 178 共用 Demo",
+      "demoId": "178",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_migration-selection-preview.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        },
+        {
+          "name": "ListGroup",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ListItem",
+          "missing": [
+            "className",
+            "onSwipeAction",
+            "swipeActionLabel",
+            "motion"
+          ],
+          "missingAdded": [
+            "onSwipeAction",
+            "swipeActionLabel",
+            "motion"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "F04",
+      "name": "生成内容审核",
+      "kind": "组合案例",
+      "targets": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "route": "/components/agent#interaction-F04",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "F04",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "SurfaceCard",
+          "missing": [
+            "title",
+            "subtitle",
+            "action",
+            "children",
+            "footer",
+            "padding",
+            "className",
+            "headerClassName",
+            "contentClassName",
+            "footerClassName",
+            "effect",
+            "motion"
+          ],
+          "missingAdded": [
+            "effect",
+            "motion"
+          ]
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "F05",
+      "name": "协作席位",
+      "kind": "组合案例",
+      "targets": [
+        "AddMember",
+        "Avatar",
+        "AvatarGroup",
+        "Button"
+      ],
+      "route": "/components/agent#interaction-F05",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "F05",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "AddMember",
+          "missing": [
+            "accent",
+            "selectedIds",
+            "defaultSelectedIds",
+            "onSelectionChange",
+            "clearOnAdd",
+            "open",
+            "defaultOpen",
+            "onOpenChange",
+            "search",
+            "disabled",
+            "className"
+          ],
+          "missingAdded": [
+            "accent"
+          ]
+        },
+        {
+          "name": "Avatar",
+          "missing": [
+            "src",
+            "initials",
+            "size",
+            "color",
+            "alt",
+            "online"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    },
+    {
+      "id": "F06",
+      "name": "搜索无结果恢复",
+      "kind": "组合案例",
+      "targets": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "route": "/components/filter#interaction-F06",
+      "demo": "已接入分类页（按滚动加载）",
+      "demoId": "F06",
+      "sourceComplete": true,
+      "sourceFiles": [
+        "src/app/components/_fusion/compositions.tsx",
+        "src/app/components/_fusion/types.ts",
+        "src/app/components/_fusion/composition-editing.tsx",
+        "src/app/components/_fusion/composition-workflow.tsx",
+        "src/app/components/_fusion/composition-recovery.tsx"
+      ],
+      "api": "有参数缺项候选",
+      "gaps": [
+        {
+          "name": "FilterPanel",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ToolbarSearchInput",
+          "missing": [
+            "value",
+            "defaultValue",
+            "onChange",
+            "onSubmit",
+            "ariaLabel",
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "ListGroup",
+          "missing": [
+            "className"
+          ],
+          "missingAdded": []
+        },
+        {
+          "name": "Button",
+          "missing": [
+            "motion",
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ],
+          "missingAdded": [
+            "confirmed",
+            "locale",
+            "holdLabels",
+            "progress",
+            "loadingLabel",
+            "resultLabel"
+          ]
+        }
+      ],
+      "browserRecord": true,
+      "accepted": false
+    }
+  ],
+  "targetRows": [
+    {
+      "name": "Accordion",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "AddMember",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "accent"
+      ],
+      "missing": [
+        "accent",
+        "selectedIds",
+        "defaultSelectedIds",
+        "onSelectionChange",
+        "clearOnAdd",
+        "open",
+        "defaultOpen",
+        "onOpenChange",
+        "search",
+        "disabled",
+        "className"
+      ],
+      "missingAdded": [
+        "accent"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "AgentCodeBlock",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "foldRanges",
+        "collapsedRangeIds",
+        "defaultCollapsedRangeIds",
+        "onCollapsedRangeIdsChange"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "AppLayout",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "motion",
+        "mode",
+        "profilePosition",
+        "accent",
+        "children",
+        "logo",
+        "logoText",
+        "appName",
+        "appIcon",
+        "appSubtitle",
+        "apps",
+        "onAppChange",
+        "teamName",
+        "teamAvatar",
+        "teamMemberCount",
+        "teamSubtitle",
+        "menuSectionLabel",
+        "favoriteSectionLabel",
+        "teams",
+        "menuItems",
+        "favoriteItems",
+        "profile",
+        "notifications",
+        "messages",
+        "language",
+        "defaultLanguage",
+        "onLanguageChange",
+        "pageHeaderVariant",
+        "askAi",
+        "onBack",
+        "primaryAction",
+        "secondaryAction",
+        "searchPlaceholder",
+        "topbarLeftMode",
+        "topbarAccent",
+        "pageTitle",
+        "breadcrumbs",
+        "showDatePicker",
+        "showKebab",
+        "showFavorite",
+        "hideHeader",
+        "sidebarWidth",
+        "collapsedSidebarWidth",
+        "hideSidebarWidgets",
+        "teamLabels",
+        "showTeamActions"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "AppSwitcherDropdown",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale"
+      ],
+      "missing": [
+        "locale",
+        "appName",
+        "appIcon",
+        "appSubtitle",
+        "apps",
+        "onAppChange"
+      ],
+      "missingAdded": [
+        "locale"
+      ],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "Avatar",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "src",
+        "initials",
+        "size",
+        "color",
+        "alt",
+        "online"
+      ],
+      "missingAdded": [],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "AvatarGroup",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "BarChart",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "onActiveIndexChange",
+        "onSelect",
+        "pinnedIndex",
+        "domain",
+        "referenceValue",
+        "referenceLabel",
+        "motion",
+        "ariaLabel"
+      ],
+      "missing": [
+        "onActiveIndexChange",
+        "onSelect",
+        "pinnedIndex",
+        "domain",
+        "referenceValue",
+        "referenceLabel",
+        "motion",
+        "ariaLabel"
+      ],
+      "missingAdded": [
+        "onActiveIndexChange",
+        "onSelect",
+        "pinnedIndex",
+        "domain",
+        "referenceValue",
+        "referenceLabel",
+        "motion",
+        "ariaLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "BarHorizontalChart",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "domain",
+        "target",
+        "targetLabel",
+        "ranges",
+        "motion"
+      ],
+      "missing": [
+        "domain",
+        "target",
+        "targetLabel",
+        "ranges",
+        "motion"
+      ],
+      "missingAdded": [
+        "domain",
+        "target",
+        "targetLabel",
+        "ranges",
+        "motion"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Button",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "holdDuration",
+        "onConfirm",
+        "onUndo",
+        "confirmed",
+        "locale",
+        "holdLabels",
+        "effect",
+        "loading",
+        "result",
+        "progress",
+        "loadingLabel",
+        "resultLabel"
+      ],
+      "missing": [
+        "motion",
+        "confirmed",
+        "locale",
+        "holdLabels",
+        "progress",
+        "loadingLabel",
+        "resultLabel"
+      ],
+      "missingAdded": [
+        "confirmed",
+        "locale",
+        "holdLabels",
+        "progress",
+        "loadingLabel",
+        "resultLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ButtonGroup",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "motion",
+        "ariaLabel"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ChartCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "action",
+        "minHeight",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ChartLegendItem",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ChartTooltip",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ChatBubble",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "motion",
+        "reactions",
+        "reactionOptions",
+        "onReaction",
+        "onReply",
+        "replyTo",
+        "delivery"
+      ],
+      "missing": [
+        "locale",
+        "motion",
+        "reactions",
+        "reactionOptions",
+        "onReaction",
+        "onReply",
+        "replyTo",
+        "delivery",
+        "onFileDownload",
+        "className"
+      ],
+      "missingAdded": [
+        "locale",
+        "motion",
+        "reactions",
+        "reactionOptions",
+        "onReaction",
+        "onReply",
+        "replyTo",
+        "delivery"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ChatInputBar",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "motion",
+        "replyTo",
+        "onCancelReply",
+        "attachments",
+        "hasAttachments",
+        "voiceState",
+        "voiceLevel",
+        "onVoiceStart",
+        "onVoiceEnd",
+        "onVoiceCancel"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Checkbox",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "checked",
+        "color",
+        "onChange",
+        "motion"
+      ],
+      "missingAdded": [],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "CheckboxControl",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "motion"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "CheckboxWithLabel",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "motion",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Checklist",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale"
+      ],
+      "missing": [
+        "locale",
+        "className",
+        "motion"
+      ],
+      "missingAdded": [
+        "locale"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "CommandSearch",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "color",
+        "motion",
+        "autoFocus"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "CommentItem",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "replyLabel"
+      ],
+      "missing": [
+        "replyLabel"
+      ],
+      "missingAdded": [
+        "replyLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "DataTable",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "onSelectRow",
+        "onSelectAll",
+        "onSort",
+        "footerLeft",
+        "footerRight",
+        "onPageChange",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Datepicker",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "confirmSelection",
+        "rangeLabels",
+        "inline",
+        "minDate",
+        "maxDate"
+      ],
+      "missing": [
+        "locale",
+        "confirmSelection",
+        "rangeLabels",
+        "inline",
+        "minDate",
+        "maxDate",
+        "placeholder",
+        "state",
+        "shape",
+        "className"
+      ],
+      "missingAdded": [
+        "locale",
+        "confirmSelection",
+        "rangeLabels",
+        "inline",
+        "minDate",
+        "maxDate"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "DonutChart",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "interactive",
+        "activeIndex",
+        "onActiveIndexChange",
+        "onSegmentToggle",
+        "motion",
+        "ariaLabel"
+      ],
+      "missing": [
+        "interactive",
+        "activeIndex",
+        "onActiveIndexChange",
+        "onSegmentToggle",
+        "motion",
+        "ariaLabel"
+      ],
+      "missingAdded": [
+        "interactive",
+        "activeIndex",
+        "onActiveIndexChange",
+        "onSegmentToggle",
+        "motion",
+        "ariaLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Drawer",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "transition",
+        "revealOrigin",
+        "locale",
+        "closeLabel"
+      ],
+      "missing": [
+        "side",
+        "transition",
+        "revealOrigin",
+        "title",
+        "footer",
+        "locale",
+        "closeLabel",
+        "className"
+      ],
+      "missingAdded": [
+        "transition",
+        "revealOrigin",
+        "locale",
+        "closeLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "DropdownPanel",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className",
+        "motion"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "EventCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "width",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "EventTag",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "FileCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "color"
+      ],
+      "missing": [
+        "locale",
+        "color"
+      ],
+      "missingAdded": [
+        "locale",
+        "color"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "FileTypeIcon",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "FileUpload",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale"
+      ],
+      "missing": [
+        "locale",
+        "className"
+      ],
+      "missingAdded": [
+        "locale"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "FilterPanel",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "HistoryGrouped",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "IconButton",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "effect",
+        "active",
+        "loading",
+        "result",
+        "progress"
+      ],
+      "missing": [
+        "motion",
+        "className",
+        "loading",
+        "result",
+        "progress"
+      ],
+      "missingAdded": [
+        "loading",
+        "result",
+        "progress"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "IconTrigger",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "initialFocus",
+        "panelAlign"
+      ],
+      "missing": [
+        "onClick",
+        "ariaLabel",
+        "className",
+        "motion",
+        "panelPlacement",
+        "initialFocus",
+        "panelAlign"
+      ],
+      "missingAdded": [
+        "initialFocus",
+        "panelAlign"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "LineChartStatCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "animateValue",
+        "locale",
+        "numberFormat",
+        "motion"
+      ],
+      "missing": [
+        "series",
+        "icon",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ListGroup",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ListItem",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "onSwipeAction",
+        "swipeActionLabel",
+        "motion"
+      ],
+      "missing": [
+        "className",
+        "onSwipeAction",
+        "swipeActionLabel",
+        "motion"
+      ],
+      "missingAdded": [
+        "onSwipeAction",
+        "swipeActionLabel",
+        "motion"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "MenuItem",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "href",
+        "ariaLabel",
+        "expanded",
+        "className",
+        "motion"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Modal",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "closeLabel"
+      ],
+      "missing": [
+        "open",
+        "onOpenChange",
+        "title",
+        "children",
+        "footer",
+        "motion",
+        "locale",
+        "closeLabel",
+        "className"
+      ],
+      "missingAdded": [
+        "locale",
+        "closeLabel"
+      ],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "MultilayerDonutChart",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "sweep",
+        "motion",
+        "activeIndex",
+        "ariaLabel"
+      ],
+      "missing": [
+        "sweep",
+        "motion",
+        "activeIndex",
+        "ariaLabel"
+      ],
+      "missingAdded": [
+        "sweep",
+        "motion",
+        "activeIndex",
+        "ariaLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "NotificationBadge",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "NotificationItem",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "color",
+        "className",
+        "leadIcon"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "OtpInput",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "clearOnError"
+      ],
+      "missing": [
+        "value",
+        "defaultValue",
+        "onChange",
+        "onComplete",
+        "onSuccess",
+        "disabled",
+        "autoFocus",
+        "name",
+        "inputLabel",
+        "hint",
+        "verifyingLabel",
+        "successLabel",
+        "errorLabel",
+        "clearOnError",
+        "className"
+      ],
+      "missingAdded": [
+        "clearOnError"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Pagination",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "motion"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ProfileCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "className",
+        "onClick"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ProgressBar",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "variant",
+        "indeterminate",
+        "motion",
+        "locale",
+        "children",
+        "className"
+      ],
+      "missing": [
+        "variant",
+        "indeterminate",
+        "motion",
+        "locale",
+        "children",
+        "className"
+      ],
+      "missingAdded": [
+        "variant",
+        "indeterminate",
+        "motion",
+        "locale",
+        "children",
+        "className"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "RadioButton",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "ariaLabel"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "RadioWithLabel",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "tabIndex"
+      ],
+      "missing": [
+        "checked",
+        "onChange",
+        "label",
+        "color",
+        "radioPosition",
+        "dotColor",
+        "disabled",
+        "className",
+        "tabIndex"
+      ],
+      "missingAdded": [
+        "tabIndex"
+      ],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "RatingStars",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "onChange",
+        "readOnly",
+        "disabled",
+        "locale",
+        "ariaLabel",
+        "motion"
+      ],
+      "missing": [
+        "className",
+        "onChange",
+        "readOnly",
+        "disabled",
+        "locale",
+        "ariaLabel",
+        "motion"
+      ],
+      "missingAdded": [
+        "onChange",
+        "readOnly",
+        "disabled",
+        "locale",
+        "ariaLabel",
+        "motion"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ReviewItem",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "ratingLabel",
+        "menuLabel"
+      ],
+      "missing": [
+        "ratingLabel",
+        "className",
+        "onMenuClick",
+        "menuLabel",
+        "width"
+      ],
+      "missingAdded": [
+        "ratingLabel",
+        "menuLabel"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "SelectOption",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "motion",
+        "placeholder",
+        "label",
+        "errorMessage",
+        "width",
+        "className",
+        "headerAction",
+        "onChange"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "SmoothLineChart",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "stacked",
+        "bands",
+        "motion",
+        "onActiveIndexChange",
+        "ariaLabel",
+        "interpolation",
+        "highlightToActive",
+        "markers"
+      ],
+      "missing": [
+        "stacked",
+        "bands",
+        "motion",
+        "onActiveIndexChange",
+        "ariaLabel",
+        "interpolation",
+        "highlightToActive",
+        "markers"
+      ],
+      "missingAdded": [
+        "stacked",
+        "bands",
+        "motion",
+        "onActiveIndexChange",
+        "ariaLabel",
+        "interpolation",
+        "highlightToActive",
+        "markers"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "StatCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "animateValue",
+        "locale",
+        "numberFormat",
+        "motion"
+      ],
+      "missing": [
+        "trendDirection",
+        "action",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Stepper",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "items",
+        "onStepChange",
+        "motion",
+        "locale",
+        "indicator"
+      ],
+      "missing": [
+        "items",
+        "onStepChange",
+        "motion",
+        "locale",
+        "indicator"
+      ],
+      "missingAdded": [
+        "items",
+        "onStepChange",
+        "motion",
+        "locale",
+        "indicator"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "StreamingAnswer",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "StyledLink",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "effect",
+        "motion"
+      ],
+      "missing": [
+        "effect",
+        "motion"
+      ],
+      "missingAdded": [
+        "effect",
+        "motion"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "SurfaceCard",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "effect",
+        "motion"
+      ],
+      "missing": [
+        "title",
+        "subtitle",
+        "action",
+        "children",
+        "footer",
+        "padding",
+        "className",
+        "headerClassName",
+        "contentClassName",
+        "footerClassName",
+        "effect",
+        "motion"
+      ],
+      "missingAdded": [
+        "effect",
+        "motion"
+      ],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "TabBar",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "appearance",
+        "progress"
+      ],
+      "missing": [
+        "surface",
+        "appearance",
+        "progress",
+        "motion",
+        "ariaLabel"
+      ],
+      "missingAdded": [
+        "appearance",
+        "progress"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "TabsContent",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "panels",
+        "onActiveKeyChange",
+        "onProgressChange",
+        "transition",
+        "direction"
+      ],
+      "missing": [
+        "children",
+        "onProgressChange",
+        "direction",
+        "id",
+        "labelledBy",
+        "ariaLabel",
+        "className"
+      ],
+      "missingAdded": [
+        "onProgressChange",
+        "direction"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "TextArea",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "shape",
+        "autoGrow",
+        "onChange",
+        "className",
+        "textareaClassName"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "TextField",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "labelPlacement",
+        "locale",
+        "activeTag"
+      ],
+      "missing": [
+        "label",
+        "labelPlacement",
+        "locale",
+        "activeTag",
+        "headerAction",
+        "tags",
+        "onRemoveTag",
+        "onChange",
+        "className",
+        "inputClassName"
+      ],
+      "missingAdded": [
+        "labelPlacement",
+        "locale",
+        "activeTag"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ThinkingTrace",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "motion"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ToastProvider",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "stacked"
+      ],
+      "missing": [
+        "children"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Toggle",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "defaultChecked",
+        "draggable",
+        "thumbIcon"
+      ],
+      "missing": [
+        "checked",
+        "defaultChecked",
+        "motion",
+        "onChange",
+        "color",
+        "disabled",
+        "size",
+        "ariaLabel",
+        "draggable",
+        "thumbIcon"
+      ],
+      "missingAdded": [
+        "defaultChecked",
+        "draggable",
+        "thumbIcon"
+      ],
+      "hasReference": false,
+      "hook": false
+    },
+    {
+      "name": "ToolChips",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "locale",
+        "motion",
+        "state",
+        "result",
+        "actions"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Toolbar",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "selection",
+        "locale",
+        "motion"
+      ],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "ToolbarSearchInput",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [
+        "value",
+        "defaultValue",
+        "onChange",
+        "onSubmit",
+        "ariaLabel",
+        "className"
+      ],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "Tooltip",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [
+        "followCursor"
+      ],
+      "missing": [
+        "motion",
+        "delay",
+        "followCursor"
+      ],
+      "missingAdded": [
+        "followCursor"
+      ],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "TooltipGroup",
+      "component": true,
+      "existedOnMain": true,
+      "ownAdded": [],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": true,
+      "hook": false
+    },
+    {
+      "name": "useToast",
+      "component": false,
+      "existedOnMain": false,
+      "ownAdded": [],
+      "missing": [],
+      "missingAdded": [],
+      "hasReference": false,
+      "hook": true
+    }
+  ]
+}

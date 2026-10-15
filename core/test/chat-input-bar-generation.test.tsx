@@ -301,3 +301,29 @@ test("unified composer combines mentions, attachment, commands, permissions and 
     assert.equal(changed.at(-1), "前文 /plan  后文");
   } finally { await env.cleanup(); }
 });
+
+test("ChatInputBar attachment-only sends require explicit readiness and respect upload and generation locks", async () => {
+  const env = await setup();
+  const sent: string[] = [];
+  const props = { multiline: true, sendOnEnter: true, sendLabel: "Send", onSend: (message: string) => sent.push(message) };
+  try {
+    await act(async () => env.root.render(<ChatInputBar {...props} attachments={<span>file.pdf</span>} />));
+    assert.equal(button("Send").disabled, true);
+    await key(textarea(), "Enter");
+    assert.deepEqual(sent, []);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments sendDisabled />));
+    await key(textarea(), "Enter");
+    assert.equal(button("Send").disabled, true);
+    assert.deepEqual(sent, []);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments />));
+    assert.equal(button("Send").disabled, false);
+    await click(button("Send"));
+    await key(textarea(), "Enter");
+    assert.deepEqual(sent, ["", ""]);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments status="running" />));
+    await key(textarea(), "Enter");
+    assert.deepEqual(sent, ["", ""]);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments={false} />));
+    assert.equal(button("Send").disabled, true);
+  } finally { await env.cleanup(); }
+});

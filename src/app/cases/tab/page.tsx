@@ -19,17 +19,17 @@ const tabColors: TabBarColor[] = ["purple", "blue", "black"];
 const btnColors: ButtonGroupColor[] = ["purple", "blue", "black"];
 const btnShapes: ButtonGroupShape[] = ["rounded", "pill"];
 
-const inGroupCounts = [2, 3, 4, 5, 6, 7];
+const inGroupCounts = [4];
 
 // TabBar 的 `active` 在 item 上，跟 ButtonGroup 的 activeIndex 不同。
 const mkTabs = (count: number, activeIndex = 0): TabItem[] =>
   Array.from({ length: count }, (_, i) => ({
-    label: "Text Here",
+    label: "示例文本",
     active: i === activeIndex,
   }));
 
 const mkItems = (count: number): ButtonGroupItem[] =>
-  Array.from({ length: count }, () => ({ label: "Text Here" }));
+  Array.from({ length: count }, () => ({ label: "示例文本" }));
 
 export default function TabCasePage() {
   const [active, setActive] = useState(0);
@@ -69,10 +69,10 @@ export default function TabCasePage() {
         {tabColors.map((c) => (
           <SubSection key={c} title={`Color: ${c}`}>
             <Labeled label="active">
-              <TabBar color={c} tabs={[{ label: "Text Here", active: true }]} />
+              <TabBar color={c} tabs={[{ label: "示例文本", active: true }]} />
             </Labeled>
             <Labeled label="inactive">
-              <TabBar color={c} tabs={[{ label: "Text Here" }]} />
+              <TabBar color={c} tabs={[{ label: "示例文本" }]} />
             </Labeled>
           </SubSection>
         ))}
@@ -81,7 +81,7 @@ export default function TabCasePage() {
       {/* ============ TabBar - In Group ============ */}
       <Section
         title="Tab Bar - In Group"
-        description="多 tab 组合，first 激活，其余 inactive。3 色 × 2-7 tabs。"
+        description="多 tab 组合，first 激活，其余 inactive。3 色 × 4 个页签。"
       >
         {tabColors.map((c) => (
           <SubSection key={c} title={`Color: ${c}`}>
@@ -99,14 +99,14 @@ export default function TabCasePage() {
         title="Tab Bar - With Badge"
         description="Kit 扩展：tab 右侧可挂数字徽章，active 时徽章跟主题色（Figma 未展示此变体）。"
       >
-        <SubSection title="Purple">
+        <SubSection title="紫色">
           <Labeled label="active first">
             <TabBar
               color="purple"
               tabs={[
-                { label: "All", active: true, badge: 24 },
-                { label: "Pending", badge: 8 },
-                { label: "Done", badge: 12 },
+                { label: "全部", active: true, badge: 24 },
+                { label: "待处理", badge: 8 },
+                { label: "已完成", badge: 12 },
               ]}
             />
           </Labeled>
@@ -115,8 +115,8 @@ export default function TabCasePage() {
 
       {/* ============ Page Tab (wide, surface="page") ============ */}
       <Section
-        title="Page Tab"
-        description='整页 tab 栏，白底 + 内边距 + 底部分隔线（TabBar surface="page"）。3 色 × 2-7 tabs。'
+        title="页面页签"
+        description='整页 tab 栏，白底 + 内边距 + 底部分隔线（TabBar surface="page"）。3 色 × 4 个页签。'
       >
         {tabColors.map((c) => (
           <SubSection key={c} title={`Color: ${c}`} stack>
@@ -144,7 +144,7 @@ export default function TabCasePage() {
                 <ButtonGroup
                   color={c}
                   shape={sh}
-                  items={[{ label: "Text Here" }]}
+                  items={[{ label: "示例文本" }]}
                   activeIndex={0}
                 />
               </Labeled>
@@ -154,7 +154,7 @@ export default function TabCasePage() {
                 <ButtonGroup
                   color={c}
                   shape={sh}
-                  items={[{ label: "Text Here" }]}
+                  items={[{ label: "示例文本" }]}
                   activeIndex={-1}
                 />
               </Labeled>
@@ -166,12 +166,12 @@ export default function TabCasePage() {
       {/* ============ Button Group - In Group (2-col grid) ============ */}
       <Section
         title="Button Group - In Group"
-        description="pill 形分段控制器，3 色 × 2 shape × 2-7 items。按宽度自然换行。"
+        description="pill 形分段控制器，3 色 × 2 shape × 4 个选项。按宽度自然换行。"
       >
         {btnColors.map((c) => (
           <div key={c} className="flex flex-col gap-2">
             <h3 className="text-sm font-semibold text-fg-grey-700 uppercase tracking-fg">
-              Color: {c}
+              颜色： {c}
             </h3>
             <div className="flex flex-wrap gap-x-6 gap-y-4 items-start">
               {btnShapes.flatMap((sh) =>

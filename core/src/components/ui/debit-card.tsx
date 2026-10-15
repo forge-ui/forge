@@ -17,6 +17,8 @@ import {
 // ============================================================
 
 export function DebitCard({
+  locale = "zh",
+  balanceLabel,
   balance = "$1,200.00",
   cardNumber = "9090",
   expiry = "07/25",
@@ -26,6 +28,8 @@ export function DebitCard({
   className,
 }: {
   balance?: string;
+  locale?: "zh" | "en";
+  balanceLabel?: string;
   cardNumber?: string;
   expiry?: string;
   theme?: FinancialTheme;
@@ -50,7 +54,7 @@ export function DebitCard({
       <div className="flex justify-between items-start relative z-10">
         <div className="flex flex-col gap-1">
           <span className={cn("text-xs font-medium leading-4.5 tracking-fg", cfg.labelColor)}>
-            Balance
+            {balanceLabel ?? (locale === "en" ? "Balance" : "余额")}
           </span>
           <span className={cn("text-lg font-semibold leading-6 tracking-fg", cfg.textColor)}>
             {balance}

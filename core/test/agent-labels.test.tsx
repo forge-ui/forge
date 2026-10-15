@@ -23,7 +23,7 @@ test("task state translations cover both layouts and preserve partial-map defaul
     const html = renderToStaticMarkup(<AgentTaskRows tasks={tasks} variant={variant} statusLabels={{ running: "运行中", failed: "失败", completed: "已完成" }} />);
     for (const label of ["运行中", "失败", "已完成"]) assert.ok(html.includes(label));
     for (const label of ["Running", "Failed", "Completed"]) assert.ok(!html.includes(label));
-    const fallback = renderToStaticMarkup(<AgentTaskRows tasks={tasks} variant={variant} statusLabels={{ running: "运行中" }} />);
+    const fallback = renderToStaticMarkup(<AgentTaskRows tasks={tasks} locale="en" variant={variant} statusLabels={{ running: "运行中" }} />);
     assert.ok(fallback.includes("Failed") && fallback.includes("Completed"));
   }
 });
@@ -50,7 +50,7 @@ test("translations update live and diff count formatters cover selection and com
   const root = createRoot(document.getElementById("root")!);
   const tasks = [{ id: "a", title: "A", status: "completed" as const }];
   try {
-    await act(async () => root.render(<AgentTaskRows tasks={tasks} />));
+    await act(async () => root.render(<AgentTaskRows tasks={tasks} locale="en" />));
     assert.ok(document.body.textContent?.includes("Completed"));
     await act(async () => root.render(<AgentTaskRows tasks={tasks} statusLabels={{ completed: "已完成" }} />));
     assert.ok(document.body.textContent?.includes("已完成"));

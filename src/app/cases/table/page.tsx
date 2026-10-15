@@ -56,11 +56,11 @@ type Order = {
 
 // 真实图片：picsum.photos 按 seed 稳定取图，避免 placehold.co 色块
 const orders: Order[] = [
-  { id: "#302012", product: "Handmade Pouch", extra: "+3 other", date: "1 min ago", customer: "John Bushmill", email: "Johnb@mail.com", total: "$121.00", payment: "Mastercard", status: "processing", progress: { value: "65%", badge: "+12%", color: "green" }, imageUrl: "https://picsum.photos/seed/pouch/80/80" },
-  { id: "#302011", product: "Smartwatch E2", extra: "+1 other", date: "1 min ago", customer: "Ilham Budi A", email: "ilahmbudi@mail.com", total: "$590.00", payment: "Visa", status: "processing", progress: { value: "40%", badge: "-3%", color: "red" }, imageUrl: "https://picsum.photos/seed/watch2/80/80" },
-  { id: "#302002", product: "Smartwatch E1", extra: "", date: "5 hour ago", customer: "Mohammad Karim", email: "m_karim@mail.com", total: "$125.00", payment: "Transfer", status: "shipped", progress: { value: "82%", badge: "+5%", color: "green" }, imageUrl: "https://picsum.photos/seed/watch1/80/80" },
-  { id: "#301901", product: "Headphone G1", extra: "+1 other", date: "1 day ago", customer: "Linda Blair", email: "lindablair@mail.com", total: "$348.00", payment: "Paypal", status: "delivered", progress: { value: "100%", badge: "+0%", color: "grey" }, imageUrl: "https://picsum.photos/seed/headphone/80/80" },
-  { id: "#301900", product: "iPhone X", extra: "", date: "2 day ago", customer: "Josh Adam", email: "josh_adam@mail.com", total: "$607.00", payment: "Visa", status: "canceled", progress: { value: "12%", badge: "-8%", color: "red" }, imageUrl: "https://picsum.photos/seed/iphone/80/80" },
+  { id: "#302012", product: "手工收纳包", extra: "另有 3 件", date: "1 分钟前", customer: "张明", email: "Johnb@mail.com", total: "$121.00", payment: "Mastercard", status: "processing", progress: { value: "65%", badge: "+12%", color: "green" }, imageUrl: "https://picsum.photos/seed/pouch/80/80" },
+  { id: "#302011", product: "智能手表 E2", extra: "另有 1 件", date: "1 分钟前", customer: "Ilham Budi A", email: "ilahmbudi@mail.com", total: "$590.00", payment: "Visa", status: "processing", progress: { value: "40%", badge: "-3%", color: "red" }, imageUrl: "https://picsum.photos/seed/watch2/80/80" },
+  { id: "#302002", product: "Smartwatch E1", extra: "", date: "5 小时前", customer: "陈明", email: "m_karim@mail.com", total: "$125.00", payment: "Transfer", status: "shipped", progress: { value: "82%", badge: "+5%", color: "green" }, imageUrl: "https://picsum.photos/seed/watch1/80/80" },
+  { id: "#301901", product: "无线耳机 G1", extra: "另有 1 件", date: "1 天前", customer: "林晓", email: "lindablair@mail.com", total: "$348.00", payment: "Paypal", status: "delivered", progress: { value: "100%", badge: "+0%", color: "grey" }, imageUrl: "https://picsum.photos/seed/headphone/80/80" },
+  { id: "#301900", product: "iPhone X", extra: "", date: "2 天前", customer: "陈晨", email: "josh_adam@mail.com", total: "$607.00", payment: "Visa", status: "canceled", progress: { value: "12%", badge: "-8%", color: "red" }, imageUrl: "https://picsum.photos/seed/iphone/80/80" },
 ];
 
 function statusColor(s: Order["status"]): StatusBadgeColor {
@@ -69,27 +69,27 @@ function statusColor(s: Order["status"]): StatusBadgeColor {
 
 const sixColumns: ColumnDef<Order>[] = [
   { key: "id", header: "ID", width: "w-[110px]", render: (r) => <CellText>{r.id}</CellText> },
-  { key: "product", header: "Product", sortable: true, width: "w-60", render: (r) => <CellImageText src={r.imageUrl} title={r.product} subtitle={r.extra || undefined} /> },
-  { key: "customer", header: "Customer", width: "w-[170px]", render: (r) => <CellTextSubtitle title={r.customer} subtitle={r.email} /> },
+  { key: "product", header: "商品", sortable: true, width: "w-60", render: (r) => <CellImageText src={r.imageUrl} title={r.product} subtitle={r.extra || undefined} /> },
+  { key: "customer", header: "客户", width: "w-[170px]", render: (r) => <CellTextSubtitle title={r.customer} subtitle={r.email} /> },
   { key: "total", header: "Total", width: "w-[110px]", render: (r) => <CellText>{r.total}</CellText> },
-  { key: "progress", header: "Progress", sortable: true, width: "w-[140px]", render: (r) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
+  { key: "progress", header: "进度", sortable: true, width: "w-[140px]", render: (r) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
   { key: "actions", header: "", width: "w-[60px]", render: () => <CellKebabMenu /> },
 ];
 
 const eightColumns: ColumnDef<Order>[] = [
   { key: "id", header: "ID", width: "w-[110px]", render: (r) => <CellText>{r.id}</CellText> },
-  { key: "product", header: "Product", sortable: true, width: "w-60", render: (r) => <CellImageText src={r.imageUrl} title={r.product} subtitle={r.extra || undefined} /> },
-  { key: "date", header: "Date", sortable: true, width: "w-[120px]", render: (r) => <CellMuted>{r.date}</CellMuted> },
-  { key: "customer", header: "Customer", width: "w-[170px]", render: (r) => <CellTextSubtitle title={r.customer} subtitle={r.email} /> },
+  { key: "product", header: "商品", sortable: true, width: "w-60", render: (r) => <CellImageText src={r.imageUrl} title={r.product} subtitle={r.extra || undefined} /> },
+  { key: "date", header: "日期", sortable: true, width: "w-[120px]", render: (r) => <CellMuted>{r.date}</CellMuted> },
+  { key: "customer", header: "客户", width: "w-[170px]", render: (r) => <CellTextSubtitle title={r.customer} subtitle={r.email} /> },
   { key: "total", header: "Total", width: "w-[110px]", render: (r) => <CellText>{r.total}</CellText> },
   { key: "payment", header: "Payment", width: "w-[120px]", render: (r) => <CellMuted>{r.payment}</CellMuted> },
-  { key: "status", header: "Status", sortable: true, width: "w-[120px]", render: (r) => <StatusBadge label={r.status[0].toUpperCase() + r.status.slice(1)} color={statusColor(r.status)} /> },
+  { key: "status", header: "状态", sortable: true, width: "w-[120px]", render: (r) => <StatusBadge label={r.status[0].toUpperCase() + r.status.slice(1)} color={statusColor(r.status)} /> },
   { key: "actions", header: "", width: "w-[60px]", render: () => <CellKebabMenu /> },
 ];
 
 const fullWidthColumns: ColumnDef<Order>[] = [
   ...eightColumns.slice(0, -1),
-  { key: "progress", header: "Progress", sortable: true, width: "w-[140px]", render: (r: Order) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
+  { key: "progress", header: "进度", sortable: true, width: "w-[140px]", render: (r: Order) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
   { key: "actions", header: "", width: "w-[60px]", render: () => <CellKebabMenu /> },
 ];
 
@@ -109,18 +109,18 @@ const headerCols: HeaderCol[] = [
 ];
 
 const headerRows: HeaderRow[] = [
-  { kind: "text", title: "Text only" },
-  { kind: "text-icon", title: "Text + icon" },
-  { kind: "icon-only", title: "Icon only" },
+  { kind: "text", title: "仅文字" },
+  { kind: "text-icon", title: "文字与图标" },
+  { kind: "icon-only", title: "仅图标" },
 ];
 
 function HeaderCellContent({ kind }: { kind: HeaderRow["kind"] }) {
-  if (kind === "text") return <>Product</>;
+  if (kind === "text") return <>商品</>;
   if (kind === "text-icon")
     return (
       <span className="inline-flex items-center gap-1">
         <CardBold size={20} color="#A1A1AA" />
-        Product
+        商品
       </span>
     );
   return <CardBold size={20} color="#A1A1AA" />;
@@ -146,12 +146,12 @@ function BodyRow({ showCheckbox = false, children }: { showCheckbox?: boolean; c
   );
 }
 
-const labelColors: LabelColor[] = ["purple", "blue", "yellow", "red", "cyan", "green", "gray"];
-const progressColors: ProgressBarColor[] = ["purple", "blue", "green", "red", "orange", "yellow", "cyan", "gray"];
-const statusDotColors: StatusDotColor[] = ["purple", "blue", "green", "red", "yellow", "cyan", "grey", "black"];
+const labelColors: LabelColor[] = ["purple", "blue", "gray"];
+const progressColors: ProgressBarColor[] = ["purple", "blue", "gray"];
+const statusDotColors: StatusDotColor[] = ["purple", "blue", "black"];
 const dataTableColors: DataTableColor[] = ["purple", "blue", "black"];
 const allActionKeys: CellActionKey[] = ["mail", "phone", "chat", "eye", "pen", "trash"];
-const cellLinkColors: CellLinkColor[] = ["green", "red", "purple", "blue", "black"];
+const cellLinkColors: CellLinkColor[] = ["purple", "blue", "black"];
 
 export default function TableCasePage() {
   return (
@@ -163,8 +163,8 @@ export default function TableCasePage() {
 
       {/* ============ Header Cell ============ */}
       <Section
-        title="Header Cell"
-        description="content (text / text+icon / icon-only) × checkbox (none / purple / blue / black) × sort (有/无) = 24 variants。"
+        title="表头单元格"
+        description="表头支持文字、图标、多选和排序。"
       >
         {headerRows.map((row) => (
           <SubSection key={row.kind} title={row.title}>
@@ -188,21 +188,21 @@ export default function TableCasePage() {
 
       {/* ============ Body Cell — 14 种 ============ */}
       <Section
-        title="Body Cell"
+        title="数据单元格"
         description="14 种 cell 类型，对应 Figma Cell.png 的 Body Cell 区，全部走 Kit Cell* 组件。"
       >
         <SubSection title="Square Img (CellImageText)">
-          <BodyRow showCheckbox><CellImageText src="https://picsum.photos/seed/product1/80/80" title="Handmade Pouch" subtitle="+3 other" /></BodyRow>
-          <BodyRow><CellImageText src="https://picsum.photos/seed/product2/80/80" title="Smartwatch E2" subtitle="+1 other" /></BodyRow>
-          <BodyRow showCheckbox><CellImageText src="https://picsum.photos/seed/product3/80/80" title="Headphone G1" /></BodyRow>
+          <BodyRow showCheckbox><CellImageText src="https://picsum.photos/seed/product1/80/80" title="手工收纳包" subtitle="另有 3 件" /></BodyRow>
+          <BodyRow><CellImageText src="https://picsum.photos/seed/product2/80/80" title="智能手表 E2" subtitle="另有 1 件" /></BodyRow>
+          <BodyRow showCheckbox><CellImageText src="https://picsum.photos/seed/product3/80/80" title="无线耳机 G1" /></BodyRow>
           <BodyRow><CellImageText src="https://picsum.photos/seed/product4/80/80" title="iPhone X" /></BodyRow>
         </SubSection>
 
         <SubSection title="User (CellImageText rounded=full)">
-          <BodyRow showCheckbox><CellImageText src="https://i.pravatar.cc/80?u=ilham" title="Ilham Budi" subtitle="ilahmbudi@mail.co…" rounded="full" /></BodyRow>
-          <BodyRow><CellImageText src="https://i.pravatar.cc/80?u=john" title="John Bushmill" subtitle="johnb@mail.com" rounded="full" /></BodyRow>
-          <BodyRow showCheckbox><CellImageText src="https://i.pravatar.cc/80?u=linda" title="Linda Blair" rounded="full" /></BodyRow>
-          <BodyRow><CellImageText src="https://i.pravatar.cc/80?u=josh" title="Josh Adam" rounded="full" /></BodyRow>
+          <BodyRow showCheckbox><CellImageText src="https://i.pravatar.cc/80?u=ilham" title="李文" subtitle="ilahmbudi@mail.co…" rounded="full" /></BodyRow>
+          <BodyRow><CellImageText src="https://i.pravatar.cc/80?u=john" title="张明" subtitle="johnb@mail.com" rounded="full" /></BodyRow>
+          <BodyRow showCheckbox><CellImageText src="https://i.pravatar.cc/80?u=linda" title="林晓" rounded="full" /></BodyRow>
+          <BodyRow><CellImageText src="https://i.pravatar.cc/80?u=josh" title="陈晨" rounded="full" /></BodyRow>
         </SubSection>
 
         <SubSection title="User Group (AvatarGroup)">
@@ -227,10 +227,10 @@ export default function TableCasePage() {
         </SubSection>
 
         <SubSection title="Circle Img (country flags)">
-          <BodyRow showCheckbox><CellImageText src="https://flagcdn.com/w80/au.png" title="Australia" subtitle="Sydney office" rounded="full" /></BodyRow>
-          <BodyRow><CellImageText src="https://flagcdn.com/w80/de.png" title="Germany" subtitle="Berlin office" rounded="full" /></BodyRow>
-          <BodyRow showCheckbox><CellImageText src="https://flagcdn.com/w80/fr.png" title="France" rounded="full" /></BodyRow>
-          <BodyRow><CellImageText src="https://flagcdn.com/w80/jp.png" title="Japan" rounded="full" /></BodyRow>
+          <BodyRow showCheckbox><CellImageText src="https://flagcdn.com/w80/au.png" title="澳大利亚" subtitle="悉尼办公室" rounded="full" /></BodyRow>
+          <BodyRow><CellImageText src="https://flagcdn.com/w80/de.png" title="德国" subtitle="柏林办公室" rounded="full" /></BodyRow>
+          <BodyRow showCheckbox><CellImageText src="https://flagcdn.com/w80/fr.png" title="法国" rounded="full" /></BodyRow>
+          <BodyRow><CellImageText src="https://flagcdn.com/w80/jp.png" title="日本" rounded="full" /></BodyRow>
         </SubSection>
 
         <SubSection title="Files (CellFile)">
@@ -242,12 +242,12 @@ export default function TableCasePage() {
         </SubSection>
 
         <SubSection title="Reg Text (CellText / CellTextSubtitle / CellMuted)">
-          <BodyRow showCheckbox><CellTextSubtitle title="Title Here" subtitle="Subtext here" /></BodyRow>
-          <BodyRow><CellTextSubtitle title="Title Here" subtitle="Subtext here" /></BodyRow>
-          <BodyRow showCheckbox><CellText>Title Here</CellText></BodyRow>
-          <BodyRow><CellText>Title Here</CellText></BodyRow>
-          <BodyRow showCheckbox><CellMuted>Title Here</CellMuted></BodyRow>
-          <BodyRow><CellMuted>Title Here</CellMuted></BodyRow>
+          <BodyRow showCheckbox><CellTextSubtitle title="项目概览" subtitle="补充说明" /></BodyRow>
+          <BodyRow><CellTextSubtitle title="项目概览" subtitle="补充说明" /></BodyRow>
+          <BodyRow showCheckbox><CellText>项目概览</CellText></BodyRow>
+          <BodyRow><CellText>项目概览</CellText></BodyRow>
+          <BodyRow showCheckbox><CellMuted>项目概览</CellMuted></BodyRow>
+          <BodyRow><CellMuted>项目概览</CellMuted></BodyRow>
         </SubSection>
 
         <SubSection title="Numbers (CellNumber)">
@@ -261,10 +261,10 @@ export default function TableCasePage() {
 
         <SubSection title="Label Badge">
           {labelColors.map((c) => (
-            <BodyRow key={c}><Label color={c} variant="solid">Text Here</Label></BodyRow>
+            <BodyRow key={c}><Label color={c} variant="solid">示例文本</Label></BodyRow>
           ))}
           {labelColors.map((c) => (
-            <BodyRow key={`o-${c}`}><Label color={c} variant="outline">Text Here</Label></BodyRow>
+            <BodyRow key={`o-${c}`}><Label color={c} variant="outline">示例文本</Label></BodyRow>
           ))}
         </SubSection>
 
@@ -307,7 +307,7 @@ export default function TableCasePage() {
           <BodyRow><RatingStars value={3.5} size="sm" /></BodyRow>
         </SubSection>
 
-        <SubSection title="Checkbox only">
+        <SubSection title="仅复选框">
           <BodyRow><Checkbox color="purple" /></BodyRow>
           <BodyRow><Checkbox color="purple" checked /></BodyRow>
           <BodyRow><Checkbox color="blue" checked /></BodyRow>
@@ -318,8 +318,8 @@ export default function TableCasePage() {
       {/* ============ DataTable - 6 columns ============ */}
       <Section title="6 Column Table" description="紧凑视图：id / product / customer / total / progress / actions。">
         <DataTable<Order>
-          title="Recent Orders"
-          subtitle="A summary of your most recent activity"
+          title="近期订单"
+          subtitle="近期动态摘要"
           columns={sixColumns}
           rows={orders}
           showCheckbox
@@ -339,7 +339,7 @@ export default function TableCasePage() {
             <DataTable<Order>
               key={c}
               title={`Order History (color="${c}")`}
-              subtitle="All orders across the last 30 days"
+              subtitle="最近 30 天的全部订单"
               columns={eightColumns}
               rows={orders}
               color={c}
@@ -386,7 +386,7 @@ export default function TableCasePage() {
             <FullWidthTable<Order>
               key={c}
               title={`All Orders (color="${c}")`}
-              subtitle="Complete order list with full data"
+              subtitle="完整订单列表与明细"
               columns={fullWidthColumns}
               rows={orders}
               color={c}

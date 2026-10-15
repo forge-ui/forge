@@ -19,25 +19,55 @@ export function AsyncActionExample(settings: FusionExampleProps) {
     }), 80);
     return () => clearInterval(timer);
   }, [state]);
-  const start = () => { clear(); setJob({ state: id === "005" ? "sending" : "loading", progress: 0 }); if (id === "005") later(() => setJob({ state: "loading", progress: 0 }), motion === "none" ? 0 : 600); };
+  const start = () => {
+    clear();
+    setJob({ state: id === "005" ? "sending" : "loading", progress: 0 });
+    if (id === "005") {
+      later(() => setJob({ state: "done", progress: 100 }), motion === "none" ? 50 : 1000);
+      later(() => setJob({ state: "returning", progress: 100 }), motion === "none" ? 900 : 2300);
+      later(() => setJob({ state: "idle", progress: 0 }), motion === "none" ? 1000 : 3000);
+    }
+  };
+  useEffect(() => {
+    if (id !== "004") return;
+    if (state === "done") later(() => setJob({ state: "saved", progress: 100 }), motion === "none" ? 100 : 650);
+    else if (state === "saved") later(() => setJob({ state: "idle", progress: 0 }), motion === "none" ? 1500 : 2750);
+    else return;
+    return clear;
+  }, [id, state, motion, later, clear]);
   const reset = () => { clear(); setJob({ state: "idle", progress: 0 }); };
   const complete = state === "done";
   const busy = state === "loading" || state === "sending";
   const label = id === "001" ? (en ? "Confirm changes" : "确认更改") : id === "004" ? (en ? "Download report" : "下载报告") : id === "005" ? (en ? "Send message" : "发送消息") : (en ? "Pay ¥128" : "支付 ¥128");
+  if (id === "004") return <ActionStage settings={settings}>
+    <p className="text-sm text-fg-grey-700">{en ? "Quarterly report.pdf · 24.6 MB" : "季度报告.pdf · 24.6 MB"}</p>
+    <Button color={color} motion={motion} className="fusion-download-button" data-phase={state} aria-label={busy ? (en ? "Cancel download" : "取消下载") : en ? "Download report" : "下载报告"} onClick={state === "idle" ? start : reset}>
+      <span aria-hidden className="fusion-download-fill" style={{ width: `${progress}%` }} />
+      <span aria-hidden="true" className="fusion-download-idle"><DownloadLinear size={20} />{en ? "Download" : "下载"}</span>
+      <span aria-hidden="true" className="fusion-download-run">{progress}%</span>
+      <span aria-hidden="true" className="fusion-download-done"><CheckCircleLinear size={24} /><span>{en ? "Download complete" : "下载完成"}</span></span>
+    </Button><ActionHint>{busy ? (en ? "Downloading · click to cancel" : "正在下载 · 点击可取消") : state === "done" || state === "saved" ? (en ? "Download complete (demo)" : "下载完成（演示）") : en ? "Ready to download" : "准备下载"}</ActionHint>
+  </ActionStage>;
+  if (id === "005") return <ActionStage settings={settings}>
+    <div className="fusion-send-scene" data-phase={state}>
+      <IconButton color={color} size="lg" aria-label={en ? "Send message" : "发送消息"} motion={motion} disabled={state !== "idle"} result={complete ? "success" : "idle"} onClick={start}><span className="fusion-send-plane"><PlainLinear size={24} /></span></IconButton>
+    </div><ActionHint>{complete || state === "returning" ? (en ? "Sent · just now" : "已发送 · 刚刚") : busy ? (en ? "Sending…" : "正在发送…") : en ? "Send" : "发送"}</ActionHint>
+  </ActionStage>;
   return <ActionStage settings={settings} className={id === "001" ? "fusion-glass-scene" : ""}>
     {id === "001" && <div className="fusion-glass-decoration" aria-hidden><i /><i /><i /></div>}
-    {id === "005" ? <IconButton color={color} size="lg" effect="send" aria-label={label} motion={motion} loading={state === "loading"} disabled={state === "sending"} result={complete ? "success" : "idle"} onClick={start}><PlainLinear size={22} /></IconButton> : <Button color={color} motion={motion} effect={id === "001" ? "glass" : undefined} loading={busy} progress={id === "004" && busy ? progress : undefined} loadingLabel={id === "004" ? `${progress}%` : undefined} result={complete ? "success" : "idle"} resultLabel={en ? "Completed" : "已完成"} locale={locale} iconLeft={id === "004" ? <DownloadLinear size={18} /> : undefined} onClick={complete ? reset : start}>{label}</Button>}
+    <Button color={color} motion={motion} effect={id === "001" ? "glass" : undefined} loading={busy} result={complete ? "success" : "idle"} resultLabel={en ? "Completed" : "已完成"} locale={locale} onClick={complete ? reset : start}>{label}</Button>
     {id === "081" && (busy || complete) && <><ProgressBar variant="ring" value={progress} color={color} motion={motion} label={en ? "Payment progress" : "支付进度"}>{complete ? <CheckCircleLinear size={26} /> : `${progress}%`}</ProgressBar><div className="fusion-action-steps">{(en ? ["Verify", "Authorize", "Receipt"] : ["验证", "授权", "回执"]).map((step, index) => <span key={step} data-complete={progress >= (index + 1) * 30}>{step}</span>)}</div>{complete && <SurfaceCard padding="sm" className="w-full"><p className="text-sm font-semibold">{en ? "Receipt #FG-2026" : "支付回执 #FG-2026"}</p><p className="text-xs text-fg-grey-700">¥128 · {en ? "Payment complete" : "支付完成"}</p></SurfaceCard>}</>}
     <ActionHint>{busy ? (en ? "Processing your request…" : "正在处理请求…") : complete ? (en ? "Finished just now" : "刚刚完成") : id === "001" ? (en ? "The scene behind the button is demonstration only" : "按钮背后的装饰仅用于演示") : (en ? "Ready when you are" : "准备就绪")}</ActionHint>
-    {(busy || complete) && <Button color={color} variant="tertiary" size="sm" onClick={() => { reset(); }}>{busy ? (en ? "Cancel" : "取消") : (en ? "Try again" : "再试一次")}</Button>}
+    {id === "081" && (busy || complete) && <Button color={color} variant="tertiary" size="sm" onClick={() => { reset(); }}>{busy ? (en ? "Cancel" : "取消") : (en ? "Try again" : "再试一次")}</Button>}
   </ActionStage>;
 }
 
 export function MagneticExample(settings: FusionExampleProps) {
   const [created, setCreated] = useState(false);
+  const [opened, setOpened] = useState(false);
   const { locale, color, motion } = settings;
   const en = locale === "en";
-  return <ActionStage settings={settings}><Button effect="magnetic" color={color} motion={motion} iconRight={<ArrowRightLinear size={20} />} onClick={() => setCreated(value => !value)}>{created ? (en ? "Open project" : "打开项目") : (en ? "Create project" : "创建项目")}</Button><ActionHint>{created ? (en ? "Project workspace is ready" : "项目工作区已准备好") : (en ? "Move the pointer, then press" : "移动指针，再点击按钮")}</ActionHint></ActionStage>;
+  return <ActionStage settings={settings}><Button effect="magnetic" color={color} motion={motion} iconRight={<ArrowRightLinear size={20} />} onClick={() => { if (created) setOpened(true); else setCreated(true); }} disabled={opened}>{created ? (en ? "Open project" : "打开项目") : (en ? "Create project" : "创建项目")}</Button><ActionHint>{created ? (en ? "Project workspace is ready" : "项目工作区已准备好") : (en ? "Move the pointer, then press" : "移动指针，再点击按钮")}</ActionHint>{opened && <SurfaceCard title={en ? "New project" : "新项目"} className="w-full"><p className="mb-4 text-sm text-fg-grey-700">{en ? "Your project preview is open. Start by adding a task or inviting a teammate." : "已打开项目预览，可从添加任务或邀请成员开始。"}</p><Button color={color} variant="tertiary" size="sm" onClick={() => setOpened(false)}>{en ? "Back to project entry" : "返回项目入口"}</Button></SurfaceCard>}</ActionStage>;
 }
 
 export function ToggleActionExample(settings: FusionExampleProps) {
@@ -48,7 +78,7 @@ export function ToggleActionExample(settings: FusionExampleProps) {
   const count = (id === "006" ? 1248 : id === "012" ? 23 : 128) + Number(active);
   const label = id === "006" ? active ? (en ? "Subscribed" : "已订阅") : (en ? "Subscribe" : "订阅") : id === "012" ? active ? (en ? "Saved" : "已收藏") : (en ? "Save article" : "收藏文章") : active ? (en ? "Liked" : "已点赞") : (en ? "Like" : "点赞");
   return <ActionStage settings={settings}>
-    {id === "006" ? <Button color={color} effect="ripple" variant={active ? "secondary" : "primary"} motion={motion} aria-pressed={active} iconLeft={<BellLinear size={18} />} onClick={() => setActive(value => !value)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>{active && hover ? (en ? "Unsubscribe" : "取消订阅") : label}</Button> : <IconButton color={color} effect={id === "012" ? "bookmark" : "burst"} variant={active ? "primary" : "secondary"} active={active} aria-label={label} motion={motion} size="lg" onClick={() => setActive(value => !value)}>{id === "012" ? <BookmarkLinear size={22} /> : active ? <HeartBoldDuotone size={22} /> : <HeartLinear size={22} />}</IconButton>}
+    {id === "006" ? <Button color={color} effect="ripple" variant={active ? "secondary" : "primary"} motion={motion} aria-pressed={active} iconLeft={<span className="fusion-subscription-bell" key={String(active)}><BellLinear size={18} /></span>} onClick={() => setActive(value => !value)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>{active && hover ? (en ? "Unsubscribe" : "取消订阅") : label}</Button> : <IconButton color={color} effect={id === "012" ? "bookmark" : "burst"} variant={active ? "primary" : "secondary"} active={active} aria-label={label} motion={motion} size="lg" onClick={() => setActive(value => !value)}>{id === "012" ? <BookmarkLinear size={22} /> : active ? <HeartBoldDuotone size={22} /> : <HeartLinear size={22} />}</IconButton>}
     <div className="fusion-rolling-count" key={count}>{count.toLocaleString(en ? "en-US" : "zh-CN")}</div><ActionHint>{label}</ActionHint>
   </ActionStage>;
 }
@@ -129,10 +159,11 @@ export function SocialExample(settings: FusionExampleProps) {
           </div></div>;
         })}
       </div>
-      <p className="fusion-social-message" role="status">{continued ? (en ? "Welcome back, Lin Xiao" : "欢迎回来，林晓") : connecting ? (en ? `Connecting to ${provider}…` : `正在连接 ${provider}…`) : connected ? (en ? `${provider} account connected` : `${provider} 账号已连接`) : state === "sent" ? (en ? `Check your inbox: ${email}` : `请查看收件箱：${email}`) : ""}</p>
+      <p className="fusion-social-message" role="status">{continued ? (en ? "Welcome back, Lin Xiao" : "欢迎回来，林晓") : connecting ? (en ? `Connecting to ${provider}…` : `正在连接 ${provider}…`) : connected ? (en ? `${provider} account connected` : `${provider} 账号已连接`) : state === "sent" ? (en ? `Sign-in link request demonstrated: ${email}` : `登录链接请求演示完成：${email}`) : ""}</p>
       <div className="fusion-social-email-entry" data-hidden={provider !== null} aria-hidden={provider !== null || undefined} inert={provider !== null || undefined}><div><div className="fusion-social-divider"><span>{en ? "or" : "或"}</span></div><Button color={color} variant="secondary" motion={motion} className="w-full" iconLeft={<LetterLinear size={18} />} onClick={() => { clear(); setProvider("email"); setState("idle"); }}>{en ? "Continue with email" : "使用邮箱继续"}</Button></div></div>
-      {provider === "email" && <form className="fusion-social-email-form" onSubmit={event => { event.preventDefault(); setState("sent"); }}><TextField type="email" label={en ? "Email address" : "邮箱地址"} value={email} onChange={setEmail} placeholder="name@example.com" color={color} autoFocus required /><Button color={color} motion={motion} type="submit" disabled={!email || state === "sent"} iconRight={<ArrowRightLinear size={18} />}>{state === "sent" ? (en ? "Link requested" : "已请求登录链接") : (en ? "Get sign-in link" : "获取登录链接")}</Button></form>}
+      {provider === "email" && <form className="fusion-social-email-form" onSubmit={event => { event.preventDefault(); setState("sent"); }}><TextField type="email" label={en ? "Email address" : "邮箱地址"} value={email} onChange={value => { setEmail(value); setState("idle"); }} placeholder="name@example.com" color={color} autoFocus required /><Button color={color} motion={motion} type="submit" disabled={!email || state === "sent"} iconRight={<ArrowRightLinear size={18} />}>{state === "sent" ? (en ? "Link requested" : "已请求登录链接") : (en ? "Get sign-in link" : "获取登录链接")}</Button></form>}
       <div className="fusion-social-back" data-visible={provider !== null} aria-hidden={provider === null || undefined} inert={provider === null || undefined}><Button color={color} motion={motion} variant="tertiary" className="w-full" onClick={reset}>{en ? "Use another method" : "使用其他方式"}</Button></div>
+      <p className="mt-4 text-xs leading-5 text-fg-grey-700">{en ? "Local interaction demo. No account is connected and no email is sent." : "本地交互演示，不连接真实账号，也不会发送邮件。"}</p>
     </div>
   </SurfaceCard></ActionStage>;
 }

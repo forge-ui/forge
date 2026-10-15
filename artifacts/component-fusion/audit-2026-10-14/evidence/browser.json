@@ -1,0 +1,15 @@
+{
+  "browser": "User stable Chrome, existing session, CUA",
+  "productCommit": "1795b1ba",
+  "checks": [
+    {"id":"030","route":"/components/input-field#interaction-030","steps":"Select Oct14 and Oct17 2026, then click End date before Apply","before":"Both dates displayed; 3 nights","after":"Both dates cleared; Apply disabled","status":"confirmed"},
+    {"id":"058","route":"/cases/progress#interaction-058","steps":"Click 精简","containerOffsetTop":132,"sectionOffsetTop":223,"actualScrollTop":91,"sectionVisibleTop":132.4921875,"status":"confirmed"},
+    {"id":"071","route":"/components/list#interaction-071","steps":"Press Enter on first 删除邮件 button","afterFocus":"BODY","statusText":"邮件已删除项目计划已更新","status":"confirmed"},
+    {"id":"095","route":"/components/chart#interaction-095","steps":"390x844 viewport, choose 年","documentScrollWidth":458,"documentClientWidth":375,"caseClientWidth":311,"caseScrollWidth":426,"lastThreeBarRightEdges":[394,426,458],"status":"confirmed"},
+    {"id":"095","check":"Reference line geometry","outerHeight":192,"plotHeight":168,"referencePercent":62.9808,"referenceSpanHeight":17,"actualY":-2568.8046875,"expectedY":-2560.6905,"status":"confirmed"},
+    {"id":"F05","route":"/cases/agent#interaction-F05","steps":"Choose 紫 theme","accent":"#7239ea","memberBackground":"rgb(105,216,223)","memberPanelToken":"#69d8df","status":"confirmed"},
+    {"id":"027","route":"/cases/page-header#interaction-027","check":"Computed animation before/after expand","before":{"open":false,"animation":"forge-fn-search-in","duration":"0.35s"},"after":{"open":true,"animation":"forge-fn-search-in","duration":"0.35s"},"status":"corroborates source; no frame timeline"},
+    {"id":"046","route":"/components/menu#interaction-046","steps":"Open command dialog, focus combobox, Escape via locator and native key; Close button works","afterEscape":"dialog still open; focus BODY","status":"unresolved; event delivery vs app root cause not determined"}
+  ],
+  "cleanup":"Temporary viewport override reset; audit-created tab closed; preexisting user tab unchanged"
+}
