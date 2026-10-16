@@ -63,6 +63,38 @@ test("RatingStars keeps read-only default, supports keyboard changes, and does n
   } finally { await env.close(); }
 });
 
+test("Datepicker controlled range completes after the parent echoes its start", async () => {
+  const env = await setup(), changes: [number, number | null][] = [];
+  function Example() {
+    const [range, setRange] = useState<{ start?: Date; end?: Date }>({ start: new Date(2026, 9, 1) });
+    return <Datepicker mode="range" inline rangeStart={range.start} rangeEnd={range.end} onRangeChange={(start, end) => {
+      changes.push([start.getDate(), end?.getDate() ?? null]);
+      setRange({ start, end: end ?? undefined });
+    }} />;
+  }
+  try {
+    await env.render(<Example />);
+    await click(document.querySelector<HTMLButtonElement>('[data-date="20260920"]')!);
+    await click(document.querySelector<HTMLButtonElement>('[data-date="20260910"]')!);
+    assert.deepEqual(changes, [[20, null], [10, 20]]);
+    await click(document.querySelector<HTMLButtonElement>('[data-date="20260925"]')!);
+    await click(document.querySelector<HTMLButtonElement>('[data-date="20260928"]')!);
+    assert.deepEqual(changes.slice(2), [[25, null], [25, 28]]);
+  } finally { await env.close(); }
+});
+
+test("Datepicker resets endpoint selection when the parent supplies a different range", async () => {
+  const env = await setup(), changes: [number, number | null][] = [];
+  const onRangeChange = (start: Date, end: Date | null) => { changes.push([start.getDate(), end?.getDate() ?? null]); };
+  try {
+    await env.render(<Datepicker mode="range" inline rangeStart={new Date(2026, 9, 1)} onRangeChange={onRangeChange} />);
+    await click(document.querySelector<HTMLButtonElement>('[data-date="20260910"]')!);
+    await env.render(<Datepicker mode="range" inline rangeStart={new Date(2026, 9, 5)} rangeEnd={new Date(2026, 9, 7)} onRangeChange={onRangeChange} />);
+    await click(document.querySelector<HTMLButtonElement>('[data-date="20260920"]')!);
+    assert.deepEqual(changes, [[10, null], [20, null]]);
+  } finally { await env.close(); }
+});
+
 test("Datepicker range draft waits for apply and normalizes a reversed range", async () => {
   const env = await setup(), changes: [Date, Date | null][] = [];
   try {

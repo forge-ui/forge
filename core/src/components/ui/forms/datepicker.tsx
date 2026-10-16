@@ -98,16 +98,22 @@ export function Datepicker({
   const [draft, setDraft] = useState<{ start?: Date; end?: Date }>({ start: rangeStart, end: rangeEnd });
   const externalKey = `${value?.getTime() ?? ""}/${rangeStart?.getTime() ?? ""}/${rangeEnd?.getTime() ?? ""}`;
   const [syncedKey, setSyncedKey] = useState(externalKey);
+  const [expectedRangeKey, setExpectedRangeKey] = useState<string | null>(null);
   const [hoverDate, setHoverDate] = useState<Date | undefined>();
   const [focusedDate, setFocusedDate] = useState(initDate);
   const focusRequested = useRef(false);
   if (syncedKey !== externalKey) {
     setSyncedKey(externalKey);
+    setExpectedRangeKey(null);
     setDraft({ start: rangeStart, end: rangeEnd });
-    setPickingEnd(false);
-    setHoverDate(undefined);
-    const next = value ?? rangeStart;
-    if (next) { setViewYear(next.getFullYear()); setViewMonth(next.getMonth()); setFocusedDate(next); }
+    // Echoing our own range callback must preserve the next endpoint and focus.
+    // A different value is an external reset and starts a new selection.
+    if (externalKey !== expectedRangeKey) {
+      setPickingEnd(false);
+      setHoverDate(undefined);
+      const next = value ?? rangeStart;
+      if (next) { setViewYear(next.getFullYear()); setViewMonth(next.getMonth()); setFocusedDate(next); }
+    }
   }
   const pickedStart = confirmSelection ? draft.start : rangeStart;
   const pickedEnd = confirmSelection ? draft.end : rangeEnd;
@@ -209,11 +215,17 @@ export function Datepicker({
     setFocusedDate(date); setHoverDate(undefined);
     if (mode === "single") { onChange?.(date); if (!inline) { setOpen(false); triggerRef.current?.focus(); } return; }
     if (!pickingEnd || !pickedStart) {
-      if (confirmSelection) setDraft({ start: date }); else onRangeChange?.(date, null);
+      if (confirmSelection) setDraft({ start: date }); else {
+        setExpectedRangeKey(`${value?.getTime() ?? ""}/${date.getTime()}/`);
+        onRangeChange?.(date, null);
+      }
       setPickingEnd(true);
     } else {
       const [start, end] = toDateNum(date) >= toDateNum(pickedStart) ? [pickedStart, date] : [date, pickedStart];
-      if (confirmSelection) setDraft({ start, end }); else onRangeChange?.(start, end);
+      if (confirmSelection) setDraft({ start, end }); else {
+        setExpectedRangeKey(`${value?.getTime() ?? ""}/${start.getTime()}/${end.getTime()}`);
+        onRangeChange?.(start, end);
+      }
       setPickingEnd(false);
       if (!confirmSelection && !inline) { setOpen(false); triggerRef.current?.focus(); }
     }

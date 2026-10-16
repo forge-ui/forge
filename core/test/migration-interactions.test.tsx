@@ -21,6 +21,22 @@ test("existing components own localized selection and numeric presentation", () 
   assert.doesNotMatch(renderToString(<Toolbar selection={{ count: 0, onClear: () => {}, actions: "Archive" }} />), /Archive/);
   assert.match(renderToString(<Toolbar locale="en" selection={{ count: 2, onClear: () => {}, actions: "Archive" }} />), /Clear selection/);
 });
+test("loading prevents hold confirmation and cancels an active hold", async () => {
+  const env = await setup(); let confirmed = 0;
+  const render = (loading: boolean) => env.render(<Button variant="hold" loading={loading} holdDuration={100} motion="none" onConfirm={() => { confirmed++; }} />);
+  const press = () => act(async () => { document.querySelector('.forge-hold-trigger')!.dispatchEvent(new env.dom.window.KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true })); });
+  const wait = () => act(async () => { await new Promise(resolve => setTimeout(resolve, 130)); });
+  try {
+    await render(true);
+    assert.equal(document.querySelector<HTMLButtonElement>('.forge-hold-trigger')!.disabled, true);
+    assert.equal(document.querySelector('.forge-hold-trigger')!.getAttribute('aria-busy'), 'true');
+    await press(); await wait(); assert.equal(confirmed, 0);
+    await render(false); await press(); await render(true); await wait();
+    assert.equal(confirmed, 0);
+    await render(false); await press(); await wait(); assert.equal(confirmed, 1);
+  } finally { await env.close(); }
+});
+
 test("hold requires uninterrupted key input, cancels on release and disabled, and fires once", async () => {
   const env = await setup(); let confirmed = 0;
   const props = { holdDuration: 100, onConfirm: () => { confirmed++; } };
