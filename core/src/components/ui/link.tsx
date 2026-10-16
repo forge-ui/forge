@@ -30,7 +30,7 @@ export type LinkColor = keyof typeof linkColors;
 export function StyledLink({
   children,
   href,
-  color = "purple",
+  color = "blue",
   disabled = false,
   iconLeft,
   iconRight,

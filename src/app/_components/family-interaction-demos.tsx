@@ -17,7 +17,7 @@ export function FamilyInteractionDemos() {
   const [motion, setMotion] = useState<MotionPreference>("auto");
   const parts = pathname.split("/").filter(Boolean);
   const family = parts[1];
-  if (parts[0] !== "components" || parts.length !== 2 || !families.has(family)) return null;
+  if (parts[0] !== "cases" || parts.length !== 2 || !families.has(family)) return null;
   return <div className="flex min-w-0 flex-col gap-8">
     <MotionControl value={motion} onChange={setMotion} />
     {family === "calendar" && <AnimatedWidgetDemos only="calendar" motion={motion} />}

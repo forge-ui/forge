@@ -472,7 +472,7 @@ export type ProgressBarColor = ProgressColor;
 export function CellProgressBar({
   value,
   percent,
-  color = "purple",
+  color = "blue",
 }: {
   value: string;
   percent: number;

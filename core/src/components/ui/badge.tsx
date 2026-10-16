@@ -5,6 +5,7 @@ import { type ReactNode } from "react";
 // ============================================================
 const notificationColors = {
   purple: "bg-fg-violet",
+  blue: "bg-fg-blue",
   orange: "bg-fg-red",
   green: "bg-fg-green-500",
   yellow: "bg-fg-yellow",
@@ -16,7 +17,7 @@ export type NotificationBadgeColor = keyof typeof notificationColors;
 
 export function NotificationBadge({
   children,
-  color = "purple",
+  color = "blue",
 }: {
   children: ReactNode;
   color?: NotificationBadgeColor;
@@ -78,7 +79,7 @@ export type LabelVariant = "outline" | "solid";
 
 export function Label({
   children,
-  color = "purple",
+  color = "blue",
   size = "md",
   variant = "outline",
 }: {
@@ -145,7 +146,7 @@ export type CircleIconVariant = keyof typeof circleIconVariants;
 
 export function CircleIcon({
   children,
-  color = "purple",
+  color = "blue",
   size = "md",
   variant = "solid",
 }: {
@@ -224,7 +225,7 @@ export type ArtisticIconVariant = "gradient" | "orbs";
 
 export function ArtisticIcon({
   children,
-  color = "purple",
+  color = "blue",
   variant = "gradient",
 }: {
   children: ReactNode;

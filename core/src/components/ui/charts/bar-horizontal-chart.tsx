@@ -33,7 +33,7 @@ interface BarHorizontalChartProps {
 export function BarHorizontalChart({
   data,
   domain, target, targetLabel, ranges = [], motion = "auto",
-  accent = "purple",
+  accent = "blue",
   activeIndex,
   color,
   inactiveColor,

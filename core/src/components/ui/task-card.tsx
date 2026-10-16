@@ -29,7 +29,7 @@ export function TaskCard({
   labelText,
   labelColor = "red",
   progress = 0,
-  progressColor = "purple",
+  progressColor = "blue",
   locale = "zh",
   progressLabel,
   avatars = [],

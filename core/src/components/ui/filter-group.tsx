@@ -49,7 +49,7 @@ export type FilterGroupContent =
 
 export function FilterGroup({
   title = "筛选分组",
-  color = "purple",
+  color = "blue",
   content = { type: "empty" },
   defaultOpen,
   hasSelection,

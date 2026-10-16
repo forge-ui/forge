@@ -61,7 +61,7 @@ export function Datepicker({
   maxDate,
   state = "idle",
   shape = "rounded",
-  color = "purple",
+  color = "blue",
   mode = "single",
   label,
   onChange,

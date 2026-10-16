@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { CompleteApiReference } from "../_complete-api-reference";
+import { componentLabel } from "../_labels";
 import {
   ThinkingTrace,
   StreamingAnswer,
@@ -16,9 +17,10 @@ import {
   CommandSearch,
   AgentFlowchart,
 } from "@forge-ui-official/core";
+import { StreamingAnswerDemo } from "../../cases/agent/_streaming-demo";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import {
   ThinkingTrace,
@@ -119,6 +121,63 @@ const CODE_DIFF = [
   { old: 4, cur: 4, type: "ctx" as const, pieces: [{ text: "}" }] },
 ];
 
+const CODE_THINKING = `<ThinkingTrace variant="steps" settled />`;
+
+const CODE_STREAM = `<StreamingAnswer
+  text="开心果口味增长最快，本月销量提升了 23%。"
+  sources={[{ name: "销量数据", domain: "scoopdata.io" }]}
+  followUps={["冬季哪些口味最畅销"]}
+/>
+
+<StreamingAnswer
+  key={message.id}
+  text={message.text}
+  status={message.status}
+  format="markdown"
+  onDone={() => showMessageActions(message.id)}
+/>`;
+
+const CODE_APPROVAL = `<ApprovalCard questions={[{ id: "n", prompt: "我们应该推出几种口味？", options: [...] }]} />`;
+
+const CODE_TOOLS = `<ToolChips items={[{ id: "1", kind: "write", label: "写入 204 行", chip: "schedule.tsx" }]} />`;
+
+const CODE_TASKS = `<AgentTaskRows tasks={tasks} />`;
+
+const CODE_CONTEXT = `<ContextCards chunks={chunks} total={32} />`;
+
+const CODE_RECOMMEND = `<RecommendationCard title="要帮你提交这笔补货订单吗？" body="..." />`;
+
+const CODE_DIFF_TABLE = `<AgentDiffTable title="口味排期" columns={...} rows={...} />`;
+
+const CODE_CODE_BLOCK = `<AgentCodeBlock filename="lib/reorder.ts" lines={...} diff={...} />`;
+
+const CODE_INSIGHT = `<InsightCards cards={[{ title, body, chart }]} />`;
+
+const CODE_SEARCH = `<CommandSearch items={[{ id, label, group }]} />`;
+
+const CODE_FLOW = `<AgentFlowchart nodes={...} edges={...} />`;
+
+function AgentApi({
+  id,
+  name,
+  descriptions,
+}: {
+  id: string;
+  name: "ThinkingTrace" | "StreamingAnswer" | "ApprovalCard" | "ToolChips" | "AgentTaskRows" | "ContextCards" | "RecommendationCard" | "AgentDiffTable" | "AgentCodeBlock" | "InsightCards" | "CommandSearch" | "AgentFlowchart";
+  descriptions?: ApiTableRow[];
+}) {
+  return (
+    <div id={`api-${id}`} className="flex scroll-mt-24 flex-col gap-2">
+      <h3 className="text-sm font-semibold tracking-fg text-fg-black">{componentLabel(name)}</h3>
+      {descriptions ? (
+        <CompleteApiReference name={name} descriptions={descriptions} />
+      ) : (
+        <CompleteApiReference name={name} />
+      )}
+    </div>
+  );
+}
+
 export default function AgentSpecPage() {
   return (
     <div className="flex flex-col gap-10">
@@ -132,77 +191,50 @@ export default function AgentSpecPage() {
         <Link href="/components/chat-input-bar" className="ml-1 text-fg-blue underline underline-offset-4">消息输入栏</Link>。
       </p>
 
-      <Section title="导入组件" description="从 @forge-ui-official/core 导入所需组件。">
-        <SubSection title="使用方法" stack>
+      <Section title="用法" description="从已经展开的思考步骤开始。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-      </Section>
-
-      <Section title="ThinkingTrace" description="展开查看智能体的处理步骤和推理过程。">
-        <SubSection title="步骤" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>settled</InlineCode> 跳过动画，直接显示完成态。
-          </p>
-          <PreviewBlock code={`<ThinkingTrace variant="steps" settled />`} minHeight={200}>
+        <SubSection title="最小示例" stack>
+          <DocExample
+            id="thinkingtrace"
+            title="ThinkingTrace"
+            summary="步骤直接停在完成态，方便看清整段推理。"
+            code={CODE_THINKING}
+            minHeight={200}
+          >
             <div className="w-full max-w-lg">
               <ThinkingTrace variant="steps" settled />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="ThinkingTrace" descriptions={THINKING_PROPS} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section title="StreamingAnswer" description="逐步显示回答正文、来源和后续建议。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock
-            code={`<StreamingAnswer
-  text="开心果口味增长最快，本月销量提升了 23%。"
-  sources={[{ name: "销量数据", domain: "scoopdata.io" }]}
-  followUps={["冬季哪些口味最畅销"]}
-/>`}
-            minHeight={220}
+      <Section title="例子" description="回答、确认、工具、任务和流程各留一个。">
+        <ExampleGrid>
+          <DocExample
+            id="streaminganswer"
+            title="StreamingAnswer"
+            summary="回答带上来源和后续追问，也可以按接收进度逐段淡入。"
+            code={CODE_STREAM}
+            minHeight={360}
           >
-            <div className="w-full max-w-lg">
-              <StreamingAnswer
-                text="开心果口味增长最快，本月销量提升了 23%。"
-                sources={[
-                  { name: "销量数据", domain: "scoopdata.io" },
-                  { name: "趋势指标", domain: "trends.google.com" },
-                ]}
-                followUps={["冬季哪些口味最畅销"]}
-              />
+            <div className="flex w-full max-w-3xl flex-col gap-8">
+              <div className="w-full max-w-lg">
+                <StreamingAnswer
+                  text="开心果口味增长最快，本月销量提升了 23%。"
+                  sources={[
+                    { name: "销量数据", domain: "scoopdata.io" },
+                    { name: "趋势指标", domain: "trends.google.com" },
+                  ]}
+                  followUps={["冬季哪些口味最畅销"]}
+                />
+              </div>
+              <StreamingAnswerDemo />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="真实流接入" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            持续追加 <InlineCode>text</InlineCode>，接收结束后把 <InlineCode>status</InlineCode> 设为已完成（complete）。
-            网络停顿时保持接收状态（streaming）；点击停止后由应用取消请求并设为已停止（stopped）。每条回答使用独立的 React key。
-          </p>
-          <CodeBlock code={`<StreamingAnswer
-  key={message.id}
-  text={message.text}
-  status={message.status}
-  format="markdown"
-  onDone={() => showMessageActions(message.id)}
-/>`} />
-          <Link href="#interaction-086" className="text-sm text-fg-black underline underline-offset-4">
-            查看交互案例：语言切换、停止、重播与网络停顿
-          </Link>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="StreamingAnswer" descriptions={STREAM_PROPS} />
-        </SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="ApprovalCard" description="在执行操作前展示选项，交由用户确认。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock
-            code={`<ApprovalCard questions={[{ id: "n", prompt: "我们应该推出几种口味？", options: [...] }]} />`}
-            minHeight={260}
-          >
+          <DocExample id="approvalcard" title="ApprovalCard" summary="把选项列出来，等用户选定后再继续。" code={CODE_APPROVAL} minHeight={260}>
             <div className="w-full max-w-lg">
               <ApprovalCard
                 questions={[
@@ -218,19 +250,9 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="ApprovalCard" descriptions={APPROVAL_PROPS} />
-        </SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="ToolChips" description="展示工具调用和文件修改摘要。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock
-            code={`<ToolChips items={[{ id: "1", kind: "write", label: "写入 204 行", chip: "schedule.tsx" }]} />`}
-            minHeight={180}
-          >
+          <DocExample id="toolchips" title="ToolChips" summary="一次调用里同时看到思考、写入和文件增删。" code={CODE_TOOLS} minHeight={180}>
             <div className="w-full max-w-lg">
               <ToolChips
                 summary="调用工具 2 次"
@@ -254,14 +276,9 @@ export default function AgentSpecPage() {
                 diffs={[{ file: "ChurnSchedule.tsx", add: 74, del: 41 }]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-      <SubSection title="完整参数" stack><CompleteApiReference name="ToolChips" /></SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="AgentTaskRows" description="展示智能体任务的运行状态、进度和结果。">
-        <SubSection title="列表" stack>
-          <PreviewBlock code={`<AgentTaskRows tasks={tasks} />`} minHeight={200}>
+          <DocExample id="agenttaskrows" title="AgentTaskRows" summary="任务带上完成、失败和进行中的子项。" code={CODE_TASKS} minHeight={200}>
             <div className="w-full max-w-lg">
               <AgentTaskRows
                 tasks={[
@@ -284,16 +301,9 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="AgentTaskRows" descriptions={TASK_PROPS} />
-        </SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="ContextCards" description="展示检索到的内容片段及来源。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<ContextCards chunks={chunks} total={32} />`} minHeight={200}>
+          <DocExample id="contextcards" title="ContextCards" summary="检索到的段落带上来源文件和字数。" code={CODE_CONTEXT} minHeight={200}>
             <div className="w-full max-w-lg">
               <ContextCards
                 total={32}
@@ -309,14 +319,9 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-      <SubSection title="完整参数" stack><CompleteApiReference name="ContextCards" /></SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="RecommendationCard" description="展示建议及可信度，支持接受建议或选择备选方案。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<RecommendationCard title="要帮你提交这笔补货订单吗？" body="..." />`} minHeight={240}>
+          <DocExample id="recommendationcard" title="RecommendationCard" summary="主建议下面列出可以替换的备选方案。" code={CODE_RECOMMEND} minHeight={240}>
             <div className="w-full max-w-lg">
               <RecommendationCard
                 title="要帮你提交这笔补货订单吗？"
@@ -327,14 +332,9 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-      <SubSection title="完整参数" stack><CompleteApiReference name="RecommendationCard" /></SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="AgentDiffTable" description="查看并审核智能体提出的表格修改。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<AgentDiffTable title="口味排期" columns={...} rows={...} />`} minHeight={280}>
+          <DocExample id="agentdifftable" title="AgentDiffTable" summary="保留、删除和新增的行放在同一张审核表里。" code={CODE_DIFF_TABLE} minHeight={280}>
             <div className="w-full max-w-2xl">
               <AgentDiffTable
                 title="口味排期"
@@ -346,29 +346,15 @@ export default function AgentSpecPage() {
                 rows={DIFF_ROWS}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="AgentDiffTable" descriptions={DIFF_PROPS} />
-        </SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="AgentCodeBlock" description="展示代码和修改差异。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<AgentCodeBlock filename="lib/reorder.ts" lines={...} diff={...} />`} minHeight={280}>
+          <DocExample id="agentcodeblock" title="AgentCodeBlock" summary="文件名下面同时给出完整代码和增删行。" code={CODE_CODE_BLOCK} minHeight={280}>
             <div className="w-full max-w-2xl">
               <AgentCodeBlock filename="lib/reorder.ts" lines={CODE_LINES} diff={CODE_DIFF} />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="AgentCodeBlock" descriptions={CODE_PROPS} />
-        </SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="InsightCards" description="通过小型图表和摘要展示分析发现。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<InsightCards cards={[{ title, body, chart }]} />`} minHeight={280}>
+          <DocExample id="insightcards" title="InsightCards" summary="每张卡用一句摘要配上折线、柱状或占比。" code={CODE_INSIGHT} minHeight={280}>
             <div className="w-full max-w-lg">
               <InsightCards
                 cards={[
@@ -402,16 +388,9 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="InsightCards" descriptions={INSIGHT_PROPS} />
-        </SubSection>
-      </Section>
+          </DocExample>
 
-      <Section title="CommandSearch" description="搜索和选择可执行的命令。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<CommandSearch items={[{ id, label, group }]} />`} minHeight={280}>
+          <DocExample id="commandsearch" title="CommandSearch" summary="命令按规划、数据和流程分组，输入后即时筛选。" code={CODE_SEARCH} minHeight={280}>
             <div className="w-full max-w-lg">
               <CommandSearch
                 items={[
@@ -422,17 +401,9 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="CommandSearch" descriptions={SEARCH_PROPS} />
-        </SubSection>
+          </DocExample>
 
-      </Section>
-
-      <Section title="AgentFlowchart" description="查看流程节点并选择节点查看详情。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<AgentFlowchart nodes={...} edges={...} />`} minHeight={360}>
+          <DocExample id="agentflowchart" title="AgentFlowchart" summary="触发、条件和动作连成一条补货流程。" code={CODE_FLOW} minHeight={360}>
             <div className="w-full max-w-lg">
               <AgentFlowchart
                 title="补货流程"
@@ -447,11 +418,23 @@ export default function AgentSpecPage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <CompleteApiReference name="AgentFlowchart" descriptions={FLOW_PROPS} />
-        </SubSection>
+          </DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="API">
+        <AgentApi id="thinkingtrace" name="ThinkingTrace" descriptions={THINKING_PROPS} />
+        <AgentApi id="streaminganswer" name="StreamingAnswer" descriptions={STREAM_PROPS} />
+        <AgentApi id="approvalcard" name="ApprovalCard" descriptions={APPROVAL_PROPS} />
+        <AgentApi id="toolchips" name="ToolChips" />
+        <AgentApi id="agenttaskrows" name="AgentTaskRows" descriptions={TASK_PROPS} />
+        <AgentApi id="contextcards" name="ContextCards" />
+        <AgentApi id="recommendationcard" name="RecommendationCard" />
+        <AgentApi id="agentdifftable" name="AgentDiffTable" descriptions={DIFF_PROPS} />
+        <AgentApi id="agentcodeblock" name="AgentCodeBlock" descriptions={CODE_PROPS} />
+        <AgentApi id="insightcards" name="InsightCards" descriptions={INSIGHT_PROPS} />
+        <AgentApi id="commandsearch" name="CommandSearch" descriptions={SEARCH_PROPS} />
+        <AgentApi id="agentflowchart" name="AgentFlowchart" descriptions={FLOW_PROPS} />
       </Section>
     </div>
   );

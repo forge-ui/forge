@@ -108,12 +108,12 @@ export default function FilterCasePage() {
         <SubSection title="Interactive · trigger + panel wired">
           <Labeled label="click to open">
             <FilterTrigger
-              color="purple"
+              color="blue"
               count={8}
               panel={(close) => (
-                <FilterPanel color="purple" onReset={() => {}} onCancel={close} onApply={close}>
+                <FilterPanel color="blue" onReset={() => {}} onCancel={close} onApply={close}>
                   <FilterGroup
-                    color="purple"
+                    color="blue"
                     title="状态"
                     defaultOpen
                     content={{

@@ -26,7 +26,7 @@ import type { MapRegion } from "@forge-ui-official/core";`;
 
 const CODE_USAGE = `<MapCard
   variant="sm"
-  color="purple"
+  color="blue"
   regions={regions}
   highlights={["north-america", "oceania"]}
   onMenuClick={() => {}}
@@ -61,7 +61,7 @@ const MAP_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'blue' | 'black'",
-    defaultValue: "'purple'",
+    defaultValue: "'blue'",
     description: "高亮大洲的填充色。",
   },
   {
@@ -119,7 +119,7 @@ export default function MapCasePage() {
           <PreviewBlock code={CODE_USAGE} minHeight={520}>
             <MapCard
               variant="sm"
-              color="purple"
+              color="blue"
               regions={REGIONS}
               highlights={["north-america", "oceania"]}
               onMenuClick={() => {}}
@@ -133,8 +133,8 @@ export default function MapCasePage() {
           </p>
           <PreviewBlock code={CODE_VARIANTS} minHeight={540}>
             <div className="flex flex-wrap items-start gap-6">
-              <MapCard variant="sm" color="purple" regions={REGIONS} highlights={["north-america", "oceania"]} />
-              <MapCard variant="md" color="purple" regions={REGIONS} highlights={["north-america", "oceania"]} />
+              <MapCard variant="sm" color="blue" regions={REGIONS} highlights={["north-america", "oceania"]} />
+              <MapCard variant="md" color="blue" regions={REGIONS} highlights={["north-america", "oceania"]} />
             </div>
           </PreviewBlock>
         </SubSection>
@@ -160,7 +160,7 @@ export default function MapCasePage() {
             <div className="w-full">
               <MapCard
                 variant="lg"
-                color="purple"
+                color="blue"
                 regions={REGIONS}
                 highlights={["north-america", "oceania"]}
                 onMenuClick={() => {}}
@@ -177,7 +177,7 @@ export default function MapCasePage() {
           <PreviewBlock code={CODE_HIGHLIGHTS} minHeight={520}>
             <MapCard
               variant="sm"
-              color="purple"
+              color="blue"
               regions={REGIONS}
               highlights={["north-america", "europe", "asia"]}
             />

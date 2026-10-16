@@ -78,7 +78,7 @@ export default function IntroductionPage() {
             <strong>
               <Link
                 href="/components"
-                className="text-fg-violet hover:underline"
+                className="text-fg-blue hover:underline"
               >
                 组件
               </Link>
@@ -89,7 +89,7 @@ export default function IntroductionPage() {
             <strong>
               <Link
                 href="/cases"
-                className="text-fg-violet hover:underline"
+                className="text-fg-blue hover:underline"
               >
                 组件矩阵
               </Link>
@@ -100,7 +100,7 @@ export default function IntroductionPage() {
             <strong>
               <Link
                 href="/templates"
-                className="text-fg-violet hover:underline"
+                className="text-fg-blue hover:underline"
               >
                 模版
               </Link>
@@ -111,7 +111,7 @@ export default function IntroductionPage() {
             <strong>
               <Link
                 href="/docs/ui-for-agents"
-                className="text-fg-violet hover:underline"
+                className="text-fg-blue hover:underline"
               >
                 UI for Agents
               </Link>

@@ -191,15 +191,17 @@ export default function AgentCasePage() {
       </Section>
 
       <Section title="ChatInputBar" description="使用加号添加附件与工具，输入 @ 引用对象，输入 / 选择命令。">
-        <a href="/cases/chat-input-bar" className="text-accent underline">发送与停止交互、模型菜单、抽屉、全屏与窄屏演示</a>
         <SubSection title="消息输入" stack>
           <ChatInputBar multiline sendOnEnter
             value={prompt}
             onChange={setPrompt}
             onSend={(message) => setSent((current) => [...current, message])}
             sources={[
-              { id: "sales", label: "销量数据", description: "销售与流失指标", connected: true },
-              { id: "flavors", label: "口味档案", description: "26 个品牌，含标签和链接" },
+              { id: "sales", kind: "tool", label: "销量数据", description: "销售与流失指标", connected: true },
+              { id: "flavors", kind: "skill", label: "口味档案", description: "26 个品牌，含标签和链接" },
+            ]}
+            defaultSelectedSources={[
+              { id: "flavors", kind: "skill", label: "口味档案", description: "26 个品牌，含标签和链接" },
             ]}
             commands={[
               { id: "plan", label: "plan", description: "起草新口味上市计划" },

@@ -172,7 +172,7 @@ function ListItemLeadSlot({ lead }: { lead: ListItemLead }) {
   }
   return (
     <CircleIcon
-      color={lead.color ?? "purple"}
+      color={lead.color ?? "blue"}
       variant={lead.variant ?? "light"}
       size={lead.size ?? "lg"}
     >

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "@/app/_components/site-header";
 import { asset } from "@/lib/asset";
 
@@ -15,56 +14,50 @@ type ShowcaseItem = {
 
 const items: ShowcaseItem[] = [
   {
-    href: "/templates/agent",
-    title: "Agent Screen",
-    description:
-      "用 ThinkingTrace、ToolChips、StreamingAnswer、ApprovalCard、AgentDiffTable 和 ChatInputBar 拼起来的 Agent 工作台，脚本演示一轮对话。",
-  },
-  {
     href: "/templates/project-template",
-    title: "Project Management",
+    title: "项目管理",
     description:
       "Protask 项目管理模板，包含项目、客户、成员、任务、文件和发票的完整多页工作流。",
     thumbnail: asset("/images/showcase/project-template.png"),
   },
   {
     href: "/templates/finance-template",
-    title: "Finance",
+    title: "财务",
     description:
       "基于原始截图和组件导出还原的多页财务模板，覆盖概览、交易、钱包、卡片和发票工作流。",
     thumbnail: asset("/images/showcase/templates/finance-template-home.png"),
   },
   {
     href: "/templates/crm-template",
-    title: "CRM",
+    title: "客户关系",
     description:
       "基于原始截图和已有 dashboard 实现沉淀的客户、线索、销售和活动管理模板。",
     thumbnail: asset("/images/showcase/templates/crm-template-home.png"),
   },
   {
     href: "/templates/micellaneous-template",
-    title: "Micellaneous",
+    title: "杂项",
     description:
       "保留原目录拼写的杂项模板，覆盖 Calendar、Chat、File Manager 和 Table Action 页面。",
     thumbnail: asset("/images/showcase/templates/micellaneous-template-home.png"),
   },
   {
     href: "/templates/ecommerce/products",
-    title: "Ecommerce Admin",
+    title: "电商后台",
     description:
       "一套电商后台，管商品、订单、客户、分类、卖家，列表详情表单都齐了。",
     thumbnail: asset("/images/showcase/ecommerce.png"),
   },
   {
     href: "/templates/dashboard-builder",
-    title: "Dashboard Builder",
+    title: "仪表盘外壳",
     description:
       "8 种空白后台外壳，白紫蓝黑 × 顶栏/侧栏 Profile，挑一个当起点。",
     thumbnail: asset("/images/showcase/dashboard-builder-hero.png"),
   },
   {
     href: "/templates/dashboards",
-    title: "Dashboards",
+    title: "仪表盘",
     description:
       "10 个填好的 SaaS 控制台样板，Project / Analytics / CRM / E-Commerce / Finance 五大业务，4 种侧栏配色齐活。",
     thumbnail: asset("/images/showcase/dashboards/finance-3.png"),
@@ -86,7 +79,7 @@ export default function ExamplesIndex() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12 lg:px-8">
         <div className="flex flex-col gap-10">
           <header className="flex flex-col gap-3">
-            <h1 className="text-4xl font-bold tracking-fg text-fg-black">Examples</h1>
+            <h1 className="text-4xl font-bold tracking-fg text-fg-black">模板</h1>
             <p className="max-w-2xl text-base leading-7 text-fg-grey-700">
               用 Forge UI Kit 拼出来的示例项目。挑一个当起点复制改造，或者看它们怎么组合组件做业务。
             </p>
@@ -97,9 +90,9 @@ export default function ExamplesIndex() {
               <Link
                 key={item.href}
                 href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col gap-0 overflow-hidden rounded-3xl bg-white border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noreferrer" : undefined}
+                className="flex flex-col gap-0 overflow-hidden rounded-3xl bg-white border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
               >
                 <div className="relative aspect-video w-full overflow-hidden border-b border-fg-grey-200 bg-fg-grey-100">
                   {item.thumbnails ? (
@@ -131,10 +124,6 @@ export default function ExamplesIndex() {
                 <div className="flex flex-col gap-3 p-6">
                   <h2 className="text-xl font-bold tracking-fg text-fg-black">{item.title}</h2>
                   <p className="text-sm leading-6 text-fg-grey-700 line-clamp-2">{item.description}</p>
-                  <div className="mt-2 flex items-center gap-1 text-sm font-semibold text-fg-violet">
-                    Open example
-                    <ArrowRightLinear size={16} className="transition-transform group-hover:translate-x-0.5" />
-                  </div>
                 </div>
               </Link>
             ))}

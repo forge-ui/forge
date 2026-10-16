@@ -3,8 +3,8 @@
 import { DemoPageHeader } from "./ask-ai-example";
 import { Breadcrumbs } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";`;
 
@@ -40,12 +40,10 @@ const CODE_BREADCRUMB_USAGE = `<Breadcrumbs
   ]}
 />`;
 
-const CODE_BREADCRUMB_COLOR = `<Breadcrumbs color="purple" items={items} />`;
-
 const HEADER_PROPS: ApiTableRow[] = [
   { attr: "askAi", type: "AskAiProps", defaultValue: "—", description: "两种 Header / AppLayout 共用的 Ask AI 壳。默认右侧抽屉；可切独立全屏层。必填 onSend；可选 suggestions、槽位与 fullscreen / sessions。未配置时隐藏。" },
   { attr: "variant", type: "'search' | 'title'", defaultValue: "'title'", description: "两种布局：search（全局 header 带搜索 + 通知 + profile）与 title（页面标题 + 返回 + actions）。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色（影响通知徽标等）。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "主色（影响通知徽标等）。" },
   { attr: "searchPlaceholder", type: "string", defaultValue: "—", description: "search 变体：搜索框占位。" },
   { attr: "onSearch", type: "(value: string) => void", defaultValue: "—", description: "搜索提交回调。" },
   { attr: "notifications / messages", type: "number", defaultValue: "—", description: "通知 / 消息数量（> 0 时显示红色徽标）。" },
@@ -61,7 +59,7 @@ const HEADER_PROPS: ApiTableRow[] = [
 
 const BREADCRUMB_PROPS: ApiTableRow[] = [
   { attr: "items", type: "{ label, href?, onClick? }[]", defaultValue: "—", description: "面包屑链路。最后一项自动渲染为灰色当前页。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "非末项链接颜色。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "非末项链接颜色。" },
   { attr: "className", type: "string", defaultValue: "—", description: "额外 className。" },
 ];
 
@@ -76,45 +74,24 @@ export default function PageHeaderCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="页面顶栏"
-        hint="组织页面标题、搜索、通知和常用操作，明确当前位置。"
+        hint="搜索顶栏和页面标题是两种布局。面包屑只负责当前位置，不再单独摆一套颜色。"
       />
 
-      <Section
-        title="PageHeader"
-        description="组织标题、搜索、通知、个人信息和页面操作。"
-      >
-        <SubSection title="导入组件" stack>
+      <Section title="用法" description="应用级顶栏放搜索、通知和个人信息。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="搜索与工具区" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            用于应用级导航，组合搜索、日历、通知、消息、语言和个人入口。
-          </p>
-          <PreviewBlock code={CODE_HEADER_SEARCH} minHeight={120}>
-            <div className="w-full">
+        <SubSection title="最小示例" stack>
+          <DocExample id="pageheader" title="PageHeader" summary="搜索顶栏和页面标题是两种布局。" code={`${CODE_HEADER_SEARCH}\n${CODE_HEADER_TITLE}`} minHeight={160}>
+            <div className="flex w-full flex-col gap-4">
               <DemoPageHeader
                 variant="search"
                 searchPlaceholder="搜索内容…"
                 notifications={3}
                 messages={1}
                 showProfile
-                profile={{
-                  name: "林晓",
-                  role: "管理员",
-                  avatar: "https://i.pravatar.cc/40?img=5",
-                }}
+                profile={{ name: "林晓", role: "管理员", avatar: "https://i.pravatar.cc/40?img=5" }}
               />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="页面标题样式" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            对应 Figma 「Page Title」。页面级标题 + 返回 / 日期 / filter / favorite / 主次 action 等按钮按需开关。
-          </p>
-          <PreviewBlock code={CODE_HEADER_TITLE} minHeight={120}>
-            <div className="w-full">
               <DemoPageHeader
                 variant="title"
                 title="项目"
@@ -124,8 +101,16 @@ export default function PageHeaderCasePage() {
                 primaryAction={{ label: "新建项目", onClick: () => {} }}
               />
             </div>
-          </PreviewBlock>
+          </DocExample>
         </SubSection>
+      </Section>
+
+      <Section title="例子" description="面包屑标出从首页到当前页的路径。">
+        <ExampleGrid>
+          <DocExample id="breadcrumbs" title="Breadcrumbs" summary="最后一项是当前页，前面的项可以返回。" code={CODE_BREADCRUMB_USAGE}>
+            <Breadcrumbs items={breadcrumbItems} />
+          </DocExample>
+        </ExampleGrid>
 
         <SubSection title="Ask AI" stack>
           <CodeBlock code={`<PageHeader
@@ -165,36 +150,11 @@ export default function PageHeaderCasePage() {
           <p className="text-sm text-fg-grey-700"><InlineCode>header</InlineCode> / <InlineCode>brand</InlineCode> / <InlineCode>session</InlineCode> / <InlineCode>messages</InlineCode> / <InlineCode>composer</InlineCode> 可覆盖默认区；未传则保持现有抽屉 UI。可通过 <InlineCode>composer</InlineCode> 传入统一的 <InlineCode>ChatInputBar</InlineCode>，接入附件、提及、命令、模型和停止生成。</p>
         </SubSection>
 
-        <SubSection title="API" stack>
-          <ApiTable rows={HEADER_PROPS} />
-        </SubSection>
       </Section>
 
-      <Section
-        title="Breadcrumbs"
-        description="展示页面层级，点击上级名称返回对应页面。"
-      >
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>items</InlineCode> 数组，每项可带 <InlineCode>href</InlineCode> 或 <InlineCode>onClick</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_BREADCRUMB_USAGE}>
-            <Breadcrumbs items={breadcrumbItems} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="颜色" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 色：purple / blue / black。此处展示 purple，其余见 cases。
-          </p>
-          <PreviewBlock code={CODE_BREADCRUMB_COLOR}>
-            <Breadcrumbs color="purple" items={breadcrumbItems} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={BREADCRUMB_PROPS} />
-        </SubSection>
+      <Section title="API">
+        <ApiBlock id="pageheader" title="PageHeader" rows={HEADER_PROPS} />
+        <ApiBlock id="breadcrumbs" title="Breadcrumbs" rows={BREADCRUMB_PROPS} />
       </Section>
     </div>
   );

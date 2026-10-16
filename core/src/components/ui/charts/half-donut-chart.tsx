@@ -19,7 +19,7 @@ interface HalfDonutChartProps {
 
 export function HalfDonutChart({
   segments,
-  accent = "purple",
+  accent = "blue",
   centerValue,
   trend,
   trendDirection,

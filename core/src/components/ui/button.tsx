@@ -87,7 +87,7 @@ export type ButtonSize = keyof typeof buttonSizes;
 
 export function Button({
   children,
-  color = "purple",
+  color = "blue",
   variant = "primary",
   size = "lg",
   type = "button",

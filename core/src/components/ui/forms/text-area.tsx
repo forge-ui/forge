@@ -32,7 +32,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   value,
   state = "idle",
   shape = "rounded",
-  color = "purple",
+  color = "blue",
   label,
   errorMessage,
   rows = 5,

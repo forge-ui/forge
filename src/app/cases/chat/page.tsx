@@ -214,13 +214,13 @@ function ChatLeftSidebar() {
       <div className="flex-1 overflow-y-auto py-1.5 flex flex-col">
         {fullPageContacts.map((c, i) => (
           <div key={i} className="px-2 py-1">
-            <ContactItem color="purple" {...c} />
+            <ContactItem color="blue" {...c} />
           </div>
         ))}
       </div>
       <div className="p-4 shrink-0 border-t border-fg-grey-200">
         <Button
-          color="purple"
+          color="blue"
           variant="primary"
           size="md"
           iconLeft={<AddSquareLinear size={18} color="currentColor" />}
@@ -290,12 +290,12 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
   if (msgs === "personA") {
     return (
       <>
-        <ChatBubble type="received" variant="voice" color="purple" avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
-        <ChatBubble type="sent" color="purple" variant="text" content={LONG_TEXT} time="1 天前" />
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={SHORT_TEXT} />
+        <ChatBubble type="received" variant="voice" color="blue" avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={SHORT_TEXT} />
         <ChatBubble
           type="received"
-          color="purple"
+          color="blue"
           variant="image"
           avatar={AVATAR}
           images={[
@@ -306,19 +306,19 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
           extraImageCount={3}
           time="1 天前"
         />
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
-        <ChatBubble type="sent" color="purple" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
-        <ChatBubble type="sent" color="purple" variant="text" content={SHORT_TEXT} time="1 天前" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={SHORT_TEXT} time="1 天前" />
       </>
     );
   }
   if (msgs === "personB") {
     return (
       <>
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
         <ChatBubble
           type="received"
-          color="purple"
+          color="blue"
           variant="image"
           avatar={AVATAR}
           images={[
@@ -328,21 +328,21 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
           ]}
           extraImageCount={3}
         />
-        <ChatBubble type="sent" color="purple" variant="text" content={LONG_TEXT} time="1 天前" />
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={LONG_TEXT} />
-        <ChatBubble type="sent" color="purple" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
-        <ChatBubble type="sent" color="purple" variant="text" content={SHORT_TEXT} time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={LONG_TEXT} />
+        <ChatBubble type="sent" color="blue" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={SHORT_TEXT} time="1 天前" />
       </>
     );
   }
   return (
     <>
-      <ChatBubble type="received" variant="voice" color="purple" avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
-      <ChatBubble type="sent" color="purple" variant="text" content={LONG_TEXT} time="1 天前" />
-      <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={SHORT_TEXT} />
+      <ChatBubble type="received" variant="voice" color="blue" avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
+      <ChatBubble type="sent" color="blue" variant="text" content={LONG_TEXT} time="1 天前" />
+      <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={SHORT_TEXT} />
       <ChatBubble
         type="received"
-        color="purple"
+        color="blue"
         variant="image"
         avatar={AVATAR}
         images={[
@@ -352,8 +352,8 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
         ]}
         extraImageCount={3}
       />
-      <ChatBubble type="sent" color="purple" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
-      <ChatBubble type="sent" color="purple" variant="text" content={SHORT_TEXT} time="1 天前" />
+      <ChatBubble type="sent" color="blue" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+      <ChatBubble type="sent" color="blue" variant="text" content={SHORT_TEXT} time="1 天前" />
     </>
   );
 }
@@ -631,7 +631,7 @@ function FullPageSection() {
 // SECTION 3: 小页面 (figma "Small Chat" 紧凑卡片)
 // ============================================================
 
-function SmallChatCard({ type, color = "purple" }: { type: "person" | "team"; color?: typeof COLORS[number] }) {
+function SmallChatCard({ type, color = "blue" }: { type: "person" | "team"; color?: typeof COLORS[number] }) {
   const isTeam = type === "team";
   const headerAvatar = isTeam ? (
     <div className="w-10 h-10 bg-rose-100 rounded-full inline-flex justify-center items-center shrink-0">
@@ -699,8 +699,8 @@ function SmallChatSection() {
         每色 2 类型（个人 / 团队），可嵌入 Dashboard widget 或独立窗口。3 色 × 2 = 6 卡片，先展示 Purple 2 个 sample。
       </p>
       <div className="flex flex-wrap gap-6">
-        <SmallChatCard type="person" color="purple" />
-        <SmallChatCard type="team" color="purple" />
+        <SmallChatCard type="person" color="blue" />
+        <SmallChatCard type="team" color="blue" />
       </div>
     </Section>
   );

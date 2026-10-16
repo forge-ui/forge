@@ -26,7 +26,7 @@ type Product = {
 
 export function HighlightCard({
   title,
-  theme = "purple",
+  theme = "blue",
   image,
   annotations = [],
   products = [],

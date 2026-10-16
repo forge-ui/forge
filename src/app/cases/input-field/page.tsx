@@ -320,7 +320,7 @@ export default function InputFieldCasePage() {
                 type={t as SelectOptionType}
                 options={t === "image" ? imageOptions : demoOptions}
                 placeholder={`Select ${t}`}
-                color="purple"
+                color="blue"
               />
             </Labeled>
           ))}
@@ -341,7 +341,7 @@ export default function InputFieldCasePage() {
                 placeholder="选择选项"
                 value={st === "disabled" ? "a" : undefined}
                 state={st}
-                color="purple"
+                color="blue"
                 errorMessage={st === "error" ? "Please pick one" : undefined}
               />
             </Labeled>
@@ -374,7 +374,7 @@ export default function InputFieldCasePage() {
         <SubSection title="States (purple, rounded)">
           {(["idle", "focus", "filled", "disabled", "error"] as DatepickerState[]).map((st) => (
             <Labeled key={st} label={st}>
-              <Datepicker state={st} placeholder="选择日期" color="purple" />
+              <Datepicker state={st} placeholder="选择日期" color="blue" />
             </Labeled>
           ))}
         </SubSection>
@@ -417,7 +417,7 @@ export default function InputFieldCasePage() {
         description="FileUpload（列表 + 按钮）+ FileCard（单条）+ FileTypeIcon（图标）。"
       >
         <SubSection title="File Upload (purple, with files)">
-          <FileUpload label="附件" color="purple" files={demoFiles} />
+          <FileUpload label="附件" color="blue" files={demoFiles} />
         </SubSection>
         <SubSection title="Colors (2 files each)">
           {(["purple", "blue", "black"] as FileUploadColor[]).map((c) => (
@@ -447,7 +447,7 @@ export default function InputFieldCasePage() {
             </Labeled>
           ))}
           <Labeled label="disabled on">
-            <Toggle color="purple" checked disabled />
+            <Toggle color="blue" checked disabled />
           </Labeled>
         </SubSection>
         <SubSection title="Toggle (sm)">
@@ -525,7 +525,7 @@ export default function InputFieldCasePage() {
             labels={iconLabels}
             selectedIndex={selectedIcon}
             onChange={setSelectedIcon}
-            color="purple"
+            color="blue"
           />
         </SubSection>
       </Section>

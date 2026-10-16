@@ -148,7 +148,7 @@ function CardHeader({
 export function MapCard({
   title = "区域排行",
   subtitle = "按区域统计",
-  color = "purple",
+  color = "blue",
   variant = "sm",
   regions = [],
   highlights = ["north-america", "oceania"],

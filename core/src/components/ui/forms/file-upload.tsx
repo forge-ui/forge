@@ -88,7 +88,7 @@ export function FileCard({
   onRemove,
   onRetry,
   locale = "zh",
-  color = "purple",
+  color = "blue",
   className,
 }: {
   file: FileItem;
@@ -201,7 +201,7 @@ export function FileUpload({
   label,
   buttonLabel,
   locale = "zh",
-  color = "purple",
+  color = "blue",
   onUpload,
   onRemove,
   onRetry,

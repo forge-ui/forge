@@ -22,7 +22,7 @@ export type StepperItem = { id: string; label: string; description?: string; ico
 export function Stepper({
   total = 0,
   current = 1,
-  color = "purple",
+  color = "blue",
   className,
   items, onStepChange, motion = "auto", locale = "zh", indicator,
 }: {

@@ -65,7 +65,7 @@ function HeaderMenuButton({
 }
 
 export function SearchHeader({
-  color = "purple",
+  color = "blue",
   askAi,
   leftMode = "search",
   onHamburgerClick,
@@ -275,7 +275,7 @@ export function SearchHeader({
 }
 
 export function TitleHeader({
-  color = "purple",
+  color = "blue",
   askAi,
   title,
   onHamburgerClick,

@@ -51,7 +51,7 @@ function describeArc(
 
 export function DashedHalfDonutChart({
   segments,
-  accent = "purple",
+  accent = "blue",
   centerValue,
   trend,
   trendDirection,

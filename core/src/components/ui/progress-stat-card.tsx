@@ -47,7 +47,7 @@ export function ProgressStatCard({
   theme = "white",
   size = "sm",
   progressValue = 0,
-  progressColor = "purple",
+  progressColor = "blue",
   icon,
   action,
   onKebabClick,

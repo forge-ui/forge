@@ -168,7 +168,7 @@ export function AppLayout({
   motion = "auto",
   mode = "light",
   profilePosition = "topbar",
-  accent = "purple",
+  accent = "blue",
   children,
   logo,
   logoText = "Forge",

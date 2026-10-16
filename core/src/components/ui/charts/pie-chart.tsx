@@ -21,7 +21,7 @@ const sizeMap = {
   lg: "max-w-72",
 };
 
-export function PieChart({ segments, accent = "purple", size = "md", trackColor }: PieChartProps) {
+export function PieChart({ segments, accent = "blue", size = "md", trackColor }: PieChartProps) {
   const rampFallback = rampColors(accent, segments.length);
   const resolved = segments.map((seg, i) => ({
     value: seg.value,

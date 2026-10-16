@@ -20,7 +20,7 @@ export function DocsToc({ items }: { items: TocItem[] }) {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="text-sm font-semibold text-fg-grey-900 transition-colors hover:text-fg-violet"
+                className="text-sm font-semibold text-fg-grey-900 transition-colors hover:text-fg-blue"
               >
                 {item.title}
               </a>

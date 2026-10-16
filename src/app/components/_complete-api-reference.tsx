@@ -12,7 +12,7 @@ export function CompleteApiReference({ name, descriptions = [] }: { name: keyof 
       <table className="w-full text-left text-sm">
         <thead className="bg-fg-grey-50 text-fg-grey-700"><tr>{["参数", "类型", "必填", "源码默认值", ...(hasDescriptions ? ["说明"] : [])].map(label => <th key={label} className="px-4 py-3 font-semibold">{label}</th>)}</tr></thead>
         <tbody>{data[name].props.map(prop => <tr key={prop.name} className="border-t border-fg-grey-200">
-          <td className="px-4 py-3 align-top"><code className="text-fg-violet">{prop.name}</code></td>
+          <td className="px-4 py-3 align-top"><code className="text-fg-blue">{prop.name}</code></td>
           <td className="max-w-xl break-words px-4 py-3 align-top"><code>{prop.type}</code></td>
           <td className="px-4 py-3 align-top">{prop.optional ? "否" : "是"}</td>
           <td className="px-4 py-3 align-top"><code>{prop.defaultValue ?? "未设置"}</code></td>

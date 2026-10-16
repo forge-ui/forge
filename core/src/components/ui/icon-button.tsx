@@ -87,7 +87,7 @@ export type IconButtonEffect = "send" | "morph" | "bookmark" | "burst";
 
 export function IconButton({
   children,
-  color = "purple",
+  color = "blue",
   variant = "primary",
   size = "md",
   shape = "circle",

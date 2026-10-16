@@ -131,7 +131,7 @@ export function SelectOption(props: SelectOptionProps) {
     errorMessage,
     state = "idle",
     shape = "rounded",
-    color = "purple",
+    color = "blue",
     type = "general",
     bgVariant = "white",
     width,

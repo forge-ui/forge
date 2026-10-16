@@ -46,7 +46,7 @@ const avatarUrls = [
 const DESC_LINKED = (
   <>
     <span className="text-fg-grey-700">项目更新 </span>
-    <StyledLink href="#" color="purple" className="text-sm font-semibold">
+    <StyledLink href="#" color="blue" className="text-sm font-semibold">
       #302012
     </StyledLink>
     <span className="text-fg-grey-700"> 项目进度已同步</span>
@@ -98,7 +98,7 @@ const TASK_ROW = (
     labelColor="red"
     title="项目概览"
     progress={0}
-    progressColor="purple"
+    progressColor="blue"
     avatars={avatarUrls.slice(0, 2)}
     overflowCount={1}
     date="2026 年 10 月 21 日"
@@ -152,7 +152,7 @@ const STRUCT_COLS: StructCol[] = [
 
 function VariantMatrix({
   variant,
-  color = "purple",
+  color = "blue",
   icon,
 }: {
   variant: HistoryItemVariant;
@@ -230,7 +230,7 @@ export default function HistoryCasePage() {
         </SubSection>
 
         <SubSection title="Full matrix · 6 种内容示例 (purple)">
-          <VariantMatrix variant="regular" color="purple" />
+          <VariantMatrix variant="regular" color="blue" />
         </SubSection>
       </Section>
 
@@ -261,7 +261,7 @@ export default function HistoryCasePage() {
         <SubSection title="Full matrix · 6 种内容示例 (purple)">
           <VariantMatrix
             variant="badge"
-            color="purple"
+            color="blue"
             icon={<CartBoldDuotone size={20} color="currentColor" />}
           />
         </SubSection>
@@ -273,7 +273,7 @@ export default function HistoryCasePage() {
         description="variant=profile · 头像 indicator"
       >
         <SubSection title="Full matrix · 6 种内容示例 (purple)">
-          <VariantMatrix variant="profile" color="purple" />
+          <VariantMatrix variant="profile" color="blue" />
         </SubSection>
       </Section>
 
@@ -311,17 +311,17 @@ export default function HistoryCasePage() {
             <HistoryGrouped
               title="简短列表"
               subtitle="3 items · 20% progress"
-              color="purple"
+              color="blue"
               progressHeight="20%"
-              badge={<Label color="purple" size="sm" variant="outline">3</Label>}
+              badge={<Label color="blue" size="sm" variant="outline">3</Label>}
               items={compositionItems("short")}
             />
             <HistoryGrouped
               title="混合样式"
               subtitle="6 items · 50% progress"
-              color="purple"
+              color="blue"
               progressHeight="50%"
-              badge={<Label color="purple" size="sm" variant="outline">6</Label>}
+              badge={<Label color="blue" size="sm" variant="outline">6</Label>}
               items={compositionItems("mixed")}
             />
             <HistoryGrouped

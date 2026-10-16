@@ -145,7 +145,7 @@ export default function ToolbarCasePage() {
           <Toolbar
             left={
               <div className="flex items-center gap-3">
-                <ToolbarPillTabs color="purple" tabs={mkPillTabs(activeTab)} onChange={setActiveTab} />
+                <ToolbarPillTabs color="blue" tabs={mkPillTabs(activeTab)} onChange={setActiveTab} />
                 <ToolbarSearchInput />
               </div>
             }
@@ -153,7 +153,7 @@ export default function ToolbarCasePage() {
               <ToolbarActions>
                 <ToolbarFavoriteButton />
                 <ToolbarKebabButton />
-                <Button color="purple" variant="primary" size="lg" iconLeft={<AddCircleLinear size={20} color="currentColor" />}>
+                <Button color="blue" variant="primary" size="lg" iconLeft={<AddCircleLinear size={20} color="currentColor" />}>
                   新增
                 </Button>
               </ToolbarActions>

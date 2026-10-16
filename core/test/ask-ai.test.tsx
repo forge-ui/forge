@@ -33,6 +33,7 @@ function installDom() {
 
   // React is imported before JSDOM; match the existing input-focus test shim.
   Object.assign(dom.window.HTMLElement.prototype, { attachEvent: () => undefined, detachEvent: () => undefined });
+  dom.window.HTMLDialogElement.prototype.show = function () { this.setAttribute("open", ""); };
   dom.window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
   dom.window.HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
   return dom;
@@ -455,4 +456,61 @@ test("PageTitleToolbar Ask AI opens, sends through its configured callback and i
     assert.deepEqual(sent, ["查看进度"]);
     assert.ok(dialog.textContent?.includes("已完成"));
   } finally { await act(async () => root.unmount()); dom.window.close(); }
+});
+
+
+test("Responsive panel releases the host, adapts to narrow screens, and preserves drafts and conversation", async () => {
+  const dom = installDom();
+  let wide = true;
+  let update: (() => void) | undefined;
+  Object.defineProperty(window, "matchMedia", { configurable: true, value: (query: string) => ({
+    get matches() { return query === "(min-width: 1440px)" && wide; },
+    addEventListener: (_event: string, callback: () => void) => { if (query === "(min-width: 1440px)") update = callback; },
+    removeEventListener: () => { if (query === "(min-width: 1440px)") update = undefined; },
+  }) });
+  const states: boolean[] = [];
+  const root = createRoot(document.querySelector("#root")!);
+  await act(async () => root.render(createElement(AskAi, {
+    panelMode: "responsive", headerLayout: "session",
+    landingTitle: "有什么可以帮你？", landingDescription: "查询当前账号，或处理操作。",
+    sessions: [{ id: "a", title: "账号查询" }], currentSessionId: "a",
+    onDockedChange: docked => states.push(docked),
+    suggestions: ["查看账号"], onSend: () => "共 3 个账号",
+  })));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+  const panel = () => document.querySelector("dialog")!;
+  assert.equal(panel().getAttribute("data-ask-ai-panel"), "docked");
+  assert.equal(panel().getAttribute("aria-modal"), null);
+  assert.equal(document.body.style.overflow, "");
+  assert.equal(states.at(-1), true);
+  assert.ok(panel().querySelector('[data-ask-ai-welcome] h3')?.textContent?.includes("有什么可以帮你"));
+  assert.ok(panel().querySelector('[data-ask-ai-header-tools] [aria-label="新建对话"]'));
+  const suggestion = [...panel().querySelectorAll("button")].find(button => button.textContent === "查看账号")!;
+  await act(async () => suggestion.click());
+  const input = panel().querySelector("textarea")!;
+  await act(async () => { wide = false; update?.(); });
+  assert.equal(panel().getAttribute("data-ask-ai-panel"), "modal");
+  assert.equal(panel().getAttribute("aria-modal"), "true");
+  assert.equal(document.body.style.overflow, "hidden");
+  assert.equal(states.at(-1), false);
+  assert.equal(panel().querySelector("textarea"), input);
+  assert.ok(panel().textContent?.includes("共 3 个账号"));
+  await act(async () => { wide = true; update?.(); });
+  assert.equal(document.body.style.overflow, "");
+  assert.equal(states.at(-1), true);
+  // Escape in a business-page field must not close the docked assistant.
+  await act(async () => document.body.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
+  assert.ok(panel().open);
+  await act(async () => panel().querySelector<HTMLButtonElement>('[aria-label="全屏"]')!.click());
+  assert.equal(document.querySelector("dialog"), null);
+  assert.equal(states.at(-1), false);
+  assert.ok(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`));
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="退出全屏"]')!.click());
+  assert.equal(states.at(-1), true);
+  assert.ok(panel().textContent?.includes("共 3 个账号"));
+  await act(async () => root.unmount());
+  assert.equal(states.at(-1), false);
+  assert.equal(document.body.style.overflow, "");
+  assert.equal(update, undefined);
+  dom.window.close();
 });

@@ -18,21 +18,16 @@ export const componentsNavGroups: NavGroup[] = [
     ],
   },
   {
-    title: "智能体",
-    items: [
-      { href: "/components/agent", label: "智能体组件" },
-      { href: "/components/chat-input-bar", label: "消息输入栏" },
-    ],
-  },
-  {
     title: "组件",
     items: [
+      { href: "/components/agent", label: "智能体" },
       { href: "/components/badge", label: "徽章与标签" },
       { href: "/components/button-link", label: "按钮与链接" },
       { href: "/components/calendar", label: "日历与日程" },
       { href: "/components/card", label: "卡片" },
       { href: "/components/chart", label: "图表" },
       { href: "/components/chat", label: "聊天" },
+      { href: "/components/chat-input-bar", label: "消息输入栏" },
       { href: "/components/checklist", label: "待办清单" },
       { href: "/components/comment", label: "评论与评价" },
       { href: "/components/filter", label: "筛选" },

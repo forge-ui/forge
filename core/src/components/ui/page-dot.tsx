@@ -26,7 +26,7 @@ const defaultClass =
 
 export function PageDot({
   children,
-  color = "purple",
+  color = "blue",
   active = false,
   onClick,
   className,

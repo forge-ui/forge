@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh" className="h-full antialiased" style={fontVariables} suppressHydrationWarning>
+    <html lang="zh" data-accent="blue" className="h-full antialiased" style={fontVariables} suppressHydrationWarning>
       <body className="min-h-full flex flex-col font-sans">
         {children}
         <Analytics />

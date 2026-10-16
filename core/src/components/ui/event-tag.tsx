@@ -34,7 +34,7 @@ export type EventTagVariant = "solid" | "outline";
 
 export function EventTag({
   label,
-  color = "purple",
+  color = "blue",
   size = "md",
   variant = "solid",
   avatar,

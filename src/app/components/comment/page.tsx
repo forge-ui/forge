@@ -2,8 +2,8 @@
 
 import { CommentItem, ReviewItem } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import { CommentItem, ReviewItem } from "@forge-ui-official/core";`;
 
@@ -77,37 +77,17 @@ export default function CommentCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="评论与评价"
-        hint="展示讨论、回复和评分，支持头像、时间和附图。"
+        hint="评论用来讨论，评价用来打分。附图和回复是评论多出来的部分，卡片外壳是评价的另一种摆法。"
       />
 
-      <Section
-        title="CommentItem"
-        description="展示作者、时间和评论正文，支持附图与嵌套回复。"
-      >
-        <SubSection title="导入组件" stack>
+      <Section title="用法" description="从一条评论开始：头像、姓名、时间和正文。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_COMMENT_USAGE}>
-            <div className="w-full max-w-xl">
-              <CommentItem
-                avatar={avatar}
-                name="林晓"
-                date="2 小时前"
-                content="效果很不错，设计规范做得很细致。"
-                onReply={() => {}}
-              />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="图片与回复" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            传 <InlineCode>images</InlineCode> 显示缩略图网格；传 <InlineCode>replies</InlineCode> 在下方嵌套子评论。
-          </p>
-          <PreviewBlock code={CODE_COMMENT_REPLIES} minHeight={260}>
-            <div className="w-full max-w-xl">
+        <SubSection title="最小示例" stack>
+          <DocExample id="commentitem" title="CommentItem" summary="一条评论可以只有正文，也可以带缩略图和嵌套回复。" code={`${CODE_COMMENT_USAGE}\n${CODE_COMMENT_REPLIES}`} minHeight={260}>
+            <div className="flex w-full flex-col gap-6">
+              <CommentItem avatar={avatar} name="林晓" date="2 小时前" content="效果很不错，设计规范做得很细致。" onReply={() => {}} />
               <CommentItem
                 avatar={avatar}
                 name="林晓"
@@ -115,61 +95,34 @@ export default function CommentCasePage() {
                 content="效果很不错！"
                 images={["https://i.pravatar.cc/64?img=10", "https://i.pravatar.cc/64?img=11"]}
                 onReply={() => {}}
-                replies={[
-                  { avatar: avatar2, name: "陈晨", date: "1 小时前", content: "谢谢林晓！" },
-                ]}
+                replies={[{ avatar: avatar2, name: "陈晨", date: "1 小时前", content: "谢谢林晓！" }]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={COMMENT_PROPS} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section
-        title="ReviewItem"
-        description="展示用户评分、评价正文和附图。"
-      >
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_REVIEW_USAGE}>
-            <div className="w-full max-w-xl">
-              <ReviewItem
-                avatar={avatar}
-                name="林晓"
-                subtitle="已购用户"
-                date="2026 年 3 月 15 日"
-                rating={4}
-                content="产品质量很好，设计简洁，使用起来很顺手。"
-              />
-            </div>
-          </PreviewBlock>
-        </SubSection>
+      <Section title="例子" description="评价有星级。卡片样式是同一条评价加一层白底。">
+        <DocExample id="reviewitem" title="ReviewItem" summary="普通评价和带图的卡片评价。" code={`${CODE_REVIEW_USAGE}\n${CODE_REVIEW_CARD}`} minHeight={220}>
+          <div className="flex w-full flex-col gap-4">
+            <ReviewItem avatar={avatar} name="林晓" subtitle="已购用户" date="2026 年 3 月 15 日" rating={4} content="产品质量很好，设计简洁，使用起来很顺手。" />
+            <ReviewItem
+              variant="card"
+              avatar={avatar2}
+              name="陈晨"
+              date="2026 年 3 月 10 日"
+              rating={5}
+              content="很满意的一次购买，值得推荐！"
+              images={["https://i.pravatar.cc/64?img=13", "https://i.pravatar.cc/64?img=14"]}
+              overflowImageCount={3}
+            />
+          </div>
+        </DocExample>
+      </Section>
 
-        <SubSection title="卡片样式" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>variant=&quot;card&quot;</InlineCode> 外层加白底卡片和边框，适合独立展示。
-          </p>
-          <PreviewBlock code={CODE_REVIEW_CARD} minHeight={220}>
-            <div className="w-full max-w-xl">
-              <ReviewItem
-                variant="card"
-                avatar={avatar2}
-                name="陈晨"
-                date="2026 年 3 月 10 日"
-                rating={5}
-                content="很满意的一次购买，值得推荐！"
-                images={["https://i.pravatar.cc/64?img=13", "https://i.pravatar.cc/64?img=14"]}
-                overflowImageCount={3}
-              />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={REVIEW_PROPS} />
-        </SubSection>
+      <Section title="API">
+        <ApiBlock id="commentitem" title="CommentItem" rows={COMMENT_PROPS} />
+        <ApiBlock id="reviewitem" title="ReviewItem" rows={REVIEW_PROPS} />
       </Section>
     </div>
   );

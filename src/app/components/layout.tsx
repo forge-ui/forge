@@ -1,6 +1,5 @@
-import { FamilyInteractionDemos } from "../_components/family-interaction-demos";
-import { FusionFamilyExamples } from "./_fusion/family-examples";
 import { SiteHeader } from "../_components/site-header";
+import { CaseLink } from "./_case-link";
 import { ComponentsNav } from "./_nav";
 import { ComponentsToc } from "./_toc";
 
@@ -18,8 +17,7 @@ export default function ComponentsLayout({
           <div className="mx-auto flex w-full max-w-5xl gap-16">
             <article className="flex min-w-0 flex-1 flex-col gap-10">
               {children}
-              <FamilyInteractionDemos />
-              <FusionFamilyExamples />
+              <CaseLink />
             </article>
             <ComponentsToc />
           </div>

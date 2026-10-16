@@ -21,7 +21,7 @@ export interface BreadcrumbItem {
 
 export function Breadcrumbs({
   items,
-  color = "purple",
+  color = "blue",
   className,
   ariaLabel = "面包屑导航",
 }: {

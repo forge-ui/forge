@@ -67,7 +67,7 @@ function smoothPath(points: [number, number][]): string {
 export function SmoothLineChart({
   series,
   stacked = false, bands = [], motion = "auto", onActiveIndexChange, ariaLabel = "趋势图", interpolation = "smooth", highlightToActive = false, markers = [],
-  accent = "purple",
+  accent = "blue",
   activeIndex,
   showTooltip = false,
   tooltipItems,

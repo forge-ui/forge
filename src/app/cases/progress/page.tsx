@@ -50,7 +50,7 @@ export default function ProgressCasePage() {
                 <div className="w-64">
                   <ProgressBar
                     value={65}
-                    color="purple"
+                    color="blue"
                     label={v === "value" ? "$400" : "进度"}
                     labelVariant={v}
                     labelSize={ls}
@@ -130,7 +130,7 @@ export default function ProgressCasePage() {
           {[0, 25, 50, 75, 100].map((v) => (
             <Labeled key={v} label={`${v}%`}>
               <div className="w-64">
-                <ProgressBar value={v} color="purple" showPercentage />
+                <ProgressBar value={v} color="blue" showPercentage />
               </div>
             </Labeled>
           ))}

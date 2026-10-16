@@ -17,7 +17,7 @@ interface ChartStatFooterProps {
   accent?: AccentColor;
 }
 
-export function ChartStatFooter({ items, accent = "purple" }: ChartStatFooterProps) {
+export function ChartStatFooter({ items, accent = "blue" }: ChartStatFooterProps) {
   const rampFallback = rampColors(accent, items.length);
   return (
     <div className="self-stretch inline-flex justify-start items-center gap-3">

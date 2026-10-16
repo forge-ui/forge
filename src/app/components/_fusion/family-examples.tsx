@@ -32,14 +32,14 @@ export function FusionFamilyExamples() {
   const [motion, setMotion] = useState<FusionSettings["motion"]>("auto");
   const [epochs, setEpochs] = useState<Record<string, number>>({});
   const parts = pathname.split("/").filter(Boolean);
-  const isComponents = parts[0] === "components";
-  const items = isComponents && parts.length === 2 ? fusionItems.filter(item => officialCategory(item) === parts[1] && item.id !== "F03") : [];
+  const isCases = parts[0] === "cases";
+  const items = isCases && parts.length === 2 ? fusionItems.filter(item => officialCategory(item) === parts[1] && item.id !== "F03") : [];
   if (!items.length) return null;
   const zh = locale === "zh";
   return <section id="component-examples" className="flex min-w-0 scroll-mt-24 flex-col gap-8" aria-label={zh ? "交互示例" : "Interaction examples"}>
     <div className="flex flex-col gap-3 border-t border-fg-grey-200 pt-8">
-      <h2 className="font-display text-3xl font-semibold tracking-fg">{zh ? "交互示例" : "Interaction examples"}</h2>
-      <p className="text-sm leading-6 text-fg-grey-700">{zh ? "体验不同状态下的操作与反馈，选择适合业务场景的组合。" : "Explore interactions and feedback, then choose a combination for your product."}</p>
+      <h2 className="font-display text-3xl font-semibold tracking-fg">{zh ? "场景" : "Scenarios"}</h2>
+      <p className="text-sm leading-6 text-fg-grey-700">{zh ? "上面是变体对照。下面是多个组件拼成的操作场景，可以实际点一下。" : "The sections above compare variants. These scenarios combine components into a flow you can try."}</p>
       <div className="flex flex-wrap gap-2">
         <Button size="sm" color="black" variant="tertiary" onClick={() => setLocale(zh ? "en" : "zh")}>{zh ? "切换英文" : "中文"}</Button>
         {(["blue", "purple", "black"] as const).map((value, i) => <Button key={value} size="sm" color={value} variant={color === value ? "primary" : "tertiary"} aria-pressed={color === value} onClick={() => setColor(value)}>{(zh ? ["蓝", "紫", "黑"] : ["Blue", "Purple", "Black"])[i]}</Button>)}

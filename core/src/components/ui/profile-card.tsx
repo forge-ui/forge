@@ -11,7 +11,7 @@ export function ProfileCard({
   name,
   subtitle,
   state = "idle",
-  accent = "purple",
+  accent = "blue",
   surface = "default",
   className,
   onClick,

@@ -63,7 +63,7 @@ export function ChatBubble({
   type,
   locale = "zh", motion = "auto", reactions = [], reactionOptions = [], onReaction, onReply, replyTo, delivery,
   variant = "text",
-  color = "purple",
+  color = "blue",
   content,
   time,
   avatar,

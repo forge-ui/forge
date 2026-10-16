@@ -29,7 +29,7 @@ export function ProjectCard({
   labelText,
   labelColor = "gray",
   progress = 0,
-  progressColor = "purple",
+  progressColor = "blue",
   avatars = [],
   overflowCount,
   date,

@@ -28,7 +28,7 @@ export interface ButtonGroupItem {
 export function ButtonGroup({
   items,
   activeIndex = 0,
-  color = "purple",
+  color = "blue",
   shape = "rounded",
   onChange,
   className,

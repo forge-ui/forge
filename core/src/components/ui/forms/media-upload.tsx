@@ -62,7 +62,7 @@ export function MediaUpload({
   label,
   buttonLabel = "添加图片",
   message = "拖放图片到这里，或点击添加图片",
-  color = "purple",
+  color = "blue",
   onUpload,
   onRemove,
   className,
@@ -191,7 +191,7 @@ export function ProfileImgUpload({
   src,
   label,
   linkLabel = "上传",
-  color = "purple",
+  color = "blue",
   onUpload,
   className,
 }: {

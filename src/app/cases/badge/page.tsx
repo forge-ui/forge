@@ -16,17 +16,25 @@ import {
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
-const notificationColors: NotificationBadgeColor[] = ["purple", "black"];
+const notificationColors: NotificationBadgeColor[] = [
+  "blue", "purple", "orange", "green", "yellow", "cyan", "black",
+];
 
-const labelColors: LabelColor[] = ["purple", "blue", "gray"];
+const labelColors: LabelColor[] = [
+  "purple", "blue", "cyan", "green", "red", "yellow", "gray",
+];
 const labelSizes: LabelSize[] = ["sm", "md", "lg"];
 const labelVariants: LabelVariant[] = ["outline", "solid"];
 
-const circleColors: CircleIconColor[] = ["purple", "blue", "black"];
+const circleColors: CircleIconColor[] = [
+  "purple", "blue", "red", "orange", "green", "yellow", "cyan", "black",
+];
 const circleSizes: CircleIconSize[] = ["xs", "sm", "md", "lg"];
 const circleVariants: CircleIconVariant[] = ["solid", "light", "neutral"];
 
-const artisticColors: ArtisticIconColor[] = ["black", "blue", "purple"];
+const artisticColors: ArtisticIconColor[] = [
+  "black", "blue", "purple", "green", "red", "yellow", "cyan",
+];
 const artisticVariants: ArtisticIconVariant[] = ["gradient", "orbs"];
 
 // Forge icon 默认继承 currentColor，variant 内部显式传 color 以固定主题色
@@ -43,7 +51,7 @@ export default function BadgeCasePage() {
       />
 
       {/* ============ NotificationBadge ============ */}
-      <Section title="通知" description="圆形数字徽章，6 色。">
+      <Section title="通知" description="圆形数字徽章，7 色。">
         <SubSection title="颜色">
           {notificationColors.map((c) => (
             <Labeled key={c} label={c}>
@@ -55,18 +63,18 @@ export default function BadgeCasePage() {
 
       {/* ============ Label ============ */}
       <Section title="Label" description="文字标签，7 色 × 3 size × 2 variant。">
-        <SubSection title="Variants (purple, md)">
+        <SubSection title="Variants (blue, md)">
           {labelVariants.map((v) => (
             <Labeled key={v} label={v}>
-              <Label color="purple" variant={v} size="md">紫色</Label>
+              <Label color="blue" variant={v} size="md">蓝色</Label>
             </Labeled>
           ))}
         </SubSection>
 
-        <SubSection title="Sizes (purple, outline)">
+        <SubSection title="Sizes (blue, outline)">
           {labelSizes.map((s) => (
             <Labeled key={s} label={s}>
-              <Label color="purple" variant="outline" size={s}>紫色</Label>
+              <Label color="blue" variant="outline" size={s}>蓝色</Label>
             </Labeled>
           ))}
         </SubSection>
@@ -90,22 +98,22 @@ export default function BadgeCasePage() {
 
       {/* ============ CircleIcon ============ */}
       <Section title="Circle Icon" description="圆形图标容器，8 色 × 4 size × 3 variant。">
-        <SubSection title="Variants (purple, md)">
+        <SubSection title="Variants (blue, md)">
           {circleVariants.map((v) => (
             <Labeled key={v} label={v}>
-              <CircleIcon color="purple" variant={v} size="md">
+              <CircleIcon color="blue" variant={v} size="md">
                 <DemoGlyph size={16} color={v === "solid" ? "#FFFFFF" : "currentColor"} />
               </CircleIcon>
             </Labeled>
           ))}
         </SubSection>
 
-        <SubSection title="Sizes (purple, solid)">
+        <SubSection title="Sizes (blue, solid)">
           {circleSizes.map((s) => {
             const iconSize = { xs: 12, sm: 14, md: 16, lg: 20 }[s];
             return (
               <Labeled key={s} label={s}>
-                <CircleIcon color="purple" variant="solid" size={s}>
+                <CircleIcon color="blue" variant="solid" size={s}>
                   <DemoGlyph size={iconSize} color="#FFFFFF" />
                 </CircleIcon>
               </Labeled>
@@ -146,10 +154,10 @@ export default function BadgeCasePage() {
 
       {/* ============ ArtisticIcon ============ */}
       <Section title="Artistic Icon" description="渐变 / 发光装饰圆形图标，7 色 × 2 variant。">
-        <SubSection title="Variants (purple)">
+        <SubSection title="Variants (blue)">
           {artisticVariants.map((v) => (
             <Labeled key={v} label={v}>
-              <ArtisticIcon color="purple" variant={v}>
+              <ArtisticIcon color="blue" variant={v}>
                 <DemoGlyph size={24} color="#FFFFFF" />
               </ArtisticIcon>
             </Labeled>
