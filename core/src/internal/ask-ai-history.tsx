@@ -4,16 +4,19 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { createPortal } from "react-dom";
 import { AltArrowDownLinear } from "../icons";
 import { DropdownDivider, DropdownPanel } from "../components/ui/dropdown-panel";
+import { cn } from "../lib/utils";
 import { PlusIcon } from "../components/ui/plain-icons";
 import type { AskAiSessionItem } from "./ask-ai-types";
 
 /** Drawer header control copied from the Forge Starter history menu. */
 export function AskHistoryDropdown({
+  variant = "default",
   sessions,
   currentSessionId,
   onNewSession,
   onSelectSession,
 }: {
+  variant?: "default" | "title";
   sessions: AskAiSessionItem[];
   currentSessionId?: string;
   onNewSession: () => void;
@@ -81,14 +84,15 @@ export function AskHistoryDropdown({
   }, [open, place]);
 
   return (
-    <div data-ask-session-dropdown className="relative min-w-0 max-w-[14rem]">
+    <div data-ask-session-dropdown className={cn("relative min-w-0", variant === "title" ? "flex-1" : "max-w-[14rem]")}>
       <button
         ref={triggerRef}
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="历史对话"
-        className="inline-flex h-9 max-w-full items-center gap-1 rounded-lg bg-background px-2.5 text-left text-sm font-medium text-fg-grey-700 outline outline-1 outline-fg-grey-200 hover:bg-fg-grey-50 focus-visible:outline-2 focus-visible:outline-fg-grey-500"
+        title={current?.title || "新对话"}
+        className={cn("inline-flex h-9 max-w-full items-center gap-2 rounded-lg bg-background px-2.5 text-left text-sm hover:bg-fg-grey-50 focus-visible:outline-2 focus-visible:outline-fg-grey-500", variant === "title" ? "font-semibold text-fg-black" : "font-medium text-fg-grey-700 outline outline-1 outline-fg-grey-200")}
         onClick={() => {
           if (open) {
             setOpen(false);
@@ -109,9 +113,9 @@ export function AskHistoryDropdown({
               role="listbox"
               aria-label="历史对话"
               className="absolute z-[90] bg-background"
-              style={{ visibility: "hidden", zIndex: 90, backgroundColor: "var(--background)" }}
+              style={{ visibility: "hidden", zIndex: 90, backgroundColor: "var(--background)", width: "min(18rem, calc(100% - 16px))" }}
             >
-              <DropdownPanel width="w-72" padding="p-1.5" className="bg-background shadow-lg">
+              <DropdownPanel width="w-full" padding="p-1.5" className="bg-background shadow-lg">
                 <button
                   type="button"
                   className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm font-medium leading-5 text-fg-grey-700 hover:bg-fg-grey-50 focus-visible:outline-2 focus-visible:outline-fg-grey-500"
