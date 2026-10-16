@@ -3,9 +3,20 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import ts from 'typescript';
 const root = process.cwd();
+// A documentation-only commit must not invalidate an unchanged API snapshot.
+// Keep recording HEAD as provenance, but compare the actual interfaces and defaults.
+function comparable(file, content) {
+  if (file === 'docs/public-api-comparison.json') {
+    const snapshot = JSON.parse(content);
+    delete snapshot.currentCommit;
+    return JSON.stringify(snapshot);
+  }
+  if (file === 'docs/public-api-comparison.md') return content.replace(/当前 HEAD：[a-f0-9]{40}/, '当前 HEAD：<snapshot>');
+  return content;
+}
 function save(file, content) {
   if (process.argv.includes('--check')) {
-    if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== content) throw new Error(`接口清单已过期，请运行 node scripts/audit-public-api-comparison.mjs：${file}`);
+    if (!fs.existsSync(file) || comparable(file, fs.readFileSync(file, 'utf8')) !== comparable(file, content)) throw new Error(`接口清单已过期，请运行 node scripts/audit-public-api-comparison.mjs：${file}`);
   } else fs.writeFileSync(file, content);
 }
 const entry = path.join(root, 'core/src/index.ts');

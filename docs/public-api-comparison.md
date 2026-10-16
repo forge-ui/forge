@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：54598df83bfaa8a3580355d8952d558f79e24525。当前 HEAD：7abec693e4d88c25d12910244aceae6b2b64fc39，包含本地未提交源码。
+基准 main：54598df83bfaa8a3580355d8952d558f79e24525。当前 HEAD：4f859e2b84171e1e7ce8cbf31b379c141caf710e，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
@@ -10,10 +10,10 @@
 |---|---:|---:|---|---|---|
 | ChatBubble | 14 | 22 | locale, motion, reactions, reactionOptions, onReaction, onReply, replyTo, delivery | — | — |
 | ChatInputBar | 51 | 62 | locale, motion, replyTo, onCancelReply, attachments, hasAttachments, voiceState, voiceLevel, onVoiceStart, onVoiceEnd, onVoiceCancel | — | — |
-| TopBar | 3 | 3 | — | — | — |
+| TopBar | 3 | 3 | — | — | color |
 | PageTitleToolbar | 13 | 13 | — | — | — |
 | AppLayout | 48 | 48 | — | — | — |
-| AskAi | 25 | 25 | — | — | — |
+| AskAi | 25 | 29 | landingDescription, headerLayout, panelMode, onDockedChange | — | — |
 | ThinkingTrace | 9 | 11 | locale, motion | — | — |
 | StreamingAnswer | 14 | 15 | locale | — | — |
 | ApprovalCard | 9 | 11 | locale, skipSubmitLabel | — | — |
@@ -31,27 +31,27 @@
 
 | 组件 | main 参数数 | 当前参数数 | 新增参数 | 删除参数 | 类型变化 |
 |---|---:|---:|---|---|---|
-| NotificationBadge | 2 | 2 | — | — | — |
-| Label | 4 | 4 | — | — | — |
-| CircleIcon | 4 | 4 | — | — | — |
-| ArtisticIcon | 3 | 3 | — | — | — |
-| Button | 293 | 305 | holdDuration, onConfirm, onUndo, confirmed, locale, holdLabels, effect, loading, result, progress, loadingLabel, resultLabel | — | — |
+| NotificationBadge | 2 | 2 | — | — | color |
+| Label | 4 | 4 | — | — | color |
+| CircleIcon | 4 | 4 | — | — | color |
+| ArtisticIcon | 3 | 3 | — | — | color |
+| Button | 293 | 305 | holdDuration, onConfirm, onUndo, confirmed, locale, holdLabels, effect, loading, result, progress, loadingLabel, resultLabel | — | color |
 | PlusIcon | 1 | 1 | — | — | — |
 | CloseIcon | 1 | 1 | — | — | — |
 | CheckIcon | 1 | 1 | — | — | — |
-| IconButton | 292 | 297 | effect, active, loading, result, progress | — | — |
-| StyledLink | 7 | 9 | effect, motion | — | — |
+| IconButton | 292 | 297 | effect, active, loading, result, progress | — | color |
+| StyledLink | 7 | 9 | effect, motion | — | color |
 | ProgressBar | 8 | 14 | variant, indeterminate, motion, locale, children, className | — | color |
-| Checkbox | 289 | 289 | — | — | — |
+| Checkbox | 289 | 289 | — | — | color |
 | Checklist | 7 | 8 | locale | — | — |
 | ChecklistItem | 10 | 10 | — | — | — |
-| Avatar | 6 | 6 | — | — | — |
+| Avatar | 6 | 6 | — | — | color |
 | AvatarGroup | 2 | 2 | — | — | — |
 | SurfaceCard | 10 | 287 | effect, motion, color, defaultChecked, defaultValue, suppressContentEditableWarning, suppressHydrationWarning, accessKey, autoCapitalize, autoFocus, contentEditable, contextMenu, dir, draggable, enterKeyHint, hidden, id, lang, nonce, slot, spellCheck, style, tabIndex, translate, radioGroup, role, about, content, datatype, inlist, prefix, property, rel, resource, rev, typeof, vocab, autoCorrect, autoSave, itemProp, itemScope, itemType, itemID, itemRef, results, security, unselectable, popover, popoverTargetAction, popoverTarget, inert, inputMode, is, exportparts, part, aria-activedescendant, aria-atomic, aria-autocomplete, aria-braillelabel, aria-brailleroledescription, aria-busy, aria-checked, aria-colcount, aria-colindex, aria-colindextext, aria-colspan, aria-controls, aria-current, aria-describedby, aria-description, aria-details, aria-disabled, aria-dropeffect, aria-errormessage, aria-expanded, aria-flowto, aria-grabbed, aria-haspopup, aria-hidden, aria-invalid, aria-keyshortcuts, aria-label, aria-labelledby, aria-level, aria-live, aria-modal, aria-multiline, aria-multiselectable, aria-orientation, aria-owns, aria-placeholder, aria-posinset, aria-pressed, aria-readonly, aria-relevant, aria-required, aria-roledescription, aria-rowcount, aria-rowindex, aria-rowindextext, aria-rowspan, aria-selected, aria-setsize, aria-sort, aria-valuemax, aria-valuemin, aria-valuenow, aria-valuetext, dangerouslySetInnerHTML, onCopy, onCopyCapture, onCut, onCutCapture, onPaste, onPasteCapture, onCompositionEnd, onCompositionEndCapture, onCompositionStart, onCompositionStartCapture, onCompositionUpdate, onCompositionUpdateCapture, onFocus, onFocusCapture, onBlur, onBlurCapture, onChange, onChangeCapture, onBeforeInput, onBeforeInputCapture, onInput, onInputCapture, onReset, onResetCapture, onSubmit, onSubmitCapture, onInvalid, onInvalidCapture, onLoad, onLoadCapture, onError, onErrorCapture, onKeyDown, onKeyDownCapture, onKeyPress, onKeyPressCapture, onKeyUp, onKeyUpCapture, onAbort, onAbortCapture, onCanPlay, onCanPlayCapture, onCanPlayThrough, onCanPlayThroughCapture, onDurationChange, onDurationChangeCapture, onEmptied, onEmptiedCapture, onEncrypted, onEncryptedCapture, onEnded, onEndedCapture, onLoadedData, onLoadedDataCapture, onLoadedMetadata, onLoadedMetadataCapture, onLoadStart, onLoadStartCapture, onPause, onPauseCapture, onPlay, onPlayCapture, onPlaying, onPlayingCapture, onProgress, onProgressCapture, onRateChange, onRateChangeCapture, onSeeked, onSeekedCapture, onSeeking, onSeekingCapture, onStalled, onStalledCapture, onSuspend, onSuspendCapture, onTimeUpdate, onTimeUpdateCapture, onVolumeChange, onVolumeChangeCapture, onWaiting, onWaitingCapture, onAuxClick, onAuxClickCapture, onClick, onClickCapture, onContextMenu, onContextMenuCapture, onDoubleClick, onDoubleClickCapture, onDrag, onDragCapture, onDragEnd, onDragEndCapture, onDragEnter, onDragEnterCapture, onDragExit, onDragExitCapture, onDragLeave, onDragLeaveCapture, onDragOver, onDragOverCapture, onDragStart, onDragStartCapture, onDrop, onDropCapture, onMouseDown, onMouseDownCapture, onMouseEnter, onMouseLeave, onMouseMove, onMouseMoveCapture, onMouseOut, onMouseOutCapture, onMouseOver, onMouseOverCapture, onMouseUp, onMouseUpCapture, onSelect, onSelectCapture, onTouchCancel, onTouchCancelCapture, onTouchEnd, onTouchEndCapture, onTouchMove, onTouchMoveCapture, onTouchStart, onTouchStartCapture, onPointerDown, onPointerDownCapture, onPointerMove, onPointerMoveCapture, onPointerUp, onPointerUpCapture, onPointerCancel, onPointerCancelCapture, onPointerEnter, onPointerLeave, onPointerOver, onPointerOverCapture, onPointerOut, onPointerOutCapture, onGotPointerCapture, onGotPointerCaptureCapture, onLostPointerCapture, onLostPointerCaptureCapture, onScroll, onScrollCapture, onScrollEnd, onScrollEndCapture, onWheel, onWheelCapture, onAnimationStart, onAnimationStartCapture, onAnimationEnd, onAnimationEndCapture, onAnimationIteration, onAnimationIterationCapture, onToggle, onBeforeToggle, onTransitionCancel, onTransitionCancelCapture, onTransitionEnd, onTransitionEndCapture, onTransitionRun, onTransitionRunCapture, onTransitionStart, onTransitionStartCapture | — | — |
 | StatCard | 14 | 18 | animateValue, locale, numberFormat, motion | — | value |
 | ProjectCard | 13 | 13 | — | — | — |
 | TaskCard | 12 | 14 | locale, progressLabel | — | — |
-| UserCard | 11 | 11 | — | — | — |
+| UserCard | 11 | 11 | — | — | initialsColor |
 | ProgressStatCard | 15 | 15 | — | — | — |
 | LineChartStatCard | 14 | 18 | animateValue, locale, numberFormat, motion | — | value |
 | WheelChartStatCard | 13 | 13 | — | — | — |
@@ -71,8 +71,8 @@
 | FilterGroup | 5 | 5 | — | — | — |
 | FilterTrigger | 6 | 6 | — | — | — |
 | FilterPanel | 10 | 10 | — | — | — |
-| HistoryItem | 11 | 11 | — | — | — |
-| HistoryGrouped | 8 | 8 | — | — | — |
+| HistoryItem | 11 | 11 | — | — | color |
+| HistoryGrouped | 8 | 8 | — | — | color |
 | EventTag | 7 | 7 | — | — | color |
 | CalendarDayCell | 9 | 9 | — | — | — |
 | CalendarWeekRow | 3 | 3 | — | — | — |
@@ -120,25 +120,25 @@
 | Toggle | 7 | 10 | defaultChecked, draggable, thumbIcon | — | — |
 | RadioButton | 5 | 5 | — | — | — |
 | RadioWithLabel | 8 | 9 | tabIndex | — | — |
-| CheckboxControl | 289 | 289 | — | — | — |
+| CheckboxControl | 289 | 289 | — | — | color |
 | CheckboxWithLabel | 11 | 11 | — | — | — |
 | IconSelector | 8 | 8 | — | — | — |
 | IconPicker | 6 | 6 | — | — | — |
 | ColorPicker | 4 | 4 | — | — | — |
 | TextFieldSelectSuffix | 5 | 5 | — | — | — |
-| ConfirmationDialog | 13 | 13 | — | — | — |
+| ConfirmationDialog | 13 | 13 | — | — | color |
 | Tooltip | 7 | 8 | followCursor | — | — |
 | TooltipBubble | 3 | 3 | — | — | — |
 | TooltipAnchor | 290 | 290 | — | — | — |
 | TooltipGroup | 3 | 3 | — | — | — |
-| PageDot | 5 | 5 | — | — | — |
-| Pagination | 5 | 7 | locale, motion | — | — |
-| Stepper | 4 | 9 | items, onStepChange, motion, locale, indicator | — | total |
-| TabBar | 7 | 9 | appearance, progress | — | — |
-| ButtonGroup | 8 | 8 | — | — | — |
-| TopBar | 3 | 3 | — | — | — |
+| PageDot | 5 | 5 | — | — | color |
+| Pagination | 5 | 7 | locale, motion | — | color |
+| Stepper | 4 | 9 | items, onStepChange, motion, locale, indicator | — | total, color |
+| TabBar | 7 | 9 | appearance, progress | — | color |
+| ButtonGroup | 8 | 8 | — | — | color |
+| TopBar | 3 | 3 | — | — | color |
 | PageHeader | 56 | 56 | — | — | — |
-| Breadcrumbs | 4 | 4 | — | — | — |
+| Breadcrumbs | 4 | 4 | — | — | color |
 | Toolbar | 3 | 6 | selection, locale, motion | — | — |
 | ToolbarSearchInput | 7 | 7 | — | — | — |
 | ToolbarSelectDropdown | 8 | 8 | — | — | — |
@@ -154,10 +154,10 @@
 | RatingStars | 5 | 11 | onChange, readOnly, disabled, locale, ariaLabel, motion | — | — |
 | ImageGrid | 5 | 5 | — | — | — |
 | ProductRow | 5 | 5 | — | — | — |
-| TableCell | 10 | 10 | — | — | — |
-| DataTable | 28 | 28 | — | — | — |
-| FullWidthTable | 33 | 33 | — | — | — |
-| StatusBadge | 3 | 3 | — | — | — |
+| TableCell | 10 | 10 | — | — | checkboxColor |
+| DataTable | 28 | 28 | — | — | checkboxColor |
+| FullWidthTable | 33 | 33 | — | — | checkboxColor |
+| StatusBadge | 3 | 3 | — | — | color |
 | ProgressBadge | 2 | 2 | — | — | — |
 | CellText | 1 | 1 | — | — | — |
 | CellTextSubtitle | 2 | 2 | — | — | — |
@@ -165,14 +165,14 @@
 | CellImageText | 4 | 4 | — | — | — |
 | CellProgressValue | 3 | 3 | — | — | — |
 | CellKebabMenu | 1 | 1 | — | — | — |
-| CellStatusDot | 3 | 3 | — | — | — |
+| CellStatusDot | 3 | 3 | — | — | color |
 | CellNumber | 5 | 5 | — | — | — |
 | CellProgressBar | 3 | 3 | — | — | color |
 | CellCode | 1 | 1 | — | — | — |
 | CellRating | 2 | 2 | — | — | — |
 | CellFile | 3 | 3 | — | — | — |
 | CellActions | 5 | 5 | — | — | — |
-| CellLink | 3 | 3 | — | — | — |
+| CellLink | 3 | 3 | — | — | color |
 | CardGlow | 1 | 1 | — | — | — |
 | CardTrend | 4 | 4 | — | — | — |
 | CardIconChip | 5 | 5 | — | — | — |
@@ -186,7 +186,7 @@
 | TypographyWeightSample | 3 | 3 | — | — | — |
 | TypographySizeRow | 3 | 3 | — | — | — |
 | AppLayout | 48 | 48 | — | — | — |
-| AskAi | 25 | 25 | — | — | — |
+| AskAi | 25 | 29 | landingDescription, headerLayout, panelMode, onDockedChange | — | — |
 | ThinkingTrace | 9 | 11 | locale, motion | — | — |
 | StreamingAnswer | 14 | 15 | locale | — | — |
 | ApprovalCard | 9 | 11 | locale, skipSubmitLabel | — | — |
@@ -205,7 +205,7 @@
 | TabsContent | 7 | 12 | panels, onActiveKeyChange, onProgressChange, transition, direction | — | — |
 | ToastProvider | 2 | 4 | locale, stacked | — | — |
 | OtpInput | 17 | 19 | locale, clearOnError | — | — |
-| CalendarCard | 11 | 11 | — | — | — |
+| CalendarCard | 11 | 11 | — | — | color |
 | LiquidTabs | 14 | 14 | — | — | — |
 | AddMember | 15 | 16 | accent | — | — |
 | Grid | 285 | 285 | — | — | — |
@@ -236,7 +236,7 @@
 | replyTo | `ComposerReply \| undefined` | 否 | 未在参数解构处设置 |
 | delivery | `"sent" \| "queued" \| "sending" \| "delivered" \| "failed" \| undefined` | 否 | 未在参数解构处设置 |
 | variant | `"text" \| "voice" \| "file" \| "image" \| undefined` | 否 | "text" |
-| color | `AccentColor \| undefined` | 否 | "purple" |
+| color | `AccentColor \| undefined` | 否 | "blue" |
 | content | `string \| undefined` | 否 | 未在参数解构处设置 |
 | time | `string \| undefined` | 否 | 未在参数解构处设置 |
 | avatar | `string \| undefined` | 否 | 未在参数解构处设置 |
@@ -325,7 +325,7 @@
 | 参数 | 类型 | 是否必填 | 源码默认值 |
 |---|---|---|---|
 | value | `number \| undefined` | 否 | 0 |
-| color | `"purple" \| "green" \| "blue" \| undefined` | 否 | "purple" |
+| color | `"purple" \| "blue" \| "green" \| undefined` | 否 | "blue" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### PageTitleToolbar
@@ -357,7 +357,7 @@
 | motion | `MotionPreference \| undefined` | 否 | "auto" |
 | mode | `AppLayoutMode \| undefined` | 否 | "light" |
 | profilePosition | `AppLayoutProfilePosition \| undefined` | 否 | "topbar" |
-| accent | `AppLayoutAccentColor \| undefined` | 否 | "purple" |
+| accent | `AppLayoutAccentColor \| undefined` | 否 | "blue" |
 | children | `ReactNode` | 是 | 未在参数解构处设置 |
 | logo | `ReactNode` | 否 | 未在参数解构处设置 |
 | logoText | `string \| undefined` | 否 | "Forge" |
@@ -433,6 +433,10 @@
 | onSearchQueryChange | `((query: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | hasConversation | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | landingTitle | `string \| undefined` | 否 | 未在参数解构处设置 |
+| landingDescription | `string \| undefined` | 否 | "告诉我你想了解什么，我来帮你梳理。" |
+| headerLayout | `"brand" \| "session" \| undefined` | 否 | "brand" |
+| panelMode | `"modal" \| "responsive" \| undefined` | 否 | "modal" |
+| onDockedChange | `((docked: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | railLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### ThinkingTrace
