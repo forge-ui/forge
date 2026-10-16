@@ -101,7 +101,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const effects = useActionEffect(effect, motion, disabled || loading);
-  if (variant === "hold") return <HoldButton {...props} type={type} disabled={disabled} color={color} size={size} motion={motion} iconLeft={iconLeft} iconRight={iconRight} className={className} holdDuration={holdDuration} onConfirm={onConfirm} onUndo={onUndo} confirmed={confirmed} locale={locale} holdLabels={holdLabels}>{children}</HoldButton>;
+  if (variant === "hold") return <HoldButton {...props} type={type} disabled={disabled || loading} aria-busy={loading || props["aria-busy"]} color={color} size={size} motion={motion} iconLeft={iconLeft} iconRight={iconRight} className={className} holdDuration={holdDuration} onConfirm={onConfirm} onUndo={onUndo} confirmed={confirmed} locale={locale} holdLabels={holdLabels}>{children}</HoldButton>;
   const sizeConfig = buttonSizes[size];
   const hasIcon = !!(iconLeft || iconRight);
   const paddingClass = iconLeft ? sizeConfig.iconLeft : iconRight ? sizeConfig.iconRight : sizeConfig.noIcon;
