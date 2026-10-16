@@ -14,59 +14,56 @@ type ShowcaseItem = {
 
 const items: ShowcaseItem[] = [
   {
+    href: "/templates/agent",
+    title: "智能体",
+    description: "带侧栏的对话页，包含思考过程、工具调用、流式回答和输入栏。",
+  },
+  {
     href: "/templates/project-template",
     title: "项目管理",
-    description:
-      "Protask 项目管理模板，包含项目、客户、成员、任务、文件和发票的完整多页工作流。",
+    description: "项目管理示例，包含项目、客户、成员、任务、文件和发票。",
     thumbnail: asset("/images/showcase/project-template.png"),
   },
   {
     href: "/templates/finance-template",
     title: "财务",
-    description:
-      "基于原始截图和组件导出还原的多页财务模板，覆盖概览、交易、钱包、卡片和发票工作流。",
+    description: "财务后台示例，包含概览、交易、钱包、卡片和发票。",
     thumbnail: asset("/images/showcase/templates/finance-template-home.png"),
   },
   {
     href: "/templates/crm-template",
     title: "客户关系",
-    description:
-      "基于原始截图和已有 dashboard 实现沉淀的客户、线索、销售和活动管理模板。",
+    description: "客户、线索、销售和活动管理的多页示例。",
     thumbnail: asset("/images/showcase/templates/crm-template-home.png"),
   },
   {
     href: "/templates/micellaneous-template",
     title: "杂项",
-    description:
-      "保留原目录拼写的杂项模板，覆盖 Calendar、Chat、File Manager 和 Table Action 页面。",
+    description: "日历、聊天、文件和表格操作放在同一套侧栏里的示例。",
     thumbnail: asset("/images/showcase/templates/micellaneous-template-home.png"),
   },
   {
     href: "/templates/ecommerce/products",
     title: "电商后台",
-    description:
-      "一套电商后台，管商品、订单、客户、分类、卖家，列表详情表单都齐了。",
+    description: "商品、订单、客户、分类和卖家的列表、详情和表单。",
     thumbnail: asset("/images/showcase/ecommerce.png"),
   },
   {
     href: "/templates/dashboard-builder",
     title: "仪表盘外壳",
-    description:
-      "8 种空白后台外壳，白紫蓝黑 × 顶栏/侧栏 Profile，挑一个当起点。",
+    description: "8 种空白后台：白、紫、蓝、黑，头像放在顶栏或侧栏。选一个当起点。",
     thumbnail: asset("/images/showcase/dashboard-builder-hero.png"),
   },
   {
     href: "/templates/dashboards",
     title: "仪表盘",
-    description:
-      "10 个填好的 SaaS 控制台样板，Project / Analytics / CRM / E-Commerce / Finance 五大业务，4 种侧栏配色齐活。",
+    description: "10 个已填数据的控制台，覆盖项目、分析、客户、电商和财务。",
     thumbnail: asset("/images/showcase/dashboards/finance-3.png"),
   },
   {
     href: "https://github.com/forge-ui/forge-starter",
     title: "Forge Starter",
-    description:
-      "Next.js 16 + Tailwind v4 + Forge 的起点仓库，登录注册 + 空白后台 + AGENTS.md，gh template 一键 fork。",
+    description: "Next.js 16、Tailwind v4 和 Forge 的起点仓库，含登录页、空白后台和 AGENTS.md。",
     thumbnail: asset("/images/showcase/forge-starter.png"),
     external: true,
   },

@@ -1,3 +1,5 @@
-import { redirect } from "next/navigation";
+import { LegacyInteractionRedirect } from "../../_components/legacy-interaction-redirect";
 
-export default function InteractionsPage() { redirect("/cases"); }
+export default function InteractionsPage() {
+  return <LegacyInteractionRedirect surface="components" />;
+}

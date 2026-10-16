@@ -92,12 +92,15 @@ const SMALL_PROPS: ApiTableRow[] = [
 ];
 
 const FULL_PROPS: ApiTableRow[] = [
-  { attr: "view", type: "'month' | 'week' | 'day'", defaultValue: "'month'", description: "日历视图。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "today / header 主色。" },
-  { attr: "year / month / day", type: "number", defaultValue: "today", description: "初始时间，后续由组件内部管理。" },
+  { attr: "view", type: "'month' | 'week' | 'day'", defaultValue: "'month'", description: "初始视图。传入 onViewChange 后由外部控制；否则用户改下拉框后由组件自己记住。" },
+  { attr: "onViewChange", type: "(view: 'month' | 'week' | 'day') => void", defaultValue: "—", description: "切换月、周、日时通知外部更新 view。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "今天和表头的主色。" },
+  { attr: "year / month / day", type: "number", defaultValue: "今天", description: "未操作前使用这些日期。点击上一页、下一页或「今天」后，由组件记住新位置。周视图每次移动 7 天，日视图移动 1 天，月视图移动 1 个月并避开不存在的日期。" },
   { attr: "events", type: "CalendarEvent[]", defaultValue: "[]", description: "事件数组（day / label / color / avatar? / hour?）。" },
   { attr: "detailPanel", type: "ReactNode", defaultValue: "—", description: "右侧浮层详情，传了才显示。" },
-  { attr: "onCloseDetail", type: "() => void", defaultValue: "—", description: "关闭浮层回调。" },
+  { attr: "onCloseDetail", type: "() => void", defaultValue: "—", description: "关闭浮层。不传则不显示关闭按钮。" },
+  { attr: "onEdit", type: "() => void", defaultValue: "—", description: "编辑日程。不传则不显示编辑按钮。" },
+  { attr: "onMore", type: "() => void", defaultValue: "—", description: "更多操作。不传则不显示该按钮。" },
 ];
 
 const avatars = [

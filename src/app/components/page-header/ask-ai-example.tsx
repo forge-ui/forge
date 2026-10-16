@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState, type ComponentProps } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentProps } from "react";
 import { PageHeader, type AskAiProps, type AskAiSessionItem } from "@forge-ui-official/core";
 
 const SEED: AskAiSessionItem[] = [
@@ -13,7 +13,9 @@ export function useAskAiExample(): AskAiProps {
   const [sessions, setSessions] = useState<AskAiSessionItem[]>(SEED);
   const [currentSessionId, setCurrentSessionId] = useState(SEED[0].id);
   const currentSessionIdRef = useRef(currentSessionId);
-  currentSessionIdRef.current = currentSessionId;
+  useEffect(() => {
+    currentSessionIdRef.current = currentSessionId;
+  }, [currentSessionId]);
 
   const onSend = useCallback<AskAiProps["onSend"]>(async (question) => {
     const sessionId = currentSessionIdRef.current;

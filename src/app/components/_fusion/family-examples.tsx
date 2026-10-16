@@ -39,7 +39,7 @@ export function FusionFamilyExamples() {
   return <section id="component-examples" className="flex min-w-0 scroll-mt-24 flex-col gap-8" aria-label={zh ? "交互示例" : "Interaction examples"}>
     <div className="flex flex-col gap-3 border-t border-fg-grey-200 pt-8">
       <h2 className="font-display text-3xl font-semibold tracking-fg">{zh ? "场景" : "Scenarios"}</h2>
-      <p className="text-sm leading-6 text-fg-grey-700">{zh ? "上面是变体对照。下面是多个组件拼成的操作场景，可以实际点一下。" : "The sections above compare variants. These scenarios combine components into a flow you can try."}</p>
+      <p className="text-sm leading-6 text-fg-grey-700">{zh ? "这些场景把多个组件放在一起，可以直接操作。再往下是颜色、尺寸和状态对照。" : "These scenarios combine components into a flow you can try. Variant comparisons follow."}</p>
       <div className="flex flex-wrap gap-2">
         <Button size="sm" color="black" variant="tertiary" onClick={() => setLocale(zh ? "en" : "zh")}>{zh ? "切换英文" : "中文"}</Button>
         {(["blue", "purple", "black"] as const).map((value, i) => <Button key={value} size="sm" color={value} variant={color === value ? "primary" : "tertiary"} aria-pressed={color === value} onClick={() => setColor(value)}>{(zh ? ["蓝", "紫", "黑"] : ["Blue", "Purple", "Black"])[i]}</Button>)}

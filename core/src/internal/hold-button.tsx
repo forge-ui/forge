@@ -48,7 +48,8 @@ export function HoldButton({ children, color = "red", size = "lg", disabled, mot
   const text = children ?? holdLabels?.idle ?? (locale === "zh" ? "长按删除" : "Hold to delete");
   const icon = iconLeft ?? <TrashBinTrashLinear size={20} color="currentColor" />;
   const label = <>{icon}<span>{text}</span>{iconRight}</>;
-  const style = { "--forge-hold-color": colors[color], "--forge-hold-progress": progress, "--forge-hold-return": `${holdTime / 2.4}ms`, ...props.style } as CSSProperties;
+  const darkInk = color === "yellow" || color === "grey";
+  const style = { "--forge-hold-color": colors[color], "--forge-hold-ink": darkInk ? "var(--fg-black)" : colors[color], "--forge-hold-on-fill": darkInk ? "var(--fg-black)" : "var(--fg-white)", "--forge-hold-progress": progress, "--forge-hold-return": `${holdTime / 2.4}ms`, ...props.style } as CSSProperties;
   return <div className={`forge-hold-row forge-hold-${size} ${className}`} data-motion={motion} data-reduced={reduced || undefined} data-holding={holding || undefined} data-shaking={holding && progress > .55 && !reduced || undefined} data-confirmed={finished || undefined} style={style}>
     <button {...props} style={undefined} ref={button} type={type} disabled={disabled} className="forge-hold-trigger" aria-label={props["aria-label"] ?? (typeof text === "string" ? text : undefined)} tabIndex={finished ? -1 : props.tabIndex} aria-hidden={finished || undefined}
       title={props.title ?? (locale === "zh" ? "按住鼠标、空格或回车，松开取消" : "Hold mouse, Space or Enter; release to cancel")}

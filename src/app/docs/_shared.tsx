@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
-import { CopyLinear, AltArrowDownLinear } from "@forge-ui-official/core/icons";
 import { Breadcrumbs, type BreadcrumbItem } from "@forge-ui-official/core";
+import { CopyPageButton } from "./_copy-page";
 import { DocsToc, type TocItem } from "./_toc";
 
 // ============================================================
@@ -25,15 +25,7 @@ export function DocHeader({
         <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">
           {title}
         </h1>
-        <button
-          type="button"
-          className="flex shrink-0 items-center gap-2 rounded-full bg-fg-grey-100 px-4 py-2 text-sm font-semibold text-fg-black hover:bg-fg-grey-200 transition-colors"
-        >
-          <CopyLinear size={14} color="#71717A" />
-          复制页面
-          <span aria-hidden className="h-4 w-px bg-fg-grey-300" />
-          <AltArrowDownLinear size={12} color="#71717A" />
-        </button>
+        <CopyPageButton />
       </div>
       {description && (
         <p className="max-w-2xl text-base font-normal leading-[1.8] text-fg-grey-900">

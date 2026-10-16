@@ -41,14 +41,14 @@ const buttonVariants = {
     tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-green-300 text-fg-green-500",
   },
   yellow: {
-    primary: "bg-fg-yellow text-white",
-    secondary: "bg-fg-yellow-50 text-fg-yellow",
-    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-yellow-300 text-fg-yellow",
+    primary: "bg-fg-yellow text-fg-black",
+    secondary: "bg-fg-yellow-50 text-fg-yellow-900",
+    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-yellow-300 text-fg-yellow-900",
   },
   grey: {
-    primary: "bg-fg-grey-700 text-white",
-    secondary: "bg-fg-grey-100 text-fg-grey-700",
-    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700",
+    primary: "bg-fg-grey-700 text-fg-black",
+    secondary: "bg-fg-grey-100 text-fg-grey-900",
+    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-900",
   },
   black: {
     primary: "bg-fg-black text-white",

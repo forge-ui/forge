@@ -48,10 +48,18 @@ ${CODE_BUTTON_ICON}
 ${CODE_BUTTON_DISABLED}`;
 
 const BUTTON_PROPS: ApiTableRow[] = [
-  { attr: "effect", type: "'glass' | 'magnetic' | 'ripple' | 'roll'", defaultValue: "—", description: "可选视觉与交互效果。" },
-  { attr: "loading / result", type: "boolean / 'idle' | 'success' | 'error'", defaultValue: "false / 'idle'", description: "展示处理中或操作结果。" },
-  { attr: "holdDuration", type: "number", defaultValue: "1200", description: "长按确认所需时间，单位毫秒。" },
-  { attr: "onConfirm / onUndo", type: "() => void", defaultValue: "—", description: "完成长按或撤销时触发，由应用执行实际操作。" },
+  { attr: "effect", type: "'glass' | 'magnetic' | 'ripple' | 'roll'", defaultValue: "—", description: "玻璃、箭头跟随、涟漪或文字切换。不传则只有基础样式。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "跟随系统的减少动态效果设置，或关闭动效。" },
+  { attr: "loading", type: "boolean", defaultValue: "false", description: "处理中。为 true 时按钮禁用，并显示 loadingLabel。" },
+  { attr: "result", type: "'idle' | 'success' | 'error'", defaultValue: "'idle'", description: "操作结果。非 idle 时显示 resultLabel。" },
+  { attr: "progress", type: "number", defaultValue: "—", description: "0 到 100 的进度。传了才显示进度条。" },
+  { attr: "loadingLabel", type: "ReactNode", defaultValue: "处理中…", description: "loading 为 true 时替代按钮文字。locale 为 en 时默认是 Processing…。" },
+  { attr: "resultLabel", type: "ReactNode", defaultValue: "已完成 / 请重试", description: "result 不是 idle 时替代按钮文字。" },
+  { attr: "holdDuration", type: "number", defaultValue: "1200", description: "只在 variant 为 hold 时生效。长按确认所需的毫秒数。" },
+  { attr: "confirmed", type: "boolean", defaultValue: "—", description: "只在 variant 为 hold 时生效。由外部标记已经确认。" },
+  { attr: "locale", type: "'zh' | 'en'", defaultValue: "'zh'", description: "长按按钮和加载、结果文案的语言。" },
+  { attr: "holdLabels", type: "{ idle?: string; done?: string; undo?: string }", defaultValue: "—", description: "只在 variant 为 hold 时生效。覆盖长按前、完成后和撤销的文字。" },
+  { attr: "onConfirm / onUndo", type: "() => void", defaultValue: "—", description: "只在 variant 为 hold 时生效。长按完成或点击撤销时调用。" },
   {
     attr: "children",
     type: "ReactNode",
@@ -62,7 +70,7 @@ const BUTTON_PROPS: ApiTableRow[] = [
     attr: "color",
     type: "'purple' | 'dark' | 'blue' | 'blue-dark' | 'red' | 'green' | 'yellow' | 'grey' | 'black'",
     defaultValue: "'blue'",
-    description: "按钮主色，共 9 种。",
+    description: "9 种主色。dark 是深紫色（violet-800），不是中性黑。灰色的取值名是 grey。黄色和灰色的实心按钮使用深色文字。",
   },
   {
     attr: "variant",
@@ -135,7 +143,7 @@ const ICONBUTTON_PROPS: ApiTableRow[] = [
     attr: "color",
     type: "'purple' | 'dark' | 'blue' | 'blue-dark' | 'red' | 'green' | 'yellow' | 'grey' | 'black'",
     defaultValue: "'blue'",
-    description: "主色，与 Button 的颜色集合完全一致。",
+    description: "与 Button 相同的 9 种主色。dark 是深紫色。灰色的取值名是 grey。",
   },
   {
     attr: "variant",
@@ -199,7 +207,7 @@ const LINK_PROPS: ApiTableRow[] = [
     attr: "color",
     type: "'purple' | 'dark' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan' | 'gray'",
     defaultValue: "'blue'",
-    description: "文字颜色，9 种预设。",
+    description: "9 种文字色。灰色的取值名是 gray，和 Button 的 grey 不同。orange 使用深黄，避免和 red 相同。yellow 也使用深黄，保证浅底上的对比度。",
   },
   {
     attr: "iconLeft",

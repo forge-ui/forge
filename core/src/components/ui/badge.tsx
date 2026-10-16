@@ -65,7 +65,7 @@ const labelColors = {
   },
   yellow: {
     outline: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-yellow",
-    solid: "bg-fg-yellow text-white",
+    solid: "bg-fg-yellow text-fg-black",
   },
   gray: {
     outline: "bg-fg-grey-50 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700",

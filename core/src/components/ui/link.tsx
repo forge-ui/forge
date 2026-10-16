@@ -19,10 +19,10 @@ const linkColors = {
   blue: "text-fg-blue hover:text-fg-blue-800",
   green: "text-fg-green-500 hover:text-fg-green-700",
   red: "text-fg-red hover:text-fg-red-800",
-  orange: "text-fg-red hover:text-fg-red-800",
-  yellow: "text-fg-yellow hover:text-fg-yellow-700",
+  orange: "text-fg-yellow-900 hover:text-fg-yellow-800",
+  yellow: "text-fg-yellow-900 hover:text-fg-yellow-800",
   cyan: "text-fg-cyan-500 hover:text-fg-cyan-600",
-  gray: "text-fg-grey-700 hover:text-fg-grey-900",
+  gray: "text-fg-grey-900 hover:text-fg-black",
 } as const;
 
 export type LinkColor = keyof typeof linkColors;
