@@ -21,6 +21,7 @@ import type {
 import { cn } from "../../lib/utils";
 import type { AccentColor } from "./accent-utils";
 import { Button } from "./button";
+import { PlusIcon } from "./plain-icons";
 import { IconButton } from "./icon-button";
 
 const EMPTY_MESSAGES: AskAiMessage[] = [];
@@ -86,6 +87,14 @@ export interface AskAiProps {
    */
   hasConversation?: boolean;
   landingTitle?: string;
+  /** Supporting copy below the empty-state heading. */
+  landingDescription?: string;
+  /** Opt-in session-first panel header with a dedicated new-chat action. */
+  headerLayout?: "brand" | "session";
+  /** Non-modal side panel at >=1440px; falls back to the modal drawer below that. */
+  panelMode?: "modal" | "responsive";
+  /** Reserve 460px in the host layout while true. Released on close/fullscreen/unmount. */
+  onDockedChange?: (docked: boolean) => void;
   /** Fullscreen rail title when `brand` is omitted. */
   railLabel?: string;
 }
@@ -129,6 +138,10 @@ export function AskAi({
   onSearchQueryChange,
   hasConversation,
   landingTitle,
+  landingDescription = "告诉我你想了解什么，我来帮你梳理。",
+  headerLayout = "brand",
+  panelMode = "modal",
+  onDockedChange,
   railLabel,
 }: AskAiProps) {
   const clientReady = useSyncExternalStore(subscribeToClient, clientSnapshot, serverSnapshot);
@@ -166,6 +179,25 @@ export function AskAi({
     fullscreenControlledRef.current = fullscreenControlled;
     onFullscreenChangeRef.current = onFullscreenChange;
   }, [fullscreenControlled, onFullscreenChange]);
+
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    if (panelMode !== "responsive") return;
+    const media = window.matchMedia("(min-width: 1440px)");
+    const update = () => setWide(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, [panelMode]);
+  const docked = panelMode === "responsive" && wide && open && !fullscreenOpen;
+  const onDockedChangeRef = useRef(onDockedChange);
+  useLayoutEffect(() => {
+    onDockedChangeRef.current = onDockedChange;
+  }, [onDockedChange]);
+  useLayoutEffect(() => {
+    onDockedChangeRef.current?.(docked);
+  }, [docked]);
+  useLayoutEffect(() => () => onDockedChangeRef.current?.(false), []);
 
   function setFullscreenOpen(next: boolean) {
     if (!fullscreenControlled) setInternalFullscreen(next);
@@ -253,23 +285,29 @@ export function AskAi({
     const trigger = triggerRef.current;
     const previousOverflow = document.body.style.overflow;
     const escape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") { event.preventDefault(); setOpen(false); }
+      if (event.key === "Escape" && !event.defaultPrevented &&
+          (!docked || dialog?.contains(event.target as Node) || trigger === event.target)) {
+        event.preventDefault(); setOpen(false);
+      }
     };
     document.addEventListener("keydown", escape);
-    dialog?.showModal();
-    document.body.style.overflow = "hidden";
+    if (docked) dialog?.show();
+    else {
+      dialog?.showModal();
+      document.body.style.overflow = "hidden";
+    }
     inputRef.current?.focus();
     return () => {
       document.removeEventListener("keydown", escape);
       dialog?.close();
-      document.body.style.overflow = previousOverflow;
+      if (!docked) document.body.style.overflow = previousOverflow;
       if (skipTriggerFocusRef.current) {
         skipTriggerFocusRef.current = false;
         return;
       }
-      trigger?.focus();
+      if (!dialog?.isConnected) trigger?.focus();
     };
-  }, [open, fullscreenOpen]);
+  }, [open, fullscreenOpen, docked]);
   useEffect(() => {
     if (open && conversationRef.current) conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
   }, [open, conversation, pending, error]);
@@ -327,6 +365,12 @@ export function AskAi({
   );
   const headerTools = (
     <div className="flex shrink-0 items-center gap-1" data-ask-ai-header-tools>
+      {headerLayout === "session" && (
+        <IconButton type="button" size="sm" shape="square" variant="ghost" color="grey"
+          title="新建对话" aria-label="新建对话" onClick={startNewSession}>
+          <PlusIcon size={18} />
+        </IconButton>
+      )}
       {showFullscreenTrigger && (
         <IconButton
           type="button"
@@ -358,25 +402,26 @@ export function AskAi({
         <span className="hidden md:inline text-sm font-semibold whitespace-nowrap">{label}</span>
       </button>
       {open && typeof document !== "undefined" && createPortal(
-        <dialog ref={dialogRef} id={`${id}-dialog`} data-accent={accent} aria-labelledby={`${id}-title`} aria-modal="true"
+        <dialog ref={dialogRef} id={`${id}-dialog`} data-accent={accent} data-ask-ai-panel={docked ? "docked" : "modal"} aria-labelledby={`${id}-title`} aria-modal={docked ? undefined : true}
           onKeyDown={(event) => {
             if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); setOpen(false); }
           }}
           onCancel={(event) => { event.preventDefault(); setOpen(false); }}
           onClick={(event) => {
-            if (event.target !== event.currentTarget) return;
+            if (docked || event.target !== event.currentTarget) return;
             const rect = event.currentTarget.getBoundingClientRect();
             if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) setOpen(false);
           }}
-          className="fixed inset-y-0 left-auto right-0 m-0 h-dvh max-h-none w-full max-w-[460px] border-0 border-l border-fg-grey-200 bg-white p-0 text-fg-black shadow-xl backdrop:bg-fg-black/30">
+          className={cn("fixed inset-y-0 left-auto right-0 m-0 h-dvh max-h-none w-full max-w-[460px] border-0 border-l border-fg-grey-200 bg-white p-0 text-fg-black", docked ? "z-40" : "shadow-xl backdrop:bg-fg-black/30")}>
           <div className="flex h-full min-h-0 flex-col">
             <header className="flex shrink-0 items-center justify-between gap-3 border-b border-fg-grey-200 px-5 py-4">
               {header ?? (
                 <>
                   <div className="flex min-w-0 flex-1 items-center gap-3">
-                    {brand ? <div id={`${id}-title`}>{brand}</div> : defaultBrand}
+                    {headerLayout === "session" ? <h2 id={`${id}-title`} className="sr-only">{label}</h2> : brand ? <div id={`${id}-title`}>{brand}</div> : defaultBrand}
                     {session ?? (
                       <AskHistoryDropdown
+                        variant={headerLayout === "session" ? "title" : "default"}
                         sessions={sessionList}
                         currentSessionId={activeId ?? undefined}
                         onNewSession={startNewSession}
@@ -392,7 +437,10 @@ export function AskAi({
               <>
                 <div ref={conversationRef} className="min-h-0 flex-1 overflow-y-auto p-5">
                   {conversation.length === 0 && <div className="flex flex-col gap-5">
-                    <p className="text-sm leading-6 text-fg-grey-700">告诉我你想了解什么，我来帮你梳理。</p>
+                    <div className="flex flex-col gap-2 pt-6 pb-2" data-ask-ai-welcome>
+                      <h3 className="text-2xl font-semibold leading-tight tracking-fg text-fg-black">{landingTitle || "有什么可以帮你？"}</h3>
+                      <p className="text-sm leading-6 text-fg-grey-700">{landingDescription}</p>
+                    </div>
                     <div className="flex flex-col gap-2">
                       {suggestions.map((question, index) => <button key={`${index}-${question}`} type="button" disabled={disabled} onClick={() => void send(question)} className="rounded-xl border border-fg-grey-200 px-3 py-3 text-left text-sm text-fg-grey-700 hover:bg-fg-grey-100 disabled:opacity-50">{question}</button>)}
                     </div>
