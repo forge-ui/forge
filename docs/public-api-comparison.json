@@ -1,6 +1,6 @@
 {
   "mainCommit": "54598df83bfaa8a3580355d8952d558f79e24525",
-  "currentCommit": "7abec693e4d88c25d12910244aceae6b2b64fc39",
+  "currentCommit": "4f859e2b84171e1e7ce8cbf31b379c141caf710e",
   "main": {
     "exports": [
       "ALL_CARD_THEMES",
@@ -38671,9 +38671,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/badge.tsx"
           }
@@ -38692,9 +38692,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"blue\" | \"red\" | \"gray\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"red\" | \"gray\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/badge.tsx"
           },
@@ -38729,9 +38729,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/badge.tsx"
           },
@@ -38766,9 +38766,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/badge.tsx"
           },
@@ -38795,9 +38795,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"black\" | \"blue\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"black\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/button.tsx"
           },
@@ -41279,9 +41279,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"black\" | \"blue\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"black\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/icon-button.tsx"
           },
@@ -43668,9 +43668,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"blue\" | \"red\" | \"gray\" | \"dark\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"red\" | \"gray\" | \"dark\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/link.tsx"
           },
@@ -43737,9 +43737,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | \"gray\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | \"gray\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/progress-bar.tsx"
           },
@@ -43854,9 +43854,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/checkbox.tsx"
           },
@@ -46197,7 +46197,7 @@
             "name": "color",
             "type": "ChecklistColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/checklist.tsx"
           },
@@ -46266,7 +46266,7 @@
             "name": "color",
             "type": "ChecklistColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/checklist.tsx"
           },
@@ -46341,9 +46341,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/avatar.tsx"
           },
@@ -48891,7 +48891,7 @@
             "name": "progressColor",
             "type": "ProjectCardColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/project-card.tsx"
           },
@@ -48992,7 +48992,7 @@
             "name": "progressColor",
             "type": "TaskCardColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/task-card.tsx"
           },
@@ -49083,9 +49083,9 @@
           },
           {
             "name": "initialsColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/user-card.tsx"
           },
@@ -49226,7 +49226,7 @@
             "name": "progressColor",
             "type": "ProgressFillColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/progress-stat-card.tsx"
           },
@@ -49375,7 +49375,7 @@
             "name": "chartColor",
             "type": "LineChartColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/line-chart-stat-card.tsx"
           },
@@ -49500,7 +49500,7 @@
             "name": "wheelColor",
             "type": "WheelColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/wheel-chart-stat-card.tsx"
           },
@@ -49609,7 +49609,7 @@
             "name": "barColor",
             "type": "BarColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/bar-chart-stat-card.tsx"
           },
@@ -50066,7 +50066,7 @@
             "name": "theme",
             "type": "HighlightCardTheme | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/highlight-card.tsx"
           },
@@ -50289,7 +50289,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/contact-item.tsx"
           },
@@ -50454,7 +50454,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/chat-bubble.tsx"
           },
@@ -51258,7 +51258,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/filter-group.tsx"
           },
@@ -51303,7 +51303,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/filter-trigger.tsx"
           },
@@ -51356,7 +51356,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/filter-panel.tsx"
           },
@@ -51439,9 +51439,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | \"gray\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | \"gray\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/history-item.tsx"
           },
@@ -51572,9 +51572,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | \"gray\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | \"gray\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/history-grouped.tsx"
           },
@@ -51601,9 +51601,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/event-tag.tsx"
           },
@@ -51778,7 +51778,7 @@
             "name": "color",
             "type": "EventCardColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/event-card.tsx"
           },
@@ -51839,7 +51839,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/small-calendar.tsx"
           },
@@ -51900,7 +51900,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/small-daily-calendar.tsx"
           },
@@ -51953,7 +51953,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/full-calendar.tsx"
           },
@@ -52030,7 +52030,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/meter-chart.tsx"
           },
@@ -52083,7 +52083,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/half-donut-chart.tsx"
           },
@@ -52144,7 +52144,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/dashed-half-donut-chart.tsx"
           },
@@ -52253,8 +52253,8 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
-            "comment": "Accent color drives segment colors when not explicitly set. Default \"purple\".",
+            "defaultValue": "\"blue\"",
+            "comment": "Accent color drives segment colors when not explicitly set. Default \"blue\".",
             "file": "core/src/components/ui/charts/donut-chart.tsx"
           },
           {
@@ -52322,7 +52322,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/pie-chart.tsx"
           },
@@ -52391,7 +52391,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/multilayer-donut-chart.tsx"
           },
@@ -52444,7 +52444,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/bubble-chart.tsx"
           },
@@ -52537,7 +52537,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/bar-chart.tsx"
           },
@@ -52670,7 +52670,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/bar-horizontal-chart.tsx"
           },
@@ -52755,7 +52755,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/bar-upside-down-chart.tsx"
           },
@@ -52920,7 +52920,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/smooth-line-chart.tsx"
           },
@@ -53111,7 +53111,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/chart-list-item.tsx"
           },
@@ -53172,7 +53172,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/charts/chart-legend-item.tsx"
           },
@@ -53262,7 +53262,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "When item.color is omitted, derives dot color from this accent's ramp.",
             "file": "core/src/components/ui/charts/chart-stat-footer.tsx"
           }
@@ -53437,7 +53437,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/list-group.tsx"
           },
@@ -53546,7 +53546,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/map-card.tsx"
           },
@@ -53607,7 +53607,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/menu-item.tsx"
           },
@@ -53785,7 +53785,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/icon-trigger.tsx"
           },
@@ -53934,7 +53934,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/profile-card.tsx"
           },
@@ -54011,7 +54011,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/notification-item.tsx"
           },
@@ -54064,7 +54064,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/kebab-menu.tsx"
           },
@@ -54173,7 +54173,7 @@
             "name": "accent",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/sidebar-menu.tsx"
           },
@@ -59401,7 +59401,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/media-upload.tsx"
           },
@@ -59462,7 +59462,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/media-upload.tsx"
           },
@@ -59523,7 +59523,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/file-upload.tsx"
           },
@@ -59584,7 +59584,7 @@
             "name": "color",
             "type": "AccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/file-upload.tsx"
           },
@@ -59746,7 +59746,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/datepicker.tsx"
           },
@@ -59831,7 +59831,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/selection-control.tsx"
           },
@@ -59900,7 +59900,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/selection-control.tsx"
           },
@@ -59953,7 +59953,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/selection-control.tsx"
           },
@@ -60012,9 +60012,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/checkbox.tsx"
           },
@@ -62355,7 +62355,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/selection-control.tsx"
           },
@@ -62456,7 +62456,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/icon-selector.tsx"
           },
@@ -62517,7 +62517,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/icon-selector.tsx"
           },
@@ -62599,7 +62599,7 @@
             "name": "color",
             "type": "FormAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/forms/text-field-select.tsx"
           },
@@ -62650,7 +62650,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"blue\" | \"red\"",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"red\"",
             "optional": false,
             "defaultValue": null,
             "comment": "",
@@ -65187,9 +65187,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"black\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/page-dot.tsx"
           },
@@ -65248,9 +65248,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"black\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/pagination.tsx"
           },
@@ -65301,9 +65301,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"black\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/stepper.tsx"
           },
@@ -65370,9 +65370,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"black\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/tab-bar.tsx"
           },
@@ -65455,9 +65455,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"black\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/button-group.tsx"
           },
@@ -65516,9 +65516,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/topbar.tsx"
           },
@@ -65998,9 +65998,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"black\" | \"blue\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"black\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/breadcrumbs.tsx"
           },
@@ -66418,7 +66418,7 @@
             "name": "color",
             "type": "ToolbarColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/toolbar.tsx"
           },
@@ -66580,7 +66580,7 @@
             "name": "color",
             "type": "CurrencyConverterColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/currency-converter.tsx"
           },
@@ -66846,8 +66846,8 @@
             "name": "overflowClassName",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "\"bg-fg-violet-100 text-fg-violet\"",
-            "comment": "Customize the +N overflow chip background & text color. Default: purple accent.",
+            "defaultValue": "\"bg-fg-blue-50 text-fg-blue\"",
+            "comment": "Customize the +N overflow chip background & text color. Default: Forge blue.",
             "file": "core/src/components/ui/image-grid.tsx"
           },
           {
@@ -66974,7 +66974,7 @@
           },
           {
             "name": "checkboxColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true,
             "defaultValue": "\"black\"",
             "comment": "",
@@ -67059,7 +67059,7 @@
           },
           {
             "name": "checkboxColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true,
             "defaultValue": "\"black\"",
             "comment": "",
@@ -67288,7 +67288,7 @@
           },
           {
             "name": "checkboxColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true,
             "defaultValue": "\"black\"",
             "comment": "",
@@ -67501,7 +67501,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"blue\" | \"red\" | \"grey\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"red\" | \"grey\" | undefined",
             "optional": true,
             "defaultValue": "\"grey\"",
             "comment": "",
@@ -67677,7 +67677,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | \"grey\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | \"grey\" | undefined",
             "optional": true,
             "defaultValue": "\"grey\"",
             "comment": "",
@@ -67759,9 +67759,9 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | \"gray\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | \"gray\" | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/ui/data-table.tsx"
           }
@@ -67888,7 +67888,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true,
             "defaultValue": "\"green\"",
             "comment": "",
@@ -67977,7 +67977,7 @@
             "name": "themeKey",
             "type": "CardTheme | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "The CardTheme key — needed to resolve badge color variants",
             "file": "core/src/components/ui/card-utils.tsx"
           },
@@ -68395,7 +68395,7 @@
             "name": "accent",
             "type": "AppLayoutAccentColor | undefined",
             "optional": true,
-            "defaultValue": "\"purple\"",
+            "defaultValue": "\"blue\"",
             "comment": "",
             "file": "core/src/components/layouts/app-layout.tsx"
           },
@@ -68946,6 +68946,38 @@
             "optional": true,
             "defaultValue": null,
             "comment": "",
+            "file": "core/src/components/ui/ask-ai.tsx"
+          },
+          {
+            "name": "landingDescription",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": "\"告诉我你想了解什么，我来帮你梳理。\"",
+            "comment": "Supporting copy below the empty-state heading.",
+            "file": "core/src/components/ui/ask-ai.tsx"
+          },
+          {
+            "name": "headerLayout",
+            "type": "\"brand\" | \"session\" | undefined",
+            "optional": true,
+            "defaultValue": "\"brand\"",
+            "comment": "Opt-in session-first panel header with a dedicated new-chat action.",
+            "file": "core/src/components/ui/ask-ai.tsx"
+          },
+          {
+            "name": "panelMode",
+            "type": "\"modal\" | \"responsive\" | undefined",
+            "optional": true,
+            "defaultValue": "\"modal\"",
+            "comment": "Non-modal side panel at >=1440px; falls back to the modal drawer below that.",
+            "file": "core/src/components/ui/ask-ai.tsx"
+          },
+          {
+            "name": "onDockedChange",
+            "type": "((docked: boolean) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "Reserve 460px in the host layout while true. Released on close/fullscreen/unmount.",
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
@@ -70565,7 +70597,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"black\" | \"blue\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"black\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
             "optional": true,
             "defaultValue": "\"red\"",
             "comment": "",
@@ -75997,7 +76029,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | \"gray\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | \"gray\" | undefined",
             "optional": true
           },
           {
@@ -76165,7 +76197,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\"",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\"",
             "optional": false
           },
           {
@@ -76205,7 +76237,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"black\" | \"red\" | undefined",
             "optional": true
           },
           {
@@ -77711,7 +77743,7 @@
           },
           {
             "name": "checkboxColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true
           },
           {
@@ -77837,7 +77869,7 @@
           },
           {
             "name": "checkboxColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true
           },
           {
@@ -77982,7 +78014,7 @@
           },
           {
             "name": "checkboxColor",
-            "type": "\"purple\" | \"orange\" | \"green\" | \"black\" | \"blue\" | \"red\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"black\" | \"red\" | undefined",
             "optional": true
           },
           {
@@ -78499,6 +78531,26 @@
           {
             "name": "landingTitle",
             "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "landingDescription",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "headerLayout",
+            "type": "\"brand\" | \"session\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "panelMode",
+            "type": "\"modal\" | \"responsive\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "onDockedChange",
+            "type": "((docked: boolean) => void) | undefined",
             "optional": true
           },
           {
@@ -79672,7 +79724,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"black\" | \"blue\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"black\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
             "optional": true
           },
           {
@@ -80082,7 +80134,7 @@
           },
           {
             "name": "color",
-            "type": "\"purple\" | \"green\" | \"yellow\" | \"black\" | \"blue\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
+            "type": "\"purple\" | \"blue\" | \"green\" | \"yellow\" | \"black\" | \"red\" | \"dark\" | \"grey\" | \"blue-dark\" | undefined",
             "optional": true
           },
           {
@@ -80606,7 +80658,9 @@
       "currentCount": 2,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Label",
@@ -80615,7 +80669,9 @@
       "currentCount": 4,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "CircleIcon",
@@ -80624,7 +80680,9 @@
       "currentCount": 4,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "ArtisticIcon",
@@ -80633,7 +80691,9 @@
       "currentCount": 3,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Button",
@@ -80655,7 +80715,9 @@
         "resultLabel"
       ],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "PlusIcon",
@@ -80697,7 +80759,9 @@
         "progress"
       ],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "StyledLink",
@@ -80709,7 +80773,9 @@
         "motion"
       ],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "ProgressBar",
@@ -80736,7 +80802,9 @@
       "currentCount": 289,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Checklist",
@@ -80765,7 +80833,9 @@
       "currentCount": 6,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "AvatarGroup",
@@ -81107,7 +81177,9 @@
       "currentCount": 11,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "initialsColor"
+      ]
     },
     {
       "name": "ProgressStatCard",
@@ -81327,7 +81399,9 @@
       "currentCount": 11,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "HistoryGrouped",
@@ -81336,7 +81410,9 @@
       "currentCount": 8,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "EventTag",
@@ -81835,7 +81911,9 @@
       "currentCount": 289,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "CheckboxWithLabel",
@@ -81889,7 +81967,9 @@
       "currentCount": 13,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Tooltip",
@@ -81936,7 +82016,9 @@
       "currentCount": 5,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Pagination",
@@ -81948,7 +82030,9 @@
         "motion"
       ],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Stepper",
@@ -81964,7 +82048,8 @@
       ],
       "removed": [],
       "changed": [
-        "total"
+        "total",
+        "color"
       ]
     },
     {
@@ -81977,7 +82062,9 @@
         "progress"
       ],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "ButtonGroup",
@@ -81986,7 +82073,9 @@
       "currentCount": 8,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "TopBar",
@@ -81995,7 +82084,9 @@
       "currentCount": 3,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "PageHeader",
@@ -82013,7 +82104,9 @@
       "currentCount": 4,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "Toolbar",
@@ -82168,7 +82261,9 @@
       "currentCount": 10,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "checkboxColor"
+      ]
     },
     {
       "name": "DataTable",
@@ -82177,7 +82272,9 @@
       "currentCount": 28,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "checkboxColor"
+      ]
     },
     {
       "name": "FullWidthTable",
@@ -82186,7 +82283,9 @@
       "currentCount": 33,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "checkboxColor"
+      ]
     },
     {
       "name": "StatusBadge",
@@ -82195,7 +82294,9 @@
       "currentCount": 3,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "ProgressBadge",
@@ -82267,7 +82368,9 @@
       "currentCount": 3,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "CellNumber",
@@ -82332,7 +82435,9 @@
       "currentCount": 3,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "CardGlow",
@@ -82457,8 +82562,13 @@
       "name": "AskAi",
       "file": "core/src/components/ui/ask-ai.tsx",
       "mainCount": 25,
-      "currentCount": 25,
-      "added": [],
+      "currentCount": 29,
+      "added": [
+        "landingDescription",
+        "headerLayout",
+        "panelMode",
+        "onDockedChange"
+      ],
       "removed": [],
       "changed": []
     },
@@ -82688,7 +82798,9 @@
       "currentCount": 11,
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        "color"
+      ]
     },
     {
       "name": "LiquidTabs",

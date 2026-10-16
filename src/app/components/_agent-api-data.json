@@ -65,7 +65,7 @@
         "name": "color",
         "type": "AccentColor | undefined",
         "optional": true,
-        "defaultValue": "\"purple\""
+        "defaultValue": "\"blue\""
       },
       {
         "name": "content",
@@ -815,9 +815,9 @@
       },
       {
         "name": "color",
-        "type": "\"purple\" | \"green\" | \"blue\" | undefined",
+        "type": "\"purple\" | \"blue\" | \"green\" | undefined",
         "optional": true,
-        "defaultValue": "\"purple\""
+        "defaultValue": "\"blue\""
       },
       {
         "name": "className",
@@ -1045,7 +1045,7 @@
         "name": "accent",
         "type": "AppLayoutAccentColor | undefined",
         "optional": true,
-        "defaultValue": "\"purple\""
+        "defaultValue": "\"blue\""
       },
       {
         "name": "children",
@@ -1614,6 +1614,30 @@
       {
         "name": "landingTitle",
         "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "landingDescription",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"告诉我你想了解什么，我来帮你梳理。\""
+      },
+      {
+        "name": "headerLayout",
+        "type": "\"brand\" | \"session\" | undefined",
+        "optional": true,
+        "defaultValue": "\"brand\""
+      },
+      {
+        "name": "panelMode",
+        "type": "\"modal\" | \"responsive\" | undefined",
+        "optional": true,
+        "defaultValue": "\"modal\""
+      },
+      {
+        "name": "onDockedChange",
+        "type": "((docked: boolean) => void) | undefined",
         "optional": true,
         "defaultValue": null
       },

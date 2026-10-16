@@ -18,7 +18,17 @@ test('every agent component renders its full parameter reference', () => {
   const page = fs.readFileSync('src/app/components/agent/page.tsx', 'utf8');
   for (const [name, component] of Object.entries(comparison.current.components)) {
     if (!component.file.includes('/agent/')) continue;
-    assert.ok(page.includes(`<CompleteApiReference name="${name}"`), name);
+    const source = ts.createSourceFile('agent.tsx', page, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    let referenceCount = 0;
+    function visit(node) {
+      if (ts.isJsxSelfClosingElement(node) && ['AgentApi', 'CompleteApiReference'].includes(node.tagName.getText(source))) {
+        const prop = node.attributes.properties.find(attr => ts.isJsxAttribute(attr) && attr.name.text === 'name');
+        if (prop?.initializer && ts.isStringLiteral(prop.initializer) && prop.initializer.text === name) referenceCount++;
+      }
+      ts.forEachChild(node, visit);
+    }
+    visit(source);
+    assert.equal(referenceCount, 1, `${name}: expected one parameter reference`);
     assert.deepEqual(data[name].props.map(p => p.name), component.props.map(p => p.name));
   }
 });

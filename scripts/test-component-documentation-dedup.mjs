@@ -23,6 +23,22 @@ test('duplicate tab guide is replaced with a working canonical destination',()=>
 test('agent descriptions and complete API render as one table per component',()=>{
  const html=renderToStaticMarkup(React.createElement(pages.AgentPage));
  assert.equal((html.match(/>参数<\/th>/g)??[]).length,12);
+ const { JSDOM } = require('../core/node_modules/jsdom');
+ const dom = new JSDOM(html);
+ const api = JSON.parse(fs.readFileSync('src/app/components/_agent-api-data.json', 'utf8'));
+ const components = JSON.parse(fs.readFileSync('docs/public-api-comparison.json', 'utf8')).current.components;
+ try {
+   for (const [name, component] of Object.entries(components)) {
+     if (!component.file.includes('/agent/')) continue;
+     const block = dom.window.document.getElementById(`api-${name.toLowerCase()}`);
+     assert.ok(block, `${name}: parameter anchor`);
+     const table = block.querySelector('table');
+     assert.ok(table, `${name}: rendered parameter table`);
+     const names = [...table.querySelectorAll('tbody > tr')].map(row => row.cells[0].textContent);
+     assert.deepEqual(names, api[name].props.map(prop => prop.name), name);
+   }
+ } finally { dom.window.close(); }
+
  assert.match(html,/应用接收回答的状态/);
  assert.match(html,/ChatInputBarSendContext|\/components\/chat-input-bar/);
 });
