@@ -19,7 +19,7 @@ import { formAccents, type FormAccentColor } from "./form-utils";
 //         value="USD"
 //         options={["USD","EUR","GBP"]}
 //         onChange={setValue}
-//         color="purple"
+//         color="blue"
 //       />
 //     }
 //   />
@@ -29,7 +29,7 @@ export function TextFieldSelectSuffix({
   value,
   options,
   onChange,
-  color = "purple",
+  color = "blue",
   motion = "auto",
 }: {
   value: string;

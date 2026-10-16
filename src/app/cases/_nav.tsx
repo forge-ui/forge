@@ -20,6 +20,7 @@ export const casesNavGroups: NavGroup[] = [
       { href: "/cases/card", label: "卡片" },
       { href: "/cases/chart", label: "图表" },
       { href: "/cases/chat", label: "聊天" },
+      { href: "/cases/chat-input-bar", label: "消息输入栏" },
       { href: "/cases/checklist", label: "待办清单" },
       { href: "/cases/comment", label: "评论与评价" },
       { href: "/cases/filter", label: "筛选" },

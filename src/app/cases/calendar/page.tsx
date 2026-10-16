@@ -78,7 +78,7 @@ const detailContent = (
       <p className="text-fg-grey-700 text-[10px] leading-3.5">同步本周目标与项目进度，集中讨论待解决的问题，并明确下一步负责人和交付时间。</p>
     </div>
     <span className="text-fg-grey-700 text-[10px]">https://www.meeting.com/qodp-opaeje-wght</span>
-    <Button color="purple" size="sm" className="self-start">加入会议</Button>
+    <Button color="blue" size="sm" className="self-start">加入会议</Button>
     <div className="flex flex-col gap-1.5">
       <span className="text-fg-grey-700 text-[10px] font-semibold">5 位参与者</span>
       <span className="text-fg-grey-700 text-[9px]">2 位待确认</span>
@@ -254,22 +254,22 @@ export default function CalendarCasePage() {
       {/* ─── FullCalendar — 6 variants ─── */}
       <BareSection title="FullCalendar">
         <BarLabel>月视图</BarLabel>
-        <FullCalendar view="month" color="purple" events={fullCalendarEvents} />
+        <FullCalendar view="month" color="blue" events={fullCalendarEvents} />
 
         <BarLabel>周视图</BarLabel>
-        <FullCalendar view="week" color="purple" events={weekDayEvents} />
+        <FullCalendar view="week" color="blue" events={weekDayEvents} />
 
         <BarLabel>日视图</BarLabel>
-        <FullCalendar view="day" color="purple" day={17} events={dayEvents} />
+        <FullCalendar view="day" color="blue" day={17} events={dayEvents} />
 
         <BarLabel>月视图与事件详情</BarLabel>
-        <FullCalendar view="month" color="purple" events={fullCalendarEvents} detailPanel={detailContent} />
+        <FullCalendar view="month" color="blue" events={fullCalendarEvents} detailPanel={detailContent} />
 
         <BarLabel>周视图与事件详情</BarLabel>
-        <FullCalendar view="week" color="purple" events={weekDayEvents} detailPanel={detailContent} />
+        <FullCalendar view="week" color="blue" events={weekDayEvents} detailPanel={detailContent} />
 
         <BarLabel>日视图与事件详情</BarLabel>
-        <FullCalendar view="day" color="purple" day={17} events={dayEvents} detailPanel={detailContent} />
+        <FullCalendar view="day" color="blue" day={17} events={dayEvents} detailPanel={detailContent} />
       </BareSection>
     </div>
   );

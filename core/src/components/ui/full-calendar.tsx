@@ -49,7 +49,7 @@ const barBg: Record<EventTagColor, string> = {
 
 export function FullCalendar({
   view = "month",
-  color = "purple",
+  color = "blue",
   year: yearProp,
   month: monthProp,
   day: dayProp,

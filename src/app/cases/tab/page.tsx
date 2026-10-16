@@ -102,7 +102,7 @@ export default function TabCasePage() {
         <SubSection title="紫色">
           <Labeled label="active first">
             <TabBar
-              color="purple"
+              color="blue"
               tabs={[
                 { label: "全部", active: true, badge: 24 },
                 { label: "待处理", badge: 8 },

@@ -37,7 +37,7 @@ const chipBg: Record<EventCardColor, string> = {
 export function EventCard({
   title,
   timeRange,
-  color = "purple",
+  color = "blue",
   avatars = [],
   overflowCount,
   width,

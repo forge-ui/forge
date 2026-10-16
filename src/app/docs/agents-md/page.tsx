@@ -40,7 +40,7 @@ export default function AgentsMdPage() {
         <p className="mt-3 rounded-lg border border-fg-yellow-200 bg-fg-yellow-50 px-4 py-3 text-sm text-fg-black">
           <strong>提示：</strong>
           组件多、上下文紧张的项目建议走{" "}
-          <Link href="/docs/ui-for-agents" className="text-fg-violet hover:underline">
+          <Link href="/docs/ui-for-agents" className="text-fg-blue hover:underline">
             UI for Agents
           </Link>{" "}
           的 Skill 方案，按需加载更省 token。
@@ -57,15 +57,15 @@ export default function AgentsMdPage() {
         <ol className="ml-5 list-decimal space-y-2">
           <li>
             <strong className="text-fg-black">粘贴到文件</strong>：复制上面预览的内容，粘到项目根的{" "}
-            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
               AGENTS.md
             </code>
             、
-            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
               CLAUDE.md
             </code>{" "}
             或{" "}
-            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
               .cursorrules
             </code>
             。
@@ -118,7 +118,7 @@ export default function AgentsMdPage() {
       <DocSection id="related" title="相关文档">
         <ul className="ml-5 list-disc space-y-1.5">
           <li>
-            <Link href="/docs/ui-for-agents" className="text-fg-violet hover:underline">
+            <Link href="/docs/ui-for-agents" className="text-fg-blue hover:underline">
               UI for Agents
             </Link>
             {" "}— Skill 方案（推荐，按需加载）
@@ -128,7 +128,7 @@ export default function AgentsMdPage() {
               href="https://agents.md"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               AGENTS.md 规范
             </a>
@@ -139,14 +139,14 @@ export default function AgentsMdPage() {
               href="https://docs.claude.com/en/docs/claude-code/memory"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               CLAUDE.md
             </a>
             {" "}— Claude Code 的 AGENTS.md 等价物
           </li>
           <li>
-            <Link href="/docs/quick-start" className="text-fg-violet hover:underline">
+            <Link href="/docs/quick-start" className="text-fg-blue hover:underline">
               快速开始
             </Link>
             {" "}— 从 0 到第一个业务页

@@ -440,7 +440,7 @@ export interface ToolbarPillTab {
 
 export function ToolbarPillTabs({
   tabs,
-  color = "purple",
+  color = "blue",
   onChange,
   className,
   motion = "auto",
@@ -579,7 +579,7 @@ export function PageTitleToolbar(props: PageTitleToolbarProps) {
       title,
       subtitle,
       breadcrumbItems,
-      color = "purple",
+      color = "blue",
       dateAction,
       menuAction,
       secondaryAction,

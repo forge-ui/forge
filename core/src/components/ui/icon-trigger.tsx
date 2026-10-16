@@ -16,7 +16,7 @@ export type IconTriggerPanel = ReactNode | ((close: () => void) => ReactNode);
 
 export function IconTrigger({
   icon,
-  accent = "purple",
+  accent = "blue",
   state: stateProp,
   surface = "default",
   badge,

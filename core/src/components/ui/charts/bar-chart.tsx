@@ -39,7 +39,7 @@ interface BarChartProps {
 export function BarChart({
   data,
   onActiveIndexChange, onSelect, pinnedIndex, domain, referenceValue, referenceLabel, motion = "auto", ariaLabel = "柱状图",
-  accent = "purple",
+  accent = "blue",
   activeIndex,
   color,
   inactiveColor,

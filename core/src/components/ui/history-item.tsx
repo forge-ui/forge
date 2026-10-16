@@ -114,7 +114,7 @@ function Indicator({
 
 export function HistoryItem({
   variant = "regular",
-  color = "purple",
+  color = "blue",
   title,
   description,
   datetime,

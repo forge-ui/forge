@@ -89,7 +89,7 @@ export default function InstallationPage() {
         <PromptBlock content={UPGRADE} />
         <p>
           升完重跑 <code>pnpm dev</code>，顺手到{" "}
-          <Link href="/components" className="text-fg-violet underline underline-offset-4 hover:text-fg-violet-700">
+          <Link href="/components" className="text-fg-blue underline underline-offset-4 hover:text-fg-blue-700">
             /components
           </Link>{" "}
           页点一遍新版本的组件，看有没有破坏兼容。

@@ -224,7 +224,7 @@ const badgeColorMap: Record<CardTheme, { solid: string; opacity: string; text: s
 export function CardIconChip({
   icon,
   theme,
-  themeKey = "purple",
+  themeKey = "blue",
   variant = "default",
   size = 40,
 }: {

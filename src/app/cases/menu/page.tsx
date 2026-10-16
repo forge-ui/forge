@@ -222,9 +222,9 @@ function MenuItemSection() {
             <span className="text-[10px] uppercase tracking-wider text-white/60">
               onColoredBg
             </span>
-            <MenuItem accent="purple" kind="submenu" surface="onColoredBg" label="默认" />
+            <MenuItem accent="blue" kind="submenu" surface="onColoredBg" label="默认" />
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="submenu"
               surface="onColoredBg"
               label="使用中"
@@ -273,14 +273,14 @@ function MenuItemSection() {
               onColoredBg (sidebar context)
             </span>
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="dropdown"
               surface="onColoredBg"
               lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }}
               label="工作台"
             />
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="dropdown"
               surface="onColoredBg"
               lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} /> }}
@@ -288,7 +288,7 @@ function MenuItemSection() {
               active
             />
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="dropdown"
               surface="onColoredBg"
               lead={{ kind: "icon", icon: <FolderBoldDuotone size={20} /> }}
@@ -346,7 +346,7 @@ function SecondaryMenuSection() {
                     avatar={avatarImg("JH")}
                     name="张明"
                     subtitle="经理"
-                    accent="purple"
+                    accent="blue"
                     surface="onColoredBg"
                     state={state}
                   />
@@ -365,7 +365,7 @@ function SecondaryMenuSection() {
               name="设计团队"
               subtitle="24 位成员"
               state="selected"
-              accent="purple"
+              accent="blue"
             />
             <span className="text-fg-grey-700 text-xs font-bold uppercase">展开菜单 ↓</span>
           </div>
@@ -450,7 +450,7 @@ function SecondaryMenuSection() {
                 title="收到新的问题反馈"
                 body="有成员提交了新的问题反馈，请及时查看并跟进处理。"
                 unread
-                color="purple"
+                color="blue"
                 onMarkRead={() => void 0}
               />
               <NotificationItem
@@ -479,7 +479,7 @@ function SecondaryMenuSection() {
             <LanguageMenuDemo key={accent} accent={accent} />
           ))}
           <div className="p-6 rounded-xl bg-fg-violet">
-            <LanguageMenuDemo accent="purple" onColoredBg />
+            <LanguageMenuDemo accent="blue" onColoredBg />
           </div>
         </div>
       </SubSection>
@@ -760,7 +760,7 @@ function KebabMenuSection() {
             <span className="text-fg-black text-sm font-semibold">林晓</span>
             <span className="text-fg-grey-700 text-xs font-medium">管理员</span>
           </div>
-          <KebabMenu items={kebabItems} accent="purple" />
+          <KebabMenu items={kebabItems} accent="blue" />
         </div>
       </SubSection>
 
@@ -768,7 +768,7 @@ function KebabMenuSection() {
         <div className="inline-flex items-start gap-6">
           <IconTrigger
             icon={<BellBoldDuotone size={20} />}
-            accent="purple"
+            accent="blue"
             badge={5}
             panelPlacement="bottom"
             panel={(close) => (
@@ -778,7 +778,7 @@ function KebabMenuSection() {
                     key={i}
                     lead={{ kind: "icon", icon: item.icon }}
                     label={item.label}
-                    accent="purple"
+                    accent="blue"
                     onClick={close}
                   />
                 ))}

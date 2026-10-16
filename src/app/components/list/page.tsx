@@ -17,8 +17,8 @@ import {
   LetterBoldDuotone,
 } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import {
   ListItem, DescriptionItem, ListGroup,
@@ -48,7 +48,7 @@ const CODE_LISTGROUP_NO_TAB = `// Without Tab
 <ListGroup
   title="收藏"
   subtitle="已收藏的内容"
-  badge={<Label color="purple">3</Label>}
+  badge={<Label color="blue">3</Label>}
   items={<>...</>}
 />`;
 
@@ -99,7 +99,7 @@ const DESCITEM_PROPS: ApiTableRow[] = [
 const LISTGROUP_PROPS: ApiTableRow[] = [
   { attr: "title", type: "string", defaultValue: "—", description: "组标题。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "副标题。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "tab 选中态主色。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "tab 选中态主色。" },
   { attr: "items", type: "ReactNode", defaultValue: "—", description: "列表主体（传一组 ListItem / DescriptionItem 等）。" },
   { attr: "badge", type: "ReactNode", defaultValue: "—", description: "标题旁徽标槽。" },
   { attr: "action", type: "ReactNode", defaultValue: "—", description: "右上角操作槽。" },
@@ -113,7 +113,7 @@ const LISTGROUP_PROPS: ApiTableRow[] = [
 
 const CONTACT_PROPS: ApiTableRow[] = [
   { attr: "type", type: "'person' | 'team'", defaultValue: "'person'", description: "person 渲染头像，team 渲染 initials 方块。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "active 态背景主色。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "active 态背景主色。" },
   { attr: "name", type: "string", defaultValue: "—", description: "联系人姓名。" },
   { attr: "message", type: "string", defaultValue: "—", description: "最新消息摘要。" },
   { attr: "online", type: "boolean", defaultValue: "false", description: "绿色在线点。" },
@@ -137,7 +137,7 @@ const PROFILE_PROPS: ApiTableRow[] = [
   { attr: "name", type: "string", defaultValue: "—", description: "姓名。" },
   { attr: "subtitle", type: "string", defaultValue: "—", description: "副标题（角色等）。" },
   { attr: "state", type: "'idle' | 'hover' | 'selected'", defaultValue: "'idle'", description: "视觉状态。" },
-  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "selected 态主色。" },
+  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "selected 态主色。" },
   { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "onColoredBg 用于带主题背景的侧栏 内，采用半透明白。" },
 ];
 
@@ -150,20 +150,16 @@ export default function ListCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="列表"
-        hint="组织条目、详情字段、联系人和通知，便于浏览与操作。"
+        hint="条目、字段、分组、联系人和通知各留一个。前置图标、头像和图片看起来不一样，所以都保留。"
       />
 
-
-
-
-      <Section title="ListItem" description="展示条目名称、说明、图标和右侧补充信息。">
-        <SubSection title="导入组件" stack>
+      <Section title="用法" description="一条列表由左侧内容、标题和右侧数值组成。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_LISTITEM_USAGE}>
-            <div className="w-full max-w-md">
+        <SubSection title="最小示例" stack>
+          <DocExample id="listitem" title="ListItem" summary="带金额的条目，以及左侧换成图标、头像或方形图片。" code={`${CODE_LISTITEM_USAGE}\n${CODE_LISTITEM_LEADS}`} minHeight={220}>
+            <div className="w-full max-w-md flex flex-col gap-4">
               <ListItem
                 lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }}
                 title="收入"
@@ -172,57 +168,43 @@ export default function ListCasePage() {
                 trend="10%"
                 trendDirection="up"
               />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="前置内容样式" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 种 lead：<InlineCode>icon</InlineCode>（圆形彩色图标）/ <InlineCode>avatar</InlineCode>（圆形头像）/ <InlineCode>image</InlineCode>（44×44 方形）。
-          </p>
-          <PreviewBlock code={CODE_LISTITEM_LEADS} minHeight={220}>
-            <div className="w-full max-w-md flex flex-col gap-4">
               <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="图标前置" subtitle="彩色圆形图标" />
               <ListItem lead={{ kind: "avatar", src: avatar }} title="头像前置" subtitle="在线" />
               <ListItem lead={{ kind: "image", src: "https://i.pravatar.cc/44?img=30" }} title="图片前置" subtitle="方形图片 44×44" />
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={LISTITEM_PROPS} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section title="DescriptionItem" description="展示详情字段的名称、内容和可选操作。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_DESCITEM_USAGE}>
+      <Section title="例子">
+        <ExampleGrid>
+          <DocExample id="descriptionitem" title="DescriptionItem" summary="详情字段：灰色标签加主内容，左侧可放图标。" code={CODE_DESCITEM_USAGE}>
             <div className="w-full max-w-md">
-              <DescriptionItem
-                label="邮箱"
-                content="jane@example.com"
-                lead={{ kind: "icon", icon: <LetterBoldDuotone size={20} />, color: "purple" }}
-              />
+              <DescriptionItem label="邮箱" content="jane@example.com" lead={{ kind: "icon", icon: <LetterBoldDuotone size={20} />, color: "purple" }} />
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={DESCITEM_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="ListGroup" description="将一组条目组织在卡片内，可通过页签切换内容。">
-        <SubSection title="不带页签" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            纯列表模式：title + subtitle + badge + 一组 items。
-          </p>
-          <PreviewBlock code={CODE_LISTGROUP_NO_TAB} minHeight={300}>
+          </DocExample>
+          <DocExample id="contactitem" title="ContactItem" summary="联系人一行：头像、最新消息、时间和未读数。" code={CODE_CONTACT_USAGE}>
             <div className="w-full max-w-md">
+              <ContactItem avatar={avatar} name="林晓" message="明天见！" time="10:30" unreadCount={2} online />
+            </div>
+          </DocExample>
+          <DocExample id="notificationitem" title="NotificationItem" summary="未读通知用浅黄底。传了 onMarkRead 才出现已读按钮。" code={CODE_NOTIF_USAGE} minHeight={200}>
+            <div className="w-full max-w-md">
+              <NotificationItem tag="系统" time="2 小时前" title="你的订单已发货" body="物流单号：1Z999AA10123456784" unread onMarkRead={() => {}} />
+            </div>
+          </DocExample>
+          <DocExample id="profilecard" title="ProfileCard" summary="普通和选中是两种身份入口。选中态带主题色。" code={CODE_PROFILE_USAGE} minHeight={200}>
+            <div className="w-full max-w-md flex flex-col gap-3">
+              <ProfileCard avatar={avatar} name="林晓" subtitle="管理员" />
+              <ProfileCard avatar={avatar2} name="已选中" subtitle="使用中" state="selected" />
+            </div>
+          </DocExample>
+          <DocExample id="listgroup" title="ListGroup" summary="可以只放徽标，也可以加上全部、未读、已收藏三个切换。" code={`${CODE_LISTGROUP_NO_TAB}\n${CODE_LISTGROUP_WITH_TAB}`} minHeight={300}>
+            <div className="flex w-full flex-col gap-4">
               <ListGroup
                 title="收藏"
                 subtitle="已收藏的内容"
-                badge={<Label color="purple">3</Label>}
+                badge={<Label color="blue">3</Label>}
                 items={
                   <>
                     <ListItem lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }} title="收入" value="$24,500" />
@@ -231,16 +213,6 @@ export default function ListCasePage() {
                   </>
                 }
               />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="带页签" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            头部嵌入 tab：传 <InlineCode>tabs</InlineCode> + <InlineCode>activeTab</InlineCode> + <InlineCode>onTabChange</InlineCode> 即可。
-          </p>
-          <PreviewBlock code={CODE_LISTGROUP_WITH_TAB} minHeight={300}>
-            <div className="w-full max-w-md">
               <ListGroup
                 title="动态"
                 tabs={[
@@ -258,62 +230,17 @@ export default function ListCasePage() {
                 }
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={LISTGROUP_PROPS} />
-        </SubSection>
+          </DocExample>
+        </ExampleGrid>
       </Section>
 
-      <Section title="ContactItem" description="展示联系人、最新消息、时间和未读状态。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_CONTACT_USAGE}>
-            <div className="w-full max-w-md">
-              <ContactItem avatar={avatar} name="林晓" message="明天见！" time="10:30" unreadCount={2} online />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={CONTACT_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="NotificationItem" description="展示通知标题、正文、时间和已读状态。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_NOTIF_USAGE} minHeight={200}>
-            <div className="w-full max-w-md">
-              <NotificationItem
-                tag="系统"
-                time="2 小时前"
-                title="你的订单已发货"
-                body="物流单号：1Z999AA10123456784"
-                unread
-                onMarkRead={() => {}}
-              />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={NOTIF_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="ProfileCard" description="展示当前成员信息，作为身份或账号切换入口。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_PROFILE_USAGE} minHeight={200}>
-            <div className="w-full max-w-md flex flex-col gap-3">
-              <ProfileCard avatar={avatar} name="林晓" subtitle="管理员" />
-              <ProfileCard avatar={avatar2} name="已选中" subtitle="使用中" state="selected" />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={PROFILE_PROPS} />
-        </SubSection>
+      <Section title="API">
+        <ApiBlock id="listitem" title="ListItem" rows={LISTITEM_PROPS} />
+        <ApiBlock id="descriptionitem" title="DescriptionItem" rows={DESCITEM_PROPS} />
+        <ApiBlock id="listgroup" title="ListGroup" rows={LISTGROUP_PROPS} />
+        <ApiBlock id="contactitem" title="ContactItem" rows={CONTACT_PROPS} />
+        <ApiBlock id="notificationitem" title="NotificationItem" rows={NOTIF_PROPS} />
+        <ApiBlock id="profilecard" title="ProfileCard" rows={PROFILE_PROPS} />
       </Section>
     </div>
   );

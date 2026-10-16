@@ -53,7 +53,7 @@ function describeArc(cx: number, cy: number, r: number, startCss: number, endCss
 export function MultilayerDonutChart({
   layers,
   sweep = 270, motion = "auto", activeIndex, ariaLabel = "多层环形图",
-  accent = "purple",
+  accent = "blue",
   centerValue,
   trend,
   trendDirection,

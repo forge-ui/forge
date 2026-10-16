@@ -19,7 +19,7 @@ interface MeterChartProps {
 
 export function MeterChart({
   segments,
-  accent = "purple",
+  accent = "blue",
   trend,
   trendDirection,
   subtitle,

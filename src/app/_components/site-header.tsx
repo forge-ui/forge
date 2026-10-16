@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MagniferLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
 import { asset } from "@/lib/asset";
+import { SiteSearch } from "./site-search";
 
 const tabs = [
   { href: "/docs/quick-start", label: "快速开始" },
   { href: "/components", label: "组件" },
+  { href: "/cases", label: "组件案例" },
   { href: "/templates", label: "模板" },
 ] as const;
 
@@ -35,9 +36,7 @@ export function SiteHeader() {
             {tabs.map((t) => {
               const active = t.href === "/docs/quick-start"
                 ? pathname === "/docs" || pathname.startsWith("/docs/")
-                : t.href === "/components"
-                  ? pathname === "/components" || pathname.startsWith("/components/") || pathname === "/cases" || pathname.startsWith("/cases/")
-                  : pathname === t.href || pathname.startsWith(t.href + "/");
+                : pathname === t.href || pathname.startsWith(t.href + "/");
               return (
                 <Link
                   key={t.label}
@@ -56,18 +55,8 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <div className="hidden flex-1 items-center justify-end gap-3 md:flex xl:gap-6">
-            <button
-              type="button"
-              className="relative hidden h-9 w-64 items-center rounded-lg bg-black/[0.04] pl-9 pr-3 text-left text-sm text-fg-grey-700 transition-colors hover:bg-black/[0.06] xl:flex"
-            >
-              <MagniferLinear
-                size={14}
-                color="#71717A"
-                className="absolute left-3 top-1/2 -translate-y-1/2"
-              />
-              <span className="flex-1 truncate">搜索文档...</span>
-            </button>
+          <SiteSearch />
+          <div className="hidden items-center md:flex">
             <a
               href="https://github.com/forge-ui/forge"
               target="_blank"

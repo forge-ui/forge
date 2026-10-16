@@ -2,8 +2,8 @@
 
 import { FileTypeIcon, FileCard } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const designFiles = ["fig", "psd", "ai", "eps", "jpg", "png", "gif", "svg"];
 const documentFiles = ["pdf", "doc", "txt", "xls", "ppt", "zip", "rar"];
@@ -48,44 +48,39 @@ export default function FileTypeCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="文件展示"
-        hint="按文件类型展示图标、名称、大小和上传状态。"
+        hint="图标按扩展名区分。文件卡片在图标旁边加上名称、大小和上传状态。"
       />
 
-      <Section
-        title="FileTypeIcon"
-        description="根据文件扩展名显示对应图标。"
-      >
-        <SubSection title="导入组件" stack>
+      <Section title="用法" description="传入文件名，组件按后缀选图标。不认识的后缀用文本图标。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            传 <InlineCode>fileName</InlineCode>，组件自己取 ext 查表。未知后缀回落到 txt。
-          </p>
-          <PreviewBlock code={CODE_ICON_USAGE} minHeight={140}>
-            <FileTypeIcon fileName="design.fig" />
-          </PreviewBlock>
+        <SubSection title="最小示例" stack>
+          <DocExample id="filetypeicon" title="FileTypeIcon" summary="按文件名选图标。dim 把图标变淡，用在上传进行中。" code={`${CODE_ICON_USAGE}\n${CODE_ICON_DIM}`} minHeight={140}>
+            <div className="flex items-center gap-4">
+              <FileTypeIcon fileName="design.fig" />
+              <FileTypeIcon fileName="design.fig" dim />
+            </div>
+          </DocExample>
         </SubSection>
+      </Section>
 
+      <Section title="例子" description="每种扩展名的图标不一样，所以按设计、文档和媒体分开列。上传状态只在文件卡片上演示一次。">
         <SubSection title="设计与图片" stack>
           <div className="flex flex-wrap items-start gap-3">
             {designFiles.map((ext) => <IconTile key={ext} ext={ext} />)}
           </div>
         </SubSection>
-
         <SubSection title="文档" stack>
           <div className="flex flex-wrap items-start gap-3">
             {documentFiles.map((ext) => <IconTile key={ext} ext={ext} />)}
           </div>
         </SubSection>
-
         <SubSection title="媒体" stack>
           <div className="flex flex-wrap items-start gap-3">
             {mediaFiles.map((ext) => <IconTile key={ext} ext={ext} />)}
           </div>
         </SubSection>
-
         <SubSection title="文件夹" stack>
           <div className="flex flex-wrap items-start gap-3">
             <Labeled label="folder">
@@ -93,49 +88,19 @@ export default function FileTypeCasePage() {
             </Labeled>
           </div>
         </SubSection>
-
-        <SubSection title="弱化" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>dim</InlineCode> 让图标半透明，用于上传中态。
-          </p>
-          <PreviewBlock code={CODE_ICON_DIM} minHeight={140}>
-            <FileTypeIcon fileName="design.fig" dim />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={ICON_PROPS} />
-        </SubSection>
+        <DocExample id="filecard" title="FileCard" summary="已上传、上传中、完成和失败是同一张文件卡片。" code={`${CODE_FILECARD_USAGE}\n${CODE_FILECARD_STATES}`} minHeight={220}>
+          <div className="flex w-full flex-col gap-2">
+            <FileCard file={{ id: "1", name: "brief.pdf", size: "2.4 MB", state: "uploaded" }} onRemove={() => {}} />
+            <FileCard file={{ id: "2", name: "upload.pdf", size: "1.2 MB", state: "uploading" }} />
+            <FileCard file={{ id: "3", name: "success.pdf", size: "1.2 MB", state: "success" }} onRemove={() => {}} />
+            <FileCard file={{ id: "4", name: "error.pdf", size: "1.2 MB", state: "error" }} onRetry={() => {}} onRemove={() => {}} />
+          </div>
+        </DocExample>
       </Section>
 
-      <Section
-        title="FileCard"
-        description="展示文件名称、大小、类型及上传状态。"
-      >
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_FILECARD_USAGE}>
-            <div className="w-96">
-              <FileCard file={{ id: "1", name: "brief.pdf", size: "2.4 MB", state: "uploaded" }} onRemove={() => {}} />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="状态" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>uploading</InlineCode> 显示进度条，<InlineCode>success</InlineCode> 绿勾，<InlineCode>error</InlineCode> 显示重试。
-          </p>
-          <PreviewBlock code={CODE_FILECARD_STATES} minHeight={220}>
-            <div className="w-96 flex flex-col gap-2">
-              <FileCard file={{ id: "1", name: "upload.pdf", size: "1.2 MB", state: "uploading" }} />
-              <FileCard file={{ id: "2", name: "success.pdf", size: "1.2 MB", state: "success" }} onRemove={() => {}} />
-              <FileCard file={{ id: "3", name: "error.pdf", size: "1.2 MB", state: "error" }} onRetry={() => {}} onRemove={() => {}} />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={FILECARD_PROPS} />
-        </SubSection>
+      <Section title="API">
+        <ApiBlock id="filetypeicon" title="FileTypeIcon" rows={ICON_PROPS} />
+        <ApiBlock id="filecard" title="FileCard" rows={FILECARD_PROPS} />
       </Section>
 
     </div>

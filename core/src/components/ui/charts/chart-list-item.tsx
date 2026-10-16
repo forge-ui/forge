@@ -18,7 +18,7 @@ interface ChartListItemProps {
 
 export function ChartListItem({
   icon: Icon,
-  accent = "purple",
+  accent = "blue",
   title,
   subtitle,
   value,

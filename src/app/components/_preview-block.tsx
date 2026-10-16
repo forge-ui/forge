@@ -15,11 +15,13 @@ export function PreviewBlock({
   code,
   className,
   minHeight = 160,
+  codeOnly = false,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
   code: string;
   className?: string;
   minHeight?: number;
+  codeOnly?: boolean;
 }) {
   const lines = code.split("\n");
   const collapsible = lines.length >= COLLAPSIBLE_MIN_LINES;
@@ -43,16 +45,16 @@ export function PreviewBlock({
         className,
       )}
     >
-      {/* Preview 区：白底，组件居中 */}
-      <div
-        className="flex flex-wrap items-center justify-center gap-3 bg-white px-6 py-10"
-        style={{ minHeight: minHeight }}
-      >
-        {children}
-      </div>
+      {codeOnly ? null : (
+        <div
+          className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-center gap-3 overflow-hidden bg-white px-4 py-8"
+          style={{ minHeight: minHeight }}
+        >
+          {children}
+        </div>
+      )}
 
-      {/* Code 区：浅灰底 + 默认折叠 */}
-      <div className="relative border-t border-fg-grey-200 bg-fg-grey-50">
+      <div className={cn("relative bg-fg-grey-50", !codeOnly && "border-t border-fg-grey-200")}>
         <button
           type="button"
           onClick={handleCopy}
@@ -77,7 +79,7 @@ export function PreviewBlock({
                   <span className="w-12 shrink-0 select-none pr-4 text-right text-fg-grey-400">
                     {i + 1}
                   </span>
-                  <span className="flex-1 whitespace-pre">
+                  <span className="whitespace-pre">
                     {line || "\u00A0"}
                   </span>
                 </div>

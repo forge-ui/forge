@@ -56,7 +56,7 @@ function DemoFilterPanel({ close }: { close: () => void }) {
  * Accepts a `color` prop so the page can render purple / blue / black variants.
  */
 export function ToolbarInteractiveDemo({
-  color = "purple",
+  color = "blue",
 }: {
   color?: ToolbarColor;
 }) {

@@ -24,7 +24,7 @@ interface DonutChartProps {
   onSegmentToggle?: (index: number) => void;
   motion?: MotionPreference;
   ariaLabel?: string;
-  /** Accent color drives segment colors when not explicitly set. Default "purple". */
+  /** Accent color drives segment colors when not explicitly set. Default "blue". */
   accent?: AccentColor;
   centerValue?: string;
   trend?: string;
@@ -44,7 +44,7 @@ const sizeMap = {
 export function DonutChart({
   segments,
   interactive = false, activeIndex, onActiveIndexChange, onSegmentToggle, motion = "auto", ariaLabel = "分类占比",
-  accent = "purple",
+  accent = "blue",
   centerValue,
   trend,
   trendDirection,

@@ -157,7 +157,7 @@ export default function ModalCasePage() {
                 icon={<DangerTriangleBold size={32} color="currentColor" />}
               />
               <ConfirmationDialog
-                color="purple"
+                color="blue"
                 layout="spread"
                 title="立即升级？"
                 description="每月 ¥88，解锁全部专业版功能"

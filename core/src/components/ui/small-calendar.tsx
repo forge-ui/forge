@@ -30,7 +30,7 @@ export interface SmallCalendarEvent {
 export function SmallCalendar({
   title = "日历",
   subtitle = "本月日程",
-  color = "purple",
+  color = "blue",
   events = [],
   onMenuClick,
   width,
@@ -171,7 +171,7 @@ export function SmallCalendar({
                   key={`${e.title}-${i}`}
                   title={e.title}
                   timeRange={e.timeRange}
-                  color={e.color ?? "purple"}
+                  color={e.color ?? "blue"}
                   avatars={e.avatars ?? []}
                   overflowCount={e.overflowCount}
                   className="w-full"

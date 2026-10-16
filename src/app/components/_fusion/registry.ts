@@ -19,5 +19,5 @@ export function officialCategory(item: FusionCatalogItem) {
   return categoryOverrides[item.id] ?? item.family;
 }
 export function officialHref(item: FusionCatalogItem) {
-  return `/components/${officialCategory(item)}#interaction-${item.id === "F03" ? "178" : item.id}`;
+  return `/cases/${officialCategory(item)}#interaction-${item.id === "F03" ? "178" : item.id}`;
 }

@@ -38,7 +38,7 @@ function Step({
   return (
     <section className="flex flex-col gap-3">
       <div className="flex items-baseline gap-3">
-        <span className="font-display text-2xl font-semibold text-fg-violet">{n}</span>
+        <span className="font-display text-2xl font-semibold text-fg-blue">{n}</span>
         <h2 className="font-display text-xl font-semibold tracking-fg text-fg-black">{title}</h2>
       </div>
       {caption && (
@@ -121,7 +121,7 @@ export default function QuickStartPage() {
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-fg-grey-200 pt-6 text-sm">
         <Link
           href="/docs/installation"
-          className="font-semibold text-fg-violet underline underline-offset-4 hover:text-fg-violet-700"
+          className="font-semibold text-fg-blue underline underline-offset-4 hover:text-fg-blue-700"
         >
           详细安装说明 →
         </Link>

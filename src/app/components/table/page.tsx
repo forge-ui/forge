@@ -33,15 +33,13 @@ import {
 import type {
   ColumnDef,
   StatusBadgeColor,
-  StatusDotColor,
   ProgressBadgeColor,
-  ProgressBarColor,
   AvatarInitialColor,
 } from "@forge-ui-official/core";
-import { AddCircleLinear, StarLinear, CheckCircleLinear, CardBold } from "@forge-ui-official/core/icons";
-import { PageHeading, Section, SubSection, SubSectionGrid } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { AddCircleLinear, CheckCircleLinear, CardBold } from "@forge-ui-official/core/icons";
+import { PageHeading, Section, SubSection } from "../_shared";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 type OrderRow = {
   invoice: string;
@@ -157,14 +155,6 @@ const CODE_IMPORT = `import {
   type ColumnDef,
 } from "@forge-ui-official/core";`;
 
-const CODE_STATUS_USAGE = `<StatusBadge label="待处理" color="yellow" />
-<StatusBadge label="Processing" color="cyan" />
-<StatusBadge label="已完成" color="green" />
-<StatusBadge label="Refund" color="red" />
-<StatusBadge label="Premium" color="purple" />
-<StatusBadge label="信息" color="blue" />
-<StatusBadge label="Draft" color="grey" />`;
-
 const CODE_PROGRESS_USAGE = `<ProgressBadge label="+12%" color="green" />
 <ProgressBadge label="-5%" color="red" />
 <ProgressBadge label="0%" color="grey" />`;
@@ -194,7 +184,7 @@ const CODE_CIRCLE_IMG = `<CellImageText
 />`;
 
 const CODE_USER = `<div className="flex items-center gap-2">
-  <Avatar initials="IB" color="purple" size="md" />
+  <Avatar initials="IB" color="blue" size="md" />
   <div className="flex flex-col">
     <span className="text-fg-black text-sm font-semibold">李文</span>
     <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
@@ -257,17 +247,6 @@ const CODE_ACTION = `// 图标组（mail/phone/chat/eye/pen/trash + kebab）
 
 const CODE_RATING = `<CellRating score="5.0" />`;
 
-const CODE_COLUMNS = `const columns: ColumnDef<OrderRow>[] = [
-  { key: "invoice", header: "Invoice", sortable: true, width: "w-28",
-    render: (row) => <CellText>{row.invoice}</CellText> },
-  { key: "product", header: "商品", flex: true, // 身份列，最宽 280px
-    render: (row) => <CellImageText src={row.image} title={row.product} /> },
-  { key: "status", header: "状态", width: "w-32",
-    render: (row) => <StatusBadge label={row.status} color={row.statusColor} /> },
-  { key: "actions", header: "", width: "w-16",
-    render: () => <CellKebabMenu /> },
-];`;
-
 const CODE_DATATABLE_USAGE = `const [selectedRowKeys, setSelectedRowKeys] = useState<Set<Key>>(new Set());
 
 <DataTable<OrderRow>
@@ -285,10 +264,6 @@ const CODE_DATATABLE_USAGE = `const [selectedRowKeys, setSelectedRowKeys] = useS
   totalPages={16}
   paginationLabel="Showing 1-3 from 156"
 />`;
-
-const CODE_DATATABLE_COLORS = `<DataTable color="purple" ... />
-<DataTable color="blue" ... />
-<DataTable color="black" ... />`;
 
 const CODE_FULLWIDTH_USAGE = `<FullWidthTable<OrderRow>
   title="近期订单"
@@ -332,7 +307,7 @@ const STATUS_DOT_PROPS: ApiTableRow[] = [
 const PROGRESS_BAR_PROPS: ApiTableRow[] = [
   { attr: "value", type: "string", defaultValue: "—", description: "左侧主数值（如 $400）。" },
   { attr: "percent", type: "number", defaultValue: "0", description: "0-100 的进度百分比，自动 clamp。" },
-  { attr: "color", type: "ProgressBarColor", defaultValue: "'purple'", description: "填充色，7 色。" },
+  { attr: "color", type: "ProgressBarColor", defaultValue: "'blue'", description: "填充色，7 色。" },
 ];
 
 const NUMBER_PROPS: ApiTableRow[] = [
@@ -437,270 +412,18 @@ export default function TableCasePage() {
         hint="按行列展示数据，支持选择、排序、分页和自定义单元格。"
       />
 
-      <Section
-        title="导入组件"
-        description="从 @forge-ui-official/core 统一导入表格相关组件。"
-      >
-        <CodeBlock code={CODE_IMPORT} />
-      </Section>
-
-      <Section
-        title="表头单元格"
-        description="展示列名，支持选择框、图标和排序操作。"
-      >
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_HEADER_CELL} minHeight={120}>
-            <div className="w-56">
-              <TableCell
-                variant="header"
-                checkbox
-                leadIcon={<CardBold size={20} color="var(--fg-grey-500)" />}
-                sortable
-              >
-                商品
-              </TableCell>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={HEADER_CELL_PROPS} />
+      <Section title="用法" description="从一张带勾选和分页的订单表开始。">
+        <SubSection title="导入" stack>
+          <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-      </Section>
-
-      <Section
-        title="数据单元格"
-        description="展示文本、头像、状态、数值和操作等单元格内容。"
-      >
-        <SubSectionGrid cols={2}>
-        <SubSection title="1 · Reg Text" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            纯文本系。CellText（主） / CellMuted（辅） / CellTextSubtitle（可带副标题）。
-          </p>
-          <PreviewBlock code={CODE_REG_TEXT} minHeight={220}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellText>项目概览</CellText></CellPreviewRow>
-              <CellPreviewRow><CellMuted>补充说明</CellMuted></CellPreviewRow>
-              <CellPreviewRow><CellTextSubtitle title="项目概览" subtitle="补充说明" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={REGTEXT_PROPS} />
-        </SubSection>
-
-        <SubSection title="2 · Square Img" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            方形缩略图 + 文字。常用于商品、封面列。
-          </p>
-          <PreviewBlock code={CODE_SQUARE_IMG} minHeight={140}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow>
-                <CellImageText src={asset("/images/stat-card.png")} title="手工收纳包" subtitle="另有 3 件商品" />
-              </CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={IMAGETEXT_PROPS} />
-        </SubSection>
-
-        <SubSection title="3 · Circle Img" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            圆形缩略图 + 文字。CellImageText 的 <InlineCode>rounded=&quot;full&quot;</InlineCode> 变体，常用于国旗、头像。
-          </p>
-          <PreviewBlock code={CODE_CIRCLE_IMG} minHeight={140}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow>
-                <CellImageText src={asset("/images/stat-card.png")} title="澳大利亚" subtitle="ilahmbudi@mail.co..." rounded="full" />
-              </CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={IMAGETEXT_PROPS} />
-        </SubSection>
-
-        <SubSection title="4 · User" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            头像 + 姓名（可选邮箱）。直接用 Avatar 组合，不需要专用 Cell —— Avatar 的 API 见 <InlineCode>/components/table</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_USER} minHeight={140}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow>
-                <div className="flex items-center gap-2">
-                  <Avatar initials="IB" color="purple" size="md" />
-                  <div className="flex flex-col">
-                    <span className="text-fg-black text-sm font-semibold">李文</span>
-                    <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
-                  </div>
-                </div>
-              </CellPreviewRow>
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="5 · User Group" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            重叠头像组。<InlineCode>overflowCount</InlineCode> 控制超出徽章数值。
-          </p>
-          <PreviewBlock code={CODE_USER_GROUP} minHeight={140}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow>
-                <AvatarGroup overflowCount={24}>
-                  <Avatar initials="IB" color="purple" size="sm" />
-                  <Avatar initials="WW" color="blue" size="sm" />
-                  <Avatar initials="EH" color="green" size="sm" />
-                </AvatarGroup>
-              </CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={USERGROUP_PROPS} />
-        </SubSection>
-
-        <SubSection title="6 · Badge (Circle Icon + Text)" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            小圆 icon 徽章 + 文字。多用于项目、分类列 —— 底层是 <InlineCode>CircleIcon</InlineCode> + 普通文本，API 见 <InlineCode>/components/badge</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_BADGE} minHeight={140}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow>
-                <div className="flex items-center gap-2">
-                  <CircleIcon color="green" size="sm"><CheckCircleLinear size={14} color="var(--fg-green-500)" /></CircleIcon>
-                  <div className="flex flex-col">
-                    <span className="text-fg-black text-sm font-semibold">项目名称</span>
-                    <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
-                  </div>
-                </div>
-              </CellPreviewRow>
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="7 · Files" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            文件类型 icon + 文件名 + 大小。走 <InlineCode>FileTypeIcon</InlineCode>，按扩展名自动配图。
-          </p>
-          <PreviewBlock code={CODE_FILES} minHeight={220}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellFile name="annual-report.xlsx" size="400 kb" /></CellPreviewRow>
-              <CellPreviewRow><CellFile name="deck.pptx" size="400 kb" /></CellPreviewRow>
-              <CellPreviewRow><CellFile name="cover.png" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={FILE_PROPS} />
-        </SubSection>
-
-        <SubSection title="8 · Numbers" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            数字列，两种主视觉：<InlineCode>trend</InlineCode> 箭头 或 <InlineCode>badge</InlineCode> 涨跌徽章；<InlineCode>subdued</InlineCode> 可弱化主数值。
-          </p>
-          <PreviewBlock code={CODE_NUMBERS} minHeight={140}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellNumber value="$400" trend="up" /></CellPreviewRow>
-              <CellPreviewRow><CellNumber value="$400" badge="+10%" badgeColor="green" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={NUMBER_PROPS} />
-          <p className="text-xs leading-[1.7] text-fg-grey-700 mt-2">
-            底层涨跌徽章 <InlineCode>ProgressBadge</InlineCode> 可独立使用（用在 StatCard / Header 标题旁）：
-          </p>
-          <PreviewBlock code={CODE_PROGRESS_USAGE} minHeight={100}>
-            <ProgressBadge label="+12%" color="green" />
-            <ProgressBadge label="-5%" color="red" />
-            <ProgressBadge label="0%" color="grey" />
-          </PreviewBlock>
-          <ApiTable rows={PROGRESS_PROPS} />
-        </SubSection>
-
-        <SubSection title="9 · Label Badge" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            默认浅底描边徽章。表格状态优先 green / yellow / red / grey；<InlineCode>{'variant="solid"'}</InlineCode> 才是实心白字胶囊。
-          </p>
-          <PreviewBlock code={CODE_LABEL_BADGE} minHeight={120}>
-            <StatusBadge label="示例文本" color="purple" />
-          </PreviewBlock>
-          <ApiTable rows={STATUS_PROPS} />
-        </SubSection>
-
-        <SubSection title="10 · Status Dot" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            左圆点（带浅色 ring）+ 文字。对应 Figma Status 分类，常用于在线/审核等状态。<InlineCode>emphasis</InlineCode> 控强弱、<InlineCode>color</InlineCode> 切 8 色，见 API 表。
-          </p>
-          <PreviewBlock code={CODE_STATUS_DOT} minHeight={120}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellStatusDot label="Text" color="purple" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={STATUS_DOT_PROPS} />
-        </SubSection>
-
-        <SubSection title="11 · Progress Bar" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            数值 + 轨道 + 百分比。常用于 Savings、达成率列。完整 7 色见 API 表 <InlineCode>color</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_PROGRESS_BAR} minHeight={120}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-sm">
-              <CellPreviewRow><CellProgressBar value="$400" percent={45} color="purple" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={PROGRESS_BAR_PROPS} />
-        </SubSection>
-
-        <SubSection title="12 · Code" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            单色编号码文本，如 <InlineCode>#302012</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_CODE_CELL} minHeight={120}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellCode code="#302012" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={CODE_CELL_PROPS} />
-        </SubSection>
-
-        <SubSection title="13 · Action" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 变体：icon 组（mail/phone/chat/eye/pen/trash + kebab） / 纯 kebab / 行内 CellLink。
-          </p>
-          <PreviewBlock code={CODE_ACTION} minHeight={260}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-lg">
-              <CellPreviewRow>
-                <CellActions actions={["mail", "phone", "chat", "eye", "pen", "trash"]} />
-              </CellPreviewRow>
-              <CellPreviewRow><CellKebabMenu /></CellPreviewRow>
-              <CellPreviewRow>
-                <div className="flex items-center gap-3">
-                  <CellLink label="链接" color="green" />
-                  <CellLink label="链接" color="red" />
-                </div>
-              </CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={ACTIONS_PROPS} />
-        </SubSection>
-
-        <SubSection title="14 · Rating" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            星 + 分值。<InlineCode>score</InlineCode> 接受字符串或数字。
-          </p>
-          <PreviewBlock code={CODE_RATING} minHeight={120}>
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
-              <CellPreviewRow><CellRating score="5.0" /></CellPreviewRow>
-            </div>
-          </PreviewBlock>
-          <ApiTable rows={RATING_PROPS} />
-        </SubSection>
-        </SubSectionGrid>
-      </Section>
-
-      <Section
-        title="DataTable"
-        description="展示结构化数据，支持行选择、分页和自定义内容。"
-      >
-        <SubSection title="列定义" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            用 <InlineCode>ColumnDef&lt;Row&gt;[]</InlineCode> 声明列，render 里返回任意 JSX（推荐 Cell* 预设）。
-          </p>
-          <CodeBlock code={CODE_COLUMNS} />
-        </SubSection>
-
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            下方示例为蓝色主题 + 选中 2 行 + 底部翻页的典型订单表。
-          </p>
-          <PreviewBlock code={CODE_DATATABLE_USAGE} minHeight={480}>
+        <SubSection title="最小示例" stack>
+          <DocExample
+            id="datatable"
+            title="DataTable"
+            summary="蓝色订单表，带行选择、表头按钮和底部分页。"
+            code={CODE_DATATABLE_USAGE}
+            minHeight={480}
+          >
             <div className="w-full overflow-x-auto">
               <DataTable<OrderRow>
                 title="近期订单"
@@ -724,66 +447,215 @@ export default function TableCasePage() {
                 paginationLabel="Showing 1-3 from 156"
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="颜色" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 种主色：<InlineCode>purple</InlineCode>（默认）/ <InlineCode>blue</InlineCode> / <InlineCode>black</InlineCode>，影响 checkbox 与按钮。
-          </p>
-          <CodeBlock code={CODE_DATATABLE_COLORS} />
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={DATATABLE_PROPS} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section
-        title="FullWidthTable"
-        description="适合宽屏数据管理页，可切换每页显示数量。"
-      >
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            继承 DataTable 全部能力，新增 <InlineCode>showRowCount</InlineCode> / <InlineCode>rowCountOptions</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_FULLWIDTH_USAGE} minHeight={520}>
-            <div className="w-full overflow-x-auto">
-              <FullWidthTable<OrderRow>
-                title="近期订单"
-                subtitle="示例文本"
-                badge={<Label color="green" size="sm" variant="outline">徽章</Label>}
-                color="black"
-                showCheckbox
-                checkboxColor="purple"
-                getRowKey={(row) => row.invoice}
-                selectedRowKeys={new Set(["#302011"])}
-                headerActions={
-                  <div className="flex items-center gap-3">
-                    <ToolbarDatepicker label="选择日期" />
-                    <ToolbarFilterButton label="筛选条件" />
-                    <Button color="black" size="md" iconLeft={<AddCircleLinear size={20} color="white" />}>
-                      Button
-                    </Button>
-                  </div>
-                }
-                showRowCount
-                currentRowCount={10}
-                rowCountOptions={[10, 25, 50]}
-                showPagination
-                currentPage={1}
-                totalPages={32}
-                totalRows={156}
-                columns={orderColumns}
-                rows={orderRows}
-              />
+      <Section title="例子" description="表头、十四种单元格和宽表各留一个。">
+        <ExampleGrid>
+          <DocExample id="headercell" title="Header Cell" summary="表头同时放勾选框、前置图标、列名和排序。" code={CODE_HEADER_CELL} minHeight={120}>
+            <div className="w-56">
+              <TableCell
+                variant="header"
+                checkbox
+                leadIcon={<CardBold size={20} color="var(--fg-grey-500)" />}
+                sortable
+              >
+                商品
+              </TableCell>
             </div>
-          </PreviewBlock>
-        </SubSection>
+          </DocExample>
 
-        <SubSection title="API" stack>
-          <ApiTable rows={FULLWIDTH_PROPS} />
-        </SubSection>
+          <DocExample id="regtext" title="1 · Reg Text" summary="主文本、辅助说明和带副标题的两行文字。" code={CODE_REG_TEXT} minHeight={220}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow><CellText>项目概览</CellText></CellPreviewRow>
+              <CellPreviewRow><CellMuted>补充说明</CellMuted></CellPreviewRow>
+              <CellPreviewRow><CellTextSubtitle title="项目概览" subtitle="补充说明" /></CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="squareimg" title="2 · Square Img" summary="方形缩略图配标题和副标题，适合商品和封面。" code={CODE_SQUARE_IMG} minHeight={140}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow>
+                <CellImageText src={asset("/images/stat-card.png")} title="手工收纳包" subtitle="另有 3 件商品" />
+              </CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="circleimg" apiId="squareimg" title="3 · Circle Img" summary="圆形缩略图配标题和副标题，适合国旗和头像。" code={CODE_CIRCLE_IMG} minHeight={140}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow>
+                <CellImageText src={asset("/images/stat-card.png")} title="澳大利亚" subtitle="ilahmbudi@mail.co..." rounded="full" />
+              </CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="user" apiId="datatable" title="4 · User" summary="头像、姓名和邮箱排成成员列。" code={CODE_USER} minHeight={140}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow>
+                <div className="flex items-center gap-2">
+                  <Avatar initials="IB" color="blue" size="md" />
+                  <div className="flex flex-col">
+                    <span className="text-fg-black text-sm font-semibold">李文</span>
+                    <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
+                  </div>
+                </div>
+              </CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="usergroup" title="5 · User Group" summary="重叠头像，末尾用数字标出其余人数。" code={CODE_USER_GROUP} minHeight={140}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow>
+                <AvatarGroup overflowCount={24}>
+                  <Avatar initials="IB" color="purple" size="sm" />
+                  <Avatar initials="WW" color="blue" size="sm" />
+                  <Avatar initials="EH" color="green" size="sm" />
+                </AvatarGroup>
+              </CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="badge" apiId="datatable" title="6 · Badge (Circle Icon + Text)" summary="圆形图标配分类名称和说明。" code={CODE_BADGE} minHeight={140}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow>
+                <div className="flex items-center gap-2">
+                  <CircleIcon color="green" size="sm"><CheckCircleLinear size={14} color="var(--fg-green-500)" /></CircleIcon>
+                  <div className="flex flex-col">
+                    <span className="text-fg-black text-sm font-semibold">项目名称</span>
+                    <span className="text-fg-grey-700 text-xs">ilahmbudi@mail.co...</span>
+                  </div>
+                </div>
+              </CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="files" title="7 · Files" summary="按扩展名显示文件图标、文件名和大小。" code={CODE_FILES} minHeight={220}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow><CellFile name="annual-report.xlsx" size="400 kb" /></CellPreviewRow>
+              <CellPreviewRow><CellFile name="deck.pptx" size="400 kb" /></CellPreviewRow>
+              <CellPreviewRow><CellFile name="cover.png" /></CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample
+            id="numbers"
+            title="8 · Numbers"
+            summary="数值可以带方向箭头或涨跌徽章。"
+            code={`${CODE_NUMBERS}\n\n${CODE_PROGRESS_USAGE}`}
+            minHeight={260}
+          >
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow><CellNumber value="$400" trend="up" /></CellPreviewRow>
+              <CellPreviewRow><CellNumber value="$400" badge="+10%" badgeColor="green" /></CellPreviewRow>
+              <div className="flex flex-wrap items-center gap-2">
+                <ProgressBadge label="+12%" color="green" />
+                <ProgressBadge label="-5%" color="red" />
+                <ProgressBadge label="0%" color="grey" />
+              </div>
+            </div>
+          </DocExample>
+
+          <DocExample id="label" title="9 · Label Badge" summary="浅底描边的状态标签，实心样式用白字胶囊。" code={CODE_LABEL_BADGE} minHeight={120}>
+            <StatusBadge label="示例文本" color="blue" />
+          </DocExample>
+
+          <DocExample id="statusdot" title="10 · Status Dot" summary="圆点和文字表示在线、审核这类状态。" code={CODE_STATUS_DOT} minHeight={120}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow><CellStatusDot label="Text" color="blue" /></CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="progressbar" title="11 · Progress Bar" summary="数值、进度条和百分比放在同一格。" code={CODE_PROGRESS_BAR} minHeight={120}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-sm">
+              <CellPreviewRow><CellProgressBar value="$400" percent={45} color="blue" /></CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="codecell" title="12 · Code" summary="用单行编号显示订单或记录号。" code={CODE_CODE_CELL} minHeight={120}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow><CellCode code="#302012" /></CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="action" title="13 · Action" summary="图标按钮、更多菜单和行内链接都能放进行末。" code={CODE_ACTION} minHeight={260}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-lg">
+              <CellPreviewRow>
+                <CellActions actions={["mail", "phone", "chat", "eye", "pen", "trash"]} />
+              </CellPreviewRow>
+              <CellPreviewRow><CellKebabMenu /></CellPreviewRow>
+              <CellPreviewRow>
+                <div className="flex items-center gap-3">
+                  <CellLink label="链接" color="green" />
+                  <CellLink label="链接" color="red" />
+                </div>
+              </CellPreviewRow>
+            </div>
+          </DocExample>
+
+          <DocExample id="rating" title="14 · Rating" summary="星星和分值组成评分列。" code={CODE_RATING} minHeight={120}>
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-md">
+              <CellPreviewRow><CellRating score="5.0" /></CellPreviewRow>
+            </div>
+          </DocExample>
+        </ExampleGrid>
+
+        <DocExample
+          id="fullwidthtable"
+          title="FullWidthTable"
+          summary="宽表在分页旁提供每页行数切换。"
+          code={CODE_FULLWIDTH_USAGE}
+          minHeight={520}
+        >
+          <div className="w-full overflow-x-auto">
+            <FullWidthTable<OrderRow>
+              title="近期订单"
+              subtitle="示例文本"
+              badge={<Label color="green" size="sm" variant="outline">徽章</Label>}
+              color="black"
+              showCheckbox
+              checkboxColor="purple"
+              getRowKey={(row) => row.invoice}
+              selectedRowKeys={new Set(["#302011"])}
+              headerActions={
+                <div className="flex items-center gap-3">
+                  <ToolbarDatepicker label="选择日期" />
+                  <ToolbarFilterButton label="筛选条件" />
+                  <Button color="black" size="md" iconLeft={<AddCircleLinear size={20} color="white" />}>
+                    Button
+                  </Button>
+                </div>
+              }
+              showRowCount
+              currentRowCount={10}
+              rowCountOptions={[10, 25, 50]}
+              showPagination
+              currentPage={1}
+              totalPages={32}
+              totalRows={156}
+              columns={orderColumns}
+              rows={orderRows}
+            />
+          </div>
+        </DocExample>
+      </Section>
+
+      <Section title="API" description="有独立字段的单元格单独列表。">
+        <ApiBlock id="datatable" title="DataTable" rows={DATATABLE_PROPS} />
+        <ApiBlock id="fullwidthtable" title="FullWidthTable" rows={FULLWIDTH_PROPS} />
+        <ApiBlock id="headercell" title="Header Cell" rows={HEADER_CELL_PROPS} />
+        <ApiBlock id="regtext" title="1 · Reg Text" rows={REGTEXT_PROPS} />
+        <ApiBlock id="squareimg" title="方形与圆形缩略图" rows={IMAGETEXT_PROPS} />
+        <ApiBlock id="usergroup" title="5 · User Group" rows={USERGROUP_PROPS} />
+        <ApiBlock id="files" title="7 · Files" rows={FILE_PROPS} />
+        <ApiBlock id="numbers" title="8 · Numbers" rows={NUMBER_PROPS} />
+        <ApiBlock id="progressbadge" title="涨跌徽章（ProgressBadge）" rows={PROGRESS_PROPS} />
+        <ApiBlock id="label" title="9 · Label Badge" rows={STATUS_PROPS} />
+        <ApiBlock id="statusdot" title="10 · Status Dot" rows={STATUS_DOT_PROPS} />
+        <ApiBlock id="progressbar" title="11 · Progress Bar" rows={PROGRESS_BAR_PROPS} />
+        <ApiBlock id="codecell" title="12 · Code" rows={CODE_CELL_PROPS} />
+        <ApiBlock id="action" title="13 · Action" rows={ACTIONS_PROPS} />
+        <ApiBlock id="rating" title="14 · Rating" rows={RATING_PROPS} />
       </Section>
     </div>
   );

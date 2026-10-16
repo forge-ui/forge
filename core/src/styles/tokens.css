@@ -182,11 +182,11 @@
   --surface-foreground: var(--fg-black);
   --overlay: rgba(0, 10, 25, 0.40);
 
-  /* Primary (accent) */
-  --accent: var(--fg-violet);
+  /* Primary (accent) — Forge blue. Purple stays available via data-accent="purple". */
+  --accent: var(--fg-blue);
   --accent-foreground: var(--fg-white);
-  --accent-soft: var(--fg-violet-100);
-  --accent-soft-foreground: var(--fg-violet);
+  --accent-soft: var(--fg-blue-100);
+  --accent-soft-foreground: var(--fg-blue);
 
   /* Text hierarchy */
   --text-primary: var(--fg-black);
@@ -208,7 +208,7 @@
   --warning-muted: var(--fg-yellow-600);
 
   /* Interactive */
-  --focus: var(--fg-violet);
+  --focus: var(--fg-blue);
   --hover: var(--fg-grey-100);
 }
 
@@ -224,6 +224,14 @@
   --accent-soft: var(--fg-blue-100);
   --accent-soft-foreground: var(--fg-blue);
   --focus: var(--fg-blue);
+}
+
+[data-accent="purple"] {
+  --accent: var(--fg-violet);
+  --accent-foreground: var(--fg-white);
+  --accent-soft: var(--fg-violet-100);
+  --accent-soft-foreground: var(--fg-violet);
+  --focus: var(--fg-violet);
 }
 
 [data-accent="black"] {
@@ -245,10 +253,10 @@
   --surface-foreground: var(--fg-white);
   --overlay: rgba(0, 0, 0, 0.60);
 
-  --accent: var(--fg-violet);
+  --accent: var(--fg-blue);
   --accent-foreground: var(--fg-white);
-  --accent-soft: rgba(114, 57, 234, 0.2);
-  --accent-soft-foreground: var(--fg-violet-100);
+  --accent-soft: rgba(53, 83, 255, 0.2);
+  --accent-soft-foreground: var(--fg-blue-100);
 
   --text-primary: var(--fg-white);
   --text-secondary: var(--fg-grey-500);
@@ -266,8 +274,15 @@
   --warning-soft: rgba(246, 192, 2, 0.1);
   --warning-muted: var(--fg-yellow-600);
 
-  --focus: var(--fg-violet);
+  --focus: var(--fg-blue);
   --hover: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"][data-accent="purple"] {
+  --accent: var(--fg-violet);
+  --accent-soft: rgba(114, 57, 234, 0.2);
+  --accent-soft-foreground: var(--fg-violet-100);
+  --focus: var(--fg-violet);
 }
 
 /* ---

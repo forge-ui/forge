@@ -50,7 +50,7 @@ export type ProgressLabelSize = "xs" | "sm";
 
 export function ProgressBar({
   value = 0,
-  color = "purple",
+  color = "blue",
   size = "sm",
   label,
   labelVariant = "default",

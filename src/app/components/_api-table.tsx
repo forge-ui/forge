@@ -41,7 +41,7 @@ export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
               className="border-b border-fg-grey-200 last:border-0"
             >
               <td className="px-4 py-2.5 align-top">
-                <code className="font-mono text-[13px] text-fg-violet break-words">
+                <code className="font-mono text-[13px] text-fg-blue break-words">
                   {row.attr}
                 </code>
               </td>

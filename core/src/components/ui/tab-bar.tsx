@@ -39,7 +39,7 @@ export interface TabItem {
 
 export function TabBar({
   tabs,
-  color = "purple",
+  color = "blue",
   surface = "inline",
   appearance = "underline",
   progress,

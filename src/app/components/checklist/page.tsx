@@ -2,8 +2,8 @@
 
 import { Checklist, ChecklistItem } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import { Checklist, ChecklistItem } from "@forge-ui-official/core";`;
 
@@ -12,7 +12,7 @@ const LIST_PROPS: ApiTableRow[] = [
   { attr: "defaultTasks", type: "ChecklistTask[]", defaultValue: "[]", description: "非受控初始行。" },
   { attr: "onTasksChange", type: "(tasks) => void", defaultValue: "—", description: "勾选变化。" },
   { attr: "size", type: "'sm' | 'md'", defaultValue: "'md'", description: "行尺寸。" },
-  { attr: "color", type: "ChecklistColor", defaultValue: "'purple'", description: "勾选色，与 Checkbox 对齐（无 orange 别名）。" },
+  { attr: "color", type: "ChecklistColor", defaultValue: "'blue'", description: "勾选色，与 Checkbox 对齐（无 orange 别名）。" },
 ];
 
 const ITEM_PROPS: ApiTableRow[] = [
@@ -33,38 +33,31 @@ export default function ChecklistSpecPage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="待办清单"
-        hint="勾选待办事项，已完成的内容自动移到列表底部。"
+        hint="整份清单负责勾选后把完成项沉到底部。单独一行用 ChecklistItem。"
       />
 
-      <Section title="导入组件" description="从 @forge-ui-official/core 导入所需组件。">
-        <SubSection title="使用方法" stack>
+      <Section title="用法" description="传入任务数组。已完成的项会移到列表底部，再点一次可以恢复。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-      </Section>
-
-      <Section title="Checklist" description="勾选待办事项，已完成项自动移到列表底部，可再次点击恢复。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={`<Checklist defaultTasks={[{ id, label, done }]} />`} minHeight={280}>
+        <SubSection title="最小示例" stack>
+          <DocExample id="checklist" title="Checklist" summary="defaultTasks 适合本地演示。受控时改用 tasks 和 onTasksChange。" code={`<Checklist defaultTasks={[{ id, label, done }]} />`} minHeight={280}>
             <Checklist defaultTasks={DEMO} />
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <ApiTable rows={LIST_PROPS} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section title="ChecklistItem" description="展示一项可勾选的待办事项。">
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            勾选视觉跟 <InlineCode>Checkbox</InlineCode> 同一套几何；动效用 CSS，不加 Motion。
-          </p>
-          <PreviewBlock code={`<ChecklistItem label="核验冷链证书" />`} minHeight={120}>
+      <Section title="例子">
+        <ExampleGrid>
+          <DocExample id="checklistitem" title="ChecklistItem" summary="一行的勾选外观和复选框一致。划线结束后触发 onSettled。" code={`<ChecklistItem label="核验冷链证书" />`} minHeight={120}>
             <ChecklistItem label="核验冷链证书" />
-          </PreviewBlock>
-        </SubSection>
-        <SubSection title="API" stack>
-          <ApiTable rows={ITEM_PROPS} />
-        </SubSection>
+          </DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="API">
+        <ApiBlock id="checklist" title="Checklist" rows={LIST_PROPS} />
+        <ApiBlock id="checklistitem" title="ChecklistItem" rows={ITEM_PROPS} />
       </Section>
     </div>
   );

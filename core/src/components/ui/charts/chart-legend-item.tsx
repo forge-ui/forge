@@ -15,7 +15,7 @@ interface ChartLegendItemProps {
  * Inline legend row: • Label ······· $value
  * Used under donut charts as a compact label/value list.
  */
-export function ChartLegendItem({ color, accent = "purple", shade = 0, label, value }: ChartLegendItemProps) {
+export function ChartLegendItem({ color, accent = "blue", shade = 0, label, value }: ChartLegendItemProps) {
   const dotColor = color ?? accentColors[accent].ramp[shade];
   return (
     <div className="self-stretch inline-flex items-center gap-2">

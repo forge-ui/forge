@@ -151,7 +151,7 @@ export function LineChartStatCard({
   subtitle,
   theme = "white",
   size = "sm",
-  chartColor = "purple",
+  chartColor = "blue",
   chartDirection = "up",
   series,
   icon,

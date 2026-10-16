@@ -46,7 +46,7 @@ const TABBAR_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'blue' | 'black'",
-    defaultValue: "'purple'",
+    defaultValue: "'blue'",
     description: "选中态主色。",
   },
   {

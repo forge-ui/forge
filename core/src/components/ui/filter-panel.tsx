@@ -6,7 +6,7 @@ import { accentColors, type AccentColor } from "./accent-utils";
 
 export function FilterPanel({
   title = "筛选",
-  color = "purple",
+  color = "blue",
   children,
   onReset,
   onCancel,

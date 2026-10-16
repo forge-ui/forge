@@ -29,7 +29,7 @@ const HOURS = [9, 10, 11, 12, 13, 14]; // 09:00 – 14:00
 export function SmallDailyCalendar({
   title = "今日日程",
   subtitle = "时间线",
-  color = "purple",
+  color = "blue",
   events = [],
   /** Hour position of the "now" red line (e.g. 12.5 = 12:30). Set to 0 or omit to hide. */
   nowHour = 0,
@@ -118,7 +118,7 @@ export function SmallDailyCalendar({
                 <EventCard
                   title={event.title}
                   timeRange={event.timeRange}
-                  color={event.color ?? "purple"}
+                  color={event.color ?? "blue"}
                   avatars={event.avatars ?? []}
                   overflowCount={event.overflowCount}
                   className="w-full"

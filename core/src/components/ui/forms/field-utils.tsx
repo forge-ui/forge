@@ -31,7 +31,7 @@ export interface FieldClasses {
 export function getFieldClasses({
   state = "idle",
   shape = "rounded",
-  color = "purple",
+  color = "blue",
 }: {
   state?: FieldState;
   shape?: FieldShape;

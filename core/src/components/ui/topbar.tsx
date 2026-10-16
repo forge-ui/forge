@@ -15,7 +15,7 @@ export type TopBarColor = keyof typeof topbarColors;
 
 export function TopBar({
   value = 0,
-  color = "purple",
+  color = "blue",
   className,
 }: {
   value?: number;

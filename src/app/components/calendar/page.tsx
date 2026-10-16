@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import {
+  CalendarCard,
   EventTag,
   CalendarDayCell,
   EventCard,
@@ -8,13 +10,25 @@ import {
   FullCalendar,
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import {
-  EventTag, CalendarDayCell, EventCard,
+  CalendarCard, EventTag, CalendarDayCell, EventCard,
   SmallCalendar, FullCalendar,
 } from "@forge-ui-official/core";`;
+
+const CODE_CALENDAR_USAGE = `<CalendarCard value={date} onChange={setDate} />`;
+
+const CALENDAR_PROPS: ApiTableRow[] = [
+  { attr: "size", type: "'default' | 'compact'", defaultValue: "'default'", description: "compact 使用 14px 正文、24px 大日期；保留 32px 日期点击区域和六行月份空间。" },
+  { attr: "variant", type: "'card' | 'plain'", defaultValue: "'card'", description: "plain 去掉卡片表面、边框、阴影和留白，宽度随父容器。" },
+  { attr: "color", type: "ButtonColor", defaultValue: "'red'", description: "选中、今天、进度和焦点使用同一套主题色。" },
+  { attr: "value / defaultDate", type: "日期", defaultValue: "客户端今天", description: "value 受控；defaultDate 是非受控的初始日期。服务端渲染不猜测用户时区。" },
+  { attr: "onChange", type: "(date: Date) => void", defaultValue: "—", description: "返回本地日期。可翻到 1900–2100，翻月时落到当月有效日期。" },
+  { attr: "locale / labels", type: "string / Partial<CalendarCardLabels>", defaultValue: "zh-CN / 中文按钮文案", description: "日期语言和导航按钮的可访问名称。" },
+  { attr: "disabled / motion / className", type: "boolean / MotionPreference / string", defaultValue: "false / auto / ''", description: "auto 跟随系统的减少动效设置。" },
+];
 
 const CODE_EVENTTAG_USAGE = `<EventTag label="项目会议" color="purple" />
 <EventTag label="评审" color="green" variant="outline" />`;
@@ -31,7 +45,7 @@ const CODE_DAYCELL_USAGE = `<CalendarDayCell
 const CODE_EVENTCARD_USAGE = `<EventCard
   title="设计进度沟通"
   timeRange="10:00-11:00"
-  color="purple"
+  color="blue"
   avatars={[a1, a2, a3]}
   overflowCount={6}
 />`;
@@ -39,15 +53,15 @@ const CODE_EVENTCARD_USAGE = `<EventCard
 const CODE_SMALL_USAGE = `<SmallCalendar
   title="日历"
   subtitle="即将开始"
-  color="purple"
+  color="blue"
   events={events}
 />`;
 
-const CODE_FULL_USAGE = `<FullCalendar view="month" color="purple" events={events} />`;
+const CODE_FULL_USAGE = `<FullCalendar view="month" color="blue" events={events} />`;
 
 const EVENTTAG_PROPS: ApiTableRow[] = [
   { attr: "label", type: "string", defaultValue: "—", description: "事件文案。" },
-  { attr: "color", type: "'purple' | 'green' | 'red' | 'yellow' | 'blue' | 'cyan' | 'orange'", defaultValue: "'purple'", description: "7 种事件色。" },
+  { attr: "color", type: "'purple' | 'green' | 'red' | 'yellow' | 'blue' | 'cyan' | 'orange'", defaultValue: "'blue'", description: "7 种事件色。" },
   { attr: "variant", type: "'solid' | 'outline'", defaultValue: "'solid'", description: "实底 / 描边。" },
   { attr: "size", type: "'sm' | 'md'", defaultValue: "'md'", description: "尺寸。" },
   { attr: "avatar", type: "string", defaultValue: "—", description: "文案前小头像 URL。" },
@@ -65,21 +79,21 @@ const DAYCELL_PROPS: ApiTableRow[] = [
 const EVENTCARD_PROPS: ApiTableRow[] = [
   { attr: "title", type: "string", defaultValue: "—", description: "事件标题。" },
   { attr: "timeRange", type: "string", defaultValue: "—", description: "时间段文案（如 10:00-11:00）。" },
-  { attr: "color", type: "purple | blue | black | red | yellow | green | cyan | orange", defaultValue: "'purple'", description: "底部强调条颜色（8 色）。" },
+  { attr: "color", type: "purple | blue | black | red | yellow | green | cyan | orange", defaultValue: "'blue'", description: "底部强调条颜色（8 色）。" },
   { attr: "avatars", type: "string[]", defaultValue: "[]", description: "参与者头像 URL 数组。" },
   { attr: "overflowCount", type: "number", defaultValue: "—", description: "末尾 +N 数字。" },
 ];
 
 const SMALL_PROPS: ApiTableRow[] = [
   { attr: "title / subtitle", type: "string", defaultValue: "'日历' / '本月日程'", description: "卡片顶部文案。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "today 圆点与列表条的主色。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "today 圆点与列表条的主色。" },
   { attr: "events", type: "SmallCalendarEvent[]", defaultValue: "[]", description: "事件数组，day / title / timeRange / color / avatars / overflowCount。" },
   { attr: "onMenuClick", type: "() => void", defaultValue: "—", description: "右上 menu 按钮回调。" },
 ];
 
 const FULL_PROPS: ApiTableRow[] = [
   { attr: "view", type: "'month' | 'week' | 'day'", defaultValue: "'month'", description: "日历视图。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "today / header 主色。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "today / header 主色。" },
   { attr: "year / month / day", type: "number", defaultValue: "today", description: "初始时间，后续由组件内部管理。" },
   { attr: "events", type: "CalendarEvent[]", defaultValue: "[]", description: "事件数组（day / label / color / avatar? / hour?）。" },
   { attr: "detailPanel", type: "ReactNode", defaultValue: "—", description: "右侧浮层详情，传了才显示。" },
@@ -105,48 +119,32 @@ const fullEvents = [
 ];
 
 export default function CalendarCasePage() {
+  const [date, setDate] = useState<Date | undefined>(undefined);
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
         title="日历与日程"
-        hint="选择日期、浏览日程，并在月、周、日视图中查看事件。"
+        hint="先选日期。标签、单日格子、事件卡片和整月视图是不同用途，各留一个例子。"
       />
 
-    <Section title="CalendarCard API" description="支持日历翻页和日期选择，可用于独立卡片或紧凑日期弹层。">
-      <CodeBlock code={'<CalendarCard value={date} onChange={setDate} />\n\n<DropdownPanel width="w-80" className="!items-stretch">\n  <CalendarCard size="compact" variant="plain" color="blue"\n    value={date} onChange={setDate} />\n</DropdownPanel>'} />
-      <ApiTable rows={[
-        { attr: "size", type: "'default' | 'compact'", defaultValue: "'default'", description: "compact 使用 14px 正文、24px 大日期；保留 32px 日期点击区域和六行月份空间。" },
-        { attr: "variant", type: "'card' | 'plain'", defaultValue: "'card'", description: "plain 移除内外卡片表面、边框、阴影和留白，宽度随父容器。" },
-        { attr: "color", type: "ButtonColor", defaultValue: "'red'", description: "沿用 Button 主题色类型；选中、今天、进度、装饰日历、撕页和焦点统一取色。" },
-        { attr: "value / defaultDate", type: "日期", defaultValue: "客户端今天", description: "value 受控；defaultDate 非受控初始日期。SSR 不猜用户时区。" },
-        { attr: "onChange", type: "(date: Date) => void", defaultValue: "—", description: "返回本地日期；导航范围 1900–2100，翻月时截到有效日期。" },
-        { attr: "locale / labels", type: "string / Partial<CalendarCardLabels>", defaultValue: "zh-CN / 中文按钮文案", description: "日期语言与导航可访问名称。" },
-        { attr: "disabled / motion / className", type: "boolean / MotionPreference / string", defaultValue: "false / auto / ''", description: "保留现有行为；auto 遵循系统 reduced-motion。" },
-      ]} />
-    </Section>
-      <Section title="EventTag" description="在日历中标记事件，支持不同颜色、尺寸和样式。">
-        <SubSection title="导入组件" stack>
+      <Section title="用法" description="CalendarCard 自己翻月并选中一天。value 受控，不传就从客户端今天开始。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_EVENTTAG_USAGE}>
-            <EventTag label="项目会议" color="purple" />
-            <EventTag label="评审" color="green" variant="outline" />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={EVENTTAG_PROPS} />
+        <SubSection title="最小示例" stack>
+          <DocExample id="calendarcard" title="CalendarCard" summary="点日期会通过 onChange 交回本地日期。" code={CODE_CALENDAR_USAGE} minHeight={420}>
+            <CalendarCard value={date} onChange={setDate} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section title="CalendarDayCell" description="展示一天的日期和事件，区分今天、选中日期和其他月份。">
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>events</InlineCode> 数组超过 <InlineCode>maxVisible</InlineCode> 自动折叠为 +N。
-          </p>
-          <PreviewBlock code={CODE_DAYCELL_USAGE} minHeight={240}>
+      <Section title="例子" description="标签、单日、事件卡片、小月历和整月视图各做一件事。">
+        <ExampleGrid>
+          <DocExample id="eventtag" title="EventTag" summary="实底和描边是两种标签。颜色用来区分事件类型。" code={CODE_EVENTTAG_USAGE}>
+            <EventTag label="项目会议" color="purple" />
+            <EventTag label="评审" color="green" variant="outline" />
+          </DocExample>
+          <DocExample id="calendardaycell" title="CalendarDayCell" summary="一天一格。事件超过 maxVisible 后收成 +N。" code={CODE_DAYCELL_USAGE} minHeight={240}>
             <div className="w-40">
               <CalendarDayCell
                 day={17}
@@ -157,64 +155,28 @@ export default function CalendarCasePage() {
                 ]}
               />
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={DAYCELL_PROPS} />
-        </SubSection>
+          </DocExample>
+          <DocExample id="eventcard" title="EventCard" summary="一条日程：标题、时间和参与者。多出来的人数用 +N。" code={CODE_EVENTCARD_USAGE} minHeight={200}>
+            <EventCard title="设计进度沟通" timeRange="10:00-11:00" color="blue" avatars={avatars} overflowCount={6} />
+          </DocExample>
+          <DocExample id="smallcalendar" title="SmallCalendar" summary="紧凑月历，下面列出即将开始的事件。" code={CODE_SMALL_USAGE} minHeight={480}>
+            <SmallCalendar title="日历" subtitle="即将开始" color="blue" events={smallEvents} />
+          </DocExample>
+        </ExampleGrid>
+        <DocExample id="fullcalendar" title="FullCalendar" summary="月视图看整月事件。周视图和日视图用 view 切换。" code={CODE_FULL_USAGE} minHeight={600}>
+          <div className="w-full">
+            <FullCalendar view="month" color="blue" events={fullEvents} />
+          </div>
+        </DocExample>
       </Section>
 
-      <Section title="EventCard" description="展示事件名称、时间和参与成员。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_EVENTCARD_USAGE} minHeight={200}>
-            <EventCard
-              title="设计进度沟通"
-              timeRange="10:00-11:00"
-              color="purple"
-              avatars={avatars}
-              overflowCount={6}
-            />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={EVENTCARD_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="SmallCalendar" description="紧凑月日历，支持切换月份、选择日期和查看当天事件。">
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_SMALL_USAGE} minHeight={480}>
-            <SmallCalendar
-              title="日历"
-              subtitle="即将开始"
-              color="purple"
-              events={smallEvents}
-            />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={SMALL_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="FullCalendar" description="在月、周、日视图中浏览事件，可显示事件详情。">
-        <SubSection title="使用方法" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>view</InlineCode> 受控从外部驱动，下面展示 month 视图。其余见 cases。
-          </p>
-          <PreviewBlock code={CODE_FULL_USAGE} minHeight={600}>
-            <div className="w-full">
-              <FullCalendar view="month" color="purple" events={fullEvents} />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={FULL_PROPS} />
-        </SubSection>
+      <Section title="API">
+        <ApiBlock id="calendarcard" title="CalendarCard" rows={CALENDAR_PROPS} />
+        <ApiBlock id="eventtag" title="EventTag" rows={EVENTTAG_PROPS} />
+        <ApiBlock id="calendardaycell" title="CalendarDayCell" rows={DAYCELL_PROPS} />
+        <ApiBlock id="eventcard" title="EventCard" rows={EVENTCARD_PROPS} />
+        <ApiBlock id="smallcalendar" title="SmallCalendar" rows={SMALL_PROPS} />
+        <ApiBlock id="fullcalendar" title="FullCalendar" rows={FULL_PROPS} />
       </Section>
     </div>
   );

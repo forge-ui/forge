@@ -46,7 +46,7 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
   value,
   state = "idle",
   shape = "rounded",
-  color = "purple",
+  color = "blue",
   label,
   labelPlacement = "outside",
   locale = "zh",

@@ -79,7 +79,7 @@ export default function MapCasePage() {
           <Labeled label="仅美洲">
             <MapCard
               variant="sm"
-              color="purple"
+              color="blue"
               regions={demoRegions.slice(0, 3)}
               highlights={["north-america", "south-america"]}
             />
@@ -87,7 +87,7 @@ export default function MapCasePage() {
           <Labeled label="欧洲与亚洲">
             <MapCard
               variant="sm"
-              color="purple"
+              color="blue"
               regions={demoRegions.slice(0, 3)}
               highlights={["europe", "asia"]}
             />
@@ -95,7 +95,7 @@ export default function MapCasePage() {
           <Labeled label="全部地区">
             <MapCard
               variant="sm"
-              color="purple"
+              color="blue"
               regions={demoRegions.slice(0, 3)}
               highlights={[
                 "north-america",

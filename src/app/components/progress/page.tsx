@@ -27,7 +27,7 @@ const CODE_LABEL_SIZE = `<ProgressBar value={45} label="进度" labelSize="xs" s
 <ProgressBar value={45} label="进度" labelSize="sm" showPercentage />`;
 
 const CODE_DARK = `<div className="bg-fg-black p-6 rounded-xl">
-  <ProgressBar value={60} color="purple" label="进度" showPercentage onDark />
+  <ProgressBar value={60} color="blue" label="进度" showPercentage onDark />
 </div>`;
 
 const PROGRESS_PROPS: ApiTableRow[] = [
@@ -40,7 +40,7 @@ const PROGRESS_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan' | 'gray'",
-    defaultValue: "'purple'",
+    defaultValue: "'blue'",
     description: "填充色，8 种语义色。",
   },
   {
@@ -169,7 +169,7 @@ export default function ProgressCasePage() {
           </p>
           <PreviewBlock code={CODE_DARK} minHeight={180}>
             <div className="w-full max-w-md rounded-xl bg-fg-black p-6">
-              <ProgressBar value={60} color="purple" label="进度" showPercentage onDark />
+              <ProgressBar value={60} color="blue" label="进度" showPercentage onDark />
             </div>
           </PreviewBlock>
         </SubSection>

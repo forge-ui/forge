@@ -87,7 +87,7 @@ export function SidebarMenu({
   mainMenuItems,
   favoriteItems,
   profile,
-  accent = "purple",
+  accent = "blue",
   mode = "full",
   bgMode = "white",
   width,

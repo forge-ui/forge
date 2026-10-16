@@ -1,11 +1,12 @@
 "use client";
 
-import { ChatBubble, ChatInputBar } from "@forge-ui-official/core";
+import Link from "next/link";
+import { ChatBubble } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { ChatBubble, ChatInputBar } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { ChatBubble } from "@forge-ui-official/core";`;
 
 const CODE_BUBBLE_USAGE = `<ChatBubble type="received" avatar={avatar} senderName="林晓" content="最近进展怎么样？" />
 <ChatBubble type="sent" content="进展顺利，正在完善新的设计方案。" time="10:32" />`;
@@ -19,12 +20,10 @@ const CODE_BUBBLE_COLOR = `<ChatBubble type="sent" color="purple" content="紫�
 <ChatBubble type="sent" color="blue" content="蓝色" />
 <ChatBubble type="sent" color="black" content="黑色" />`;
 
-const CODE_INPUT_USAGE = `<ChatInputBar onSend={(msg) => console.log(msg)} />`;
-
 const BUBBLE_PROPS: ApiTableRow[] = [
   { attr: "type", type: "'sent' | 'received'", defaultValue: "—", description: "决定左右对齐、气泡背景与圆角缺口方向。" },
   { attr: "variant", type: "'text' | 'voice' | 'file' | 'image'", defaultValue: "'text'", description: "气泡内容类型。" },
-  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "主色（影响 sent 气泡背景、voice 播放按钮等）。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "主色（影响 sent 气泡背景、voice 播放按钮等）。" },
   { attr: "content", type: "string", defaultValue: "—", description: "text 变体正文。" },
   { attr: "time", type: "string", defaultValue: "—", description: "气泡下方时间文案。" },
   { attr: "avatar", type: "string", defaultValue: "—", description: "received 变体左侧头像 URL。" },
@@ -35,12 +34,6 @@ const BUBBLE_PROPS: ApiTableRow[] = [
   { attr: "voiceDuration", type: "string", defaultValue: "—", description: "voice 变体播放时长文案。" },
 ];
 
-const INPUT_PROPS: ApiTableRow[] = [
-  { attr: "placeholder", type: "string", defaultValue: "'输入消息...'", description: "输入框占位符。" },
-  { attr: "onSend", type: "(message: string) => void", defaultValue: "—", description: "发送回调，Enter 或点按钮触发。" },
-  { attr: "className", type: "string", defaultValue: "''", description: "额外 className。" },
-];
-
 const avatar = "https://i.pravatar.cc/40?img=3";
 
 export default function ChatCasePage() {
@@ -48,7 +41,7 @@ export default function ChatCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="聊天"
-        hint="展示文字、语音、图片和文件消息，提供统一的消息输入栏。"
+        hint="展示文字、语音、图片和文件消息。消息输入栏在「消息输入栏」页。"
       />
 
       <Section
@@ -109,22 +102,10 @@ export default function ChatCasePage() {
         </SubSection>
       </Section>
 
-      <Section
-        title="ChatInputBar"
-        description="输入和发送消息，支持附件、提及、命令、模型选择和停止生成。"
-      >
-        <SubSection title="使用方法" stack>
-          <PreviewBlock code={CODE_INPUT_USAGE}>
-            <div className="w-full max-w-md">
-              <ChatInputBar />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={INPUT_PROPS} />
-        </SubSection>
-      </Section>
+      <p className="text-sm leading-6 text-fg-grey-700">
+        输入、附件、提及和停止生成见
+        <Link href="/components/chat-input-bar" className="mx-1 font-semibold text-fg-black underline underline-offset-4">消息输入栏</Link>。
+      </p>
     </div>
   );
 }

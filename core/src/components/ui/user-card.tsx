@@ -14,7 +14,7 @@ import { resolveCardWidthClass, type CardWidth } from "./card-utils";
 export function UserCard({
   avatar,
   initials,
-  initialsColor = "purple",
+  initialsColor = "blue",
   name,
   badge,
   subtitle,

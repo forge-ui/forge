@@ -34,7 +34,7 @@ export function Pagination({
   totalPages,
   currentPage,
   onPageChange,
-  color = "purple",
+  color = "blue",
   className,
   locale = "zh",
   motion = "auto",
