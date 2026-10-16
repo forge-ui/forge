@@ -287,7 +287,7 @@ export function SidebarMenuItemRow({
   const children = hasChildren && (
     <MotionCollapse open={expanded && !collapsed} motion={motion}><div className="flex flex-col">
       {childItems.map((child, i) => (
-        <SidebarMenuItemRow motion={motion} indicatorId={indicatorId} index={i} key={child.href ?? `${child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} collapsed={collapsed} />
+        <SidebarMenuItemRow motion={motion} indicatorId={indicatorId} index={i} key={`${child.href ?? child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} collapsed={collapsed} />
       ))}
     </div></MotionCollapse>
   );

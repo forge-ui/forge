@@ -560,7 +560,7 @@ export default function CardCasePage() {
           ))}
         </SubSection>
         <SubSection title="On colored bg">
-          <div className="p-6 bg-fg-violet rounded-xl flex items-start gap-3">
+          <div className="flex min-w-0 max-w-full flex-wrap items-start gap-3 rounded-xl bg-fg-violet p-6">
             {profileStates.map((st) => (
               <ProfileCard
                 key={st}
