@@ -22,7 +22,7 @@ export function DocHeader({
         <Breadcrumbs items={breadcrumbs} color="black" />
       )}
       <div className="flex items-start justify-between gap-6">
-        <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">
+        <h1 className="min-w-0 break-words font-display text-4xl font-bold tracking-fg text-fg-black">
           {title}
         </h1>
         <CopyPageButton />
@@ -46,11 +46,11 @@ export function DocSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="flex scroll-mt-24 flex-col gap-5">
-      <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
+    <section id={id} className="flex min-w-0 w-full max-w-full scroll-mt-24 flex-col gap-5">
+      <h2 className="min-w-0 break-words font-display text-3xl font-semibold tracking-fg text-fg-black">
         {title}
       </h2>
-      <div className="flex flex-col gap-4 text-base font-normal leading-[1.8] text-fg-grey-900">
+      <div className="flex min-w-0 w-full max-w-full flex-col gap-4 overflow-x-auto text-base font-normal leading-[1.8] text-fg-grey-900">
         {children}
       </div>
     </section>
@@ -66,7 +66,7 @@ export function DocArticle({
 }) {
   return (
     <div className="mx-auto flex w-full max-w-5xl gap-16">
-      <article className="flex min-w-0 flex-1 flex-col gap-10">{children}</article>
+      <article className="flex min-w-0 max-w-full flex-1 flex-col gap-10 [&>*]:min-w-0 [&>*]:max-w-full">{children}</article>
       {toc && toc.length > 0 && <DocsToc items={toc} />}
     </div>
   );

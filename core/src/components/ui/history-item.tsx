@@ -136,10 +136,10 @@ export function HistoryItem({
       </div>
 
       {/* Right column: content */}
-      <div className="flex-1 pb-4 inline-flex flex-col justify-start items-start gap-2">
+      <div className="flex min-w-0 flex-1 flex-col items-start justify-start gap-2 pb-4">
         {/* Title row */}
-        <div className="self-stretch inline-flex justify-start items-center gap-2">
-          <div className="flex-1 text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</div>
+        <div className="flex min-w-0 flex-wrap items-center gap-2 self-stretch">
+          <div className="min-w-0 flex-1 text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</div>
           {datetime && showDatetime === "inline" && (
             <div className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{datetime}</div>
           )}
@@ -152,7 +152,7 @@ export function HistoryItem({
 
         {/* Tags */}
         {tags && (
-          <div className="inline-flex justify-start items-center gap-2">{tags}</div>
+          <div className="flex max-w-full flex-wrap items-center gap-2">{tags}</div>
         )}
 
         {/* Bottom datetime */}

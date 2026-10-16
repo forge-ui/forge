@@ -30,7 +30,7 @@ export default function PaginationStepperCasePage() {
       >
         {COLORS.map((c) => (
           <SubSection key={c} title={c}>
-            <div className="flex flex-col gap-3">
+            <div className="flex w-full min-w-0 max-w-full flex-col gap-3">
               <Pagination totalPages={20} currentPage={1} color={c} />
               <Pagination totalPages={20} currentPage={8} color={c} />
             </div>

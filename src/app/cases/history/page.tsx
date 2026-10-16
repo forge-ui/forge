@@ -160,7 +160,7 @@ function VariantMatrix({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-4 gap-x-8 gap-y-6">
+    <div className="grid min-w-0 grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
       {/* Column headers */}
       {STRUCT_COLS.map((col) => (
         <div

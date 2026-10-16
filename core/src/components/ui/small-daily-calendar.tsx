@@ -53,7 +53,7 @@ export function SmallDailyCalendar({
   }
 
   return (
-    <div data-accent={color} className={cn("w-full max-w-[420px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col overflow-hidden", className)}>
+    <div data-accent={color} className={cn("flex w-full min-w-0 max-w-[420px] flex-col overflow-hidden rounded-card bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200", className)}>
       {/* Header */}
       <div className="px-6 pt-6 pb-4 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-1">
@@ -72,7 +72,7 @@ export function SmallDailyCalendar({
         {/* Hour labels row */}
         <div className="flex items-center border-b border-fg-grey-200 pb-2 mb-2">
           {HOURS.map((h) => (
-            <span key={h} className="flex-1 text-center text-xs text-fg-grey-700 font-medium">
+            <span key={h} className="min-w-0 flex-1 text-center text-xs font-medium text-fg-grey-700">
               {String(h).padStart(2, "0")}:00
             </span>
           ))}

@@ -84,7 +84,7 @@ export function Pagination({
 
   return (
     <div ref={root} role="navigation" aria-label={zh ? "分页" : "Pagination"} data-motion={reduced ? "none" : motion}
-      className={cn("relative isolate inline-flex max-w-full items-center gap-2", className)}>
+      className={cn("relative isolate flex w-full min-w-0 max-w-full items-center gap-2 overflow-x-auto", className)}>
       <span ref={indicator} aria-hidden className={cn("forge-moving-indicator rounded-full", activeColors[color])}
         style={{
           // A deterministic server fallback keeps the active page visible before hydration.

@@ -84,7 +84,7 @@ export default function ChartCasePage() {
 
       <Section title="ChartStatFooter" description="Footer stats for chart cards">
         <SubSection title="Example">
-          <div className="w-96">
+          <div className="w-full max-w-96">
             <ChartStatFooter
               items={[
                 { label: "Revenue", value: "$12.5k", color: "bg-fg-violet", trend: "+12%", trendDirection: "up" },

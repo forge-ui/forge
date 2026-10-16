@@ -107,7 +107,8 @@ function MenuItemSection() {
       description="Figma: Single (5色) / Submenu (4色) / Dropdown (4色) · 4 正交轴 accent/surface/intent/kind"
     >
       <SubSection title="Single · accent × state (3 colors × 4 states)">
-        <div className="grid grid-cols-4 gap-x-6 gap-y-3 w-[720px]">
+        <div className="w-full min-w-0 overflow-x-auto">
+        <div className="grid w-[720px] grid-cols-4 gap-x-6 gap-y-3">
           {accentColors.map((accent) =>
             states.map((state) => (
               <div key={`${accent}-${state}`} className="flex flex-col gap-1">
@@ -125,10 +126,11 @@ function MenuItemSection() {
             ))
           )}
         </div>
+        </div>
       </SubSection>
 
       <SubSection title="Single · content variants (purple, idle)">
-        <div className="w-64 pl-4 flex flex-col gap-2">
+        <div className="flex w-full max-w-64 flex-col gap-2 pl-4">
           <MenuItem
             lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }}
             label="Icon + Text + Badge"
@@ -155,11 +157,11 @@ function MenuItemSection() {
       </SubSection>
 
       <SubSection title="Single · onColoredBg (Figma 'White' variant)">
-        <div className="flex items-start gap-6">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-6">
           {accentColors.map((accent) => (
             <div
               key={accent}
-              className={`w-72 p-4 rounded-xl ${accent === "purple" ? "bg-fg-violet" : accent === "blue" ? "bg-blue-600" : "bg-fg-black"}`}
+              className={`w-full max-w-72 p-4 rounded-xl ${accent === "purple" ? "bg-fg-violet" : accent === "blue" ? "bg-blue-600" : "bg-fg-black"}`}
             >
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] uppercase tracking-wider text-white/60">
@@ -183,7 +185,7 @@ function MenuItemSection() {
       </SubSection>
 
       <SubSection title="Single · intent=danger (Figma 'Red' variant)">
-        <div className="w-64 pl-4 flex flex-col gap-2">
+        <div className="flex w-full max-w-64 flex-col gap-2 pl-4">
           <MenuItem
             lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }}
             label="删除"
@@ -206,9 +208,9 @@ function MenuItemSection() {
       </SubSection>
 
       <SubSection title="Submenu · indented child rows (4 colors)">
-        <div className="flex items-start gap-6">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-6">
           {accentColors.map((accent) => (
-            <div key={accent} className="w-56 pl-4 flex flex-col gap-1">
+            <div key={accent} className="flex w-full max-w-56 flex-col gap-1 pl-4">
               <span className="text-[10px] uppercase tracking-wider text-fg-grey-500">
                 {accent}
               </span>
@@ -218,7 +220,7 @@ function MenuItemSection() {
               <MenuItem accent={accent} kind="submenu" label="不带计数" />
             </div>
           ))}
-          <div className="w-56 p-4 rounded-xl bg-fg-violet flex flex-col gap-1">
+          <div className="flex w-full max-w-56 flex-col gap-1 rounded-xl bg-fg-violet p-4">
             <span className="text-[10px] uppercase tracking-wider text-white/60">
               onColoredBg
             </span>
@@ -315,7 +317,7 @@ function SecondaryMenuSection() {
       <SubSection title="Profile · 4 colors × 3 states">
         <div className="flex flex-col gap-3">
           {accentColors.map((accent) => (
-            <div key={accent} className="flex items-start gap-4">
+            <div key={accent} className="flex min-w-0 max-w-full flex-wrap items-start gap-4">
               <span className="w-16 text-fg-grey-700 text-sm font-medium capitalize">
                 {accent}
               </span>
@@ -335,7 +337,7 @@ function SecondaryMenuSection() {
             </div>
           ))}
 
-          <div className="flex items-start gap-4">
+          <div className="flex min-w-0 max-w-full flex-wrap items-start gap-4">
             <span className="w-16 text-fg-grey-700 text-sm font-medium capitalize">
               onColoredBg
             </span>
@@ -437,7 +439,7 @@ function SecondaryMenuSection() {
             ))}
           </div>
 
-          <div className="w-[480px] p-4 rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col">
+          <div className="flex w-full max-w-[480px] flex-col rounded-xl p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
             <div className="pb-3 flex items-center justify-between border-b border-fg-grey-200">
               <span className="text-fg-black text-xl font-semibold leading-8 tracking-fg">
                 通知
@@ -732,7 +734,7 @@ function KebabMenuSection() {
       description="IconTrigger(MenuDots) + DropdownPanel + MenuItem — 组合示例（4 色含 onColoredBg）"
     >
       <SubSection title="Triggers + panels on default surface">
-        <div className="inline-flex items-start gap-16">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-8 sm:gap-16">
           {accentColors.map((accent) => (
             <div key={accent} className="flex flex-col gap-3 items-center">
               <span className="text-fg-grey-700 text-sm font-medium capitalize">{accent}</span>
@@ -743,7 +745,7 @@ function KebabMenuSection() {
       </SubSection>
 
       <SubSection title="Kebab on colored background (surface=onColoredBg)">
-        <div className="p-6 rounded-xl bg-fg-violet inline-flex items-start gap-16">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-8 rounded-xl bg-fg-violet p-6 sm:gap-16">
           {accentColors.map((accent) => (
             <div key={accent} className="flex flex-col gap-3 items-center">
               <span className="text-white/75 text-sm font-medium capitalize">{accent}</span>
@@ -754,7 +756,7 @@ function KebabMenuSection() {
       </SubSection>
 
       <SubSection title="Used inside a list row">
-        <div className="w-80 p-4 rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex items-center gap-3">
+        <div className="flex w-full max-w-80 items-center gap-3 rounded-xl p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
           <Avatar initials="JC" size="md" />
           <div className="flex-1 flex flex-col">
             <span className="text-fg-black text-sm font-semibold">林晓</span>
@@ -765,7 +767,7 @@ function KebabMenuSection() {
       </SubSection>
 
       <SubSection title="Interactive · IconTrigger with custom panel (click to open)">
-        <div className="inline-flex items-start gap-6">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-6">
           <IconTrigger
             icon={<BellBoldDuotone size={20} />}
             accent="blue"

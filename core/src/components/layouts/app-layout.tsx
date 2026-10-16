@@ -563,7 +563,7 @@ export function AppLayout({
                   )}
                   <div className="flex flex-col gap-3">
                     {section.items.map((item, i) => (
-                      <SidebarMenuItemRow motion={motion} indicatorId={sidebarIndicatorId} index={sidebarSections.slice(0, sectionIndex).reduce((count, previous) => count + previous.items.length, i)} key={item.href ?? `${item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
+                      <SidebarMenuItemRow motion={motion} indicatorId={sidebarIndicatorId} index={sidebarSections.slice(0, sectionIndex).reduce((count, previous) => count + previous.items.length, i)} key={`${item.href ?? item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                     ))}
                   </div>
                 </div>

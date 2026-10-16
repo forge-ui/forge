@@ -30,7 +30,7 @@ export function ImageGrid({
   const s = sizeMap[size];
 
   return (
-    <div className={`inline-flex items-center gap-2 ${className}`}>
+    <div className={`flex max-w-full flex-wrap items-center gap-2 ${className}`}>
       {images.map((src, i) => (
         <img
           key={i}
