@@ -1147,11 +1147,11 @@ body {
 /* Hold-to-delete Button variant: migrated from the reviewed interaction lab. */
 .forge-hold-row{position:relative;width:268px;max-width:100%;height:64px;isolation:isolate;font-weight:var(--forge-font-bold-weight);font-size:var(--forge-text-base-size);line-height:var(--forge-leading-6);letter-spacing:var(--tracking-fg)}
 .forge-hold-md{height:56px}.forge-hold-sm{height:48px;font-size:var(--forge-text-sm-size)}
-.forge-hold-trigger{position:absolute;inset:0;width:100%;border:0;border-radius:999px;padding:0;overflow:hidden;isolation:isolate;background:color-mix(in srgb,var(--forge-hold-color) 12%,var(--background));color:var(--forge-hold-color);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--forge-hold-color) 40%,transparent);touch-action:none;user-select:none;cursor:pointer;transition:transform .5s cubic-bezier(.34,1.16,.64,1),opacity .4s cubic-bezier(.2,.8,.2,1)}
+.forge-hold-trigger{position:absolute;inset:0;width:100%;border:0;border-radius:999px;padding:0;overflow:hidden;isolation:isolate;background:color-mix(in srgb,var(--forge-hold-color) 12%,var(--background));color:var(--forge-hold-ink,var(--forge-hold-color));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--forge-hold-color) 40%,transparent);touch-action:none;user-select:none;cursor:pointer;transition:transform .5s cubic-bezier(.34,1.16,.64,1),opacity .4s cubic-bezier(.2,.8,.2,1)}
 .forge-hold-trigger:focus-visible{outline:2px solid var(--forge-hold-color);outline-offset:4px}
 .forge-hold-trigger:disabled{opacity:.6;cursor:not-allowed}
 .forge-hold-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap}
-.forge-hold-fill{background:var(--forge-hold-color);color:var(--fg-white);clip-path:inset(0 calc(100% - var(--forge-hold-progress)*100%) 0 0 round 999px);transition:clip-path var(--forge-hold-return) linear}
+.forge-hold-fill{background:var(--forge-hold-color);color:var(--forge-hold-on-fill,var(--fg-white));clip-path:inset(0 calc(100% - var(--forge-hold-progress)*100%) 0 0 round 999px);transition:clip-path var(--forge-hold-return) linear}
 .forge-hold-row[data-holding] .forge-hold-trigger{transform:scale(.97)}
 .forge-hold-row[data-holding] .forge-hold-fill{transition:none}
 .forge-hold-row[data-shaking] .forge-hold-trigger{animation:forge-hold-shake .12s linear infinite}

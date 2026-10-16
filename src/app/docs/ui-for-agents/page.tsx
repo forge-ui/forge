@@ -154,9 +154,9 @@ export default function UIForAgentsPage() {
           </li>
           <li>
             <Link href="/cases" className="text-fg-blue hover:underline">
-              组件
+              组件案例
             </Link>
-            {" "}— 所有组件用法示例
+            {" "}— 各组件的用法和可操作场景
           </li>
         </ul>
       </DocSection>

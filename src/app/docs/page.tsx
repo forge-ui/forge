@@ -17,57 +17,41 @@ export default function IntroductionPage() {
           { label: "介绍" },
         ]}
         title="介绍"
-        description="Forge UI Kit 是什么、解决什么问题、跟市面其他 Kit 的关系。"
+        description="Forge UI Kit 是什么，以及文档站里有哪些内容。"
       />
 
       <DocSection id="what-is-forge" title="Forge 是什么">
         <p>
-          Forge 是一套面向内部 ToB 交付的 React UI Kit，技术栈是 Next.js 16 · React
-          19 · Tailwind v4 · TypeScript 5，图标由 Solar Icons（React 实现为 MIT，480 Design 图形为 CC BY 4.0） 提供。
+          Forge 是一套用于内部后台交付的 React 组件库。技术栈是 Next.js 16、React 19、Tailwind v4 和 TypeScript。图标来自 Solar Icons（React 实现为 MIT，图形为 CC BY 4.0）。
         </p>
         <p>
-          内容包括 60+ 组件、业务级模版（Ecommerce / Auth）以及 Dashboard Builder
-          8 种外壳，都从 Figma 设计稿 1:1 还原。团队拿它快速交付客户定制后台，
-          不必每个新项目都从零拼骨架。
+          库里有按钮、表单、表格、弹窗和布局这些常用组件，也有几套可以复制的业务模板。新项目可以直接用这些组件搭后台，不必每次从空页面开始。
         </p>
       </DocSection>
 
       <DocSection id="why" title="为什么做这个">
         <p>
-          <strong>市面空白。</strong>开源 React/Next.js
-          生态里，没有同时满足「面向 AI agent 可理解 + 快速开发 + ToB
-          交付级」的 Kit。
+          通用组件库通常只提供控件，不管后台页面怎么拼，也不说明编码助手该怎么选用。只按截图生成页面时，间距、颜色和组件选择容易和现有规范不一致。
         </p>
         <p>
-          <strong>纯 AI 生成不可靠。</strong>即便是 Figma Make
-          这类直出方案，也无法严格按照既有 UI 规范生成新页面——真实场景里要的是
-          「按规范设计新业务页」，但 AI 只是参考规范自由发挥，产物风格很难控制。
-        </p>
-        <p>
-          <strong>Forge 的解法。</strong>做一套 Claude Code / Codex
-          这类编程 Agent 能读懂的设计系统——人和 AI 对齐需求后，AI 100% 基于
-          Forge 组件产出固定风格的页面，人从展现层解放出来，专注业务逻辑和交付速度。
+          Forge 把组件、颜色和布局收成同一套用法。人和编码助手都从这套组件里取，页面风格更稳定，业务逻辑仍然由人来确认。
         </p>
       </DocSection>
 
       <DocSection id="principles" title="核心原则">
-        <p>四条最基础的硬规矩，新增组件和业务页都要遵守：</p>
+        <p>新增组件和业务页遵循这四条：</p>
         <ul className="flex list-disc flex-col gap-2 pl-6">
           <li>
-            <strong>Figma-First</strong> — Figma 是单一真相源，
-            复刻从 Dev Mode 原始代码开始，不靠截图或记忆。
+            <strong>以设计稿为准</strong> — 组件对照 Figma Dev Mode 的标注实现，不按截图或记忆重画。
           </li>
           <li>
-            <strong>Token-Driven</strong> — 颜色、字号、圆角、阴影、间距走 CSS
-            变量，组件内不写 <code>#hex</code> 和裸 <code>px</code>。
+            <strong>用 token</strong> — 颜色、字号、圆角、阴影和间距走 CSS 变量。组件里不写 <code>#hex</code> 和裸 <code>px</code>。
           </li>
           <li>
-            <strong>Kit Only</strong> — 业务页只允许 import Kit 组件，
-            禁止手搓 <code>div</code> 复刻已有组件；pattern 重复 3 次立即抽到 Kit。
+            <strong>只用库里的组件</strong> — 业务页 import 已有组件。库里已经有的控件，不再用 <code>div</code> 再做一遍。同一段结构出现 3 次，就抽成组件。
           </li>
           <li>
-            <strong>AI-Readable</strong> — props 扁平语义化，每个组件配{" "}
-            <code>&lt;ApiTable&gt;</code>，让 AI agent 照表调用不用猜。
+            <strong>参数写清楚</strong> — props 用扁平、能读懂的名字。每个组件页有参数表，调用时按表填写。
           </li>
         </ul>
       </DocSection>
@@ -76,47 +60,35 @@ export default function IntroductionPage() {
         <ul className="flex list-disc flex-col gap-2 pl-6">
           <li>
             <strong>
-              <Link
-                href="/components"
-                className="text-fg-blue hover:underline"
-              >
+              <Link href="/components" className="text-fg-blue hover:underline">
                 组件
               </Link>
             </strong>{" "}
-            — 60+ 基础组件，分 Foundations 和 Components 两组。
+            — 每个组件的用法和参数。
           </li>
           <li>
             <strong>
-              <Link
-                href="/cases"
-                className="text-fg-blue hover:underline"
-              >
-                组件矩阵
+              <Link href="/cases" className="text-fg-blue hover:underline">
+                组件案例
               </Link>
             </strong>{" "}
-            — 每个组件所有变体、尺寸、状态、颜色矩阵铺开展示。
+            — 颜色、尺寸、状态，以及可以操作的场景。
           </li>
           <li>
             <strong>
-              <Link
-                href="/templates"
-                className="text-fg-blue hover:underline"
-              >
-                模版
+              <Link href="/templates" className="text-fg-blue hover:underline">
+                模板
               </Link>
             </strong>{" "}
-            — 用 Kit 拼好的整套业务页：Ecommerce Admin、Auth、Dashboard Builder。
+            — 用组件拼好的业务页，包括电商后台、登录页和仪表盘。
           </li>
           <li>
             <strong>
-              <Link
-                href="/docs/ui-for-agents"
-                className="text-fg-blue hover:underline"
-              >
+              <Link href="/docs/ui-for-agents" className="text-fg-blue hover:underline">
                 UI for Agents
               </Link>
             </strong>{" "}
-            — Skill 插件 + AGENTS.md 约定，让 Claude Code / Codex 开箱即用地基于 Forge 产页面。
+            — 给 Claude Code、Cursor、Codex 的规则，说明组件从哪里引入、颜色和布局怎么用。
           </li>
         </ul>
       </DocSection>

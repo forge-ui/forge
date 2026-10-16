@@ -55,7 +55,9 @@ export function CasesToc() {
 
         <div className="flex flex-col gap-2">
           <a
-            href="#"
+            href="https://github.com/forge-ui/forge/issues/new"
+            target="_blank"
+            rel="noreferrer"
             className="flex items-center gap-2 text-sm font-semibold text-fg-grey-900 hover:text-fg-black transition-colors"
           >
             <ChatDotsLinear size={14} color="#71717A" />

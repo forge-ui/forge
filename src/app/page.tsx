@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { SiteHeader } from "./_components/site-header";
 import { PromptBlock } from "./docs/agents-md/_prompt-block";
+import { coreVersion } from "./docs/_versions";
 
 const entries = [
-  { href: "/docs/quick-start", title: "快速开始", text: "安装组件库，写出第一颗按钮。" },
-  { href: "/components", title: "组件", text: "看每个组件怎么用，以及参数说明。" },
-  { href: "/cases", title: "组件案例", text: "把颜色、尺寸和动效放在一起对照。" },
+  { href: "/docs", title: "文档", text: "组件库要解决的问题，以及接入方式。" },
+  { href: "/docs/quick-start", title: "快速开始", text: "安装组件包，在页面上放一颗按钮。" },
+  { href: "/components", title: "组件", text: "每个组件的用法和参数。" },
+  { href: "/cases", title: "组件案例", text: "颜色、尺寸，以及可以操作的场景。" },
+  { href: "/templates", title: "模板", text: "用组件拼好的后台页面，可以拿来改。" },
 ];
 
 export default function HomePage() {
@@ -16,13 +19,13 @@ export default function HomePage() {
         <header className="flex flex-col gap-4">
           <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">Forge UI Kit</h1>
           <p className="max-w-2xl text-base leading-7 text-fg-grey-900">
-            面向内部交付的 React 组件库。先装上，再按组件或案例往下看。
+            用于内部后台的 React 组件库。文档、组件、案例和模板都从这里进入。
           </p>
         </header>
 
-        <PromptBlock content="pnpm add @forge-ui-official/core" />
+        <PromptBlock content={`pnpm add @forge-ui-official/core@${coreVersion}`} />
 
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2">
           {entries.map((item) => (
             <Link
               key={item.href}
@@ -35,10 +38,6 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="text-sm text-fg-grey-700">
-          <Link href="/docs" className="font-semibold text-fg-blue underline underline-offset-4">介绍</Link>
-          里是这套组件库要解决的问题。
-        </p>
       </main>
     </div>
   );

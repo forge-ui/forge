@@ -55,10 +55,10 @@ const pen = <PenLinear size={18} color="currentColor" />;
 const heart = <HeartLinear size={18} color="currentColor" />;
 
 const effectLabel: Record<ButtonEffect, string> = {
-  glass: "液态玻璃",
-  magnetic: "磁吸",
+  glass: "玻璃效果",
+  magnetic: "箭头跟随",
   ripple: "涟漪",
-  roll: "文字滚动",
+  roll: "文字切换",
 };
 const iconEffectLabel: Record<IconButtonEffect, string> = {
   send: "发送",
@@ -115,7 +115,7 @@ export default function ButtonLinkCasePage() {
         ))}
       </Section>
 
-      <Section title="按钮动效" description="液态玻璃、磁吸、涟漪和文字滚动。玻璃效果需要放在有内容的背景上才能看清。">
+      <Section title="按钮动效" description="玻璃效果、箭头跟随、涟漪和文字切换。玻璃效果要放在有内容的背景上才能看清。">
         <SubSection title="效果">
           {buttonEffects.map((effect) => (
             <Labeled key={effect} label={effectLabel[effect]}>
@@ -277,12 +277,12 @@ export default function ButtonLinkCasePage() {
         </SubSection>
       </Section>
 
-      <Section title="链接动效" description="磁吸和文字滚动。">
+      <Section title="链接动效" description="箭头跟随和文字切换。">
         <SubSection title="效果">
-          <Labeled label="磁吸">
+          <Labeled label="箭头跟随">
             <StyledLink href="#" color="blue" effect="magnetic" iconRight={arrowRight}>打开项目</StyledLink>
           </Labeled>
-          <Labeled label="文字滚动">
+          <Labeled label="文字切换">
             <StyledLink href="#" color="blue" effect="roll">查看详情</StyledLink>
           </Labeled>
         </SubSection>

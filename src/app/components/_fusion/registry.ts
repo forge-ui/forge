@@ -10,9 +10,9 @@ export const fusionItems = catalog.items.filter(item => item.mode !== "defer");
 export const fusionFamilies = catalog.families;
 
 const categoryOverrides: Record<string, string> = {
-  "044": "grid", "058": "progress", "067": "button-link", "070": "modal", "076": "tooltip",
-  "080": "progress", "083": "progress", "088": "list", "089": "modal", "090": "card",
-  "126": "agent", "127": "agent", "128": "agent", "129": "agent", "179": "agent",
+  "044": "accordion", "058": "progress", "067": "button-link", "070": "feedback", "074": "feedback", "076": "tooltip",
+  "080": "progress", "083": "progress", "088": "list", "089": "feedback", "090": "card",
+  "126": "input-field", "127": "history", "128": "input-field", "129": "accordion", "179": "list",
   "180": "card", "181": "card",
 };
 export function officialCategory(item: FusionCatalogItem) {

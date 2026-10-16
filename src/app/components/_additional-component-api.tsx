@@ -5,7 +5,7 @@ const common: ApiTableRow[] = [
   { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "跟随系统的减少动态效果偏好，或关闭动效。" },
 ];
 const references: Record<string, { title: string; description: string; rows: ApiTableRow[] }[]> = {
-  grid: [{ title: "Accordion", description: "按需展开一组内容，同一时间保持一个面板展开。", rows: [
+  accordion: [{ title: "Accordion", description: "按需展开一组内容，同一时间保持一个面板展开。", rows: [
     { attr: "items", type: "AccordionItem[]", defaultValue: "—", description: "各面板的标识、标题、内容及禁用状态。" },
     { attr: "value / defaultValue", type: "string | null", defaultValue: "null", description: "展开面板的标识，null 表示全部收起。" },
     { attr: "onValueChange", type: "(value: string | null) => void", defaultValue: "—", description: "展开或收起面板时触发。" }, ...common,
@@ -40,10 +40,11 @@ const references: Record<string, { title: string; description: string; rows: Api
     { attr: "onSelect", type: "(item: LiquidTabsItem, tabId: string) => void", defaultValue: "—", description: "点击分类内的内容时触发。" },
     ...common,
   ] }],
-  modal: [{ title: "ToastProvider", description: "在上下文内调用 useToast 展示、更新和关闭通知。", rows: [
+  feedback: [{ title: "ToastProvider", description: "在上下文内调用 useToast 展示、更新和关闭通知。", rows: [
     { attr: "locale", type: "'zh' | 'en'", defaultValue: "'zh'", description: "通知关闭按钮的语言。" },
     { attr: "stacked", type: "boolean", defaultValue: "false", description: "是否将多条通知叠放展示。" }, ...common,
-  ] }, { title: "Drawer", description: "在页面侧边展开补充内容，关闭后返回原操作位置。", rows: [
+  ] }],
+  modal: [{ title: "Drawer", description: "在页面侧边展开补充内容，关闭后返回原操作位置。", rows: [
     { attr: "open", type: "boolean", defaultValue: "—", description: "是否打开抽屉。" },
     { attr: "onOpenChange", type: "(open: boolean) => void", defaultValue: "—", description: "请求打开或关闭时通知应用更新状态。" },
     { attr: "children", type: "ReactNode", defaultValue: "—", description: "抽屉内容。" },

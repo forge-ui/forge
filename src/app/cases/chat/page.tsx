@@ -17,6 +17,7 @@ import {
   CloseSquareLinear,
   UserLinear,
 } from "@forge-ui-official/core/icons";
+import { ScenarioOutlet } from "../_scenario-outlet";
 
 const COLORS = ["purple", "blue", "black"] as const;
 const AVATAR = "https://i.pravatar.cc/100?img=10";
@@ -75,11 +76,11 @@ const fullPageContacts = [
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="self-stretch flex flex-col gap-6">
-      <div className="self-start px-6 py-3 bg-gray-200 rounded-lg">
+    <section className="flex min-w-0 flex-col gap-6 self-stretch">
+      <div className="self-start rounded-lg bg-fg-grey-200 px-6 py-3">
         <h2 className="text-xl font-bold text-fg-black">{title}</h2>
       </div>
-      <div className="pl-2 flex flex-col gap-8">{children}</div>
+      <div className="flex min-w-0 flex-col gap-8 pl-2">{children}</div>
     </section>
   );
 }
@@ -108,11 +109,11 @@ function ColorRow({ label, children }: { label: string; children: React.ReactNod
 
 function BaseComponentsSection() {
   return (
-    <Section title="基础组件 (Chat Items)">
-      <SubSection title="Contact (3 状态 × 2 类型)">
+    <Section title="气泡和输入栏">
+      <SubSection title="联系人">
         {COLORS.map((color) => (
           <ColorRow key={color} label={color}>
-            <div className="grid grid-cols-3 gap-4 max-w-4xl">
+            <div className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-3">
               <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
                 <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} online />
                 <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} online />
@@ -130,7 +131,7 @@ function BaseComponentsSection() {
         ))}
       </SubSection>
 
-      <SubSection title="Bubble Chat — Text">
+      <SubSection title="文字消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-3 outline outline-1 outline-fg-grey-200">
           <ChatBubble type="received" variant="text" content={SHORT_TEXT} />
           <ChatBubble type="received" variant="text" content={LONG_TEXT} />
@@ -143,7 +144,7 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
-      <SubSection title="Bubble Chat — Voice (3 色 × received/sent)">
+      <SubSection title="语音消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-3 outline outline-1 outline-fg-grey-200">
           {COLORS.map((c) => (
             <ChatBubble key={`r-${c}`} type="received" color={c} variant="voice" voiceDuration="0:42" />
@@ -154,7 +155,7 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
-      <SubSection title="Bubble Chat — File">
+      <SubSection title="文件消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-3 outline outline-1 outline-fg-grey-200">
           <ChatBubble type="received" variant="file" fileName="File Name.ai" fileSize="300kb" />
           {COLORS.map((c) => (
@@ -163,7 +164,7 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
-      <SubSection title="Bubble Chat — Image (+N 计数)">
+      <SubSection title="图片消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-4 outline outline-1 outline-fg-grey-200">
           {COLORS.map((c) => (
             <ChatBubble
@@ -594,32 +595,31 @@ function FullChatPanel({
 
 function FullPageSection() {
   return (
-    <Section title="全页面 (Full Chat — 5 种变体)">
+    <Section title="整页布局">
       <p className="text-sm text-fg-grey-700">
-        对照 figma <code className="px-1 bg-gray-200 rounded text-xs">chat.md</code> Purple 一行 5 种 panel：
-        Person+Profile / Team+Profile / Person+Profile (B) / Team+Members / Team+Add Members Modal
+        四种布局：个人对话加资料、团队对话加资料、团队成员列表、添加成员。
       </p>
 
-      <SubSection title="Variant 1 — Person + Profile">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="个人对话和资料">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="person-1" />
         </div>
       </SubSection>
 
-      <SubSection title="Variant 2 — Team + Profile">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="团队对话和资料">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="team-1" />
         </div>
       </SubSection>
 
-      <SubSection title="Variant 4 — Team + Members 列表">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="团队成员">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="team-members" />
         </div>
       </SubSection>
 
-      <SubSection title="Variant 5 — Team + Add Members Modal">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="添加成员">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="team-modal" />
         </div>
       </SubSection>
@@ -694,9 +694,9 @@ function SmallChatCard({ type, color = "blue" }: { type: "person" | "team"; colo
 
 function SmallChatSection() {
   return (
-    <Section title="小页面 (Small Chat — 紧凑 588px 卡片)">
+    <Section title="紧凑卡片">
       <p className="text-sm text-fg-grey-700">
-        每色 2 类型（个人 / 团队），可嵌入 Dashboard widget 或独立窗口。3 色 × 2 = 6 卡片，先展示 Purple 2 个 sample。
+        个人和团队两种紧凑卡片，可以放在仪表盘里。
       </p>
       <div className="flex flex-wrap gap-6">
         <SmallChatCard type="person" color="blue" />
@@ -712,13 +712,14 @@ function SmallChatSection() {
 
 export default function ChatCasePage() {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex min-w-0 max-w-full flex-col gap-12">
       <header>
-        <h1 className="text-3xl font-bold text-fg-black">Chat 复核 Case</h1>
-        <p className="text-sm text-fg-grey-700 mt-1">
-          按 figma <code className="px-1 bg-gray-200 rounded text-xs">chat.md</code> 三段式：基础组件 → 全页面 5 种变体 → 小页面
+        <h1 className="text-3xl font-bold text-fg-black">聊天</h1>
+        <p className="mt-1 text-sm text-fg-grey-700">
+          气泡和输入栏、四种整页布局，以及可以嵌进仪表盘的紧凑卡片。
         </p>
       </header>
+      <ScenarioOutlet />
       <BaseComponentsSection />
       <FullPageSection />
       <SmallChatSection />

@@ -14,6 +14,7 @@
 import { type ReactNode } from "react";
 import { componentLabel } from "../components/_labels";
 import { cn } from "@forge-ui-official/core";
+import { ScenarioOutlet } from "./_scenario-outlet";
 
 export function slugify(text: string): string {
   return text
@@ -97,16 +98,19 @@ export function Labeled({
 
 export function PageHeading({ title, hint }: { title: string; hint?: string }) {
   return (
-    <header className="flex flex-col gap-5">
-      <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">
-        {componentLabel(title)}
-      </h1>
-      {hint && (
-        <p className="max-w-2xl text-sm font-normal leading-6 text-fg-grey-900">
-          {hint}
-        </p>
-      )}
-    </header>
+    <>
+      <header className="flex flex-col gap-5">
+        <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">
+          {componentLabel(title)}
+        </h1>
+        {hint && (
+          <p className="max-w-2xl text-sm font-normal leading-6 text-fg-grey-900">
+            {hint}
+          </p>
+        )}
+      </header>
+      <ScenarioOutlet />
+    </>
   );
 }
 

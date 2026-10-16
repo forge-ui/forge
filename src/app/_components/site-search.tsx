@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
 import { CommandSearch, type CommandSearchItem } from "@forge-ui-official/core";
@@ -19,6 +19,7 @@ const templateItems: CommandSearchItem[] = [
   { id: "/templates/ecommerce/products", label: "电商后台", group: "模板", keywords: ["ecommerce"] },
   { id: "/templates/dashboard-builder", label: "仪表盘外壳", group: "模板", keywords: ["dashboard", "builder"] },
   { id: "/templates/dashboards", label: "仪表盘", group: "模板", keywords: ["dashboards"] },
+  { id: "/templates/agent", label: "智能体", group: "模板", keywords: ["agent", "chat"] },
 ];
 
 const searchItems: CommandSearchItem[] = [...(pageIndex as CommandSearchItem[]), ...templateItems].filter(
@@ -36,16 +37,13 @@ export function SiteSearch() {
   const router = useRouter();
   const pathname = usePathname();
   const [panel, setPanel] = useState<"search" | "menu" | null>(null);
-  const [mounted, setMounted] = useState(false);
+  const [panelPath, setPanelPath] = useState(pathname);
+  const mounted = useSyncExternalStore(() => () => undefined, () => true, () => false);
   const groups = directoryGroups(pathname);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
+  if (pathname !== panelPath) {
+    setPanelPath(pathname);
     setPanel(null);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
