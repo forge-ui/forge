@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "./_components/site-header";
 import { HomeHero } from "./_components/home-hero";
-import { HomeBelow } from "./_components/home-demos";
 import { coreVersion } from "./docs/_versions";
 import "./_components/home-page.css";
 
@@ -26,7 +25,7 @@ export default function HomePage() {
               都有现成的样子
             </h1>
             <p className="home-hero-lead">
-              内部后台里常用的这些块，这里都有现成组件。玻璃、跟随、涟漪和文字切换都可以打开；系统要求减弱动效时，这些动画会停。
+              后台常用的统计、日程、看板和对话，都有现成组件，动效可开可关。
             </p>
             <pre className="home-code">
               <code>
@@ -55,18 +54,7 @@ export default function HomePage() {
             </div>
           </HomeHero>
         </section>
-        <div className="pb-16">
-          <HomeBelow />
-        </div>
       </main>
-      <footer className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-3 text-sm text-fg-grey-900">
-        <p>Forge {coreVersion}</p>
-        <nav aria-label="页脚" className="flex items-center gap-3">
-          <Link href="/docs" className="hover:text-fg-black">文档</Link>
-          <Link href="/components" className="hover:text-fg-black">组件</Link>
-          <Link href="/templates" className="hover:text-fg-black">模板</Link>
-        </nav>
-      </footer>
     </div>
   );
 }
