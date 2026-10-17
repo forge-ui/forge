@@ -254,30 +254,38 @@
 }
 
 .home-stat,
-.home-table {
+.home-command {
   width: 100%;
   max-width: 100%;
 }
 
-.home-table {
+.home-stat {
+  flex: none;
+}
+
+.home-command {
   display: flex;
+  height: 100%;
+  min-height: 0;
   flex-direction: column;
 }
 
-.home-table [data-forge-table-scroll] {
-  flex: 1;
+.home-command > div {
+  display: flex;
   min-height: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
 }
 
-.home-table table {
-  width: 100%;
-  height: 100%;
-  table-layout: fixed;
+.home-command > div > label {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
-.home-table th:last-child > div,
-.home-table td:last-child > div {
-  justify-content: flex-end;
+.home-command > div > div:last-child {
+  min-height: 0;
+  flex: 1 1 auto;
+  max-height: none;
 }
 
 .home-stat > div:first-child {
@@ -286,15 +294,6 @@
 
 .home-stat > div:last-child {
   padding: 0.4rem 0.85rem 0.7rem;
-}
-
-.home-table .py-3\.5 {
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-}
-
-.home-table .h-10 {
-  height: auto;
 }
 
 .home-panel .home-upload {
