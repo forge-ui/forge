@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.7
 
 - 智能体控件和银行卡片内置标签默认中文并支持英文；审批改为显式继续，跳过清除当前答案，最后一步明确跳过并提交，成功反馈承接键盘焦点。
 - 精简按钮和卡片案例的参数矩阵，完善预览、邮箱重试、附件发送、工作分派与存储统计的真实操作反馈。
@@ -21,6 +21,11 @@
 - 增强 ChatBubble/ChatInputBar 的反应、引用回复、语音与发送状态；工具步骤支持受控状态；图表支持动画数据、累计面积、置信带、目标线和独立目标环。
 - AgentCodeBlock 支持嵌套折叠与复制失败重试；指标卡支持可选数字过渡；Toolbar 支持列表选择操作；AppLayout 融合已验收的侧栏连续伸缩。
 - 提供正式交互总览、逐项迁移对照和 API 用法。23 项暂缓与 1 项排除保持原决策；不新增平行公共组件。
+
+## 0.4.6
+
+- Add an opt-in Ask AI responsive session panel: non-modal 460px dock at 1440px and above, modal drawer below that, session-first header, and configurable landing title and description.
+- Keep `onDockedChange` stable when the callback identity changes, and release the host reservation on unmount. Let the history menu shrink with its container.
 
 ## 0.4.3
 
