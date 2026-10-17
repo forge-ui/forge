@@ -2,16 +2,21 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import {
+  Avatar,
+  BarChart,
   CalendarCard,
+  CellText,
+  ChartCard,
   ChatBubble,
   ChatInputBar,
   type ChatInputBarQuickAction,
+  DataTable,
   FileUpload,
   NotificationItem,
   ProgressBar,
-  RatingStars,
+  StatusBadge,
   Stepper,
-  Toggle,
+  type ColumnDef,
 } from "@forge-ui-official/core";
 
 const quickCards: ChatInputBarQuickAction[] = [
@@ -44,38 +49,82 @@ function useTicker(step: number, max: number, every: number) {
   return value;
 }
 
-function RatingPanel() {
-  const [score, setScore] = useState(4);
+type MatterRow = {
+  id: string;
+  name: string;
+  who: string;
+  status: string;
+  tone: "blue" | "cyan" | "grey";
+  avatar: "blue" | "cyan";
+};
+
+const matterRows: MatterRow[] = [
+  { id: "1", name: "周报", who: "林", status: "已完成", tone: "blue", avatar: "blue" },
+  { id: "2", name: "排期", who: "周", status: "进行中", tone: "cyan", avatar: "cyan" },
+  { id: "3", name: "跟进", who: "陈", status: "待开始", tone: "grey", avatar: "blue" },
+];
+
+const matterColumns: ColumnDef<MatterRow>[] = [
+  {
+    key: "name",
+    header: "事项",
+    flex: true,
+    render: (row) => (
+      <span className="flex min-w-0 items-center gap-2">
+        <Avatar initials={row.who} size="xs" color={row.avatar} />
+        <CellText>{row.name}</CellText>
+      </span>
+    ),
+  },
+  {
+    key: "status",
+    header: "状态",
+    width: "w-16",
+    render: (row) => <StatusBadge label={row.status} color={row.tone} />,
+  },
+];
+
+function WeekStat() {
+  const [index, setIndex] = useState(3);
+  const days = [
+    { value: 18, label: "一" },
+    { value: 24, label: "二" },
+    { value: 16, label: "三" },
+    { value: 32, label: "四" },
+    { value: 22, label: "五" },
+  ];
   return (
-    <Panel title="评分">
-      <RatingStars value={score} onChange={setScore} motion="auto" locale="zh" size="md" ariaLabel="完成度" />
-    </Panel>
+    <ChartCard className="home-stat" title="本周完成" subtitle="较上周 +12%" width="full" minHeight="min-h-0" action={<></>}>
+      <BarChart
+        data={days}
+        accent="blue"
+        color="bg-fg-blue"
+        inactiveColor="bg-fg-blue-100"
+        motion="auto"
+        height="h-12"
+        showLabels
+        barWidth="wide"
+        activeIndex={index}
+        onSelect={setIndex}
+        ariaLabel="本周完成"
+      />
+    </ChartCard>
   );
 }
 
-function SwitchPanel() {
-  const [flags, setFlags] = useState({ motion: true, online: true, mail: false, alert: true });
-  const rows = [
-    ["motion", "动效"],
-    ["online", "在线"],
-    ["mail", "邮件"],
-    ["alert", "提醒"],
-  ] as const;
+function MatterTable() {
+  const [keys, setKeys] = useState<ReadonlySet<string>>(() => new Set(["1"]));
   return (
-    <Panel title="开关">
-      {rows.map(([key, label]) => (
-        <div className="home-split" key={key}>
-          <span className="text-sm text-fg-grey-700">{label}</span>
-          <Toggle
-            checked={flags[key]}
-            onChange={(next) => setFlags((current) => ({ ...current, [key]: next }))}
-            color="blue"
-            motion="auto"
-            ariaLabel={label}
-          />
-        </div>
-      ))}
-    </Panel>
+    <DataTable
+      className="home-table"
+      color="blue"
+      rows={matterRows}
+      columns={matterColumns}
+      selectedRowKeys={keys}
+      onSelectedRowKeysChange={(next) => setKeys(new Set([...next].map(String)))}
+      getRowKey={(row) => row.id}
+      tableMinWidth={200}
+    />
   );
 }
 
@@ -152,6 +201,11 @@ function Thread() {
   }, []);
   return (
     <div className="home-thread">
+      <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
+      {shown > 1 ? (
+        <ChatBubble type="sent" color="blue" variant="file" motion="auto" fileName="本周统计.pdf" fileSize="240 KB" />
+      ) : null}
+      {shown > 2 ? <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" /> : null}
       <ChatInputBar
         className="w-full max-w-full"
         locale="zh"
@@ -164,11 +218,6 @@ function Thread() {
         hasMessages={false}
         showAttachment={false}
       />
-      <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
-      {shown > 1 ? (
-        <ChatBubble type="sent" color="blue" variant="file" motion="auto" fileName="本周统计.pdf" fileSize="240 KB" />
-      ) : null}
-      {shown > 2 ? <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" /> : null}
     </div>
   );
 }
@@ -195,8 +244,8 @@ function Wall() {
       <div className="home-span">
         <div className="home-span-cols">
           <div className="home-col">
-            <RatingPanel />
-            <SwitchPanel />
+            <WeekStat />
+            <MatterTable />
           </div>
           <div className="home-col">
             <CalendarPanel />
