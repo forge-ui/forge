@@ -1,14 +1,9 @@
 .home-page {
   background: #f4f4f5;
+  color: #000a19;
 }
 
-.home-panel {
-  border-radius: 16px;
-  border: 1px solid rgba(0, 10, 25, 0.08);
-  background: #f7f7f8;
-}
-
-.home-card {
+.home-board {
   border-radius: 24px;
   background: #fff;
   box-shadow:
@@ -16,13 +11,32 @@
     0 12px 32px -16px rgba(0, 10, 25, 0.16);
 }
 
-.home-tabs {
-  border-radius: 20px;
-  background: #ececee;
+.home-workspace {
+  height: 42rem;
+  max-width: 100%;
+  overflow: clip;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow:
+    0 1px 1px rgba(0, 10, 25, 0.04),
+    0 12px 32px -16px rgba(0, 10, 25, 0.16);
+  transform: translateZ(0);
+  contain: paint;
 }
 
-.home-promo-head {
-  background: linear-gradient(165deg, #3553ff 0%, #2aa8c4 55%, #7ee0d8 100%);
+/* The blue StatCard ships with a green glow. Keep the homepage palette to blue, cyan, black, and white. */
+.home-workspace .bg-fg-blue > .bg-gradient-to-b {
+  display: none;
+}
+
+.home-clip {
+  overflow: clip;
+}
+
+@media (max-width: 1023px) {
+  .home-workspace {
+    height: 41rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
