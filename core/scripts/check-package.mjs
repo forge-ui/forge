@@ -23,22 +23,24 @@ const [pack] = JSON.parse(
   }),
 );
 
-// Four animated widgets add four public modules (JS/declarations/maps) and scoped
-// artwork CSS. Measured package: ~738 KB packed, 2.99 MB unpacked, 69.7 KB CSS.
-// Keep individual JavaScript module limits unchanged.
+// The 99-interaction migration extends existing primitives and adds internal helpers,
+// without adding parallel public component entries. Measured source bundle before
+// final documentation: ~840 KB packed, 3.37 MB unpacked, 488 entries, 96.4 KB CSS.
+// Website composition styles and prototype assets are excluded. Keep per-module
+// JavaScript limits unchanged; aggregate headroom remains below 6%.
 const limits = {
-  packed: 750_000,
-  unpacked: 3_020_000,
-  entries: 464,
-  sourceMaps: 1_620_000,
+  packed: 870_000,
+  unpacked: 3_500_000,
+  entries: 488,
+  sourceMaps: 1_900_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,
   inlinedGzip: 20_000,
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
-  // CalendarCard appearance variants add ~6.5 KB of scoped form/typography CSS.
-  stylesRaw: 77_000,
+  // Includes optional core effects, with all website-only scenes kept outside npm.
+  stylesRaw: 100_000,
 };
 
 const expectedExports = {

@@ -1,5 +1,8 @@
+import { FamilyInteractionDemos } from "../_components/family-interaction-demos";
+import { FusionFamilyExamples } from "../components/_fusion/family-examples";
 import { SiteHeader } from "../_components/site-header";
 import { CasesNav } from "./_nav";
+import { ScenarioProvider } from "./_scenario-outlet";
 import { CasesToc } from "./_toc";
 
 export default function CasesLayout({
@@ -14,8 +17,17 @@ export default function CasesLayout({
         <CasesNav />
         <main className="min-w-0 flex-1 px-8 py-10 lg:px-12">
           <div className="mx-auto flex w-full max-w-5xl gap-16">
-            <article className="flex min-w-0 flex-1 flex-col gap-10">
-              {children}
+            <article className="flex min-w-0 max-w-full flex-1 flex-col gap-10 [&>*]:min-w-0 [&>*]:max-w-full">
+              <ScenarioProvider
+                scenarios={
+                  <>
+                    <FusionFamilyExamples />
+                    <FamilyInteractionDemos />
+                  </>
+                }
+              >
+                {children}
+              </ScenarioProvider>
             </article>
             <CasesToc />
           </div>

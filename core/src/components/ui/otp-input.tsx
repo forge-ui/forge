@@ -8,6 +8,7 @@ import type { MotionPreference } from "../../lib/motion";
 
 export type OtpInputProps = {
   length?: number;
+  locale?: "zh" | "en";
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
@@ -23,6 +24,8 @@ export type OtpInputProps = {
   verifyingLabel?: string;
   successLabel?: string;
   errorLabel?: string;
+  /** Clear a rejected code after its error animation. Set false to keep it for editing. */
+  clearOnError?: boolean;
   motion?: MotionPreference;
   className?: string;
 };
@@ -31,10 +34,15 @@ const edge = teeth.map(([x, y]) => `${x}% ${y}%`).join(", ");
 const halves = [`polygon(0% 0%, ${edge}, 0% 100%)`, `polygon(100% 0%, ${edge}, 100% 100%)`];
 const crack = `M ${teeth.map(([x, y]) => `${x * .54} ${y * .68}`).join(" L ")}`;
 const ease = [.16, 1, .3, 1] as const;
+// Keep the error feedback short enough to retry, and reset only after every
+// slot has finished falling and returning.
+const errorDuration = 1.1;
+const errorStagger = .025;
+const errorResetPause = .18;
 
-export function OtpInput({ length = 6, value: controlled, defaultValue = "", onChange, onComplete, verify, onSuccess,
-  disabled = false, autoFocus = false, name, inputLabel = "验证码", hint = "请输入验证码", verifyingLabel = "正在验证…",
-  successLabel = "验证成功", errorLabel = "验证码不正确，请重试", motion: motionPreference = "auto", className = "" }: OtpInputProps) {
+export function OtpInput({ length = 6, locale = "zh", value: controlled, defaultValue = "", onChange, onComplete, verify, onSuccess,
+  disabled = false, autoFocus = false, name, inputLabel = locale === "zh" ? "验证码" : "Verification code", hint = locale === "zh" ? "请输入验证码" : "Enter your verification code", verifyingLabel = locale === "zh" ? "正在验证…" : "Verifying…",
+  clearOnError = true, successLabel = locale === "zh" ? "验证成功" : "Verified", errorLabel = locale === "zh" ? "验证码不正确，请重试" : "Incorrect code. Try again", motion: motionPreference = "auto", className = "" }: OtpInputProps) {
   const size = Number.isFinite(length) ? Math.max(2, Math.min(10, Math.round(length))) : 6;
   const clean = (text: string) => text.replace(/\D/g, "").slice(0, size);
   const [internal, setInternal] = useState(defaultValue);
@@ -45,6 +53,9 @@ export function OtpInput({ length = 6, value: controlled, defaultValue = "", onC
   const [focused, setFocused] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const request = useRef(0);
+  const changeCallback = useRef(onChange);
+  useLayoutEffect(() => { changeCallback.current = onChange; }, [onChange]);
+  const isControlled = controlled !== undefined;
   const reduced = useReducedMotion(motionPreference);
   const hintId = useId();
   // Disabling editing does not cancel an already submitted verification.
@@ -69,6 +80,20 @@ export function OtpInput({ length = 6, value: controlled, defaultValue = "", onC
     });
   }
   useLayoutEffect(() => { if (result.state === "pending" && (result.value !== value || result.value.length !== size)) request.current++; }, [result, value, size]);
+  useEffect(() => {
+    if (state !== "err" || !clearOnError || disabled) return;
+    const generation = request.current;
+    const timer = setTimeout(() => {
+      if (generation !== request.current || input.current?.value !== result.value) return;
+      request.current++;
+      if (!isControlled) setInternal("");
+      changeCallback.current?.("");
+      setResult({ value: "", state: "idle" });
+      // The input remains focused while retrying; never take focus back after
+      // the user has moved to another control.
+    }, Math.max(1400, (errorDuration + (size - 1) * errorStagger + errorResetPause) * 1000));
+    return () => clearTimeout(timer);
+  }, [state, result, clearOnError, disabled, isControlled, size]);
   const message = state === "pending" ? verifyingLabel : state === "ok" ? successLabel : state === "err" ? errorLabel : hint;
   return <div className={`forge-otp ${className}`} data-motion={motionPreference} data-status={state} data-disabled={disabled || undefined} style={{ "--forge-otp-count": size } as React.CSSProperties}>
     <div className="forge-otp__stage">
@@ -77,7 +102,7 @@ export function OtpInput({ length = 6, value: controlled, defaultValue = "", onC
           {i === Math.ceil(size / 2) && <span className="forge-otp__sep">-</span>}
           <motion.div className="forge-otp__cell" data-state={state === "ok" || state === "err" ? state : focused && i === Math.min(caret ?? value.length, size - 1) ? "focus" : "idle"} data-filled={Boolean(value[i])}
             animate={state === "ok" && !reduced ? { y: [0, -10, 0], scale: [1, 1.06, 1] } : { y: 0, scale: 1 }} transition={{ duration: reduced ? 0 : .6, delay: reduced ? 0 : i * .055 }}>
-            <motion.div className="forge-otp__whole" animate={{ opacity: state === "err" && !reduced ? [1, 1, 0, 0, 1] : 1 }} transition={{ duration: reduced ? 0 : 3.8, times: [0, .35, .36, .9, 1] }}>
+            <motion.div className="forge-otp__whole" animate={{ opacity: state === "err" && !reduced ? [1, 1, 0, 0, 1] : 1 }} transition={{ duration: reduced ? 0 : errorDuration, times: [0, .35, .36, .9, 1] }}>
               <div className="forge-otp__egg"><Digit value={value[i] ?? ""} index={i} reduced={reduced} /></div>
             </motion.div>
             {halves.map((clipPath, side) => {
@@ -85,12 +110,12 @@ export function OtpInput({ length = 6, value: controlled, defaultValue = "", onC
               const broken = state === "err" && !reduced;
               return <motion.div key={side} className="forge-otp__half" style={{ clipPath }}
                 animate={broken ? { x: [0, 0, sign * 3.5, sign * (46 + i * 7), 0], y: [0, 0, 0, 104, 0], rotate: [0, 0, sign * 7, sign * 56, 0], opacity: [1, 1, 1, 0, 1] } : { x: 0, y: 0, rotate: 0, opacity: 1 }}
-                transition={{ duration: reduced ? 0 : 3.8, times: [0, .35, .46, .76, 1], delay: reduced ? 0 : i * .04, ease }}>
+                transition={{ duration: reduced ? 0 : errorDuration, times: [0, .35, .46, .76, 1], delay: reduced ? 0 : i * errorStagger, ease }}>
                 <div className="forge-otp__egg"><Digit value={value[i] ?? ""} index={i} reduced={reduced} /></div>
               </motion.div>;
             })}
-            <motion.svg className="forge-otp__crack" viewBox="0 0 54 68" animate={{ opacity: state === "err" && !reduced ? [0, 1, 1, 0] : 0 }} transition={{ duration: 1.8, times: [0, .2, .8, 1] }}>
-              <motion.path d={crack} initial={false} animate={{ pathLength: state === "err" ? 1 : 0 }} transition={{ duration: reduced ? 0 : .54, delay: reduced ? 0 : .3 + i * .08 }} />
+            <motion.svg className="forge-otp__crack" viewBox="0 0 54 68" animate={{ opacity: state === "err" && !reduced ? [0, 1, 1, 0] : 0 }} transition={{ duration: reduced ? 0 : .8, times: [0, .2, .8, 1] }}>
+              <motion.path d={crack} initial={false} animate={{ pathLength: state === "err" ? 1 : 0 }} transition={{ duration: reduced ? 0 : .35, delay: reduced ? 0 : .12 + i * errorStagger }} />
             </motion.svg>
             <span className="forge-otp__caret" />
           </motion.div>

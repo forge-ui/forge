@@ -2,20 +2,22 @@
 import { cn } from "../../lib/utils";
 
 const solidColors = {
+  black: "bg-fg-black text-white",
   purple: "bg-fg-violet text-white",
   green: "bg-fg-green-500 text-white",
   red: "bg-fg-red text-white",
-  yellow: "bg-fg-yellow text-white",
+  yellow: "bg-fg-yellow text-fg-black",
   blue: "bg-fg-blue text-white",
   cyan: "bg-fg-cyan-500 text-white",
   orange: "bg-fg-red text-white",
 } as const;
 
 const outlineColors = {
+  black: "bg-fg-grey-100 outline outline-1 outline-offset-[-1px] outline-fg-grey-300 text-fg-black",
   purple: "bg-fg-violet-100 outline outline-1 outline-offset-[-1px] outline-fg-violet-300 text-fg-violet",
   green: "bg-fg-green-50 outline outline-1 outline-offset-[-1px] outline-fg-green-200 text-fg-green-500",
   red: "bg-fg-red-100 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-red",
-  yellow: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-yellow",
+  yellow: "bg-fg-yellow-50 outline outline-1 outline-offset-[-1px] outline-fg-yellow-300 text-fg-yellow-900",
   blue: "bg-fg-blue-50 outline outline-1 outline-offset-[-1px] outline-fg-blue-200 text-fg-blue",
   cyan: "bg-fg-cyan-50 outline outline-1 outline-offset-[-1px] outline-fg-cyan-100 text-fg-cyan-500",
   orange: "bg-fg-red-50 outline outline-1 outline-offset-[-1px] outline-fg-red-200 text-fg-red",
@@ -32,7 +34,7 @@ export type EventTagVariant = "solid" | "outline";
 
 export function EventTag({
   label,
-  color = "purple",
+  color = "blue",
   size = "md",
   variant = "solid",
   avatar,

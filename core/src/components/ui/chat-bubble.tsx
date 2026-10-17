@@ -1,6 +1,13 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 
-import { PlayBoldDuotone, DocumentTextLinear, DownloadLinear } from "../../icons";
+import { useRef, useState } from "react";
+import type { MotionPreference } from "../../lib/motion";
+import { useReducedMotion } from "../../internal/motion";
+import { ChatReactions, type ChatReaction, type ChatReactionOption } from "../../internal/chat-interactions";
+import type { ComposerReply } from "./composer-types";
+import { ReplyLinear, ClockCircleLinear, CheckCircleLinear, DangerTriangleLinear, PlayBoldDuotone, DocumentTextLinear, DownloadLinear } from "../../icons";
 import { accentColors, type AccentColor } from "./accent-utils";
 
 // Chat-specific color tokens (play button, waveform, file subtitle)
@@ -54,8 +61,9 @@ const WAVE_HEIGHTS = [
 
 export function ChatBubble({
   type,
+  locale = "zh", motion = "auto", reactions = [], reactionOptions = [], onReaction, onReply, replyTo, delivery,
   variant = "text",
-  color = "purple",
+  color = "blue",
   content,
   time,
   avatar,
@@ -69,6 +77,14 @@ export function ChatBubble({
   className = "",
 }: {
   type: "sent" | "received";
+  locale?: "zh" | "en";
+  motion?: MotionPreference;
+  reactions?: ChatReaction[];
+  reactionOptions?: ChatReactionOption[];
+  onReaction?: (id: string) => void;
+  onReply?: () => void;
+  replyTo?: ComposerReply;
+  delivery?: "queued" | "sending" | "sent" | "delivered" | "failed";
   variant?: "text" | "voice" | "file" | "image";
   color?: AccentColor;
   content?: string;
@@ -84,6 +100,12 @@ export function ChatBubble({
   voiceDuration?: string;
   className?: string;
 }) {
+  const drag = useRef<{ x: number; delta: number } | null>(null);
+  const [offset, setOffset] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const reduced = useReducedMotion(motion);
+  const finishDrag = (cancel: boolean) => { const ready = !cancel && (drag.current?.delta ?? 0) >= 60; drag.current = null; setDragging(false); setOffset(0); if (ready) onReply?.(); };
+  const deliveryLabel = delivery && (locale === "zh" ? { queued: "等待发送", sending: "发送中", sent: "已发送", delivered: "已送达", failed: "发送失败" } : { queued: "Queued", sending: "Sending", sent: "Sent", delivered: "Delivered", failed: "Failed" })[delivery];
   const isSent = type === "sent";
   const accent = accentColors[color];
   const c = chatColors[color];
@@ -98,7 +120,7 @@ export function ChatBubble({
   const fileSubColor = isSent ? c.fileSubText : "text-fg-grey-700";
 
   return (
-    <div className={`flex gap-2.5 ${isSent ? "justify-end" : "justify-start"} ${className}`}>
+    <div data-motion={reduced ? "none" : motion} data-delivery={delivery} style={{ "--accent": `var(--fg-${color === "purple" ? "violet" : color})` } as import("react").CSSProperties} className={`forge-chat-bubble flex gap-2.5 ${isSent ? "justify-end" : "justify-start"} ${className}`}>
       {!isSent && avatar && (
         <img
           src={avatar}
@@ -112,9 +134,13 @@ export function ChatBubble({
           <span className="text-xs text-fg-grey-700 font-medium">{senderName}</span>
         )}
 
+        {replyTo && <blockquote className="max-w-full rounded-lg bg-fg-grey-100 px-3 py-2 text-xs text-fg-grey-700"><strong className="font-medium">{replyTo.name}</strong><p className="truncate">{replyTo.content}</p></blockquote>}
         {/* TEXT */}
         {variant === "text" && (
-          <div className={`p-3 ${bubbleBg} ${cornerClass} inline-flex justify-start items-start gap-2 overflow-hidden`}>
+          <div className={`p-3 ${bubbleBg} ${cornerClass} inline-flex justify-start items-start gap-2 overflow-hidden`} style={{ translate: `${offset}px 0`, transition: dragging || reduced ? "none" : "translate 300ms cubic-bezier(.2,.8,.2,1)", touchAction: onReply ? "pan-y" : undefined }}
+            onPointerDown={event => { if (!onReply || event.button !== 0) return; setDragging(true); drag.current = { x: event.clientX, delta: 0 }; event.currentTarget.setPointerCapture(event.pointerId); }}
+            onPointerMove={event => { if (!drag.current) return; const delta = Math.max(0, event.clientX - drag.current.x); drag.current.delta = delta; setOffset(Math.min(delta, 60) + Math.max(0, delta - 60) * .3); }}
+            onPointerUp={() => finishDrag(false)} onPointerCancel={() => finishDrag(true)} onLostPointerCapture={() => finishDrag(true)}>
             <p className={`flex-1 text-sm font-normal leading-5 tracking-fg ${bubbleText}`}>
               {content}
             </p>
@@ -165,7 +191,7 @@ export function ChatBubble({
             {!isSent && onFileDownload && (
               <button
                 type="button"
-                aria-label={`下载 ${fileName ?? content ?? "文件"}`}
+                aria-label={`${locale === "zh" ? "下载" : "Download"} ${fileName ?? content ?? (locale === "zh" ? "文件" : "file")}`}
                 onClick={onFileDownload}
                 className="ml-2 shrink-0 opacity-70 hover:opacity-100 transition-opacity"
               >
@@ -196,8 +222,13 @@ export function ChatBubble({
           </div>
         )}
 
+        {onReply && <button type="button" className="inline-flex items-center gap-1 rounded-lg px-1 py-0.5 text-xs text-fg-grey-500 hover:bg-fg-grey-100" onClick={onReply}><ReplyLinear size={14} />{locale === "zh" ? "回复" : "Reply"}</button>}
+        {onReaction && <ChatReactions reactions={reactions} options={reactionOptions} onChange={onReaction} locale={locale} motion={motion} />}
+        {deliveryLabel && <span role="status" className="inline-flex items-center gap-1 text-xs text-fg-grey-500">{delivery === "queued" || delivery === "sending" ? <ClockCircleLinear size={14} /> : delivery === "failed" ? <DangerTriangleLinear size={14} color="var(--fg-red)" /> : <CheckCircleLinear size={14} />}{deliveryLabel}</span>}
         {time && <span className="text-2xs text-fg-grey-500 px-1">{time}</span>}
       </div>
     </div>
   );
 }
+
+export type { ChatReaction, ChatReactionOption } from "../../internal/chat-interactions";

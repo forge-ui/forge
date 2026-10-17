@@ -12,8 +12,8 @@ import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 const HEADER_COLORS = ["purple", "blue", "black"] as const;
 
 const PROFILE = {
-  name: "John Doe Hoegan",
-  role: "Manager",
+  name: "张明",
+  role: "经理",
   avatar: "https://i.pravatar.cc/100?img=12",
 };
 
@@ -55,20 +55,20 @@ export default function PageHeaderCasePage() {
   return (
     <div className="flex flex-col gap-8">
       <PageHeading
-        title="Page Header"
-        hint="Breadcrumbs · TopBar · PageHeader (Search & Widget · Page Title)"
+        title="页面顶栏"
+        hint="组织页面标题、搜索、通知和常用操作，明确当前位置。"
       />
 
       <Section title="Breadcrumbs" description="Colors: purple, blue, black">
-        <SubSection title="All colors">
+        <SubSection title="全部颜色">
           {HEADER_COLORS.map((c) => (
             <Labeled key={c} label={c}>
               <Breadcrumbs
                 color={c}
                 items={[
-                  { label: "Home", href: "#" },
-                  { label: "Projects", href: "#" },
-                  { label: "Current Page" },
+                  { label: "首页", href: "#" },
+                  { label: "项目", href: "#" },
+                  { label: "当前页面" },
                 ]}
               />
             </Labeled>
@@ -77,7 +77,7 @@ export default function PageHeaderCasePage() {
       </Section>
 
       <Section title="TopBar" description="Colors: purple, blue, green">
-        <SubSection title="All colors">
+        <SubSection title="全部颜色">
           {(["purple", "blue", "green"] as const).map((c) => (
             <div key={c} className="w-full">
               <Labeled label={c}>
@@ -136,20 +136,20 @@ export default function PageHeaderCasePage() {
                   <DemoPageHeader
                     variant="title"
                     color={color as PageHeaderColor}
-                    title="Page Title"
+                    title="页面标题"
                     showBackButton={row.showBackButton}
                     titleAvatar={row.titleAvatar}
                     showDatePicker
-                    datePickerLabel="Select Dates"
+                    datePickerLabel="选择日期"
                     showFilters
-                    filtersLabel="Filters"
+                    filtersLabel="筛选条件"
                     showKebab
                     showFavorite
                     secondaryAction={{
-                      label: "Tertiary",
+                      label: "轻量按钮",
                       icon: <Logout3Linear size={16} color="currentColor" />,
                     }}
-                    primaryAction={{ label: "Primary" }}
+                    primaryAction={{ label: "主要按钮" }}
                   />
                 </div>
               ))}

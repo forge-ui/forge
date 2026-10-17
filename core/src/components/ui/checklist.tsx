@@ -15,6 +15,7 @@ import {
   useState,
   type CSSProperties,
 } from "react";
+import { CheckCircleLinear } from "../../icons";
 import { cn } from "../../lib/utils";
 import { type CheckboxColor } from "./checkbox";
 
@@ -39,7 +40,7 @@ const FILL: Record<ChecklistColor, string> = {
 
 const SIZE: Record<ChecklistSize, { row: string; text: string; line: string }> = {
   sm: { row: "gap-2.5 rounded-xl px-3 py-2", text: "text-sm leading-5", line: "1.5px" },
-  md: { row: "gap-3 rounded-[14px] px-3.5 py-2.5", text: "text-[15px] leading-6", line: "2px" },
+  md: { row: "gap-3 rounded-[14px] px-3.5 py-2.5", text: "text-sm leading-5", line: "2px" },
 };
 
 function ChecklistMark({
@@ -61,16 +62,7 @@ function ChecklistMark({
           filled ? "forge-checklist-fill-on" : "forge-checklist-fill-off",
         )}
       />
-      <svg aria-hidden className="absolute inset-0 h-5 w-5" viewBox="0 0 20 20" fill="none">
-        <path
-          className={filled ? "forge-checklist-tick-on" : "forge-checklist-tick-off"}
-          d="M5.28 10.36L8.33 13.22L14.72 6.86"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <span aria-hidden className={cn("absolute inset-0 flex items-center justify-center transition-opacity", filled ? "opacity-100" : "opacity-0")}><CheckCircleLinear size={17} color="white" /></span>
     </span>
   );
 }
@@ -80,7 +72,7 @@ export function ChecklistItem({
   checked,
   defaultChecked = false,
   size = "md",
-  color = "purple",
+  color = "blue",
   onCheckedChange,
   onSettled,
   onReverted,
@@ -238,14 +230,16 @@ function useFlip(orderKey: string, motion: MotionPreference) {
 
 export function Checklist({
   tasks,
+  locale = "zh",
   defaultTasks = [],
   size = "md",
-  color = "purple",
+  color = "blue",
   onTasksChange,
   className = "",
   motion = "auto",
 }: {
   tasks?: ChecklistTask[];
+  locale?: "zh" | "en";
   defaultTasks?: ChecklistTask[];
   size?: ChecklistSize;
   color?: ChecklistColor;
@@ -271,7 +265,7 @@ export function Checklist({
     const next = current.map((item) => (item.id === task.id ? { ...item, done } : item));
     if (tasks === undefined) setOwn(next);
     onTasksChange?.(next);
-    setNote(`${task.label} ${done ? "completed" : "reopened"}`);
+    setNote(`${task.label} ${locale === "zh" ? (done ? "已完成" : "重新打开") : (done ? "completed" : "reopened")}`);
   }
 
   return (

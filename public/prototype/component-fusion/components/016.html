@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>星级评价</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"016",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"016",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"016",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"016",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"016"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u016{--gold:linear-gradient(160deg,var(--fg-yellow-700),var(--fg-yellow-700) 60%,var(--fg-red));position:relative;width:330px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.u016-q{margin:0;font-size:var(--forge-text-arbitrary-15-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-2)}
+.u016-stars{display:flex;gap:6px;border-radius:16px}
+.u016-stars:focus-visible{outline:2px solid var(--ux-accent);outline-offset:6px}
+.u016-s{position:relative;width:52px;height:52px;padding:0;border:0;background:none;transition:transform .35s var(--ux-spring)}
+.u016-s svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.u016-s .bg{fill:var(--ux-surface-3);stroke:var(--ux-line-2);stroke-width:1}
+.u016-s .fg{fill:url(#u016-g);transform-origin:50% 55%;transform:scale(0);transition:transform .4s var(--ux-spring)}
+.u016-s.is-pre .fg{transform:scale(.72);opacity:.55}
+.u016-s.is-on .fg{transform:scale(1);opacity:1}
+.u016-s:hover{transform:scale(1.12) rotate(-6deg)}
+.u016-s.is-pop{animation:u016-pop .55s var(--ux-spring)}
+@keyframes u016-pop{0%{transform:scale(1)}35%{transform:scale(1.32) rotate(12deg)}100%{transform:scale(1)}}
+.u016-s i{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--fg-yellow-700);opacity:0;pointer-events:none}
+.u016-s.is-pop i{animation:u016-spark .6s var(--ux-ease) forwards}
+@keyframes u016-spark{0%{opacity:1;transform:rotate(var(--a)) translateY(-14px) scale(1)}100%{opacity:0;transform:rotate(var(--a)) translateY(-40px) scale(.3)}}
+.u016-out{display:flex;align-items:baseline;gap:10px;height:40px}
+.u016-score{font-size:var(--forge-text-4xl-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.04em;font-variant-numeric:tabular-nums;transition:color .4s var(--ux-ease)}
+.u016-word{position:relative;height:24px;width:132px;overflow:hidden;font-size:var(--forge-text-base-size);font-weight:var(--forge-font-bold-weight)}
+.u016-word span{position:absolute;left:0;top:0;line-height:var(--forge-leading-6);white-space:nowrap;transition:transform .5s var(--ux-spring),opacity .3s var(--ux-ease)}
+</style>
+<div class="ux u016">
+  <p class="u016-q">How was your order?</p>
+  <div class="u016-stars" role="slider" tabindex="0" aria-label="Rating" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-valuetext="Not rated">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="u016-g" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="var(--fg-yellow-700)"/><stop offset=".6" stop-color="var(--fg-yellow-700)"/><stop offset="1" stop-color="var(--fg-red)"/></linearGradient></defs></svg>
+  </div>
+  <div class="u016-out" aria-hidden="true"><span class="u016-score">0.0</span><span class="u016-word"><span>Tap a star to rate</span></span></div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var wrap = root.querySelector('.u016-stars');
+  var score = root.querySelector('.u016-score');
+  var word = root.querySelector('.u016-word');
+
+  var gid = 'u016-g-' + Math.random().toString(36).slice(2, 7);
+  root.querySelector('linearGradient').id = gid;
+  var WORDS = ['Tap a star to rate', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'];
+  var COLORS = ['var(--ux-ink-3)', window.forgePaint("var(--fg-red)"), window.forgePaint("var(--fg-yellow-700)"), window.forgePaint("var(--fg-yellow-700)"), window.forgePaint("var(--fg-green-500)"), window.forgePaint("var(--accent)")];
+  var STAR = "M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z";
+  var stars = [];
+  for (var i = 0; i < 5; i++) {
+    var b = document.createElement('span');
+    b.className = 'u016-s';
+    var sparks = '';
+    for (var k = 0; k < 5; k++) sparks += '<i style="--a:' + (k * 72) + 'deg"></i>';
+    b.innerHTML = '<svg class="solar" viewBox="0 0 52 52"><path class="bg" transform="scale(2.1666667)" d="' + STAR + '" stroke-linejoin="round"/><path class="fg" transform="scale(2.1666667)" d="' + STAR + '" style="fill:url(#' + gid + ')"/></svg>' + sparks;
+    b.dataset.v = i + 1;
+    wrap.appendChild(b);
+    stars.push(b);
+  }
+  var val = 0;
+  function preview(n) { stars.forEach(function (s, i) { s.classList.toggle('is-pre', i < n && i >= val); }); }
+  function setWord(n) {
+    var old = word.lastElementChild;
+    var s = document.createElement('span');
+    s.textContent = WORDS[n];
+    s.style.color = COLORS[n];
+    s.style.transform = 'translateY(100%)'; s.style.opacity = '0';
+    word.appendChild(s);
+    void s.offsetWidth;
+    s.style.transform = 'none'; s.style.opacity = '1';
+    old.style.transform = 'translateY(-100%)'; old.style.opacity = '0';
+    setTimeout(function () { old.remove(); }, 500);
+  }
+  // 점수를 정하면 왼쪽부터 차례로 별이 튀어 오릅니다
+  function set(n) {
+    if (n === val) return;
+    var prev = val;
+    val = n;
+    stars.forEach(function (s, i) {
+      var on = i < n;
+      s.classList.remove('is-pre');
+      if (on && i >= prev) {
+        setTimeout(function () {
+          if (!root.isConnected) return;
+          s.classList.add('is-on');
+          if (!window.forgeReduced()) { s.classList.remove('is-pop'); void s.offsetWidth; s.classList.add('is-pop'); }
+        }, window.forgeReduced() ? 0 : (i - prev) * 70);
+      } else if (!on) s.classList.remove('is-on', 'is-pop');
+    });
+    score.textContent = n.toFixed(1);
+    score.style.color = n ? COLORS[n] : '';
+    setWord(n);
+    wrap.setAttribute('aria-valuenow', String(n));
+    wrap.setAttribute('aria-valuetext', n ? n + ' stars, ' + WORDS[n] : 'Not rated');
+  }
+  stars.forEach(function (s) {
+    s.addEventListener('pointerenter', function () { preview(+s.dataset.v); });
+    s.addEventListener('click', function () { set(+s.dataset.v); });
+  });
+  wrap.addEventListener('pointerleave', function () { preview(0); });
+  wrap.addEventListener('keydown', function (e) {
+    var d = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key];
+    if (e.key === 'Home') { e.preventDefault(); set(0); }
+    if (e.key === 'End') { e.preventDefault(); set(5); }
+    if (d) { e.preventDefault(); set(Math.max(0, Math.min(5, val + d))); }
+    if (/^[0-5]$/.test(e.key)) set(+e.key);
+  });
+})();</script></body></html>

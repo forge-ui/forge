@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>自定义选择器</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"031",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"031",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"031",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"031",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"031"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u031{position:relative;width:340px;height:436px;padding:22px 20px;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 60px -36px var(--ux-shadow-strong)}
+.u031-h{margin:0 2px 18px;font-size:var(--forge-text-lg-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.03em}
+.u031-f{position:relative;margin-bottom:14px}
+.u031-lab{display:block;margin:0 2px 7px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-3)}
+.u031-btn{display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 14px;border:0;border-radius:16px;background:var(--ux-surface-2);color:var(--ux-ink);text-align:left;
+  box-shadow:inset 0 0 0 1.5px transparent;transition:box-shadow .25s var(--ux-ease),background-color .25s}
+.u031-btn:hover{box-shadow:inset 0 0 0 1.5px var(--ux-line-2)}
+.u031-btn:focus-visible,.u031.is-open .u031-btn[aria-expanded="true"]{outline:0;background:var(--ux-surface);box-shadow:inset 0 0 0 2px var(--ux-accent),0 0 0 5px var(--ux-accent-soft)}
+.u031-flag{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;font-size:var(--forge-text-arbitrary-10-size);font-weight:var(--forge-font-bold-weight);letter-spacing:.02em;color:var(--accent-foreground);background:var(--c)}
+.u031-v{flex:1;min-width:0}
+.u031-v b{display:block;font-size:var(--forge-text-arbitrary-15-size);font-weight:var(--forge-font-bold-weight)}
+.u031-v small{display:block;font-size:var(--forge-text-xs-size);color:var(--ux-ink-3)}
+.u031-car{width:18px;height:18px;fill:none;stroke:var(--ux-ink-3);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ux-spring)}
+.u031-btn[aria-expanded="true"] .u031-car{transform:rotate(180deg)}
+.u031-list{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 8px);margin:0;padding:6px;list-style:none;border-radius:18px;background:var(--ux-surface);
+  box-shadow:0 0 0 1px var(--ux-line-2),0 28px 56px -24px var(--ux-shadow-strong);transform-origin:50% 0;outline:none;
+  opacity:0;transform:translateY(-6px) scaleY(.92);visibility:hidden;transition:opacity .2s var(--ux-ease),transform .4s var(--ux-spring),visibility 0s .4s}
+.u031-list.is-open{opacity:1;transform:none;visibility:visible;transition:opacity .2s var(--ux-ease),transform .45s var(--ux-spring)}
+.u031-hl{position:absolute;left:6px;right:6px;top:6px;height:46px;border-radius:12px;background:var(--ux-surface-2);transform:translateY(calc(var(--i,0) * 46px));transition:transform .35s var(--ux-spring);pointer-events:none}
+.u031-o{position:relative;display:flex;align-items:center;gap:12px;height:46px;padding:0 10px;border-radius:12px;cursor:pointer;font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-semibold-weight)}
+.u031-o .u031-flag{width:26px;height:26px;border-radius:8px;font-size:var(--forge-text-arbitrary-10-size)}
+.u031-o small{margin-left:4px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-medium-weight);color:var(--ux-ink-3)}
+.u031-ck{margin-left:auto;width:18px;height:18px;fill:none;stroke:var(--ux-accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:opacity .2s,transform .4s var(--ux-spring)}
+.u031-o[aria-selected="true"] .u031-ck{opacity:1;transform:none}
+.u031-save{position:absolute;left:20px;right:20px;bottom:20px;height:50px;border:0;border-radius:15px;background:var(--ux-ink);color:var(--ux-page);font-size:var(--forge-text-arbitrary-15-size);font-weight:var(--forge-font-bold-weight);transition:transform .35s var(--ux-spring)}
+.u031-save:active{transform:scale(.97)}
+.u031-save:focus-visible{outline:2px solid var(--ux-accent);outline-offset:2px}
+</style>
+<div class="ux u031">
+  <p class="u031-h">Region & language</p>
+  <div class="u031-f">
+    <span class="u031-lab">Display language</span>
+    <button class="u031-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <span class="u031-flag" style="--c:linear-gradient(140deg,var(--accent),var(--fg-red))" aria-hidden="true">KO</span>
+      <span class="u031-v"><b>한국어</b><small>대한민국</small></span>
+      <svg class="u031-car" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7l4.5 4.5L13.5 7"/></svg>
+    </button>
+    <ul class="u031-list" role="listbox" tabindex="-1" aria-label="Display language"><li class="u031-hl" role="presentation" aria-hidden="true"></li></ul>
+  </div>
+  <div class="u031-f">
+    <span class="u031-lab">Time zone</span>
+    <button class="u031-btn" type="button" tabindex="-1" aria-disabled="true">
+      <span class="u031-flag" style="--c:linear-gradient(140deg,var(--fg-green-500),var(--accent))" aria-hidden="true">+9</span>
+      <span class="u031-v"><b>Seoul</b><small>GMT+9 · Set automatically</small></span>
+    </button>
+  </div>
+  <button class="u031-save" type="button">保存</button>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var btn = root.querySelector('.u031-btn');
+  var list = root.querySelector('.u031-list');
+  var hl = root.querySelector('.u031-hl');
+  var save = root.querySelector('.u031-save');
+  var OPTS = [['KO', '한국어', 'South Korea', 'linear-gradient(140deg,#5B8CFF,#E5484D)'], ['EN', 'English', 'United States', 'linear-gradient(140deg,#3D6BFF,#FF6B6B)'], ['JA', '日本語', 'Japan', 'linear-gradient(140deg,#FF7A93,#F0264D)'], ['ES', 'Español', 'Spain', 'linear-gradient(140deg,#FFB547,#E5484D)'], ['FR', 'Français', 'France', 'linear-gradient(140deg,#5B8CFF,#8B6CFF)']];
+  var uid = 'u031-' + Math.random().toString(36).slice(2, 7);
+  var sel = 1, act = 1, typed = '', tt = 0;
+  list.id = uid;
+  btn.setAttribute('aria-controls', uid);
+  var items = OPTS.map(function (o, i) {
+    var li = document.createElement('li');
+    li.className = 'u031-o';
+    li.id = uid + '-' + i;
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-selected', String(i === sel));
+    li.innerHTML = '<span class="u031-flag" style="--c:' + o[3] + '" aria-hidden="true">' + o[0] + '</span>' + o[1] + '<small>' + o[2] + '</small><svg class="u031-ck" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.5l3.5 3.5L14 6"/></svg>';
+    li.addEventListener('pointermove', function () { if (act !== i) { act = i; mark(); } });
+    li.addEventListener('click', function () { choose(i); });
+    list.appendChild(li);
+    return li;
+  });
+  function mark() {
+    hl.style.setProperty('--i', act);
+    list.setAttribute('aria-activedescendant', items[act].id);
+  }
+  function open() {
+    root.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    list.classList.add('is-open');
+    act = sel; mark();
+    list.focus({ preventScroll: true });
+  }
+  function close(refocus) {
+    root.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    list.classList.remove('is-open');
+    if (refocus) btn.focus({ preventScroll: true });
+  }
+  function choose(i) {
+    sel = i;
+    items.forEach(function (li, k) { li.setAttribute('aria-selected', String(k === i)); });
+    var o = OPTS[i];
+    btn.querySelector('.u031-flag').textContent = o[0];
+    btn.querySelector('.u031-flag').style.setProperty('--c', o[3]);
+    btn.querySelector('.u031-v b').textContent = o[1];
+    btn.querySelector('.u031-v small').textContent = o[2];
+    // 바뀐 값이 살짝 튀어 오르며 들어옵니다
+    var v = btn.querySelector('.u031-v');
+    if (v.animate) v.animate([{ transform: 'translateY(8px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 380, easing: 'cubic-bezier(.34,1.45,.64,1)' });
+    close(true);
+  }
+  btn.addEventListener('click', function () { list.classList.contains('is-open') ? close(true) : open(); });
+  btn.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); } });
+  list.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); act = Math.min(items.length - 1, act + 1); mark(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); act = Math.max(0, act - 1); mark(); }
+    else if (e.key === 'Home') { e.preventDefault(); act = 0; mark(); }
+    else if (e.key === 'End') { e.preventDefault(); act = items.length - 1; mark(); }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(act); }
+    else if (e.key === 'Escape') { e.preventDefault(); close(true); }
+    else if (e.key === 'Tab') close(false);
+    else if (e.key.length === 1) {
+      // 글자를 치면 그 글자로 시작하는 항목으로 갑니다
+      typed += e.key.toLowerCase();
+      clearTimeout(tt); tt = setTimeout(function () { typed = ''; }, 600);
+      var hit = OPTS.findIndex(function (o) { return o[1].toLowerCase().indexOf(typed) === 0 || o[0].toLowerCase().indexOf(typed) === 0; });
+      if (hit >= 0) { act = hit; mark(); }
+    }
+  });
+  list.addEventListener('blur', function () { setTimeout(function () { if (!root.contains(document.activeElement)) close(false); }, 0); });
+  document.addEventListener('pointerdown', function (e) { if (root.isConnected && list.classList.contains('is-open') && !root.querySelector('.u031-f').contains(e.target)) close(false); });
+  save.addEventListener('click', function () { save.textContent = '已保存'; setTimeout(function () { if (root.isConnected) save.textContent = '保存'; }, 1400); });
+})();</script></body></html>

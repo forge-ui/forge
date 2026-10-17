@@ -7,9 +7,7 @@ import {
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
-const progressColors: ProgressColor[] = [
-  "purple", "blue", "green", "red", "orange", "yellow", "cyan", "gray",
-];
+const progressColors: ProgressColor[] = ["purple", "blue", "gray"];
 const progressSizes: ProgressSize[] = ["sm", "md"];
 const labelVariants: ProgressLabelVariant[] = ["default", "value"];
 const labelSizes: ProgressLabelSize[] = ["xs", "sm"];
@@ -18,8 +16,8 @@ export default function ProgressCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Progress"
-        hint="ProgressBar — 8 色 × 2 size × label / value 变体 × onDark 两种背景。"
+        title="进度"
+        hint="展示任务完成度、使用配额和当前进展。"
       />
 
       {/* ============ Bar — Colors × Sizes ============ */}
@@ -52,8 +50,8 @@ export default function ProgressCasePage() {
                 <div className="w-64">
                   <ProgressBar
                     value={65}
-                    color="purple"
-                    label={v === "value" ? "$400" : "Progress"}
+                    color="blue"
+                    label={v === "value" ? "$400" : "进度"}
                     labelVariant={v}
                     labelSize={ls}
                     showPercentage
@@ -77,7 +75,7 @@ export default function ProgressCasePage() {
                 <ProgressBar
                   value={65}
                   color={c}
-                  label="Progress"
+                  label="进度"
                   labelVariant="default"
                   showPercentage
                 />
@@ -107,13 +105,13 @@ export default function ProgressCasePage() {
         title="Progress Bar — On Dark"
         description="深色卡片背景上使用，track 半透明，label / % 变白。"
       >
-        <SubSection title="Dark surface" >
+        <SubSection title="深色背景" >
           {progressColors.map((c) => (
             <div key={c} className="p-5 bg-fg-black rounded-xl w-64">
               <ProgressBar
                 value={65}
                 color={c}
-                label="Progress"
+                label="进度"
                 labelVariant="default"
                 showPercentage
                 onDark
@@ -132,7 +130,7 @@ export default function ProgressCasePage() {
           {[0, 25, 50, 75, 100].map((v) => (
             <Labeled key={v} label={`${v}%`}>
               <div className="w-64">
-                <ProgressBar value={v} color="purple" showPercentage />
+                <ProgressBar value={v} color="blue" showPercentage />
               </div>
             </Labeled>
           ))}

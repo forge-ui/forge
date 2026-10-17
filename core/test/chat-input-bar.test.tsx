@@ -228,3 +228,52 @@ for (const multiline of [false, true]) test(`typed mention chips preserve draft 
     assert.ok(chip.textContent?.includes('设计智能体'));
   } finally { await act(async () => root.unmount()); dom.window.close(); }
 });
+
+for (const item of ["mention", "command"] as const) test(`${item} deferred input focus cannot close a newly reopened tools menu`, async () => {
+  const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
+  const frames = new Map<number, FrameRequestCallback>();
+  let nextFrame = 0;
+  const requestFrame = (callback: FrameRequestCallback) => { frames.set(++nextFrame, callback); return nextFrame; };
+  const cancelFrame = (id: number) => { frames.delete(id); };
+  Object.assign(dom.window, { requestAnimationFrame: requestFrame, cancelAnimationFrame: cancelFrame });
+  Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true, window: dom.window, self: dom.window, document: dom.window.document,
+    requestAnimationFrame: requestFrame, cancelAnimationFrame: cancelFrame, HTMLElement: dom.window.HTMLElement });
+  const { createRoot } = await import("react-dom/client");
+  const root = createRoot(document.getElementById("root")!);
+  const options = item === "mention" ? { sources: [{ id: "skill:feedback", label: "反馈问题", kind: "skill" as const }] }
+    : { commands: [{ id: "feedback", label: "反馈问题" }] };
+  const open = () => act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
+  const choose = () => act(async () => document.querySelector<HTMLButtonElement>('[role="menuitem"]')!.click());
+  const flushFrames = () => act(async () => {
+    const pending = [...frames.values()];
+    frames.clear();
+    pending.forEach(callback => callback(16));
+  });
+  try {
+    await act(async () => root.render(<ChatInputBar {...options} />));
+    await open(); await choose();
+    assert.ok(frames.size > 0, "choosing defers focus until the input draft has rendered");
+    await open();
+    const menuItem = document.querySelector<HTMLButtonElement>('[role="menuitem"]')!;
+    assert.equal(document.activeElement, menuItem);
+    await flushFrames();
+    assert.equal(document.querySelector('[role="menuitem"]'), menuItem, "stale focus must not dismiss the reopened menu");
+    assert.equal(document.activeElement, menuItem);
+
+    await choose();
+    await flushFrames();
+    const input = document.querySelector<HTMLInputElement>("input")!;
+    assert.equal(document.activeElement, input, "an uninterrupted selection still restores input focus");
+    assert.equal(input.selectionStart, input.value.length);
+    await open(); await choose();
+    await act(async () => root.render(<ChatInputBar {...options} disabled />));
+    assert.equal(frames.size, 0, "disabling cancels pending input focus");
+    await act(async () => root.render(<ChatInputBar {...options} />));
+    await open(); await choose();
+    await act(async () => root.unmount());
+    assert.equal(frames.size, 0, "unmounting cancels pending input focus");
+  } finally {
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
+});

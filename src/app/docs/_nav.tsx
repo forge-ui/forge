@@ -2,12 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
+import {
+  ArrowRightUpLinear,
+  DangerTriangleLinear,
+  DownloadLinear,
+  DocumentTextLinear,
+  FileTextLinear,
+  FlagLinear,
+  FolderLinear,
+  StarsLinear,
+  WidgetLinear,
+} from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
+
+type NavIcon = typeof DocumentTextLinear;
 
 type NavItem = {
   href: string;
   label: string;
+  icon: NavIcon;
   external?: boolean;
 };
 
@@ -20,24 +33,24 @@ export const docsNavGroups: NavGroup[] = [
   {
     title: "入门",
     items: [
-      { href: "/docs", label: "介绍" },
-      { href: "/docs/quick-start", label: "快速开始" },
-      { href: "/docs/installation", label: "详细安装" },
-      { href: "/docs/troubleshoot", label: "故障排查" },
+      { href: "/docs", label: "介绍", icon: DocumentTextLinear },
+      { href: "/docs/quick-start", label: "快速开始", icon: FlagLinear },
+      { href: "/docs/installation", label: "详细安装", icon: DownloadLinear },
+      { href: "/docs/troubleshoot", label: "故障排查", icon: DangerTriangleLinear },
     ],
   },
   {
     title: "UI for Agents",
     items: [
-      { href: "/docs/ui-for-agents", label: "Skill" },
-      { href: "/docs/agents-md", label: "AGENTS.md" },
+      { href: "/docs/ui-for-agents", label: "Skill", icon: StarsLinear },
+      { href: "/docs/agents-md", label: "AGENTS.md", icon: FileTextLinear },
     ],
   },
   {
     title: "参考",
     items: [
-      { href: "/docs", label: "组件示例", external: true },
-      { href: "/templates", label: "模版", external: true },
+      { href: "/cases", label: "组件案例", icon: WidgetLinear, external: true },
+      { href: "/templates", label: "模板", icon: FolderLinear, external: true },
     ],
   },
 ];
@@ -66,7 +79,10 @@ export function DocsNav() {
                       : "font-semibold text-fg-grey-900 hover:bg-white hover:text-fg-black",
                   )}
                 >
-                  <span>{item.label}</span>
+                  <span className="flex items-center gap-2">
+                    <item.icon size={16} color="currentColor" />
+                    <span>{item.label}</span>
+                  </span>
                   {item.external && (
                     <ArrowRightUpLinear size={12} color="#71717A" />
                   )}

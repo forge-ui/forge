@@ -9,14 +9,15 @@ const protocol = "node:";
 const { test } = require(`${protocol}test`);
 
 async function setup() {
-  const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost" });
+  const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
   Object.assign(globalThis, {
     IS_REACT_ACT_ENVIRONMENT: true,
     window: dom.window,
     self: dom.window,
     document: dom.window.document,
     HTMLElement: dom.window.HTMLElement,
-    requestAnimationFrame: (callback: FrameRequestCallback) => { callback(0); return 0; },
+    requestAnimationFrame: dom.window.requestAnimationFrame.bind(dom.window),
+    cancelAnimationFrame: dom.window.cancelAnimationFrame.bind(dom.window),
     Event: dom.window.Event,
     KeyboardEvent: dom.window.KeyboardEvent,
   });
@@ -26,6 +27,8 @@ async function setup() {
   const root = createRoot(document.getElementById("root")!);
   return {
     root,
+    // Advance a real asynchronous browser frame instead of recursively invoking RAF callbacks.
+    frame: () => act(async () => { await new Promise<void>(resolve => dom.window.requestAnimationFrame(() => resolve())); }),
     cleanup: async () => {
       await act(async () => root.unmount());
       dom.window.close();
@@ -243,6 +246,7 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
     await key(textarea(), "ArrowDown");
     assert.equal(textarea().getAttribute("aria-activedescendant"), document.querySelector('[data-prompt-picker] [role="option"]')?.id);
     await key(textarea(), "Enter");
+    await env.frame();
     assert.match(textarea().value, /@知识库/);
     assert.equal(document.activeElement, textarea());
 
@@ -255,6 +259,7 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
     assert.ok(document.querySelector('[data-prompt-picker]'));
     await key(textarea(), "ArrowDown");
     await key(textarea(), "Enter");
+    await env.frame();
     assert.equal(textarea().value, "/plan ");
   } finally { await env.cleanup(); }
 });
@@ -294,5 +299,31 @@ test("unified composer combines mentions, attachment, commands, permissions and 
     await click(button("添加内容和工具"));
     await click([...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(item => item.textContent === "/plan")!);
     assert.equal(changed.at(-1), "前文 /plan  后文");
+  } finally { await env.cleanup(); }
+});
+
+test("ChatInputBar attachment-only sends require explicit readiness and respect upload and generation locks", async () => {
+  const env = await setup();
+  const sent: string[] = [];
+  const props = { multiline: true, sendOnEnter: true, sendLabel: "Send", onSend: (message: string) => sent.push(message) };
+  try {
+    await act(async () => env.root.render(<ChatInputBar {...props} attachments={<span>file.pdf</span>} />));
+    assert.equal(button("Send").disabled, true);
+    await key(textarea(), "Enter");
+    assert.deepEqual(sent, []);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments sendDisabled />));
+    await key(textarea(), "Enter");
+    assert.equal(button("Send").disabled, true);
+    assert.deepEqual(sent, []);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments />));
+    assert.equal(button("Send").disabled, false);
+    await click(button("Send"));
+    await key(textarea(), "Enter");
+    assert.deepEqual(sent, ["", ""]);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments status="running" />));
+    await key(textarea(), "Enter");
+    assert.deepEqual(sent, ["", ""]);
+    await act(async () => env.root.render(<ChatInputBar {...props} hasAttachments={false} />));
+    assert.equal(button("Send").disabled, true);
   } finally { await env.cleanup(); }
 });

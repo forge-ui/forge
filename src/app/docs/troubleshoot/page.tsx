@@ -72,7 +72,7 @@ export default function TroubleshootPage() {
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-fg-grey-200 pt-6 text-sm">
         <Link
           href="/docs/installation"
-          className="font-semibold text-fg-violet underline underline-offset-4 hover:text-fg-violet-700"
+          className="font-semibold text-fg-blue underline underline-offset-4 hover:text-fg-blue-700"
         >
           回到详细安装 →
         </Link>

@@ -24,7 +24,7 @@ export type CheckboxColor = keyof typeof checkboxColors;
 
 export function CheckboxVisual({
   checked,
-  color = "purple",
+  color = "blue",
   motion = "auto",
 }: {
   checked: boolean;
@@ -44,7 +44,7 @@ export function CheckboxVisual({
 
 export function Checkbox({
   checked = false,
-  color = "purple",
+  color = "blue",
   onChange,
   disabled = false,
   motion = "auto",

@@ -39,17 +39,19 @@ const KIND_CLASS: Record<AgentFlowKind, string> = {
 };
 
 export function AgentFlowchart({
-  title = "Workflow",
+  locale = "zh",
+  title = locale === "zh" ? "工作流程" : "Workflow",
   nodes,
   edges = [],
   selectedId: controlledId,
   onSelect,
   kindLabels,
-  selectedLabel = "Selected",
-  nextLabel = "Next",
+  selectedLabel = locale === "zh" ? "当前节点" : "Selected",
+  nextLabel = locale === "zh" ? "下一步" : "Next",
   className = "",
 }: {
   title?: string;
+  locale?: "zh" | "en";
   nodes: AgentFlowNode[];
   edges?: AgentFlowEdge[];
   selectedId?: string;
@@ -59,6 +61,7 @@ export function AgentFlowchart({
   nextLabel?: string;
   className?: string;
 }) {
+  const labels = locale === "zh" ? { trigger: "触发", action: "操作", condition: "条件" } : KIND_LABEL;
   const [uncontrolled, setUncontrolled] = useState(nodes[0]?.id);
   const selectedId = controlledId ?? uncontrolled;
   const selected = nodes.find((node) => node.id === selectedId);
@@ -86,7 +89,7 @@ export function AgentFlowchart({
                   )}
                 >
                   <span className={cn("inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold", KIND_CLASS[node.kind])}>
-                    {kindLabels?.[node.kind] ?? KIND_LABEL[node.kind]}
+                    {kindLabels?.[node.kind] ?? labels[node.kind]}
                   </span>
                   <p className="mt-2 text-sm font-semibold text-fg-black">{node.title}</p>
                   {node.body && <p className="mt-1 text-xs leading-5 text-fg-grey-700">{node.body}</p>}

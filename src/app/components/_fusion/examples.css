@@ -1,0 +1,7 @@
+.forge-fusion-example[data-motion="none"] *,
+.forge-fusion-example[data-motion="none"] *::before,
+.forge-fusion-example[data-motion="none"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}

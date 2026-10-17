@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>底部导航凹槽</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"041",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"041",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"041",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"041",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"041"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u041{--x:34px;position:relative;width:350px;height:170px;display:flex;align-items:flex-end}
+.u041-bar{position:relative;width:100%;height:84px;border-radius:16px;background:var(--ux-surface);
+  -webkit-mask:radial-gradient(circle 42px at var(--x) -4px,transparent 96%,var(--foreground) 100%);mask:radial-gradient(circle 42px at var(--x) -4px,transparent 96%,var(--foreground) 100%);
+  box-shadow:0 0 0 1px var(--ux-line)}
+.u041-shadow{position:absolute;left:0;right:0;bottom:0;height:84px;border-radius:16px;box-shadow:0 24px 40px -24px var(--ux-shadow-strong);pointer-events:none}
+.u041-bub{position:absolute;left:var(--x);top:calc(100% - 84px - 35px);width:62px;height:62px;margin-left:-31px;border-radius:50%;background:var(--ux-grad);box-shadow:0 14px 26px -12px color-mix(in srgb,var(--foreground) 16%,transparent)}
+.u041-tabs{position:absolute;left:0;right:0;bottom:0;height:84px;display:flex;margin:0;padding:0 14px;list-style:none}
+.u041-tabs>li{flex:1;display:flex}
+.u041-tab{position:relative;flex:1;height:100%;border:0;padding:0;background:none;color:var(--ux-ink-3)}
+.u041-tab:hover .u041-ic{color:var(--ux-ink)}
+.u041-tab:focus-visible{outline:2px solid var(--ux-accent);outline-offset:-6px;border-radius:18px}
+.u041-ic{position:absolute;left:50%;top:22px;width:26px;height:26px;margin-left:-13px;transition:transform .55s var(--ux-spring),color .3s}
+.u041-ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.u041-lab{position:absolute;left:0;right:0;bottom:12px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .45s var(--ux-spring)}
+.u041-tab[aria-selected="true"] .u041-ic{transform:translateY(-39px);color:var(--ux-accent-ink)}
+.u041-tab[aria-selected="true"] .u041-ic svg{stroke-width:2.2}
+.u041-tab[aria-selected="true"] .u041-lab{opacity:1;transform:none}
+.u041-bd{position:absolute;left:calc(50% + 6px);top:16px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--fg-red);color:var(--accent-foreground);font-size:var(--forge-text-arbitrary-10-size);font-weight:var(--forge-font-bold-weight);line-height:var(--forge-leading-arbitrary-18);font-style:normal;box-shadow:0 0 0 2.5px var(--ux-surface);transition:transform .45s var(--ux-spring),opacity .3s}
+.u041-tab[aria-selected="true"] .u041-bd{transform:scale(0);opacity:0}
+</style>
+<div class="ux u041">
+  <span class="u041-shadow" aria-hidden="true"></span>
+  <div class="u041-bar" aria-hidden="true"></div>
+  <span class="u041-bub" aria-hidden="true"></span>
+  <ul class="u041-tabs" role="tablist" aria-label="Bottom navigation">
+    <li role="none"><button class="u041-tab" type="button" role="tab" aria-selected="true"><span class="u041-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg></span><span class="u041-lab">Home</span></button></li>
+    <li role="none"><button class="u041-tab" type="button" role="tab" aria-selected="false"><span class="u041-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span class="u041-lab">Explore</span></button></li>
+    <li role="none"><button class="u041-tab" type="button" role="tab" aria-selected="false"><span class="u041-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.5-6.5 4.5v-16a1 1 0 0 1 1-1z"/></svg></span><span class="u041-lab">Saved</span></button></li>
+    <li role="none"><button class="u041-tab" type="button" role="tab" aria-selected="false"><span class="u041-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5a2.2 2.2 0 0 0 4 0"/></svg></span><em class="u041-bd" aria-label="3 new alerts">3</em><span class="u041-lab">Alerts</span></button></li>
+    <li role="none"><button class="u041-tab" type="button" role="tab" aria-selected="false"><span class="u041-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c.9-3.8 3.8-5.8 7.5-5.8s6.6 2 7.5 5.8"/></svg></span><span class="u041-lab">Me</span></button></li>
+  </ul>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('.u041-tab'));
+
+  var x = 0, v = 0, target = 0, raf = 0;
+  function center(t) { return t.parentNode.offsetLeft + t.offsetWidth / 2; }
+  // 파인 홈과 원은 같은 x 값을 쓰고, 그 값을 스프링으로 움직여 함께 미끄러지게 합니다
+  function step() {
+    var a = (target - x) * 0.16 - v * 0.42;
+    v += a; x += v;
+    root.style.setProperty('--x', x.toFixed(2) + 'px');
+    if (Math.abs(target - x) > 0.3 || Math.abs(v) > 0.3) raf = requestAnimationFrame(step);
+    else { x = target; v = 0; root.style.setProperty('--x', x + 'px'); raf = 0; }
+  }
+  function select(i, focus) {
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+    if (focus) tabs[i].focus();
+    target = center(tabs[i]);
+    if (window.forgeReduced()) { x = target; root.style.setProperty('--x', x + 'px'); return; }
+    if (!raf) raf = requestAnimationFrame(step);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); select((i + d + tabs.length) % tabs.length, true); }
+    });
+  });
+  x = target = center(tabs[0]);
+  root.style.setProperty('--x', x + 'px');
+  select(0);
+})();</script></body></html>

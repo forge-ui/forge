@@ -13,7 +13,7 @@ const chatAccentExtras: Record<AccentColor, { teamBg: string; teamText: string; 
 
 export function ContactItem({
   type = "person",
-  color = "purple",
+  color = "blue",
   avatar,
   initials,
   name,

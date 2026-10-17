@@ -22,7 +22,7 @@ import { ToolbarInteractiveDemo } from "./_interactive-demo";
 const toolbarColors: ToolbarColor[] = ["purple", "blue", "black"];
 
 function mkPillTabs(activeIndex: number): ToolbarPillTab[] {
-  return ["All", "Active", "Archived"].map((label, i) => ({
+  return ["全部", "使用中", "已归档"].map((label, i) => ({
     label,
     active: i === activeIndex,
   }));
@@ -30,9 +30,9 @@ function mkPillTabs(activeIndex: number): ToolbarPillTab[] {
 
 // Breadcrumbs 组件按 isLast 判定当前项，不需要 active 字段
 const breadcrumbItems = [
-  { label: "Dashboard", href: "#" },
-  { label: "Orders", href: "#" },
-  { label: "Order #302012" },
+  { label: "工作台", href: "#" },
+  { label: "订单", href: "#" },
+  { label: "订单 #302012" },
 ];
 
 export default function ToolbarCasePage() {
@@ -41,8 +41,8 @@ export default function ToolbarCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Toolbar"
-        hint="Breadcrumbs / Toolbar / Search & Filter / Pill Tabs / PageTitleToolbar — 页面顶部工具栏组合。"
+        title="工具栏"
+        hint="集中放置搜索、筛选、视图切换和页面操作。"
       />
 
       {/* ============ Breadcrumbs ============ */}
@@ -56,8 +56,8 @@ export default function ToolbarCasePage() {
               <Breadcrumbs
                 color={c as BreadcrumbColor}
                 items={[
-                  { label: "Dashboard", href: "#" },
-                  { label: "Orders" },
+                  { label: "工作台", href: "#" },
+                  { label: "订单" },
                 ]}
               />
             </Labeled>
@@ -68,10 +68,10 @@ export default function ToolbarCasePage() {
               <Breadcrumbs
                 color={c as BreadcrumbColor}
                 items={[
-                  { label: "Dashboard", href: "#" },
-                  { label: "Customers", href: "#" },
-                  { label: "John Doe", href: "#" },
-                  { label: "Orders" },
+                  { label: "工作台", href: "#" },
+                  { label: "客户", href: "#" },
+                  { label: "张明", href: "#" },
+                  { label: "订单" },
                 ]}
               />
             </Labeled>
@@ -84,11 +84,11 @@ export default function ToolbarCasePage() {
         title="Toolbar Search Input"
         description="搜索输入框原型（静态，实际使用用 TextField 或 ToolbarSelectDropdown 搭配）。"
       >
-        <SubSection title="Default">
+        <SubSection title="默认">
           <ToolbarSearchInput />
         </SubSection>
-        <SubSection title="Custom placeholder">
-          <ToolbarSearchInput placeholder="Search by ID, customer, product..." />
+        <SubSection title="自定义占位文字">
+          <ToolbarSearchInput placeholder="搜索编号、客户或商品…" />
         </SubSection>
       </Section>
 
@@ -114,7 +114,7 @@ export default function ToolbarCasePage() {
         title="Toolbar Action Buttons"
         description="kebab / favorite 两个圆形图标按钮，跟 Toolbar 行尾 actions 搭配。"
       >
-        <SubSection title="Single">
+        <SubSection title="单项">
           <Labeled label="kebab">
             <ToolbarKebabButton />
           </Labeled>
@@ -145,7 +145,7 @@ export default function ToolbarCasePage() {
           <Toolbar
             left={
               <div className="flex items-center gap-3">
-                <ToolbarPillTabs color="purple" tabs={mkPillTabs(activeTab)} onChange={setActiveTab} />
+                <ToolbarPillTabs color="blue" tabs={mkPillTabs(activeTab)} onChange={setActiveTab} />
                 <ToolbarSearchInput />
               </div>
             }
@@ -153,8 +153,8 @@ export default function ToolbarCasePage() {
               <ToolbarActions>
                 <ToolbarFavoriteButton />
                 <ToolbarKebabButton />
-                <Button color="purple" variant="primary" size="lg" iconLeft={<AddCircleLinear size={20} color="currentColor" />}>
-                  Add New
+                <Button color="blue" variant="primary" size="lg" iconLeft={<AddCircleLinear size={20} color="currentColor" />}>
+                  新增
                 </Button>
               </ToolbarActions>
             }
@@ -172,36 +172,36 @@ export default function ToolbarCasePage() {
             <PageTitleToolbar
               variant="overview"
               color={c}
-              title="Sales Overview"
-              subtitle="Track pipeline health and today's priorities."
-              breadcrumbItems={[{ label: "Dashboard" }, { label: "Sales Overview" }]}
-              dateAction={{ label: "This month", enablePopover: true }}
-              primaryAction={{ label: "Add lead", icon: <AddCircleLinear size={20} /> }}
+              title="销售概览"
+              subtitle="了解销售进展，掌握今日重点工作。"
+              breadcrumbItems={[{ label: "工作台" }, { label: "销售概览" }]}
+              dateAction={{ label: "本月", enablePopover: true }}
+              primaryAction={{ label: "新增线索", icon: <AddCircleLinear size={20} /> }}
             />
             <PageTitleToolbar
               variant="collection"
               color={c}
-              title="Orders"
-              breadcrumbItems={[{ label: "Dashboard", href: "#" }, { label: "Orders" }]}
-              secondaryAction={{ label: "Export" }}
-              primaryAction={{ label: "New order", icon: <AddCircleLinear size={20} /> }}
+              title="订单"
+              breadcrumbItems={[{ label: "工作台", href: "#" }, { label: "订单" }]}
+              secondaryAction={{ label: "导出" }}
+              primaryAction={{ label: "新建订单", icon: <AddCircleLinear size={20} /> }}
             />
             <PageTitleToolbar
               variant="detail"
               color={c}
-              title="Order #302012"
+              title="订单 #302012"
               breadcrumbItems={breadcrumbItems}
               menuAction={{ ariaLabel: "More order actions" }}
-              secondaryAction={{ label: "Edit" }}
-              primaryAction={{ label: "Fulfill" }}
+              secondaryAction={{ label: "编辑" }}
+              primaryAction={{ label: "发货" }}
             />
             <PageTitleToolbar
               variant="action"
               color={c}
-              title="Create order"
-              breadcrumbItems={[{ label: "Orders", href: "#" }, { label: "Create order" }]}
-              secondaryAction={{ label: "Cancel" }}
-              primaryAction={{ label: "Save order", type: "submit", form: "toolbar-case-form" }}
+              title="创建订单"
+              breadcrumbItems={[{ label: "订单", href: "#" }, { label: "创建订单" }]}
+              secondaryAction={{ label: "取消" }}
+              primaryAction={{ label: "保存订单", type: "submit", form: "toolbar-case-form" }}
             />
           </SubSection>
         ))}

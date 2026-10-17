@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>浮动标签输入</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"025",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"025",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"025",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"025",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"025"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u025{position:relative;width:340px;height:268px;display:flex;flex-direction:column;gap:14px}
+.u025-btn{margin-top:auto}
+.u025-f{position:relative}
+.u025-box{position:relative;height:62px}
+.u025-in{position:absolute;inset:0;width:100%;height:100%;padding:18px 48px 0 18px;border:0;outline:0;border-radius:16px;background:var(--ux-surface);font-size:var(--forge-text-base-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink);letter-spacing:-.01em}
+/* 테두리는 SVG가 아닌 세 조각(왼쪽·틈·오른쪽)으로 그려, 라벨 자리에 틈을 냅니다 */
+.u025-line{position:absolute;inset:0;display:flex;pointer-events:none;border-radius:16px}
+.u025-line i{display:block;border:1.5px solid var(--ux-line-2);transition:border-color .3s var(--ux-ease)}
+.u025-line .l{width:14px;border-right:0;border-radius:16px 0 0 16px}
+.u025-line .g{width:var(--gap,0px);border-left:0;border-right:0;transition:width .35s var(--ux-ease),border-color .3s var(--ux-ease)}
+.u025-line .r{flex:1;border-left:0;border-radius:0 16px 16px 0}
+.u025-f.is-up .u025-line .g{border-top-color:transparent!important}
+.u025-f.is-focus .u025-line i{border-color:var(--ux-accent);border-width:2px}
+.u025-f.is-bad .u025-line i{border-color:var(--ux-danger)}
+.u025-f.is-ok .u025-line i{border-color:var(--ux-mint)}
+.u025-lab{position:absolute;left:18px;top:21px;padding:0 4px;margin-left:-4px;font-size:var(--forge-text-base-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-3);transform-origin:0 0;pointer-events:none;white-space:nowrap;
+  transition:transform .35s var(--ux-ease),color .3s var(--ux-ease)}
+.u025-f.is-up .u025-lab{transform:translate(0,-30px) scale(.8);color:var(--ux-ink-2);font-weight:var(--forge-font-semibold-weight)}
+.u025-f.is-focus .u025-lab{color:var(--ux-accent)}
+.u025-f.is-bad .u025-lab{color:var(--ux-danger)}
+.u025-f.is-up .u025-in{padding-top:0}
+.u025-ok{position:absolute;right:16px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;display:grid;place-items:center;background:var(--ux-mint);color:var(--ux-accent-ink);transform:scale(0);transition:transform .45s var(--ux-spring)}
+.u025-ok svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.u025-ok path{stroke-dasharray:16;stroke-dashoffset:16;transition:stroke-dashoffset .35s var(--ux-ease) .15s}
+.u025-f.is-ok .u025-ok{transform:none}
+.u025-f.is-ok .u025-ok path{stroke-dashoffset:0}
+.u025-f.is-shake .u025-box{animation:u025-shake .42s var(--ux-ease)}
+@keyframes u025-shake{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+.u025-help{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ux-ease)}
+.u025-help>span{overflow:hidden;min-height:0;display:flex;align-items:center;gap:6px;padding-left:4px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-danger)}
+.u025-help>span::before{content:"";display:inline-block;width:16px;height:16px;background:currentColor;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20aria-hidden%3D%22true%22%20class%3D%22solar%20solar-danger-circle-linear%20forge-workflow-icon%22%20style%3D%22color%3AcurrentColor%3Bwidth%3A20px%3Bheight%3A20px%22%20stroke-width%3D%22var%28--solar-stroke-width%2C%201.5%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%20stroke%3D%22currentColor%22%20stroke-linecap%3D%22round%22%3E%3C/circle%3E%3Cpath%20d%3D%22M12%207V13%22%20stroke%3D%22currentColor%22%20stroke-linecap%3D%22round%22%3E%3C/path%3E%3Cpath%20d%3D%22M12%2016H12.0001%22%20stroke%3D%22currentColor%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C/path%3E%3C/svg%3E") center/contain no-repeat;display:grid;place-items:center;width:16px;height:16px;flex:none;border-radius:50%;background:var(--ux-danger);color:var(--ux-accent-ink);font-size:var(--forge-text-arbitrary-10-size);font-weight:var(--forge-font-bold-weight)}
+.u025-f.is-bad .u025-help{grid-template-rows:1fr}
+.u025-f.is-bad .u025-help>span{padding-top:8px}
+.u025-btn{height:56px;border:0;border-radius:16px;background:var(--ux-ink);color:var(--ux-page);font-size:var(--forge-text-base-size);font-weight:var(--forge-font-bold-weight);transition:transform .4s var(--ux-spring),opacity .3s var(--ux-ease)}
+.u025-btn:active{transform:scale(.97)}
+.u025-btn:focus-visible{outline:2px solid var(--ux-accent);outline-offset:3px}
+.u025-btn[aria-disabled="true"]{opacity:.35}
+.u025-in:focus-visible{outline:none}
+</style>
+<div class="ux u025">
+  <div class="u025-f">
+    <div class="u025-box">
+      <input class="u025-in" type="text" value="Seoyeon Kim" autocomplete="name">
+      <span class="u025-line" aria-hidden="true"><i class="l"></i><i class="g"></i><i class="r"></i></span>
+      <label class="u025-lab">Name</label>
+    </div>
+  </div>
+  <div class="u025-f" data-mail>
+    <div class="u025-box">
+      <input class="u025-in" type="email" autocomplete="email" inputmode="email">
+      <span class="u025-line" aria-hidden="true"><i class="l"></i><i class="g"></i><i class="r"></i></span>
+      <label class="u025-lab">Work email</label>
+      <span class="u025-ok" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3 7.3l2.7 2.7L11 4.5"/></svg></span>
+    </div>
+    <div class="u025-help"><span class="u025-msg" aria-live="polite"></span></div>
+  </div>
+  <button class="u025-btn" type="button" aria-disabled="true">Send invite</button>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var fields = Array.prototype.slice.call(root.querySelectorAll('.u025-f'));
+  var btn = root.querySelector('.u025-btn');
+  var re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var uid = Math.random().toString(36).slice(2, 7);
+  fields.forEach(function (f, i) {
+    var input = f.querySelector('.u025-in');
+    var lab = f.querySelector('.u025-lab');
+    var gap = f.querySelector('.g');
+    input.id = 'u025-' + uid + '-' + i;
+    lab.htmlFor = input.id;
+    var isMail = f.hasAttribute('data-mail');
+    var msg = f.querySelector('.u025-msg');
+    if (msg) { msg.id = input.id + '-m'; input.setAttribute('aria-describedby', msg.id); }
+    // 라벨이 올라가면, 줄어든 라벨 폭만큼 위쪽 테두리에 틈을 냅니다
+    function lift() {
+      var up = document.activeElement === input || input.value.length > 0;
+      f.classList.toggle('is-up', up);
+      f.querySelector('.u025-line').style.setProperty('--gap', up ? (lab.offsetWidth * 0.8 + 2) + 'px' : '0px');
+    }
+    function check(strict) {
+      if (!isMail) return;
+      var v = input.value.trim();
+      var ok = re.test(v);
+      f.classList.toggle('is-ok', ok);
+      if (ok || !v) { f.classList.remove('is-bad'); input.removeAttribute('aria-invalid'); msg.textContent = ''; }
+      else if (strict) {
+        f.classList.add('is-bad');
+        input.setAttribute('aria-invalid', 'true');
+        msg.textContent = 'Check the email format, e.g. name@company.com';
+        f.classList.remove('is-shake'); void f.offsetWidth; f.classList.add('is-shake');
+      }
+      btn.setAttribute('aria-disabled', String(!ok));
+    }
+    input.addEventListener('focus', function () { f.classList.add('is-focus'); lift(); });
+    input.addEventListener('blur', function () { f.classList.remove('is-focus'); lift(); check(true); });
+    input.addEventListener('input', function () { lift(); check(f.classList.contains('is-bad')); });
+    lift();
+  });
+  btn.addEventListener('click', function () {
+    var mail = root.querySelector('[data-mail] .u025-in');
+    if (btn.getAttribute('aria-disabled') === 'true') { mail.focus(); return; }
+    btn.textContent = 'Invite sent';
+    setTimeout(function () { if (root.isConnected) btn.textContent = 'Send invite'; }, 1600);
+  });
+})();</script></body></html>

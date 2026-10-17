@@ -73,9 +73,9 @@ const flagJp = flagSvg(
 );
 
 const kebabItems = [
-  { icon: <PenNewSquareBoldDuotone size={20} />, label: "Edit" },
-  { icon: <CopyBoldDuotone size={20} />, label: "Duplicate" },
-  { icon: <TrashBinTrashBoldDuotone size={20} />, label: "Delete", danger: true },
+  { icon: <PenNewSquareBoldDuotone size={20} />, label: "编辑" },
+  { icon: <CopyBoldDuotone size={20} />, label: "创建副本" },
+  { icon: <TrashBinTrashBoldDuotone size={20} />, label: "删除", danger: true },
 ];
 
 const states = ["idle", "hover", "active", "disabled"] as const satisfies readonly MenuItemState[];
@@ -84,8 +84,8 @@ export default function MenuCasePage() {
   return (
     <div className="flex flex-col gap-8">
       <PageHeading
-        title="Menu"
-        hint="MenuItem · DropdownPanel · IconTrigger · ProfileCard · NotificationItem · KebabMenu · SidebarMenu"
+        title="菜单"
+        hint="提供下拉菜单、菜单条目和图标入口，支持选中与禁用状态。"
       />
 
       <MenuItemSection />
@@ -107,7 +107,8 @@ function MenuItemSection() {
       description="Figma: Single (5色) / Submenu (4色) / Dropdown (4色) · 4 正交轴 accent/surface/intent/kind"
     >
       <SubSection title="Single · accent × state (3 colors × 4 states)">
-        <div className="grid grid-cols-4 gap-x-6 gap-y-3 w-[720px]">
+        <div className="w-full min-w-0 overflow-x-auto">
+        <div className="grid w-[720px] grid-cols-4 gap-x-6 gap-y-3">
           {accentColors.map((accent) =>
             states.map((state) => (
               <div key={`${accent}-${state}`} className="flex flex-col gap-1">
@@ -116,7 +117,7 @@ function MenuItemSection() {
                 </span>
                 <MenuItem
                   lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }}
-                  label="Text Menu"
+                  label="菜单项"
                   badge={99}
                   accent={accent}
                   state={state}
@@ -125,17 +126,18 @@ function MenuItemSection() {
             ))
           )}
         </div>
+        </div>
       </SubSection>
 
       <SubSection title="Single · content variants (purple, idle)">
-        <div className="w-64 pl-4 flex flex-col gap-2">
+        <div className="flex w-full max-w-64 flex-col gap-2 pl-4">
           <MenuItem
             lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }}
             label="Icon + Text + Badge"
             badge={99}
           />
           <MenuItem lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} /> }} label="Icon + Text" />
-          <MenuItem label="Text only" badge={99} />
+          <MenuItem label="仅文字" badge={99} />
           <MenuItem label="Text only (no badge)" />
           <div className="inline-flex gap-2">
             <MenuItem lead={{ kind: "icon", icon: <BellBoldDuotone size={20} /> }} badge={99} />
@@ -155,11 +157,11 @@ function MenuItemSection() {
       </SubSection>
 
       <SubSection title="Single · onColoredBg (Figma 'White' variant)">
-        <div className="flex items-start gap-6">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-6">
           {accentColors.map((accent) => (
             <div
               key={accent}
-              className={`w-72 p-4 rounded-xl ${accent === "purple" ? "bg-fg-violet" : accent === "blue" ? "bg-blue-600" : "bg-fg-black"}`}
+              className={`w-full max-w-72 p-4 rounded-xl ${accent === "purple" ? "bg-fg-violet" : accent === "blue" ? "bg-blue-600" : "bg-fg-black"}`}
             >
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] uppercase tracking-wider text-white/60">
@@ -183,51 +185,51 @@ function MenuItemSection() {
       </SubSection>
 
       <SubSection title="Single · intent=danger (Figma 'Red' variant)">
-        <div className="w-64 pl-4 flex flex-col gap-2">
+        <div className="flex w-full max-w-64 flex-col gap-2 pl-4">
           <MenuItem
             lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }}
-            label="Delete"
+            label="删除"
             intent="danger"
             state="idle"
             badge={99}
           />
           <MenuItem
             lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }}
-            label="Delete"
+            label="删除"
             intent="danger"
             state="hover"
           />
           <MenuItem
             lead={{ kind: "icon", icon: <Logout3BoldDuotone size={20} /> }}
-            label="Sign Out"
+            label="退出登录"
             intent="danger"
           />
         </div>
       </SubSection>
 
       <SubSection title="Submenu · indented child rows (4 colors)">
-        <div className="flex items-start gap-6">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-6">
           {accentColors.map((accent) => (
-            <div key={accent} className="w-56 pl-4 flex flex-col gap-1">
+            <div key={accent} className="flex w-full max-w-56 flex-col gap-1 pl-4">
               <span className="text-[10px] uppercase tracking-wider text-fg-grey-500">
                 {accent}
               </span>
-              <MenuItem accent={accent} kind="submenu" label="Idle" badge={99} />
-              <MenuItem accent={accent} kind="submenu" label="Hover" state="hover" />
-              <MenuItem accent={accent} kind="submenu" label="Active" active />
-              <MenuItem accent={accent} kind="submenu" label="No badge" />
+              <MenuItem accent={accent} kind="submenu" label="默认" badge={99} />
+              <MenuItem accent={accent} kind="submenu" label="悬停" state="hover" />
+              <MenuItem accent={accent} kind="submenu" label="使用中" active />
+              <MenuItem accent={accent} kind="submenu" label="不带计数" />
             </div>
           ))}
-          <div className="w-56 p-4 rounded-xl bg-fg-violet flex flex-col gap-1">
+          <div className="flex w-full max-w-56 flex-col gap-1 rounded-xl bg-fg-violet p-4">
             <span className="text-[10px] uppercase tracking-wider text-white/60">
               onColoredBg
             </span>
-            <MenuItem accent="purple" kind="submenu" surface="onColoredBg" label="Idle" />
+            <MenuItem accent="blue" kind="submenu" surface="onColoredBg" label="默认" />
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="submenu"
               surface="onColoredBg"
-              label="Active"
+              label="使用中"
               active
             />
           </div>
@@ -242,7 +244,7 @@ function MenuItemSection() {
                 accent={accent}
                 kind="dropdown"
                 lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }}
-                label="Dashboard"
+                label="工作台"
                 active
                 badge={5}
               />
@@ -250,20 +252,20 @@ function MenuItemSection() {
                 accent={accent}
                 kind="dropdown"
                 lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} /> }}
-                label="Analytics"
+                label="数据分析"
               />
               <MenuItem
                 accent={accent}
                 kind="dropdown"
                 lead={{ kind: "icon", icon: <FolderBoldDuotone size={20} /> }}
-                label="Projects"
+                label="项目"
                 badge={99}
               />
               <MenuItem
                 accent={accent}
                 kind="dropdown"
                 lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }}
-                label="Settings"
+                label="设置"
               />
             </DropdownPanel>
           ))}
@@ -273,26 +275,26 @@ function MenuItemSection() {
               onColoredBg (sidebar context)
             </span>
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="dropdown"
               surface="onColoredBg"
               lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }}
-              label="Dashboard"
+              label="工作台"
             />
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="dropdown"
               surface="onColoredBg"
               lead={{ kind: "icon", icon: <ChartBoldDuotone size={20} /> }}
-              label="Analytics"
+              label="数据分析"
               active
             />
             <MenuItem
-              accent="purple"
+              accent="blue"
               kind="dropdown"
               surface="onColoredBg"
               lead={{ kind: "icon", icon: <FolderBoldDuotone size={20} /> }}
-              label="Projects"
+              label="项目"
               badge={5}
             />
           </div>
@@ -309,13 +311,13 @@ function MenuItemSection() {
 function SecondaryMenuSection() {
   return (
     <Section
-      title="Secondary Menu"
+      title="二级菜单"
       description="Figma: Profile / Team / Notification / Language / Message / Calendar — 侧栏卡片式下拉"
     >
       <SubSection title="Profile · 4 colors × 3 states">
         <div className="flex flex-col gap-3">
           {accentColors.map((accent) => (
-            <div key={accent} className="flex items-start gap-4">
+            <div key={accent} className="flex min-w-0 max-w-full flex-wrap items-start gap-4">
               <span className="w-16 text-fg-grey-700 text-sm font-medium capitalize">
                 {accent}
               </span>
@@ -324,8 +326,8 @@ function SecondaryMenuSection() {
                   <div key={state} className="w-60">
                     <ProfileCard
                       avatar={avatarImg("JH")}
-                      name="John Hoegan"
-                      subtitle="Manager"
+                      name="张明"
+                      subtitle="经理"
                       state={state}
                       accent={accent}
                     />
@@ -335,7 +337,7 @@ function SecondaryMenuSection() {
             </div>
           ))}
 
-          <div className="flex items-start gap-4">
+          <div className="flex min-w-0 max-w-full flex-wrap items-start gap-4">
             <span className="w-16 text-fg-grey-700 text-sm font-medium capitalize">
               onColoredBg
             </span>
@@ -344,9 +346,9 @@ function SecondaryMenuSection() {
                 <div key={state} className="w-60 p-3 rounded-2xl bg-fg-violet">
                   <ProfileCard
                     avatar={avatarImg("JH")}
-                    name="John Hoegan"
-                    subtitle="Manager"
-                    accent="purple"
+                    name="张明"
+                    subtitle="经理"
+                    accent="blue"
                     surface="onColoredBg"
                     state={state}
                   />
@@ -362,45 +364,45 @@ function SecondaryMenuSection() {
           <div className="w-60 flex flex-col gap-3">
             <ProfileCard
               avatar={avatarImg("ST")}
-              name="Sugab's Team"
-              subtitle="24 Members"
+              name="设计团队"
+              subtitle="24 位成员"
               state="selected"
-              accent="purple"
+              accent="blue"
             />
-            <span className="text-fg-grey-700 text-xs font-bold uppercase">Dropdown ↓</span>
+            <span className="text-fg-grey-700 text-xs font-bold uppercase">展开菜单 ↓</span>
           </div>
           <DropdownPanel width="w-64" padding="p-3">
             <div className="self-stretch pt-2 flex flex-col items-center gap-3">
-              <img src={avatarImg("ST")} alt="Team" className="w-16 h-16 rounded-full" />
+              <img src={avatarImg("ST")} alt="团队" className="w-16 h-16 rounded-full" />
               <div className="self-stretch flex flex-col items-center gap-1">
-                <span className="text-fg-black text-sm font-semibold">Sugab&apos;s Team</span>
-                <span className="text-fg-grey-700 text-xs font-medium">24 Members</span>
+                <span className="text-fg-black text-sm font-semibold">设计团队</span>
+                <span className="text-fg-grey-700 text-xs font-medium">24 位成员</span>
               </div>
             </div>
             <div className="self-stretch flex flex-col">
               <MenuItem
                 lead={{ kind: "icon", icon: <UsersGroupRoundedBoldDuotone size={20} /> }}
-                label="Invite People"
+                label="邀请成员"
               />
               <MenuItem
                 lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }}
-                label="Setting"
+                label="设置"
               />
             </div>
             <DropdownDivider />
             <div className="self-stretch flex flex-col">
-              <TeamRow initials="ST" name="Sugab's Team" selected />
-              <TeamRow initials="JT" name="John's Team" />
-              <TeamRow initials="MT" name="Marketing's Team" />
+              <TeamRow initials="ST" name="设计团队" selected />
+              <TeamRow initials="JT" name="研发团队" />
+              <TeamRow initials="MT" name="市场团队" />
             </div>
             <DropdownDivider />
             <MenuItem
               lead={{ kind: "icon", icon: <AddCircleBoldDuotone size={20} /> }}
-              label="Create New"
+              label="新建团队"
             />
             <MenuItem
               lead={{ kind: "icon", icon: <Logout3BoldDuotone size={20} /> }}
-              label="Sign Out"
+              label="退出登录"
               intent="danger"
             />
           </DropdownPanel>
@@ -410,7 +412,7 @@ function SecondaryMenuSection() {
       <SubSection title="Notification · Bell trigger + NotificationItem list">
         <div className="flex items-start gap-8 flex-wrap">
           <div className="flex flex-col gap-2">
-            <span className="text-fg-grey-700 text-xs font-bold uppercase">Triggers</span>
+            <span className="text-fg-grey-700 text-xs font-bold uppercase">触发按钮</span>
             {accentColors.map((accent) => (
               <div key={accent} className="flex items-center gap-4">
                 <IconTrigger
@@ -424,7 +426,7 @@ function SecondaryMenuSection() {
                   accent={accent}
                   state="hover"
                   badge={99}
-                  tooltip="Notification"
+                  tooltip="通知"
                   tooltipPosition="right"
                 />
                 <IconTrigger
@@ -437,36 +439,36 @@ function SecondaryMenuSection() {
             ))}
           </div>
 
-          <div className="w-[480px] p-4 rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col">
+          <div className="flex w-full max-w-[480px] flex-col rounded-xl p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
             <div className="pb-3 flex items-center justify-between border-b border-fg-grey-200">
               <span className="text-fg-black text-xl font-semibold leading-8 tracking-fg">
-                Notification
+                通知
               </span>
             </div>
             <div className="flex flex-col">
               <NotificationItem
-                tag="Bug"
-                time="2h ago"
-                title="New issue reported"
-                body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus vestibulum hendrerit."
-                unread
-                color="purple"
-                onMarkRead={() => void 0}
-              />
-              <NotificationItem
-                tag="Release"
-                time="4h ago"
-                title="v1.2 shipped"
-                body="Nulla est diam, efficitur eu ullamcorper quis."
+                tag="问题"
+                time="2 小时前"
+                title="收到新的问题反馈"
+                body="有成员提交了新的问题反馈，请及时查看并跟进处理。"
                 unread
                 color="blue"
                 onMarkRead={() => void 0}
               />
               <NotificationItem
-                tag="Info"
-                time="2d ago"
-                title="Older notification (read)"
-                body="Lorem ipsum dolor sit amet."
+                tag="发布"
+                time="4 小时前"
+                title="v1.2 已发布"
+                body="新版本已上线，包含体验优化和问题修复。"
+                unread
+                color="blue"
+                onMarkRead={() => void 0}
+              />
+              <NotificationItem
+                tag="信息"
+                time="2 天前"
+                title="历史通知（已读）"
+                body="确认需求与交付安排。"
               />
             </div>
           </div>
@@ -479,7 +481,7 @@ function SecondaryMenuSection() {
             <LanguageMenuDemo key={accent} accent={accent} />
           ))}
           <div className="p-6 rounded-xl bg-fg-violet">
-            <LanguageMenuDemo accent="purple" onColoredBg />
+            <LanguageMenuDemo accent="blue" onColoredBg />
           </div>
         </div>
       </SubSection>
@@ -487,7 +489,7 @@ function SecondaryMenuSection() {
       <SubSection title="Message · Letter trigger + ContactItem list">
         <div className="flex items-start gap-8 flex-wrap">
           <div className="flex flex-col gap-2">
-            <span className="text-fg-grey-700 text-xs font-bold uppercase">Triggers</span>
+            <span className="text-fg-grey-700 text-xs font-bold uppercase">触发按钮</span>
             {accentColors.map((accent) => (
               <div key={accent} className="flex items-center gap-4">
                 <IconTrigger
@@ -508,21 +510,21 @@ function SecondaryMenuSection() {
           <DropdownPanel width="w-80" padding="p-2">
             <ContactItem
               initials="JH"
-              name="Jay Hargudson"
-              message="Hey, are you free tonight?"
+              name="周宁"
+              message="今晚方便讨论一下吗？"
               time="2m"
               unreadCount={3}
             />
             <ContactItem
               initials="AT"
-              name="Anna Tsiuk"
-              message="Shared a file · design.pdf"
+              name="安娜"
+              message="分享了文件 · 设计稿.pdf"
               time="1h"
             />
             <ContactItem
               initials="DC"
-              name="Daniel Cross"
-              message="Got it, thanks!"
+              name="杜航"
+              message="收到，谢谢！"
               time="3h"
             />
           </DropdownPanel>
@@ -532,7 +534,7 @@ function SecondaryMenuSection() {
       <SubSection title="Calendar · Calendar trigger + SmallCalendar">
         <div className="flex items-start gap-8 flex-wrap">
           <div className="flex flex-col gap-2">
-            <span className="text-fg-grey-700 text-xs font-bold uppercase">Triggers</span>
+            <span className="text-fg-grey-700 text-xs font-bold uppercase">触发按钮</span>
             {accentColors.map((accent) => (
               <div key={accent} className="flex items-center gap-4">
                 <IconTrigger
@@ -544,7 +546,7 @@ function SecondaryMenuSection() {
                   icon={<CalendarBoldDuotone size={20} />}
                   accent={accent}
                   state="hover"
-                  tooltip="Calendar"
+                  tooltip="日历"
                   tooltipPosition="right"
                 />
                 <IconTrigger
@@ -608,10 +610,10 @@ function LanguageMenuDemo({
 }) {
   const [selected, setSelected] = useState("en-us");
   const langs = [
-    { value: "en-us", label: "English US", flag: flagEn },
-    { value: "en-uk", label: "English UK", flag: flagUk },
-    { value: "fr", label: "France", flag: flagFr },
-    { value: "jp", label: "Japan", flag: flagJp },
+    { value: "en-us", label: "英语（美国）", flag: flagEn },
+    { value: "en-uk", label: "英语（英国）", flag: flagUk },
+    { value: "fr", label: "法国", flag: flagFr },
+    { value: "jp", label: "日本", flag: flagJp },
   ];
 
   return (
@@ -655,23 +657,23 @@ function LanguageMenuDemo({
 
 function SidebarMenuSection() {
   const mainMenu = [
-    { icon: <HomeBoldDuotone size={20} />, label: "Dashboard", active: true },
-    { icon: <ChartBoldDuotone size={20} />, label: "Analytics", badge: 5 },
+    { icon: <HomeBoldDuotone size={20} />, label: "工作台", active: true },
+    { icon: <ChartBoldDuotone size={20} />, label: "数据分析", badge: 5 },
     {
       icon: <FolderBoldDuotone size={20} />,
-      label: "Projects",
+      label: "项目",
       expanded: true,
-      children: [{ label: "All Projects" }, { label: "Archived" }],
+      children: [{ label: "全部项目" }, { label: "已归档" }],
     },
-    { icon: <SettingsBoldDuotone size={20} />, label: "Settings" },
+    { icon: <SettingsBoldDuotone size={20} />, label: "设置" },
   ];
 
-  const favorites = [{ icon: <StarBoldDuotone size={20} />, label: "Design System" }];
+  const favorites = [{ icon: <StarBoldDuotone size={20} />, label: "设计规范" }];
 
   const profile = {
     avatar: avatarImg("JC"),
-    name: "Jane Cooper",
-    role: "Admin",
+    name: "林晓",
+    role: "管理员",
   };
 
   const teamAvatar = avatarImg("ST");
@@ -692,7 +694,7 @@ function SidebarMenuSection() {
                 accent={accent}
                 bgMode={bg as SidebarMenuBgMode}
                 mode={mode}
-                teamName={mode === "full" ? "Sugab's Team" : undefined}
+                teamName={mode === "full" ? "设计团队" : undefined}
                 teamAvatar={mode === "full" ? teamAvatar : undefined}
                 teamMemberCount={mode === "full" ? 24 : undefined}
                 mainMenuItems={mainMenu}
@@ -710,11 +712,11 @@ function SidebarMenuSection() {
       title="Sidebar Menu"
       description="3 accent × 2 bgMode × 2 mode (Figma 全矩阵)"
     >
-      <SubSection title="Full mode">
+      <SubSection title="完整模式">
         <div className="flex flex-col gap-6 w-full">{renderGrid("full")}</div>
       </SubSection>
 
-      <SubSection title="Minimized mode">
+      <SubSection title="收窄模式">
         <div className="flex flex-col gap-6 w-full">{renderGrid("minimized")}</div>
       </SubSection>
     </Section>
@@ -732,7 +734,7 @@ function KebabMenuSection() {
       description="IconTrigger(MenuDots) + DropdownPanel + MenuItem — 组合示例（4 色含 onColoredBg）"
     >
       <SubSection title="Triggers + panels on default surface">
-        <div className="inline-flex items-start gap-16">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-8 sm:gap-16">
           {accentColors.map((accent) => (
             <div key={accent} className="flex flex-col gap-3 items-center">
               <span className="text-fg-grey-700 text-sm font-medium capitalize">{accent}</span>
@@ -743,7 +745,7 @@ function KebabMenuSection() {
       </SubSection>
 
       <SubSection title="Kebab on colored background (surface=onColoredBg)">
-        <div className="p-6 rounded-xl bg-fg-violet inline-flex items-start gap-16">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-8 rounded-xl bg-fg-violet p-6 sm:gap-16">
           {accentColors.map((accent) => (
             <div key={accent} className="flex flex-col gap-3 items-center">
               <span className="text-white/75 text-sm font-medium capitalize">{accent}</span>
@@ -754,21 +756,21 @@ function KebabMenuSection() {
       </SubSection>
 
       <SubSection title="Used inside a list row">
-        <div className="w-80 p-4 rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex items-center gap-3">
+        <div className="flex w-full max-w-80 items-center gap-3 rounded-xl p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
           <Avatar initials="JC" size="md" />
           <div className="flex-1 flex flex-col">
-            <span className="text-fg-black text-sm font-semibold">Jane Cooper</span>
-            <span className="text-fg-grey-700 text-xs font-medium">Admin</span>
+            <span className="text-fg-black text-sm font-semibold">林晓</span>
+            <span className="text-fg-grey-700 text-xs font-medium">管理员</span>
           </div>
-          <KebabMenu items={kebabItems} accent="purple" />
+          <KebabMenu items={kebabItems} accent="blue" />
         </div>
       </SubSection>
 
       <SubSection title="Interactive · IconTrigger with custom panel (click to open)">
-        <div className="inline-flex items-start gap-6">
+        <div className="flex min-w-0 max-w-full flex-wrap items-start gap-6">
           <IconTrigger
             icon={<BellBoldDuotone size={20} />}
-            accent="purple"
+            accent="blue"
             badge={5}
             panelPlacement="bottom"
             panel={(close) => (
@@ -778,7 +780,7 @@ function KebabMenuSection() {
                     key={i}
                     lead={{ kind: "icon", icon: item.icon }}
                     label={item.label}
-                    accent="purple"
+                    accent="blue"
                     onClick={close}
                   />
                 ))}

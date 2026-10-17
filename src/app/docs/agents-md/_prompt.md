@@ -16,7 +16,7 @@
 2. **颜色只用 `fg-*` token**。禁用 Tailwind 默认色（如 `text-blue-500` `bg-gray-100`），全部换成 `text-fg-violet` `bg-fg-grey-100`。没对上的颜色去 `src/app/globals.css` 的 `@theme inline` 里扩 token，不要就地写 hex。
 3. **Icon 用 `@forge-ui-official/core/icons`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾，底层是 Solar Icons（React 实现为 MIT，480 Design 图形为 CC BY 4.0）。优先用 `size={N}` 和 `color="#HEX"` prop 保证渲染稳定；兼容层也支持 `currentColor` 和标准 SVG props。
 4. **布局用 `<AppLayout>`**（`@forge-ui-official/core`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
-5. **不确定就看 `/cases/<name>`**。Forge 每个组件都有一页示例（`src/app/cases/<name>/page.tsx`），去读它，比凭想象写 props 靠谱十倍。
+5. **不确定就看 `/cases/<name>`**。每个组件都有一页示例（`src/app/cases/<name>/page.tsx`）。先读示例里的用法，再写 props。
 
 ## 可用资源索引
 
@@ -65,7 +65,7 @@
 **导航与控件**
 - `SidebarMenu`（cases/menu）
 - `TopBar` / `PageHeader` / `Breadcrumbs`（cases/page-header）
-- `Toolbar` + 一堆 Toolbar 子组件 / `PageTitleToolbar`（cases/toolbar）
+- `Toolbar` / `PageTitleToolbar`（cases/toolbar）
 - `Pagination` / `Stepper` / `PageDot` / `TabBar` / `ButtonGroup`（cases/pagination-stepper, cases/tab）
 - `Tooltip` / `TooltipBubble` / `TooltipAnchor`（cases/tooltip）
 - `ConfirmationDialog`（cases/modal）
@@ -75,7 +75,7 @@
 - `CurrencyConverter` / `RatingStars` / `ImageGrid` / `ProductRow` / `MapCard`（cases/map）
 
 **布局模板**
-- `AppLayout`（`@forge-ui-official/core/app-layout`）— sidebar + topbar + 内容区一站式，业务页都用它
+- `AppLayout`（从 `@forge-ui-official/core` 导入）— 侧栏、顶栏和内容区。业务页用它，不要再拼一套侧栏。
 
 ### 颜色 Token（`src/app/globals.css`）
 
@@ -159,9 +159,9 @@ import { AppLayout } from "@forge-ui-official/core";
 
 `/cases/<name>` → `src/app/cases/<name>/page.tsx`：
 
-badge / button-link / calendar / card / chart / chat / comment / filter / history / input-field / list / map / menu / modal / other-widget / page-header / pagination-stepper / progress / tab / table / toolbar / tooltip
+accordion / agent / badge / button-link / calendar / card / chart / chat / chat-input-bar / checklist / comment / feedback / filter / grid / history / input-field / list / map / menu / menu-sections / modal / other-widget / page-header / pagination-stepper / progress / tab / table / toolbar / tooltip
 
-（共 22 个。`file-type` 和 `style-guide` 是 `/components/*` 下的 Kit 资产展示页，不是业务示例，命中需求时直接读源文件 `src/app/components/{file-type,style-guide}/page.tsx`。）
+`file-type` 和 `style-guide` 在 `/components/*`，不是案例页。需要时读 `src/app/components/{file-type,style-guide}/page.tsx`。
 
 ## 工作流
 

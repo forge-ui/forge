@@ -19,7 +19,7 @@ export function HistoryGrouped({
   items,
   action,
   progressHeight = "30%",
-  color = "purple",
+  color = "blue",
   className = "",
 }: {
   title: string;

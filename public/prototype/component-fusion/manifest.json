@@ -1,0 +1,856 @@
+[
+  {
+    "id": "001",
+    "name": "液态玻璃按钮",
+    "english": "Liquid glass button",
+    "src": "/prototype/component-fusion/components/001.html",
+    "kind": "html"
+  },
+  {
+    "id": "002",
+    "name": "磁吸箭头按钮",
+    "english": "Magnetic arrow button",
+    "src": "/prototype/component-fusion/components/002.html",
+    "kind": "html"
+  },
+  {
+    "id": "003",
+    "name": "长按删除",
+    "english": "Hold to delete",
+    "src": "/prototype/component-fusion/components/003.html",
+    "kind": "html"
+  },
+  {
+    "id": "004",
+    "name": "下载进度按钮",
+    "english": "Progress download button",
+    "src": "/prototype/component-fusion/components/004.html",
+    "kind": "html"
+  },
+  {
+    "id": "005",
+    "name": "纸飞机发送",
+    "english": "Paper plane send button",
+    "src": "/prototype/component-fusion/components/005.html",
+    "kind": "html"
+  },
+  {
+    "id": "006",
+    "name": "墨水涟漪按钮",
+    "english": "Ink ripple subscribe button",
+    "src": "/prototype/component-fusion/components/006.html",
+    "kind": "html"
+  },
+  {
+    "id": "007",
+    "name": "播放暂停变形",
+    "english": "Play–pause morph",
+    "src": "/prototype/component-fusion/components/007.html",
+    "kind": "html"
+  },
+  {
+    "id": "008",
+    "name": "复制完成反馈",
+    "english": "Copy button that turns into a check",
+    "src": "/prototype/component-fusion/components/008.html",
+    "kind": "html"
+  },
+  {
+    "id": "009",
+    "name": "文字滚动按钮",
+    "english": "Rolling label button",
+    "src": "/prototype/component-fusion/components/009.html",
+    "kind": "html"
+  },
+  {
+    "id": "010",
+    "name": "组合操作按钮",
+    "english": "Split action button",
+    "src": "/prototype/component-fusion/components/010.html",
+    "kind": "html"
+  },
+  {
+    "id": "011",
+    "name": "扇形快捷操作",
+    "english": "Radial floating button",
+    "src": "/prototype/component-fusion/components/011.html",
+    "kind": "html"
+  },
+  {
+    "id": "012",
+    "name": "书签丝带",
+    "english": "Bookmark ribbon",
+    "src": "/prototype/component-fusion/components/012.html",
+    "kind": "html"
+  },
+  {
+    "id": "013",
+    "name": "弹性开关",
+    "english": "Stretchy switch",
+    "src": "/prototype/component-fusion/components/013.html",
+    "kind": "html"
+  },
+  {
+    "id": "014",
+    "name": "待办清单",
+    "english": "To-do checklist",
+    "src": "/prototype/component-fusion/components/014.html",
+    "kind": "html"
+  },
+  {
+    "id": "015",
+    "name": "套餐选择卡",
+    "english": "Plan radio cards",
+    "src": "/prototype/component-fusion/components/015.html",
+    "kind": "html"
+  },
+  {
+    "id": "016",
+    "name": "星级评价",
+    "english": "Star rating",
+    "src": "/prototype/component-fusion/components/016.html",
+    "kind": "html"
+  },
+  {
+    "id": "018",
+    "name": "滚动数量步进",
+    "english": "Rolling quantity stepper",
+    "src": "/prototype/component-fusion/components/018.html",
+    "kind": "html"
+  },
+  {
+    "id": "019",
+    "name": "兴趣多选",
+    "english": "Interest chips multi-select",
+    "src": "/prototype/component-fusion/components/019.html",
+    "kind": "html"
+  },
+  {
+    "id": "021",
+    "name": "日夜切换",
+    "english": "Day–night sky switch",
+    "src": "/prototype/component-fusion/components/021.html",
+    "kind": "html"
+  },
+  {
+    "id": "022",
+    "name": "点赞心形绽放",
+    "english": "Heart burst like",
+    "src": "/prototype/component-fusion/components/022.html",
+    "kind": "html"
+  },
+  {
+    "id": "023",
+    "name": "通知设置展开",
+    "english": "Expanding notification settings",
+    "src": "/prototype/component-fusion/components/023.html",
+    "kind": "html"
+  },
+  {
+    "id": "024",
+    "name": "价格分布筛选",
+    "english": "Price histogram range filter",
+    "src": "/prototype/component-fusion/components/024.html",
+    "kind": "html"
+  },
+  {
+    "id": "025",
+    "name": "浮动标签输入",
+    "english": "Notched floating label field",
+    "src": "/prototype/component-fusion/components/025.html",
+    "kind": "html"
+  },
+  {
+    "id": "026",
+    "name": "验证码输入",
+    "english": "6-digit code input",
+    "src": "/prototype/component-fusion/components/026.html",
+    "kind": "html"
+  },
+  {
+    "id": "027",
+    "name": "顶栏搜索展开",
+    "english": "Expanding top-bar search",
+    "src": "/prototype/component-fusion/components/027.html",
+    "kind": "html"
+  },
+  {
+    "id": "028",
+    "name": "自动伸展评论框",
+    "english": "Auto-growing reply box",
+    "src": "/prototype/component-fusion/components/028.html",
+    "kind": "html"
+  },
+  {
+    "id": "029",
+    "name": "标签输入",
+    "english": "Colored tag input",
+    "src": "/prototype/component-fusion/components/029.html",
+    "kind": "html"
+  },
+  {
+    "id": "030",
+    "name": "日期区间日历",
+    "english": "Date range calendar",
+    "src": "/prototype/component-fusion/components/030.html",
+    "kind": "html"
+  },
+  {
+    "id": "031",
+    "name": "自定义选择器",
+    "english": "Custom select listbox",
+    "src": "/prototype/component-fusion/components/031.html",
+    "kind": "html"
+  },
+  {
+    "id": "032",
+    "name": "拖拽上传",
+    "english": "Drag-and-drop upload",
+    "src": "/prototype/component-fusion/components/032.html",
+    "kind": "html"
+  },
+  {
+    "id": "033",
+    "name": "标题内联编辑",
+    "english": "Inline title editing",
+    "src": "/prototype/component-fusion/components/033.html",
+    "kind": "html"
+  },
+  {
+    "id": "036",
+    "name": "密码强度",
+    "english": "Password strength meter",
+    "src": "/prototype/component-fusion/components/036.html",
+    "kind": "html"
+  },
+  {
+    "id": "037",
+    "name": "账号切换",
+    "english": "Account switcher menu",
+    "src": "/prototype/component-fusion/components/037.html",
+    "kind": "html"
+  },
+  {
+    "id": "038",
+    "name": "右键菜单",
+    "english": "Right-click context menu",
+    "src": "/prototype/component-fusion/components/038.html",
+    "kind": "html"
+  },
+  {
+    "id": "039",
+    "name": "滑动选中标签",
+    "english": "Sliding pill tabs",
+    "src": "/prototype/component-fusion/components/039.html",
+    "kind": "html"
+  },
+  {
+    "id": "040",
+    "name": "AppLayout 侧栏动效",
+    "english": "AppLayout sidebar motion",
+    "src": "/prototype/component-fusion/components/040.html",
+    "kind": "html"
+  },
+  {
+    "id": "041",
+    "name": "底部导航凹槽",
+    "english": "Notched bottom tab bar",
+    "src": "/prototype/component-fusion/components/041.html",
+    "kind": "html"
+  },
+  {
+    "id": "042",
+    "name": "分步向导",
+    "english": "Step-by-step wizard",
+    "src": "/prototype/component-fusion/components/042.html",
+    "kind": "html"
+  },
+  {
+    "id": "043",
+    "name": "分页伸缩",
+    "english": "Stretching pagination",
+    "src": "/prototype/component-fusion/components/043.html",
+    "kind": "html"
+  },
+  {
+    "id": "044",
+    "name": "问答折叠",
+    "english": "FAQ accordion",
+    "src": "/prototype/component-fusion/components/044.html",
+    "kind": "html"
+  },
+  {
+    "id": "045",
+    "name": "菜单由按钮展开",
+    "english": "Full-screen menu from the button",
+    "src": "/prototype/component-fusion/components/045.html",
+    "kind": "html"
+  },
+  {
+    "id": "046",
+    "name": "命令面板",
+    "english": "Command palette",
+    "src": "/prototype/component-fusion/components/046.html",
+    "kind": "html"
+  },
+  {
+    "id": "047",
+    "name": "时间区间切换",
+    "english": "Period segmented control",
+    "src": "/prototype/component-fusion/components/047.html",
+    "kind": "html"
+  },
+  {
+    "id": "048",
+    "name": "滑动联动标签",
+    "english": "Swipe-linked underline tabs",
+    "src": "/prototype/component-fusion/components/048.html",
+    "kind": "html"
+  },
+  {
+    "id": "049",
+    "name": "层叠内容卡",
+    "english": "Layered editorial card",
+    "src": "/prototype/component-fusion/components/049.html",
+    "kind": "html"
+  },
+  {
+    "id": "050",
+    "name": "光照倾斜卡",
+    "english": "Spotlight-tilt news card",
+    "src": "/prototype/component-fusion/components/050.html",
+    "kind": "html"
+  },
+  {
+    "id": "053",
+    "name": "可拖拽卡片堆",
+    "english": "Swipeable card stack",
+    "src": "/prototype/component-fusion/components/053.html",
+    "kind": "html"
+  },
+  {
+    "id": "054",
+    "name": "关注个人卡",
+    "english": "Follow profile card",
+    "src": "/prototype/component-fusion/components/054.html",
+    "kind": "html"
+  },
+  {
+    "id": "056",
+    "name": "月年计费切换",
+    "english": "Monthly–yearly pricing toggle",
+    "src": "/prototype/component-fusion/components/056.html",
+    "kind": "html"
+  },
+  {
+    "id": "057",
+    "name": "头像评价轮播",
+    "english": "Face-picker testimonial carousel",
+    "src": "/prototype/component-fusion/components/057.html",
+    "kind": "html"
+  },
+  {
+    "id": "058",
+    "name": "阅读进度卡",
+    "english": "Reading-progress article card",
+    "src": "/prototype/component-fusion/components/058.html",
+    "kind": "html"
+  },
+  {
+    "id": "059",
+    "name": "活动报名卡",
+    "english": "Event RSVP card",
+    "src": "/prototype/component-fusion/components/059.html",
+    "kind": "html"
+  },
+  {
+    "id": "061",
+    "name": "缩略图展开",
+    "english": "Thumbnail-to-lightbox zoom",
+    "src": "/prototype/component-fusion/components/061.html",
+    "kind": "html"
+  },
+  {
+    "id": "062",
+    "name": "登录反馈",
+    "english": "Sign-in card feedback",
+    "src": "/prototype/component-fusion/components/062.html",
+    "kind": "html"
+  },
+  {
+    "id": "063",
+    "name": "逐题注册",
+    "english": "One-question-at-a-time sign-up",
+    "src": "/prototype/component-fusion/components/063.html",
+    "kind": "html"
+  },
+  {
+    "id": "066",
+    "name": "社交登录按钮",
+    "english": "Social sign-in buttons",
+    "src": "/prototype/component-fusion/components/066.html",
+    "kind": "html"
+  },
+  {
+    "id": "067",
+    "name": "锁定倒计时",
+    "english": "Lockout countdown",
+    "src": "/prototype/component-fusion/components/067.html",
+    "kind": "html"
+  },
+  {
+    "id": "069",
+    "name": "头像裁剪",
+    "english": "Avatar crop editor",
+    "src": "/prototype/component-fusion/components/069.html",
+    "kind": "html"
+  },
+  {
+    "id": "070",
+    "name": "堆叠通知",
+    "english": "Stacking toasts",
+    "src": "/prototype/component-fusion/components/070.html",
+    "kind": "html"
+  },
+  {
+    "id": "071",
+    "name": "滑动删除与撤销",
+    "english": "Swipe-to-delete with undo",
+    "src": "/prototype/component-fusion/components/071.html",
+    "kind": "html"
+  },
+  {
+    "id": "072",
+    "name": "内联提示收拢",
+    "english": "Collapsing inline alerts",
+    "src": "/prototype/component-fusion/components/072.html",
+    "kind": "html"
+  },
+  {
+    "id": "073",
+    "name": "公告滚动",
+    "english": "Rolling announcement banner",
+    "src": "/prototype/component-fusion/components/073.html",
+    "kind": "html"
+  },
+  {
+    "id": "074",
+    "name": "通知铃菜单",
+    "english": "Notification bell dropdown",
+    "src": "/prototype/component-fusion/components/074.html",
+    "kind": "html"
+  },
+  {
+    "id": "075",
+    "name": "上传进度面板",
+    "english": "Upload progress panel",
+    "src": "/prototype/component-fusion/components/075.html",
+    "kind": "html"
+  },
+  {
+    "id": "076",
+    "name": "跟随工具提示",
+    "english": "Gliding tooltip",
+    "src": "/prototype/component-fusion/components/076.html",
+    "kind": "html"
+  },
+  {
+    "id": "077",
+    "name": "表情反应面板",
+    "english": "Reaction popover",
+    "src": "/prototype/component-fusion/components/077.html",
+    "kind": "html"
+  },
+  {
+    "id": "078",
+    "name": "滑动回复",
+    "english": "Swipe-to-reply chat",
+    "src": "/prototype/component-fusion/components/078.html",
+    "kind": "html"
+  },
+  {
+    "id": "079",
+    "name": "骨架内容显现",
+    "english": "Skeleton that blooms into a post",
+    "src": "/prototype/component-fusion/components/079.html",
+    "kind": "html"
+  },
+  {
+    "id": "080",
+    "name": "轨道同步指示",
+    "english": "Orbit sync spinner",
+    "src": "/prototype/component-fusion/components/080.html",
+    "kind": "html"
+  },
+  {
+    "id": "081",
+    "name": "环形完成反馈",
+    "english": "Payment ring and check",
+    "src": "/prototype/component-fusion/components/081.html",
+    "kind": "html"
+  },
+  {
+    "id": "083",
+    "name": "队列进度转换",
+    "english": "Queue bar turning into progress",
+    "src": "/prototype/component-fusion/components/083.html",
+    "kind": "html"
+  },
+  {
+    "id": "084",
+    "name": "语音响应圆点",
+    "english": "Voice-reactive dot loader",
+    "src": "/prototype/component-fusion/components/084.html",
+    "kind": "html"
+  },
+  {
+    "id": "085",
+    "name": "下拉刷新",
+    "english": "Pull to refresh",
+    "src": "/prototype/component-fusion/components/085.html",
+    "kind": "html"
+  },
+  {
+    "id": "086",
+    "name": "AI 流式回答",
+    "english": "Streaming AI answer",
+    "src": "/prototype/component-fusion/components/086.html",
+    "kind": "html"
+  },
+  {
+    "id": "087",
+    "name": "配送步骤",
+    "english": "Delivery steps with a truck",
+    "src": "/prototype/component-fusion/components/087.html",
+    "kind": "html"
+  },
+  {
+    "id": "088",
+    "name": "资料夹空态",
+    "english": "Empty folder that swallows paper",
+    "src": "/prototype/component-fusion/components/088.html",
+    "kind": "html"
+  },
+  {
+    "id": "089",
+    "name": "404 纠错",
+    "english": "404 that fixes the typo",
+    "src": "/prototype/component-fusion/components/089.html",
+    "kind": "html"
+  },
+  {
+    "id": "090",
+    "name": "可重试错误卡",
+    "english": "Error widget that plugs back in",
+    "src": "/prototype/component-fusion/components/090.html",
+    "kind": "html"
+  },
+  {
+    "id": "091",
+    "name": "离线消息队列",
+    "english": "Offline message queue",
+    "src": "/prototype/component-fusion/components/091.html",
+    "kind": "html"
+  },
+  {
+    "id": "092",
+    "name": "筛选空态恢复",
+    "english": "Empty search that loosens filters",
+    "src": "/prototype/component-fusion/components/092.html",
+    "kind": "html"
+  },
+  {
+    "id": "093",
+    "name": "完成庆祝",
+    "english": "Celebration when every task is done",
+    "src": "/prototype/component-fusion/components/093.html",
+    "kind": "html"
+  },
+  {
+    "id": "095",
+    "name": "形态切换柱图",
+    "english": "Bar chart that changes shape",
+    "src": "/prototype/component-fusion/components/095.html",
+    "kind": "html"
+  },
+  {
+    "id": "096",
+    "name": "滑动股票折线",
+    "english": "Stock line that splits as you scrub",
+    "src": "/prototype/component-fusion/components/096.html",
+    "kind": "html"
+  },
+  {
+    "id": "097",
+    "name": "重排环图",
+    "english": "Donut that re-splits",
+    "src": "/prototype/component-fusion/components/097.html",
+    "kind": "html"
+  },
+  {
+    "id": "098",
+    "name": "实时数字滚动",
+    "english": "Live metric with rolling digits",
+    "src": "/prototype/component-fusion/components/098.html",
+    "kind": "html"
+  },
+  {
+    "id": "099",
+    "name": "活动环",
+    "english": "Activity rings that lap",
+    "src": "/prototype/component-fusion/components/099.html",
+    "kind": "html"
+  },
+  {
+    "id": "100",
+    "name": "翻页计时器",
+    "english": "Folding flip timer",
+    "src": "/prototype/component-fusion/components/100.html",
+    "kind": "html"
+  },
+  {
+    "id": "101",
+    "name": "分栏工作区",
+    "english": "Split workspace",
+    "src": "/prototype/component-fusion/components/101.html",
+    "kind": "html"
+  },
+  {
+    "id": "102",
+    "name": "嵌套文件树",
+    "english": "Nested file tree",
+    "src": "/prototype/component-fusion/components/102.html",
+    "kind": "html"
+  },
+  {
+    "id": "108",
+    "name": "时区交集",
+    "english": "Time zone overlap",
+    "src": "/prototype/component-fusion/components/108.html",
+    "kind": "html"
+  },
+  {
+    "id": "109",
+    "name": "可用时间涂选",
+    "english": "Weekly availability painter",
+    "src": "/prototype/component-fusion/components/109.html",
+    "kind": "html"
+  },
+  {
+    "id": "110",
+    "name": "日程冲突修复",
+    "english": "Schedule conflict fixer",
+    "src": "/prototype/component-fusion/components/110.html",
+    "kind": "html"
+  },
+  {
+    "id": "111",
+    "name": "任务时长编辑",
+    "english": "Task duration editor",
+    "src": "/prototype/component-fusion/components/111.html",
+    "kind": "html"
+  },
+  {
+    "id": "126",
+    "name": "Markdown 编辑与预览",
+    "english": "Markdown twin note",
+    "src": "/prototype/component-fusion/components/126.html",
+    "kind": "html"
+  },
+  {
+    "id": "127",
+    "name": "变更片段审核",
+    "english": "Change hunk review",
+    "src": "/prototype/component-fusion/components/127.html",
+    "kind": "html"
+  },
+  {
+    "id": "128",
+    "name": "查找替换",
+    "english": "Find and replace",
+    "src": "/prototype/component-fusion/components/128.html",
+    "kind": "html"
+  },
+  {
+    "id": "129",
+    "name": "代码折叠",
+    "english": "Foldable code blocks",
+    "src": "/prototype/component-fusion/components/129.html",
+    "kind": "html"
+  },
+  {
+    "id": "140",
+    "name": "选中文字格式",
+    "english": "Selection formatting",
+    "src": "/prototype/component-fusion/components/140.html",
+    "kind": "html"
+  },
+  {
+    "id": "146",
+    "name": "JSON 树编辑",
+    "english": "JSON value tree",
+    "src": "/prototype/component-fusion/components/146.html",
+    "kind": "html"
+  },
+  {
+    "id": "149",
+    "name": "冲突文本合并",
+    "english": "Conflict sentence merge",
+    "src": "/prototype/component-fusion/components/149.html",
+    "kind": "html"
+  },
+  {
+    "id": "151",
+    "name": "贡献热力格",
+    "english": "Weekly contribution grid",
+    "src": "/prototype/component-fusion/components/151.html",
+    "kind": "html"
+  },
+  {
+    "id": "154",
+    "name": "能力雷达",
+    "english": "Overlapping skill radar",
+    "src": "/prototype/component-fusion/components/154.html",
+    "kind": "html"
+  },
+  {
+    "id": "157",
+    "name": "层叠用量面积",
+    "english": "Stacked usage areas",
+    "src": "/prototype/component-fusion/components/157.html",
+    "kind": "html"
+  },
+  {
+    "id": "160",
+    "name": "转化漏斗",
+    "english": "Conversion funnel",
+    "src": "/prototype/component-fusion/components/160.html",
+    "kind": "html"
+  },
+  {
+    "id": "161",
+    "name": "留存队列",
+    "english": "Weekly retention cohorts",
+    "src": "/prototype/component-fusion/components/161.html",
+    "kind": "html"
+  },
+  {
+    "id": "163",
+    "name": "目标刻度",
+    "english": "Bullet chart target",
+    "src": "/prototype/component-fusion/components/163.html",
+    "kind": "html"
+  },
+  {
+    "id": "165",
+    "name": "预测置信带",
+    "english": "Forecast confidence band",
+    "src": "/prototype/component-fusion/components/165.html",
+    "kind": "html"
+  },
+  {
+    "id": "176",
+    "name": "版本胶片",
+    "english": "Version filmstrip",
+    "src": "/prototype/component-fusion/components/176.html",
+    "kind": "html"
+  },
+  {
+    "id": "177",
+    "name": "撤销重做历史",
+    "english": "Undo and redo history",
+    "src": "/prototype/component-fusion/components/177.html",
+    "kind": "html"
+  },
+  {
+    "id": "178",
+    "name": "批量选择操作台",
+    "english": "Bulk selection dock",
+    "src": "/prototype/component-fusion/components/178.html",
+    "kind": "html"
+  },
+  {
+    "id": "179",
+    "name": "文字片段拼接",
+    "english": "Clipboard shelf",
+    "src": "/prototype/component-fusion/components/179.html",
+    "kind": "html"
+  },
+  {
+    "id": "180",
+    "name": "审批签署",
+    "english": "Approval sign-off line",
+    "src": "/prototype/component-fusion/components/180.html",
+    "kind": "html"
+  },
+  {
+    "id": "181",
+    "name": "工作分派",
+    "english": "Workload dispatcher",
+    "src": "/prototype/component-fusion/components/181.html",
+    "kind": "html"
+  },
+  {
+    "id": "184",
+    "name": "角色权限矩阵",
+    "english": "Role permission matrix",
+    "src": "/prototype/component-fusion/components/184.html",
+    "kind": "html"
+  },
+  {
+    "id": "188",
+    "name": "灰度发布",
+    "english": "Canary rollout",
+    "src": "/prototype/component-fusion/components/188.html",
+    "kind": "html"
+  },
+  {
+    "id": "189",
+    "name": "环境晋级",
+    "english": "Release promotion gate",
+    "src": "/prototype/component-fusion/components/189.html",
+    "kind": "html"
+  },
+  {
+    "id": "F01",
+    "name": "附件队列",
+    "english": "Attachment queue",
+    "src": "/prototype/component-fusion/components/F01.html",
+    "kind": "react"
+  },
+  {
+    "id": "F02",
+    "name": "工具运行卡",
+    "english": "Tool run card",
+    "src": "/prototype/component-fusion/components/F02.html",
+    "kind": "react"
+  },
+  {
+    "id": "F03",
+    "name": "列表批量操作",
+    "english": "List bulk actions",
+    "src": "/prototype/component-fusion/components/F03.html",
+    "kind": "react"
+  },
+  {
+    "id": "F04",
+    "name": "生成内容审核",
+    "english": "Generated content review",
+    "src": "/prototype/component-fusion/components/F04.html",
+    "kind": "react"
+  },
+  {
+    "id": "F05",
+    "name": "协作席位",
+    "english": "Collaboration seats",
+    "src": "/prototype/component-fusion/components/F05.html",
+    "kind": "react"
+  },
+  {
+    "id": "F06",
+    "name": "搜索无结果恢复",
+    "english": "Search recovery",
+    "src": "/prototype/component-fusion/components/F06.html",
+    "kind": "react"
+  }
+]

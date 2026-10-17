@@ -10,7 +10,7 @@ export type ListGroupTab = { value: string; label: string };
 export function ListGroup({
   title,
   subtitle,
-  color = "purple",
+  color = "blue",
   badge,
   items,
   action,

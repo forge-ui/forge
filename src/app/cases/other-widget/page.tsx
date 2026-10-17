@@ -8,20 +8,20 @@ const COLORS: CurrencyConverterColor[] = ["purple", "blue", "dark"];
 export default function OtherWidgetCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Other Widget" hint="CurrencyConverter" />
+      <PageHeading title="实用组件" hint="提供货币换算、星级评分、图片排列和产品条目。" />
 
       <Section
         title="Currency Converter"
         description="3 colors (purple · blue · dark) — Figma 严格还原"
       >
-        <SubSection title="All colors">
+        <SubSection title="全部颜色">
           <div className="flex flex-wrap gap-4">
             {COLORS.map((c) => (
               <CurrencyConverter
                 key={c}
                 color={c}
-                title="Title Here"
-                subtitle="Text here"
+                title="项目概览"
+                subtitle="示例文本"
                 exchangeRateText="1 EUR = 1.09 USD"
               />
             ))}

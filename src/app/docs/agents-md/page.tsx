@@ -18,8 +18,8 @@ const promptSource = fs.readFileSync(
   "utf-8",
 );
 
-const usageCmd = `# 推荐：粘到项目根的 AGENTS.md
-curl -fsSL https://forge.ui/agents-md > AGENTS.md`;
+const usageCmd = `# 下载到项目根的 AGENTS.md
+curl -fsSL https://forgeui.org/agents-md > AGENTS.md`;
 
 export default function AgentsMdPage() {
   return (
@@ -30,17 +30,17 @@ export default function AgentsMdPage() {
           { label: "AGENTS.md" },
         ]}
         title="AGENTS.md"
-        description="把 Forge 规则作为单文件粘到项目根，AI 编码助手自动读。"
+        description="把 Forge 的使用规则放到项目根目录，编码助手会读取这个文件。"
       />
 
       <div className="text-base font-normal leading-[1.8] text-fg-grey-900">
         <p>
-          给 AI 编码助手的 Forge 规则清单。比 Skill 简单——不需要安装、不需要按需加载，一个 Markdown 文件搞定。适合轻量项目或快速试用。
+          给编码助手的 Forge 规则。不需要安装 skill，把这一份 Markdown 放到项目根即可。组件多、上下文比较紧的项目，更适合用按需加载的 skill。
         </p>
         <p className="mt-3 rounded-lg border border-fg-yellow-200 bg-fg-yellow-50 px-4 py-3 text-sm text-fg-black">
           <strong>提示：</strong>
           组件多、上下文紧张的项目建议走{" "}
-          <Link href="/docs/ui-for-agents" className="text-fg-violet hover:underline">
+          <Link href="/docs/ui-for-agents" className="text-fg-blue hover:underline">
             UI for Agents
           </Link>{" "}
           的 Skill 方案，按需加载更省 token。
@@ -57,21 +57,21 @@ export default function AgentsMdPage() {
         <ol className="ml-5 list-decimal space-y-2">
           <li>
             <strong className="text-fg-black">粘贴到文件</strong>：复制上面预览的内容，粘到项目根的{" "}
-            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
               AGENTS.md
             </code>
             、
-            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
               CLAUDE.md
             </code>{" "}
             或{" "}
-            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+            <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
               .cursorrules
             </code>
             。
           </li>
           <li>
-            <strong className="text-fg-black">命令行拉取</strong>（即将上线）：
+            <strong className="text-fg-black">命令行下载</strong>：
           </li>
         </ol>
         <CodeBlock code={usageCmd} lang="bash" />
@@ -86,7 +86,7 @@ export default function AgentsMdPage() {
         <ul className="ml-5 list-disc space-y-1.5">
           <li>Forge UI Kit 定位与 AI 的职责边界</li>
           <li>5 条铁律（import / token / icon / layout / 看 case 示例）</li>
-          <li>60+ 组件清单，按 9 大类分组</li>
+          <li>组件清单，按用途分组</li>
           <li>颜色 token 全表：8 色 × 10 shade</li>
           <li>
             Icon 规范：<code className="font-mono text-[13px]">@forge-ui-official/core/icons</code> 用法与两个常见踩坑
@@ -95,7 +95,7 @@ export default function AgentsMdPage() {
             <code className="font-mono text-[13px]">AppLayout</code> props 与示例
           </li>
           <li>登录套件、业务模板入口</li>
-          <li>22 个 case 页索引</li>
+          <li>案例页路径索引</li>
           <li>PRD → 页面工作流 + 提交前自检清单</li>
         </ul>
       </DocSection>
@@ -118,7 +118,7 @@ export default function AgentsMdPage() {
       <DocSection id="related" title="相关文档">
         <ul className="ml-5 list-disc space-y-1.5">
           <li>
-            <Link href="/docs/ui-for-agents" className="text-fg-violet hover:underline">
+            <Link href="/docs/ui-for-agents" className="text-fg-blue hover:underline">
               UI for Agents
             </Link>
             {" "}— Skill 方案（推荐，按需加载）
@@ -128,7 +128,7 @@ export default function AgentsMdPage() {
               href="https://agents.md"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               AGENTS.md 规范
             </a>
@@ -139,14 +139,14 @@ export default function AgentsMdPage() {
               href="https://docs.claude.com/en/docs/claude-code/memory"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               CLAUDE.md
             </a>
             {" "}— Claude Code 的 AGENTS.md 等价物
           </li>
           <li>
-            <Link href="/docs/quick-start" className="text-fg-violet hover:underline">
+            <Link href="/docs/quick-start" className="text-fg-blue hover:underline">
               快速开始
             </Link>
             {" "}— 从 0 到第一个业务页

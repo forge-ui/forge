@@ -20,7 +20,7 @@ export { Datepicker } from "./datepicker";
 export type { DatepickerState, DatepickerShape, DatepickerColor, DatepickerMode } from "./datepicker";
 
 export { Toggle, RadioButton, RadioWithLabel, CheckboxControl, CheckboxWithLabel } from "./selection-control";
-export type { ControlColor } from "./selection-control";
+export type { ControlColor, ToggleProps } from "./selection-control";
 
 export { TextFieldSelectSuffix } from "./text-field-select";
 

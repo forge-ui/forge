@@ -8,7 +8,7 @@ export type FilterTriggerPanel = ReactNode | ((close: () => void) => ReactNode);
 
 export function FilterTrigger({
   label = "筛选",
-  color = "purple",
+  color = "blue",
   count,
   open: openProp,
   onClick,

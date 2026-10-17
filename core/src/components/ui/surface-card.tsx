@@ -1,5 +1,8 @@
-import { type ReactNode } from "react";
+"use client";
+import { type ReactNode, type HTMLAttributes } from "react";
 import { cn } from "../../lib/utils";
+import { useReducedMotion } from "../../internal/motion";
+import type { MotionPreference } from "../../lib/motion";
 
 export type SurfaceCardPadding = "none" | "sm" | "md" | "lg";
 
@@ -21,6 +24,7 @@ export function SurfaceCard({
   headerClassName,
   contentClassName,
   footerClassName,
+  effect, motion = "auto", ...props
 }: {
   title?: ReactNode;
   subtitle?: ReactNode;
@@ -32,13 +36,35 @@ export function SurfaceCard({
   headerClassName?: string;
   contentClassName?: string;
   footerClassName?: string;
-}) {
+  effect?: "tilt" | "layered";
+  motion?: MotionPreference;
+} & Omit<HTMLAttributes<HTMLElement>, "title">) {
   const hasHeader = title || subtitle || action;
+  const reduced = useReducedMotion(motion);
 
   return (
     <section
+      {...props}
+      data-effect={effect}
+      data-motion={motion}
+      onPointerMove={(event) => {
+        props.onPointerMove?.(event);
+        if (!effect || reduced || event.pointerType === "touch") return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / Math.max(1, rect.width) - .5;
+        const y = (event.clientY - rect.top) / Math.max(1, rect.height) - .5;
+        event.currentTarget.style.setProperty("--forge-tilt-x", `${-y * 8}deg`);
+        event.currentTarget.style.setProperty("--forge-tilt-y", `${x * 8}deg`);
+        event.currentTarget.style.setProperty("--forge-pointer-x", `${(x + .5) * 100}%`);
+        event.currentTarget.style.setProperty("--forge-pointer-y", `${(y + .5) * 100}%`);
+      }}
+      onPointerLeave={(event) => {
+        props.onPointerLeave?.(event);
+        event.currentTarget.style.setProperty("--forge-tilt-x", "0deg");
+        event.currentTarget.style.setProperty("--forge-tilt-y", "0deg");
+      }}
       className={cn(
-        "rounded-card bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+        "forge-surface-card rounded-card bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         className
       )}
     >

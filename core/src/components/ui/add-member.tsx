@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useReducedMotion } from "../../internal/motion";
 import type { MotionPreference } from "../../lib/motion";
 import { AltArrowUpLinear, AltArrowLeftLinear, AltArrowRightLinear, MagniferLinear, CheckCircleLinear } from "../../icons";
+import { accentColors, type AccentColor } from "./accent-utils";
 import { Avatar } from "./avatar";
 export type AddMemberItem = { id: string; name: string; role?: string; avatar?: string; status?: "online" | "idle" | "dnd" | "offline"; disabled?: boolean };
 export type AddMemberLabels = {
@@ -15,6 +16,8 @@ export type AddMemberLabels = {
 };
 export type AddMemberProps = {
   members: AddMemberItem[];
+  /** Optional Forge theme; omitted preserves the original panel colors. */
+  accent?: AccentColor;
   selectedIds?: string[];
   defaultSelectedIds?: string[];
   onSelectionChange?: (ids: string[]) => void;
@@ -34,7 +37,7 @@ export type AddMemberProps = {
 const defaults: AddMemberLabels = { title: "项目成员", search: "搜索成员", empty: "没有匹配的成员", add: "添加到项目", adding: "正在添加…", added: "添加成功", error: "添加失败，请重试", select: "选择", remove: "移除", selected: "已选择", viewAll: "查看全部成员", previous: "上一页成员", next: "下一页成员" };
 const spring = { type: "spring", stiffness: 320, damping: 30, mass: .9 } as const;
 type Flight = { member: AddMemberItem; x: number; y: number; dx: number; dy: number; width: number; scale: number };
-export function AddMember({ members, selectedIds, defaultSelectedIds = [], onSelectionChange, onAdd, clearOnAdd = true,
+export function AddMember({ members, accent, selectedIds, defaultSelectedIds = [], onSelectionChange, onAdd, clearOnAdd = true,
   open, defaultOpen = false, onOpenChange, rows = 4, search = true, disabled = false, labels, motion: motionPreference = "auto", className = "" }: AddMemberProps) {
   const text = { ...defaults, ...labels };
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
@@ -82,7 +85,7 @@ export function AddMember({ members, selectedIds, defaultSelectedIds = [], onSel
     finally { pending.current = false; }
   }
   function turn(by: number) { setDirection(by); setPage((currentPage + by + pages) % pages); if (!isOpen) setOpen(true); }
-  return <div className={`forge-member ${className}`} data-motion={motionPreference} data-status={status} style={{ "--forge-member-r": "20px" } as CSSProperties}>
+  return <div className={`forge-member ${className}`} data-motion={motionPreference} data-status={status} style={{ "--forge-member-r": "20px", ...(accent ? { "--forge-member-panel": accentColors[accent].hex, "--forge-member-foot": "var(--fg-white)", "--forge-member-ring-accent": accentColors[accent].hex } : {}) } as CSSProperties}>
     <svg className="forge-member__defs" aria-hidden="true"><defs><filter id={`${id}-goo`}><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" /><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11" result="goo" /><feBlend in="SourceGraphic" in2="goo" /></filter></defs></svg>
     <motion.div ref={shell} className="forge-member__shell" initial={reduced ? false : { opacity: 0, y: 24, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={transition}>
       <div className="forge-member__card"><button type="button" className="forge-member__head" disabled={disabled} aria-expanded={isOpen} aria-controls={`${id}-body`} onClick={() => setOpen(!isOpen)}>
@@ -110,7 +113,7 @@ export function AddMember({ members, selectedIds, defaultSelectedIds = [], onSel
             <span className="forge-member__count">{text.selected} {picked.length}</span><motion.button type="button" className="forge-member__cta" disabled={locked || !onAdd || !picked.length} onClick={() => void add()} whileTap={reduced ? undefined : { scale: .96 }}>{status === "pending" ? text.adding : text.add}</motion.button>
           </div>
         </motion.div>
-        <p className="forge-member__feedback" role="status">{status === "success" ? <><CheckCircleLinear size={16} color="currentColor" />{text.added}</> : status === "error" ? text.error : null}</p>
+        <p className="forge-member__feedback" role="status">{status === "success" ? <>{!reduced && <span aria-hidden="true" className="forge-member__celebrate">{Array.from({ length: 6 }, (_, i) => <i key={i} style={{ rotate: `${i * 60}deg` }} />)}</span>}<CheckCircleLinear size={16} color="currentColor" />{text.added}</> : status === "error" ? text.error : null}</p>
       </motion.div></div>
       <div className="forge-member__foot"><button type="button" className="forge-member__all" disabled={locked} onClick={() => { setQuery(""); setPage(0); setOpen(true); }}>{text.viewAll}</button><div className="forge-member__nav"><button type="button" aria-label={text.previous} disabled={locked || pages < 2} onClick={() => turn(-1)}><AltArrowLeftLinear size={18} color="currentColor" /></button><button type="button" aria-label={text.next} disabled={locked || pages < 2} onClick={() => turn(1)}><AltArrowRightLinear size={18} color="currentColor" /></button></div></div>
       {flight && !reduced && <div className="forge-member__fly" aria-hidden="true"><motion.span className="forge-member__ghost" style={{ left: flight.x, top: flight.y, width: flight.width, height: flight.width }} initial={{ x: 0, y: 0, scale: 1 }} animate={{ x: [0, flight.dx * .55, flight.dx], y: [0, flight.dy * .45 - 22, flight.dy], scale: [1, .8, flight.scale] }} transition={{ duration: .52, ease: [.22, 1, .36, 1] }} onAnimationComplete={() => setFlight(null)}><Avatar src={flight.member.avatar} initials={flight.member.name.slice(0, 2)} alt="" size="lg" /></motion.span></div>}

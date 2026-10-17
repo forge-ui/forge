@@ -1,14 +1,14 @@
-/* ==========================================================================
+/* ---
    Forge Design Token System
    Layer 1: Primitive tokens (raw Figma values)
    Layer 2: Semantic tokens (role-based aliases)
-   ========================================================================== */
+   --- */
 
-/* --------------------------------------------------------------------------
+/* ---
    Layer 1 — Primitive Tokens
    Never reference these directly in components; use semantic tokens (Layer 2)
    or the Tailwind @theme utility classes (e.g. bg-fg-violet-500).
-   -------------------------------------------------------------------------- */
+   --- */
 
 :root {
   /*
@@ -168,10 +168,10 @@
   --fg-yellow-100-legacy: var(--fg-yellow-100);
 }
 
-/* --------------------------------------------------------------------------
+/* ---
    Layer 2 — Semantic Tokens (Light theme)
    Use THESE in components. Swap values here to re-theme the entire kit.
-   -------------------------------------------------------------------------- */
+   --- */
 
 :root,
 [data-theme="light"] {
@@ -182,11 +182,11 @@
   --surface-foreground: var(--fg-black);
   --overlay: rgba(0, 10, 25, 0.40);
 
-  /* Primary (accent) */
-  --accent: var(--fg-violet);
+  /* Primary (accent) — Forge blue. Purple stays available via data-accent="purple". */
+  --accent: var(--fg-blue);
   --accent-foreground: var(--fg-white);
-  --accent-soft: var(--fg-violet-100);
-  --accent-soft-foreground: var(--fg-violet);
+  --accent-soft: var(--fg-blue-100);
+  --accent-soft-foreground: var(--fg-blue);
 
   /* Text hierarchy */
   --text-primary: var(--fg-black);
@@ -208,15 +208,15 @@
   --warning-muted: var(--fg-yellow-600);
 
   /* Interactive */
-  --focus: var(--fg-violet);
+  --focus: var(--fg-blue);
   --hover: var(--fg-grey-100);
 }
 
-/* --------------------------------------------------------------------------
+/* ---
    Accent variants — drive --accent / --accent-soft via data-accent attribute
    so internal components (TeamSwitcher, Notifications popover, etc.) using
    text-accent / bg-accent can follow the AppLayout `accent` prop.
-   -------------------------------------------------------------------------- */
+   --- */
 
 [data-accent="blue"] {
   --accent: var(--fg-blue);
@@ -224,6 +224,14 @@
   --accent-soft: var(--fg-blue-100);
   --accent-soft-foreground: var(--fg-blue);
   --focus: var(--fg-blue);
+}
+
+[data-accent="purple"] {
+  --accent: var(--fg-violet);
+  --accent-foreground: var(--fg-white);
+  --accent-soft: var(--fg-violet-100);
+  --accent-soft-foreground: var(--fg-violet);
+  --focus: var(--fg-violet);
 }
 
 [data-accent="black"] {
@@ -234,9 +242,9 @@
   --focus: var(--fg-black);
 }
 
-/* --------------------------------------------------------------------------
+/* ---
    Dark theme overrides
-   -------------------------------------------------------------------------- */
+   --- */
 
 [data-theme="dark"] {
   --background: var(--fg-black);
@@ -245,10 +253,10 @@
   --surface-foreground: var(--fg-white);
   --overlay: rgba(0, 0, 0, 0.60);
 
-  --accent: var(--fg-violet);
+  --accent: var(--fg-blue);
   --accent-foreground: var(--fg-white);
-  --accent-soft: rgba(114, 57, 234, 0.2);
-  --accent-soft-foreground: var(--fg-violet-100);
+  --accent-soft: rgba(53, 83, 255, 0.2);
+  --accent-soft-foreground: var(--fg-blue-100);
 
   --text-primary: var(--fg-white);
   --text-secondary: var(--fg-grey-500);
@@ -266,13 +274,20 @@
   --warning-soft: rgba(246, 192, 2, 0.1);
   --warning-muted: var(--fg-yellow-600);
 
-  --focus: var(--fg-violet);
+  --focus: var(--fg-blue);
   --hover: rgba(255, 255, 255, 0.1);
 }
 
-/* --------------------------------------------------------------------------
+[data-theme="dark"][data-accent="purple"] {
+  --accent: var(--fg-violet);
+  --accent-soft: rgba(114, 57, 234, 0.2);
+  --accent-soft-foreground: var(--fg-violet-100);
+  --focus: var(--fg-violet);
+}
+
+/* ---
    Tailwind v4 @theme — registers tokens as utility classes
-   -------------------------------------------------------------------------- */
+   --- */
 
 @theme inline {
   --font-sans: var(--font-manrope);
@@ -1128,3 +1143,215 @@ body {
 .forge-source-chip img{flex:none;}
 .forge-source-chip--skill{color:var(--fg-yellow-700);background:color-mix(in srgb,var(--fg-yellow) 15%,var(--background));}
 .forge-source-chip--tool{color:var(--fg-blue);background:color-mix(in srgb,var(--fg-blue) 15%,var(--background));}
+
+/* Hold-to-delete Button variant: migrated from the reviewed interaction lab. */
+.forge-hold-row{position:relative;width:268px;max-width:100%;height:64px;isolation:isolate;font-weight:var(--forge-font-bold-weight);font-size:var(--forge-text-base-size);line-height:var(--forge-leading-6);letter-spacing:var(--tracking-fg)}
+.forge-hold-md{height:56px}.forge-hold-sm{height:48px;font-size:var(--forge-text-sm-size)}
+.forge-hold-trigger{position:absolute;inset:0;width:100%;border:0;border-radius:999px;padding:0;overflow:hidden;isolation:isolate;background:color-mix(in srgb,var(--forge-hold-color) 12%,var(--background));color:var(--forge-hold-ink,var(--forge-hold-color));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--forge-hold-color) 40%,transparent);touch-action:none;user-select:none;cursor:pointer;transition:transform .5s cubic-bezier(.34,1.16,.64,1),opacity .4s cubic-bezier(.2,.8,.2,1)}
+.forge-hold-trigger:focus-visible{outline:2px solid var(--forge-hold-color);outline-offset:4px}
+.forge-hold-trigger:disabled{opacity:.6;cursor:not-allowed}
+.forge-hold-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap}
+.forge-hold-fill{background:var(--forge-hold-color);color:var(--forge-hold-on-fill,var(--fg-white));clip-path:inset(0 calc(100% - var(--forge-hold-progress)*100%) 0 0 round 999px);transition:clip-path var(--forge-hold-return) linear}
+.forge-hold-row[data-holding] .forge-hold-trigger{transform:scale(.97)}
+.forge-hold-row[data-holding] .forge-hold-fill{transition:none}
+.forge-hold-row[data-shaking] .forge-hold-trigger{animation:forge-hold-shake .12s linear infinite}
+@keyframes forge-hold-shake{0%,100%{translate:0 0}25%{translate:-.6px .3px}75%{translate:.6px -.3px}}
+.forge-hold-row[data-confirmed] .forge-hold-trigger{opacity:0;transform:scale(.9);pointer-events:none}
+.forge-hold-done{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 8px 0 22px;border-radius:999px;background:var(--fg-black);color:var(--fg-white);opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;transition:opacity .4s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.34,1.16,.64,1);font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-semibold-weight)}
+.forge-hold-done button{height:calc(100% - 18px);padding:0 18px;border:0;border-radius:999px;background:color-mix(in srgb,var(--fg-white) 16%,transparent);color:inherit;font-weight:var(--forge-font-bold-weight);cursor:pointer;transition:background-color .3s,transform .4s cubic-bezier(.34,1.16,.64,1)}
+.forge-hold-done button:hover{background:color-mix(in srgb,var(--fg-white) 26%,transparent)}
+.forge-hold-done button:focus-visible{outline:2px solid var(--fg-white);outline-offset:2px}
+.forge-hold-done button:active{transform:scale(.94)}
+.forge-hold-row[data-confirmed] .forge-hold-done{opacity:1;transform:none;pointer-events:auto}
+.forge-hold-row[data-reduced] *,.forge-hold-row[data-motion="none"] *{animation:none!important;transition:none!important}
+
+/* AppLayout: one rail transition, persistent content, and delayed label reveals. */
+.forge-sidebar-motion { --forge-sidebar-spring: cubic-bezier(.34, 1.16, .64, 1); }
+.forge-sidebar-row { min-width: 0; height: 48px; flex-shrink: 0; border-radius: 24px; }
+.forge-sidebar-label, .forge-sidebar-logo { opacity: 1; translate: 0; }
+.forge-sidebar-row[data-badge="true"] > .forge-sidebar-item-label { padding-right: 28px; }
+.forge-sidebar-badge { position: absolute; right: 14px; top: 50%; translate: 0 -50%; }
+.forge-sidebar-row[data-branch="true"] > .forge-sidebar-badge { right: 46px; }
+.forge-sidebar-disclosure { display: grid; grid-template-rows: 1fr; opacity: 1; }
+.forge-sidebar-disclosure[data-state="closed"] { grid-template-rows: 0fr; opacity: 0; }
+.forge-sidebar-toggle { z-index: 1; }
+.forge-sidebar-motion[data-collapsed="true"] .forge-sidebar-toggle { opacity: 0; }
+.forge-sidebar-motion[data-collapsed="true"]:is(:hover, :focus-within) .forge-sidebar-toggle { opacity: 1; }
+.forge-sidebar-row[data-collapsed="true"] { padding-inline: 12px; border-radius: 12px; }
+.forge-sidebar-motion[data-collapsed="true"] :is(.forge-sidebar-label, .forge-sidebar-logo) {
+  opacity: 0; translate: -8px 0; pointer-events: none;
+}
+.forge-sidebar-row[data-collapsed="true"] > .forge-sidebar-badge { right: -2px; top: 4px; translate: 0; }
+.forge-sidebar-motion[data-collapsed="true"] .forge-sidebar-profile { padding: 4px; }
+@media (hover: none) {
+  .forge-sidebar-motion[data-collapsed="true"] .forge-sidebar-toggle { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .forge-sidebar-motion[data-motion="auto"] { transition: width 600ms var(--forge-sidebar-spring), transform 300ms ease; }
+  .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-disclosure, .forge-motion-collapse) {
+    transition: grid-template-rows 600ms var(--forge-sidebar-spring), opacity 200ms ease;
+  }
+  .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-row, .forge-sidebar-profile) {
+    transition: padding 600ms var(--forge-sidebar-spring), border-radius 600ms var(--forge-sidebar-spring), background-color 200ms ease, color 200ms ease;
+  }
+  .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-label, .forge-sidebar-logo) {
+    transition: opacity 300ms ease, translate 500ms var(--forge-sidebar-spring);
+    transition-delay: var(--forge-sidebar-label-delay, 150ms);
+  }
+  .forge-sidebar-motion[data-motion="auto"] .forge-sidebar-profile .forge-sidebar-label { transition-delay: 250ms; }
+  .forge-sidebar-motion[data-motion="auto"][data-collapsed="true"] :is(.forge-sidebar-label, .forge-sidebar-logo) {
+    transition: opacity 200ms ease, translate 350ms ease;
+  }
+  .forge-sidebar-motion[data-motion="auto"] .forge-sidebar-badge { transition: right 500ms var(--forge-sidebar-spring), top 500ms var(--forge-sidebar-spring), translate 500ms var(--forge-sidebar-spring); }
+  .forge-sidebar-motion[data-motion="auto"] .forge-sidebar-toggle { transition: opacity 200ms ease; }
+}
+.forge-sidebar-motion[data-motion="none"] *, .forge-sidebar-motion[data-motion="none"] { transition: none; animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .forge-sidebar-motion *, .forge-sidebar-motion { transition: none; animation: none; }
+}
+
+/* Component fusion enhancements */
+
+/* Existing Forge primitives: optional effects, no decorative scene backgrounds. */
+.forge-button[data-effect],.forge-styled-link[data-effect]{position:relative;isolation:isolate;transition:translate .35s cubic-bezier(.2,.8,.2,1),transform .25s,background-color .25s}
+.forge-button[data-effect="magnetic"],.forge-styled-link[data-effect="magnetic"]{translate:var(--forge-magnet-x,0px) var(--forge-magnet-y,0px)}
+.forge-button[data-effect="magnetic"] .forge-action-icon{transition:transform .35s}
+.forge-button[data-effect="magnetic"]:hover .forge-action-icon{transform:translateX(3px)}
+.forge-button[data-effect="magnetic"][data-action-pressed] .forge-action-icon{animation:forge-arrow-travel .6s both}
+/* Glass material only; the consumer supplies anything behind it. */
+.forge-button[data-effect="glass"]{--forge-glass-height:48px;--forge-glass-light:var(--color-white,#fff);--forge-glass-rim:color-mix(in srgb,var(--forge-glass-light) 65%,transparent);width:var(--forge-glass-width,180px);max-width:100%;height:var(--forge-glass-height);min-width:0;padding-inline:16px;border:0;outline:none;color:var(--color-fg-black);background:linear-gradient(150deg,color-mix(in srgb,var(--forge-glass-light) 66%,transparent),color-mix(in srgb,var(--forge-glass-light) 16%,transparent) 55%,color-mix(in srgb,var(--forge-glass-light) 40%,transparent));-webkit-backdrop-filter:blur(4px) saturate(180%);backdrop-filter:blur(4px) saturate(180%);box-shadow:inset 0 1.5px 0 color-mix(in srgb,var(--forge-glass-light) 95%,transparent),inset 0 -12px 20px -14px var(--forge-glass-light),inset 0 0 0 1px var(--forge-glass-rim),0 12px 22px -16px color-mix(in srgb,var(--color-fg-black) 30%,transparent),0 3px 8px -4px color-mix(in srgb,var(--color-fg-black) 20%,transparent);transition:width .7s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.34,1.16,.64,1),box-shadow .6s}
+.forge-button[data-effect="glass"][data-size="md"]{--forge-glass-height:44px}
+.forge-button[data-effect="glass"][data-size="sm"]{--forge-glass-height:36px;--forge-glass-width:152px}
+.forge-button[data-effect="glass"]:before{content:"";position:absolute;left:9%;right:9%;top:7%;height:42%;z-index:-1;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--forge-glass-light) 42%,transparent),transparent)}
+.forge-button[data-effect="glass"]:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(130px 70px at var(--forge-pointer-x,50%) var(--forge-pointer-y,0%),color-mix(in srgb,var(--forge-glass-light) 55%,transparent),transparent 70%)}
+.forge-button[data-effect="glass"]:is(:hover,:focus-visible):after{opacity:1}
+.forge-button[data-effect="glass"]:active:not(:disabled){transform:scale(1.03,.92)}
+.forge-button[data-effect="glass"]:focus-visible{outline:2px solid var(--color-fg-blue);outline-offset:4px}
+.forge-glass-sheen{position:absolute;top:-40%;bottom:-40%;left:0;width:38%;pointer-events:none;background:linear-gradient(100deg,transparent,color-mix(in srgb,var(--forge-glass-light) 45%,transparent) 50%,transparent);transform:translateX(-150%) skewX(-12deg);transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.forge-button[data-effect="glass"]:is(:hover,:focus-visible) .forge-glass-sheen{transform:translateX(300%) skewX(-12deg)}
+.forge-button[data-effect="glass"] .forge-action-label{white-space:nowrap;transition:opacity .35s,filter .4s,transform .55s}
+.forge-button[data-effect="glass"][data-loading]{width:var(--forge-glass-height);padding-inline:0;gap:0;cursor:progress}
+.forge-button[data-effect="glass"][data-loading] .forge-action-label{position:absolute;opacity:0;filter:blur(4px);transform:translateY(-10px);pointer-events:none}
+.forge-button[data-effect="glass"][data-result]>.forge-action-label,.forge-button[data-effect="glass"][data-result]>svg{animation:forge-glass-reveal .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes forge-glass-reveal{from{opacity:0;filter:blur(4px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+.forge-button[data-effect="ripple"]:before{content:"";position:absolute;z-index:-1;width:200%;aspect-ratio:1;border-radius:50%;left:var(--forge-pointer-x,50%);top:var(--forge-pointer-y,50%);background:currentColor;opacity:0;transform:translate(-50%,-50%) scale(0)}
+.forge-button[data-effect="ripple"][data-action-pressed]:before{animation:forge-ink .65s ease-out}
+.forge-action-label{position:relative;display:inline-block;overflow:hidden;vertical-align:middle}
+.forge-roll-letter{position:relative;display:inline-block;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.forge-roll-letter:after{content:attr(data-letter);position:absolute;left:0;top:100%;white-space:pre}
+[data-effect="roll"]:is(:hover,:focus-visible) .forge-roll-letter{transform:translateY(-100%)}
+.forge-action-spinner{animation:forge-action-spin 1s linear infinite}
+.forge-action-progress{position:absolute;inset:0 auto 0 0;pointer-events:none;background:currentColor;opacity:.16;transition:width .2s linear;z-index:-1}
+.forge-button:has(>.forge-action-progress){position:relative;isolation:isolate}
+.forge-icon-progress{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;transform:rotate(-90deg);pointer-events:none}
+.forge-icon-progress circle{transition:stroke-dashoffset .25s linear}
+.forge-button:has(>.forge-icon-progress){position:relative}
+.forge-button[data-effect="send"][data-action-pressed] .forge-action-icon{animation:forge-plane-send .65s both}
+.forge-button[data-effect="morph"] .forge-action-icon{transition:transform .35s}
+.forge-button[data-effect="morph"][data-active] .forge-action-icon{transform:rotate(180deg)}
+.forge-button[data-effect="bookmark"]{border-radius:6px 6px 10px 10px}
+.forge-button[data-effect="bookmark"][data-active] .forge-action-icon{animation:forge-bookmark-drop .4s}
+.forge-button[data-effect="burst"][data-active] .forge-action-icon{animation:forge-heart-pop .5s;filter:drop-shadow(0 0 0 currentColor)}
+.forge-button[data-effect="burst"][data-action-pressed]:after{content:"";position:absolute;inset:2px;border-radius:50%;border:2px solid currentColor;animation:forge-burst .6s both;pointer-events:none}
+.forge-surface-card[data-effect]{position:relative;isolation:isolate;transform:perspective(900px) rotateX(var(--forge-tilt-x,0deg)) rotateY(var(--forge-tilt-y,0deg));transition:transform .35s ease-out}
+.forge-surface-card[data-effect="tilt"]:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(240px circle at var(--forge-pointer-x,50%) var(--forge-pointer-y,0%),color-mix(in srgb,var(--forge-surface-accent,var(--accent,var(--color-fg-blue))) 8%,transparent),transparent 80%);opacity:0;transition:opacity .25s}
+.forge-surface-card[data-effect="tilt"]:hover:before{opacity:1}
+.forge-surface-card[data-effect="layered"]:before,.forge-surface-card[data-effect="layered"]:after{content:"";position:absolute;inset:0;z-index:-1;border:1px solid var(--color-fg-grey-200);border-radius:inherit;background:var(--color-white,#fff);transform:translateY(5px) scale(.98)}
+.forge-surface-card[data-effect="layered"]:after{transform:translateY(10px) scale(.96);z-index:-2}
+.forge-progress[data-indeterminate] .forge-progress-fill{animation:forge-indeterminate 1.4s ease-in-out infinite}
+.forge-progress-ring{position:relative;display:inline-grid;place-items:center;width:88px;aspect-ratio:1;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.forge-progress-ring>svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);fill:none;stroke-width:4}
+.forge-progress-ring-track{stroke:var(--color-fg-grey-200)}
+.forge-progress-ring-fill{stroke:currentColor;stroke-linecap:round;transition:stroke-dashoffset .35s}
+.forge-progress-ring[data-indeterminate]>svg{animation:forge-action-spin 1.2s linear infinite}
+.forge-toast{touch-action:pan-y;transition:translate .2s,margin .25s,scale .25s;transform-origin:bottom center;pointer-events:auto}
+.forge-toast-list[data-stacked]:not(:hover):not(:focus-within) .forge-toast:not(:last-child){margin-bottom:-64px;scale:.96}
+.forge-swipe-row{position:relative;overflow:hidden;border-radius:12px}
+.forge-swipe-action{position:absolute;inset:0 0 0 auto;display:flex;gap:6px;align-items:center;justify-content:flex-end;padding:0 16px 0 36px;background:var(--color-fg-red);color:var(--color-white,#fff);font-size:12px;font-weight:600;min-width:115px;border:0}
+.forge-swipe-content{position:relative;background:var(--color-white,#fff);padding:14px;touch-action:pan-y;transition:translate .25s}
+.forge-swipe-row:focus-within .forge-swipe-content{translate:-115px 0}
+.forge-stepper{display:flex;gap:0;--forge-step-color:var(--color-fg-violet)}
+.forge-stepper[data-color="blue"]{--forge-step-color:var(--color-fg-blue)}
+.forge-stepper[data-color="black"]{--forge-step-color:var(--color-fg-black)}
+.forge-stepper>li{position:relative;flex:1;min-width:0;text-align:center}
+.forge-stepper>li:not(:last-child):before{content:"";position:absolute;height:2px;top:17px;left:50%;width:100%;background:var(--color-fg-grey-200);transition:background .4s}
+.forge-stepper>li[data-state="complete"]:before{background:var(--forge-step-color)}
+.forge-stepper button{position:relative;display:flex;align-items:center;flex-direction:column;gap:8px;width:100%;border:0;background:transparent;color:var(--color-fg-grey-700)}
+.forge-stepper-marker{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--color-fg-grey-100);font-size:14px;transition:background .3s,color .3s,transform .3s}
+.forge-stepper [data-state="current"] .forge-stepper-marker,.forge-stepper [data-state="complete"] .forge-stepper-marker{background:var(--forge-step-color);color:var(--color-white,#fff)}
+.forge-stepper [data-state="current"] .forge-stepper-marker{transform:scale(1.08)}
+.forge-tooltip-position{max-width:calc(100vw - 16px)}
+@keyframes forge-action-spin{to{transform:rotate(360deg)}}
+@keyframes forge-arrow-travel{45%{transform:translateX(32px);opacity:0}46%{transform:translateX(-32px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes forge-plane-send{45%{transform:translate(28px,-32px) rotate(20deg);opacity:0}46%{transform:translate(-18px,24px);opacity:0}100%{transform:none;opacity:1}}
+@keyframes forge-ink{0%{transform:translate(-50%,-50%) scale(0);opacity:.3}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+@keyframes forge-bookmark-drop{50%{transform:translateY(6px)}75%{transform:translateY(-2px)}}
+@keyframes forge-heart-pop{30%{transform:scale(.7)}65%{transform:scale(1.3)}100%{transform:scale(1)}}
+@keyframes forge-burst{to{transform:scale(1.45);opacity:0}}
+@keyframes forge-indeterminate{0%{transform:translateX(-110%) scaleX(.7)}50%{transform:translateX(100%) scaleX(1.4)}100%{transform:translateX(300%) scaleX(.7)}}
+/* All effects obey both the explicit setting and the system preference. */
+:is(.forge-button,.forge-styled-link,.forge-surface-card,.forge-progress,.forge-progress-ring,.forge-toast-list,.forge-stepper,.forge-swipe-row)[data-motion="none"],:is(.forge-button,.forge-styled-link,.forge-surface-card,.forge-progress,.forge-progress-ring,.forge-toast-list,.forge-stepper,.forge-swipe-row)[data-motion="none"] *,:is(.forge-button,.forge-styled-link,.forge-surface-card)[data-motion="none"]:before,:is(.forge-button,.forge-styled-link,.forge-surface-card)[data-motion="none"]:after{animation:none!important;transition:none!important}
+.forge-surface-card[data-motion="none"]{transform:none}
+@media(prefers-reduced-motion:reduce){.forge-action-spinner,.forge-toast-timer>span,.forge-button[data-effect],.forge-button[data-effect] *,.forge-button[data-effect]:before,.forge-button[data-effect]:after,.forge-styled-link[data-effect] *,.forge-progress *,.forge-progress-ring *,.forge-surface-card[data-effect],.forge-stepper *,.forge-toast,.forge-swipe-content{animation:none!important;transition:none!important}.forge-surface-card[data-effect]{transform:none}}
+.forge-stepper:has(.forge-stepper-indicator){position:relative;padding-top:28px}
+.forge-stepper>.forge-stepper-indicator{position:absolute;top:0;translate:-50% 0;color:var(--forge-step-color);transition:left .6s cubic-bezier(.2,.8,.2,1);z-index:1}
+.forge-stepper>.forge-stepper-indicator:before{display:none}
+.forge-toast-timer{height:2px;background:var(--color-fg-grey-100);margin-top:12px;overflow:hidden;border-radius:2px}
+.forge-toast-timer>span{display:block;height:100%;background:var(--color-fg-grey-500);transform-origin:left;animation:forge-toast-expiry linear forwards}
+.forge-toast-timer[data-paused]>span{animation-play-state:paused}
+.forge-tooltip-position [data-tooltip-arrow]{translate:var(--forge-tooltip-arrow-x,0) var(--forge-tooltip-arrow-y,0)}
+@keyframes forge-toast-expiry{to{transform:scaleX(0)}}
+
+/* Existing form/navigation primitives: optional interaction variants. */
+.forge-field-floating{min-height:56px;padding-top:22px;padding-bottom:8px}
+.forge-field-floating-label{position:absolute;left:16px;top:18px;color:var(--fg-grey-700);font-size:14px;line-height:20px;pointer-events:none;transform-origin:left top;transition:translate .2s ease,font-size .2s ease}
+.forge-field-floating:focus-within .forge-field-floating-label,.forge-field-floating:has(input:not(:placeholder-shown)) .forge-field-floating-label{translate:0 -12px;font-size:11px}
+.forge-field-floating-input::placeholder{color:transparent}
+.forge-field-floating:focus-within .forge-field-floating-input::placeholder{color:var(--fg-grey-500)}
+.forge-rating-star{transition:scale .3s cubic-bezier(.2,.8,.2,1)}
+.forge-rating-star[data-filled=true]{animation:forge-fn-star .4s cubic-bezier(.2,.8,.2,1)}
+.forge-rating-star:hover{scale:1.15}
+@keyframes forge-fn-star{0%{scale:.8}50%{scale:1.2}100%{scale:1}}
+.forge-tab-dock>[role=tab]{flex:1;flex-direction:column;gap:4px;padding:8px;min-width:0;font-size:12px}
+.forge-tab-dock .forge-tab-indicator{height:4px;border-radius:99px;bottom:3px}
+.forge-tab-dock .forge-tab-icon{transition:translate .35s cubic-bezier(.2,.8,.2,1),scale .35s cubic-bezier(.2,.8,.2,1)}
+.forge-tab-dock [aria-selected=true] .forge-tab-icon{translate:0 -8px;scale:1.15}
+.forge-tabs-swipe{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+.forge-tabs-swipe::-webkit-scrollbar{display:none}
+.forge-tabs-swipe-panel{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
+.forge-tabs-swipe[data-dragging=true]{scroll-snap-type:none;cursor:grabbing;user-select:none}
+
+@media(max-width:360px){.forge-tab-dock>[role=tab]{font-size:11px;padding:8px 4px}}
+[data-motion=none] .forge-rating-star,[data-motion=none] .forge-field-floating-label,[data-motion=none] .forge-tab-icon,[data-motion=none].forge-tabs-swipe{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(prefers-reduced-motion:reduce){.forge-rating-star,.forge-field-floating-label,.forge-tab-icon,.forge-tabs-swipe{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Integrated ChatBubble / ChatInputBar treatments. */
+.forge-chat-reaction[aria-pressed="true"] { border-color: var(--accent, var(--fg-blue)); background: color-mix(in srgb, var(--accent, var(--fg-blue)) 10%, white); }
+.forge-chat-reaction:active { transform: scale(.94); }
+.forge-chat-reactions:not([data-motion="none"]) .forge-chat-reaction { transition: transform 200ms ease, background-color 200ms ease; }
+.forge-chat-reactions:not([data-motion="none"]) .forge-chat-reaction-picker { animation: forge-chat-picker-in 180ms cubic-bezier(.2,.8,.2,1); transform-origin: bottom left; }
+.forge-chat-bubble[data-delivery="queued"] > div > div:first-of-type { outline: 1px dashed var(--fg-grey-400); }
+@keyframes forge-chat-picker-in { from { opacity: 0; transform: translateY(6px) scale(.9); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .forge-chat-reaction, .forge-chat-reaction-picker { animation: none !important; transition: none !important; } }
+
+/* Decorative reaction feedback stays separate from the Solar glyph. */
+.forge-button:is([data-effect="burst"],[data-effect="bookmark"]){position:relative;isolation:isolate}
+.forge-action-particles{position:absolute;inset:0;pointer-events:none}
+.forge-action-particles i{position:absolute;inset:50% auto auto 50%;width:3px;height:3px;border-radius:50%;background:currentColor;animation:forge-reaction-particle .6s both}
+.forge-button[data-effect="bookmark"] .forge-action-icon{position:relative;isolation:isolate}
+.forge-button[data-effect="bookmark"][data-active] .forge-action-icon:before{content:"";position:absolute;inset:-5px -2px;background:currentColor;opacity:.18;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);animation:forge-bookmark-drop .4s;z-index:-1}
+@keyframes forge-reaction-particle{from{transform:translateY(-2px) scale(0);opacity:1}70%{opacity:.7}to{transform:translateY(-22px) scale(.4);opacity:0}}
+[data-motion="none"] .forge-action-particles{display:none}
+@media(prefers-reduced-motion:reduce){.forge-action-particles{display:none}}
+
+.forge-member__feedback{position:relative}
+.forge-member__celebrate{position:absolute;left:50%;top:50%;pointer-events:none}
+.forge-member__celebrate i{position:absolute;width:4px;height:4px;border-radius:50%;background:currentColor;animation:forge-reaction-particle .7s both}
+
+/* A descendant pseudo-element is not covered by the descendant * selector. */
+:is(.forge-button,.forge-styled-link,.forge-surface-card)[data-motion="none"] *::before,
+:is(.forge-button,.forge-styled-link,.forge-surface-card)[data-motion="none"] *::after{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){
+  :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-effect] *::before,
+  :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-effect] *::after{animation:none!important;transition:none!important}
+}

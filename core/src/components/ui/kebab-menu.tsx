@@ -41,7 +41,7 @@ const initialPosition: FloatingPosition = { left: 0, top: 0, ready: false };
 
 export function KebabMenu({
   items,
-  accent = "purple",
+  accent = "blue",
   surface = "default",
   align = "right",
   className,

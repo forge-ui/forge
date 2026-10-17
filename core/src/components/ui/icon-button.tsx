@@ -1,4 +1,6 @@
+"use client";
 import type { MotionPreference } from "../../lib/motion";
+import { ActionStatus, useActionEffect, type ActionResult } from "../../internal/action-effect";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 
 // ============================================================
@@ -41,15 +43,15 @@ const iconButtonVariants = {
     ghost: "bg-transparent text-fg-grey-700 hover:bg-fg-grey-100",
   },
   yellow: {
-    primary: "bg-fg-yellow text-white",
-    secondary: "bg-fg-yellow-50 text-fg-yellow",
-    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-yellow-300 text-fg-yellow",
+    primary: "bg-fg-yellow text-fg-black",
+    secondary: "bg-fg-yellow-50 text-fg-yellow-900",
+    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-yellow-300 text-fg-yellow-900",
     ghost: "bg-transparent text-fg-grey-700 hover:bg-fg-grey-100",
   },
   grey: {
-    primary: "bg-fg-grey-700 text-white",
-    secondary: "bg-fg-grey-100 text-fg-grey-700",
-    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700",
+    primary: "bg-fg-grey-700 text-fg-black",
+    secondary: "bg-fg-grey-100 text-fg-grey-900",
+    tertiary: "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-900",
     ghost: "bg-transparent text-fg-grey-700 hover:bg-fg-grey-100",
   },
   black: {
@@ -81,10 +83,11 @@ export type IconButtonColor = keyof typeof iconButtonVariants;
 export type IconButtonVariant = "primary" | "secondary" | "tertiary" | "ghost";
 export type IconButtonSize = keyof typeof iconButtonSizes;
 export type IconButtonShape = keyof typeof iconButtonShapes;
+export type IconButtonEffect = "send" | "morph" | "bookmark" | "burst";
 
 export function IconButton({
   children,
-  color = "purple",
+  color = "blue",
   variant = "primary",
   size = "md",
   shape = "circle",
@@ -92,6 +95,7 @@ export function IconButton({
   disabled = false,
   motion = "auto",
   className = "",
+  effect, active, loading = false, result = "idle", progress,
   ...props
 }: {
   children: ReactNode;
@@ -101,16 +105,25 @@ export function IconButton({
   shape?: IconButtonShape;
   motion?: MotionPreference;
   className?: string;
+  effect?: IconButtonEffect; active?: boolean; loading?: boolean; result?: ActionResult; progress?: number;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">) {
+  const effects = useActionEffect(effect, motion, disabled || loading);
   return (
     <button
       type={type}
-      disabled={disabled}
+      disabled={disabled || loading}
       data-motion={motion}
+      data-effect={effect}
+      data-active={active || undefined}
+      aria-pressed={active}
+      aria-busy={loading || undefined}
       className={`${iconButtonSizes[size]} ${iconButtonVariants[color][variant]} ${iconButtonShapes[shape]} inline-flex justify-center items-center gap-1 overflow-hidden forge-button ${disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${className}`}
       {...props}
+      onClick={(event) => { effects.press(event.currentTarget); props.onClick?.(event); }}
     >
-      <span className="w-5 h-5 flex items-center justify-center">{children}</span>
+      {active && (effect === "burst" || effect === "bookmark") && <span aria-hidden="true" className="forge-action-particles">{Array.from({ length: 6 }, (_, i) => <i key={i} style={{ rotate: `${i * 60}deg` }} />)}</span>}
+      {progress !== undefined && <svg className="forge-icon-progress" viewBox="0 0 48 48" aria-hidden><circle cx="24" cy="24" r="22" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - Math.min(100, Math.max(0, Number.isFinite(progress) ? progress : 0))} /></svg>}
+      <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{loading || result !== "idle" ? <ActionStatus loading={loading} result={result} motion={motion} /> : children}</span>
     </button>
   );
 }

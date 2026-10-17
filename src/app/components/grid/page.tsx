@@ -1,4 +1,4 @@
-import Link from "next/link";
+import GridExamples from "../../cases/grid/page";
 import { Grid, GridItem } from "@forge-ui-official/core";
 import { PageHeading, Section } from "../_shared";
 import { ApiTable, CodeBlock, type ApiTableRow } from "../_api-table";
@@ -26,12 +26,12 @@ const example = `import { Grid, GridItem, StatCard } from "@forge-ui-official/co
 </Grid>`;
 export default function GridDocs() {
   return <>
-    <PageHeading title="Grid 栅格" hint="Forge 的响应式 CSS Grid 布局基础。" />
-    <Section title="用法" description="先选择模板并继承宽度与间距。此处展示 Analytics 的比例分栏；商品 280px、卖家 336px 固定辅助栏继续使用静态 CSS Grid / Flex。AppLayout 管理页面边距。">
+    <PageHeading title="布局栅格" hint="通过响应式分栏安排主内容和辅助区域。" />
+    <Section title="用法" description="用响应式栅格划分主内容和辅助区域，统一页面间距。">
       <Grid><GridItem span={{ base: "full", lg: 8 }} className="bg-fg-grey-100 p-4">主内容</GridItem><GridItem span={{ base: "full", lg: 4 }} className="bg-fg-grey-100 p-4">辅助区</GridItem></Grid>
       <CodeBlock code={example} />
-      <Link className="text-fg-violet" href="/cases/grid">查看完整栅格矩阵 →</Link>
     </Section>
+    <GridExamples embedded />
     <Section title="Grid API"><ApiTable rows={gridProps} /></Section>
     <Section title="GridItem API"><ApiTable rows={itemProps} /></Section>
     <Section title="响应式与页面边界">

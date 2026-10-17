@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>光照倾斜卡</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"050",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"050",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"050",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"050",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"050"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u050{--mx:50%;--my:30%;--rx:0deg;--ry:0deg;position:relative;width:340px;height:400px;perspective:1000px}
+.u050-card{position:relative;width:100%;height:100%;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 50px -30px var(--ux-shadow-strong);transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .6s var(--ux-ease),box-shadow .5s;overflow:hidden;isolation:isolate}
+.u050.is-live .u050-card{transition:transform .12s linear,box-shadow .5s}
+.u050-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:radial-gradient(200px circle at var(--mx) var(--my),var(--ux-accent),transparent 70%);-webkit-mask:linear-gradient(var(--foreground) 0 0) content-box,linear-gradient(var(--foreground) 0 0);-webkit-mask-composite:xor;mask:linear-gradient(var(--foreground) 0 0) content-box exclude,linear-gradient(var(--foreground) 0 0);opacity:0;transition:opacity .4s;pointer-events:none;z-index:3}
+.u050-glare{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(260px circle at var(--mx) var(--my),color-mix(in srgb,var(--background) 28.00%,transparent),transparent 60%);mix-blend-mode:soft-light;opacity:0;transition:opacity .4s}
+.u050.is-live .u050-card::after,.u050.is-live .u050-glare{opacity:1}
+.u050-img{position:relative;height:178px;overflow:hidden;background:var(--accent)}
+.u050-img i{position:absolute;border-radius:50%;transition:transform .6s var(--ux-ease)}
+.u050-img i:nth-child(1){width:150px;height:150px;left:-30px;top:40px;background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--fg-green-500) 22%,var(--background)),var(--fg-green-500) 70%);transform:translate(calc(var(--tx,0) * -16px),calc(var(--ty,0) * -12px))}
+.u050-img i:nth-child(2){width:90px;height:90px;right:40px;top:24px;background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--fg-yellow-700) 22%,var(--background)),var(--fg-yellow-700) 70%);transform:translate(calc(var(--tx,0) * -30px),calc(var(--ty,0) * -20px))}
+.u050-img i:nth-child(3){width:220px;height:220px;right:-80px;bottom:-130px;background:linear-gradient(var(--accent),var(--accent))}
+.u050-img b{position:absolute;left:16px;top:16px;height:26px;padding:0 10px;border-radius:999px;display:inline-flex;align-items:center;background:color-mix(in srgb,var(--background) 22.00%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--accent-foreground);font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);letter-spacing:.06em}
+.u050-body{padding:16px 20px 0}
+.u050-src{display:flex;align-items:center;gap:8px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-2)}
+.u050-src i{width:20px;height:20px;border-radius:6px;background:var(--ux-ink);position:relative}
+.u050-src i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--ux-page)}
+.u050-dot{width:8px;height:8px;margin-left:auto;border-radius:50%;background:var(--ux-accent);box-shadow:0 0 0 4px var(--ux-accent-soft);transition:transform .45s var(--ux-spring),opacity .3s}
+.u050-h{margin:10px 0 0;font-size:var(--forge-text-lg-size);line-height:1.32;font-weight:var(--forge-font-bold-weight);letter-spacing:-.035em;transition:color .5s}
+.u050-p{margin:6px 0 0;font-size:var(--forge-text-xs-size);line-height:1.55;color:var(--ux-ink-3);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.u050-foot{position:absolute;left:20px;right:16px;bottom:16px;display:flex;align-items:center;justify-content:space-between;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-3)}
+.u050-btn{position:relative;height:38px;padding:0 14px 0 12px;border:0;border-radius:999px;display:inline-flex;align-items:center;gap:6px;background:var(--ux-ink);color:var(--ux-page);font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);transition:background-color .4s,color .4s,transform .35s var(--ux-spring)}
+.u050-btn:active{transform:scale(.94)}
+.u050-btn:focus-visible{outline:2px solid var(--ux-accent);outline-offset:2px}
+.u050-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.u050-btn path{stroke-dasharray:16;stroke-dashoffset:16;transition:stroke-dashoffset .4s var(--ux-ease) .1s}
+.u050-btn circle{transition:opacity .2s}
+.u050-card.is-read .u050-btn{background:color-mix(in srgb,var(--ux-mint) 16%,transparent);color:var(--ux-mint)}
+.u050-card.is-read .u050-btn path{stroke-dashoffset:0}
+.u050-card.is-read .u050-btn circle{opacity:0}
+.u050-card.is-read .u050-dot{transform:scale(0);opacity:0}
+.u050-card.is-read .u050-h{color:var(--ux-ink-3)}
+</style>
+<article class="ux u050">
+  <div class="u050-card">
+    <span class="u050-glare" aria-hidden="true"></span>
+    <div class="u050-img" aria-hidden="true"><i></i><i></i><i></i><b>DESIGN</b></div>
+    <div class="u050-body">
+      <div class="u050-src"><i aria-hidden="true"></i>Design Weekly<span class="u050-dot" role="img" aria-label="Unread"></span></div>
+      <h3 class="u050-h">Why mobile tab bars are back</h3>
+      <p class="u050-p">Thumb-reach navigation is back. Here’s how five big apps changed.</p>
+    </div>
+    <div class="u050-foot"><span>Today 9:20 AM · 8 min</span><button class="u050-btn" type="button" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.4" fill="currentColor" stroke="none"/><path d="M3.5 8.3l3 3 6-6.3"/></svg><span>Mark as read</span></button></div>
+  </div>
+</article><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var card = root.querySelector('.u050-card'), btn = root.querySelector('.u050-btn'), dot = root.querySelector('.u050-dot');
+
+  // 커서 위치로 기울기와 빛의 자리를 함께 정합니다. 최대 7도까지만 기울입니다
+  root.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;
+    var r = root.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    root.classList.add('is-live');
+    root.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+    root.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    if (window.forgeReduced()) return;
+    root.style.setProperty('--tx', (x - 0.5).toFixed(3)); root.style.setProperty('--ty', (y - 0.5).toFixed(3));
+    root.style.setProperty('--ry', ((x - 0.5) * 14).toFixed(2) + 'deg');
+    root.style.setProperty('--rx', ((0.5 - y) * 10).toFixed(2) + 'deg');
+  });
+  root.addEventListener('pointerleave', function () {
+    root.classList.remove('is-live');
+    ['--rx', '--ry'].forEach(function (k) { root.style.setProperty(k, '0deg'); });
+    ['--tx', '--ty'].forEach(function (k) { root.style.setProperty(k, 0); });
+  });
+  btn.addEventListener('click', function () {
+    var on = !card.classList.contains('is-read');
+    card.classList.toggle('is-read', on);
+    btn.setAttribute('aria-pressed', String(on));
+    btn.lastChild.textContent = on ? 'Marked read' : 'Mark as read';
+    dot.setAttribute('aria-label', on ? 'Read' : 'Unread');
+  });
+})();</script></body></html>

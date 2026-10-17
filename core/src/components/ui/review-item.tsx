@@ -52,6 +52,7 @@ interface ReviewItemBase {
   date: string;
   rating: number;
   content: string;
+  ratingLabel?: string;
   images?: string[];
   overflowImageCount?: number;
   className?: string;
@@ -65,6 +66,7 @@ interface ReviewItemRegular extends ReviewItemBase {
 interface ReviewItemCard extends ReviewItemBase {
   variant: "card";
   onMenuClick?: () => void;
+  menuLabel?: string;
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
 }
@@ -81,6 +83,7 @@ function RegularVariant({
   date,
   rating,
   content,
+  ratingLabel = "评分",
   images,
   overflowImageCount,
   className = "",
@@ -98,7 +101,7 @@ function RegularVariant({
           <div className="self-stretch inline-flex justify-between items-center">
             <div className="flex justify-start items-center gap-1">
               <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
-                Rating:
+                {ratingLabel}:
               </span>
               <StarRow rating={rating} size={16} />
             </div>
@@ -143,6 +146,7 @@ function CardVariant({
   images,
   overflowImageCount,
   onMenuClick,
+  menuLabel = "更多操作",
   width,
   className = "",
 }: ReviewItemCard) {
@@ -171,15 +175,16 @@ function CardVariant({
             </span>
           </div>
         </div>
-        <button
+        {onMenuClick && <button
           type="button"
+          aria-label={menuLabel}
           onClick={onMenuClick}
           className="w-6 h-6 flex items-center justify-center cursor-pointer"
         >
           <span className="rotate-90">
             <MenuDotsBold size={16} color="var(--fg-grey-700)" />
           </span>
-        </button>
+        </button>}
       </div>
       {/* Divider */}
       <div className="self-stretch h-px bg-fg-grey-200" />

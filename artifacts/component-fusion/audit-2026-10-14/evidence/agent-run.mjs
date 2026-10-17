@@ -1,0 +1,18 @@
+import {createRequire} from 'node:module';
+import fs from 'node:fs';
+const repo='/Users/hesong/Documents/gihub_space/forge'; const require=createRequire(repo+'/package.json');
+const {build}=require(repo+'/node_modules/.pnpm/node_modules/esbuild/lib/main.js');
+await build({absWorkingDir:repo,stdin:{contents:`export {AgentChartExamples} from './src/app/components/_fusion/agent-charts'; export {CompositionExamples} from './src/app/components/_fusion/compositions'; export {ChatReactions} from './core/src/internal/chat-interactions';`,resolveDir:repo,loader:'tsx'},outfile:'/tmp/forge-audit-c/examples.mjs',bundle:true,packages:'external',platform:'node',format:'esm',jsx:'automatic',logLevel:'silent',plugins:[{name:'next',setup(p){p.onResolve({filter:/^next\/image$/},()=>({path:'image',namespace:'interop'}));p.onLoad({filter:/.*/,namespace:'interop'},()=>({contents:`import e from '${require.resolve('next/image')}'; export default e.default??e;`,loader:'js'}));p.onResolve({filter:/^next\//},({path})=>({path:require.resolve(path),external:true}));}}],alias:{'@forge-ui-official/core':repo+'/core/src/index.ts','@forge-ui-official/core/icons':repo+'/core/src/icons.tsx'}});
+const React=await import('react'); const {renderToString}=await import('react-dom/server'); const {JSDOM}=await import('jsdom'); const ex=await import('./examples.mjs');
+const ids='077 078 084 086 091 F01 F02 095 096 097 099 157 163 165 057 059 092 108 110 126 127 128 129 176 177 179 180 181 184 F04 F05 F06'.split(' ');
+const ssr=[];for(let n=0;n<ids.length;n++){const id=ids[n];for(const locale of ['zh','en'])for(const color of ['blue','purple','black']){const html=renderToString(React.createElement(n<14?ex.AgentChartExamples:ex.CompositionExamples,{id,locale,color,motion:'none'}));const d=new JSDOM(html); const doc=d.window.document;ssr.push({id,locale,color,buttons:doc.querySelectorAll('button').length,unnamed:[...doc.querySelectorAll('button')].filter(b=>!b.textContent.trim()&&!b.getAttribute('aria-label')&&!b.getAttribute('title')).map(b=>b.outerHTML.slice(0,300)),invalid:/NaN|undefined%/.test(html)});d.window.close();}}
+fs.writeFileSync('/tmp/forge-audit-c/ssr.json',JSON.stringify(ssr,null,2));
+const dom=new JSDOM('<div id="root"></div>',{pretendToBeVisual:true,url:'http://localhost'});dom.window.matchMedia=()=>({matches:true,addEventListener(){},removeEventListener(){}});for(const key of ['window','document','navigator','HTMLElement','Element','SVGElement'])Object.defineProperty(globalThis,key,{configurable:true,value:dom.window[key]});Object.assign(globalThis,{IS_REACT_ACT_ENVIRONMENT:true,requestAnimationFrame:dom.window.requestAnimationFrame.bind(dom.window),cancelAnimationFrame:dom.window.cancelAnimationFrame.bind(dom.window)});
+const {createRoot}=await import('react-dom/client');const root=createRoot(document.getElementById('root'));
+await React.act(async()=>root.render(React.createElement(ex.ChatReactions,{reactions:[],options:[0,1,2,3,4].map(x=>({id:String(x),label:'Reaction'+x,content:String(x)})),onChange(){},locale:'en',motion:'none'})));
+await React.act(async()=>document.querySelector('button').click());
+const before=document.activeElement.textContent;
+await React.act(async()=>document.activeElement.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true})));
+const after=document.activeElement.textContent;const tabs=[...document.querySelectorAll('[role="dialog"] button')].map(x=>x.tabIndex);
+console.log(JSON.stringify({reactionArrowUp:{before,after,tabs},ssrRuns:ssr.length,invalid:ssr.filter(x=>x.invalid),unnamed:ssr.filter(x=>x.unnamed.length).map(x=>({id:x.id,locale:x.locale,count:x.unnamed.length}))},null,2));
+await React.act(async()=>root.unmount());dom.window.close();

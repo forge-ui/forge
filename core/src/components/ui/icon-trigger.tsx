@@ -3,7 +3,7 @@
 import type { MotionPreference } from "../../lib/motion";
 import { MotionPresence } from "../../internal/motion";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useId, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { accentColors, type AccentColor } from "./accent-utils";
 import { TooltipBubble, type TooltipPosition } from "./tooltip";
@@ -16,7 +16,7 @@ export type IconTriggerPanel = ReactNode | ((close: () => void) => ReactNode);
 
 export function IconTrigger({
   icon,
-  accent = "purple",
+  accent = "blue",
   state: stateProp,
   surface = "default",
   badge,
@@ -28,6 +28,8 @@ export function IconTrigger({
   motion = "auto",
   panel,
   panelPlacement = "bottom",
+  initialFocus = false,
+  panelAlign = "center",
 }: {
   icon: ReactNode;
   accent?: IconTriggerAccent;
@@ -44,6 +46,8 @@ export function IconTrigger({
   /** Optional panel. `ReactNode` or `(close) => ReactNode` so inner elements can close it. */
   panel?: IconTriggerPanel;
   panelPlacement?: IconTriggerPanelPlacement;
+  initialFocus?: "first" | "selected" | false;
+  panelAlign?: "center" | "start" | "end";
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
   const usingInternal = !onClick && panel !== undefined;
@@ -52,6 +56,15 @@ export function IconTrigger({
     : (stateProp ?? "idle");
 
   const wrapRef = useRef<HTMLDivElement>(null);
+  const panelId = useId();
+  const [focusRequest, setFocusRequest] = useState(0);
+  useEffect(() => { if (focusRequest) wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus(); }, [focusRequest]);
+  useEffect(() => {
+    if (!usingInternal || !internalOpen || !initialFocus) return;
+    const panelNode = wrapRef.current?.querySelector<HTMLElement>(`[data-icon-trigger-panel]`);
+    const selected = initialFocus === "selected" ? panelNode?.querySelector<HTMLElement>('[aria-checked="true"],[aria-selected="true"]') : null;
+    (selected ?? panelNode?.querySelector<HTMLElement>('button:not(:disabled),input:not(:disabled),[tabindex="0"]'))?.focus();
+  }, [usingInternal, internalOpen, initialFocus]);
   useEffect(() => {
     if (!usingInternal || !internalOpen) return;
     function handleOutside(e: MouseEvent) {
@@ -92,12 +105,14 @@ export function IconTrigger({
     else if (panel !== undefined) setInternalOpen((v) => !v);
   };
 
-  const renderedPanel = typeof panel === "function" ? panel(() => setInternalOpen(false)) : panel;
+  const renderedPanel = typeof panel === "function" ? panel(() => { setInternalOpen(false); setFocusRequest(value => value + 1); }) : panel;
 
   return (
     <div className={cn("relative inline-flex", className)} ref={wrapRef}>
       <button
         data-motion={motion}
+        aria-controls={usingInternal ? panelId : undefined}
+        aria-haspopup={usingInternal ? "dialog" : undefined}
         aria-expanded={usingInternal ? internalOpen : stateProp !== undefined ? stateProp === "open" : undefined}
         type="button"
         onClick={handleClick}
@@ -134,13 +149,14 @@ export function IconTrigger({
         <MotionPresence open={internalOpen} motion={motion}
           className={cn(
             "absolute z-50",
-            panelPlacement === "top" && "bottom-full left-1/2 -translate-x-1/2 mb-2",
-            panelPlacement === "bottom" && "top-full left-1/2 -translate-x-1/2 mt-2",
+            panelPlacement === "top" && "bottom-full mb-2",
+            panelPlacement === "bottom" && "top-full mt-2",
+            (panelPlacement === "top" || panelPlacement === "bottom") && (panelAlign === "start" ? "left-0" : panelAlign === "end" ? "right-0" : "left-1/2 -translate-x-1/2"),
             panelPlacement === "left" && "right-full top-1/2 -translate-y-1/2 mr-2",
             panelPlacement === "right" && "left-full top-1/2 -translate-y-1/2 ml-2"
           )}
         >
-          {renderedPanel}
+          <div id={panelId} data-icon-trigger-panel>{renderedPanel}</div>
         </MotionPresence>
       )}
     </div>

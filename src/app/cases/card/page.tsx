@@ -70,8 +70,8 @@ export default function CardCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Card"
-        hint="15+ 种卡片组件：StatCard 系列 / 金融卡 / Project / Task / User / Event / Profile / Highlight / Activity。"
+        title="卡片"
+        hint="把每种卡片的主题、尺寸和状态放在一起对照。层叠和光照倾斜在最后。"
       />
 
       {/* ============ SurfaceCard ============ */}
@@ -351,7 +351,7 @@ export default function CardCasePage() {
               balanceHidden
               trend="2.1%"
               subtitle="vs. last month"
-              theme="purple"
+              theme="blue"
               cardNumber="**** 9090"
             />
           </Labeled>
@@ -380,7 +380,7 @@ export default function CardCasePage() {
         <SubSection title="Variants (purple)">
           {financialVariants.map((v) => (
             <Labeled key={v} label={v}>
-              <DebitCard balance="$9,256.09" cardNumber="9090" expiry="07/25" theme="purple" variant={v} />
+              <DebitCard balance="$9,256.09" cardNumber="9090" expiry="07/25" theme="blue" variant={v} />
             </Labeled>
           ))}
         </SubSection>
@@ -437,7 +437,7 @@ export default function CardCasePage() {
               labelText="Design"
               labelColor="purple"
               progress={65}
-              progressColor="purple"
+              progressColor="blue"
               avatars={demoAvatars}
               date="Due Aug 15"
               onMenuClick={() => {}}
@@ -554,13 +554,13 @@ export default function CardCasePage() {
                 name="John Doe"
                 subtitle="Product Designer"
                 state={st}
-                accent="purple"
+                accent="blue"
               />
             </Labeled>
           ))}
         </SubSection>
         <SubSection title="On colored bg">
-          <div className="p-6 bg-fg-violet rounded-xl flex items-start gap-3">
+          <div className="flex min-w-0 max-w-full flex-wrap items-start gap-3 rounded-xl bg-fg-violet p-6">
             {profileStates.map((st) => (
               <ProfileCard
                 key={st}
@@ -583,7 +583,7 @@ export default function CardCasePage() {
         <SubSection title="Purple theme">
           <HighlightCard
             title="Featured Product"
-            theme="purple"
+            theme="blue"
             image="https://placehold.co/280x280/ffffff/6d28d9?text=Product"
             annotations={[
               { label: "Material", value: "Leather", position: { top: "10%", left: "10%" } },
@@ -629,7 +629,7 @@ export default function CardCasePage() {
           <StatCard
             title="Team Size"
             value="48"
-            theme="purple"
+            theme="blue"
             size="lg"
             icon={<UsersGroupRoundedBoldDuotone size={24} color="currentColor" />}
             action={
@@ -638,6 +638,21 @@ export default function CardCasePage() {
               </IconButton>
             }
           />
+        </SubSection>
+      </Section>
+
+      <Section title="卡片动效" description="层叠和光照倾斜。移动指针可以看倾斜卡的光。">
+        <SubSection title="效果">
+          <Labeled label="层叠">
+            <SurfaceCard effect="layered" title="设计札记" subtitle="6 分钟" className="w-72">
+              <p className="text-sm text-fg-grey-700">恰当的留白，让复杂界面更易理解。</p>
+            </SurfaceCard>
+          </Labeled>
+          <Labeled label="光照倾斜">
+            <SurfaceCard effect="tilt" title="产品动态" subtitle="今天 · Forge 团队" className="w-72">
+              <p className="text-sm text-fg-grey-700">把指针移到卡片上，查看光照跟随。</p>
+            </SurfaceCard>
+          </Labeled>
         </SubSection>
       </Section>
     </div>

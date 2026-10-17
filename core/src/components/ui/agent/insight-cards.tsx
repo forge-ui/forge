@@ -105,14 +105,16 @@ function Segments({ items }: { items: { label: string; pct: number; tone?: Insig
 
 export function InsightCards({
   cards,
+  locale = "zh",
   index: controlledIndex,
   onIndexChange,
   onAsk,
-  previousInsightLabel = "Previous insight",
-  nextInsightLabel = "Next insight",
+  previousInsightLabel = locale === "zh" ? "上一条洞察" : "Previous insight",
+  nextInsightLabel = locale === "zh" ? "下一条洞察" : "Next insight",
   className = "",
 }: {
   cards: InsightCard[];
+  locale?: "zh" | "en";
   index?: number;
   onIndexChange?: (index: number) => void;
   onAsk?: (prompt: string, card: InsightCard) => void;

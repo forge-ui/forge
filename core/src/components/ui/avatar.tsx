@@ -42,7 +42,7 @@ export function Avatar({
   src,
   initials,
   size = "md",
-  color = "purple",
+  color = "blue",
   alt = "",
   online = false,
 }: {

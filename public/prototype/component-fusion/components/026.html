@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>验证码输入</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"026",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"026",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"026",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"026",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"026"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u026{position:relative;width:350px;height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.u026-ic{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;color:var(--accent-foreground);background:var(--accent);box-shadow:0 14px 26px -14px color-mix(in srgb,var(--foreground) 16%,transparent);transition:background .5s var(--ux-ease)}
+.u026-ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.u026.is-ok .u026-ic{background:linear-gradient(140deg,var(--fg-green-500),var(--fg-green-500))}
+.u026-t{margin:16px 0 0;font-size:var(--forge-text-lg-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.03em}
+.u026-s{margin:6px 0 20px;font-size:var(--forge-text-sm-size);color:var(--ux-ink-3)}
+.u026-s b{color:var(--ux-ink-2);font-weight:var(--forge-font-semibold-weight)}
+.u026-row{position:relative;display:flex;gap:8px}
+.u026-row i.sep{width:10px;align-self:center;height:2px;border-radius:2px;background:var(--ux-line-2)}
+.u026-c{position:relative;width:46px;height:58px;border-radius:14px;background:var(--ux-surface);box-shadow:inset 0 0 0 1.5px var(--ux-line-2);display:grid;place-items:center;overflow:hidden;
+  font-size:var(--forge-text-2xl-size);font-weight:var(--forge-font-bold-weight);font-variant-numeric:tabular-nums;transition:box-shadow .25s var(--ux-ease),background-color .4s var(--ux-ease),color .4s,transform .45s var(--ux-spring)}
+.u026-c span{display:block;animation:u026-in .4s var(--ux-spring)}
+@keyframes u026-in{from{transform:translateY(70%);opacity:0}}
+.u026-c.cur{box-shadow:inset 0 0 0 2px var(--ux-accent),0 0 0 4px var(--ux-accent-soft)}
+.u026-c.cur::after{content:"";position:absolute;left:50%;top:16px;bottom:16px;width:2px;margin-left:-1px;border-radius:1px;background:var(--ux-accent);animation:u026-blink 1s steps(1) infinite}
+.u026-c.cur.has::after{display:none}
+@keyframes u026-blink{50%{opacity:0}}
+.u026.is-check .u026-c{animation:u026-wave .5s var(--ux-ease);animation-delay:calc(var(--i) * 60ms)}
+@keyframes u026-wave{40%{transform:translateY(-8px)}}
+.u026.is-ok .u026-c{background:color-mix(in srgb,var(--ux-mint) 14%,var(--ux-surface));box-shadow:inset 0 0 0 2px var(--ux-mint);color:var(--ux-mint);transition-delay:calc(var(--i) * 50ms)}
+.u026.is-bad .u026-row{animation:u026-shake .45s var(--ux-ease)}
+.u026.is-bad .u026-c{box-shadow:inset 0 0 0 2px var(--ux-danger);color:var(--ux-danger)}
+@keyframes u026-shake{20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+.u026-real{position:absolute;inset:0;width:100%;height:100%;opacity:0;border:0;padding:0;font-size:var(--forge-text-base-size);cursor:text;caret-color:transparent;color:transparent;background:transparent}
+.u026-msg{height:20px;margin:16px 0 0;font-size:var(--forge-text-sm-size);font-weight:var(--forge-font-semibold-weight);color:var(--ux-ink-3);transition:color .3s var(--ux-ease)}
+.u026.is-ok .u026-msg{color:var(--ux-mint)}
+.u026.is-bad .u026-msg{color:var(--ux-danger)}
+.u026-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.u026-real:focus-visible{outline:none}
+</style>
+<div class="ux u026">
+  <span class="u026-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg></span>
+  <p class="u026-t">Enter the verification code</p>
+  <p class="u026-s">The 6-digit code sent to <b>•••• 2981</b></p>
+  <div class="u026-row">
+    <span class="u026-c" style="--i:0"></span><span class="u026-c" style="--i:1"></span><span class="u026-c" style="--i:2"></span>
+    <i class="sep" aria-hidden="true"></i>
+    <span class="u026-c" style="--i:3"></span><span class="u026-c" style="--i:4"></span><span class="u026-c" style="--i:5"></span>
+    <input class="u026-real" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-label="6-digit verification code">
+  </div>
+  <p class="u026-msg">Resend code in 2:59</p>
+  <span class="u026-live" aria-live="polite"></span>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var input = root.querySelector('.u026-real');
+  var cells = Array.prototype.slice.call(root.querySelectorAll('.u026-c'));
+  var msg = root.querySelector('.u026-msg');
+  var live = root.querySelector('.u026-live');
+  function say(t) { msg.textContent = t; live.textContent = t; }
+
+  var CODE = '482915', prev = '', timers = [], left = 179, tick = 0;
+  function later(fn, ms) { timers.push(setTimeout(function () { if (root.isConnected) fn(); }, ms)); }
+  // 보이지 않는 입력칸 하나가 키보드·붙여넣기·자동완성을 모두 받고, 화면의 여섯 칸은 그 값을 그립니다
+  function paint() {
+    var v = input.value;
+    cells.forEach(function (c, i) {
+      var ch = v[i] || '';
+      if (ch !== (prev[i] || '')) c.innerHTML = ch ? '<span>' + ch + '</span>' : '';
+      c.classList.toggle('has', !!ch);
+      c.classList.toggle('cur', document.activeElement === input && (i === Math.min(v.length, 5)));
+    });
+    prev = v;
+  }
+  function verify() {
+    root.classList.add('is-check');
+    say('Checking');
+    later(function () {
+      root.classList.remove('is-check');
+      if (input.value === CODE) {
+        root.classList.add('is-ok');
+        say('Verified');
+        input.blur();
+        clearInterval(tick);
+      } else {
+        root.classList.add('is-bad');
+        say('That code doesn’t match. Try again');
+        later(function () { root.classList.remove('is-bad'); input.value = ''; paint(); input.focus(); }, window.forgeReduced() ? 600 : 900);
+      }
+    }, window.forgeReduced() ? 60 : 640);
+  }
+  input.addEventListener('input', function () {
+    input.value = input.value.replace(/\D/g, '').slice(0, 6);
+    if (root.classList.contains('is-ok')) root.classList.remove('is-ok');
+    paint();
+    if (input.value.length === 6) verify();
+  });
+  input.addEventListener('focus', paint);
+  input.addEventListener('blur', paint);
+  // 재발송 가능 시간 표시
+  tick = setInterval(function () {
+    if (!root.isConnected) { clearInterval(tick); return; }
+    if (root.classList.contains('is-bad') || root.classList.contains('is-check') || root.classList.contains('is-ok')) return;
+    left = Math.max(0, left - 1);
+    msg.textContent = left ? 'Resend code in ' + Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0') : 'You can resend the code now';
+  }, 1000);
+  paint();
+})();</script></body></html>

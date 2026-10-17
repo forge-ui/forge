@@ -28,7 +28,7 @@ interface BarUpsideDownChartProps {
 
 export function BarUpsideDownChart({
   data,
-  accent = "purple",
+  accent = "blue",
   activeIndex,
   upperColor,
   lowerColor,

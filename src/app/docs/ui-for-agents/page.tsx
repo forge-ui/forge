@@ -52,7 +52,7 @@ export default function UIForAgentsPage() {
             href="https://agentskills.io/home"
             target="_blank"
             rel="noreferrer"
-            className="text-fg-violet hover:underline"
+            className="text-fg-blue hover:underline"
           >
             Agent Skills 通用规范
           </a>
@@ -65,7 +65,7 @@ export default function UIForAgentsPage() {
         <p>
           Skill 会被 AI 助手{" "}
           <strong className="text-fg-black">自动发现</strong>，也可以用{" "}
-          <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-violet">
+          <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-blue">
             /forge
           </code>{" "}
           命令直接调用。
@@ -107,7 +107,7 @@ export default function UIForAgentsPage() {
               href="https://agentskills.io/home"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               Agent Skills 规范
             </a>
@@ -118,7 +118,7 @@ export default function UIForAgentsPage() {
               href="https://docs.claude.com/en/docs/claude-code/skills"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               Claude Agent Skills
             </a>
@@ -129,7 +129,7 @@ export default function UIForAgentsPage() {
               href="https://cursor.com/docs/context/skills"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               Cursor Skills
             </a>
@@ -140,23 +140,23 @@ export default function UIForAgentsPage() {
               href="https://developers.openai.com/codex"
               target="_blank"
               rel="noreferrer"
-              className="text-fg-violet hover:underline"
+              className="text-fg-blue hover:underline"
             >
               Codex
             </a>
             {" "}— 在 Codex 中使用 Skills
           </li>
           <li>
-            <Link href="/docs/quick-start" className="text-fg-violet hover:underline">
+            <Link href="/docs/quick-start" className="text-fg-blue hover:underline">
               快速开始
             </Link>
             {" "}— 从 0 到第一个业务页
           </li>
           <li>
-            <Link href="/cases" className="text-fg-violet hover:underline">
-              组件
+            <Link href="/cases" className="text-fg-blue hover:underline">
+              组件案例
             </Link>
-            {" "}— 所有组件用法示例
+            {" "}— 各组件的用法和可操作场景
           </li>
         </ul>
       </DocSection>

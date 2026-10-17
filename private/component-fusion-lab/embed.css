@@ -1,0 +1,10 @@
+html, body { min-height: 0 !important; height: auto !important; }
+body { margin: 0; padding: 24px !important; display: grid !important; place-items: start center !important; background: var(--surface); overflow-x: auto; }
+body > .ux, #root { min-width: 0; max-width: 100%; }
+#root { width: 100%; max-width: 720px; }
+.feature { border: 0; background: transparent; border-radius: 0; box-shadow: none; width: 100%; }
+.feature > header, .feature-review, .feature > .state { display: none; }
+.feature-stage { min-height: 0; padding: 0; }
+html[data-motion="none"] *, html[data-motion="none"] *::before, html[data-motion="none"] *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; } }
+@media (max-width: 500px) { body { padding: 16px !important; } .composer, .document-list, .tool-card, .review-card, .seats, .search-empty { min-width: 0; max-width: 100%; } .demo-controls, .composer-bottom, .review-actions { flex-wrap: wrap; } }

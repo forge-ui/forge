@@ -17,20 +17,20 @@ export function ImageGrid({
   images,
   size = "md",
   overflowCount,
-  overflowClassName = "bg-fg-violet-100 text-fg-violet",
+  overflowClassName = "bg-fg-blue-50 text-fg-blue",
   className = "",
 }: {
   images: string[];
   size?: ImageGridSize;
   overflowCount?: number;
-  /** Customize the +N overflow chip background & text color. Default: purple accent. */
+  /** Customize the +N overflow chip background & text color. Default: Forge blue. */
   overflowClassName?: string;
   className?: string;
 }) {
   const s = sizeMap[size];
 
   return (
-    <div className={`inline-flex items-center gap-2 ${className}`}>
+    <div className={`flex max-w-full flex-wrap items-center gap-2 ${className}`}>
       {images.map((src, i) => (
         <img
           key={i}

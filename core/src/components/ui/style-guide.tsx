@@ -144,17 +144,19 @@ export function TypefaceBlock({
   sample?: string;
 }) {
   return (
-    <div className="flex flex-col items-start gap-4">
+    <div className="flex w-full min-w-0 max-w-full flex-col items-start gap-4">
       <span className="text-xl font-medium font-display leading-8 tracking-tight text-fg-grey-700">
         Typeface
       </span>
-      <div className="inline-flex items-center gap-4">
+      <div className="w-full min-w-0 max-w-full overflow-x-auto">
+        <div className="inline-flex items-center gap-4">
         <span className="text-8xl font-semibold font-display leading-[140px] tracking-wide text-fg-black">
           {sample}
         </span>
         <span className="text-xl font-medium font-display leading-8 tracking-tight text-fg-violet">
           {name}
         </span>
+        </div>
       </div>
     </div>
   );
@@ -202,14 +204,16 @@ export function TypographySizeRow({
   sizeClass: string;
 }) {
   return (
-    <div className="flex flex-col items-start gap-4">
+    <div className="flex w-full min-w-0 max-w-full flex-col items-start gap-4">
       <span className="text-base font-medium font-display leading-6 tracking-tight text-fg-grey-700">
         {label}
       </span>
-      <div className="inline-flex items-start gap-12">
+      <div className="w-full min-w-0 max-w-full overflow-x-auto">
+        <div className="inline-flex items-start gap-12">
         {([700, 600, 500, 400] as const).map((w) => (
           <TypographyWeightSample key={w} text={text} weight={w} sizeClass={sizeClass} />
         ))}
+        </div>
       </div>
     </div>
   );

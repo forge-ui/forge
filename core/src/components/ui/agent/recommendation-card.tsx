@@ -30,18 +30,20 @@ const CONFIDENCE_LABEL: Record<RecommendationConfidence, string> = {
 
 export function RecommendationCard({
   title,
+  locale = "zh",
   body,
   confidence = "high",
   confidenceLabel,
   alternatives = [],
-  acceptLabel = "Accept",
+  acceptLabel = locale === "zh" ? "接受建议" : "Accept",
   onAccept,
   onSelectAlternative,
   confidenceLabels,
-  alternativesLabel = "Other options",
+  alternativesLabel = locale === "zh" ? "其他选项" : "Other options",
   className = "",
 }: {
   title: string;
+  locale?: "zh" | "en";
   body: string;
   confidence?: RecommendationConfidence;
   confidenceLabel?: string;
@@ -53,11 +55,12 @@ export function RecommendationCard({
   alternativesLabel?: string;
   className?: string;
 }) {
+  const labels = locale === "zh" ? { high: "高置信度", review: "待审核", none: "暂无依据" } : CONFIDENCE_LABEL;
   return (
     <SurfaceCard
       className={cn("forge-ask-ai-compact-response", className)}
       title={title}
-      action={<StatusBadge label={confidenceLabel ?? confidenceLabels?.[confidence] ?? CONFIDENCE_LABEL[confidence]} color={CONFIDENCE_COLOR[confidence]} />}
+      action={<StatusBadge label={confidenceLabel ?? confidenceLabels?.[confidence] ?? labels[confidence]} color={CONFIDENCE_COLOR[confidence]} />}
       footer={
         <div className="flex justify-end">
           <button
@@ -89,7 +92,7 @@ export function RecommendationCard({
               </span>
               {option.confidence && (
                 <StatusBadge
-                  label={confidenceLabels?.[option.confidence] ?? CONFIDENCE_LABEL[option.confidence]}
+                  label={confidenceLabels?.[option.confidence] ?? labels[option.confidence]}
                   color={CONFIDENCE_COLOR[option.confidence]}
                 />
               )}

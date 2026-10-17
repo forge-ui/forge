@@ -12,39 +12,39 @@ import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 const colors = ["purple", "blue", "black"] as const satisfies readonly FilterGroupColor[];
 
 const labelByColor: Record<FilterGroupColor, string> = {
-  purple: "Purple",
-  blue: "Blue",
-  black: "Black",
+  purple: "紫色",
+  blue: "蓝色",
+  black: "黑色",
 };
 
 const checkboxOptions = [
-  { value: "a", label: "Option Text Here", checked: false },
-  { value: "b", label: "Option Text Here", checked: true },
-  { value: "c", label: "Option Text Here", checked: false },
-  { value: "d", label: "Option Text Here", checked: false },
-  { value: "e", label: "Option Text Here", checked: false },
+  { value: "a", label: "选项文字", checked: false },
+  { value: "b", label: "选项文字", checked: true },
+  { value: "c", label: "选项文字", checked: false },
+  { value: "d", label: "选项文字", checked: false },
+  { value: "e", label: "选项文字", checked: false },
 ];
 
 const colorCheckboxOptions = [
-  { value: "blue", label: "Option Text Here", checked: false, colorDot: "bg-blue-700" },
-  { value: "green", label: "Option Text Here", checked: true, colorDot: "bg-emerald-700" },
-  { value: "amber", label: "Option Text Here", checked: false, colorDot: "bg-amber-500" },
-  { value: "red", label: "Option Text Here", checked: true, colorDot: "bg-fg-red" },
-  { value: "rose", label: "Option Text Here", checked: false, colorDot: "bg-rose-200" },
+  { value: "blue", label: "选项文字", checked: false, colorDot: "bg-blue-700" },
+  { value: "green", label: "选项文字", checked: true, colorDot: "bg-emerald-700" },
+  { value: "amber", label: "选项文字", checked: false, colorDot: "bg-amber-500" },
+  { value: "red", label: "选项文字", checked: true, colorDot: "bg-fg-red" },
+  { value: "rose", label: "选项文字", checked: false, colorDot: "bg-rose-200" },
 ];
 
 const radioOptions = [
-  { value: "1", label: "Option Text Here", checked: false },
-  { value: "2", label: "Option Text Here", checked: false },
-  { value: "3", label: "Option Text Here", checked: true },
-  { value: "4", label: "Option Text Here", checked: false },
-  { value: "5", label: "Option Text Here", checked: false },
+  { value: "1", label: "选项文字", checked: false },
+  { value: "2", label: "选项文字", checked: false },
+  { value: "3", label: "选项文字", checked: true },
+  { value: "4", label: "选项文字", checked: false },
+  { value: "5", label: "选项文字", checked: false },
 ];
 
 export default function FilterCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Filter" hint="FilterGroup · FilterTrigger · FilterPanel" />
+      <PageHeading title="筛选" hint="用分组条件和筛选面板缩小结果范围，支持重置和应用。" />
 
       <Section
         title="Filter Group"
@@ -79,7 +79,7 @@ export default function FilterCasePage() {
       </Section>
 
       <Section
-        title="Filter"
+        title="筛选"
         description="Trigger pill 4 状态 + 完整 Panel（FilterGroup 容器 + Reset + Cancel/Apply）"
       >
         {colors.map((color) => (
@@ -108,13 +108,13 @@ export default function FilterCasePage() {
         <SubSection title="Interactive · trigger + panel wired">
           <Labeled label="click to open">
             <FilterTrigger
-              color="purple"
+              color="blue"
               count={8}
               panel={(close) => (
-                <FilterPanel color="purple" onReset={() => {}} onCancel={close} onApply={close}>
+                <FilterPanel color="blue" onReset={() => {}} onCancel={close} onApply={close}>
                   <FilterGroup
-                    color="purple"
-                    title="Status"
+                    color="blue"
+                    title="状态"
                     defaultOpen
                     content={{
                       type: "checkbox",
