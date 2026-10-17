@@ -139,9 +139,11 @@ function People() {
 }
 
 const quickCards: ChatInputBarQuickAction[] = [
-  { id: "image", label: "创建图片", kind: "image" },
-  { id: "note", label: "写笔记", kind: "note" },
-  { id: "docs", label: "分析文档", kind: "docs" },
+  { id: "image", label: "创建图片", kind: "image", placeholder: "描述你想创建的图片…" },
+  { id: "note", label: "写笔记", kind: "note", placeholder: "写下想记录的内容…" },
+  { id: "event", label: "安排日程", kind: "event", placeholder: "什么活动，什么时候？" },
+  { id: "voice", label: "语音输入", kind: "voice", placeholder: "输入要转写的内容…" },
+  { id: "docs", label: "分析文档", kind: "docs", placeholder: "上传文档，或者提一个问题…" },
 ];
 
 function Thread() {
@@ -199,16 +201,16 @@ function EffectButtons() {
         className="home-wide"
         effect="ripple"
         color="blue"
-        size="md"
+        size="sm"
         motion="auto"
         onClick={() => toast({ title: "已记下", description: "可以划掉这条通知。", status: "success" })}
       >
         弹出通知
       </Button>
-      <Button className="home-wide" data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>
+      <Button className="home-wide" data-home-magnetic effect="magnetic" color="blue" size="sm" motion="auto" iconRight={arrow}>
         打开看板
       </Button>
-      <Button className="home-wide" effect="roll" color="black" size="md" motion="auto">
+      <Button className="home-wide" effect="roll" color="black" size="sm" motion="auto">
         切换视图
       </Button>
     </div>
@@ -329,7 +331,7 @@ function WeekBars() {
         color="bg-fg-blue"
         inactiveColor="bg-fg-blue-100"
         motion="auto"
-        height="h-28"
+        height="h-16"
         showLabels
         barWidth="wide"
         activeIndex={index}
@@ -603,26 +605,28 @@ function CalendarPanel() {
 
 function Wall() {
   return (
-    <BrickWall
-      columns={[
-        <>
-          <ViewPanel />
-          <ActionPanel />
-          <ChatPanel />
-        </>,
-        <>
-          <CalendarPanel />
-          <Panel flush><WeekBars /></Panel>
-          <ReleasePanel />
-        </>,
-        <>
-          <Panel flush><Metric /></Panel>
-          <TeamPanel />
-          <Panel flush><TaskOne /></Panel>
-          <CommandPanel />
-        </>,
-      ]}
-    />
+    <div className="home-wall">
+      <div className="home-span">
+        <div className="home-span-cols">
+          <div className="home-col">
+            <ViewPanel />
+            <ActionPanel />
+            <PagePanel />
+          </div>
+          <div className="home-col">
+            <CalendarPanel />
+            <Panel flush><WeekBars /></Panel>
+          </div>
+        </div>
+        <ChatPanel />
+      </div>
+      <div className="home-col">
+        <Panel flush><Metric /></Panel>
+        <TeamPanel />
+        <Panel flush><TaskOne /></Panel>
+        <CommandPanel />
+      </div>
+    </div>
   );
 }
 
