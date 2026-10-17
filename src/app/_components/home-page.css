@@ -213,6 +213,14 @@
 }
 
 @media (max-width: 1023px) {
+  .home-metrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-metrics .tracking-fg {
+    white-space: nowrap;
+  }
+
   .home-hero {
     display: flex;
     flex-direction: column;
