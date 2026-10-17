@@ -1,6 +1,206 @@
+@font-face {
+  font-family: "Forge Serif SC";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/noto-serif-sc-500-title.woff2") format("woff2");
+  /* Subset of Noto Serif SC (SIL Open Font License 1.1) for the homepage title. */
+  unicode-range: U+3001, U+548C, U+5B50, U+5BF9, U+6210, U+65E5, U+6709, U+677F, U+6837, U+73B0, U+7684, U+770B, U+7A0B, U+7EDF, U+8BA1, U+8BDD, U+90FD, U+FF0C;
+}
+
 .home-page {
   background: #f4f4f5;
   color: #000a19;
+}
+
+.home-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 31.25rem) minmax(0, 1fr);
+  column-gap: 8.5rem;
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+  min-height: calc(100svh - 4rem);
+  background: #f6f8fb;
+  padding-left: 4.75rem;
+}
+
+.home-hero-glow {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 72% 78% at 70% 28%, rgba(53, 83, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 48% 64% at 94% 52%, rgba(42, 184, 196, 0.2), transparent 72%),
+    radial-gradient(ellipse 42% 48% at 38% 8%, rgba(53, 83, 255, 0.07), transparent 70%);
+}
+
+.home-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-width: 0;
+  max-width: 31.25rem;
+  flex-direction: column;
+  padding: 5.25rem 0 1.5rem;
+}
+
+.home-pill {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.35rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(53, 83, 255, 0.08);
+  padding: 0 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #3553ff;
+}
+
+.home-hero-title {
+  margin-top: 1.35rem;
+  max-width: 100%;
+  font-family: "Forge Serif SC", "Iowan Old Style", "Palatino Linotype", "Songti SC", serif;
+  font-size: 4.5rem;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #000a19;
+}
+
+.home-hero-lead {
+  margin-top: 1.15rem;
+  max-width: 31rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  color: #3a4454;
+}
+
+.home-code {
+  margin-top: 1.4rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.95rem 1.05rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 10, 25, 0.08);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #000a19;
+  white-space: pre;
+}
+
+.tok-kw { color: #3553ff; }
+.tok-str { color: #0c7a86; }
+.tok-name { color: #000a19; font-weight: 650; }
+.tok-attr { color: #1d4f91; }
+
+.home-cta {
+  display: inline-flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 10px;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.home-cta-dark {
+  background: #000a19;
+  color: #fff;
+}
+
+.home-cta-dark:hover {
+  background: #1c2636;
+}
+
+.home-cta-light {
+  background: rgba(255, 255, 255, 0.72);
+  color: #000a19;
+  box-shadow: inset 0 0 0 1px rgba(0, 10, 25, 0.1);
+}
+
+.home-cta-light:hover {
+  background: #fff;
+}
+
+.home-pill:focus-visible,
+.home-cta:focus-visible,
+.home-live-tab:focus-visible {
+  outline: 2px solid #3553ff;
+  outline-offset: 3px;
+}
+
+.home-hero-stage {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  padding-top: 1.15rem;
+}
+
+.home-wall {
+  display: flex;
+  width: max-content;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.home-col {
+  display: flex;
+  width: 20rem;
+  flex: none;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.home-col-wide {
+  width: 30rem;
+}
+
+.home-live {
+  position: absolute;
+  z-index: 3;
+  left: 4.75rem;
+  top: calc(100svh - 4rem - 3.75rem);
+  display: flex;
+  width: min(31.25rem, calc(100% - 6rem));
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1.25rem;
+}
+
+.home-live-label {
+  border-bottom: 2px solid #000a19;
+  padding-bottom: 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #000a19;
+}
+
+.home-live-tab {
+  background: transparent;
+  padding: 0.15rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #8b93a0;
+}
+
+.home-live-tab.is-on {
+  color: #000a19;
+  font-weight: 650;
 }
 
 .home-board {
@@ -11,31 +211,67 @@
     0 12px 32px -16px rgba(0, 10, 25, 0.16);
 }
 
-.home-workspace {
-  height: 42rem;
-  max-width: 100%;
-  overflow: clip;
-  border-radius: 24px;
-  background: #fff;
-  box-shadow:
-    0 1px 1px rgba(0, 10, 25, 0.04),
-    0 12px 32px -16px rgba(0, 10, 25, 0.16);
-  transform: translateZ(0);
-  contain: paint;
-}
-
-/* The blue StatCard ships with a green glow. Keep the homepage palette to blue, cyan, black, and white. */
-.home-workspace .bg-fg-blue > .bg-gradient-to-b {
-  display: none;
-}
-
 .home-clip {
   overflow: clip;
 }
 
+/* The blue StatCard ships with a green glow. Keep the homepage palette to blue, cyan, black, and white. */
+.home-page .bg-fg-blue > .bg-gradient-to-b {
+  display: none;
+}
+
 @media (max-width: 1023px) {
-  .home-workspace {
-    height: 41rem;
+  .home-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    overflow-x: clip;
+    padding: 1.5rem 1rem 1.25rem;
+  }
+
+  .home-hero-copy {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .home-hero-title {
+    font-size: 2.35rem;
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+  }
+
+  .home-hero-lead {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .home-col {
+    width: 17.5rem;
+  }
+
+  .home-col-wide {
+    width: 21.5rem;
+  }
+
+  .home-hero-stage {
+    order: 3;
+    width: 100%;
+    margin-top: 1.15rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    padding-top: 0;
+    padding-bottom: 0.35rem;
+  }
+
+  .home-live {
+    order: 2;
+    position: static;
+    width: auto;
+    margin-top: 1.35rem;
   }
 }
 
