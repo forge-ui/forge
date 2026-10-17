@@ -2,22 +2,20 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  Avatar,
   BarChart,
   CalendarCard,
-  CellText,
   ChartCard,
   ChatBubble,
   ChatInputBar,
+  CommandSearch,
   type ChatInputBarQuickAction,
-  DataTable,
+  type CommandSearchItem,
   FileUpload,
   NotificationItem,
   ProgressBar,
-  StatusBadge,
   Stepper,
-  type ColumnDef,
 } from "@forge-ui-official/core";
+import { CalendarLinear, ChartSquareLinear, ChatRoundLinear } from "@forge-ui-official/core/icons";
 
 const quickCards: ChatInputBarQuickAction[] = [
   { id: "image", label: "创建图片", kind: "image", placeholder: "描述你想创建的图片…" },
@@ -49,40 +47,10 @@ function useTicker(step: number, max: number, every: number) {
   return value;
 }
 
-type MatterRow = {
-  id: string;
-  name: string;
-  who: string;
-  status: string;
-  tone: "blue" | "cyan" | "grey";
-  avatar: "blue" | "cyan";
-};
-
-const matterRows: MatterRow[] = [
-  { id: "1", name: "周报整理", who: "林", status: "已完成", tone: "blue", avatar: "blue" },
-  { id: "2", name: "排期评审", who: "周", status: "进行中", tone: "cyan", avatar: "cyan" },
-  { id: "3", name: "跟进客户", who: "陈", status: "待开始", tone: "grey", avatar: "blue" },
-  { id: "4", name: "核对发票", who: "吴", status: "进行中", tone: "blue", avatar: "cyan" },
-];
-
-const matterColumns: ColumnDef<MatterRow>[] = [
-  {
-    key: "name",
-    header: "事项",
-    width: "w-[64%]",
-    render: (row) => (
-      <span className="flex min-w-0 items-center gap-2">
-        <Avatar initials={row.who} size="xs" color={row.avatar} />
-        <CellText>{row.name}</CellText>
-      </span>
-    ),
-  },
-  {
-    key: "status",
-    header: "状态",
-    width: "w-[36%]",
-    render: (row) => <StatusBadge label={row.status} color={row.tone} />,
-  },
+const commandItems: CommandSearchItem[] = [
+  { id: "stats", label: "打开统计", hint: "本周", shortcut: "1", icon: <ChartSquareLinear size={16} /> },
+  { id: "calendar", label: "打开日程", hint: "十月", shortcut: "2", icon: <CalendarLinear size={16} /> },
+  { id: "chat", label: "打开对话", shortcut: "3", icon: <ChatRoundLinear size={16} /> },
 ];
 
 function WeekStat() {
@@ -113,18 +81,17 @@ function WeekStat() {
   );
 }
 
-function MatterTable() {
-  const [keys, setKeys] = useState<ReadonlySet<string>>(() => new Set(["1"]));
+function CommandMenu() {
   return (
-    <DataTable
-      className="home-table"
+    <CommandSearch
+      className="home-command"
+      items={commandItems}
+      locale="zh"
       color="blue"
-      rows={matterRows}
-      columns={matterColumns}
-      selectedRowKeys={keys}
-      onSelectedRowKeysChange={(next) => setKeys(new Set([...next].map(String)))}
-      getRowKey={(row) => row.id}
-      tableMinWidth={200}
+      motion="auto"
+      autoFocus={false}
+      placeholder="搜索命令…"
+      groupLabel="命令"
     />
   );
 }
@@ -190,23 +157,22 @@ function NoticePanel() {
 }
 
 function Thread() {
-  const [shown, setShown] = useState(1);
+  const [file, setFile] = useState(false);
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      setShown(3);
+      setFile(true);
       return;
     }
-    const timers = [650, 1400].map((delay, index) => window.setTimeout(() => setShown(index + 2), delay));
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
+    const timer = window.setTimeout(() => setFile(true), 650);
+    return () => window.clearTimeout(timer);
   }, []);
   return (
     <div className="home-thread">
       <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
-      {shown > 1 ? (
+      {file ? (
         <ChatBubble type="sent" color="blue" variant="file" motion="auto" fileName="本周统计.pdf" fileSize="240 KB" />
       ) : null}
-      {shown > 2 ? <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" /> : null}
       <ChatInputBar
         className="w-full max-w-full"
         locale="zh"
@@ -246,7 +212,7 @@ function Wall() {
         <div className="home-span-cols">
           <div className="home-col">
             <WeekStat />
-            <MatterTable />
+            <CommandMenu />
           </div>
           <div className="home-col">
             <CalendarPanel />
