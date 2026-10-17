@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "./_components/site-header";
 import { HomeHero } from "./_components/home-hero";
 import { HomeBelow } from "./_components/home-demos";
@@ -48,7 +49,7 @@ export default function HomePage() {
             <div className="home-cta-row">
               <Link href="/docs/quick-start" className="home-cta home-cta-dark">
                 开始使用
-                <span aria-hidden="true">→</span>
+                <ArrowRightLinear size={16} color="currentColor" className="home-cta-icon" aria-hidden="true" />
               </Link>
               <Link href="/components" className="home-cta home-cta-light">浏览组件</Link>
             </div>
