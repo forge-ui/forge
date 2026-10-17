@@ -202,7 +202,7 @@
   min-width: 0;
 }
 
-.home-span-cols > .home-col > :last-child {
+.home-span-cols > .home-col:first-child > :last-child {
   flex: 1 1 auto;
 }
 
@@ -251,6 +251,29 @@
   min-width: 0;
   flex-direction: column;
   gap: 0.4rem;
+}
+
+.home-stat,
+.home-table {
+  width: 100%;
+  max-width: 100%;
+}
+
+.home-stat > div:first-child {
+  padding: 0.7rem 1rem 0;
+}
+
+.home-stat > div:last-child {
+  padding: 0.4rem 0.85rem 0.7rem;
+}
+
+.home-table .py-3\.5 {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.home-table .h-10 {
+  height: auto;
 }
 
 .home-panel .home-upload {
