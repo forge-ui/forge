@@ -2,28 +2,40 @@
 
 import { useState, type ReactNode } from "react";
 import {
+  Avatar,
+  AvatarGroup,
   BarChart,
   BarChartStatCard,
   Button,
+  ButtonGroup,
   CalendarCard,
   ChartCard,
   Checklist,
   ChatBubble,
   ChatInputBar,
+  CommandSearch,
   DataTable,
-  DonutChart,
-  ChartLegendItem,
+  DropdownPanel,
+  FilterGroup,
+  Label,
   LiquidTabs,
+  MenuItem,
+  NotificationBadge,
+  OtpInput,
+  Pagination,
+  ProgressBar,
   ProjectCard,
   RatingStars,
-  SmallCalendar,
-  SmoothLineChart,
+  SelectOption,
   StatusBadge,
   CellText,
-  SurfaceCard,
+  Stepper,
+  TabBar,
   TaskCard,
   ThinkingTrace,
-  WheelChartStatCard,
+  ToastProvider,
+  Toggle,
+  useToast,
   type ColumnDef,
 } from "@forge-ui-official/core";
 import { AltArrowRightLinear } from "@forge-ui-official/core/icons";
@@ -61,9 +73,156 @@ const tableColumns: ColumnDef<TableRow>[] = [
   },
 ];
 
-function Metrics() {
+const commandItems = [
+  { id: "board", label: "打开看板", hint: "项目", group: "跳转" },
+  { id: "chat", label: "打开对话", hint: "消息", group: "跳转" },
+  { id: "stats", label: "打开统计", hint: "本周", group: "跳转" },
+];
+
+function Segmented() {
+  const [index, setIndex] = useState(0);
   return (
-    <div className="home-metrics grid grid-cols-2 gap-4">
+    <ButtonGroup
+      color="blue"
+      shape="pill"
+      motion="auto"
+      ariaLabel="分段"
+      activeIndex={index}
+      onChange={setIndex}
+      items={[{ label: "统计" }, { label: "日程" }, { label: "对话" }]}
+    />
+  );
+}
+
+function Badges() {
+  return (
+    <div className="home-cluster">
+      <Label color="blue" size="sm">设计</Label>
+      <Label color="cyan" size="sm" variant="solid">进行中</Label>
+      <Label color="gray" size="sm">待排期</Label>
+      <NotificationBadge color="blue">3</NotificationBadge>
+      <NotificationBadge color="black">12</NotificationBadge>
+    </div>
+  );
+}
+
+function People() {
+  return (
+    <AvatarGroup>
+      <Avatar initials="林" size="md" color="blue" />
+      <Avatar initials="周" size="md" color="cyan" />
+      <Avatar initials="陈" size="md" color="blue" />
+    </AvatarGroup>
+  );
+}
+
+function Thread({ extra = false }: { extra?: boolean }) {
+  return (
+    <div className="flex w-full min-w-0 flex-col gap-3">
+      <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
+      {extra ? <ChatBubble type="received" color="blue" motion="auto" senderName="林夏" content="看板那一列也可以点进模板。" /> : null}
+      <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" />
+      <ChatInputBar className="w-full max-w-full" locale="zh" motion="auto" color="blue" placeholder="写一条消息" />
+    </div>
+  );
+}
+
+function ScoreRing() {
+  const [score, setScore] = useState(4);
+  const [on, setOn] = useState(true);
+  return (
+    <div className="home-cluster">
+      <ProgressBar variant="ring" value={on ? score * 20 : 0} color="blue" motion="auto" showPercentage label="完成进度" />
+      <RatingStars value={score} onChange={setScore} motion="auto" locale="zh" ariaLabel="完成度" />
+      <Toggle checked={on} onChange={setOn} color="blue" motion="auto" draggable ariaLabel="计入完成度" />
+    </div>
+  );
+}
+
+function EffectButtons() {
+  const { toast } = useToast();
+  return (
+    <div className="home-cluster">
+      <div className="flex items-center rounded-full bg-fg-grey-100 px-3 py-2">
+        <Button effect="glass" color="black" size="sm" motion="auto">记下一条</Button>
+      </div>
+      <Button
+        effect="ripple"
+        color="blue"
+        size="md"
+        motion="auto"
+        onClick={() => toast({ title: "已记下", description: "可以划掉这条通知。", status: "success" })}
+      >
+        弹出通知
+      </Button>
+      <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>
+        打开看板
+      </Button>
+    </div>
+  );
+}
+
+function MessageTabs() {
+  return (
+    <LiquidTabs
+      className="w-full max-w-full"
+      motion="auto"
+      label="消息分类"
+      tabs={[
+        { id: "today", label: "今天", items: [{ id: "review", title: "评审首页", subtitle: "10:00" }] },
+        { id: "todo", label: "待办", items: [{ id: "report", title: "整理周报", subtitle: "待排期" }] },
+        { id: "done", label: "完成", items: [{ id: "ship", title: "上线统计", subtitle: "已完成" }] },
+      ]}
+    />
+  );
+}
+
+function JumpMenu() {
+  const [current, setCurrent] = useState("board");
+  const items = [
+    { id: "board", label: "打开看板" },
+    { id: "chat", label: "打开对话" },
+    { id: "stats", label: "打开统计" },
+  ];
+  return (
+    <DropdownPanel motion="auto" width="w-full" className="max-w-full">
+      {items.map((item) => (
+        <MenuItem
+          key={item.id}
+          accent="blue"
+          label={item.label}
+          active={current === item.id}
+          motion="auto"
+          onClick={() => setCurrent(item.id)}
+        />
+      ))}
+    </DropdownPanel>
+  );
+}
+
+function Picker() {
+  const [value, setValue] = useState("board");
+  return (
+    <SelectOption
+      label="打开"
+      color="blue"
+      motion="auto"
+      type="single"
+      value={value}
+      onChange={setValue}
+      width="200px"
+      options={[
+        { value: "board", label: "看板" },
+        { value: "chat", label: "对话" },
+        { value: "stats", label: "统计" },
+      ]}
+    />
+  );
+}
+
+function Metric() {
+  return (
+    <div className="home-metric min-w-0">
       <BarChartStatCard
         title="本周完成"
         value="128"
@@ -76,17 +235,23 @@ function Metrics() {
         bars={[12, 28, 16, 36, 22]}
         width="full"
       />
-      <BarChartStatCard
-        title="进行中"
-        value="36"
-        subtitle="个任务"
-        theme="black"
-        size="sm"
-        density="compact"
-        barColor="cyan"
-        bars={[14, 22, 18, 28, 24]}
-        width="full"
+    </div>
+  );
+}
+
+function CommandMenu() {
+  const [picked, setPicked] = useState("打开看板");
+  return (
+    <div className="flex w-full min-w-0 flex-col gap-2">
+      <CommandSearch
+        className="w-full"
+        color="blue"
+        locale="zh"
+        motion="auto"
+        items={commandItems}
+        onSelect={(item) => setPicked(item.label)}
       />
+      <span className="text-sm text-fg-grey-700">当前：{picked}</span>
     </div>
   );
 }
@@ -103,13 +268,7 @@ function WeekBars() {
     { value: 8, label: "日" },
   ];
   return (
-    <ChartCard
-      title="本周完成"
-      subtitle="点一根柱子"
-      width="full"
-      minHeight="min-h-0"
-      action={<></>}
-    >
+    <ChartCard title="本周完成" subtitle="点一根柱子" width="full" minHeight="min-h-0" action={<></>}>
       <BarChart
         data={days}
         accent="blue"
@@ -127,50 +286,8 @@ function WeekBars() {
   );
 }
 
-function Trend() {
-  const [active, setActive] = useState<number | undefined>(4);
-  return (
-    <ChartCard title="近七天" subtitle="指针停在线上" width="full" minHeight="min-h-0" action={<></>}>
-      <SmoothLineChart
-        accent="blue"
-        motion="auto"
-        height="h-24"
-        ariaLabel="近七天趋势"
-        activeIndex={active}
-        onActiveIndexChange={setActive}
-        xAxisLabels={["一", "二", "三", "四", "五", "六", "日"]}
-        series={[{ data: [12, 18, 15, 24, 22, 28, 26], fillArea: true, label: "完成" }]}
-      />
-    </ChartCard>
-  );
-}
-
-function Mix() {
-  const [active, setActive] = useState<number | undefined>();
-  return (
-    <ChartCard title="任务分布" subtitle="点一段环形" width="full" minHeight="min-h-0" action={<></>}>
-      <DonutChart
-        size="sm"
-        accent="blue"
-        motion="auto"
-        interactive
-        activeIndex={active}
-        onSegmentToggle={(index) => setActive((current) => (current === index ? undefined : index))}
-        centerValue="182"
-        ariaLabel="任务分布"
-        segments={[
-          { value: 128, label: "已完成", color: "bg-fg-blue" },
-          { value: 36, label: "进行中", color: "bg-fg-cyan-500" },
-          { value: 18, label: "待办", color: "bg-fg-black" },
-        ]}
-      />
-      <div className="flex w-full min-w-0 flex-col gap-2">
-        <ChartLegendItem accent="blue" label="已完成" value="128" />
-        <ChartLegendItem color="bg-fg-cyan-500" label="进行中" value="36" />
-        <ChartLegendItem accent="black" label="待办" value="18" />
-      </div>
-    </ChartCard>
-  );
+function DatePicker() {
+  return <CalendarCard color="blue" size="compact" motion="auto" className="max-w-full" />;
 }
 
 function TaskTable() {
@@ -192,54 +309,104 @@ function TaskTable() {
   );
 }
 
-function Agenda() {
-  const day = new Date().getDate();
+function Steps() {
+  const [step, setStep] = useState(2);
+  const [page, setPage] = useState(1);
   return (
-    <SmallCalendar
-      title="日程"
-      subtitle="今天的安排"
+    <div className="flex w-full min-w-0 flex-col gap-4">
+      <Stepper
+        color="blue"
+        motion="auto"
+        locale="zh"
+        current={step}
+        onStepChange={setStep}
+        items={[
+          { id: "pick", label: "挑选" },
+          { id: "place", label: "排进" },
+          { id: "check", label: "核对" },
+        ]}
+      />
+      <Pagination totalPages={5} currentPage={page} onPageChange={setPage} color="blue" motion="auto" locale="zh" />
+    </div>
+  );
+}
+
+function UnderlineTabs() {
+  const [index, setIndex] = useState(0);
+  const labels = ["统计", "日程", "对话"];
+  return (
+    <TabBar
       color="blue"
-      width="full"
-      events={[
-        { day, title: "评审首页", timeRange: "10:00 – 10:30", color: "blue" },
-        { day, title: "对齐看板", timeRange: "14:00 – 14:45", color: "cyan" },
-        { day, title: "看对话记录", timeRange: "16:30 – 17:00", color: "black" },
+      motion="auto"
+      ariaLabel="视图"
+      tabs={labels.map((label, item) => ({ label, active: item === index }))}
+      onChange={setIndex}
+    />
+  );
+}
+
+function TodoList() {
+  return (
+    <Checklist
+      motion="auto"
+      color="blue"
+      size="sm"
+      defaultTasks={[
+        { id: "stats", label: "核对统计", done: true },
+        { id: "board", label: "排进看板" },
+        { id: "chat", label: "看对话记录" },
       ]}
     />
   );
 }
 
-function DatePicker() {
-  return <CalendarCard color="blue" size="compact" motion="auto" className="max-w-full" />;
+function Filters() {
+  const [checked, setChecked] = useState<Record<string, boolean>>({ stats: true, calendar: false, chat: false });
+  return (
+    <FilterGroup
+      title="视图"
+      color="blue"
+      content={{
+        type: "checkbox",
+        onToggle: (value, next) => setChecked((current) => ({ ...current, [value]: next })),
+        options: [
+          { value: "stats", label: "统计", checked: checked.stats, colorDot: "bg-fg-blue" },
+          { value: "calendar", label: "日程", checked: checked.calendar, colorDot: "bg-fg-cyan-500" },
+          { value: "chat", label: "对话", checked: checked.chat, colorDot: "bg-fg-black" },
+        ],
+      }}
+    />
+  );
 }
 
-function BoardCard({
-  title,
-  description,
-  label,
-  labelColor,
-  progress,
-  progressColor,
-  date,
-}: {
-  title: string;
-  description: string;
-  label: string;
-  labelColor: "blue" | "cyan" | "gray";
-  progress: number;
-  progressColor: "blue" | "cyan" | "gray";
-  date: string;
-}) {
+function Passcode() {
+  const [value, setValue] = useState("");
+  return <OtpInput length={4} locale="zh" value={value} onChange={setValue} motion="auto" inputLabel="验证码" />;
+}
+
+function Trace() {
   return (
-    <TaskCard
-      title={title}
-      description={description}
-      labelText={label}
-      labelColor={labelColor}
-      progress={progress}
-      progressColor={progressColor}
-      date={date}
+    <ThinkingTrace
+      variant="steps"
       locale="zh"
+      motion="auto"
+      settled
+      doneLabel="已对照 AGENTS.md"
+      rows={[{ primary: "读取 AGENTS.md" }, { primary: "对照组件写法" }, { primary: "排进这一页" }]}
+    />
+  );
+}
+
+function ProjectOne() {
+  return (
+    <ProjectCard
+      title="首页改版"
+      description="统计、日程和看板放在同一面墙上。"
+      labelText="进行中"
+      labelColor="blue"
+      progress={68}
+      progressColor="blue"
+      date="10月17日"
       width="full"
       className="w-full max-w-full"
       onMenuClick={() => undefined}
@@ -247,93 +414,20 @@ function BoardCard({
   );
 }
 
-function ChatStack() {
+function TaskOne() {
   return (
-    <SurfaceCard title="对话" subtitle="和后台用的是同一套组件" padding="sm" className="w-full max-w-full">
-      <div className="flex flex-col gap-3">
-        <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
-        <ThinkingTrace
-          variant="steps"
-          locale="zh"
-          motion="auto"
-          settled
-          doneLabel="已对照 AGENTS.md"
-          rows={[{ primary: "读取 AGENTS.md" }, { primary: "对照组件写法" }, { primary: "排进这一页" }]}
-        />
-        <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" />
-        <ChatInputBar locale="zh" motion="auto" color="blue" placeholder="写一条消息" />
-      </div>
-    </SurfaceCard>
-  );
-}
-
-function MessageTabs() {
-  return (
-    <LiquidTabs
-      motion="auto"
-      label="消息分类"
-      tabs={[
-        {
-          id: "today",
-          label: "今天",
-          items: [
-            { id: "review", title: "评审首页", subtitle: "10:00" },
-            { id: "board", title: "对齐看板", subtitle: "14:00" },
-          ],
-        },
-        {
-          id: "todo",
-          label: "待办",
-          items: [{ id: "report", title: "整理周报", subtitle: "待排期" }],
-        },
-        {
-          id: "done",
-          label: "完成",
-          items: [{ id: "ship", title: "上线统计卡", subtitle: "已完成" }],
-        },
-      ]}
-    />
-  );
-}
-
-function TodoList() {
-  return (
-    <SurfaceCard title="待办" subtitle="点一下会划掉" padding="sm" className="w-full max-w-full">
-      <Checklist
-        motion="auto"
-        color="blue"
-        size="sm"
-        defaultTasks={[
-          { id: "stats", label: "核对统计卡", done: true },
-          { id: "board", label: "排进看板" },
-          { id: "chat", label: "看对话记录" },
-        ]}
-      />
-    </SurfaceCard>
-  );
-}
-
-function Score() {
-  const [value, setValue] = useState(4);
-  return (
-    <SurfaceCard title="这周的完成度" padding="sm" className="w-full max-w-full">
-      <RatingStars value={value} onChange={setValue} motion="auto" locale="zh" ariaLabel="这周的完成度" />
-    </SurfaceCard>
-  );
-}
-
-function RateWheel() {
-  return (
-    <WheelChartStatCard
-      title="完成率"
-      value="68%"
-      subtitle="本周"
-      theme="white"
-      size="sm"
-      density="compact"
-      wheelColor="cyan"
-      wheelPercent={68}
+    <TaskCard
+      title="排期看板"
+      description="任务卡可以点开菜单。"
+      labelText="进行中"
+      labelColor="blue"
+      progress={68}
+      progressColor="cyan"
+      date="10月17日"
+      locale="zh"
       width="full"
+      className="w-full max-w-full"
+      onMenuClick={() => undefined}
     />
   );
 }
@@ -343,23 +437,20 @@ function Wall({ scene }: { scene: Scene }) {
     return (
       <div className="home-wall">
         <div className="home-col home-col-wide">
-          <ChatStack />
-        </div>
-        <div className="home-col">
-          <ChatBubble type="received" color="blue" motion="auto" senderName="林夏" content="看板那一列也可以点进模板。" />
-          <ChatBubble type="sent" color="black" motion="auto" content="我先看趋势。" />
-          <ChatInputBar locale="zh" motion="auto" color="blue" placeholder="再写一条" />
-        </div>
-        <div className="home-col">
+          <Thread extra />
           <MessageTabs />
-          <ThinkingTrace
-            variant="steps"
-            locale="zh"
-            motion="auto"
-            settled
-            doneLabel="已对照 AGENTS.md"
-            rows={[{ primary: "读取 AGENTS.md" }, { primary: "排进对话" }]}
-          />
+          <Trace />
+        </div>
+        <div className="home-col">
+          <CommandMenu />
+          <People />
+          <Badges />
+          <EffectButtons />
+        </div>
+        <div className="home-col">
+          <Segmented />
+          <ScoreRing />
+          <Picker />
         </div>
       </div>
     );
@@ -369,30 +460,22 @@ function Wall({ scene }: { scene: Scene }) {
     return (
       <div className="home-wall">
         <div className="home-col home-col-wide">
-          <ProjectCard
-            title="首页改版"
-            description="统计、日程和看板放在同一面墙上。"
-            labelText="进行中"
-            labelColor="blue"
-            progress={68}
-            progressColor="blue"
-            date="10月17日"
-            width="full"
-            className="w-full max-w-full"
-            onMenuClick={() => undefined}
-          />
-          <BoardCard title="整理周报" description="把本周数字收进统计卡。" label="待办" labelColor="gray" progress={8} progressColor="cyan" date="10月18日" />
-          <div className="flex justify-start px-1 py-2">
-            <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>打开看板</Button>
-          </div>
+          <Segmented />
+          <People />
+          <EffectButtons />
+          <Steps />
+          <ProjectOne />
         </div>
         <div className="home-col">
-          <BoardCard title="客户跟进" description="对照对话里的记录。" label="进行中" labelColor="cyan" progress={46} progressColor="blue" date="10月17日" />
-          <BoardCard title="排期看板" description="三列都用任务卡。" label="进行中" labelColor="blue" progress={68} progressColor="cyan" date="10月20日" />
+          <UnderlineTabs />
+          <TodoList />
+          <ScoreRing />
+          <TaskOne />
         </div>
         <div className="home-col">
-          <BoardCard title="上线统计卡" description="折线和柱形都已放上。" label="完成" labelColor="gray" progress={100} progressColor="blue" date="10月16日" />
-          <Button effect="ripple" color="blue" size="md" motion="auto">记下一条</Button>
+          <Badges />
+          <Filters />
+          <JumpMenu />
         </div>
       </div>
     );
@@ -403,15 +486,21 @@ function Wall({ scene }: { scene: Scene }) {
       <div className="home-wall">
         <div className="home-col home-col-wide">
           <MessageTabs />
-          <TodoList />
-        </div>
-        <div className="home-col">
-          <Score />
-          <RateWheel />
-          <Button effect="ripple" color="black" size="md" motion="auto">保存这组</Button>
-        </div>
-        <div className="home-col">
+          <ScoreRing />
+          <Passcode />
+          <Filters />
           <DatePicker />
+        </div>
+        <div className="home-col">
+          <Picker />
+          <JumpMenu />
+          <EffectButtons />
+          <Steps />
+        </div>
+        <div className="home-col">
+          <Segmented />
+          <UnderlineTabs />
+          <Badges />
         </div>
       </div>
     );
@@ -420,35 +509,38 @@ function Wall({ scene }: { scene: Scene }) {
   return (
     <div className="home-wall">
       <div className="home-col home-col-wide">
-        <Metrics />
+        <div className="home-cluster">
+          <Segmented />
+          <Badges />
+        </div>
+        <div className="home-cluster">
+          <People />
+          <ScoreRing />
+        </div>
+        <Thread />
+        <EffectButtons />
+        <div className="home-mosaic">
+          <MessageTabs />
+          <JumpMenu />
+        </div>
+        <Metric />
+        <CommandMenu />
         <WeekBars />
         <DatePicker />
-        <Mix />
-        <Trend />
-        <Agenda />
         <TaskTable />
+        <Steps />
       </div>
       <div className="home-col">
-        <ProjectCard
-          title="首页改版"
-          description="统计、日程和看板放在同一面墙上。"
-          labelText="进行中"
-          labelColor="blue"
-          progress={68}
-          progressColor="blue"
-          date="10月17日"
-          width="full"
-          className="w-full max-w-full"
-          onMenuClick={() => undefined}
-        />
-        <BoardCard title="排期看板" description="任务卡可以点开菜单。" label="进行中" labelColor="blue" progress={68} progressColor="cyan" date="10月17日" />
-        <div className="flex justify-start px-1 py-2">
-          <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>打开看板</Button>
-        </div>
-      </div>
-      <div className="home-col">
-        <ChatStack />
+        <Picker />
+        <UnderlineTabs />
+        <ProjectOne />
+        <TaskOne />
         <TodoList />
+      </div>
+      <div className="home-col">
+        <Filters />
+        <Passcode />
+        <Trace />
       </div>
     </div>
   );
@@ -458,7 +550,7 @@ export function HomeHero({ children }: { children: ReactNode }) {
   const [scene, setScene] = useState<Scene>("后台");
 
   return (
-    <>
+    <ToastProvider motion="auto" locale="zh">
       <div className="home-hero-copy">{children}</div>
       <div className="home-hero-stage" id="home-hero-wall" data-home-wall data-scene={scene}>
         <Wall scene={scene} />
@@ -482,6 +574,6 @@ export function HomeHero({ children }: { children: ReactNode }) {
           ))}
         </div>
       </div>
-    </>
+    </ToastProvider>
   );
 }
