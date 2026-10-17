@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Forge Serif SC";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/noto-serif-sc-500-title.woff2") format("woff2");
-  /* Subset of Noto Serif SC (SIL Open Font License 1.1) for the homepage title. */
-  unicode-range: U+3001, U+548C, U+5B50, U+5BF9, U+6210, U+65E5, U+6709, U+677F, U+6837, U+73B0, U+7684, U+770B, U+7A0B, U+7EDF, U+8BA1, U+8BDD, U+90FD, U+FF0C;
-}
-
 .home-page {
   background: #f4f4f5;
   color: #000a19;
@@ -45,6 +35,7 @@
   max-width: 31.25rem;
   flex-direction: column;
   padding: 5.25rem 0 1.5rem;
+  font-family: var(--font-sans);
 }
 
 .home-pill {
@@ -66,10 +57,10 @@
 .home-hero-title {
   margin-top: 1.35rem;
   max-width: 100%;
-  font-family: "Forge Serif SC", "Iowan Old Style", "Palatino Linotype", "Songti SC", serif;
-  font-size: 4.5rem;
-  font-weight: 500;
-  line-height: 1.12;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.15;
   letter-spacing: -0.03em;
   color: #000a19;
 }
@@ -87,7 +78,7 @@
   margin-top: 1.4rem;
   min-width: 0;
   max-width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
   border-radius: 12px;
   background: #fff;
   padding: 0.95rem 1.05rem;
@@ -96,7 +87,8 @@
   font-size: 13px;
   line-height: 1.7;
   color: #000a19;
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .tok-kw { color: #3553ff; }
@@ -238,9 +230,9 @@
   }
 
   .home-hero-title {
-    font-size: 2.35rem;
-    line-height: 1.16;
-    letter-spacing: -0.03em;
+    font-size: 2.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .home-hero-lead {
