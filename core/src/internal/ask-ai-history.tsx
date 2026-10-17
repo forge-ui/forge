@@ -113,9 +113,9 @@ export function AskHistoryDropdown({
               role="listbox"
               aria-label="历史对话"
               className="absolute z-[90] bg-background"
-              style={{ visibility: "hidden", zIndex: 90, backgroundColor: "var(--background)" }}
+              style={{ visibility: "hidden", zIndex: 90, backgroundColor: "var(--background)", width: "min(18rem, calc(100% - 16px))" }}
             >
-              <DropdownPanel width="w-72" padding="p-1.5" className="bg-background shadow-lg">
+              <DropdownPanel width="w-full" padding="p-1.5" className="bg-background shadow-lg">
                 <button
                   type="button"
                   className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm font-medium leading-5 text-fg-grey-700 hover:bg-fg-grey-50 focus-visible:outline-2 focus-visible:outline-fg-grey-500"

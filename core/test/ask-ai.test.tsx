@@ -459,6 +459,26 @@ test("PageTitleToolbar Ask AI opens, sends through its configured callback and i
 });
 
 
+test("Docked notifications ignore callback identity changes and release the latest host on unmount", async () => {
+  const dom = installDom();
+  Object.defineProperty(window, "matchMedia", { configurable: true, value: () => ({
+    matches: true, addEventListener() {}, removeEventListener() {},
+  }) });
+  const root = createRoot(document.querySelector("#root")!);
+  const first: boolean[] = [];
+  const latest: boolean[] = [];
+  try {
+    await act(async () => root.render(<AskAi onSend={() => "reply"} panelMode="responsive" onDockedChange={value => first.push(value)} />));
+    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
+    assert.deepEqual(first, [false, true]);
+    await act(async () => root.render(<AskAi onSend={() => "reply"} panelMode="responsive" onDockedChange={value => latest.push(value)} />));
+    assert.deepEqual(first, [false, true]);
+    assert.deepEqual(latest, []);
+    await act(async () => root.unmount());
+    assert.deepEqual(latest, [false]);
+  } finally { dom.window.close(); }
+});
+
 test("Responsive panel releases the host, adapts to narrow screens, and preserves drafts and conversation", async () => {
   const dom = installDom();
   let wide = true;

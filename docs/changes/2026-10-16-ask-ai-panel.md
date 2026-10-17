@@ -79,3 +79,16 @@ Forge 工作区已有大量其他未提交改动，不属于本次变更。Start
 - 浏览器宽屏、1100px、390px 主路径验证通过；`mobile.png` 同目录留档。
 - Starter `git status` 与本轮开始一致：仅原有 next-env.d.ts 修改、.env.bak、tmp/。未升级依赖，未安装本地包。
 - 未提交、未推送、未变更版本号、未发布 npm。core 发布会话应按精确文件范围审查，勿打包无关的官网工作区改动。
+
+## 0.4.6 发布审查与复验（2026-10-16）
+
+以下为独立发布副本的复验，以上 284 项结果属于迁移分支交接记录，不作为本次发布门禁证据。
+
+- 基线：远端 main `54598df8`；仅提取本说明列出的六个文件，另递增 `core/package.json` 至 `0.4.6`。未合入迁移分支其他提交或官网修改。
+- 审查修正：历史菜单宽度改为可随容器收缩，消除固定宽度告警；`onDockedChange` 不因回调函数身份变化而反复释放/占用宿主空间，并增加回归测试。
+- API 快照由独立副本构建后重新生成，仅 AskAi/AskAiProps 及其传递引用入口签名变化。
+- `pnpm core:check`：源码/测试类型、lint、168 项组件测试、17 项审计测试全部通过；组件审计 0 errors / 0 warnings；生产依赖许可证检查通过。
+- `pnpm core:build`、`pnpm core:check-package`、根目录 `tsc --noEmit`：通过。包契约检查 464 files，744994 B packed，3014680 B unpacked。
+- `pnpm core:check-consumer`：实际 tarball 安装至 Next 15.5.24 / 16.3.5，深入口、SSR、Tailwind 样式与生产构建通过。
+- 复用现有 Chrome 验证独立副本：1440px 为非模态 460px 并排，主页面按钮与输入可操作；1439px 和 390px 回退模态；断点与全屏往返草稿保留；进入全屏释放预留，返回恢复；历史菜单 Escape 只关闭菜单；关闭面板释放预留与滚动锁。浏览器无 error。
+- 未修改、安装或升级 forge-starter；Starter 消费验证由后续会话执行。本记录不代表用户视觉验收。
