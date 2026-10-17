@@ -45,7 +45,7 @@ export default function HomePage() {
                 {" />"}
               </code>
             </pre>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="home-cta-row">
               <Link href="/docs/quick-start" className="home-cta home-cta-dark">
                 开始使用
                 <span aria-hidden="true">→</span>

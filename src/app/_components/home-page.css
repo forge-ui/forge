@@ -42,10 +42,13 @@
   position: relative;
   z-index: 2;
   display: flex;
+  align-self: start;
+  height: calc(100svh - 4rem);
   min-width: 0;
   max-width: 31.25rem;
   flex-direction: column;
-  padding: 5.25rem 0 1.5rem;
+  justify-content: center;
+  padding: 0 0 1rem;
   font-family: var(--font-sans);
 }
 
@@ -66,7 +69,7 @@
 }
 
 .home-hero-title {
-  margin-top: 1.35rem;
+  margin-top: 0.8rem;
   max-width: 100%;
   font-family: var(--font-display);
   font-size: 4rem;
@@ -77,7 +80,7 @@
 }
 
 .home-hero-lead {
-  margin-top: 1.15rem;
+  margin-top: 0.6rem;
   max-width: 31rem;
   font-size: 1.25rem;
   font-weight: 400;
@@ -86,7 +89,7 @@
 }
 
 .home-code {
-  margin-top: 1.4rem;
+  margin-top: 1.35rem;
   min-width: 0;
   max-width: 100%;
   overflow: hidden;
@@ -106,6 +109,13 @@
 .tok-str { color: #0c7a86; }
 .tok-name { color: #000a19; font-weight: 650; }
 .tok-attr { color: #1d4f91; }
+
+.home-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
 
 .home-cta {
   display: inline-flex;
@@ -139,8 +149,7 @@
 }
 
 .home-pill:focus-visible,
-.home-cta:focus-visible,
-.home-live-tab:focus-visible {
+.home-cta:focus-visible {
   outline: 2px solid #3553ff;
   outline-offset: 3px;
 }
@@ -257,6 +266,14 @@
   width: 100%;
 }
 
+.home-people [class*="-space-x-2"] > * {
+  transition: margin-left 0.2s ease;
+}
+
+.home-people:hover [class*="-space-x-2"] > * {
+  margin-left: 0.35rem;
+}
+
 .home-panel .home-menu {
   width: 100%;
   max-width: 100%;
@@ -300,39 +317,6 @@
   box-shadow: none;
 }
 
-.home-live {
-  position: absolute;
-  z-index: 3;
-  left: 4.75rem;
-  top: calc(100svh - 3.75rem);
-  display: flex;
-  width: min(31.25rem, calc(100% - 6rem));
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 1.25rem;
-}
-
-.home-live-label {
-  border-bottom: 2px solid #000a19;
-  padding-bottom: 0.15rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #000a19;
-}
-
-.home-live-tab {
-  background: transparent;
-  padding: 0.15rem 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #8b93a0;
-}
-
-.home-live-tab.is-on {
-  color: #000a19;
-  font-weight: 650;
-}
-
 .home-board {
   border-radius: 24px;
   background: #fff;
@@ -370,7 +354,9 @@
   .home-hero-copy {
     order: 1;
     width: 100%;
+    height: auto;
     max-width: 100%;
+    justify-content: flex-start;
     padding: 0;
   }
 
@@ -400,13 +386,6 @@
 
   .home-col {
     width: 100cqw;
-  }
-
-  .home-live {
-    order: 2;
-    position: static;
-    width: auto;
-    margin-top: 1.35rem;
   }
 }
 

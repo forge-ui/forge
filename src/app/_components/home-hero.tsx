@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Avatar,
   AvatarGroup,
@@ -13,6 +13,7 @@ import {
   Checklist,
   ChatBubble,
   ChatInputBar,
+  type ChatInputBarQuickAction,
   CommandSearch,
   DataTable,
   DropdownPanel,
@@ -39,9 +40,6 @@ import {
   type ColumnDef,
 } from "@forge-ui-official/core";
 import { AltArrowRightLinear } from "@forge-ui-official/core/icons";
-
-const scenes = ["后台", "对话", "项目", "设置"] as const;
-type Scene = (typeof scenes)[number];
 
 const arrow = <AltArrowRightLinear size={16} color="currentColor" />;
 
@@ -130,38 +128,62 @@ function Badges() {
 
 function People() {
   return (
-    <AvatarGroup>
-      <Avatar initials="林" size="md" color="blue" />
-      <Avatar initials="周" size="md" color="cyan" />
-      <Avatar initials="陈" size="md" color="blue" />
-    </AvatarGroup>
+    <div className="home-people">
+      <AvatarGroup>
+        <Avatar initials="林" size="md" color="blue" />
+        <Avatar initials="周" size="md" color="cyan" />
+        <Avatar initials="陈" size="md" color="blue" />
+      </AvatarGroup>
+    </div>
   );
 }
 
-function Thread({ extra = false }: { extra?: boolean }) {
+const quickCards: ChatInputBarQuickAction[] = [
+  { id: "image", label: "创建图片", kind: "image" },
+  { id: "note", label: "写笔记", kind: "note" },
+  { id: "docs", label: "分析文档", kind: "docs" },
+];
+
+function Thread() {
+  const [shown, setShown] = useState(1);
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setShown(3);
+      return;
+    }
+    const timers = [650, 1400].map((delay, index) => window.setTimeout(() => setShown(index + 2), delay));
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, []);
   return (
     <div className="flex w-full min-w-0 flex-col gap-3">
+      <ChatInputBar
+        className="w-full max-w-full"
+        locale="zh"
+        motion="auto"
+        color="blue"
+        placeholder="写一条消息"
+        quickActions={quickCards}
+        quickActionsLabel="快捷卡片"
+        defaultQuickActionsOpen
+        hasMessages={false}
+        showAttachment={false}
+      />
       <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
-      {extra ? <ChatBubble type="received" color="blue" motion="auto" senderName="林夏" content="看板那一列也可以点进模板。" /> : null}
-      <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" />
-      <ChatInputBar className="w-full max-w-full" locale="zh" motion="auto" color="blue" placeholder="写一条消息" />
+      {shown > 1 ? (
+        <ChatBubble type="sent" color="blue" variant="file" motion="auto" fileName="本周统计.pdf" fileSize="240 KB" />
+      ) : null}
+      {shown > 2 ? <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" /> : null}
     </div>
   );
 }
 
 function ScoreRing() {
   const [score, setScore] = useState(4);
-  const [on, setOn] = useState(true);
   return (
     <div className="home-split">
-      <ProgressBar variant="ring" value={on ? score * 20 : 0} color="blue" motion="auto" showPercentage label="完成进度" />
-      <div className="home-panel-body">
-        <RatingStars value={score} onChange={setScore} motion="auto" locale="zh" size="sm" ariaLabel="完成度" />
-        <div className="home-split">
-          <span className="text-sm text-fg-grey-700">计入完成度</span>
-          <Toggle checked={on} onChange={setOn} color="blue" motion="auto" draggable ariaLabel="计入完成度" />
-        </div>
-      </div>
+      <ProgressBar variant="ring" value={score * 20} color="blue" motion="auto" showPercentage label="完成进度" />
+      <RatingStars value={score} onChange={setScore} motion="auto" locale="zh" size="sm" ariaLabel="完成度" />
     </div>
   );
 }
@@ -185,6 +207,9 @@ function EffectButtons() {
       </Button>
       <Button className="home-wide" data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>
         打开看板
+      </Button>
+      <Button className="home-wide" effect="roll" color="black" size="md" motion="auto">
+        切换视图
       </Button>
     </div>
   );
@@ -485,10 +510,10 @@ function TeamPanel() {
   );
 }
 
-function ChatPanel({ extra = false }: { extra?: boolean }) {
+function ChatPanel() {
   return (
     <Panel title="对话">
-      <Thread extra={extra} />
+      <Thread />
     </Panel>
   );
 }
@@ -576,141 +601,37 @@ function CalendarPanel() {
   );
 }
 
-function Wall({ scene }: { scene: Scene }) {
-  if (scene === "对话") {
-    return (
-      <BrickWall
-        columns={[
-          <>
-            <ChatPanel extra />
-            <MessagePanel />
-            <TracePanel />
-          </>,
-          <>
-            <CommandPanel />
-            <TeamPanel />
-            <ViewPanel />
-            <ActionPanel />
-          </>,
-          <>
-            <ReleasePanel />
-            <JumpPanel />
-            <PasscodePanel />
-            <PagePanel />
-          </>,
-        ]}
-      />
-    );
-  }
-
-  if (scene === "项目") {
-    return (
-      <BrickWall
-        columns={[
-          <>
-            <ViewPanel />
-            <TeamPanel />
-            <Panel flush><ProjectOne /></Panel>
-            <CommandPanel />
-          </>,
-          <>
-            <ReleasePanel />
-            <Panel flush><TaskOne /></Panel>
-            <TodoPanel />
-          </>,
-          <>
-            <JumpPanel />
-            <ActionPanel />
-            <MessagePanel />
-            <PagePanel />
-          </>,
-        ]}
-      />
-    );
-  }
-
-  if (scene === "设置") {
-    return (
-      <BrickWall
-        columns={[
-          <>
-            <MessagePanel />
-            <CalendarPanel />
-            <PasscodePanel />
-            <PagePanel />
-          </>,
-          <>
-            <Panel title="偏好">
-              <ScoreRing />
-              <Filters />
-            </Panel>
-            <JumpPanel />
-            <TracePanel />
-          </>,
-          <>
-            <ViewPanel />
-            <ReleasePanel />
-            <TeamPanel />
-            <ActionPanel />
-          </>,
-        ]}
-      />
-    );
-  }
-
+function Wall() {
   return (
     <BrickWall
       columns={[
         <>
           <ViewPanel />
-          <TeamPanel />
+          <ActionPanel />
           <ChatPanel />
-          <Panel flush><TaskTable /></Panel>
+        </>,
+        <>
+          <CalendarPanel />
+          <Panel flush><WeekBars /></Panel>
+          <ReleasePanel />
         </>,
         <>
           <Panel flush><Metric /></Panel>
-          <ReleasePanel />
-          <Panel flush><WeekBars /></Panel>
-          <CalendarPanel />
+          <TeamPanel />
+          <Panel flush><TaskOne /></Panel>
+          <CommandPanel />
         </>,
-          <>
-            <ActionPanel />
-            <Panel flush><TaskOne /></Panel>
-            <Panel flush><ProjectOne /></Panel>
-            <CommandPanel />
-          </>,
       ]}
     />
   );
 }
 
 export function HomeHero({ children }: { children: ReactNode }) {
-  const [scene, setScene] = useState<Scene>("后台");
-
   return (
     <ToastProvider motion="auto" locale="zh">
       <div className="home-hero-copy">{children}</div>
-      <div className="home-hero-stage" id="home-hero-wall" data-home-wall data-scene={scene}>
-        <Wall scene={scene} />
-      </div>
-      <div className="home-live">
-        <span className="home-live-label">实时示例</span>
-        <div role="tablist" aria-label="实时示例" className="flex flex-wrap items-center gap-x-4 gap-y-1">
-          {scenes.map((item) => (
-            <button
-              key={item}
-              type="button"
-              role="tab"
-              id={`home-scene-${item}`}
-              aria-selected={scene === item}
-              aria-controls="home-hero-wall"
-              className={scene === item ? "home-live-tab is-on" : "home-live-tab"}
-              onClick={() => setScene(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+      <div className="home-hero-stage" id="home-hero-wall" data-home-wall>
+        <Wall />
       </div>
     </ToastProvider>
   );
