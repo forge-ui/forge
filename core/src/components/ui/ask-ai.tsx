@@ -190,10 +190,14 @@ export function AskAi({
     return () => media.removeEventListener("change", update);
   }, [panelMode]);
   const docked = panelMode === "responsive" && wide && open && !fullscreenOpen;
+  const onDockedChangeRef = useRef(onDockedChange);
   useLayoutEffect(() => {
-    onDockedChange?.(docked);
-    return () => onDockedChange?.(false);
-  }, [docked, onDockedChange]);
+    onDockedChangeRef.current = onDockedChange;
+  }, [onDockedChange]);
+  useLayoutEffect(() => {
+    onDockedChangeRef.current?.(docked);
+  }, [docked]);
+  useLayoutEffect(() => () => onDockedChangeRef.current?.(false), []);
 
   function setFullscreenOpen(next: boolean) {
     if (!fullscreenControlled) setInternalFullscreen(next);
