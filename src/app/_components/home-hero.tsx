@@ -13,7 +13,6 @@ import {
   DataTable,
   DonutChart,
   ChartLegendItem,
-  LineChartStatCard,
   LiquidTabs,
   ProjectCard,
   RatingStars,
@@ -64,19 +63,18 @@ const tableColumns: ColumnDef<TableRow>[] = [
 
 function Metrics() {
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <LineChartStatCard
+    <div className="home-metrics grid grid-cols-2 gap-4">
+      <BarChartStatCard
         title="本周完成"
-        value={128}
-        animateValue
+        value="128"
         trend="+12%"
         subtitle="较上周"
         theme="blue"
         size="sm"
         density="compact"
-        chartColor="blue"
+        barColor="blue"
+        bars={[12, 28, 16, 36, 22]}
         width="full"
-        motion="auto"
       />
       <BarChartStatCard
         title="进行中"
@@ -110,11 +108,7 @@ function WeekBars() {
       subtitle="点一根柱子"
       width="full"
       minHeight="min-h-0"
-      action={
-        <Button data-home-glass effect="glass" color="blue" size="sm" motion="auto">
-          导出本周
-        </Button>
-      }
+      action={<></>}
     >
       <BarChart
         data={days}
