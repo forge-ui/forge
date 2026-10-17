@@ -2,21 +2,30 @@
 
 import { useState, type ReactNode } from "react";
 import {
-  Avatar,
+  BarChart,
+  BarChartStatCard,
   Button,
+  CalendarCard,
   ChartCard,
-  ChartLegendItem,
+  Checklist,
   ChatBubble,
   ChatInputBar,
+  DataTable,
   DonutChart,
-  ListItem,
-  ProgressBar,
+  ChartLegendItem,
+  LineChartStatCard,
+  LiquidTabs,
+  ProjectCard,
+  RatingStars,
   SmallCalendar,
-  StatCard,
+  SmoothLineChart,
+  StatusBadge,
+  CellText,
   SurfaceCard,
-  TextField,
+  TaskCard,
   ThinkingTrace,
-  Toggle,
+  WheelChartStatCard,
+  type ColumnDef,
 } from "@forge-ui-official/core";
 import { AltArrowRightLinear } from "@forge-ui-official/core/icons";
 
@@ -25,120 +34,171 @@ type Scene = (typeof scenes)[number];
 
 const arrow = <AltArrowRightLinear size={16} color="currentColor" />;
 
-function Panel({
-  title,
-  subtitle,
-  children,
-}: {
-  title: string;
-  subtitle?: string;
-  children: ReactNode;
-}) {
-  return (
-    <SurfaceCard title={title} subtitle={subtitle} padding="sm" className="w-full max-w-full">
-      {children}
-    </SurfaceCard>
-  );
-}
+type TableRow = {
+  id: string;
+  name: string;
+  status: string;
+  tone: "blue" | "cyan" | "grey";
+};
 
-function Stats() {
+const tableRows: TableRow[] = [
+  { id: "1", name: "周报统计", status: "已完成", tone: "blue" },
+  { id: "2", name: "排期看板", status: "进行中", tone: "cyan" },
+  { id: "3", name: "客户跟进", status: "待开始", tone: "grey" },
+];
+
+const tableColumns: ColumnDef<TableRow>[] = [
+  {
+    key: "name",
+    header: "事项",
+    flex: true,
+    render: (row) => <CellText>{row.name}</CellText>,
+  },
+  {
+    key: "status",
+    header: "状态",
+    width: "w-24",
+    render: (row) => <StatusBadge label={row.status} color={row.tone} />,
+  },
+];
+
+function Metrics() {
   return (
     <div className="grid grid-cols-2 gap-4">
-      <StatCard title="本周完成" value="128" trend="+12%" subtitle="较上周" theme="blue" size="sm" density="compact" width="full" motion="auto" />
-      <StatCard title="进行中" value="36" subtitle="个任务" theme="black" size="sm" density="compact" width="full" motion="auto" />
+      <LineChartStatCard
+        title="本周完成"
+        value={128}
+        animateValue
+        trend="+12%"
+        subtitle="较上周"
+        theme="blue"
+        size="sm"
+        density="compact"
+        chartColor="blue"
+        width="full"
+        motion="auto"
+      />
+      <BarChartStatCard
+        title="进行中"
+        value="36"
+        subtitle="个任务"
+        theme="black"
+        size="sm"
+        density="compact"
+        barColor="cyan"
+        bars={[14, 22, 18, 28, 24]}
+        width="full"
+      />
     </div>
   );
 }
 
-function TaskChart() {
+function WeekBars() {
+  const [index, setIndex] = useState(3);
+  const days = [
+    { value: 18, label: "一" },
+    { value: 24, label: "二" },
+    { value: 16, label: "三" },
+    { value: 32, label: "四" },
+    { value: 22, label: "五" },
+    { value: 12, label: "六" },
+    { value: 8, label: "日" },
+  ];
   return (
-    <div className="relative min-w-0">
-      <ChartCard title="任务分布" subtitle="按状态" width="full" minHeight="min-h-0" action={<></>}>
-        <DonutChart
-          size="sm"
-          accent="blue"
-          motion="auto"
-          centerValue="182"
-          ariaLabel="任务分布"
-          segments={[
-            { value: 128, label: "已完成", color: "bg-fg-blue" },
-            { value: 36, label: "进行中", color: "bg-fg-cyan-500" },
-            { value: 18, label: "待办", color: "bg-fg-black" },
-          ]}
-        />
-        <div className="flex w-full min-w-0 flex-col gap-2">
-          <ChartLegendItem accent="blue" label="已完成" value="128" />
-          <ChartLegendItem color="bg-fg-cyan-500" label="进行中" value="36" />
-          <ChartLegendItem accent="black" label="待办" value="18" />
-        </div>
-      </ChartCard>
-      <div className="pointer-events-none absolute right-4 top-16">
-        <Button data-home-glass effect="glass" color="blue" size="sm" motion="auto" className="pointer-events-auto">
+    <ChartCard
+      title="本周完成"
+      subtitle="点一根柱子"
+      width="full"
+      minHeight="min-h-0"
+      action={
+        <Button data-home-glass effect="glass" color="blue" size="sm" motion="auto">
           导出本周
         </Button>
-      </div>
-    </div>
+      }
+    >
+      <BarChart
+        data={days}
+        accent="blue"
+        color="bg-fg-blue"
+        inactiveColor="bg-fg-blue-100"
+        motion="auto"
+        height="h-28"
+        showLabels
+        barWidth="wide"
+        activeIndex={index}
+        onSelect={setIndex}
+        ariaLabel="本周完成"
+      />
+    </ChartCard>
   );
 }
 
-function TeamList() {
-  const people = [
-    { name: "林夏", role: "设计", email: "lin.xia@example.com", initials: "林" },
-    { name: "周衡", role: "研发", email: "zhou.heng@example.com", initials: "周" },
-    { name: "陈可", role: "产品", email: "chen.ke@example.com", initials: "陈" },
-    { name: "吴宁", role: "运营", email: "wu.ning@example.com", initials: "吴" },
-  ];
+function Trend() {
+  const [active, setActive] = useState<number | undefined>(4);
   return (
-    <Panel title="团队" subtitle="管理成员">
-      <div className="flex flex-col gap-3">
-        {people.map((person) => (
-          <ListItem
-            key={person.name}
-            lead={{ kind: "avatar", initials: person.initials, alt: person.name, size: "sm" }}
-            title={person.name}
-            subtitle={`${person.role} · ${person.email}`}
-          />
-        ))}
-      </div>
-    </Panel>
+    <ChartCard title="近七天" subtitle="指针停在线上" width="full" minHeight="min-h-0" action={<></>}>
+      <SmoothLineChart
+        accent="blue"
+        motion="auto"
+        height="h-24"
+        ariaLabel="近七天趋势"
+        activeIndex={active}
+        onActiveIndexChange={setActive}
+        xAxisLabels={["一", "二", "三", "四", "五", "六", "日"]}
+        series={[{ data: [12, 18, 15, 24, 22, 28, 26], fillArea: true, label: "完成" }]}
+      />
+    </ChartCard>
   );
 }
 
-function NotifySettings() {
-  const rows = [
-    { label: "评论", ariaLabel: "评论通知", color: "blue" as const, defaultChecked: true },
-    { label: "邮件", ariaLabel: "邮件通知", color: "blue" as const, defaultChecked: true },
-    { label: "站内信", ariaLabel: "站内信通知", color: "black" as const, defaultChecked: false },
-  ];
+function Mix() {
+  const [active, setActive] = useState<number | undefined>();
   return (
-    <Panel title="通知" subtitle="选择要接收的提醒">
-      <div className="grid grid-cols-3 gap-3">
-        {rows.map((row) => (
-          <div key={row.ariaLabel} className="flex items-center justify-between gap-2">
-            <span className="text-sm text-fg-black">{row.label}</span>
-            <Toggle defaultChecked={row.defaultChecked} color={row.color} ariaLabel={row.ariaLabel} />
-          </div>
-        ))}
+    <ChartCard title="任务分布" subtitle="点一段环形" width="full" minHeight="min-h-0" action={<></>}>
+      <DonutChart
+        size="sm"
+        accent="blue"
+        motion="auto"
+        interactive
+        activeIndex={active}
+        onSegmentToggle={(index) => setActive((current) => (current === index ? undefined : index))}
+        centerValue="182"
+        ariaLabel="任务分布"
+        segments={[
+          { value: 128, label: "已完成", color: "bg-fg-blue" },
+          { value: 36, label: "进行中", color: "bg-fg-cyan-500" },
+          { value: 18, label: "待办", color: "bg-fg-black" },
+        ]}
+      />
+      <div className="flex w-full min-w-0 flex-col gap-2">
+        <ChartLegendItem accent="blue" label="已完成" value="128" />
+        <ChartLegendItem color="bg-fg-cyan-500" label="进行中" value="36" />
+        <ChartLegendItem accent="black" label="待办" value="18" />
       </div>
-    </Panel>
+    </ChartCard>
   );
 }
 
-function LoginForm() {
+function TaskTable() {
+  const [keys, setKeys] = useState<ReadonlySet<string>>(() => new Set(["1"]));
   return (
-    <Panel title="登录" subtitle="已有账号直接进入">
-      <div className="grid grid-cols-2 gap-3" data-home-login>
-        <TextField label="邮箱" placeholder="name@example.com" color="blue" autoComplete="email" />
-        <TextField label="密码" type="password" placeholder="输入密码" color="blue" autoComplete="current-password" />
-      </div>
-      <div className="mt-3">
-        <Button color="black" size="md" motion="auto">登录</Button>
-      </div>
-    </Panel>
+    <DataTable
+      title="事项"
+      subtitle="勾选要跟进的"
+      color="blue"
+      showCheckbox
+      checkboxColor="blue"
+      rows={tableRows}
+      columns={tableColumns}
+      selectedRowKeys={keys}
+      onSelectedRowKeysChange={(next) => setKeys(new Set([...next].map(String)))}
+      getRowKey={(row) => row.id}
+      tableMinWidth={420}
+    />
   );
 }
 
-function CalendarCard() {
+function Agenda() {
   const day = new Date().getDate();
   return (
     <SmallCalendar
@@ -155,9 +215,47 @@ function CalendarCard() {
   );
 }
 
+function DatePicker() {
+  return <CalendarCard color="blue" size="compact" motion="auto" className="max-w-full" />;
+}
+
+function BoardCard({
+  title,
+  description,
+  label,
+  labelColor,
+  progress,
+  progressColor,
+  date,
+}: {
+  title: string;
+  description: string;
+  label: string;
+  labelColor: "blue" | "cyan" | "gray";
+  progress: number;
+  progressColor: "blue" | "cyan" | "gray";
+  date: string;
+}) {
+  return (
+    <TaskCard
+      title={title}
+      description={description}
+      labelText={label}
+      labelColor={labelColor}
+      progress={progress}
+      progressColor={progressColor}
+      date={date}
+      locale="zh"
+      width="full"
+      className="w-full max-w-full"
+      onMenuClick={() => undefined}
+    />
+  );
+}
+
 function ChatStack() {
   return (
-    <Panel title="对话" subtitle="和后台用的是同一套组件">
+    <SurfaceCard title="对话" subtitle="和后台用的是同一套组件" padding="sm" className="w-full max-w-full">
       <div className="flex flex-col gap-3">
         <ChatBubble type="received" color="blue" motion="auto" senderName="Forge" content="统计、日程和看板都可以直接拿来用。" />
         <ThinkingTrace
@@ -169,27 +267,80 @@ function ChatStack() {
           rows={[{ primary: "读取 AGENTS.md" }, { primary: "对照组件写法" }, { primary: "排进这一页" }]}
         />
         <ChatBubble type="sent" color="black" motion="auto" content="输入栏可以打字。" />
-      </div>
-    </Panel>
-  );
-}
-
-function Composer() {
-  return (
-    <Panel title="消息" subtitle="写一条再发送">
-      <ChatInputBar locale="zh" motion="auto" color="blue" placeholder="写一条消息" />
-    </Panel>
-  );
-}
-
-function TaskCard({ name, status, progress, bar, who }: { name: string; status: string; progress: number; bar: "blue" | "cyan" | "black"; who: string }) {
-  return (
-    <SurfaceCard title={name} subtitle={status} padding="sm" className="w-full">
-      <ProgressBar value={progress} color={bar} showPercentage motion="auto" />
-      <div className="mt-3">
-        <Avatar initials={who} size="sm" color={bar === "black" ? "blue" : bar} alt="" />
+        <ChatInputBar locale="zh" motion="auto" color="blue" placeholder="写一条消息" />
       </div>
     </SurfaceCard>
+  );
+}
+
+function MessageTabs() {
+  return (
+    <LiquidTabs
+      motion="auto"
+      label="消息分类"
+      tabs={[
+        {
+          id: "today",
+          label: "今天",
+          items: [
+            { id: "review", title: "评审首页", subtitle: "10:00" },
+            { id: "board", title: "对齐看板", subtitle: "14:00" },
+          ],
+        },
+        {
+          id: "todo",
+          label: "待办",
+          items: [{ id: "report", title: "整理周报", subtitle: "待排期" }],
+        },
+        {
+          id: "done",
+          label: "完成",
+          items: [{ id: "ship", title: "上线统计卡", subtitle: "已完成" }],
+        },
+      ]}
+    />
+  );
+}
+
+function TodoList() {
+  return (
+    <SurfaceCard title="待办" subtitle="点一下会划掉" padding="sm" className="w-full max-w-full">
+      <Checklist
+        motion="auto"
+        color="blue"
+        size="sm"
+        defaultTasks={[
+          { id: "stats", label: "核对统计卡", done: true },
+          { id: "board", label: "排进看板" },
+          { id: "chat", label: "看对话记录" },
+        ]}
+      />
+    </SurfaceCard>
+  );
+}
+
+function Score() {
+  const [value, setValue] = useState(4);
+  return (
+    <SurfaceCard title="这周的完成度" padding="sm" className="w-full max-w-full">
+      <RatingStars value={value} onChange={setValue} motion="auto" locale="zh" ariaLabel="这周的完成度" />
+    </SurfaceCard>
+  );
+}
+
+function RateWheel() {
+  return (
+    <WheelChartStatCard
+      title="完成率"
+      value="68%"
+      subtitle="本周"
+      theme="white"
+      size="sm"
+      density="compact"
+      wheelColor="cyan"
+      wheelPercent={68}
+      width="full"
+    />
   );
 }
 
@@ -197,13 +348,25 @@ function Wall({ scene }: { scene: Scene }) {
   if (scene === "对话") {
     return (
       <div className="home-wall">
-        <div className="home-col home-col-wide"><ChatStack /><Composer /></div>
+        <div className="home-col home-col-wide">
+          <ChatStack />
+        </div>
         <div className="home-col">
           <ChatBubble type="received" color="blue" motion="auto" senderName="林夏" content="看板那一列也可以点进模板。" />
-          <ChatBubble type="sent" color="black" motion="auto" content="我先看统计卡。" />
-          <Composer />
+          <ChatBubble type="sent" color="black" motion="auto" content="我先看趋势。" />
+          <ChatInputBar locale="zh" motion="auto" color="blue" placeholder="再写一条" />
         </div>
-        <div className="home-col"><NotifySettings /><TeamList /></div>
+        <div className="home-col">
+          <MessageTabs />
+          <ThinkingTrace
+            variant="steps"
+            locale="zh"
+            motion="auto"
+            settled
+            doneLabel="已对照 AGENTS.md"
+            rows={[{ primary: "读取 AGENTS.md" }, { primary: "排进对话" }]}
+          />
+        </div>
       </div>
     );
   }
@@ -212,21 +375,30 @@ function Wall({ scene }: { scene: Scene }) {
     return (
       <div className="home-wall">
         <div className="home-col home-col-wide">
-          <p className="px-1 text-sm font-semibold text-fg-black">待办</p>
-          <TaskCard name="整理周报" status="待排期" progress={8} bar="black" who="林" />
-          <TaskCard name="核对发票" status="待开始" progress={12} bar="blue" who="吴" />
-          <div className="flex justify-center px-8 py-6">
-            <Button effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>打开看板</Button>
+          <ProjectCard
+            title="首页改版"
+            description="统计、日程和看板放在同一面墙上。"
+            labelText="进行中"
+            labelColor="blue"
+            progress={68}
+            progressColor="blue"
+            date="10月17日"
+            width="full"
+            className="w-full max-w-full"
+            onMenuClick={() => undefined}
+          />
+          <BoardCard title="整理周报" description="把本周数字收进统计卡。" label="待办" labelColor="gray" progress={8} progressColor="cyan" date="10月18日" />
+          <div className="flex justify-start px-1 py-2">
+            <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>打开看板</Button>
           </div>
         </div>
         <div className="home-col">
-          <p className="px-1 text-sm font-semibold text-fg-black">进行中</p>
-          <TaskCard name="客户跟进" status="进行中" progress={46} bar="cyan" who="陈" />
-          <TaskCard name="排期看板" status="进行中" progress={68} bar="blue" who="周" />
+          <BoardCard title="客户跟进" description="对照对话里的记录。" label="进行中" labelColor="cyan" progress={46} progressColor="blue" date="10月17日" />
+          <BoardCard title="排期看板" description="三列都用任务卡。" label="进行中" labelColor="blue" progress={68} progressColor="cyan" date="10月20日" />
         </div>
         <div className="home-col">
-          <p className="px-1 text-sm font-semibold text-fg-black">已完成</p>
-          <TaskCard name="上线统计卡" status="完成" progress={100} bar="black" who="何" />
+          <BoardCard title="上线统计卡" description="折线和柱形都已放上。" label="完成" labelColor="gray" progress={100} progressColor="blue" date="10月16日" />
+          <Button effect="ripple" color="blue" size="md" motion="auto">记下一条</Button>
         </div>
       </div>
     );
@@ -235,9 +407,18 @@ function Wall({ scene }: { scene: Scene }) {
   if (scene === "设置") {
     return (
       <div className="home-wall">
-        <div className="home-col home-col-wide"><TeamList /><NotifySettings /></div>
-        <div className="home-col"><LoginForm /></div>
-        <div className="home-col"><Stats /></div>
+        <div className="home-col home-col-wide">
+          <MessageTabs />
+          <TodoList />
+        </div>
+        <div className="home-col">
+          <Score />
+          <RateWheel />
+          <Button effect="ripple" color="black" size="md" motion="auto">保存这组</Button>
+        </div>
+        <div className="home-col">
+          <DatePicker />
+        </div>
       </div>
     );
   }
@@ -245,21 +426,35 @@ function Wall({ scene }: { scene: Scene }) {
   return (
     <div className="home-wall">
       <div className="home-col home-col-wide">
-        <Stats />
-        <NotifySettings />
-        <LoginForm />
-        <TaskChart />
+        <Metrics />
+        <WeekBars />
+        <DatePicker />
+        <Mix />
+        <Trend />
+        <Agenda />
+        <TaskTable />
       </div>
       <div className="home-col">
-        <TeamList />
+        <ProjectCard
+          title="首页改版"
+          description="统计、日程和看板放在同一面墙上。"
+          labelText="进行中"
+          labelColor="blue"
+          progress={68}
+          progressColor="blue"
+          date="10月17日"
+          width="full"
+          className="w-full max-w-full"
+          onMenuClick={() => undefined}
+        />
+        <BoardCard title="排期看板" description="任务卡可以点开菜单。" label="进行中" labelColor="blue" progress={68} progressColor="cyan" date="10月17日" />
         <div className="flex justify-start px-1 py-2">
           <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>打开看板</Button>
         </div>
-        <CalendarCard />
       </div>
       <div className="home-col">
         <ChatStack />
-        <TaskCard name="排期看板" status="进行中" progress={68} bar="blue" who="周" />
+        <TodoList />
       </div>
     </div>
   );
