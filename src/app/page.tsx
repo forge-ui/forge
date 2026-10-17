@@ -1,58 +1,53 @@
 import Link from "next/link";
 import { SiteHeader } from "./_components/site-header";
-import { InstallCommand } from "./_components/home-install";
-import { HomeBelow, HomeWorkspace } from "./_components/home-demos";
+import { HomeHero } from "./_components/home-hero";
+import { HomeBelow } from "./_components/home-demos";
 import { coreVersion } from "./docs/_versions";
 import "./_components/home-page.css";
-
-const installCommand = `pnpm add @forge-ui-official/core@${coreVersion}`;
-
-function PillLink({
-  href,
-  children,
-  variant,
-}: {
-  href: string;
-  children: string;
-  variant: "primary" | "secondary";
-}) {
-  return (
-    <Link
-      href={href}
-      className={
-        variant === "primary"
-          ? "inline-flex h-10 items-center justify-center rounded-full bg-fg-blue px-4 text-sm font-medium text-white hover:bg-fg-blue-600"
-          : "inline-flex h-10 items-center justify-center rounded-full border border-fg-grey-300 bg-white px-4 text-sm font-medium text-fg-black hover:bg-fg-grey-50"
-      }
-    >
-      {children}
-    </Link>
-  );
-}
 
 export default function HomePage() {
   return (
     <div className="home-page flex min-h-screen min-w-0 flex-col">
       <SiteHeader />
-      <main className="flex min-w-0 flex-1 flex-col pb-16">
-        <section className="mx-auto grid w-full min-w-0 max-w-[1200px] items-center gap-8 px-4 pb-4 pt-8 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-12 lg:pb-8 lg:pt-14">
-          <div className="min-w-0">
-            <p className="text-sm font-medium text-fg-blue">Forge {coreVersion}</p>
-            <h1 className="mt-3 font-display text-[1.75rem] font-bold leading-[1.25] tracking-tight text-fg-black sm:text-4xl lg:text-5xl lg:leading-[1.15]">
-              统计、日程、看板和对话，都有现成的样子
-            </h1>
-            <p className="mt-4 max-w-xl text-base leading-7 text-fg-grey-900">
-              玻璃、跟随、涟漪和文字切换都可以打开。系统要求减弱动效时，这些动画会停。
+      <main className="flex min-w-0 flex-1 flex-col">
+        <section className="home-hero">
+          <div className="home-hero-glow" aria-hidden="true" />
+          <HomeHero>
+            <Link href="/docs" className="home-pill">
+              Forge {coreVersion} 更新说明
+              <span aria-hidden="true">→</span>
+            </Link>
+            <h1 className="home-hero-title">统计、日程、看板和对话，都有现成的样子</h1>
+            <p className="home-hero-lead">
+              内部后台里常用的这些块，这里都有现成组件。玻璃、跟随、涟漪和文字切换都可以打开；系统要求减弱动效时，这些动画会停。
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <PillLink href="/docs/quick-start" variant="primary">开始使用</PillLink>
-              <PillLink href="/components" variant="secondary">浏览组件</PillLink>
+            <pre className="home-code">
+              <code>
+                <span className="tok-kw">import</span>
+                {" { StatCard } "}
+                <span className="tok-kw">from</span>{" "}
+                <span className="tok-str">&quot;@forge-ui-official/core&quot;</span>
+                {";\n\n<"}
+                <span className="tok-name">StatCard</span>{" "}
+                <span className="tok-attr">title</span>
+                <span className="tok-str">=&quot;本周完成&quot;</span>{" "}
+                <span className="tok-attr">value</span>
+                <span className="tok-str">=&quot;128&quot;</span>
+                {" />"}
+              </code>
+            </pre>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/docs/quick-start" className="home-cta home-cta-dark">
+                开始使用
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/components" className="home-cta home-cta-light">浏览组件</Link>
             </div>
-            <InstallCommand command={installCommand} label="复制安装命令" />
-          </div>
-          <HomeWorkspace />
+          </HomeHero>
         </section>
-        <HomeBelow />
+        <div className="pb-16">
+          <HomeBelow />
+        </div>
       </main>
       <footer className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-3 text-sm text-fg-grey-900">
         <p>Forge {coreVersion}</p>

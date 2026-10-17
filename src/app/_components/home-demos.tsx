@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  AppLayout,
   Avatar,
   BarChart,
   Button,
@@ -12,43 +11,15 @@ import {
   ChatBubble,
   ChatInputBar,
   DataTable,
-  DonutChart,
   ProgressBar,
   SmallCalendar,
-  StatCard,
   StatusBadge,
   CellText,
   SurfaceCard,
   ThinkingTrace,
-  type AppLayoutMenuSection,
   type ColumnDef,
 } from "@forge-ui-official/core";
-import {
-  AltArrowRightLinear,
-  FolderBoldDuotone,
-  HomeBoldDuotone,
-  ListCheckLinear,
-  SettingsBoldDuotone,
-  UsersGroupRoundedBoldDuotone,
-} from "@forge-ui-official/core/icons";
-
-const menuSections: AppLayoutMenuSection[] = [
-  {
-    label: "工作台",
-    items: [
-      { icon: <HomeBoldDuotone size={20} />, label: "概览", href: "/" },
-      { icon: <FolderBoldDuotone size={20} />, label: "项目", href: "/" },
-    ],
-  },
-  {
-    label: "协作",
-    items: [
-      { icon: <UsersGroupRoundedBoldDuotone size={20} />, label: "对话", href: "/" },
-      { icon: <ListCheckLinear size={20} />, label: "任务", href: "/" },
-      { icon: <SettingsBoldDuotone size={20} />, label: "设置", href: "/" },
-    ],
-  },
-];
+import { AltArrowRightLinear } from "@forge-ui-official/core/icons";
 
 const arrow = <AltArrowRightLinear size={16} color="currentColor" />;
 
@@ -145,79 +116,6 @@ function SectionHeading({
     <div className="mb-5 max-w-2xl">
       <h2 id={id} className="font-display text-2xl font-bold tracking-tight text-fg-black sm:text-3xl">{title}</h2>
       <p className="mt-2 text-base leading-7 text-fg-grey-900">{children}</p>
-    </div>
-  );
-}
-
-export function HomeWorkspace() {
-  return (
-    <div className="home-workspace min-w-0" data-home-workspace>
-      <AppLayout
-        accent="blue"
-        menuSections={menuSections}
-        hideHeader
-        hideSidebarWidgets
-        logoText="Forge"
-        sidebarWidth="12.5rem"
-        motion="auto"
-      >
-        <div className="flex min-w-0 flex-col gap-3">
-          <div className="grid min-w-0 grid-cols-2 gap-3">
-            <StatCard
-              title="本周完成"
-              value="128"
-              trend="+12%"
-              subtitle="较上周"
-              theme="blue"
-              size="sm"
-              density="compact"
-              width="full"
-              motion="auto"
-            />
-            <StatCard
-              title="进行中"
-              value="36"
-              subtitle="个任务"
-              theme="black"
-              size="sm"
-              density="compact"
-              width="full"
-              motion="auto"
-            />
-          </div>
-          <div className="relative min-w-0" data-home-chart>
-            <ChartCard title="任务分布" subtitle="按状态" width="full" minHeight="min-h-0" action={<></>}>
-              <DonutChart
-                size="sm"
-                accent="blue"
-                motion="auto"
-                centerValue="182"
-                ariaLabel="任务分布"
-                segments={[
-                  { value: 128, label: "已完成", color: "bg-fg-blue" },
-                  { value: 36, label: "进行中", color: "bg-fg-cyan-500" },
-                  { value: 18, label: "待办", color: "bg-fg-black" },
-                ]}
-              />
-              <div className="flex w-full min-w-0 flex-col gap-2 pr-40">
-                <ChartLegendItem accent="blue" label="已完成" value="128" />
-                <ChartLegendItem color="bg-fg-cyan-500" label="进行中" value="36" />
-                <ChartLegendItem accent="black" label="待办" value="18" />
-              </div>
-            </ChartCard>
-            <div className="pointer-events-none absolute bottom-5 right-4">
-              <Button data-home-glass effect="glass" color="blue" size="sm" motion="auto" className="pointer-events-auto">
-                导出本周
-              </Button>
-            </div>
-          </div>
-          <div className="flex justify-center px-8 pb-1 pt-3">
-            <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>
-              打开看板
-            </Button>
-          </div>
-        </div>
-      </AppLayout>
     </div>
   );
 }
