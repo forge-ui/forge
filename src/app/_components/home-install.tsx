@@ -26,9 +26,10 @@ export function InstallCommand({
       type="button"
       onClick={copy}
       aria-label={label}
-      className="mt-2 max-w-full overflow-x-auto whitespace-nowrap px-2 text-xs text-fg-grey-800 hover:text-fg-black"
+      className="mt-5 flex w-full max-w-full items-center justify-between gap-3 overflow-hidden rounded-full border border-fg-grey-300 bg-white px-4 py-2 text-left text-xs text-fg-grey-900"
     >
-      {copied ? "已复制" : command}
+      <span className="min-w-0 truncate font-mono">{command}</span>
+      <span className="shrink-0 font-medium text-fg-blue">{copied ? "已复制" : "复制"}</span>
     </button>
   );
 }
