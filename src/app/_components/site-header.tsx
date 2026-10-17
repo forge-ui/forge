@@ -13,11 +13,18 @@ const tabs = [
   { href: "/templates", label: "模板" },
 ] as const;
 
-export function SiteHeader() {
+export function SiteHeader({ tone = "default" }: { tone?: "default" | "blend" }) {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-fg-grey-200 bg-fg-grey-50/80 backdrop-blur">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b",
+        tone === "blend"
+          ? "home-header-blend border-transparent"
+          : "border-fg-grey-200 bg-fg-grey-50/80 backdrop-blur",
+      )}
+    >
       <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center">
         {/* Logo column: aligns with sidebar (w-64 px-4 + item px-3) */}
         <div className="flex w-auto shrink-0 items-center px-3 sm:px-4 lg:w-64">

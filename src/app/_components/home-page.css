@@ -11,11 +11,20 @@
   align-items: start;
   min-width: 0;
   max-width: 100%;
-  height: calc(100svh - 4rem);
-  min-height: calc(100svh - 4rem);
+  height: 100svh;
+  min-height: 100svh;
+  margin-top: -4rem;
   overflow: hidden;
   background: #f6f8fb;
+  padding-top: 4rem;
   padding-left: 4.75rem;
+}
+
+.home-header-blend {
+  background: rgba(246, 248, 251, 0.38);
+  border-bottom-color: transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .home-hero-glow {
@@ -295,7 +304,7 @@
   position: absolute;
   z-index: 3;
   left: 4.75rem;
-  top: calc(100svh - 4rem - 3.75rem);
+  top: calc(100svh - 3.75rem);
   display: flex;
   width: min(31.25rem, calc(100% - 6rem));
   flex-wrap: wrap;
@@ -352,9 +361,10 @@
     align-items: stretch;
     height: auto;
     min-height: 0;
+    margin-top: -4rem;
     overflow-x: clip;
     overflow-y: visible;
-    padding: 1.5rem 1rem 1.25rem;
+    padding: calc(4rem + 1.5rem) 1rem 1.25rem;
   }
 
   .home-hero-copy {
