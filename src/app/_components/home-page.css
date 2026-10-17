@@ -11,7 +11,9 @@
   align-items: start;
   min-width: 0;
   max-width: 100%;
+  height: calc(100svh - 4rem);
   min-height: calc(100svh - 4rem);
+  overflow: hidden;
   background: #f6f8fb;
   padding-left: 4.75rem;
 }
@@ -139,7 +141,7 @@
   z-index: 1;
   min-width: 0;
   max-width: 100%;
-  overflow-x: clip;
+  overflow: hidden;
   padding-top: 1.15rem;
 }
 
@@ -152,14 +154,141 @@
 
 .home-col {
   display: flex;
-  width: 20rem;
+  width: 16rem;
   flex: none;
   flex-direction: column;
   gap: 1.5rem;
+  min-width: 0;
 }
 
-.home-col-wide {
-  width: 30rem;
+.home-panel {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #fff;
+  padding: 1rem;
+  outline: 1px solid rgba(0, 10, 25, 0.1);
+  outline-offset: -1px;
+}
+
+.home-panel.is-flush {
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.home-panel-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 650;
+  line-height: 1.25rem;
+  color: #000a19;
+}
+
+.home-panel-body {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-panel.is-flush .home-panel-body {
+  gap: 0;
+}
+
+.home-panel .home-segment {
+  display: flex;
+  width: 100%;
+}
+
+.home-panel .home-segment > button {
+  flex: 1 1 0;
+}
+
+.home-split {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.home-badges {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.home-actions {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.home-glass-bar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-radius: 999px;
+  background: #eef1f6;
+  padding: 0.45rem 0.75rem;
+}
+
+.home-panel .home-wide {
+  width: 100%;
+}
+
+.home-panel .home-menu {
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  padding-right: 0;
+  padding-left: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.home-panel .forge-surface-card {
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.home-panel .forge-stepper,
+.home-panel .forge-liquid,
+.home-panel .forge-otp,
+.home-panel .forge-calendar,
+.home-panel .forge-calendar__shell {
+  width: 100%;
+  max-width: 100%;
+}
+
+.home-panel [data-checklist-row] > .forge-checklist-motion {
+  width: 100%;
+}
+
+.home-panel.is-flush .rounded-card,
+.home-panel.is-flush .rounded-2xl,
+.home-panel.is-flush .forge-surface-card,
+.home-panel.is-flush .forge-calendar__shell,
+.home-panel.is-flush .forge-calendar__card {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
 }
 
 .home-live {
@@ -212,38 +341,19 @@
   display: none;
 }
 
-.home-cluster {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  min-width: 0;
-  max-width: 100%;
-}
-
-.home-mosaic {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1rem;
-  align-items: start;
-  min-width: 0;
-}
-
 .home-metric .tracking-fg {
   white-space: nowrap;
 }
 
 @media (max-width: 1023px) {
-  .home-mosaic {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .home-hero {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    height: auto;
     min-height: 0;
     overflow-x: clip;
+    overflow-y: visible;
     padding: 1.5rem 1rem 1.25rem;
   }
 
@@ -265,23 +375,21 @@
     line-height: 1.7;
   }
 
-  .home-col {
-    width: 17.5rem;
-  }
-
-  .home-col-wide {
-    width: 21.5rem;
-  }
-
   .home-hero-stage {
     order: 3;
     width: 100%;
+    height: auto;
     margin-top: 1.15rem;
+    container-type: inline-size;
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
     padding-top: 0;
     padding-bottom: 0.35rem;
+  }
+
+  .home-col {
+    width: 100cqw;
   }
 
   .home-live {

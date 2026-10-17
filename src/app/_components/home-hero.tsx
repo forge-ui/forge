@@ -79,10 +79,32 @@ const commandItems = [
   { id: "stats", label: "打开统计", hint: "本周", group: "跳转" },
 ];
 
+function Panel({ title, flush = false, children }: { title?: string; flush?: boolean; children: ReactNode }) {
+  return (
+    <section className={flush ? "home-panel is-flush" : "home-panel"}>
+      {title ? <p className="home-panel-title">{title}</p> : null}
+      <div className="home-panel-body">{children}</div>
+    </section>
+  );
+}
+
+function BrickWall({ columns }: { columns: ReactNode[] }) {
+  return (
+    <div className="home-wall">
+      {columns.map((column, index) => (
+        <div className="home-col" key={index}>
+          {column}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Segmented() {
   const [index, setIndex] = useState(0);
   return (
     <ButtonGroup
+      className="home-segment"
       color="blue"
       shape="pill"
       motion="auto"
@@ -96,7 +118,7 @@ function Segmented() {
 
 function Badges() {
   return (
-    <div className="home-cluster">
+    <div className="home-badges">
       <Label color="blue" size="sm">设计</Label>
       <Label color="cyan" size="sm" variant="solid">进行中</Label>
       <Label color="gray" size="sm">待排期</Label>
@@ -131,10 +153,15 @@ function ScoreRing() {
   const [score, setScore] = useState(4);
   const [on, setOn] = useState(true);
   return (
-    <div className="home-cluster">
+    <div className="home-split">
       <ProgressBar variant="ring" value={on ? score * 20 : 0} color="blue" motion="auto" showPercentage label="完成进度" />
-      <RatingStars value={score} onChange={setScore} motion="auto" locale="zh" ariaLabel="完成度" />
-      <Toggle checked={on} onChange={setOn} color="blue" motion="auto" draggable ariaLabel="计入完成度" />
+      <div className="home-panel-body">
+        <RatingStars value={score} onChange={setScore} motion="auto" locale="zh" size="sm" ariaLabel="完成度" />
+        <div className="home-split">
+          <span className="text-sm text-fg-grey-700">计入完成度</span>
+          <Toggle checked={on} onChange={setOn} color="blue" motion="auto" draggable ariaLabel="计入完成度" />
+        </div>
+      </div>
     </div>
   );
 }
@@ -142,11 +169,12 @@ function ScoreRing() {
 function EffectButtons() {
   const { toast } = useToast();
   return (
-    <div className="home-cluster">
-      <div className="flex items-center rounded-full bg-fg-grey-100 px-3 py-2">
+    <div className="home-actions">
+      <div className="home-glass-bar">
         <Button effect="glass" color="black" size="sm" motion="auto">记下一条</Button>
       </div>
       <Button
+        className="home-wide"
         effect="ripple"
         color="blue"
         size="md"
@@ -155,7 +183,7 @@ function EffectButtons() {
       >
         弹出通知
       </Button>
-      <Button data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>
+      <Button className="home-wide" data-home-magnetic effect="magnetic" color="blue" size="md" motion="auto" iconRight={arrow}>
         打开看板
       </Button>
     </div>
@@ -167,6 +195,7 @@ function MessageTabs() {
     <LiquidTabs
       className="w-full max-w-full"
       motion="auto"
+      rows={1}
       label="消息分类"
       tabs={[
         { id: "today", label: "今天", items: [{ id: "review", title: "评审首页", subtitle: "10:00" }] },
@@ -185,7 +214,7 @@ function JumpMenu() {
     { id: "stats", label: "打开统计" },
   ];
   return (
-    <DropdownPanel motion="auto" width="w-full" className="max-w-full">
+    <DropdownPanel motion="auto" width="w-full" className="home-menu max-w-full">
       {items.map((item) => (
         <MenuItem
           key={item.id}
@@ -210,7 +239,7 @@ function Picker() {
       type="single"
       value={value}
       onChange={setValue}
-      width="200px"
+      width="100%"
       options={[
         { value: "board", label: "看板" },
         { value: "chat", label: "对话" },
@@ -287,7 +316,7 @@ function WeekBars() {
 }
 
 function DatePicker() {
-  return <CalendarCard color="blue" size="compact" motion="auto" className="max-w-full" />;
+  return <CalendarCard color="blue" size="compact" variant="plain" motion="auto" className="max-w-full" />;
 }
 
 function TaskTable() {
@@ -304,31 +333,32 @@ function TaskTable() {
       selectedRowKeys={keys}
       onSelectedRowKeysChange={(next) => setKeys(new Set([...next].map(String)))}
       getRowKey={(row) => row.id}
-      tableMinWidth={420}
+      tableMinWidth={220}
     />
   );
 }
 
 function Steps() {
   const [step, setStep] = useState(2);
-  const [page, setPage] = useState(1);
   return (
-    <div className="flex w-full min-w-0 flex-col gap-4">
-      <Stepper
-        color="blue"
-        motion="auto"
-        locale="zh"
-        current={step}
-        onStepChange={setStep}
-        items={[
-          { id: "pick", label: "挑选" },
-          { id: "place", label: "排进" },
-          { id: "check", label: "核对" },
-        ]}
-      />
-      <Pagination totalPages={5} currentPage={page} onPageChange={setPage} color="blue" motion="auto" locale="zh" />
-    </div>
+    <Stepper
+      color="blue"
+      motion="auto"
+      locale="zh"
+      current={step}
+      onStepChange={setStep}
+      items={[
+        { id: "pick", label: "挑选" },
+        { id: "place", label: "排进" },
+        { id: "check", label: "核对" },
+      ]}
+    />
   );
+}
+
+function Pages() {
+  const [page, setPage] = useState(1);
+  return <Pagination totalPages={4} currentPage={page} onPageChange={setPage} color="blue" motion="auto" locale="zh" />;
 }
 
 function UnderlineTabs() {
@@ -432,117 +462,225 @@ function TaskOne() {
   );
 }
 
+function ViewPanel() {
+  return (
+    <Panel title="视图">
+      <Segmented />
+      <UnderlineTabs />
+    </Panel>
+  );
+}
+
+function TeamPanel() {
+  const [on, setOn] = useState(true);
+  return (
+    <Panel title="团队成员">
+      <People />
+      <Badges />
+      <div className="home-split">
+        <span className="text-sm text-fg-grey-700">显示在线</span>
+        <Toggle checked={on} onChange={setOn} color="blue" motion="auto" draggable ariaLabel="显示在线" />
+      </div>
+    </Panel>
+  );
+}
+
+function ChatPanel({ extra = false }: { extra?: boolean }) {
+  return (
+    <Panel title="对话">
+      <Thread extra={extra} />
+    </Panel>
+  );
+}
+
+function ReleasePanel() {
+  return (
+    <Panel title="发布进度">
+      <ScoreRing />
+      <Steps />
+    </Panel>
+  );
+}
+
+function ActionPanel() {
+  return (
+    <Panel title="操作">
+      <EffectButtons />
+    </Panel>
+  );
+}
+
+function PagePanel() {
+  return (
+    <Panel title="页码">
+      <Pages />
+    </Panel>
+  );
+}
+
+function MessagePanel() {
+  return (
+    <Panel title="消息">
+      <MessageTabs />
+    </Panel>
+  );
+}
+
+function TodoPanel() {
+  return (
+    <Panel title="待办">
+      <TodoList />
+      <Filters />
+    </Panel>
+  );
+}
+
+function CommandPanel() {
+  return (
+    <Panel title="快捷命令">
+      <CommandMenu />
+    </Panel>
+  );
+}
+
+function JumpPanel() {
+  return (
+    <Panel title="跳转">
+      <Picker />
+      <JumpMenu />
+    </Panel>
+  );
+}
+
+function PasscodePanel() {
+  return (
+    <Panel title="验证码">
+      <Passcode />
+    </Panel>
+  );
+}
+
+function TracePanel() {
+  return (
+    <Panel title="思考">
+      <Trace />
+    </Panel>
+  );
+}
+
+function CalendarPanel() {
+  return (
+    <Panel title="日历">
+      <DatePicker />
+    </Panel>
+  );
+}
+
 function Wall({ scene }: { scene: Scene }) {
   if (scene === "对话") {
     return (
-      <div className="home-wall">
-        <div className="home-col home-col-wide">
-          <Thread extra />
-          <MessageTabs />
-          <Trace />
-        </div>
-        <div className="home-col">
-          <CommandMenu />
-          <People />
-          <Badges />
-          <EffectButtons />
-        </div>
-        <div className="home-col">
-          <Segmented />
-          <ScoreRing />
-          <Picker />
-        </div>
-      </div>
+      <BrickWall
+        columns={[
+          <>
+            <ChatPanel extra />
+            <MessagePanel />
+            <TracePanel />
+          </>,
+          <>
+            <CommandPanel />
+            <TeamPanel />
+            <ViewPanel />
+            <ActionPanel />
+          </>,
+          <>
+            <ReleasePanel />
+            <JumpPanel />
+            <PasscodePanel />
+            <PagePanel />
+          </>,
+        ]}
+      />
     );
   }
 
   if (scene === "项目") {
     return (
-      <div className="home-wall">
-        <div className="home-col home-col-wide">
-          <Segmented />
-          <People />
-          <EffectButtons />
-          <Steps />
-          <ProjectOne />
-        </div>
-        <div className="home-col">
-          <UnderlineTabs />
-          <TodoList />
-          <ScoreRing />
-          <TaskOne />
-        </div>
-        <div className="home-col">
-          <Badges />
-          <Filters />
-          <JumpMenu />
-        </div>
-      </div>
+      <BrickWall
+        columns={[
+          <>
+            <ViewPanel />
+            <TeamPanel />
+            <Panel flush><ProjectOne /></Panel>
+            <CommandPanel />
+          </>,
+          <>
+            <ReleasePanel />
+            <Panel flush><TaskOne /></Panel>
+            <TodoPanel />
+          </>,
+          <>
+            <JumpPanel />
+            <ActionPanel />
+            <MessagePanel />
+            <PagePanel />
+          </>,
+        ]}
+      />
     );
   }
 
   if (scene === "设置") {
     return (
-      <div className="home-wall">
-        <div className="home-col home-col-wide">
-          <MessageTabs />
-          <ScoreRing />
-          <Passcode />
-          <Filters />
-          <DatePicker />
-        </div>
-        <div className="home-col">
-          <Picker />
-          <JumpMenu />
-          <EffectButtons />
-          <Steps />
-        </div>
-        <div className="home-col">
-          <Segmented />
-          <UnderlineTabs />
-          <Badges />
-        </div>
-      </div>
+      <BrickWall
+        columns={[
+          <>
+            <MessagePanel />
+            <CalendarPanel />
+            <PasscodePanel />
+            <PagePanel />
+          </>,
+          <>
+            <Panel title="偏好">
+              <ScoreRing />
+              <Filters />
+            </Panel>
+            <JumpPanel />
+            <TracePanel />
+          </>,
+          <>
+            <ViewPanel />
+            <ReleasePanel />
+            <TeamPanel />
+            <ActionPanel />
+          </>,
+        ]}
+      />
     );
   }
 
   return (
-    <div className="home-wall">
-      <div className="home-col home-col-wide">
-        <div className="home-cluster">
-          <Segmented />
-          <Badges />
-        </div>
-        <div className="home-cluster">
-          <People />
-          <ScoreRing />
-        </div>
-        <Thread />
-        <EffectButtons />
-        <div className="home-mosaic">
-          <MessageTabs />
-          <JumpMenu />
-        </div>
-        <Metric />
-        <CommandMenu />
-        <WeekBars />
-        <DatePicker />
-        <TaskTable />
-        <Steps />
-      </div>
-      <div className="home-col">
-        <Picker />
-        <UnderlineTabs />
-        <ProjectOne />
-        <TaskOne />
-        <TodoList />
-      </div>
-      <div className="home-col">
-        <Filters />
-        <Passcode />
-        <Trace />
-      </div>
-    </div>
+    <BrickWall
+      columns={[
+        <>
+          <ViewPanel />
+          <TeamPanel />
+          <ChatPanel />
+          <Panel flush><TaskTable /></Panel>
+        </>,
+        <>
+          <Panel flush><Metric /></Panel>
+          <ReleasePanel />
+          <Panel flush><WeekBars /></Panel>
+          <CalendarPanel />
+        </>,
+          <>
+            <ActionPanel />
+            <Panel flush><TaskOne /></Panel>
+            <Panel flush><ProjectOne /></Panel>
+            <CommandPanel />
+          </>,
+      ]}
+    />
   );
 }
 
