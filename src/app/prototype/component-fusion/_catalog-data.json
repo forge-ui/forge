@@ -1,0 +1,2303 @@
+{
+  "families": [
+    {
+      "id": "agent",
+      "name": "智能体",
+      "english": "Agents",
+      "description": "回答生成、工具运行与内容审核。",
+      "descriptionEn": "Answer generation, tool runs, and content review."
+    },
+    {
+      "id": "button-link",
+      "name": "按钮与链接",
+      "english": "Buttons & links",
+      "description": "触发操作、切换状态与打开链接。",
+      "descriptionEn": "Trigger actions, change states, and open links."
+    },
+    {
+      "id": "calendar",
+      "name": "日历与日程",
+      "english": "Calendars & schedules",
+      "description": "安排时间、处理冲突与参与活动。",
+      "descriptionEn": "Plan availability, resolve conflicts, and join events."
+    },
+    {
+      "id": "card",
+      "name": "卡片",
+      "english": "Cards",
+      "description": "展示内容摘要、个人资料与统计指标。",
+      "descriptionEn": "Present content summaries, profiles, and metrics."
+    },
+    {
+      "id": "chart",
+      "name": "图表",
+      "english": "Charts",
+      "description": "比较数据、观察趋势与理解分布。",
+      "descriptionEn": "Compare values, explore trends, and understand distributions."
+    },
+    {
+      "id": "chat",
+      "name": "聊天",
+      "english": "Chat",
+      "description": "输入消息、管理附件与处理回复。",
+      "descriptionEn": "Compose messages, manage attachments, and handle replies."
+    },
+    {
+      "id": "checklist",
+      "name": "待办清单",
+      "english": "Checklists",
+      "description": "记录待办事项并反馈完成状态。",
+      "descriptionEn": "Track tasks and show completion."
+    },
+    {
+      "id": "comment",
+      "name": "评论与评价",
+      "english": "Comments & reviews",
+      "description": "撰写评论、提交评分与浏览评价。",
+      "descriptionEn": "Write comments, submit ratings, and browse reviews."
+    },
+    {
+      "id": "filter",
+      "name": "筛选",
+      "english": "Filters",
+      "description": "缩小结果范围并恢复无结果状态。",
+      "descriptionEn": "Narrow results and recover from empty searches."
+    },
+    {
+      "id": "grid",
+      "name": "布局与容器",
+      "english": "Layouts & containers",
+      "description": "组织工作区域与按需展开内容。",
+      "descriptionEn": "Arrange workspaces and reveal content on demand."
+    },
+    {
+      "id": "history",
+      "name": "历史记录",
+      "english": "History",
+      "description": "查看版本、撤销更改与恢复状态。",
+      "descriptionEn": "Browse versions, undo changes, and restore state."
+    },
+    {
+      "id": "input-field",
+      "name": "表单与输入",
+      "english": "Forms & inputs",
+      "description": "填写信息、选择选项与上传文件。",
+      "descriptionEn": "Enter information, select options, and upload files."
+    },
+    {
+      "id": "list",
+      "name": "列表",
+      "english": "Lists",
+      "description": "浏览条目、管理选择与执行批量操作。",
+      "descriptionEn": "Browse items, manage selection, and perform bulk actions."
+    },
+    {
+      "id": "menu",
+      "name": "菜单与导航",
+      "english": "Menus & navigation",
+      "description": "选择命令、切换页面与定位内容。",
+      "descriptionEn": "Choose commands, navigate pages, and find content."
+    },
+    {
+      "id": "page-header",
+      "name": "页面顶栏",
+      "english": "Page headers",
+      "description": "提供页面信息和常用操作入口。",
+      "descriptionEn": "Present page context and common actions."
+    },
+    {
+      "id": "pagination-stepper",
+      "name": "分页与步骤",
+      "english": "Pagination & steps",
+      "description": "切换数据分页与了解当前步骤。",
+      "descriptionEn": "Navigate pages and follow multistep processes."
+    },
+    {
+      "id": "feedback",
+      "name": "提示与反馈",
+      "english": "Messages & feedback",
+      "description": "展示提示、通知、进度与结果状态。",
+      "descriptionEn": "Show hints, notifications, progress, and result states."
+    },
+    {
+      "id": "tab",
+      "name": "页签与切换",
+      "english": "Tabs & switching",
+      "description": "切换内容分组与互斥选项。",
+      "descriptionEn": "Switch content groups and mutually exclusive options."
+    },
+    {
+      "id": "table",
+      "name": "数据表格",
+      "english": "Data tables",
+      "description": "按行列比较和编辑结构化数据。",
+      "descriptionEn": "Compare and edit structured data in rows and columns."
+    },
+    {
+      "id": "cases",
+      "name": "组合案例",
+      "english": "Composed examples",
+      "description": "跨组件的编辑与协作场景，不新增组件分类。",
+      "descriptionEn": "Editing and collaboration examples composed from existing components."
+    }
+  ],
+  "items": [
+    {
+      "id": "001",
+      "name": "玻璃效果按钮",
+      "english": "Glass effect button",
+      "description": "触发操作并确认提交完成",
+      "descriptionEn": "Trigger an action and confirm completion.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "002",
+      "name": "箭头跟随按钮",
+      "english": "Arrow follows the pointer",
+      "description": "触发主操作或进入目标页面",
+      "descriptionEn": "Run the primary action or open its destination.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "StyledLink"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "003",
+      "name": "长按删除",
+      "english": "Hold to delete",
+      "description": "持续按住以确认删除，并支持撤销",
+      "descriptionEn": "Hold to confirm deletion, with an option to undo.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button"
+      ],
+      "href": "/components/button-link#长按删除-button-hold",
+      "kind": "hold",
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "004",
+      "name": "下载进度按钮",
+      "english": "Progress download button",
+      "description": "启动、取消下载并查看结果",
+      "descriptionEn": "Start or cancel a download and view its result.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "ProgressBar"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "005",
+      "name": "发送按钮",
+      "english": "Send button",
+      "description": "发送内容并确认发送结果",
+      "descriptionEn": "Send content and confirm the result.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "IconButton",
+        "Button"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "006",
+      "name": "点击涟漪按钮",
+      "english": "Ripple feedback button",
+      "description": "订阅或取消订阅",
+      "descriptionEn": "Subscribe or unsubscribe.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "007",
+      "name": "播放与暂停",
+      "english": "Play and pause",
+      "description": "切换播放暂停并调整播放位置",
+      "descriptionEn": "Toggle playback and adjust the playback position.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "IconButton"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "008",
+      "name": "复制完成反馈",
+      "english": "Copy button that turns into a check",
+      "description": "将安装命令复制到剪贴板",
+      "descriptionEn": "Copy an installation command to the clipboard.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "IconButton",
+        "Button",
+        "ButtonGroup"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "009",
+      "name": "文字切换按钮",
+      "english": "Label change button",
+      "description": "打开作品或执行主要链接操作",
+      "descriptionEn": "Open a project or follow its primary link.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "StyledLink"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "010",
+      "name": "组合操作按钮",
+      "english": "Split action button",
+      "description": "选择一种执行方式并执行当前方式",
+      "descriptionEn": "Choose an action mode and run the selected action.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Button",
+        "IconTrigger",
+        "DropdownPanel",
+        "MenuItem"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "011",
+      "name": "扇形快捷操作",
+      "english": "Radial floating button",
+      "description": "展开一组快捷创建操作",
+      "descriptionEn": "Expand a set of quick create actions.",
+      "family": "menu",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "IconButton",
+        "IconTrigger"
+      ],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "012",
+      "name": "书签按钮",
+      "english": "Bookmark button",
+      "description": "收藏或取消收藏当前内容",
+      "descriptionEn": "Save or unsave the current content.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "IconButton"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "013",
+      "name": "弹性开关",
+      "english": "Stretchy switch",
+      "description": "开启或关闭勿扰选项",
+      "descriptionEn": "Turn Do Not Disturb on or off.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Toggle"
+      ],
+      "href": "/components/input-field#toggle",
+      "kind": "toggle",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "014",
+      "name": "待办清单",
+      "english": "To-do checklist",
+      "description": "勾选待办并查看完成数量",
+      "descriptionEn": "Check off tasks and track the completed count.",
+      "family": "checklist",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Checklist"
+      ],
+      "href": "/components/checklist",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "015",
+      "name": "套餐选择卡",
+      "english": "Plan radio cards",
+      "description": "比较并选择一个套餐",
+      "descriptionEn": "Compare plans and select one.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "RadioWithLabel",
+        "RadioButton",
+        "SurfaceCard"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "016",
+      "name": "星级评价",
+      "english": "Star rating",
+      "description": "为订单给出星级评价",
+      "descriptionEn": "Give an order a star rating.",
+      "family": "comment",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "RatingStars"
+      ],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "018",
+      "name": "滚动数量步进",
+      "english": "Rolling quantity stepper",
+      "description": "增减商品数量并查看合计",
+      "descriptionEn": "Adjust item quantities and view the total.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "IconButton"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "019",
+      "name": "兴趣多选",
+      "english": "Interest chips multi-select",
+      "description": "从有限兴趣选项中多选至上限",
+      "descriptionEn": "Choose interests up to the selection limit.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "CheckboxControl",
+        "CheckboxWithLabel"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "021",
+      "name": "明暗切换",
+      "english": "Light and dark switch",
+      "description": "在日间与夜间外观之间切换",
+      "descriptionEn": "Switch between day and night appearance.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Toggle"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "022",
+      "name": "点赞按钮",
+      "english": "Like button",
+      "description": "点赞或取消点赞内容",
+      "descriptionEn": "Like or unlike content.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "IconButton"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "023",
+      "name": "通知设置展开",
+      "english": "Expanding notification settings",
+      "description": "配置通知开关及邮件频率",
+      "descriptionEn": "Configure notifications and email frequency.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Toggle",
+        "ButtonGroup",
+        "Accordion"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "024",
+      "name": "价格分布筛选",
+      "english": "Price histogram range filter",
+      "description": "拖动价格范围以缩小商品结果",
+      "descriptionEn": "Choose a price range with two handles: bars outside the range sink while only the bars inside rise in color. The result count rolls over and the price at the top updates with it.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/filter",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "025",
+      "name": "浮动标签输入",
+      "english": "Notched floating label field",
+      "description": "填写姓名邮箱并提交邀请",
+      "descriptionEn": "Enter a name and email address to send an invitation.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "TextField"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "026",
+      "name": "验证码输入",
+      "english": "6-digit code input",
+      "description": "输入一次性验证码并验证",
+      "descriptionEn": "Enter and verify a one-time code.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "OtpInput"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "027",
+      "name": "顶栏搜索展开",
+      "english": "Expanding top-bar search",
+      "description": "从页面顶栏搜索并打开结果",
+      "descriptionEn": "Search from the page header and open a result.",
+      "family": "page-header",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "ToolbarSearchInput",
+        "CommandSearch",
+        "IconButton"
+      ],
+      "href": "/components/toolbar",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "028",
+      "name": "自动伸展评论框",
+      "english": "Auto-growing reply box",
+      "description": "撰写并提交一条回复",
+      "descriptionEn": "Write and submit a reply.",
+      "family": "comment",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "TextArea",
+        "CommentItem",
+        "Button"
+      ],
+      "href": "/components/comment",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "029",
+      "name": "标签输入",
+      "english": "Colored tag input",
+      "description": "输入、移除和挑选项目标签",
+      "descriptionEn": "Enter, remove, or choose project tags.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "TextField"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "030",
+      "name": "日期区间日历",
+      "english": "Date range calendar",
+      "description": "选择入住和退房日期区间",
+      "descriptionEn": "Choose check-in and check-out dates.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Datepicker"
+      ],
+      "href": "/components/calendar",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "031",
+      "name": "自定义选择器",
+      "english": "Custom select listbox",
+      "description": "选择显示语言并保存设置",
+      "descriptionEn": "Choose a display language and save the setting.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "SelectOption"
+      ],
+      "href": "/components/input-field#selectoption",
+      "kind": "select",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "032",
+      "name": "拖拽上传",
+      "english": "Drag-and-drop upload",
+      "description": "拖入文件、查看逐个上传结果并重试",
+      "descriptionEn": "Drop files, check individual upload results, and retry failures.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "FileUpload",
+        "FileCard"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "033",
+      "name": "标题内联编辑",
+      "english": "Inline title editing",
+      "description": "就地修改标题并保存或取消",
+      "descriptionEn": "Edit a title in place, then save or cancel.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "IconButton"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "036",
+      "name": "密码强度",
+      "english": "Password strength meter",
+      "description": "输入密码、切换可见性并查看要求",
+      "descriptionEn": "Enter a password, toggle visibility, and review its requirements.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "IconButton",
+        "ProgressBar"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "037",
+      "name": "账号切换",
+      "english": "Account switcher menu",
+      "description": "切换工作区并进入账号操作",
+      "descriptionEn": "Switch workspaces and access account actions.",
+      "family": "menu",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "AppLayout",
+        "AppSwitcherDropdown",
+        "ProfileCard",
+        "MenuItem"
+      ],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "038",
+      "name": "右键菜单",
+      "english": "Right-click context menu",
+      "description": "针对文件打开上下文操作并处理子菜单",
+      "descriptionEn": "Right-click a file or press ⋯ and the menu blooms from the cursor. Near an edge it opens the other way, and the Share item slides its submenu in from the side. Deleting folds the card away with an undo.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "039",
+      "name": "滑动选中标签",
+      "english": "Sliding pill tabs",
+      "description": "在内容种类间切换浏览",
+      "descriptionEn": "Switch between content categories.",
+      "family": "tab",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "TabBar",
+        "TabsContent"
+      ],
+      "href": "/components/tab#tabbar",
+      "kind": "tabs",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "040",
+      "name": "AppLayout 侧栏动效",
+      "english": "AppLayout sidebar motion",
+      "description": "收窄或展开侧栏并进入页面",
+      "descriptionEn": "Collapse or expand the sidebar and navigate to a page.",
+      "family": "menu",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "AppLayout"
+      ],
+      "href": "/prototype/sidebar-motion",
+      "kind": "sidebar",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "041",
+      "name": "底部导航凹槽",
+      "english": "Notched bottom tab bar",
+      "description": "从底部入口切换主要目的地",
+      "descriptionEn": "Switch primary destinations from a bottom navigation bar.",
+      "family": "menu",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "TabBar"
+      ],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "042",
+      "name": "分步向导",
+      "english": "Step-by-step wizard",
+      "description": "按步骤完成账号、工作区及成员设置",
+      "descriptionEn": "Set up an account, workspace, and members step by step.",
+      "family": "pagination-stepper",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Stepper",
+        "TextField",
+        "SelectOption",
+        "Button"
+      ],
+      "href": "/components/pagination-stepper",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "043",
+      "name": "分页伸缩",
+      "english": "Stretching pagination",
+      "description": "跳转分页并浏览该页内容",
+      "descriptionEn": "Change pages and browse their content.",
+      "family": "pagination-stepper",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Pagination"
+      ],
+      "href": "/components/pagination-stepper#pagination",
+      "kind": "pagination",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "044",
+      "name": "问答折叠",
+      "english": "FAQ accordion",
+      "description": "展开问题以阅读答案",
+      "descriptionEn": "Expand a question to read its answer.",
+      "family": "grid",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Accordion"
+      ],
+      "href": "/components/motion#accordion",
+      "kind": "accordion",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "045",
+      "name": "菜单由按钮展开",
+      "english": "Full-screen menu from the button",
+      "description": "打开网站导航并切换栏目",
+      "descriptionEn": "Open site navigation and switch sections.",
+      "family": "menu",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "IconTrigger",
+        "Drawer",
+        "MenuItem"
+      ],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "046",
+      "name": "命令面板",
+      "english": "Command palette",
+      "description": "搜索文件或命令并执行",
+      "descriptionEn": "Find files or commands and run a selection.",
+      "family": "menu",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "CommandSearch",
+        "Modal"
+      ],
+      "href": "/components/agent#commandsearch",
+      "kind": "command",
+      "partialKind": null,
+      "accepted": true
+    },
+    {
+      "id": "047",
+      "name": "时间区间切换",
+      "english": "Period segmented control",
+      "description": "切换指标统计的时间粒度",
+      "descriptionEn": "Switch the time granularity of a metric.",
+      "family": "tab",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ButtonGroup"
+      ],
+      "href": "/components/tab",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "048",
+      "name": "滑动联动标签",
+      "english": "Swipe-linked underline tabs",
+      "description": "点击页签或滑动内容切换栏目",
+      "descriptionEn": "Switch sections by selecting a tab or swiping content.",
+      "family": "tab",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "TabBar",
+        "TabsContent"
+      ],
+      "href": "/components/tab",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "049",
+      "name": "叠放内容卡片",
+      "english": "Stacked content card",
+      "description": "预览文章信息并收藏或打开",
+      "descriptionEn": "Preview an article, save it, or open it.",
+      "family": "card",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "SurfaceCard",
+        "IconButton",
+        "Button"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "050",
+      "name": "指针光照卡片",
+      "english": "Pointer highlight card",
+      "description": "浏览文章摘要并标记已读",
+      "descriptionEn": "Browse article summaries and mark them as read.",
+      "family": "card",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "053",
+      "name": "可拖拽卡片堆",
+      "english": "Swipeable card stack",
+      "description": "逐个浏览推荐内容、保存或跳过并撤销",
+      "descriptionEn": "Drag the top card and it tilts with your hand while a SAVE or PASS stamp darkens depending on the direction. Throw it far enough and it spins away as the next card rises. Undo brings back the card you just swiped.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "054",
+      "name": "关注个人卡",
+      "english": "Follow profile card",
+      "description": "查看个人资料、关注及推荐成员",
+      "descriptionEn": "View profiles, follow people, and explore suggested members.",
+      "family": "card",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "056",
+      "name": "月年计费切换",
+      "english": "Monthly–yearly pricing toggle",
+      "description": "选择计费周期与套餐并确认订阅",
+      "descriptionEn": "Choose a billing cycle and plan, then confirm a subscription.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "ButtonGroup",
+        "RadioButton",
+        "TextField",
+        "Button"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "057",
+      "name": "头像评价轮播",
+      "english": "Face-picker testimonial carousel",
+      "description": "浏览多位客户的评价并切换条目",
+      "descriptionEn": "Browse customer reviews and switch between them.",
+      "family": "comment",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "ReviewItem",
+        "Avatar",
+        "IconButton"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "058",
+      "name": "阅读进度卡",
+      "english": "Reading-progress article card",
+      "description": "阅读长文并按目录定位、查看阅读进度",
+      "descriptionEn": "Read an article, navigate its sections, and track reading progress.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "ProgressBar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "059",
+      "name": "活动报名卡",
+      "english": "Event RSVP card",
+      "description": "查看活动、选择参加状态并加入日历",
+      "descriptionEn": "View an event, choose an attendance status, and add it to a calendar.",
+      "family": "calendar",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "EventCard",
+        "ButtonGroup",
+        "AvatarGroup",
+        "Button"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "061",
+      "name": "缩略图展开",
+      "english": "Thumbnail-to-lightbox zoom",
+      "description": "展开图片、切换浏览并缩放",
+      "descriptionEn": "Press a photo and it grows from its thumbnail to fill the frame; close it and it shrinks back into place. In the viewer, double-click to zoom and drag around, swipe sideways to move between photos, or drag down to close.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "062",
+      "name": "登录反馈",
+      "english": "Sign-in card feedback",
+      "description": "输入账号密码、查看校验错误并完成登录",
+      "descriptionEn": "Enter account credentials, review validation errors, and sign in.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "Button"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "063",
+      "name": "逐题注册",
+      "english": "One-question-at-a-time sign-up",
+      "description": "逐步填写注册资料、返回修改已答项",
+      "descriptionEn": "Complete registration step by step and revisit earlier answers.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "Button",
+        "Stepper"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "066",
+      "name": "社交登录按钮",
+      "english": "Social sign-in buttons",
+      "description": "选择第三方账号登录，并切换登录方式",
+      "descriptionEn": "Choose a third-party account or switch sign-in methods.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Button",
+        "Avatar"
+      ],
+      "href": "/components/button-link",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "067",
+      "name": "锁定倒计时",
+      "english": "Lockout countdown",
+      "description": "账号暂时锁定时查看剩余等待并重试登录",
+      "descriptionEn": "View the remaining account lockout time and retry sign-in.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Button"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "069",
+      "name": "头像裁剪",
+      "english": "Avatar crop editor",
+      "description": "缩放、移动和旋转头像后保存裁剪结果",
+      "descriptionEn": "Drag the photo inside the round frame and zoom with the slider or the wheel; rule-of-thirds guides appear while you drag and everything outside the frame dims. Rotation springs around, and saving flies the cropped circle up into the profile spot.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "070",
+      "name": "堆叠通知",
+      "english": "Stacking toasts",
+      "description": "查看短暂操作结果，展开叠放通知并关闭或重试",
+      "descriptionEn": "View action results, expand stacked notifications, and dismiss or retry.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ToastProvider",
+        "useToast"
+      ],
+      "href": "/components/modal",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "071",
+      "name": "滑动删除与撤销",
+      "english": "Swipe-to-delete with undo",
+      "description": "在收件列表中滑动删除条目并撤销",
+      "descriptionEn": "Swipe to delete an inbox item, with an option to undo.",
+      "family": "list",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ListItem",
+        "ToastProvider",
+        "useToast"
+      ],
+      "href": "/components/list",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "072",
+      "name": "内联提示收拢",
+      "english": "Collapsing inline alerts",
+      "description": "查看常驻系统告警、展开详情并逐条消除",
+      "descriptionEn": "Alert rows stack up, each with its own color and icon. Dismiss one and it slides aside as its height folds, letting the rows below move up. The error alert expands a log with Details, and once all are dismissed a button to bring them back appears.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/tooltip",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "073",
+      "name": "公告滚动",
+      "english": "Rolling announcement banner",
+      "description": "阅读可轮播、可关闭的站内公告",
+      "descriptionEn": "Announcements roll upward in the strip at the top of the page while short bars on the right fill with the time left. Hovering pauses it; closing folds the strip away and the page below moves up. After closing, a small bell button brings it back.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/list",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "074",
+      "name": "通知铃菜单",
+      "english": "Notification bell dropdown",
+      "description": "浏览通知、按提及筛选、标记已读",
+      "descriptionEn": "Browse notifications, filter mentions, and mark items as read.",
+      "family": "list",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "IconTrigger",
+        "NotificationItem",
+        "NotificationBadge",
+        "TabBar",
+        "DropdownPanel"
+      ],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "075",
+      "name": "上传进度面板",
+      "english": "Upload progress panel",
+      "description": "查看多文件上传进度和失败项并重试",
+      "descriptionEn": "Track multiple file uploads and retry failed items.",
+      "family": "input-field",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "FileUpload",
+        "FileCard",
+        "ProgressBar",
+        "Accordion"
+      ],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "076",
+      "name": "跟随工具提示",
+      "english": "Gliding tooltip",
+      "description": "在工具栏中连续查看按钮含义和快捷键",
+      "descriptionEn": "Explore toolbar button descriptions and keyboard shortcuts.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Tooltip",
+        "TooltipGroup"
+      ],
+      "href": "/components/tooltip",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "077",
+      "name": "表情反应面板",
+      "english": "Reaction popover",
+      "description": "给消息添加或取消表情反应并查看人数",
+      "descriptionEn": "Add or remove message reactions and view their counts.",
+      "family": "chat",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ChatBubble",
+        "IconTrigger",
+        "IconButton"
+      ],
+      "href": "/components/chat",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "078",
+      "name": "滑动回复",
+      "english": "Swipe-to-reply chat",
+      "description": "选中一条消息引用回复并发送",
+      "descriptionEn": "Quote a selected message and send a reply.",
+      "family": "chat",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "href": "/components/chat",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "079",
+      "name": "骨架内容显现",
+      "english": "Skeleton that blooms into a post",
+      "description": "等待内容加载时看到结构占位，完成后平滑显现",
+      "descriptionEn": "A single streak of light sweeps the whole grey skeleton in one beat. When loading finishes, the profile, photo and text turn into their real selves from the top down, and the photo starts blurred before coming into focus.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "080",
+      "name": "轨道同步指示",
+      "english": "Orbit sync spinner",
+      "description": "了解同步进行到哪一步，并取消或重试",
+      "descriptionEn": "Track sync stages and cancel or retry the operation.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button",
+        "ProgressBar"
+      ],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "081",
+      "name": "完成状态按钮",
+      "english": "Completion button",
+      "description": "提交支付后查看处理中、成功与回执",
+      "descriptionEn": "View payment processing, its result, and a receipt.",
+      "family": "button-link",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "ProgressBar"
+      ],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "083",
+      "name": "队列进度转换",
+      "english": "Queue bar turning into progress",
+      "description": "跟踪排队中的部署及后续有明确比例的构建进度",
+      "descriptionEn": "Track queued deployments and subsequent build progress.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ProgressBar"
+      ],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "084",
+      "name": "语音输入指示",
+      "english": "Voice input indicator",
+      "description": "按住说话，了解正在聆听、识别或思考",
+      "descriptionEn": "Hold to speak and follow listening, recognition, and thinking states.",
+      "family": "chat",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ChatInputBar"
+      ],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "085",
+      "name": "下拉刷新",
+      "english": "Pull to refresh",
+      "description": "在列表顶部拉动或点击刷新以获取新内容",
+      "descriptionEn": "Pull the list down and it follows like a rubber band, getting heavier as it goes, while the arrow circle at the top draws and spins as far as you pull. Past the threshold the circle fills and the text turns into “Release to refresh”; let go and it spins while new posts slide in from the top.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "086",
+      "name": "AI 流式回答",
+      "english": "Streaming AI answer",
+      "description": "读取智能体流式回答、停止生成或重试",
+      "descriptionEn": "Read a streaming agent answer and stop or retry generation.",
+      "family": "agent",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "StreamingAnswer",
+        "ChatInputBar"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "087",
+      "name": "配送步骤",
+      "english": "Delivery steps with a truck",
+      "description": "查看订单当前配送阶段及历史节点",
+      "descriptionEn": "Track the current delivery stage and previous milestones.",
+      "family": "pagination-stepper",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Stepper",
+        "HistoryGrouped"
+      ],
+      "href": "/components/progress",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "088",
+      "name": "资料夹空态",
+      "english": "Empty folder that swallows paper",
+      "description": "首次无项目时选模板创建，然后进入项目列表",
+      "descriptionEn": "Create a first project from a template and open the project list.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "ListGroup",
+        "ListItem",
+        "Button"
+      ],
+      "href": "/components/list#列表空态与恢复",
+      "kind": "empty",
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "089",
+      "name": "地址纠错",
+      "english": "Correct a missing address",
+      "description": "地址不存在时识别原因并找到正确页面",
+      "descriptionEn": "Understand a missing page and find the right destination.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "090",
+      "name": "可重试错误卡",
+      "english": "Error widget that plugs back in",
+      "description": "数据加载失败时查看错误并重试，成功后查看图表",
+      "descriptionEn": "Review a loading error, retry, and view the chart when data is available.",
+      "family": "feedback",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button",
+        "BarChart",
+        "StatCard"
+      ],
+      "href": "/components/card",
+      "kind": null,
+      "partialKind": "empty",
+      "accepted": false
+    },
+    {
+      "id": "091",
+      "name": "离线消息队列",
+      "english": "Offline message queue",
+      "description": "离线仍可拟发消息，并在恢复后了解发送状态",
+      "descriptionEn": "Draft messages offline and track delivery when the connection returns.",
+      "family": "chat",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "href": "/components/chat",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "092",
+      "name": "筛选空态恢复",
+      "english": "Empty search that loosens filters",
+      "description": "搜索无结果时通过移除条件或纠错恢复结果",
+      "descriptionEn": "Recover empty search results by removing filters or correcting the query.",
+      "family": "filter",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "href": "/components/filter",
+      "kind": null,
+      "partialKind": "empty",
+      "accepted": false
+    },
+    {
+      "id": "093",
+      "name": "完成庆祝",
+      "english": "Celebration when every task is done",
+      "description": "完成今日全部待办后获得完成反馈",
+      "descriptionEn": "Receive completion feedback after finishing all daily tasks.",
+      "family": "checklist",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Checklist",
+        "ProgressBar",
+        "Button"
+      ],
+      "href": "/components/modal",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "095",
+      "name": "柱形切换",
+      "english": "Switch bar chart shape",
+      "description": "切换统计周期、检查某根柱和对比差异",
+      "descriptionEn": "Switch reporting periods, inspect bars, and compare values.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "BarChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "096",
+      "name": "可拖动折线",
+      "english": "Scrub a line chart",
+      "description": "沿时间序列查看价格与事件，并切换时间范围",
+      "descriptionEn": "Explore prices and events over time and change the time range.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "SmoothLineChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "097",
+      "name": "环形图重排",
+      "english": "Update a donut chart",
+      "description": "比较分类占比，并排除某分类重新计算比例",
+      "descriptionEn": "Compare category shares and exclude a category to recalculate proportions.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "DonutChart",
+        "ChartLegendItem"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "098",
+      "name": "数字更新卡片",
+      "english": "Updating metric",
+      "description": "监控实时关键指标、切换指标并暂停更新",
+      "descriptionEn": "Monitor live metrics, switch indicators, and pause updates.",
+      "family": "card",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "StatCard",
+        "LineChartStatCard"
+      ],
+      "href": "/components/card#statcard",
+      "kind": "number",
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "099",
+      "name": "活动进度环",
+      "english": "Activity rings",
+      "description": "比较多个独立目标的达成程度并查看每日变化",
+      "descriptionEn": "Compare progress toward independent goals and review daily changes.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "MultilayerDonutChart"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "100",
+      "name": "翻页计时器",
+      "english": "Folding flip timer",
+      "description": "设置时长、开始暂停延长计时并查看结束",
+      "descriptionEn": "The top half of each digit card folds forward from the center hinge and the bottom half follows, unfolding into the next number. Only the digits that change flip; in the last 10 seconds the digits turn orange, and when it ends the cards shake once and a restart button appears.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "101",
+      "name": "分栏工作区",
+      "english": "Split workspace",
+      "description": "拖动分隔条调整编辑区与预览区比例",
+      "descriptionEn": "A split view with a document beside its cover preview. Drag the divider to resize both panes, or set the same widths from the keyboard.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/grid",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "102",
+      "name": "嵌套文件树",
+      "english": "Nested file tree",
+      "description": "展开文件夹层级并选择文件",
+      "descriptionEn": "A tree for opening and closing folders to pick a file. An opened folder shows its contents indented below, and the chosen file stays highlighted.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/menu",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "108",
+      "name": "时区交集",
+      "english": "Time zone overlap",
+      "description": "跨时区找共同工作时间",
+      "descriptionEn": "Find shared working hours across time zones.",
+      "family": "calendar",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/calendar",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "109",
+      "name": "可用时间涂选",
+      "english": "Weekly availability painter",
+      "description": "在一周时间网格中涂选可用时段",
+      "descriptionEn": "A grid for painting the hours you’re free this week. Press a cell or drag across several to fill them at once, and the total updates right away.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/calendar",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "110",
+      "name": "日程冲突修复",
+      "english": "Schedule conflict fixer",
+      "description": "发现日程冲突并选择建议的新时间",
+      "descriptionEn": "Identify scheduling conflicts and choose a suggested time.",
+      "family": "calendar",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "EventTag",
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/calendar",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "111",
+      "name": "任务时长编辑",
+      "english": "Task duration editor",
+      "description": "移动任务开始日期并拖拽调整跨天时长",
+      "descriptionEn": "A Gantt editor for changing a task’s start day and length on a weekly chart. Drag the bar to move its start or the end handle to change its length, and the summary follows.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/calendar",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "126",
+      "name": "Markdown 编辑与预览",
+      "english": "Markdown twin note",
+      "description": "编辑 Markdown 并切换查看排版结果",
+      "descriptionEn": "Edit Markdown and switch to its formatted preview.",
+      "family": "cases",
+      "caseTag": "内容与编辑",
+      "mode": "compose",
+      "target": [
+        "TextArea",
+        "StreamingAnswer",
+        "Button"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "127",
+      "name": "变更片段审核",
+      "english": "Change hunk review",
+      "description": "逐段接受或保留代码变更",
+      "descriptionEn": "Accept or keep code changes one section at a time.",
+      "family": "cases",
+      "caseTag": "内容与编辑",
+      "mode": "compose",
+      "target": [
+        "AgentCodeBlock",
+        "Button"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "128",
+      "name": "查找替换",
+      "english": "Find and replace",
+      "description": "在文档中查找并批量替换文字",
+      "descriptionEn": "Find text in a document and replace all matches.",
+      "family": "cases",
+      "caseTag": "内容与编辑",
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "TextArea",
+        "Button"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "129",
+      "name": "代码折叠",
+      "english": "Foldable code blocks",
+      "description": "折叠代码区块以缩短阅读长度",
+      "descriptionEn": "Fold code blocks to shorten the reading view.",
+      "family": "cases",
+      "caseTag": "内容与编辑",
+      "mode": "enhance",
+      "target": [
+        "AgentCodeBlock"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "140",
+      "name": "选中文字格式",
+      "english": "Selection formatting",
+      "description": "为选中的文本设置粗体斜体或对齐",
+      "descriptionEn": "A formatting bar that bolds or italicizes the selected text and changes paragraph alignment. With nothing selected it applies to the whole paragraph, and each button shows the current state.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "146",
+      "name": "JSON 树编辑",
+      "english": "JSON value tree",
+      "description": "展开 JSON 对象并编辑有类型的字段",
+      "descriptionEn": "An editor that lays nested JSON out as a tree so you can change values in place. Strings, numbers and booleans each get the right kind of input, so their types stay intact.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "149",
+      "name": "冲突文本合并",
+      "english": "Conflict sentence merge",
+      "description": "在两份冲突文本中逐块选择保留内容",
+      "descriptionEn": "A merge view for lines where your version and your team’s collide. Choose one side for each line and the final document comes together in place.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "151",
+      "name": "贡献热力格",
+      "english": "Weekly contribution grid",
+      "description": "按日期查看活动强度和贡献量",
+      "descriptionEn": "A heatmap of 84 days of contributions laid out week by week. Move the date slider and that day’s cell is marked, with its date and count shown below.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "154",
+      "name": "能力雷达",
+      "english": "Overlapping skill radar",
+      "description": "比较多项能力在不同对象间的差异",
+      "descriptionEn": "A radar chart that overlays two people’s skills on five axes. Pick a person in the legend to bring their shape forward and show their strongest skill.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "157",
+      "name": "层叠用量面积",
+      "english": "Stacked usage areas",
+      "description": "查看不同用量序列的累计占比并聚焦单项",
+      "descriptionEn": "Compare cumulative usage shares and focus on a series.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ChartLegendItem"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "160",
+      "name": "转化漏斗",
+      "english": "Conversion funnel",
+      "description": "查看转化阶段及相邻阶段流失",
+      "descriptionEn": "A funnel showing how many people drop off at each step from visit to purchase. Press a step to see its biggest drop-off reason, and press again to return to the overall rate.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "161",
+      "name": "留存队列",
+      "english": "Weekly retention cohorts",
+      "description": "比较不同队列在后续周期的留存",
+      "descriptionEn": "A cohort table that shades each cell by how many customers from a signup week were still around weeks later. Press a cell to highlight that retention, and press again to clear it.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "163",
+      "name": "目标刻度",
+      "english": "Bullet chart target",
+      "description": "比较实际值与目标阈值",
+      "descriptionEn": "Compare an actual value with its target threshold.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "BarHorizontalChart",
+        "ChartCard"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "165",
+      "name": "预测置信带",
+      "english": "Forecast confidence band",
+      "description": "查看预测曲线并切换置信区间",
+      "descriptionEn": "View a forecast curve and toggle its confidence interval.",
+      "family": "chart",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ButtonGroup"
+      ],
+      "href": "/components/chart",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "176",
+      "name": "版本胶片",
+      "english": "Version filmstrip",
+      "description": "预览历史版本并恢复其中一个",
+      "descriptionEn": "Preview earlier versions and restore one.",
+      "family": "history",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "HistoryGrouped",
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/history",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "177",
+      "name": "撤销重做历史",
+      "english": "Undo and redo history",
+      "description": "撤销和重做当前编辑操作",
+      "descriptionEn": "Undo or redo the current editing action.",
+      "family": "history",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "Toolbar",
+        "IconButton"
+      ],
+      "href": "/components/history",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "178",
+      "name": "批量选择操作台",
+      "english": "Bulk selection dock",
+      "description": "选择多个文件并批量归档与撤销",
+      "descriptionEn": "Select files for bulk archiving, with an option to undo.",
+      "family": "list",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Toolbar",
+        "Button",
+        "Checkbox",
+        "FileTypeIcon"
+      ],
+      "href": "/components/list#选择与批量操作",
+      "kind": "selection",
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "179",
+      "name": "文字片段拼接",
+      "english": "Clipboard shelf",
+      "description": "选择多个文字片段并按选择顺序拼接",
+      "descriptionEn": "Select text fragments and combine them in selection order.",
+      "family": "cases",
+      "caseTag": "内容与编辑",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/other-widget",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "180",
+      "name": "审批签署",
+      "english": "Approval sign-off line",
+      "description": "逐步完成多人审核并展示审核状态",
+      "descriptionEn": "Complete a multi-person review and track each approval stage.",
+      "family": "cases",
+      "caseTag": "协作与流程",
+      "mode": "compose",
+      "target": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "181",
+      "name": "工作分派",
+      "english": "Workload dispatcher",
+      "description": "根据成员剩余容量分派任务",
+      "descriptionEn": "Assign tasks according to remaining member capacity.",
+      "family": "cases",
+      "caseTag": "协作与流程",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Avatar",
+        "ProgressBar",
+        "Button"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "184",
+      "name": "角色权限矩阵",
+      "english": "Role permission matrix",
+      "description": "调整角色对资源的操作权限",
+      "descriptionEn": "Adjust which actions each role can perform on a resource.",
+      "family": "table",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "DataTable",
+        "Checkbox"
+      ],
+      "href": "/components/table",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "188",
+      "name": "灰度发布",
+      "english": "Canary rollout",
+      "description": "分阶段扩大部署覆盖率并回滚",
+      "descriptionEn": "A canary release screen that opens a new feature to a slice of users first. Each step raises the share and fills that much of the dot grid, and roll back undoes it at once.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/input-field",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "189",
+      "name": "环境晋级",
+      "english": "Release promotion gate",
+      "description": "校验后把版本从开发推进到预发和生产",
+      "descriptionEn": "A promotion gate that moves a release through dev, staging and production. Each press runs a check, then advances to the next environment; at the end you can start over.",
+      "family": "deferred",
+      "caseTag": null,
+      "mode": "defer",
+      "target": [],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "F01",
+      "name": "附件队列",
+      "english": "Attachment queue",
+      "description": "为消息添加多个附件并处理上传进度、失败和移除",
+      "descriptionEn": "Attach multiple files to a message and manage progress, failures, and removal.",
+      "family": "chat",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "FileUpload",
+        "FileCard",
+        "ChatInputBar"
+      ],
+      "href": "/components/chat",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "F02",
+      "name": "工具运行卡",
+      "english": "Tool run card",
+      "description": "查看工具调用的参数、步骤、结果并停止或重试",
+      "descriptionEn": "Inspect tool parameters, steps, and results, and stop or retry a run.",
+      "family": "agent",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "ThinkingTrace",
+        "ToolChips"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "F03",
+      "name": "列表批量操作",
+      "english": "List bulk actions",
+      "description": "选中文档后执行批量操作并撤销",
+      "descriptionEn": "Select documents for bulk actions, with an option to undo.",
+      "family": "list",
+      "caseTag": null,
+      "mode": "enhance",
+      "target": [
+        "Toolbar",
+        "Button",
+        "ListGroup",
+        "ListItem"
+      ],
+      "href": "/components/list#选择与批量操作",
+      "kind": "selection",
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "F04",
+      "name": "生成内容审核",
+      "english": "Generated content review",
+      "description": "逐项接受、保留或撤销文本变更",
+      "descriptionEn": "Accept, keep, or undo individual text changes.",
+      "family": "agent",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "F05",
+      "name": "协作席位",
+      "english": "Collaboration seats",
+      "description": "增减协作成员并切换当前负责人",
+      "descriptionEn": "Add or remove collaborators and switch the current owner.",
+      "family": "agent",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "AddMember",
+        "Avatar",
+        "AvatarGroup",
+        "Button"
+      ],
+      "href": "/components/agent",
+      "kind": null,
+      "partialKind": null,
+      "accepted": false
+    },
+    {
+      "id": "F06",
+      "name": "搜索无结果恢复",
+      "english": "Search recovery",
+      "description": "移除限制条件并恢复搜索结果",
+      "descriptionEn": "Remove restrictive filters to recover search results.",
+      "family": "filter",
+      "caseTag": null,
+      "mode": "compose",
+      "target": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "href": "/components/filter",
+      "kind": null,
+      "partialKind": "empty",
+      "accepted": false
+    }
+  ]
+}

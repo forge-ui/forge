@@ -1,0 +1,2132 @@
+[
+  {
+    "id": "001",
+    "name": "液态玻璃按钮",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "002",
+    "name": "磁吸箭头按钮",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "StyledLink",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "003",
+    "name": "长按删除",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link#长按删除-button-hold",
+    "accepted": false
+  },
+  {
+    "id": "004",
+    "name": "下载进度按钮",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "005",
+    "name": "纸飞机发送",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "006",
+    "name": "墨水涟漪按钮",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "007",
+    "name": "播放暂停变形",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "008",
+    "name": "复制完成反馈",
+    "family": "button-link",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ButtonGroup",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "009",
+    "name": "文字滚动按钮",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "StyledLink",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "010",
+    "name": "组合操作按钮",
+    "family": "button-link",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconTrigger",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "DropdownPanel",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "MenuItem",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "011",
+    "name": "扇形快捷操作",
+    "family": "menu",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconTrigger",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/menu",
+    "accepted": false
+  },
+  {
+    "id": "012",
+    "name": "书签丝带",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "013",
+    "name": "弹性开关",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Toggle",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field#toggle",
+    "accepted": true
+  },
+  {
+    "id": "014",
+    "name": "待办清单",
+    "family": "checklist",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Checklist",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/checklist",
+    "accepted": false
+  },
+  {
+    "id": "015",
+    "name": "套餐选择卡",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "RadioWithLabel",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "RadioButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "016",
+    "name": "星级评价",
+    "family": "comment",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "RatingStars",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/other-widget",
+    "accepted": false
+  },
+  {
+    "id": "018",
+    "name": "滚动数量步进",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "019",
+    "name": "兴趣多选",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "CheckboxControl",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "CheckboxWithLabel",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "021",
+    "name": "日夜切换",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Toggle",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "022",
+    "name": "点赞心形绽放",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "023",
+    "name": "通知设置展开",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Toggle",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ButtonGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Accordion",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "025",
+    "name": "浮动标签输入",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "026",
+    "name": "验证码输入",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "OtpInput",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "027",
+    "name": "顶栏搜索展开",
+    "family": "page-header",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "ToolbarSearchInput",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "CommandSearch",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/toolbar",
+    "accepted": false
+  },
+  {
+    "id": "028",
+    "name": "自动伸展评论框",
+    "family": "comment",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextArea",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "CommentItem",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/comment",
+    "accepted": false
+  },
+  {
+    "id": "029",
+    "name": "标签输入",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "030",
+    "name": "日期区间日历",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Datepicker",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/calendar",
+    "accepted": false
+  },
+  {
+    "id": "031",
+    "name": "自定义选择器",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "SelectOption",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field#selectoption",
+    "accepted": true
+  },
+  {
+    "id": "032",
+    "name": "拖拽上传",
+    "family": "input-field",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "FileUpload",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "FileCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "033",
+    "name": "标题内联编辑",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "036",
+    "name": "密码强度",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "037",
+    "name": "账号切换",
+    "family": "menu",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "AppLayout",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "AppSwitcherDropdown",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProfileCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "MenuItem",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/menu",
+    "accepted": false
+  },
+  {
+    "id": "039",
+    "name": "滑动选中标签",
+    "family": "tab",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "TabBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TabsContent",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/tab#tabbar",
+    "accepted": true
+  },
+  {
+    "id": "040",
+    "name": "AppLayout 侧栏动效",
+    "family": "menu",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "AppLayout",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/prototype/sidebar-motion",
+    "accepted": true
+  },
+  {
+    "id": "041",
+    "name": "底部导航凹槽",
+    "family": "menu",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "TabBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/menu",
+    "accepted": false
+  },
+  {
+    "id": "042",
+    "name": "分步向导",
+    "family": "pagination-stepper",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Stepper",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SelectOption",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/pagination-stepper",
+    "accepted": false
+  },
+  {
+    "id": "043",
+    "name": "分页伸缩",
+    "family": "pagination-stepper",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Pagination",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/pagination-stepper#pagination",
+    "accepted": true
+  },
+  {
+    "id": "044",
+    "name": "问答折叠",
+    "family": "grid",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Accordion",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/motion#accordion",
+    "accepted": true
+  },
+  {
+    "id": "045",
+    "name": "菜单由按钮展开",
+    "family": "menu",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "IconTrigger",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Drawer",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "MenuItem",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/menu",
+    "accepted": false
+  },
+  {
+    "id": "046",
+    "name": "命令面板",
+    "family": "menu",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "CommandSearch",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Modal",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent#commandsearch",
+    "accepted": true
+  },
+  {
+    "id": "047",
+    "name": "时间区间切换",
+    "family": "tab",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ButtonGroup",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/tab",
+    "accepted": false
+  },
+  {
+    "id": "048",
+    "name": "滑动联动标签",
+    "family": "tab",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "TabBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TabsContent",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/tab",
+    "accepted": false
+  },
+  {
+    "id": "049",
+    "name": "层叠内容卡",
+    "family": "card",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "050",
+    "name": "光照倾斜卡",
+    "family": "card",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "054",
+    "name": "关注个人卡",
+    "family": "card",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Avatar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "056",
+    "name": "月年计费切换",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "ButtonGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "RadioButton",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "057",
+    "name": "头像评价轮播",
+    "family": "comment",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "ReviewItem",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Avatar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "058",
+    "name": "阅读进度卡",
+    "family": "feedback",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/progress",
+    "accepted": false
+  },
+  {
+    "id": "059",
+    "name": "活动报名卡",
+    "family": "calendar",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "EventCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ButtonGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "AvatarGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "062",
+    "name": "登录反馈",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "063",
+    "name": "逐题注册",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Stepper",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "066",
+    "name": "社交登录按钮",
+    "family": "button-link",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Avatar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/button-link",
+    "accepted": false
+  },
+  {
+    "id": "067",
+    "name": "锁定倒计时",
+    "family": "feedback",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "070",
+    "name": "堆叠通知",
+    "family": "feedback",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ToastProvider",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "useToast",
+        "publicComponent": false,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/modal",
+    "accepted": false
+  },
+  {
+    "id": "071",
+    "name": "滑动删除与撤销",
+    "family": "list",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ListItem",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ToastProvider",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "useToast",
+        "publicComponent": false,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/list",
+    "accepted": false
+  },
+  {
+    "id": "074",
+    "name": "通知铃菜单",
+    "family": "list",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "IconTrigger",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "NotificationItem",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "NotificationBadge",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TabBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "DropdownPanel",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/menu",
+    "accepted": false
+  },
+  {
+    "id": "075",
+    "name": "上传进度面板",
+    "family": "input-field",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "FileUpload",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "FileCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Accordion",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/input-field",
+    "accepted": false
+  },
+  {
+    "id": "076",
+    "name": "跟随工具提示",
+    "family": "feedback",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Tooltip",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TooltipGroup",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/tooltip",
+    "accepted": false
+  },
+  {
+    "id": "077",
+    "name": "表情反应面板",
+    "family": "chat",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ChatBubble",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconTrigger",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chat",
+    "accepted": false
+  },
+  {
+    "id": "078",
+    "name": "滑动回复",
+    "family": "chat",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ChatBubble",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChatInputBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chat",
+    "accepted": false
+  },
+  {
+    "id": "080",
+    "name": "轨道同步指示",
+    "family": "feedback",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/progress",
+    "accepted": false
+  },
+  {
+    "id": "081",
+    "name": "环形完成反馈",
+    "family": "button-link",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/progress",
+    "accepted": false
+  },
+  {
+    "id": "083",
+    "name": "队列进度转换",
+    "family": "feedback",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/progress",
+    "accepted": false
+  },
+  {
+    "id": "084",
+    "name": "语音响应圆点",
+    "family": "chat",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ChatInputBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/progress",
+    "accepted": false
+  },
+  {
+    "id": "086",
+    "name": "AI 流式回答",
+    "family": "agent",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "StreamingAnswer",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChatInputBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "087",
+    "name": "配送步骤",
+    "family": "pagination-stepper",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Stepper",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "HistoryGrouped",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/progress",
+    "accepted": false
+  },
+  {
+    "id": "088",
+    "name": "资料夹空态",
+    "family": "feedback",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "ListGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ListItem",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/list#列表空态与恢复",
+    "accepted": false
+  },
+  {
+    "id": "089",
+    "name": "404 纠错",
+    "family": "feedback",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "090",
+    "name": "可重试错误卡",
+    "family": "feedback",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "BarChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "StatCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card",
+    "accepted": false
+  },
+  {
+    "id": "091",
+    "name": "离线消息队列",
+    "family": "chat",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ChatBubble",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChatInputBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chat",
+    "accepted": false
+  },
+  {
+    "id": "092",
+    "name": "筛选空态恢复",
+    "family": "filter",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "FilterPanel",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ToolbarSearchInput",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ListGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/filter",
+    "accepted": false
+  },
+  {
+    "id": "093",
+    "name": "完成庆祝",
+    "family": "checklist",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Checklist",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/modal",
+    "accepted": false
+  },
+  {
+    "id": "095",
+    "name": "形态切换柱图",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "BarChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartTooltip",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TabBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "096",
+    "name": "滑动股票折线",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "SmoothLineChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartTooltip",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TabBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "097",
+    "name": "重排环图",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "DonutChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartLegendItem",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "098",
+    "name": "实时数字滚动",
+    "family": "card",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "StatCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "LineChartStatCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/card#statcard",
+    "accepted": false
+  },
+  {
+    "id": "099",
+    "name": "活动环",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "MultilayerDonutChart",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "108",
+    "name": "时区交集",
+    "family": "calendar",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/calendar",
+    "accepted": false
+  },
+  {
+    "id": "110",
+    "name": "日程冲突修复",
+    "family": "calendar",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "EventTag",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/calendar",
+    "accepted": false
+  },
+  {
+    "id": "126",
+    "name": "Markdown 编辑与预览",
+    "family": "cases",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextArea",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "StreamingAnswer",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "127",
+    "name": "变更片段审核",
+    "family": "cases",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "AgentCodeBlock",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "128",
+    "name": "查找替换",
+    "family": "cases",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "TextField",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "TextArea",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "129",
+    "name": "代码折叠",
+    "family": "cases",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "AgentCodeBlock",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "157",
+    "name": "层叠用量面积",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "SmoothLineChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartLegendItem",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "163",
+    "name": "目标刻度",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "BarHorizontalChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "165",
+    "name": "预测置信带",
+    "family": "chart",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "SmoothLineChart",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChartCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ButtonGroup",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chart",
+    "accepted": false
+  },
+  {
+    "id": "176",
+    "name": "版本胶片",
+    "family": "history",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "HistoryGrouped",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/history",
+    "accepted": false
+  },
+  {
+    "id": "177",
+    "name": "撤销重做历史",
+    "family": "history",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Toolbar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "IconButton",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/history",
+    "accepted": false
+  },
+  {
+    "id": "178",
+    "name": "批量选择操作台",
+    "family": "list",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Toolbar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Checkbox",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "FileTypeIcon",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/list#选择与批量操作",
+    "accepted": false
+  },
+  {
+    "id": "179",
+    "name": "文字片段拼接",
+    "family": "cases",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/other-widget",
+    "accepted": false
+  },
+  {
+    "id": "180",
+    "name": "审批签署",
+    "family": "cases",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "Avatar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "181",
+    "name": "工作分派",
+    "family": "cases",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Avatar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ProgressBar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "184",
+    "name": "角色权限矩阵",
+    "family": "table",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "DataTable",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Checkbox",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/table",
+    "accepted": false
+  },
+  {
+    "id": "F01",
+    "name": "附件队列",
+    "family": "chat",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "FileUpload",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "FileCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ChatInputBar",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/chat",
+    "accepted": false
+  },
+  {
+    "id": "F02",
+    "name": "工具运行卡",
+    "family": "agent",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "ThinkingTrace",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ToolChips",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "F03",
+    "name": "列表批量操作",
+    "family": "list",
+    "mode": "enhance",
+    "targets": [
+      {
+        "name": "Toolbar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ListGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ListItem",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/list#选择与批量操作",
+    "accepted": false
+  },
+  {
+    "id": "F04",
+    "name": "生成内容审核",
+    "family": "agent",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "SurfaceCard",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "F05",
+    "name": "协作席位",
+    "family": "agent",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "AddMember",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Avatar",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "AvatarGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/agent",
+    "accepted": false
+  },
+  {
+    "id": "F06",
+    "name": "搜索无结果恢复",
+    "family": "filter",
+    "mode": "compose",
+    "targets": [
+      {
+        "name": "FilterPanel",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ToolbarSearchInput",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "ListGroup",
+        "publicComponent": true,
+        "publicExport": true
+      },
+      {
+        "name": "Button",
+        "publicComponent": true,
+        "publicExport": true
+      }
+    ],
+    "declaredHref": "/components/filter",
+    "accepted": false
+  }
+]

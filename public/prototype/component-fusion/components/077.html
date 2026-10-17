@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>表情反应面板</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"077",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"077",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"077",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"077",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"077"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u077{position:relative;width:350px;height:310px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:18px;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 60px -36px var(--ux-shadow-strong)}
+.u077-msg{display:flex;gap:10px}
+.u077-av{width:34px;height:34px;flex:none;border-radius:50%;background:var(--g)}
+.u077-bub{max-width:250px;padding:10px 14px;border-radius:6px 18px 18px 18px;background:var(--ux-surface-2);font-size:var(--forge-text-sm-size);line-height:1.5}
+.u077-bub b{display:block;margin-bottom:2px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-2)}
+.u077-rx{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0 44px}
+.u077-chip{height:32px;padding:0 10px;border:0;border-radius:999px;display:inline-flex;align-items:center;gap:5px;background:var(--ux-surface-2);box-shadow:inset 0 0 0 1.5px transparent;font-size:var(--forge-text-arbitrary-15-size);transition:box-shadow .2s,background-color .2s,transform .3s var(--ux-spring)}
+.u077-chip b{font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-2);font-variant-numeric:tabular-nums}
+.u077-chip[aria-pressed="true"]{background:var(--ux-accent-soft);box-shadow:inset 0 0 0 1.5px var(--ux-accent)}
+.u077-chip[aria-pressed="true"] b{color:var(--ux-accent)}
+.u077-chip:active{transform:scale(.9)}
+.u077-chip.pop{animation:u077-pop .5s var(--ux-spring)}
+@keyframes u077-pop{0%{transform:scale(.4)}60%{transform:scale(1.15)}100%{transform:none}}
+.u077-add{width:32px;height:32px;border:0;padding:0;border-radius:50%;display:grid;place-items:center;background:var(--ux-surface-2);color:var(--ux-ink-2);transition:background-color .2s,transform .3s var(--ux-spring)}
+.u077-add:hover,.u077-add[aria-expanded="true"]{background:var(--ux-surface-3);color:var(--ux-ink)}
+.u077-add svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round}
+.u077-chip:focus-visible,.u077-add:focus-visible,.u077-e:focus-visible{outline:2px solid var(--ux-accent);outline-offset:2px}
+.u077-pop{position:absolute;z-index:4;left:0;top:0;width:260px;padding:10px;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 24px 44px -18px var(--ux-shadow-strong);transform-origin:var(--ox,30px) calc(100% + 10px);transform:translate(var(--x,0px),var(--y,0px));transition:transform .45s var(--ux-spring),opacity .2s}
+.u077-pop.closed{transform:translate(var(--x,0px),var(--y,0px)) scale(.3);opacity:0;pointer-events:none;transition:transform .3s var(--ux-ease),opacity .2s}
+.u077-pop::after{content:"";position:absolute;left:var(--ox,30px);bottom:-6px;width:12px;height:12px;margin-left:-6px;border-radius:2px;background:var(--ux-surface);transform:rotate(45deg);box-shadow:1px 1px 0 0 var(--ux-line)}
+.u077-pop small{display:block;padding:2px 6px 8px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);letter-spacing:.04em;color:var(--ux-ink-3)}
+.u077-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+.u077-e{height:38px;border:0;padding:0;border-radius:11px;background:none;font-size:var(--forge-text-xl-size);line-height:1;transition:transform .25s var(--ux-spring),background-color .15s}
+.u077-e:hover,.u077-e:focus-visible{background:var(--ux-surface-2);transform:scale(1.18)}
+.u077-e:active{transform:scale(.9)}
+</style>
+<div class="ux u077">
+  <div class="u077-msg"><span class="u077-av" style="--g:linear-gradient(140deg,var(--fg-green-500),var(--accent))" aria-hidden="true"></span><div class="u077-bub"><b>Harin Yoon</b>Draft v3 is up! I cut the button transition to 0.3s.</div></div>
+  <div><div class="u077-msg"><span class="u077-av" style="--g:linear-gradient(140deg,var(--accent),var(--accent))" aria-hidden="true"></span><div class="u077-bub"><b>Doyun Han</b>Oh, that feels much lighter. I think we can ship it as is 🙌</div></div>
+  <div class="u077-rx" role="group" aria-label="Reactions"><button class="u077-chip" type="button" aria-pressed="false" data-e="👍"><span aria-hidden="true">👍</span><b>3</b></button><button class="u077-chip" type="button" aria-pressed="false" data-e="🎉"><span aria-hidden="true">🎉</span><b>1</b></button><button class="u077-add" type="button" aria-haspopup="dialog" aria-expanded="true" aria-label="Add reaction"><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="6.5"/><path d="M6.5 10.5a3 3 0 0 0 5 0M7 7h.01M11 7h.01"/></svg></button></div></div>
+  <div class="u077-pop" role="dialog" aria-label="Pick a reaction"><small>Frequently used</small><div class="u077-grid"></div></div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var add = root.querySelector('.u077-add'), pop = root.querySelector('.u077-pop'), grid = pop.querySelector('.u077-grid'), rx = root.querySelector('.u077-rx');
+
+  var E = [['👍', 'Like'], ['❤️', 'Heart'], ['😂', 'Laugh'], ['🎉', 'Celebrate'], ['🔥', 'Fire'], ['👀', 'Watching'], ['🙏', 'Thanks'], ['✅', 'Done'], ['💡', 'Idea'], ['😮', 'Wow'], ['🚀', 'Launch'], ['👏', 'Clap']];
+  var es = E.map(function (e) {
+    var b = document.createElement('button');
+    b.className = 'u077-e'; b.type = 'button'; b.textContent = e[0]; b.setAttribute('aria-label', e[1]); b.tabIndex = -1;
+    b.addEventListener('click', function () { react(e[0], e[1]); close(true); });
+    grid.appendChild(b);
+    return b;
+  });
+  // 팝오버는 버튼 위에 놓고, 화살표는 버튼 가운데를 가리킵니다
+  function place() {
+    var ax = add.offsetLeft + add.offsetWidth / 2, ay = add.offsetTop;
+    var w = pop.offsetWidth, h = pop.offsetHeight;
+    var x = Math.max(10, Math.min(root.clientWidth - w - 10, ax - 40));
+    pop.style.setProperty('--x', x + 'px');
+    pop.style.setProperty('--y', (ay - h - 12) + 'px');
+    pop.style.setProperty('--ox', (ax - x) + 'px');
+  }
+  function open(focus) {
+    place();
+    pop.classList.remove('closed'); pop.inert = false;
+    add.setAttribute('aria-expanded', 'true');
+    if (focus) { es[0].tabIndex = 0; es[0].focus({ preventScroll: true }); }
+  }
+  function close(back) {
+    pop.classList.add('closed'); pop.inert = true;
+    add.setAttribute('aria-expanded', 'false');
+    if (back) add.focus({ preventScroll: true });
+  }
+  function chipOf(e) { return rx.querySelector('[data-e="' + e + '"]'); }
+  function label(c) { c.setAttribute('aria-label', c.getAttribute('data-n') + ', ' + c.querySelector('b').textContent + ' people' + (c.getAttribute('aria-pressed') === 'true' ? ', including you' : '')); }
+  function bump(c) { if (window.forgeReduced()) return; c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+  // 고른 반응이 이미 있으면 숫자만 올리고, 없으면 새 칩을 만들어 튀어 오르게 합니다
+  function react(e, name) {
+    var c = chipOf(e);
+    if (!c) {
+      c = document.createElement('button');
+      c.className = 'u077-chip'; c.type = 'button'; c.setAttribute('data-e', e); c.setAttribute('data-n', name); c.setAttribute('aria-pressed', 'false');
+      c.innerHTML = '<span aria-hidden="true">' + e + '</span><b>0</b>';
+      rx.insertBefore(c, add);
+      c.addEventListener('click', function () { toggle(c); });
+    }
+    if (c.getAttribute('aria-pressed') !== 'true') toggle(c); else bump(c);
+  }
+  function toggle(c) {
+    var on = c.getAttribute('aria-pressed') !== 'true', n = Number(c.querySelector('b').textContent) + (on ? 1 : -1);
+    if (n <= 0) { c.remove(); place(); return; }
+    c.setAttribute('aria-pressed', String(on)); c.querySelector('b').textContent = n; label(c); bump(c);
+    place();
+  }
+  rx.querySelectorAll('.u077-chip').forEach(function (c) {
+    c.setAttribute('data-n', c.getAttribute('data-e') === '👍' ? 'Like' : 'Celebrate');
+    label(c);
+    c.addEventListener('click', function () { toggle(c); });
+  });
+  add.addEventListener('click', function () { if (pop.classList.contains('closed')) open(true); else close(false); });
+  grid.addEventListener('keydown', function (e) {
+    var i = es.indexOf(document.activeElement), d = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 6, ArrowUp: -6 }[e.key];
+    if (d && i >= 0) { e.preventDefault(); var n = (i + d + es.length) % es.length; es[i].tabIndex = -1; es[n].tabIndex = 0; es[n].focus(); }
+  });
+  root.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.classList.contains('closed')) { e.preventDefault(); close(true); } });
+  // 팝오버 바깥 어디를 눌러도 닫힙니다
+  function outside(e) {
+    if (!root.isConnected) { document.removeEventListener('pointerdown', outside, true); return; }
+    if (!pop.classList.contains('closed') && !pop.contains(e.target) && !add.contains(e.target)) close(false);
+  }
+  document.addEventListener('pointerdown', outside, true);
+  es[0].tabIndex = 0;
+  open(false);
+})();</script></body></html>

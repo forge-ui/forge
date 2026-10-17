@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, type ReactNode } from "react";
+import { CloseCircleLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { formAccents, type FormAccentColor } from "./form-utils";
 
@@ -30,7 +31,7 @@ export interface FieldClasses {
 export function getFieldClasses({
   state = "idle",
   shape = "rounded",
-  color = "purple",
+  color = "blue",
 }: {
   state?: FieldState;
   shape?: FieldShape;
@@ -72,27 +73,29 @@ export function FieldTag({
   label,
   color,
   onRemove,
+  selected = false,
+  locale = "zh",
 }: {
   label: string;
   color: FieldColor;
   onRemove?: () => void;
+  selected?: boolean;
+  locale?: "zh" | "en";
 }) {
   const accent = formAccents[color];
   return (
-    <span className={cn("inline-flex items-center gap-0.5 p-2 rounded-full", tagBgByColor[color])}>
+    <span data-tag-selected={selected || undefined} className={cn("inline-flex items-center gap-0.5 p-2 rounded-full", tagBgByColor[color], selected && "outline outline-2 outline-current")}>
       <span className={cn("text-xs font-bold leading-[18px] tracking-fg whitespace-nowrap", accent.text)}>
         {label}
       </span>
       {onRemove && (
         <button
           type="button"
-          aria-label={`移除 ${label}`}
+          aria-label={`${locale === "en" ? "Remove" : "移除"} ${label}`}
           onClick={(e) => { e.stopPropagation(); onRemove(); }}
           className="w-[18px] h-[18px] flex items-center justify-center cursor-pointer shrink-0"
         >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={accent.text} />
-          </svg>
+          <CloseCircleLinear size={14} color="currentColor" />
         </button>
       )}
     </span>

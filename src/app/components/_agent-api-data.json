@@ -1,0 +1,3151 @@
+{
+  "ChatBubble": {
+    "props": [
+      {
+        "name": "type",
+        "type": "\"sent\" | \"received\"",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "reactions",
+        "type": "ChatReaction[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "reactionOptions",
+        "type": "ChatReactionOption[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "onReaction",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onReply",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "replyTo",
+        "type": "ComposerReply | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "delivery",
+        "type": "\"sent\" | \"queued\" | \"sending\" | \"delivered\" | \"failed\" | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "type": "\"text\" | \"voice\" | \"file\" | \"image\" | undefined",
+        "optional": true,
+        "defaultValue": "\"text\""
+      },
+      {
+        "name": "color",
+        "type": "AccentColor | undefined",
+        "optional": true,
+        "defaultValue": "\"blue\""
+      },
+      {
+        "name": "content",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "time",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "avatar",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "senderName",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "images",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "extraImageCount",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "fileName",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "fileSize",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onFileDownload",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "voiceDuration",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "ChatReaction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "content",
+            "type": "ReactNode",
+            "optional": false
+          },
+          {
+            "name": "count",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "selected",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ChatReactionOption",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "content",
+            "type": "ReactNode",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "ComposerReply",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AccentColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      }
+    ]
+  },
+  "ChatInputBar": {
+    "props": [
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "replyTo",
+        "type": "ComposerReply | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancelReply",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "attachments",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "hasAttachments",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "voiceState",
+        "type": "ComposerVoiceState | undefined",
+        "optional": true,
+        "defaultValue": "\"idle\""
+      },
+      {
+        "name": "voiceLevel",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onVoiceStart",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onVoiceEnd",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onVoiceCancel",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "quickActions",
+        "type": "ChatInputBarQuickAction[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "quickActionsLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"快捷操作\""
+      },
+      {
+        "name": "hasMessages",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultQuickActionsOpen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "removeQuickActionLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"移除操作\""
+      },
+      {
+        "name": "onQuickActionChange",
+        "type": "((action: ChatInputBarQuickAction | null) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "commands",
+        "type": "ComposerCommand[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "commandsLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"命令\""
+      },
+      {
+        "name": "emptyCommandsLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"没有匹配的命令\""
+      },
+      {
+        "name": "connectedLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"已连接\""
+      },
+      {
+        "name": "onDictate",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "dictateLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"语音输入\""
+      },
+      {
+        "name": "toolsMenuLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"添加内容和工具\""
+      },
+      {
+        "name": "permissions",
+        "type": "ComposerModel[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "permission",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onPermissionChange",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "permissionMenuLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"权限\""
+      },
+      {
+        "name": "color",
+        "type": "AccentColor | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "ComposerStatus | undefined",
+        "optional": true,
+        "defaultValue": "\"idle\""
+      },
+      {
+        "name": "onStop",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stopLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"停止生成\""
+      },
+      {
+        "name": "stoppingLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"正在停止…\""
+      },
+      {
+        "name": "models",
+        "type": "ComposerModel[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "model",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onModelChange",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "modelMenuLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"Model\""
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"输入消息...\""
+      },
+      {
+        "name": "value",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onChange",
+        "type": "((value: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSend",
+        "type": "((message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      },
+      {
+        "name": "multiline",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "rows",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "3"
+      },
+      {
+        "name": "toggles",
+        "type": "ChatInputBarToggle[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "sendLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showAttachment",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "onAttach",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "attachLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"添加附件\""
+      },
+      {
+        "name": "sendOnEnter",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "sendDisabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "inputLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"消息内容\""
+      },
+      {
+        "name": "clearOnSend",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "density",
+        "type": "\"default\" | \"compact\" | undefined",
+        "optional": true,
+        "defaultValue": "\"default\""
+      },
+      {
+        "name": "sources",
+        "type": "ComposerSource[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "selectedSources",
+        "type": "ComposerSource[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultSelectedSources",
+        "type": "ComposerSource[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "onSourcesChange",
+        "type": "((sources: ComposerSource[]) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "removeSourceLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"移除提及\""
+      },
+      {
+        "name": "sourcesLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"提及\""
+      },
+      {
+        "name": "emptySourcesLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"没有匹配的提及对象\""
+      }
+    ],
+    "types": [
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "ComposerReply",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "ComposerVoiceState",
+        "definition": "\"idle\" | \"recording\" | \"processing\"",
+        "fields": []
+      },
+      {
+        "name": "ChatInputBarQuickAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "\"note\" | \"voice\" | \"image\" | \"event\" | \"docs\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerCommand",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerModel",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AccentColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      },
+      {
+        "name": "ComposerStatus",
+        "definition": "\"idle\" | \"running\" | \"stopping\"",
+        "fields": []
+      },
+      {
+        "name": "ChatInputBarSendContext",
+        "definition": "",
+        "fields": [
+          {
+            "name": "sources",
+            "type": "ComposerSource[]",
+            "optional": false
+          },
+          {
+            "name": "replyTo",
+            "type": "ComposerReply | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerSource",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "connected",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "\"agent\" | \"skill\" | \"tool\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "avatarSrc",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ChatInputBarToggle",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "active",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "TopBar": {
+    "props": [
+      {
+        "name": "value",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "0"
+      },
+      {
+        "name": "color",
+        "type": "\"purple\" | \"blue\" | \"green\" | undefined",
+        "optional": true,
+        "defaultValue": "\"blue\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "PageTitleToolbar": {
+    "props": [
+      {
+        "name": "variant",
+        "type": "\"overview\" | \"collection\" | \"detail\" | \"action\" | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "subtitle",
+        "type": "string | undefined | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "dateAction",
+        "type": "PageTitleToolbarDateAction | undefined | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "primaryAction",
+        "type": "PageTitleToolbarAction | undefined | PageTitleToolbarAction",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "secondaryAction",
+        "type": "undefined | PageTitleToolbarAction | undefined | PageTitleToolbarAction",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "menuAction",
+        "type": "undefined | PageTitleToolbarMenuAction | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "askAi",
+        "type": "AskAiProps | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "breadcrumbItems",
+        "type": "BreadcrumbItem[]",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "color",
+        "type": "ToolbarColor | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "breadcrumbs",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "actions",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "PageTitleToolbarDateAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "enablePopover",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "PageTitleToolbarAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "disabled",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "type",
+            "type": "\"submit\" | \"reset\" | \"button\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "form",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "testId",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "PageTitleToolbarMenuAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "BreadcrumbItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ToolbarColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      }
+    ]
+  },
+  "AppLayout": {
+    "props": [
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "mode",
+        "type": "AppLayoutMode | undefined",
+        "optional": true,
+        "defaultValue": "\"light\""
+      },
+      {
+        "name": "profilePosition",
+        "type": "AppLayoutProfilePosition | undefined",
+        "optional": true,
+        "defaultValue": "\"topbar\""
+      },
+      {
+        "name": "accent",
+        "type": "AppLayoutAccentColor | undefined",
+        "optional": true,
+        "defaultValue": "\"blue\""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "logoText",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"Forge\""
+      },
+      {
+        "name": "appName",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "appIcon",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "appSubtitle",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "apps",
+        "type": "AppSwitcherItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onAppChange",
+        "type": "((app: AppSwitcherItem) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "teamName",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "teamAvatar",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "teamMemberCount",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "teamSubtitle",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "menuSectionLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"主菜单\""
+      },
+      {
+        "name": "favoriteSectionLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"常用项目\""
+      },
+      {
+        "name": "teams",
+        "type": "AppSwitcherItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "menuItems",
+        "type": "AppLayoutMenuItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "favoriteItems",
+        "type": "AppLayoutMenuItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "menuSections",
+        "type": "AppLayoutMenuSection[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "profile",
+        "type": "AppLayoutProfile | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "notifications",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "messages",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "language",
+        "type": "LanguageCode | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultLanguage",
+        "type": "LanguageCode | undefined",
+        "optional": true,
+        "defaultValue": "\"zh-CN\""
+      },
+      {
+        "name": "onLanguageChange",
+        "type": "((language: AppLayoutLanguage) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "pageHeaderVariant",
+        "type": "AppLayoutPageHeaderVariant | undefined",
+        "optional": true,
+        "defaultValue": "\"home\""
+      },
+      {
+        "name": "askAi",
+        "type": "AskAiProps | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onBack",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "primaryAction",
+        "type": "{ label: string; onClick?: () => void; } | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "secondaryAction",
+        "type": "{ label: string; onClick?: () => void; } | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "searchPlaceholder",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"搜索...\""
+      },
+      {
+        "name": "topbarLeftMode",
+        "type": "\"search\" | \"hamburger\" | undefined",
+        "optional": true,
+        "defaultValue": "\"search\""
+      },
+      {
+        "name": "topbarAccent",
+        "type": "AppLayoutAccentColor | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "pageTitle",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "breadcrumbs",
+        "type": "AppLayoutBreadcrumb[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showDatePicker",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showKebab",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "showFavorite",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "hideHeader",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "sidebarSlot",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "sidebarWidth",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"16rem\""
+      },
+      {
+        "name": "collapsedSidebarWidth",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"5rem\""
+      },
+      {
+        "name": "hideSidebarWidgets",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "teamLabels",
+        "type": "TeamSwitcherLabels | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showTeamActions",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      }
+    ],
+    "types": [
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "AppLayoutMode",
+        "definition": "\"light\" | \"dark\"",
+        "fields": []
+      },
+      {
+        "name": "AppLayoutProfilePosition",
+        "definition": "\"sidebar\" | \"topbar\"",
+        "fields": []
+      },
+      {
+        "name": "AppLayoutAccentColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      },
+      {
+        "name": "AppSwitcherItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "avatar",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "active",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AppLayoutMenuItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "badge",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "children",
+            "type": "AppLayoutMenuItem[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AppLayoutMenuSection",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "items",
+            "type": "AppLayoutMenuItem[]",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AppLayoutProfile",
+        "definition": "",
+        "fields": [
+          {
+            "name": "avatar",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "role",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AppLayoutPageHeaderVariant",
+        "definition": "\"home\" | \"detail\"",
+        "fields": []
+      },
+      {
+        "name": "AppLayoutBreadcrumb",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "TeamSwitcherLabels",
+        "definition": "",
+        "fields": [
+          {
+            "name": "invite",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "settings",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "createNew",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "AskAi": {
+    "props": [
+      {
+        "name": "color",
+        "type": "AccentColor | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"Ask AI\""
+      },
+      {
+        "name": "suggestions",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": "DEFAULT_SUGGESTIONS"
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"输入问题…\""
+      },
+      {
+        "name": "onSend",
+        "type": "(message: string, request: AskAiRequest) => string | AskAiResponse | Promise<string | AskAiResponse>",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "brand",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "session",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "messages",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "composer",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "fullscreen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultFullscreen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onFullscreenChange",
+        "type": "((open: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showFullscreenTrigger",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "sessions",
+        "type": "AskAiSessionItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "currentSessionId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onNewSession",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelectSession",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "searchQuery",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSearchQueryChange",
+        "type": "((query: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "hasConversation",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "landingTitle",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "landingDescription",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"告诉我你想了解什么，我来帮你梳理。\""
+      },
+      {
+        "name": "headerLayout",
+        "type": "\"brand\" | \"session\" | undefined",
+        "optional": true,
+        "defaultValue": "\"brand\""
+      },
+      {
+        "name": "panelMode",
+        "type": "\"modal\" | \"responsive\" | undefined",
+        "optional": true,
+        "defaultValue": "\"modal\""
+      },
+      {
+        "name": "onDockedChange",
+        "type": "((docked: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "railLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "AccentColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      },
+      {
+        "name": "AskAiRequest",
+        "definition": "",
+        "fields": [
+          {
+            "name": "messages",
+            "type": "AskAiMessage[]",
+            "optional": false
+          },
+          {
+            "name": "signal",
+            "type": "AbortSignal",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AskAiMessage",
+        "definition": "",
+        "fields": [
+          {
+            "name": "role",
+            "type": "\"user\" | \"assistant\"",
+            "optional": false
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "links",
+            "type": "AskAiLink[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AskAiLink",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "href",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AskAiResponse",
+        "definition": "",
+        "fields": [
+          {
+            "name": "text",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "links",
+            "type": "AskAiLink[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AskAiSessionItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "ThinkingTrace": {
+    "props": [
+      {
+        "name": "variant",
+        "type": "ThinkingVariant | undefined",
+        "optional": true,
+        "defaultValue": "\"steps\""
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "rows",
+        "type": "ThinkingRow[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "activeLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "doneLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "query",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "settled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "play",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "onSettled",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ThinkingVariant",
+        "definition": "\"steps\" | \"reasoning\" | \"search\" | \"coding\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "ThinkingRow",
+        "definition": "",
+        "fields": [
+          {
+            "name": "primary",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "secondary",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "mono",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "add",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "del",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "StreamingAnswer": {
+    "props": [
+      {
+        "name": "text",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "streaming",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "status",
+        "type": "StreamingAnswerStatus | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "format",
+        "type": "\"plain\" | \"markdown\" | undefined",
+        "optional": true,
+        "defaultValue": "\"plain\""
+      },
+      {
+        "name": "animation",
+        "type": "\"fade\" | \"blur\" | undefined",
+        "optional": true,
+        "defaultValue": "\"fade\""
+      },
+      {
+        "name": "duration",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "500"
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "sources",
+        "type": "StreamingSource[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "sourcesLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "followUps",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "followUpsLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onFollowUp",
+        "type": "((text: string, index: number) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDone",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "StreamingAnswerStatus",
+        "definition": "\"streaming\" | \"complete\" | \"stopped\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "StreamingSource",
+        "definition": "",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "domain",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "ApprovalCard": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "ApprovalQuestion[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "skipLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"跳过\" : \"Skip\""
+      },
+      {
+        "name": "skipSubmitLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"跳过并提交\" : \"Skip and submit\""
+      },
+      {
+        "name": "continueLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"继续\" : \"Continue\""
+      },
+      {
+        "name": "sendLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"提交\" : \"Send\""
+      },
+      {
+        "name": "sentLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"答案已提交\" : \"Answers sent\""
+      },
+      {
+        "name": "onSubmitted",
+        "type": "((answers: Record<string, string[]>) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "previousQuestionLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"上一题\" : \"Previous question\""
+      },
+      {
+        "name": "nextQuestionLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"下一题\" : \"Next question\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ApprovalQuestion",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "prompt",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "type",
+            "type": "\"radio\" | \"check\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "options",
+            "type": "{ id: string; label: string; }[]",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "ToolChips": {
+    "props": [
+      {
+        "name": "items",
+        "type": "ToolChipItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "state",
+        "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "result",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "actions",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "diffs",
+        "type": "ToolDiffChip[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "summary",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ToolChipItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "kind",
+            "type": "ToolChipKind",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "chip",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "mono",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "detail",
+            "type": "ToolChipDetail[] | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "\"error\" | \"running\" | \"complete\" | \"cancelled\" | \"pending\" | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ToolChipKind",
+        "definition": "\"think\" | \"write\" | \"run\" | \"read\" | \"edit\"",
+        "fields": []
+      },
+      {
+        "name": "ToolChipDetail",
+        "definition": "",
+        "fields": [
+          {
+            "name": "text",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "tone",
+            "type": "\"plain\" | \"add\" | \"del\" | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "ToolDiffChip",
+        "definition": "",
+        "fields": [
+          {
+            "name": "file",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "add",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "del",
+            "type": "number | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "AgentTaskRows": {
+    "props": [
+      {
+        "name": "tasks",
+        "type": "AgentTask[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "variant",
+        "type": "\"list\" | \"capsules\" | undefined",
+        "optional": true,
+        "defaultValue": "\"list\""
+      },
+      {
+        "name": "statusLabels",
+        "type": "Partial<Record<AgentTaskStatus, string>> | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "AgentTask",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "status",
+            "type": "AgentTaskStatus",
+            "optional": false
+          },
+          {
+            "name": "meta",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "children",
+            "type": "AgentTaskChild[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentTaskStatus",
+        "definition": "\"running\" | \"failed\" | \"completed\"",
+        "fields": []
+      },
+      {
+        "name": "AgentTaskChild",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "value",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "AgentTaskStatus | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "ContextCards": {
+    "props": [
+      {
+        "name": "chunks",
+        "type": "ContextChunk[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "total",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "allChunksLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"全部片段\" : \"All chunks\""
+      },
+      {
+        "name": "charactersLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"字符\" : \"characters\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ContextChunk",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "body",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "sourceLabel",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "sourceKind",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "charCount",
+            "type": "number | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "RecommendationCard": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "body",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "confidence",
+        "type": "RecommendationConfidence | undefined",
+        "optional": true,
+        "defaultValue": "\"high\""
+      },
+      {
+        "name": "confidenceLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "alternatives",
+        "type": "RecommendationOption[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "acceptLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"接受建议\" : \"Accept\""
+      },
+      {
+        "name": "onAccept",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelectAlternative",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "confidenceLabels",
+        "type": "Partial<Record<RecommendationConfidence, string>> | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "alternativesLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"其他选项\" : \"Other options\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "RecommendationConfidence",
+        "definition": "\"high\" | \"review\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "RecommendationOption",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "hint",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "confidence",
+            "type": "RecommendationConfidence | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "AgentDiffTable": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "columns",
+        "type": "AgentDiffColumn[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "rows",
+        "type": "AgentDiffRow[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "applyLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "appliedLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"项变更已应用\" : \"edits applied\""
+      },
+      {
+        "name": "onApply",
+        "type": "((includedIds: string[]) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "toggleHint",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"点击变更行可取消或重新选择\" : \"Click changed rows to toggle\""
+      },
+      {
+        "name": "formatApplyLabel",
+        "type": "((count: number) => string) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "formatAppliedLabel",
+        "type": "((count: number) => string) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "AgentDiffColumn",
+        "definition": "",
+        "fields": [
+          {
+            "name": "key",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AgentDiffRow",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "cells",
+            "type": "Record<string, string>",
+            "optional": false
+          },
+          {
+            "name": "change",
+            "type": "AgentDiffChange",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AgentDiffChange",
+        "definition": "\"keep\" | \"remove\" | \"add\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentCodeBlock": {
+    "props": [
+      {
+        "name": "filename",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "lines",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "diff",
+        "type": "AgentCodeDiffRow[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "view",
+        "type": "\"code\" | \"diff\" | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onViewChange",
+        "type": "((view: \"code\" | \"diff\") => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "codeLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "diffLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "copyLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "copiedLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "foldRanges",
+        "type": "AgentCodeFoldRange[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "collapsedRangeIds",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultCollapsedRangeIds",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "onCollapsedRangeIdsChange",
+        "type": "((ids: string[]) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "AgentCodeDiffRow",
+        "definition": "",
+        "fields": [
+          {
+            "name": "old",
+            "type": "number | null",
+            "optional": false
+          },
+          {
+            "name": "cur",
+            "type": "number | null",
+            "optional": false
+          },
+          {
+            "name": "type",
+            "type": "AgentCodeDiffType",
+            "optional": false
+          },
+          {
+            "name": "pieces",
+            "type": "AgentCodePiece[]",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AgentCodeDiffType",
+        "definition": "\"ctx\" | \"add\" | \"del\"",
+        "fields": []
+      },
+      {
+        "name": "AgentCodePiece",
+        "definition": "",
+        "fields": [
+          {
+            "name": "text",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "change",
+            "type": "\"add\" | \"del\" | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentCodeFoldRange",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "startLine",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "endLine",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "InsightCards": {
+    "props": [
+      {
+        "name": "cards",
+        "type": "InsightCard[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "index",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onIndexChange",
+        "type": "((index: number) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onAsk",
+        "type": "((prompt: string, card: InsightCard) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "previousInsightLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"上一条洞察\" : \"Previous insight\""
+      },
+      {
+        "name": "nextInsightLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"下一条洞察\" : \"Next insight\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "InsightCard",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "body",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "prompt",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "chart",
+            "type": "InsightChart | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "InsightChart",
+        "definition": "",
+        "fields": [
+          {
+            "name": "kind",
+            "type": "\"spark\" | \"bars\" | \"segments\"",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "CommandSearch": {
+    "props": [
+      {
+        "name": "items",
+        "type": "CommandSearchItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "emptyLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "query",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onQueryChange",
+        "type": "((query: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "((item: CommandSearchItem) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "groupLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "color",
+        "type": "AccentColor | undefined",
+        "optional": true,
+        "defaultValue": "\"blue\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "autoFocus",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "CommandSearchItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "hint",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "group",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "keywords",
+            "type": "string[] | undefined",
+            "optional": true
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "shortcut",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AccentColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentFlowchart": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"工作流程\" : \"Workflow\""
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "nodes",
+        "type": "AgentFlowNode[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "edges",
+        "type": "AgentFlowEdge[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "selectedId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "kindLabels",
+        "type": "Partial<Record<AgentFlowKind, string>> | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "selectedLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"当前节点\" : \"Selected\""
+      },
+      {
+        "name": "nextLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "locale === \"zh\" ? \"下一步\" : \"Next\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": "\"\""
+      }
+    ],
+    "types": [
+      {
+        "name": "AgentFlowNode",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "kind",
+            "type": "AgentFlowKind",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "body",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "x",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "y",
+            "type": "number | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentFlowKind",
+        "definition": "\"trigger\" | \"action\" | \"condition\"",
+        "fields": []
+      },
+      {
+        "name": "AgentFlowEdge",
+        "definition": "",
+        "fields": [
+          {
+            "name": "from",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>重排环图</title><link rel="stylesheet" href="/prototype/component-fusion/fonts.css"><link rel="stylesheet" href="/prototype/component-fusion/forge-tokens.css"><link rel="stylesheet" href="/prototype/component-fusion/shared/0a313cd69070.css"><style>.forge-workflow-icon{width:20px;height:20px;flex:none;vertical-align:middle}</style><script src="/prototype/component-fusion/shared/eebf74a88e48.js"></script><script src="/prototype/component-fusion/shared/c88975f10a60.js"></script><script>
+const opts=new URLSearchParams(location.search);document.documentElement.dataset.theme=opts.get('theme')||'light';document.documentElement.dataset.motion=opts.get('motion')||'auto';document.documentElement.dataset.accent=opts.get('accent')||'purple';document.documentElement.dataset.locale=opts.get('lang')||'zh';
+window.forgePaint=value=>{const node=document.createElement('span');node.style.color=value;document.documentElement.append(node);const result=getComputedStyle(node).color;node.remove();return result;};
+const originalMatch=window.matchMedia.bind(window);window.forgeReduced=()=>document.documentElement.dataset.motion==='none'||originalMatch('(prefers-reduced-motion: reduce)').matches;window.matchMedia=q=>q.includes('prefers-reduced-motion')?new Proxy(originalMatch(q),{get:(target,key)=>key==='matches'?window.forgeReduced():typeof target[key]==='function'?target[key].bind(target):target[key]}):originalMatch(q);
+try{Object.defineProperty(navigator,'clipboard',{value:{writeText:async(text)=>{window.demoClipboard=text},readText:async()=>window.demoClipboard||''}})}catch{}
+window.addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data;if(d?.type==='forge-settings'){document.documentElement.dataset.theme=d.theme;if(d.lang){document.documentElement.dataset.locale=d.lang;window.forgeSetLocale?.(d.lang);}document.documentElement.dataset.accent=d.accent||'purple';document.documentElement.dataset.motion=d.motion;}});
+window.addEventListener('error',e=>parent.postMessage({type:'forge-error',id:"097",error:e.message},'*'));
+window.addEventListener('unhandledrejection',e=>parent.postMessage({type:'forge-error',id:"097",error:String(e.reason)},'*'));
+window.addEventListener('DOMContentLoaded',()=>{window.forgeSetLocale?.(document.documentElement.dataset.locale||'zh');const root=document.querySelector('.ux');const emit=()=>parent.postMessage({type:'forge-state',id:"097",state:root?Object.fromEntries(Object.entries(root.dataset)): {},text:(root?.innerText||'').slice(0,6000)},'*');new MutationObserver(emit).observe(root||document.body,{subtree:true,childList:true,attributes:true,characterData:true});emit();setTimeout(()=>parent.postMessage({type:'forge-typography',id:"097",rows:window.forgeAuditTypography?.()||[],icons:[...document.querySelectorAll('.ux svg')].map(e=>({solar:e.classList.contains('solar'),viewBox:e.getAttribute('viewBox'),class:e.getAttribute('class'),geometry:e.innerHTML.slice(0,400)}))},'*'),30);parent.postMessage({type:'forge-ready',id:"097"},'*');});
+</script><script src="/prototype/component-fusion/i18n.js"></script><script src="/prototype/component-fusion/typography-runtime.js"></script><link rel="stylesheet" href="/prototype/component-fusion/embed.css"><script src="/prototype/component-fusion/embed-runtime.js"></script></head><body><style>
+.u097{position:relative;width:340px;height:430px;display:flex;flex-direction:column;padding:20px 18px 16px;border-radius:16px;background:var(--ux-surface);box-shadow:0 0 0 1px var(--ux-line),0 30px 60px -36px var(--ux-shadow-strong);overflow:hidden}
+.u097-h small{display:block;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-3)}
+.u097-h b{display:block;margin-top:2px;font-size:var(--forge-text-lg-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.04em}
+.u097-dn{position:relative;width:216px;height:216px;margin:8px auto 0}
+.u097-dn svg{width:216px;height:216px;overflow:visible;transform:rotate(-90deg)}
+.u097-trk{fill:none;stroke:var(--ux-surface-2);stroke-width:26}
+.u097-sg{fill:none;stroke-width:26;pointer-events:stroke;cursor:pointer;transition:transform .45s var(--ux-spring),stroke-width .45s var(--ux-spring),opacity .25s}
+.u097.has .u097-sg:not(.on){opacity:.38}
+.u097-sg.on{stroke-width:34}
+.u097-c{position:absolute;inset:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+.u097-c small{font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-3)}
+.u097-c b{margin-top:2px;font-size:var(--forge-text-xl-size);font-weight:var(--forge-font-bold-weight);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.u097-c span{margin-top:2px;font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-2);font-variant-numeric:tabular-nums}
+.u097-c.sw>*{animation:u097-sw .32s var(--ux-ease)}
+@keyframes u097-sw{from{opacity:0;transform:translateY(5px)}}
+.u097-lg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:auto}
+.u097-it{display:flex;align-items:center;gap:8px;height:40px;padding:0 10px;border:0;border-radius:13px;background:var(--ux-surface-2);font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink);text-align:left;transition:background-color .2s,opacity .25s,transform .3s var(--ux-spring)}
+.u097-it:hover,.u097-it.on{background:var(--ux-surface-3)}
+.u097-it:active{transform:scale(.96)}
+.u097-it i{width:12px;height:12px;flex:none;border-radius:4px;background:var(--c);box-shadow:inset 0 0 0 2px var(--c);transition:background-color .25s}
+.u097-it span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.u097-it small{font-size:var(--forge-text-xs-size);font-weight:var(--forge-font-bold-weight);color:var(--ux-ink-3);font-variant-numeric:tabular-nums}
+.u097-it[aria-pressed="false"]{opacity:.5}
+.u097-it[aria-pressed="false"] i{background:transparent}
+.u097-it[aria-pressed="false"] span{text-decoration:line-through}
+.u097-it:focus-visible{outline:2px solid var(--ux-accent);outline-offset:1px}
+</style>
+<div class="ux u097">
+  <div class="u097-h"><small>October spending</small><b>Where did most of it go?</b></div>
+  <div class="u097-dn">
+    <svg viewBox="0 0 216 216" aria-hidden="true"><circle class="u097-trk" cx="108" cy="108" r="80"/></svg>
+    <div class="u097-c" aria-live="polite"><small></small><b></b><span></span></div>
+  </div>
+  <div class="u097-lg" role="group" aria-label="Spending categories"></div>
+</div><script>(function () {
+  var root = document.currentScript.previousElementSibling;
+  var svg = root.querySelector('svg'), center = root.querySelector('.u097-c'), cs = center.querySelector('small'), cb = center.querySelector('b'), cp = center.querySelector('span'), lg = root.querySelector('.u097-lg');
+
+  var D = [['식비', 482000, window.forgePaint("var(--fg-yellow-700)")], ['쇼핑', 316000, window.forgePaint("var(--fg-red)")], ['교통', 128000, window.forgePaint("var(--accent)")], ['구독', 89000, window.forgePaint("var(--accent)")], ['기타', 65000, window.forgePaint("var(--fg-green-500)")]];
+  var R = 80, C = 2 * Math.PI * R, GAP = 3;
+  var on = D.map(function () { return true; }), fr = D.map(function () { return 0; }), act = -1, tw = 0, shownTotal = 0, cnt = 0;
+  var segs = D.map(function (d, i) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('class', 'u097-sg'); c.setAttribute('cx', 108); c.setAttribute('cy', 108); c.setAttribute('r', R);
+    c.style.stroke = d[2];
+    c.addEventListener('pointerenter', function () { focus(i); });
+    c.addEventListener('click', function () { toggle(i); });
+    svg.appendChild(c);
+    return c;
+  });
+  var items = D.map(function (d, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'u097-it'; b.style.setProperty('--c', d[2]); b.setAttribute('aria-pressed', 'true');
+    b.innerHTML = '<i aria-hidden="true"></i><span></span><small></small>';
+    b.querySelector('span').textContent = d[0];
+    b.querySelector('small').textContent = '₩' + Math.round(d[1] / 1000) + 'K';
+    b.setAttribute('aria-label', d[0] + ' ₩' + d[1].toLocaleString('ko-KR') + ', included');
+    b.addEventListener('pointerenter', function () { focus(i); });
+    b.addEventListener('focus', function () { focus(i); });
+    b.addEventListener('click', function () { toggle(i); });
+    lg.appendChild(b);
+    return b;
+  });
+  svg.addEventListener('pointerleave', function () { focus(-1); });
+  lg.addEventListener('pointerleave', function () { if (!lg.contains(document.activeElement)) focus(-1); });
+  lg.addEventListener('focusout', function (e) { if (!lg.contains(e.relatedTarget)) focus(-1); });
+  function total() { return D.reduce(function (s, d, i) { return s + (on[i] ? d[1] : 0); }, 0); }
+  function won(v) { return '₩' + Math.round(v).toLocaleString('ko-KR'); }
+  // 각 조각의 비율을 받아 점선 길이와 시작 위치로 그리고, 튀어나오는 방향은 조각 가운데 각도로 정합니다
+  function paint() {
+    var acc = 0;
+    segs.forEach(function (c, i) {
+      var len = fr[i] * C, vis = Math.max(0, len - GAP);
+      c.setAttribute('stroke-dasharray', vis.toFixed(2) + ' ' + C.toFixed(2));
+      c.setAttribute('stroke-dashoffset', (-acc - GAP / 2).toFixed(2));
+      var mid = (acc + len / 2) / C * Math.PI * 2;
+      c.style.transform = i === act && on[i] ? 'translate(' + (Math.cos(mid) * 7).toFixed(2) + 'px,' + (Math.sin(mid) * 7).toFixed(2) + 'px)' : '';
+      acc += len;
+    });
+  }
+  function morph(stagger) {
+    cancelAnimationFrame(tw);
+    var t = total(), to = D.map(function (d, i) { return on[i] ? d[1] / t : 0; }), from = fr.slice(), t0 = performance.now(), dur = window.forgeReduced() ? 1 : stagger ? 1100 : 600;
+    (function f(n) {
+      if (!root.isConnected) return;
+      var k = Math.min(1, (n - t0) / dur);
+      fr = from.map(function (v, i) {
+        var kk = stagger ? Math.max(0, Math.min(1, (k - i * 0.1) / 0.6)) : k;
+        var e = kk < .5 ? 4 * kk * kk * kk : 1 - Math.pow(-2 * kk + 2, 3) / 2;
+        return v + (to[i] - v) * e;
+      });
+      paint();
+      if (k < 1) tw = requestAnimationFrame(f);
+    })(t0);
+  }
+  function rollTotal(to) {
+    var from = shownTotal, t0 = performance.now(), dur = window.forgeReduced() ? 1 : 600, my = ++cnt;
+    (function f(n) {
+      if (!root.isConnected || my !== cnt || act >= 0) return;
+      var k = Math.min(1, (n - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      shownTotal = from + (to - from) * e; cb.textContent = won(shownTotal);
+      if (k < 1) requestAnimationFrame(f);
+    })(t0);
+  }
+  function label() {
+    center.classList.remove('sw'); void center.offsetWidth; center.classList.add('sw');
+    if (act >= 0 && on[act]) {
+      cs.textContent = D[act][0]; cb.textContent = won(D[act][1]);
+      cp.textContent = Math.round(D[act][1] / total() * 100) + '% of total';
+    } else {
+      var n = on.filter(Boolean).length;
+      cs.textContent = n === D.length ? 'Total spent' : n + ' selected';
+      cb.textContent = won(shownTotal); cp.textContent = n === D.length ? '−8% vs last month' : 'of ' + won(D.reduce(function (s, d) { return s + d[1]; }, 0)) + ' total';
+      rollTotal(total());
+    }
+  }
+  function focus(i) {
+    if (i === act) return;
+    act = i;
+    root.classList.toggle('has', i >= 0 && on[i]);
+    segs.forEach(function (c, k) { c.classList.toggle('on', k === i && on[k]); });
+    items.forEach(function (b, k) { b.classList.toggle('on', k === i); });
+    paint(); label();
+  }
+  // 항목을 빼면 그 조각은 0으로 줄고, 남은 조각들이 비율대로 원을 다시 나눠 가집니다
+  function toggle(i) {
+    if (on[i] && on.filter(Boolean).length === 1) { items[i].animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(4px)' }, { transform: 'none' }], { duration: 300 }); return; }
+    on[i] = !on[i];
+    items[i].setAttribute('aria-pressed', String(on[i]));
+    items[i].setAttribute('aria-label', D[i][0] + ' ₩' + D[i][1].toLocaleString('ko-KR') + ', ' + (on[i] ? 'included' : 'excluded'));
+    morph(false);
+    act = -2; focus(on[i] ? i : -1);
+  }
+  shownTotal = 0; label();
+  morph(!window.forgeReduced());
+})();</script></body></html>

@@ -17,56 +17,57 @@ import {
   CloseSquareLinear,
   UserLinear,
 } from "@forge-ui-official/core/icons";
+import { ScenarioOutlet } from "../_scenario-outlet";
 
 const COLORS = ["purple", "blue", "black"] as const;
 const AVATAR = "https://i.pravatar.cc/100?img=10";
 const AVATAR_LG = "https://i.pravatar.cc/100?img=11";
-const SHORT_TEXT = "Lorem ipsum dolor si amet";
+const SHORT_TEXT = "请查看这份方案并提出你的建议。";
 const LONG_TEXT =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac augue eu odio tempor commodo. Nullam ut mattis eros. Cras ut orci nisi.";
+  "这份方案整理了项目目标、实施步骤和交付计划。请重点确认需求范围与时间安排，有需要调整的地方可以直接留言。";
 
 const profileFields = [
-  { label: "Email", value: "jayharrdgudson@mail.com" },
-  { label: "Phone Number", value: "050 414 8778" },
-  { label: "Location", value: "New York, USA" },
-  { label: "Birthday", value: "12 May 1992" },
-  { label: "Join Date", value: "12 December 2023" },
+  { label: "邮箱", value: "jayharrdgudson@mail.com" },
+  { label: "手机号", value: "050 414 8778" },
+  { label: "所在地", value: "美国纽约" },
+  { label: "生日", value: "12 May 1992" },
+  { label: "加入日期", value: "12 December 2023" },
 ];
 
 const teamFields = [
-  { label: "About", value: "Project name team development lorem ipsum dolor si amet" },
-  { label: "Location", value: "New York, USA" },
-  { label: "Created", value: "12 December 2023" },
+  { label: "简介", value: "Project name team development lorem ipsum dolor si amet" },
+  { label: "所在地", value: "美国纽约" },
+  { label: "创建日期", value: "12 December 2023" },
 ];
 
 const teamMembers = [
-  { name: "Jay Hargudson", role: "Manager", avatar: "https://i.pravatar.cc/100?img=12", online: true },
-  { name: "Jay Hargudson", role: "Manager", avatar: "https://i.pravatar.cc/100?img=13" },
-  { name: "Jay Hargudson", role: "Manager", avatar: "https://i.pravatar.cc/100?img=14" },
-  { name: "Jay Hargudson", role: "Manager", avatar: "https://i.pravatar.cc/100?img=15" },
-  { name: "Jay Hargudson", role: "Manager", avatar: "https://i.pravatar.cc/100?img=16" },
+  { name: "周宁", role: "经理", avatar: "https://i.pravatar.cc/100?img=12", online: true },
+  { name: "周宁", role: "经理", avatar: "https://i.pravatar.cc/100?img=13" },
+  { name: "周宁", role: "经理", avatar: "https://i.pravatar.cc/100?img=14" },
+  { name: "周宁", role: "经理", avatar: "https://i.pravatar.cc/100?img=15" },
+  { name: "周宁", role: "经理", avatar: "https://i.pravatar.cc/100?img=16" },
 ];
 
 const modalCandidates = [
-  { name: "Jay Hargudson", role: "Project Manager", avatar: "https://i.pravatar.cc/100?img=20" },
-  { name: "Mohammad Karim", role: "Project Manager", avatar: "https://i.pravatar.cc/100?img=21" },
-  { name: "John Bushmill", role: "Project Manager", avatar: "https://i.pravatar.cc/100?img=22" },
-  { name: "Josh Adam", role: "UI/UX Designer", avatar: "https://i.pravatar.cc/100?img=23" },
-  { name: "Linda Blair", role: "Mobile Developer", avatar: "https://i.pravatar.cc/100?img=24" },
-  { name: "Sin Tae", role: "Front End Developer", avatar: "https://i.pravatar.cc/100?img=25" },
-  { name: "Laura Prichet", role: "Back End Developer", avatar: "https://i.pravatar.cc/100?img=26" },
-  { name: "Lisa Greg", role: "Tech Lead", avatar: "https://i.pravatar.cc/100?img=27" },
+  { name: "周宁", role: "项目经理", avatar: "https://i.pravatar.cc/100?img=20" },
+  { name: "陈明", role: "项目经理", avatar: "https://i.pravatar.cc/100?img=21" },
+  { name: "张明", role: "项目经理", avatar: "https://i.pravatar.cc/100?img=22" },
+  { name: "陈晨", role: "交互设计师", avatar: "https://i.pravatar.cc/100?img=23" },
+  { name: "林晓", role: "移动端工程师", avatar: "https://i.pravatar.cc/100?img=24" },
+  { name: "沈安", role: "前端工程师", avatar: "https://i.pravatar.cc/100?img=25" },
+  { name: "陆青", role: "后端工程师", avatar: "https://i.pravatar.cc/100?img=26" },
+  { name: "李文", role: "技术负责人", avatar: "https://i.pravatar.cc/100?img=27" },
 ];
 
 const fullPageContacts = [
-  { type: "team" as const, name: "Team Name", message: SHORT_TEXT, initials: "TM", unreadCount: 99 },
-  { type: "team" as const, name: "Team Name", message: SHORT_TEXT, initials: "TM" },
-  { type: "person" as const, name: "Jay Hargudson", message: SHORT_TEXT, avatar: AVATAR },
-  { type: "person" as const, name: "Jay Hargudson", message: SHORT_TEXT, avatar: AVATAR, online: true, unreadCount: 2 },
-  { type: "person" as const, name: "Jay Hargudson", message: SHORT_TEXT, avatar: AVATAR },
-  { type: "person" as const, name: "Jay Hargudson", message: SHORT_TEXT, avatar: AVATAR, unreadCount: 10 },
-  { type: "person" as const, name: "Jay Hargudson", message: SHORT_TEXT, avatar: AVATAR, online: true },
-  { type: "person" as const, name: "Jay Hargudson", message: SHORT_TEXT, avatar: AVATAR, unreadCount: 18 },
+  { type: "team" as const, name: "团队名称", message: SHORT_TEXT, initials: "TM", unreadCount: 99 },
+  { type: "team" as const, name: "团队名称", message: SHORT_TEXT, initials: "TM" },
+  { type: "person" as const, name: "周宁", message: SHORT_TEXT, avatar: AVATAR },
+  { type: "person" as const, name: "周宁", message: SHORT_TEXT, avatar: AVATAR, online: true, unreadCount: 2 },
+  { type: "person" as const, name: "周宁", message: SHORT_TEXT, avatar: AVATAR },
+  { type: "person" as const, name: "周宁", message: SHORT_TEXT, avatar: AVATAR, unreadCount: 10 },
+  { type: "person" as const, name: "周宁", message: SHORT_TEXT, avatar: AVATAR, online: true },
+  { type: "person" as const, name: "周宁", message: SHORT_TEXT, avatar: AVATAR, unreadCount: 18 },
 ];
 
 // ============================================================
@@ -75,11 +76,11 @@ const fullPageContacts = [
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="self-stretch flex flex-col gap-6">
-      <div className="self-start px-6 py-3 bg-gray-200 rounded-lg">
+    <section className="flex min-w-0 flex-col gap-6 self-stretch">
+      <div className="self-start rounded-lg bg-fg-grey-200 px-6 py-3">
         <h2 className="text-xl font-bold text-fg-black">{title}</h2>
       </div>
-      <div className="pl-2 flex flex-col gap-8">{children}</div>
+      <div className="flex min-w-0 flex-col gap-8 pl-2">{children}</div>
     </section>
   );
 }
@@ -108,29 +109,29 @@ function ColorRow({ label, children }: { label: string; children: React.ReactNod
 
 function BaseComponentsSection() {
   return (
-    <Section title="基础组件 (Chat Items)">
-      <SubSection title="Contact (3 状态 × 2 类型)">
+    <Section title="气泡和输入栏">
+      <SubSection title="联系人">
         {COLORS.map((color) => (
           <ColorRow key={color} label={color}>
-            <div className="grid grid-cols-3 gap-4 max-w-4xl">
+            <div className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-3">
               <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
-                <ContactItem color={color} type="person" avatar={AVATAR} name="Jay Hargudson" message={SHORT_TEXT} online />
-                <ContactItem color={color} type="team" name="Team Name" message={SHORT_TEXT} online />
+                <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} online />
+                <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} online />
               </div>
               <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
-                <ContactItem color={color} type="person" avatar={AVATAR} name="Jay Hargudson" message={SHORT_TEXT} unreadCount={120} />
-                <ContactItem color={color} type="team" name="Team Name" message={SHORT_TEXT} unreadCount={3} />
+                <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} unreadCount={120} />
+                <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} unreadCount={3} />
               </div>
               <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
-                <ContactItem color={color} type="person" avatar={AVATAR} name="Jay Hargudson" message={SHORT_TEXT} online active unreadCount={120} />
-                <ContactItem color={color} type="team" name="Team Name" message={SHORT_TEXT} online active unreadCount={2} />
+                <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} online active unreadCount={120} />
+                <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} online active unreadCount={2} />
               </div>
             </div>
           </ColorRow>
         ))}
       </SubSection>
 
-      <SubSection title="Bubble Chat — Text">
+      <SubSection title="文字消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-3 outline outline-1 outline-fg-grey-200">
           <ChatBubble type="received" variant="text" content={SHORT_TEXT} />
           <ChatBubble type="received" variant="text" content={LONG_TEXT} />
@@ -143,7 +144,7 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
-      <SubSection title="Bubble Chat — Voice (3 色 × received/sent)">
+      <SubSection title="语音消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-3 outline outline-1 outline-fg-grey-200">
           {COLORS.map((c) => (
             <ChatBubble key={`r-${c}`} type="received" color={c} variant="voice" voiceDuration="0:42" />
@@ -154,7 +155,7 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
-      <SubSection title="Bubble Chat — File">
+      <SubSection title="文件消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-3 outline outline-1 outline-fg-grey-200">
           <ChatBubble type="received" variant="file" fileName="File Name.ai" fileSize="300kb" />
           {COLORS.map((c) => (
@@ -163,7 +164,7 @@ function BaseComponentsSection() {
         </div>
       </SubSection>
 
-      <SubSection title="Bubble Chat — Image (+N 计数)">
+      <SubSection title="图片消息">
         <div className="bg-stone-50 rounded-xl p-6 max-w-2xl flex flex-col gap-4 outline outline-1 outline-fg-grey-200">
           {COLORS.map((c) => (
             <ChatBubble
@@ -191,7 +192,7 @@ function BaseComponentsSection() {
       </SubSection>
       <SubSection title="ChatInputBar">
         <div className="max-w-xl">
-          <ChatInputBar placeholder="Type a message..." />
+          <ChatInputBar placeholder="输入消息…" />
         </div>
       </SubSection>
     </Section>
@@ -206,7 +207,7 @@ function ChatLeftSidebar() {
   return (
     <aside className="w-80 shrink-0 border-r border-fg-grey-200 flex flex-col bg-white">
       <div className="h-20 px-6 py-5 border-b border-fg-grey-200 flex items-center gap-4 shrink-0">
-        <h2 className="flex-1 text-2xl font-semibold text-fg-black">Chat</h2>
+        <h2 className="flex-1 text-2xl font-semibold text-fg-black">聊天</h2>
         <button className="w-5 h-5 flex items-center justify-center text-fg-grey-700">
           <MagniferLinear size={20} color="currentColor" />
         </button>
@@ -214,19 +215,19 @@ function ChatLeftSidebar() {
       <div className="flex-1 overflow-y-auto py-1.5 flex flex-col">
         {fullPageContacts.map((c, i) => (
           <div key={i} className="px-2 py-1">
-            <ContactItem color="purple" {...c} />
+            <ContactItem color="blue" {...c} />
           </div>
         ))}
       </div>
       <div className="p-4 shrink-0 border-t border-fg-grey-200">
         <Button
-          color="purple"
+          color="blue"
           variant="primary"
           size="md"
           iconLeft={<AddSquareLinear size={18} color="currentColor" />}
           className="w-full justify-center"
         >
-          New Message
+          新消息
         </Button>
       </div>
     </aside>
@@ -255,12 +256,12 @@ function PersonHeader() {
   return (
     <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0 bg-white">
       <div className="relative shrink-0">
-        <img src={AVATAR} alt="Jay" className="w-10 h-10 rounded-full object-cover" />
+        <img src={AVATAR} alt="周宁" className="w-10 h-10 rounded-full object-cover" />
         <span className="absolute right-0 bottom-0 w-2.5 h-2.5 bg-emerald-500 rounded-full outline outline-2 outline-white" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-fg-black">Jay Hargudson</p>
-        <p className="text-xs text-fg-grey-700">Online 3 minutes ago</p>
+        <p className="text-sm font-semibold text-fg-black">周宁</p>
+        <p className="text-xs text-fg-grey-700">3 分钟前在线</p>
       </div>
       <MiddleHeaderActions />
     </div>
@@ -274,8 +275,8 @@ function TeamHeader() {
         <span className="text-orange-600 text-sm font-bold">TM</span>
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-fg-black">Team Name</p>
-        <p className="text-xs text-fg-grey-700">Project name development team</p>
+        <p className="text-sm font-semibold text-fg-black">团队名称</p>
+        <p className="text-xs text-fg-grey-700">项目研发团队</p>
       </div>
       <div className="flex items-center gap-1 text-fg-grey-700 px-1">
         <UserLinear size={16} color="currentColor" />
@@ -290,12 +291,12 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
   if (msgs === "personA") {
     return (
       <>
-        <ChatBubble type="received" variant="voice" color="purple" avatar={AVATAR} voiceDuration="0:42" time="1 day ago" />
-        <ChatBubble type="sent" color="purple" variant="text" content={LONG_TEXT} time="1 day ago" />
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={SHORT_TEXT} />
+        <ChatBubble type="received" variant="voice" color="blue" avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={SHORT_TEXT} />
         <ChatBubble
           type="received"
-          color="purple"
+          color="blue"
           variant="image"
           avatar={AVATAR}
           images={[
@@ -304,21 +305,21 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
             "https://i.pravatar.cc/100?img=32",
           ]}
           extraImageCount={3}
-          time="1 day ago"
+          time="1 天前"
         />
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={LONG_TEXT} time="1 day ago" />
-        <ChatBubble type="sent" color="purple" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 day ago" />
-        <ChatBubble type="sent" color="purple" variant="text" content={SHORT_TEXT} time="1 day ago" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={SHORT_TEXT} time="1 天前" />
       </>
     );
   }
   if (msgs === "personB") {
     return (
       <>
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={LONG_TEXT} time="1 day ago" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
         <ChatBubble
           type="received"
-          color="purple"
+          color="blue"
           variant="image"
           avatar={AVATAR}
           images={[
@@ -328,21 +329,21 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
           ]}
           extraImageCount={3}
         />
-        <ChatBubble type="sent" color="purple" variant="text" content={LONG_TEXT} time="1 day ago" />
-        <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={LONG_TEXT} />
-        <ChatBubble type="sent" color="purple" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 day ago" />
-        <ChatBubble type="sent" color="purple" variant="text" content={SHORT_TEXT} time="1 day ago" />
+        <ChatBubble type="sent" color="blue" variant="text" content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={LONG_TEXT} />
+        <ChatBubble type="sent" color="blue" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+        <ChatBubble type="sent" color="blue" variant="text" content={SHORT_TEXT} time="1 天前" />
       </>
     );
   }
   return (
     <>
-      <ChatBubble type="received" variant="voice" color="purple" avatar={AVATAR} voiceDuration="0:42" time="1 day ago" />
-      <ChatBubble type="sent" color="purple" variant="text" content={LONG_TEXT} time="1 day ago" />
-      <ChatBubble type="received" variant="text" color="purple" avatar={AVATAR} content={SHORT_TEXT} />
+      <ChatBubble type="received" variant="voice" color="blue" avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
+      <ChatBubble type="sent" color="blue" variant="text" content={LONG_TEXT} time="1 天前" />
+      <ChatBubble type="received" variant="text" color="blue" avatar={AVATAR} content={SHORT_TEXT} />
       <ChatBubble
         type="received"
-        color="purple"
+        color="blue"
         variant="image"
         avatar={AVATAR}
         images={[
@@ -352,8 +353,8 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
         ]}
         extraImageCount={3}
       />
-      <ChatBubble type="sent" color="purple" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 day ago" />
-      <ChatBubble type="sent" color="purple" variant="text" content={SHORT_TEXT} time="1 day ago" />
+      <ChatBubble type="sent" color="blue" variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+      <ChatBubble type="sent" color="blue" variant="text" content={SHORT_TEXT} time="1 天前" />
     </>
   );
 }
@@ -366,7 +367,7 @@ function MiddlePanel({ kind, msgs }: { kind: "person" | "team"; msgs: "personA" 
         <ChatMessages msgs={msgs} />
       </div>
       <div className="px-4 py-4 border-t border-fg-grey-200 shrink-0 bg-white">
-        <ChatInputBar placeholder="Type your message..." />
+        <ChatInputBar placeholder="输入消息…" />
       </div>
     </main>
   );
@@ -383,7 +384,7 @@ function ProfileCover({ children }: { children?: React.ReactNode }) {
 function ProfileImagesGrid() {
   return (
     <div className="flex flex-col gap-1">
-      <div className="text-sm font-semibold text-fg-grey-700">Images</div>
+      <div className="text-sm font-semibold text-fg-grey-700">图片</div>
       <div className="grid grid-cols-4 gap-2">
         {Array.from({ length: 7 }).map((_, i) => (
           <img
@@ -409,12 +410,12 @@ function PersonProfile() {
         <CloseSquareLinear size={20} color="currentColor" />
       </button>
       <div className="z-10 relative mb-3 flex justify-center">
-        <img src={AVATAR_LG} alt="Jay" className="w-28 h-28 rounded-full border-4 border-white object-cover" />
+        <img src={AVATAR_LG} alt="周宁" className="w-28 h-28 rounded-full border-4 border-white object-cover" />
       </div>
-      <h3 className="text-center text-base font-semibold text-fg-black">Jay Hardgudson</h3>
+      <h3 className="text-center text-base font-semibold text-fg-black">周宁</h3>
       <div className="mt-2 flex justify-center">
         <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-500 outline outline-1 outline-emerald-200">
-          Online
+          在线
         </span>
       </div>
       <div className="my-5 border-t border-fg-grey-200" />
@@ -444,7 +445,7 @@ function TeamProfile({ withMembers }: { withMembers?: boolean }) {
           <span className="text-orange-600 text-2xl font-bold">TM</span>
         </div>
       </div>
-      <h3 className="text-center text-base font-semibold text-fg-black">Team Name</h3>
+      <h3 className="text-center text-base font-semibold text-fg-black">团队名称</h3>
 
       <div className="my-5 border-t border-fg-grey-200" />
       <div className="flex flex-col gap-4">
@@ -464,10 +465,10 @@ function TeamProfile({ withMembers }: { withMembers?: boolean }) {
           <div className="my-5 border-t border-fg-grey-200" />
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
-              <div className="flex-1 text-sm font-semibold text-fg-black">Member (21)</div>
+              <div className="flex-1 text-sm font-semibold text-fg-black">成员（21）</div>
               <button className="flex items-center gap-1">
                 <AddSquareLinear size={16} color="#7C3AED" />
-                <span className="text-sm font-bold text-fg-violet">Add Member</span>
+                <span className="text-sm font-bold text-fg-violet">添加成员</span>
               </button>
             </div>
             <div className="flex flex-col gap-4">
@@ -506,7 +507,7 @@ function AddMembersModal() {
       <div className="relative w-[480px] max-h-[660px] bg-white rounded-2xl flex flex-col overflow-hidden shadow-xl">
         {/* Header */}
         <div className="px-6 pt-6 flex items-center gap-4">
-          <h3 className="flex-1 text-xl font-semibold text-fg-black">Add Members</h3>
+          <h3 className="flex-1 text-xl font-semibold text-fg-black">添加成员</h3>
           <button className="w-6 h-6 flex items-center justify-center text-fg-grey-700">
             <CloseSquareLinear size={20} color="currentColor" />
           </button>
@@ -518,7 +519,7 @@ function AddMembersModal() {
         <div className="flex-1 min-h-0 px-6 py-6 flex flex-col gap-6 overflow-hidden">
           <div className="px-4 py-3 bg-white rounded-full outline outline-1 outline-fg-grey-200 flex items-center gap-2 shrink-0">
             <MagniferLinear size={18} color="#71717A" />
-            <span className="flex-1 text-sm text-fg-grey-700">Search team member...</span>
+            <span className="flex-1 text-sm text-fg-grey-700">搜索团队成员…</span>
           </div>
           <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-5 pr-1">
             {modalCandidates.map((m, i) => (
@@ -538,10 +539,10 @@ function AddMembersModal() {
         {/* Footer */}
         <div className="px-6 pb-6 flex items-center justify-between gap-4 shrink-0">
           <button className="w-24 px-4 py-3.5 rounded-full outline outline-1 outline-fg-grey-200 text-sm font-bold text-fg-grey-700">
-            Cancel
+            取消
           </button>
           <button className="w-24 px-4 py-3.5 rounded-full bg-violet-600 text-sm font-bold text-white">
-            Submit
+            提交
           </button>
         </div>
       </div>
@@ -594,38 +595,31 @@ function FullChatPanel({
 
 function FullPageSection() {
   return (
-    <Section title="全页面 (Full Chat — 5 种变体)">
+    <Section title="整页布局">
       <p className="text-sm text-fg-grey-700">
-        对照 figma <code className="px-1 bg-gray-200 rounded text-xs">chat.md</code> Purple 一行 5 种 panel：
-        Person+Profile / Team+Profile / Person+Profile (B) / Team+Members / Team+Add Members Modal
+        四种布局：个人对话加资料、团队对话加资料、团队成员列表、添加成员。
       </p>
 
-      <SubSection title="Variant 1 — Person + Profile">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="个人对话和资料">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="person-1" />
         </div>
       </SubSection>
 
-      <SubSection title="Variant 2 — Team + Profile">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="团队对话和资料">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="team-1" />
         </div>
       </SubSection>
 
-      <SubSection title="Variant 3 — Person + Profile (另一段消息)">
-        <div className="overflow-x-auto pb-4">
-          <FullChatPanel variant="person-2" />
-        </div>
-      </SubSection>
-
-      <SubSection title="Variant 4 — Team + Members 列表">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="团队成员">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="team-members" />
         </div>
       </SubSection>
 
-      <SubSection title="Variant 5 — Team + Add Members Modal">
-        <div className="overflow-x-auto pb-4">
+      <SubSection title="添加成员">
+        <div className="min-w-0 overflow-x-auto pb-4">
           <FullChatPanel variant="team-modal" />
         </div>
       </SubSection>
@@ -637,7 +631,7 @@ function FullPageSection() {
 // SECTION 3: 小页面 (figma "Small Chat" 紧凑卡片)
 // ============================================================
 
-function SmallChatCard({ type, color = "purple" }: { type: "person" | "team"; color?: typeof COLORS[number] }) {
+function SmallChatCard({ type, color = "blue" }: { type: "person" | "team"; color?: typeof COLORS[number] }) {
   const isTeam = type === "team";
   const headerAvatar = isTeam ? (
     <div className="w-10 h-10 bg-rose-100 rounded-full inline-flex justify-center items-center shrink-0">
@@ -654,8 +648,8 @@ function SmallChatCard({ type, color = "purple" }: { type: "person" | "team"; co
       <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0">
         {headerAvatar}
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-fg-black">{isTeam ? "Team Name" : "Jay Hargudson"}</p>
-          <p className="text-xs text-fg-grey-700">{isTeam ? "Project name development team" : "Online 3 minutes ago"}</p>
+          <p className="text-sm font-semibold text-fg-black">{isTeam ? "团队名称" : "周宁"}</p>
+          <p className="text-xs text-fg-grey-700">{isTeam ? "项目研发团队" : "3 分钟前在线"}</p>
         </div>
         {isTeam && (
           <div className="flex items-center gap-1 text-fg-grey-700">
@@ -676,8 +670,8 @@ function SmallChatCard({ type, color = "purple" }: { type: "person" | "team"; co
         </button>
       </div>
       <div className="flex-1 min-h-0 overflow-y-auto px-5 py-5 bg-stone-50 flex flex-col gap-4">
-        <ChatBubble type="received" variant="voice" color={color} avatar={AVATAR} voiceDuration="0:42" time="1 day ago" />
-        <ChatBubble type="sent" color={color} variant="text" content={LONG_TEXT} time="1 day ago" />
+        <ChatBubble type="received" variant="voice" color={color} avatar={AVATAR} voiceDuration="0:42" time="1 天前" />
+        <ChatBubble type="sent" color={color} variant="text" content={LONG_TEXT} time="1 天前" />
         <ChatBubble
           type="received"
           variant="image"
@@ -685,14 +679,14 @@ function SmallChatCard({ type, color = "purple" }: { type: "person" | "team"; co
           avatar={AVATAR}
           images={["https://i.pravatar.cc/100?img=50", "https://i.pravatar.cc/100?img=51", "https://i.pravatar.cc/100?img=52"]}
           extraImageCount={3}
-          time="1 day ago"
+          time="1 天前"
         />
-        <ChatBubble type="sent" color={color} variant="file" fileName="File Name.ai" fileSize="300kb" time="1 day ago" />
-        <ChatBubble type="received" variant="text" color={color} avatar={AVATAR} content={LONG_TEXT} time="1 day ago" />
-        <ChatBubble type="sent" color={color} variant="text" content={SHORT_TEXT} time="1 day ago" />
+        <ChatBubble type="sent" color={color} variant="file" fileName="File Name.ai" fileSize="300kb" time="1 天前" />
+        <ChatBubble type="received" variant="text" color={color} avatar={AVATAR} content={LONG_TEXT} time="1 天前" />
+        <ChatBubble type="sent" color={color} variant="text" content={SHORT_TEXT} time="1 天前" />
       </div>
       <div className="px-4 py-4 border-t border-fg-grey-200 shrink-0">
-        <ChatInputBar placeholder="Type your message..." />
+        <ChatInputBar placeholder="输入消息…" />
       </div>
     </div>
   );
@@ -700,13 +694,13 @@ function SmallChatCard({ type, color = "purple" }: { type: "person" | "team"; co
 
 function SmallChatSection() {
   return (
-    <Section title="小页面 (Small Chat — 紧凑 588px 卡片)">
+    <Section title="紧凑卡片">
       <p className="text-sm text-fg-grey-700">
-        每色 2 类型（个人 / 团队），可嵌入 Dashboard widget 或独立窗口。3 色 × 2 = 6 卡片，先展示 Purple 2 个 sample。
+        个人和团队两种紧凑卡片，可以放在仪表盘里。
       </p>
       <div className="flex flex-wrap gap-6">
-        <SmallChatCard type="person" color="purple" />
-        <SmallChatCard type="team" color="purple" />
+        <SmallChatCard type="person" color="blue" />
+        <SmallChatCard type="team" color="blue" />
       </div>
     </Section>
   );
@@ -718,13 +712,14 @@ function SmallChatSection() {
 
 export default function ChatCasePage() {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex min-w-0 max-w-full flex-col gap-12">
       <header>
-        <h1 className="text-3xl font-bold text-fg-black">Chat 复核 Case</h1>
-        <p className="text-sm text-fg-grey-700 mt-1">
-          按 figma <code className="px-1 bg-gray-200 rounded text-xs">chat.md</code> 三段式：基础组件 → 全页面 5 种变体 → 小页面
+        <h1 className="text-3xl font-bold text-fg-black">聊天</h1>
+        <p className="mt-1 text-sm text-fg-grey-700">
+          气泡和输入栏、四种整页布局，以及可以嵌进仪表盘的紧凑卡片。
         </p>
       </header>
+      <ScenarioOutlet />
       <BaseComponentsSection />
       <FullPageSection />
       <SmallChatSection />

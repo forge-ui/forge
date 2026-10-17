@@ -9,6 +9,8 @@ import {
   type CircleIconVariant,
 } from "./badge";
 import { Avatar, type AvatarSize } from "./avatar";
+import { SwipeRow } from "../../internal/swipe-row";
+import type { MotionPreference } from "../../lib/motion";
 
 export type ListItemIconLead = {
   kind: "icon";
@@ -49,6 +51,7 @@ export function ListItem({
   tailSubtext,
   trailing,
   className,
+  onSwipeAction, swipeActionLabel = "删除", motion = "auto",
 }: {
   lead?: ListItemLead;
   title: string;
@@ -59,8 +62,11 @@ export function ListItem({
   tailSubtext?: string;
   trailing?: ReactNode;
   className?: string;
+  onSwipeAction?: () => void;
+  swipeActionLabel?: string;
+  motion?: MotionPreference;
 }) {
-  return (
+  const content = (
     <div className={cn("inline-flex items-center gap-2 w-full", className)}>
       {lead && <ListItemLeadSlot lead={lead} />}
 
@@ -96,6 +102,7 @@ export function ListItem({
       )}
     </div>
   );
+  return onSwipeAction ? <SwipeRow onAction={onSwipeAction} label={swipeActionLabel} motion={motion}>{content}</SwipeRow> : content;
 }
 
 // ============================================================
@@ -165,7 +172,7 @@ function ListItemLeadSlot({ lead }: { lead: ListItemLead }) {
   }
   return (
     <CircleIcon
-      color={lead.color ?? "purple"}
+      color={lead.color ?? "blue"}
       variant={lead.variant ?? "light"}
       size={lead.size ?? "lg"}
     >

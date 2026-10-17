@@ -196,16 +196,16 @@ export function LanguageSwitcher({
   );
 }
 
-export function ProfileDropdown() {
+export function ProfileDropdown({ locale = "zh" }: { locale?: "zh" | "en" } = {}) {
   const items = [
-    { label: "编辑资料", icon: <PenBold size={20} />, color: "text-fg-grey-700" },
-    { label: "修改密码", icon: <LockPasswordBold size={20} />, color: "text-fg-grey-700" },
-    { label: "系统设置", icon: <SettingsBold size={20} />, color: "text-fg-grey-700" },
-    { label: "退出登录", icon: <Logout2Bold size={20} />, color: "text-fg-red" },
+    { label: locale === "en" ? "Edit profile" : "编辑资料", icon: <PenBold size={20} />, color: "text-fg-grey-700" },
+    { label: locale === "en" ? "Change password" : "修改密码", icon: <LockPasswordBold size={20} />, color: "text-fg-grey-700" },
+    { label: locale === "en" ? "Settings" : "系统设置", icon: <SettingsBold size={20} />, color: "text-fg-grey-700" },
+    { label: locale === "en" ? "Sign out" : "退出登录", icon: <Logout2Bold size={20} />, color: "text-fg-red" },
   ];
 
   return (
-    <div role="menu" aria-label="个人菜单" onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
+    <div role="menu" aria-label={locale === "en" ? "Profile menu" : "个人菜单"} onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
       {items.map((item) => (
         <button
           key={item.label}
@@ -233,6 +233,7 @@ export type TeamSwitcherLabels = {
 };
 
 export function TeamSwitcherDropdown({
+  locale = "zh",
   teamName,
   teamAvatar,
   teamMemberCount,
@@ -243,6 +244,7 @@ export function TeamSwitcherDropdown({
   showActions = false,
   onAppChange,
 }: {
+  locale?: "zh" | "en";
   teamName: string;
   teamAvatar?: string;
   teamMemberCount?: number;
@@ -254,14 +256,14 @@ export function TeamSwitcherDropdown({
   showActions?: boolean;
   onAppChange?: (app: AppSwitcherItem) => void;
 }) {
-  const inviteLabel = labels?.invite ?? "邀请成员";
-  const settingsLabel = labels?.settings ?? "设置";
-  const createNewLabel = labels?.createNew ?? "新建团队";
+  const inviteLabel = labels?.invite ?? (locale === "en" ? "Invite members" : "邀请成员");
+  const settingsLabel = labels?.settings ?? (locale === "en" ? "Settings" : "设置");
+  const createNewLabel = labels?.createNew ?? (locale === "en" ? "Create team" : "新建团队");
   const hasTeams = Boolean(teams && teams.length > 0);
-  const subtitle = teamSubtitle ?? (showActions && teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : "当前应用");
+  const subtitle = teamSubtitle ?? (showActions && teamMemberCount !== undefined ? (locale === "en" ? `${teamMemberCount} members` : `${teamMemberCount} 名成员`) : (locale === "en" ? "Current application" : "当前应用"));
 
   return (
-    <div role="menu" aria-label="应用切换" onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
+    <div role="menu" aria-label={locale === "en" ? "Switch application" : "应用切换"} onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
       <div className="self-stretch pt-2 flex flex-col justify-start items-center gap-3">
         {teamAvatar && (
@@ -348,13 +350,14 @@ export function TeamSwitcherDropdown({
 
 /** Application switcher with a controlled current application. */
 export function AppSwitcherDropdown({
-  appName, appIcon, appSubtitle = "当前应用", apps, onAppChange,
+  locale = "zh", appName, appIcon, appSubtitle, apps, onAppChange,
 }: {
+  locale?: "zh" | "en";
   appName: string;
   appIcon?: string;
   appSubtitle?: string;
   apps?: AppSwitcherItem[];
   onAppChange?: (app: AppSwitcherItem) => void;
 }) {
-  return <TeamSwitcherDropdown teamName={appName} teamAvatar={appIcon} teamSubtitle={appSubtitle} teams={apps} showActions={false} onAppChange={onAppChange} />;
+  return <TeamSwitcherDropdown locale={locale} teamName={appName} teamAvatar={appIcon} teamSubtitle={appSubtitle} teams={apps} showActions={false} onAppChange={onAppChange} />;
 }

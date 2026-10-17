@@ -4,7 +4,8 @@ import type { MotionPreference } from "../../../lib/motion";
 
 /* eslint-disable @next/next/no-img-element */
 
-import { type ReactNode } from "react";
+import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import { useReducedMotion } from "../../../internal/motion";
 import { cn } from "../../../lib/utils";
 import { CheckboxVisual } from "../checkbox";
 import { formAccents, type FormAccentColor } from "./form-utils";
@@ -21,49 +22,175 @@ export type ControlColor = FormAccentColor;
 
 // ── Toggle ────────────────────────────────────────────────
 
-export function Toggle({
-  checked = false,
-  motion = "auto",
-  onChange,
-  color = "purple",
-  disabled = false,
-  size = "md",
-  ariaLabel = "开关",
-}: {
+export type ToggleProps = {
   checked?: boolean;
+  /** Initial value when checked is not supplied. */
+  defaultChecked?: boolean;
   motion?: MotionPreference;
   onChange?: (checked: boolean) => void;
   color?: ControlColor;
   disabled?: boolean;
   size?: "sm" | "md";
   ariaLabel?: string;
-}) {
+  /** Allow dragging the thumb; clicking and keyboard activation remain available. */
+  draggable?: boolean;
+  thumbIcon?: ReactNode;
+};
+
+type ToggleDrag = {
+  pointerId: number;
+  startX: number;
+  scale: number;
+  travel: number;
+  startChecked: boolean;
+  moved: boolean;
+  offset: number;
+};
+
+export function Toggle({
+  checked,
+  defaultChecked = false,
+  motion = "auto",
+  onChange,
+  color = "blue",
+  disabled = false,
+  size = "md",
+  ariaLabel = "开关",
+  draggable = false,
+  thumbIcon,
+}: ToggleProps) {
+  const [internalChecked, setInternalChecked] = useState(defaultChecked);
+  const active = checked ?? internalChecked;
+  const noMotion = useReducedMotion(motion);
+  const thumbRef = useRef<HTMLDivElement>(null);
+  const drag = useRef<ToggleDrag | null>(null);
+  const skipClick = useRef(false);
+  const previousChecked = useRef(active);
+  const [dragView, setDragView] = useState<{ offset: number; startChecked: boolean } | null>(null);
   const isMd = size === "md";
+
+  // A consumer update or disabled state cancels an in-flight gesture.
+  if (dragView && (disabled || !draggable || dragView.startChecked !== active)) setDragView(null);
+  useEffect(() => {
+    if (drag.current) skipClick.current = true;
+    drag.current = null;
+  }, [active, disabled, draggable]);
+
+  useEffect(() => {
+    const changed = previousChecked.current !== active;
+    previousChecked.current = active;
+    if (!changed || noMotion || disabled || !thumbRef.current?.animate) return;
+    const animation = thumbRef.current.animate([
+      { scale: "1 1" },
+      { scale: "1.3 1", offset: .35 },
+      { scale: "1 1" },
+    ], { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" });
+    return () => animation.cancel();
+  }, [active, disabled, noMotion]);
+
+  function change(next: boolean) {
+    if (disabled || next === active) return;
+    if (checked === undefined) setInternalChecked(next);
+    onChange?.(next);
+  }
+
+  function cancelDrag() {
+    drag.current = null;
+    setDragView(null);
+  }
+
+  function startDrag(event: PointerEvent<HTMLButtonElement>) {
+    if (disabled || event.button !== 0 || event.isPrimary === false || drag.current) return;
+    skipClick.current = false;
+    if (!draggable) return;
+    const track = event.currentTarget;
+    const rect = track.getBoundingClientRect();
+    const trackStyle = getComputedStyle(track);
+    const layoutWidth = track.offsetWidth || rect.width || (isMd ? 36 : 32);
+    const scale = rect.width / layoutWidth || 1;
+    const paddingLeft = Number.parseFloat(trackStyle.paddingLeft) || 4;
+    const paddingRight = Number.parseFloat(trackStyle.paddingRight) || 4;
+    const thumbWidth = thumbRef.current?.offsetWidth || 12;
+    const travel = Math.max(0, layoutWidth - paddingLeft - paddingRight - thumbWidth);
+    drag.current = { pointerId: event.pointerId, startX: event.clientX, scale, travel, startChecked: active, moved: false, offset: active ? travel : 0 };
+    track.setPointerCapture?.(event.pointerId);
+  }
+
+  function moveDrag(event: PointerEvent<HTMLButtonElement>) {
+    const gesture = drag.current;
+    if (!gesture || gesture.pointerId !== event.pointerId || disabled) return;
+    const dx = (event.clientX - gesture.startX) / gesture.scale;
+    gesture.moved ||= Math.abs(dx) > Math.max(1, gesture.travel * .15);
+    if (!gesture.moved) return;
+    gesture.offset = Math.max(0, Math.min(gesture.travel, (gesture.startChecked ? gesture.travel : 0) + dx));
+    setDragView({ offset: gesture.offset, startChecked: gesture.startChecked });
+  }
+
+  function endDrag(event: PointerEvent<HTMLButtonElement>) {
+    const gesture = drag.current;
+    if (!gesture || gesture.pointerId !== event.pointerId) return;
+    moveDrag(event);
+    cancelDrag();
+    if (gesture.moved) {
+      skipClick.current = true;
+      if (gesture.startChecked === active) change(gesture.offset > gesture.travel / 2);
+    }
+    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  }
 
   return (
     <button
       type="button"
       role="switch"
-      data-motion={motion}
+      data-motion={noMotion ? "none" : "auto"}
+      data-draggable={draggable || undefined}
+      data-dragging={Boolean(dragView) || undefined}
       aria-label={ariaLabel}
-      aria-checked={checked}
+      aria-checked={active}
       disabled={disabled}
-      onClick={() => onChange?.(!checked)}
+      onPointerDown={startDrag}
+      onPointerMove={moveDrag}
+      onPointerUp={endDrag}
+      onPointerCancel={event => {
+        if (drag.current?.pointerId !== event.pointerId) return;
+        skipClick.current = true;
+        cancelDrag();
+      }}
+      onLostPointerCapture={event => {
+        if (drag.current?.pointerId !== event.pointerId) return;
+        skipClick.current = true;
+        cancelDrag();
+      }}
+      onKeyDown={event => {
+        if (event.key === "Escape") { skipClick.current = true; cancelDrag(); }
+      }}
+      onClick={event => {
+        if (skipClick.current && event.detail !== 0) { skipClick.current = false; return; }
+        skipClick.current = false;
+        change(!active);
+      }}
+      style={draggable ? { touchAction: "pan-y", userSelect: "none" } : undefined}
       className={cn(
         "forge-toggle p-1 rounded-full inline-flex items-start",
         isMd ? "w-9" : "w-8",
-        checked ? formAccents[color].bg : "bg-fg-grey-300",
+        active ? formAccents[color].bg : "bg-fg-grey-300",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
       )}
     >
       <div
-        style={{ translate: checked ? (isMd ? "16px" : "12px") : "0px" }}
+        ref={thumbRef}
+        aria-hidden="true"
+        style={{
+          translate: `${dragView?.offset ?? (active ? (isMd ? 16 : 12) : 0)}px`,
+          scale: !noMotion && dragView ? "1.15 1" : "1 1",
+          transformOrigin: active ? "right center" : "left center",
+          transition: noMotion ? "none" : `translate ${dragView ? "0s" : ".5s cubic-bezier(.34,1.16,.64,1)"}, scale .2s ease, background-color .25s ease`,
+        }}
         className={cn(
-          "forge-toggle-thumb rounded-full",
-          isMd ? "w-3 h-3" : "w-3 h-3",
-          checked ? "bg-white" : "bg-fg-grey-50",
+          "forge-toggle-thumb rounded-full w-3 h-3 flex items-center justify-center text-fg-black",
+          active ? "bg-white" : "bg-fg-grey-50",
         )}
-      />
+      >{thumbIcon}</div>
     </button>
   );
 }
@@ -73,7 +200,7 @@ export function Toggle({
 export function RadioButton({
   checked = false,
   onChange,
-  color = "purple",
+  color = "blue",
   disabled = false,
   ariaLabel = "单选项",
 }: {
@@ -124,11 +251,12 @@ export function RadioWithLabel({
   checked = false,
   onChange,
   label,
-  color = "purple",
+  color = "blue",
   radioPosition = "left",
   dotColor,
   disabled = false,
   className,
+  tabIndex,
 }: {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
@@ -138,6 +266,7 @@ export function RadioWithLabel({
   dotColor?: string;
   disabled?: boolean;
   className?: string;
+  tabIndex?: number;
 }) {
   const accent = formAccents[color];
 
@@ -161,6 +290,7 @@ export function RadioWithLabel({
     <button
       type="button"
       role="radio"
+      tabIndex={tabIndex}
       aria-checked={checked}
       disabled={disabled}
       onClick={() => onChange?.(true)}
@@ -192,7 +322,7 @@ export function CheckboxWithLabel({
   motion = "auto",
   onChange,
   label,
-  color = "purple",
+  color = "blue",
   checkboxPosition = "left",
   icon,
   avatar,

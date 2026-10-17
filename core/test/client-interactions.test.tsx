@@ -417,6 +417,56 @@ test("AppLayout 移动导航进入时聚焦并陷阱 Tab，Escape 后恢复触�
   dom.window.close();
 });
 
+test("AppLayout 移动分支只展开子菜单，叶子导航才关闭抽屉，并跳过隐藏子项焦点", async () => {
+  const dom = installDom({ mobile: true });
+  const root = createRoot(document.getElementById("root")!);
+  try {
+    await act(async () => root.render(createElement(PathnameContext.Provider, { value: "/overview" },
+      createElement(AppLayout as React.ElementType, {
+        profilePosition: "sidebar",
+        hideSidebarWidgets: true,
+        menuItems: [{ label: "项目管理", children: [{ label: "项目详情", href: "/projects/detail" }] }],
+      }, createElement("main", null, "内容")),
+    )));
+    const trigger = document.querySelector<HTMLButtonElement>("[data-forge-menu-trigger]");
+    const sidebar = document.querySelector<HTMLElement>("[data-forge-app-sidebar]");
+    assert.ok(trigger);
+    assert.ok(sidebar);
+    await act(async () => trigger.click());
+
+    const branch = sidebar.querySelector<HTMLElement>('[data-forge-sidebar-scroll] :is(button, [role="button"])[aria-expanded]');
+    const leaf = sidebar.querySelector<HTMLAnchorElement>('a[href="/projects/detail"]:not([role="button"])');
+    const close = sidebar.querySelector<HTMLButtonElement>('[aria-label="关闭主导航"]');
+    assert.ok(branch);
+    assert.ok(leaf);
+    assert.ok(close);
+    assert.equal(branch.getAttribute("aria-expanded"), "false");
+    assert.ok(leaf.closest('[inert][aria-hidden="true"]'));
+
+    branch.focus();
+    await act(async () => {
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab", bubbles: true, cancelable: true }));
+    });
+    assert.ok(document.activeElement === close, "末尾分支后的 Tab 应跳过隐藏子项并回到关闭按钮");
+
+    await act(async () => branch.click());
+    assert.equal(branch.getAttribute("aria-expanded"), "true");
+    assert.equal(trigger.getAttribute("aria-expanded"), "true");
+    assert.equal(sidebar.getAttribute("aria-hidden"), null);
+    assert.ok(leaf.closest('[inert][aria-hidden="true"]') === null);
+
+    // Keep navigation outside this JSDOM test; the drawer closes in capture phase.
+    leaf.addEventListener("click", (event) => event.preventDefault(), { once: true });
+    await act(async () => leaf.click());
+    assert.equal(trigger.getAttribute("aria-expanded"), "false");
+    assert.equal(sidebar.getAttribute("aria-hidden"), "true");
+    assert.ok(sidebar.hasAttribute("inert"));
+  } finally {
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
+});
+
 test("AppLayout 移动导航内的 Escape 先关闭 popover 再关闭抽屉", async () => {
   const dom = installDom({ mobile: true });
   const container = document.querySelector<HTMLDivElement>("#root");
@@ -518,13 +568,13 @@ test("AppLayout 三个分组按序渲染，并只高亮最长路径命中的子�
   assert.ok(scroll);
   const groups = [...scroll.children] as HTMLElement[];
   assert.deepEqual(groups.map((group) => group.querySelector(":scope > .px-3")?.textContent), ["工作区", "智能体", "平台"]);
-  assert.deepEqual(groups.map((group) => group.querySelectorAll("a[href]").length), [1, 1, 1]);
+  assert.deepEqual(groups.map((group) => group.querySelectorAll('a[href]:not([role="button"])').length), [1, 1, 1]);
   assert.equal(scroll.textContent?.includes("旧菜单"), false);
   assert.equal(scroll.textContent?.includes("旧收藏"), false);
   const currentLinks = [...scroll.querySelectorAll<HTMLAnchorElement>('a[aria-current="page"]')];
   assert.equal(currentLinks.length, 1);
   assert.equal(currentLinks[0]?.getAttribute("href"), "/platform/agents/detail");
-  const activeBranch = groups[2]?.querySelector<HTMLButtonElement>('button[aria-expanded="true"]');
+  const activeBranch = groups[2]?.querySelector<HTMLElement>(':is(button, [role="button"])[aria-expanded="true"]');
   assert.ok(activeBranch);
   assert.equal(currentLinks[0]?.closest("[inert]"), null);
 
@@ -614,7 +664,12 @@ test("AppLayout 收窄后保留分组间距但隐藏标题，移动抽屉沿用�
   assert.ok(scroll);
   assert.ok(scroll.className.includes("gap-6"));
   assert.equal(scroll.children.length, 3);
-  assert.equal(scroll.querySelectorAll(":scope > div > .px-3").length, 0);
+  const titles = [...scroll.querySelectorAll<HTMLElement>(".forge-sidebar-section-title")];
+  assert.deepEqual(titles.map((title) => title.textContent), ["工作区", "智能体", "平台"]);
+  for (const title of titles) {
+    assert.equal(title.getAttribute("data-state"), "closed");
+    assert.ok(title.closest('[inert][aria-hidden="true"]'));
+  }
   assert.deepEqual([...scroll.querySelectorAll("a[title]")].map((link) => link.getAttribute("title")), ["工作台", "智能体", "设置"]);
   await act(async () => root.unmount());
   desktop.window.close();
@@ -656,19 +711,19 @@ test("SidebarMenuItemRow 在 pathname 激活子项时自动展开", async () => 
   await act(async () => {
     root.render(createElement(SidebarMenuItemRow, { ...props, pathname: "/overview" }));
   });
-  assert.ok(document.querySelector('a[href="/projects/detail"]')?.closest('[inert][aria-hidden="true"]'));
+  assert.ok(document.querySelector('a[href="/projects/detail"]:not([role="button"])')?.closest('[inert][aria-hidden="true"]'));
 
   await act(async () => {
     root.render(createElement(SidebarMenuItemRow, { ...props, pathname: "/projects/detail" }));
   });
-  assert.ok(document.querySelector('a[href="/projects/detail"]'));
-  assert.equal(document.querySelector('a[href="/projects/detail"]')?.closest("[inert]"), null);
+  assert.ok(document.querySelector('a[href="/projects/detail"]:not([role="button"])'));
+  assert.equal(document.querySelector('a[href="/projects/detail"]:not([role="button"])')?.closest("[inert]"), null);
 
-  const activeBranch = document.querySelector<HTMLButtonElement>('button[aria-expanded="true"]');
+  const activeBranch = document.querySelector<HTMLElement>(':is(button, [role="button"])[aria-expanded="true"]');
   assert.ok(activeBranch);
   await act(async () => activeBranch.click());
   assert.equal(activeBranch.getAttribute("aria-expanded"), "false");
-  assert.ok(document.querySelector('a[href="/projects/detail"]')?.closest('[inert][aria-hidden="true"]'));
+  assert.ok(document.querySelector('a[href="/projects/detail"]:not([role="button"])')?.closest('[inert][aria-hidden="true"]'));
 
   await act(async () => root.unmount());
   dom.window.close();
@@ -756,12 +811,12 @@ test("SidebarMenuItemRow 只把最长匹配的可导航叶子标记为当前页"
       activeItem: groupedActive,
     }));
   });
-  const expandedGroupButton = document.querySelector<HTMLButtonElement>("button[aria-expanded='true']");
+  const expandedGroupButton = document.querySelector<HTMLElement>(':is(button, [role="button"])[aria-expanded="true"]');
   const expandedActiveLink = document.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
   assert.ok(expandedGroupButton);
   assert.ok(expandedActiveLink);
   assert.equal(expandedGroupButton.className.includes("bg-fg-violet"), false);
-  assert.equal(expandedActiveLink.className.includes("bg-fg-violet"), true);
+  assert.ok(expandedActiveLink.querySelector("[data-forge-sidebar-highlight].bg-fg-violet"));
 
   await act(async () => {
     root.render(createElement(SidebarMenuItemRow, {

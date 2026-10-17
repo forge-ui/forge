@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";
 import {
   StarLinear,
@@ -8,43 +7,59 @@ import {
   AddCircleLinear,
 } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
-
-// ─── Button 段落使用的代码片段（与 Preview JSX 手动对齐） ───
+import { ApiBlock, DocExample } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";`;
 
-const CODE_BUTTON_USAGE = `<Button>Button</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>`;
+const CODE_BUTTON_USAGE = `<Button>保存修改</Button>
+<Button variant="secondary">次要按钮</Button>
+<Button variant="tertiary">轻量按钮</Button>`;
 
-const CODE_BUTTON_SIZES = `<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>`;
+const CODE_BUTTON_SIZES = `<Button size="sm">小</Button>
+<Button size="md">中</Button>
+<Button size="lg">大</Button>`;
 
-const CODE_BUTTON_COLORS = `<Button color="purple">Purple</Button>
-<Button color="dark">Dark</Button>
-<Button color="blue">Blue</Button>
-<Button color="blue-dark">Blue Dark</Button>
-<Button color="red">Red</Button>
-<Button color="green">Green</Button>
-<Button color="yellow">Yellow</Button>
-<Button color="grey">Grey</Button>
-<Button color="black">Black</Button>`;
+const CODE_BUTTON_COLORS = `<Button color="purple">紫色</Button>
+<Button color="dark">深色</Button>
+<Button color="blue">蓝色</Button>
+<Button color="blue-dark">深蓝</Button>
+<Button color="red">红色</Button>
+<Button color="green">绿色</Button>
+<Button color="yellow">黄色</Button>
+<Button color="grey">灰色</Button>
+<Button color="black">黑色</Button>`;
 
-const CODE_BUTTON_VARIANTS = `<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>`;
+const CODE_BUTTON_VARIANTS = `<Button variant="primary">主要按钮</Button>
+<Button variant="secondary">次要按钮</Button>
+<Button variant="tertiary">轻量按钮</Button>`;
 
-const CODE_BUTTON_ICON = `<Button iconLeft={<StarLinear size={16} />}>Star it</Button>
-<Button iconRight={<ArrowRightLinear size={16} />}>Next</Button>`;
+const CODE_BUTTON_ICON = `<Button iconLeft={<StarLinear size={16} />}>收藏</Button>
+<Button iconRight={<ArrowRightLinear size={16} />}>下一步</Button>`;
 
-const CODE_BUTTON_DISABLED = `<Button disabled>Disabled</Button>
-<Button variant="secondary" disabled>Disabled</Button>
-<Button variant="tertiary" disabled>Disabled</Button>`;
+const CODE_BUTTON_DISABLED = `<Button disabled>禁用</Button>
+<Button variant="secondary" disabled>禁用</Button>
+<Button variant="tertiary" disabled>禁用</Button>`;
+
+const CODE_BUTTON_ALL = `${CODE_BUTTON_SIZES}
+${CODE_BUTTON_COLORS}
+${CODE_BUTTON_VARIANTS}
+${CODE_BUTTON_ICON}
+${CODE_BUTTON_DISABLED}`;
 
 const BUTTON_PROPS: ApiTableRow[] = [
+  { attr: "effect", type: "'glass' | 'magnetic' | 'ripple' | 'roll'", defaultValue: "—", description: "玻璃、箭头跟随、涟漪或文字切换。不传则只有基础样式。" },
+  { attr: "motion", type: "'auto' | 'none'", defaultValue: "'auto'", description: "跟随系统的减少动态效果设置，或关闭动效。" },
+  { attr: "loading", type: "boolean", defaultValue: "false", description: "处理中。为 true 时按钮禁用，并显示 loadingLabel。" },
+  { attr: "result", type: "'idle' | 'success' | 'error'", defaultValue: "'idle'", description: "操作结果。非 idle 时显示 resultLabel。" },
+  { attr: "progress", type: "number", defaultValue: "—", description: "0 到 100 的进度。传了才显示进度条。" },
+  { attr: "loadingLabel", type: "ReactNode", defaultValue: "处理中…", description: "loading 为 true 时替代按钮文字。locale 为 en 时默认是 Processing…。" },
+  { attr: "resultLabel", type: "ReactNode", defaultValue: "已完成 / 请重试", description: "result 不是 idle 时替代按钮文字。" },
+  { attr: "holdDuration", type: "number", defaultValue: "1200", description: "只在 variant 为 hold 时生效。长按确认所需的毫秒数。" },
+  { attr: "confirmed", type: "boolean", defaultValue: "—", description: "只在 variant 为 hold 时生效。由外部标记已经确认。" },
+  { attr: "locale", type: "'zh' | 'en'", defaultValue: "'zh'", description: "长按按钮和加载、结果文案的语言。" },
+  { attr: "holdLabels", type: "{ idle?: string; done?: string; undo?: string }", defaultValue: "—", description: "只在 variant 为 hold 时生效。覆盖长按前、完成后和撤销的文字。" },
+  { attr: "onConfirm / onUndo", type: "() => void", defaultValue: "—", description: "只在 variant 为 hold 时生效。长按完成或点击撤销时调用。" },
   {
     attr: "children",
     type: "ReactNode",
@@ -54,14 +69,14 @@ const BUTTON_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'dark' | 'blue' | 'blue-dark' | 'red' | 'green' | 'yellow' | 'grey' | 'black'",
-    defaultValue: "'purple'",
-    description: "按钮主色，共 9 种。",
+    defaultValue: "'blue'",
+    description: "9 种主色。dark 是深紫色（violet-800），不是中性黑。灰色的取值名是 grey。黄色和灰色的实心按钮使用深色文字。",
   },
   {
     attr: "variant",
-    type: "'primary' | 'secondary' | 'tertiary'",
+    type: "'primary' | 'secondary' | 'tertiary' | 'hold'",
     defaultValue: "'primary'",
-    description: "实底 / 浅底 / 描边 三种样式。",
+    description: "实底、浅底、描边或长按确认样式。",
   },
   {
     attr: "size",
@@ -101,21 +116,9 @@ const BUTTON_PROPS: ApiTableRow[] = [
   },
 ];
 
-// ─── IconButton 段 ───
-
 const CODE_ICONBUTTON_USAGE = `<IconButton><StarLinear size={20} /></IconButton>
 <IconButton variant="secondary"><HeartLinear size={20} /></IconButton>
 <IconButton variant="tertiary"><TrashBinTrashLinear size={20} /></IconButton>`;
-
-const CODE_ICONBUTTON_SIZES = `<IconButton size="sm"><StarLinear size={16} /></IconButton>
-<IconButton size="md"><StarLinear size={20} /></IconButton>
-<IconButton size="lg"><StarLinear size={24} /></IconButton>`;
-
-const CODE_ICONBUTTON_COLORS = `<IconButton color="purple"><StarLinear size={20} /></IconButton>
-<IconButton color="blue"><StarLinear size={20} /></IconButton>
-<IconButton color="red"><StarLinear size={20} /></IconButton>
-<IconButton color="green"><StarLinear size={20} /></IconButton>
-<IconButton color="yellow"><StarLinear size={20} /></IconButton>`;
 
 const CODE_ICONBUTTON_SHAPE = `<IconButton shape="circle"><StarLinear size={20} /></IconButton>
 <IconButton shape="square"><StarLinear size={20} /></IconButton>`;
@@ -123,7 +126,13 @@ const CODE_ICONBUTTON_SHAPE = `<IconButton shape="circle"><StarLinear size={20} 
 const CODE_ICONBUTTON_GHOST = `<IconButton variant="ghost"><StarLinear size={20} /></IconButton>
 <IconButton variant="ghost" shape="square"><HeartLinear size={20} /></IconButton>`;
 
+const CODE_ICONBUTTON_ALL = `${CODE_ICONBUTTON_USAGE}
+${CODE_ICONBUTTON_SHAPE}
+${CODE_ICONBUTTON_GHOST}`;
+
 const ICONBUTTON_PROPS: ApiTableRow[] = [
+  { attr: "effect", type: "'morph' | 'send' | 'bookmark' | 'burst'", defaultValue: "—", description: "变形、发送、收藏或粒子反馈效果。" },
+  { attr: "active", type: "boolean", defaultValue: "—", description: "由应用管理收藏、点赞等切换状态。" },
   {
     attr: "children",
     type: "ReactNode",
@@ -133,8 +142,8 @@ const ICONBUTTON_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'dark' | 'blue' | 'blue-dark' | 'red' | 'green' | 'yellow' | 'grey' | 'black'",
-    defaultValue: "'purple'",
-    description: "主色，与 Button 的颜色集合完全一致。",
+    defaultValue: "'blue'",
+    description: "与 Button 相同的 9 种主色。dark 是深紫色。灰色的取值名是 grey。",
   },
   {
     attr: "variant",
@@ -168,24 +177,18 @@ const ICONBUTTON_PROPS: ApiTableRow[] = [
   },
 ];
 
-// ─── StyledLink 段 ───
+const CODE_LINK_USAGE = `<StyledLink href="#">链接</StyledLink>
+<StyledLink href="#" color="blue">蓝色链接</StyledLink>
+<StyledLink href="#" color="green">绿色链接</StyledLink>`;
 
-const CODE_LINK_USAGE = `<StyledLink href="#">Link</StyledLink>
-<StyledLink href="#" color="blue">Blue Link</StyledLink>
-<StyledLink href="#" color="green">Green Link</StyledLink>`;
+const CODE_LINK_ICON = `<StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>查看详情</StyledLink>
+<StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>添加项目</StyledLink>`;
 
-const CODE_LINK_COLORS = `<StyledLink href="#" color="purple">Purple</StyledLink>
-<StyledLink href="#" color="blue">Blue</StyledLink>
-<StyledLink href="#" color="green">Green</StyledLink>
-<StyledLink href="#" color="red">Red</StyledLink>
-<StyledLink href="#" color="yellow">Yellow</StyledLink>
-<StyledLink href="#" color="cyan">Cyan</StyledLink>
-<StyledLink href="#" color="gray">Gray</StyledLink>`;
+const CODE_LINK_DISABLED = `<StyledLink href="#" disabled>禁用</StyledLink>`;
 
-const CODE_LINK_ICON = `<StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>Read more</StyledLink>
-<StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>Add item</StyledLink>`;
-
-const CODE_LINK_DISABLED = `<StyledLink href="#" disabled>Disabled</StyledLink>`;
+const CODE_LINK_ALL = `${CODE_LINK_USAGE}
+${CODE_LINK_ICON}
+${CODE_LINK_DISABLED}`;
 
 const LINK_PROPS: ApiTableRow[] = [
   {
@@ -203,8 +206,8 @@ const LINK_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'dark' | 'blue' | 'green' | 'red' | 'orange' | 'yellow' | 'cyan' | 'gray'",
-    defaultValue: "'purple'",
-    description: "文字颜色，9 种预设。",
+    defaultValue: "'blue'",
+    description: "9 种文字色。灰色的取值名是 gray，和 Button 的 grey 不同。orange 使用深黄，避免和 red 相同。yellow 也使用深黄，保证浅底上的对比度。",
   },
   {
     attr: "iconLeft",
@@ -232,28 +235,25 @@ const LINK_PROPS: ApiTableRow[] = [
   },
 ];
 
-// ─── ButtonGroup 段 ───
-
 const CODE_BUTTONGROUP_USAGE = `<ButtonGroup
   activeIndex={1}
   items={[
-    { label: "Day" },
-    { label: "Week" },
-    { label: "Month" },
+    { label: "日" },
+    { label: "周" },
+    { label: "月" },
   ]}
 />`;
-
-const CODE_BUTTONGROUP_COLORS = `<ButtonGroup color="purple" activeIndex={0} items={items} />
-<ButtonGroup color="blue" activeIndex={1} items={items} />
-<ButtonGroup color="black" activeIndex={2} items={items} />`;
 
 const CODE_BUTTONGROUP_SHAPE = `<ButtonGroup shape="rounded" activeIndex={1} items={items} />
 <ButtonGroup shape="pill" activeIndex={1} items={items} />`;
 
+const CODE_BUTTONGROUP_ALL = `${CODE_BUTTONGROUP_USAGE}
+${CODE_BUTTONGROUP_SHAPE}`;
+
 const BUTTONGROUP_ITEMS = [
-  { label: "Day" },
-  { label: "Week" },
-  { label: "Month" },
+  { label: "日" },
+  { label: "周" },
+  { label: "月" },
 ];
 
 const BUTTONGROUP_PROPS: ApiTableRow[] = [
@@ -272,7 +272,7 @@ const BUTTONGROUP_PROPS: ApiTableRow[] = [
   {
     attr: "color",
     type: "'purple' | 'blue' | 'black'",
-    defaultValue: "'purple'",
+    defaultValue: "'blue'",
     description: "选中态的主色。",
   },
   {
@@ -299,296 +299,83 @@ export default function ButtonLinkCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Button & Link"
-        hint="Button / IconButton 触发动作，StyledLink 用于跳转，ButtonGroup 用于分段切换。"
+        title="按钮与链接"
+        hint="同一个组件的尺寸、颜色和样式放在一起，代码按行跟在这组下面。"
       />
 
-      {/* ────────── Button 段 ────────── */}
-
-      <Section
-        title="Button"
-        description="最常用的点击元素，支持 9 种颜色、3 种变体和 3 种尺寸，可附带左右图标与禁用态。"
-      >
-        <SubSection title="Import" stack>
+      <Section title="用法" description="从按钮开始。尺寸、颜色、样式、图标和禁用都是 Button，放在一组里。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            默认渲染紫色实底按钮。通过 <InlineCode>variant</InlineCode> 切换实底 / 浅底 / 描边三种观感。
-          </p>
-          <PreviewBlock code={CODE_BUTTON_USAGE}>
-            <Button>Button</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="tertiary">Tertiary</Button>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Sizes" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            通过 <InlineCode>size</InlineCode> 控制高度与字号，可选 <InlineCode>sm</InlineCode> / <InlineCode>md</InlineCode> / <InlineCode>lg</InlineCode>，默认 <InlineCode>lg</InlineCode>。
-          </p>
-          <PreviewBlock code={CODE_BUTTON_SIZES}>
-            <Button size="sm">Small</Button>
-            <Button size="md">Medium</Button>
-            <Button size="lg">Large</Button>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Colors" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            9 种语义色：品牌紫（默认）、深紫、蓝、深蓝、红、绿、黄、灰、黑。
-          </p>
-          <PreviewBlock code={CODE_BUTTON_COLORS}>
-            <Button color="purple">Purple</Button>
-            <Button color="dark">Dark</Button>
-            <Button color="blue">Blue</Button>
-            <Button color="blue-dark">Blue Dark</Button>
-            <Button color="red">Red</Button>
-            <Button color="green">Green</Button>
-            <Button color="yellow">Yellow</Button>
-            <Button color="grey">Grey</Button>
-            <Button color="black">Black</Button>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Variants" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>primary</InlineCode> 用于主要动作，<InlineCode>secondary</InlineCode> 用于次级动作，<InlineCode>tertiary</InlineCode> 用于边缘场景。
-          </p>
-          <PreviewBlock code={CODE_BUTTON_VARIANTS}>
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="tertiary">Tertiary</Button>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="With Icon" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            使用 <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 插入图标，推荐 @forge-ui-official/core/icons 16px 图标以匹配内边距。
-          </p>
-          <PreviewBlock code={CODE_BUTTON_ICON}>
-            <Button iconLeft={<StarLinear size={16} />}>Star it</Button>
-            <Button iconRight={<ArrowRightLinear size={16} />}>Next</Button>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Disabled" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            传入 <InlineCode>disabled</InlineCode> 后降低透明度并禁用点击。
-          </p>
-          <PreviewBlock code={CODE_BUTTON_DISABLED}>
-            <Button disabled>Disabled</Button>
-            <Button variant="secondary" disabled>
-              Disabled
-            </Button>
-            <Button variant="tertiary" disabled>
-              Disabled
-            </Button>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={BUTTON_PROPS} />
-        </SubSection>
+        <DocExample id="button" title="Button" summary="小中大、九种颜色、实底浅底描边、左右图标和禁用，每行代码对应一颗按钮。" code={CODE_BUTTON_ALL}>
+          <div className="flex w-full flex-col items-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button size="sm">小</Button>
+              <Button size="md">中</Button>
+              <Button size="lg">大</Button>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button color="purple">紫色</Button>
+              <Button color="dark">深色</Button>
+              <Button color="blue">蓝色</Button>
+              <Button color="blue-dark">深蓝</Button>
+              <Button color="red">红色</Button>
+              <Button color="green">绿色</Button>
+              <Button color="yellow">黄色</Button>
+              <Button color="grey">灰色</Button>
+              <Button color="black">黑色</Button>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button variant="primary">主要按钮</Button>
+              <Button variant="secondary">次要按钮</Button>
+              <Button variant="tertiary">轻量按钮</Button>
+              <Button iconLeft={<StarLinear size={16} />}>收藏</Button>
+              <Button iconRight={<ArrowRightLinear size={16} />}>下一步</Button>
+              <Button disabled>禁用</Button>
+              <Button variant="secondary" disabled>禁用</Button>
+              <Button variant="tertiary" disabled>禁用</Button>
+            </div>
+          </div>
+        </DocExample>
       </Section>
 
-      {/* ────────── IconButton 段 ────────── */}
-
-      <Section
-        title="IconButton"
-        description="纯图标按钮，继承 Button 的 9 色与 3 变体，额外提供 ghost 变体与 square 形状用于表格 actions。"
-      >
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            传入任一 icon 作为 children 即可。默认 <InlineCode>md</InlineCode> 尺寸建议搭配 20px 图标。
-          </p>
-          <PreviewBlock code={CODE_ICONBUTTON_USAGE} minHeight={140}>
-            <IconButton>
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton variant="secondary">
-              <HeartLinear size={20} />
-            </IconButton>
-            <IconButton variant="tertiary">
-              <TrashBinTrashLinear size={20} />
-            </IconButton>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Sizes" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 种尺寸：<InlineCode>sm</InlineCode> 32px / <InlineCode>md</InlineCode> 40px / <InlineCode>lg</InlineCode> 48px。
-          </p>
-          <PreviewBlock code={CODE_ICONBUTTON_SIZES} minHeight={140}>
-            <IconButton size="sm">
-              <StarLinear size={16} />
-            </IconButton>
-            <IconButton size="md">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton size="lg">
-              <StarLinear size={24} />
-            </IconButton>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Colors" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            颜色集合与 Button 一致，共 9 种，这里示意 5 种常用色。
-          </p>
-          <PreviewBlock code={CODE_ICONBUTTON_COLORS} minHeight={140}>
-            <IconButton color="purple">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton color="blue">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton color="red">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton color="green">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton color="yellow">
-              <StarLinear size={20} />
-            </IconButton>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Shape" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>circle</InlineCode>（默认）和 <InlineCode>square</InlineCode>，后者常用于表格 actions 列。
-          </p>
-          <PreviewBlock code={CODE_ICONBUTTON_SHAPE} minHeight={140}>
-            <IconButton shape="circle">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton shape="square">
-              <StarLinear size={20} />
-            </IconButton>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Ghost" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>variant=&quot;ghost&quot;</InlineCode> 透明底 + 灰图标 + hover 浅灰，适合列表尾部静默按钮。
-          </p>
-          <PreviewBlock code={CODE_ICONBUTTON_GHOST} minHeight={140}>
-            <IconButton variant="ghost">
-              <StarLinear size={20} />
-            </IconButton>
-            <IconButton variant="ghost" shape="square">
-              <HeartLinear size={20} />
-            </IconButton>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={ICONBUTTON_PROPS} />
-        </SubSection>
-      </Section>
-
-      {/* ────────── StyledLink 段 ────────── */}
-
-      <Section
-        title="StyledLink"
-        description="文字链接，9 种颜色，支持左右图标与禁用态，内部使用 next/link 跳转。"
-      >
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>href</InlineCode> 必填，通过 <InlineCode>color</InlineCode> 控制文字颜色。
-          </p>
-          <PreviewBlock code={CODE_LINK_USAGE} minHeight={140}>
-            <StyledLink href="#">Link</StyledLink>
-            <StyledLink href="#" color="blue">Blue Link</StyledLink>
-            <StyledLink href="#" color="green">Green Link</StyledLink>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Colors" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            9 种颜色：purple / dark / blue / green / red / orange / yellow / cyan / gray。
-          </p>
-          <PreviewBlock code={CODE_LINK_COLORS} minHeight={140}>
-            <StyledLink href="#" color="purple">Purple</StyledLink>
-            <StyledLink href="#" color="blue">Blue</StyledLink>
-            <StyledLink href="#" color="green">Green</StyledLink>
-            <StyledLink href="#" color="red">Red</StyledLink>
-            <StyledLink href="#" color="yellow">Yellow</StyledLink>
-            <StyledLink href="#" color="cyan">Cyan</StyledLink>
-            <StyledLink href="#" color="gray">Gray</StyledLink>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="With Icon" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>iconLeft</InlineCode> / <InlineCode>iconRight</InlineCode> 支持插槽，推荐 16px 图标。
-          </p>
-          <PreviewBlock code={CODE_LINK_ICON} minHeight={140}>
-            <StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>Read more</StyledLink>
-            <StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>Add item</StyledLink>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Disabled" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>disabled</InlineCode> 渲染为 span，降低透明度且无 hover。
-          </p>
-          <PreviewBlock code={CODE_LINK_DISABLED} minHeight={140}>
-            <StyledLink href="#" disabled>Disabled</StyledLink>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={LINK_PROPS} />
-        </SubSection>
-      </Section>
-
-      {/* ────────── ButtonGroup 段 ────────── */}
-
-      <Section
-        title="ButtonGroup"
-        description="分段控制器，3 色 × 2 形状，受控组件通过 activeIndex + onChange 使用。"
-      >
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            通过 <InlineCode>items</InlineCode> 传入标签数组，<InlineCode>activeIndex</InlineCode> 指定选中项。
-          </p>
-          <PreviewBlock code={CODE_BUTTONGROUP_USAGE} minHeight={140}>
+      <Section title="例子" description="图标按钮、链接和分段组各自成一组。样子不同的都留在这一组里。">
+        <DocExample id="iconbutton" title="IconButton" summary="实底、浅底、描边、圆形、方形和透明底。" code={CODE_ICONBUTTON_ALL} minHeight={140}>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <IconButton><StarLinear size={20} /></IconButton>
+            <IconButton variant="secondary"><HeartLinear size={20} /></IconButton>
+            <IconButton variant="tertiary"><TrashBinTrashLinear size={20} /></IconButton>
+            <IconButton shape="circle"><StarLinear size={20} /></IconButton>
+            <IconButton shape="square"><StarLinear size={20} /></IconButton>
+            <IconButton variant="ghost"><StarLinear size={20} /></IconButton>
+            <IconButton variant="ghost" shape="square"><HeartLinear size={20} /></IconButton>
+          </div>
+        </DocExample>
+        <DocExample id="styledlink" title="StyledLink" summary="默认、蓝色、绿色、左右图标和禁用。" code={CODE_LINK_ALL} minHeight={140}>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <StyledLink href="#">链接</StyledLink>
+            <StyledLink href="#" color="blue">蓝色链接</StyledLink>
+            <StyledLink href="#" color="green">绿色链接</StyledLink>
+            <StyledLink href="#" iconRight={<ArrowRightLinear size={16} />}>查看详情</StyledLink>
+            <StyledLink href="#" color="blue" iconLeft={<AddCircleLinear size={16} />}>添加项目</StyledLink>
+            <StyledLink href="#" disabled>禁用</StyledLink>
+          </div>
+        </DocExample>
+        <DocExample id="buttongroup" title="ButtonGroup" summary="默认外形，再加上圆角和胶囊。" code={CODE_BUTTONGROUP_ALL} minHeight={140}>
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <ButtonGroup activeIndex={1} items={BUTTONGROUP_ITEMS} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Colors" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 种选中态颜色：purple / blue / black。
-          </p>
-          <PreviewBlock code={CODE_BUTTONGROUP_COLORS} minHeight={140}>
-            <ButtonGroup color="purple" activeIndex={0} items={BUTTONGROUP_ITEMS} />
-            <ButtonGroup color="blue" activeIndex={1} items={BUTTONGROUP_ITEMS} />
-            <ButtonGroup color="black" activeIndex={2} items={BUTTONGROUP_ITEMS} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Shape" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            <InlineCode>rounded</InlineCode>（圆角矩形）或 <InlineCode>pill</InlineCode>（胶囊）。
-          </p>
-          <PreviewBlock code={CODE_BUTTONGROUP_SHAPE} minHeight={140}>
             <ButtonGroup shape="rounded" activeIndex={1} items={BUTTONGROUP_ITEMS} />
             <ButtonGroup shape="pill" activeIndex={1} items={BUTTONGROUP_ITEMS} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={BUTTONGROUP_PROPS} />
-        </SubSection>
+          </div>
+        </DocExample>
       </Section>
 
-      <Link href="/cases/button-link" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
+      <Section title="API">
+        <ApiBlock id="button" title="Button" rows={BUTTON_PROPS} />
+        <ApiBlock id="iconbutton" title="IconButton" rows={ICONBUTTON_PROPS} />
+        <ApiBlock id="styledlink" title="StyledLink" rows={LINK_PROPS} />
+        <ApiBlock id="buttongroup" title="ButtonGroup" rows={BUTTONGROUP_PROPS} />
+      </Section>
     </div>
   );
 }

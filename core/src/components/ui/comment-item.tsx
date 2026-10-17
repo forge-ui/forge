@@ -8,6 +8,7 @@ export type CommentReply = {
   date: string;
   content: string;
   onReply?: () => void;
+  replyLabel?: string;
 };
 
 export type CommentData = CommentReply & {
@@ -22,12 +23,14 @@ function CommentInner({
   content,
   images,
   onReply,
+  replyLabel = "回复",
 }: {
   name: string;
   date: string;
   content: string;
   images?: string[];
   onReply?: () => void;
+  replyLabel?: string;
 }) {
   return (
     <div className="flex-1 min-w-0 inline-flex flex-col justify-center items-start gap-2">
@@ -51,7 +54,7 @@ function CommentInner({
         className="inline-flex justify-start items-center gap-1 cursor-pointer"
       >
         <ReplyLinear size={20} color="currentColor" />
-        <span className="text-accent text-sm font-bold leading-5 tracking-fg">回复</span>
+        <span className="text-accent text-sm font-bold leading-5 tracking-fg">{replyLabel}</span>
       </button>
     </div>
   );
@@ -71,6 +74,7 @@ function CommentRow(props: CommentReply & { images?: string[] }) {
         content={props.content}
         images={props.images}
         onReply={props.onReply}
+        replyLabel={props.replyLabel}
       />
     </div>
   );
@@ -83,6 +87,7 @@ export function CommentItem({
   content,
   images,
   onReply,
+  replyLabel = "回复",
   replies,
   className = "",
 }: CommentData) {
@@ -104,10 +109,11 @@ export function CommentItem({
           content={content}
           images={images}
           onReply={onReply}
+          replyLabel={replyLabel}
         />
         {/* Replies — share main content container, naturally indent by avatar+gap */}
         {hasReplies &&
-          replies!.map((reply, i) => <CommentRow key={i} {...reply} />)}
+          replies!.map((reply, i) => <CommentRow key={i} replyLabel={replyLabel} {...reply} />)}
       </div>
     </div>
   );

@@ -6,13 +6,13 @@ const COLORS = ["purple", "blue", "black"] as const;
 export default function PaginationStepperCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="Pagination & Stepper" hint="PageDot · Pagination · Stepper" />
+      <PageHeading title="分页与步骤" hint="切换列表页码，或展示分步流程的当前位置。" />
 
       <Section
         title="Indicator (PageDot atomic)"
         description="3 colors × 2 states (default · active)"
       >
-        <SubSection title="All colors">
+        <SubSection title="全部颜色">
           <div className="inline-flex flex-col gap-2">
             {COLORS.map((c) => (
               <div key={c} className="inline-flex items-center gap-2">
@@ -30,7 +30,7 @@ export default function PaginationStepperCasePage() {
       >
         {COLORS.map((c) => (
           <SubSection key={c} title={c}>
-            <div className="flex flex-col gap-3">
+            <div className="flex w-full min-w-0 max-w-full flex-col gap-3">
               <Pagination totalPages={20} currentPage={1} color={c} />
               <Pagination totalPages={20} currentPage={8} color={c} />
             </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   MenuItem,
   DropdownPanel,
@@ -20,45 +19,45 @@ import {
   Logout3BoldDuotone,
 } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import {
   MenuItem, DropdownPanel, DropdownDivider,
   IconTrigger, KebabMenu,
 } from "@forge-ui-official/core";`;
 
-const CODE_MENUITEM_USAGE = `<MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="Home" />
-<MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="Settings" active />`;
+const CODE_MENUITEM_USAGE = `<MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="首页" />
+<MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="设置" active />`;
 
-const CODE_MENUITEM_STATES = `<MenuItem label="Idle" state="idle" />
-<MenuItem label="Hover" state="hover" />
-<MenuItem label="Active" state="active" />
-<MenuItem label="Disabled" state="disabled" />`;
+const CODE_MENUITEM_STATES = `<MenuItem label="默认" state="idle" />
+<MenuItem label="悬停" state="hover" />
+<MenuItem label="使用中" state="active" />
+<MenuItem label="禁用" state="disabled" />`;
 
-const CODE_MENUITEM_INTENT = `<MenuItem label="Default" />
-<MenuItem label="Delete" intent="danger" lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }} />`;
+const CODE_MENUITEM_INTENT = `<MenuItem label="默认" />
+<MenuItem label="删除" intent="danger" lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }} />`;
 
 const CODE_DROPDOWN_USAGE = `<DropdownPanel>
-  <MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="Home" />
-  <MenuItem lead={{ kind: "icon", icon: <UserBoldDuotone size={20} /> }} label="Profile" />
+  <MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="首页" />
+  <MenuItem lead={{ kind: "icon", icon: <UserBoldDuotone size={20} /> }} label="个人资料" />
   <DropdownDivider />
-  <MenuItem lead={{ kind: "icon", icon: <Logout3BoldDuotone size={20} /> }} label="Log out" intent="danger" />
+  <MenuItem lead={{ kind: "icon", icon: <Logout3BoldDuotone size={20} /> }} label="退出登录" intent="danger" />
 </DropdownPanel>`;
 
-const CODE_ICONTRIGGER_USAGE = `<IconTrigger icon={<BellBoldDuotone size={20} />} badge={3} tooltip="Notifications" />`;
+const CODE_ICONTRIGGER_USAGE = `<IconTrigger icon={<BellBoldDuotone size={20} />} badge={3} tooltip="通知" />`;
 
 const CODE_KEBAB_USAGE = `<KebabMenu
   items={[
-    { icon: <PenNewSquareBoldDuotone size={20} />, label: "Edit" },
-    { icon: <CopyBoldDuotone size={20} />, label: "Duplicate" },
-    { icon: <TrashBinTrashBoldDuotone size={20} />, label: "Delete", danger: true },
+    { icon: <PenNewSquareBoldDuotone size={20} />, label: "编辑" },
+    { icon: <CopyBoldDuotone size={20} />, label: "创建副本" },
+    { icon: <TrashBinTrashBoldDuotone size={20} />, label: "删除", danger: true },
   ]}
 />`;
 
 const MENUITEM_PROPS: ApiTableRow[] = [
-  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "active 态主色。" },
-  { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "onColoredBg 用于色底 sidebar 内。" },
+  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "active 态主色。" },
+  { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "onColoredBg 用于带主题背景的侧栏 内。" },
   { attr: "intent", type: "'default' | 'danger'", defaultValue: "'default'", description: "danger 为红色文案（删除场景）。" },
   { attr: "kind", type: "'single' | 'submenu' | 'dropdown'", defaultValue: "'single'", description: "single 单项；submenu 二级项（缩进）；dropdown 带右侧箭头。" },
   { attr: "state", type: "'idle' | 'hover' | 'active' | 'disabled'", defaultValue: "'idle'", description: "视觉状态。" },
@@ -77,7 +76,7 @@ const DROPDOWN_PROPS: ApiTableRow[] = [
 
 const ICONTRIGGER_PROPS: ApiTableRow[] = [
   { attr: "icon", type: "ReactNode", defaultValue: "—", description: "内部图标节点。" },
-  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "open 态主色背景。" },
+  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "open 态主色背景。" },
   { attr: "state", type: "'idle' | 'hover' | 'open'", defaultValue: "'idle'", description: "受控视觉状态。" },
   { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "在色底上采用半透明白。" },
   { attr: "badge", type: "number", defaultValue: "—", description: "右上红色徽标。" },
@@ -88,7 +87,7 @@ const ICONTRIGGER_PROPS: ApiTableRow[] = [
 
 const KEBAB_PROPS: ApiTableRow[] = [
   { attr: "items", type: "KebabMenuItem[]", defaultValue: "—", description: "菜单项 { icon?, label, onSelect?, danger? }。" },
-  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'purple'", description: "触发器 open 态主色。" },
+  { attr: "accent", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "触发器 open 态主色。" },
   { attr: "surface", type: "'default' | 'onColoredBg'", defaultValue: "'default'", description: "触发器 surface。" },
   { attr: "align", type: "'left' | 'right'", defaultValue: "'right'", description: "弹出面板对齐边。" },
 ];
@@ -97,107 +96,69 @@ export default function MenuCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Menu"
-        hint="MenuItem / DropdownPanel / DropdownDivider / IconTrigger / KebabMenu — 菜单构件族。"
+        title="菜单"
+        hint="按入口选组件：一行选项、整块下拉、图标按钮或三点菜单。"
       />
 
-      <Section title="MenuItem" description="菜单行。3 kind × 4 state × 2 surface × 2 intent。">
-        <SubSection title="Import" stack>
+      <Section title="用法" description="从菜单项开始。图标、选中态和点击按需要加上。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_MENUITEM_USAGE} minHeight={160}>
-            <div className="w-64 flex flex-col gap-1">
-              <MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="Home" />
-              <MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="Settings" active />
+        <SubSection title="最小示例" stack>
+          <DocExample id="menuitem" title="MenuItem" summary="普通项、四种状态和红色危险项都是菜单项。" code={`${CODE_MENUITEM_USAGE}\n${CODE_MENUITEM_STATES}\n${CODE_MENUITEM_INTENT}`} minHeight={220}>
+            <div className="flex flex-wrap items-start justify-center gap-6">
+              <div className="w-64 flex flex-col gap-1">
+                <MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="首页" />
+                <MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="设置" active />
+              </div>
+              <div className="w-64 flex flex-col gap-1">
+                <MenuItem label="默认" state="idle" />
+                <MenuItem label="悬停" state="hover" />
+                <MenuItem label="使用中" state="active" />
+                <MenuItem label="禁用" state="disabled" />
+              </div>
+              <div className="w-64 flex flex-col gap-1">
+                <MenuItem label="默认" lead={{ kind: "icon", icon: <UserBoldDuotone size={20} /> }} />
+                <MenuItem label="删除" intent="danger" lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }} />
+              </div>
             </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="States" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            4 种 state：idle / hover / active / disabled。
-          </p>
-          <PreviewBlock code={CODE_MENUITEM_STATES} minHeight={220}>
-            <div className="w-64 flex flex-col gap-1">
-              <MenuItem label="Idle" state="idle" />
-              <MenuItem label="Hover" state="hover" />
-              <MenuItem label="Active" state="active" />
-              <MenuItem label="Disabled" state="disabled" />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Danger Intent" stack>
-          <PreviewBlock code={CODE_MENUITEM_INTENT} minHeight={160}>
-            <div className="w-64 flex flex-col gap-1">
-              <MenuItem label="Default" lead={{ kind: "icon", icon: <UserBoldDuotone size={20} /> }} />
-              <MenuItem label="Delete" intent="danger" lead={{ kind: "icon", icon: <TrashBinTrashBoldDuotone size={20} /> }} />
-            </div>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={MENUITEM_PROPS} />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section title="DropdownPanel" description="白底圆角浮层容器，装一组 MenuItem + DropdownDivider。">
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_DROPDOWN_USAGE} minHeight={300}>
+      <Section title="例子" description="下拉面板、图标按钮和三点菜单是三种打开方式。">
+        <ExampleGrid>
+          <DocExample id="dropdownpanel" title="DropdownPanel" summary="把多行选项和分隔线收成一块下拉面板。" code={CODE_DROPDOWN_USAGE} minHeight={300}>
             <DropdownPanel>
-              <MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="Home" />
-              <MenuItem lead={{ kind: "icon", icon: <UserBoldDuotone size={20} /> }} label="Profile" />
-              <MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="Settings" />
+              <MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="首页" />
+              <MenuItem lead={{ kind: "icon", icon: <UserBoldDuotone size={20} /> }} label="个人资料" />
+              <MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="设置" />
               <DropdownDivider />
-              <MenuItem lead={{ kind: "icon", icon: <Logout3BoldDuotone size={20} /> }} label="Log out" intent="danger" />
+              <MenuItem lead={{ kind: "icon", icon: <Logout3BoldDuotone size={20} /> }} label="退出登录" intent="danger" />
             </DropdownPanel>
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={DROPDOWN_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="IconTrigger" description="圆形图标按钮，可选 badge / tooltip / 内置 panel。">
-        <SubSection title="Usage" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            hover 自动显示 <InlineCode>tooltip</InlineCode>。传 <InlineCode>panel</InlineCode> 后点击切换内置浮层。
-          </p>
-          <PreviewBlock code={CODE_ICONTRIGGER_USAGE}>
-            <IconTrigger icon={<BellBoldDuotone size={20} />} badge={3} tooltip="Notifications" />
-            <IconTrigger icon={<LetterBoldDuotone size={20} />} tooltip="Messages" />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={ICONTRIGGER_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section title="KebabMenu" description="三点展开菜单。内部装 IconTrigger + DropdownPanel，items 传配置即可。">
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_KEBAB_USAGE} minHeight={180}>
+          </DocExample>
+          <DocExample id="icontrigger" title="IconTrigger" summary="图标按钮。badge 是数量，悬停显示 tooltip。" code={CODE_ICONTRIGGER_USAGE}>
+            <IconTrigger icon={<BellBoldDuotone size={20} />} badge={3} tooltip="通知" />
+            <IconTrigger icon={<LetterBoldDuotone size={20} />} tooltip="消息" />
+          </DocExample>
+          <DocExample id="kebabmenu" title="KebabMenu" summary="三点按钮展开操作列表，危险项单独标红。" code={CODE_KEBAB_USAGE} minHeight={180}>
             <KebabMenu
               items={[
-                { icon: <PenNewSquareBoldDuotone size={20} />, label: "Edit" },
-                { icon: <CopyBoldDuotone size={20} />, label: "Duplicate" },
-                { icon: <TrashBinTrashBoldDuotone size={20} />, label: "Delete", danger: true },
+                { icon: <PenNewSquareBoldDuotone size={20} />, label: "编辑" },
+                { icon: <CopyBoldDuotone size={20} />, label: "创建副本" },
+                { icon: <TrashBinTrashBoldDuotone size={20} />, label: "删除", danger: true },
               ]}
             />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={KEBAB_PROPS} />
-        </SubSection>
+          </DocExample>
+        </ExampleGrid>
       </Section>
 
-      <Link href="/cases/menu" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
+      <Section title="API" description="菜单项写下共用状态。面板、图标按钮和三点菜单只列自己的字段。">
+        <ApiBlock id="menuitem" title="MenuItem" rows={MENUITEM_PROPS} />
+        <ApiBlock id="dropdownpanel" title="DropdownPanel" rows={DROPDOWN_PROPS} />
+        <ApiBlock id="icontrigger" title="IconTrigger" rows={ICONTRIGGER_PROPS} />
+        <ApiBlock id="kebabmenu" title="KebabMenu" rows={KEBAB_PROPS} />
+      </Section>
     </div>
   );
 }

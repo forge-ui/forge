@@ -86,7 +86,7 @@ export function IconPicker({
   labels,
   selectedIndex,
   onChange,
-  color = "purple",
+  color = "blue",
   className,
 }: {
   icons: ReactNode[];
@@ -134,7 +134,7 @@ export function IconSelector({
   onChange,
   labels,
   label,
-  color = "purple",
+  color = "blue",
   searchPlaceholder = "搜索图标...",
   className,
 }: {

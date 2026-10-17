@@ -12,6 +12,7 @@
 // 供 `_toc.tsx` 抽取右侧 TOC。
 
 import { type ReactNode } from "react";
+import { componentLabel } from "./_labels";
 import { cn } from "@forge-ui-official/core";
 
 export function slugify(text: string): string {
@@ -34,12 +35,12 @@ export function Section({
   return (
     <section
       id={id}
-      data-case-section={title}
-      className="flex scroll-mt-24 flex-col gap-5"
+      data-case-section={componentLabel(title)}
+      className="flex min-w-0 w-full max-w-full scroll-mt-24 flex-col gap-5"
     >
       <div className="flex flex-col gap-1.5">
-        <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
-          {title}
+        <h2 className="min-w-0 break-words font-display text-3xl font-semibold tracking-fg text-fg-black">
+          {componentLabel(title)}
         </h2>
         {description && (
           <p className="text-base font-normal leading-[1.8] text-fg-grey-900">
@@ -47,7 +48,9 @@ export function Section({
           </p>
         )}
       </div>
-      {children}
+      <div className="flex min-w-0 w-full max-w-full flex-col gap-5 overflow-x-auto">
+        {children}
+      </div>
     </section>
   );
 }
@@ -62,15 +65,15 @@ export function SubSection({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex min-w-0 w-full max-w-full flex-col gap-2">
       <h3 className="text-sm font-semibold text-fg-grey-700 uppercase tracking-fg">
-        {title}
+        {componentLabel(title)}
       </h3>
       <div
         className={
           stack
-            ? "flex flex-col items-stretch gap-6 w-full"
-            : "flex flex-wrap items-start gap-3"
+            ? "flex min-w-0 w-full max-w-full flex-col items-stretch gap-6 overflow-x-auto"
+            : "flex min-w-0 w-full max-w-full flex-wrap items-start gap-3 overflow-x-auto"
         }
       >
         {children}
@@ -114,7 +117,7 @@ export function Labeled({
   return (
     <div className="flex flex-col items-center gap-1">
       {children}
-      <span className="text-2xs text-fg-grey-500 font-medium">{label}</span>
+      <span className="text-2xs text-fg-grey-500 font-medium">{componentLabel(label)}</span>
     </div>
   );
 }
@@ -122,8 +125,8 @@ export function Labeled({
 export function PageHeading({ title, hint }: { title: string; hint?: string }) {
   return (
     <header className="flex flex-col gap-5">
-      <h1 className="font-display text-4xl font-bold tracking-fg text-fg-black">
-        {title}
+      <h1 className="min-w-0 break-words font-display text-4xl font-bold tracking-fg text-fg-black">
+        {componentLabel(title)}
       </h1>
       {hint && (
         <p className="max-w-2xl text-base font-normal leading-[1.8] text-fg-grey-900">
@@ -149,13 +152,15 @@ export function BareSection({
   return (
     <section
       id={id}
-      data-case-section={title}
-      className={cn("flex scroll-mt-24 flex-col gap-6", className)}
+      data-case-section={componentLabel(title)}
+      className={cn("flex min-w-0 w-full max-w-full scroll-mt-24 flex-col gap-6", className)}
     >
-      <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">
-        {title}
+      <h2 className="min-w-0 break-words font-display text-3xl font-semibold tracking-fg text-fg-black">
+        {componentLabel(title)}
       </h2>
-      {children}
+      <div className="flex min-w-0 w-full max-w-full flex-col gap-6 overflow-x-auto">
+        {children}
+      </div>
     </section>
   );
 }
@@ -188,15 +193,15 @@ export function LabeledRow({
   return (
     <div
       className={cn(
-        "flex items-start gap-6",
+        "flex min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:items-start sm:gap-6",
         grey && "p-6 bg-fg-grey-50 rounded-xl",
         className,
       )}
     >
-      <span className="w-20 text-fg-grey-700 text-sm font-medium tracking-fg capitalize pt-3 shrink-0">
+      <span className="shrink-0 pt-0 text-sm font-medium capitalize tracking-fg text-fg-grey-700 sm:w-20 sm:pt-3">
         {label}
       </span>
-      <div className="flex flex-wrap gap-4 flex-1">{children}</div>
+      <div className="flex min-w-0 w-full flex-1 flex-wrap gap-4">{children}</div>
     </div>
   );
 }
@@ -219,7 +224,7 @@ export function DemoCard({
         className,
       )}
     >
-      <span className="text-sm font-semibold text-fg-black tracking-fg">{title}</span>
+      <span className="text-sm font-semibold text-fg-black tracking-fg">{componentLabel(title)}</span>
       {children}
     </div>
   );

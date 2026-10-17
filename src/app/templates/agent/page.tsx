@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   AppLayout,
   ChatBubble,
@@ -36,7 +36,13 @@ const ANSWER =
 
 export default function AgentTemplatePage() {
   const [draft, setDraft] = useState("");
-  const [turns, setTurns] = useState<string[]>([]);
+  const [turns, setTurns] = useState<{ id: number; text: string }[]>([]);
+  const nextTurn = useRef(0);
+  const pushTurn = (text: string) => {
+    const id = nextTurn.current;
+    nextTurn.current += 1;
+    setTurns((current) => [...current, { id, text }]);
+  };
 
   return (
     <AppLayout
@@ -90,7 +96,7 @@ export default function AgentTemplatePage() {
               { name: "Flavor Data", domain: "scoopdata.io" },
             ]}
             followUps={["Should I rebalance flavors?", "Draft a pistachio reorder"]}
-            onFollowUp={(text) => setTurns((current) => [...current, text])}
+            onFollowUp={pushTurn}
           />
           <ContextCards
             total={2}
@@ -165,8 +171,8 @@ export default function AgentTemplatePage() {
           />
 
           {turns.map((turn) => (
-            <div key={turn} className="flex flex-col gap-4">
-              <ChatBubble type="sent" content={turn} />
+            <div key={turn.id} className="flex flex-col gap-4">
+              <ChatBubble type="sent" content={turn.text} />
               <ThinkingTrace variant="reasoning" play rows={[{ primary: "Looking at the latest POS export." }]} />
               <StreamingAnswer text="Noted. I queued that as the next agent step." />
             </div>
@@ -178,7 +184,7 @@ export default function AgentTemplatePage() {
             <ChatInputBar multiline sendOnEnter
               value={draft}
               onChange={setDraft}
-              onSend={(message) => setTurns((current) => [...current, message])}
+              onSend={pushTurn}
               sources={[
                 { id: "sales", label: "Scoop Data", description: "Sales & churn metrics", connected: true },
                 { id: "pos", label: "POS export", description: "Last 3 summers" },

@@ -65,7 +65,7 @@ function SidebarRow({
           {item.children!.map((child, i) => (
             <SidebarRow
               motion={motion}
-              key={child.href ?? `${child.label}-${i}`}
+              key={`${child.href ?? child.label}-${i}`}
               item={child}
               accent={accent}
               surface={surface}
@@ -87,7 +87,7 @@ export function SidebarMenu({
   mainMenuItems,
   favoriteItems,
   profile,
-  accent = "purple",
+  accent = "blue",
   mode = "full",
   bgMode = "white",
   width,
@@ -165,7 +165,7 @@ export function SidebarMenu({
         <div className="flex-1 flex flex-col items-center gap-2">
           {railMain.map((item, i) => (
             <MenuItem
-              key={`m-${item.href ?? `${item.label}-${i}`}`}
+              key={`m-${item.href ?? item.label}-${i}`}
               lead={item.icon ? { kind: "icon", icon: item.icon } : undefined}
               ariaLabel={item.label}
               href={item.href}
@@ -189,7 +189,7 @@ export function SidebarMenu({
 
           {railFav.map((item, i) => (
             <MenuItem
-              key={`f-${item.href ?? `${item.label}-${i}`}`}
+              key={`f-${item.href ?? item.label}-${i}`}
               lead={item.icon ? { kind: "icon", icon: item.icon } : undefined}
               ariaLabel={item.label}
               href={item.href}
@@ -286,7 +286,7 @@ export function SidebarMenu({
             </span>
           </div>
           {mainMenuItems.map((item, i) => (
-            <SidebarRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
+            <SidebarRow motion={motion} key={`${item.href ?? item.label}-${i}`} item={item} accent={accent} surface={surface} />
           ))}
         </div>
 
@@ -303,7 +303,7 @@ export function SidebarMenu({
               </span>
             </div>
             {favoriteItems.map((item, i) => (
-              <SidebarRow motion={motion} key={item.href ?? `${item.label}-${i}`} item={item} accent={accent} surface={surface} />
+              <SidebarRow motion={motion} key={`${item.href ?? item.label}-${i}`} item={item} accent={accent} surface={surface} />
             ))}
           </div>
         )}

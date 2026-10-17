@@ -46,7 +46,7 @@ const LAYOUTS: Record<number, LayoutPreset> = {
   },
 };
 
-export function BubbleChart({ bubbles, accent = "purple", height = 240 }: BubbleChartProps) {
+export function BubbleChart({ bubbles, accent = "blue", height = 240 }: BubbleChartProps) {
   const count = bubbles.length;
   const layout = LAYOUTS[count] ?? LAYOUTS[4];
 

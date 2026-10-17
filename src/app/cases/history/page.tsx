@@ -29,9 +29,7 @@ import { PageHeading, Section, SubSection } from "../_shared";
 // Constants / mock content
 // ─────────────────────────────────────────────────────────────
 
-const ALL_COLORS: HistoryItemColor[] = [
-  "purple", "blue", "green", "red", "yellow", "cyan", "gray", "black",
-];
+const ALL_COLORS: HistoryItemColor[] = ["purple", "blue", "gray"];
 
 const GROUPED_COLORS: HistoryItemColor[] = ["purple", "blue", "black"];
 
@@ -47,26 +45,26 @@ const avatarUrls = [
 // description with inline violet link (matches Figma "Lorem #302012 ipsum...")
 const DESC_LINKED = (
   <>
-    <span className="text-fg-grey-700">Lorem </span>
-    <StyledLink href="#" color="purple" className="text-sm font-semibold">
+    <span className="text-fg-grey-700">项目更新 </span>
+    <StyledLink href="#" color="blue" className="text-sm font-semibold">
       #302012
     </StyledLink>
-    <span className="text-fg-grey-700"> ipsum dolor si amet</span>
+    <span className="text-fg-grey-700"> 项目进度已同步</span>
   </>
 );
 
 const DESC_SIMPLE = (
-  <span className="text-fg-grey-700">Desc lorem ipsum dolor sia amt</span>
+  <span className="text-fg-grey-700">查看最新进展及待处理事项</span>
 );
 
 // 2 Labels + arrow (Red → Yellow) — status change
 const TAGS_STATUS = (
   <>
-    <Label color="red" size="sm" variant="outline">Red</Label>
+    <Label color="red" size="sm" variant="outline">红色</Label>
     <span className="text-fg-grey-700 inline-flex">
       <AltArrowRightLinear size={16} color="currentColor" />
     </span>
-    <Label color="yellow" size="sm" variant="outline">Yellow</Label>
+    <Label color="yellow" size="sm" variant="outline">黄色</Label>
   </>
 );
 
@@ -82,8 +80,8 @@ const IMG_GRID = (
 const PRODUCT_ROW = (
   <ProductRow
     image="https://picsum.photos/seed/history-product/44/44"
-    title="Product Title"
-    subtitle="3 Variant"
+    title="商品名称"
+    subtitle="3 种规格"
   />
 );
 
@@ -91,19 +89,19 @@ const PRODUCT_ROW = (
 const RATING = <RatingStars value={4.0} total={5} />;
 
 const FILE_ROW = (
-  <FileCard file={{ id: "f1", name: "File Name.doc", size: "300 KB" }} />
+  <FileCard file={{ id: "f1", name: "会议纪要.doc", size: "300 KB" }} />
 );
 
 const TASK_ROW = (
   <TaskCard
     labelText="Label"
     labelColor="red"
-    title="Title Here"
+    title="项目概览"
     progress={0}
-    progressColor="purple"
+    progressColor="blue"
     avatars={avatarUrls.slice(0, 2)}
     overflowCount={1}
-    date="21 Oct 2022"
+    date="2026 年 10 月 21 日"
     className="max-w-xs"
   />
 );
@@ -145,10 +143,7 @@ type StructCol = {
 };
 
 const STRUCT_COLS: StructCol[] = [
-  { key: "inline-conn",    showDatetime: "inline", showConnector: true,  label: "inline + connector" },
-  { key: "bottom-conn",    showDatetime: "bottom", showConnector: true,  label: "bottom + connector" },
-  { key: "inline-no-conn", showDatetime: "inline", showConnector: false, label: "inline · no connector" },
-  { key: "bottom-no-conn", showDatetime: "bottom", showConnector: false, label: "bottom · no connector" },
+  { key: "inline-conn", showDatetime: "inline", showConnector: true, label: "时间与连接线" },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -157,7 +152,7 @@ const STRUCT_COLS: StructCol[] = [
 
 function VariantMatrix({
   variant,
-  color = "purple",
+  color = "blue",
   icon,
 }: {
   variant: HistoryItemVariant;
@@ -165,7 +160,7 @@ function VariantMatrix({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-4 gap-x-8 gap-y-6">
+    <div className="grid min-w-0 grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
       {/* Column headers */}
       {STRUCT_COLS.map((col) => (
         <div
@@ -183,7 +178,7 @@ function VariantMatrix({
             <HistoryItem
               variant={variant}
               color={color}
-              title="Title"
+              title="标题"
               description={row.description}
               tags={row.tags}
               datetime={DATETIME}
@@ -207,8 +202,8 @@ export default function HistoryCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="History"
-        hint="HistoryItem × 3 variants × 8 colors × 4 structure cols × 6 content rows · HistoryGrouped"
+        title="历史记录"
+        hint="按时间展示操作和事件，支持分组和进度信息。"
       />
 
       {/* ───────── 1. Regular ───────── */}
@@ -234,8 +229,8 @@ export default function HistoryCasePage() {
           </div>
         </SubSection>
 
-        <SubSection title="Full matrix · 4 structure cols × 6 content rows (purple)">
-          <VariantMatrix variant="regular" color="purple" />
+        <SubSection title="Full matrix · 6 种内容示例 (purple)">
+          <VariantMatrix variant="regular" color="blue" />
         </SubSection>
       </Section>
 
@@ -263,10 +258,10 @@ export default function HistoryCasePage() {
           </div>
         </SubSection>
 
-        <SubSection title="Full matrix · 4 structure cols × 6 content rows (purple)">
+        <SubSection title="Full matrix · 6 种内容示例 (purple)">
           <VariantMatrix
             variant="badge"
-            color="purple"
+            color="blue"
             icon={<CartBoldDuotone size={20} color="currentColor" />}
           />
         </SubSection>
@@ -277,8 +272,8 @@ export default function HistoryCasePage() {
         title="3. Profile"
         description="variant=profile · 头像 indicator"
       >
-        <SubSection title="Full matrix · 4 structure cols × 6 content rows (purple)">
-          <VariantMatrix variant="profile" color="purple" />
+        <SubSection title="Full matrix · 6 种内容示例 (purple)">
+          <VariantMatrix variant="profile" color="blue" />
         </SubSection>
       </Section>
 
@@ -292,8 +287,8 @@ export default function HistoryCasePage() {
             {GROUPED_COLORS.map((color) => (
               <HistoryGrouped
                 key={color}
-                title="Title"
-                subtitle="Text Here"
+                title="标题"
+                subtitle="示例文本"
                 color={color}
                 progressHeight="40%"
                 badge={
@@ -314,23 +309,23 @@ export default function HistoryCasePage() {
         <SubSection title="Items composition variants (purple)">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
             <HistoryGrouped
-              title="Short list"
+              title="简短列表"
               subtitle="3 items · 20% progress"
-              color="purple"
+              color="blue"
               progressHeight="20%"
-              badge={<Label color="purple" size="sm" variant="outline">3</Label>}
+              badge={<Label color="blue" size="sm" variant="outline">3</Label>}
               items={compositionItems("short")}
             />
             <HistoryGrouped
-              title="Mixed variants"
+              title="混合样式"
               subtitle="6 items · 50% progress"
-              color="purple"
+              color="blue"
               progressHeight="50%"
-              badge={<Label color="purple" size="sm" variant="outline">6</Label>}
+              badge={<Label color="blue" size="sm" variant="outline">6</Label>}
               items={compositionItems("mixed")}
             />
             <HistoryGrouped
-              title="With action"
+              title="带操作按钮"
               subtitle="5 items · 80% · header action"
               color="purple"
               progressHeight="80%"
@@ -359,7 +354,7 @@ function compositionItems(
   const base: HistoryItemProps[] = [
     {
       variant: "regular",
-      title: "Title",
+      title: "标题",
       description: DESC_LINKED,
       tags: TAGS_STATUS,
       datetime: DATETIME,
@@ -367,7 +362,7 @@ function compositionItems(
     },
     {
       variant: "badge",
-      title: "Title",
+      title: "标题",
       description: descWithExtra(IMG_GRID),
       datetime: DATETIME,
       showDatetime: "bottom",
@@ -375,14 +370,14 @@ function compositionItems(
     },
     {
       variant: "regular",
-      title: "Title",
+      title: "标题",
       description: descWithExtra(FILE_ROW),
       datetime: DATETIME,
       showDatetime: "bottom",
     },
     {
       variant: "profile",
-      title: "Title",
+      title: "标题",
       description: DESC_LINKED,
       datetime: DATETIME,
       showDatetime: "bottom",
@@ -390,14 +385,14 @@ function compositionItems(
     },
     {
       variant: "regular",
-      title: "Title",
+      title: "标题",
       description: descWithExtra(PRODUCT_ROW),
       datetime: DATETIME,
       showDatetime: "bottom",
     },
     {
       variant: "badge",
-      title: "Title",
+      title: "标题",
       description: descWithExtra(RATING),
       datetime: DATETIME,
       showDatetime: "bottom",
@@ -405,7 +400,7 @@ function compositionItems(
     },
     {
       variant: "profile",
-      title: "Title",
+      title: "标题",
       description: descWithExtra(TASK_ROW),
       datetime: DATETIME,
       showDatetime: "bottom",
@@ -413,7 +408,7 @@ function compositionItems(
     },
     {
       variant: "regular",
-      title: "Title",
+      title: "标题",
       description: DESC_SIMPLE,
       datetime: DATETIME,
       showDatetime: "bottom",

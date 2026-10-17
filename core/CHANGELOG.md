@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.4.7
+
+- 智能体控件和银行卡片内置标签默认中文并支持英文；审批改为显式继续，跳过清除当前答案，最后一步明确跳过并提交，成功反馈承接键盘焦点。
+- 精简按钮和卡片案例的参数矩阵，完善预览、邮箱重试、附件发送、工作分派与存储统计的真实操作反馈。
+
+- 修复验证码失败清空被父组件更新不断延后、裂开动画尚未结束就清空，以及清空时抢焦点；补齐减少动效时装饰伪元素的覆盖。
+- ChatInputBar 增加 `hasAttachments`，支持业务确认附件就绪后仅发送附件，上传锁定和生成状态限制保持有效。
+
+- 修复滑动页签在快速连续选择时被中途滚动状态覆盖，以及滚动文字按钮/链接的无障碍名称重复。
+- TaskCard 支持 `locale` / `progressLabel`，百分比统一整数与有效范围；OtpInput 支持失败后自动清空及 `clearOnError` 关闭开关。
+- 补齐发送、下载、组合操作和登录案例的状态链，通知批量关闭错峰执行；完善反应粒子、成员添加成功反馈与液态页签菜单退出动效。
+
+- 修复融合审计发现的日期草稿同步、月末键盘导航、禁用标签移除、滑动删除指针校验与反应面板键盘边界。
+- 修复柱图窄屏布局与参考线坐标，完善正式案例的章节定位、删除/撤销焦点、代码视图切换与搜索展开动效。
+- AddMember 增加可选 `accent`；ReviewItem 仅在提供菜单操作时显示按钮，并支持 `menuLabel`；应用/个人菜单支持英文，倾斜卡片光斑支持主题色。
+
+- 将 99 项交互融合为 54 项既有组件增强与 45 项正式组合案例，官网沿用原组件分类，默认中文并支持英文、蓝/紫/黑主题及减少动效。
+- 增强 Button/IconButton 的可选效果和异步反馈、SurfaceCard、Toast、Tooltip、ListItem、Stepper；增加拖动开关、日期区间确认、浮动标签、真实上传进度、可编辑评分和滑动页签。
+- 增强 ChatBubble/ChatInputBar 的反应、引用回复、语音与发送状态；工具步骤支持受控状态；图表支持动画数据、累计面积、置信带、目标线和独立目标环。
+- AgentCodeBlock 支持嵌套折叠与复制失败重试；指标卡支持可选数字过渡；Toolbar 支持列表选择操作；AppLayout 融合已验收的侧栏连续伸缩。
+- 提供正式交互总览、逐项迁移对照和 API 用法。23 项暂缓与 1 项排除保持原决策；不新增平行公共组件。
+
+## 0.4.6
+
+- Add an opt-in Ask AI responsive session panel: non-modal 460px dock at 1440px and above, modal drawer below that, session-first header, and configurable landing title and description.
+- Keep `onDockedChange` stable when the callback identity changes, and release the host reservation on unmount. Let the history menu shrink with its container.
+
 ## 0.4.3
 
 - Render typed agent, skill and tool mentions as removable composer chips and provide structured send context.

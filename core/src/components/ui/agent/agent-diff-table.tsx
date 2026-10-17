@@ -24,17 +24,19 @@ export type AgentDiffRow = {
 
 export function AgentDiffTable({
   title,
+  locale = "zh",
   columns,
   rows,
-  applyLabel = "Apply changes",
-  appliedLabel = "edits applied",
+  applyLabel,
+  appliedLabel = locale === "zh" ? "项变更已应用" : "edits applied",
   onApply,
-  toggleHint = "Click changed rows to toggle",
+  toggleHint = locale === "zh" ? "点击变更行可取消或重新选择" : "Click changed rows to toggle",
   formatApplyLabel,
   formatAppliedLabel,
   className = "",
 }: {
   title: string;
+  locale?: "zh" | "en";
   columns: AgentDiffColumn[];
   rows: AgentDiffRow[];
   applyLabel?: string;
@@ -74,8 +76,7 @@ export function AgentDiffTable({
         ) : (
           <div className="flex items-center justify-between gap-3">
             <p className="text-xs text-fg-grey-500">
-              {removals} {removals === 1 ? "removal" : "removals"} · {additions}{" "}
-              {additions === 1 ? "addition" : "additions"}
+              {locale === "zh" ? `删除 ${removals} 项 · 新增 ${additions} 项` : `${removals} ${removals === 1 ? "removal" : "removals"} · ${additions} ${additions === 1 ? "addition" : "additions"}`}
             </p>
             <button
               type="button"
@@ -86,7 +87,7 @@ export function AgentDiffTable({
               }}
               className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {formatApplyLabel ? formatApplyLabel(changed.length) : applyLabel.replace("changes", `${changed.length} ${changed.length === 1 ? "change" : "changes"}`)}
+              {formatApplyLabel ? formatApplyLabel(changed.length) : (applyLabel ? applyLabel.replace("changes", `${changed.length} ${changed.length === 1 ? "change" : "changes"}`) : locale === "zh" ? `应用 ${changed.length} 项变更` : `Apply ${changed.length} ${changed.length === 1 ? "change" : "changes"}`)}
             </button>
           </div>
         )

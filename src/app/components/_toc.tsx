@@ -44,7 +44,7 @@ export function ComponentsToc() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  className="text-sm font-semibold text-fg-grey-900 transition-colors hover:text-fg-violet"
+                  className="text-sm font-semibold text-fg-grey-900 transition-colors hover:text-fg-blue"
                 >
                   {item.title}
                 </a>
@@ -55,7 +55,9 @@ export function ComponentsToc() {
 
         <div className="flex flex-col gap-2">
           <a
-            href="#"
+            href="https://github.com/forge-ui/forge/issues/new"
+            target="_blank"
+            rel="noreferrer"
             className="flex items-center gap-2 text-sm font-semibold text-fg-grey-900 hover:text-fg-black transition-colors"
           >
             <ChatDotsLinear size={14} color="#71717A" />

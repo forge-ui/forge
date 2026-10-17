@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function ComponentsIndex() {
-  redirect("/components/badge");
+  redirect("/components/style-guide");
 }

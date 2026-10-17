@@ -5,7 +5,7 @@
  * Forge rewrite: fg-* tokens + solar-icon-set.
  */
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { Button } from "../button";
@@ -20,17 +20,21 @@ export type ApprovalQuestion = {
 
 export function ApprovalCard({
   questions,
-  skipLabel = "Skip",
-  continueLabel = "Continue",
-  sendLabel = "Send",
-  sentLabel = "Answers sent",
+  locale = "zh",
+  skipLabel = locale === "zh" ? "跳过" : "Skip",
+  skipSubmitLabel = locale === "zh" ? "跳过并提交" : "Skip and submit",
+  continueLabel = locale === "zh" ? "继续" : "Continue",
+  sendLabel = locale === "zh" ? "提交" : "Send",
+  sentLabel = locale === "zh" ? "答案已提交" : "Answers sent",
   onSubmitted,
-  previousQuestionLabel = "Previous question",
-  nextQuestionLabel = "Next question",
+  previousQuestionLabel = locale === "zh" ? "上一题" : "Previous question",
+  nextQuestionLabel = locale === "zh" ? "下一题" : "Next question",
   className = "",
 }: {
   questions: ApprovalQuestion[];
+  locale?: "zh" | "en";
   skipLabel?: string;
+  skipSubmitLabel?: string;
   continueLabel?: string;
   sendLabel?: string;
   sentLabel?: string;
@@ -42,6 +46,11 @@ export function ApprovalCard({
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [sent, setSent] = useState(false);
+  const submitted = useRef(false);
+  const result = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (sent) result.current?.focus({ preventScroll: true });
+  }, [sent]);
   const question = questions[index];
   const last = index === questions.length - 1;
   const selected = question ? answers[question.id] ?? [] : [];
@@ -58,15 +67,22 @@ export function ApprovalCard({
         : [optionId];
       return { ...current, [question.id]: next };
     });
-    if (!multiple) {
-      window.setTimeout(() => advance(), 280);
-    }
   }
 
-  function advance() {
+  function skip() {
+    if (!question || submitted.current) return;
+    const next = { ...answers };
+    delete next[question.id];
+    setAnswers(next);
+    advance(next);
+  }
+
+  function advance(nextAnswers = answers) {
+    if (submitted.current) return;
     if (last) {
+      submitted.current = true;
       setSent(true);
-      onSubmitted?.(answers);
+      onSubmitted?.(nextAnswers);
       return;
     }
     setIndex((n) => Math.min(questions.length - 1, n + 1));
@@ -77,7 +93,7 @@ export function ApprovalCard({
   if (sent) {
     return (
       <SurfaceCard className={cn("forge-ask-ai-compact-response", className)} padding="md">
-        <div className="flex items-center gap-2 text-sm font-medium text-fg-green-500">
+        <div ref={result} role="status" tabIndex={-1} className="flex items-center gap-2 text-sm font-medium text-fg-green-500">
           <CheckCircleLinear size={18} color="var(--fg-green-500)" />
           {sentLabel}
         </div>
@@ -115,12 +131,12 @@ export function ApprovalCard({
             </button>
           </div>
           <div className="flex items-center gap-2">
-            <Button size="sm" color="grey" variant="tertiary" onClick={advance}>
-              {skipLabel}
+            <Button size="sm" color="grey" variant="tertiary" onClick={skip}>
+              {last ? skipSubmitLabel : skipLabel}
             </Button>
             <button
               type="button"
-              onClick={advance}
+              onClick={() => advance()}
               disabled={!multiple && selected.length === 0}
               className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
             >
@@ -139,6 +155,7 @@ export function ApprovalCard({
               key={option.id}
               type="button"
               onClick={() => toggle(option.id)}
+              aria-pressed={on}
               className={cn(
                 "flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm transition-colors",
                 on ? "bg-accent-soft text-accent" : "text-fg-black hover:bg-fg-grey-100",

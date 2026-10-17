@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useId } from "react";
+import { useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { cn } from "../../../lib/utils";
 import {
   CalendarLinear,
@@ -44,18 +44,24 @@ function toDateNum(d: Date) {
   return d.getFullYear() * 10000 + d.getMonth() * 100 + d.getDate();
 }
 
-function formatDate(d: Date) {
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+function formatDate(d: Date, locale: "zh" | "en" = "zh") {
+  return new Intl.DateTimeFormat(locale === "zh" ? "zh-CN" : "en-US", { year: "numeric", month: "short", day: "numeric" }).format(d);
 }
 
 export function Datepicker({
   value,
   rangeStart,
   rangeEnd,
-  placeholder = "选择日期",
+  locale = "zh",
+  placeholder = locale === "zh" ? "选择日期" : "Select date",
+  confirmSelection = false,
+  rangeLabels,
+  inline = false,
+  minDate,
+  maxDate,
   state = "idle",
   shape = "rounded",
-  color = "purple",
+  color = "blue",
   mode = "single",
   label,
   onChange,
@@ -63,6 +69,14 @@ export function Datepicker({
   className,
 }: {
   value?: Date;
+  locale?: "zh" | "en";
+  /** Keep the range in a draft until the user applies it. */
+  confirmSelection?: boolean;
+  /** Optional separate start/end triggers. */
+  rangeLabels?: [string, string];
+  inline?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
   rangeStart?: Date;
   rangeEnd?: Date;
   placeholder?: string;
@@ -81,6 +95,32 @@ export function Datepicker({
   const [viewYear, setViewYear] = useState(initDate.getFullYear());
   const [viewMonth, setViewMonth] = useState(initDate.getMonth());
   const [pickingEnd, setPickingEnd] = useState(false);
+  const [draft, setDraft] = useState<{ start?: Date; end?: Date }>({ start: rangeStart, end: rangeEnd });
+  const externalKey = `${value?.getTime() ?? ""}/${rangeStart?.getTime() ?? ""}/${rangeEnd?.getTime() ?? ""}`;
+  const [syncedKey, setSyncedKey] = useState(externalKey);
+  const [expectedRangeKey, setExpectedRangeKey] = useState<string | null>(null);
+  const [hoverDate, setHoverDate] = useState<Date | undefined>();
+  const [focusedDate, setFocusedDate] = useState(initDate);
+  const focusRequested = useRef(false);
+  if (syncedKey !== externalKey) {
+    setSyncedKey(externalKey);
+    setExpectedRangeKey(null);
+    setDraft({ start: rangeStart, end: rangeEnd });
+    // Echoing our own range callback must preserve the next endpoint and focus.
+    // A different value is an external reset and starts a new selection.
+    if (externalKey !== expectedRangeKey) {
+      setPickingEnd(false);
+      setHoverDate(undefined);
+      const next = value ?? rangeStart;
+      if (next) { setViewYear(next.getFullYear()); setViewMonth(next.getMonth()); setFocusedDate(next); }
+    }
+  }
+  const pickedStart = confirmSelection ? draft.start : rangeStart;
+  const pickedEnd = confirmSelection ? draft.end : rangeEnd;
+  const visible = inline || open;
+  const days = locale === "en" ? ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"] : DAYS;
+  const months = locale === "en" ? Array.from({ length: 12 }, (_, i) => new Intl.DateTimeFormat("en", { month: "long" }).format(new Date(2026, i, 1))) : MONTHS;
+  const blocked = (date: Date) => Boolean(minDate && toDateNum(date) < toDateNum(minDate) || maxDate && toDateNum(date) > toDateNum(maxDate));
   const ref = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const triggerId = useId();
@@ -96,7 +136,7 @@ export function Datepicker({
   const shapeClass = shape === "pill" ? "rounded-full" : "rounded-xl";
 
   useEffect(() => {
-    if (!open) return;
+    if (!visible || inline) return;
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
@@ -118,7 +158,30 @@ export function Datepicker({
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [open]);
+  }, [visible, inline]);
+
+  useEffect(() => {
+    if (!focusRequested.current) return;
+    focusRequested.current = false;
+    ref.current?.querySelector<HTMLButtonElement>(`[data-date="${toDateNum(focusedDate)}"]`)?.focus();
+  }, [focusedDate, viewMonth, viewYear]);
+  function toggleOpen() {
+    if (!open) { setDraft({ start: rangeStart, end: rangeEnd }); setPickingEnd(false); setHoverDate(undefined); }
+    setOpen(!open);
+  }
+  function dayKey(event: ReactKeyboardEvent<HTMLButtonElement>, date: Date) {
+    const offset = ({ ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 } as Record<string, number>)[event.key];
+    if (offset === undefined && !["Home", "End", "PageUp", "PageDown"].includes(event.key)) return;
+    event.preventDefault();
+    const next = new Date(date);
+    if (offset !== undefined) next.setDate(next.getDate() + offset);
+    else if (event.key === "Home") next.setDate(1);
+    else if (event.key === "End") next.setDate(getDaysInMonth(next.getFullYear(), next.getMonth()));
+    else { const day = next.getDate(); next.setDate(1); next.setMonth(next.getMonth() + (event.key === "PageDown" ? 1 : -1)); next.setDate(Math.min(day, getDaysInMonth(next.getFullYear(), next.getMonth()))); }
+    if (blocked(next)) return;
+    setViewYear(next.getFullYear()); setViewMonth(next.getMonth()); setFocusedDate(next); focusRequested.current = true;
+    if (pickingEnd) setHoverDate(next);
+  }
 
   const wrapperClass = cn(
     "flex items-center gap-1 px-4 py-3 outline outline-1 outline-offset-[-1px] transition-all cursor-pointer",
@@ -133,6 +196,8 @@ export function Datepicker({
 
   const today = new Date();
   const daysInMonth = getDaysInMonth(viewYear, viewMonth);
+  const focusInMonth = focusedDate.getMonth() === viewMonth && focusedDate.getFullYear() === viewYear && !blocked(focusedDate);
+  const tabDay = focusInMonth ? focusedDate.getDate() : Array.from({ length: daysInMonth }, (_, index) => index + 1).find(day => !blocked(new Date(viewYear, viewMonth, day)));
   const firstDay = getFirstDayOfMonth(viewYear, viewMonth);
 
   function prevMonth() {
@@ -146,34 +211,34 @@ export function Datepicker({
   }
 
   function handleDayClick(date: Date) {
-    if (mode === "single") {
-      onChange?.(date);
-      setOpen(false);
-      triggerRef.current?.focus();
-    } else {
-      if (!pickingEnd || !rangeStart) {
+    if (blocked(date)) return;
+    setFocusedDate(date); setHoverDate(undefined);
+    if (mode === "single") { onChange?.(date); if (!inline) { setOpen(false); triggerRef.current?.focus(); } return; }
+    if (!pickingEnd || !pickedStart) {
+      if (confirmSelection) setDraft({ start: date }); else {
+        setExpectedRangeKey(`${value?.getTime() ?? ""}/${date.getTime()}/`);
         onRangeChange?.(date, null);
-        setPickingEnd(true);
-      } else {
-        const [start, end] = toDateNum(date) >= toDateNum(rangeStart)
-          ? [rangeStart, date]
-          : [date, rangeStart];
-        onRangeChange?.(start, end);
-        setPickingEnd(false);
-        setOpen(false);
-        triggerRef.current?.focus();
       }
+      setPickingEnd(true);
+    } else {
+      const [start, end] = toDateNum(date) >= toDateNum(pickedStart) ? [pickedStart, date] : [date, pickedStart];
+      if (confirmSelection) setDraft({ start, end }); else {
+        setExpectedRangeKey(`${value?.getTime() ?? ""}/${start.getTime()}/${end.getTime()}`);
+        onRangeChange?.(start, end);
+      }
+      setPickingEnd(false);
+      if (!confirmSelection && !inline) { setOpen(false); triggerRef.current?.focus(); }
     }
   }
 
   // Display text
   let displayText = placeholder;
   if (mode === "single" && value) {
-    displayText = formatDate(value);
+    displayText = formatDate(value, locale);
   } else if (mode === "range" && rangeStart) {
     displayText = rangeEnd
-      ? `${formatDate(rangeStart)} — ${formatDate(rangeEnd)}`
-      : `${formatDate(rangeStart)} — ...`;
+      ? `${formatDate(rangeStart, locale)} — ${formatDate(rangeEnd, locale)}`
+      : `${formatDate(rangeStart, locale)} — ...`;
   }
 
   // Build column-based calendar
@@ -193,10 +258,12 @@ export function Datepicker({
     const num = toDateNum(date);
 
     const isSelectedSingle = mode === "single" && value && isSameDay(date, value);
-    const isRangeStart = mode === "range" && rangeStart && isSameDay(date, rangeStart);
-    const isRangeEnd = mode === "range" && rangeEnd && isSameDay(date, rangeEnd);
-    const isInRange = mode === "range" && rangeStart && rangeEnd
-      && num > toDateNum(rangeStart) && num < toDateNum(rangeEnd);
+    const previewEnd = pickedEnd ?? (pickingEnd ? hoverDate : undefined);
+    const low = pickedStart && previewEnd ? Math.min(toDateNum(pickedStart), toDateNum(previewEnd)) : undefined;
+    const high = pickedStart && previewEnd ? Math.max(toDateNum(pickedStart), toDateNum(previewEnd)) : undefined;
+    const isRangeStart = mode === "range" && pickedStart && isSameDay(date, pickedStart);
+    const isRangeEnd = mode === "range" && previewEnd && isSameDay(date, previewEnd);
+    const isInRange = mode === "range" && low !== undefined && high !== undefined && num > low && num < high;
     const isToday = isSameDay(date, today) && !isSelectedSingle && !isRangeStart && !isRangeEnd;
 
     return { isSelectedSingle, isRangeStart, isRangeEnd, isInRange, isToday };
@@ -208,7 +275,7 @@ export function Datepicker({
         <label htmlFor={triggerId} className="text-sm font-medium text-fg-black mb-1">{label}</label>
       )}
       <div className="relative">
-        <button
+        {mode === "range" && rangeLabels ? <div className="grid grid-cols-2 gap-2">{rangeLabels.map((text, i) => <button key={text} ref={i === 0 ? triggerRef : undefined} id={i === 0 ? triggerId : undefined} type="button" disabled={isDisabled} aria-expanded={visible} aria-controls={dialogId} onClick={() => { if (!inline && !open) { setDraft({ start: rangeStart, end: rangeEnd }); setOpen(true); } setPickingEnd(i === 1 && Boolean(pickedStart)); }} className={cn(wrapperClass, "flex-col items-start")}><span className="text-xs text-fg-grey-700">{text}</span><span className="text-sm">{(i === 0 ? pickedStart : pickedEnd) ? formatDate((i === 0 ? pickedStart : pickedEnd)!, locale) : placeholder}</span></button>)}</div> : <button
           ref={triggerRef}
           id={triggerId}
           type="button"
@@ -217,7 +284,7 @@ export function Datepicker({
           aria-expanded={open && !isDisabled}
           aria-controls={dialogId}
           className={cn(wrapperClass, "text-left")}
-          onClick={() => setOpen(!open)}
+          onClick={toggleOpen}
         >
           <span
             className={cn(
@@ -231,13 +298,13 @@ export function Datepicker({
             {displayText}
           </span>
           <span className="text-fg-grey-700"><CalendarLinear size={20} /></span>
-        </button>
+        </button>}
 
-        {open && !isDisabled && (
-          <div id={dialogId} role="dialog" aria-label={label ?? placeholder} className="absolute top-full left-0 mt-1 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50">
+        {visible && !isDisabled && (
+          <div id={dialogId} role="dialog" aria-label={label ?? placeholder} className={cn("mt-2 w-96 max-w-full bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50", !inline && "absolute top-full left-0 max-w-[calc(100vw-2rem)] shadow-sm")}>
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-fg-grey-200 p-4">
-              <button type="button" aria-label="上个月" onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
+              <button type="button" aria-label={locale === "zh" ? "上个月" : "Previous month"} onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
                 <AltArrowLeftLinear size={16} />
               </button>
 
@@ -249,7 +316,7 @@ export function Datepicker({
                   view === "months" && `outline outline-1 outline-offset-[-1px] ${accent.outline}`,
                 )}
               >
-                <span className="flex-1 text-sm font-medium text-fg-black leading-5 tracking-fg">{MONTHS[viewMonth]}</span>
+                <span className="flex-1 text-sm font-medium text-fg-black leading-5 tracking-fg">{months[viewMonth]}</span>
                 <span className="text-fg-grey-700"><AltArrowDownLinear size={16} /></span>
               </button>
 
@@ -265,7 +332,7 @@ export function Datepicker({
                 <span className="text-fg-grey-700"><AltArrowDownLinear size={16} /></span>
               </button>
 
-              <button type="button" aria-label="下个月" onClick={nextMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
+              <button type="button" aria-label={locale === "zh" ? "下个月" : "Next month"} onClick={nextMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
                 <AltArrowRightLinear size={16} />
               </button>
             </div>
@@ -273,7 +340,7 @@ export function Datepicker({
             {/* Months list view */}
             {view === "months" && (
               <div className="self-stretch flex-1 flex flex-col overflow-y-auto max-h-64">
-                {MONTHS.map((m, i) => {
+                {months.map((m, i) => {
                   const isSelected = i === viewMonth;
                   return (
                     <button
@@ -323,11 +390,11 @@ export function Datepicker({
             {/* Calendar body */}
             {view === "calendar" && (
               <>
-                <div className="p-4 flex justify-between">
+                <div className="p-4 flex justify-between" onPointerLeave={() => setHoverDate(undefined)}>
                   {columns.map((col, colIndex) => (
                     <div key={colIndex} className="flex flex-col gap-4">
                       <div className="w-8 h-8 p-0.5 rounded-lg flex flex-col justify-center items-center">
-                        <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{DAYS[colIndex]}</span>
+                        <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{days[colIndex]}</span>
                       </div>
 
                       {col.map((day, rowIndex) => {
@@ -342,11 +409,16 @@ export function Datepicker({
                           <button
                             key={day}
                             type="button"
-                            aria-label={`${viewYear}年${viewMonth + 1}月${day}日`}
+                            aria-label={formatDate(new Date(viewYear, viewMonth, day), locale)}
+                            data-date={toDateNum(new Date(viewYear, viewMonth, day))}
+                            tabIndex={day === tabDay ? 0 : -1}
+                            disabled={blocked(new Date(viewYear, viewMonth, day))}
+                            onKeyDown={event => dayKey(event, new Date(viewYear, viewMonth, day))}
+                            onPointerEnter={() => pickingEnd && setHoverDate(new Date(viewYear, viewMonth, day))}
                             aria-pressed={!!isEndpoint}
                             onClick={() => handleDayClick(new Date(viewYear, viewMonth, day))}
                             className={cn(
-                              "w-8 h-8 p-0.5 flex flex-col justify-center items-center cursor-pointer transition-colors",
+                              "w-8 h-8 p-0.5 flex flex-col justify-center items-center cursor-pointer transition-colors disabled:opacity-30 disabled:cursor-not-allowed",
                               isEndpoint && `${accent.bg} rounded-full`,
                               isInRange && `${range.bg} rounded-full`,
                               isToday && `rounded-lg outline outline-1 ${accent.outline}`,
@@ -371,11 +443,15 @@ export function Datepicker({
                   ))}
                 </div>
 
+                {mode === "range" && confirmSelection && <div className="flex items-center justify-between gap-3 border-t border-fg-grey-200 px-4 py-3">
+                  <span className="text-xs text-fg-grey-700" aria-live="polite">{draft.start && draft.end ? `${Math.round((Date.UTC(draft.end.getFullYear(), draft.end.getMonth(), draft.end.getDate()) - Date.UTC(draft.start.getFullYear(), draft.start.getMonth(), draft.start.getDate())) / 86400000)} ${locale === "zh" ? "晚" : "nights"}` : locale === "zh" ? "请选择日期区间" : "Choose a date range"}</span>
+                  <button type="button" disabled={!draft.start || !draft.end} onClick={() => { if (draft.start && draft.end) { onRangeChange?.(draft.start, draft.end); if (!inline) { setOpen(false); triggerRef.current?.focus(); } } }} className={cn("rounded-full px-4 py-2 text-sm font-semibold text-white disabled:opacity-40", accent.bg)}>{locale === "zh" ? "应用" : "Apply"}</button>
+                </div>}
                 {/* Range hint */}
                 {mode === "range" && pickingEnd && (
                   <div className="px-4 pb-3 text-center">
                     <span className={cn("text-xs font-medium tracking-fg", range.text)}>
-                      选择结束日期
+                      {locale === "zh" ? "选择结束日期" : "Choose an end date"}
                     </span>
                   </div>
                 )}

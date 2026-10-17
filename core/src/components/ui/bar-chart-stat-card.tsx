@@ -85,7 +85,7 @@ export function BarChartStatCard({
   theme = "white",
   size = "sm",
   density = "default",
-  barColor = "purple",
+  barColor = "blue",
   bars = [16, 24, 32, 20, 40],
   width,
   className,

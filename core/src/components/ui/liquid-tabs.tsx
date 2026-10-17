@@ -1,7 +1,7 @@
 "use client";
 
 // Third-party license notices: core/THIRD_PARTY_NOTICES.md.
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type Ref, type ReactNode } from "react";
 import { AnimatePresence, LayoutGroup, motion, useIsPresent } from "motion/react";
 import { useReducedMotion } from "../../internal/motion";
 import type { MotionPreference } from "../../lib/motion";
@@ -102,10 +102,10 @@ export function LiquidTabs({ tabs, value, defaultValue, onValueChange, onSelect,
       </button>)}
     </div>
     {tabs.length > count && <div className="forge-liquid__more"><button ref={trigger} type="button" disabled={disabled} aria-label={moreLabel} aria-haspopup="menu" aria-expanded={menuOpen} className="forge-liquid__chevron" onClick={() => setMenuOpen(open => !open)}><motion.span className="forge-liquid__chevronIcon" animate={{ rotate: menuOpen ? 180 : 0 }} transition={transition}><AltArrowDownLinear size={18} color="currentColor" /></motion.span></button>
-      {menuOpen && <motion.div ref={menu} role="menu" aria-label={moreLabel} className="forge-liquid__menu" initial={reduced ? false : { opacity: 0, scale: .95, y: -6 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={transition} style={{ borderRadius: Math.max(10, radius - 6) }}
+      <AnimatePresence>{menuOpen && <LiquidMenu menuRef={menu} label={moreLabel} reduced={reduced} radius={radius}
         onKeyDown={event => { if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); setMenuOpen(false); trigger.current?.focus(); } else if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) { event.preventDefault(); const items = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')]; const at = items.indexOf(document.activeElement as HTMLButtonElement); items[event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : (at + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus(); } else if (event.key === "Tab") setMenuOpen(false); }}>
         {remaining.map(item => <button key={item.id} type="button" role="menuitemradio" tabIndex={-1} disabled={item.disabled} aria-checked={active === item.id} className="forge-liquid__menuItem" onClick={() => { setOverflow(item.id); select(item.id); setMenuOpen(false); trigger.current?.focus(); }}>{item.label}{active === item.id && <CheckCircleLinear size={14} color="currentColor" />}</button>)}
-      </motion.div>}
+      </LiquidMenu>}</AnimatePresence>
     </div>}
     </div>
     <div className="forge-liquid__panel" style={{ height: rowCount * 72 }}>{reduced ? panel : <AnimatePresence initial={false} mode="wait">{panel}</AnimatePresence>}</div>
@@ -123,4 +123,9 @@ function LiquidPanel({ id, labelledBy, items, selected, direction, onSelect, emp
         <span className="forge-liquid__text"><span className="forge-liquid__title">{item.title}</span><span className="forge-liquid__subtitle">{item.subtitle}</span></span><span className="forge-liquid__time">{item.time}</span>
       </motion.button></motion.li>)}</ul>
   </motion.div>;
+}
+
+function LiquidMenu({ menuRef, label, reduced, radius, onKeyDown, children }: { menuRef: Ref<HTMLDivElement>; label: string; reduced: boolean; radius: number; onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void; children: ReactNode }) {
+  const present = useIsPresent();
+  return <motion.div ref={menuRef} role="menu" aria-label={label} inert={!present} aria-hidden={!present || undefined} className="forge-liquid__menu" initial={reduced ? false : { opacity: 0, scale: .95, y: -6 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: reduced ? 1 : .95, y: reduced ? 0 : -6 }} transition={{ duration: reduced ? 0 : .16 }} style={{ borderRadius: Math.max(10, radius - 6) }} onKeyDown={onKeyDown}>{children}</motion.div>;
 }

@@ -1,16 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { PreviewBlock } from "../_preview-block";
-import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";`;
 
 const CODE_CURRENCY_USAGE = `<CurrencyConverter
-  title="Exchange"
-  subtitle="Live rates"
+  title="兑换"
+  subtitle="实时汇率"
   fromCurrency="USD"
   toCurrency="EUR"
   exchangeRateText="1 USD = 0.92 EUR"
@@ -26,13 +25,13 @@ const CODE_IMAGEGRID_USAGE = `<ImageGrid images={urls} overflowCount={3} />`;
 
 const CODE_PRODUCTROW_USAGE = `<ProductRow
   image="https://i.pravatar.cc/44?img=20"
-  title="Product Name"
-  subtitle="3 Variants"
+  title="商品名称"
+  subtitle="3 种规格"
 />`;
 
 const CURRENCY_PROPS: ApiTableRow[] = [
-  { attr: "title / subtitle", type: "string", defaultValue: "'Title Here' / 'Text here'", description: "卡片头部文案。" },
-  { attr: "color", type: "'purple' | 'blue' | 'dark'", defaultValue: "'purple'", description: "Convert 按钮颜色。" },
+  { attr: "title / subtitle", type: "string", defaultValue: "'汇率换算' / '实时估算仅供参考'", description: "卡片头部文案。" },
+  { attr: "color", type: "'purple' | 'blue' | 'dark'", defaultValue: "'blue'", description: "换算按钮的颜色。" },
   { attr: "fromCurrency / toCurrency", type: "string", defaultValue: "'USD'", description: "两个输入框的货币代码。" },
   { attr: "fromValue / toValue", type: "string", defaultValue: "—", description: "受控值。传了就用 controlled 模式，不传用 placeholder。" },
   { attr: "exchangeRateText", type: "string", defaultValue: "'1 EUR = 1.09 USD'", description: "底部汇率说明。" },
@@ -50,7 +49,7 @@ const IMAGEGRID_PROPS: ApiTableRow[] = [
   { attr: "images", type: "string[]", defaultValue: "—", description: "图片 URL 数组，横向并列渲染。" },
   { attr: "size", type: "'sm' | 'md' | 'lg'", defaultValue: "'md'", description: "单图尺寸（sm 48 / md 64 / lg 80）。" },
   { attr: "overflowCount", type: "number", defaultValue: "—", description: "尾部 +N 占位，> 0 时才渲染。" },
-  { attr: "overflowClassName", type: "string", defaultValue: "purple", description: "溢出块的配色 class，默认紫色调。" },
+  { attr: "overflowClassName", type: "string", defaultValue: "bg-fg-blue-50 text-fg-blue", description: "溢出块的配色 class，默认 Forge 蓝。" },
 ];
 
 const PRODUCTROW_PROPS: ApiTableRow[] = [
@@ -70,98 +69,45 @@ export default function OtherWidgetCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Other Widget"
-        hint="四个独立小部件：CurrencyConverter / RatingStars / ImageGrid / ProductRow。"
+        title="实用组件"
+        hint="换算、评分、图片和商品行各做一件事。星级尺寸只演示一次。"
       />
 
-      <Section
-        title="CurrencyConverter"
-        description="货币兑换卡片。两个输入 + 汇率说明 + Convert 按钮。3 种按钮色。"
-      >
-        <SubSection title="Import" stack>
+      <Section title="用法" description="从货币换算卡片开始。金额和汇率文案由外面传入。">
+        <SubSection title="导入" stack>
           <CodeBlock code={CODE_IMPORT} />
         </SubSection>
-
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_CURRENCY_USAGE} minHeight={360}>
-            <CurrencyConverter
-              title="Exchange"
-              subtitle="Live rates"
-              fromCurrency="USD"
-              toCurrency="EUR"
-              exchangeRateText="1 USD = 0.92 EUR"
-            />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={CURRENCY_PROPS} />
+        <SubSection title="最小示例" stack>
+          <DocExample id="currencyconverter" title="CurrencyConverter" summary="左右两个币种，底部是汇率说明。" code={CODE_CURRENCY_USAGE} minHeight={360}>
+            <CurrencyConverter title="兑换" subtitle="实时汇率" fromCurrency="USD" toCurrency="EUR" exchangeRateText="1 USD = 0.92 EUR" />
+          </DocExample>
         </SubSection>
       </Section>
 
-      <Section
-        title="RatingStars"
-        description="评分星级。数字 + N 颗星（@forge-ui-official/core/icons StarBold）。"
-      >
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_RATING_USAGE}>
-            <RatingStars value={4.2} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="Sizes" stack>
-          <p className="text-sm leading-[1.7] text-fg-grey-900">
-            3 种尺寸，<InlineCode>md</InlineCode> 为默认（16px 星 + 14px 字号）。
-          </p>
-          <PreviewBlock code={CODE_RATING_SIZES}>
-            <RatingStars value={4.2} size="sm" />
-            <RatingStars value={4.2} size="md" />
-            <RatingStars value={4.2} size="lg" />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={RATING_PROPS} />
-        </SubSection>
-      </Section>
-
-      <Section
-        title="ImageGrid"
-        description="水平图片排列，支持尾部 +N 占位。"
-      >
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_IMAGEGRID_USAGE}>
+      <Section title="例子">
+        <ExampleGrid>
+          <DocExample id="ratingstars" title="RatingStars" summary="sm、md、lg 三档，分值算法相同。" code={CODE_RATING_SIZES}>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <RatingStars value={4.2} size="sm" />
+              <RatingStars value={4.2} size="md" />
+              <RatingStars value={4.2} size="lg" />
+            </div>
+          </DocExample>
+          <DocExample id="imagegrid" title="ImageGrid" summary="横向排图片。overflowCount 把装不下的数量收成 +N。" code={CODE_IMAGEGRID_USAGE}>
             <ImageGrid images={gridImages} overflowCount={3} />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={IMAGEGRID_PROPS} />
-        </SubSection>
+          </DocExample>
+          <DocExample id="productrow" title="ProductRow" summary="一行商品：缩略图、名称和规格说明。" code={CODE_PRODUCTROW_USAGE}>
+            <ProductRow image="https://i.pravatar.cc/44?img=20" title="商品名称" subtitle="3 种规格" />
+          </DocExample>
+        </ExampleGrid>
       </Section>
 
-      <Section
-        title="ProductRow"
-        description="紧凑产品行：44×44 缩略图 + 标题 + 副标题。无外框，常用在 list / dropdown 里。"
-      >
-        <SubSection title="Usage" stack>
-          <PreviewBlock code={CODE_PRODUCTROW_USAGE}>
-            <ProductRow
-              image="https://i.pravatar.cc/44?img=20"
-              title="Product Name"
-              subtitle="3 Variants"
-            />
-          </PreviewBlock>
-        </SubSection>
-
-        <SubSection title="API" stack>
-          <ApiTable rows={PRODUCTROW_PROPS} />
-        </SubSection>
+      <Section title="API">
+        <ApiBlock id="currencyconverter" title="CurrencyConverter" rows={CURRENCY_PROPS} />
+        <ApiBlock id="ratingstars" title="RatingStars" rows={RATING_PROPS} />
+        <ApiBlock id="imagegrid" title="ImageGrid" rows={IMAGEGRID_PROPS} />
+        <ApiBlock id="productrow" title="ProductRow" rows={PRODUCTROW_PROPS} />
       </Section>
-
-      <Link href="/cases/other-widget" className="text-xs text-fg-grey-700 hover:underline">
-        看所有变体 →
-      </Link>
     </div>
   );
 }

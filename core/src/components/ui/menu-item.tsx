@@ -16,7 +16,7 @@ export type MenuItemLead =
   | { kind: "image"; src: string; alt?: string };
 
 export function MenuItem({
-  accent = "purple",
+  accent = "blue",
   surface = "default",
   intent = "default",
   kind = "single",

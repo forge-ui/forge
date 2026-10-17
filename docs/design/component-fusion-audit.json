@@ -1,0 +1,3283 @@
+{
+  "schemaVersion": 2,
+  "date": "2026-10-14",
+  "status": "implemented_verified_pending_user_review",
+  "scope": {
+    "referencePrototypes": 117,
+    "forgeExamples": 6,
+    "total": 123
+  },
+  "policy": {
+    "newPublicComponents": false,
+    "existingApiCoverageMustBeVerified": true,
+    "uncoveredCapability": "defer",
+    "reviewIsNotImplementation": true
+  },
+  "method": "99 项正式 React 实现逐项映射现有组件能力或组合案例；完整目录进行中英双语、三主题服务器渲染检查，并执行核心交互回归与定向真实 Chrome 验证。23 项暂缓保留独立快照；不声称 99 项均完成用户视觉验收。",
+  "sources": [
+    "docs/design/component-taxonomy-proposal.json",
+    "../forge-interaction-lab/public/component-taxonomy.json",
+    "core/src/index.ts",
+    "core/src/components/ui/index.ts",
+    "core/src/components/layouts/index.ts",
+    "src/app/prototype/component-fusion/_catalog-data.json",
+    "private/component-fusion-lab/manifest.json"
+  ],
+  "modeCounts": {
+    "enhance": 54,
+    "compose": 45,
+    "defer": 23,
+    "exclude": 1
+  },
+  "decisionCounts": {
+    "扩展现有组件": 54,
+    "组合示例": 45,
+    "暂缓评估": 23,
+    "排除": 1
+  },
+  "navigation": {
+    "retainedFamilyDefinitions": 20,
+    "representedFamilies": 19,
+    "counts": {
+      "component_family": 92,
+      "review_status": 24,
+      "case_tag": 7
+    },
+    "familyCounts": {
+      "按钮与链接": 14,
+      "菜单与导航": 6,
+      "表单与输入": 18,
+      "待办清单": 2,
+      "评论与评价": 3,
+      "页面顶栏": 1,
+      "页签与切换": 3,
+      "分页与步骤": 3,
+      "布局与容器": 1,
+      "卡片": 4,
+      "提示与反馈": 9,
+      "日历与日程": 3,
+      "列表": 4,
+      "聊天": 5,
+      "智能体": 4,
+      "筛选": 2,
+      "图表": 7,
+      "历史记录": 2,
+      "数据表格": 1
+    },
+    "rule": "只把暂缓和排除设为 review_status；正常组合保留原家族或案例标签；空家族自然隐藏。"
+  },
+  "implementationNotes": {
+    "summary": "99 项在迁移分支落为正式组件能力或组合案例，复用原组件分类。API与逐项入口见实施对照表。",
+    "reviewBoundary": "代码实现和测试不修改既有逐项用户验收标记；全部未发布。"
+  },
+  "validation": {
+    "uniqueIds": true,
+    "allProposalIdsCovered": true,
+    "evidenceFilesExist": true,
+    "allTargetsAreExistingPublicExports": true,
+    "browserAcceptancePerformed": false,
+    "userAccepted": false,
+    "released": false,
+    "acceptedItemIds": [
+      "040",
+      "013",
+      "043",
+      "044",
+      "031",
+      "039",
+      "046"
+    ],
+    "previousLocalBatch": {
+      "preview": "/prototype/component-fusion",
+      "userAccepted": false,
+      "released": false,
+      "publicEntriesRemoved": [
+        "AnimatedNumber",
+        "SelectionActionBar",
+        "EmptyState"
+      ],
+      "browserSmokePerformed": true,
+      "componentTests": 206,
+      "auditTests": 17,
+      "coreCheckPassed": true,
+      "packageBudgetPassed": false,
+      "verification": "artifacts/component-fusion/verification.json"
+    },
+    "acceptedLocalBatches": [
+      {
+        "preview": "/prototype/component-fusion",
+        "itemIds": [
+          "013",
+          "043",
+          "044"
+        ],
+        "userAccepted": true,
+        "released": false,
+        "placement": "顶部为本轮三项，上一轮四项保留在下方；官网既有分类不变。",
+        "documentationPreviews": [
+          "/components/input-field#toggle",
+          "/components/pagination-stepper#pagination",
+          "/components/motion#accordion"
+        ],
+        "browserSmokePerformed": true,
+        "coreCheckPassed": true,
+        "coreBuildPassed": true,
+        "websiteTypecheckPassed": true,
+        "targetedEslintPassed": true,
+        "componentTests": 220,
+        "auditTests": 17,
+        "packageBudgetPassed": false,
+        "verificationNote": "core:check、core:build、官网 TypeScript、相关 ESLint 与差异检查通过；Chrome 验证拖动、键盘、翻页、语言、主题、窄屏及动态减弱动效。包检查仅体积/文件数预算失败，阈值未改，未发布。",
+        "verification": "artifacts/component-fusion/verification-batch-2.json",
+        "acceptance": {
+          "date": "2026-10-14",
+          "userStatement": "OK，过"
+        }
+      },
+      {
+        "preview": "/prototype/component-fusion",
+        "itemIds": [
+          "031",
+          "039",
+          "046"
+        ],
+        "userAccepted": true,
+        "released": false,
+        "placement": "顶部为本轮页签、命令搜索、选择器三项；此前七项保留在下方，官网既有分类不变。",
+        "documentationPreviews": [
+          "/components/input-field#selectoption",
+          "/components/tab#tabbar",
+          "/components/agent#commandsearch"
+        ],
+        "browserSmokePerformed": true,
+        "coreCheckPassed": true,
+        "coreBuildPassed": true,
+        "websiteTypecheckPassed": true,
+        "targetedEslintPassed": true,
+        "componentTests": 235,
+        "auditTests": 17,
+        "packageBudgetPassed": false,
+        "verificationNote": "core:check、core:build、官网 TypeScript 与相关 ESLint 通过；Chrome 已检查切换、搜索执行、选择、语言主题、窄屏及动态减弱动效。命令弹窗搜索框聚焦时 Escape 的当前浏览器验证未通过，组件模拟验证通过，原因未定；包检查仅预算超限。用户已验收；上述技术限制保留，未提交、未发布。",
+        "verification": "artifacts/component-fusion/verification-batch-3.json",
+        "acceptance": {
+          "date": "2026-10-14",
+          "userStatement": "OK，过，其他的也都放到这里吧，我一次性看完",
+          "scope": "第三批集中预览的 SelectOption、TabBar / TabsContent、CommandSearch / Modal 三项",
+          "note": "记录用户视觉与交互认可；不改变搜索框聚焦时 Escape 未通过的浏览器记录及包预算超限结论。"
+        }
+      }
+    ],
+    "previousConsolidatedReview": {
+      "preview": "/prototype/component-fusion",
+      "status": "ready_for_user_review",
+      "purpose": "consolidated_interaction_review",
+      "itemIds": [
+        "001",
+        "002",
+        "003",
+        "004",
+        "005",
+        "006",
+        "007",
+        "008",
+        "009",
+        "010",
+        "011",
+        "012",
+        "013",
+        "014",
+        "015",
+        "016",
+        "018",
+        "019",
+        "021",
+        "022",
+        "023",
+        "025",
+        "026",
+        "027",
+        "028",
+        "029",
+        "030",
+        "031",
+        "032",
+        "033",
+        "036",
+        "037",
+        "039",
+        "040",
+        "041",
+        "042",
+        "043",
+        "044",
+        "045",
+        "046",
+        "047",
+        "048",
+        "049",
+        "050",
+        "054",
+        "056",
+        "057",
+        "058",
+        "059",
+        "062",
+        "063",
+        "066",
+        "067",
+        "070",
+        "071",
+        "074",
+        "075",
+        "076",
+        "077",
+        "078",
+        "080",
+        "081",
+        "083",
+        "084",
+        "086",
+        "087",
+        "088",
+        "089",
+        "090",
+        "091",
+        "092",
+        "093",
+        "095",
+        "096",
+        "097",
+        "098",
+        "099",
+        "108",
+        "110",
+        "126",
+        "127",
+        "128",
+        "129",
+        "157",
+        "163",
+        "165",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "181",
+        "184",
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06"
+      ],
+      "deferredItemIds": [
+        "024",
+        "038",
+        "053",
+        "061",
+        "069",
+        "072",
+        "073",
+        "079",
+        "085",
+        "100",
+        "101",
+        "102",
+        "109",
+        "111",
+        "140",
+        "146",
+        "149",
+        "151",
+        "154",
+        "160",
+        "161",
+        "188",
+        "189"
+      ],
+      "excludedItemIds": [
+        "186"
+      ],
+      "manifestPending": false,
+      "userAccepted": false,
+      "released": false,
+      "placement": "99 项按 19 个既有组件家族及组合案例集中展示；23 项暂缓单列；已融合、局部示例和原型分别标记。",
+      "integratedPreviewItemIds": [
+        "003",
+        "013",
+        "031",
+        "039",
+        "040",
+        "043",
+        "044",
+        "046",
+        "088",
+        "098",
+        "178",
+        "F03"
+      ],
+      "integratedPreviewKinds": 11,
+      "partialPreviewItemIds": [
+        "090",
+        "092",
+        "F06"
+      ],
+      "previouslyAcceptedItemIds": [
+        "013",
+        "031",
+        "039",
+        "040",
+        "043",
+        "044",
+        "046"
+      ],
+      "displayDoesNotImplyIntegration": true,
+      "newPublicComponents": false,
+      "newOfficialCategories": false,
+      "snapshot": {
+        "manifest": "private/component-fusion-lab/manifest.json",
+        "publicDirectory": "public/prototype/component-fusion",
+        "items": 122,
+        "htmlPrototypes": 116,
+        "reactExamples": 6,
+        "independentOfLabServer": true
+      },
+      "reviewFeatures": [
+        "全局中文/英文",
+        "蓝/紫/黑主题",
+        "动效设置",
+        "名称、编号和目标组件搜索",
+        "分类与评审状态筛选",
+        "本地通过/需调整/待看标记",
+        "本地备注",
+        "JSON 导出"
+      ],
+      "reviewPersistence": "仅保存在当前浏览器，不修改 core 迁移状态或构成发布验收。",
+      "browserSmokePerformed": true,
+      "coreCheckPassed": null,
+      "coreBuildPassed": null,
+      "websiteTypecheckPassed": true,
+      "targetedEslintPassed": true,
+      "packageBudgetPassed": false,
+      "packageBudgetResultSource": "artifacts/component-fusion/verification-batch-3.json",
+      "verificationNote": "官网 TypeScript 与定向 ESLint 通过；目录及快照覆盖断言通过。Chrome 已检查计数、001 保存、语言主题与动效同步、评审备注持久化、7 项已通过筛选、14 项按钮分类、040 侧栏折叠跨路由保留、090 局部标记、首次加载旧 hash 与暂缓项 hash、390px 窄屏及真实 JSON 导出。定向本地审阅检查完成，未对 122 项逐一完成功能 QA；第三批包预算超限和命令弹窗搜索框聚焦时 Escape 限制仍保留，未提交、未发布。",
+      "verification": "artifacts/component-fusion/verification-consolidated.json",
+      "verificationStatus": "checked_for_local_review"
+    },
+    "currentLocalBatch": {
+      "preview": "/components/interactions",
+      "reviewPreview": "/prototype/component-fusion",
+      "status": "implemented_verified_pending_user_review",
+      "purpose": "formal_component_fusion",
+      "itemIds": [
+        "001",
+        "002",
+        "003",
+        "004",
+        "005",
+        "006",
+        "007",
+        "008",
+        "009",
+        "010",
+        "011",
+        "012",
+        "013",
+        "014",
+        "015",
+        "016",
+        "018",
+        "019",
+        "021",
+        "022",
+        "023",
+        "025",
+        "026",
+        "027",
+        "028",
+        "029",
+        "030",
+        "031",
+        "032",
+        "033",
+        "036",
+        "037",
+        "039",
+        "040",
+        "041",
+        "042",
+        "043",
+        "044",
+        "045",
+        "046",
+        "047",
+        "048",
+        "049",
+        "050",
+        "054",
+        "056",
+        "057",
+        "058",
+        "059",
+        "062",
+        "063",
+        "066",
+        "067",
+        "070",
+        "071",
+        "074",
+        "075",
+        "076",
+        "077",
+        "078",
+        "080",
+        "081",
+        "083",
+        "084",
+        "086",
+        "087",
+        "088",
+        "089",
+        "090",
+        "091",
+        "092",
+        "093",
+        "095",
+        "096",
+        "097",
+        "098",
+        "099",
+        "108",
+        "110",
+        "126",
+        "127",
+        "128",
+        "129",
+        "157",
+        "163",
+        "165",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "181",
+        "184",
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06"
+      ],
+      "integratedPreviewItemIds": [
+        "001",
+        "002",
+        "003",
+        "004",
+        "005",
+        "006",
+        "007",
+        "008",
+        "009",
+        "010",
+        "011",
+        "012",
+        "013",
+        "014",
+        "015",
+        "016",
+        "018",
+        "019",
+        "021",
+        "022",
+        "023",
+        "025",
+        "026",
+        "027",
+        "028",
+        "029",
+        "030",
+        "031",
+        "032",
+        "033",
+        "036",
+        "037",
+        "039",
+        "040",
+        "041",
+        "042",
+        "043",
+        "044",
+        "045",
+        "046",
+        "047",
+        "048",
+        "049",
+        "050",
+        "054",
+        "056",
+        "057",
+        "058",
+        "059",
+        "062",
+        "063",
+        "066",
+        "067",
+        "070",
+        "071",
+        "074",
+        "075",
+        "076",
+        "077",
+        "078",
+        "080",
+        "081",
+        "083",
+        "084",
+        "086",
+        "087",
+        "088",
+        "089",
+        "090",
+        "091",
+        "092",
+        "093",
+        "095",
+        "096",
+        "097",
+        "098",
+        "099",
+        "108",
+        "110",
+        "126",
+        "127",
+        "128",
+        "129",
+        "157",
+        "163",
+        "165",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "181",
+        "184",
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06"
+      ],
+      "enhancedItems": 54,
+      "compositionCases": 45,
+      "deferredItems": 23,
+      "excludedItems": 1,
+      "partialPreviewItemIds": [],
+      "userAccepted": false,
+      "released": false,
+      "newPublicComponents": false,
+      "newOfficialCategories": false,
+      "verification": "artifacts/component-fusion/verification-formal-migration.json",
+      "reviewBoundary": "保留此前明确验收的七个编号及浏览器本地评审标记，不自动扩展用户验收。",
+      "knownBrowserLimitation": "搜索输入框聚焦时 Escape 在当前 Chrome 的键盘投递尚未确认；见 command-escape-diagnosis.json。",
+      "coreCheckPassed": true,
+      "coreBuildPassed": true,
+      "websiteTypecheckPassed": true,
+      "targetedEslintPassed": true,
+      "packageBudgetPassed": true,
+      "consumerCheckPassed": true,
+      "browserSmokePerformed": true,
+      "componentTests": 264,
+      "auditTests": 17,
+      "websiteTests": 114
+    }
+  },
+  "items": [
+    {
+      "id": "001",
+      "name": "液态玻璃按钮",
+      "mode": "enhance",
+      "target": [
+        "Button"
+      ],
+      "reason": "液态玻璃、磁吸与异步完成形变属于现有操作按钮的可选效果，不新增 LiquidButton。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/001.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Button 支持原生事件、disabled、aria-busy、children 和 motion；尚无统一 loading/success 或玻璃形变 API，真实完成由宿主驱动。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-001"
+    },
+    {
+      "id": "002",
+      "name": "磁吸箭头按钮",
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "StyledLink"
+      ],
+      "reason": "原型仅移动按钮与箭头；按操作或导航语义融入原按钮/链接。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/link.tsx",
+        "../forge-interaction-lab/public/components/002.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Button 可接 pointer 事件；StyledLink 仅固定参数且未透传原生事件，磁吸不能直接宣称两者均支持，需补最小交互透传或内部效果。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-002"
+    },
+    {
+      "id": "003",
+      "name": "长按删除",
+      "mode": "enhance",
+      "target": [
+        "Button"
+      ],
+      "reason": "Button 已有 variant=hold、holdDuration、onConfirm/onUndo、confirmed；保留现有入口吸收长按与恢复动效。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/internal/hold-button.tsx",
+        "../forge-interaction-lab/public/components/003.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "implementationScope": "Button hold 已复核短按取消、持续按住确认、受控结果与撤销；文件退场属于组合示例。",
+      "preview": "/prototype/component-fusion#hold",
+      "initialApiGap": "文件条目退场是示例；真实删除和撤销结果由宿主决定，不将原型定时完成视为业务成功。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/button-link#interaction-003"
+    },
+    {
+      "id": "004",
+      "name": "下载进度按钮",
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "ProgressBar"
+      ],
+      "reason": "下载、取消和完成仍是同一操作；在 Button 内融合受控进度反馈，百分比可复用 ProgressBar。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/progress-bar.tsx",
+        "../forge-interaction-lab/public/components/004.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Button 当前无 progress/status 契约；需要受控进度、取消和完成状态，不能迁入原型按时间伪造下载。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-004"
+    },
+    {
+      "id": "005",
+      "name": "纸飞机发送",
+      "mode": "enhance",
+      "target": [
+        "IconButton",
+        "Button"
+      ],
+      "reason": "飞机飞出是发送操作的图标动画，使用现有按钮承载。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/005.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "现有 children/图标插槽可换状态，但暂无发送动画状态协议；由真实发送结果切换。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-005"
+    },
+    {
+      "id": "006",
+      "name": "墨水涟漪按钮",
+      "mode": "enhance",
+      "target": [
+        "Button"
+      ],
+      "reason": "原型 aria-pressed 订阅切换与点击涟漪是按钮效果，人数滚动使用本地计数展示，共享内部数字动效。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/006.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "原生 aria-pressed 可传；涟漪插层/坐标反馈尚未内置，订阅关系和人数不进入 Button API。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-006"
+    },
+    {
+      "id": "007",
+      "name": "播放暂停变形",
+      "mode": "enhance",
+      "target": [
+        "IconButton"
+      ],
+      "reason": "播放暂停是受控图标切换；仅吸收图标变形与按压反馈。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/007.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "IconButton 可传 aria-pressed、aria-label 和点击；SVG morph 未内置，音轨、波形拖拽和媒体时钟不在本次融合范围。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-007"
+    },
+    {
+      "id": "008",
+      "name": "复制完成反馈",
+      "mode": "compose",
+      "target": [
+        "IconButton",
+        "Button",
+        "ButtonGroup"
+      ],
+      "reason": "包管理器选择与复制完成是现有按钮的组合示例，无需 CopyButton 公共实体。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/button-group.tsx",
+        "../forge-interaction-lab/public/components/008.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "剪贴板写入 Promise 成功后才显示完成；原型 catch 吞错不能迁移。标签切换可由 ButtonGroup，结果文案由宿主控制。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/button-link#interaction-008"
+    },
+    {
+      "id": "009",
+      "name": "文字滚动按钮",
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "StyledLink"
+      ],
+      "reason": "字符翻滚和文字出入是既有 CTA 内容效果，保留按钮/链接语义。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/link.tsx",
+        "../forge-interaction-lab/public/components/009.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "现有 children 可装文字层；逐字动画和 reduced motion 需融合，不能生成第二套 CTA API。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-009"
+    },
+    {
+      "id": "010",
+      "name": "组合操作按钮",
+      "mode": "compose",
+      "target": [
+        "Button",
+        "IconTrigger",
+        "DropdownPanel",
+        "MenuItem"
+      ],
+      "reason": "主按钮加独立箭头触发器即可形成组合操作示例；IconTrigger 已有 panel 和关闭回调，不新增 SplitButton。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/dropdown-panel.tsx",
+        "core/src/components/ui/menu-item.tsx",
+        "core/src/components/ui/icon-trigger.tsx",
+        "../forge-interaction-lab/public/components/010.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "IconTrigger/DropdownPanel 尚不提供完整 menuitemradio、方向键游标和选中项聚焦；示例壳须补受控选择、焦点恢复与业务提交，不假称容器自带菜单协议。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/button-link#interaction-010"
+    },
+    {
+      "id": "011",
+      "name": "扇形快捷操作",
+      "mode": "compose",
+      "target": [
+        "IconButton",
+        "IconTrigger"
+      ],
+      "reason": "扇形只是四个命令按钮的布局和进出场；以现有图标按钮组合，不新增 RadialMenu。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/menu-item.tsx",
+        "core/src/components/ui/icon-trigger.tsx",
+        "../forge-interaction-lab/public/components/011.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "径向布局、展开状态和方向键遍历由局部示例控制；隐藏项不可聚焦、视口边界与小屏可达性需验证，菜单容器并未内置这些。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/menu#interaction-011"
+    },
+    {
+      "id": "012",
+      "name": "书签丝带",
+      "mode": "enhance",
+      "target": [
+        "IconButton"
+      ],
+      "reason": "书签丝带是收藏图标按钮的 pressed 状态与计数反馈。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/012.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "IconButton 已透传 aria-pressed；丝带与爆发动画未内置，收藏数据与计数仍由宿主提供。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-012"
+    },
+    {
+      "id": "013",
+      "name": "弹性开关",
+      "mode": "enhance",
+      "target": [
+        "Toggle"
+      ],
+      "reason": "Toggle 已有 checked/onChange、role=switch 和 motion，弹性手柄应融合到该二值输入。",
+      "source": [
+        "core/src/components/ui/forms/selection-control.tsx",
+        "../forge-interaction-lab/public/components/013.html",
+        "core/test/toggle-motion.test.tsx",
+        "src/app/components/_migration-toggle-preview.tsx"
+      ],
+      "primaryTarget": "Toggle",
+      "reviewStatus": "user_accepted",
+      "implementationStatus": "implemented_on_migration_branch",
+      "integrationPreview": "/prototype/component-fusion#toggle",
+      "documentationPreview": "/components/input-field#toggle",
+      "integratedInto": "Toggle",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，过",
+        "scope": "上一轮集中预览的 Toggle、Accordion、Pagination 三项"
+      },
+      "initialApiGap": "Toggle 本地融合手柄弹性伸缩与可选 draggable（默认 false）；点击/键盘与受控契约不变，拖动越过中点后提交，pointercancel、丢失捕获、Escape 或禁用取消手势；已于 2026-10-14 通过用户验收。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/input-field#interaction-013"
+    },
+    {
+      "id": "014",
+      "name": "待办清单",
+      "mode": "enhance",
+      "target": [
+        "Checklist"
+      ],
+      "reason": "Checklist 已有 tasks/onTasksChange、逐项完成及汇总播报；原型划线与完成反馈归同一组件。",
+      "source": [
+        "core/src/components/ui/checklist.tsx",
+        "../forge-interaction-lab/public/components/014.html"
+      ],
+      "primaryTarget": "Checklist",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "日期、紧急标签与完成汇总是可选展示；追加动效需保留焦点与受控任务状态。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/checklist#interaction-014"
+    },
+    {
+      "id": "015",
+      "name": "套餐选择卡",
+      "mode": "compose",
+      "target": [
+        "RadioWithLabel",
+        "RadioButton",
+        "SurfaceCard"
+      ],
+      "reason": "套餐选择实质为互斥选项组；既有单选控件加卡片内容足以组织示例。",
+      "source": [
+        "core/src/components/ui/forms/selection-control.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "../forge-interaction-lab/public/components/015.html"
+      ],
+      "primaryTarget": "RadioWithLabel",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Radio 控件只有 checked/onChange，不自带组级 roving tabindex；分组方向键、卡片外框移动与价格计算由示例负责。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-015"
+    },
+    {
+      "id": "016",
+      "name": "星级评价",
+      "mode": "enhance",
+      "target": [
+        "RatingStars"
+      ],
+      "reason": "可编辑评分与现有星级展示同属评分能力，应扩展 RatingStars，不能另外造 AnimatedRating。",
+      "source": [
+        "core/src/components/ui/rating-stars.tsx",
+        "../forge-interaction-lab/public/components/016.html"
+      ],
+      "primaryTarget": "RatingStars",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "RatingStars 当前只读，只有 value/total/showValue；需可选 onChange、disabled/readOnly、预览值和键盘评分语义后才能承载原型。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/comment#interaction-016"
+    },
+    {
+      "id": "018",
+      "name": "滚动数量步进",
+      "mode": "compose",
+      "target": [
+        "IconButton"
+      ],
+      "reason": "原型只有减加按钮、1–12 边界和数量展示；用 IconButton 与页面内计数展示组合，数字动效可共享内部实现，不新增公共数量或数字组件。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/018.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "上下限、步长、方向键及总价由宿主状态控制；数字列转场保留在本地展示或共享内部渲染器。未来若需要可编辑数值或非法输入处理，再评估 TextField 增强。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/input-field#interaction-018"
+    },
+    {
+      "id": "019",
+      "name": "兴趣多选",
+      "mode": "compose",
+      "target": [
+        "CheckboxControl",
+        "CheckboxWithLabel"
+      ],
+      "reason": "原型是固定兴趣多选，无搜索或自由文本；组合已有多选控件。",
+      "source": [
+        "core/src/components/ui/checkbox.tsx",
+        "core/src/components/ui/forms/selection-control.tsx",
+        "../forge-interaction-lab/public/components/019.html"
+      ],
+      "primaryTarget": "CheckboxControl",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "组级最多五项、提示和 chip 布局由示例维护；不可把未选项全禁用导致无法理解限制，不新增 MultiSelect。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-019"
+    },
+    {
+      "id": "021",
+      "name": "日夜切换",
+      "mode": "enhance",
+      "target": [
+        "Toggle"
+      ],
+      "reason": "日夜切换依然是同一个 checked 状态，只扩展 Toggle 的手柄图标和转场。",
+      "source": [
+        "core/src/components/ui/forms/selection-control.tsx",
+        "../forge-interaction-lab/public/components/021.html"
+      ],
+      "primaryTarget": "Toggle",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Toggle 当前没有图标插槽/日夜视觉变体；全局主题持久化与 DOM 主题切换由宿主负责。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/input-field#interaction-021"
+    },
+    {
+      "id": "022",
+      "name": "点赞心形绽放",
+      "mode": "enhance",
+      "target": [
+        "IconButton"
+      ],
+      "reason": "点赞心形和数值弹动属于现有受控图标按钮反馈。",
+      "source": [
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/022.html"
+      ],
+      "primaryTarget": "IconButton",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Button 原生属性可表达 pressed；粒子动画未内置且必须可减弱，服务器计数由宿主驱动。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-022"
+    },
+    {
+      "id": "023",
+      "name": "通知设置展开",
+      "mode": "compose",
+      "target": [
+        "Toggle",
+        "ButtonGroup",
+        "Accordion"
+      ],
+      "reason": "通知设置是开关、互斥频率和条件展开的表单示例。",
+      "source": [
+        "core/src/components/ui/forms/selection-control.tsx",
+        "core/src/components/ui/button-group.tsx",
+        "core/src/components/ui/accordion.tsx",
+        "../forge-interaction-lab/public/components/023.html"
+      ],
+      "primaryTarget": "Toggle",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Toggle/ButtonGroup 已有受控值；整组启停、隐藏频率的焦点安排和业务保存不应加入通用控件。Accordion 只能在标题结构合适时复用。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-023"
+    },
+    {
+      "id": "024",
+      "name": "价格分布筛选",
+      "mode": "defer",
+      "target": [],
+      "reason": "原型核心是双柄数值区间、最小间距和分布着色；FilterPanel 只是筛选容器，不能据此宣称已有范围筛选。",
+      "apiGap": "core 无公开双柄 slider/range 控件，FilterPanel 仅 children 和应用/重置回调；需先定义区间输入契约并验收指针/键盘，当前暂缓而非新增公共组件。",
+      "source": [
+        "core/src/components/ui/filter-panel.tsx",
+        "../forge-interaction-lab/public/components/024.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "025",
+      "name": "浮动标签输入",
+      "mode": "enhance",
+      "target": [
+        "TextField"
+      ],
+      "reason": "浮动标签是 TextField 标签布局和聚焦/填充状态变体。",
+      "source": [
+        "core/src/components/ui/forms/text-field.tsx",
+        "../forge-interaction-lab/public/components/025.html"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前标签由 FieldFrame 外置渲染；须将浮动标签融合现有布局并保持 label-for，邮箱校验和邀请提交留给宿主。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/input-field#interaction-025"
+    },
+    {
+      "id": "026",
+      "name": "验证码输入",
+      "mode": "enhance",
+      "target": [
+        "OtpInput"
+      ],
+      "reason": "已有 OtpInput 的 value/onChange/verify/onSuccess，验证码反馈只增强现有实现。",
+      "source": [
+        "core/src/components/ui/otp-input.tsx",
+        "../forge-interaction-lab/public/components/026.html"
+      ],
+      "primaryTarget": "OtpInput",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "重发倒计时与验证服务属于示例；不得内置原型固定验证码或伪造验证成功。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/input-field#interaction-026"
+    },
+    {
+      "id": "027",
+      "name": "顶栏搜索展开",
+      "mode": "compose",
+      "target": [
+        "ToolbarSearchInput",
+        "CommandSearch",
+        "IconButton"
+      ],
+      "reason": "顶栏折叠搜索是输入、结果与展开外壳的组合；保留两个既有搜索入口。",
+      "source": [
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/components/ui/agent/command-search.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/027.html"
+      ],
+      "primaryTarget": "ToolbarSearchInput",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ToolbarSearchInput 不渲染结果；CommandSearch 自带另一个输入，需选择一个查询源而非叠两个搜索框。展开焦点、Escape 和结果键盘导航尚需补齐。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/page-header#interaction-027"
+    },
+    {
+      "id": "028",
+      "name": "自动伸展评论框",
+      "mode": "compose",
+      "target": [
+        "TextArea",
+        "CommentItem",
+        "Button"
+      ],
+      "reason": "TextArea 已有 autoGrow 和输入 ref；与评论展示及发送按钮组合即可。",
+      "source": [
+        "core/src/components/ui/forms/text-area.tsx",
+        "core/src/components/ui/comment-item.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/028.html"
+      ],
+      "primaryTarget": "TextArea",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "评论发布、计数和线程插入由宿主；CommentItem 不是输入 API，不能重复实现 autoGrow。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/comment#interaction-028"
+    },
+    {
+      "id": "029",
+      "name": "标签输入",
+      "mode": "enhance",
+      "target": [
+        "TextField"
+      ],
+      "reason": "TextField 已支持 tags/onRemoveTag 及原生 onKeyDown，继续融合标签进退场和键盘约定。",
+      "source": [
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/forms/field-utils.tsx",
+        "../forge-interaction-lab/public/components/029.html"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "新增标签、去重和上限可由宿主键盘处理；退格预选视觉尚缺。FieldTag 是内部实现，未从 core 公共入口导出，不能列作公共复用目标。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/input-field#interaction-029"
+    },
+    {
+      "id": "030",
+      "name": "日期区间日历",
+      "mode": "enhance",
+      "target": [
+        "Datepicker"
+      ],
+      "reason": "Datepicker 已有 mode=range、rangeStart/rangeEnd/onRangeChange，区间日历应融入现有表单控件。",
+      "source": [
+        "core/src/components/ui/forms/datepicker.tsx",
+        "../forge-interaction-lab/public/components/030.html"
+      ],
+      "primaryTarget": "Datepicker",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "原型双触发器、悬停预览和确认暂存不等于现 API 已全覆盖；需要先增强这些选项，CalendarCard 单值模式不能替代区间。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/input-field#interaction-030"
+    },
+    {
+      "id": "031",
+      "name": "自定义选择器",
+      "mode": "enhance",
+      "target": [
+        "SelectOption"
+      ],
+      "reason": "单选选项与受控选中值已有 SelectOption；增加选项信息与转场即可。",
+      "source": [
+        "core/src/components/ui/forms/select-option.tsx",
+        "../forge-interaction-lab/public/components/031.html",
+        "src/app/components/_migration-select-preview.tsx",
+        "core/test/select-option-rich.test.tsx"
+      ],
+      "primaryTarget": "SelectOption",
+      "reviewStatus": "user_accepted",
+      "implementationStatus": "implemented_on_migration_branch",
+      "integrationPreview": "/prototype/component-fusion#select",
+      "documentationPreview": "/components/input-field#selectoption",
+      "integratedInto": "SelectOption",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，过，其他的也都放到这里吧，我一次性看完",
+        "scope": "第三批集中预览的 SelectOption、TabBar / TabsContent、CommandSearch / Modal 三项",
+        "note": "记录用户视觉与交互认可；不改变搜索框聚焦时 Escape 未通过的浏览器记录及包预算超限结论。"
+      },
+      "initialApiGap": "SelectOptionItem 本地新增可选 icon 与 description，菜单项和单选触发器展示图标及说明，选中图标改用 Solar CheckCircle；既有 value/onChange、width、单多选与图片模式契约保留，文案由调用方提供。已于 2026-10-14 通过用户验收；技术检查与浏览器限制保留在第三批验证记录，不据此标记全部技术问题已解决。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/input-field#interaction-031"
+    },
+    {
+      "id": "032",
+      "name": "拖拽上传",
+      "mode": "enhance",
+      "target": [
+        "FileUpload",
+        "FileCard"
+      ],
+      "reason": "FileUpload 已有拖入、文件选择、FileCard 状态和重试，吸收拖入高亮与行进出场。",
+      "source": [
+        "core/src/components/ui/forms/file-upload.tsx",
+        "core/src/components/ui/forms/media-upload.tsx",
+        "../forge-interaction-lab/public/components/032.html"
+      ],
+      "primaryTarget": "FileUpload",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "FileItem 只有 id/name/size/state，没有数值进度；细进度/已传字节需扩展 FileCard。不得用 MediaUpload 的图片 src 模型假装覆盖一般文件队列。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/input-field#interaction-032"
+    },
+    {
+      "id": "033",
+      "name": "标题内联编辑",
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "IconButton"
+      ],
+      "reason": "阅读态/草稿态可由局部状态切换 TextField 与确认取消按钮；无须另开 InlineEdit 公共组件。",
+      "source": [
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/033.html"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "TextField 已 forwardRef 并透传键盘/blur，可实现选择文本、Enter/Escape/IME。草稿、空值校验与异步保存成功由宿主，失焦策略留示例明确。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-033"
+    },
+    {
+      "id": "036",
+      "name": "密码强度",
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "IconButton",
+        "ProgressBar"
+      ],
+      "reason": "密码可见性和强度规则是输入框的表单组合示例，规则反馈使用普通只读列表。",
+      "source": [
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/checklist.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/progress-bar.tsx",
+        "../forge-interaction-lab/public/components/036.html"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "TextField type 与 iconRight 可组合可见按钮；Checklist 是可交互待办，不宜假装只读安全规则。字符组合演示不能宣称安全强度判定。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-036"
+    },
+    {
+      "id": "037",
+      "name": "账号切换",
+      "mode": "compose",
+      "target": [
+        "AppLayout",
+        "AppSwitcherDropdown",
+        "ProfileCard",
+        "MenuItem"
+      ],
+      "reason": "AppLayout 已有 apps/onAppChange，AppSwitcherDropdown 已公开；账号/工作区切换优先复用既有入口。",
+      "source": [
+        "core/src/components/layouts/app-layout.tsx",
+        "core/src/components/ui/profile-card.tsx",
+        "core/src/components/ui/dropdown-panel.tsx",
+        "core/src/components/ui/menu-item.tsx",
+        "core/src/components/layouts/sidebar-popovers.tsx",
+        "../forge-interaction-lab/public/components/037.html"
+      ],
+      "primaryTarget": "AppLayout",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前切换回调只描述 UI 选中，并不执行身份、权限或会话切换；这些由宿主完成，账号菜单动效可加在既有弹层。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/menu#interaction-037"
+    },
+    {
+      "id": "038",
+      "name": "右键菜单",
+      "mode": "defer",
+      "target": [],
+      "reason": "右键菜单需要坐标锚点、触摸长按、子菜单和焦点回退；不能将 DropdownPanel 容器或 KebabMenu 名称视为等价能力。",
+      "apiGap": "KebabMenu 固定自身三点触发且只接平铺 items，无 openAt、任意 trigger 或 children 子菜单；先评估将触发协议融入现有菜单内部，本轮暂缓。",
+      "source": [
+        "core/src/components/ui/dropdown-panel.tsx",
+        "core/src/components/ui/menu-item.tsx",
+        "core/src/components/ui/kebab-menu.tsx",
+        "../forge-interaction-lab/public/components/038.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "039",
+      "name": "滑动选中标签",
+      "mode": "enhance",
+      "target": [
+        "TabBar",
+        "TabsContent"
+      ],
+      "reason": "滑动选中指示器与方向性内容切换属于既有标签栏和内容层；不再新增一套 tabs。",
+      "source": [
+        "core/src/components/ui/liquid-tabs.tsx",
+        "core/src/components/ui/tab-bar.tsx",
+        "core/src/components/ui/tabs-content.tsx",
+        "../forge-interaction-lab/public/components/039.html",
+        "src/app/components/_migration-tabs-preview.tsx"
+      ],
+      "primaryTarget": "TabBar",
+      "reviewStatus": "user_accepted",
+      "implementationStatus": "implemented_on_migration_branch",
+      "integrationPreview": "/prototype/component-fusion#tabs",
+      "documentationPreview": "/components/tab#tabbar",
+      "integratedInto": "TabBar / TabsContent",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，过，其他的也都放到这里吧，我一次性看完",
+        "scope": "第三批集中预览的 SelectOption、TabBar / TabsContent、CommandSearch / Modal 三项",
+        "note": "记录用户视觉与交互认可；不改变搜索框聚焦时 Escape 未通过的浏览器记录及包预算超限结论。"
+      },
+      "initialApiGap": "TabsContent 本地新增 transition（fade 默认，slide 可选）及 direction；slide 以约 140ms 退场、300ms 入场顺序切换，同一时间只挂载一个业务子树，退场立即 inert，减少动效时即时切换。TabBar 复用现有滑动指示器；业务状态由宿主持有，已于 2026-10-14 通过用户验收；技术检查与浏览器限制保留在第三批验证记录，不据此标记全部技术问题已解决。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/tab#interaction-039"
+    },
+    {
+      "id": "040",
+      "name": "AppLayout 侧栏动效",
+      "mode": "enhance",
+      "target": [
+        "AppLayout"
+      ],
+      "reason": "侧栏伸缩、选中高亮跟随和文字转场已融合到现有 AppLayout 的本地实现；沿用菜单、路由和布局结构，SidebarMenu 无需同步扩展。",
+      "source": [
+        "core/src/components/layouts/app-layout.tsx",
+        "../forge-interaction-lab/public/components/040.html"
+      ],
+      "primaryTarget": "AppLayout",
+      "integrationPreview": "/prototype/sidebar-motion",
+      "integratedInto": "AppLayout",
+      "implementationStatus": "implemented_on_migration_branch",
+      "reviewStatus": "user_accepted",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，这个侧栏动效通过了，就这样。接下来啥计划",
+        "scope": "040 AppLayout 侧栏动效，仅此项"
+      },
+      "initialApiGap": "本轮侧栏动效已通过用户验收；收展、子菜单、移动抽屉和 reduced motion 已在本地验证。尚未提交或发布。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/menu#interaction-040"
+    },
+    {
+      "id": "041",
+      "name": "底部导航凹槽",
+      "mode": "enhance",
+      "target": [
+        "TabBar"
+      ],
+      "reason": "原型采用 role=tab、aria-selected 和左右方向键；凹槽及抬起图标是 TabBar 的指示器/图标变体。",
+      "source": [
+        "core/src/components/ui/menu-item.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/tab-bar.tsx",
+        "../forge-interaction-lab/public/components/041.html"
+      ],
+      "primaryTarget": "TabBar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "TabItem 当前只有 label/active/badge，无 icon；需增加图标插槽和可选外观。如果未来是实际跨页导航，应另对照 MenuItem.href，不能混用 tab 与链接语义。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/menu#interaction-041"
+    },
+    {
+      "id": "042",
+      "name": "分步向导",
+      "mode": "compose",
+      "target": [
+        "Stepper",
+        "TextField",
+        "SelectOption",
+        "Button"
+      ],
+      "reason": "分步向导是进度展示与分步表单组合；原型三个业务步骤不生成 Wizard 公共 API。",
+      "source": [
+        "core/src/components/ui/stepper.tsx",
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/forms/select-option.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/042.html"
+      ],
+      "primaryTarget": "Stepper",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Stepper 只有 total/current，不含步骤标签/点击回退；回退、校验和步骤面板转场由宿主实现，不能声称它已有完整向导能力。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/pagination-stepper#interaction-042"
+    },
+    {
+      "id": "043",
+      "name": "分页伸缩",
+      "mode": "enhance",
+      "target": [
+        "Pagination"
+      ],
+      "reason": "Pagination 已有 currentPage/totalPages/onPageChange；伸缩胶囊指示器融合原分页。",
+      "source": [
+        "core/src/components/ui/pagination.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/043.html",
+        "core/test/pagination-motion.test.tsx",
+        "src/app/components/_migration-pagination-preview.tsx"
+      ],
+      "primaryTarget": "Pagination",
+      "reviewStatus": "user_accepted",
+      "implementationStatus": "implemented_on_migration_branch",
+      "integrationPreview": "/prototype/component-fusion#pagination",
+      "documentationPreview": "/components/pagination-stepper#pagination",
+      "integratedInto": "Pagination",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，过",
+        "scope": "上一轮集中预览的 Toggle、Accordion、Pagination 三项"
+      },
+      "initialApiGap": "Pagination 本地新增 locale（默认 zh）与 motion（默认 auto）；按实际按钮测量选中背景，父容器变窄时减少可见页码，保留原窗口规则、40px 点击区和首尾禁用；列表内容切换属于官网案例，已于 2026-10-14 通过用户验收。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/pagination-stepper#interaction-043"
+    },
+    {
+      "id": "044",
+      "name": "问答折叠",
+      "mode": "enhance",
+      "target": [
+        "Accordion"
+      ],
+      "reason": "Accordion 已支持单项展开、受控 value、MotionCollapse 和键盘移动，问答动效沿用既有入口。",
+      "source": [
+        "core/src/components/ui/accordion.tsx",
+        "../forge-interaction-lab/public/components/044.html",
+        "core/test/accordion-motion.test.tsx",
+        "src/app/components/_migration-accordion-preview.tsx"
+      ],
+      "primaryTarget": "Accordion",
+      "reviewStatus": "user_accepted",
+      "implementationStatus": "implemented_on_migration_branch",
+      "integrationPreview": "/prototype/component-fusion#accordion",
+      "documentationPreview": "/components/motion#accordion",
+      "integratedInto": "Accordion",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，过",
+        "scope": "上一轮集中预览的 Toggle、Accordion、Pagination 三项"
+      },
+      "initialApiGap": "Accordion 本地复用 MotionCollapse 加入约 500ms 高度/箭头过渡与正文轻移淡入，改用 Solar AltArrowDown；关闭内容立即 inert、内部焦点回标题，嵌套键盘导航只作用本级；API 与原样式不变，已于 2026-10-14 通过用户验收。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/motion#interaction-044"
+    },
+    {
+      "id": "045",
+      "name": "菜单由按钮展开",
+      "mode": "compose",
+      "target": [
+        "IconTrigger",
+        "Drawer",
+        "MenuItem"
+      ],
+      "reason": "全页菜单涉及遮罩与焦点约束，应组合已有 Drawer/触发器/菜单项；单独 IconTrigger.panel 不等于模态外壳。",
+      "source": [
+        "core/src/components/ui/icon-trigger.tsx",
+        "core/src/components/ui/menu-item.tsx",
+        "core/src/components/ui/drawer.tsx",
+        "core/src/internal/dialog-surface.tsx",
+        "../forge-interaction-lab/public/components/045.html"
+      ],
+      "primaryTarget": "IconTrigger",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Drawer 已接 open/onOpenChange 并经 DialogSurface；从触发点扩散的 clip-path 仍需增强原覆盖层，不能复制一套焦点锁。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/menu#interaction-045"
+    },
+    {
+      "id": "046",
+      "name": "命令面板",
+      "mode": "enhance",
+      "target": [
+        "CommandSearch",
+        "Modal"
+      ],
+      "reason": "命令搜索已有 items/query/onSelect；折叠展开及模态展示可组合 Modal，搜索行为增强原组件。",
+      "source": [
+        "core/src/components/ui/agent/command-search.tsx",
+        "core/src/components/ui/modal.tsx",
+        "../forge-interaction-lab/public/components/046.html",
+        "src/app/components/_migration-command-preview.tsx",
+        "core/test/command-search-interactions.test.tsx"
+      ],
+      "primaryTarget": "CommandSearch",
+      "reviewStatus": "user_accepted",
+      "implementationStatus": "implemented_on_migration_branch",
+      "integrationPreview": "/prototype/component-fusion#command",
+      "documentationPreview": "/components/agent#commandsearch",
+      "integratedInto": "CommandSearch / Modal",
+      "acceptance": {
+        "date": "2026-10-14",
+        "userStatement": "OK，过，其他的也都放到这里吧，我一次性看完",
+        "scope": "第三批集中预览的 SelectOption、TabBar / TabsContent、CommandSearch / Modal 三项",
+        "note": "记录用户视觉与交互认可；不改变搜索框聚焦时 Escape 未通过的浏览器记录及包预算超限结论。"
+      },
+      "initialApiGap": "CommandSearch 本地新增 locale（默认 zh）、color、motion、autoFocus，item 支持 icon 和展示用 shortcut；融合方向键、Home/End、Enter、IME 保护、滚动可见及 combobox/listbox/active-descendant 语义。Modal 新增 locale/closeLabel 并使用 Solar 关闭图标；打开关闭、局部 Cmd/Ctrl+K 和业务执行属于官网组合，已于 2026-10-14 通过用户验收；技术检查与浏览器限制保留在第三批验证记录，不据此标记全部技术问题已解决。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/menu#interaction-046"
+    },
+    {
+      "id": "047",
+      "name": "时间区间切换",
+      "mode": "enhance",
+      "target": [
+        "ButtonGroup"
+      ],
+      "reason": "时间范围是 ButtonGroup 的互斥值选择；胶囊伸缩融合已有 moving indicator，数值使用本地计数展示，共享内部数字动效。",
+      "source": [
+        "core/src/components/ui/button-group.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/047.html"
+      ],
+      "primaryTarget": "ButtonGroup",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "按钮组不获取时间序列；曲线插值与数据请求属于图表示例，不能用随机数据替代实际结果。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/tab#interaction-047"
+    },
+    {
+      "id": "048",
+      "name": "滑动联动标签",
+      "mode": "enhance",
+      "target": [
+        "TabBar",
+        "TabsContent"
+      ],
+      "reason": "滚动页面与标签指示器联动仍归现有 tabs 系统，增强连续位置同步。",
+      "source": [
+        "core/src/components/ui/tab-bar.tsx",
+        "core/src/components/ui/liquid-tabs.tsx",
+        "core/src/components/ui/tabs-content.tsx",
+        "../forge-interaction-lab/public/components/048.html"
+      ],
+      "primaryTarget": "TabBar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前 TabBar 仅离散 active、TabsContent 仅单内容重挂载；scroll-snap、连续指示器、鼠标拖动与非当前面板 inert 尚未支持，需明确受控联动接口。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/components/tab#interaction-048"
+    },
+    {
+      "id": "049",
+      "name": "层叠内容卡",
+      "mode": "enhance",
+      "target": [
+        "SurfaceCard",
+        "IconButton",
+        "Button"
+      ],
+      "reason": "内容卡层叠、悬停揭示和书签按钮属于 SurfaceCard 可选表现与按钮组合。",
+      "source": [
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/049.html"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "SurfaceCard 当前仅结构/样式类，没有 motion、pointer/focus 透传或展开状态；须扩展最小行为插槽，不能声称 className 已涵盖全部交互。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/card#interaction-049"
+    },
+    {
+      "id": "050",
+      "name": "光照倾斜卡",
+      "mode": "enhance",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "光照与倾斜是同一个卡片的装饰反馈；阅读状态留受控按钮。",
+      "source": [
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/050.html"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "SurfaceCard 无指针事件/motion 属性；需内部效果或透传后实现，禁用动效时内容仍稳定，不能新增 TiltCard 公共组件。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/card#interaction-050"
+    },
+    {
+      "id": "053",
+      "name": "可拖拽卡片堆",
+      "mode": "defer",
+      "target": [],
+      "reason": "原型有卡片队列、滑动接受/跳过、速度阈值和撤销历史，超出 SurfaceCard 的内容容器职责。",
+      "apiGap": "core 没有受控 deck/撤销历史/手势事务契约；原型 pointercancel 还会触发接受或跳过。暂缓，不能为去重将这套能力硬塞 SurfaceCard。",
+      "source": [
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/053.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "054",
+      "name": "关注个人卡",
+      "mode": "compose",
+      "target": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "reason": "头像、关注按钮和统计数字可组合个人卡示例；关注关系由宿主维护。",
+      "source": [
+        "core/src/components/ui/avatar.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/stat-card.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/internal/animated-number.tsx",
+        "core/src/components/ui/user-card.tsx",
+        "../forge-interaction-lab/public/components/054.html"
+      ],
+      "primaryTarget": "Avatar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "UserCard 虽有资料和 stats，但没有关注动作/footer 插槽；现阶段组合 SurfaceCard，不将计数/关注服务写入 StatCard 或新 FollowCard。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/card#interaction-054"
+    },
+    {
+      "id": "056",
+      "name": "月年计费切换",
+      "mode": "compose",
+      "target": [
+        "ButtonGroup",
+        "RadioButton",
+        "TextField",
+        "Button"
+      ],
+      "reason": "月年周期、套餐、数量与总价是表单组合，复用已有互斥控件与数字反馈。",
+      "source": [
+        "core/src/components/ui/button-group.tsx",
+        "core/src/components/ui/forms/selection-control.tsx",
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/056.html"
+      ],
+      "primaryTarget": "ButtonGroup",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "折扣、席位范围和购买状态是业务规则；不新增 PricingCard/BillingToggle。组级键盘与真实支付均需宿主完成。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-056"
+    },
+    {
+      "id": "057",
+      "name": "头像评价轮播",
+      "mode": "compose",
+      "target": [
+        "ReviewItem",
+        "Avatar",
+        "IconButton"
+      ],
+      "reason": "头像只充当评价切换控制；评价展示复用 ReviewItem，轮播状态留局部示例。",
+      "source": [
+        "core/src/components/ui/review-item.tsx",
+        "core/src/components/ui/avatar.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/057.html"
+      ],
+      "primaryTarget": "ReviewItem",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ReviewItem 当前 content:string，无法原样表达逐词强调；自动轮播、暂停和拖拽并未由这些组件提供，示例实现并验证后才能宣称完成，暂不新增 Carousel。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/comment#interaction-057"
+    },
+    {
+      "id": "058",
+      "name": "阅读进度卡",
+      "mode": "compose",
+      "target": [
+        "ProgressBar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "reason": "滚动位置计算、文章目录与进度显示是阅读示例；进度值可直接传 ProgressBar。",
+      "source": [
+        "core/src/components/ui/progress-bar.tsx",
+        "core/src/components/ui/button-group.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/058.html"
+      ],
+      "primaryTarget": "ProgressBar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ButtonGroup 是互斥选项语义，不等同 aria-current 目录锚点；目录使用普通按钮/链接。阅读环形进度和 scroll-spy 由示例实现。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/progress#interaction-058"
+    },
+    {
+      "id": "059",
+      "name": "活动报名卡",
+      "mode": "compose",
+      "target": [
+        "EventCard",
+        "ButtonGroup",
+        "AvatarGroup",
+        "Button"
+      ],
+      "reason": "EventCard 提供活动摘要，报名选择、人数与日历动作由现有控件组成活动案例。",
+      "source": [
+        "core/src/components/ui/event-card.tsx",
+        "core/src/components/ui/button-group.tsx",
+        "core/src/components/ui/avatar.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/059.html"
+      ],
+      "primaryTarget": "EventCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "EventCard 只有 title/timeRange/avatars，无任意 footer/容量或 RSVP API；外层组合即可，不假装其自带报名和真实日历写入。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/calendar#interaction-059"
+    },
+    {
+      "id": "061",
+      "name": "缩略图展开",
+      "mode": "defer",
+      "target": [],
+      "reason": "缩略图放大涉及灯箱、缩放和平移；ImageGrid 目前只显示图片集合。",
+      "apiGap": "ImageGrid 没有 onOpen、焦点锁、缩放与键盘浏览；媒体范围是否保留也待核实，不能标成 SurfaceCard 或 ImageGrid 已完成。",
+      "source": [
+        "core/src/components/ui/image-grid.tsx",
+        "../forge-interaction-lab/public/components/061.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "062",
+      "name": "登录反馈",
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "Button"
+      ],
+      "reason": "登录错误抖动和成功页属于表单提交状态，用既有输入与按钮组合。",
+      "source": [
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/062.html"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "认证结果和重试限制由宿主；不得迁入固定密码或按次数制造成功。状态可用 TextField.error 和 Button.disabled 表达。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-062"
+    },
+    {
+      "id": "063",
+      "name": "逐题注册",
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "Button",
+        "Stepper"
+      ],
+      "reason": "逐题注册是宿主表单状态机，已有控件负责输入和进度。",
+      "source": [
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/stepper.tsx",
+        "../forge-interaction-lab/public/components/063.html"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Stepper 为展示而非步骤导航；逐题回退/焦点、校验和账号创建需本地示例或宿主控制，不把演示完成视作邮件已发送。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-063"
+    },
+    {
+      "id": "066",
+      "name": "社交登录按钮",
+      "mode": "compose",
+      "target": [
+        "Button",
+        "Avatar"
+      ],
+      "reason": "社交登录触发器与登录后账号行可复用 Button/Avatar，登录方式选择留表单示例。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/avatar.tsx",
+        "../forge-interaction-lab/public/components/066.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "品牌图标保留真实标识；OAuth、busy、成功与恢复由真实业务回调驱动，不能复制定时器假登录。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/button-link#interaction-066"
+    },
+    {
+      "id": "067",
+      "name": "锁定倒计时",
+      "mode": "compose",
+      "target": [
+        "Button"
+      ],
+      "reason": "锁定倒计时是受限状态提示，滚动秒数与恢复按钮可复用。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "core/src/internal/animated-number.tsx",
+        "../forge-interaction-lab/public/components/067.html"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "倒计时仅反映服务端截止时间；当前组件不执行解锁或重置邮件，不能内置原型 15 秒后自动授权。 数字反馈留在本地展示或共享内部渲染器，不设独立公共组件。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/button-link#interaction-067"
+    },
+    {
+      "id": "069",
+      "name": "头像裁剪",
+      "mode": "defer",
+      "target": [],
+      "reason": "头像裁剪是图像编辑和文件输出能力，既有 MediaUpload/Avatar 不能完成。",
+      "apiGap": "原型仅 transform SVG，core 也无像素裁剪、旋转坐标或导出文件；暂缓，避免将展示与上传组件假映射成 Cropper。",
+      "source": [
+        "core/src/components/ui/forms/media-upload.tsx",
+        "core/src/components/ui/avatar.tsx",
+        "../forge-interaction-lab/public/components/069.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "070",
+      "name": "堆叠通知",
+      "mode": "enhance",
+      "target": [
+        "ToastProvider",
+        "useToast"
+      ],
+      "reason": "ToastProvider 已有通知列表、退场及 hover/focus 暂停；堆叠展开和滑动反馈应融合该体系。",
+      "source": [
+        "core/src/components/ui/toast.tsx",
+        "../forge-interaction-lab/public/components/070.html"
+      ],
+      "primaryTarget": "ToastProvider",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ToastOptions 仅 title/description/duration，ToastApi 仅 toast/dismiss；缺 severity、action、update 和 stack 模式。须先扩展现 API 再接待完成转成功，取消手势不可触发删除。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/modal#interaction-070"
+    },
+    {
+      "id": "071",
+      "name": "滑动删除与撤销",
+      "mode": "enhance",
+      "target": [
+        "ListItem",
+        "ToastProvider",
+        "useToast"
+      ],
+      "reason": "行滑动属于 ListItem 的可选交互，撤销提示沿用 Toast 体系。",
+      "source": [
+        "core/src/components/ui/list-item.tsx",
+        "core/src/components/ui/toast.tsx",
+        "../forge-interaction-lab/public/components/071.html"
+      ],
+      "primaryTarget": "ListItem",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ListItem 当前只有展示/trailing，无 swipe/onDelete；Toast 缺 action。先补可选行行为和通知操作，业务事务、焦点恢复与垂直滚动由同一受控流程负责。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/list#interaction-071"
+    },
+    {
+      "id": "072",
+      "name": "内联提示收拢",
+      "mode": "defer",
+      "target": [],
+      "reason": "页面内持久告警有 severity、详情与逐条关闭，生命周期不同于 Tooltip、Toast 或普通通知条。",
+      "apiGap": "core 无公开 inline alert/status 契约；NotificationItem 不含关闭/详情，Accordion 仅展开内容。暂缓独立能力定义，不能为避免新增而标为现有容器已支持。",
+      "source": [
+        "../forge-interaction-lab/public/components/072.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "073",
+      "name": "公告滚动",
+      "mode": "defer",
+      "target": [],
+      "reason": "全局公告含轮播、暂停、关闭和恢复，是完整通知区域能力，Button 只覆盖其中操作。",
+      "apiGap": "当前无公开公告条或公告序列状态；先确认跨场景需求和无障碍播报，不将整个原型变成公共 Banner，也不假称普通 Button 能承接。",
+      "source": [
+        "core/src/components/ui/button.tsx",
+        "../forge-interaction-lab/public/components/073.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "074",
+      "name": "通知铃菜单",
+      "mode": "compose",
+      "target": [
+        "IconTrigger",
+        "NotificationItem",
+        "NotificationBadge",
+        "TabBar",
+        "DropdownPanel"
+      ],
+      "reason": "通知按钮已有 IconTrigger.panel，内部组合通知项与未读筛选即可，避免新增 NotificationCenter。",
+      "source": [
+        "core/src/components/ui/notification-item.tsx",
+        "core/src/components/ui/badge.tsx",
+        "core/src/components/ui/tab-bar.tsx",
+        "core/src/components/ui/dropdown-panel.tsx",
+        "core/src/components/ui/icon-trigger.tsx",
+        "../forge-interaction-lab/public/components/074.html"
+      ],
+      "primaryTarget": "IconTrigger",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "IconTrigger 有 Escape/外部点击，但缺复杂通知面板初始焦点策略与视口碰撞；未读总数/标记已读由宿主，DropdownPanel 仅视觉容器。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/list#interaction-074"
+    },
+    {
+      "id": "075",
+      "name": "上传进度面板",
+      "mode": "compose",
+      "target": [
+        "FileUpload",
+        "FileCard",
+        "ProgressBar",
+        "Accordion"
+      ],
+      "reason": "上传队列、折叠头和总体进度是既有上传、进度和展开控件组合。",
+      "source": [
+        "core/src/components/ui/forms/media-upload.tsx",
+        "core/src/components/ui/progress-bar.tsx",
+        "core/src/components/ui/forms/file-upload.tsx",
+        "core/src/components/ui/accordion.tsx",
+        "../forge-interaction-lab/public/components/075.html"
+      ],
+      "primaryTarget": "FileUpload",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "FileCard 支持状态和重试但无百分比；逐文件细进度需先增强，整体按字节加权由宿主计算。Accordion 仅在单项标题结构合适时使用，网络执行不内置。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/input-field#interaction-075"
+    },
+    {
+      "id": "076",
+      "name": "跟随工具提示",
+      "mode": "enhance",
+      "target": [
+        "Tooltip",
+        "TooltipGroup"
+      ],
+      "reason": "TooltipGroup 已有初次延迟与 warmWindow，应增强现有共享提示的跟随动效。",
+      "source": [
+        "core/src/components/ui/tooltip.tsx",
+        "../forge-interaction-lab/public/components/076.html"
+      ],
+      "primaryTarget": "Tooltip",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "TooltipBubble 目前 CSS 方位定位，各 Tooltip 独立实例；连续滑移、动态测量和视口碰撞不是现有 warmWindow 自动具备的能力，需内部实现。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/tooltip#interaction-076"
+    },
+    {
+      "id": "077",
+      "name": "表情反应面板",
+      "mode": "enhance",
+      "target": [
+        "ChatBubble",
+        "IconTrigger",
+        "IconButton"
+      ],
+      "reason": "消息反应是 ChatBubble 的附属行为，先给现有消息提供可组合 reactions/footer 插槽，选择器复用现有弹层与按钮。",
+      "source": [
+        "core/src/components/ui/chat-bubble.tsx",
+        "core/src/components/ui/icon-trigger.tsx",
+        "core/src/components/ui/icon-button.tsx",
+        "../forge-interaction-lab/public/components/077.html"
+      ],
+      "primaryTarget": "ChatBubble",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ChatBubble 当前没有 children/actions/reactions 插槽，也无 selected/count 回调；需要受控反应模型或附件插槽。emoji 是内容而非 Solar 功能图标，不能宣称当前已支持。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chat#interaction-077"
+    },
+    {
+      "id": "078",
+      "name": "滑动回复",
+      "mode": "enhance",
+      "target": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "reason": "引用回复与手势属于现有消息/输入器的增强，不新增 SwipeToReply 或第二套 composer。",
+      "source": [
+        "core/src/components/ui/chat-bubble.tsx",
+        "core/src/components/ui/chat-input-bar.tsx",
+        "../forge-interaction-lab/public/components/078.html"
+      ],
+      "primaryTarget": "ChatBubble",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ChatBubble 无回复手势/quote 插槽，ChatInputBar 无 replyTo/cancelReply 契约；需最小受控扩展，pointercancel 回退、文本选择和 IME 行为必须保留。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chat#interaction-078"
+    },
+    {
+      "id": "079",
+      "name": "骨架内容显现",
+      "mode": "defer",
+      "target": [],
+      "reason": "骨架占位与内容揭示不是 ProgressBar，也不是 EmptyState 的无数据状态。",
+      "apiGap": "core 没有 Skeleton 或通用内容占位尺寸契约；各内容的占位几何、aria-busy 与 reduced motion 需单独设计，当前暂缓公共组件而非硬映射。",
+      "source": [
+        "src/app/components/_migration-empty-preview.tsx",
+        "../forge-interaction-lab/public/components/079.html"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "080",
+      "name": "轨道同步指示",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button",
+        "ProgressBar"
+      ],
+      "reason": "轨道、阶段标题与取消/重试是同步任务示例。轨道插画留内部显示，容器和动作复用现有组件，不新增 LoadingState 或 TaskStatus 公共入口。",
+      "source": [
+        "../forge-interaction-lab/public/components/080.html",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/progress-bar.tsx"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ProgressBar 仅能显示已知数值；未知阶段与插画不是百分比 API。原型 5200ms/340 文件和自动成功由示例模拟，真实状态需外部传入。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/progress#interaction-080"
+    },
+    {
+      "id": "081",
+      "name": "环形完成反馈",
+      "mode": "enhance",
+      "target": [
+        "Button",
+        "ProgressBar"
+      ],
+      "reason": "支付按钮缩为圆环、完成后展开回执；受控忙碌/结果转场并入 Button，圆形进度作为 ProgressBar 呈现变体，回执留组合层，不新增 PaymentButton 或 RingProgress。",
+      "source": [
+        "../forge-interaction-lab/public/components/081.html",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/progress-bar.tsx"
+      ],
+      "primaryTarget": "Button",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Button 当前没有 loading/result 契约；ProgressBar 仅水平条，无环形几何。需补受控状态与环形呈现，不能用定时器结束断言付款成功。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/button-link#interaction-081"
+    },
+    {
+      "id": "083",
+      "name": "队列进度转换",
+      "mode": "enhance",
+      "target": [
+        "ProgressBar"
+      ],
+      "reason": "排队时未知进度，构建开始后同一指示器转为数值进度，属于现有进度条能力增强。",
+      "source": [
+        "../forge-interaction-lab/public/components/083.html",
+        "core/src/components/ui/progress-bar.tsx"
+      ],
+      "primaryTarget": "ProgressBar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前 value 默认 0、只渲染 determinate 填充；需 indeterminate 状态及不输出 aria-valuenow 的分支。部署步骤/日志/重试仍由示例管理。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/progress#interaction-083"
+    },
+    {
+      "id": "084",
+      "name": "语音响应圆点",
+      "mode": "enhance",
+      "target": [
+        "ChatInputBar"
+      ],
+      "reason": "已有 onDictate 语音入口，聆听/识别提示和音量圆点可作为其语音输入状态呈现；圆点是内部视觉，不另建 VoiceActivity 公共组件。",
+      "source": [
+        "../forge-interaction-lab/public/components/084.html",
+        "core/src/components/ui/chat-input-bar.tsx"
+      ],
+      "primaryTarget": "ChatInputBar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "现 onDictate 只是点击回调，无按住开始/结束/取消、会话状态或 level 契约。增强须由调用方提供真实状态和音量；原型正弦音量、预设文字不能冒充录音。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chat#interaction-084"
+    },
+    {
+      "id": "085",
+      "name": "下拉刷新",
+      "mode": "defer",
+      "target": [],
+      "reason": "真正缺少的是滚动容器顶部的下拉手势与刷新生命周期。ListGroup/ListItem 是显示容器，不能假称已支持 PullToRefresh；暂缓公共能力。",
+      "apiGap": "需要 scrollTop=0 判定、方向锁、滚动互斥、pointercancel、受控 refreshing/错误和键盘替代入口。原型仅 70px 阈值及模拟头插，缺原生滚动边界。",
+      "source": [
+        "../forge-interaction-lab/public/components/085.html",
+        "core/src/components/ui/list-group.tsx",
+        "core/src/components/ui/list-item.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "086",
+      "name": "AI 流式回答",
+      "mode": "enhance",
+      "target": [
+        "StreamingAnswer",
+        "ChatInputBar"
+      ],
+      "reason": "增量回答、停止后保留、再次生成与现有流式回答和输入条一致；继续融合词句显现动效，不新增 AIAnswer。",
+      "source": [
+        "../forge-interaction-lab/public/components/086.html",
+        "core/src/components/ui/agent/streaming-answer.tsx",
+        "core/src/components/ui/chat-input-bar.tsx"
+      ],
+      "primaryTarget": "StreamingAnswer",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前 StreamingAnswer 已有 text/status/plain|markdown/animation 和停止冻结，ChatInputBar 有 onStop/status；只需核验原型的分块显现和真实流衔接，不能重复添加传输层或模拟 token 定时器。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/agent#interaction-086"
+    },
+    {
+      "id": "087",
+      "name": "配送步骤",
+      "mode": "enhance",
+      "target": [
+        "Stepper",
+        "HistoryGrouped"
+      ],
+      "reason": "离散阶段标签、当前阶段与连接线归 Stepper；移动货车及物流日志是场景组合，不另建 Steps 或 ShippingProgress。",
+      "source": [
+        "../forge-interaction-lab/public/components/087.html",
+        "core/src/components/ui/stepper.tsx",
+        "core/src/components/ui/history-grouped.tsx"
+      ],
+      "primaryTarget": "Stepper",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Stepper 当前只有 total/current 圆点，无 items 标签、状态、图标/指示器或步骤语义；需向后兼容的可选节点模型。HistoryGrouped 可呈现日志，不替代步骤条。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/components/pagination-stepper#interaction-087"
+    },
+    {
+      "id": "088",
+      "name": "资料夹空态",
+      "mode": "compose",
+      "target": [
+        "ListGroup",
+        "ListItem",
+        "Button"
+      ],
+      "reason": "空项目列表在 ListGroup.items 中呈现文件夹插画，创建后转为 ListItem；该跨元素动画保留在官网组合示例。",
+      "source": [
+        "../forge-interaction-lab/public/components/088.html",
+        "core/src/components/ui/list-group.tsx",
+        "core/src/components/ui/list-item.tsx",
+        "core/src/components/ui/button.tsx",
+        "src/app/components/_migration-empty-preview.tsx",
+        "core/src/components/ui/index.ts"
+      ],
+      "primaryTarget": "ListGroup",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "implementationScope": "空文件夹作为 ListGroup/ListItem/Button 官网组合；从实际点击按钮飞纸入夹，再切换真实项目列表，未保留 EmptyState 公共入口。",
+      "preview": "/prototype/component-fusion#empty",
+      "initialApiGap": "已实现实际按钮到文件夹的坐标轨迹与列表交接；真实创建请求、错误和数据持久化由调用方提供。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/cases/list#interaction-088"
+    },
+    {
+      "id": "089",
+      "name": "404 纠错",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "404 的罗盘、路径纠错、建议导航是页面结果示例；可共享内部空态排版，不增加 Result/NotFound 入口，也不把 404 当无数据状态。",
+      "source": [
+        "../forge-interaction-lab/public/components/089.html",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx",
+        "src/app/components/_migration-empty-preview.tsx"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "SurfaceCard 只提供排版；真实路由匹配与导航由业务提供。原型只改路径文字和 404→200，并未导航，不能宣称纠错恢复已实现。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/modal#interaction-089"
+    },
+    {
+      "id": "090",
+      "name": "可重试错误卡",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button",
+        "BarChart",
+        "StatCard"
+      ],
+      "reason": "错误详情/重试与成功图表在卡片内切换；共享内部状态排版，按钮和图表复用，避免再新增 ErrorState、Result 或 RetryCard。",
+      "source": [
+        "../forge-interaction-lab/public/components/090.html",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/charts/bar-chart.tsx",
+        "core/src/components/ui/stat-card.tsx",
+        "src/app/components/_migration-empty-preview.tsx"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "preview": "/prototype/component-fusion#empty",
+      "initialApiGap": "既有组件不执行网络重试；退避/次数/错误结果归调用方。本轮只有列表中的失败重试组合示例，未覆盖原型全部业务状态。",
+      "implementationSource": "src/app/components/_fusion/actions.tsx",
+      "officialHref": "/cases/card#interaction-090"
+    },
+    {
+      "id": "091",
+      "name": "离线消息队列",
+      "mode": "enhance",
+      "target": [
+        "ChatBubble",
+        "ChatInputBar"
+      ],
+      "reason": "消息 queued/pending/sent 的样式与回执适合增强 ChatBubble；输入条负责受控草稿和发送，队列留业务层，不新增 OfflineChat。",
+      "source": [
+        "../forge-interaction-lab/public/components/091.html",
+        "core/src/components/ui/chat-bubble.tsx",
+        "core/src/components/ui/chat-input-bar.tsx"
+      ],
+      "primaryTarget": "ChatBubble",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ChatBubble 当前仅 sent/received 与内容类型，无 delivery 状态/状态槽。持久化、去重和服务端确认不是 UI 能力；原型只是 DOM 队列与模拟重新连接。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chat#interaction-091"
+    },
+    {
+      "id": "092",
+      "name": "筛选空态恢复",
+      "mode": "compose",
+      "target": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "reason": "筛选条件及移除建议是业务查询状态；复用筛选框、搜索框、结果列表及内部空态排版，不新增 SearchRecovery。",
+      "source": [
+        "../forge-interaction-lab/public/components/092.html",
+        "core/src/components/ui/filter-panel.tsx",
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/components/ui/list-group.tsx",
+        "src/app/components/_migration-empty-preview.tsx"
+      ],
+      "primaryTarget": "FilterPanel",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "preview": "/prototype/component-fusion#empty",
+      "initialApiGap": "FilterPanel 只有 children 与 apply/reset/cancel，不能计算条件计数和纠错；原型本地商品数据算法应留案例。本轮只有列表中的关键词搜索恢复组合示例，未覆盖原型全部业务状态。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/filter#interaction-092"
+    },
+    {
+      "id": "093",
+      "name": "完成庆祝",
+      "mode": "compose",
+      "target": [
+        "Checklist",
+        "ProgressBar",
+        "Button"
+      ],
+      "reason": "Checklist 已支持受控 tasks 和逐项动效，完成总数可在调用方派生；徽章、连续天数、彩纸与列表退场属于完成场景，不新增 CelebrationChecklist。",
+      "source": [
+        "../forge-interaction-lab/public/components/093.html",
+        "core/src/components/ui/checklist.tsx",
+        "core/src/components/ui/progress-bar.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "Checklist",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "现 Checklist 无整组完成视图切换；可用内部过渡包装组合。四项和五日连续记录不得成为核心规则，减少动态效果需停彩纸。",
+      "implementationSource": "src/app/components/_fusion/forms-navigation.tsx",
+      "officialHref": "/cases/checklist#interaction-093"
+    },
+    {
+      "id": "095",
+      "name": "形态切换柱图",
+      "mode": "enhance",
+      "target": [
+        "BarChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "reason": "7/5/12 柱形态更新、悬停/键盘取值与固定选中是 BarChart 的交互增强；周期选择和汇总放组合示例。",
+      "source": [
+        "../forge-interaction-lab/public/components/095.html",
+        "core/src/components/ui/charts/bar-chart.tsx",
+        "core/src/components/ui/charts/chart-tooltip.tsx",
+        "core/src/components/ui/tab-bar.tsx"
+      ],
+      "primaryTarget": "BarChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "BarChart 只有 activeIndex 输入，无 onActiveIndexChange、selection、键盘入口、稳定数据键或参考线。补这些能力和数据过渡，不能说现有图已支持 pin/均值线。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-095"
+    },
+    {
+      "id": "096",
+      "name": "滑动股票折线",
+      "mode": "enhance",
+      "target": [
+        "SmoothLineChart",
+        "ChartTooltip",
+        "TabBar"
+      ],
+      "reason": "折线拖动查看与离开后回最新点属于 SmoothLineChart；价格、收益和事件说明在外部联动，不新增 StockChart。",
+      "source": [
+        "../forge-interaction-lab/public/components/096.html",
+        "core/src/components/ui/charts/smooth-line-chart.tsx",
+        "core/src/components/ui/charts/chart-tooltip.tsx",
+        "core/src/components/ui/tab-bar.tsx"
+      ],
+      "primaryTarget": "SmoothLineChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "仅有 activeIndex 输入，缺 scrubbing/keyboard 回调、事件注记及数据插值过渡；当前 SmoothLineChart 不处理鼠标/触摸追踪。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-096"
+    },
+    {
+      "id": "097",
+      "name": "重排环图",
+      "mode": "enhance",
+      "target": [
+        "DonutChart",
+        "ChartLegendItem"
+      ],
+      "reason": "图例排除分段、剩余比例重算、焦点分段和中心数值联动并入 DonutChart 的受控交互变体。",
+      "source": [
+        "../forge-interaction-lab/public/components/097.html",
+        "core/src/components/ui/charts/donut-chart.tsx",
+        "core/src/components/ui/charts/chart-legend-item.tsx"
+      ],
+      "primaryTarget": "DonutChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前 segments 无稳定 id/选中事件，静态 conic gradient 无可单独交互的分段图元。需受控包含集合、分段焦点与过渡；预算业务和汇总格式外置。 ChartLegendItem 当前也只有 label/value 视觉，需要外部按钮包装或受控交互扩展。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-097"
+    },
+    {
+      "id": "098",
+      "name": "实时数字滚动",
+      "mode": "enhance",
+      "target": [
+        "StatCard",
+        "LineChartStatCard"
+      ],
+      "reason": "实时指标和折线已有对应卡片；数字列滚动收为卡片共享内部渲染器，不以 AnimatedNumber 新增公共组件入口。",
+      "source": [
+        "../forge-interaction-lab/public/components/098.html",
+        "core/src/components/ui/stat-card.tsx",
+        "core/src/components/ui/line-chart-stat-card.tsx",
+        "core/src/internal/animated-number.tsx",
+        "core/src/components/ui/index.ts"
+      ],
+      "implementationStatus": "implemented_on_migration_branch",
+      "primaryTarget": "StatCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationScope": "StatCard / LineChartStatCard 已接入 animateValue、Intl locale/numberFormat 与 motion；数字渲染移到内部，默认呈现不变。",
+      "preview": "/prototype/component-fusion#numbers",
+      "initialApiGap": "两类指标卡已统一可选数字动效与格式；原数字/字符串默认展示不变。series 仍仅 wide 生效，数据来源与更新由场景控制。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/card#interaction-098"
+    },
+    {
+      "id": "099",
+      "name": "活动环",
+      "mode": "enhance",
+      "target": [
+        "MultilayerDonutChart"
+      ],
+      "reason": "现有 layers 已表示互相独立的多环比例，应优先扩为完整圆目标环；日期选择/目标单位/图例组合，不新增 ActivityRing。",
+      "source": [
+        "../forge-interaction-lab/public/components/099.html",
+        "core/src/components/ui/charts/multilayer-donut-chart.tsx"
+      ],
+      "primaryTarget": "MultilayerDonutChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "现组件固定 270° 且 value clamp 至 100%，无多圈超目标、高亮回调或数据过渡。360°/overflow 是明确待补能力，不能声称当前环图已还原原型。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-099"
+    },
+    {
+      "id": "100",
+      "name": "翻页计时器",
+      "mode": "defer",
+      "target": [],
+      "reason": "倒计时包含时间基准、暂停恢复、加时与完成语义；并非 StatCard 或数字滚动的等价能力。保留实验室计时示例，暂缓 Countdown 公共 API。",
+      "apiGap": "AnimatedNumber 仅 Intl 格式化数字及列位移，不支持 mm:ss、翻页前后半片或时钟状态。真实计时还需 deadline/后台恢复/完成回调；不能把这些混入数字动效。",
+      "source": [
+        "../forge-interaction-lab/public/components/100.html",
+        "core/src/internal/animated-number.tsx",
+        "core/src/components/ui/stat-card.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "101",
+      "name": "分栏工作区",
+      "mode": "defer",
+      "target": [],
+      "reason": "Grid 仅静态响应式列/间距/放置；拖拽分隔器是缺失的布局交互，暂缓 SplitPane 公共能力，不把 Grid 改称可伸缩工作区。",
+      "apiGap": "需受控尺寸、min/max、方向、pointer capture 与键盘 separator 协议。原型仅两栏 25–65% 和 Escape=42%，不能直接当通用布局契约。",
+      "source": [
+        "../forge-interaction-lab/public/components/101.html",
+        "core/src/components/layouts/grid.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "102",
+      "name": "嵌套文件树",
+      "mode": "defer",
+      "target": [],
+      "reason": "文件夹展开与文件选择需要层级数据、展开集合和树键盘模型；已有平面 ListItem、菜单或 Accordion 不等价 Tree。",
+      "apiGap": "需稳定 node id、嵌套 children、展开/选中控制、roving focus 和左右方向键。原型只有 folder hidden 切换及 file aria-pressed，尚非完整 treeview。",
+      "source": [
+        "../forge-interaction-lab/public/components/102.html",
+        "core/src/components/ui/list-item.tsx",
+        "core/src/components/ui/accordion.tsx",
+        "core/src/components/ui/index.ts"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "108",
+      "name": "时区交集",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "时区交集是 Intl 时间转换与工作时间规则的场景；滑块用原生 range，时间轴留内部，容器与动作复用，不新增 TimezonePlanner。",
+      "source": [
+        "../forge-interaction-lab/public/components/108.html",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "core 无时区交集算法或时间轴；原型日期固定 2026-10-12、工作时段固定 9–18。业务必须提供日期/时区/时段，不归日历组件默认规则。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/calendar#interaction-108"
+    },
+    {
+      "id": "109",
+      "name": "可用时间涂选",
+      "mode": "defer",
+      "target": [],
+      "reason": "FullCalendar 展示事件不支持批量涂选时段；该候选确实缺独立可用性选择模型，暂缓公开 AvailabilityPicker。",
+      "apiGap": "FullCalendar.CalendarEvent 只有 day/hour/label，无 time range、selected slots、onSelectionChange；需要时区、粒度、禁选、拖动增删和键盘网格。原型仅 5×5 一小时槽。",
+      "source": [
+        "../forge-interaction-lab/public/components/109.html",
+        "core/src/components/ui/full-calendar.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "110",
+      "name": "日程冲突修复",
+      "mode": "compose",
+      "target": [
+        "EventTag",
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "冲突提示、建议时间与 Undo 可作为日程业务示例；EventTag 只复用事件外观，时间轴与移动坐标留内部，不新增 ConflictRepair。",
+      "source": [
+        "../forge-interaction-lab/public/components/110.html",
+        "core/src/components/ui/event-tag.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/full-calendar.tsx"
+      ],
+      "primaryTarget": "EventTag",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "FullCalendar 仅 day/hour，缺 start/end/duration 与冲突模型，不能直接还原 14:30–15:30 的重叠条。原型按钮固定移至 15:00；真实冲突检测、建议及撤销归调用方。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/calendar#interaction-110"
+    },
+    {
+      "id": "111",
+      "name": "任务时长编辑",
+      "mode": "defer",
+      "target": [],
+      "reason": "按任务行展示跨日条、拖起点和 resize 是统一时间轴模型；现日历无此任务条数据，不单独新增 DurationEditor。",
+      "apiGap": "缺 task id、start/end、row、drag/resize 回调与边界/时区规范。原型一周两行和 1–7 日 clamp 只是示例；不能以 FullCalendar 代称 Gantt。",
+      "source": [
+        "../forge-interaction-lab/public/components/111.html",
+        "core/src/components/ui/full-calendar.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "126",
+      "name": "Markdown 编辑与预览",
+      "mode": "compose",
+      "target": [
+        "TextArea",
+        "StreamingAnswer",
+        "Button"
+      ],
+      "reason": "编辑文本与预览切换可用多行 TextArea 和 StreamingAnswer 的 markdown 模式组合；纠正 TextField 单行输入映射，不新增 MarkdownEditor。",
+      "source": [
+        "../forge-interaction-lab/public/components/126.html",
+        "core/src/components/ui/forms/text-area.tsx",
+        "core/src/components/ui/agent/streaming-answer.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "TextArea",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "StreamingAnswer 是渲染器，编辑值和预览状态由调用方持有；原型极简正则 Markdown 不替代现有渲染器，也不代表富文本编辑能力。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/agent#interaction-126"
+    },
+    {
+      "id": "127",
+      "name": "变更片段审核",
+      "mode": "compose",
+      "target": [
+        "AgentCodeBlock",
+        "Button"
+      ],
+      "reason": "现 AgentCodeBlock 已有 code/diff 和增删行；接受/保留/撤销由案例层控制传入行，决策内部逻辑可与 F04 共享，不新增 ChangeReview 公共组件。",
+      "source": [
+        "../forge-interaction-lab/public/components/127.html",
+        "core/src/components/ui/agent/agent-code-block.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/agent/agent-diff-table.tsx",
+        "core/src/components/ui/agent/approval-card.tsx"
+      ],
+      "primaryTarget": "AgentCodeBlock",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "AgentCodeBlock 无 hunk 决策协议；需在组合层维护 pending/accepted/rejected、保存错误及动效。不要把它映射到 cells 型 AgentDiffTable 或 questions 型 ApprovalCard。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/agent#interaction-127"
+    },
+    {
+      "id": "128",
+      "name": "查找替换",
+      "mode": "compose",
+      "target": [
+        "TextField",
+        "TextArea",
+        "Button"
+      ],
+      "reason": "查找词、替换词、计数和替换文本都是可控表单组合；先做编辑器示例，取消独立 FindReplace 组件倾向。",
+      "source": [
+        "../forge-interaction-lab/public/components/128.html",
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/forms/text-area.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "TextField",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "文本匹配/replaceAll/撤销归调用方，输入控件不自带编辑器搜索；原型只是固定字符串 split/join，未覆盖 selection/regex/IME。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/agent#interaction-128"
+    },
+    {
+      "id": "129",
+      "name": "代码折叠",
+      "mode": "enhance",
+      "target": [
+        "AgentCodeBlock"
+      ],
+      "reason": "函数区块折叠属于已有代码阅读器能力，折叠高度/省略号动效融入 AgentCodeBlock，不新建 CodeFold。",
+      "source": [
+        "../forge-interaction-lab/public/components/129.html",
+        "core/src/components/ui/agent/agent-code-block.tsx"
+      ],
+      "primaryTarget": "AgentCodeBlock",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前仅 lines/diff/view，无 foldRanges、collapsedIds、onFoldChange；需明确行号保留、嵌套区间和 aria-expanded，不能凭文本大括号猜完整语法树。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/components/agent#interaction-129"
+    },
+    {
+      "id": "140",
+      "name": "选中文字格式",
+      "mode": "defer",
+      "target": [],
+      "reason": "Toolbar/IconButton 只提供格式工具外观，无法承担编辑选区、文档模型与格式命令；暂缓富文本编辑公共能力。",
+      "apiGap": "原型依赖 saved Range 和 document.execCommand。需选择正式编辑器集成、selection 保持、撤销/IME/粘贴；不能仅换 Toolbar 就宣称完成。",
+      "source": [
+        "../forge-interaction-lab/public/components/140.html",
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/components/ui/icon-button.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "146",
+      "name": "JSON 树编辑",
+      "mode": "defer",
+      "target": [],
+      "reason": "JSON 树编辑有类型、路径、递归层级和校验要求，不能并入只读 AgentCodeBlock，也不因 TextField/Toggle 可用就称已有能力。",
+      "apiGap": "当前原型只编辑 name/stars/live 三个固定字段；需要任意对象/数组、类型转换、错误路径、受控数据和键盘树模型。",
+      "source": [
+        "../forge-interaction-lab/public/components/146.html",
+        "core/src/components/ui/agent/agent-code-block.tsx",
+        "core/src/components/ui/forms/text-field.tsx",
+        "core/src/components/ui/forms/selection-control.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "149",
+      "name": "冲突文本合并",
+      "mode": "defer",
+      "target": [],
+      "reason": "两分支冲突合并与简单接受 before/after 不同；可复用内部审核排版，但目前没有通用冲突数据模型，暂缓公共 MergeReview。",
+      "apiGap": "需 conflict id、分支/基线、未解决状态、合并输出和保存失败。原型固定两段字符串仅作二选一，AgentCodeBlock 的 diff 不具备三方合并语义。",
+      "source": [
+        "../forge-interaction-lab/public/components/149.html",
+        "core/src/components/ui/agent/agent-code-block.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "151",
+      "name": "贡献热力格",
+      "mode": "defer",
+      "target": [],
+      "reason": "ChartCard/ChartTooltip 只是图表外壳和提示，core 没有日期热力图图元；和 161 共同评估一套矩阵基础，暂缓新公共组件。",
+      "apiGap": "需要日期格定位、色域、缺失值、跨月边界、选择/键盘和 tooltip 数据；原型是 84 个合成值加 range，不是真日历布局。",
+      "source": [
+        "../forge-interaction-lab/public/components/151.html",
+        "core/src/components/ui/charts/index.ts",
+        "core/src/components/ui/charts/chart-card.tsx",
+        "core/src/components/ui/charts/chart-tooltip.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "154",
+      "name": "能力雷达",
+      "mode": "defer",
+      "target": [],
+      "reason": "core 无径向多轴雷达几何；ChartCard/ChartTooltip 不能替代 RadarChart，暂缓新公共图型。",
+      "apiGap": "需各维 domain/缺失值、轴标签、多个 series、选中与缩放协议；原型固定五维两 profile 的 polygon 插值。",
+      "source": [
+        "../forge-interaction-lab/public/components/154.html",
+        "core/src/components/ui/charts/index.ts",
+        "core/src/components/ui/charts/chart-card.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "157",
+      "name": "层叠用量面积",
+      "mode": "enhance",
+      "target": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ChartLegendItem"
+      ],
+      "reason": "SmoothLineChart 已支持多 series 和 fillArea，堆叠/聚焦是同类面积图扩展，不另建 UsageAreaChart。",
+      "source": [
+        "../forge-interaction-lab/public/components/157.html",
+        "core/src/components/ui/charts/smooth-line-chart.tsx",
+        "core/src/components/ui/charts/chart-card.tsx",
+        "core/src/components/ui/charts/chart-legend-item.tsx"
+      ],
+      "primaryTarget": "SmoothLineChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前每条 fillArea 都从基线填充，并无 cumulative stack/normalize、受控 series 显隐及过渡；需真正实现堆叠域和面积边界，不能仅传多序列称堆叠完成。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-157"
+    },
+    {
+      "id": "160",
+      "name": "转化漏斗",
+      "mode": "defer",
+      "target": [],
+      "reason": "原型用梯形阶段、居中宽度和流失说明；BarHorizontalChart 的等矩形左对齐条不能等价漏斗，暂缓公共 FunnelChart。",
+      "apiGap": "需要有序阶段量、分母口径、转化/流失计算、零值/逆增校验及梯形几何。ChartCard 只能承载内容，不具备漏斗 API。",
+      "source": [
+        "../forge-interaction-lab/public/components/160.html",
+        "core/src/components/ui/charts/bar-horizontal-chart.tsx",
+        "core/src/components/ui/charts/chart-card.tsx",
+        "core/src/components/ui/charts/index.ts"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "161",
+      "name": "留存队列",
+      "mode": "defer",
+      "target": [],
+      "reason": "留存队列是热力矩阵的行列变体，应和 151 共享一个未来基础，不重复新增 CohortChart；当前 core 无矩阵图元。",
+      "apiGap": "需要 cohort/period 键、不可观测空单元与零值区分、色域、选择和键盘；DataTable 能排单元格但不自带热力图比例与缺失语义。",
+      "source": [
+        "../forge-interaction-lab/public/components/161.html",
+        "core/src/components/ui/charts/index.ts",
+        "core/src/components/ui/charts/chart-card.tsx",
+        "core/src/components/ui/data-table.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "163",
+      "name": "目标刻度",
+      "mode": "enhance",
+      "target": [
+        "BarHorizontalChart",
+        "ChartCard"
+      ],
+      "reason": "目标刻度由横向实际值、目标线和定性区间构成，优先作为 BarHorizontalChart 的目标比较变体，不新开 TargetGauge。",
+      "source": [
+        "../forge-interaction-lab/public/components/163.html",
+        "core/src/components/ui/charts/bar-horizontal-chart.tsx",
+        "core/src/components/ui/charts/chart-card.tsx"
+      ],
+      "primaryTarget": "BarHorizontalChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "当前只按本批最大值归一且无 domain/目标线/区间带/刻度，单条值会填满。须增固定比例域和目标标记能力；原型拖动目标滑块仍由场景控制。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-163"
+    },
+    {
+      "id": "165",
+      "name": "预测置信带",
+      "mode": "enhance",
+      "target": [
+        "SmoothLineChart",
+        "ChartCard",
+        "ButtonGroup"
+      ],
+      "reason": "预测线与置信上下界属于现有折线体系扩展，80/95 切换由外部控制，不新增 ForecastChart。",
+      "source": [
+        "../forge-interaction-lab/public/components/165.html",
+        "core/src/components/ui/charts/smooth-line-chart.tsx",
+        "core/src/components/ui/charts/chart-card.tsx",
+        "core/src/components/ui/button-group.tsx"
+      ],
+      "primaryTarget": "SmoothLineChart",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "目前 series 只有 data/color/fillArea，缺 lower/upper 区间带、虚线分段与带状插值；需从同一 x/domain 计算上下界，fillArea 到基线不能冒充置信带。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chart#interaction-165"
+    },
+    {
+      "id": "176",
+      "name": "版本胶片",
+      "mode": "compose",
+      "target": [
+        "HistoryGrouped",
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "版本列表、当前版本和预览/恢复可组合既有历史展示与卡片；缩略胶片和恢复状态归业务，不新增 VersionHistory。",
+      "source": [
+        "../forge-interaction-lab/public/components/176.html",
+        "core/src/components/ui/history-grouped.tsx",
+        "core/src/components/ui/history-item.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "HistoryGrouped",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "HistoryGrouped.items 是历史记录显示，未提供版本选择/恢复回调；需由调用方持有 selected/live 与失败状态，并给版本项外部交互，不能冒称现成胶片组件。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/history#interaction-176"
+    },
+    {
+      "id": "177",
+      "name": "撤销重做历史",
+      "mode": "compose",
+      "target": [
+        "Toolbar",
+        "IconButton"
+      ],
+      "reason": "撤销/重做动作适合现有工具栏组合；编辑历史堆栈是应用状态，不并入展示历史记录的 HistoryGrouped。",
+      "source": [
+        "../forge-interaction-lab/public/components/177.html",
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/components/ui/icon-button.tsx"
+      ],
+      "primaryTarget": "Toolbar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Toolbar 无历史堆栈且不应添加业务堆栈；调用方控制 canUndo/canRedo、分支截断及快捷键，原型最多 12 条为示例规则。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/history#interaction-177"
+    },
+    {
+      "id": "178",
+      "name": "批量选择操作台",
+      "mode": "enhance",
+      "target": [
+        "Toolbar",
+        "Button",
+        "Checkbox",
+        "FileTypeIcon"
+      ],
+      "reason": "与 F03 合并到 Toolbar 的 selection 场景/变体；浮现、计数滚动、清除和动作插槽只实现一次，不保留独立 SelectionActionBar 公共导出。",
+      "source": [
+        "../forge-interaction-lab/public/components/178.html",
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/internal/toolbar-selection.tsx",
+        "core/src/components/ui/checkbox.tsx",
+        "core/src/components/ui/forms/file-upload.tsx",
+        "core/src/components/ui/index.ts"
+      ],
+      "primaryTarget": "Toolbar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "implementationScope": "复用 F03 的 Toolbar selection；新增列表选择、批量归档和撤销案例，独立文件卡布局仍可由业务组合。",
+      "preview": "/prototype/component-fusion#selection",
+      "initialApiGap": "Toolbar.selection 已实现显示、数字动效、清选和隐藏层语义；持续传配置对象并以 count=0 退出。选择集合、异步操作与撤销由调用方控制。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/list#interaction-178"
+    },
+    {
+      "id": "179",
+      "name": "文字片段拼接",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "按选择顺序拼接字符串是轻量场景状态，卡片和切换按钮即可组合，无需 ClipboardShelf 公共能力。",
+      "source": [
+        "../forge-interaction-lab/public/components/179.html",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "原型没有系统剪贴板读写；picked 顺序、清空和拼接由调用方管理，不把例子命名当真实剪贴板集成功能。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/agent#interaction-179"
+    },
+    {
+      "id": "180",
+      "name": "审批签署",
+      "mode": "compose",
+      "target": [
+        "Avatar",
+        "Button",
+        "SurfaceCard"
+      ],
+      "reason": "人员状态与印章变化是业务审批流程示例，不并入问题问答模型 ApprovalCard，也不另建 ApprovalFlow。",
+      "source": [
+        "../forge-interaction-lab/public/components/180.html",
+        "core/src/components/ui/avatar.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/agent/approval-card.tsx"
+      ],
+      "primaryTarget": "Avatar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "Avatar/SurfaceCard 只展示，审批步骤/审核人/权限/结果由外部控制；原型 n++ 即完成不是实际签署。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/card#interaction-180"
+    },
+    {
+      "id": "181",
+      "name": "工作分派",
+      "mode": "compose",
+      "target": [
+        "TaskCard",
+        "Avatar",
+        "ProgressBar",
+        "Button"
+      ],
+      "reason": "任务展示、人员身份和容量百分比已有组件；分派按钮与容量计算由业务组合，不新增 AssignmentBoard。",
+      "source": [
+        "../forge-interaction-lab/public/components/181.html",
+        "core/src/components/ui/task-card.tsx",
+        "core/src/components/ui/avatar.tsx",
+        "core/src/components/ui/progress-bar.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "TaskCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "TaskCard 不执行任务分派，ProgressBar 不计算容量；原型 loads 上限 5 和循环任务数组只是示例。真实 assignment/拒绝/并发容量需调用方管理。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/card#interaction-181"
+    },
+    {
+      "id": "184",
+      "name": "角色权限矩阵",
+      "mode": "compose",
+      "target": [
+        "DataTable",
+        "Checkbox"
+      ],
+      "reason": "权限矩阵是表格单元格内的受控选择状态；复用 DataTable.columns[].render 与 Checkbox，无需 PermissionMatrix。",
+      "source": [
+        "../forge-interaction-lab/public/components/184.html",
+        "core/src/components/ui/data-table.tsx",
+        "core/src/components/ui/checkbox.tsx"
+      ],
+      "primaryTarget": "DataTable",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "表格行选择不等于角色权限。每个单元格的 permission key、不可编辑规则与保存/失败来自业务；原型 aria-pressed 不构成权限执行。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/table#interaction-184"
+    },
+    {
+      "id": "186",
+      "name": "设备配对",
+      "mode": "exclude",
+      "target": [],
+      "reason": "维持不纳入生产迁移；设备扫描/配对不在既有通用组件职责内，雷达视觉不应产生系统设备公共 API。",
+      "apiGap": "原型 550ms 后显现固定设备、点击即标连接，无设备发现/授权/连接协议；仅保留实验室原型。",
+      "source": [
+        "../forge-interaction-lab/public/components/186.html",
+        "core/src/components/ui/index.ts"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "188",
+      "name": "灰度发布",
+      "mode": "defer",
+      "target": [],
+      "reason": "灰度发布属于运维业务流程；虽可组合 ProgressBar/Button/StatCard，但不因此创建 CanaryRollout 公共组件，本轮继续暂缓场景。",
+      "apiGap": "现有基础组件不具备发布协议。原型 0/5/25/100 和回滚至 0 是本地状态，真实执行/失败/回滚要独立业务契约。",
+      "source": [
+        "../forge-interaction-lab/public/components/188.html",
+        "core/src/components/ui/progress-bar.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/stat-card.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "189",
+      "name": "环境晋级",
+      "mode": "defer",
+      "target": [],
+      "reason": "环境晋级是发布业务，非 ApprovalCard 的 questions/answers；保留暂缓，不新建 PromotionGate。",
+      "apiGap": "Stepper 当前无环境检查模型；原型定时 550ms 自动通过不代表校验。需业务管理执行、失败重试与受控阶段，基础卡片只是排版。",
+      "source": [
+        "../forge-interaction-lab/public/components/189.html",
+        "core/src/components/ui/stepper.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/agent/approval-card.tsx"
+      ],
+      "primaryTarget": null,
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "proposed_not_implemented_by_this_audit"
+    },
+    {
+      "id": "F01",
+      "name": "附件队列",
+      "mode": "enhance",
+      "target": [
+        "FileUpload",
+        "FileCard",
+        "ChatInputBar"
+      ],
+      "reason": "现 FileUpload 已渲染文件队列，FileCard 已含失败/重试/移除；附件入场、重排、完成过渡和进度融入文件组件，聊天通过附件区域集成，不新增 AttachmentQueue。",
+      "source": [
+        "../forge-interaction-lab/src/features.tsx",
+        "core/src/components/ui/forms/file-upload.tsx",
+        "core/src/components/ui/chat-input-bar.tsx"
+      ],
+      "primaryTarget": "FileUpload",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "FileItem 当前只有 id/name/size/state，无 progress；FileUpload 的 FileList 回调已保留真实文件，上传执行归调用方。ChatInputBar 无附件内容区域，需要可选 slot/受控附件呈现，不能只 onAttach 称队列已支持。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/chat#interaction-F01"
+    },
+    {
+      "id": "F02",
+      "name": "工具运行卡",
+      "mode": "enhance",
+      "target": [
+        "ThinkingTrace",
+        "ToolChips"
+      ],
+      "reason": "工具参数、执行步骤、结果展开在已有 ThinkingTrace(search/coding) 与 ToolChips.detail 范围内扩展；保持同一执行呈现体系，不新增 ToolRunCard。",
+      "source": [
+        "../forge-interaction-lab/src/features.tsx",
+        "core/src/components/ui/agent/thinking-trace.tsx",
+        "core/src/components/ui/agent/tool-chips.tsx"
+      ],
+      "primaryTarget": "ThinkingTrace",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "ThinkingTrace 目前只按时间显行，play=false 会全显，无逐行状态/activeStep/失败/停止，ToolChips 只显示静态 detail。需受控真实 status/steps 及 actions/results 插槽；不得导出 onAdvance/onFail 演示按钮为生产 API。",
+      "implementationSource": "src/app/components/_fusion/agent-charts.tsx",
+      "officialHref": "/components/agent#interaction-F02"
+    },
+    {
+      "id": "F03",
+      "name": "列表批量操作",
+      "mode": "enhance",
+      "target": [
+        "Toolbar",
+        "Button",
+        "ListGroup",
+        "ListItem"
+      ],
+      "reason": "BulkSelectionDock 的数量、清除、children 动作和浮现是上下文工具栏；与 178 一起融入 Toolbar selection 用法，SelectionActionBar 留内部实现而非独立公共导出。",
+      "source": [
+        "../forge-interaction-lab/src/features.tsx",
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/internal/toolbar-selection.tsx",
+        "core/src/components/ui/list-group.tsx",
+        "core/src/components/ui/list-item.tsx",
+        "core/src/components/ui/index.ts"
+      ],
+      "implementationStatus": "implemented_on_migration_branch",
+      "primaryTarget": "Toolbar",
+      "reviewStatus": "awaiting_user_review",
+      "implementationScope": "Toolbar 已接入受控 selection；count=0 恢复普通工具栏，保留深色浮现、数字滚动、清选和焦点恢复。",
+      "preview": "/prototype/component-fusion#selection",
+      "initialApiGap": "Toolbar.selection 已实现显示、数字动效、清选和隐藏层语义；持续传配置对象并以 count=0 退出。选择集合、异步操作与撤销由调用方控制。",
+      "implementationSource": "src/app/components/_fusion/../_migration-previews.tsx",
+      "officialHref": "/components/list#interaction-F03"
+    },
+    {
+      "id": "F04",
+      "name": "生成内容审核",
+      "mode": "compose",
+      "target": [
+        "SurfaceCard",
+        "Button"
+      ],
+      "reason": "普通文本 before/after 与接受/保留/撤销可用内部审核布局和动作组合；与 127 共享受控决策与退场动效，不再新增 ChangeReviewCard 公共入口。",
+      "source": [
+        "../forge-interaction-lab/src/features.tsx",
+        "core/src/components/ui/surface-card.tsx",
+        "core/src/components/ui/button.tsx",
+        "core/src/components/ui/agent/agent-diff-table.tsx",
+        "core/src/components/ui/agent/approval-card.tsx",
+        "core/src/components/ui/agent/agent-code-block.tsx"
+      ],
+      "primaryTarget": "SurfaceCard",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "AgentDiffTable 的 cells 和 ApprovalCard 的 questions 都不匹配；AgentCodeBlock 只适合代码显示，普通文本不要强塞代码 API。状态持久化、失败恢复由业务提供，保留两段内容退场动效。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/agent#interaction-F04"
+    },
+    {
+      "id": "F05",
+      "name": "协作席位",
+      "mode": "compose",
+      "target": [
+        "AddMember",
+        "Avatar",
+        "AvatarGroup",
+        "Button"
+      ],
+      "reason": "AddMember 已有受控 selectedIds/onAdd，成员选择与头像展示可复用；当前负责人单独在组合层控制，移位/退场是内部席位排版，不新增 CollaborationSeats。",
+      "source": [
+        "../forge-interaction-lab/src/features.tsx",
+        "core/src/components/ui/add-member.tsx",
+        "core/src/components/ui/avatar.tsx",
+        "core/src/components/ui/button.tsx"
+      ],
+      "primaryTarget": "AddMember",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "initialApiGap": "AddMember 的待添加选择不等于 activeOwner，AvatarGroup 也不管理负责人。移除后的负责人回退、头像资源和名称由调用方提供；原型不执行授权/任务移交。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/agent#interaction-F05"
+    },
+    {
+      "id": "F06",
+      "name": "搜索无结果恢复",
+      "mode": "compose",
+      "target": [
+        "FilterPanel",
+        "ToolbarSearchInput",
+        "ListGroup",
+        "Button"
+      ],
+      "reason": "与 092/088 共用内部空态布局/文件夹插画，条件移除和结果出现留筛选场景；不新增 SearchRecovery 或独立搜索空态组件。",
+      "source": [
+        "../forge-interaction-lab/src/features.tsx",
+        "core/src/components/ui/filter-panel.tsx",
+        "core/src/components/ui/toolbar.tsx",
+        "core/src/components/ui/list-group.tsx",
+        "src/app/components/_migration-empty-preview.tsx",
+        "core/src/components/ui/index.ts"
+      ],
+      "primaryTarget": "FilterPanel",
+      "reviewStatus": "awaiting_user_review",
+      "implementationStatus": "implemented_on_migration_branch",
+      "preview": "/prototype/component-fusion#empty",
+      "initialApiGap": "FilterPanel 不产生搜索结果，原型 filters.length>0 即零结果仅为示例。本轮只有列表中的关键词搜索恢复组合示例，未覆盖原型全部业务状态。",
+      "implementationSource": "src/app/components/_fusion/compositions.tsx",
+      "officialHref": "/cases/filter#interaction-F06"
+    }
+  ],
+  "userFeedback": [
+    {
+      "date": "2026-10-14",
+      "statement": "可以，看到的这三个没问题，然后呢",
+      "scope": "上一轮预览中用户看过的三项",
+      "acceptedCount": 3,
+      "itemIds": null,
+      "note": "用户未逐项点名；记录认可反馈，暂不扩算为上一轮四项全部验收。"
+    },
+    {
+      "date": "2026-10-14",
+      "statement": "OK，过",
+      "scope": "集中预览第二批 Toggle、Accordion、Pagination",
+      "acceptedCount": 3,
+      "itemIds": [
+        "013",
+        "043",
+        "044"
+      ]
+    },
+    {
+      "date": "2026-10-14",
+      "statement": "OK，过，其他的也都放到这里吧，我一次性看完",
+      "scope": "第三批集中预览 SelectOption、TabBar / TabsContent、CommandSearch / Modal；要求其余项目放入同一入口集中审阅",
+      "acceptedCount": 3,
+      "itemIds": [
+        "031",
+        "039",
+        "046"
+      ],
+      "note": "记录用户视觉与交互认可；不改变搜索框聚焦时 Escape 未通过的浏览器记录及包预算超限结论。"
+    }
+  ],
+  "auditFollowup": {
+    "status": "four_findings_fixed_and_verified",
+    "record": "artifacts/component-fusion/verification-audit-fixes.json",
+    "newUserAcceptances": false
+  },
+  "implementationReport": "docs/design/component-fusion-implementation.md",
+  "implementationCounts": {
+    "enhanced": 54,
+    "composed": 45,
+    "deferred": 23,
+    "excluded": 1
+  }
+}

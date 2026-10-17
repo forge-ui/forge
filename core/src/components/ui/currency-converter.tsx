@@ -92,7 +92,7 @@ export interface CurrencyConverterProps {
 export function CurrencyConverter({
   title = "汇率换算",
   subtitle = "实时估算仅供参考",
-  color = "purple",
+  color = "blue",
   fromValue,
   fromCurrency = "USD",
   fromPlaceholder,

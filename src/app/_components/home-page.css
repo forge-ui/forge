@@ -1,0 +1,419 @@
+.home-page {
+  height: 100svh;
+  overflow: hidden;
+  background: #f4f4f5;
+  color: #000a19;
+}
+
+.home-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 31.25rem) minmax(0, 1fr);
+  column-gap: 8.5rem;
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  margin-top: -4rem;
+  overflow: hidden;
+  background: #f6f8fb;
+  padding-top: 4rem;
+  padding-left: 4.75rem;
+}
+
+.home-header-blend {
+  background: rgba(246, 248, 251, 0.38);
+  border-bottom-color: transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.home-hero-glow {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 72% 78% at 70% 28%, rgba(53, 83, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 48% 64% at 94% 52%, rgba(42, 184, 196, 0.2), transparent 72%),
+    radial-gradient(ellipse 42% 48% at 38% 8%, rgba(53, 83, 255, 0.07), transparent 70%);
+}
+
+.home-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-self: start;
+  height: calc(100svh - 4rem);
+  min-width: 0;
+  max-width: 31.25rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 1rem;
+  font-family: var(--font-sans);
+}
+
+.home-pill {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.35rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(53, 83, 255, 0.08);
+  padding: 0 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #3553ff;
+}
+
+.home-hero-title {
+  margin-top: 1.75rem;
+  max-width: 100%;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  color: #000a19;
+}
+
+.home-hero-lead {
+  margin-top: 1.75rem;
+  max-width: 28rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: #3a4454;
+}
+
+.home-code {
+  margin-top: 1.75rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.95rem 1.05rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 10, 25, 0.08);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #000a19;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.tok-kw { color: #3553ff; }
+.tok-str { color: #0c7a86; }
+.tok-name { color: #000a19; font-weight: 650; }
+.tok-attr { color: #1d4f91; }
+
+.home-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.home-cta {
+  display: inline-flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 10px;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.home-cta-dark {
+  background: #000a19;
+  color: #fff;
+}
+
+.home-cta-icon {
+  flex: none;
+  transition: transform 0.2s ease;
+}
+
+.home-cta-dark:hover {
+  background: #1c2636;
+}
+
+.home-cta-dark:hover .home-cta-icon,
+.home-cta-dark:focus-visible .home-cta-icon {
+  transform: translateX(3px);
+}
+
+.home-cta-light {
+  background: rgba(255, 255, 255, 0.72);
+  color: #000a19;
+  box-shadow: inset 0 0 0 1px rgba(0, 10, 25, 0.1);
+}
+
+.home-cta-light:hover {
+  background: #fff;
+}
+
+.home-pill:focus-visible,
+.home-cta:focus-visible {
+  outline: 2px solid #3553ff;
+  outline-offset: 3px;
+}
+
+.home-hero-stage {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  padding-top: 1.15rem;
+}
+
+.home-wall {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.home-wall > .home-col > :last-child {
+  flex: 1 1 auto;
+}
+
+.home-span {
+  display: flex;
+  width: calc(16rem * 2 + 1.5rem);
+  flex: none;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.home-span-cols {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.home-span-cols > .home-col:first-child > :last-child {
+  flex: 1 1 auto;
+}
+
+.home-col {
+  display: flex;
+  width: 16rem;
+  flex: none;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.home-panel {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #fff;
+  padding: 1rem;
+  outline: 1px solid rgba(0, 10, 25, 0.1);
+  outline-offset: -1px;
+}
+
+.home-panel-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 650;
+  line-height: 1.25rem;
+  color: #000a19;
+}
+
+.home-panel-body {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-thread {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.home-stat,
+.home-command {
+  width: 100%;
+  max-width: 100%;
+}
+
+.home-stat {
+  flex: none;
+}
+
+.home-command {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.home-command > div {
+  display: flex;
+  min-height: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.home-command > div > label {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.home-command > div > div:last-child {
+  min-height: 0;
+  flex: 1 1 auto;
+  max-height: none;
+}
+
+.home-stat > div:first-child {
+  padding: 0.7rem 1rem 0;
+}
+
+.home-stat > div:last-child {
+  padding: 0.4rem 0.85rem 0.7rem;
+}
+
+.home-panel .home-upload {
+  width: 100%;
+  max-width: 100%;
+}
+
+.home-panel .home-upload > div {
+  gap: 0.75rem;
+  padding: 0;
+}
+
+.home-span-cols > .home-col > .home-panel:last-child .home-panel-body {
+  flex: 1;
+  justify-content: space-between;
+}
+
+.home-split {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.home-panel .forge-surface-card {
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.home-panel .forge-stepper,
+.home-panel .forge-liquid,
+.home-panel .forge-otp,
+.home-panel .forge-calendar,
+.home-panel .forge-calendar__shell {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .home-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .home-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: 0;
+    margin-top: -4rem;
+    overflow-x: clip;
+    overflow-y: visible;
+    padding: calc(4rem + 1.5rem) 1rem 1.25rem;
+  }
+
+  .home-hero-copy {
+    order: 1;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .home-hero-title {
+    font-size: 2.125rem;
+    line-height: 1.32;
+    letter-spacing: -0.02em;
+  }
+
+  .home-hero-lead {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .home-hero-stage {
+    order: 3;
+    width: 100%;
+    height: auto;
+    margin-top: 1.15rem;
+    container-type: inline-size;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    padding-top: 0;
+    padding-bottom: 0.35rem;
+  }
+
+  .home-wall {
+    align-items: flex-start;
+  }
+
+  .home-wall > .home-col > :last-child {
+    flex: none;
+  }
+
+  .home-span,
+  .home-col {
+    width: 100cqw;
+  }
+
+  .home-span-cols {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

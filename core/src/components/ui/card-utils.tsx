@@ -224,7 +224,7 @@ const badgeColorMap: Record<CardTheme, { solid: string; opacity: string; text: s
 export function CardIconChip({
   icon,
   theme,
-  themeKey = "purple",
+  themeKey = "blue",
   variant = "default",
   size = 40,
 }: {
@@ -477,7 +477,7 @@ export function StatCardShell({
   className,
 }: {
   title: string;
-  value: string;
+  value: ReactNode;
   trend?: string;
   trendDirection?: TrendDirection;
   subtitle?: string;

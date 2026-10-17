@@ -15,7 +15,7 @@ export function NotificationItem({
   title,
   body,
   unread = false,
-  color = "purple",
+  color = "blue",
   onMarkRead,
   actionLabel = "标为已读",
   className,

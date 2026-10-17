@@ -1,4 +1,9 @@
+"use client";
+
 import { useId } from "react";
+import { chartDomain, chartPoints, bandPath, stackedBounds, linePath } from "../../../internal/chart-geometry";
+import { useAnimatedChartValues } from "../../../internal/animated-chart-values";
+import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 import { ChartTooltip, type ChartTooltipItem } from "./chart-tooltip";
 import { resolveColor, rampColors } from "./chart-utils";
@@ -9,10 +14,21 @@ interface LineSeries {
   /** Optional override. When omitted, derived from `accent` ramp. */
   color?: string;
   fillArea?: boolean;
+  label?: string;
+  /** Index at which the forecast becomes a dashed line. */
+  forecastFrom?: number;
 }
 
 interface SmoothLineChartProps {
   series: LineSeries[];
+  stacked?: boolean;
+  bands?: { lower: number[]; upper: number[]; color?: string }[];
+  motion?: MotionPreference;
+  onActiveIndexChange?: (index: number | undefined) => void;
+  ariaLabel?: string;
+  interpolation?: "smooth" | "linear";
+  highlightToActive?: boolean;
+  markers?: { index: number; label: string }[];
   accent?: AccentColor;
   activeIndex?: number;
   showTooltip?: boolean;
@@ -27,16 +43,6 @@ interface SmoothLineChartProps {
 
 const VIEWBOX_W = 400;
 const VIEWBOX_H = 120;
-
-function computePoints(data: number[], min: number, max: number): [number, number][] {
-  const n = data.length;
-  if (n < 2) return [];
-  const range = max - min || 1;
-  return data.map((v, i) => [
-    (i / (n - 1)) * VIEWBOX_W,
-    VIEWBOX_H - ((v - min) / range) * VIEWBOX_H,
-  ]);
-}
 
 // Catmull-Rom → Cubic Bezier. /6 = standard uniform CR (tension 0.5), matches
 // Figma's smooth wave shape.
@@ -60,7 +66,8 @@ function smoothPath(points: [number, number][]): string {
 
 export function SmoothLineChart({
   series,
-  accent = "purple",
+  stacked = false, bands = [], motion = "auto", onActiveIndexChange, ariaLabel = "趋势图", interpolation = "smooth", highlightToActive = false, markers = [],
+  accent = "blue",
   activeIndex,
   showTooltip = false,
   tooltipItems,
@@ -71,19 +78,24 @@ export function SmoothLineChart({
   height = "h-32",
 }: SmoothLineChartProps) {
   const gradientId = useId();
-  const allValues = series.flatMap((s) => s.data);
+  const animated = useAnimatedChartValues([...series.flatMap(s => s.data), ...bands.flatMap(b => [...b.lower, ...b.upper])], motion);
+  const animatedSeries = series.map((s, index) => { const offset = series.slice(0, index).reduce((sum, previous) => sum + previous.data.length, 0); return { ...s, data: animated.slice(offset, offset + s.data.length) }; });
+  const seriesLength = series.reduce((sum, s) => sum + s.data.length, 0);
+  const animatedBands = bands.map((b, index) => { const offset = seriesLength + bands.slice(0, index).reduce((sum, previous) => sum + previous.lower.length + previous.upper.length, 0); return { ...b, lower: animated.slice(offset, offset + b.lower.length), upper: animated.slice(offset + b.lower.length, offset + b.lower.length + b.upper.length) }; });
+  const bounds = stackedBounds(animatedSeries.map(s => s.data));
+  const allValues = [...(stacked ? bounds.flatMap(b => [...b.lower, ...b.upper]) : animatedSeries.flatMap(s => s.data)), ...animatedBands.flatMap(b => [...b.lower, ...b.upper])];
   const autoMax = allValues.length > 0 ? Math.max(...allValues) : 1;
   const autoMin = allValues.length > 0 ? Math.min(...allValues) : 0;
-  const [min, max] = yDomain ?? [autoMin, autoMax];
+  const [min, max] = chartDomain([autoMin, autoMax], yDomain);
   const rampFallback = rampColors(accent, series.length);
 
-  const seriesGeometry = series.map((s, i) => {
-    const points = computePoints(s.data, min, max);
-    const linePath = smoothPath(points);
-    const areaPath = points.length
+  const seriesGeometry = animatedSeries.map((s, i) => {
+    const points = chartPoints(stacked ? bounds[i].upper : s.data, [min, max]);
+    const linePath = interpolation === "linear" ? points.map(([x,y], j) => `${j ? "L" : "M"}${x},${y}`).join(" ") : smoothPath(points);
+    const areaPath = stacked ? bandPath(points, chartPoints(bounds[i].lower, [min, max])) : points.length
       ? `${linePath} L ${points[points.length - 1][0]} ${VIEWBOX_H} L ${points[0][0]} ${VIEWBOX_H} Z`
       : "";
-    return { points, linePath, areaPath, color: resolveColor(s.color ?? rampFallback[i]), fillArea: s.fillArea ?? true };
+    return { points, linePath, areaPath, color: resolveColor(s.color ?? rampFallback[i]), fillArea: s.fillArea ?? true, forecastFrom: s.forecastFrom };
   });
 
   const primary = seriesGeometry[0];
@@ -91,13 +103,16 @@ export function SmoothLineChart({
     activeIndex != null && primary?.points[activeIndex] ? primary.points[activeIndex] : null;
 
   const chartArea = (
-    <div className={cn("relative w-full", height)}>
+    <div className={cn("relative w-full", height)} role={onActiveIndexChange ? "slider" : "img"} aria-label={ariaLabel} tabIndex={onActiveIndexChange ? 0 : undefined} aria-valuemin={onActiveIndexChange ? 0 : undefined} aria-valuemax={onActiveIndexChange ? Math.max(0, (primary?.points.length ?? 1) - 1) : undefined} aria-valuenow={onActiveIndexChange ? activeIndex ?? Math.max(0, (primary?.points.length ?? 1) - 1) : undefined}
+      onPointerMove={event => { if (!onActiveIndexChange || !primary?.points.length) return; const rect = event.currentTarget.getBoundingClientRect(); onActiveIndexChange(Math.round(Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)) * (primary.points.length - 1))); }}
+      onPointerLeave={() => onActiveIndexChange?.(undefined)} onBlur={() => onActiveIndexChange?.(undefined)} onKeyDown={event => { if (!onActiveIndexChange || !primary?.points.length) return; const last = primary.points.length - 1, at = activeIndex ?? last; const next = event.key === "ArrowLeft" ? at - 1 : event.key === "ArrowRight" ? at + 1 : event.key === "Home" ? 0 : event.key === "End" ? last : undefined; if (event.key === "Escape") { onActiveIndexChange(undefined); return; } if (next === undefined) return; event.preventDefault(); onActiveIndexChange(Math.max(0, Math.min(last, next))); }}>
       <svg
         viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
         preserveAspectRatio="none"
         className="absolute inset-0 h-full w-full overflow-visible"
       >
         <defs>
+          <clipPath id={`${gradientId}-active`}><rect x="0" y="-10" width={markerPoint?.[0] ?? VIEWBOX_W} height={VIEWBOX_H + 20} /></clipPath>
           {seriesGeometry.map((g, i) => (
             <linearGradient key={i} id={`${gradientId}-${i}`} x1="0" y1="0" x2="0" y2="1">
               {/* Figma: bg-gradient-to-b from-{color}/5 to-{color}/0 */}
@@ -106,24 +121,29 @@ export function SmoothLineChart({
             </linearGradient>
           ))}
         </defs>
+        {animatedBands.map((band, i) => <path key={`band-${i}`} data-chart-band="true" d={bandPath(chartPoints(band.upper, [min,max]), chartPoints(band.lower, [min,max]))} fill={resolveColor(band.color ?? rampFallback[0])} fillOpacity=".15" />)}
         {seriesGeometry.map((g, i) => (
           <g key={i}>
-            {g.fillArea && <path d={g.areaPath} fill={`url(#${gradientId}-${i})`} />}
+            {g.fillArea && <path d={g.areaPath} fill={stacked ? g.color : `url(#${gradientId}-${i})`} fillOpacity={stacked ? .8 : undefined} clipPath={highlightToActive ? `url(#${gradientId}-active)` : undefined} />}
+            {highlightToActive && <path d={g.linePath} stroke="var(--fg-grey-200)" strokeWidth="2" fill="none" vectorEffect="non-scaling-stroke" />}
             <path
-              d={g.linePath}
+              d={g.forecastFrom === undefined ? g.linePath : linePath(g.points.slice(0, g.forecastFrom + 1))}
+              clipPath={highlightToActive ? `url(#${gradientId}-active)` : undefined}
               stroke={g.color}
               strokeWidth="2"
               fill="none"
               vectorEffect="non-scaling-stroke"
             />
+            {g.forecastFrom !== undefined && <path d={linePath(g.points.slice(g.forecastFrom))} fill="none" stroke={g.color} strokeWidth="2" strokeDasharray="5 4" vectorEffect="non-scaling-stroke" />}
           </g>
         ))}
+        {markers.map(marker => { const point = primary?.points[marker.index]; return point ? <circle key={`${marker.index}-${marker.label}`} cx={point[0]} cy={point[1]} r="3" fill="var(--fg-white)" stroke={primary.color} strokeWidth="2" vectorEffect="non-scaling-stroke"><title>{marker.label}</title></circle> : null; })}
       </svg>
 
       {markerPoint && showTooltip && (
         <>
           <div
-            className="pointer-events-none absolute bottom-0 top-0 w-5 -translate-x-1/2 rounded-sm bg-gradient-to-b from-transparent to-fg-violet-100/70"
+            className="pointer-events-none absolute bottom-0 top-0 w-px -translate-x-1/2 rounded-sm bg-fg-grey-300"
             style={{ left: `${(markerPoint[0] / VIEWBOX_W) * 100}%` }}
           />
           <div

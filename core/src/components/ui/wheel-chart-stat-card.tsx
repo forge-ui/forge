@@ -65,7 +65,7 @@ export function WheelChartStatCard({
   theme = "white",
   size = "sm",
   density = "default",
-  wheelColor = "purple",
+  wheelColor = "blue",
   wheelPercent = 70,
   icon,
   width,

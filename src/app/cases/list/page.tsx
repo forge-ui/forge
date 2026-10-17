@@ -25,9 +25,9 @@ import { PageHeading, Section, SubSection } from "../_shared";
 const groupColors = ["purple", "blue", "black"] as const satisfies readonly AccentColor[];
 
 const groupBadgeLabel: Record<AccentColor, string> = {
-  purple: "Purple",
-  blue: "Blue",
-  black: "Black",
+  purple: "紫色",
+  blue: "蓝色",
+  black: "黑色",
 };
 
 const greyIconRows = [
@@ -49,9 +49,9 @@ const groupItems: {
 ];
 
 const tabs: ListGroupTab[] = [
-  { value: "text1", label: "Text Here" },
-  { value: "text2", label: "Text Here" },
-  { value: "text3", label: "Text Here" },
+  { value: "text1", label: "示例文本" },
+  { value: "text2", label: "示例文本" },
+  { value: "text3", label: "示例文本" },
 ];
 
 const squareImg =
@@ -70,51 +70,51 @@ const kebabActions = (
 export default function ListCasePage() {
   return (
     <div className="flex flex-col gap-8">
-      <PageHeading title="List" hint="ListItem · DescriptionItem · ListGroup" />
+      <PageHeading title="列表" hint="组织条目、详情字段、联系人和通知，便于浏览与操作。" />
 
       <Section
         title="2 Column"
         description="ListItem 尾部变体（Grey BG icon + 多种 tail 组合）"
       >
-        <SubSection title="Variants">
+        <SubSection title="样式">
           <div className="w-full grid grid-cols-2 gap-x-6 gap-y-5">
             <ListItem
               lead={{ kind: "icon", icon: greyIconRows[0].icon, color: greyIconRows[0].color, variant: "neutral" }}
-              title="Title Here"
-              subtitle="Subtext"
+              title="项目概览"
+              subtitle="辅助文字"
               value="$24,500"
               trend="10%"
               trendDirection="up"
             />
             <ListItem
               lead={{ kind: "icon", icon: greyIconRows[1].icon, color: greyIconRows[1].color, variant: "neutral" }}
-              title="Title Here"
-              subtitle="Subtext"
+              title="项目概览"
+              subtitle="辅助文字"
               value="$24,500"
-              tailSubtext="Subtext"
+              tailSubtext="辅助文字"
             />
             <ListItem
               lead={{ kind: "icon", icon: greyIconRows[2].icon, color: greyIconRows[2].color, variant: "neutral" }}
-              title="Title Here"
-              subtitle="Subtext"
+              title="项目概览"
+              subtitle="辅助文字"
               value="$24,500"
             />
             <ListItem
               lead={{ kind: "icon", icon: greyIconRows[3].icon, color: greyIconRows[3].color, variant: "neutral" }}
-              title="Title Here"
+              title="项目概览"
               value="$24,500"
               trend="10%"
               trendDirection="up"
             />
             <ListItem
               lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "yellow", variant: "neutral" }}
-              title="Title Here"
+              title="项目概览"
               value="$24,500"
             />
             <ListItem
               lead={{ kind: "icon", icon: <CartBoldDuotone size={20} />, color: "cyan", variant: "neutral" }}
-              title="Title Here"
-              subtitle="Subtext"
+              title="项目概览"
+              subtitle="辅助文字"
               trend="10%"
               trendDirection="up"
             />
@@ -126,79 +126,79 @@ export default function ListCasePage() {
         title="1 Column"
         description="DescriptionItem：label + content + 可选 actions，支持 icon 或 Square Img lead"
       >
-        <SubSection title="Variants">
+        <SubSection title="样式">
           <div className="w-full grid grid-cols-2 gap-x-6 gap-y-5">
             <DescriptionItem
               lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple", variant: "neutral" }}
-              label="Title Here"
-              content="Your content here"
+              label="项目概览"
+              content="在此放置内容"
             />
             <DescriptionItem
               lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple", variant: "neutral" }}
-              label="Title Here"
-              content="Your content here"
+              label="项目概览"
+              content="在此放置内容"
               actions={kebabActions}
             />
             <DescriptionItem
               lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple", variant: "neutral" }}
-              label="Title Here"
-              content={<Label color="green" size="sm" variant="outline">Green</Label>}
+              label="项目概览"
+              content={<Label color="green" size="sm" variant="outline">绿色</Label>}
             />
             <DescriptionItem
               lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple", variant: "neutral" }}
-              label="Title Here"
-              content={<Label color="green" size="sm" variant="outline">Green</Label>}
+              label="项目概览"
+              content={<Label color="green" size="sm" variant="outline">绿色</Label>}
               actions={kebabActions}
             />
             <DescriptionItem
               lead={{ kind: "image", src: squareImg }}
-              label="Title Here"
-              content="Your content here"
+              label="项目概览"
+              content="在此放置内容"
             />
             <DescriptionItem
               lead={{ kind: "image", src: squareImg }}
-              label="Title Here"
-              content="Your content here"
+              label="项目概览"
+              content="在此放置内容"
               actions={kebabActions}
             />
             <DescriptionItem
               lead={{ kind: "image", src: squareImg }}
-              label="Title Here"
-              content={<Label color="green" size="sm" variant="outline">Green</Label>}
+              label="项目概览"
+              content={<Label color="green" size="sm" variant="outline">绿色</Label>}
             />
             <DescriptionItem
               lead={{ kind: "image", src: squareImg }}
-              label="Title Here"
-              content={<Label color="green" size="sm" variant="outline">Green</Label>}
+              label="项目概览"
+              content={<Label color="green" size="sm" variant="outline">绿色</Label>}
               actions={kebabActions}
             />
           </div>
         </SubSection>
       </Section>
 
-      <Section title="User List" description="Avatar + 可选 online / badge / actions">
-        <SubSection title="Variants">
+      <Section title="用户列表" description="Avatar + 可选 online / badge / actions">
+        <SubSection title="样式">
           <div className="w-full grid grid-cols-2 gap-x-6 gap-y-5">
             <ListItem
               lead={{ kind: "avatar", initials: "JH", online: true }}
-              title="Jay Hargudson"
-              subtitle="Manager"
+              title="周宁"
+              subtitle="经理"
             />
             <ListItem
               lead={{ kind: "avatar", initials: "JH", online: true }}
-              title="Jay Hargudson"
-              subtitle="Manager"
+              title="周宁"
+              subtitle="经理"
               trailing={<NotificationBadge color="orange">99+</NotificationBadge>}
             />
             <ListItem
               lead={{ kind: "avatar", initials: "JH" }}
-              title="Jay Hargudson"
-              subtitle="Manager"
+              title="周宁"
+              subtitle="经理"
             />
             <ListItem
               lead={{ kind: "avatar", initials: "JH" }}
-              title="Jay Hargudson"
-              subtitle="Manager"
+              title="周宁"
+              subtitle="经理"
               trailing={
                 <div className="flex items-center gap-2 text-fg-grey-700">
                   {kebabActions}
@@ -207,8 +207,8 @@ export default function ListCasePage() {
             />
             <ListItem
               lead={{ kind: "avatar", initials: "JH", online: true }}
-              title="Jay Hargudson"
-              subtitle="Manager"
+              title="周宁"
+              subtitle="经理"
               trailing={
                 <div className="flex items-center gap-2 text-fg-grey-700">
                   {kebabActions}
@@ -217,8 +217,8 @@ export default function ListCasePage() {
             />
             <ListItem
               lead={{ kind: "avatar", initials: "JH" }}
-              title="Jay Hargudson"
-              subtitle="Manager"
+              title="周宁"
+              subtitle="经理"
               trailing={<NotificationBadge color="orange">99+</NotificationBadge>}
             />
           </div>
@@ -233,8 +233,8 @@ export default function ListCasePage() {
           {groupColors.map((color) => (
             <ListGroup
               key={color}
-              title="Title"
-              subtitle="Text Here"
+              title="标题"
+              subtitle="示例文本"
               color={color}
               closable
               className="w-80"
@@ -249,8 +249,8 @@ export default function ListCasePage() {
                     <ListItem
                       key={i}
                       lead={{ kind: "icon", icon: it.icon, color: it.color, variant: "light", size: "lg" }}
-                      title="Title Here"
-                      subtitle="Subtext"
+                      title="项目概览"
+                      subtitle="辅助文字"
                       value="$24,500"
                       trend="10%"
                       trendDirection="up"
@@ -281,8 +281,8 @@ function ListGroupWithTabDemo({ color }: { color: AccentColor }) {
   const [tab, setTab] = useState("text1");
   return (
     <ListGroup
-      title="Title"
-      subtitle="Text Here"
+      title="标题"
+      subtitle="示例文本"
       color={color}
       closable
       className="w-80"
@@ -300,8 +300,8 @@ function ListGroupWithTabDemo({ color }: { color: AccentColor }) {
             <ListItem
               key={i}
               lead={{ kind: "image", src: squareImg }}
-              title="Title Here"
-              subtitle="Subtext"
+              title="项目概览"
+              subtitle="辅助文字"
               value="$24,500"
               trend="10%"
               trendDirection="up"

@@ -18,8 +18,8 @@ const positions: TooltipPosition[] = ["top", "right", "bottom", "left"];
 const sizes: TooltipSize[] = ["sm", "lg"];
 const anchorStates: TooltipAnchorState[] = ["idle", "active"];
 
-const shortText = "Text Here";
-const longText = "Text Here Lorem Ipsum Dolor Sit Amet";
+const shortText = "示例文本";
+const longText = "这里展示详细说明，帮助你了解当前操作。";
 
 // 让 open 态的 tooltip 有足够的空间显示，避免跨出 Labeled 边界撞到邻居
 const positionPadding: Record<TooltipPosition, string> = {
@@ -33,8 +33,8 @@ export default function TooltipCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Tooltip"
-        hint="TooltipBubble / Tooltip / TooltipAnchor — 静态气泡、悬浮提示、图标触发器。"
+        title="提示气泡"
+        hint="在悬停或聚焦时补充简短说明，帮助用户理解操作。"
       />
 
       {/* ============ Tooltip Bubble ============ */}

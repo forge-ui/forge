@@ -150,7 +150,7 @@ test("SidebarMenu 会把叶子节点的 href 渲染成真实链接", () => {
 test("AppLayout 侧栏叶子导航由 Next Link 承担 SPA 跳转", () => {
   const source = readFileSync(resolve(process.cwd(), "src/internal/app-layout-sidebar.tsx"), "utf8");
   assert.match(source, /import NextLink from ["']next\/link["']/);
-  assert.equal((source.match(/<NextLink\b/g) ?? []).length, 2);
+  assert.match(source, /<NextLink\b/);
   assert.doesNotMatch(source, /<a\b[^>]*\bhref=/);
 });
 

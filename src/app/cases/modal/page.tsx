@@ -26,42 +26,42 @@ type DialogSpec = {
 const dialogSpecs: DialogSpec[] = [
   {
     color: "red",
-    title: "Delete this order?",
-    description: "Lorem ipsum dolor sit amet lorem? This action can't be undone",
-    confirmLabel: "Delete",
-    cancelLabel: "Cancel",
+    title: "确认删除这笔订单？",
+    description: "删除后无法恢复，请确认是否继续。",
+    confirmLabel: "删除",
+    cancelLabel: "取消",
     icon: <TrashBinMinimalisticBold size={32} color="currentColor" />,
   },
   {
     color: "green",
-    title: "Send confirmation?",
-    description: "Lorem ipsum dolor sit amet lorem? This action can't be undone",
-    confirmLabel: "Send",
-    cancelLabel: "Cancel",
+    title: "发送确认消息？",
+    description: "删除后无法恢复，请确认是否继续。",
+    confirmLabel: "发送",
+    cancelLabel: "取消",
     icon: <CheckCircleBold size={32} color="currentColor" />,
   },
   {
     color: "yellow",
-    title: "Save changes?",
-    description: "Lorem ipsum dolor sit amet lorem? This action can't be undone",
-    confirmLabel: "Yes, Save",
-    cancelLabel: "Don't Save",
+    title: "保存修改？",
+    description: "删除后无法恢复，请确认是否继续。",
+    confirmLabel: "保存修改",
+    cancelLabel: "不保存",
     icon: <DangerTriangleBold size={32} color="currentColor" />,
   },
   {
     color: "purple",
-    title: "Upgrade to Pro?",
-    description: "Lorem ipsum dolor sit amet lorem? This action can't be undone",
-    confirmLabel: "Upgrade",
-    cancelLabel: "Cancel",
+    title: "升级专业版？",
+    description: "删除后无法恢复，请确认是否继续。",
+    confirmLabel: "升级",
+    cancelLabel: "取消",
     icon: <CrownBold size={32} color="currentColor" />,
   },
   {
     color: "blue",
-    title: "Activate account?",
-    description: "Lorem ipsum dolor sit amet lorem? This action can't be undone",
-    confirmLabel: "Activate",
-    cancelLabel: "Cancel",
+    title: "激活账号？",
+    description: "删除后无法恢复，请确认是否继续。",
+    confirmLabel: "开启",
+    cancelLabel: "取消",
     icon: <ShieldCheckBold size={32} color="currentColor" />,
   },
 ];
@@ -72,8 +72,8 @@ export default function ModalCasePage() {
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
-        title="Modal"
-        hint="ConfirmationDialog — 5 色 × 2 布局（spread 居中两端分布 / right 左对齐右端按钮）。"
+        title="确认弹窗"
+        hint="在删除、发送等重要操作前说明结果并请求确认。"
       />
 
       {dialogSpecs.map((spec) => (
@@ -99,14 +99,14 @@ export default function ModalCasePage() {
       ))}
 
       {/* ============ No icon variant ============ */}
-      <Section title="No Icon" description="省略 icon 的简洁变体。">
+      <Section title="不带图标" description="省略 icon 的简洁变体。">
         <SubSection title="Spread / no icon" stack>
           <ConfirmationDialog
             color="red"
-            title="Delete this order?"
-            description="Lorem ipsum dolor sit amet lorem? This action can't be undone"
-            confirmLabel="Delete"
-            cancelLabel="Cancel"
+            title="确认删除这笔订单？"
+            description="删除后无法恢复，请确认是否继续。"
+            confirmLabel="删除"
+            cancelLabel="取消"
             layout="spread"
           />
         </SubSection>
