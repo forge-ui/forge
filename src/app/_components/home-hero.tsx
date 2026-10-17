@@ -59,16 +59,17 @@ type MatterRow = {
 };
 
 const matterRows: MatterRow[] = [
-  { id: "1", name: "周报", who: "林", status: "已完成", tone: "blue", avatar: "blue" },
-  { id: "2", name: "排期", who: "周", status: "进行中", tone: "cyan", avatar: "cyan" },
-  { id: "3", name: "跟进", who: "陈", status: "待开始", tone: "grey", avatar: "blue" },
+  { id: "1", name: "周报整理", who: "林", status: "已完成", tone: "blue", avatar: "blue" },
+  { id: "2", name: "排期评审", who: "周", status: "进行中", tone: "cyan", avatar: "cyan" },
+  { id: "3", name: "跟进客户", who: "陈", status: "待开始", tone: "grey", avatar: "blue" },
+  { id: "4", name: "核对发票", who: "吴", status: "进行中", tone: "blue", avatar: "cyan" },
 ];
 
 const matterColumns: ColumnDef<MatterRow>[] = [
   {
     key: "name",
     header: "事项",
-    flex: true,
+    width: "w-[64%]",
     render: (row) => (
       <span className="flex min-w-0 items-center gap-2">
         <Avatar initials={row.who} size="xs" color={row.avatar} />
@@ -79,7 +80,7 @@ const matterColumns: ColumnDef<MatterRow>[] = [
   {
     key: "status",
     header: "状态",
-    width: "w-16",
+    width: "w-[36%]",
     render: (row) => <StatusBadge label={row.status} color={row.tone} />,
   },
 ];
@@ -87,21 +88,21 @@ const matterColumns: ColumnDef<MatterRow>[] = [
 function WeekStat() {
   const [index, setIndex] = useState(3);
   const days = [
-    { value: 18, label: "一" },
-    { value: 24, label: "二" },
-    { value: 16, label: "三" },
-    { value: 32, label: "四" },
-    { value: 22, label: "五" },
+    { value: 20, label: "一" },
+    { value: 36, label: "二" },
+    { value: 14, label: "三" },
+    { value: 48, label: "四" },
+    { value: 28, label: "五" },
   ];
   return (
-    <ChartCard className="home-stat" title="本周完成" subtitle="较上周 +12%" width="full" minHeight="min-h-0" action={<></>}>
+    <ChartCard className="home-stat" title="本周完成" subtitle="共 146 · 较上周 +12%" width="full" minHeight="min-h-0" action={<></>}>
       <BarChart
         data={days}
         accent="blue"
         color="bg-fg-blue"
         inactiveColor="bg-fg-blue-100"
         motion="auto"
-        height="h-12"
+        height="h-20"
         showLabels
         barWidth="wide"
         activeIndex={index}

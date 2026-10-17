@@ -259,6 +259,27 @@
   max-width: 100%;
 }
 
+.home-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-table [data-forge-table-scroll] {
+  flex: 1;
+  min-height: 0;
+}
+
+.home-table table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+
+.home-table th:last-child > div,
+.home-table td:last-child > div {
+  justify-content: flex-end;
+}
+
 .home-stat > div:first-child {
   padding: 0.7rem 1rem 0;
 }
