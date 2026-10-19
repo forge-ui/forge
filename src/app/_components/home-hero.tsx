@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type Key, type ReactNode } from "react";
 import {
-  Avatar,
-  AvatarGroup,
   BarChart,
   CalendarCard,
   CellText,
@@ -12,20 +10,16 @@ import {
   ChatInputBar,
   CommandSearch,
   CommentItem,
-  ConfirmationDialog,
   ContactItem,
   DataTable,
   type ChatInputBarQuickAction,
   type CommandSearchItem,
   FileUpload,
   ProgressBar,
-  SelectOption,
   StatusBadge,
   Stepper,
-  TextArea,
-  TextField,
 } from "@forge-ui-official/core";
-import { CalendarLinear, ChartSquareLinear, ChatRoundLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
+import { CalendarLinear, ChartSquareLinear, ChatRoundLinear } from "@forge-ui-official/core/icons";
 import { FormsNavigationExamples } from "../components/_fusion/forms-navigation";
 
 const quickCards: ChatInputBarQuickAction[] = [
@@ -218,7 +212,7 @@ const orders = [
 ];
 
 function OrdersPanel() {
-  const [selected, setSelected] = useState<Set<string>>(() => new Set(["list"]));
+  const [selected, setSelected] = useState<Set<Key>>(() => new Set(["list"]));
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
   const rows = useMemo(() => {
@@ -266,74 +260,6 @@ function OrdersPanel() {
         ]}
       />
     </Panel>
-  );
-}
-
-function FilterPanel() {
-  const [owner, setOwner] = useState("lin");
-  const [status, setStatus] = useState("review");
-  const [keyword, setKeyword] = useState("");
-  const [note, setNote] = useState("发布前再核对一遍数据口径。");
-  return (
-    <Panel title="筛选" className="home-filter">
-      <SelectOption
-        label="负责人"
-        width="100%"
-        color="blue"
-        motion="auto"
-        value={owner}
-        onChange={setOwner}
-        options={[
-          { value: "lin", label: "林晓" },
-          { value: "zhou", label: "周宁" },
-          { value: "chen", label: "陈可" },
-        ]}
-      />
-      <SelectOption
-        label="状态"
-        width="100%"
-        color="blue"
-        motion="auto"
-        value={status}
-        onChange={setStatus}
-        options={[
-          { value: "doing", label: "进行中" },
-          { value: "review", label: "待评审" },
-          { value: "done", label: "已完成" },
-        ]}
-      />
-      <TextField label="关键词" color="blue" value={keyword} onChange={setKeyword} placeholder="搜索工单" />
-      <TextArea label="备注" color="blue" rows={1} value={note} onChange={setNote} />
-    </Panel>
-  );
-}
-
-function PublishPanel() {
-  const [published, setPublished] = useState(false);
-  return (
-    <section className="home-panel home-publish" aria-label="发布确认">
-      <ConfirmationDialog
-        className="home-publish-card"
-        color="blue"
-        motion="auto"
-        layout="right"
-        icon={<CheckCircleLinear size={22} color="currentColor" />}
-        title={published ? "已提交发布" : "发布这个版本？"}
-        description={published ? "清单已锁定，相关成员会收到通知。" : "待办完成后即可发给团队确认。"}
-        confirmLabel={published ? "已发布" : "发布"}
-        cancelLabel="返回"
-        onConfirm={() => setPublished(true)}
-        onCancel={() => setPublished(false)}
-      />
-      <div className="home-publish-people">
-        <span>将通知</span>
-        <AvatarGroup overflowCount={2}>
-          <Avatar initials="林" color="blue" size="sm" />
-          <Avatar initials="周" color="green" size="sm" />
-          <Avatar initials="陈" color="yellow" size="sm" />
-        </AvatarGroup>
-      </div>
-    </section>
   );
 }
 
@@ -413,10 +339,6 @@ function Wall() {
         <PeoplePanel />
         <NotePanel />
         <OrdersPanel />
-      </div>
-      <div className="home-col home-col-more home-col-more-2">
-        <FilterPanel />
-        <PublishPanel />
       </div>
     </div>
   );

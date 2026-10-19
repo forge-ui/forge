@@ -9,7 +9,7 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(18rem, 26rem) minmax(0, 1fr);
-  column-gap: clamp(1.25rem, 2vw, 3.5rem);
+  column-gap: clamp(2.25rem, 4vw, 4.75rem);
   align-items: start;
   min-width: 0;
   max-width: 100%;
@@ -231,12 +231,6 @@
 
 @container (min-width: 980px) {
   .home-col.home-col-more-1 {
-    display: flex;
-  }
-}
-
-@container (min-width: 1240px) {
-  .home-col.home-col-more-2 {
     display: flex;
   }
 }
@@ -468,48 +462,6 @@
   min-height: 1.5rem;
 }
 
-.home-filter .home-panel-body {
-  gap: 0.45rem;
-}
-
-.home-filter .px-4.py-3 {
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-}
-
-.home-filter textarea {
-  height: 1.25rem;
-  min-height: 0;
-}
-
-.home-publish {
-  padding: 0;
-}
-
-.home-publish-card {
-  max-width: none;
-  gap: 0.9rem;
-  padding: 1rem 1rem 0.85rem;
-}
-
-.home-publish-card .forge-button {
-  width: auto;
-  flex: 1 1 0;
-  padding-top: 0.55rem;
-  padding-bottom: 0.55rem;
-}
-
-.home-publish-people {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border-top: 1px solid rgba(0, 10, 25, 0.08);
-  padding: 0.75rem 1rem 0.9rem;
-  color: #3a4454;
-  font-size: 0.8125rem;
-}
-
 .home-people {
   display: flex;
   min-width: 0;
@@ -548,6 +500,12 @@
 .home-panel .forge-calendar__shell {
   width: 100%;
   max-width: 100%;
+}
+
+@media (min-width: 1440px) {
+  .home-hero {
+    column-gap: clamp(4.5rem, 6.5vw, 9rem);
+  }
 }
 
 @media (max-width: 1279px) {
