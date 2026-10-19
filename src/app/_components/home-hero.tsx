@@ -11,11 +11,11 @@ import {
   type ChatInputBarQuickAction,
   type CommandSearchItem,
   FileUpload,
-  NotificationItem,
   ProgressBar,
   Stepper,
 } from "@forge-ui-official/core";
 import { CalendarLinear, ChartSquareLinear, ChatRoundLinear } from "@forge-ui-official/core/icons";
+import { FormsNavigationExamples } from "../components/_fusion/forms-navigation";
 
 const quickCards: ChatInputBarQuickAction[] = [
   { id: "image", label: "创建图片", kind: "image", placeholder: "描述你想创建的图片…" },
@@ -139,20 +139,11 @@ function UploadPanel() {
   );
 }
 
-function NoticePanel() {
-  const [unread, setUnread] = useState(true);
+function CelebratePanel() {
   return (
-    <Panel title="通知">
-      <NotificationItem
-        tag="评审"
-        time="10:00"
-        title="首页可以看了"
-        body="统计和日程已经排进这一面墙。"
-        unread={unread}
-        color="blue"
-        onMarkRead={() => setUnread(false)}
-      />
-    </Panel>
+    <section className="home-panel home-celebrate" aria-label="完成庆祝">
+      <FormsNavigationExamples id="093" locale="zh" color="blue" motion="auto" />
+    </section>
   );
 }
 
@@ -221,10 +212,12 @@ function Wall() {
         <ChatPanel />
       </div>
       <div className="home-col">
-        <RingPanel />
-        <StepPanel />
+        <div className="home-pair">
+          <RingPanel />
+          <StepPanel />
+        </div>
         <UploadPanel />
-        <NoticePanel />
+        <CelebratePanel />
       </div>
     </div>
   );
