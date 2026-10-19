@@ -3,19 +3,24 @@
 import { useEffect, useState, type ReactNode } from "react";
 import {
   BarChart,
+  ButtonGroup,
   CalendarCard,
   ChartCard,
   ChatBubble,
   ChatInputBar,
   CommandSearch,
+  CommentItem,
+  ContactItem,
   type ChatInputBarQuickAction,
   type CommandSearchItem,
   FileUpload,
-  NotificationItem,
   ProgressBar,
   Stepper,
+  TabBar,
+  Toggle,
 } from "@forge-ui-official/core";
 import { CalendarLinear, ChartSquareLinear, ChatRoundLinear } from "@forge-ui-official/core/icons";
+import { FormsNavigationExamples } from "../components/_fusion/forms-navigation";
 
 const quickCards: ChatInputBarQuickAction[] = [
   { id: "image", label: "创建图片", kind: "image", placeholder: "描述你想创建的图片…" },
@@ -139,19 +144,137 @@ function UploadPanel() {
   );
 }
 
-function NoticePanel() {
-  const [unread, setUnread] = useState(true);
+function CelebratePanel() {
   return (
-    <Panel title="通知">
-      <NotificationItem
-        tag="评审"
-        time="10:00"
-        title="首页可以看了"
-        body="统计和日程已经排进这一面墙。"
-        unread={unread}
-        color="blue"
-        onMarkRead={() => setUnread(false)}
+    <section className="home-panel home-celebrate" aria-label="完成庆祝">
+      <FormsNavigationExamples id="093" locale="zh" color="blue" motion="auto" />
+    </section>
+  );
+}
+
+const people = [
+  { id: "lin", name: "林晓", initials: "林", message: "评审纪要已更新", time: "10:24", online: true },
+  { id: "zhou", name: "周宁", initials: "周", message: "上传了本周统计", time: "09:10", online: true },
+  { id: "chen", name: "陈可", initials: "陈", message: "等待设计确认", time: "昨天", online: false },
+];
+
+function PeoplePanel() {
+  const [active, setActive] = useState(people[0].id);
+  return (
+    <Panel title="成员">
+      <div className="home-people">
+        {people.map((person) => (
+          <button
+            key={person.id}
+            type="button"
+            className="home-people-hit"
+            aria-pressed={active === person.id}
+            onClick={() => setActive(person.id)}
+          >
+            <ContactItem
+              type="team"
+              color="blue"
+              name={person.name}
+              initials={person.initials}
+              message={person.message}
+              time={person.time}
+              online={person.online}
+              active={active === person.id}
+            />
+          </button>
+        ))}
+      </div>
+    </Panel>
+  );
+}
+
+function NotePanel() {
+  const [replied, setReplied] = useState(false);
+  return (
+    <Panel title="讨论">
+      <CommentItem
+        className="home-note"
+        avatar="/images/protask/crm/linda-blair-avatar.png"
+        name="林晓"
+        date="刚刚"
+        content={replied ? "收到，我按这个版本收口。" : "第三版的过渡有点快，发布前再看一眼？"}
+        replyLabel={replied ? "已回复" : "回复"}
+        onReply={() => setReplied(true)}
       />
+    </Panel>
+  );
+}
+
+function PrefPanel() {
+  const [flags, setFlags] = useState({ mail: true, save: true, focus: false });
+  const rows = [
+    { id: "mail" as const, label: "邮件摘要" },
+    { id: "save" as const, label: "自动保存" },
+    { id: "focus" as const, label: "专注模式" },
+  ];
+  return (
+    <Panel title="偏好">
+      <div className="home-prefs">
+        {rows.map((row) => (
+          <div key={row.id} className="home-pref-row">
+            <span>{row.label}</span>
+            <Toggle
+              size="sm"
+              color="blue"
+              motion="auto"
+              checked={flags[row.id]}
+              ariaLabel={row.label}
+              onChange={(checked) => setFlags((current) => ({ ...current, [row.id]: checked }))}
+            />
+          </div>
+        ))}
+      </div>
+    </Panel>
+  );
+}
+
+function ScopePanel() {
+  const [index, setIndex] = useState(1);
+  return (
+    <Panel title="范围">
+      <ButtonGroup
+        color="blue"
+        motion="auto"
+        shape="pill"
+        ariaLabel="统计范围"
+        activeIndex={index}
+        onChange={setIndex}
+        items={[{ label: "今日" }, { label: "本周" }, { label: "本月" }]}
+      />
+    </Panel>
+  );
+}
+
+function ViewPanel() {
+  const views = [
+    { label: "概览", rows: [["进行中", "12"], ["已完成", "4"], ["今日到期", "3"]] },
+    { label: "风险", rows: [["未确认", "2"], ["阻塞", "1"], ["逾期", "0"]] },
+    { label: "协作", rows: [["在线", "3"], ["评审", "1"], ["待回复", "2"]] },
+  ];
+  const [tab, setTab] = useState(0);
+  const current = views[tab];
+  return (
+    <Panel title="视图">
+      <TabBar
+        color="blue"
+        motion="auto"
+        ariaLabel="视图"
+        onChange={setTab}
+        tabs={views.map((view, index) => ({ label: view.label, active: index === tab }))}
+      />
+      <dl className="home-view-rows" key={current.label}>
+        {current.rows.map(([label, value]) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </div>
+        ))}
+      </dl>
     </Panel>
   );
 }
@@ -221,10 +344,21 @@ function Wall() {
         <ChatPanel />
       </div>
       <div className="home-col">
-        <RingPanel />
-        <StepPanel />
+        <div className="home-pair">
+          <RingPanel />
+          <StepPanel />
+        </div>
         <UploadPanel />
-        <NoticePanel />
+        <CelebratePanel />
+      </div>
+      <div className="home-col home-col-more home-col-more-1">
+        <PeoplePanel />
+        <NotePanel />
+        <PrefPanel />
+      </div>
+      <div className="home-col home-col-more home-col-more-2">
+        <ScopePanel />
+        <ViewPanel />
       </div>
     </div>
   );
