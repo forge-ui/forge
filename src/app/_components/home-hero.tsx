@@ -1,22 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState, type Key, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   BarChart,
   CalendarCard,
-  CellText,
   ChartCard,
   ChatBubble,
   ChatInputBar,
   CommandSearch,
-  CommentItem,
-  ContactItem,
-  DataTable,
   type ChatInputBarQuickAction,
   type CommandSearchItem,
   FileUpload,
   ProgressBar,
-  StatusBadge,
   Stepper,
 } from "@forge-ui-official/core";
 import { CalendarLinear, ChartSquareLinear, ChatRoundLinear } from "@forge-ui-official/core/icons";
@@ -30,9 +25,9 @@ const quickCards: ChatInputBarQuickAction[] = [
   { id: "docs", label: "分析文档", kind: "docs", placeholder: "上传文档，或者提一个问题…" },
 ];
 
-function Panel({ title, children, className = "" }: { title?: string; children: ReactNode; className?: string }) {
+function Panel({ title, children }: { title?: string; children: ReactNode }) {
   return (
-    <section className={`home-panel${className ? ` ${className}` : ""}`}>
+    <section className="home-panel">
       {title ? <p className="home-panel-title">{title}</p> : null}
       <div className="home-panel-body">{children}</div>
     </section>
@@ -152,117 +147,6 @@ function CelebratePanel() {
   );
 }
 
-const people = [
-  { id: "lin", name: "林晓", initials: "林", message: "评审纪要已更新", time: "10:24", online: true },
-  { id: "zhou", name: "周宁", initials: "周", message: "上传了本周统计", time: "09:10", online: true },
-  { id: "chen", name: "陈可", initials: "陈", message: "等待设计确认", time: "昨天", online: false },
-];
-
-function PeoplePanel() {
-  const [active, setActive] = useState(people[0].id);
-  return (
-    <Panel title="成员">
-      <div className="home-people">
-        {people.map((person) => (
-          <button
-            key={person.id}
-            type="button"
-            className="home-people-hit"
-            aria-pressed={active === person.id}
-            onClick={() => setActive(person.id)}
-          >
-            <ContactItem
-              type="team"
-              color="blue"
-              name={person.name}
-              initials={person.initials}
-              message={person.message}
-              time={person.time}
-              online={person.online}
-              active={active === person.id}
-            />
-          </button>
-        ))}
-      </div>
-    </Panel>
-  );
-}
-
-function NotePanel() {
-  const [replied, setReplied] = useState(false);
-  return (
-    <Panel title="讨论">
-      <CommentItem
-        className="home-note"
-        avatar="/images/protask/crm/linda-blair-avatar.png"
-        name="林晓"
-        date="刚刚"
-        content={replied ? "收到，我按这个版本收口。" : "第三版的过渡有点快，发布前再看一眼？"}
-        replyLabel={replied ? "已回复" : "回复"}
-        onReply={() => setReplied(true)}
-      />
-    </Panel>
-  );
-}
-
-const orders = [
-  { id: "copy", name: "引导文案", status: "进行中" },
-  { id: "notes", name: "版本说明", status: "待评审" },
-  { id: "list", name: "发布清单", status: "已完成" },
-];
-
-function OrdersPanel() {
-  const [selected, setSelected] = useState<Set<Key>>(() => new Set(["list"]));
-  const [sortKey, setSortKey] = useState<string | null>(null);
-  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
-  const rows = useMemo(() => {
-    if (!sortKey) return orders;
-    return [...orders].sort((a, b) => {
-      const left = sortKey === "status" ? a.status : a.name;
-      const right = sortKey === "status" ? b.status : b.name;
-      const cmp = left.localeCompare(right, "zh");
-      return sortDir === "asc" ? cmp : -cmp;
-    });
-  }, [sortDir, sortKey]);
-  return (
-    <Panel title="工单">
-      <DataTable
-        className="home-table"
-        color="blue"
-        showCheckbox
-        checkboxColor="blue"
-        tableMinWidth="100%"
-        rows={rows}
-        getRowKey={(row) => row.id}
-        selectedRowKeys={selected}
-        onSelectedRowKeysChange={setSelected}
-        sortColumnKey={sortKey ?? undefined}
-        sortDirection={sortDir}
-        onSort={(key) => {
-          setSortDir((current) => (sortKey === key && current === "asc" ? "desc" : "asc"));
-          setSortKey(key);
-        }}
-        columns={[
-          { key: "name", header: "事项", sortable: true, render: (row) => <CellText>{row.name}</CellText> },
-          {
-            key: "status",
-            header: "状态",
-            sortable: true,
-            width: "w-[4.5rem]",
-            render: (row) => (
-              <StatusBadge
-                label={row.status}
-                variant="soft"
-                color={row.status === "已完成" ? "green" : row.status === "待评审" ? "yellow" : "blue"}
-              />
-            ),
-          },
-        ]}
-      />
-    </Panel>
-  );
-}
-
 function Thread() {
   const [file, setFile] = useState(false);
   useEffect(() => {
@@ -334,11 +218,6 @@ function Wall() {
         </div>
         <UploadPanel />
         <CelebratePanel />
-      </div>
-      <div className="home-col home-col-more home-col-more-1">
-        <PeoplePanel />
-        <NotePanel />
-        <OrdersPanel />
       </div>
     </div>
   );
