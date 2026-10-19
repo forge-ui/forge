@@ -24,97 +24,97 @@
 
 ## 0.4.6
 
-- Add an opt-in Ask AI responsive session panel: non-modal 460px dock at 1440px and above, modal drawer below that, session-first header, and configurable landing title and description.
-- Keep `onDockedChange` stable when the callback identity changes, and release the host reservation on unmount. Let the history menu shrink with its container.
+- 可选开启 Ask AI 响应式会话面板：1440px 及以上为非模态并排停靠，宽 460px；更窄时改为模态抽屉。顶栏以当前会话为主，欢迎标题和说明可配置。
+- 回调身份变化时 `onDockedChange` 保持稳定，卸载时释放宿主预留。历史菜单随容器收缩。
 
 ## 0.4.3
 
-- Render typed agent, skill and tool mentions as removable composer chips and provide structured send context.
-- Show agent avatars alongside names in mention choices and selected chips; support multiple deduplicated mentions, removal and contextual placeholders.
+- 智能体、技能和工具提及显示为可移除的输入芯片，并带上结构化的发送上下文。
+- 提及选项和已选芯片在名称旁显示智能体头像；支持多条去重提及、移除，以及随上下文变化的占位文案。
 
 ## 0.4.2
 
-- Add OtpInput, CalendarCard, LiquidTabs and AddMember, with egg-shell feedback, calendar odometer and tear-off, liquid tab surfaces, and member avatar flight.
-- Provide real data/callback APIs, controlled state, inherited Forge themes, customizable Chinese/English labels, keyboard navigation and reduced-motion support.
-- Integrate the four widget demos into Motion with the shared auto/none preference, preserving interaction state when animations are disabled.
+- 增加 OtpInput、CalendarCard、LiquidTabs 和 AddMember，带蛋壳裂开、日期数字滚动和撕页、液态页签，以及成员头像飞入。
+- 提供真实数据和回调、受控状态、继承的 Forge 主题、可改的中英文文案、键盘导航和减少动效。
+- 四个组件演示接入 Motion，共用 auto/none；关闭动效时保留交互状态。
 
 ## 0.4.1
 
-- Add configurable ChatInputBar quick actions with animated illustrations, spring-driven card fan behind the input, neighbour displacement, folded corners and reduced-motion support. Selected operations become removable chips with animated placeholder changes and are provided to onSend without changing drafts. Model and permission controls sit on the right; the plus menu sits on the left.
-- Open quick cards automatically only in empty conversations (`hasMessages`), collapse after sending, and allow manual reopening from the plus menu. Clicking blank space anywhere inside the composer focuses its input.
-- Preserve caret-aware insertion and composition protection, using event timestamps for candidate-confirming Enter.
+- ChatInputBar 增加可配置的快捷操作：插画、输入框后方的弹簧扇形卡片、相邻让位、折角，并支持减少动效。选中项变成可移除芯片，占位文案带动效切换，交给 `onSend`，不改动草稿。模型和权限在右侧，加号菜单在左侧。
+- 仅空会话（`hasMessages`）自动展开快捷卡片，发送后收起，也可从加号菜单再打开。点击输入区内空白处聚焦输入框。
+- 保留按光标插入和输入法组字保护，用事件时间戳区分确认候选的 Enter。
 
 ## 0.4.0
 
-- Consolidate composers into ChatInputBar and remove PromptBar plus PromptSource, PromptCommand, PromptModel and PromptBarStatus exports. Migrate callers to ChatInputBar and ComposerSource, ComposerCommand, ComposerModel, ComposerStatus.
-- Add model selection, controlled permission selection, slash commands, dictation, connected source labels and stop/stopping states. Place attachments, @ mentions and commands in the plus menu across all layouts.
+- 输入栏收拢为 ChatInputBar，移除 PromptBar，以及 PromptSource、PromptCommand、PromptModel、PromptBarStatus。调用方改用 ChatInputBar，以及 ComposerSource、ComposerCommand、ComposerModel、ComposerStatus。
+- 增加模型选择、受控的权限选择、斜杠命令、听写、已连接来源文案，以及停止和停止中状态。各布局都把附件、@ 提及和命令放进加号菜单。
 
 ## 0.3.11
 
-- Add ChatInputBar compact density, attachment callbacks, optional Enter-to-send, send-only disabling and async draft ownership. Add caret-aware mention insertion with keyboard selection, IME handling and translated empty-state labels.
-- Add accessible attachment retry/remove names to FileCard. Preserve existing input defaults and correct mention popup ARIA semantics.
+- ChatInputBar 增加紧凑密度、附件回调、可选的按 Enter 发送、仅禁用发送，以及异步发送期间由调用方持有草稿。提及按光标插入，支持键盘选择、输入法和可翻译的空状态文案。
+- FileCard 补上附件重试和移除的无障碍名称。保留原有输入默认值，并修正提及弹层的 ARIA 语义。
 
 ## 0.3.10
 
-- Add optional `PageTitleToolbar.askAi` using `AskAiProps` across all four presets and the legacy actions API. Ask AI can appear without other toolbar actions.
+- PageTitleToolbar 增加可选的 `askAi`，四个预设和旧版 actions API 都用 `AskAiProps`。Ask AI 可以单独出现，不必带上其他工具栏操作。
 
 ## 0.3.9
 
-- Refine AskAi fullscreen transcript scrolling: follow new replies while near the bottom, preserve reading position, and jump back to the latest response. Reserve space for the floating composer and adapt the session rail to mobile screens.
-- Add compact PromptBar tools and picker keyboard navigation inside AskAi composer slots, with automatic textarea sizing and a translatable `toolsMenuLabel`. Defer initially open fullscreen portals until the client is ready.
-- Keep compact interactive replies within readable width bands while preserving wide code and table replies. Document the fullscreen slot layout contract.
+- 调整 AskAi 全屏记录的滚动：靠近底部时跟随新回复，否则保持阅读位置，并可跳回最新一条。为浮动输入栏留出空间，会话栏适配窄屏。
+- AskAi 输入槽里的紧凑 PromptBar 支持工具与选择器的键盘导航，文本框自动增高，`toolsMenuLabel` 可翻译。初始打开的全屏浮层等到客户端就绪后再渲染。
+- 紧凑的交互回复限制在可读宽度内，较宽的代码和表格回复保持原宽。补充全屏插槽的布局约定。
 
 ## 0.3.8
 
-- Replace the default team menu with an application switcher: current application, selectable applications, and active selection. Team management actions are hidden by default.
-- Add AppSwitcherDropdown, AppSwitcherItem and AppLayout appName/appIcon/appSubtitle/apps/onAppChange. Selection closes the layout menu and calls the consumer callback; current application is controlled by the consumer.
-- Preserve legacy Team props and explicit showTeamActions opt-in, including the member-count subtitle.
+- 默认的团队菜单改为应用切换：当前应用、可选应用和选中态。团队管理操作默认隐藏。
+- 增加 AppSwitcherDropdown、AppSwitcherItem，以及 AppLayout 的 appName、appIcon、appSubtitle、apps、onAppChange。选中后关闭布局菜单并调用业务回调；当前应用由调用方控制。
+- 保留旧的 Team 属性和显式开启的 `showTeamActions`，包括成员数副标题。
 
 ## 0.3.7
 
-- Add translation overrides for AgentTaskRows states, code actions, workflow kinds, context labels, command groups, recommendation confidence, PromptBar controls, and navigation accessible names.
-- Add count formatters and a translated toggle hint to AgentDiffTable. Preserve all existing defaults; translations update with props.
+- AgentTaskRows 的状态、代码操作、工作流类型、上下文标签、命令分组、建议置信度、PromptBar 控件和导航无障碍名称可以覆盖翻译。
+- AgentDiffTable 增加数量格式化和可翻译的开关提示。原有默认值不变，文案随参数更新。
 
 ## 0.3.6
 
-- Add `PromptBar.sourcesLabel` and `commandsLabel` to translate toolbar buttons, picker titles and accessible names. Labels update when the application language changes; English defaults remain compatible.
+- PromptBar 增加 `sourcesLabel` 和 `commandsLabel`，用来翻译工具栏按钮、选择器标题和无障碍名称。应用语言变化时文案跟着更新，英文默认值仍然可用。
 
 ## 0.3.4
 
-- Add smooth buffered playback and a 500ms linear fade to `StreamingAnswer`, with explicit streaming, complete, and stopped states. Keep the existing full-text replay API.
-- Add optional Markdown rendering through Streamdown, preserve Unicode grapheme clusters, and support reduced motion and server hydration.
-- Export `StreamingAnswerProps` and `StreamingAnswerStatus`. Completion waits for the final fade; stopping preserves the visible answer.
-- Add interactive Chinese and English examples to the Agent showcase, plus streaming regression tests and Next.js 15/16 package-consumer checks.
-- Stabilize generated `TextField` declarations so package API checks do not depend on inferred union ordering; its props and behavior are unchanged.
+- `StreamingAnswer` 增加平滑的缓冲播放和 500ms 线性淡入，并明确 `streaming`、`complete`、`stopped` 三种状态。原有的全文重放接口保留。
+- 可通过 Streamdown 渲染 Markdown，按 Unicode 字形簇切分，支持减少动效和服务端水合。
+- 导出 `StreamingAnswerProps` 和 `StreamingAnswerStatus`。完成态会等到最后一次淡入结束；停止时保留已经显示的回答。
+- 智能体案例增加可操作的中英文示例，并补上流式回归测试和 Next.js 15/16 的包消费检查。
+- 让生成的 `TextField` 声明保持稳定，包接口检查不再依赖推断出的联合类型顺序；参数和行为不变。
 
 ## 0.3.3
 
-- Add `AppLayout.menuSections` and export `AppLayoutMenuSection` for any number of ordered sidebar groups. The same active-item, nested-menu, collapsed, and mobile behaviors apply across all groups.
-- Keep the legacy two-group layout when `menuSections` is omitted. Empty labels no longer render an empty title container, and empty new sections are skipped.
+- AppLayout 增加 `menuSections`，并导出 `AppLayoutMenuSection`，侧栏可按顺序放任意多个分组。选中项、嵌套菜单、收起和窄屏行为在各分组中一致。
+- 不传 `menuSections` 时仍是原来的两组布局。空标签不再渲染空的标题容器，空的新分组直接跳过。
 
 ## 0.3.2
 
-- Restore original Solar artwork across all 187 Forge icon exports, including the sidebar calendar and mail buttons, using `@solar-icons/react` 2.3.2.
-- Replace the Phosphor peer with `@solar-icons/react` ^2.3.2. Import paths and icon names remain unchanged; icon props now follow Solar rather than Phosphor.
-- Include attribution for Solar artwork by 480 Design (CC BY 4.0) and the MIT React implementation.
+- 全部 187 个 Forge 图标恢复 Solar 原图，包括侧栏的日历和邮件按钮，使用 `@solar-icons/react` 2.3.2。
+- 用 `@solar-icons/react` ^2.3.2 替换原来的 Phosphor peer。引入路径和图标名不变；图标参数改跟 Solar，不再跟 Phosphor。
+- 注明 Solar 图形来自 480 Design（CC BY 4.0），React 实现为 MIT。
 
 ## 0.3.1
 
-- Anchor the PromptBar model menu above the model button with right alignment, viewport collision handling, and a bounded width and height. Hide scrollbars while retaining scrolling and keyboard access.
-- Show the selected model with a trailing check and support keyboard navigation, outside dismissal, Escape, and focus restoration. Add optional modelMenuLabel for accessible naming.
-- Use native Popover top-layer rendering to preserve host theme and focus scope while escaping ancestor clipping. Full clipping protection requires Popover API support.
-- Let nested menus consume Escape before the AskAi fullscreen host. Keep Sources and Commands as input suggestion panels.
-- Add regression tests and a case covering ordinary pages, AskAi drawer/fullscreen, narrow viewports, and long model lists.
+- PromptBar 的模型菜单定位在模型按钮上方，右对齐，处理视口碰撞，宽高有上限。隐藏滚动条，滚动和键盘操作仍可用。
+- 选中的模型末尾显示勾选，支持键盘导航、点击外部关闭、Escape 和焦点还原。可用 `modelMenuLabel` 指定无障碍名称。
+- 用原生 Popover 顶层渲染，避开祖先裁剪，同时保留宿主主题和焦点范围。要完整避开裁剪，需要 Popover API。
+- 嵌套菜单先于 AskAi 全屏宿主处理 Escape。Sources 和 Commands 仍是输入建议面板。
+- 增加回归测试和一个案例，覆盖普通页面、AskAi 抽屉与全屏、窄视口和较长的模型列表。
 
 ## 0.3.0
 
-- Add Modal and Drawer with native modal semantics, keyboard focus cycling, Escape/backdrop dismissal and animated entry/exit.
-- Add controlled or uncontrolled single-section Accordion with keyboard navigation.
-- Add TabsContent entry transitions, and ToastProvider/useToast with dismissal, paused timers and animated stacking.
-- ConfirmationDialog keeps its inline-card API; optional open/onOpenChange enables modal behavior.
-- Enable consistent interaction motion on buttons, menus, select controls, sidebars, tabs, tooltips, toggles and checkboxes. Components support motion="none" and the system reduced-motion preference.
-- Add TooltipGroup to share pointer-delay timing across nearby triggers.
-- Complete the MIT Phosphor icon migration for Agent and Ask AI components while retaining their icon names.
-- Add Motion documentation and interaction examples to the repository showcase.
+- 增加 Modal 和 Drawer：原生模态语义、键盘焦点循环、Escape 与点击背景关闭，以及进入和退出动效。
+- 增加可受控或非受控的单段 Accordion，支持键盘导航。
+- TabsContent 增加进入过渡；ToastProvider 和 useToast 支持关闭、暂停计时和堆叠动效。
+- ConfirmationDialog 保留行内卡片接口；传入 `open` / `onOpenChange` 后可作为模态。
+- 按钮、菜单、选择控件、侧栏、页签、提示、开关和复选框使用同一套交互动效。组件支持 `motion="none"`，也跟随系统的减少动效设置。
+- 增加 TooltipGroup，相邻触发器共享悬停延迟。
+- Agent 和 Ask AI 完成 MIT Phosphor 图标迁移，图标名不变。
+- 仓库案例补充 Motion 说明和交互示例。
 
-TabsContent remounts children when activeKey changes; keep persistent form state in its parent. Toast timers are paused while hovered or focused; duration=0 requires explicit dismissal.
+TabsContent 在 activeKey 变化时会重新挂载子节点，要保留的表单状态放在父级。Toast 计时器在悬停或聚焦时暂停；`duration=0` 必须显式关闭。

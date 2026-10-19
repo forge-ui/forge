@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "./_components/site-header";
 import { HomeHero } from "./_components/home-hero";
+import { changelogHref } from "./docs/_changelog";
 import { coreVersion } from "./docs/_versions";
 import "./_components/home-page.css";
 
@@ -13,7 +14,7 @@ export default function HomePage() {
         <section className="home-hero">
           <div className="home-hero-glow" aria-hidden="true" />
           <HomeHero>
-            <Link href="/docs" className="home-pill">
+            <Link href={changelogHref(coreVersion)} className="home-pill">
               Forge {coreVersion} 更新说明
               <span aria-hidden="true">→</span>
             </Link>

@@ -65,12 +65,26 @@
   gap: 0.35rem;
   height: 1.75rem;
   border-radius: 999px;
-  background: rgba(53, 83, 255, 0.08);
+  background: var(--fg-yellow-50);
   padding: 0 0.8rem;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
-  color: #3553ff;
+  color: var(--fg-yellow-900);
+}
+
+.home-pill:hover {
+  background: var(--fg-yellow-100);
+  color: var(--fg-yellow-900);
+}
+
+[data-theme="dark"] .home-pill {
+  background: var(--fg-yellow-100);
+  color: var(--fg-yellow-900);
+}
+
+[data-theme="dark"] .home-pill:hover {
+  background: var(--fg-yellow-200);
 }
 
 .home-hero-title {
@@ -163,7 +177,15 @@
   background: #fff;
 }
 
-.home-pill:focus-visible,
+.home-pill:focus-visible {
+  outline: 2px solid var(--fg-yellow-800);
+  outline-offset: 3px;
+}
+
+[data-theme="dark"] .home-pill:focus-visible {
+  outline-color: var(--fg-yellow-200);
+}
+
 .home-cta:focus-visible {
   outline: 2px solid #3553ff;
   outline-offset: 3px;
