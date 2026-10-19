@@ -1,25 +1,31 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
+  Avatar,
+  AvatarGroup,
   BarChart,
-  ButtonGroup,
   CalendarCard,
+  CellText,
   ChartCard,
   ChatBubble,
   ChatInputBar,
   CommandSearch,
   CommentItem,
+  ConfirmationDialog,
   ContactItem,
+  DataTable,
   type ChatInputBarQuickAction,
   type CommandSearchItem,
   FileUpload,
   ProgressBar,
+  SelectOption,
+  StatusBadge,
   Stepper,
-  TabBar,
-  Toggle,
+  TextArea,
+  TextField,
 } from "@forge-ui-official/core";
-import { CalendarLinear, ChartSquareLinear, ChatRoundLinear } from "@forge-ui-official/core/icons";
+import { CalendarLinear, ChartSquareLinear, ChatRoundLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
 import { FormsNavigationExamples } from "../components/_fusion/forms-navigation";
 
 const quickCards: ChatInputBarQuickAction[] = [
@@ -30,9 +36,9 @@ const quickCards: ChatInputBarQuickAction[] = [
   { id: "docs", label: "分析文档", kind: "docs", placeholder: "上传文档，或者提一个问题…" },
 ];
 
-function Panel({ title, children }: { title?: string; children: ReactNode }) {
+function Panel({ title, children, className = "" }: { title?: string; children: ReactNode; className?: string }) {
   return (
-    <section className="home-panel">
+    <section className={`home-panel${className ? ` ${className}` : ""}`}>
       {title ? <p className="home-panel-title">{title}</p> : null}
       <div className="home-panel-body">{children}</div>
     </section>
@@ -205,77 +211,129 @@ function NotePanel() {
   );
 }
 
-function PrefPanel() {
-  const [flags, setFlags] = useState({ mail: true, save: true, focus: false });
-  const rows = [
-    { id: "mail" as const, label: "邮件摘要" },
-    { id: "save" as const, label: "自动保存" },
-    { id: "focus" as const, label: "专注模式" },
-  ];
+const orders = [
+  { id: "copy", name: "引导文案", status: "进行中" },
+  { id: "notes", name: "版本说明", status: "待评审" },
+  { id: "list", name: "发布清单", status: "已完成" },
+];
+
+function OrdersPanel() {
+  const [selected, setSelected] = useState<Set<string>>(() => new Set(["list"]));
+  const [sortKey, setSortKey] = useState<string | null>(null);
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  const rows = useMemo(() => {
+    if (!sortKey) return orders;
+    return [...orders].sort((a, b) => {
+      const left = sortKey === "status" ? a.status : a.name;
+      const right = sortKey === "status" ? b.status : b.name;
+      const cmp = left.localeCompare(right, "zh");
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+  }, [sortDir, sortKey]);
   return (
-    <Panel title="偏好">
-      <div className="home-prefs">
-        {rows.map((row) => (
-          <div key={row.id} className="home-pref-row">
-            <span>{row.label}</span>
-            <Toggle
-              size="sm"
-              color="blue"
-              motion="auto"
-              checked={flags[row.id]}
-              ariaLabel={row.label}
-              onChange={(checked) => setFlags((current) => ({ ...current, [row.id]: checked }))}
-            />
-          </div>
-        ))}
+    <Panel title="工单">
+      <DataTable
+        className="home-table"
+        color="blue"
+        showCheckbox
+        checkboxColor="blue"
+        tableMinWidth="100%"
+        rows={rows}
+        getRowKey={(row) => row.id}
+        selectedRowKeys={selected}
+        onSelectedRowKeysChange={setSelected}
+        sortColumnKey={sortKey ?? undefined}
+        sortDirection={sortDir}
+        onSort={(key) => {
+          setSortDir((current) => (sortKey === key && current === "asc" ? "desc" : "asc"));
+          setSortKey(key);
+        }}
+        columns={[
+          { key: "name", header: "事项", sortable: true, render: (row) => <CellText>{row.name}</CellText> },
+          {
+            key: "status",
+            header: "状态",
+            sortable: true,
+            width: "w-[4.5rem]",
+            render: (row) => (
+              <StatusBadge
+                label={row.status}
+                variant="soft"
+                color={row.status === "已完成" ? "green" : row.status === "待评审" ? "yellow" : "blue"}
+              />
+            ),
+          },
+        ]}
+      />
+    </Panel>
+  );
+}
+
+function FilterPanel() {
+  const [owner, setOwner] = useState("lin");
+  const [status, setStatus] = useState("review");
+  const [keyword, setKeyword] = useState("");
+  const [note, setNote] = useState("发布前再核对一遍数据口径。");
+  return (
+    <Panel title="筛选" className="home-filter">
+      <SelectOption
+        label="负责人"
+        width="100%"
+        color="blue"
+        motion="auto"
+        value={owner}
+        onChange={setOwner}
+        options={[
+          { value: "lin", label: "林晓" },
+          { value: "zhou", label: "周宁" },
+          { value: "chen", label: "陈可" },
+        ]}
+      />
+      <SelectOption
+        label="状态"
+        width="100%"
+        color="blue"
+        motion="auto"
+        value={status}
+        onChange={setStatus}
+        options={[
+          { value: "doing", label: "进行中" },
+          { value: "review", label: "待评审" },
+          { value: "done", label: "已完成" },
+        ]}
+      />
+      <TextField label="关键词" color="blue" value={keyword} onChange={setKeyword} placeholder="搜索工单" />
+      <TextArea label="备注" color="blue" rows={1} value={note} onChange={setNote} />
+    </Panel>
+  );
+}
+
+function PublishPanel() {
+  const [published, setPublished] = useState(false);
+  return (
+    <section className="home-panel home-publish" aria-label="发布确认">
+      <ConfirmationDialog
+        className="home-publish-card"
+        color="blue"
+        motion="auto"
+        layout="right"
+        icon={<CheckCircleLinear size={22} color="currentColor" />}
+        title={published ? "已提交发布" : "发布这个版本？"}
+        description={published ? "清单已锁定，相关成员会收到通知。" : "待办完成后即可发给团队确认。"}
+        confirmLabel={published ? "已发布" : "发布"}
+        cancelLabel="返回"
+        onConfirm={() => setPublished(true)}
+        onCancel={() => setPublished(false)}
+      />
+      <div className="home-publish-people">
+        <span>将通知</span>
+        <AvatarGroup overflowCount={2}>
+          <Avatar initials="林" color="blue" size="sm" />
+          <Avatar initials="周" color="green" size="sm" />
+          <Avatar initials="陈" color="yellow" size="sm" />
+        </AvatarGroup>
       </div>
-    </Panel>
-  );
-}
-
-function ScopePanel() {
-  const [index, setIndex] = useState(1);
-  return (
-    <Panel title="范围">
-      <ButtonGroup
-        color="blue"
-        motion="auto"
-        shape="pill"
-        ariaLabel="统计范围"
-        activeIndex={index}
-        onChange={setIndex}
-        items={[{ label: "今日" }, { label: "本周" }, { label: "本月" }]}
-      />
-    </Panel>
-  );
-}
-
-function ViewPanel() {
-  const views = [
-    { label: "概览", rows: [["进行中", "12"], ["已完成", "4"], ["今日到期", "3"]] },
-    { label: "风险", rows: [["未确认", "2"], ["阻塞", "1"], ["逾期", "0"]] },
-    { label: "协作", rows: [["在线", "3"], ["评审", "1"], ["待回复", "2"]] },
-  ];
-  const [tab, setTab] = useState(0);
-  const current = views[tab];
-  return (
-    <Panel title="视图">
-      <TabBar
-        color="blue"
-        motion="auto"
-        ariaLabel="视图"
-        onChange={setTab}
-        tabs={views.map((view, index) => ({ label: view.label, active: index === tab }))}
-      />
-      <dl className="home-view-rows" key={current.label}>
-        {current.rows.map(([label, value]) => (
-          <div key={label}>
-            <dt>{label}</dt>
-            <dd>{value}</dd>
-          </div>
-        ))}
-      </dl>
-    </Panel>
+    </section>
   );
 }
 
@@ -354,11 +412,11 @@ function Wall() {
       <div className="home-col home-col-more home-col-more-1">
         <PeoplePanel />
         <NotePanel />
-        <PrefPanel />
+        <OrdersPanel />
       </div>
       <div className="home-col home-col-more home-col-more-2">
-        <ScopePanel />
-        <ViewPanel />
+        <FilterPanel />
+        <PublishPanel />
       </div>
     </div>
   );
