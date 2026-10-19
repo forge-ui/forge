@@ -7,8 +7,8 @@
 
 .home-hero {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(18rem, 26rem) minmax(0, 1fr);
+  display: flex;
+  justify-content: center;
   column-gap: clamp(2.25rem, 4vw, 4.75rem);
   align-items: start;
   min-width: 0;
@@ -45,10 +45,12 @@
   position: relative;
   z-index: 2;
   display: flex;
+  flex: 0 0 26rem;
   align-self: start;
+  width: 26rem;
   height: calc(100svh - 4rem);
   min-width: 0;
-  max-width: 100%;
+  max-width: 26rem;
   flex-direction: column;
   justify-content: center;
   padding: 0 0 1rem;
@@ -170,15 +172,16 @@
 .home-hero-stage {
   position: relative;
   z-index: 1;
+  flex: 1 1 61rem;
+  width: auto;
   min-width: 0;
-  max-width: 100%;
+  max-width: 61rem;
   height: calc(100svh - 4rem);
   display: flex;
   align-items: safe center;
   overflow: hidden;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
-  container-type: inline-size;
 }
 
 .home-wall {
@@ -223,16 +226,6 @@
   gap: 1rem;
   min-width: 0;
   min-height: 0;
-}
-
-.home-col.home-col-more {
-  display: none;
-}
-
-@container (min-width: 980px) {
-  .home-col.home-col-more-1 {
-    display: flex;
-  }
 }
 
 .home-pair {
@@ -436,63 +429,6 @@
   padding-bottom: 0.45rem;
 }
 
-.home-table {
-  background: transparent;
-  outline: none;
-  border-radius: 0;
-}
-
-.home-table [data-forge-table-scroll] {
-  overflow: hidden;
-}
-
-.home-table th,
-.home-table td {
-  padding: 0.4rem 0.45rem;
-}
-
-.home-table th.w-14 {
-  width: 2.25rem;
-  padding-left: 0.45rem;
-  padding-right: 0.2rem;
-}
-
-.home-table .h-10 {
-  height: auto;
-  min-height: 1.5rem;
-}
-
-.home-people {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.home-people-hit > div {
-  padding-top: 0.55rem;
-  padding-bottom: 0.55rem;
-}
-
-.home-people-hit {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  text-align: left;
-  border-radius: 12px;
-}
-
-.home-people-hit:focus-visible {
-  outline: 2px solid #3553ff;
-  outline-offset: 2px;
-}
-
-.home-note {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
 .home-panel .forge-stepper,
 .home-panel .forge-liquid,
 .home-panel .forge-otp,
@@ -510,10 +446,20 @@
 
 @media (max-width: 1279px) {
   .home-hero {
-    grid-template-columns: minmax(13.5rem, 17rem) minmax(0, 1fr);
     column-gap: 1rem;
     padding-left: 1rem;
     padding-right: 0.75rem;
+  }
+
+  .home-hero-copy {
+    flex: 1 1 17rem;
+    width: auto;
+    max-width: 17rem;
+  }
+
+  .home-hero-stage {
+    flex: 1 1 auto;
+    max-width: none;
   }
 
   .home-hero-title {
@@ -554,6 +500,7 @@
 
   .home-hero-copy {
     order: 1;
+    flex: none;
     width: 100%;
     height: auto;
     max-width: 100%;
@@ -575,7 +522,9 @@
 
   .home-hero-stage {
     order: 3;
+    flex: none;
     width: 100%;
+    max-width: none;
     height: auto;
     margin-top: 1.15rem;
     container-type: inline-size;
@@ -592,10 +541,6 @@
 
   .home-wall > .home-col > :last-child {
     flex: none;
-  }
-
-  .home-col.home-col-more {
-    display: none;
   }
 
   .home-span,
