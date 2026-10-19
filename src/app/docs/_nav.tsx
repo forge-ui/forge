@@ -6,6 +6,7 @@ import {
   ArrowRightUpLinear,
   DangerTriangleLinear,
   DownloadLinear,
+  ClockCircleLinear,
   DocumentTextLinear,
   FileTextLinear,
   FlagLinear,
@@ -37,6 +38,7 @@ export const docsNavGroups: NavGroup[] = [
       { href: "/docs/quick-start", label: "快速开始", icon: FlagLinear },
       { href: "/docs/installation", label: "详细安装", icon: DownloadLinear },
       { href: "/docs/troubleshoot", label: "故障排查", icon: DangerTriangleLinear },
+      { href: "/docs/changelog", label: "更新日志", icon: ClockCircleLinear },
     ],
   },
   {
