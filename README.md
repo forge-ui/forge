@@ -28,6 +28,16 @@
   <img alt="Forge 首页：左侧是定位和示例代码，右侧是统计、日程、对话等组件墙" src="./public/images/readme/hero.png" width="1200">
 </p>
 
+### 仓库镜像
+
+| 平台 | 仓库 |
+| --- | --- |
+| GitHub（权威） | https://github.com/forge-ui/forge |
+| Gitee | https://gitee.com/forgeui/forge |
+| AtomGit | https://atomgit.com/bitlink/forge |
+
+官方开发与 Issue / Release 以 GitHub 为准；Gitee、AtomGit 为国内镜像。
+
 人和 AI 按同一套组件规则做后台：设计 token、React 组件、`AppLayout`、业务模板，以及一份可安装的 Forge Skill。
 
 ## 为什么用 Forge
