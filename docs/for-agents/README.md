@@ -22,11 +22,10 @@
 
 | 文档 | 关系 |
 |------|------|
-| `.agents/skills/forge/SKILL.md` | 铁律 + 工作流；**入口应先指到本目录** |
-| `.agents/skills/forge/references/cases-index.md` | cases 原始索引；routes.md 已吸收 |
-| `.agents/skills/forge/references/page-patterns.md` | 更长的页面模式说明 |
-| `../forge-readdy/catalog/` | 介绍表原稿 + sync 脚本（codegen 用） |
-| `../forge-starter/docs/forge-components.md` | Starter 后台捷径，链回本目录 |
+| [`../../skills/forge-react/SKILL.md`](../../skills/forge-react/SKILL.md) | 组件、token、`AppLayout` 约束 |
+| [`../../skills/forge-react/references/page-patterns.md`](../../skills/forge-react/references/page-patterns.md) | 更长的页面模式说明 |
+| [`../../skills/forge-react/references/layout-grid.md`](../../skills/forge-react/references/layout-grid.md) | 栅格与页面栏 |
+| `../forge-starter/docs/forge-components.md` | 与 Starter 并排检出时的后台捷径，链回本目录 |
 
 ## 本地看 cases
 

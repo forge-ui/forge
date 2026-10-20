@@ -2,7 +2,7 @@ import type { ApiTableRow } from "./_api-table";
 import { chatInputApiDescriptions } from "./_chat-input-api-descriptions";
 import data from "./_agent-api-data.json";
 
-/** Generated from the public core entry by audit-public-api-comparison.mjs. */
+/** Renders the checked-in parameter rows from `_agent-api-data.json`. */
 export function CompleteApiReference({ name, descriptions = [] }: { name: keyof typeof data; descriptions?: ApiTableRow[] }) {
   const explain = Object.fromEntries(descriptions.flatMap(row => row.attr.split("/").map(attr => [attr.trim(), row.description])));
   const hasDescriptions = name === "ChatInputBar" || descriptions.length > 0;

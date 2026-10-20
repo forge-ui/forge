@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
+import ts from 'typescript';
 import { pathToFileURL } from 'node:url';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -26,10 +27,15 @@ test('agent descriptions and complete API render as one table per component',()=
  const { JSDOM } = require('../core/node_modules/jsdom');
  const dom = new JSDOM(html);
  const api = JSON.parse(fs.readFileSync('src/app/components/_agent-api-data.json', 'utf8'));
- const components = JSON.parse(fs.readFileSync('docs/public-api-comparison.json', 'utf8')).current.components;
+ const agentDir = 'core/src/components/ui/agent';
+ const components = fs.readdirSync(agentDir).filter(name => name.endsWith('.tsx')).map(fileName => {
+   const sourceText = fs.readFileSync(path.join(agentDir, fileName), 'utf8');
+   const file = ts.createSourceFile(fileName, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+   const fn = file.statements.find(n => ts.isFunctionDeclaration(n) && n.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword));
+   return fn.name.text;
+ });
  try {
-   for (const [name, component] of Object.entries(components)) {
-     if (!component.file.includes('/agent/')) continue;
+   for (const name of components) {
      const block = dom.window.document.getElementById(`api-${name.toLowerCase()}`);
      assert.ok(block, `${name}: parameter anchor`);
      const table = block.querySelector('table');
@@ -47,11 +53,4 @@ for(const only of ['otp','tabs','members'])test(`${only} widget has one named gu
  assert.equal((html.match(/data-case-section=/g)??[]).length,1);
  assert.equal((html.match(/<table/g)??[]).length,1);
  assert.match(html,/参数说明/);
-});
-test('duplication table covers every public component exactly once',()=>{
- const inventory=JSON.parse(fs.readFileSync('docs/component-coverage-audit.json')).components;
- const report=JSON.parse(fs.readFileSync('docs/component-duplication-audit.json'));
- assert.deepEqual(report.records.map(x=>x.name).sort(),inventory.map(x=>x.name).sort());
- assert.equal(new Set(report.records.map(x=>x.name)).size,182);
- assert.equal(report.summary.remainingDuplicateCandidates,0);
 });

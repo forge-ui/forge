@@ -1,6 +1,6 @@
 # 组件融合 API 用法
 
-本指南对应 `codex/component-fusion-migration` 分支的正式实现。增强能力继续放在原有组件里；注册向导、扇形快捷菜单、通知面板等业务组合位于 `src/app/components/_fusion/`，不增加同名平行组件。编号与归属见 [融合实现对照](./component-fusion-implementation.md)。
+本指南说明已经并入主线的交互增强怎么用。增强能力继续放在原有组件里；注册向导、扇形快捷菜单、通知面板等业务组合位于 `src/app/components/_fusion/`，不增加同名平行组件。
 
 以下片段均使用 `@forge-ui-official/core` 的公开入口；交互示例放在客户端组件文件中。项目仍需按 [core README](../../core/README.md) 接入样式。示例中的异步函数、上传任务和消息状态由业务方提供。
 
