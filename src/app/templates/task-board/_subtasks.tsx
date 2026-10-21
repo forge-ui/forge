@@ -40,7 +40,6 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
   };
   const [draft, setDraft] = useState("");
   const [description, setDescription] = useState("");
-  const [descriptionOpen, setDescriptionOpen] = useState(false);
   const [schedule, setSchedule] = useState<SchedulePatch>({ date: "" });
   const date = schedule.date;
   const setDate = (date: string) => setSchedule(current => ({ ...current, date }));
@@ -86,11 +85,11 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
   const detail = value.find((item) => item.id === detailId);
   const updateDetail = (patch: Partial<Subtask>) => onChange(value.map((item) => item.id === detailId ? { ...item, ...patch } : item));
   const input = useRef<HTMLInputElement>(null);
-  const close = () => { setDiscardOpen(false); setEditing(null); setDraft(""); setDescription(""); setDescriptionOpen(false); setSchedule({ date: "" }); setPriority("P4"); setAttachments([]); setLabels([]); setLabelsOpen(false); };
+  const close = () => { setDiscardOpen(false); setEditing(null); setDraft(""); setDescription(""); setSchedule({ date: "" }); setPriority("P4"); setAttachments([]); setLabels([]); setLabelsOpen(false); };
   const begin = (id: string, title = "") => {
     const item = value.find((entry) => entry.id === id);
     setDraftBaseline(JSON.stringify({ title: title.trim(), description: item?.description || "", date: item?.date || "", time: item?.time, repeat: item?.repeat, repeatAnchor: item?.repeatAnchor, repeatRule: item?.repeatRule, priority: item?.priority || "P4", attachments: item?.attachments || [], labels: item?.labels || [] }));
-    setDraft(title); setDescription(item?.description || ""); setDescriptionOpen(!!item?.description);
+    setDraft(title); setDescription(item?.description || "");
     setLabels(item?.labels || []); setLabelsOpen(false);
     setSchedule({ date: item?.date || "", time: item?.time, repeat: item?.repeat, repeatAnchor: item?.repeatAnchor, repeatRule: item?.repeatRule }); setPriority(item?.priority || "P4"); setAttachments(item?.attachments || []); setEditing(id);
   };
@@ -135,24 +134,23 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
     }
   }}>
     <TextField ref={input} autoFocus color="blue" className="subtask-editor-name" aria-label="子任务名称" placeholder="子任务名称" value={draft} onChange={setDraft} />
-    {descriptionOpen && <TextArea color="blue" aria-label="子任务描述" placeholder="描述" rows={2} value={description} onChange={setDescription} />}
-    <div className="flex flex-wrap items-center gap-2">
-      {!descriptionOpen && <Button color="blue" size="sm" variant="tertiary" onClick={() => setDescriptionOpen(true)}>添加描述</Button>}
+    <TextArea color="blue" className="subtask-editor-description" aria-label="子任务描述" placeholder="描述" rows={1} value={description} onChange={setDescription} />
+    <div className="comment-composer-toolbar subtask-editor-tools">
       <TaskDateMenu value={date} time={schedule.time} repeat={schedule.repeat} repeatRule={schedule.repeatRule} onScheduleChange={setSchedule} onChange={setDate} />
       <ContextMenu label={`子任务优先级：${priority}`} triggerLabel={`优先级 ${priority}`} items={["P1", "P2", "P3", "P4"].map(value => ({ label: `${value}${value === priority ? " · 当前" : ""}`, onSelect: () => setPriority(value) }))} />
-      <Button color="blue" size="sm" variant="tertiary" aria-expanded={labelsOpen} onClick={() => setLabelsOpen(current => !current)}>标签{labels.length > 0 ? ` · ${labels.length}` : ""}</Button>
+      <Button color="black" size="sm" variant="tertiary" className="subtask-editor-tool" aria-expanded={labelsOpen} onClick={() => setLabelsOpen(current => !current)}>标签{labels.length > 0 ? ` · ${labels.length}` : ""}</Button>
+      <SubtaskAttachments compact value={attachments} onChange={setAttachments} onBusyChange={setUploading} />
     </div>
-    {labelsOpen && <TaskLabels value={labels} available={labelOptions} onChange={setLabels} />}
-    <SubtaskAttachments value={attachments} onChange={setAttachments} onBusyChange={setUploading} />
-    <div className="flex flex-wrap items-center gap-2 border-t border-fg-grey-200 pt-3">
-    {editing === "new" && <Button color="blue" size="sm" variant="tertiary" disabled={!draft.trim() || uploading} onClick={() => {
+    {labelsOpen && <div className="subtask-editor-labels"><TaskLabels value={labels} available={labelOptions} onChange={setLabels} /></div>}
+    <div className="subtask-editor-footer">
+    {editing === "new" && <Button color="black" size="sm" variant="tertiary" className="subtask-editor-details" disabled={!draft.trim() || uploading} onClick={() => {
       const id = crypto.randomUUID();
       const item = { id, ...draftFields(), done: false };
       onChange([...value, item]);
       close(); openDetail(item);
     }}>添加详情</Button>}
       <div className="ml-auto flex gap-2">
-        <Button color="blue" size="sm" variant="secondary" onClick={requestClose}>取消</Button>
+        <Button color="grey" size="sm" variant="secondary" onClick={requestClose}>取消</Button>
         <Button color="blue" size="sm" onClick={save} disabled={!draft.trim() || uploading}>{editing === "new" ? "添加子任务" : "保存"}</Button>
       </div>
     </div>

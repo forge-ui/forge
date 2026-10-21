@@ -1026,19 +1026,8 @@ function TaskBoard() {
               />
             </div>
           </div>
-          {!listMode && task.description && (
-            <p className="task-description mt-1 pl-8 text-xs leading-5 text-fg-grey-700">
-              {task.description}
-            </p>
-          )}
           <div className="mt-3 pl-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs text-fg-grey-700">
-            <span>
-              {task.priority === "1"
-                ? "优先处理"
-                : task.priority === "2"
-                  ? "重要"
-                  : task.priority === "3" ? "常规" : "无优先级"}
-            </span>
+            {task.priority === "1" && <span className="text-fg-black">优先处理</span>}
             <TaskDateMenu value={task.date} time={task.time} repeat={task.repeat} repeatRule={task.repeatRule} onScheduleChange={(patch) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, ...patch } : item) }, "任务安排已更新")} onChange={(date) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, date } : item) }, date ? "任务日期已更新" : "已清除任务日期")} />
             {task.labels?.map((label) => <span key={label}>@{label}</span>)}
             {task.subtasks.length > 0 && (
@@ -1052,8 +1041,8 @@ function TaskBoard() {
             {systemScope && (
               <span className="text-fg-grey-700">{task.project}</span>
             )}
-            <span className="task-owner ml-auto" title={task.owner}>
-              {task.owner.slice(-1)}
+            <span className="task-card-assignee ml-auto" title={`负责人：${task.owner}`}>
+              {task.owner}
             </span>
           </div>
           {task.subtasks.length > 0 && expandedCardTasks[task.id] && <div data-no-drag id={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} className="card-subtask-list" aria-label={`${task.title}的子任务`}>

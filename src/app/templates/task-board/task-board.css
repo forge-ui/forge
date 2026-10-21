@@ -439,3 +439,20 @@ body:has(.task-board-shell) .forge-toast button:not([aria-label]) { background:v
 .card-subtask-row button { overflow-wrap:anywhere; }
 
 .card-subtask-toggle { font-size:11px; line-height:16px; gap:4px; padding:2px 4px; }
+
+/* Subtask quick entry shares one quiet surface instead of pill controls. */
+.subtask-inline-editor { gap:0; padding:0; overflow:hidden; border-color:var(--fg-grey-300); border-radius:10px; }
+.subtask-inline-editor:focus-within { border-color:var(--fg-blue); }
+.subtask-inline-editor .subtask-editor-name { padding:12px 14px 4px; border:0; outline:0; box-shadow:none; }
+.subtask-editor-name input { font-weight:600; font-size:14px; }
+.subtask-inline-editor .subtask-editor-description { padding:4px 14px 8px; background:transparent; border:0; outline:0; box-shadow:none; }
+.subtask-editor-description textarea { min-height:24px; max-height:180px; overflow-y:auto; font-size:13px; }
+.subtask-editor-tools { padding:4px 10px 10px; gap:4px; }
+.subtask-editor-tools > div > button, .subtask-editor-tools > .subtask-editor-tool { min-height:28px; border:0; outline:0; border-radius:5px; padding:4px 7px; background:transparent; color:var(--fg-grey-700); font-size:12px; font-weight:400; }
+.subtask-editor-tools > div > button:hover, .subtask-editor-tools > .subtask-editor-tool:hover { background:var(--fg-grey-100); }
+.subtask-editor-labels { padding:0 14px 12px; }
+.subtask-editor-footer { display:flex; flex-wrap:wrap; align-items:center; gap:8px; border-top:1px solid var(--fg-grey-200); padding:10px 12px; }
+.subtask-editor-footer button { border-radius:6px; }
+.subtask-editor-footer .subtask-editor-details { padding:6px 4px; border:0; outline:0; background:transparent; color:var(--fg-grey-700); font-weight:400; }
+
+.task-card-assignee { font-size:11px; color:var(--fg-grey-700); white-space:nowrap; }
