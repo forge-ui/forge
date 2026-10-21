@@ -469,3 +469,6 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 .task-priority-check[data-priority="2"] { --task-priority:var(--fg-yellow-600); --task-priority-soft:var(--fg-yellow-50); }
 .task-priority-check[data-priority="3"] { --task-priority:var(--fg-blue); --task-priority-soft:var(--fg-blue-50); }
 .task-priority-check:not([data-priority="4"]) [data-checked="false"] > span:first-child { border-color:var(--task-priority); background:var(--task-priority-soft); }
+/* A plain close glyph keeps transient feedback visually quiet. */
+body:has(.task-board-shell) .forge-toast button[aria-label] .solar-close-circle-linear circle { display:none; }
+body:has(.task-board-shell) .forge-toast button[aria-label] .solar-close-circle-linear path { transform:scale(1.8); transform-origin:center; vector-effect:non-scaling-stroke; }
