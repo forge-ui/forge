@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import { Button, DropdownPanel, IconPicker, TextField } from "@forge-ui-official/core";
+import { IconButton, DropdownPanel, IconPicker, TextField } from "@forge-ui-official/core";
 
 const emoji = [
   ["😀", "开心 笑脸 happy"], ["😄", "大笑 smile"], ["😂", "笑哭 laugh"], ["🥹", "感动"],
@@ -35,7 +35,7 @@ export function CommentEmoji({ onSelect }: { onSelect: (emoji: string) => void }
   const [query, setQuery] = useState("");
   const matches = emoji.filter(([glyph, keywords]) => `${glyph} ${keywords}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   return <div ref={trigger}>
-    <Button color="blue" size="sm" variant="tertiary" aria-label="插入表情" aria-haspopup="dialog" aria-controls={id} aria-expanded={open} onClick={() => {
+    <IconButton color="black" size="sm" variant="ghost" aria-label="插入表情" aria-haspopup="dialog" aria-controls={id} aria-expanded={open} onClick={() => {
       if (open) { popup.current?.hidePopover(); return; }
       setQuery("");
       const rect = trigger.current!.getBoundingClientRect();
@@ -43,7 +43,7 @@ export function CommentEmoji({ onSelect }: { onSelect: (emoji: string) => void }
       panel.style.left = `${Math.max(8, Math.min(rect.left, window.innerWidth - 328))}px`;
       panel.style.top = `${Math.max(8, Math.min(rect.bottom + 4, window.innerHeight - 380))}px`;
       panel.showPopover(); search.current?.focus();
-    }}>表情</Button>
+    }}><span aria-hidden className="comment-emoji-glyph">☺</span></IconButton>
     <div id={id} ref={popup} popover="auto" role="dialog" aria-label="选择评论表情" className="task-emoji-menu" onToggle={(event) => setOpen((event.nativeEvent as ToggleEvent).newState === "open")} onKeyDown={(event) => {
       if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); popup.current?.hidePopover(); trigger.current?.querySelector("button")?.focus(); }
     }}>

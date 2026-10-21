@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@forge-ui-official/core";
-import { PlusLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton } from "@forge-ui-official/core";
+import { PlusLinear, PaperclipLinear } from "@forge-ui-official/core/icons";
 import { type Subtask } from "./_data";
 
-export function SubtaskAttachments({ value, onChange, onBusyChange, label = "子任务附件" }: {
+export function SubtaskAttachments({ value, onChange, onBusyChange, label = "子任务附件", compact = false }: {
   value: NonNullable<Subtask["attachments"]>;
   onChange: (files: NonNullable<Subtask["attachments"]>) => void;
   onBusyChange?: (busy: boolean) => void;
   label?: string;
+  compact?: boolean;
 }) {
   const input = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
@@ -18,7 +19,7 @@ export function SubtaskAttachments({ value, onChange, onBusyChange, label = "子
   const generation = useRef(0);
   useEffect(() => { latest.current = { value, onChange, onBusyChange }; }, [value, onChange, onBusyChange]);
   useEffect(() => () => { generation.current += 1; latest.current.onBusyChange?.(false); }, []);
-  return <section className="flex flex-col gap-2" aria-label={label}>
+  return <section className={compact ? "comment-attachment-tool" : "flex flex-col gap-2"} aria-label={label}>
     {value.map((file) => <div key={file.id} className="flex items-center justify-between gap-3">
       <a className="truncate text-sm text-fg-black underline" href={file.url} download={file.name}>{file.name}</a>
       <Button color="blue" variant="tertiary" size="sm" disabled={busy} aria-label={`移除附件：${file.name}`} onClick={() => onChange(value.filter((item) => item.id !== file.id))}>移除</Button>
@@ -41,8 +42,8 @@ export function SubtaskAttachments({ value, onChange, onBusyChange, label = "子
       } catch { if (request === generation.current) setError("文件读取失败，请重新选择。"); }
       finally { if (request === generation.current) { setBusy(false); latest.current.onBusyChange?.(false); } }
     }} />
-    <Button color="blue" size="sm" variant="tertiary" className="task-attachment-add" disabled={busy} iconLeft={<PlusLinear size={16} />} onClick={() => input.current?.click()}>{busy ? "正在读取…" : "添加附件"}</Button>
-    {(value.length > 0 || error) && <p className="text-xs text-fg-grey-700">点击文件名可下载附件。</p>}
+    {compact ? <IconButton color="black" size="sm" variant="ghost" aria-label="添加附件" disabled={busy} onClick={() => input.current?.click()}><PaperclipLinear size={20} /></IconButton> : <Button color="blue" size="sm" variant="tertiary" className="task-attachment-add" disabled={busy} iconLeft={<PlusLinear size={16} />} onClick={() => input.current?.click()}>{busy ? "正在读取…" : "添加附件"}</Button>}
+    {!compact && (value.length > 0 || error) && <p className="text-xs text-fg-grey-700">点击文件名可下载附件。</p>}
     {error && <p role="alert" className="text-xs text-fg-red">{error}</p>}
   </section>;
 }

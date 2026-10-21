@@ -145,6 +145,7 @@ function TaskBoard() {
   const [archivedSectionsOpen, setArchivedSectionsOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [dragOver, setDragOver] = useState<string | null>(null);
+  const [expandedCardTasks, setExpandedCardTasks] = useState<Record<string, boolean>>({});
   const [dragPreview, setDragPreview] = useState<{ id: string; width: number; height: number; section?: string; before?: string } | null>(null);
   const dragX = useMotionValue(0);
   const dragY = useMotionValue(0);
@@ -1030,7 +1031,7 @@ function TaskBoard() {
               {task.description}
             </p>
           )}
-          <div className="mt-3 pl-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-fg-grey-700">
+          <div className="mt-3 pl-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs text-fg-grey-700">
             <span>
               {task.priority === "1"
                 ? "优先处理"
@@ -1041,10 +1042,9 @@ function TaskBoard() {
             <TaskDateMenu value={task.date} time={task.time} repeat={task.repeat} repeatRule={task.repeatRule} onScheduleChange={(patch) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, ...patch } : item) }, "任务安排已更新")} onChange={(date) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, date } : item) }, date ? "任务日期已更新" : "已清除任务日期")} />
             {task.labels?.map((label) => <span key={label}>@{label}</span>)}
             {task.subtasks.length > 0 && (
-              <span>
-                步骤 {task.subtasks.filter((s) => s.done).length}/
-                {task.subtasks.length}
-              </span>
+              <Button color="black" size="sm" variant="tertiary" data-no-drag className="card-subtask-toggle" aria-label={`${expandedCardTasks[task.id] ? "收起" : "展开"}卡片子任务：${task.title}`} aria-expanded={!!expandedCardTasks[task.id]} aria-controls={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} onClick={() => setExpandedCardTasks(current => ({ ...current, [task.id]: !current[task.id] }))}>
+                <ClipboardListBoldDuotone size={14} /><span>{task.subtasks.filter((s) => s.done).length}/{task.subtasks.length}</span><span className={expandedCardTasks[task.id] ? "rotate-180" : ""}><AltArrowDownLinear size={12} /></span>
+              </Button>
             )}
             {task.comments.length > 0 && (
               <span>讨论 {task.comments.length}</span>
@@ -1056,6 +1056,12 @@ function TaskBoard() {
               {task.owner.slice(-1)}
             </span>
           </div>
+          {task.subtasks.length > 0 && expandedCardTasks[task.id] && <div data-no-drag id={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} className="card-subtask-list" aria-label={`${task.title}的子任务`}>
+            {task.subtasks.map(child => <div className="card-subtask-row" key={child.id}>
+              <Checkbox color="blue" checked={child.done} aria-label={`${child.done ? "重新打开" : "完成"}卡片子任务：${child.title}`} onChange={(done) => change({ ...board, tasks: board.tasks.map(item => item.id === task.id ? { ...item, subtasks: item.subtasks.map(entry => entry.id === child.id ? { ...entry, done } : entry) } : item) }, done ? "子任务已完成" : "子任务已重新打开")} />
+              <button type="button" className={`min-w-0 flex-1 text-left text-sm leading-5 ${child.done ? "line-through text-fg-grey-500" : "text-fg-black"}`} aria-label={`打开卡片子任务：${child.title}`} onClick={() => openDetail(task, [child.id])}>{child.title}</button>
+            </div>)}
+          </div>}
         </SurfaceCard>
       </motion.div>
       </motion.div>

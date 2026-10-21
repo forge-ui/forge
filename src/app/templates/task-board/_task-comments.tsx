@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useImperativeHandle, useRef, useState, type Ref } from "react";
-import { Button, CommentItem, TextArea } from "@forge-ui-official/core";
+import { Avatar, Button, CommentItem, TextArea } from "@forge-ui-official/core";
 import { AltArrowDownLinear } from "@forge-ui-official/core/icons";
 import { validAttachments, type TaskComment, type TaskAttachment } from "./_data";
 import { useUnsavedChanges } from "./_use-unsaved-changes";
@@ -38,12 +38,14 @@ function CommentComposer({ draftKey, comment, legacyDraft, onSubmit, onClose, re
   const [text, setText] = useState(initialDraft?.text ?? comment?.text ?? "");
   const [files, setFiles] = useState<TaskAttachment[]>(initialDraft?.files ?? comment?.attachments ?? []);
   const editing = comment?.id ?? null;
+  const [expanded, setExpanded] = useState(!!comment || !!initialDraft?.text || !!initialDraft?.files.length);
   const [draftStorageFailed, setDraftStorageFailed] = useState(false);
   const [saveAttempt, setSaveAttempt] = useState(0);
   useUnsavedChanges(draftStorageFailed && !!(text || files.length));
   const [busy, setBusy] = useState(false);
   const [generation, setGeneration] = useState(0);
   const input = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => { if (expanded) input.current?.focus(); }, [expanded]);
   useEffect(() => {
     if (!draftKey) return;
     let cancelled = false;
@@ -59,31 +61,39 @@ function CommentComposer({ draftKey, comment, legacyDraft, onSubmit, onClose, re
     queueMicrotask(() => { if (!cancelled) setDraftStorageFailed(failed); });
     return () => { cancelled = true; };
   }, [draftKey, text, files, editing, saveAttempt]);
-  const clear = () => { if (draftKey) { commentDrafts.delete(draftKey); try { sessionStorage.removeItem(storageKey(draftKey)); } catch { /* Storage may be unavailable. */ } } setText(""); setFiles([]);  setBusy(false); setGeneration(current => current + 1); onClose?.(); };
-  useImperativeHandle(ref, () => ({ reply(quote: string) { setText(current => current.trim() ? `${current}\n${quote}` : quote); input.current?.focus(); } }));
-  return <div className="flex min-w-0 flex-col gap-3" role="group" aria-label={comment ? "编辑已有评论" : "添加新评论"}>
-    <TextArea ref={input} color="blue" autoFocus={!!comment} aria-label="评论内容" label={editing ? "编辑评论" : undefined} placeholder="写下进展或补充信息…" rows={2} value={text} onChange={setText} />
-    {draftStorageFailed && <div role="alert" className="flex flex-col items-start gap-2">
-      <p className="text-sm text-fg-red">评论草稿尚未保存。文字和附件仍保留在当前页面；刷新前请复制文字，并点击附件名称下载备份。</p>
-      <Button color="blue" size="sm" variant="tertiary" disabled={busy} onClick={() => setSaveAttempt(current => current + 1)}>重试保存草稿</Button>
+  const clear = () => { if (draftKey) { commentDrafts.delete(draftKey); try { sessionStorage.removeItem(storageKey(draftKey)); } catch { /* Storage may be unavailable. */ } } setText(""); setFiles([]);  setBusy(false); setExpanded(false); setGeneration(current => current + 1); onClose?.(); };
+  useImperativeHandle(ref, () => ({ reply(quote: string) { setExpanded(true); setText(current => current.trim() ? `${current}\n${quote}` : quote); input.current?.focus(); } }));
+  const submit = () => {
+    if (busy || (!text.trim() && !files.length)) return;
+    onSubmit(comment ? { ...comment, text: text.trim(), attachments: files } : { id: crypto.randomUUID(), author: "林晓", at: new Date().toISOString(), text: text.trim(), attachments: files });
+    clear();
+  };
+  return <div className={`comment-composer-row${comment ? " comment-composer-edit" : ""}`} role="group" aria-label={comment ? "编辑已有评论" : "添加新评论"}>
+    {!comment && <Avatar size="sm" src="/images/protask/crm/john-hoegan-avatar.png" alt="林晓" />}
+    {!expanded ? <Button color="black" variant="tertiary" className="comment-composer-trigger" aria-label="写评论" aria-expanded={false} onClick={() => setExpanded(true)}>评论…</Button> : <div className="comment-composer-box" onKeyDown={(event) => { if ((event.metaKey || event.ctrlKey) && event.key === "Enter") { event.preventDefault(); submit(); } }}>
+      <TextArea ref={input} color="blue" className="comment-composer-input" aria-label="评论内容" placeholder={editing ? "编辑评论…" : "评论…"} rows={3} value={text} onChange={setText} />
+      {draftStorageFailed && <div role="alert" className="px-3 flex flex-col items-start gap-2">
+        <p className="text-sm text-fg-red">评论草稿尚未保存。文字和附件仍保留在当前页面；刷新前请复制文字，并点击附件名称下载备份。</p>
+        <Button color="blue" size="sm" variant="tertiary" disabled={busy} onClick={() => setSaveAttempt(current => current + 1)}>重试保存草稿</Button>
+      </div>}
+      <div className="comment-composer-toolbar">
+        <div className="comment-composer-tools">
+          <SubtaskAttachments key={generation} compact label="评论附件" value={files} onChange={setFiles} onBusyChange={setBusy} />
+          <CommentEmoji onSelect={(emoji) => {
+            const start = input.current?.selectionStart ?? text.length;
+            const end = input.current?.selectionEnd ?? start;
+            setText(`${text.slice(0, start)}${emoji}${text.slice(end)}`);
+            requestAnimationFrame(() => { input.current?.focus(); input.current?.setSelectionRange(start + emoji.length, start + emoji.length); });
+          }} />
+        </div>
+        <div className="comment-composer-actions">
+          <Button color="grey" size="sm" variant="secondary" onClick={clear}>{editing ? "取消编辑" : "取消"}</Button>
+          <Button color="blue" size="sm" disabled={busy || (!text.trim() && !files.length)} onClick={submit}>{busy ? "正在读取…" : editing ? "保存评论" : "评论"}</Button>
+        </div>
+      </div>
     </div>}
-    <div className="flex flex-wrap items-start gap-2">
-      <SubtaskAttachments key={generation} label="评论附件" value={files} onChange={setFiles} onBusyChange={setBusy} />
-      <CommentEmoji onSelect={(emoji) => {
-        const start = input.current?.selectionStart ?? text.length;
-        const end = input.current?.selectionEnd ?? start;
-        setText(`${text.slice(0, start)}${emoji}${text.slice(end)}`);
-        requestAnimationFrame(() => { input.current?.focus(); input.current?.setSelectionRange(start + emoji.length, start + emoji.length); });
-      }} />
-    </div>
-    <div className="flex justify-end gap-2">
-      {(editing || text || files.length > 0) && <Button color="blue" size="sm" variant="tertiary" onClick={clear}>{editing ? "取消编辑" : "取消"}</Button>}
-      <Button color="blue" size="sm" disabled={busy || (!text.trim() && !files.length)} onClick={() => {
-        if (busy || (!text.trim() && !files.length)) return;
-        onSubmit(comment ? { ...comment, text: text.trim(), attachments: files } : { id: crypto.randomUUID(), author: "林晓", at: new Date().toISOString(), text: text.trim(), attachments: files }); clear();
-      }}>{busy ? "正在读取…" : editing ? "保存评论" : "发布评论"}</Button>
-    </div>
   </div>;
+
 }
 
 export function TaskComments({ draftKey, value, onChange, label = "任务评论", emptyText = "记录进展或补充资料，让讨论留在任务中。" }: {
@@ -117,23 +127,24 @@ export function TaskComments({ draftKey, value, onChange, label = "任务评论"
   const contentId = useId();
   return <section className="task-detail-section flex flex-col gap-3" aria-label={label}>
     <div className="flex items-center justify-between gap-3">
-      <h3 className="text-sm font-semibold text-fg-black"><Button color="blue" size="sm" variant="tertiary" className="task-comments-toggle" aria-label={collapsed ? "展开评论" : "收起评论"} aria-expanded={!collapsed} aria-controls={contentId} onClick={() => setCollapsed(!collapsed)}><span aria-hidden className={collapsed ? "task-comments-chevron collapsed" : "task-comments-chevron"}><AltArrowDownLinear size={16} /></span>评论</Button></h3>
+      <h3 className="text-sm font-semibold text-fg-black"><Button color="black" size="sm" variant="tertiary" className="task-comments-toggle" aria-label={collapsed ? "展开评论" : "收起评论"} aria-expanded={!collapsed} aria-controls={contentId} onClick={() => setCollapsed(!collapsed)}><span aria-hidden className={collapsed ? "task-comments-chevron collapsed" : "task-comments-chevron"}><AltArrowDownLinear size={16} /></span>评论</Button></h3>
       <span className="text-xs text-fg-grey-700">{comments.length} 条评论</span>
     </div>
     <div id={contentId} hidden={collapsed} className="task-comments-content"><>
-      {!comments.length && <p className="text-sm text-fg-grey-700">{emptyText}</p>}
+      {!comments.length && <p className="sr-only">{emptyText}</p>}
       {comments.map((comment, index) => <div key={comment.id} className="task-detail-comment flex items-start gap-2">
         <div className="min-w-0 flex-1">
           {editing === comment.id ? <CommentComposer key={comment.id} draftKey={draftKey ? `${draftKey}:edit:${comment.id}` : undefined} comment={comment} legacyDraft={legacyDraft?.editing === comment.id ? legacyDraft : undefined} onSubmit={updated => onChange(comments.map(entry => entry.id === updated.id ? updated : entry))} onClose={() => { setEditing(null); setLegacyDraft(undefined); }} /> : <>
-            <CommentItem className="w-full min-w-0" avatar="/images/protask/crm/john-hoegan-avatar.png" name={comment.author || "林晓"}
+            <CommentItem className="comment-history-item w-full min-w-0" avatar="/images/protask/crm/john-hoegan-avatar.png" name={comment.author || "林晓"}
               date={comment.at ? new Date(comment.at).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "时间未记录"}
               content={comment.text} onReply={() => input.current?.reply(`回复「${comment.text.slice(0, 40) || "附件"}」：`)} />
-            {!!comment.attachments?.length && <div className="mt-2 flex flex-col gap-2" aria-label={`评论 ${index + 1} 的附件`}>
+            {!!comment.attachments?.length && <div className="comment-history-attachments mt-2 flex flex-col gap-2" aria-label={`评论 ${index + 1} 的附件`}>
               {comment.attachments.map(file => <a key={file.id} className="truncate text-sm text-fg-black underline" href={file.url} download={file.name}>{file.name}</a>)}
             </div>}
           </>}
         </div>
         <ContextMenu label={`评论操作 ${index + 1}`} items={[
+          { label: "回复", onSelect: () => input.current?.reply(`回复「${comment.text.slice(0, 40) || "附件"}」：`) },
           { label: "编辑评论", onSelect: () => setEditing(comment.id) },
           { label: "复制文本", onSelect: async () => { try { await navigator.clipboard.writeText(comment.text); setCopyMessage("评论文本已复制"); } catch { setCopyMessage("未能复制评论，请选中文字后复制。"); } } },
           { label: "删除评论", danger: true, onSelect: () => { onChange(comments.filter(entry => entry.id !== comment.id)); if (editing === comment.id) setEditing(null); } },
