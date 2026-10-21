@@ -1082,17 +1082,13 @@ function TaskBoard() {
         profilePosition="sidebar"
         hideSidebarWidgets
         sidebarSlot={
-          <div className="task-sidebar flex flex-col gap-4">
-            <Button
-              color="blue"
-              variant="tertiary"
-              onClick={() => addTask()}
-              iconLeft={<PlusLinear size={18} />}
-            >
-              添加任务
-            </Button>
-            <Button color="blue" variant="tertiary" aria-label="搜索" iconLeft={<MagniferLinear size={18} />} onClick={() => setSearchOpen(true)}>搜索</Button>
+          <div className="task-sidebar flex flex-col gap-6">
+            <div className="flex flex-col gap-2 task-sidebar-actions">
+              <Button color="blue" aria-label="添加任务" iconLeft={<PlusLinear size={20} />} onClick={() => addTask()}>添加任务</Button>
+              <MenuItem accent="blue" label="搜索" ariaLabel="搜索" lead={{ kind: "icon", icon: <MagniferLinear size={20} /> }} onClick={() => setSearchOpen(true)} />
+            </div>
             <div className="flex flex-col gap-1">
+              <p className="px-3 text-xs font-medium text-fg-grey-700">任务</p>
               {nav.map((n) => {
                 const count = board.tasks.filter(
                   (t) =>
@@ -1109,13 +1105,10 @@ function TaskBoard() {
                 return (
                   <MenuItem
                     key={n.label}
-                    label={`${n.label}　${count || ""}`}
+                    label={`${n.label}${count ? ` (${count})` : ""}`}
                     ariaLabel={n.label}
                     lead={{ kind: "icon", icon: n.icon }}
                     active={!projectsOpen && scope === n.label}
-                    className={
-                      !projectsOpen && scope === n.label ? "product-nav-active" : undefined
-                    }
                     accent="blue"
                     onClick={() => {
                       closeDetail();
@@ -1127,9 +1120,7 @@ function TaskBoard() {
             </div>
             <div>
               <div className="mb-2 flex items-center justify-between px-3">
-                <Button color="blue" size="sm" variant="tertiary" aria-label="查看我的项目" aria-pressed={projectsOpen} onClick={() => { closeDetail(); setQuickAdd(null); setProjectsOpen(true); }}>
-                  我的项目
-                </Button>
+                <p className="text-xs font-medium text-fg-grey-700">项目</p>
                 <IconButton
                   size="sm"
                   variant="ghost"
@@ -1142,6 +1133,7 @@ function TaskBoard() {
                   <PlusLinear size={18} />
                 </IconButton>
               </div>
+              <MenuItem accent="blue" label="全部项目" ariaLabel="查看我的项目" active={projectsOpen} lead={{ kind: "icon", icon: <FolderBoldDuotone size={20} /> }} onClick={() => { closeDetail(); setQuickAdd(null); setProjectsOpen(true); }} />
               {[...board.projects]
                 .filter((p) => !board.archived?.includes(p))
                 .sort(
@@ -1156,7 +1148,6 @@ function TaskBoard() {
                     ariaLabel={p}
                     accent="blue"
                     active={!projectsOpen && scope === p}
-                    className={!projectsOpen && scope === p ? "product-nav-active" : undefined}
                     lead={{
                       kind: "icon",
                       icon: <FolderBoldDuotone size={20} />,
@@ -1172,7 +1163,7 @@ function TaskBoard() {
                 {board.archived.map((project) => <MenuItem key={project} label={project} ariaLabel={project} accent="blue" active={scope === project} onClick={() => { closeDetail(); selectScope(project); }} />)}
               </details>}
             </div>
-            <div className="mt-8 border-t border-fg-grey-200 pt-4">
+            <div className="task-sidebar-secondary flex flex-col gap-1">
               <MenuItem label="使用指南" onClick={() => setHelp(true)} />
               <MenuItem label="返回模板库" href="/templates" />
             </div>

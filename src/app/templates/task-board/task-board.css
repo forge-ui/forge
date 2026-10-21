@@ -55,9 +55,9 @@
 }
 .agent-product #forge-app-sidebar { background:var(--fg-grey-50,var(--fg-grey-100)); }
 .agent-product .forge-menu-item { border-radius:7px; min-height:38px; height:38px; font-weight:400; }
-.tasks-product .forge-menu-item[aria-current=page],.agent-product .forge-menu-item[aria-current=page] { background:var(--fg-grey-100); color:var(--fg-black); }
-.tasks-product .forge-menu-item[aria-current=page]>span:first-child,.agent-product .forge-menu-item[aria-current=page]>span:first-child { background:transparent; }
-.tasks-product .task-sidebar>button:first-child { outline:0; border:0; border-radius:8px; justify-content:flex-start; padding-left:12px; }
+.agent-product .forge-menu-item[aria-current=page] { background:var(--fg-grey-100); color:var(--fg-black); }
+.agent-product .forge-menu-item[aria-current=page]>span:first-child { background:transparent; }
+
 .tasks-product .task-board-card { padding:12px; }
 .tasks-product .task-board-card button[aria-label^="编辑"] { opacity:0; }
 .tasks-product .task-board-card:hover button[aria-label^="编辑"],.tasks-product .task-board-card:focus-within button[aria-label^="编辑"] { opacity:1; }
@@ -65,8 +65,8 @@
 .agent-process>summary { cursor:pointer; margin-bottom:12px; }
 .agent-process>div { margin-top:12px; }
 @media(max-width:767px) { .tasks-product .task-board-card button[aria-label^="编辑"] { opacity:1; } }
-.tasks-product .forge-menu-item.product-nav-active,.agent-product .forge-menu-item.product-nav-active { background:color-mix(in srgb,var(--fg-black) 8%,var(--fg-white)); color:var(--fg-black); }
-.tasks-product .forge-menu-item.product-nav-active>span:first-child,.agent-product .forge-menu-item.product-nav-active>span:first-child { background:transparent; }
+.agent-product .forge-menu-item.product-nav-active { background:color-mix(in srgb,var(--fg-black) 8%,var(--fg-white)); color:var(--fg-black); }
+.agent-product .forge-menu-item.product-nav-active>span:first-child { background:transparent; }
 .tasks-product .kanban-columns { min-height:480px; }
 @media(max-width:767px) {
 .project-header>div:first-child { flex-direction:column; align-items:flex-start; gap:12px; }
@@ -377,8 +377,6 @@ body:has(.task-board-shell) .forge-toast button:not([aria-label]) { background:v
 .subtask-sort-floating .task-subtask-row { cursor:grabbing; }
 
 /* Blue accent belongs to the task template; shared agent styles stay neutral. */
-.tasks-product .forge-menu-item.product-nav-active,
-.tasks-product .forge-menu-item[aria-current=page] { background:var(--fg-blue-50); color:var(--fg-blue); }
 .tasks-product .section-title-edit:focus-visible { outline-color:var(--fg-blue); }
 .tasks-product .section-insert-trigger::before,
 .tasks-product .task-drop-before::before,
@@ -393,3 +391,13 @@ body:has(.task-board-shell) .forge-toast button:not([aria-label]) { background:v
 
 .tasks-product [data-collapsed=true] .task-sidebar > button { padding:8px; gap:0; min-width:0; }
 .tasks-product [data-collapsed=true] .task-sidebar > button .forge-action-label { display:none; }
+
+/* Use unmodified Forge MenuItem navigation and the Kit primary action. */
+.tasks-product .task-sidebar-actions > .forge-button { width:100%; }
+.tasks-product .task-sidebar .template-profile { margin-top:auto; border:1px solid var(--fg-grey-200); border-radius:12px; padding:12px; background:var(--fg-grey-50); }
+.tasks-product [data-collapsed=true] .task-sidebar-actions .forge-action-label { display:none; }
+.tasks-product [data-collapsed=true] .task-sidebar-actions > .forge-button { padding:12px; gap:0; }
+.tasks-product [data-collapsed=true] .task-sidebar-secondary { display:none; }
+.tasks-product [data-collapsed=true] .task-sidebar .template-profile { padding:8px; }
+
+.tasks-product .task-sidebar { flex:1; }
