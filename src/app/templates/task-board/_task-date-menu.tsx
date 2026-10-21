@@ -58,7 +58,7 @@ export function TaskDateMenu({ value, onChange, time, repeat, repeatRule, onSche
   const repeatLabel = repeat ? `每${repeatRule?.interval ?? 1}${({ daily: "天", weekdays: "个工作日", weekly: "周", monthly: "个月", yearly: "年" })[repeat]}` : "";
   const display = `${dateDisplay}${time ? ` ${time}` : ""}${repeatLabel ? ` · ${repeatLabel}` : ""}`;
   return <div ref={anchor} className="task-date-anchor" data-no-drag>
-    <Button color="black" size="sm" variant="tertiary" aria-haspopup="dialog" aria-expanded={open} aria-controls={id} aria-label={`${label}：${display}`} iconLeft={<CalendarLinear size={14} />} onClick={() => {
+    <Button color="blue" size="sm" variant="tertiary" aria-haspopup="dialog" aria-expanded={open} aria-controls={id} aria-label={`${label}：${display}`} iconLeft={<CalendarLinear size={14} />} onClick={() => {
       if (open) { popup.current?.hidePopover(); return; }
       setAdvanced(false); setDraftTime(time ?? ""); setDraftRepeat(repeat ?? "none"); setError(""); setErrorField(null);
       setInterval(String(repeatRule?.interval ?? 1)); setBasis(repeatRule?.basis ?? "scheduled");
@@ -72,20 +72,20 @@ export function TaskDateMenu({ value, onChange, time, repeat, repeatRule, onSche
     <div id={id} ref={popup} popover="auto" role="dialog" aria-label="安排任务日期" className="task-date-menu" style={position} onToggle={(event) => setOpen((event.nativeEvent as ToggleEvent).newState === "open")}>
       <DropdownPanel width="w-full" className="task-date-panel">
         {advanced ? <div className="flex flex-col gap-4 p-3">
-          <MenuItem label="返回日期" accent="black" onClick={() => setAdvanced(false)} />
-          <TextField color="black" label="时间（24 小时制）" placeholder="例如 09:30，留空则不限时间" value={draftTime} {...fieldError("time")} onChange={(value) => { setDraftTime(value); clearError("time"); }} />
-          <SelectOption color="black" width="100%" label="重复规则" value={draftRepeat} onChange={value => { setDraftRepeat(value); setErrorField(null); setError(""); }} options={[
+          <MenuItem label="返回日期" accent="blue" onClick={() => setAdvanced(false)} />
+          <TextField color="blue" label="时间（24 小时制）" placeholder="例如 09:30，留空则不限时间" value={draftTime} {...fieldError("time")} onChange={(value) => { setDraftTime(value); clearError("time"); }} />
+          <SelectOption color="blue" width="100%" label="重复规则" value={draftRepeat} onChange={value => { setDraftRepeat(value); setErrorField(null); setError(""); }} options={[
             { value: "none", label: "不重复" }, { value: "daily", label: "每天" }, { value: "weekdays", label: "每个工作日" }, { value: "weekly", label: "每周" }, { value: "monthly", label: "每月" }, { value: "yearly", label: "每年" },
           ]} />
           {draftRepeat !== "none" && <>
-            <TextField color="black" label="重复间隔" placeholder="1–999" value={interval} {...fieldError("interval")} onChange={value => { setInterval(value); clearError("interval"); }} />
-            <SelectOption color="black" width="100%" label="下一次日期依据" value={basis} onChange={setBasis} options={[{value:"scheduled",label:"按计划日期"},{value:"completed",label:"按完成日期"}]} />
-            <SelectOption color="black" width="100%" label="结束重复" value={ending} onChange={value => { setEnding(value); clearError("until"); clearError("count"); }} options={[{value:"never",label:"永不结束"},{value:"until",label:"在指定日期结束"},{value:"count",label:"完成指定次数后结束"}]} />
-            {ending === "until" && <TextField color="black" label="结束日期" placeholder="YYYY-MM-DD" value={until} {...fieldError("until")} onChange={value => { setUntil(value); clearError("until"); }} />}
-            {ending === "count" && <TextField color="black" label="剩余次数（含本次）" placeholder="1–999" value={count} {...fieldError("count")} onChange={value => { setCount(value); clearError("count"); }} />}
+            <TextField color="blue" label="重复间隔" placeholder="1–999" value={interval} {...fieldError("interval")} onChange={value => { setInterval(value); clearError("interval"); }} />
+            <SelectOption color="blue" width="100%" label="下一次日期依据" value={basis} onChange={setBasis} options={[{value:"scheduled",label:"按计划日期"},{value:"completed",label:"按完成日期"}]} />
+            <SelectOption color="blue" width="100%" label="结束重复" value={ending} onChange={value => { setEnding(value); clearError("until"); clearError("count"); }} options={[{value:"never",label:"永不结束"},{value:"until",label:"在指定日期结束"},{value:"count",label:"完成指定次数后结束"}]} />
+            {ending === "until" && <TextField color="blue" label="结束日期" placeholder="YYYY-MM-DD" value={until} {...fieldError("until")} onChange={value => { setUntil(value); clearError("until"); }} />}
+            {ending === "count" && <TextField color="blue" label="剩余次数（含本次）" placeholder="1–999" value={count} {...fieldError("count")} onChange={value => { setCount(value); clearError("count"); }} />}
           </>}
           <p className="text-xs leading-5 text-fg-grey-700">间隔按所选规则计算，例如每 2 周、每 3 个工作日。完成后保留记录并安排下一次；超过结束条件则完成任务。未选日期时从今天开始。</p>
-          <Button color="black" size="sm" onClick={() => {
+          <Button color="blue" size="sm" onClick={() => {
             const nextTime = draftTime.trim();
             if (nextTime && !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(nextTime)) { invalid("time", "请输入有效时间，例如 09:30"); return; }
             const date = value || day();
@@ -102,10 +102,10 @@ export function TaskDateMenu({ value, onChange, time, repeat, repeatRule, onSche
         {[
           { label: "今天", date: day() }, { label: "明天", date: day(1) },
           { label: "本周周末", date: weekend }, { label: "下周一", date: nextWeek },
-        ].map((option) => <MenuItem key={option.label} label={option.label} accent="black" onClick={() => choose(option.date)} />)}
-        <div className="task-date-calendar"><Datepicker color="black" inline value={value ? new Date(`${value}T12:00:00`) : undefined} onChange={(date) => choose(`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`)} /></div>
-        {onScheduleChange && <MenuItem label="时间与重复" kind="dropdown" accent="black" onClick={() => setAdvanced(true)} />}
-        <MenuItem label="不设日期" accent="black" onClick={() => choose("")} />
+        ].map((option) => <MenuItem key={option.label} label={option.label} accent="blue" onClick={() => choose(option.date)} />)}
+        <div className="task-date-calendar"><Datepicker color="blue" inline value={value ? new Date(`${value}T12:00:00`) : undefined} onChange={(date) => choose(`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`)} /></div>
+        {onScheduleChange && <MenuItem label="时间与重复" kind="dropdown" accent="blue" onClick={() => setAdvanced(true)} />}
+        <MenuItem label="不设日期" accent="blue" onClick={() => choose("")} />
         </>}
       </DropdownPanel>
     </div>

@@ -54,7 +54,7 @@ export function ContextMenu({ label = "更多操作", triggerLabel, items }: {
   };
   const triggerProps = { "aria-label": label, "aria-haspopup": "menu" as const, "aria-controls": id, "aria-expanded": open, onClick: toggle };
   return <div ref={trigger} data-no-drag>
-    {triggerLabel ? <Button color="black" variant="tertiary" size="sm" {...triggerProps}>{triggerLabel}</Button> : <IconButton color="black" variant="ghost" size="sm" {...triggerProps}><MenuDotsBold size={18} /></IconButton>}
+    {triggerLabel ? <Button color="blue" variant="tertiary" size="sm" {...triggerProps}>{triggerLabel}</Button> : <IconButton color="blue" variant="ghost" size="sm" {...triggerProps}><MenuDotsBold size={18} /></IconButton>}
     <div ref={popup} id={id} popover="auto" role="menu" aria-label={label} className="task-context-menu" onToggle={(event) => setOpen((event.nativeEvent as ToggleEvent).newState === "open")} onKeyDown={(event) => {
       if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); popup.current?.hidePopover(); trigger.current?.querySelector("button")?.focus(); }
       if (event.key === "Tab") { popup.current?.hidePopover(); return; }
@@ -73,8 +73,8 @@ export function ContextMenu({ label = "更多操作", triggerLabel, items }: {
       buttons[next]?.focus();
     }}>
       <DropdownPanel width="w-full">
-        {submenu && <MenuItem accent="black" label="返回分区操作" onClick={() => setSubmenu(null)} />}
-        {(submenu?.children || items).map((item) => <MenuItem key={item.label} accent="black" label={item.label} kind={item.children ? "dropdown" : "single"} intent={item.danger ? "danger" : undefined} onClick={() => {
+        {submenu && <MenuItem accent="blue" label="返回分区操作" onClick={() => setSubmenu(null)} />}
+        {(submenu?.children || items).map((item) => <MenuItem key={item.label} accent="blue" label={item.label} kind={item.children ? "dropdown" : "single"} intent={item.danger ? "danger" : undefined} onClick={() => {
           if (item.children) { returnItem.current = item.label; setSubmenu(item); return; }
           popup.current?.hidePopover(); item.onSelect?.();
         }} />)}

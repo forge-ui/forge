@@ -62,10 +62,10 @@ export function TaskEditor({
               删除任务
             </Button>
           )}
-          <Button variant="secondary" color="black" onClick={onClose}>
+          <Button variant="secondary" color="blue" onClick={onClose}>
             取消
           </Button>
-          <Button color="black" onClick={save} disabled={uploading}>
+          <Button color="blue" onClick={save} disabled={uploading}>
             保存任务
           </Button>
         </>
@@ -79,7 +79,7 @@ export function TaskEditor({
         className="task-editor-layout"
       >
         <div className="task-editor-content">
-        <TextField color="black"
+        <TextField color="blue"
           autoFocus
           label="任务名称"
           placeholder="接下来想完成什么？"
@@ -91,7 +91,7 @@ export function TaskEditor({
           state={error ? "error" : "idle"}
           errorMessage={error ? "请填写任务名称" : undefined}
         />
-        <TextArea color="black"
+        <TextArea color="blue"
           label="描述"
           value={draft.description}
           onChange={(description) => patch({ description })}
@@ -105,13 +105,13 @@ export function TaskEditor({
         <p className="text-xs text-fg-grey-700">子任务与讨论将在保存任务后保留。</p>
         </div>
         <aside className="task-editor-properties">
-          <SelectOption color="black"
+          <SelectOption color="blue"
             label="所属项目"
             options={["收件箱", ...board.projects].map((p) => ({ value: p, label: p }))}
             value={draft.project}
             onChange={(project) => patch({ project, section: projectSections(board, project)[0]?.id ?? "" })}
           />
-          <SelectOption color="black"
+          <SelectOption color="blue"
             label="所在分区"
             options={projectSections(board, draft.project).map((s) => ({
               value: s.id,
@@ -120,7 +120,7 @@ export function TaskEditor({
             value={draft.section}
             onChange={(section) => patch({ section })}
           />
-          <SelectOption color="black"
+          <SelectOption color="blue"
             label="优先级"
             options={[
               { value: "1", label: "P1 · 优先处理" },
@@ -132,7 +132,7 @@ export function TaskEditor({
             onChange={(priority) => patch({ priority })}
           />
           <TaskDateMenu value={draft.date} time={draft.time} repeat={draft.repeat} repeatRule={draft.repeatRule} onScheduleChange={patch} onChange={(date) => patch({ date })} label="截止日期" />
-          <SelectOption color="black"
+          <SelectOption color="blue"
             label="负责人"
             options={["林晓", "陈一", "周可"].map((p) => ({
               value: p,
@@ -142,7 +142,7 @@ export function TaskEditor({
             onChange={(owner) => patch({ owner })}
           />
           <label className="flex items-center gap-3 text-sm text-fg-black">
-            <Checkbox color="black"
+            <Checkbox color="blue"
               checked={draft.done}
               onChange={(done) => patch({ done })}
             />

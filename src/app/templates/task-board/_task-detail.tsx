@@ -75,7 +75,7 @@ export function TaskDetail({
     <div className="task-detail-page">
       <header className="task-detail-header">
         <div className="flex min-w-0 items-center gap-3">
-          <Button color="black" variant="tertiary" size="sm" onClick={onBack}>
+          <Button color="blue" variant="tertiary" size="sm" onClick={onBack}>
             ← {backLabel}
           </Button>
           <span className="truncate text-xs text-fg-grey-700">
@@ -84,9 +84,9 @@ export function TaskDetail({
         </div>
         <div className="flex items-center gap-2">
           <span role="status" className={`text-xs ${saveFailed ? "text-fg-red" : "text-fg-grey-700"}`}>{saveFailed ? "更改未保存" : "浏览器本地保存"}</span>
-          {saveFailed && onRetrySave && <Button color="black" size="sm" variant="tertiary" onClick={onRetrySave}>重试保存</Button>}
-          <IconButton color="black" variant="ghost" size="sm" shape="square" autoFocus={!!onPrevious && (navigationFocus === "previous" || (navigationFocus === "next" && !onNext))} aria-label="上一个任务" title="上一个任务" disabled={!onPrevious} onClick={onPrevious}><AltArrowUpLinear size={18} /></IconButton>
-          <IconButton color="black" variant="ghost" size="sm" shape="square" autoFocus={!!onNext && (navigationFocus === "next" || (navigationFocus === "previous" && !onPrevious))} aria-label="下一个任务" title="下一个任务" disabled={!onNext} onClick={onNext}><AltArrowDownLinear size={18} /></IconButton>
+          {saveFailed && onRetrySave && <Button color="blue" size="sm" variant="tertiary" onClick={onRetrySave}>重试保存</Button>}
+          <IconButton color="blue" variant="ghost" size="sm" shape="square" autoFocus={!!onPrevious && (navigationFocus === "previous" || (navigationFocus === "next" && !onNext))} aria-label="上一个任务" title="上一个任务" disabled={!onPrevious} onClick={onPrevious}><AltArrowUpLinear size={18} /></IconButton>
+          <IconButton color="blue" variant="ghost" size="sm" shape="square" autoFocus={!!onNext && (navigationFocus === "next" || (navigationFocus === "previous" && !onPrevious))} aria-label="下一个任务" title="下一个任务" disabled={!onNext} onClick={onNext}><AltArrowDownLinear size={18} /></IconButton>
           <TaskMenu
             task={task}
             board={board}
@@ -110,7 +110,7 @@ export function TaskDetail({
         <main className="task-detail-main">
           <div className="flex items-start gap-3">
             <Checkbox
-              color="black"
+              color="blue"
               aria-label="标记任务完成"
               checked={task.done}
               onChange={(done) => patch({ done })}
@@ -127,10 +127,10 @@ export function TaskDetail({
             </div>
           </div>
               {!editingTitle && !editingDescription && <section className="task-detail-section">
-                <Button color="black" variant="tertiary" className="task-description-trigger" aria-label="编辑任务描述" onClick={() => setEditingDescription(true)}>{task.description || "添加描述…"}</Button>
+                <Button color="blue" variant="tertiary" className="task-description-trigger" aria-label="编辑任务描述" onClick={() => setEditingDescription(true)}>{task.description || "添加描述…"}</Button>
               </section>}
               <section className="task-detail-section" aria-label="任务附件区域">{(task.attachments?.length ?? 0) > 0 && <h2>附件</h2>}<SubtaskAttachments label="任务附件" value={task.attachments || []} onChange={(attachments) => patch({ attachments })} /></section>
-              {!hasSubtaskPath(task, detailPath) && <div role="status" className="mb-3 text-sm text-fg-grey-700">子任务不存在或已被删除。<Button color="black" size="sm" variant="tertiary" onClick={() => onDetailPathChange([])}>返回主任务</Button></div>}
+              {!hasSubtaskPath(task, detailPath) && <div role="status" className="mb-3 text-sm text-fg-grey-700">子任务不存在或已被删除。<Button color="blue" size="sm" variant="tertiary" onClick={() => onDetailPathChange([])}>返回主任务</Button></div>}
               <Subtasks draftScope={draftScope} onExitGuardChange={guard => { subtaskExitGuard.current = guard; }} saveFailed={saveFailed} onRetrySave={onRetrySave} detailPath={hasSubtaskPath(task, detailPath) ? detailPath : []} onDetailPathChange={onDetailPathChange} availableLabels={collectTaskLabels(board.tasks)} value={task.subtasks} onChange={(subtasks) => patch({ subtasks })} />
           <TaskComments draftKey={`${draftScope}:comments`} value={task.comments} onChange={(comments) => patch({ comments })} />
 
@@ -138,7 +138,7 @@ export function TaskDetail({
         <aside className="task-detail-aside" aria-label="任务属性">
           <h2 className="text-sm font-semibold text-fg-black">任务属性</h2>
           <SelectOption
-            color="black"
+            color="blue"
             label="所属项目"
             options={["收件箱", ...board.projects].map((p) => ({
               value: p,
@@ -148,7 +148,7 @@ export function TaskDetail({
             onChange={(project) => patch({ project, section: projectSections(board, project)[0]?.id ?? "" })}
           />
           <SelectOption
-            color="black"
+            color="blue"
             label="所在分区"
             options={projectSections(board, task.project).map((s) => ({
               value: s.id,
@@ -158,7 +158,7 @@ export function TaskDetail({
             onChange={(section) => patch({ section })}
           />
           <SelectOption
-            color="black"
+            color="blue"
             label="优先级"
             options={[
               { value: "1", label: "P1 · 优先处理" },
@@ -171,7 +171,7 @@ export function TaskDetail({
           />
           <div className="task-property-date"><p>日期</p><TaskDateMenu value={task.date} time={task.time} repeat={task.repeat} repeatRule={task.repeatRule} onScheduleChange={patch} onChange={(date) => patch({ date })} label="截止日期" /></div>
           <SelectOption
-            color="black"
+            color="blue"
             label="负责人"
             options={["林晓", "陈一", "周可"].map((p) => ({
               value: p,
@@ -183,7 +183,7 @@ export function TaskDetail({
           <TaskLabels compact value={task.labels ?? []} available={collectTaskLabels(board.tasks)} onChange={(labels) => patch({ labels })} />
           <div className="border-t border-fg-grey-200 pt-5">
             <Button
-              color="black"
+              color="blue"
               variant="secondary"
               onClick={() => patch({ done: !task.done })}
             >

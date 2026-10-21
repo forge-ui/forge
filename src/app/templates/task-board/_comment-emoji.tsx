@@ -35,7 +35,7 @@ export function CommentEmoji({ onSelect }: { onSelect: (emoji: string) => void }
   const [query, setQuery] = useState("");
   const matches = emoji.filter(([glyph, keywords]) => `${glyph} ${keywords}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   return <div ref={trigger}>
-    <Button color="black" size="sm" variant="tertiary" aria-label="插入表情" aria-haspopup="dialog" aria-controls={id} aria-expanded={open} onClick={() => {
+    <Button color="blue" size="sm" variant="tertiary" aria-label="插入表情" aria-haspopup="dialog" aria-controls={id} aria-expanded={open} onClick={() => {
       if (open) { popup.current?.hidePopover(); return; }
       setQuery("");
       const rect = trigger.current!.getBoundingClientRect();
@@ -49,10 +49,10 @@ export function CommentEmoji({ onSelect }: { onSelect: (emoji: string) => void }
     }}>
       <DropdownPanel width="w-full" padding="p-3">
         <div className="flex flex-col gap-3">
-          <TextField ref={search} color="black" aria-label="搜索评论表情" placeholder="搜索表情，例如：赞、庆祝、完成…" value={query} onChange={setQuery} />
+          <TextField ref={search} color="blue" aria-label="搜索评论表情" placeholder="搜索表情，例如：赞、庆祝、完成…" value={query} onChange={setQuery} />
           <p className="text-xs text-fg-grey-700">常用表情{query ? ` · ${matches.length} 个结果` : ""}</p>
           <div className="workspace-list-scroll max-h-64 overflow-y-auto">
-            {matches.length ? <IconPicker color="black" icons={matches.map(([glyph]) => <span key={glyph} className="text-xl">{glyph}</span>)} labels={matches.map(([glyph, keywords]) => `${glyph} ${keywords}`)} onChange={(index) => { popup.current?.hidePopover(); onSelect(matches[index][0]); }} /> : <p role="status" className="py-4 text-sm text-fg-grey-700">没有匹配的表情，试试其他关键词。</p>}
+            {matches.length ? <IconPicker color="blue" icons={matches.map(([glyph]) => <span key={glyph} className="text-xl">{glyph}</span>)} labels={matches.map(([glyph, keywords]) => `${glyph} ${keywords}`)} onChange={(index) => { popup.current?.hidePopover(); onSelect(matches[index][0]); }} /> : <p role="status" className="py-4 text-sm text-fg-grey-700">没有匹配的表情，试试其他关键词。</p>}
           </div>
         </div>
       </DropdownPanel>

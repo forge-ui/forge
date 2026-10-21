@@ -134,26 +134,26 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
       event.preventDefault(); event.stopPropagation(); requestClose();
     }
   }}>
-    <TextField ref={input} autoFocus color="black" className="subtask-editor-name" aria-label="子任务名称" placeholder="子任务名称" value={draft} onChange={setDraft} />
-    {descriptionOpen && <TextArea color="black" aria-label="子任务描述" placeholder="描述" rows={2} value={description} onChange={setDescription} />}
+    <TextField ref={input} autoFocus color="blue" className="subtask-editor-name" aria-label="子任务名称" placeholder="子任务名称" value={draft} onChange={setDraft} />
+    {descriptionOpen && <TextArea color="blue" aria-label="子任务描述" placeholder="描述" rows={2} value={description} onChange={setDescription} />}
     <div className="flex flex-wrap items-center gap-2">
-      {!descriptionOpen && <Button color="black" size="sm" variant="tertiary" onClick={() => setDescriptionOpen(true)}>添加描述</Button>}
+      {!descriptionOpen && <Button color="blue" size="sm" variant="tertiary" onClick={() => setDescriptionOpen(true)}>添加描述</Button>}
       <TaskDateMenu value={date} time={schedule.time} repeat={schedule.repeat} repeatRule={schedule.repeatRule} onScheduleChange={setSchedule} onChange={setDate} />
       <ContextMenu label={`子任务优先级：${priority}`} triggerLabel={`优先级 ${priority}`} items={["P1", "P2", "P3", "P4"].map(value => ({ label: `${value}${value === priority ? " · 当前" : ""}`, onSelect: () => setPriority(value) }))} />
-      <Button color="black" size="sm" variant="tertiary" aria-expanded={labelsOpen} onClick={() => setLabelsOpen(current => !current)}>标签{labels.length > 0 ? ` · ${labels.length}` : ""}</Button>
+      <Button color="blue" size="sm" variant="tertiary" aria-expanded={labelsOpen} onClick={() => setLabelsOpen(current => !current)}>标签{labels.length > 0 ? ` · ${labels.length}` : ""}</Button>
     </div>
     {labelsOpen && <TaskLabels value={labels} available={labelOptions} onChange={setLabels} />}
     <SubtaskAttachments value={attachments} onChange={setAttachments} onBusyChange={setUploading} />
     <div className="flex flex-wrap items-center gap-2 border-t border-fg-grey-200 pt-3">
-    {editing === "new" && <Button color="black" size="sm" variant="tertiary" disabled={!draft.trim() || uploading} onClick={() => {
+    {editing === "new" && <Button color="blue" size="sm" variant="tertiary" disabled={!draft.trim() || uploading} onClick={() => {
       const id = crypto.randomUUID();
       const item = { id, ...draftFields(), done: false };
       onChange([...value, item]);
       close(); openDetail(item);
     }}>添加详情</Button>}
       <div className="ml-auto flex gap-2">
-        <Button color="black" size="sm" variant="secondary" onClick={requestClose}>取消</Button>
-        <Button color="black" size="sm" onClick={save} disabled={!draft.trim() || uploading}>{editing === "new" ? "添加子任务" : "保存"}</Button>
+        <Button color="blue" size="sm" variant="secondary" onClick={requestClose}>取消</Button>
+        <Button color="blue" size="sm" onClick={save} disabled={!draft.trim() || uploading}>{editing === "new" ? "添加子任务" : "保存"}</Button>
       </div>
     </div>
   </div>;
@@ -169,14 +169,14 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
     {value.length > 0 && <div className="flex items-center gap-2 pb-1">
       <h2 className="text-sm font-semibold text-fg-black">子任务</h2>
       <span className="text-xs text-fg-grey-700" aria-label="子任务完成进度">{completedCount}/{value.length}</span>
-      {completedCount > 0 && <Button color="black" size="sm" variant="tertiary" className="ml-auto" aria-expanded={showCompleted} onClick={() => setShowCompleted(current => !current)}>{showCompleted ? "隐藏已完成" : `显示已完成（${completedCount}）`}</Button>}
+      {completedCount > 0 && <Button color="blue" size="sm" variant="tertiary" className="ml-auto" aria-expanded={showCompleted} onClick={() => setShowCompleted(current => !current)}>{showCompleted ? "隐藏已完成" : `显示已完成（${completedCount}）`}</Button>}
     </div>}
     <SortableSubtasks items={visibleItems} disabled={!!editing} onReorder={(ids) => {
       const sorted = ids.map(id => value.find(item => item.id === id)!);
       let index = 0;
       onChange(value.map(item => ids.includes(item.id) ? sorted[index++] : item));
     }}>{(item, index) => editing === item.id ? <div>{editor}</div> : <div className="task-subtask-row">
-      <Checkbox color="black" checked={item.done} aria-label={`${item.done ? "重新打开" : "完成"}子任务：${item.title}`} onChange={(done) => onChange(value.map((current) => current.id === item.id ? { ...current, done } : current))} />
+      <Checkbox color="blue" checked={item.done} aria-label={`${item.done ? "重新打开" : "完成"}子任务：${item.title}`} onChange={(done) => onChange(value.map((current) => current.id === item.id ? { ...current, done } : current))} />
       <div className="min-w-0 flex-1 py-1">
         <Button color="black" variant="tertiary" data-subtask-open={item.id} className={`subtask-title ${item.done ? "subtask-complete" : ""}`} aria-label={`查看子任务详情：${item.title}`} onClick={() => openDetail(item)}>{item.title}</Button>
         {item.description && <p className="truncate text-xs leading-5 text-fg-grey-700">{item.description}</p>}
@@ -200,7 +200,7 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
         { label: "删除子任务", danger: true, onSelect: () => setDeleteId(item.id) },
       ]} /></div>
     </div>}</SortableSubtasks>
-    {editing === "new" ? editor : <Button color="black" variant="tertiary" size="sm" className="subtask-add-trigger" iconLeft={<PlusLinear size={18} />} onClick={() => begin("new")}>添加子任务</Button>}
+    {editing === "new" ? editor : <Button color="blue" variant="tertiary" size="sm" className="subtask-add-trigger" iconLeft={<PlusLinear size={18} />} onClick={() => begin("new")}>添加子任务</Button>}
     <div {...{
       // React forwards native dialog events through the component tree.
       // Keep a child dialog's close/cancel from dismissing an ancestor editor.
@@ -216,9 +216,9 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
     <Modal className="subtask-detail-dialog" open={!!detail} onOpenChange={(open) => { if (!open) { selectDetail(null); } }} title="子任务详情">
       {detail && <div className="subtask-detail-layout">
         <div className="subtask-detail-content">
-          {saveFailed && <div role="alert" className="text-sm text-fg-red">子任务更改尚未保存到浏览器。{onRetrySave && <Button color="black" size="sm" variant="tertiary" onClick={onRetrySave}>重试保存</Button>}</div>}
+          {saveFailed && <div role="alert" className="text-sm text-fg-red">子任务更改尚未保存到浏览器。{onRetrySave && <Button color="blue" size="sm" variant="tertiary" onClick={onRetrySave}>重试保存</Button>}</div>}
           <div className="flex items-center justify-between gap-3">
-          <Button color="black" size="sm" variant="tertiary" onClick={() => selectDetail(null)}>{parentTitle ? `返回：${parentTitle}` : "返回父任务"}</Button>
+          <Button color="blue" size="sm" variant="tertiary" onClick={() => selectDetail(null)}>{parentTitle ? `返回：${parentTitle}` : "返回父任务"}</Button>
           <ContextMenu label="子任务详情操作" items={[
             { label: detail.done ? "重新打开子任务" : "完成子任务", onSelect: () => updateDetail({ done: !detail.done }) },
             { label: "复制子任务", onSelect: () => duplicate(detail) },
@@ -226,24 +226,24 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
           ]} />
           </div>
         <div className="flex items-start gap-3">
-          <div className="pt-2"><Checkbox color="black" aria-label="子任务已完成" checked={detail.done} onChange={(done) => updateDetail({ done })} /></div>
+          <div className="pt-2"><Checkbox color="blue" aria-label="子任务已完成" checked={detail.done} onChange={(done) => updateDetail({ done })} /></div>
           <div className="min-w-0 flex-1">
             {editingDetailTitle || editingDetailDescription ? <TaskContentEditor onExitGuardChange={guard => { contentExitGuard.current = guard; }} key={detail.id} child title={detail.title} description={detail.description || ""} focusDescription={editingDetailDescription} onSave={(content) => { updateDetail(content); setEditingDetailTitle(false); setEditingDetailDescription(false); }} onCancel={() => { setEditingDetailTitle(false); setEditingDetailDescription(false); }} /> : <h3><Button color="black" variant="tertiary" className={`task-title-trigger subtask-detail-title${detail.done ? " subtask-complete" : ""}`} aria-label={`编辑子任务名称：${detail.title}`} onClick={() => setEditingDetailTitle(true)}>{detail.title}</Button></h3>}
           </div>
         </div>
-        {!editingDetailTitle && !editingDetailDescription && <Button color="black" variant="tertiary" className="task-description-trigger" aria-label="编辑子任务描述" onClick={() => setEditingDetailDescription(true)}>{detail.description || "添加描述…"}</Button>}
+        {!editingDetailTitle && !editingDetailDescription && <Button color="blue" variant="tertiary" className="task-description-trigger" aria-label="编辑子任务描述" onClick={() => setEditingDetailDescription(true)}>{detail.description || "添加描述…"}</Button>}
         <section className="flex flex-col gap-2" aria-label="附件">{(detail.attachments?.length ?? 0) > 0 && <h3 className="text-sm font-semibold text-fg-black">附件</h3>}<SubtaskAttachments key={detail.id} value={detail.attachments || []} onChange={(attachments) => updateDetail({ attachments })} /></section>
         <Subtasks draftScope={draftScope ? `${draftScope}:${detail.id}` : undefined} key={detail.id} onExitGuardChange={(guard) => { childExitGuard.current = guard; }} saveFailed={saveFailed} onRetrySave={onRetrySave} detailPath={controlled ? detailPath?.slice(1) : undefined} onDetailPathChange={onDetailPathChange ? (path) => onDetailPathChange([detail.id, ...path]) : undefined} parentTitle={detail.title} availableLabels={labelOptions} value={detail.subtasks || []} onChange={(subtasks) => updateDetail({ subtasks })} />
         <TaskComments draftKey={draftScope ? `${draftScope}:${detail.id}:comments` : undefined} key={`comments:${detail.id}`} label="子任务评论" value={detail.comments || []} onChange={(comments) => updateDetail({ comments })} />
         </div>
         <aside className="subtask-detail-properties">
-        {value.length > 1 && <SelectOption color="black" label="切换子任务" value={detail.id} onChange={(id) => {
+        {value.length > 1 && <SelectOption color="blue" label="切换子任务" value={detail.id} onChange={(id) => {
           const next = value.find((item) => item.id === id);
           if (next) { openDetail(next); }
         }} options={value.map((item) => ({ value: item.id, label: item.title }))} />}
         <div className="task-property-schedule">
           <div className="task-property-date"><p>日期</p><TaskDateMenu value={detail.date || ""} time={detail.time} repeat={detail.repeat} repeatRule={detail.repeatRule} onScheduleChange={updateDetail} onChange={(date) => updateDetail({ date })} /></div>
-          <SelectOption color="black" label="优先级" value={detail.priority || "P4"} onChange={(priority) => updateDetail({ priority })} options={["P1", "P2", "P3", "P4"].map((value) => ({ value, label: value }))} />
+          <SelectOption color="blue" label="优先级" value={detail.priority || "P4"} onChange={(priority) => updateDetail({ priority })} options={["P1", "P2", "P3", "P4"].map((value) => ({ value, label: value }))} />
         </div>
         <TaskLabels compact value={detail.labels || []} available={labelOptions} onChange={(labels) => updateDetail({ labels })} />
         <p role="status" className={`text-xs ${saveFailed ? "text-fg-red" : "text-fg-grey-700"}`}>{detail.done ? "已完成" : "待完成"} · {saveFailed ? "更改未保存" : controlled ? "已保存在当前工作空间" : "随父任务一起保存"}</p>

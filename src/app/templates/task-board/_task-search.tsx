@@ -23,7 +23,7 @@ export function TaskSearch({ board, open, onOpenChange, onTask, onProject }: {
     <div ref={content}>
     <p className="mb-4 text-sm text-fg-grey-700">查找当前工作空间的项目、任务、子任务、标签、描述或负责人。</p>
     {open && <CommandSearch
-      color="black"
+      color="blue"
       autoFocus
       placeholder="搜索项目或任务…"
       emptyLabel="没有找到匹配的项目或任务，试试其他关键词。"

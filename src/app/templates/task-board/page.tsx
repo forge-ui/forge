@@ -904,9 +904,9 @@ function TaskBoard() {
   const savedSection = naming?.kind === "section" && naming.id ? board.sections.find(section => section.id === naming.id) : undefined;
   useUnsavedChanges(naming?.kind === "section" && (naming.value !== (savedSection?.title || "") || (naming.description || "") !== (savedSection?.description || "")));
   const sectionEditor = naming?.kind === "section" ? <form data-no-drag ref={sectionEditorRef} className="section-inline-editor flex flex-col gap-3" aria-label={naming.id ? "编辑分区" : "添加分区"} onKeyDownCapture={(event) => { if (["escape", "esc"].includes(event.key.toLowerCase()) || event.code === "Escape" || event.keyCode === 27) { event.preventDefault(); event.stopPropagation(); setNaming(null); } }} onSubmit={(event) => { event.preventDefault(); saveName(); }}>
-    <TextField color="black" autoFocus aria-label="分区名称" placeholder="命名这个分区" value={naming.value} onChange={(value) => { setNaming({ ...naming, value }); setNameError(""); }} state={nameError ? "error" : "idle"} errorMessage={nameError} />
-    <TextArea color="black" aria-label="分区描述" placeholder="添加描述" rows={3} value={naming.description || ""} onChange={(description) => setNaming({ ...naming, description })} />
-    <div className="flex gap-2"><Button color="black" size="sm" type="submit" disabled={!naming.value.trim()}>{naming.id ? "保存" : "添加分区"}</Button><Button color="black" size="sm" variant="tertiary" onClick={() => setNaming(null)}>取消</Button></div>
+    <TextField color="blue" autoFocus aria-label="分区名称" placeholder="命名这个分区" value={naming.value} onChange={(value) => { setNaming({ ...naming, value }); setNameError(""); }} state={nameError ? "error" : "idle"} errorMessage={nameError} />
+    <TextArea color="blue" aria-label="分区描述" placeholder="添加描述" rows={3} value={naming.description || ""} onChange={(description) => setNaming({ ...naming, description })} />
+    <div className="flex gap-2"><Button color="blue" size="sm" type="submit" disabled={!naming.value.trim()}>{naming.id ? "保存" : "添加分区"}</Button><Button color="blue" size="sm" variant="tertiary" onClick={() => setNaming(null)}>取消</Button></div>
   </form> : null;
 
   function card(task: Task & { dragOverlay?: boolean }) {
@@ -986,7 +986,7 @@ function TaskBoard() {
         >
           <div className="flex items-start gap-3">
             <Checkbox
-              color="black"
+              color="blue"
               aria-label={`${task.done ? "重新打开" : "完成"}：${task.title}`}
               checked={task.done}
               onChange={() => toggle(task)}
@@ -1070,7 +1070,7 @@ function TaskBoard() {
         showKebab={false}
         showFavorite={false}
         mode="light"
-        accent="black"
+        accent="blue"
         logoText="Forge"
         appName={workspaceName}
         apps={[
@@ -1084,14 +1084,14 @@ function TaskBoard() {
         sidebarSlot={
           <div className="task-sidebar flex flex-col gap-4 px-3 py-2">
             <Button
-              color="black"
+              color="blue"
               variant="tertiary"
               onClick={() => addTask()}
               iconLeft={<PlusLinear size={18} />}
             >
               添加任务
             </Button>
-            <Button color="black" variant="tertiary" iconLeft={<MagniferLinear size={18} />} onClick={() => setSearchOpen(true)}>搜索</Button>
+            <Button color="blue" variant="tertiary" iconLeft={<MagniferLinear size={18} />} onClick={() => setSearchOpen(true)}>搜索</Button>
             <div className="flex flex-col gap-1">
               {nav.map((n) => {
                 const count = board.tasks.filter(
@@ -1116,7 +1116,7 @@ function TaskBoard() {
                     className={
                       !projectsOpen && scope === n.label ? "product-nav-active" : undefined
                     }
-                    accent="black"
+                    accent="blue"
                     onClick={() => {
                       closeDetail();
                       selectScope(n.label);
@@ -1127,7 +1127,7 @@ function TaskBoard() {
             </div>
             <div>
               <div className="mb-2 flex items-center justify-between px-3">
-                <Button color="black" size="sm" variant="tertiary" aria-label="查看我的项目" aria-pressed={projectsOpen} onClick={() => { closeDetail(); setQuickAdd(null); setProjectsOpen(true); }}>
+                <Button color="blue" size="sm" variant="tertiary" aria-label="查看我的项目" aria-pressed={projectsOpen} onClick={() => { closeDetail(); setQuickAdd(null); setProjectsOpen(true); }}>
                   我的项目
                 </Button>
                 <IconButton
@@ -1154,7 +1154,7 @@ function TaskBoard() {
                     key={p}
                     label={p}
                     ariaLabel={p}
-                    accent="black"
+                    accent="blue"
                     active={!projectsOpen && scope === p}
                     className={!projectsOpen && scope === p ? "product-nav-active" : undefined}
                     lead={{
@@ -1169,7 +1169,7 @@ function TaskBoard() {
                 ))}
               {!!board.archived?.length && <details className="archived-projects">
                 <summary>已归档项目 · {board.archived.length}</summary>
-                {board.archived.map((project) => <MenuItem key={project} label={project} ariaLabel={project} accent="black" active={scope === project} onClick={() => { closeDetail(); selectScope(project); }} />)}
+                {board.archived.map((project) => <MenuItem key={project} label={project} ariaLabel={project} accent="blue" active={scope === project} onClick={() => { closeDetail(); selectScope(project); }} />)}
               </details>}
             </div>
             <div className="mt-8 border-t border-fg-grey-200 pt-4">
@@ -1196,10 +1196,10 @@ function TaskBoard() {
                   {systemScope ? "任务" : "我的项目"}
                 </span>
                 <div className="flex items-center gap-2">
-                  {!systemScope && <Button color="black" size="sm" variant="tertiary" aria-label={`项目评论（${board.projectComments?.[scope]?.length ?? 0}）`} onClick={() => setProjectCommentsOpen(true)}>评论{board.projectComments?.[scope]?.length ? ` ${board.projectComments[scope].length}` : ""}</Button>}
-                  {systemScope ? <Button size="sm" color="black" variant="tertiary" onClick={exportBoard}>导出</Button> : (
+                  {!systemScope && <Button color="blue" size="sm" variant="tertiary" aria-label={`项目评论（${board.projectComments?.[scope]?.length ?? 0}）`} onClick={() => setProjectCommentsOpen(true)}>评论{board.projectComments?.[scope]?.length ? ` ${board.projectComments[scope].length}` : ""}</Button>}
+                  {systemScope ? <Button size="sm" color="blue" variant="tertiary" onClick={exportBoard}>导出</Button> : (
                     <div aria-label="项目操作">
-                      <KebabMenu accent="black" items={[
+                      <KebabMenu accent="blue" items={[
                         { label: "重命名项目", onSelect: () => { setNaming({ kind: "project", id: scope, value: scope }); setNameError(""); } },
                         { label: "编辑项目详情", onSelect: () => setPropertiesOpen(true) },
                         { label: "复制项目", onSelect: () => {
@@ -1225,7 +1225,7 @@ function TaskBoard() {
                     </div>
                   )}
                   {!systemScope && (
-                    <Button size="sm" color="black" onClick={() => addTask()}>
+                    <Button size="sm" color="blue" onClick={() => addTask()}>
                       添加任务
                     </Button>
                   )}
@@ -1239,7 +1239,7 @@ function TaskBoard() {
                 {!systemScope && (
                   <IconButton
                     variant="ghost"
-                    color="black"
+                    color="blue"
                     aria-label={favorite ? "取消收藏" : "收藏项目"}
                     aria-pressed={favorite}
                     disabled={!board.projects.includes(scope)}
@@ -1298,7 +1298,7 @@ function TaskBoard() {
                           priority !== "all" || labelFilter !== "__all__") && (
                           <Button
                             size="sm"
-                            color="black"
+                            color="blue"
                             variant="secondary"
                             onClick={() => {
                               if (query || priority !== "all" || labelFilter !== "__all__" || dateFilter !== "all") {
@@ -1322,7 +1322,7 @@ function TaskBoard() {
                         <div className="flex gap-2">
                           <Button
                             size="sm"
-                            color="black"
+                            color="blue"
                             variant="tertiary"
                             disabled={weekOffset === 0}
                             onClick={() =>
@@ -1333,7 +1333,7 @@ function TaskBoard() {
                           </Button>
                           <Button
                             size="sm"
-                            color="black"
+                            color="blue"
                             variant="tertiary"
                             onClick={() => setWeekOffset(0)}
                           >
@@ -1341,7 +1341,7 @@ function TaskBoard() {
                           </Button>
                           <Button
                             size="sm"
-                            color="black"
+                            color="blue"
                             variant="tertiary"
                             onClick={() => setWeekOffset((v) => v + 1)}
                           >
@@ -1353,7 +1353,7 @@ function TaskBoard() {
                         {weekDays.map((date) => (
                           <Button
                             key={date}
-                            color="black"
+                            color="blue"
                             variant="tertiary"
                             size="sm"
                             onClick={() =>
@@ -1393,7 +1393,7 @@ function TaskBoard() {
                             <Fragment key={section.id}>
                             {!listMode && !systemScope && grouping === "section" && naming?.kind === "section" && !naming.id && naming.before === section.id && <motion.div layout={reduced ? false : "position"} className="add-section-column">{sectionEditor}</motion.div>}
                             <motion.div layout={reduced || columnPreview?.id === section.id ? false : "position"} style={columnPreview?.id === section.id ? { transform: "none" } : undefined} transition={{ layout: { type: "spring", stiffness: 440, damping: 38, mass: 0.8 } }} className={`board-column-slot${columnPreview?.id === section.id ? " column-drag-placeholder" : ""}`} data-section-slot={section.id}>
-                            {!listMode && !systemScope && grouping === "section" && !columnPreview && !dragPreview && <Button className="section-insert-trigger" color="black" variant="tertiary" aria-label={`在${section.title}前添加分区`} onClick={() => { setNaming({ kind: "section", value: "", before: section.id }); setNameError(""); }}><span>添加分区</span></Button>}
+                            {!listMode && !systemScope && grouping === "section" && !columnPreview && !dragPreview && <Button className="section-insert-trigger" color="blue" variant="tertiary" aria-label={`在${section.title}前添加分区`} onClick={() => { setNaming({ kind: "section", value: "", before: section.id }); setNameError(""); }}><span>添加分区</span></Button>}
                             <motion.section
                               style={columnPreview?.id === section.id ? { position: "fixed", left: 0, top: 0, x: columnX, y: columnY, width: columnPreview.width, height: columnPreview.height, zIndex: 100, pointerEvents: "none" } : undefined}
                               layout={false}
@@ -1438,9 +1438,9 @@ function TaskBoard() {
                                   sectionDrag.current = { id: section.id, x: event.clientX, y: event.clientY, moved: false, offsetX: event.clientX - bounds.left, offsetY: event.clientY - bounds.top, clientX: event.clientX, clientY: event.clientY, width: bounds.width, height: bounds.height };
                                 }}
                               >
-                                {listMode && <div data-no-drag><IconButton color="black" variant="ghost" size="sm" aria-label={`${collapsedGroups[`${preferenceKey}:${section.id}`] ? "展开" : "折叠"}分区：${section.title}`} aria-expanded={!collapsedGroups[`${preferenceKey}:${section.id}`]} aria-controls={`tasks-${section.id}`} onClick={() => setCollapsedGroups(current => ({ ...current, [`${preferenceKey}:${section.id}`]: !current[`${preferenceKey}:${section.id}`] }))}><span className={collapsedGroups[`${preferenceKey}:${section.id}`] ? "-rotate-90" : ""}><AltArrowDownLinear size={16} /></span></IconButton></div>}
+                                {listMode && <div data-no-drag><IconButton color="blue" variant="ghost" size="sm" aria-label={`${collapsedGroups[`${preferenceKey}:${section.id}`] ? "展开" : "折叠"}分区：${section.title}`} aria-expanded={!collapsedGroups[`${preferenceKey}:${section.id}`]} aria-controls={`tasks-${section.id}`} onClick={() => setCollapsedGroups(current => ({ ...current, [`${preferenceKey}:${section.id}`]: !current[`${preferenceKey}:${section.id}`] }))}><span className={collapsedGroups[`${preferenceKey}:${section.id}`] ? "-rotate-90" : ""}><AltArrowDownLinear size={16} /></span></IconButton></div>}
                                 <h2 className="flex-1 text-sm font-bold text-fg-black">
-                                  {!systemScope && grouping === "section" ? <Button color="black" variant="tertiary" className="section-title-edit" aria-label={`编辑分区：${section.title}`} onClick={() => { if (settlingDrag.current) return; setNaming({ kind: "section", id: section.id, value: section.title, description: board.sections.find(item => item.id === section.id)?.description || "" }); setNameError(""); }}>{section.title}</Button> : section.title}{" "}
+                                  {!systemScope && grouping === "section" ? <Button color="blue" variant="tertiary" className="section-title-edit" aria-label={`编辑分区：${section.title}`} onClick={() => { if (settlingDrag.current) return; setNaming({ kind: "section", id: section.id, value: section.title, description: board.sections.find(item => item.id === section.id)?.description || "" }); setNameError(""); }}>{section.title}</Button> : section.title}{" "}
                                   <span className="ml-2 font-normal text-fg-grey-700">
                                     {section.tasks.length}
                                   </span>
@@ -1504,7 +1504,7 @@ function TaskBoard() {
                                   availableLabels={collectTaskLabels(board.tasks)}
                                   onClose={() => setQuickAdd(null)}
                                   onSave={(task) => change({ ...board, tasks: [...board.tasks, { ...task, labels: [...new Set([...(task.labels ?? []), ...(labelFilter === "__all__" ? [] : [labelFilter.slice(6)]), ...("label" in section && section.label ? [section.label] : [])])] }] }, "任务已添加，可以继续录入")}
-                                /> : <Button variant="tertiary" color="black" size="sm" iconLeft={<PlusLinear size={16} />} onClick={() => setQuickAdd({ group: section.id, section: systemScope || grouping !== "section" ? projectSections(board, taskProject)[0]?.id : section.id, date: section.date ?? (dateFilter !== "all" && dateFilter !== "none" ? day() : undefined) })}>添加任务</Button>
+                                /> : <Button variant="tertiary" color="blue" size="sm" iconLeft={<PlusLinear size={16} />} onClick={() => setQuickAdd({ group: section.id, section: systemScope || grouping !== "section" ? projectSections(board, taskProject)[0]?.id : section.id, date: section.date ?? (dateFilter !== "all" && dateFilter !== "none" ? day() : undefined) })}>添加任务</Button>
                               )}
                               </div>
                             </motion.section>
@@ -1517,7 +1517,7 @@ function TaskBoard() {
                             <Button
                               size="sm"
                               variant="tertiary"
-                              color="black"
+                              color="blue"
                               onClick={() => {
                                 setNaming({ kind: "section", value: "" });
                                 setNameError("");
@@ -1546,7 +1546,7 @@ function TaskBoard() {
             {detailId ? (
           ready ? (
             linkedWorkspaceMissing ? (
-              <div className="p-8"><h1 className="text-xl font-semibold">此浏览器中没有链接指定的工作空间</h1><p className="my-4 text-sm text-fg-grey-700">任务链接需要在保存了该工作空间的浏览器中打开。</p><Button color="black" onClick={closeDetail}>返回任务看板</Button></div>
+              <div className="p-8"><h1 className="text-xl font-semibold">此浏览器中没有链接指定的工作空间</h1><p className="my-4 text-sm text-fg-grey-700">任务链接需要在保存了该工作空间的浏览器中打开。</p><Button color="blue" onClick={closeDetail}>返回任务看板</Button></div>
             ) : board.tasks.some((t) => t.id === detailId) ? (
               <TaskDetail
                 onExitGuardChange={(guard) => { detailExitGuard.current = guard; }}
@@ -1577,7 +1577,7 @@ function TaskBoard() {
             ) : (
               <div className="p-8">
                 <h1 className="text-xl font-semibold">任务不存在或已被删除</h1>
-                <Button color="black" onClick={closeDetail}>
+                <Button color="blue" onClick={closeDetail}>
                   返回任务看板
                 </Button>
               </div>
@@ -1590,7 +1590,7 @@ function TaskBoard() {
         <Modal open={!!linkToCopy} onOpenChange={(open) => { if (!open) setLinkToCopy(""); }} title={`复制${copyLinkKind}链接`}>
           <p role="status" className="mb-3 text-sm text-fg-grey-700">{copyLinkStatus}</p>
           <p className="mb-3 text-xs text-fg-grey-700">链接仅适用于保存了该工作空间的浏览器。</p>
-          <TextField color="black" label={`${copyLinkKind}链接`} readOnly value={linkToCopy} autoFocus onFocus={(event) => event.currentTarget.select()} />
+          <TextField color="blue" label={`${copyLinkKind}链接`} readOnly value={linkToCopy} autoFocus onFocus={(event) => event.currentTarget.select()} />
         </Modal>
         {dragPreview && <motion.div className={`task-drag-preview tasks-product${listMode ? " task-list-view" : ""}`} style={{ x: dragX, y: dragY, rotate: dragRotation, width: dragPreview.width }} aria-hidden="true" inert>
           {board.tasks.filter(task => task.id === dragPreview.id).map(task => ({ ...task, dragOverlay: true })).map(card)}
@@ -1600,11 +1600,11 @@ function TaskBoard() {
         {board.sections.filter(section => section.project === scope && section.archived).length === 0 && <p className="py-6 text-sm text-fg-grey-700">这个项目还没有已归档分区。</p>}
         {board.sections.filter(section => section.project === scope && section.archived).map(section => <div key={section.id} className="flex items-center justify-between gap-4 border-b border-fg-grey-200 py-3">
           <div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{section.title}</p><p className="text-xs text-fg-grey-700">{board.tasks.filter(task => task.section === section.id).length} 项任务</p></div>
-          <Button color="black" size="sm" variant="secondary" aria-label={`恢复分区：${section.title}`} onClick={() => change(setSectionArchived(board, section.id, false), "分区已恢复")}>恢复</Button>
+          <Button color="blue" size="sm" variant="secondary" aria-label={`恢复分区：${section.title}`} onClick={() => change(setSectionArchived(board, section.id, false), "分区已恢复")}>恢复</Button>
         </div>)}
       </Modal>
       <Modal open={projectCommentsOpen} onOpenChange={setProjectCommentsOpen} title={`${scope} · 项目评论`}>
-        {storageFailed && <div role="alert" className="mb-3 text-sm text-fg-red">评论更改尚未保存到浏览器。<Button color="black" size="sm" variant="tertiary" onClick={() => persistBoard(true)}>重试保存</Button></div>}
+        {storageFailed && <div role="alert" className="mb-3 text-sm text-fg-red">评论更改尚未保存到浏览器。<Button color="blue" size="sm" variant="tertiary" onClick={() => persistBoard(true)}>重试保存</Button></div>}
         {projectCommentsOpen && <TaskComments draftKey={`${workspace}:project:${scope}`} key={`${workspace}:${scope}`} label="项目评论" emptyText="讨论项目目标、共享资料或记录整体进展。任务细节可以留在对应任务的评论中。" value={board.projectComments?.[scope] ?? []} onChange={(comments) => setBoard(current => ({ ...current, projectComments: { ...current.projectComments, [scope]: comments } }))} />}
       </Modal>
       <TaskSearch board={board} open={searchOpen} onOpenChange={setSearchOpen} onProject={selectScope} onTask={(task, path) => { selectScope(task.project); openDetail(task, path); }} />
@@ -1648,13 +1648,13 @@ function TaskBoard() {
           footer={
             <>
               <Button
-                color="black"
+                color="blue"
                 variant="secondary"
                 onClick={() => setNaming(null)}
               >
                 取消
               </Button>
-              <Button color="black" onClick={saveName}>
+              <Button color="blue" onClick={saveName}>
                 {naming?.kind === "project-copy" ? "复制项目" : naming?.kind === "section" ? "保存分区" : "保存名称"}
               </Button>
             </>
@@ -1662,7 +1662,7 @@ function TaskBoard() {
         >
           {naming?.kind === "project-copy" && <p className="mb-4 text-sm text-fg-grey-700">复制“{naming.id}”的项目说明、全部分区和任务，包括已完成任务、已归档分区、子任务、附件及项目/任务评论。副本可独立修改，不复制活动记录。</p>}
           <TextField
-            color="black"
+            color="blue"
             autoFocus
             label="名称"
             value={naming?.value ?? ""}
@@ -1676,7 +1676,7 @@ function TaskBoard() {
               if (event.key === "Enter") saveName();
             }}
           />
-          {naming?.kind === "section" && naming.id && <TextArea color="black" label="分区描述" placeholder="添加描述" rows={3} value={naming.description || ""} onChange={(description) => setNaming({ ...naming, description })} />}
+          {naming?.kind === "section" && naming.id && <TextArea color="blue" label="分区描述" placeholder="添加描述" rows={3} value={naming.description || ""} onChange={(description) => setNaming({ ...naming, description })} />}
         </Modal>
         <ConfirmationDialog
           open={!!confirm}

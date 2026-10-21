@@ -36,11 +36,11 @@ export function TaskContentEditor({ onExitGuardChange, title, description, child
     if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); requestExit(onCancel); }
     if (event.key === "Enter" && event.target instanceof HTMLInputElement) { event.preventDefault(); event.stopPropagation(); save(); }
   }}>
-    <TextField color="black" aria-label={child ? "子任务名称" : "任务名称"} value={name} onChange={setName} autoFocus={!focusDescription} />
-    <TextArea color="black" aria-label={child ? "子任务描述" : "任务描述"} placeholder="添加描述…" rows={3} value={body} onChange={setBody} autoFocus={focusDescription} />
+    <TextField color="blue" aria-label={child ? "子任务名称" : "任务名称"} value={name} onChange={setName} autoFocus={!focusDescription} />
+    <TextArea color="blue" aria-label={child ? "子任务描述" : "任务描述"} placeholder="添加描述…" rows={3} value={body} onChange={setBody} autoFocus={focusDescription} />
     <div className="flex justify-end gap-2">
-      <Button color="black" size="sm" variant="tertiary" onClick={() => requestExit(onCancel)}>取消</Button>
-      <Button color="black" size="sm" type="submit" disabled={!name.trim()}>保存</Button>
+      <Button color="blue" size="sm" variant="tertiary" onClick={() => requestExit(onCancel)}>取消</Button>
+      <Button color="blue" size="sm" type="submit" disabled={!name.trim()}>保存</Button>
     </div>
   </form></>;
 }

@@ -48,18 +48,18 @@ export function QuickAdd({ project, section, initialDate = "", initialPriority =
     setTitle(""); setDescription(""); setAttachments([]); setLabels([]);
     input.current?.focus();
   }}>
-    <TextField color="black" className="quick-add-title" ref={input} autoFocus aria-label="任务名称" placeholder="任务名称" value={title} onChange={setTitle} />
-    <TextArea color="black" className="quick-add-description" aria-label="任务描述" placeholder="描述（可选）" rows={1} value={description} onChange={setDescription} />
+    <TextField color="blue" className="quick-add-title" ref={input} autoFocus aria-label="任务名称" placeholder="任务名称" value={title} onChange={setTitle} />
+    <TextArea color="blue" className="quick-add-description" aria-label="任务描述" placeholder="描述（可选）" rows={1} value={description} onChange={setDescription} />
     <div className="flex flex-wrap items-center gap-2">
       <TaskDateMenu value={schedule.date} time={schedule.time} repeat={schedule.repeat} repeatRule={schedule.repeatRule} onScheduleChange={setSchedule} onChange={(date) => setSchedule({ ...schedule, date })} />
       <ContextMenu label={`任务优先级：P${priority}`} triggerLabel={`优先级 P${priority}`} items={["1", "2", "3", "4"].map(value => ({ label: `P${value}${value === priority ? " · 当前" : ""}`, onSelect: () => setPriority(value) }))} />
-      <Button color="black" size="sm" variant="tertiary" aria-expanded={labelsOpen} onClick={() => setLabelsOpen(current => !current)}>标签{labels.length ? ` · ${labels.length}` : ""}</Button>
+      <Button color="blue" size="sm" variant="tertiary" aria-expanded={labelsOpen} onClick={() => setLabelsOpen(current => !current)}>标签{labels.length ? ` · ${labels.length}` : ""}</Button>
     </div>
     {labelsOpen && <TaskLabels value={labels} available={availableLabels} onChange={setLabels} />}
     <SubtaskAttachments label="任务附件" value={attachments} onChange={setAttachments} onBusyChange={setUploading} />
     <div className="flex justify-end gap-2">
-      <Button color="black" size="sm" variant="secondary" onClick={onClose}>取消</Button>
-      <Button color="black" size="sm" type="submit" disabled={!title.trim() || uploading}>添加任务</Button>
+      <Button color="blue" size="sm" variant="secondary" onClick={onClose}>取消</Button>
+      <Button color="blue" size="sm" type="submit" disabled={!title.trim() || uploading}>添加任务</Button>
     </div>
   </form>;
 }

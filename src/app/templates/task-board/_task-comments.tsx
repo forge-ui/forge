@@ -62,10 +62,10 @@ function CommentComposer({ draftKey, comment, legacyDraft, onSubmit, onClose, re
   const clear = () => { if (draftKey) { commentDrafts.delete(draftKey); try { sessionStorage.removeItem(storageKey(draftKey)); } catch { /* Storage may be unavailable. */ } } setText(""); setFiles([]);  setBusy(false); setGeneration(current => current + 1); onClose?.(); };
   useImperativeHandle(ref, () => ({ reply(quote: string) { setText(current => current.trim() ? `${current}\n${quote}` : quote); input.current?.focus(); } }));
   return <div className="flex min-w-0 flex-col gap-3" role="group" aria-label={comment ? "编辑已有评论" : "添加新评论"}>
-    <TextArea ref={input} color="black" autoFocus={!!comment} aria-label="评论内容" label={editing ? "编辑评论" : undefined} placeholder="写下进展或补充信息…" rows={2} value={text} onChange={setText} />
+    <TextArea ref={input} color="blue" autoFocus={!!comment} aria-label="评论内容" label={editing ? "编辑评论" : undefined} placeholder="写下进展或补充信息…" rows={2} value={text} onChange={setText} />
     {draftStorageFailed && <div role="alert" className="flex flex-col items-start gap-2">
       <p className="text-sm text-fg-red">评论草稿尚未保存。文字和附件仍保留在当前页面；刷新前请复制文字，并点击附件名称下载备份。</p>
-      <Button color="black" size="sm" variant="tertiary" disabled={busy} onClick={() => setSaveAttempt(current => current + 1)}>重试保存草稿</Button>
+      <Button color="blue" size="sm" variant="tertiary" disabled={busy} onClick={() => setSaveAttempt(current => current + 1)}>重试保存草稿</Button>
     </div>}
     <div className="flex flex-wrap items-start gap-2">
       <SubtaskAttachments key={generation} label="评论附件" value={files} onChange={setFiles} onBusyChange={setBusy} />
@@ -77,8 +77,8 @@ function CommentComposer({ draftKey, comment, legacyDraft, onSubmit, onClose, re
       }} />
     </div>
     <div className="flex justify-end gap-2">
-      {(editing || text || files.length > 0) && <Button color="black" size="sm" variant="tertiary" onClick={clear}>{editing ? "取消编辑" : "取消"}</Button>}
-      <Button color="black" size="sm" disabled={busy || (!text.trim() && !files.length)} onClick={() => {
+      {(editing || text || files.length > 0) && <Button color="blue" size="sm" variant="tertiary" onClick={clear}>{editing ? "取消编辑" : "取消"}</Button>}
+      <Button color="blue" size="sm" disabled={busy || (!text.trim() && !files.length)} onClick={() => {
         if (busy || (!text.trim() && !files.length)) return;
         onSubmit(comment ? { ...comment, text: text.trim(), attachments: files } : { id: crypto.randomUUID(), author: "林晓", at: new Date().toISOString(), text: text.trim(), attachments: files }); clear();
       }}>{busy ? "正在读取…" : editing ? "保存评论" : "发布评论"}</Button>
@@ -117,7 +117,7 @@ export function TaskComments({ draftKey, value, onChange, label = "任务评论"
   const contentId = useId();
   return <section className="task-detail-section flex flex-col gap-3" aria-label={label}>
     <div className="flex items-center justify-between gap-3">
-      <h3 className="text-sm font-semibold text-fg-black"><Button color="black" size="sm" variant="tertiary" className="task-comments-toggle" aria-label={collapsed ? "展开评论" : "收起评论"} aria-expanded={!collapsed} aria-controls={contentId} onClick={() => setCollapsed(!collapsed)}><span aria-hidden className={collapsed ? "task-comments-chevron collapsed" : "task-comments-chevron"}><AltArrowDownLinear size={16} /></span>评论</Button></h3>
+      <h3 className="text-sm font-semibold text-fg-black"><Button color="blue" size="sm" variant="tertiary" className="task-comments-toggle" aria-label={collapsed ? "展开评论" : "收起评论"} aria-expanded={!collapsed} aria-controls={contentId} onClick={() => setCollapsed(!collapsed)}><span aria-hidden className={collapsed ? "task-comments-chevron collapsed" : "task-comments-chevron"}><AltArrowDownLinear size={16} /></span>评论</Button></h3>
       <span className="text-xs text-fg-grey-700">{comments.length} 条评论</span>
     </div>
     <div id={contentId} hidden={collapsed} className="task-comments-content"><>
