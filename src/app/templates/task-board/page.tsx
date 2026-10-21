@@ -1079,10 +1079,10 @@ function TaskBoard() {
         ]}
         onAppChange={(app) => switchWorkspace(app.id)}
         appSubtitle="团队工作空间"
-        profilePosition="topbar"
+        profilePosition="sidebar"
         hideSidebarWidgets
         sidebarSlot={
-          <div className="task-sidebar flex flex-col gap-4 px-3 py-2">
+          <div className="task-sidebar flex flex-col gap-4">
             <Button
               color="blue"
               variant="tertiary"
@@ -1091,7 +1091,7 @@ function TaskBoard() {
             >
               添加任务
             </Button>
-            <Button color="blue" variant="tertiary" iconLeft={<MagniferLinear size={18} />} onClick={() => setSearchOpen(true)}>搜索</Button>
+            <Button color="blue" variant="tertiary" aria-label="搜索" iconLeft={<MagniferLinear size={18} />} onClick={() => setSearchOpen(true)}>搜索</Button>
             <div className="flex flex-col gap-1">
               {nav.map((n) => {
                 const count = board.tasks.filter(

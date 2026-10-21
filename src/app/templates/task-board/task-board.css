@@ -25,9 +25,9 @@
 }
 
 /* Product workspaces retain the shared Forge shell and compact its density. */
-.tasks-product [data-forge-app-content], .agent-product [data-forge-app-content] { padding:0; }
-.tasks-product [data-forge-app-content]>div, .agent-product [data-forge-app-content]>div { border-radius:0; outline:none; background:var(--fg-white); }
-.tasks-product [data-forge-app-content]>div>.overflow-auto { padding:28px 40px 20px; }
+.agent-product [data-forge-app-content] { padding:0; }
+.agent-product [data-forge-app-content]>div { border-radius:0; outline:none; background:var(--fg-white); }
+.tasks-product [data-forge-app-content]>div>.overflow-auto { min-height:0; }
 .tasks-product .task-sidebar [data-active="true"] { border-radius:8px; }
 .project-header { flex-shrink:0; }
 .kanban-columns { display:flex; gap:24px; align-items:stretch; min-height:calc(100dvh - 245px); width:max-content; }
@@ -44,7 +44,7 @@
 .agent-workflow-details { border-top:1px solid var(--fg-grey-200); padding:16px 0; }
 .agent-workflow-details>summary { cursor:pointer; font-size:13px; color:var(--fg-grey-700); margin-bottom:12px; }
 @media(min-width:768px) {
-.tasks-product #forge-app-sidebar, .agent-product #forge-app-sidebar { background:var(--fg-grey-100); }
+.agent-product #forge-app-sidebar { background:var(--fg-grey-100); }
 .tasks-product .task-sidebar { gap:14px; }
 }
 @media(max-width:767px) {
@@ -53,8 +53,8 @@
 .kanban-columns>.board-column-slot { width:280px; }
 .project-header h1 { font-size:22px; }
 }
-.tasks-product #forge-app-sidebar,.agent-product #forge-app-sidebar { background:var(--fg-grey-50,var(--fg-grey-100)); }
-.tasks-product .forge-menu-item,.agent-product .forge-menu-item { border-radius:7px; min-height:38px; height:38px; font-weight:400; }
+.agent-product #forge-app-sidebar { background:var(--fg-grey-50,var(--fg-grey-100)); }
+.agent-product .forge-menu-item { border-radius:7px; min-height:38px; height:38px; font-weight:400; }
 .tasks-product .forge-menu-item[aria-current=page],.agent-product .forge-menu-item[aria-current=page] { background:var(--fg-grey-100); color:var(--fg-black); }
 .tasks-product .forge-menu-item[aria-current=page]>span:first-child,.agent-product .forge-menu-item[aria-current=page]>span:first-child { background:transparent; }
 .tasks-product .task-sidebar>button:first-child { outline:0; border:0; border-radius:8px; justify-content:flex-start; padding-left:12px; }
@@ -386,3 +386,10 @@ body:has(.task-board-shell) .forge-toast button:not([aria-label]) { background:v
 .tasks-product .section-insert-trigger > span { color:var(--fg-blue); }
 .tasks-product .task-subtask-row.subtask-drop-target { box-shadow:inset 0 2px var(--fg-blue); }
 .tasks-product .task-subtask-row.subtask-drop-after { box-shadow:inset 0 -2px var(--fg-blue); }
+
+/* Starter shell: keep the Kit gutter and rounded content surface. */
+.task-board-shell, .task-board-shell > [data-forge-app-layout] { height:100dvh; min-height:0; overflow:hidden; }
+.task-board-shell [data-forge-app-content] > div { min-height:0; overflow:hidden; }
+
+.tasks-product [data-collapsed=true] .task-sidebar > button { padding:8px; gap:0; min-width:0; }
+.tasks-product [data-collapsed=true] .task-sidebar > button .forge-action-label { display:none; }
