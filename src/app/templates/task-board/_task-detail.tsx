@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import {
   Button,
+  Breadcrumbs,
   Checkbox,
   IconButton,
   Modal,
   SelectOption,
 } from "@forge-ui-official/core";
-import { AltArrowUpLinear, AltArrowDownLinear } from "@forge-ui-official/core/icons";
+import { AltArrowUpLinear, AltArrowDownLinear, ArrowLeftLinear } from "@forge-ui-official/core/icons";
+import { MarkdownContent } from "./_markdown";
 import { TaskMenu } from "./_task-menu";
 import { TaskContentEditor } from "./_task-content-editor";
 import { TaskComments } from "./_task-comments";
@@ -75,15 +77,11 @@ export function TaskDetail({
     <div className="task-detail-page">
       <header className="task-detail-header">
         <div className="flex min-w-0 items-center gap-3">
-          <Button color="blue" variant="tertiary" size="sm" onClick={onBack}>
-            ← {backLabel}
-          </Button>
-          <span className="truncate text-xs text-fg-grey-700">
-            {workspaceName} / {task.project} / 任务详情
-          </span>
+          <IconButton color="black" variant="ghost" size="sm" shape="square" aria-label={backLabel} title={backLabel} onClick={onBack}><ArrowLeftLinear size={18} /></IconButton>
+          <Breadcrumbs color="black" className="task-detail-breadcrumbs" items={[{ label: workspaceName }, { label: task.project, onClick: onBack }, { label: "任务详情" }]} />
         </div>
         <div className="flex items-center gap-2">
-          <span role="status" className={`text-xs ${saveFailed ? "text-fg-red" : "text-fg-grey-700"}`}>{saveFailed ? "更改未保存" : "浏览器本地保存"}</span>
+          {saveFailed && <span role="status" className="text-xs text-fg-red">更改未保存</span>}
           {saveFailed && onRetrySave && <Button color="blue" size="sm" variant="tertiary" onClick={onRetrySave}>重试保存</Button>}
           <IconButton color="blue" variant="ghost" size="sm" shape="square" autoFocus={!!onPrevious && (navigationFocus === "previous" || (navigationFocus === "next" && !onNext))} aria-label="上一个任务" title="上一个任务" disabled={!onPrevious} onClick={onPrevious}><AltArrowUpLinear size={18} /></IconButton>
           <IconButton color="blue" variant="ghost" size="sm" shape="square" autoFocus={!!onNext && (navigationFocus === "next" || (navigationFocus === "previous" && !onPrevious))} aria-label="下一个任务" title="下一个任务" disabled={!onNext} onClick={onNext}><AltArrowDownLinear size={18} /></IconButton>
@@ -127,7 +125,7 @@ export function TaskDetail({
             </div>
           </div>
               {!editingTitle && !editingDescription && <section className="task-detail-section">
-                <Button color="blue" variant="tertiary" className="task-description-trigger" aria-label="编辑任务描述" onClick={() => setEditingDescription(true)}>{task.description || "添加描述…"}</Button>
+                <div className="task-description-display">{task.description && <MarkdownContent value={task.description} />}<Button color="black" variant="tertiary" className="task-description-edit" aria-label="编辑任务描述" onClick={() => setEditingDescription(true)}>{task.description ? "编辑描述" : "添加描述…"}</Button></div>
               </section>}
               <section className="task-detail-section" aria-label="任务附件区域">{(task.attachments?.length ?? 0) > 0 && <h2>附件</h2>}<SubtaskAttachments label="任务附件" value={task.attachments || []} onChange={(attachments) => patch({ attachments })} /></section>
               {!hasSubtaskPath(task, detailPath) && <div role="status" className="mb-3 text-sm text-fg-grey-700">子任务不存在或已被删除。<Button color="blue" size="sm" variant="tertiary" onClick={() => onDetailPathChange([])}>返回主任务</Button></div>}

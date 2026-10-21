@@ -1,5 +1,6 @@
 "use client";
 
+import { richTextPlain } from "./_markdown";
 import { useTemplateMobile } from "../_shared/use-template-mobile";
 import { TemplateProfile } from "../_shared/template-profile";
 
@@ -560,7 +561,7 @@ function TaskBoard() {
         (showDone || scope === "已完成" || !t.done) &&
         (priority === "all" || t.priority === priority) && matchesDateFilter(t.date, dateFilter) &&
         (labelFilter === "__all__" || (t.labels ?? []).includes(labelFilter.slice(6))) &&
-        `${t.title} ${t.description} ${t.owner} ${(t.labels ?? []).map((label) => `@${label}`).join(" ")}`
+        `${t.title} ${richTextPlain(t.description)} ${t.owner} ${(t.labels ?? []).map((label) => `@${label}`).join(" ")}`
           .toLowerCase()
           .includes(query.toLowerCase()),
     )

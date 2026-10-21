@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { Button, Checkbox, ConfirmationDialog, Modal, SelectOption, TextArea, TextField } from "@forge-ui-official/core";
+import { Button, Checkbox, ConfirmationDialog, Modal, SelectOption, TextField } from "@forge-ui-official/core";
 import { PlusLinear } from "@forge-ui-official/core/icons";
 import { collectTaskLabels, copySubtask, day, type Subtask, type Task } from "./_data";
 import { TaskDateMenu, type SchedulePatch } from "./_task-date-menu";
 import { TaskLabels } from "./_task-labels";
 import { SubtaskAttachments } from "./_subtask-attachments";
+import { MarkdownContent, richTextPlain } from "./_markdown";
+import { MarkdownEditor } from "./_markdown-editor";
 import { TaskContentEditor } from "./_task-content-editor";
 import { TaskComments } from "./_task-comments";
 import { ContextMenu } from "./_context-menu";
@@ -134,7 +136,7 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
     }
   }}>
     <TextField ref={input} autoFocus color="blue" className="subtask-editor-name" aria-label="子任务名称" placeholder="子任务名称" value={draft} onChange={setDraft} />
-    <TextArea color="blue" className="subtask-editor-description" aria-label="子任务描述" placeholder="描述" rows={1} value={description} onChange={setDescription} />
+    <MarkdownEditor compact label="子任务描述" value={description} onChange={setDescription} />
     <div className="comment-composer-toolbar subtask-editor-tools">
       <TaskDateMenu value={date} time={schedule.time} repeat={schedule.repeat} repeatRule={schedule.repeatRule} onScheduleChange={setSchedule} onChange={setDate} />
       <ContextMenu label={`子任务优先级：${priority}`} triggerLabel={`优先级 ${priority}`} items={["P1", "P2", "P3", "P4"].map(value => ({ label: `${value}${value === priority ? " · 当前" : ""}`, onSelect: () => setPriority(value) }))} />
@@ -177,7 +179,7 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
       <Checkbox color="blue" checked={item.done} aria-label={`${item.done ? "重新打开" : "完成"}子任务：${item.title}`} onChange={(done) => onChange(value.map((current) => current.id === item.id ? { ...current, done } : current))} />
       <div className="min-w-0 flex-1 py-1">
         <Button color="black" variant="tertiary" data-subtask-open={item.id} className={`subtask-title ${item.done ? "subtask-complete" : ""}`} aria-label={`查看子任务详情：${item.title}`} onClick={() => openDetail(item)}>{item.title}</Button>
-        {item.description && <p className="truncate text-xs leading-5 text-fg-grey-700">{item.description}</p>}
+        {item.description && <p className="truncate text-xs leading-5 text-fg-grey-700">{richTextPlain(item.description)}</p>}
         <div className="flex flex-wrap gap-x-3 text-xs leading-5 text-fg-grey-700">
           {item.date && <span>{item.date === day() ? "今天" : item.date === day(1) ? "明天" : item.date.slice(5).replace("-", "/")}</span>}
           {item.time && <span>{item.time}</span>}
@@ -229,7 +231,7 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
             {editingDetailTitle || editingDetailDescription ? <TaskContentEditor onExitGuardChange={guard => { contentExitGuard.current = guard; }} key={detail.id} child title={detail.title} description={detail.description || ""} focusDescription={editingDetailDescription} onSave={(content) => { updateDetail(content); setEditingDetailTitle(false); setEditingDetailDescription(false); }} onCancel={() => { setEditingDetailTitle(false); setEditingDetailDescription(false); }} /> : <h3><Button color="black" variant="tertiary" className={`task-title-trigger subtask-detail-title${detail.done ? " subtask-complete" : ""}`} aria-label={`编辑子任务名称：${detail.title}`} onClick={() => setEditingDetailTitle(true)}>{detail.title}</Button></h3>}
           </div>
         </div>
-        {!editingDetailTitle && !editingDetailDescription && <Button color="blue" variant="tertiary" className="task-description-trigger" aria-label="编辑子任务描述" onClick={() => setEditingDetailDescription(true)}>{detail.description || "添加描述…"}</Button>}
+        {!editingDetailTitle && !editingDetailDescription && <div className="task-description-display">{detail.description && <MarkdownContent value={detail.description} />}<Button color="black" variant="tertiary" className="task-description-edit" aria-label="编辑子任务描述" onClick={() => setEditingDetailDescription(true)}>{detail.description ? "编辑描述" : "添加描述…"}</Button></div>}
         <section className="flex flex-col gap-2" aria-label="附件">{(detail.attachments?.length ?? 0) > 0 && <h3 className="text-sm font-semibold text-fg-black">附件</h3>}<SubtaskAttachments key={detail.id} value={detail.attachments || []} onChange={(attachments) => updateDetail({ attachments })} /></section>
         <Subtasks draftScope={draftScope ? `${draftScope}:${detail.id}` : undefined} key={detail.id} onExitGuardChange={(guard) => { childExitGuard.current = guard; }} saveFailed={saveFailed} onRetrySave={onRetrySave} detailPath={controlled ? detailPath?.slice(1) : undefined} onDetailPathChange={onDetailPathChange ? (path) => onDetailPathChange([detail.id, ...path]) : undefined} parentTitle={detail.title} availableLabels={labelOptions} value={detail.subtasks || []} onChange={(subtasks) => updateDetail({ subtasks })} />
         <TaskComments draftKey={draftScope ? `${draftScope}:${detail.id}:comments` : undefined} key={`comments:${detail.id}`} label="子任务评论" value={detail.comments || []} onChange={(comments) => updateDetail({ comments })} />

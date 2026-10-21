@@ -1,11 +1,11 @@
 "use client";
+import { MarkdownEditor } from "./_markdown-editor";
 import { useState } from "react";
 import {
   Button,
   Checkbox,
   Modal,
   SelectOption,
-  TextArea,
   TextField,
 } from "@forge-ui-official/core";
 import { TaskComments } from "./_task-comments";
@@ -91,12 +91,7 @@ export function TaskEditor({
           state={error ? "error" : "idle"}
           errorMessage={error ? "请填写任务名称" : undefined}
         />
-        <TextArea color="blue"
-          label="描述"
-          value={draft.description}
-          onChange={(description) => patch({ description })}
-          rows={2}
-        />
+        <MarkdownEditor label="任务描述" value={draft.description} onChange={(description) => patch({ description })} />
 
         <TaskLabels value={draft.labels ?? []} available={collectTaskLabels([...board.tasks, draft])} onChange={(labels) => patch({ labels })} />
         <SubtaskAttachments label="任务附件" value={draft.attachments || []} onChange={(attachments) => patch({ attachments })} onBusyChange={setUploading} />
