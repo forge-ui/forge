@@ -988,6 +988,10 @@ function TaskBoard() {
           <div className="flex items-start gap-3">
             <Checkbox
               color="blue"
+              className="task-priority-check"
+              data-priority={task.priority}
+              title={`优先级 P${task.priority}`}
+              aria-description={`优先级 P${task.priority}`}
               aria-label={`${task.done ? "重新打开" : "完成"}：${task.title}`}
               checked={task.done}
               onChange={() => toggle(task)}
@@ -1027,7 +1031,6 @@ function TaskBoard() {
             </div>
           </div>
           <div className="mt-3 pl-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs text-fg-grey-700">
-            {task.priority === "1" && <span className="text-fg-black">优先处理</span>}
             <TaskDateMenu value={task.date} time={task.time} repeat={task.repeat} repeatRule={task.repeatRule} onScheduleChange={(patch) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, ...patch } : item) }, "任务安排已更新")} onChange={(date) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, date } : item) }, date ? "任务日期已更新" : "已清除任务日期")} />
             {task.labels?.map((label) => <span key={label}>@{label}</span>)}
             {task.subtasks.length > 0 && (
@@ -1044,7 +1047,7 @@ function TaskBoard() {
           </div>
           {task.subtasks.length > 0 && expandedCardTasks[task.id] && <div data-no-drag id={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} className="card-subtask-list" aria-label={`${task.title}的子任务`}>
             {task.subtasks.map(child => <div className="card-subtask-row" key={child.id}>
-              <Checkbox color="blue" checked={child.done} aria-label={`${child.done ? "重新打开" : "完成"}卡片子任务：${child.title}`} onChange={(done) => change({ ...board, tasks: board.tasks.map(item => item.id === task.id ? { ...item, subtasks: item.subtasks.map(entry => entry.id === child.id ? { ...entry, done } : entry) } : item) }, done ? "子任务已完成" : "子任务已重新打开")} />
+              <Checkbox color="blue" className="task-priority-check" data-priority={(child.priority || "P4").slice(1)} title={`优先级 ${child.priority || "P4"}`} aria-description={`优先级 ${child.priority || "P4"}`} checked={child.done} aria-label={`${child.done ? "重新打开" : "完成"}卡片子任务：${child.title}`} onChange={(done) => change({ ...board, tasks: board.tasks.map(item => item.id === task.id ? { ...item, subtasks: item.subtasks.map(entry => entry.id === child.id ? { ...entry, done } : entry) } : item) }, done ? "子任务已完成" : "子任务已重新打开")} />
               <button type="button" className={`min-w-0 flex-1 text-left text-sm leading-5 ${child.done ? "line-through text-fg-grey-500" : "text-fg-black"}`} aria-label={`打开卡片子任务：${child.title}`} onClick={() => openDetail(task, [child.id])}>{child.title}</button>
             </div>)}
           </div>}
