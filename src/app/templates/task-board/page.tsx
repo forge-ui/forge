@@ -1041,9 +1041,6 @@ function TaskBoard() {
             {systemScope && (
               <span className="text-fg-grey-700">{task.project}</span>
             )}
-            <span className="task-card-assignee ml-auto" title={`负责人：${task.owner}`}>
-              {task.owner}
-            </span>
           </div>
           {task.subtasks.length > 0 && expandedCardTasks[task.id] && <div data-no-drag id={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} className="card-subtask-list" aria-label={`${task.title}的子任务`}>
             {task.subtasks.map(child => <div className="card-subtask-row" key={child.id}>

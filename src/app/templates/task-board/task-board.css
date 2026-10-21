@@ -102,7 +102,16 @@
 .template-profile { display:flex; align-items:center; gap:10px; margin-top:auto; border-top:1px solid var(--fg-grey-200); padding:16px 4px 0; }
 [data-collapsed=true] .template-profile { flex-wrap:wrap; justify-content:center; padding-left:0; padding-right:0; }
 [data-collapsed=true] .template-profile-text { display:none; }
-body:has(.task-board-shell) .forge-toast button:not([aria-label]) { background:var(--fg-grey-100); color:var(--fg-black); }
+/* Keep Core toast behavior; use a compact action row for board feedback. */
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) .forge-motion-surface { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:12px 14px; border-radius:10px; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) .forge-motion-surface > .flex { display:contents; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) [role="status"] { grid-column:1; grid-row:1; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) [role="status"] > p:first-child { font-weight:400; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) .forge-motion-surface > .mt-3 { grid-column:2; grid-row:1; margin:0 32px 0 0; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) button[aria-label] { grid-column:2; grid-row:1; justify-self:end; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) button:not([aria-label]) { min-height:28px; padding:4px 6px; border:0; border-radius:4px; background:transparent; color:var(--fg-blue); box-shadow:none; }
+body:has(.task-board-shell) .forge-toast:not(:has(.flex > span[aria-hidden])) button:not([aria-label]):hover { background:var(--fg-blue-50); }
+body:has(.task-board-shell) .forge-toast-timer { display:none; }
 [data-collapsed=true] .task-sidebar { padding-left:0; padding-right:0; }
 [data-collapsed=true] .task-sidebar .forge-menu-item { justify-content:center; padding:8px; }
 [data-collapsed=true] .task-sidebar .forge-menu-item>span.flex-1 { display:none; }
@@ -454,5 +463,3 @@ body:has(.task-board-shell) .forge-toast button:not([aria-label]) { background:v
 .subtask-editor-footer { display:flex; flex-wrap:wrap; align-items:center; gap:8px; border-top:1px solid var(--fg-grey-200); padding:10px 12px; }
 .subtask-editor-footer button { border-radius:6px; }
 .subtask-editor-footer .subtask-editor-details { padding:6px 4px; border:0; outline:0; background:transparent; color:var(--fg-grey-700); font-weight:400; }
-
-.task-card-assignee { font-size:11px; color:var(--fg-grey-700); white-space:nowrap; }
