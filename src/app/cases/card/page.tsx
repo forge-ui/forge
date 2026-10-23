@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import {
   SurfaceCard,
   StatCard,
@@ -19,45 +20,49 @@ import {
   UserCard,
   EventCard,
   ProfileCard,
-  ALL_CARD_THEMES,
   IconButton,
+  Toggle,
   type CardTheme,
-  type LineChartColor,
-  type WheelColor,
-  type BarColor,
+  type EventCardColor,
   type FinancialTheme,
   type FinancialVariant,
-  type EventCardColor,
+  type LineChartColor,
   type ProfileCardState,
+  type TaskCardColor,
 } from "@forge-ui-official/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,
-  CartLargeBoldDuotone,
   UsersGroupRoundedBoldDuotone,
   ShareLinear,
 } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
-const themes: CardTheme[] = [...ALL_CARD_THEMES];
-const financialThemes: FinancialTheme[] = [
-  "dark", "purple", "blue", "yellow", "cyan", "green", "orange", "red",
-];
-const financialVariants: FinancialVariant[] = ["glow", "gradient", "flat"];
-const eventColors: EventCardColor[] = [
-  "purple", "blue", "black", "red", "yellow", "green", "cyan", "orange",
-];
-const profileStates: ProfileCardState[] = ["idle", "hover", "selected"];
+type Swatch = {
+  value: CardTheme;
+  semantic: string;
+  token: string;
+  swatch: string;
+};
 
-const lineColors: LineChartColor[] = [
-  "purple", "blue", "green", "red", "orange", "yellow", "cyan",
+const THEME_SWATCHES: readonly Swatch[] = [
+  { value: "white", semantic: "中性", token: "--fg-grey-700", swatch: "bg-white" },
+  { value: "black", semantic: "深色", token: "--fg-black", swatch: "bg-fg-black" },
+  { value: "purple", semantic: "品牌", token: "--fg-violet", swatch: "bg-fg-violet" },
+  { value: "blue", semantic: "信息", token: "--fg-blue", swatch: "bg-fg-blue" },
+  { value: "green", semantic: "成功", token: "--fg-green-500", swatch: "bg-fg-green-500" },
+  { value: "red", semantic: "警示", token: "--fg-red", swatch: "bg-fg-red" },
+  { value: "yellow", semantic: "警告", token: "--fg-yellow", swatch: "bg-fg-yellow" },
+  { value: "cyan", semantic: "关注", token: "--fg-cyan-500", swatch: "bg-fg-cyan-500" },
 ];
-const wheelColors: WheelColor[] = [
-  "purple", "blue", "green", "red", "orange", "yellow", "cyan",
+
+const FINANCIAL_VARIANTS: readonly { value: FinancialVariant; semantic: string }[] = [
+  { value: "glow", semantic: "光晕" },
+  { value: "gradient", semantic: "渐变" },
+  { value: "flat", semantic: "平面" },
 ];
-const barColors: BarColor[] = [
-  "purple", "blue", "green", "red", "orange", "yellow", "cyan",
-];
+
+const profileStates: ProfileCardState[] = ["idle", "hover", "selected"];
 
 const demoAvatars = [
   "https://placehold.co/40x40/b794f4/ffffff?text=A",
@@ -66,15 +71,146 @@ const demoAvatars = [
   "https://placehold.co/40x40/68d391/ffffff?text=D",
 ];
 
+function chartColor(theme: CardTheme): LineChartColor {
+  if (theme === "white" || theme === "black") return "purple";
+  return theme;
+}
+
+function taskColor(theme: CardTheme): TaskCardColor {
+  if (theme === "white" || theme === "black") return "gray";
+  return theme;
+}
+
+function eventColor(theme: CardTheme): EventCardColor {
+  if (theme === "white" || theme === "black") return "black";
+  return theme;
+}
+
+function bankTheme(theme: CardTheme): FinancialTheme {
+  if (theme === "white" || theme === "black") return "dark";
+  return theme;
+}
+
+function initialsColor(theme: CardTheme): "purple" | "blue" | "green" | "orange" {
+  if (theme === "purple" || theme === "blue" || theme === "green") return theme;
+  if (theme === "red") return "orange";
+  return "blue";
+}
+
+function profileAccent(theme: CardTheme): "purple" | "blue" | "black" {
+  if (theme === "blue") return "blue";
+  if (theme === "white" || theme === "black") return "black";
+  return "purple";
+}
+
+function ThemeSwatches({
+  value,
+  onChange,
+}: {
+  value: CardTheme;
+  onChange: (value: CardTheme) => void;
+}) {
+  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  const index = Math.max(0, THEME_SWATCHES.findIndex((item) => item.value === value));
+  const current = THEME_SWATCHES[index];
+
+  function select(next: number) {
+    const item = THEME_SWATCHES[next];
+    if (!item) return;
+    onChange(item.value);
+    buttons.current[next]?.focus();
+  }
+
+  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    if (key !== "ArrowLeft" && key !== "ArrowRight" && key !== "ArrowUp" && key !== "ArrowDown" && key !== "Home" && key !== "End") return;
+    event.preventDefault();
+    if (key === "Home") {
+      select(0);
+      return;
+    }
+    if (key === "End") {
+      select(THEME_SWATCHES.length - 1);
+      return;
+    }
+    const delta = key === "ArrowLeft" || key === "ArrowUp" ? -1 : 1;
+    select((index + delta + THEME_SWATCHES.length) % THEME_SWATCHES.length);
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div
+        role="radiogroup"
+        aria-label="卡片主题"
+        aria-orientation="horizontal"
+        className="flex items-center"
+        style={{ gap: 8 }}
+        onKeyDown={onKeyDown}
+      >
+        {THEME_SWATCHES.map((item, itemIndex) => {
+          const selected = item.value === value;
+          return (
+            <button
+              key={item.value}
+              ref={(node) => {
+                buttons.current[itemIndex] = node;
+              }}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              aria-label={item.semantic}
+              title={item.semantic}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => select(itemIndex)}
+              className={`shrink-0 cursor-pointer rounded-full border-0 p-0 ${item.swatch}`}
+              style={{
+                width: 24,
+                height: 24,
+                outline: selected
+                  ? `2px solid var(${item.token})`
+                  : item.value === "white"
+                    ? "1px solid var(--fg-grey-300)"
+                    : "none",
+                outlineOffset: selected ? 2 : 0,
+                transform: selected ? "scale(1.1)" : "none",
+                transition: "none",
+              }}
+            />
+          );
+        })}
+      </div>
+      <p className="text-sm text-fg-grey-700" aria-live="polite">
+        当前：{current.semantic}
+      </p>
+    </div>
+  );
+}
+
+function Frame({ children }: { children: ReactNode }) {
+  return <div className="w-fit max-w-full">{children}</div>;
+}
+
 export default function CardCasePage() {
+  const [theme, setTheme] = useState<CardTheme>("white");
+  const [balanceHidden, setBalanceHidden] = useState(false);
+  const [bankVariant, setBankVariant] = useState<FinancialVariant>("glow");
+  const accent = chartColor(theme);
+  const bank = bankTheme(theme);
+
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
         title="卡片"
-        hint="把每种卡片的主题、尺寸和状态放在一起对照。层叠和光照倾斜在最后。"
+        hint="每种卡片只展示一个结构。主题从上方色板切换，所有示例同时更新。"
       />
 
-      {/* ============ SurfaceCard ============ */}
+      <Section
+        title="主题"
+        description="中性、深色、品牌、信息、成功、警示、警告、关注。左右方向键切换。"
+      >
+        <ThemeSwatches value={theme} onChange={setTheme} />
+      </Section>
+
       <Section
         title="Surface Card"
         description="通用白底内容面板：标题 / 副标题 / action / footer。用于业务 section，不用 ChartCard 伪装普通面板。"
@@ -117,317 +253,169 @@ export default function CardCasePage() {
         </SubSection>
       </Section>
 
-      {/* ============ StatCard (Regular) ============ */}
-      <Section
-        title="Regular Statistic Card"
-        description="8 种 theme × 2 size（sm 258×152 / lg 360×264）。trend up/down + icon + kebab。"
-      >
-        <SubSection title="Themes (sm)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <StatCard
-                title="Total Sale"
-                value="$9,256.09"
-                trend="2.1%"
-                trendDirection="up"
-                subtitle="vs. last week"
-                theme={t}
-              />
-            </Labeled>
-          ))}
+      <Section title="Regular Statistic Card" description="图标、趋势和更多操作在同一张统计卡上。警示主题显示下降趋势。">
+        <Frame>
+          <StatCard
+            title="Total Sale"
+            value="$9,256.09"
+            trend="2.1%"
+            trendDirection={theme === "red" ? "down" : "up"}
+            subtitle="vs. last week"
+            theme={theme}
+            icon={<ChartBoldDuotone size={24} color="currentColor" />}
+            onKebabClick={() => {}}
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Progress Statistic Card" description="统计卡下方带进度条。">
+        <Frame>
+          <ProgressStatCard
+            title="Orders"
+            value="1,245"
+            trend="4.3%"
+            theme={theme}
+            progressValue={65}
+            progressColor={theme === "white" || theme === "black" ? "purple" : theme}
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Line Chart Statistic Card" description="右侧迷你折线跟随当前主题。">
+        <Frame>
+          <LineChartStatCard
+            title="Revenue"
+            value="$12.4k"
+            trend="8.7%"
+            theme={theme}
+            chartColor={accent}
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Wheel Chart Statistic Card" description="右侧圆环进度跟随当前主题。">
+        <Frame>
+          <WheelChartStatCard
+            title="Completion"
+            value="72%"
+            trend="3.2%"
+            theme={theme}
+            wheelPercent={72}
+            wheelColor={accent}
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Bar Chart Statistic Card" description="右侧柱状图跟随当前主题。">
+        <Frame>
+          <BarChartStatCard
+            title="Daily Sales"
+            value="$2.1k"
+            trend="12%"
+            theme={theme}
+            bars={[10, 22, 30, 40, 25]}
+            barColor={accent}
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Image Statistic Card" description="大面积背景和头像组，用作活动或合集卡。">
+        <Frame>
+          <ImageStatCard
+            title="Marketing ROI"
+            subtitle="Jul 2024 - Today"
+            value="$18,420"
+            trend="12.5%"
+            trendSubtitle="+$150 today"
+            theme={theme}
+            avatars={demoAvatars}
+            onKebabClick={() => {}}
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Balance Card" description="余额、卡号和转账操作。隐藏余额只切换数字，不另做一套主题。">
+        <label className="flex items-center gap-2 text-sm font-medium text-fg-grey-900">
+          隐藏余额
+          <Toggle checked={balanceHidden} onChange={setBalanceHidden} ariaLabel="隐藏余额" color="black" size="sm" />
+        </label>
+        <Frame>
+          <BalanceCard
+            balance="$9,256.09"
+            balanceHidden={balanceHidden}
+            trend="2.1%"
+            subtitle="vs. last month"
+            theme={theme}
+            cardNumber="**** 9090"
+          />
+        </Frame>
+      </Section>
+
+      <Section title="Debit & Credit Card" description="借记卡和信用卡各一张。中性与深色使用深色卡面，样式在光晕、渐变和平面之间切换。">
+        <div
+          role="radiogroup"
+          aria-label="银行卡样式"
+          className="flex flex-wrap gap-2"
+          onKeyDown={(event) => {
+            const key = event.key;
+            if (key !== "ArrowLeft" && key !== "ArrowRight") return;
+            event.preventDefault();
+            const index = FINANCIAL_VARIANTS.findIndex((item) => item.value === bankVariant);
+            const delta = key === "ArrowLeft" ? -1 : 1;
+            const nextIndex = (index + delta + FINANCIAL_VARIANTS.length) % FINANCIAL_VARIANTS.length;
+            setBankVariant(FINANCIAL_VARIANTS[nextIndex].value);
+            event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]')[nextIndex]?.focus();
+          }}
+        >
+          {FINANCIAL_VARIANTS.map((item) => {
+            const selected = item.value === bankVariant;
+            return (
+              <button
+                key={item.value}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                aria-label={item.semantic}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setBankVariant(item.value)}
+                className={`rounded-full px-3 py-1.5 text-sm font-medium ${selected ? "bg-fg-black text-white" : "bg-white text-fg-grey-700 outline outline-1 outline-fg-grey-200"}`}
+              >
+                {item.semantic}
+              </button>
+            );
+          })}
+        </div>
+        <SubSection title="借记卡">
+          <Frame>
+            <DebitCard balance="$9,256.09" cardNumber="9090" expiry="07/25" theme={bank} variant={bankVariant} />
+          </Frame>
         </SubSection>
-        <SubSection title="Themes (sm, with icon)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <StatCard
-                title="Orders"
-                value="1,245"
-                trend="4.3%"
-                trendDirection="up"
-                subtitle="this week"
-                theme={t}
-                icon={<CartLargeBoldDuotone size={20} color="currentColor" />}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Themes (lg, with icon + kebab)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <StatCard
-                title="Total Sale"
-                value="$9,256.09"
-                trend="2.1%"
-                trendDirection={t === "red" ? "down" : "up"}
-                subtitle="vs. last week"
-                theme={t}
-                size="lg"
-                icon={<ChartBoldDuotone size={24} color="currentColor" />}
-                onKebabClick={() => {}}
-              />
-            </Labeled>
-          ))}
+        <SubSection title="信用卡">
+          <Frame>
+            <CreditCard cardNumber="4242424242429090" holderName="John Doe" expiry="07/25" theme={bank} variant={bankVariant} />
+          </Frame>
         </SubSection>
       </Section>
 
-      {/* ============ ProgressStatCard ============ */}
-      <Section
-        title="Progress Statistic Card"
-        description="下方带进度条的 StatCard，8 themes。"
-      >
-        <SubSection title="Themes (sm)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <ProgressStatCard
-                title="Orders"
-                value="1,245"
-                trend="4.3%"
-                theme={t}
-                progressValue={65}
-                progressColor={t === "white" || t === "black" ? "purple" : undefined}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
+      <Section title="Progress Card" description="大圆环和分项明细。环色跟随当前主题。">
+        <Frame>
+          <ProgressCard
+            title="Goals"
+            value="72%"
+            subtitle="On track"
+            theme={theme}
+            progress={72}
+            progressColor={theme === "white" ? "#7c3aed" : "#ffffff"}
+            items={[
+              { label: "Done", value: "24", color: "#10b981" },
+              { label: "In Progress", value: "8", color: "#f59e0b" },
+              { label: "Not Started", value: "2", color: "#ef4444" },
+            ]}
+          />
+        </Frame>
       </Section>
 
-      {/* ============ LineChartStatCard ============ */}
-      <Section
-        title="Line Chart Statistic Card"
-        description="右侧带迷你折线图。"
-      >
-        <SubSection title="Themes (sm)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <LineChartStatCard
-                title="Revenue"
-                value="$12.4k"
-                trend="8.7%"
-                theme={t}
-                chartColor={t === "white" || t === "black" ? "purple" : undefined}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Chart colors (white theme)">
-          {lineColors.map((c) => (
-            <Labeled key={c} label={c}>
-              <LineChartStatCard
-                title="Revenue"
-                value="$12.4k"
-                trend="8.7%"
-                theme="white"
-                chartColor={c}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      {/* ============ WheelChartStatCard ============ */}
-      <Section
-        title="Wheel Chart Statistic Card"
-        description="右侧圆环进度图。"
-      >
-        <SubSection title="Themes (sm)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <WheelChartStatCard
-                title="Completion"
-                value="72%"
-                trend="3.2%"
-                theme={t}
-                wheelPercent={72}
-                wheelColor={t === "white" || t === "black" ? "purple" : undefined}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Wheel colors (white theme, 70%)">
-          {wheelColors.map((c) => (
-            <Labeled key={c} label={c}>
-              <WheelChartStatCard
-                title="Completion"
-                value="70%"
-                theme="white"
-                wheelColor={c}
-                wheelPercent={70}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      {/* ============ BarChartStatCard ============ */}
-      <Section
-        title="Bar Chart Statistic Card"
-        description="右侧 5 根柱状图。"
-      >
-        <SubSection title="Themes (sm)">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <BarChartStatCard
-                title="Daily Sales"
-                value="$2.1k"
-                trend="12%"
-                theme={t}
-                bars={[10, 22, 30, 40, 25]}
-                barColor={t === "white" || t === "black" ? "purple" : undefined}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Bar colors (white theme)">
-          {barColors.map((c) => (
-            <Labeled key={c} label={c}>
-              <BarChartStatCard
-                title="Daily Sales"
-                value="$2.1k"
-                trend="12%"
-                theme="white"
-                bars={[10, 22, 30, 40, 25]}
-                barColor={c}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      {/* ============ ImageStatCard ============ */}
-      <Section
-        title="Image Statistic Card"
-        description="大面积背景 + 头像组，用作 campaign/collection 卡。"
-      >
-        <SubSection title="Themes">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <ImageStatCard
-                title="Marketing ROI"
-                subtitle="Jul 2024 - Today"
-                value="$18,420"
-                trend="12.5%"
-                trendSubtitle="+$150 today"
-                theme={t}
-                avatars={demoAvatars}
-                onKebabClick={() => {}}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      {/* ============ BalanceCard ============ */}
-      <Section
-        title="Balance Card"
-        description="余额 + transfer/request 按钮。8 themes × 可选 balanceHidden。"
-      >
-        <SubSection title="Themes">
-          {themes.map((t) => (
-            <Labeled key={t} label={t}>
-              <BalanceCard
-                balance="$9,256.09"
-                trend="2.1%"
-                subtitle="vs. last month"
-                theme={t}
-                cardNumber="**** 9090"
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Balance hidden (white / purple)">
-          <Labeled label="white (hidden)">
-            <BalanceCard
-              balance="$9,256.09"
-              balanceHidden
-              trend="2.1%"
-              subtitle="vs. last month"
-              theme="white"
-              cardNumber="**** 9090"
-            />
-          </Labeled>
-          <Labeled label="purple (hidden)">
-            <BalanceCard
-              balance="$9,256.09"
-              balanceHidden
-              trend="2.1%"
-              subtitle="vs. last month"
-              theme="blue"
-              cardNumber="**** 9090"
-            />
-          </Labeled>
-        </SubSection>
-      </Section>
-
-      {/* ============ DebitCard / CreditCard ============ */}
-      <Section
-        title="Debit & Credit Card"
-        description="银行卡视觉：balance / number / expiry。8 种 financial theme × 2 variant (glow / orbs)。"
-      >
-        <SubSection title="Debit Card - Themes (glow)">
-          {financialThemes.map((t) => (
-            <Labeled key={t} label={t}>
-              <DebitCard balance="$9,256.09" cardNumber="9090" expiry="07/25" theme={t} variant="glow" />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Credit Card - Themes (glow)">
-          {financialThemes.map((t) => (
-            <Labeled key={t} label={t}>
-              <CreditCard cardNumber="4242424242429090" holderName="John Doe" expiry="07/25" theme={t} variant="glow" />
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="Variants (purple)">
-          {financialVariants.map((v) => (
-            <Labeled key={v} label={v}>
-              <DebitCard balance="$9,256.09" cardNumber="9090" expiry="07/25" theme="blue" variant={v} />
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      {/* ============ ProgressCard ============ */}
-      <Section
-        title="Progress Card"
-        description="大圆环进度 + 列表项明细。环色跟 theme 走。"
-      >
-        <SubSection title="Themes">
-          {(
-            [
-              { t: "white", ring: "#7c3aed" },
-              { t: "black", ring: "#ffffff" },
-              { t: "purple", ring: "#ffffff" },
-              { t: "blue", ring: "#ffffff" },
-              { t: "green", ring: "#ffffff" },
-              { t: "red", ring: "#ffffff" },
-              { t: "yellow", ring: "#ffffff" },
-              { t: "cyan", ring: "#ffffff" },
-            ] as const
-          ).map(({ t, ring }) => (
-            <Labeled key={t} label={t}>
-              <ProgressCard
-                title="Goals"
-                value="72%"
-                subtitle="On track"
-                theme={t}
-                progress={72}
-                progressColor={ring}
-                items={[
-                  { label: "Done", value: "24", color: "#10b981" },
-                  { label: "In Progress", value: "8", color: "#f59e0b" },
-                  { label: "Not Started", value: "2", color: "#ef4444" },
-                ]}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      {/* ============ ProjectCard ============ */}
-      <Section
-        title="Project Card"
-        description="白底卡：logo + title + label + progress + avatars + date。"
-      >
+      <Section title="Project Card" description="有标识和无标识是两种项目卡结构，不按主题复制。">
         <SubSection title="Variants">
           <Labeled label="with logo + progress">
             <ProjectCard
@@ -459,35 +447,23 @@ export default function CardCasePage() {
         </SubSection>
       </Section>
 
-      {/* ============ TaskCard ============ */}
-      <Section
-        title="Task Card"
-        description="任务卡：label + title + progress + avatars + date。label 跟进度条主题色一致。"
-      >
-        <SubSection title="Variants">
-          {(["purple", "blue", "green", "red", "yellow", "cyan", "gray"] as const).map((c) => (
-            <Labeled key={c} label={c}>
-              <TaskCard
-                title="Ship beta release"
-                description="Roll out to 10% of users."
-                labelText="Priority"
-                labelColor={c}
-                progress={60}
-                progressColor={c}
-                avatars={demoAvatars.slice(0, 2)}
-                date="Tomorrow"
-                onMenuClick={() => {}}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
+      <Section title="Task Card" description="标签和进度条跟随当前主题。中性与深色使用灰色。">
+        <Frame>
+          <TaskCard
+            title="Ship beta release"
+            description="Roll out to 10% of users."
+            labelText="Priority"
+            labelColor={taskColor(theme)}
+            progress={60}
+            progressColor={taskColor(theme)}
+            avatars={demoAvatars.slice(0, 2)}
+            date="Tomorrow"
+            onMenuClick={() => {}}
+          />
+        </Frame>
       </Section>
 
-      {/* ============ UserCard ============ */}
-      <Section
-        title="User Card"
-        description="头像 / initials + 名字 + badge + stats。"
-      >
+      <Section title="User Card" description="头像统计、字母头像和选中态是三种结构。字母颜色能对应时跟随主题。">
         <SubSection title="Variants">
           <Labeled label="avatar + stats">
             <UserCard
@@ -501,16 +477,14 @@ export default function CardCasePage() {
               onMenuClick={() => {}}
             />
           </Labeled>
-          {(["purple", "blue", "green", "orange"] as const).map((c) => (
-            <Labeled key={c} label={`initials ${c}`}>
-              <UserCard
-                initials="AB"
-                initialsColor={c}
-                name="Ada Byron"
-                subtitle={<span className="text-xs text-fg-grey-700">Engineer</span>}
-              />
-            </Labeled>
-          ))}
+          <Labeled label="initials">
+            <UserCard
+              initials="AB"
+              initialsColor={initialsColor(theme)}
+              name="Ada Byron"
+              subtitle={<span className="text-xs text-fg-grey-700">Engineer</span>}
+            />
+          </Labeled>
           <Labeled label="checked (selected)">
             <UserCard
               avatar="https://placehold.co/80x80/63b3ed/ffffff?text=LB"
@@ -522,52 +496,40 @@ export default function CardCasePage() {
         </SubSection>
       </Section>
 
-      {/* ============ EventCard ============ */}
-      <Section
-        title="Event Card"
-        description="日历事件卡：title + timeRange + avatars + bottom accent。8 色。"
-      >
-        <SubSection title="Colors">
-          {eventColors.map((c) => (
-            <Labeled key={c} label={c}>
-              <EventCard
-                title="Weekly Standup"
-                timeRange="10:00 - 10:30 AM"
-                color={c}
-                avatars={demoAvatars.slice(0, 3)}
-              />
-            </Labeled>
-          ))}
-        </SubSection>
+      <Section title="Event Card" description="日程卡底部强调色跟随当前主题。">
+        <Frame>
+          <EventCard
+            title="Weekly Standup"
+            timeRange="10:00 - 10:30 AM"
+            color={eventColor(theme)}
+            avatars={demoAvatars.slice(0, 3)}
+          />
+        </Frame>
       </Section>
 
-      {/* ============ ProfileCard ============ */}
-      <Section
-        title="Profile Card"
-        description="会员 / 人员卡，idle / hover / selected 3 态 × accent 色。"
-      >
-        <SubSection title="States (purple)">
-          {profileStates.map((st) => (
-            <Labeled key={st} label={st}>
+      <Section title="Profile Card" description="默认底和彩色底各保留一组状态。强调色在品牌、信息和深色之间跟随主题。">
+        <SubSection title="States">
+          {profileStates.map((state) => (
+            <Labeled key={state} label={state}>
               <ProfileCard
                 avatar="https://placehold.co/40x40/b794f4/ffffff?text=JD"
                 name="John Doe"
                 subtitle="Product Designer"
-                state={st}
-                accent="blue"
+                state={state}
+                accent={profileAccent(theme)}
               />
             </Labeled>
           ))}
         </SubSection>
         <SubSection title="On colored bg">
           <div className="flex min-w-0 max-w-full flex-wrap items-start gap-3 rounded-xl bg-fg-violet p-6">
-            {profileStates.map((st) => (
+            {profileStates.map((state) => (
               <ProfileCard
-                key={st}
+                key={state}
                 avatar="https://placehold.co/40x40/ffffff/4c1d95?text=JD"
                 name="John Doe"
                 subtitle="Product Designer"
-                state={st}
+                state={state}
                 surface="onColoredBg"
               />
             ))}
@@ -575,15 +537,11 @@ export default function CardCasePage() {
         </SubSection>
       </Section>
 
-      {/* ============ HighlightCard ============ */}
-      <Section
-        title="Highlight Card"
-        description="产品高亮卡：主图 + 标注气泡 + 推荐列表。"
-      >
-        <SubSection title="Purple theme">
+      <Section title="Highlight Card" description="主图、标注和推荐列表。">
+        <Frame>
           <HighlightCard
             title="Featured Product"
-            theme="blue"
+            theme={theme}
             image="https://placehold.co/280x280/ffffff/6d28d9?text=Product"
             annotations={[
               { label: "Material", value: "Leather", position: { top: "10%", left: "10%" } },
@@ -594,15 +552,11 @@ export default function CardCasePage() {
               { image: "https://placehold.co/40x40/63b3ed/ffffff?text=2", name: "Bag B", subtitle: "Canvas", value: "$89" },
             ]}
           />
-        </SubSection>
+        </Frame>
       </Section>
 
-      {/* ============ ActivityCard ============ */}
-      <Section
-        title="Activity Card"
-        description="时间线卡：icon + 标题 + 元数据。"
-      >
-        <SubSection title="Default">
+      <Section title="Activity Card" description="时间线卡：icon + 标题 + 元数据。">
+        <Frame>
           <ActivityCard
             icon={<WalletBoldDuotone size={20} color="#7c3aed" />}
             headerText="Payment Received"
@@ -617,28 +571,24 @@ export default function CardCasePage() {
             ]}
             onMenuClick={() => {}}
           />
-        </SubSection>
+        </Frame>
       </Section>
 
-      {/* ============ Custom action slot example ============ */}
-      <Section
-        title="Custom Action Slot"
-        description="StatCard / ImageStatCard 的 action prop 可插任意 ReactNode（如 IconButton）。"
-      >
-        <SubSection title="StatCard (action = IconButton)">
+      <Section title="Custom Action Slot" description="action 可以替换默认的更多操作。">
+        <Frame>
           <StatCard
             title="Team Size"
             value="48"
-            theme="blue"
+            theme={theme}
             size="lg"
             icon={<UsersGroupRoundedBoldDuotone size={24} color="currentColor" />}
             action={
-              <IconButton variant="ghost" shape="square" size="sm">
-                <ShareLinear size={18} color="white" />
+              <IconButton variant="ghost" shape="square" size="sm" aria-label="分享">
+                <ShareLinear size={18} color="currentColor" />
               </IconButton>
             }
           />
-        </SubSection>
+        </Frame>
       </Section>
 
       <Section title="卡片动效" description="层叠和光照倾斜。移动指针可以看倾斜卡的光。">
