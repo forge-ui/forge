@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, type KeyboardEvent } from "react";
 import {
   AltArrowRightLinear,
   AltArrowLeftLinear,
@@ -15,37 +16,68 @@ import {
   Button,
   IconButton,
   StyledLink,
+  Toggle,
   type ButtonColor,
-  type ButtonVariant,
-  type ButtonSize,
   type ButtonEffect,
-  type IconButtonColor,
-  type IconButtonVariant,
-  type IconButtonSize,
-  type IconButtonShape,
+  type ButtonSize,
+  type ButtonVariant,
   type IconButtonEffect,
+  type IconButtonShape,
+  type IconButtonVariant,
   type LinkColor,
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
-const buttonColors: ButtonColor[] = [
-  "purple", "dark", "blue", "blue-dark", "red", "green", "yellow", "grey", "black",
+type Swatch<T extends string> = {
+  value: T;
+  semantic: string;
+  token: string;
+  swatch: string;
+};
+
+const BUTTON_SWATCHES: readonly Swatch<ButtonColor>[] = [
+  { value: "purple", semantic: "品牌", token: "--fg-violet", swatch: "bg-fg-violet" },
+  { value: "dark", semantic: "强调", token: "--fg-violet-800", swatch: "bg-fg-violet-800" },
+  { value: "blue", semantic: "信息", token: "--fg-blue", swatch: "bg-fg-blue" },
+  { value: "blue-dark", semantic: "重点", token: "--fg-blue-800", swatch: "bg-fg-blue-800" },
+  { value: "red", semantic: "警示", token: "--fg-red", swatch: "bg-fg-red" },
+  { value: "green", semantic: "成功", token: "--fg-green-500", swatch: "bg-fg-green-500" },
+  { value: "yellow", semantic: "警告", token: "--fg-yellow", swatch: "bg-fg-yellow" },
+  { value: "grey", semantic: "中性", token: "--fg-grey-700", swatch: "bg-fg-grey-700" },
+  { value: "black", semantic: "深色", token: "--fg-black", swatch: "bg-fg-black" },
 ];
-const buttonVariants: ButtonVariant[] = ["primary", "secondary", "tertiary"];
-const buttonSizes: ButtonSize[] = ["lg", "md", "sm"];
+
+const LINK_SWATCHES: readonly Swatch<LinkColor>[] = [
+  { value: "purple", semantic: "品牌", token: "--fg-violet", swatch: "bg-fg-violet" },
+  { value: "dark", semantic: "强调", token: "--fg-violet-800", swatch: "bg-fg-violet-800" },
+  { value: "blue", semantic: "信息", token: "--fg-blue", swatch: "bg-fg-blue" },
+  { value: "green", semantic: "成功", token: "--fg-green-500", swatch: "bg-fg-green-500" },
+  { value: "red", semantic: "警示", token: "--fg-red", swatch: "bg-fg-red" },
+  { value: "orange", semantic: "提醒", token: "--fg-yellow-900", swatch: "bg-fg-yellow-900" },
+  { value: "yellow", semantic: "警告", token: "--fg-yellow", swatch: "bg-fg-yellow" },
+  { value: "cyan", semantic: "关注", token: "--fg-cyan-500", swatch: "bg-fg-cyan-500" },
+  { value: "gray", semantic: "中性", token: "--fg-grey-700", swatch: "bg-fg-grey-700" },
+];
+
+const SIZES: readonly { value: ButtonSize; semantic: string }[] = [
+  { value: "lg", semantic: "大" },
+  { value: "md", semantic: "中" },
+  { value: "sm", semantic: "小" },
+];
+
+const VARIANTS: readonly { value: Exclude<ButtonVariant, "hold">; semantic: string }[] = [
+  { value: "primary", semantic: "主要" },
+  { value: "secondary", semantic: "次要" },
+  { value: "tertiary", semantic: "轻量" },
+];
+
+const SHAPES: readonly { value: IconButtonShape; semantic: string }[] = [
+  { value: "circle", semantic: "圆形" },
+  { value: "square", semantic: "方形" },
+];
+
 const buttonEffects: ButtonEffect[] = ["glass", "magnetic", "ripple", "roll"];
-
-const iconButtonColors: IconButtonColor[] = [
-  "purple", "dark", "blue", "blue-dark", "red", "green", "yellow", "grey", "black",
-];
-const iconButtonVariants: IconButtonVariant[] = ["primary", "secondary", "tertiary", "ghost"];
-const iconButtonSizes: IconButtonSize[] = ["lg", "md", "sm"];
-const iconButtonShapes: IconButtonShape[] = ["circle", "square"];
-const iconButtonEffects: IconButtonEffect[] = ["send", "morph", "bookmark", "burst"];
-
-const linkColors: LinkColor[] = [
-  "purple", "dark", "blue", "green", "red", "orange", "yellow", "cyan", "gray",
-];
+const iconEffects: IconButtonEffect[] = ["send", "morph", "bookmark", "burst"];
 
 const arrowRight = <AltArrowRightLinear size={16} color="currentColor" />;
 const arrowLeft = <AltArrowLeftLinear size={16} color="currentColor" />;
@@ -67,60 +99,212 @@ const iconEffectLabel: Record<IconButtonEffect, string> = {
   burst: "点赞",
 };
 
+function swatchStyle(selected: boolean, token: string, neutral: boolean) {
+  return {
+    width: 24,
+    height: 24,
+    outline: selected ? `2px solid var(${token})` : neutral ? "1px solid var(--fg-grey-300)" : "none",
+    outlineOffset: selected ? 2 : 0,
+    transform: selected ? "scale(1.1)" : "none",
+    transition: "none",
+  };
+}
+
+function ColorSwatches<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: readonly Swatch<T>[];
+  onChange: (value: T) => void;
+}) {
+  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  const index = Math.max(0, options.findIndex((item) => item.value === value));
+  const current = options[index];
+
+  function select(next: number) {
+    const item = options[next];
+    if (!item) return;
+    onChange(item.value);
+    buttons.current[next]?.focus();
+  }
+
+  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    if (key !== "ArrowLeft" && key !== "ArrowRight" && key !== "ArrowUp" && key !== "ArrowDown" && key !== "Home" && key !== "End") return;
+    event.preventDefault();
+    if (key === "Home") {
+      select(0);
+      return;
+    }
+    if (key === "End") {
+      select(options.length - 1);
+      return;
+    }
+    const delta = key === "ArrowLeft" || key === "ArrowUp" ? -1 : 1;
+    select((index + delta + options.length) % options.length);
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div
+        role="radiogroup"
+        aria-label={label}
+        aria-orientation="horizontal"
+        className="flex items-center"
+        style={{ gap: 8 }}
+        onKeyDown={onKeyDown}
+      >
+        {options.map((item, itemIndex) => {
+          const selected = item.value === value;
+          return (
+            <button
+              key={item.value}
+              ref={(node) => {
+                buttons.current[itemIndex] = node;
+              }}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              aria-label={item.semantic}
+              title={item.semantic}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => select(itemIndex)}
+              className={`shrink-0 cursor-pointer rounded-full border-0 p-0 ${item.swatch}`}
+              style={swatchStyle(selected, item.token, item.value === "grey" || item.value === "gray" || item.value === "yellow")}
+            />
+          );
+        })}
+      </div>
+      <p className="text-sm text-fg-grey-700" aria-live="polite">
+        当前：{current.semantic}
+      </p>
+    </div>
+  );
+}
+
+function ChoiceGroup<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: readonly { value: T; semantic: string }[];
+  onChange: (value: T) => void;
+}) {
+  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    if (key !== "ArrowLeft" && key !== "ArrowRight") return;
+    event.preventDefault();
+    const index = options.findIndex((item) => item.value === value);
+    const delta = key === "ArrowLeft" ? -1 : 1;
+    const nextIndex = (index + delta + options.length) % options.length;
+    onChange(options[nextIndex].value);
+    event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]')[nextIndex]?.focus();
+  }
+
+  return (
+    <div
+      role="radiogroup"
+      aria-label={label}
+      className="flex flex-wrap gap-2"
+      onKeyDown={onKeyDown}
+    >
+      {options.map((item) => {
+        const selected = item.value === value;
+        return (
+          <button
+            key={item.value}
+            type="button"
+            role="radio"
+            aria-checked={selected}
+            aria-label={item.semantic}
+            tabIndex={selected ? 0 : -1}
+            onClick={() => onChange(item.value)}
+            className={`rounded-full px-3 py-1.5 text-sm font-medium ${selected ? "bg-fg-black text-white" : "bg-white text-fg-grey-700 outline outline-1 outline-fg-grey-200"}`}
+          >
+            {item.semantic}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function iconFor(effect: IconButtonEffect) {
+  if (effect === "send") return <PlainLinear size={22} />;
+  if (effect === "morph") return <PlayBoldDuotone size={22} />;
+  if (effect === "bookmark") return <BookmarkLinear size={22} />;
+  return <HeartLinear size={22} />;
+}
+
 export default function ButtonLinkCasePage() {
+  const [color, setColor] = useState<ButtonColor>("blue");
+  const [linkColor, setLinkColor] = useState<LinkColor>("blue");
+  const [size, setSize] = useState<ButtonSize>("lg");
+  const [variant, setVariant] = useState<Exclude<ButtonVariant, "hold">>("primary");
+  const [shape, setShape] = useState<IconButtonShape>("circle");
+  const [ghost, setGhost] = useState(false);
+  const iconVariant: IconButtonVariant = ghost ? "ghost" : variant;
+
   return (
     <div className="flex flex-col gap-10">
       <PageHeading
         title="按钮与链接"
-        hint="把按钮、图标按钮和文字链接的全部变体放在一起对比。悬停可查看动效。"
+        hint="颜色、尺寸和样式从上方切换。下面只保留文字、图标、状态和动效这些结构。"
       />
 
-      <Section title="按钮样式" description="主要、次要、轻量三种样式，覆盖全部颜色。">
-        {buttonColors.map((color) => (
-          <SubSection key={color} title={color}>
-            {buttonVariants.map((variant) => (
-              <Labeled key={variant} label={variant}>
-                <Button color={color} variant={variant} size="lg">确认</Button>
-              </Labeled>
-            ))}
-          </SubSection>
-        ))}
+      <Section title="外观" description="按钮和图标按钮共用一组主色。链接色板单独切换。左右方向键可移动选中项。">
+        <SubSection title="按钮主色" stack>
+          <ColorSwatches label="按钮主色" value={color} options={BUTTON_SWATCHES} onChange={setColor} />
+        </SubSection>
+        <SubSection title="链接主色" stack>
+          <ColorSwatches label="链接主色" value={linkColor} options={LINK_SWATCHES} onChange={setLinkColor} />
+        </SubSection>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <ChoiceGroup label="尺寸" value={size} options={SIZES} onChange={setSize} />
+          <ChoiceGroup label="样式" value={variant} options={VARIANTS} onChange={setVariant} />
+          <ChoiceGroup label="图标形状" value={shape} options={SHAPES} onChange={setShape} />
+          <label className="flex items-center gap-2 text-sm font-medium text-fg-grey-900">
+            幽灵
+            <Toggle checked={ghost} onChange={setGhost} ariaLabel="幽灵" color="black" size="sm" />
+          </label>
+        </div>
       </Section>
 
-      <Section title="按钮尺寸" description="大、中、小三种尺寸，以 Forge 蓝为例对照三种样式。">
-        {buttonVariants.map((variant) => (
-          <SubSection key={variant} title={variant}>
-            {buttonSizes.map((size) => (
-              <Labeled key={size} label={size}>
-                <Button color="blue" variant={variant} size={size}>确认</Button>
-              </Labeled>
-            ))}
-          </SubSection>
-        ))}
-      </Section>
-
-      <Section title="按钮图标" description="左侧图标、右侧图标和无图标，对照三种尺寸。">
-        {buttonSizes.map((size) => (
-          <SubSection key={size} title={size}>
-            <Labeled label="左图标">
-              <Button color="blue" variant="primary" size={size} iconLeft={plus}>添加</Button>
-            </Labeled>
-            <Labeled label="右图标">
-              <Button color="blue" variant="primary" size={size} iconRight={arrowRight}>下一步</Button>
-            </Labeled>
-            <Labeled label="无图标">
-              <Button color="blue" variant="primary" size={size}>确认</Button>
-            </Labeled>
-          </SubSection>
-        ))}
-      </Section>
-
-      <Section title="按钮动效" description="玻璃效果、箭头跟随、涟漪和文字切换。玻璃效果要放在有内容的背景上才能看清。">
-        <SubSection title="效果">
+      <Section title="按钮" description="文字、图标、禁用、动效和处理状态跟随当前主色、尺寸和样式。长按确认跟随主色和尺寸。">
+        <SubSection title="文字">
+          <Button color={color} variant={variant} size={size}>确认</Button>
+        </SubSection>
+        <SubSection title="图标">
+          <Labeled label="左图标">
+            <Button color={color} variant={variant} size={size} iconLeft={plus}>添加</Button>
+          </Labeled>
+          <Labeled label="右图标">
+            <Button color={color} variant={variant} size={size} iconRight={arrowRight}>下一步</Button>
+          </Labeled>
+          <Labeled label="无图标">
+            <Button color={color} variant={variant} size={size}>确认</Button>
+          </Labeled>
+        </SubSection>
+        <SubSection title="禁用">
+          <Labeled label="文字">
+            <Button color={color} variant={variant} size={size} disabled>确认</Button>
+          </Labeled>
+          <Labeled label="左图标">
+            <Button color={color} variant={variant} size={size} iconLeft={plus} disabled>添加</Button>
+          </Labeled>
+        </SubSection>
+        <SubSection title="动效">
           {buttonEffects.map((effect) => (
             <Labeled key={effect} label={effectLabel[effect]}>
               <div className={effect === "glass" ? "rounded-2xl bg-fg-grey-100 px-6 py-4" : undefined}>
-                <Button color="blue" effect={effect} iconRight={effect === "magnetic" ? arrowRight : undefined}>
+                <Button color={color} variant={variant} size={size} effect={effect} iconRight={effect === "magnetic" ? arrowRight : undefined}>
                   {effect === "roll" ? "查看详情" : "确认更改"}
                 </Button>
               </div>
@@ -129,172 +313,80 @@ export default function ButtonLinkCasePage() {
         </SubSection>
         <SubSection title="处理状态">
           <Labeled label="处理中">
-            <Button color="blue" loading>确认更改</Button>
+            <Button color={color} variant={variant} size={size} loading>确认更改</Button>
           </Labeled>
           <Labeled label="已完成">
-            <Button color="blue" result="success" resultLabel="已完成">确认更改</Button>
+            <Button color={color} variant={variant} size={size} result="success" resultLabel="已完成">确认更改</Button>
           </Labeled>
           <Labeled label="请重试">
-            <Button color="blue" result="error" resultLabel="请重试">确认更改</Button>
+            <Button color={color} variant={variant} size={size} result="error" resultLabel="请重试">确认更改</Button>
           </Labeled>
         </SubSection>
-      </Section>
-
-      <Section title="长按确认" description="按住完成删除，松开即取消。对照未确认和已确认。">
-        <SubSection title="hold">
+        <SubSection title="长按确认">
           <Labeled label="未确认">
-            <Button variant="hold" color="red" locale="zh">按住删除</Button>
+            <Button variant="hold" color={color} size={size} locale="zh">按住删除</Button>
           </Labeled>
           <Labeled label="已确认">
-            <Button variant="hold" color="red" locale="zh" confirmed>按住删除</Button>
+            <Button variant="hold" color={color} size={size} locale="zh" confirmed>按住删除</Button>
           </Labeled>
         </SubSection>
       </Section>
 
-      <Section title="按钮禁用" description="每种样式和带图标的按钮都可以禁用。">
-        <SubSection title="样式">
-          {buttonVariants.map((variant) => (
-            <Labeled key={variant} label={variant}>
-              <Button color="blue" variant={variant} size="lg" disabled>确认</Button>
+      <Section title="图标按钮" description="形状跟随上方选择。打开幽灵后，图标按钮改为透明底，文字按钮仍用主要、次要或轻量。">
+        <SubSection title="形状">
+          <IconButton color={color} variant={iconVariant} size={size} shape={shape} aria-label="编辑">
+            {shape === "square" && ghost ? pen : heart}
+          </IconButton>
+        </SubSection>
+        <SubSection title="禁用">
+          <IconButton color={color} variant={iconVariant} size={size} shape={shape} disabled aria-label="编辑已禁用">
+            {pen}
+          </IconButton>
+        </SubSection>
+        <SubSection title="动效">
+          {iconEffects.map((effect) => (
+            <Labeled key={effect} label={iconEffectLabel[effect]}>
+              <div className="flex items-center gap-3">
+                <IconButton color={color} variant={iconVariant} shape={shape} effect={effect} size={size} aria-label={iconEffectLabel[effect]}>
+                  {iconFor(effect)}
+                </IconButton>
+                <IconButton color={color} variant={iconVariant} shape={shape} effect={effect} active size={size} aria-label={`${iconEffectLabel[effect]}已激活`}>
+                  {iconFor(effect)}
+                </IconButton>
+              </div>
             </Labeled>
           ))}
+        </SubSection>
+      </Section>
+
+      <Section title="链接" description="文字、左右图标、动效和禁用跟随链接主色。">
+        <SubSection title="文字">
+          <StyledLink href="#" color={linkColor}>查看详情</StyledLink>
         </SubSection>
         <SubSection title="图标">
-          <Labeled label="左图标">
-            <Button color="blue" variant="primary" size="lg" iconLeft={plus} disabled>添加</Button>
-          </Labeled>
-          <Labeled label="右图标">
-            <Button color="blue" variant="primary" size="lg" iconRight={arrowRight} disabled>下一步</Button>
-          </Labeled>
-        </SubSection>
-      </Section>
-
-      <Section title="图标按钮样式" description="主要、次要、轻量和幽灵四种样式，覆盖全部颜色。">
-        {iconButtonColors.map((color) => (
-          <SubSection key={color} title={color}>
-            {iconButtonVariants.map((variant) => (
-              <Labeled key={variant} label={variant}>
-                <IconButton color={color} variant={variant} size="md" shape="circle" aria-label={variant}>
-                  {pen}
-                </IconButton>
-              </Labeled>
-            ))}
-          </SubSection>
-        ))}
-      </Section>
-
-      <Section title="图标按钮尺寸与形状" description="圆形和方形，对照大、中、小。方形幽灵样式用于表格操作。">
-        <SubSection title="圆形">
-          {iconButtonSizes.map((size) => (
-            <Labeled key={size} label={size}>
-              <IconButton color="blue" variant="primary" size={size} shape="circle" aria-label={size}>{heart}</IconButton>
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="方形">
-          {iconButtonSizes.map((size) => (
-            <Labeled key={size} label={size}>
-              <IconButton color="blue" variant="primary" size={size} shape="square" aria-label={size}>{heart}</IconButton>
-            </Labeled>
-          ))}
-        </SubSection>
-        <SubSection title="方形幽灵">
-          {iconButtonSizes.map((size) => (
-            <Labeled key={size} label={size}>
-              <IconButton color="grey" variant="ghost" size={size} shape="square" aria-label={size}>{pen}</IconButton>
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      <Section title="图标按钮形状与样式" description="圆形和方形搭配四种样式。">
-        {iconButtonShapes.map((shape) => (
-          <SubSection key={shape} title={shape}>
-            {iconButtonVariants.map((variant) => (
-              <Labeled key={variant} label={variant}>
-                <IconButton color="blue" variant={variant} size="md" shape={shape} aria-label={`${shape} ${variant}`}>
-                  {close}
-                </IconButton>
-              </Labeled>
-            ))}
-          </SubSection>
-        ))}
-      </Section>
-
-      <Section title="图标按钮动效" description="发送、播放暂停、书签和点赞。每项对照默认和激活。">
-        {iconButtonEffects.map((effect) => (
-          <SubSection key={effect} title={iconEffectLabel[effect]}>
-            <Labeled label="默认">
-              <IconButton color="blue" effect={effect} size="lg" aria-label={iconEffectLabel[effect]}>
-                {effect === "send" ? <PlainLinear size={22} /> : effect === "morph" ? <PlayBoldDuotone size={22} /> : effect === "bookmark" ? <BookmarkLinear size={22} /> : <HeartLinear size={22} />}
-              </IconButton>
-            </Labeled>
-            <Labeled label="激活">
-              <IconButton color="blue" effect={effect} active size="lg" aria-label={`${iconEffectLabel[effect]}已激活`}>
-                {effect === "send" ? <PlainLinear size={22} /> : effect === "morph" ? <PlayBoldDuotone size={22} /> : effect === "bookmark" ? <BookmarkLinear size={22} /> : <HeartLinear size={22} />}
-              </IconButton>
-            </Labeled>
-          </SubSection>
-        ))}
-      </Section>
-
-      <Section title="图标按钮禁用" description="四种样式的禁用状态。">
-        <SubSection title="禁用">
-          {iconButtonVariants.map((variant) => (
-            <Labeled key={variant} label={variant}>
-              <IconButton color="blue" variant={variant} size="md" shape="circle" disabled aria-label={variant}>{pen}</IconButton>
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      <Section title="链接颜色" description="全部颜色的文字链接，悬停出现下划线。">
-        <SubSection title="颜色">
-          {linkColors.map((color) => (
-            <Labeled key={color} label={color}>
-              <StyledLink href="#" color={color}>查看详情</StyledLink>
-            </Labeled>
-          ))}
-        </SubSection>
-      </Section>
-
-      <Section title="链接图标" description="左侧和右侧图标。">
-        <SubSection title="右侧">
-          <Labeled label="箭头">
-            <StyledLink href="#" color="blue" iconRight={arrowRight}>查看详情</StyledLink>
+          <Labeled label="下一步">
+            <StyledLink href="#" color={linkColor} iconRight={arrowRight}>查看详情</StyledLink>
           </Labeled>
           <Labeled label="关闭">
-            <StyledLink href="#" color="red" iconRight={close}>关闭</StyledLink>
+            <StyledLink href="#" color={linkColor} iconRight={close}>关闭</StyledLink>
           </Labeled>
-        </SubSection>
-        <SubSection title="左侧">
           <Labeled label="返回">
-            <StyledLink href="#" color="blue" iconLeft={arrowLeft}>返回</StyledLink>
+            <StyledLink href="#" color={linkColor} iconLeft={arrowLeft}>返回</StyledLink>
           </Labeled>
           <Labeled label="新建">
-            <StyledLink href="#" color="green" iconLeft={plus}>新建</StyledLink>
+            <StyledLink href="#" color={linkColor} iconLeft={plus}>新建</StyledLink>
           </Labeled>
         </SubSection>
-      </Section>
-
-      <Section title="链接动效" description="箭头跟随和文字切换。">
-        <SubSection title="效果">
+        <SubSection title="动效">
           <Labeled label="箭头跟随">
-            <StyledLink href="#" color="blue" effect="magnetic" iconRight={arrowRight}>打开项目</StyledLink>
+            <StyledLink href="#" color={linkColor} effect="magnetic" iconRight={arrowRight}>打开项目</StyledLink>
           </Labeled>
           <Labeled label="文字切换">
-            <StyledLink href="#" color="blue" effect="roll">查看详情</StyledLink>
+            <StyledLink href="#" color={linkColor} effect="roll">查看详情</StyledLink>
           </Labeled>
         </SubSection>
-      </Section>
-
-      <Section title="链接禁用" description="每种颜色都可以禁用。">
         <SubSection title="禁用">
-          {linkColors.map((color) => (
-            <Labeled key={color} label={color}>
-              <StyledLink href="#" color={color} disabled>查看详情</StyledLink>
-            </Labeled>
-          ))}
+          <StyledLink href="#" color={linkColor} disabled>查看详情</StyledLink>
         </SubSection>
       </Section>
     </div>
