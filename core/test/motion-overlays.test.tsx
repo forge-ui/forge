@@ -9,10 +9,10 @@ import { TabsContent } from "../src/components/ui/tabs-content";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
-function setup() {
+function setup(reduced = false) {
   const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost" });
   Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true, window: dom.window, self: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, Event: dom.window.Event, MouseEvent: dom.window.MouseEvent, KeyboardEvent: dom.window.KeyboardEvent, getComputedStyle: dom.window.getComputedStyle.bind(dom.window) });
-  Object.defineProperty(dom.window, "matchMedia", { value: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) });
+  Object.defineProperty(dom.window, "matchMedia", { value: () => ({ matches: reduced, addEventListener() {}, removeEventListener() {} }) });
   dom.window.HTMLDialogElement.prototype.showModal = function() { this.setAttribute("open", ""); };
   dom.window.HTMLDialogElement.prototype.close = function() { this.removeAttribute("open"); };
   const root = createRoot(document.getElementById("root")!);
@@ -31,6 +31,36 @@ test("Modal controlled cancel, inert exit, quick reopen and none", async () => {
     await render(false); assert.equal(dialog.open, true); assert.ok(dialog.querySelector('[inert]'));
     await render(true); await wait(150); assert.equal(dialog.open, true);
     await render(false, "none"); assert.equal(dialog.open, false);
+  } finally { await env.cleanup(); }
+});
+test("backdrop click asks to close, and a reopen during exit does not finish the old close", async () => {
+  const env = setup(); let closes = 0;
+  const render = (open: boolean) => act(async () => env.root.render(<Modal open={open} onOpenChange={() => closes++} title="Example"><button>Action</button></Modal>));
+  try {
+    await render(true);
+    const dialog = document.querySelector("dialog")!;
+    await act(async () => dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, clientX: 8, clientY: 8 })));
+    assert.equal(closes, 1);
+    await render(false);
+    assert.equal(dialog.open, true);
+    assert.equal(dialog.getAttribute("data-state"), "closed");
+    await render(true);
+    await wait(180);
+    assert.equal(dialog.open, true);
+    assert.equal(dialog.getAttribute("data-state"), "open");
+  } finally { await env.cleanup(); }
+});
+test("reduced motion keeps the dialog through the exit fade instead of closing immediately", async () => {
+  const env = setup(true);
+  const render = (open: boolean) => act(async () => env.root.render(<Modal open={open} onOpenChange={() => {}} title="Example"><button>Action</button></Modal>));
+  try {
+    await render(true);
+    await render(false);
+    const dialog = document.querySelector("dialog")!;
+    assert.equal(dialog.open, true);
+    assert.equal(dialog.getAttribute("data-state"), "closed");
+    await wait(150);
+    assert.equal(dialog.open, false);
   } finally { await env.cleanup(); }
 });
 test("Accordion keyboard skips disabled headers and closes content inertly", async () => {

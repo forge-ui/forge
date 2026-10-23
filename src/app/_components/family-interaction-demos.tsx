@@ -27,7 +27,7 @@ export function FamilyInteractionDemos() {
     {family === "menu" && <><Section title="菜单展开与选择" description="选择菜单项，或按 Escape 关闭并恢复焦点。"><MotionMenus motion={motion} /></Section><Section title="导航展开与收起" description="连续展开和收起分支，查看内容与箭头的过渡。"><MotionNavigation motion={motion} /></Section></>}
     {family === "tab" && <><AnimatedWidgetDemos only="tabs" motion={motion} /><Section title="页签指示器" description="点击不同长度的标签，也可用方向键切换。"><MotionTabs motion={motion} /></Section><Section title="内容切换" description="切换时淡入内容，保留明确的选中状态。"><MotionTabContents motion={motion} /></Section></>}
     {family === "tooltip" && <Section title="连续悬停与焦点提示" description="在多个按钮间移动，或用 Tab 聚焦、Escape 关闭提示。"><div className="py-10"><MotionTooltips motion={motion} /></div></Section>}
-    {family === "modal" && <Section title="弹窗与抽屉" description="打开、关闭、焦点限制，以及关闭后回到触发按钮。"><MotionOverlays motion={motion} /></Section>}
+    {family === "modal" && <Section title="弹窗与抽屉" description="打开弹窗看进入 180ms、离开 120ms。连点关闭、按 Esc 或点遮罩会从当前画面折返，不会把上一段播完。"><MotionOverlays motion={motion} /></Section>}
     {family === "accordion" && <Section title="折叠面板" description="展开一组说明。方向键、Home 和 End 可以移动标题焦点。"><MotionAccordion motion={motion} /></Section>}
     {family === "feedback" && <Section title="短消息" description="悬停或聚焦时暂停计时。关闭一条后，其余消息补位。"><MotionToasts motion={motion} /></Section>}
     <ExampleCode files={["src/app/_components/motion-demos.tsx", "src/app/_components/animated-widget-demos.tsx"]} />
