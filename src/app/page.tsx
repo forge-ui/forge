@@ -14,39 +14,38 @@ export default function HomePage() {
         <section className="home-hero">
           <div className="home-hero-glow" aria-hidden="true" />
           <HomeHero>
-            <Link href={changelogHref(coreVersion)} className="home-pill">
+            <Link href={changelogHref(coreVersion)} className="home-pill home-rise">
               Forge {coreVersion} 更新说明
               <span aria-hidden="true">→</span>
             </Link>
-            <h1 className="home-hero-title">
-              统计、日程、
-              <br />
-              看板和对话，
+            <h1 className="home-hero-title home-rise" style={{ animationDelay: "70ms" }}>
+              统计、日程、看板和对话，
               <br />
               都有现成的样子
             </h1>
-            <p className="home-hero-lead">
-              后台常用的统计、日程、看板和对话，都有现成组件，动效可开可关。
+            <p className="home-hero-lead home-rise" style={{ animationDelay: "130ms" }}>
+              后台常用的统计、日程、看板和对话，都有现成组件，动效可开可关。白卡 + 钴蓝点缀，像正在用的工作台。
             </p>
-            <pre className="home-code">
+            <pre className="home-code home-rise" style={{ animationDelay: "180ms" }}>
               <code>
                 <span className="tok-kw">import</span>
                 {" { StatCard } "}
                 <span className="tok-kw">from</span>
                 {"\n  "}
                 <span className="tok-str">&quot;@forge-ui-official/core&quot;</span>
-                {";\n\n<"}
+                {";\n"}
+                {"<"}
                 <span className="tok-name">StatCard</span>
                 {" "}
                 <span className="tok-attr">title</span>
                 <span className="tok-str">=&quot;本周&quot;</span>
                 {" "}
                 <span className="tok-attr">value</span>
-                <span className="tok-str">=&quot;128&quot;</span>
+                <span className="tok-str">=&quot;146&quot;</span>
                 {" />"}
               </code>
             </pre>
-            <div className="home-cta-row">
+            <div className="home-cta-row home-rise" style={{ animationDelay: "230ms" }}>
               <Link href="/docs/quick-start" className="home-cta home-cta-dark">
                 开始使用
                 <ArrowRightLinear size={16} color="currentColor" className="home-cta-icon" aria-hidden="true" />
