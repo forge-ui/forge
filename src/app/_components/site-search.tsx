@@ -17,7 +17,7 @@ const templateItems: CommandSearchItem[] = [
   { id: "/templates/crm-template", label: "客户关系", group: "模板", keywords: ["crm"] },
   { id: "/templates/micellaneous-template", label: "杂项", group: "模板", keywords: ["calendar", "chat", "files"] },
   { id: "/templates/ecommerce/products", label: "电商后台", group: "模板", keywords: ["ecommerce"] },
-  { id: "/templates/dashboard-builder", label: "仪表盘外壳", group: "模板", keywords: ["dashboard", "builder"] },
+  { id: "/templates/task-board", label: "任务看板", group: "模板", keywords: ["todoist", "kanban", "任务", "看板"] },
   { id: "/templates/dashboards", label: "仪表盘", group: "模板", keywords: ["dashboards"] },
   { id: "/templates/agent", label: "智能体", group: "模板", keywords: ["agent", "chat"] },
 ];

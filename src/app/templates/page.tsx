@@ -16,7 +16,8 @@ const items: ShowcaseItem[] = [
   {
     href: "/templates/agent",
     title: "智能体",
-    description: "带侧栏的对话页，包含思考过程、工具调用、流式回答和输入栏。",
+    thumbnail: asset("/images/showcase/agent-workspace.png"),
+    description: "动态智能体工作台，支持流式生成、停止重试、工具调用、计划审核和交互输入。",
   },
   {
     href: "/templates/project-template",
@@ -49,10 +50,10 @@ const items: ShowcaseItem[] = [
     thumbnail: asset("/images/showcase/ecommerce.png"),
   },
   {
-    href: "/templates/dashboard-builder",
-    title: "仪表盘外壳",
-    description: "8 种空白后台：白、紫、蓝、黑，头像放在顶栏或侧栏。选一个当起点。",
-    thumbnail: asset("/images/showcase/dashboard-builder-hero.png"),
+    href: "/templates/task-board",
+    title: "任务看板",
+    description: "让任务井井有条。支持拖动分区、任务与子任务管理、讨论、筛选和本地保存。",
+    thumbnail: asset("/images/showcase/task-board.png"),
   },
   {
     href: "/templates/dashboards",

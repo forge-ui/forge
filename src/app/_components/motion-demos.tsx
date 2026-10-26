@@ -106,7 +106,7 @@ export function MotionOverlays({ motion }: { motion: MotionPreference }) {
     <Button motion={motion} variant="tertiary" onClick={() => setDrawer(true)}>打开抽屉</Button>
     <Button motion={motion} variant="tertiary" onClick={() => setConfirm(true)}>确认操作</Button>
     <span className="text-sm text-fg-grey-700" aria-live="polite">{result}</span>
-    <Modal open={modal} onOpenChange={setModal} title="项目信息" motion={motion} footer={<Button motion={motion} onClick={() => setModal(false)}>完成</Button>}><p className="text-sm text-fg-grey-700">轻微缩放与遮罩淡入。按 Escape 或点击遮罩关闭，焦点回到打开按钮。</p></Modal>
+    <Modal open={modal} onOpenChange={setModal} title="项目信息" motion={motion} footer={<Button motion={motion} onClick={() => setModal(false)}>完成</Button>}><p className="text-sm text-fg-grey-700">进入 180ms，离开 120ms。遮罩只改变透明度。按 Escape、点遮罩或关闭，会从当前帧折返。</p></Modal>
     <Drawer open={drawer} onOpenChange={setDrawer} title="项目详情" motion={motion} footer={<Button motion={motion} onClick={() => setDrawer(false)}>完成</Button>}><p className="text-sm text-fg-grey-700">从侧边滑入，保留当前页面上下文。Tab 焦点限制在抽屉内。</p></Drawer>
     <ConfirmationDialog open={confirm} onOpenChange={setConfirm} title="归档项目？" description="这是交互示例，不会修改业务数据。" color="purple" confirmLabel="确认归档" motion={motion} onConfirm={() => { setResult("已确认归档"); setConfirm(false); }} />
   </div>;

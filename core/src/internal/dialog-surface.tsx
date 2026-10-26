@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import type { MotionPreference } from "../lib/motion";
-import { useReducedMotion } from "./motion";
 import { cn } from "../lib/utils";
 
 export function DialogSurface({ open, onOpenChange, label, children, motion = "auto", side, className }: {
@@ -10,19 +9,52 @@ export function DialogSurface({ open, onOpenChange, label, children, motion = "a
   motion?: MotionPreference; side?: "left" | "right"; className?: string;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
-  const reduced = useReducedMotion(motion);
+  useLayoutEffect(() => {
+    const dialog = ref.current;
+    if (!dialog) return;
+    const requestClose = (event: Event) => {
+      event.preventDefault();
+      if (open) onOpenChange(false);
+    };
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      requestClose(event);
+    };
+    dialog.addEventListener("keydown", onEscape);
+    dialog.addEventListener("cancel", requestClose);
+    return () => {
+      dialog.removeEventListener("keydown", onEscape);
+      dialog.removeEventListener("cancel", requestClose);
+    };
+  }, [open, onOpenChange]);
   useLayoutEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;
     if (open) { if (!dialog.open) dialog.showModal(); return; }
     if (!dialog.open) return;
-    if (reduced) { dialog.close(); return; }
+    // motion="none" is instant. System reduced-motion still fades; CSS drops the shift.
+    if (motion === "none") { dialog.close(); return; }
+    let cancelled = false;
+    const finish = () => {
+      if (cancelled || !dialog.open) return;
+      cancelled = true;
+      dialog.close();
+    };
+    const onEnd = (event: TransitionEvent) => {
+      if (event.target !== dialog || event.propertyName !== "opacity") return;
+      finish();
+    };
+    dialog.addEventListener("transitionend", onEnd);
     const raw = getComputedStyle(dialog).getPropertyValue("--forge-motion-exit-duration").trim();
     const parsed = parseFloat(raw);
     const duration = Number.isFinite(parsed) ? parsed * (raw.endsWith("ms") ? 1 : 1000) : 120;
-    const timer = setTimeout(() => dialog.close(), Math.max(0, duration));
-    return () => clearTimeout(timer);
-  }, [open, reduced]);
+    const timer = window.setTimeout(finish, Math.max(0, duration));
+    return () => {
+      cancelled = true;
+      dialog.removeEventListener("transitionend", onEnd);
+      window.clearTimeout(timer);
+    };
+  }, [open, motion]);
   return <dialog ref={ref} aria-label={label} aria-modal="true" data-state={open ? "open" : "closed"} data-motion={motion} data-side={side}
     onKeyDown={(event) => {
       if (event.key !== "Tab" || !open) return;
@@ -32,7 +64,6 @@ export function DialogSurface({ open, onOpenChange, label, children, motion = "a
       else if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }}
-    onCancel={(event) => { event.preventDefault(); if (open) onOpenChange(false); }}
     onClose={() => { if (open) onOpenChange(false); }}
     onClick={(event) => {
       if (!open || event.target !== event.currentTarget) return;
