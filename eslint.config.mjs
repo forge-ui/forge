@@ -17,6 +17,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored agent skills (MIT, Enes Ozturk). Not app source.
+    "skills/dimensional-drawing/**",
+    "skills/dimensional-drawing-motion/**",
   ]),
 ]);
 

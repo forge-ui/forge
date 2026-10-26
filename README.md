@@ -224,8 +224,9 @@ pnpm lint            # ESLint
 | `src/app/cases` | 组件组合案例。props 以源码为准 |
 | `src/app/templates` | 完整后台模板和业务页 |
 | `skills/forge-react` | 可安装的 Forge Skill，给 Codex、Claude Code 和 Cursor 用 |
+| `skills/dimensional-drawing` | Agent 用的尺寸图 skill（可选 motion 在同级目录）。单色，画结构，未知写 `[TBD]`。不打进 core。见 [`docs/for-agents/README.md`](./docs/for-agents/README.md) |
 | `public/` | 图片、图标和安装脚本 |
 
 ## License
 
-源码使用 [MIT License](./LICENSE)。图标使用 Solar Icons：React 实现为 MIT，480 Design 的图形为 CC BY 4.0。完整声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+源码使用 [MIT License](./LICENSE)。图标使用 Solar Icons：React 实现为 MIT，480 Design 的图形为 CC BY 4.0。完整声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。尺寸图 skill 来自 Enes Ozturk 的 MIT 作品，见 [NOTICE](./NOTICE)，不进入 core 发布包。

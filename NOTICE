@@ -14,3 +14,19 @@ chips, agent task rows, prompt bar, context cards, recommendation cards,
 diff tables, code blocks, insight cards, command search, and flowcharts)
 with Forge design tokens (`fg-*`) and `solar-icon-set`. This is not a
 vendor copy of Beautiful UI source, tokens, or commercial icon assets.
+
+Dimensional drawing skills
+--------------------------
+
+Copyright (c) 2026 Enes Ozturk
+https://github.com/enesozturk/dimensional-drawing
+Vendored at commit 5c457437c8c83524308aad3b7443e81adcc13153
+
+Licensed under the MIT License. The full license text is included with the
+copies at `skills/dimensional-drawing/LICENSE` and
+`skills/dimensional-drawing-motion/LICENSE`.
+
+These are agent skills for Apple-style monochrome dimensional drawings of
+ForgeUI components (architecture, not content; unknown measurements stay
+`[TBD]`). They are not part of the published `@forge-ui-official/core`
+package and are not a runtime dependency of that package.
