@@ -304,126 +304,144 @@ export function TitleHeader({
 }: PageHeaderProps) {
   const accent = accentColors[color!];
 
+  const iconButton =
+    "shrink-0 inline-flex items-center justify-center rounded-full bg-white p-2 text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:p-3.5";
+
   return (
-    <div data-forge-page-header className={cn("w-full min-w-0 px-4 py-3 md:px-5 md:py-4 border-b border-fg-grey-200 flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center md:gap-4", className)}>
-      {/* Left: back button + optional avatar + title */}
-      <div className="flex w-full items-center gap-3 md:w-auto md:min-w-max md:flex-1">
-        {showMobileMenuButton && (
-          <HeaderMenuButton
-            onClick={onHamburgerClick}
-            ariaLabel={hamburgerAriaLabel}
-            expanded={hamburgerExpanded}
-            controls={hamburgerControls}
-            className="md:hidden"
-          />
+    <div className="@container w-full min-w-0">
+      {/* Container queries, not the viewport: a desktop window can still give this header ~630px.
+          Under 1000px, drop secondary copy and tighten padding so actions stay one line.
+          Under 560px, the whole action group moves below the title instead of wrapping beside it. */}
+      <div
+        data-forge-page-header
+        className={cn(
+          "flex w-full min-w-0 flex-col gap-2 border-b border-fg-grey-200 px-3 py-2 @min-[1000px]:gap-4 @min-[1000px]:px-5 @min-[1000px]:py-4",
+          className,
         )}
-        {showBackButton && (
-          <button
-            type="button"
-            aria-label="返回"
-            onClick={onBack}
-            className="p-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
-          >
-            <AltArrowLeftLinear size={20} />
-          </button>
-        )}
-        {titleAvatar && (
-          <img className="w-12 h-12 rounded-full" src={titleAvatar} alt="" />
-        )}
-        {title && (
-          <div data-forge-page-title className="whitespace-nowrap text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</div>
-        )}
-      </div>
-
-      {/* Right: actions */}
-      <div className="flex min-w-0 w-full flex-1 flex-wrap items-center justify-start gap-2 md:justify-end md:gap-4">
-        {/* Date picker — Figma export had w-6 h-6 p-2 wrapper, but p-2 squashes the SVG to 8px wide via flexbox sizing. Use plain w-6 h-6. */}
-        {showDatePicker && (
-          <DatePickerButton
-            label={datePickerLabel}
-            onClick={onDatePickerClick}
-            enablePopover={!onDatePickerClick}
-            accentBg={accent.bg}
-          />
-        )}
-
-        {/* Filters — Figma: data-style="Bold" filter icon */}
-        {showFilters && (
-          <button
-            type="button"
-            onClick={onFiltersClick}
-            className="shrink-0 px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
-          >
-            <SortFromTopToBottomBold size={20} />
-            <span className="whitespace-nowrap text-sm font-semibold leading-5 tracking-fg">{filtersLabel}</span>
-          </button>
-        )}
-
-        {/* Divider */}
-        {(showKebab || showFavorite) && (
-          <div className="w-0 h-8 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
-        )}
-
-        {/* Kebab — Figma: data-style="Bold" rotated dots */}
-        {showKebab && (
-          <button
-            type="button"
-            aria-label="更多操作"
-            aria-haspopup="menu"
-            onClick={onKebabClick}
-            className="shrink-0 p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
-          >
-            <MenuDotsBold size={20} />
-          </button>
-        )}
-
-        {/* Favorite — Figma: data-style="Bold Duotone" star */}
-        {showFavorite && (
-          <button
-            type="button"
-            aria-label="收藏"
-            onClick={onFavoriteClick}
-            className="shrink-0 p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
-          >
-            <StarBoldDuotone size={20} />
-          </button>
-        )}
-
-        {/* Custom actions */}
-        {actions}
-
-        {/* Secondary action */}
-        {secondaryAction && (
-          <button
-            type="button"
-            onClick={secondaryAction.onClick}
-            className="shrink-0 pl-3.5 pr-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors"
-          >
-            {secondaryAction.icon && (
-              <span className="w-5 h-5 shrink-0">{secondaryAction.icon}</span>
+      >
+        <div className="flex w-full min-w-0 flex-col items-stretch gap-2 @min-[560px]:flex-row @min-[560px]:flex-nowrap @min-[560px]:items-center @min-[560px]:gap-3 @min-[1000px]:gap-4">
+          <div className="flex shrink-0 items-center gap-2 @min-[1000px]:gap-3">
+            {showMobileMenuButton && (
+              <HeaderMenuButton
+                onClick={onHamburgerClick}
+                ariaLabel={hamburgerAriaLabel}
+                expanded={hamburgerExpanded}
+                controls={hamburgerControls}
+                className="md:hidden"
+              />
             )}
-            <span className="whitespace-nowrap text-fg-grey-700 text-sm font-bold leading-5 tracking-fg">{secondaryAction.label}</span>
-          </button>
-        )}
-
-        {askAi && <AskAi {...askAi} className={cn("shrink-0", askAi.className)} />}
-
-        {/* Primary action — Figma: accent bg + Linear plus icon */}
-        {primaryAction && (
-          <button
-            type="button"
-            onClick={primaryAction.onClick}
-            className={cn(
-              "shrink-0 pl-3.5 pr-4 py-3.5 rounded-full flex justify-center items-center gap-1 overflow-hidden text-white hover:opacity-90 transition-opacity",
-              accent.bg
+            {showBackButton && (
+              <button
+                type="button"
+                aria-label="返回"
+                onClick={onBack}
+                className="inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full p-2 text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:p-3.5"
+              >
+                <AltArrowLeftLinear size={20} />
+              </button>
             )}
-          >
-            {primaryAction.icon ?? <PlusIcon />}
-            <span className="whitespace-nowrap text-white text-sm font-bold leading-5 tracking-fg">{primaryAction.label}</span>
-          </button>
-        )}
+            {titleAvatar && (
+              <img className="h-10 w-10 shrink-0 rounded-full @min-[1000px]:h-12 @min-[1000px]:w-12" src={titleAvatar} alt="" />
+            )}
+            {title && (
+              <div data-forge-page-title className="whitespace-nowrap text-base font-semibold leading-6 tracking-fg text-fg-black @min-[1000px]:text-lg @min-[1000px]:leading-7">{title}</div>
+            )}
+          </div>
+
+          <div className="flex w-full min-w-0 flex-nowrap items-center justify-start gap-1.5 @max-[559px]:overflow-x-auto @min-[560px]:w-auto @min-[560px]:min-w-min @min-[560px]:flex-1 @min-[560px]:justify-end @min-[560px]:gap-2 @min-[1000px]:gap-4">
+            {showDatePicker && (
+              <DatePickerButton
+                label={datePickerLabel}
+                onClick={onDatePickerClick}
+                enablePopover={!onDatePickerClick}
+                accentBg={accent.bg}
+              />
+            )}
+
+            {showFilters && (
+              <button
+                type="button"
+                aria-label={filtersLabel}
+                onClick={onFiltersClick}
+                className={cn(iconButton, "gap-1 @min-[1000px]:px-4 @min-[1000px]:py-3.5")}
+              >
+                <SortFromTopToBottomBold size={20} />
+                <span className="hidden whitespace-nowrap text-sm font-semibold leading-5 tracking-fg @min-[1000px]:inline">{filtersLabel}</span>
+              </button>
+            )}
+
+            {(showKebab || showFavorite) && (
+              <div className="h-5 w-0 shrink-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200 @min-[1000px]:h-8" />
+            )}
+
+            {showKebab && (
+              <button
+                type="button"
+                aria-label="更多操作"
+                aria-haspopup="menu"
+                onClick={onKebabClick}
+                className={iconButton}
+              >
+                <MenuDotsBold size={20} />
+              </button>
+            )}
+
+            {showFavorite && (
+              <button
+                type="button"
+                aria-label="收藏"
+                onClick={onFavoriteClick}
+                className={iconButton}
+              >
+                <StarBoldDuotone size={20} />
+              </button>
+            )}
+
+            {actions}
+
+            {secondaryAction && (
+              <button
+                type="button"
+                aria-label={secondaryAction.label}
+                onClick={secondaryAction.onClick}
+                className={cn(
+                  "inline-flex shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100",
+                  secondaryAction.icon ? "p-2 @min-[1000px]:py-3.5 @min-[1000px]:pl-3.5 @min-[1000px]:pr-4" : "px-3 py-2 @min-[1000px]:py-3.5 @min-[1000px]:pl-3.5 @min-[1000px]:pr-4",
+                )}
+              >
+                {secondaryAction.icon && (
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center">{secondaryAction.icon}</span>
+                )}
+                <span className={cn(
+                  "whitespace-nowrap text-sm font-bold leading-5 tracking-fg",
+                  secondaryAction.icon && "hidden @min-[1000px]:inline",
+                )}>{secondaryAction.label}</span>
+              </button>
+            )}
+
+            {askAi && (
+              <span className="inline-flex shrink-0 @max-[999px]:[&_button]:h-9 @max-[999px]:[&_button]:gap-1 @max-[999px]:[&_button]:px-2 @max-[999px]:[&_button_img]:h-5 @max-[999px]:[&_button_img]:w-5 @max-[999px]:[&_button>span]:hidden">
+                <AskAi {...askAi} className={cn("shrink-0", askAi.className)} />
+              </span>
+            )}
+
+            {primaryAction && (
+              <button
+                type="button"
+                onClick={primaryAction.onClick}
+                className={cn(
+                  "inline-flex shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full py-2 pl-2.5 pr-3 text-white transition-opacity hover:opacity-90 @min-[1000px]:py-3.5 @min-[1000px]:pl-3.5 @min-[1000px]:pr-4",
+                  accent.bg,
+                )}
+              >
+                {primaryAction.icon ?? <PlusIcon />}
+                <span className="whitespace-nowrap text-sm font-bold leading-5 tracking-fg text-white">{primaryAction.label}</span>
+              </button>
+            )}
+          </div>
+        </div>
+        {children}
       </div>
-      {children}
     </div>
   );
 }
@@ -476,17 +494,14 @@ function DatePickerButton({
       <button
         ref={triggerRef}
         type="button"
+        aria-label={label}
         aria-haspopup={usingInternal ? "dialog" : undefined}
         aria-expanded={usingInternal ? open : undefined}
         onClick={handleClick}
-        className="px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
+        className="inline-flex items-center justify-center gap-1 overflow-hidden rounded-full bg-white p-2 text-sm font-normal leading-5 tracking-fg text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:px-4 @min-[1000px]:py-3.5"
       >
-        <div className="w-6 h-6 flex justify-center items-center gap-2">
-          <CalendarBoldDuotone size={20} />
-        </div>
-        <div className="h-6 flex justify-start items-center gap-2 overflow-hidden">
-          <span className="text-sm font-normal leading-5 tracking-fg whitespace-nowrap">{label}</span>
-        </div>
+        <CalendarBoldDuotone size={20} />
+        <span className="hidden whitespace-nowrap @min-[1000px]:inline">{label}</span>
       </button>
       {usingInternal && open && (
         <div className="absolute right-0 top-full mt-2 z-50">
