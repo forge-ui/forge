@@ -8,9 +8,9 @@ import "./_components/home-page.css";
 
 export default function HomePage() {
   return (
-    <div className="home-page flex min-h-screen min-w-0 flex-col">
+    <div className="home-page">
       <SiteHeader tone="blend" />
-      <main className="flex min-w-0 flex-1 flex-col">
+      <main className="home-main">
         <section className="home-hero">
           <div className="home-hero-glow" aria-hidden="true" />
           <HomeHero>
