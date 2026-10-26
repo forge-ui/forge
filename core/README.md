@@ -277,7 +277,7 @@ import { CalendarCard, DropdownPanel, type ButtonColor } from "@forge-ui-officia
 
 0.4.7 把 99 项交互收成 54 项现有组件增强和 45 项组合案例。默认中文，可以切换语言。正式总览是 `/components/interactions`。各示例也在原来的 `/components` 或 `/cases` 里。`/prototype/component-fusion` 用的是同一套实现。
 
-完整说明：[API 用法与业务接入边界](https://github.com/forge-ui/forge/blob/main/docs/design/component-fusion-api-guide.md)、[99 项对照](https://github.com/forge-ui/forge/blob/main/docs/design/component-fusion-implementation.md)。玻璃按钮的装饰背景只属于官网示例，npm 里的 Button 只有玻璃材质。磁吸按钮不带扩散光晕。
+完整说明：[API 用法与业务接入边界](https://github.com/forge-ui/forge/blob/main/docs/design/component-fusion-api-guide.md)。玻璃按钮的装饰背景只属于官网示例，npm 里的 Button 只有玻璃材质。磁吸按钮不带扩散光晕。
 
 | 组件 | 用途 | 主要参数 |
 | --- | --- | --- |

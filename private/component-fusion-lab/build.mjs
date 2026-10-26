@@ -10,11 +10,11 @@ const repository = resolve(directory, "../..");
 const lab = process.argv[2] ? resolve(repository, process.argv[2]) : null;
 const output = join(repository, "public/prototype/component-fusion");
 const prefix = "/prototype/component-fusion";
-const audit = JSON.parse(await readFile(join(repository, "docs/design/component-fusion-audit.json"), "utf8"));
-const catalog = lab
+const catalogSource = lab
   ? JSON.parse(await readFile(join(lab, "public/catalog.json"), "utf8"))
-  : JSON.parse(await readFile(join(repository, "src/app/prototype/component-fusion/_catalog-data.json"), "utf8")).items;
-const ids = audit.items.filter(item => item.mode !== "exclude" && item.id !== "186").map(item => item.id);
+  : JSON.parse(await readFile(join(repository, "src/app/prototype/component-fusion/_catalog-data.json"), "utf8"));
+const catalog = Array.isArray(catalogSource) ? catalogSource : catalogSource.items;
+const ids = catalog.filter(item => item.mode !== "exclude" && item.id !== "186").map(item => item.id);
 if (ids.length !== 122 || new Set(ids).size !== 122) throw new Error("Expected the reviewed 122 prototype IDs.");
 await mkdir(join(output, "components"), { recursive: true });
 await mkdir(join(output, "shared"), { recursive: true });
@@ -83,9 +83,8 @@ for (const id of ids.filter(id => /^F0[1-6]$/.test(id))) {
   await writeFile(join(output, `components/${id}.html`), `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'; img-src data: https:; font-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"><title>${featureNames[id]}</title><link rel="stylesheet" href="${prefix}/fonts.css"><link rel="stylesheet" href="${prefix}/forge-tokens.css"><link rel="stylesheet" href="${prefix}/features.css"><link rel="stylesheet" href="${prefix}/embed.css"><script src="${prefix}/embed-runtime.js"></script><script src="${prefix}/i18n.js"></script><script src="${prefix}/typography-runtime.js"></script></head><body><div id="root"></div><script src="${prefix}/features.js"></script></body></html>`);
 }
 const manifest = ids.map(id => {
-  const entry = audit.items.find(item => item.id === id);
   const original = catalog.find(item => item.id === id);
-  return { id, name: entry.name, english: original?.english ?? featureNames[id], src: `${prefix}/components/${id}.html`, kind: id.startsWith("F") ? "react" : "html" };
+  return { id, name: original.name, english: original?.english ?? featureNames[id], src: `${prefix}/components/${id}.html`, kind: id.startsWith("F") ? "react" : "html" };
 });
 await writeFile(join(directory, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 await writeFile(join(output, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
