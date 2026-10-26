@@ -138,7 +138,7 @@ function ThemeSwatches({
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-3 p-2">
       <div
         role="radiogroup"
         aria-label="卡片主题"
