@@ -130,7 +130,7 @@ export default function ModalCasePage() {
         title="确认弹窗"
         description="选择删除、成功、警告、升级或激活。左右方向键切换后，两端展开和右侧操作同时更新文案、图标和按钮颜色。"
       >
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 p-2">
           <div
             role="radiogroup"
             aria-label="确认语义"
