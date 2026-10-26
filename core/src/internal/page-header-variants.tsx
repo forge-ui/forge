@@ -414,7 +414,7 @@ export function TitleHeader({
                 )}
                 <span className={cn(
                   "whitespace-nowrap text-sm font-bold leading-5 tracking-fg",
-                  secondaryAction.icon && "hidden @min-[1000px]:inline",
+                  secondaryAction.icon ? "hidden @min-[1000px]:inline" : false,
                 )}>{secondaryAction.label}</span>
               </button>
             )}
