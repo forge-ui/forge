@@ -720,19 +720,48 @@ body {
 .forge-drawer { position: fixed; inset-block: 0; width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; }
 .forge-drawer[data-side="right"] { left: auto; right: 0; }
 .forge-drawer[data-side="left"] { left: 0; right: auto; }
-@keyframes forge-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes forge-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes forge-drawer-in { from { transform: translateX(var(--forge-drawer-from)); } to { transform: none; } }
 @keyframes forge-drawer-out { from { transform: none; } to { transform: translateX(var(--forge-drawer-from)); } }
 .forge-drawer[data-side="right"] { --forge-drawer-from: 100%; }
 .forge-drawer[data-side="left"] { --forge-drawer-from: -100%; }
+/* Dialog enter/exit retarget from the current frame. Keyframes would replay a full tail on interrupt. */
+.forge-dialog[data-motion="auto"]::backdrop {
+  opacity: 0;
+  transition: opacity var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease);
+}
+.forge-dialog[data-motion="auto"][data-state="open"]::backdrop {
+  opacity: 1;
+  transition-duration: var(--forge-motion-enter-duration);
+}
+.forge-modal[data-motion="auto"] {
+  opacity: 0;
+  transition:
+    opacity var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease),
+    transform var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease);
+}
+.forge-modal[data-motion="auto"][data-state="open"] {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--forge-motion-enter-duration);
+}
+@starting-style {
+  .forge-dialog[data-motion="auto"][data-state="open"]::backdrop { opacity: 0; }
+  .forge-modal[data-motion="auto"][data-state="open"] { opacity: 0; }
+}
 @media (prefers-reduced-motion: no-preference) {
-  .forge-dialog[data-motion="auto"][data-state="open"]::backdrop { animation: forge-backdrop-in var(--forge-motion-enter-duration) ease both; }
-  .forge-dialog[data-motion="auto"][data-state="closed"]::backdrop { animation: forge-backdrop-out var(--forge-motion-exit-duration) ease both; }
-  .forge-modal[data-motion="auto"][data-state="open"] { animation: forge-surface-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
-  .forge-modal[data-motion="auto"][data-state="closed"] { animation: forge-surface-out var(--forge-motion-exit-duration) ease both; }
+  .forge-modal[data-motion="auto"] { transform: translateY(4px) scale(.98); }
+  @starting-style {
+    .forge-modal[data-motion="auto"][data-state="open"] { opacity: 0; transform: translateY(4px) scale(.98); }
+  }
   .forge-drawer[data-motion="auto"][data-state="open"] { animation: forge-drawer-in var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease) both; }
   .forge-drawer[data-motion="auto"][data-state="closed"] { animation: forge-drawer-out var(--forge-motion-exit-duration) ease both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .forge-modal[data-motion="auto"],
+  .forge-modal[data-motion="auto"][data-state="open"] {
+    transform: none;
+    transition-property: opacity;
+  }
 }
 .forge-toast .forge-motion-collapse[data-state="closed"] { transition-duration: var(--forge-motion-exit-duration); }
 
