@@ -305,9 +305,9 @@ export function TitleHeader({
   const accent = accentColors[color!];
 
   return (
-    <div data-forge-page-header className={cn("w-full px-4 py-3 md:px-5 md:py-4 border-b border-fg-grey-200 flex flex-col items-stretch gap-3 md:inline-flex md:flex-row md:items-center md:gap-4", className)}>
+    <div data-forge-page-header className={cn("w-full min-w-0 px-4 py-3 md:px-5 md:py-4 border-b border-fg-grey-200 flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center md:gap-4", className)}>
       {/* Left: back button + optional avatar + title */}
-      <div className="flex min-w-0 w-full flex-1 justify-start items-center gap-3">
+      <div className="flex w-full items-center gap-3 md:w-auto md:min-w-max md:flex-1">
         {showMobileMenuButton && (
           <HeaderMenuButton
             onClick={onHamburgerClick}
@@ -331,12 +331,12 @@ export function TitleHeader({
           <img className="w-12 h-12 rounded-full" src={titleAvatar} alt="" />
         )}
         {title && (
-          <div data-forge-page-title className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</div>
+          <div data-forge-page-title className="whitespace-nowrap text-fg-black text-lg font-semibold leading-7 tracking-fg">{title}</div>
         )}
       </div>
 
       {/* Right: actions */}
-      <div className="flex w-full flex-wrap justify-start items-center gap-2 md:w-auto md:flex-nowrap md:gap-4">
+      <div className="flex min-w-0 w-full flex-1 flex-wrap items-center justify-start gap-2 md:justify-end md:gap-4">
         {/* Date picker — Figma export had w-6 h-6 p-2 wrapper, but p-2 squashes the SVG to 8px wide via flexbox sizing. Use plain w-6 h-6. */}
         {showDatePicker && (
           <DatePickerButton
@@ -352,10 +352,10 @@ export function TitleHeader({
           <button
             type="button"
             onClick={onFiltersClick}
-            className="px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
+            className="shrink-0 px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
           >
             <SortFromTopToBottomBold size={20} />
-            <span className="text-sm font-semibold leading-5 tracking-fg">{filtersLabel}</span>
+            <span className="whitespace-nowrap text-sm font-semibold leading-5 tracking-fg">{filtersLabel}</span>
           </button>
         )}
 
@@ -371,7 +371,7 @@ export function TitleHeader({
             aria-label="更多操作"
             aria-haspopup="menu"
             onClick={onKebabClick}
-            className="p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
+            className="shrink-0 p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
           >
             <MenuDotsBold size={20} />
           </button>
@@ -383,7 +383,7 @@ export function TitleHeader({
             type="button"
             aria-label="收藏"
             onClick={onFavoriteClick}
-            className="p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
+            className="shrink-0 p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors text-fg-grey-700"
           >
             <StarBoldDuotone size={20} />
           </button>
@@ -397,16 +397,16 @@ export function TitleHeader({
           <button
             type="button"
             onClick={secondaryAction.onClick}
-            className="pl-3.5 pr-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors"
+            className="shrink-0 pl-3.5 pr-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden hover:bg-fg-grey-100 transition-colors"
           >
             {secondaryAction.icon && (
-              <span className="w-5 h-5">{secondaryAction.icon}</span>
+              <span className="w-5 h-5 shrink-0">{secondaryAction.icon}</span>
             )}
-            <span className="text-fg-grey-700 text-sm font-bold leading-5 tracking-fg">{secondaryAction.label}</span>
+            <span className="whitespace-nowrap text-fg-grey-700 text-sm font-bold leading-5 tracking-fg">{secondaryAction.label}</span>
           </button>
         )}
 
-        {askAi && <AskAi {...askAi} />}
+        {askAi && <AskAi {...askAi} className={cn("shrink-0", askAi.className)} />}
 
         {/* Primary action — Figma: accent bg + Linear plus icon */}
         {primaryAction && (
@@ -414,12 +414,12 @@ export function TitleHeader({
             type="button"
             onClick={primaryAction.onClick}
             className={cn(
-              "pl-3.5 pr-4 py-3.5 rounded-full flex justify-center items-center gap-1 overflow-hidden text-white hover:opacity-90 transition-opacity",
+              "shrink-0 pl-3.5 pr-4 py-3.5 rounded-full flex justify-center items-center gap-1 overflow-hidden text-white hover:opacity-90 transition-opacity",
               accent.bg
             )}
           >
             {primaryAction.icon ?? <PlusIcon />}
-            <span className="text-white text-sm font-bold leading-5 tracking-fg">{primaryAction.label}</span>
+            <span className="whitespace-nowrap text-white text-sm font-bold leading-5 tracking-fg">{primaryAction.label}</span>
           </button>
         )}
       </div>
@@ -472,7 +472,7 @@ function DatePickerButton({
   };
 
   return (
-    <div className="relative inline-flex" ref={wrapRef}>
+    <div className="relative inline-flex shrink-0" ref={wrapRef}>
       <button
         ref={triggerRef}
         type="button"
