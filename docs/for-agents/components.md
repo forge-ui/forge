@@ -254,6 +254,14 @@
 
 ### table
 
+数字与标识对齐（TN0，新页强制）：
+
+- **右对齐数字**：金额、数量、单价、百分比，以及同类可比较数值。`CellNumber` 默认 `text-align: right`（token `--forge-table-align-number`）。列写 `valueKind: "number"`，省略 `align` 即右对齐。
+- **左对齐标识**：工号、日期、时间、电话、邮编、订单号、业务 ID，以及同类标识符。列写 `valueKind: "identifier"`（或省略语义），默认左对齐（token `--forge-table-align-identifier`）。
+- **列头同向**：列头与该列内容对齐方向一致。
+- **数字列左对齐**：必须同时写 `align: "left"` 与非空 `alignOverrideReason`。缺原因会警告并标 `data-forge-align-violation`。把 `CellNumber` 放进未声明 `valueKind: "number"` 的列也会警告（列头仍靠左）。
+- **分期**：本批是 core API、`/cases/table`、`/components/table`。存量模板页与 forge-starter `/ref` 下一批再扫。图表轴、KPI 大数字、表单控件内数字不在此规则内。
+
 | 组件 | 标记 | 典型用途 | Case |
 |------|------|----------|------|
 | `CellActions` | ★ | 行操作（eye 等） | `table` |
@@ -263,14 +271,14 @@
 | `CellKebabMenu` | ◇ | 行内 kebab | `table` |
 | `CellLink` | ◇ | 链接列 | `table` |
 | `CellMuted` | ◇ | 次要文本 | `table` |
-| `CellNumber` | ◇ | 数字列 | `table` |
+| `CellNumber` | ◇ | 金额/数量/单价/百分比，默认右对齐 | `table` |
 | `CellProgressBar` | ○ | 见 case / 源码 | `table` |
 | `CellProgressValue` | ○ | 见 case / 源码 | `table` |
 | `CellRating` | ○ | 评分 | `table` |
 | `CellStatusDot` | ◇ | 状态点 | `table` |
 | `CellText` | ★ | 主文本列 | `table` |
 | `CellTextSubtitle` | ★ | 主+副标题 | `table` |
-| `ColumnDef` | ★ | 高频默认（见 readdy one-shot） | `table` |
+| `ColumnDef` | ★ | `valueKind` + `align`；数字列默认右，标识列默认左 | `table` |
 | `DataTable` | ★ | 业务主表 | `table` |
 | `FullWidthTable` | ○ | 全宽表变体 | `table` |
 | `ProgressBadge` | ◇ | 进度徽章 | `table` |

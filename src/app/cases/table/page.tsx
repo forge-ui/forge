@@ -68,20 +68,20 @@ function statusColor(s: Order["status"]): StatusBadgeColor {
 }
 
 const sixColumns: ColumnDef<Order>[] = [
-  { key: "id", header: "ID", width: "w-[110px]", render: (r) => <CellText>{r.id}</CellText> },
+  { key: "id", header: "订单号", valueKind: "identifier", width: "w-[110px]", render: (r) => <CellText>{r.id}</CellText> },
   { key: "product", header: "商品", sortable: true, width: "w-60", render: (r) => <CellImageText src={r.imageUrl} title={r.product} subtitle={r.extra || undefined} /> },
   { key: "customer", header: "客户", width: "w-[170px]", render: (r) => <CellTextSubtitle title={r.customer} subtitle={r.email} /> },
-  { key: "total", header: "Total", width: "w-[110px]", render: (r) => <CellText>{r.total}</CellText> },
-  { key: "progress", header: "进度", sortable: true, width: "w-[140px]", render: (r) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
+  { key: "total", header: "金额", valueKind: "number", width: "w-[120px]", render: (r) => <CellNumber value={r.total} /> },
+  { key: "progress", header: "进度", valueKind: "number", sortable: true, width: "w-[140px]", render: (r) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
   { key: "actions", header: "", width: "w-[60px]", render: () => <CellKebabMenu /> },
 ];
 
 const eightColumns: ColumnDef<Order>[] = [
-  { key: "id", header: "ID", width: "w-[110px]", render: (r) => <CellText>{r.id}</CellText> },
+  { key: "id", header: "订单号", valueKind: "identifier", width: "w-[110px]", render: (r) => <CellText>{r.id}</CellText> },
   { key: "product", header: "商品", sortable: true, width: "w-60", render: (r) => <CellImageText src={r.imageUrl} title={r.product} subtitle={r.extra || undefined} /> },
-  { key: "date", header: "日期", sortable: true, width: "w-[120px]", render: (r) => <CellMuted>{r.date}</CellMuted> },
+  { key: "date", header: "日期", valueKind: "identifier", sortable: true, width: "w-[120px]", render: (r) => <CellMuted>{r.date}</CellMuted> },
   { key: "customer", header: "客户", width: "w-[170px]", render: (r) => <CellTextSubtitle title={r.customer} subtitle={r.email} /> },
-  { key: "total", header: "Total", width: "w-[110px]", render: (r) => <CellText>{r.total}</CellText> },
+  { key: "total", header: "金额", valueKind: "number", width: "w-[120px]", render: (r) => <CellNumber value={r.total} /> },
   { key: "payment", header: "Payment", width: "w-[120px]", render: (r) => <CellMuted>{r.payment}</CellMuted> },
   { key: "status", header: "状态", sortable: true, width: "w-[120px]", render: (r) => <StatusBadge label={r.status[0].toUpperCase() + r.status.slice(1)} color={statusColor(r.status)} /> },
   { key: "actions", header: "", width: "w-[60px]", render: () => <CellKebabMenu /> },
@@ -89,8 +89,34 @@ const eightColumns: ColumnDef<Order>[] = [
 
 const fullWidthColumns: ColumnDef<Order>[] = [
   ...eightColumns.slice(0, -1),
-  { key: "progress", header: "进度", sortable: true, width: "w-[140px]", render: (r: Order) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
+  { key: "progress", header: "进度", valueKind: "number", sortable: true, width: "w-[140px]", render: (r: Order) => <CellProgressValue value={r.progress.value} badge={r.progress.badge} badgeColor={r.progress.color} /> },
   { key: "actions", header: "", width: "w-[60px]", render: () => <CellKebabMenu /> },
+];
+
+type AlignSample = {
+  employeeNo: string;
+  orderNo: string;
+  orderedAt: string;
+  qty: string;
+  unitPrice: string;
+  amount: string;
+  rate: string;
+};
+
+const alignSamples: AlignSample[] = [
+  { employeeNo: "E-0042", orderNo: "SO-1008", orderedAt: "2026-10-01", qty: "2", unitPrice: "¥128.00", amount: "¥256.00", rate: "12.5%" },
+  { employeeNo: "E-118", orderNo: "SO-10021", orderedAt: "2026-10-27 09:30", qty: "12", unitPrice: "¥9.50", amount: "¥114.00", rate: "3%" },
+  { employeeNo: "E-7", orderNo: "PO-7", orderedAt: "2026-03-08", qty: "1,240", unitPrice: "¥1,280.00", amount: "¥1,587,200.00", rate: "100%" },
+];
+
+const alignColumns: ColumnDef<AlignSample>[] = [
+  { key: "employeeNo", header: "工号", valueKind: "identifier", width: "w-[110px]", render: (row) => <CellText>{row.employeeNo}</CellText> },
+  { key: "orderNo", header: "订单号", valueKind: "identifier", width: "w-[140px]", render: (row) => <CellText>{row.orderNo}</CellText> },
+  { key: "orderedAt", header: "日期", valueKind: "identifier", sortable: true, width: "w-[180px]", render: (row) => <CellMuted>{row.orderedAt}</CellMuted> },
+  { key: "qty", header: "数量", valueKind: "number", width: "w-[110px]", render: (row) => <CellNumber value={row.qty} /> },
+  { key: "unitPrice", header: "单价", valueKind: "number", width: "w-[140px]", render: (row) => <CellNumber value={row.unitPrice} /> },
+  { key: "amount", header: "金额", valueKind: "number", sortable: true, width: "w-[170px]", render: (row) => <CellNumber value={row.amount} /> },
+  { key: "rate", header: "百分比", valueKind: "number", width: "w-[110px]", render: (row) => <CellNumber value={row.rate} /> },
 ];
 
 // ── Header variants ────────────────────────────────────────
@@ -315,8 +341,21 @@ export default function TableCasePage() {
         </SubSection>
       </Section>
 
+      <Section
+        title="数字右对齐"
+        description="金额、数量、单价、百分比右对齐，列头同右。工号、订单号、日期是标识，左对齐，列头同左。位数不同，便于对照小数点。"
+      >
+        <DataTable<AlignSample>
+          title="对齐验收"
+          subtitle="数字列 valueKind=number，标识列 valueKind=identifier"
+          columns={alignColumns}
+          rows={alignSamples}
+          getRowKey={(row) => row.orderNo}
+        />
+      </Section>
+
       {/* ============ DataTable - 6 columns ============ */}
-      <Section title="6 Column Table" description="紧凑视图：id / product / customer / total / progress / actions。">
+      <Section title="6 Column Table" description="紧凑视图：订单号 / 商品 / 客户 / 金额 / 进度 / 操作。金额与进度右对齐。">
         <DataTable<Order>
           title="近期订单"
           subtitle="近期动态摘要"
