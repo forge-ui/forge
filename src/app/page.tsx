@@ -19,33 +19,11 @@ export default function HomePage() {
               <span aria-hidden="true">→</span>
             </Link>
             <h1 className="home-hero-title">
-              统计、日程、
-              <br />
-              看板和对话，
-              <br />
-              都有现成的样子
+              为日常工作，构建出色界面
             </h1>
             <p className="home-hero-lead">
-              后台常用的统计、日程、看板和对话，都有现成组件，动效可开可关。
+              从基础控件到完整业务场景，用 Forge 把想法变成清晰、一致的产品体验。
             </p>
-            <pre className="home-code">
-              <code>
-                <span className="tok-kw">import</span>
-                {" { StatCard } "}
-                <span className="tok-kw">from</span>
-                {"\n  "}
-                <span className="tok-str">&quot;@forge-ui-official/core&quot;</span>
-                {";\n\n<"}
-                <span className="tok-name">StatCard</span>
-                {" "}
-                <span className="tok-attr">title</span>
-                <span className="tok-str">=&quot;本周&quot;</span>
-                {" "}
-                <span className="tok-attr">value</span>
-                <span className="tok-str">=&quot;128&quot;</span>
-                {" />"}
-              </code>
-            </pre>
             <div className="home-cta-row">
               <Link href="/docs/quick-start" className="home-cta home-cta-dark">
                 开始使用
