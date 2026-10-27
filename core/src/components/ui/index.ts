@@ -299,12 +299,15 @@ export {
   CellFile,
   CellActions,
   CellLink,
+  resolveTableColumnAlign,
 } from "./data-table";
 export type {
   TableCellVariant,
   TableCellProps,
   CellContentType,
   ColumnDef,
+  TableColumnAlign,
+  TableValueKind,
   StatusBadgeColor,
   StatusBadgeVariant,
   StatusDotColor,

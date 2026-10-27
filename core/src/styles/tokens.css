@@ -210,6 +210,10 @@
   /* Interactive */
   --focus: var(--fg-blue);
   --hover: var(--fg-grey-100);
+
+  /* TN0: comparable numbers right, identifiers left. */
+  --forge-table-align-number: right;
+  --forge-table-align-identifier: left;
 }
 
 /* ---

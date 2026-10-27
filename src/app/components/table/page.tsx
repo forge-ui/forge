@@ -13,7 +13,6 @@ import {
   CellTextSubtitle,
   CellMuted,
   CellImageText,
-  CellProgressValue,
   CellKebabMenu,
   CellStatusDot,
   CellNumber,
@@ -110,7 +109,7 @@ const orderRows: OrderRow[] = [
 ];
 
 const orderColumns: ColumnDef<OrderRow>[] = [
-  { key: "invoice", header: "Invoice", sortable: true, width: "w-28", render: (row) => <CellText>{row.invoice}</CellText> },
+  { key: "invoice", header: "订单号", valueKind: "identifier", sortable: true, width: "w-28", render: (row) => <CellText>{row.invoice}</CellText> },
   {
     key: "product",
     header: "商品",
@@ -118,7 +117,7 @@ const orderColumns: ColumnDef<OrderRow>[] = [
     flex: true,
     render: (row) => <CellImageText src={row.image} title={row.product} subtitle={row.productSubtitle || undefined} />,
   },
-  { key: "date", header: "日期", sortable: true, width: "w-32", render: (row) => <CellMuted>{row.date}</CellMuted> },
+  { key: "date", header: "日期", valueKind: "identifier", sortable: true, width: "w-32", render: (row) => <CellMuted>{row.date}</CellMuted> },
   {
     key: "customer",
     header: "客户",
@@ -137,9 +136,10 @@ const orderColumns: ColumnDef<OrderRow>[] = [
   {
     key: "amount",
     header: "金额",
+    valueKind: "number",
     sortable: true,
     width: "w-40",
-    render: (row) => <CellProgressValue value={row.amount} badge={row.trend} badgeColor={row.trendColor} />,
+    render: (row) => <CellNumber value={row.amount} badge={row.trend} badgeColor={row.trendColor} />,
   },
   { key: "actions", header: "", width: "w-16", render: () => <CellKebabMenu /> },
 ];
@@ -209,11 +209,24 @@ const CODE_FILES = `<CellFile name="report.xls" size="400 kb" />
 <CellFile name="slides.pptx" size="400 kb" />
 <CellFile name="cover.png" />`;
 
-const CODE_NUMBERS = `// 方向箭头变体（trend 为 'up' | 'down'）
+const CODE_NUMBERS = `// 金额、数量、单价、百分比默认右对齐。左对齐必须显式写 align="left"。
 <CellNumber value="$400" trend="up" />
 
 // 涨跌徽章变体（badge + badgeColor）
 <CellNumber value="$400" badge="+10%" badgeColor="green" />`;
+
+const CODE_COLUMN_ALIGN = `// 右对齐数字：金额、数量、单价、百分比及同类可比较数值。列头同右。
+{ key: "amount", header: "金额", valueKind: "number", width: "w-32",
+  render: (row) => <CellNumber value={row.amount} /> }
+
+// 左对齐标识：工号、日期、时间、电话、邮编、订单号、业务 ID。列头同左。
+{ key: "orderNo", header: "订单号", valueKind: "identifier", width: "w-36",
+  render: (row) => <CellText>{row.orderNo}</CellText> }
+
+// 数字列要左对齐：align 与 alignOverrideReason 必须同时出现，禁止静默省略。
+{ key: "lineNo", header: "行号", valueKind: "number", align: "left",
+  alignOverrideReason: "行号按阅读顺序排列，不参与金额比较",
+  render: (row) => <CellNumber value={row.lineNo} align="left" /> }`;
 
 const CODE_LABEL_BADGE = `<StatusBadge label="示例文本" color="purple" />
 <StatusBadge label="示例文本" color="blue" />
@@ -311,11 +324,18 @@ const PROGRESS_BAR_PROPS: ApiTableRow[] = [
 ];
 
 const NUMBER_PROPS: ApiTableRow[] = [
-  { attr: "value", type: "string", defaultValue: "—", description: "主数值。" },
+  { attr: "value", type: "string", defaultValue: "—", description: "主数值。金额、数量、单价、百分比及同类可比较数值。" },
   { attr: "trend", type: "'up' | 'down'", defaultValue: "—", description: "方向箭头（不带百分比时使用）。" },
   { attr: "badge", type: "string", defaultValue: "—", description: "涨跌徽章文字，与 badgeColor 搭配。" },
   { attr: "badgeColor", type: "'green' | 'red' | 'grey'", defaultValue: "'green'", description: "徽章颜色。" },
   { attr: "subdued", type: "boolean", defaultValue: "false", description: "弱化主数值（fg-grey-900 medium）。" },
+  { attr: "align", type: "'left' | 'right'", defaultValue: "'right'", description: "默认右对齐，使用 token --forge-table-align-number。左对齐必须显式传入 align=\"left\"，并在列上写 alignOverrideReason。" },
+];
+
+const COLUMN_DEF_PROPS: ApiTableRow[] = [
+  { attr: "valueKind", type: "'number' | 'identifier'", defaultValue: "—", description: "number = 金额、数量、单价、百分比及同类可比较数值，默认右对齐。identifier = 工号、日期、时间、电话、邮编、订单号、业务 ID 及同类标识，默认左对齐。省略时按普通文本左对齐。" },
+  { attr: "align", type: "'left' | 'right'", defaultValue: "number 为 right，其余为 left", description: "列内容与列头同向。数字列不要靠漏写 valueKind 留在左边。" },
+  { attr: "alignOverrideReason", type: "string", defaultValue: "—", description: "数字列 align=\"left\" 时必填，写明为何不右对齐。空字符串视为未写。缺省会警告，并在表头/单元格标 data-forge-align-violation。" },
 ];
 
 const FILE_PROPS: ApiTableRow[] = [
@@ -409,8 +429,33 @@ export default function TableCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="数据表格"
-        hint="按行列展示数据，支持选择、排序、分页和自定义单元格。"
+        hint="按行列展示数据，支持选择、排序、分页和自定义单元格。可比较数字右对齐，标识左对齐，列头与内容同向。"
       />
+
+      <Section
+        title="数字与标识对齐"
+        description="新页必须遵守。金额、数量、单价、百分比右对齐；工号、日期、时间、电话、邮编、订单号和业务 ID 左对齐。列头与该列内容同向。"
+      >
+        <SubSection title="定义" stack>
+          <div className="flex max-w-3xl flex-col gap-3 text-sm leading-7 text-fg-grey-900">
+            <p>
+              右对齐数字：金额、数量、单价、百分比，以及同类可比较数值。单元格使用 <code>CellNumber</code>，默认 <code>text-align: right</code>（token <code>--forge-table-align-number</code>）。列上写 <code>valueKind: &quot;number&quot;</code> 时，省略 <code>align</code> 即右对齐，列头一并靠右。
+            </p>
+            <p>
+              左对齐标识：工号、日期、时间、电话、邮编、订单号、业务 ID，以及同类标识符。列上写 <code>valueKind: &quot;identifier&quot;</code>，或省略语义，默认左对齐（token <code>--forge-table-align-identifier</code>）。列头一并靠左。
+            </p>
+            <p>
+              列头与列内容同向。数字列若必须左对齐，同时写 <code>align: &quot;left&quot;</code> 与非空 <code>alignOverrideReason</code>，单元格再显式传 <code>align=&quot;left&quot;</code>。只改样式、不写原因，会在控制台警告，并标上 <code>data-forge-align-violation</code>。把 <code>CellNumber</code> 放进未声明 <code>valueKind: &quot;number&quot;</code> 的列，列头仍靠左，运行时同样会警告。
+            </p>
+            <p>
+              本批只交付 core 对齐 API、<code>/cases/table</code> 和本页说明。存量模板页与 forge-starter <code>/ref</code> 留到下一批，不在本页扫改。图表轴、KPI 大数字、表单控件内的数字不套用这条规则。
+            </p>
+          </div>
+        </SubSection>
+        <SubSection title="列定义" stack>
+          <CodeBlock code={CODE_COLUMN_ALIGN} />
+        </SubSection>
+      </Section>
 
       <Section title="用法" description="从一张带勾选和分页的订单表开始。">
         <SubSection title="导入" stack>
@@ -541,7 +586,7 @@ export default function TableCasePage() {
           <DocExample
             id="numbers"
             title="8 · Numbers"
-            summary="数值可以带方向箭头或涨跌徽章。"
+            summary="金额、数量、单价、百分比默认右对齐，可带方向箭头或涨跌徽章。"
             code={`${CODE_NUMBERS}\n\n${CODE_PROGRESS_USAGE}`}
             minHeight={260}
           >
@@ -641,6 +686,7 @@ export default function TableCasePage() {
       </Section>
 
       <Section title="API" description="有独立字段的单元格单独列表。">
+        <ApiBlock id="columndef" title="ColumnDef" rows={COLUMN_DEF_PROPS} />
         <ApiBlock id="datatable" title="DataTable" rows={DATATABLE_PROPS} />
         <ApiBlock id="fullwidthtable" title="FullWidthTable" rows={FULLWIDTH_PROPS} />
         <ApiBlock id="headercell" title="Header Cell" rows={HEADER_CELL_PROPS} />
