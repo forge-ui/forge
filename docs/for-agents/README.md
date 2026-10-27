@@ -39,7 +39,11 @@
 
 调用：先读对应 `SKILL.md`，再指向组件源码。例如：「按 `skills/dimensional-drawing/SKILL.md`，为这个 ForgeUI 组件出一张尺寸图。」静态图用 `dimensional-drawing`；图纸完成后再要约 10 秒的绘制动画时，才读 `dimensional-drawing-motion`。
 
-规矩：单色；画架构不画文案；源码里没有的尺寸不要编造，写 `[TBD]`。上游为 Enes Ozturk 的 MIT 作品（https://github.com/enesozturk/dimensional-drawing ，commit `5c457437c8c83524308aad3b7443e81adcc13153`）。许可证副本在各 skill 目录的 `LICENSE`。`dimensional-drawing-motion/adapters/headless/package.json` 是上游自带的 private 渲染脚本，不在 pnpm workspace 里，不要把它加进根目录或 `@forge-ui-official/core` 的依赖。
+规矩：单色；画架构不画文案；源码里没有的尺寸不要编造，写 `[TBD]`。
+
+设计规范已经挂了两张 Forge 解剖示例，不要只把这个 skill 当审计工具：Dialog 见 [`public/design/anatomy/dialog.html`](../../public/design/anatomy/dialog.html)，DataTable 见 [`public/design/anatomy/data-table.html`](../../public/design/anatomy/data-table.html)。对照和入库门禁在 [`docs/design/component-anatomy.md`](../design/component-anatomy.md)。`examples/dialog-sheet.html` 的 420 / 14 / 16 不是 Forge token。新关键组件入库须附解剖示例；无图不得标组件文档完成。
+
+上游为 Enes Ozturk 的 MIT 作品（https://github.com/enesozturk/dimensional-drawing ，commit `5c457437c8c83524308aad3b7443e81adcc13153`）。许可证副本在各 skill 目录的 `LICENSE`。`dimensional-drawing-motion/adapters/headless/package.json` 是上游自带的 private 渲染脚本，不在 pnpm workspace 里，不要把它加进根目录或 `@forge-ui-official/core` 的依赖。
 
 ## 本地看 cases
 

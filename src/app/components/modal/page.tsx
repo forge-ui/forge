@@ -7,6 +7,7 @@ import {
   BellBold,
 } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
+import { AnatomyLinks } from "../_anatomy-links";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
@@ -97,6 +98,8 @@ export default function ModalCasePage() {
         title="确认弹窗"
         hint="在删除、发送等重要操作前说明结果并请求确认。"
       />
+
+      <AnatomyLinks />
 
       <Section
         title="ConfirmationDialog"

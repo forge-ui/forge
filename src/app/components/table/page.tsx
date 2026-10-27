@@ -38,6 +38,7 @@ import type {
 } from "@forge-ui-official/core";
 import { AddCircleLinear, CheckCircleLinear, CardBold } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
+import { AnatomyLinks } from "../_anatomy-links";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
@@ -411,6 +412,8 @@ export default function TableCasePage() {
         title="数据表格"
         hint="按行列展示数据，支持选择、排序、分页和自定义单元格。"
       />
+
+      <AnatomyLinks />
 
       <Section title="用法" description="从一张带勾选和分页的订单表开始。">
         <SubSection title="导入" stack>

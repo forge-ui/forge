@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DataTable · 尺寸解剖</title>
+<style>
+:root{--paper:#ececec;--sheet:#ffffff;--ink:#111;--ink2:#444;--ink3:#7a7a7a;--fill:#f3f3f3;--fill2:#e6e6e6;--f:'Helvetica Neue',Helvetica,Arial,sans-serif;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f)}
+.wrap{max-width:1760px;margin:0 auto;padding:24px 16px 40px}
+.scroll{overflow-x:auto;background:var(--sheet);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+svg{display:block;width:100%;min-width:1100px;height:auto}
+.tb{background:var(--sheet);border:1.2px solid var(--ink);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;margin-bottom:24px}
+.tb>div{border-right:.8px solid var(--ink);border-bottom:.8px solid var(--ink);padding:10px 14px;min-width:0}
+.tb>div:nth-child(4),.tb>div:nth-child(7){border-right:0}
+.tb .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.tb h1{font-weight:400;letter-spacing:.1em;font-size:clamp(28px,4vw,44px);line-height:1;margin:4px 0 0;text-transform:uppercase}
+.lbl{text-transform:uppercase;letter-spacing:.06em;font-size:9.5px;color:var(--ink2);font-weight:400}
+.tb .v{font-size:13px;margin-top:2px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+.tb .big .v{font-size:11px;color:var(--ink2);line-height:1.6;text-transform:none;letter-spacing:0}
+.tb .notes{grid-column:1/-1;border-right:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);line-height:1.9}
+.tb .notes ol{margin:4px 0 0;padding-left:20px}
+.tb .nh{font-weight:700;font-size:13px;letter-spacing:.06em}
+.tb .nh span{font-weight:400;font-size:11.5px;margin-left:6px}
+.tb .figs{grid-column:1/-1;border-right:0;border-bottom:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px 18px}
+.tb .figs>div{border-left:.8px solid var(--ink);padding-left:14px}
+.tb .figs>div:first-child{border-left:0;padding-left:0}
+.tb .figs .v{font-size:18px;letter-spacing:.06em;text-transform:none;margin-top:4px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);padding:10px 2px 0}
+.foot b{font-weight:700;color:var(--ink)}
+.border{fill:none;stroke:var(--ink);stroke-width:1.2}
+.obj{fill:var(--sheet);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.well{fill:var(--fill);stroke:var(--ink);stroke-width:1}
+.slot{fill:none;stroke:var(--ink2);stroke-width:.8;stroke-dasharray:4 3}
+.hug{fill:var(--fill2);stroke:var(--ink);stroke-width:1}
+.thin{fill:none;stroke:var(--ink);stroke-width:.8}
+.ph{fill:none;stroke:var(--ink3);stroke-width:.8;stroke-dasharray:14 3 3 3}
+.cl{fill:none;stroke:var(--ink3);stroke-width:.7;stroke-dasharray:16 3 2 3}
+.dl{stroke:var(--ink);stroke-width:.7;fill:none}
+.ext{stroke:var(--ink);stroke-width:.55;fill:none}
+.arrow{fill:var(--ink)}
+.hl{stroke:var(--ink2);stroke-width:.7}
+.plain{stroke:var(--ink);stroke-width:.8;stroke-linejoin:round}
+.dt{font:400 11px var(--f);fill:var(--ink);paint-order:stroke;stroke:var(--sheet);stroke-width:4px;stroke-linejoin:round}
+.dts{font:400 9.5px var(--f);fill:var(--ink2);letter-spacing:.06em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.sl{font:400 9px var(--f);fill:var(--ink2);letter-spacing:.08em;text-transform:uppercase}
+.nt{font:400 11px var(--f);fill:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+.nth{font:700 13px var(--f);fill:var(--ink);letter-spacing:.06em}
+.vt{font:400 12px var(--f);fill:var(--ink);letter-spacing:.1em;text-transform:uppercase}
+.nb{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.nbt{font:400 9.5px var(--f);fill:var(--ink)}
+.lead{stroke:var(--ink);stroke-width:.7;fill:none}
+.dot{fill:var(--ink)}
+.th{font:400 10px var(--f);fill:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+.tc{font:400 10px var(--f);fill:var(--ink)}
+@media (max-width:640px){.tb{grid-template-columns:1fr 1fr}.tb .big{grid-column:1/-1;grid-row:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="tb">
+    <div class="big">
+      <div>
+        <div class="lbl">UI component · dimensional drawing</div>
+        <h1>Data table</h1>
+      </div>
+      <div class="v">DataTable 外壳、表头、勾选列、一行单元格槽和分页。列宽是这张参考配方的最小宽度，不是外壳的固定宽。</div>
+    </div>
+    <div><div class="lbl">Dwg no.</div><div class="v">UI-TABLE-001</div></div>
+    <div><div class="lbl">Rev</div><div class="v">A · 2026-10-27</div></div>
+    <div><div class="lbl">Sheets</div><div class="v">1</div></div>
+    <div><div class="lbl">Units</div><div class="v">CSS px @ 16px root</div></div>
+    <div><div class="lbl">Scale</div><div class="v">As noted</div></div>
+    <div><div class="lbl">Source</div><div class="v">data-table.tsx · checkbox.tsx · tokens.css</div></div>
+    <div class="notes">
+      <div><span class="nh">NOTES:<span>(UNLESS OTHERWISE SPECIFIED)</span></span><ol>
+        <li>不要按屏幕比例量。读标注。</li>
+        <li>rem 按 16px 根字号折成 px。Tailwind 刻度未被本仓改写。</li>
+        <li>槽位是占位。单元格里的业务内容不在图内。</li>
+      </ol></div>
+      <div><span class="nh" aria-hidden="true">&nbsp;</span><ol start="4">
+        <li>源码里没有的尺寸写 [TBD]，不补。</li>
+        <li>外壳宽是 FILL。512 只是本图列配方的 minWidth。</li>
+        <li>单色。DataTable 自身没有阴影。</li>
+      </ol></div>
+    </div>
+    <div class="figs">
+      <div><div class="lbl">W · shell</div><div class="v">FILL</div></div>
+      <div><div class="lbl">R1 · radius-card</div><div class="v">20</div></div>
+      <div><div class="lbl">S1 · p-5</div><div class="v">20</div></div>
+      <div><div class="lbl">S5 · px-5</div><div class="v">20</div></div>
+      <div><div class="lbl">S6 · py-3.5</div><div class="v">14</div></div>
+      <div><div class="lbl">Wc · w-14</div><div class="v">56</div></div>
+      <div><div class="lbl">Zp · pager</div><div class="v">40</div></div>
+    </div>
+  </header>
+  <div class="sheetwrap"><div class="scroll"><svg id="sh1" viewBox="0 0 1700 1120" role="img" aria-label="DataTable 尺寸图：外壳、表头、列、分页和变量表"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; UI component reference</span><span><b>Data table, architecture</b> &nbsp;|&nbsp; 1</span></div></div>
+</div>
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';let sv,A,uid=0;
+function mk(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!=null)e.setAttribute(k,a[k]);(p||sv).appendChild(e);return e}
+function tx(x,y,s,c,a,p){const t=mk('text',Object.assign({x:x,y:y,class:c||'dt'},a||{}),p);t.textContent=s;return t}
+function begin(id){sv=document.getElementById(id);sv.innerHTML='';const n=uid++;const d=mk('defs',{});const m=mk('marker',{id:'ar'+n,viewBox:'0 0 10 10',refX:10,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse',markerUnits:'userSpaceOnUse'},d);mk('path',{d:'M0,1.7 L10,5 L0,8.3 z',class:'arrow'},m);A='url(#ar'+n+')';rr(16,16,1668,1088,16,'border')}
+function dimH(x1,x2,y,e1,e2,l,o){o=o||{};[[x1,e1],[x2,e2]].forEach(([x,e])=>{if(e==null)return;const s=Math.sign(y-e)||1;mk('line',{x1:x,y1:e+s*3,x2:x,y2:y+s*5,class:'ext'})});
+ if(Math.abs(x2-x1)>=28)mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x1-13,y1:y,x2:x1,y2:y,class:'dl','marker-end':A});mk('line',{x1:x2+13,y1:y,x2:x2,y2:y,class:'dl','marker-end':A});mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl'})}
+ tx((x1+x2)/2+(o.dx||0),(o.below?y+13:y-5)+(o.dy||0),l,o.c||'dt',{'text-anchor':'middle'})}
+function dimV(y1,y2,x,e1,e2,l,o){o=o||{};[[y1,e1],[y2,e2]].forEach(([y,e])=>{if(e==null)return;const s=Math.sign(x-e)||1;mk('line',{x1:e+s*3,y1:y,x2:x+s*5,y2:y,class:'ext'})});
+ if(Math.abs(y2-y1)>=28)mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x,y1:y1-13,x2:x,y2:y1,class:'dl','marker-end':A});mk('line',{x1:x,y1:y2+13,x2:x,y2:y2,class:'dl','marker-end':A});mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl'})}
+ const c=(y1+y2)/2;if(o.side){const r=o.side==='r';tx(r?x+6:x-6,c+(o.dy||0)+3,l,o.c||'dt',{'text-anchor':r?'start':'end'})}else tx(x-5,c,l,o.c||'dt',{'text-anchor':'middle',transform:'rotate(-90 '+(x-5)+' '+c+')'})}
+function callout(px,py,ex,ey,l,dir,c){const s=dir||(ex>=px?1:-1);mk('circle',{cx:px,cy:py,r:1.8,class:'dot'});mk('polyline',{points:px+','+py+' '+ex+','+ey+' '+(ex+s*10)+','+ey,class:'lead'});tx(ex+s*14,ey+4,l,c||'dt',{'text-anchor':s>0?'start':'end'})}
+function rad(cx,cy,r,c,l,L){const sx=c.includes('l')?-1:1,sy=c.includes('t')?-1:1;const ox=cx-sx*r,oy=cy-sy*r;const px=ox+sx*r*Math.SQRT1_2,py=oy+sy*r*Math.SQRT1_2;callout(px,py,px+sx*L,py+sy*L,l,sx)}
+function nb(x,y,n){mk('rect',{x:x-7,y:y-7,width:14,height:14,class:'nb'});tx(x,y+3.4,String(n),'nbt',{'text-anchor':'middle'})}
+function rr(x,y,w,h,r,c){return mk('rect',{x:x,y:y,width:w,height:h,rx:r,class:c})}
+function slotLabel(x,y,w,h,l){tx(x+w/2,y+h/2+3,l,'sl',{'text-anchor':'middle'})}
+function title(x,y,t,s){tx(x,y,t,'vt',{'text-anchor':'middle'});if(s)tx(x,y+14,s,'dts',{'text-anchor':'middle'})}
+function notes(list){const NX=40,NY=48;tx(NX,NY,'NOTES:','nth');tx(NX+62,NY,'(UNLESS OTHERWISE SPECIFIED)','nt');
+ list.forEach(([n,t],i)=>{const y=NY+26+i*20;nb(NX+7,y-4,n);tx(NX+20,y,t,'nt')})}
+function table(x,y,ttl,rows){const ws=[46,112,150],rh=16;tx(x,y-6,ttl,'vt');
+ const all=[['Code','Variable','Value']].concat(rows);all.forEach((r,i)=>{let cx=x;r.forEach((c,j)=>{mk('rect',{x:cx,y:y+i*rh,width:ws[j],height:rh,class:'thin'});tx(cx+(j?ws[j]/2:4),y+i*rh+11.5,c,i?'tc':'th',{'text-anchor':j?'middle':'start'});cx+=ws[j]})});return y+all.length*rh+24}
+
+const VAR={
+ spacing:[['S1','band-pad','p-5 = 20'],['S2','title-gap','gap-2 = 8'],['S3','band-gap','gap-3 = 12'],['S4','badge-gap','gap-4 = 16'],['S5','cell-x','px-5 = 20'],['S6','cell-y','py-3.5 = 14'],['S7','check-x','px-6 = 24'],['S8','check-y','py-4 = 16'],['S10','pager-gap','gap-2 = 8'],['S11','page-pad','p-2 = 8'],['S12','prev-pad','p-2.5 = 10']],
+ size:[['W','shell','w-full · FILL'],['Wm','min-width','56+240+128+88 = 512'],['B','outline','1 · inset'],['Br','row-rule','border 1'],['Wc','check-col','w-14 = 56'],['Zc','checkbox','w-5 h-5 = 20'],['Bc','check-border','border-2 = 2'],['Wi','identity','formula 240'],['Wx','identity-max','280'],['Wd','compact','formula 128'],['Wa','actions','formula 88'],['Ht','title-lh','leading-5 = 20'],['Hs','sub-lh','leading-4.5 = 18'],['H10','cell-slot','h-10 = 40'],['Zp','pager','w-10 h-10 = 40'],['Is','sort-box','w-4 h-4 = 16'],['Ig','sort-icon','size 10'],['Hb','header-band','86'],['Hh','head-row','52'],['Hr','body-row','68'],['Hf','footer','80']],
+ radius:[['R1','r-card','--radius-card = 20'],['Rm','r-check','rounded-md = 6'],['Rp','r-pager','Zp÷2 = 20']],
+ shadow:[['—','shadow','none on DataTable']]
+};
+
+begin('sh1');
+notes([
+ [1,'SHELL IS W-FULL. 512 IS THE MINWIDTH OF THIS COLUMN RECIPE ONLY.'],
+ [2,'IDENTITY CSS IS W-1% AND MAX 280. 240 IS ONLY THE MINWIDTH TERM.'],
+ [3,'H10 IS THE CELL HELPER (H-10), NOT A HEIGHT ON THE TD.'],
+ [4,'HEADER ROW IS THE TALLER CELL: CHECKBOX PY-4 + ZC = 52.'],
+ [5,'BODY ROW WITH AN H-10 CELL IS 2·S6+H10 = 68.'],
+ [6,'2·S7+ZC = 68 > WC 56. CONTROL STAYS INSIDE THE COLUMN; PAD CANNOT ALL CLEAR.'],
+ [7,'EMPTY STATE IS A DIFFERENT ROW: PX-5 PY-10. NOT DRAWN AS THE BODY.'],
+ [8,'FULLWIDTHTABLE USES HEADER GAP-4. THIS SHEET IS DATATABLE.']
+]);
+
+{
+ const k=.7,PX=56,PY=312;
+ const X=v=>PX+v*k,Y=v=>PY+v*k;
+ const Wc=56,Wi=240,Wd=128,Wa=88,W=Wc+Wi+Wd+Wa;
+ const S1=20,S2=8,S5=20,S6=14,Zc=20,Htitle=20,Hsub=18,H10=40,Zp=40;
+ const cols=[0,Wc,Wc+Wi,Wc+Wi+Wd,W];
+ const Hb=86,Hh=52,Hr=68,Hf=80;
+ const yH=0,yHead=Hb,yB1=Hb+Hh,yB2=yB1+Hr,yF=yB2+Hr,H=yF+Hf;
+ const box=(x,y,w,h,rx,cls)=>mk('rect',{x:X(x),y:Y(y),width:w*k,height:h*k,rx:(rx||0)*k,class:cls});
+ box(0,0,W,H,20,'obj');
+ box(S1,S1,150,Htitle,2,'slot'); slotLabel(X(S1),Y(S1),150*k,Htitle*k,'Title · hug');
+ box(S1,S1+Htitle+S2,150,Hsub,2,'slot'); slotLabel(X(S1),Y(S1+Htitle+S2),150*k,Hsub*k,'Subtitle · hug');
+ box(S1+150+16,30,40,18,9,'hug'); slotLabel(X(S1+166),Y(30),40*k,18*k,'Badge');
+ box(W-S1-88,S1,88,Hb-2*S1,8,'slot'); slotLabel(X(W-S1-88),Y(S1),88*k,(Hb-2*S1)*k,'Actions · hug');
+ [yHead,yB1,yB2,yF].forEach(y=>mk('line',{x1:X(0),y1:Y(y),x2:X(W),y2:Y(y),class:'thin'}));
+ cols.slice(1,4).forEach(x=>mk('line',{x1:X(x),y1:Y(yHead),x2:X(x),y2:Y(yF),class:'ph'}));
+ function check(y,h){
+  const cx=X((Wc-Zc)/2), cy=Y(y+(h-Zc)/2);
+  mk('rect',{x:cx,y:cy,width:Zc*k,height:Zc*k,rx:6*k,class:'hug'});
+ }
+ check(yHead,Hh); check(yB1,Hr); check(yB2,Hr);
+ function cell(x,y,w,h){
+  box(x+S5,y+S6,w-2*S5,H10,2,'slot');
+  slotLabel(X(x+S5),Y(y+S6),(w-2*S5)*k,H10*k,'Cell slot');
+ }
+ [[Wc,Wi],[Wc+Wi,Wd],[Wc+Wi+Wd,Wa]].forEach(([x,w])=>{
+  box(x+8,yHead+16,Math.min(w-16,70),20,2,'slot');
+  cell(x,yB1,w,Hr); cell(x,yB2,w,Hr);
+ });
+ const labY=yF+(Hf-20)/2;
+ box(S1,labY,160,20,2,'slot'); slotLabel(X(S1),Y(labY),160*k,20*k,'Page label · flex');
+ const pgW=Zp*3+8*2, pgX=W-S1-pgW, pgY=yF+(Hf-Zp)/2;
+ for(let i=0;i<3;i++){
+  const x=pgX+i*(Zp+8);
+  mk('circle',{cx:X(x+Zp/2),cy:Y(pgY+Zp/2),r:Zp/2*k,class:'hug'});
+ }
+ dimH(X(0),X(W),Y(-52),Y(0),Y(0),'WM  512 · RECIPE');
+ const top=Y(-24);
+ dimH(X(0),X(Wc),top,Y(0),Y(yHead),'WC',{dx:-4});
+ dimH(X(Wc),X(Wc+Wi),top,null,Y(yHead),'WI',{});
+ dimH(X(Wc+Wi),X(Wc+Wi+Wd),top,null,Y(yHead),'WD',{});
+ dimH(X(Wc+Wi+Wd),X(W),top,null,Y(0),'WA',{dx:4});
+ dimV(Y(0),Y(H),X(-28),X(0),X(0),'FILL H');
+ const rx=X(W+28);
+ dimV(Y(0),Y(Hb),rx,X(W),X(W),'HB',{side:'r'});
+ dimV(Y(yHead),Y(yB1),rx,X(W),X(W),'HH',{side:'r'});
+ dimV(Y(yB1),Y(yB2),rx,X(W),X(W),'HR',{side:'r'});
+ dimV(Y(yF),Y(H),rx,X(W),X(W),'HF',{side:'r'});
+ rad(X(0),Y(H),20*k,'bl','R1',22);
+ nb(X(24),Y(18),1);
+ nb(X(Wc+Wi/2),Y(yHead+20),2);
+ nb(X(Wc+20),Y(yB1+Hr/2),3);
+ nb(X(Wc/2),Y(yHead+8),6);
+ nb(X(W-30),Y(Hb/2),8);
+ title(X(W/2),Y(H+56),'Plan · checkbox + identity + compact + actions','Scale 0.7:1 · shell width is FILL, not 512');
+}
+
+/* ---- DETAIL C · checkbox column 2:1 ---- */
+{
+ const q=2,CX=48,CY=760,Wc=56,Z=20,padX=24,padY=16,row=52;
+ mk('rect',{x:CX,y:CY,width:Wc*q,height:row*q,class:'plain'});
+ mk('rect',{x:CX+padX*q,y:CY+padY*q,width:Z*q,height:Z*q,rx:6*q,class:'hug'});
+ dimH(CX,CX+Wc*q,CY-16,CY,CY,'WC  56');
+ dimH(CX,CX+padX*q,CY+row*q+16,CY+row*q,CY+padY*q,'S7',{below:true});
+ dimH(CX+padX*q,CX+(padX+Z)*q,CY+row*q+16,null,CY+padY*q,'ZC',{below:true});
+ dimH(CX+(padX+Z)*q,CX+(padX*2+Z)*q,CY+row*q+16,CY+padY*q,CY+row*q,'S7',{below:true,dx:10});
+ dimV(CY,CY+padY*q,CX+Wc*q+16,CX+Wc*q,CX+padX*q,'S8',{side:'r'});
+ dimV(CY+padY*q,CY+(padY+Z)*q,CX+Wc*q+16,null,CX+(padX+Z)*q,'ZC',{side:'r'});
+ tx(CX,CY+row*q+48,'2·S7+ZC = 68 > WC. CONTROL STAYS IN THE COLUMN.','dts');
+ nb(CX+Wc*q-10,CY+14,6);
+ title(CX+Wc*q/2,CY+row*q+72,'Detail C · checkbox cell','Scale 2:1 · pad is inside w-14');
+}
+
+/* ---- DETAIL P · pager 2:1 ---- */
+{
+ const q=2,PX=280,PY=820,Z=40,gap=8;
+ for(let i=0;i<3;i++){
+  const x=PX+i*(Z+gap)*q;
+  mk('circle',{cx:x+Z,cy:PY+Z,r:Z,class:'hug'});
+ }
+ dimH(PX,PX+Z*q,PY-16,PY+Z,PY+Z,'ZP  40');
+ dimH(PX+Z*q,PX+(Z+gap)*q,PY-16,PY+Z,PY+Z,'S10');
+ dimV(PY,PY+Z*q,PX-16,PX,PX,'ZP',{side:'l'});
+ callout(PX+Z+Z*Math.SQRT1_2,PY+Z+Z*Math.SQRT1_2,PX+Z*q+20,PY+Z*q+36,'RP',1);
+ title(PX+((Z*3+gap*2)*q)/2,PY+Z*q+56,'Detail P · pager','Scale 2:1 · prev pad S12 also lands on 40');
+}
+
+/* ---- DETAIL H · header band 2:1 ---- */
+{
+ const q=2,HX=620,HY=700,S1=20,HT=20,S2=8,HS=18;
+ mk('rect',{x:HX,y:HY,width:210,height:(S1+HT+S2+HS+S1)*q,class:'plain'});
+ mk('rect',{x:HX+S1*q,y:HY+S1*q,width:130,height:HT*q,rx:2,class:'slot'});
+ slotLabel(HX+S1*q,HY+S1*q,130,HT*q,'Title');
+ mk('rect',{x:HX+S1*q,y:HY+(S1+HT+S2)*q,width:130,height:HS*q,rx:2,class:'slot'});
+ slotLabel(HX+S1*q,HY+(S1+HT+S2)*q,130,HS*q,'Subtitle');
+ dimV(HY,HY+S1*q,HX-16,HX,HX,'S1',{side:'l'});
+ dimV(HY+S1*q,HY+(S1+HT)*q,HX-16,HX,HX,'HT',{side:'l'});
+ dimV(HY+(S1+HT+S2)*q,HY+(S1+HT+S2+HS)*q,HX-16,HX,HX,'HS',{side:'l'});
+ dimV(HY+(S1+HT+S2+HS)*q,HY+(S1+HT+S2+HS+S1)*q,HX-16,HX,HX,'S1',{side:'l'});
+ callout(HX+S1*q,HY+(S1+HT+S2/2)*q,HX+S1*q+150,HY+(S1+HT)*q-8,'S2',1,'dts');
+ title(HX+105,HY+(S1+HT+S2+HS+S1)*q+32,'Detail H · header band','Scale 2:1 · HB = 2·S1+HT+S2+HS');
+}
+
+/* ---- RADIUS ---- */
+{
+ const q=2,y0=1040;
+ [['R1','Card',20],['Rm','Check',6],['Rp','Pager',20]].forEach(([c,n,r],i)=>{
+  const x0=980+i*80;
+  const P=(u,v)=>[x0+u*q,y0-v*q];
+  const L=Math.max(r,16);
+  mk('path',{d:'M'+P(0,L)+' L'+P(0,r)+' A'+r*q+' '+r*q+' 0 0 0 '+P(r,0)+' L'+P(L,0),class:'obj',fill:'none'});
+  tx(x0,y0+16,c+' '+n,'dts');
+ });
+ title(1100,y0+40,'Radius','Scale 2:1 · Rm is Tailwind rounded-md');
+}
+
+{let y=table(1288,48,'Spacing',VAR.spacing);
+ y=table(1288,y,'Size',VAR.size);
+ y=table(1288,y,'Radius',VAR.radius);
+ table(1288,y,'Shadow',VAR.shadow);}
+})();
+</script>
+</body>
+</html>
