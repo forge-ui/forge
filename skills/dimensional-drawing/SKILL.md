@@ -5,7 +5,7 @@ description: Make an Apple-style monochrome dimensional drawing of a UI componen
 
 # Dimensional drawing
 
-Draw one subject the way Apple's accessory dimensional drawings do (developer.apple.com/accessories/dimensional-drawings): everything on one sheet, notes top-left, views spread across the sheet with smaller detail views, tables beside the views that use them. Output is one self-contained HTML file (on claude.ai, publish it as an Artifact). Worked examples: `examples/dialog-sheet.html` and `examples/card-sheet.html` next to this file — copy their drawing kit instead of starting from zero.
+Draw one subject the way Apple's accessory dimensional drawings do (developer.apple.com/accessories/dimensional-drawings): everything on one sheet, notes top-left, views spread across the sheet with smaller detail views, tables beside the views that use them. Output is one self-contained HTML file (on claude.ai, publish it as an Artifact). Worked examples: `examples/dialog-sheet.html` and `examples/card-sheet.html` next to this file — copy their drawing kit instead of starting from zero. Those two files are generic exercises. Forge kit sheets for Dialog and DataTable are `public/design/anatomy/dialog.html` and `public/design/anatomy/data-table.html`, indexed from `docs/design/component-anatomy.md`. Read the component source for numbers; do not copy 420 / 14 / 16 from the generic dialog example onto Forge.
 
 ## House rules
 

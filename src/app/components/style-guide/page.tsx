@@ -7,6 +7,7 @@ import {
   type ColorScaleStop,
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
+import { AnatomyLinks } from "../_anatomy-links";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
@@ -93,6 +94,8 @@ export default function StyleGuideCasePage() {
         title="设计规范"
         hint="了解 Forge 的颜色、字体、字号和字重，建立一致的界面风格。"
       />
+
+      <AnatomyLinks />
 
       <Section
         title="配色体系"

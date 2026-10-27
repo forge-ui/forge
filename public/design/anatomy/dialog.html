@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialog · ConfirmationDialog · 尺寸解剖</title>
+<style>
+:root{--paper:#ececec;--sheet:#ffffff;--ink:#111;--ink2:#444;--ink3:#7a7a7a;--fill:#f3f3f3;--fill2:#e6e6e6;--f:'Helvetica Neue',Helvetica,Arial,sans-serif;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f)}
+.wrap{max-width:1760px;margin:0 auto;padding:24px 16px 40px}
+.scroll{overflow-x:auto;background:var(--sheet);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+svg{display:block;width:100%;min-width:1100px;height:auto}
+.tb{background:var(--sheet);border:1.2px solid var(--ink);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;margin-bottom:24px}
+.tb>div{border-right:.8px solid var(--ink);border-bottom:.8px solid var(--ink);padding:10px 14px;min-width:0}
+.tb>div:nth-child(4),.tb>div:nth-child(7){border-right:0}
+.tb .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.tb h1{font-weight:400;letter-spacing:.1em;font-size:clamp(28px,4vw,44px);line-height:1;margin:4px 0 0;text-transform:uppercase}
+.lbl{text-transform:uppercase;letter-spacing:.06em;font-size:9.5px;color:var(--ink2);font-weight:400}
+.tb .v{font-size:13px;margin-top:2px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+.tb .big .v{font-size:11px;color:var(--ink2);line-height:1.6;text-transform:none;letter-spacing:0}
+.tb .notes{grid-column:1/-1;border-right:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);line-height:1.9}
+.tb .notes ol{margin:4px 0 0;padding-left:20px}
+.tb .nh{font-weight:700;font-size:13px;letter-spacing:.06em}
+.tb .nh span{font-weight:400;font-size:11.5px;margin-left:6px}
+.tb .figs{grid-column:1/-1;border-right:0;border-bottom:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px 18px}
+.tb .figs>div{border-left:.8px solid var(--ink);padding-left:14px}
+.tb .figs>div:first-child{border-left:0;padding-left:0}
+.tb .figs .v{font-size:18px;letter-spacing:.06em;text-transform:none;margin-top:4px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);padding:10px 2px 0}
+.foot b{font-weight:700;color:var(--ink)}
+.u{font-family:var(--f);text-transform:uppercase;letter-spacing:.07em}
+.border{fill:none;stroke:var(--ink);stroke-width:1.2}
+.obj{fill:var(--sheet);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.well{fill:var(--fill);stroke:var(--ink);stroke-width:1}
+.slot{fill:none;stroke:var(--ink2);stroke-width:.8;stroke-dasharray:4 3}
+.hug{fill:var(--fill2);stroke:var(--ink);stroke-width:1}
+.thin{fill:none;stroke:var(--ink);stroke-width:.8}
+.ph{fill:none;stroke:var(--ink3);stroke-width:.8;stroke-dasharray:14 3 3 3}
+.cl{fill:none;stroke:var(--ink3);stroke-width:.7;stroke-dasharray:16 3 2 3}
+.dl{stroke:var(--ink);stroke-width:.7;fill:none}
+.ext{stroke:var(--ink);stroke-width:.55;fill:none}
+.arrow{fill:var(--ink)}
+.hl{stroke:var(--ink2);stroke-width:.7}
+.plain{stroke:var(--ink);stroke-width:.8;stroke-linejoin:round}
+.env{fill:none;stroke:var(--ink);stroke-width:.8;stroke-dasharray:10 3 2 3}
+.dt{font:400 11px var(--f);fill:var(--ink);paint-order:stroke;stroke:var(--sheet);stroke-width:4px;stroke-linejoin:round}
+.dts{font:400 9.5px var(--f);fill:var(--ink2);letter-spacing:.06em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.sl{font:400 9px var(--f);fill:var(--ink2);letter-spacing:.08em;text-transform:uppercase}
+.nt{font:400 11px var(--f);fill:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+.nth{font:700 13px var(--f);fill:var(--ink);letter-spacing:.06em}
+.vt{font:400 12px var(--f);fill:var(--ink);letter-spacing:.1em;text-transform:uppercase}
+.nb{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.nbt{font:400 9.5px var(--f);fill:var(--ink)}
+.lead{stroke:var(--ink);stroke-width:.7;fill:none}
+.dot{fill:var(--ink)}
+.th{font:400 10px var(--f);fill:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+.tc{font:400 10px var(--f);fill:var(--ink)}
+@media (max-width:640px){.tb{grid-template-columns:1fr 1fr}.tb .big{grid-column:1/-1;grid-row:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="tb">
+    <div class="big">
+      <div>
+        <div class="lbl">UI component · dimensional drawing</div>
+        <h1>Dialog</h1>
+      </div>
+      <div class="v">ConfirmationDialog，打开时包在 DialogSurface 里。只画槽位和间距。文案、语义色不在图内。</div>
+    </div>
+    <div><div class="lbl">Dwg no.</div><div class="v">UI-CONFIRM-001</div></div>
+    <div><div class="lbl">Rev</div><div class="v">A · 2026-10-27</div></div>
+    <div><div class="lbl">Sheets</div><div class="v">1</div></div>
+    <div><div class="lbl">Units</div><div class="v">CSS px @ 16px root</div></div>
+    <div><div class="lbl">Scale</div><div class="v">As noted</div></div>
+    <div><div class="lbl">Source</div><div class="v">confirmation-dialog.tsx · dialog-surface.tsx · tokens.css</div></div>
+    <div class="notes">
+      <div><span class="nh">NOTES:<span>(UNLESS OTHERWISE SPECIFIED)</span></span><ol>
+        <li>不要按屏幕比例量。读标注。</li>
+        <li>rem 按 16px 根字号折成 px。Tailwind 刻度未被本仓改写。</li>
+        <li>槽位是占位。标题和说明的高度随行数变，图上是一行。</li>
+      </ol></div>
+      <div><span class="nh" aria-hidden="true">&nbsp;</span><ol start="4">
+        <li>源码里没有的尺寸写 [TBD]，不补。</li>
+        <li>HUG 随内容。FLEX 吃剩余空间。FILL 等于父级内容宽。</li>
+        <li>单色。色值不在本图。阴影只在 open 模式。</li>
+      </ol></div>
+    </div>
+    <div class="figs">
+      <div><div class="lbl">W · max-w</div><div class="v">480</div></div>
+      <div><div class="lbl">S1 · p-6</div><div class="v">24</div></div>
+      <div><div class="lbl">S5 · gap-8</div><div class="v">32</div></div>
+      <div><div class="lbl">H3 · action</div><div class="v">2·S8+LH = 48</div></div>
+      <div><div class="lbl">R1 · radius-card</div><div class="v">20</div></div>
+      <div><div class="lbl">Wb · w-32</div><div class="v">128</div></div>
+      <div><div class="lbl">V1 · keep-out</div><div class="v">1rem = 16</div></div>
+    </div>
+  </header>
+  <div class="sheetwrap"><div class="scroll"><svg id="sh1" viewBox="0 0 1700 1120" role="img" aria-label="ConfirmationDialog 尺寸图：平面、图标槽、按钮、视口、层叠和变量表"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; UI component reference</span><span><b>Dialog, architecture</b> &nbsp;|&nbsp; 1</span></div></div>
+</div>
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';let sv,A,HAT,uid=0;
+function mk(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!=null)e.setAttribute(k,a[k]);(p||sv).appendChild(e);return e}
+function tx(x,y,s,c,a,p){const t=mk('text',Object.assign({x:x,y:y,class:c||'dt'},a||{}),p);t.textContent=s;return t}
+function begin(id){sv=document.getElementById(id);sv.innerHTML='';const n=uid++;const d=mk('defs',{});const m=mk('marker',{id:'ar'+n,viewBox:'0 0 10 10',refX:10,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse',markerUnits:'userSpaceOnUse'},d);mk('path',{d:'M0,1.7 L10,5 L0,8.3 z',class:'arrow'},m);
+ const pt=mk('pattern',{id:'hat'+n,width:5,height:5,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},d);mk('line',{x1:0,y1:0,x2:0,y2:5,class:'hl'},pt);A='url(#ar'+n+')';HAT='url(#hat'+n+')';rr(16,16,1668,1088,16,'border')}
+function dimH(x1,x2,y,e1,e2,l,o){o=o||{};[[x1,e1],[x2,e2]].forEach(([x,e])=>{if(e==null)return;const s=Math.sign(y-e)||1;mk('line',{x1:x,y1:e+s*3,x2:x,y2:y+s*5,class:'ext'})});
+ if(Math.abs(x2-x1)>=28)mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x1-13,y1:y,x2:x1,y2:y,class:'dl','marker-end':A});mk('line',{x1:x2+13,y1:y,x2:x2,y2:y,class:'dl','marker-end':A});mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl'})}
+ tx((x1+x2)/2+(o.dx||0),(o.below?y+13:y-5)+(o.dy||0),l,o.c||'dt',{'text-anchor':'middle'})}
+function dimV(y1,y2,x,e1,e2,l,o){o=o||{};[[y1,e1],[y2,e2]].forEach(([y,e])=>{if(e==null)return;const s=Math.sign(x-e)||1;mk('line',{x1:e+s*3,y1:y,x2:x+s*5,y2:y,class:'ext'})});
+ if(Math.abs(y2-y1)>=28)mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x,y1:y1-13,x2:x,y2:y1,class:'dl','marker-end':A});mk('line',{x1:x,y1:y2+13,x2:x,y2:y2,class:'dl','marker-end':A});mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl'})}
+ const c=(y1+y2)/2;if(o.side){const r=o.side==='r';tx(r?x+6:x-6,c+(o.dy||0)+3,l,o.c||'dt',{'text-anchor':r?'start':'end'})}else tx(x-5,c,l,o.c||'dt',{'text-anchor':'middle',transform:'rotate(-90 '+(x-5)+' '+c+')'})}
+function callout(px,py,ex,ey,l,dir,c){const s=dir||(ex>=px?1:-1);mk('circle',{cx:px,cy:py,r:1.8,class:'dot'});mk('polyline',{points:px+','+py+' '+ex+','+ey+' '+(ex+s*10)+','+ey,class:'lead'});tx(ex+s*14,ey+4,l,c||'dt',{'text-anchor':s>0?'start':'end'})}
+function rad(cx,cy,r,c,l,L){const sx=c.includes('l')?-1:1,sy=c.includes('t')?-1:1;const ox=cx-sx*r,oy=cy-sy*r;const px=ox+sx*r*Math.SQRT1_2,py=oy+sy*r*Math.SQRT1_2;callout(px,py,px+sx*L,py+sy*L,l,sx)}
+function nb(x,y,n){mk('rect',{x:x-7,y:y-7,width:14,height:14,class:'nb'});tx(x,y+3.4,String(n),'nbt',{'text-anchor':'middle'})}
+function rr(x,y,w,h,r,c){return mk('rect',{x:x,y:y,width:w,height:h,rx:r,class:c})}
+function slotLabel(x,y,w,h,l){tx(x+w/2,y+h/2+3,l,'sl',{'text-anchor':'middle'})}
+function title(x,y,t,s){tx(x,y,t,'vt',{'text-anchor':'middle'});if(s)tx(x,y+14,s,'dts',{'text-anchor':'middle'})}
+function notes(list){const NX=40,NY=48;tx(NX,NY,'NOTES:','nth');tx(NX+62,NY,'(UNLESS OTHERWISE SPECIFIED)','nt');
+ list.forEach(([n,t],i)=>{const y=NY+26+i*20;if(n){nb(NX+7,y-4,n);tx(NX+20,y,t,'nt')}else tx(NX,y,t,'nt')})}
+function table(x,y,ttl,rows){const ws=[42,108,156],rh=16;tx(x,y-6,ttl,'vt');
+ const all=[['Code','Variable','Value']].concat(rows);all.forEach((r,i)=>{let cx=x;r.forEach((c,j)=>{mk('rect',{x:cx,y:y+i*rh,width:ws[j],height:rh,class:'thin'});tx(cx+(j?ws[j]/2:4),y+i*rh+11.5,c,i?'tc':'th',{'text-anchor':j?'middle':'start'});cx+=ws[j]})});return y+all.length*rh+26}
+function xbox(x,y,w,h){mk('rect',{x:x,y:y,width:w,height:h,class:'thin'});mk('path',{d:'M'+x+','+y+' l'+w+','+h+' M'+(x+w)+','+y+' l'+(-w)+','+h,class:'thin'})}
+
+const VAR={
+ spacing:[['S1','dialog-pad','p-6 = 24'],['S2','icon-pad','p-4 = 16'],['S3','icon-gap','gap-4 = 16'],['S4','text-gap','gap-3 = 12'],['S5','block-gap','gap-8 = 32'],['S6','btn-pad-x','px-4 = 16'],['S7','right-gap','gap-3 = 12'],['S8','btn-pad-y','py-3.5 = 14']],
+ size:[['W','max-w','480px'],['Ws','shell-w','min(480, 100vw−2rem)'],['B','outline','1 · inset'],['I1','icon','32 · kit sample'],['Z1','well','I1+2·S2 = 64'],['H4','title-lh','leading-8 = 32'],['H6','desc-lh','leading-6 = 24'],['LH','btn-lh','text-sm = 20'],['H3','action-h','2·S8+LH = 48'],['Wb','btn-w','w-32 = 128'],['H1','one-line','276']],
+ radius:[['R1','r-card','--radius-card = 20'],['R4','r-pill','H3÷2 = 24'],['R5','r-well','Z1÷2 = 32']],
+ shadow:[['YA','xl-a-y','20'],['BLA','xl-a-blur','25'],['SPA','xl-a-spread','−5'],['E2A','env-side','BLA+SPA = 20'],['E3A','env-bottom','BLA+SPA+YA = 40'],['YB','xl-b-y','8'],['BLB','xl-b-blur','10'],['SPB','xl-b-spread','−6']],
+ viewport:[['V1','keep-out','1rem = 16'],['MH','max-h','100dvh−2rem'],['A','scrim','alpha 0.35'],['—','inline','no shadow']],
+ type:[['Tt','title','text-xl = 20'],['Td','desc','text-base = 16'],['Tb','button','text-sm = 14'],['Tk','tracking','tracking-fg = 0.5']]
+};
+
+begin('sh1');
+notes([
+ [1,'PLAN IS LAYOUT SPREAD, ONE LINE EACH. WRAP GROWS H1.'],
+ [2,'SPREAD ACTIONS: JUSTIFY-BETWEEN. THE GAP IS FLEX, NOT A TOKEN.'],
+ [3,'LAYOUT RIGHT: HEADER ITEMS-START. ACTIONS JUSTIFY-END, GAP S7.'],
+ [4,'OPEN WRAPS DIALOG SURFACE: SCRIM, SHADOW-XL, WS, MH. INLINE OMITS THEM.'],
+ [5,'B IS OUTLINE 1PX WITH OFFSET −1. IT DOES NOT ADD TO W OR H1.'],
+ [6,'I1 IS NOT A CSS LENGTH. KIT SAMPLES PASS SIZE 32. WELL PAD IS S2.'],
+ [7,'MODAL.TSX SHARES THE SHELL. ITS INNER STACK IS NOT THIS PLAN. SEE SPEC.'],
+ [8,'SHADOW NUMBERS ARE TAILWIND 4.3.3 SHADOW-XL, NOT --SHADOW-CARD.']
+]);
+
+/* ---- PLAN 0.72:1 ---- */
+{
+ const k=.72,PX=470,PY=286;
+ const X=v=>PX+v*k,Y=v=>PY+v*k;
+ const W=480,H=276,S1=24,Z1=64,S3=16,H4=32,S4=12,H6=24,S5=32,H3=48,WB=128,I1=32;
+ const ix=(W-Z1)/2, iy=S1;
+ const titleY=S1+Z1+S3, descY=titleY+H4+S4, btnY=descY+H6+S5, btnR=W-S1-WB;
+ const box=(x,y,w,h,rx,cls)=>mk('rect',{x:X(x),y:Y(y),width:w*k,height:h*k,rx:(rx||0)*k,class:cls});
+ box(0,0,W,H,20,'obj');
+ mk('circle',{cx:X(ix+Z1/2),cy:Y(iy+Z1/2),r:Z1/2*k,class:'hug'});
+ xbox(X(ix+(Z1-I1)/2),Y(iy+(Z1-I1)/2),I1*k,I1*k);
+ box(S1,titleY,W-2*S1,H4,2,'slot'); slotLabel(X(S1),Y(titleY),(W-2*S1)*k,H4*k,'Title slot · hug');
+ box(S1,descY,W-2*S1,H6,2,'slot'); slotLabel(X(S1),Y(descY),(W-2*S1)*k,H6*k,'Description slot · hug');
+ box(S1,btnY,WB,H3,H3/2,'hug'); slotLabel(X(S1),Y(btnY),WB*k,H3*k,'Cancel · wb');
+ box(btnR,btnY,WB,H3,H3/2,'hug'); slotLabel(X(btnR),Y(btnY),WB*k,H3*k,'Confirm · wb');
+ mk('line',{x1:X(W/2),y1:Y(-8),x2:X(W/2),y2:Y(H+8),class:'cl'});
+ dimH(X(0),X(W),Y(-34),Y(0),Y(0),'W  480');
+ const by=Y(H+28);
+ dimH(X(S1),X(S1+WB),by,Y(btnY+H3),Y(btnY+H3),'WB',{below:true});
+ dimH(X(S1+WB),X(btnR),by,null,Y(btnY+H3),'FLEX',{below:true,c:'dts'});
+ dimH(X(btnR),X(btnR+WB),by,null,Y(btnY+H3),'WB',{below:true});
+ dimV(Y(0),Y(H),X(-62),X(0),X(0),'H1  276');
+ const rx=X(W+36);
+ dimV(Y(0),Y(S1),rx,X(W),X(W),'S1',{side:'r',dy:-8});
+ dimV(Y(iy),Y(iy+Z1),rx,X(W),X(ix+Z1),'Z1',{side:'r'});
+ dimV(Y(titleY),Y(titleY+H4),rx,X(W),X(W-S1),'H4',{side:'r'});
+ dimV(Y(descY),Y(descY+H6),rx,X(W),X(W-S1),'H6',{side:'r'});
+ dimV(Y(btnY),Y(btnY+H3),rx,X(W),X(W-S1),'H3',{side:'r'});
+ dimV(Y(H-S1),Y(H),rx,X(W),X(W),'S1',{side:'r',dy:8});
+ callout(X(ix+Z1/2),Y(iy+Z1+2),X(ix-36),Y(titleY+8),'S3',-1,'dts');
+ callout(X(W-S1-8),Y(descY-2),X(W+8),Y(descY-16),'S4',1,'dts');
+ callout(X(W-40),Y(btnY-4),X(W+8),Y(btnY-18),'S5',1,'dts');
+ rad(X(0),Y(H),20*k,'bl','R1',26);
+ rad(X(btnR+WB),Y(btnY+H3),(H3/2)*k,'br','R4',22);
+ nb(X(W/2+70),Y(titleY+H4/2),1);
+ nb(X((S1+WB+btnR)/2),Y(btnY+H3/2),2);
+ nb(X(14),Y(14),5);
+ nb(X(ix+Z1-8),Y(iy+10),6);
+ title(X(W/2),Y(H+78),'Plan · spread, one line','Scale 0.72:1 · H1 = 2·S1+Z1+S3+H4+S4+H6+S5+H3');
+}
+
+/* ---- DETAIL E · text stack 2:1 ---- */
+{
+ const q=2,EX=48,EY=610,FW=220;
+ const rows=[[0,16,'S3'],[16,32,'H4'],[48,12,'S4'],[60,24,'H6']];
+ let y=0;
+ [['TITLE SLOT · HUG',32,'slot'],['DESCRIPTION SLOT · HUG',24,'slot']].forEach((row,i)=>{
+   const h=row[1];
+   if(i===0) y=16;
+   mk('rect',{x:EX,y:EY+y*q,width:FW,height:h*q,rx:2,class:row[2]});
+   slotLabel(EX,EY+y*q,FW,h*q,row[0]);
+   y+=h+(i===0?12:0);
+ });
+ dimV(EY,EY+16*q,EX-16,EX,EX,'S3',{side:'l'});
+ dimV(EY+16*q,EY+48*q,EX-16,EX,EX,'H4',{side:'l'});
+ dimV(EY+48*q,EY+60*q,EX-16,EX,EX,'S4',{side:'l'});
+ dimV(EY+60*q,EY+84*q,EX-16,EX,EX,'H6',{side:'l'});
+ tx(EX,EY-16,'ICON WELL ENDS ABOVE S3','dts');
+ title(EX+FW/2,EY+84*q+36,'Detail E · text stack','Scale 2:1 · gap-4 then gap-3');
+}
+
+/* ---- DETAIL F · action 1:1 ---- */
+{
+ const FX=360,FY=700;
+ mk('rect',{x:FX,y:FY,width:128,height:48,rx:24,class:'hug'});
+ mk('rect',{x:FX+16,y:FY+14,width:96,height:20,rx:2,class:'slot'});
+ slotLabel(FX+16,FY+14,96,20,'Label · hug');
+ dimH(FX,FX+128,FY-16,FY,FY,'WB  128');
+ dimV(FY,FY+48,FX-18,FX,FX,'H3',{side:'l'});
+ dimV(FY,FY+14,FX+146,FX+128,FX+128,'S8',{side:'r'});
+ dimV(FY+14,FY+34,FX+146,FX+128,FX+112,'LH',{side:'r'});
+ dimV(FY+34,FY+48,FX+146,FX+128,FX+128,'S8',{side:'r'});
+ dimH(FX,FX+16,FY+66,FY+48,FY+34,'S6',{below:true});
+ dimH(FX+112,FX+128,FY+66,FY+34,FY+48,'S6',{below:true});
+ rad(FX+128,FY+48,24,'br','R4',18);
+ callout(FX+4,FY+24,FX-28,FY+78,'B 1 inset',-1,'dts');
+ title(FX+64,FY+112,'Detail F · action','Scale 1:1 · both buttons');
+}
+
+/* ---- DETAIL D · icon well 2:1 ---- */
+{
+ const DX=640,DY=690,q=2,Z=64,I=32,pad=16;
+ mk('circle',{cx:DX+Z,cy:DY+Z,r:Z,class:'hug'});
+ xbox(DX+Z-I,DY+Z-I,I*q,I*q);
+ dimH(DX+Z-pad*2,DX+Z,DY-14,DY+Z,DY+Z-I,'S2');
+ dimH(DX+Z,DX+Z+I*q,DY-14,DY+Z-I,DY+Z-I,'I1');
+ dimH(DX+Z+I*q,DX+Z+I*q+pad*2,DY-14,DY+Z,DY+Z,'S2',{dx:8});
+ callout(DX+Z-Z*Math.SQRT1_2,DY+Z+Z*Math.SQRT1_2,DX+20,DY+Z*2+28,'R5',-1);
+ nb(DX+Z*2-8,DY+16,6);
+ title(DX+Z,DY+Z*2+56,'Detail D · icon well','Scale 2:1 · Z1 = 64 when I1 = 32');
+}
+
+/* ---- VIEWPORT (open) ---- */
+{
+ const VX=900,VY=620,vw=250,vh=150,dw=92,dh=54;
+ const dx=VX+(vw-dw)/2, dy=VY+(vh-dh)/2;
+ mk('rect',{x:VX,y:VY,width:vw,height:vh,class:'thin',fill:HAT,'fill-opacity':.4});
+ mk('rect',{x:dx-16,y:dy-10,width:dw+32,height:dh+28,class:'env'});
+ mk('rect',{x:dx,y:dy,width:dw,height:dh,rx:6,class:'obj'});
+ mk('line',{x1:VX,y1:VY+vh/2,x2:VX+vw,y2:VY+vh/2,class:'cl'});
+ mk('line',{x1:VX+vw/2,y1:VY,x2:VX+vw/2,y2:VY+vh,class:'cl'});
+ dimH(VX,VX+vw,VY-14,VY,VY,'100VW');
+ dimV(VY,VY+vh,VX-16,VX,VX,'100VH');
+ callout(dx+dw,dy,VX+vw-8,VY+28,'WS',1,'dts');
+ callout(dx+dw,dy+dh,VX+vw-4,VY+vh-16,'E2A · E3A',1,'dts');
+ callout(VX+18,VY+18,VX+8,VY+vh+18,'SCRIM A',-1,'dts');
+ nb(dx-12,dy-10,4);
+ tx(VX+vw/2,VY+vh+36,'V1 AND MH ARE NOT TO SCALE HERE','dts',{'text-anchor':'middle'});
+ title(VX+vw/2,VY+vh+54,'Viewport · open','DialogSurface · margin auto');
+}
+
+/* ---- EXPLODED STACK ---- */
+{
+ const ox=48,oy=960,sc=.34,step=28;
+ const layers=[
+  [0,'L0 · Viewport','Reference frame'],
+  [1,'L1 · Scrim','Open only · alpha 0.35'],
+  [2,'L2 · Shadow','Open only · shadow-xl'],
+  [3,'L3 · Shell','R1 · p-0 · border-0'],
+  [4,'L4 · Slots','Well · title · desc · actions']
+ ];
+ layers.forEach(([i,name,sub])=>{
+  const y=oy-i*step, x=ox+i*18;
+  const g=mk('g',{});
+  const hatch=i===1||i===2;
+  const rect=mk('rect',{x:x,y:y,width:150,height:46,rx:i>=3?8:0,class:i===3?'obj':'plain'},g);
+  if(hatch){rect.setAttribute('fill',HAT);rect.setAttribute('fill-opacity','0.35')}
+  else if(i===4) rect.setAttribute('fill','#f3f3f3');
+  tx(x+168,y+18,name,'vt');
+  tx(x+168,y+34,sub,'dts');
+ });
+ title(ox+150,oy+78,'Exploded stack','Z gaps not to scale · inline stops at L3');
+}
+
+/* ---- RADIUS 2:1 ---- */
+{
+ const q=2,y0=1004,items=[['R1','Card',20],['R4','Pill',24],['R5','Well',32]];
+ items.forEach(([c,n,r],i)=>{
+  const x0=560+i*90;
+  const P=(u,v)=>[x0+u*q,y0-v*q];
+  const L=Math.min(r,28);
+  mk('path',{d:'M'+P(0,L)+' L'+P(0,r)+' A'+r*q+' '+r*q+' 0 0 0 '+P(r,0)+' L'+P(L,0),class:'obj',fill:'none'});
+  tx(x0+8,y0+16,c+' '+n,'dts');
+ });
+ title(680,y0+40,'Radius','Scale 2:1 · R5 only if I1 = 32');
+}
+
+{let y=table(1248,48,'Spacing',VAR.spacing);
+ y=table(1248,y,'Size',VAR.size);
+ y=table(1248,y,'Radius',VAR.radius);
+ y=table(1248,y,'Shadow · open',VAR.shadow);
+ y=table(1248,y,'Viewport · open',VAR.viewport);
+ table(1248,y,'Type',VAR.type);}
+})();
+</script>
+</body>
+</html>
