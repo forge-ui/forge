@@ -20,6 +20,12 @@ const items: ShowcaseItem[] = [
     description: "动态智能体工作台，支持流式生成、停止重试、工具调用、计划审核和交互输入。",
   },
   {
+    href: "/templates/task-board",
+    title: "任务看板",
+    description: "工作空间、项目和我的任务。支持拖动看板、列表、任务详情和本地保存。",
+    thumbnail: asset("/images/showcase/task-board.png"),
+  },
+  {
     href: "/templates/project-template",
     title: "项目管理",
     description: "项目管理示例，包含项目、客户、成员、任务、文件和发票。",
@@ -48,12 +54,6 @@ const items: ShowcaseItem[] = [
     title: "电商后台",
     description: "商品、订单、客户、分类和卖家的列表、详情和表单。",
     thumbnail: asset("/images/showcase/ecommerce.png"),
-  },
-  {
-    href: "/templates/task-board",
-    title: "任务看板",
-    description: "工作空间、项目和我的任务。支持拖动看板、列表、任务详情和本地保存。",
-    thumbnail: asset("/images/showcase/task-board.png"),
   },
   {
     href: "/templates/dashboards",
