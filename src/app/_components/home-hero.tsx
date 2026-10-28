@@ -7,7 +7,7 @@ const templateLoading = () => <p className="home-template-loading" role="status"
 const OverviewExample = dynamic(() => import("../templates/(dashboards)/dashboards/ecommerce-2/page"), { loading: templateLoading });
 const FinanceExample = dynamic(() => import("../templates/(dashboards)/dashboards/finance-1/page"), { loading: templateLoading });
 const AgentExample = dynamic(() => import("../templates/agent/page"), { loading: templateLoading });
-const BoardExample = dynamic(() => import("../templates/task-board/page"), { loading: templateLoading });
+const BoardExample = dynamic(() => import("../templates/task-board/_template-preview"), { loading: templateLoading });
 import {
   Avatar, AvatarGroup, Button, ButtonGroup, Checkbox, RadioButton, TabBar, TextField, SelectOption, Toggle,
   CalendarCard, RatingStars, OtpInput, FileCard, Modal, NotificationItem, Stepper, ConfirmationDialog,

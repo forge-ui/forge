@@ -1,4 +1,5 @@
 // Static template: all interactions run locally; no backend or team synchronization.
+import { transitionCollaboration, validCollaboration, type TaskCollaboration } from "./_collaboration";
 export type TaskAttachment = { id: string; name: string; url: string; size: number };
 export type TaskComment = { id: string; text: string; author?: string; at?: string; attachments?: TaskAttachment[] };
 export type RepeatRule = { interval: number; basis: "scheduled" | "completed"; until?: string; remaining?: number };
@@ -13,6 +14,7 @@ export type Subtask = TaskSchedule & {
   completionHistory?: { at: string; date: string }[];
 };
 export type Task = {
+  collaboration?: TaskCollaboration;
   id: string;
   title: string;
   description: string;
@@ -33,7 +35,11 @@ export type Task = {
   comments: (string | TaskComment)[];
   attachments?: TaskAttachment[];
 };
+export type WorkspaceAgent = { id: string; name: string; description: string; instructions: string };
+export type WorkspaceResource = { id: string; title: string; content: string; createdAt: string; attachments: TaskAttachment[] };
 export type Board = {
+  agents?: WorkspaceAgent[];
+  resources?: WorkspaceResource[];
   favorites?: string[];
   archived?: string[];
   projectComments?: Record<string, TaskComment[]>;
@@ -209,6 +215,14 @@ export function seedBoard(): Board {
               { id: "s2", title: "内容区与移动端", done: false },
             ]
           : [],
+      ...(i === 0 || i === 6 ? { collaboration: {
+        agent: i === 0 ? "研究助手" : "设计助手",
+        state: i === 0 ? "ready" as const : "review" as const,
+        attempt: i === 0 ? 0 : 1,
+        brief: i === 0 ? "对比 5 个参考品牌的定位、视觉表达和信息结构，给出可借鉴的方向。请列出来源，未经确认不替换现有方案。" : "整理色彩与字体的使用规范，说明适用场景，提交给我审核后再发布。",
+        ...(i === 6 ? { result: "## 品牌规范草案\n\n> 模板示例，未经真实 Agent 执行。\n\n### 色彩\n- 主色用于关键操作与重点信息\n- 中性色用于正文、分隔线和背景\n- 功能色仅表达成功、警告和异常\n\n### 字体\n- 标题与正文使用统一字体族\n- 用字号和字重建立层级，避免过多字体\n\n### 待确认\n1. 品牌主色的最终色值\n2. 正文字体的授权与多语言覆盖\n\n**验收建议：** 确认上述两项后，再产出可发布的规范文件。" } : {}),
+        events: [{ id: `seed-agent-${i}`, at: new Date().toISOString(), text: i === 0 ? "已委派给研究助手，等待开始演示" : "已提交示例规范，等待人工审核" }],
+      } } : {}),
       comments: i === 2 ? ["林晓：可以先试试更简洁的方向。"] : [],
     })),
   };
@@ -253,6 +267,8 @@ export function isBoard(value: unknown): value is Board {
   if (!value || typeof value !== "object") return false;
   const b = value as Board;
   return (
+    (b.agents === undefined || (Array.isArray(b.agents) && new Set(b.agents.map(a=>a?.id)).size===b.agents.length && b.agents.every(a=>a && [a.id,a.name,a.description,a.instructions].every(v=>typeof v==="string")))) &&
+    (b.resources === undefined || (Array.isArray(b.resources) && new Set(b.resources.map(r=>r?.id)).size===b.resources.length && b.resources.every(r=>r && [r.id,r.title,r.content,r.createdAt].every(v=>typeof v==="string") && validAttachments(r.attachments)))) &&
     (b.projectComments === undefined || (b.projectComments !== null && typeof b.projectComments === "object" && !Array.isArray(b.projectComments) && Object.values(b.projectComments).every(comments => Array.isArray(comments) && comments.every(validComment)))) &&
     (b.projectDetails === undefined ||
       (b.projectDetails !== null && typeof b.projectDetails === "object" && !Array.isArray(b.projectDetails) &&
@@ -280,6 +296,7 @@ export function isBoard(value: unknown): value is Board {
         typeof t.done === "boolean" &&
         (t.labels === undefined || (Array.isArray(t.labels) && t.labels.every((label) => typeof label === "string" && label.trim().length > 0 && label.length <= 40))) &&
         (t.completedAt === undefined || (typeof t.completedAt === "string" && Number.isFinite(Date.parse(t.completedAt)))) &&
+        (t.collaboration === undefined || validCollaboration(t.collaboration)) &&
         (t.activity === undefined || (Array.isArray(t.activity) && t.activity.every((entry) => typeof entry.id === "string" && typeof entry.text === "string" && typeof entry.at === "string" && Number.isFinite(Date.parse(entry.at))))) &&
         typeof t.priority === "string" &&
         typeof t.date === "string" &&
@@ -387,8 +404,9 @@ function writeSubtasks(previous: Subtask[], next: Subtask[], at: string): Subtas
 export function writeTasks(previous: Task[], next: Task[], at = new Date().toISOString()): Task[] {
   const history: Task[] = [];
   const tasks = next.map((input) => {
-    const task = { ...input, subtasks: writeSubtasks(previous.find(item => item.id === input.id)?.subtasks || [], input.subtasks, at) };
+    let task = { ...input, subtasks: writeSubtasks(previous.find(item => item.id === input.id)?.subtasks || [], input.subtasks, at) };
     const before = previous.find((item) => item.id === task.id);
+    if (task.done && task.collaboration && ["running", "waiting"].includes(task.collaboration.state)) task = { ...task, collaboration: transitionCollaboration(task.collaboration, "paused", "任务已完成，演示执行已暂停") };
     const recorded = recordTaskChange(before, task, at);
     if (!before || before.done || !task.done || !task.repeat || !task.date) return recorded;
     const schedule = nextSchedule(task, at);
@@ -400,4 +418,15 @@ export function writeTasks(previous: Task[], next: Task[], at = new Date().toISO
     };
   });
   return [...tasks, ...history];
+}
+
+// Global task views aggregate the current Board; project pages constrain that same Board.
+export function taskMatchesWorkspaceScope(board: Board, task: Task, scope: string, today = day()): boolean {
+  if (board.sections.find(section=>section.id===task.section)?.archived || (board.archived?.includes(task.project) && scope!==task.project)) return false;
+  if (scope==="全部任务") return true;
+  if (scope==="收件箱") return task.project==="收件箱";
+  if (scope==="今天") return !!task.date && task.date<=today;
+  if (scope==="即将到来") return !!task.date && task.date>=today;
+  if (scope==="已完成") return task.done;
+  return task.project===scope;
 }

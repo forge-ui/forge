@@ -8,12 +8,15 @@ import {
   IconButton,
   Modal,
   SelectOption,
+  TabBar,
 } from "@forge-ui-official/core";
 import { AltArrowUpLinear, AltArrowDownLinear, ArrowLeftLinear } from "@forge-ui-official/core/icons";
 import { MarkdownContent } from "./_markdown";
 import { TaskMenu } from "./_task-menu";
 import { TaskContentEditor } from "./_task-content-editor";
 import { TaskComments } from "./_task-comments";
+import { workspaceAgents } from "./_workspace-catalog";
+import { TaskCollaborationPanel } from "./_task-collaboration";
 import { Subtasks, type DraftExitGuard } from "./_subtasks";
 import { TaskLabels } from "./_task-labels";
 import { TaskDateMenu } from "./_task-date-menu";
@@ -60,18 +63,22 @@ export function TaskDetail({
   onDelete: (task: Task) => void;
 }) {
   const contentExitGuard = useRef<DraftExitGuard | null>(null);
+  const collaborationExitGuard = useRef<DraftExitGuard | null>(null);
   const subtaskExitGuard = useRef<DraftExitGuard | null>(null);
   useEffect(() => {
     onExitGuardChange?.(proceed => {
       const content = () => contentExitGuard.current ? contentExitGuard.current(proceed) : proceed();
-      if (subtaskExitGuard.current) subtaskExitGuard.current(content);
-      else content();
+      const children = () => subtaskExitGuard.current ? subtaskExitGuard.current(content) : content();
+      if (collaborationExitGuard.current) collaborationExitGuard.current(children);
+      else children();
     });
     return () => onExitGuardChange?.(null);
   });
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingDescription, setEditingDescription] = useState(false);
   const [activityOpen, setActivityOpen] = useState(false);
+  const [detailTab, setDetailTab] = useState(task.collaboration && !detailPath.length ? 1 : 0);
+  const activeDetailTab = detailPath.length ? 0 : detailTab;
   const patch = (value: Partial<Task>) => onChange({ ...task, ...value });
   return (
     <div className="task-detail-page">
@@ -124,14 +131,25 @@ export function TaskDetail({
               {task.done && <p className="mt-2 text-xs text-fg-grey-700">{task.completedAt ? `完成于 ${new Date(task.completedAt).toLocaleString("zh-CN", { month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}` : "完成时间未记录"}</p>}
             </div>
           </div>
+          <div className="task-detail-tabs"><TabBar color="blue" ariaLabel="任务详情内容" tabs={[
+            { label: "任务资料", active: activeDetailTab === 0 },
+            { label: "执行与交付", active: activeDetailTab === 1 },
+            { label: "讨论", active: activeDetailTab === 2, badge: task.comments.length || undefined },
+          ]} onChange={setDetailTab} /></div>
+          <div hidden={activeDetailTab !== 0} className="task-detail-tab-panel">
               {!editingTitle && !editingDescription && <section className="task-detail-section">
                 <div className="task-description-display">{task.description && <MarkdownContent value={task.description} />}<Button color="black" variant="tertiary" className="task-description-edit" aria-label="编辑任务描述" onClick={() => setEditingDescription(true)}>{task.description ? "编辑描述" : "添加描述…"}</Button></div>
               </section>}
               <section className="task-detail-section" aria-label="任务附件区域">{(task.attachments?.length ?? 0) > 0 && <h2>附件</h2>}<SubtaskAttachments label="任务附件" value={task.attachments || []} onChange={(attachments) => patch({ attachments })} /></section>
               {!hasSubtaskPath(task, detailPath) && <div role="status" className="mb-3 text-sm text-fg-grey-700">子任务不存在或已被删除。<Button color="blue" size="sm" variant="tertiary" onClick={() => onDetailPathChange([])}>返回主任务</Button></div>}
               <Subtasks draftScope={draftScope} onExitGuardChange={guard => { subtaskExitGuard.current = guard; }} saveFailed={saveFailed} onRetrySave={onRetrySave} detailPath={hasSubtaskPath(task, detailPath) ? detailPath : []} onDetailPathChange={onDetailPathChange} availableLabels={collectTaskLabels(board.tasks)} value={task.subtasks} onChange={(subtasks) => patch({ subtasks })} />
+          </div>
+          <div hidden={activeDetailTab !== 1} className="task-detail-tab-panel">
+          <TaskCollaborationPanel instructions={Object.fromEntries(workspaceAgents(board).map(agent=>[agent.name,agent.instructions]))} agents={workspaceAgents(board).map(agent=>agent.name)} onExitGuardChange={guard => { collaborationExitGuard.current = guard; }} key={task.id} task={task} onChange={onChange} />
+          </div>
+          <div hidden={activeDetailTab !== 2} className="task-detail-tab-panel">
           <TaskComments draftKey={`${draftScope}:comments`} value={task.comments} onChange={(comments) => patch({ comments })} />
-
+          </div>
         </main>
         <aside className="task-detail-aside" aria-label="任务属性">
           <h2 className="text-sm font-semibold text-fg-black">任务属性</h2>

@@ -1,8 +1,9 @@
+import { collaborationStates, type CollaborationState } from "./_collaboration";
 import { type Task, type Board, day, projectSections } from "./_data";
 
-export type ViewPreference = { view: number; sort: string; showDone: boolean; group: "section" | "priority" | "date" | "label"; dateFilter: "all" | "today" | "week" | "next7" | "month" | "next30" | "none"; priority: string; label: string };
+export type ViewPreference = { view: number; sort: string; showDone: boolean; group: "section" | "priority" | "date" | "label" | "collaboration"; collaboration: "all" | "human" | "attention" | CollaborationState; dateFilter: "all" | "today" | "week" | "next7" | "month" | "next30" | "none"; priority: string; label: string };
 export type ViewPreferences = Record<string, ViewPreference>;
-export const DEFAULT_VIEW: ViewPreference = { view: 0, sort: "manual", showDone: false, group: "section", dateFilter: "all", priority: "all", label: "__all__" };
+export const DEFAULT_VIEW: ViewPreference = { view: 0, sort: "manual", showDone: false, group: "section", dateFilter: "all", priority: "all", label: "__all__", collaboration: "all" };
 export const viewKey = (workspace: string, project: string) => JSON.stringify([workspace, project]);
 
 export function parseViewPreferences(value: unknown): ViewPreferences {
@@ -12,9 +13,10 @@ export function parseViewPreferences(value: unknown): ViewPreferences {
     const item = entry as Partial<ViewPreference>;
     if (![0, 1].includes(item.view as number) || !["manual", "priority", "date", "name"].includes(item.sort as string) || typeof item.showDone !== "boolean") return [];
     return [[key, { ...DEFAULT_VIEW, view: item.view!, sort: item.sort!, showDone: item.showDone,
-      group: ["section", "priority", "date", "label"].includes(item.group ?? "") ? item.group! : "section",
+      group: ["section", "priority", "date", "label", "collaboration"].includes(item.group ?? "") ? item.group! : "section",
       dateFilter: ["all", "today", "week", "next7", "month", "next30", "none"].includes(item.dateFilter ?? "") ? item.dateFilter! : "all",
       priority: ["all", "1", "2", "3", "4"].includes(item.priority ?? "") ? item.priority! : "all",
+      collaboration: typeof item.collaboration === "string" && (["all", "human", "attention"].includes(item.collaboration) || Object.hasOwn(collaborationStates, item.collaboration)) ? item.collaboration : "all",
       label: typeof item.label === "string" && (item.label === "__all__" || item.label.startsWith("label:")) ? item.label : "__all__",
     }]];
   }));
@@ -37,7 +39,18 @@ export function matchesDateFilter(date: string, filter: ViewPreference["dateFilt
 export type TaskGroup = { id: string; title: string; tasks: Task[]; date?: string; priority?: string; label?: string };
 export function projectTaskGroups(board: Board, project: string, tasks: Task[], group: ViewPreference["group"]): TaskGroup[] {
   if (group === "section") return projectSections(board, project).map((section) => ({ ...section, tasks: tasks.filter((task) => task.section === section.id) }));
+  if (group === "collaboration") return ["waiting", "review", "running", "ready", "failed", "paused", "approved", "human"].map(state => ({
+    id: `collaboration:${state}`, title: state === "human" ? "人工任务" : collaborationStates[state as CollaborationState],
+    tasks: tasks.filter(task => state === "human" ? !task.collaboration : task.collaboration?.state === state),
+  })).filter(group => group.tasks.length > 0);
   if (group === "priority") return ["1", "2", "3", "4"].map((priority) => ({ id: `priority:${priority}`, title: `P${priority}${priority === "4" ? " · 无优先级" : ""}`, priority, tasks: tasks.filter((task) => task.priority === priority) }));
   if (group === "label") return [...new Set(tasks.flatMap((task) => task.labels ?? []))].sort().map((label) => ({ id: `label:${label}`, title: `@${label}`, label, tasks: tasks.filter((task) => task.labels?.includes(label)) })).concat([{ id: "label:none", title: "没有标签", label: "", tasks: tasks.filter((task) => !task.labels?.length) }]);
   return [...new Set(tasks.map((task) => task.date))].sort((a, b) => (a || "9999").localeCompare(b || "9999")).map((date) => ({ id: `date:${date || "none"}`, title: date || "没有日期", date, tasks: tasks.filter((task) => task.date === date) }));
+}
+
+export function matchesCollaboration(task: Task, filter: ViewPreference["collaboration"]) {
+  if (filter === "all") return true;
+  if (filter === "human") return !task.collaboration;
+  if (filter === "attention") return task.collaboration?.state === "waiting" || task.collaboration?.state === "review" || task.collaboration?.state === "failed";
+  return task.collaboration?.state === filter;
 }

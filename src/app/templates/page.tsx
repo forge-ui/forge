@@ -52,7 +52,7 @@ const items: ShowcaseItem[] = [
   {
     href: "/templates/task-board",
     title: "任务看板",
-    description: "让任务井井有条。支持拖动分区、任务与子任务管理、讨论、筛选和本地保存。",
+    description: "工作空间、项目和我的任务。支持拖动看板、列表、任务详情和本地保存。",
     thumbnail: asset("/images/showcase/task-board.png"),
   },
   {

@@ -3,8 +3,11 @@ import { readFile } from "node:fs/promises";
 import ts from "typescript";
 
 const source = await readFile(new URL("../src/app/templates/task-board/_data.ts", import.meta.url), "utf8");
-const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2017 } }).outputText;
-const { seedBoard, migrateBoard, projectSections, emptyBoard, isBoard, recordTaskChange, nextRepeatDate, writeTasks, copyTask, copySubtask, copyProject, copySection, moveSection, setSectionArchived, taskIsArchived, collectTaskLabels, taskSearchEntries, taskDetailHash, parseTaskDetailHash, sectionLinkHash, parseSectionLinkHash, hasSubtaskPath } = await import(`data:text/javascript;base64,${Buffer.from(compiled).toString("base64")}`);
+const collaborationSource = await readFile(new URL("../src/app/templates/task-board/_collaboration.ts", import.meta.url), "utf8");
+const collaborationCode = ts.transpileModule(collaborationSource, { compilerOptions: { module: ts.ModuleKind.ESNext } }).outputText;
+const collaborationUrl = `data:text/javascript;base64,${Buffer.from(collaborationCode).toString("base64")}`;
+const compiled = ts.transpileModule(source.replace('"./_collaboration"', JSON.stringify(collaborationUrl)), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2017 } }).outputText;
+const { taskMatchesWorkspaceScope, seedBoard, migrateBoard, projectSections, emptyBoard, isBoard, recordTaskChange, nextRepeatDate, writeTasks, copyTask, copySubtask, copyProject, copySection, moveSection, setSectionArchived, taskIsArchived, collectTaskLabels, taskSearchEntries, taskDetailHash, parseTaskDetailHash, sectionLinkHash, parseSectionLinkHash, hasSubtaskPath } = await import(`data:text/javascript;base64,${Buffer.from(compiled).toString("base64")}`);
 const legacy = seedBoard();
 const migrated = migrateBoard(legacy);
 const labelTree = [{ labels: ["Design"], subtasks: [{ labels: ["design", "评审"], subtasks: [{ labels: ["移动端"] }] }] }];
@@ -84,8 +87,8 @@ console.log("PASS: repeat weekday/month/leap-year dates, completion history, pre
 
 const viewSource = await readFile(new URL("../src/app/templates/task-board/_view-preferences.ts", import.meta.url), "utf8");
 const dataModuleUrl = `data:text/javascript;base64,${Buffer.from(compiled).toString("base64")}`;
-const viewCompiled = ts.transpileModule(viewSource, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText.replace('from "./_data"', `from "${dataModuleUrl}"`);
-const { DEFAULT_VIEW, parseViewPreferences, matchesDateFilter, projectTaskGroups, viewKey } = await import(`data:text/javascript;base64,${Buffer.from(viewCompiled).toString("base64")}`);
+const viewCompiled = ts.transpileModule(viewSource.replace('"./_collaboration"', JSON.stringify(collaborationUrl)), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText.replace('from "./_data"', `from "${dataModuleUrl}"`);
+const { DEFAULT_VIEW, parseViewPreferences, matchesDateFilter, projectTaskGroups, viewKey, matchesCollaboration } = await import(`data:text/javascript;base64,${Buffer.from(viewCompiled).toString("base64")}`);
 const projectKey = viewKey("workspace", "project");
 assert.deepEqual(parseViewPreferences({ [projectKey]: { view: 1, sort: "date", showDone: true } })[projectKey], { ...DEFAULT_VIEW, view: 1, sort: "date", showDone: true });
 assert.equal(parseViewPreferences({ [projectKey]: { ...DEFAULT_VIEW, group: "invalid", dateFilter: "invalid" } })[projectKey].group, "section");
@@ -347,3 +350,66 @@ console.log("PASS: standalone child duplicate has recursive independent identity
 for (const id of ['品牌项目:准备开始', 'with / slash?#', '分区😀']) assert.equal(parseSectionLinkHash(`#${sectionLinkHash(id)}`), id);
 for (const hash of ['#section/', '#section/%', '#task/root', '#other/section']) assert.equal(parseSectionLinkHash(hash), null);
 console.log('PASS: section deep-link encoding and malformed hash rejection');
+
+// Collaboration stays independent from section moves and survives JSON persistence.
+const { transitionCollaboration, validCollaboration } = await import(collaborationUrl);
+const collaborationSeed = migrated.tasks.find(task => task.collaboration?.state === "ready");
+const start = transitionCollaboration(collaborationSeed.collaboration, "running", "started", { attempt: 1 });
+assert.equal(collaborationSeed.collaboration.state, "ready");
+assert.throws(() => transitionCollaboration(start, "approved", "invalid bypass"));
+assert.throws(() => transitionCollaboration(start, "review", "missing result"));
+const reviewRun = transitionCollaboration(start, "review", "submitted", { result: "## Delivery\n- Evidence" });
+assert.equal(validCollaboration(JSON.parse(JSON.stringify(reviewRun))), true);
+assert.equal(reviewRun.events.at(-1).detail, "## Delivery\n- Evidence");
+const acceptedRun = transitionCollaboration(reviewRun, "approved", "accepted", { feedback: "Approved with evidence" });
+assert.equal(acceptedRun.events.at(-1).detail, "Approved with evidence");
+assert.throws(() => transitionCollaboration(acceptedRun, "running", "invalid restart"));
+assert.equal(validCollaboration({ ...reviewRun, events: [{ id: "bad", text: "bad", at: "invalid" }] }), false);
+assert.equal(isBoard({ ...migrated, tasks: [{ ...collaborationSeed, collaboration: { ...reviewRun, state: "invalid" } }] }), false);
+const collaborationTasks = [
+  { ...collaborationSeed, id: "ready" },
+  { ...collaborationSeed, id: "review", collaboration: reviewRun },
+  { ...collaborationSeed, id: "failed", collaboration: { ...start, state: "failed" } },
+  { ...collaborationSeed, id: "waiting", collaboration: { ...start, state: "waiting" } },
+  { ...collaborationSeed, id: "human", collaboration: undefined },
+];
+assert.deepEqual(collaborationTasks.filter(task => matchesCollaboration(task, "attention")).map(task => task.id), ["review", "failed", "waiting"]);
+assert.deepEqual(collaborationTasks.filter(task => matchesCollaboration(task, "human")).map(task => task.id), ["human"]);
+assert.deepEqual(projectTaskGroups(migrated, collaborationSeed.project, collaborationTasks, "collaboration").flatMap(group => group.tasks).map(task => task.id).sort(), collaborationTasks.map(task => task.id).sort());
+assert.equal(parseViewPreferences({ [projectKey]: { ...DEFAULT_VIEW, collaboration: "invalid" } })[projectKey].collaboration, "all");
+const savedView = { ...DEFAULT_VIEW, group: "collaboration", collaboration: "attention" };
+assert.deepEqual(parseViewPreferences(JSON.parse(JSON.stringify({ [projectKey]: savedView })))[projectKey], savedView);
+console.log("PASS: collaboration state guards, immutable history, JSON validation, attention filtering, unique grouping and view preference migration");
+
+const activeTask = { ...collaborationSeed, collaboration: start };
+const doneActive = writeTasks([activeTask], [{ ...activeTask, done: true }])[0];
+assert.equal(doneActive.collaboration.state, "paused");
+assert.equal(activeTask.collaboration.state, "running");
+assert.equal(writeTasks([doneActive], [{ ...doneActive, done: false }])[0].collaboration.state, "paused");
+console.log("PASS: completing an active task pauses the simulation; reopening never auto-starts execution");
+
+const configuredWorkspace = {
+ ...migrated,
+ agents: [{ id: "agent-local", name: "本地助手", description: "职责", instructions: "先确认目标" }],
+ resources: [{ id: "reference-local", title: "参考资料", content: "## 目标\n\n保留来源", createdAt: "2026-10-28T00:00:00.000Z", attachments: [{ id: "file-local", name: "notes.md", url: "data:text/plain;base64,YQ==", size: 1 }] }],
+};
+assert.ok(isBoard(JSON.parse(JSON.stringify(configuredWorkspace))));
+assert.deepEqual(migrateBoard(configuredWorkspace).agents, configuredWorkspace.agents);
+assert.deepEqual(migrateBoard(configuredWorkspace).resources, configuredWorkspace.resources);
+assert.ok(isBoard(migrated), "Legacy spaces remain valid without catalog fields");
+assert.equal(isBoard({ ...configuredWorkspace, agents: [...configuredWorkspace.agents, ...configuredWorkspace.agents] }), false);
+assert.equal(isBoard({ ...configuredWorkspace, resources: [{ ...configuredWorkspace.resources[0], attachments: [{ id:"bad",name:"bad",url:"javascript:alert(1)",size:1 }] }] }), false);
+assert.equal(isBoard({ ...configuredWorkspace, resources: [{ ...configuredWorkspace.resources[0], content: null }] }), false);
+assert.equal(emptyBoard("独立空间").agents, undefined);
+assert.equal(emptyBoard("独立空间").resources, undefined);
+console.log("PASS: optional workspace catalogs survive JSON and migration; duplicate IDs and unsafe attachments rejected; new spaces are isolated");
+
+assert.equal(migrated.tasks.filter(t=>taskMatchesWorkspaceScope(migrated,t,"全部任务")).length,migrated.tasks.length);
+assert.ok(migrated.tasks.filter(t=>taskMatchesWorkspaceScope(migrated,t,"日常工作")).every(t=>t.project==="日常工作"));
+const scopedArchive={...migrated,archived:["日常工作"]};
+assert.ok(scopedArchive.tasks.filter(t=>taskMatchesWorkspaceScope(scopedArchive,t,"全部任务")).every(t=>t.project!=="日常工作"));
+assert.ok(scopedArchive.tasks.some(t=>taskMatchesWorkspaceScope(scopedArchive,t,"日常工作")));
+assert.equal(taskMatchesWorkspaceScope(migrated,{...migrated.tasks[0],date:"2026-10-27"},"今天","2026-10-28"),true);
+assert.equal(taskMatchesWorkspaceScope(migrated,{...migrated.tasks[0],date:""},"今天","2026-10-28"),false);
+assert.equal(taskMatchesWorkspaceScope(migrated,{...migrated.tasks[0],date:"2026-10-29"},"即将到来","2026-10-28"),true);
+console.log("PASS: global task scope includes all current-space projects; project, archive and date scopes stay bounded");
