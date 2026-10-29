@@ -449,3 +449,8 @@ export { AddMember } from "./add-member";
 export type { AddMemberProps, AddMemberItem, AddMemberLabels } from "./add-member";
 
 export type { ButtonProps, ButtonHoldLabels } from "./button";
+
+export { Folder } from "./folder";
+export type { FolderProps, FolderItem } from "./folder";
+export { FolderFloat } from "./folder-float";
+export type { FolderFloatProps } from "./folder-float";
