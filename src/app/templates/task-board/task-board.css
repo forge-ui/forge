@@ -79,7 +79,7 @@
 .tasks-product .task-list-view .task-board-card { border-radius:0; outline:0; box-shadow:none; background:transparent; border-bottom:1px solid var(--fg-grey-200); padding:8px; }
 .task-list-view .task-board-card:hover { background:var(--fg-grey-50); box-shadow:none; }
 .task-list-view .task-card-heading { align-items:center; min-height:28px; }
-.task-list-view .task-card-meta { margin-top:0; padding-left:32px; gap:2px 10px; }
+.task-list-view .task-card-meta { margin-top:0; padding-left:0; gap:2px 10px; }
 .task-list-view>.board-column-slot>.board-section>button { justify-content:flex-start; outline:0; background:transparent; margin-top:8px; color:var(--fg-grey-700); }
 /* Lists are one reading surface; only board mode uses floating cards. */
 .task-list-mode .project-workspace { gap:24px; }
@@ -558,10 +558,10 @@ body:has(.task-board-shell) .forge-toast button[aria-label] .solar-close-circle-
 /* Project work surface: project navigation and the preserved board. */
 .tasks-product .task-board-card { padding:14px; box-shadow:none; outline-color:var(--fg-grey-200); }
 .tasks-product .task-board-card:hover { outline-color:var(--fg-grey-400); box-shadow:0 3px 12px color-mix(in srgb,var(--fg-black) 4%,transparent); }
-.task-card-eyebrow { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; font-size:11px; line-height:16px; color:var(--fg-grey-700); }
+.task-card-eyebrow { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:10px; font-size:11px; line-height:16px; color:var(--fg-grey-700); }
 .task-card-eyebrow>span:last-child { color:var(--fg-black); }
 .task-agent-card .task-card-heading>button { font-weight:500; }
-.task-card-next { display:flex; flex-direction:column; gap:8px; text-align:left; width:100%; padding:12px 0 0 32px; font-size:12px; line-height:18px; color:var(--fg-grey-700); }
+.task-card-next { display:flex; flex-direction:column; gap:8px; text-align:left; width:100%; padding:12px 0 0; font-size:12px; line-height:18px; color:var(--fg-grey-700); }
 .task-card-next strong { display:flex; align-items:center; gap:6px; color:var(--fg-blue); font-weight:500; }
 .task-card-next:hover strong { text-decoration:underline; text-underline-offset:3px; }
 .task-agent-card .task-card-meta { padding-top:10px; border-top:1px solid var(--fg-grey-100); }
@@ -678,3 +678,10 @@ body:has(.workspace-product) dialog button[aria-label] .solar-close-circle-linea
 .compact-board-toolbar h1 { margin:0; white-space:nowrap; }
 .compact-board-toolbar > div { flex-wrap:wrap; justify-content:flex-end; }
 .workspace-view-scopes { display:flex; flex-direction:column; gap:16px; }
+
+/* Completion stays a core Checkbox, with the task-specific circular visual. */
+.task-completion-circle .forge-check-visual > span { border-radius:50%; }
+.task-completion-circle .forge-check-visual[data-checked="false"] > span:first-child { background:var(--fg-white); }
+.task-completion-circle .forge-check-fill { background:var(--task-priority,var(--fg-grey-500)); }
+.task-card-footer .task-date-anchor { flex-shrink:0; margin-left:auto; }
+.task-list-view .task-card-footer { margin-top:0; padding-left:0; }

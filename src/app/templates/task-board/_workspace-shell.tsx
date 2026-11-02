@@ -8,7 +8,7 @@ import { WorkspaceContext, WORKSPACE_BASE, projectHref } from "./_workspace-cont
 import { WorkspaceNavigation } from "./_workspace-navigation";
 
 import { Fragment, useCallback, useEffect, useRef, useState, type SyntheticEvent, type ReactNode } from "react";
-import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from "motion/react";
+import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import {
   AppLayout,
   Button,
@@ -155,10 +155,40 @@ function WorkspaceController({ children }: { children: ReactNode }) {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [dragOver, setDragOver] = useState<string | null>(null);
   const [expandedCardTasks, setExpandedCardTasks] = useState<Record<string, boolean>>({});
-  const [dragPreview, setDragPreview] = useState<{ id: string; width: number; height: number; section?: string; before?: string } | null>(null);
+  const [dragPreview, setDragPreview] = useState<{ id: string; width: number; height: number; originX: number; originY: number; section?: string; before?: string } | null>(null);
   const dragX = useMotionValue(0);
   const dragY = useMotionValue(0);
-  const dragRotation = useMotionValue(0);
+  const reduced = useReducedMotion();
+  const dragRotation = useSpring(0, { stiffness: 220, damping: 27, mass: 0.8 });
+  const dragSample = useRef<{ x: number; previousX: number; at: number; speed: number } | null>(null);
+  const dragFrame = useRef<number | null>(null);
+  const stopDragWeight = useCallback(() => {
+    if (dragFrame.current !== null) cancelAnimationFrame(dragFrame.current);
+    dragFrame.current = null;
+    dragSample.current = null;
+    dragRotation.set(0);
+  }, [dragRotation]);
+  useEffect(() => stopDragWeight, [stopDragWeight]);
+  const startDragWeight = useCallback((x: number) => {
+    stopDragWeight();
+    if (reduced) { dragRotation.jump(0); return; }
+    dragSample.current = { x, previousX: x, at: performance.now(), speed: 0 };
+    const tick = (now: number) => {
+      const sample = dragSample.current;
+      if (!sample) return;
+      const dt = Math.max(0.001, (now - sample.at) / 1000);
+      // Sample displacement on animation frames, not at irregular pointer-event intervals.
+      const speed = dt > 0.1 ? 0 : (sample.x - sample.previousX) / dt;
+      sample.speed += (speed - sample.speed) * (1 - Math.exp(-dt / 0.065));
+      sample.previousX = sample.x;
+      sample.at = now;
+      // A soft saturation avoids a hard clamp; tiny hand tremors stay level.
+      const effectiveSpeed = Math.sign(sample.speed) * Math.max(0, Math.abs(sample.speed) - 20);
+      dragRotation.set(2.8 * Math.tanh(effectiveSpeed / 900));
+      dragFrame.current = requestAnimationFrame(tick);
+    };
+    dragFrame.current = requestAnimationFrame(tick);
+  }, [dragRotation, reduced, stopDragWeight]);
   const settlingDrag = useRef(false);
   const dropTarget = useCallback((x: number, y: number, id: string) => {
     const hit = document.elementFromPoint(x, y);
@@ -229,7 +259,6 @@ function WorkspaceController({ children }: { children: ReactNode }) {
   const lastUndoToast = useRef<string | null>(null);
   const storageNotice = useRef<string | null>(null);
   const [storageFailed, setStorageFailed] = useState(false);
-  const reduced = useReducedMotion();
 
   const exportBoard = useCallback(() => {
     const url = URL.createObjectURL(
@@ -825,10 +854,11 @@ function WorkspaceController({ children }: { children: ReactNode }) {
           document.documentElement.setPointerCapture(event.pointerId);
           dragX.set(event.clientX - drag.offsetX);
           dragY.set(event.clientY - drag.offsetY);
+          if (started) startDragWeight(event.clientX);
+          else if (dragSample.current) dragSample.current.x = event.clientX;
           if (started) {
-            dragRotation.set(reduced ? 0 : 0.8);
             const target = dropTarget(event.clientX, event.clientY, drag.id);
-            setDragPreview({ id: drag.id, width: drag.width, height: drag.height, ...target });
+            setDragPreview({ id: drag.id, width: drag.width, height: drag.height, originX: drag.offsetX, originY: drag.offsetY, ...target });
           }
 
     };
@@ -858,6 +888,7 @@ function WorkspaceController({ children }: { children: ReactNode }) {
           const drag = pointerDrag.current;
           if (!drag) return;
           pointerDrag.current = null;
+          stopDragWeight();
           if (!drag.moved) return;
           suppressClick.current = true;
           requestAnimationFrame(() => { suppressClick.current = false; });
@@ -870,14 +901,13 @@ function WorkspaceController({ children }: { children: ReactNode }) {
             await Promise.all([
               animate(dragX, destination.left, { duration: 0.16, ease: [0.22, 1, 0.36, 1] }),
               animate(dragY, destination.top, { duration: 0.16, ease: [0.22, 1, 0.36, 1] }),
-              animate(dragRotation, 0, { duration: 0.14 }),
             ]);
           }
           setDragPreview(null); setDragOver(null);
           settlingDrag.current = false;
 
     };
-    const cancel = () => { sectionDrag.current = null; setColumnPreview(null); pointerDrag.current = null; setDragPreview(null); setDragOver(null); settlingDrag.current = false; };
+    const cancel = () => { stopDragWeight(); dragRotation.jump(0); sectionDrag.current = null; setColumnPreview(null); pointerDrag.current = null; setDragPreview(null); setDragOver(null); settlingDrag.current = false; };
     const keydown = (event: KeyboardEvent) => {
       if (event.key === "Escape" && (pointerDrag.current?.moved || sectionDrag.current?.moved)) { event.preventDefault(); cancel(); }
     };
@@ -984,11 +1014,10 @@ function WorkspaceController({ children }: { children: ReactNode }) {
           padding="none"
           className={`task-board-card ${task.collaboration ? "task-agent-card" : ""} ${task.done ? "opacity-65" : ""}`}
         >
-          {!listMode && task.collaboration && <div className="task-card-eyebrow"><span>{task.collaboration.agent}</span><span>{collaborationStates[task.collaboration.state]}</span></div>}
           <div className="task-card-heading flex items-start gap-3">
             <Checkbox
               color="blue"
-              className="task-priority-check"
+              className="task-priority-check task-completion-circle"
               data-priority={task.priority}
               title={`优先级 P${task.priority}`}
               aria-description={`优先级 P${task.priority}`}
@@ -1030,13 +1059,13 @@ function WorkspaceController({ children }: { children: ReactNode }) {
               />
             </div>
           </div>
+          {!listMode && task.collaboration && <div className="task-card-eyebrow"><span>{task.collaboration.agent}</span><span>{collaborationStates[task.collaboration.state]}</span></div>}
           {!listMode && task.collaboration && <button type="button" data-no-drag className="task-card-next" onClick={() => openDetail(task)}>
             <span>{({ ready: "任务已就绪，等待开始执行", running: "正在处理任务，查看执行进展", waiting: "需要补充信息后才能继续", review: "交付已准备好，等待你的审核", approved: "交付已审核通过", failed: "本次执行失败，需要重试", paused: "执行已暂停，可重新开始" })[task.collaboration.state]}</span>
             <strong>{({ ready: "开始执行", running: "查看执行", waiting: "回复问题", review: "审核交付", approved: "查看交付", failed: "查看原因", paused: "继续处理" })[task.collaboration.state]} <span aria-hidden="true">→</span></strong>
           </button>}
-          <div className="task-card-meta mt-3 pl-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs text-fg-grey-700">
+          <div className="task-card-meta mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs text-fg-grey-700">
             {listMode && task.collaboration && <button type="button" data-no-drag className={`task-agent-state${task.collaboration.state === "failed" ? " is-failed" : ""}`} onClick={() => openDetail(task)} aria-label={`查看协作：${collaborationStates[task.collaboration.state]}`}><ClipboardListBoldDuotone size={14} aria-hidden="true" />{collaborationStates[task.collaboration.state]}</button>}
-            {task.date && <TaskDateMenu value={task.date} time={task.time} repeat={task.repeat} repeatRule={task.repeatRule} onScheduleChange={(patch) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, ...patch } : item) }, "任务安排已更新")} onChange={(date) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, date } : item) }, date ? "任务日期已更新" : "已清除任务日期")} />}
             {task.labels?.map((label) => <span key={label}>@{label}</span>)}
             {task.subtasks.length > 0 && (
               <Button color="black" size="sm" variant="tertiary" data-no-drag className="card-subtask-toggle" aria-label={`${expandedCardTasks[task.id] ? "收起" : "展开"}卡片子任务：${task.title}`} aria-expanded={!!expandedCardTasks[task.id]} aria-controls={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} onClick={() => setExpandedCardTasks(current => ({ ...current, [task.id]: !current[task.id] }))}>
@@ -1046,13 +1075,14 @@ function WorkspaceController({ children }: { children: ReactNode }) {
             {task.comments.length > 0 && (
               <span>讨论 {task.comments.length}</span>
             )}
-            {systemScope && (
-              <span className="text-fg-grey-700">{task.project}</span>
-            )}
           </div>
+          {(systemScope || task.date) && <div className="task-card-footer mt-3 flex min-w-0 items-center justify-between gap-3 text-xs text-fg-grey-700">
+            {systemScope ? <span className="min-w-0 flex-1 truncate" title={task.project}>{task.project}</span> : <span />}
+            {task.date && <TaskDateMenu value={task.date} time={task.time} repeat={task.repeat} repeatRule={task.repeatRule} onScheduleChange={(patch) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, ...patch } : item) }, "任务安排已更新")} onChange={(date) => change({ ...board, tasks: board.tasks.map((item) => item.id === task.id ? { ...item, date } : item) }, date ? "任务日期已更新" : "已清除任务日期")} />}
+          </div>}
           {task.subtasks.length > 0 && expandedCardTasks[task.id] && <div data-no-drag id={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} className="card-subtask-list" aria-label={`${task.title}的子任务`}>
             {task.subtasks.map(child => <div className="card-subtask-row" key={child.id}>
-              <Checkbox color="blue" className="task-priority-check" data-priority={(child.priority || "P4").slice(1)} title={`优先级 ${child.priority || "P4"}`} aria-description={`优先级 ${child.priority || "P4"}`} checked={child.done} aria-label={`${child.done ? "重新打开" : "完成"}卡片子任务：${child.title}`} onChange={(done) => change({ ...board, tasks: board.tasks.map(item => item.id === task.id ? { ...item, subtasks: item.subtasks.map(entry => entry.id === child.id ? { ...entry, done } : entry) } : item) }, done ? "子任务已完成" : "子任务已重新打开")} />
+              <Checkbox color="blue" className="task-priority-check task-completion-circle" data-priority={(child.priority || "P4").slice(1)} title={`优先级 ${child.priority || "P4"}`} aria-description={`优先级 ${child.priority || "P4"}`} checked={child.done} aria-label={`${child.done ? "重新打开" : "完成"}卡片子任务：${child.title}`} onChange={(done) => change({ ...board, tasks: board.tasks.map(item => item.id === task.id ? { ...item, subtasks: item.subtasks.map(entry => entry.id === child.id ? { ...entry, done } : entry) } : item) }, done ? "子任务已完成" : "子任务已重新打开")} />
               <button type="button" className={`min-w-0 flex-1 text-left text-sm leading-5 ${child.done ? "line-through text-fg-grey-500" : "text-fg-black"}`} aria-label={`打开卡片子任务：${child.title}`} onClick={() => openDetail(task, [child.id])}>{child.title}</button>
             </div>)}
           </div>}
@@ -1455,7 +1485,7 @@ function WorkspaceController({ children }: { children: ReactNode }) {
           <p className="mb-3 text-xs text-fg-grey-700">链接仅适用于保存了该工作空间的浏览器。</p>
           <TextField color="blue" label={`${copyLinkKind}链接`} readOnly value={linkToCopy} autoFocus onFocus={(event) => event.currentTarget.select()} />
         </Modal>
-        {dragPreview && <motion.div className={`task-drag-preview tasks-product${listMode ? " task-list-view" : ""}`} style={{ x: dragX, y: dragY, rotate: dragRotation, width: dragPreview.width }} aria-hidden="true" inert>
+        {dragPreview && <motion.div className={`task-drag-preview tasks-product${listMode ? " task-list-view" : ""}`} style={{ x: dragX, y: dragY, rotate: dragRotation, transformOrigin: `${dragPreview.originX}px ${dragPreview.originY}px`, width: dragPreview.width }} aria-hidden="true" inert>
           {board.tasks.filter(task => task.id === dragPreview.id).map(task => ({ ...task, dragOverlay: true })).map(card)}
         </motion.div>}
         <Modal open={archivedSectionsOpen} onOpenChange={setArchivedSectionsOpen} title="已归档分区">
