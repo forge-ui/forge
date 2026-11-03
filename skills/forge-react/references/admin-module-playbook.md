@@ -1,3 +1,5 @@
+> R2适用边界：以SKILL.md的授权范围为先。仅设计检查规范与图纸；单页/局部任务只应用相关契约，不增加系统模块、实施或构建。以下完整系统清单及代码示例仅适用于已授权的相应实施范围；StatusBadge示例不覆盖状态偏好规则。
+
 # Admin Module Playbook
 
 Use this before building back-office systems or modules. The goal is to make the agent think like an admin product designer first, then compose Forge UI components second.
@@ -261,8 +263,8 @@ Forge mapping:
 
 - Toolbar: `Toolbar`, `ToolbarSearchInput`, `ToolbarFilterButton`, `ToolbarDatepicker`, `ToolbarShowSelect`, `ToolbarActions`.
 - Data: `FullWidthTable` for full-page management lists; `DataTable` for embedded dashboard/detail tables; `StatusBadge`, `CellActions`, `CellKebabMenu`, `KebabMenu`, `Pagination`.
-- Confirmation: `ConfirmationDialog` inside a real dialog shell. `ConfirmationDialog` renders the content card only.
-- Feedback: use inline form/list feedback for validation and recoverable errors. Forge has `NotificationItem` for notification centers and job lists, but no global toast primitive. For transient toasts, use the host app's existing toast system. If none exists, ask before adding one; do not hand-roll a custom toast with raw divs.
+- Confirmation: `ConfirmationDialog` with controlled `open` / `onOpenChange`; omit `open` only for inline content in an existing host shell. Do not double-wrap controlled mode.
+- Feedback: use inline form/list feedback for validation and recoverable errors. Forge exports `ToastProvider` and `useToast` (`toast`, `dismiss`, `update`). Place the hook below the provider or reuse the host notification system; durable failures still need inline feedback. `NotificationItem` remains suitable for notification centers and job lists.
 
 From design systems: data table toolbars commonly host primary actions, search, filtering, table settings, and utilities; selected rows should reveal batch actions rather than forcing repetitive row-by-row work.
 
@@ -553,7 +555,7 @@ export function OrderForm() {
 }
 ```
 
-`TextField` uses `state="error"` plus `errorMessage`; do not show validation only in a toast. `TextField` currently does not expose a `name` prop, so Server Action forms need hidden native inputs or a project wrapper that forwards `name` to the underlying input.
+`TextField` uses `state="error"` plus `errorMessage`; do not show validation only in a toast. `TextFieldProps` extends native input attributes (except `color`, `size`, `onChange`), so `name` and `type` are accepted; its `onChange` receives a string, not an event. Check form serialization for non-native controls separately.
 
 ## Data and State Lifecycle
 
@@ -588,13 +590,13 @@ Dialog/drawer selection:
 
 - Confirmation dialog: delete, archive, revoke, reset, void invoice, discard changes.
 - Form modal: quick add/edit/assign/change status with a small field count.
-- Drawer: create/update while keeping list context, especially modern admin templates. Forge currently does not export a Drawer/Sheet primitive; use the host app's drawer/dialog shell or a route-backed side panel, and keep its content built from Forge components.
+- Drawer: create/update while keeping list context, especially modern admin templates. Forge exports controlled `Drawer` with `open`, `onOpenChange`, `title`, `children`, optional `footer` and `side`; verify installed-version props. A route-backed panel remains a separate navigation choice; do not infer a `Sheet` export.
 - Full route: complex create/edit, deep validation, uploads, multi-step workflows.
 - Alert/banner: non-blocking warnings such as sync delay, read-only mode, partial failure.
 
 For high-risk deletion, require explicit confirmation text when appropriate, especially bulk delete or irreversible account/system operations.
 
-Confirmation dialog shell skeleton:
+Compatibility inline-mode skeleton (intentionally omits `open` inside one native dialog; new standalone confirmations should prefer controlled mode):
 
 ```tsx
 "use client";

@@ -79,7 +79,7 @@ pending -> escalated
 - Detail/inspector: `DescriptionItem`, `TabBar`, `ListGroup`, `HistoryGrouped`
 - Request creation: `Stepper`, `TextField`, `TextArea`, `SelectOption`, `FileUpload`
 - Rule configuration: `DataTable`, `Toggle`, `SelectOption`
-- Decisions: `ConfirmationDialog` inside dialog shell for approve/reject/request changes when impact matters
+- Decisions: controlled `ConfirmationDialog` (or inline mode inside an existing shell) for approve/reject/request changes when impact matters
 
 ## Avoid These Mistakes
 

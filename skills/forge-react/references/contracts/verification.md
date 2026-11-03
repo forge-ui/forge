@@ -1,3 +1,7 @@
+> R2收尾：状态按[统一默认规则](../status-presentation.md)检查；新页面推荐纯文本，有项目约定则继承。不要求用户先从两种样式中选择才能交付。仅设计任务不执行下方实施检查。
+
+> R2适用边界：以SKILL.md的授权范围为先。仅设计检查规范与图纸；单页/局部任务只应用相关契约，不增加系统模块、实施或构建。以下完整系统清单及代码示例仅适用于已授权的相应实施范围；StatusBadge示例不覆盖状态偏好规则。
+
 # Admin System Verification
 
 Use this before claiming an admin system or module is complete.
@@ -19,7 +23,7 @@ Use this before claiming an admin system or module is complete.
 - [ ] Lists use `FullWidthTable` or `DataTable`, not hand-rolled table-like divs.
 - [ ] Colors use `fg-*` tokens only.
 - [ ] Icons come from `@forge-ui-official/core/icons` and use numeric `size` plus `color`.
-- [ ] `ConfirmationDialog` is inside a real dialog shell.
+- [ ] `ConfirmationDialog` is controlled, or deliberately inline inside one existing shell; no double dialog.
 - [ ] Form errors map to fields.
 - [ ] Operational list state is URL-backed when users need to share or revisit the view.
 - [ ] Typecheck/build passes.

@@ -56,6 +56,6 @@ closest_template: ""
 - Row actions should depend on object state. Avoid the same action set on every row.
 - Detail must include related records or activity; a field-only detail page is incomplete.
 - Create/edit forms should be grouped by business meaning, not by visual convenience.
-- Dangerous actions must use `ConfirmationDialog` inside a real dialog shell.
+- Dangerous actions must use controlled `ConfirmationDialog`, or inline content inside one existing shell.
 - List state should be in URL when the view is operational or shareable.
 

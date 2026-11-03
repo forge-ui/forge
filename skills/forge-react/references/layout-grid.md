@@ -4,6 +4,8 @@ Read this before choosing page columns or adapting a page to a narrow viewport. 
 
 ## Template first
 
+First verify that the template fits the business task. For new page structures, read [page-design-dimensional](page-design-dimensional.md): basic forms, grouped forms, settings and read-only detail have distinct structures. The product rail below is scenario-specific, not a generic form default.
+
 Choose the closest Forge template and page role before choosing tracks. Inherit its fixed versus proportional columns, spacing density and wide-screen hierarchy. Record the source template and justify breakpoint changes with actual content-width evidence. Grid defaults are API defaults, not permission to replace template spacing.
 
 - Analytics uses four equal metric columns and an 8:4 chart/auxiliary split; its lower rows use three and two equal columns from lg.

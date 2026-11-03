@@ -32,6 +32,10 @@ Use `FORGE_SKILLS_DIR=/path/to/skills` for any other agent. Re-run any time to u
 
 ---
 
+## 页面审查入口
+
+业务页面完成或改版后，按 [视觉与交互审查](references/visual-interaction-audit.md)核对配色、圆角与外形、字体字号、布局密度、整体风格和交互反馈。组件导入仅是基础检查。仅设计任务检查结构与标注，不声称完成真实运行审计；实施任务按授权页面做浏览器验证。
+
 ## Critical — read before writing code
 
 1. **Components come from `@forge-ui-official/core` first.** Do **not** hand-roll raw Tailwind recreations of Kit primitives such as cards, status badges, toolbars, dialogs, forms, tables, or app chrome. Composing Kit components into new business layouts is expected.
@@ -39,10 +43,10 @@ Use `FORGE_SKILLS_DIR=/path/to/skills` for any other agent. Re-run any time to u
 3. **Icons come from `@forge-ui-official/core/icons`.** The stable Forge names end in `Linear` / `Bold` / `BoldDuotone` / `LineDuotone`, while the implementation uses Solar Icons (MIT React implementation; CC BY 4.0 artwork by 480 Design). Prefer explicit `size` and `color` props for deterministic rendering; `currentColor` inheritance is also supported. Common sizes are 14/16/18/20/24. Default muted icon color: `#71717A`.
 4. **Layout uses `<AppLayout>`. For page columns, spans and responsive spacing, read [layout-grid](references/layout-grid.md) and inherit the closest template’s fixed/proportional columns, gaps and breakpoints before using `Grid` / `GridItem`. Preserve fixed rails with static CSS Grid/Flex; keep one-dimensional toolbars in Flex.** Don't assemble sidebar + topbar from scratch. Auth forms currently have no ready-made Forge template; compose them from `TextField`, `Checkbox`, `Button`, and `StyledLink`.
 5. **When in doubt, read the matching case page** (`src/app/cases/<name>/page.tsx`). Cases show real prop combinations. Guessing props wastes everyone's time.
-6. **Strict Admin Mode: model the system before JSX.** If the request says system, platform, admin, back-office, 后台, 管理系统, or names a business module, produce the required contracts first: System Brief, Module Contract, Page Flow, Component Mapping, then implement. Use `references/contracts/*.md` and the closest `references/blueprints/*.md`.
-7. **`ConfirmationDialog` is dialog content, not the overlay.** Wrap it with the host app's Radix/Headless UI dialog or native `<dialog>`; don't render it permanently in the page.
-8. **Forge does not export Toast/Snackbar or Drawer/Sheet primitives.** Use the host app's existing toast/drawer system when present; if none exists, ask before adding one. Keep the content inside those shells built from Forge components.
-9. **Status uses the Kit soft capsule, not a heavy chip and not rainbow enums.** Semantic status (pending / success / canceled, enabled / disabled) uses `StatusBadge` with the default `variant="soft"` — pale `fg-*-50` fill, hairline outline, same-hue text, matching the official finance Transaction template. Do not use `variant="solid"`, `Label` as status, or hand-rolled pills. Categories, roles, and per-row themes stay plain `CellText` / `CellMuted`. Rainbow chips on every enum are a telltale AI smell.
+6. **Scope before workflow.** The authorized scope governs all contracts and checks below. Specification-only and single-page requests use Workflow for new features; complete-system implementation uses Strict Admin Mode. A business-module name alone does not authorize a broader system or implementation.
+7. **`ConfirmationDialog` supports controlled `open` / `onOpenChange`.** Use that mode for a standalone confirmation; omitting `open` retains the inline content card for an existing host dialog. Do not add a second dialog shell around controlled mode. Confirm callbacks own async success and closing; cancellation requests `onOpenChange(false)`.
+8. **Forge exports `Drawer`, `ToastProvider` and `useToast`.** `Drawer` uses controlled `open` / `onOpenChange`; `useToast` must run below `ToastProvider` and returns `toast`, `dismiss`, `update`. Reuse an existing host provider when appropriate; do not infer a `Sheet`, `Snackbar` or standalone `Toast` export. Check the installed package version before using these APIs.
+9. **Status presentation:** read [status presentation](references/status-presentation.md). Preserve an explicit project convention; otherwise recommend plain status text (also this repository’s convention). Soft StatusBadge is a task-specific alternative requiring a business reason, not a mandatory choice before delivery. Categories and roles remain plain text. This recommendation does not record user acceptance.
 
 ---
 
@@ -210,12 +214,12 @@ Forge currently has no `/templates/auth/*` source. For auth screens, compose the
 
 ## Strict Admin Mode
 
-Use this mode when the task asks for a 后台, 管理系统, admin console, business platform, SaaS app, module, or operational workflow.
+Use this full sequence only for an explicitly authorized complete-system implementation. Design-only, single-page and bounded module work use Workflow for new features and only relevant contracts. These scope rules take precedence over generic contract checklists. Do not infer implementation permission from “后台” or a module name.
 
 1. **PRD Intake Mode**: for normal PRDs, extract requirements directly; for large Word/PDF documents, first extract structured requirements. Do not summarize away object fields, states, actions, permissions, pages, flows, or acceptance criteria.
 2. Classify the archetype: `commerce-ops`, `project-ops`, `crm`, `approval`, `data-ops`, `support`, `finance`, `files`, `governance`, or `custom`.
 3. Read `references/contracts/system-brief.md` and the nearest `references/blueprints/<archetype>.md`.
-4. Produce a concise System Brief before implementation. If the request is narrow, still state the broader system and the first slice you will implement.
+4. Produce a concise System Brief before implementation. Describe only the authorized system scope; do not add modules or an implementation slice to a design-only request.
 5. For every core module you will implement, read `references/contracts/module-contract.md` and produce a Module Contract.
 6. Read `references/contracts/page-flow.md` and define routes, entry points, exits, URL state, and mobile behavior.
 7. Read `references/contracts/component-mapping.md`, then choose Forge components and templates.
@@ -240,17 +244,20 @@ node scripts/check-brief.mjs path/to/brief.md
 
 If a generated admin page feels like a report, stop and add the missing business loop: list or queue -> detail -> action -> feedback -> audit.
 
+## Business page design with dimensional-drawing
+
+For new pages, structural redesigns, or page specifications, read [page-design-dimensional](references/page-design-dimensional.md). For component sizing ownership, overflow, states and host responsibilities, read [component combination rules](references/component-recommended-standard.md). Start from the actual business task, research matching mature scaffold pages across languages, then use the installed `dimensional-drawing` skill to define slots, dimensions, responsive structure and evidence. Choose a template only after verifying task fit; product creation is not the default form layout. Reuse accepted designs and proceed within the user-authorized scope.
+
 ## Workflow for new features
 
-1. **Read the PRD**, extract: business objects, user roles, states, page list, main actions, data fields, permissions.
-2. **Model the admin system**: if the task is a back-office product or business system, use Strict Admin Mode and produce contracts before UI: business domain, roles, navigation groups, module map, resource contracts, cross-module links, work queues, settings, permissions, audit, and success paths.
-3. **Model each core module**: for every primary module, define list/detail/create/edit/delete, state transitions, top actions, filters/sorts, URL state, dialogs/drawers/routes, feedback states, and adjacent modules.
-4. **Pick page patterns**: app shell / dashboard / list / detail / form / settings / messages / calendar / profile / files / billing / team / audit / stepper / cards / chat. Read `references/page-patterns.md` when the page type is not obvious.
-5. **Pick skeletons**: operational system → start from `/templates/project-template/*`; commerce system → use `/templates/ecommerce/*`; custom → `<AppLayout>` plus a full navigation/module map. Do not make a single isolated CRUD page when the user asked for a system.
-6. **Decompose → compose**: break the system into shell, workbench/dashboard, core resource module, detail surface, mutation flows, settings/permissions, and audit/activity. Before using unfamiliar components, run `node scripts/list.mjs`, then `node scripts/get-component.mjs <name>` or `node scripts/get-case.mjs <name>`.
-7. **Colors = `fg-*`, icons = `@forge-ui-official/core/icons` + `color` prop.** No exceptions.
-8. **Missing primitive = ask; missing layout = compose.** If the Kit lacks a primitive or token, ask before extending. If the need is a business layout, compose existing Kit components.
-9. **Self-check**: run the project's typecheck/build command, start the project dev script, and verify in the browser with a screenshot. Check computed styles, not only DOM text.
+1. Establish the authorized scope: specification only, one page, a module, or a complete system. Do not invent modules, audit feeds, dashboards or network integrations to satisfy a template.
+2. Extract roles, objects, states, main task, fields, permissions and entry/return paths. For a whole admin system apply Strict Admin Mode; for one page use only relevant contracts.
+3. Read `references/page-design-dimensional.md`. Select a page pattern from the task; inspect a matching Forge case/template and record why it fits. Research mature sources when needed, with evidence labels.
+4. Produce slots, fixed/FLEX/HUG regions, gap ownership, overflow, responsive rules and relevant states. Separate recommended rules from implementation facts. Use dimensional-drawing for structural design.
+5. Each TBD needs reason, impact, temporary usable rule, decision owner and revisit trigger. Keep implementation defects and optional platform tests separate from specification completion.
+6. Before implementation, read real component props/case source. Compose existing Forge components; extend Core only within explicit authorization. Design-only work does not require building a business app.
+7. Verify to the requested delivery level: document links/formulas/diagram readability for a specification; build/typecheck and actual browser flows when implementation is authorized. Record user review separately.
+8. Deliver one review entry listing completed scope, recommended defaults, only genuinely blocking business choices, allowed TBDs, known implementation gaps and evidence limits. Do not require all historic defects or whole-library tests to pass for a standards deliverable.
 
 ---
 
@@ -263,23 +270,24 @@ If a generated admin page feels like a report, stop and add the missing business
 | `@forge-ui-official/core/icons` icon inherits an unexpected color | Parent `currentColor` is different from the intended semantic color | Use `color="#HEX"` or `color="var(--fg-violet)"` explicitly |
 | `@forge-ui-official/core/icons` icon looks squished | Wrapper has `p-*` or fixed height | Wrap with a square `w-X h-X` box or `inline-flex items-center` |
 | `Cannot find module "@forge-ui-official/core/styles.css"` | Package version too old (<0.1.0) | `pnpm update @forge-ui-official/core` |
-| Dialog appears as a white card in the page | `ConfirmationDialog` is only the content card | Wrap it in Radix/Headless UI Dialog or native `<dialog>` |
-| Code imports Toast, Snackbar, Drawer, or Sheet from Forge | Forge does not export these primitives | Use the host app's existing shell or ask before adding one |
+| Confirmation appears inline unexpectedly | `open` was omitted, selecting compatibility content mode | Supply controlled `open` / `onOpenChange`, or intentionally keep inline mode inside one existing shell |
+| Overlay API import fails | Installed package may differ from this checkout | Local source 0.4.7 exports Drawer, ToastProvider and useToast via the root UI barrel. Check installed exports/types; earliest supported release is not established here. Do not infer standalone Toast, Sheet or Snackbar |
 
 ---
 
 ## Pre-submit checklist
 
 - [ ] No hand-rolled `<div>` reproductions of Kit components
-- [ ] Semantic status uses `StatusBadge` default `soft` (Transaction look). No `solid`, no `Label`/hand-rolled pills, no rainbow on category/role
+- [ ] Composite components checked through their content layer using references/component-recommended-standard.md; table Cell* typography, row height, alignment and overflow compared with the installed case
+- [ ] Status follows references/status-presentation.md and the explicitly adopted project style; no unapproved soft default or rainbow enums
 - [ ] All colors are `fg-*` tokens, no bare Tailwind colors
 - [ ] All icons come from `@forge-ui-official/core/icons`; semantic colors use an explicit `color` prop
 - [ ] Layout uses `<AppLayout>` or an existing template
 - [ ] Source template recorded; fixed rail widths and field density preserved; breakpoint changes have browser evidence
-- [ ] System requests include navigation, module map, dashboard/workbench, core resource modules, settings/permissions, and audit/activity paths
+- [ ] Only authorized system implementation checks its required modules; design/single-page work does not invent dashboards, audit paths or modules
 - [ ] List search/filter/sort/page state is in URL when the view should be shareable
 - [ ] Detail pages include back/breadcrumbs, related data, and the next useful action
-- [ ] Dangerous actions use `ConfirmationDialog` inside a real dialog shell
+- [ ] Dangerous actions use controlled `ConfirmationDialog`, or inline mode inside one existing dialog shell
 - [ ] Form errors map back to fields, not only toast
-- [ ] `pnpm tsc --noEmit` passes
+- [ ] For authorized implementation, host typecheck/build passes; design-only delivery checks rules, links and diagrams
 - [ ] Screenshot compared against the design
