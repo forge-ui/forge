@@ -12,7 +12,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的区块；[区块目录](references/blocks.md) 是约 12 项抽取计划，尚非发布导出。
+2. **Blocks**：复用模板中职责明确的区块；[区块目录](references/blocks.md) 列出 12 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](references/components/button.md) 和 [组件选型](references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。

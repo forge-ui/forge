@@ -1,13 +1,13 @@
 {
   "package": "@forge-ui-official/core",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "source": "core/src/index.ts",
-  "revision": "a3c4ecdf3d9c33d575f2b4f8e481f2eac79af861",
+  "revision": "5c44e80d5ddee80ea3074e89eec91173572c5c64",
   "dirty": false,
-  "exportFingerprint": "7cd6543e01f50d5e25cc16591ed425dad4cc7b18",
-  "generatedAt": "2026-11-05T09:25:19+08:00",
+  "exportFingerprint": "2db7232e6d1dd28b9b495537e1e0cf78b4c3950f",
+  "generatedAt": "2026-11-05T14:14:35+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 457,
+  "componentCount": 483,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -1645,7 +1645,7 @@
       "module": "balance-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, balance, trend, trendDirection, subtitle, theme, balanceHidden, cardNumber, cardIcon, onTransfer, onRequest, density, width, className, }: { title?: string; balance: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: BalanceCardTheme; balanceHidden?: boolean; cardNumber?: string; cardIcon?: string; onTransfer?: () => void; onRequest?: () => void; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, balance, trend, trendDirection, subtitle, theme, balanceHidden, cardNumber, cardIcon, onTransfer, onRequest, density, width, className, }: { title?: string; balance: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: BalanceCardTheme; balanceHidden?: boolean; cardNumber?: string; cardIcon?: string; onTransfer?: () => void; onRequest?: () => void; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -1716,7 +1716,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": ""
         },
         {
@@ -1732,6 +1732,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "BalanceCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/balance-card.tsx",
+      "module": "balance-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "BarChart",
@@ -1940,6 +1949,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "BarChartStatCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/bar-chart-stat-card.tsx",
+      "module": "bar-chart-stat-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "BarColor",
@@ -4440,6 +4458,15 @@
       "props": []
     },
     {
+      "name": "CardDensity",
+      "kind": "type",
+      "source": "core/src/components/ui/card-utils.tsx",
+      "module": "card-utils",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "CardGlow",
       "kind": "value",
       "source": "core/src/components/ui/card-utils.tsx",
@@ -5079,6 +5106,68 @@
       ]
     },
     {
+      "name": "ChartHeader",
+      "kind": "value",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, subtitle, tabs, activeTab, defaultTab, onTabChange, action, }: { title: string; subtitle?: string; tabs?: string[]; activeTab?: string; defaultTab?: string; onTabChange?: (tab: string) => void; action?: ReactNode; }) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "subtitle",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "tabs",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "activeTab",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultTab",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTabChange",
+          "optional": true,
+          "type": "((tab: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "action",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ChartHeaderProps",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ChartLegendItem",
       "kind": "value",
       "source": "core/src/components/ui/charts/chart-legend-item.tsx",
@@ -5173,6 +5262,41 @@
       ]
     },
     {
+      "name": "ChartMetricRow",
+      "kind": "value",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ series }: { series: ChartMetricSeries[]; }) => JSX.Element",
+      "props": [
+        {
+          "name": "series",
+          "optional": false,
+          "type": "ChartMetricSeries[]",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ChartMetricRowProps",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChartMetricSeries",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ChartStatFooter",
       "kind": "value",
       "source": "core/src/components/ui/charts/chart-stat-footer.tsx",
@@ -5217,6 +5341,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ChartTrend",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ChartValueRow",
@@ -11267,6 +11400,80 @@
       "props": []
     },
     {
+      "name": "DivergingBarChart",
+      "kind": "value",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ data, upperColor, lowerColor, activeIndex, tooltipUpperValue, tooltipLowerValue, heightClass, upperLabel, lowerLabel, }: { upperLabel?: string; lowerLabel?: string; data: { label: string; upperValue: number; lowerValue: number; }[]; upperColor?: string; lowerColor?: string; activeIndex?: number; tooltipUpperValue?: string; tooltipLowerValue?: string; heightClass?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "upperLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "lowerLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "data",
+          "optional": false,
+          "type": "{ label: string; upperValue: number; lowerValue: number; }[]",
+          "description": ""
+        },
+        {
+          "name": "upperColor",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "lowerColor",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "activeIndex",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "tooltipUpperValue",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "tooltipLowerValue",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "heightClass",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "DivergingBarChartProps",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "DonutChart",
       "kind": "value",
       "source": "core/src/components/ui/charts/donut-chart.tsx",
@@ -16093,6 +16300,80 @@
       "props": []
     },
     {
+      "name": "GroupedBarChart",
+      "kind": "value",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ data, series, activeIndex, tooltipItems, yAxisLabels, heightClass, }: { data: GroupedBarPoint[]; series: ChartMetricSeries[]; activeIndex?: number; tooltipItems?: GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "data",
+          "optional": false,
+          "type": "GroupedBarPoint[]",
+          "description": ""
+        },
+        {
+          "name": "series",
+          "optional": false,
+          "type": "ChartMetricSeries[]",
+          "description": ""
+        },
+        {
+          "name": "activeIndex",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "tooltipItems",
+          "optional": true,
+          "type": "GroupedBarTooltipItem[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "yAxisLabels",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "heightClass",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "GroupedBarChartProps",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "GroupedBarPoint",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "GroupedBarTooltipItem",
+      "kind": "type",
+      "source": "core/src/components/ui/charts/dashboard-charts.tsx",
+      "module": "charts/dashboard-charts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "HalfDonutChart",
       "kind": "value",
       "source": "core/src/components/ui/charts/half-donut-chart.tsx",
@@ -16152,7 +16433,7 @@
       "module": "highlight-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, theme, image, annotations, products, density, width, className, }: { title: string; theme?: HighlightCardTheme; image: string; annotations?: Annotation[]; products?: Product[]; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, theme, image, annotations, products, density, width, className, }: { title: string; theme?: HighlightCardTheme; image: string; annotations?: Annotation[]; products?: Product[]; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -16187,7 +16468,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": "Use compact inside dense dashboards while preserving the default showcase scale."
         },
         {
@@ -16203,6 +16484,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "HighlightCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/highlight-card.tsx",
+      "module": "highlight-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "HistoryGrouped",
@@ -18514,7 +18804,7 @@
       "module": "image-stat-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, subtitle, value, trend, trendDirection, trendSubtitle, theme, size, action, onKebabClick, avatars, backgroundImage, backgroundImageAlt, density, width, className, }: { title: string; subtitle?: string; value: string; trend?: string; trendDirection?: TrendDirection; trendSubtitle?: string; theme?: ImageStatCardTheme; size?: ImageStatCardSize; action?: ReactNode; onKebabClick?: () => void; avatars?: string[]; backgroundImage?: string; backgroundImageAlt?: string; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, subtitle, value, trend, trendDirection, trendSubtitle, theme, size, action, onKebabClick, avatars, backgroundImage, backgroundImageAlt, density, width, className, }: { title: string; subtitle?: string; value: string; trend?: string; trendDirection?: TrendDirection; trendSubtitle?: string; theme?: ImageStatCardTheme; size?: ImageStatCardSize; action?: ReactNode; onKebabClick?: () => void; avatars?: string[]; backgroundImage?: string; backgroundImageAlt?: string; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -18597,7 +18887,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": "Use compact inside dense dashboards while preserving the default Figma showcase scale."
         },
         {
@@ -18613,6 +18903,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ImageStatCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/image-stat-card.tsx",
+      "module": "image-stat-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "InsightCard",
@@ -18861,7 +19160,7 @@
       "module": "line-chart-stat-card",
       "group": "ui",
       "oneShotDefault": true,
-      "signature": "({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, chartColor, chartDirection, series, icon, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: LineChartStatCardTheme; size?: StatCardSize; chartColor?: LineChartColor; chartDirection?: \"up\" | \"down\"; series?: number[]; icon?: ReactNode; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, chartColor, chartDirection, series, icon, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: LineChartStatCardTheme; size?: StatCardSize; chartColor?: LineChartColor; chartDirection?: \"up\" | \"down\"; series?: number[]; icon?: ReactNode; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -18956,7 +19255,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": ""
         },
         {
@@ -18972,6 +19271,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "LineChartStatCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/line-chart-stat-card.tsx",
+      "module": "line-chart-stat-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "LinkColor",
@@ -19111,7 +19419,7 @@
       "module": "list-group",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, subtitle, color, badge, items, action, tabs, activeTab, onTabChange, closable, onClose, density, className, }: { title: string; subtitle?: string; color?: AccentColor; badge?: ReactNode; items: ReactNode; action?: ReactNode; tabs?: ListGroupTab[]; activeTab?: string; onTabChange?: (value: string) => void; closable?: boolean; onClose?: () => void; density?: \"default\" | \"compact\"; className?: string; }) => JSX.Element",
+      "signature": "({ title, subtitle, color, badge, items, action, tabs, activeTab, onTabChange, closable, onClose, density, className, }: { title: string; subtitle?: string; color?: AccentColor; badge?: ReactNode; items: ReactNode; action?: ReactNode; tabs?: ListGroupTab[]; activeTab?: string; onTabChange?: (value: string) => void; closable?: boolean; onClose?: () => void; density?: CardDensity; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -19182,7 +19490,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": ""
         },
         {
@@ -19192,6 +19500,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ListGroupProps",
+      "kind": "type",
+      "source": "core/src/components/ui/list-group.tsx",
+      "module": "list-group",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ListGroupTab",
@@ -20696,6 +21013,1724 @@
       "props": []
     },
     {
+      "name": "Panel",
+      "kind": "value",
+      "source": "core/src/components/ui/panel.tsx",
+      "module": "panel",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, subtitle, action, footer, children, variant, gap, className, ...props }: PanelProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "subtitle",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "action",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "footer",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "optional": true,
+          "type": "\"dashboard\" | \"template\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "gap",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | \"none\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultChecked",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | number | readonly string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "accessKey",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "autoCapitalize",
+          "optional": true,
+          "type": "\"none\" | \"off\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {}) | undefined",
+          "description": ""
+        },
+        {
+          "name": "autoFocus",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "contentEditable",
+          "optional": true,
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "contextMenu",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "dir",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "draggable",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": ""
+        },
+        {
+          "name": "enterKeyHint",
+          "optional": true,
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "hidden",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "lang",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "nonce",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "slot",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "spellCheck",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": ""
+        },
+        {
+          "name": "style",
+          "optional": true,
+          "type": "CSSProperties | undefined",
+          "description": ""
+        },
+        {
+          "name": "tabIndex",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "translate",
+          "optional": true,
+          "type": "\"yes\" | \"no\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "radioGroup",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "role",
+          "optional": true,
+          "type": "AriaRole | undefined",
+          "description": ""
+        },
+        {
+          "name": "about",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "content",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "datatype",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "inlist",
+          "optional": true,
+          "type": "any",
+          "description": ""
+        },
+        {
+          "name": "prefix",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "property",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "rel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "resource",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "rev",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "typeof",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "vocab",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "autoCorrect",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "autoSave",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "itemProp",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "itemScope",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "itemType",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "itemID",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "itemRef",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "results",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "security",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "unselectable",
+          "optional": true,
+          "type": "\"off\" | \"on\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "popover",
+          "optional": true,
+          "type": "\"\" | \"auto\" | \"manual\" | \"hint\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "popoverTargetAction",
+          "optional": true,
+          "type": "\"toggle\" | \"show\" | \"hide\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "popoverTarget",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "inert",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "inputMode",
+          "optional": true,
+          "type": "\"none\" | \"search\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | undefined",
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents"
+        },
+        {
+          "name": "is",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Specify that a standard HTML element should behave like a defined custom built-in element"
+        },
+        {
+          "name": "exportparts",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "part",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "aria-activedescendant",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application."
+        },
+        {
+          "name": "aria-atomic",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute."
+        },
+        {
+          "name": "aria-autocomplete",
+          "optional": true,
+          "type": "\"none\" | \"list\" | \"inline\" | \"both\" | undefined",
+          "description": "Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be\npresented if they are made."
+        },
+        {
+          "name": "aria-braillelabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a string value that labels the current element, which is intended to be converted into Braille."
+        },
+        {
+          "name": "aria-brailleroledescription",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a human-readable, author-localized abbreviated description for the role of an element, which is intended to be converted into Braille."
+        },
+        {
+          "name": "aria-busy",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": ""
+        },
+        {
+          "name": "aria-checked",
+          "optional": true,
+          "type": "boolean | \"true\" | \"false\" | \"mixed\" | undefined",
+          "description": "Indicates the current \"checked\" state of checkboxes, radio buttons, and other widgets."
+        },
+        {
+          "name": "aria-colcount",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the total number of columns in a table, grid, or treegrid."
+        },
+        {
+          "name": "aria-colindex",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid."
+        },
+        {
+          "name": "aria-colindextext",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a human readable text alternative of aria-colindex."
+        },
+        {
+          "name": "aria-colspan",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid."
+        },
+        {
+          "name": "aria-controls",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the element (or elements) whose contents or presence are controlled by the current element."
+        },
+        {
+          "name": "aria-current",
+          "optional": true,
+          "type": "boolean | \"true\" | \"false\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\" | undefined",
+          "description": "Indicates the element that represents the current item within a container or set of related elements."
+        },
+        {
+          "name": "aria-describedby",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the element (or elements) that describes the object."
+        },
+        {
+          "name": "aria-description",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a string value that describes or annotates the current element."
+        },
+        {
+          "name": "aria-details",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the element that provides a detailed, extended description for the object."
+        },
+        {
+          "name": "aria-disabled",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable."
+        },
+        {
+          "name": "aria-dropeffect",
+          "optional": true,
+          "type": "\"none\" | \"link\" | \"copy\" | \"execute\" | \"move\" | \"popup\" | undefined",
+          "description": "Indicates what functions can be performed when a dragged object is released on the drop target."
+        },
+        {
+          "name": "aria-errormessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the element that provides an error message for the object."
+        },
+        {
+          "name": "aria-expanded",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed."
+        },
+        {
+          "name": "aria-flowto",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,\nallows assistive technology to override the general default of reading in document source order."
+        },
+        {
+          "name": "aria-grabbed",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates an element's \"grabbed\" state in a drag-and-drop operation."
+        },
+        {
+          "name": "aria-haspopup",
+          "optional": true,
+          "type": "boolean | \"true\" | \"false\" | \"dialog\" | \"grid\" | \"listbox\" | \"menu\" | \"tree\" | undefined",
+          "description": "Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element."
+        },
+        {
+          "name": "aria-hidden",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates whether the element is exposed to an accessibility API."
+        },
+        {
+          "name": "aria-invalid",
+          "optional": true,
+          "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\" | undefined",
+          "description": "Indicates the entered value does not conform to the format expected by the application."
+        },
+        {
+          "name": "aria-keyshortcuts",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element."
+        },
+        {
+          "name": "aria-label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a string value that labels the current element."
+        },
+        {
+          "name": "aria-labelledby",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies the element (or elements) that labels the current element."
+        },
+        {
+          "name": "aria-level",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the hierarchical level of an element within a structure."
+        },
+        {
+          "name": "aria-live",
+          "optional": true,
+          "type": "\"off\" | \"assertive\" | \"polite\" | undefined",
+          "description": "Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region."
+        },
+        {
+          "name": "aria-modal",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates whether an element is modal when displayed."
+        },
+        {
+          "name": "aria-multiline",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates whether a text box accepts multiple lines of input or only a single line."
+        },
+        {
+          "name": "aria-multiselectable",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates that the user may select more than one item from the current selectable descendants."
+        },
+        {
+          "name": "aria-orientation",
+          "optional": true,
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "description": "Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous."
+        },
+        {
+          "name": "aria-owns",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship\nbetween DOM elements where the DOM hierarchy cannot be used to represent the relationship."
+        },
+        {
+          "name": "aria-placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.\nA hint could be a sample value or a brief description of the expected format."
+        },
+        {
+          "name": "aria-posinset",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM."
+        },
+        {
+          "name": "aria-pressed",
+          "optional": true,
+          "type": "boolean | \"true\" | \"false\" | \"mixed\" | undefined",
+          "description": "Indicates the current \"pressed\" state of toggle buttons."
+        },
+        {
+          "name": "aria-readonly",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates that the element is not editable, but is otherwise operable."
+        },
+        {
+          "name": "aria-relevant",
+          "optional": true,
+          "type": "\"text\" | \"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text additions\" | \"text removals\" | undefined",
+          "description": "Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified."
+        },
+        {
+          "name": "aria-required",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates that user input is required on the element before a form may be submitted."
+        },
+        {
+          "name": "aria-roledescription",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a human-readable, author-localized description for the role of an element."
+        },
+        {
+          "name": "aria-rowcount",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the total number of rows in a table, grid, or treegrid."
+        },
+        {
+          "name": "aria-rowindex",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid."
+        },
+        {
+          "name": "aria-rowindextext",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines a human readable text alternative of aria-rowindex."
+        },
+        {
+          "name": "aria-rowspan",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid."
+        },
+        {
+          "name": "aria-selected",
+          "optional": true,
+          "type": "Booleanish | undefined",
+          "description": "Indicates the current \"selected\" state of various widgets."
+        },
+        {
+          "name": "aria-setsize",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM."
+        },
+        {
+          "name": "aria-sort",
+          "optional": true,
+          "type": "\"none\" | \"ascending\" | \"descending\" | \"other\" | undefined",
+          "description": "Indicates if items in a table or grid are sorted in ascending or descending order."
+        },
+        {
+          "name": "aria-valuemax",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the maximum allowed value for a range widget."
+        },
+        {
+          "name": "aria-valuemin",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the minimum allowed value for a range widget."
+        },
+        {
+          "name": "aria-valuenow",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Defines the current value for a range widget."
+        },
+        {
+          "name": "aria-valuetext",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Defines the human readable text alternative of aria-valuenow for a range widget."
+        },
+        {
+          "name": "dangerouslySetInnerHTML",
+          "optional": true,
+          "type": "{ __html: string | TrustedHTML; } | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCopy",
+          "optional": true,
+          "type": "ClipboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCopyCapture",
+          "optional": true,
+          "type": "ClipboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCut",
+          "optional": true,
+          "type": "ClipboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCutCapture",
+          "optional": true,
+          "type": "ClipboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPaste",
+          "optional": true,
+          "type": "ClipboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPasteCapture",
+          "optional": true,
+          "type": "ClipboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompositionEnd",
+          "optional": true,
+          "type": "CompositionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompositionEndCapture",
+          "optional": true,
+          "type": "CompositionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompositionStart",
+          "optional": true,
+          "type": "CompositionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompositionStartCapture",
+          "optional": true,
+          "type": "CompositionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompositionUpdate",
+          "optional": true,
+          "type": "CompositionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompositionUpdateCapture",
+          "optional": true,
+          "type": "CompositionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onFocus",
+          "optional": true,
+          "type": "FocusEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onFocusCapture",
+          "optional": true,
+          "type": "FocusEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onBlur",
+          "optional": true,
+          "type": "FocusEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onBlurCapture",
+          "optional": true,
+          "type": "FocusEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "ChangeEventHandler<HTMLDivElement, Element> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChangeCapture",
+          "optional": true,
+          "type": "ChangeEventHandler<HTMLDivElement, Element> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onBeforeInput",
+          "optional": true,
+          "type": "InputEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onBeforeInputCapture",
+          "optional": true,
+          "type": "InputEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onInput",
+          "optional": true,
+          "type": "InputEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onInputCapture",
+          "optional": true,
+          "type": "InputEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onReset",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onResetCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSubmit",
+          "optional": true,
+          "type": "SubmitEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSubmitCapture",
+          "optional": true,
+          "type": "SubmitEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onInvalid",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onInvalidCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoad",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onError",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onErrorCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onKeyDown",
+          "optional": true,
+          "type": "KeyboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onKeyDownCapture",
+          "optional": true,
+          "type": "KeyboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onKeyPress",
+          "optional": true,
+          "type": "KeyboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onKeyPressCapture",
+          "optional": true,
+          "type": "KeyboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onKeyUp",
+          "optional": true,
+          "type": "KeyboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onKeyUpCapture",
+          "optional": true,
+          "type": "KeyboardEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAbort",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAbortCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCanPlay",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCanPlayCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCanPlayThrough",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCanPlayThroughCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDurationChange",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDurationChangeCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEmptied",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEmptiedCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEncrypted",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEncryptedCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEnded",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEndedCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadedData",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadedDataCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadedMetadata",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadedMetadataCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadStart",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLoadStartCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPause",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPauseCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPlay",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPlayCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPlaying",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPlayingCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onProgress",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onProgressCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRateChange",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRateChangeCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSeeked",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSeekedCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSeeking",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSeekingCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onStalled",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onStalledCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSuspend",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSuspendCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTimeUpdate",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTimeUpdateCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onVolumeChange",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onVolumeChangeCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onWaiting",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onWaitingCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAuxClick",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAuxClickCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onClick",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onClickCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onContextMenu",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onContextMenuCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDoubleClick",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDoubleClickCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDrag",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragEnd",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragEndCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragEnter",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragEnterCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragExit",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragExitCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragLeave",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragLeaveCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragOver",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragOverCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragStart",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDragStartCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDrop",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDropCapture",
+          "optional": true,
+          "type": "DragEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseDown",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseDownCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseEnter",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseLeave",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseMove",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseMoveCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseOut",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseOutCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseOver",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseOverCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseUp",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onMouseUpCapture",
+          "optional": true,
+          "type": "MouseEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelectCapture",
+          "optional": true,
+          "type": "ReactEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchCancel",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchCancelCapture",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchEnd",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchEndCapture",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchMove",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchMoveCapture",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchStart",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTouchStartCapture",
+          "optional": true,
+          "type": "TouchEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerDown",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerDownCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerMove",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerMoveCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerUp",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerUpCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerCancel",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerCancelCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerEnter",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerLeave",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerOver",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerOverCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerOut",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPointerOutCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onGotPointerCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onGotPointerCaptureCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLostPointerCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onLostPointerCaptureCapture",
+          "optional": true,
+          "type": "PointerEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onScroll",
+          "optional": true,
+          "type": "UIEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onScrollCapture",
+          "optional": true,
+          "type": "UIEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onScrollEnd",
+          "optional": true,
+          "type": "UIEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onScrollEndCapture",
+          "optional": true,
+          "type": "UIEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onWheel",
+          "optional": true,
+          "type": "WheelEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onWheelCapture",
+          "optional": true,
+          "type": "WheelEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAnimationStart",
+          "optional": true,
+          "type": "AnimationEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAnimationStartCapture",
+          "optional": true,
+          "type": "AnimationEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAnimationEnd",
+          "optional": true,
+          "type": "AnimationEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAnimationEndCapture",
+          "optional": true,
+          "type": "AnimationEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAnimationIteration",
+          "optional": true,
+          "type": "AnimationEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onAnimationIterationCapture",
+          "optional": true,
+          "type": "AnimationEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onToggle",
+          "optional": true,
+          "type": "ToggleEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onBeforeToggle",
+          "optional": true,
+          "type": "ToggleEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionCancel",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionCancelCapture",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionEnd",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionEndCapture",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionRun",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionRunCapture",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionStart",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTransitionStartCapture",
+          "optional": true,
+          "type": "TransitionEventHandler<HTMLDivElement> | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PanelProps",
+      "kind": "type",
+      "source": "core/src/components/ui/panel.tsx",
+      "module": "panel",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "PieChart",
       "kind": "value",
       "source": "core/src/components/ui/charts/pie-chart.tsx",
@@ -21162,7 +23197,7 @@
       "module": "progress-stat-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, value, trend, trendDirection, subtitle, theme, size, progressValue, progressColor, icon, action, onKebabClick, density, width, className, }: { title: string; value: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: ProgressStatCardTheme; size?: StatCardSize; progressValue?: number; progressColor?: ProgressFillColor; icon?: ReactNode; action?: ReactNode; onKebabClick?: () => void; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, value, trend, trendDirection, subtitle, theme, size, progressValue, progressColor, icon, action, onKebabClick, density, width, className, }: { title: string; value: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: ProgressStatCardTheme; size?: StatCardSize; progressValue?: number; progressColor?: ProgressFillColor; icon?: ReactNode; action?: ReactNode; onKebabClick?: () => void; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -21239,7 +23274,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": "Use compact inside dense dashboards while preserving the default Figma showcase scale."
         },
         {
@@ -21255,6 +23290,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ProgressStatCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/progress-stat-card.tsx",
+      "module": "progress-stat-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ProjectCard",
@@ -22624,7 +24668,7 @@
       "module": "stat-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, icon, badgeVariant, action, onKebabClick, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: StatCardTheme; size?: StatCardSize; icon?: ReactNode; badgeVariant?: CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, icon, badgeVariant, action, onKebabClick, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: StatCardTheme; size?: StatCardSize; icon?: ReactNode; badgeVariant?: CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -22719,7 +24763,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": "Use compact inside dense dashboards while preserving the default Figma showcase scale."
         },
         {
@@ -22737,13 +24781,22 @@
       ]
     },
     {
+      "name": "StatCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/stat-card.tsx",
+      "module": "stat-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "StatCardShell",
       "kind": "value",
       "source": "core/src/components/ui/card-utils.tsx",
       "module": "card-utils",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, value, trend, trendDirection, subtitle, theme, themeKey, size, icon, iconVariant, action, chartSlot, footerSlot, density, width, className, }: { title: string; value: ReactNode; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme: CardThemeConfig; themeKey?: CardTheme; size?: StatCardSize; icon?: ReactNode; iconVariant?: CardBadgeVariant; action?: ReactNode; chartSlot?: ReactNode; footerSlot?: ReactNode; density?: \"default\" | \"compact\"; width?: CardWidth; className?: string; }) => JSX.Element",
+      "signature": "({ title, value, trend, trendDirection, subtitle, theme, themeKey, size, icon, iconVariant, action, chartSlot, footerSlot, density, width, className, }: { title: string; value: ReactNode; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme: CardThemeConfig; themeKey?: CardTheme; size?: StatCardSize; icon?: ReactNode; iconVariant?: CardBadgeVariant; action?: ReactNode; chartSlot?: ReactNode; footerSlot?: ReactNode; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -22826,7 +24879,7 @@
         {
           "name": "density",
           "optional": true,
-          "type": "\"default\" | \"compact\" | undefined",
+          "type": "CardDensity | undefined",
           "description": ""
         },
         {
@@ -32096,6 +34149,110 @@
       "props": []
     },
     {
+      "name": "WalletGoalCard",
+      "kind": "value",
+      "source": "core/src/components/ui/wallet-goal-card.tsx",
+      "module": "wallet-goal-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, date, amount, progress, progressColor, showActions, onEdit, onTopUp, onWithdraw, topUpLabel, withdrawLabel, editLabel, iconBg, icon, }: WalletGoalCardProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "date",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "amount",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "progress",
+          "optional": false,
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "progressColor",
+          "optional": false,
+          "type": "\"purple\" | \"blue\" | \"orange\" | \"green\" | \"yellow\" | \"cyan\" | \"red\"",
+          "description": ""
+        },
+        {
+          "name": "showActions",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEdit",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onTopUp",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onWithdraw",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "topUpLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "withdrawLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "editLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "iconBg",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "WalletGoalCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/wallet-goal-card.tsx",
+      "module": "wallet-goal-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "WheelChartStatCard",
       "kind": "value",
       "source": "core/src/components/ui/wheel-chart-stat-card.tsx",
@@ -32183,6 +34340,15 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "WheelChartStatCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/wheel-chart-stat-card.tsx",
+      "module": "wheel-chart-stat-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "WheelColor",

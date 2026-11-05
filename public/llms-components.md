@@ -1,14 +1,14 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.4.7
+Package: @forge-ui-official/core@0.5.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 31ce1cd676f86258ee7b25ad692f4dcb84e4f2c2d95470d3050ebc1553d2dc4e
+Source fingerprint: d082f16b2b214f216a07fe79adc067065a8dc31c0d612350570973eb245771e5
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Blocks are a plan, not implemented exports. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.5.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
-## Public exports (457, values and types distinguished)
+## Public exports (483, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -71,8 +71,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - AvatarInitialColor [type] — core/src/components/ui/avatar.tsx
 - AvatarSize [type] — core/src/components/ui/avatar.tsx
 - BalanceCard [value] — core/src/components/ui/balance-card.tsx
+- BalanceCardProps [type] — core/src/components/ui/balance-card.tsx
 - BarChart [value] — core/src/components/ui/charts/bar-chart.tsx
 - BarChartStatCard [value] — core/src/components/ui/bar-chart-stat-card.tsx
+- BarChartStatCardProps [type] — core/src/components/ui/bar-chart-stat-card.tsx
 - BarColor [type] — core/src/components/ui/bar-chart-stat-card.tsx
 - BarHorizontalChart [value] — core/src/components/ui/charts/bar-horizontal-chart.tsx
 - BarUpsideDownChart [value] — core/src/components/ui/charts/bar-upside-down-chart.tsx
@@ -99,6 +101,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - CalendarWeekRow [value] — core/src/components/ui/calendar-week-row.tsx
 - CardAvatarGroup [value] — core/src/components/ui/card-utils.tsx
 - CardBadgeVariant [type] — core/src/components/ui/card-utils.tsx
+- CardDensity [type] — core/src/components/ui/card-utils.tsx
 - CardGlow [value] — core/src/components/ui/card-utils.tsx
 - CardIconChip [value] — core/src/components/ui/card-utils.tsx
 - CardKebabButton [value] — core/src/components/ui/card-utils.tsx
@@ -125,10 +128,16 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - CellText [value] — core/src/components/ui/data-table.tsx
 - CellTextSubtitle [value] — core/src/components/ui/data-table.tsx
 - ChartCard [value] — core/src/components/ui/charts/chart-card.tsx
+- ChartHeader [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- ChartHeaderProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartLegendItem [value] — core/src/components/ui/charts/chart-legend-item.tsx
 - ChartListItem [value] — core/src/components/ui/charts/chart-list-item.tsx
+- ChartMetricRow [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- ChartMetricRowProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
+- ChartMetricSeries [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartStatFooter [value] — core/src/components/ui/charts/chart-stat-footer.tsx
 - ChartTooltip [value] — core/src/components/ui/charts/chart-tooltip.tsx
+- ChartTrend [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartValueRow [value] — core/src/components/ui/charts/chart-value-row.tsx
 - ChatBubble [value] — core/src/components/ui/chat-bubble.tsx
 - ChatInputBar [value] — core/src/components/ui/chat-input-bar.tsx
@@ -193,6 +202,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
+- DivergingBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- DivergingBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - DonutChart [value] — core/src/components/ui/charts/donut-chart.tsx
 - Drawer [value] — core/src/components/ui/drawer.tsx
 - DrawerProps [type] — core/src/components/ui/drawer.tsx
@@ -239,8 +250,13 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - GridProps [type] — core/src/components/layouts/grid.tsx
 - GridResponsive [type] — core/src/components/layouts/grid.tsx
 - GridSpan [type] — core/src/components/layouts/grid.tsx
+- GroupedBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- GroupedBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
+- GroupedBarPoint [type] — core/src/components/ui/charts/dashboard-charts.tsx
+- GroupedBarTooltipItem [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - HalfDonutChart [value] — core/src/components/ui/charts/half-donut-chart.tsx
 - HighlightCard [value] — core/src/components/ui/highlight-card.tsx
+- HighlightCardProps [type] — core/src/components/ui/highlight-card.tsx
 - HistoryGrouped [value] — core/src/components/ui/history-grouped.tsx
 - HistoryItem [value] — core/src/components/ui/history-item.tsx
 - HistoryItemColor [type] — core/src/components/ui/history-item.tsx
@@ -263,6 +279,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - ImageGrid [value] — core/src/components/ui/image-grid.tsx
 - ImageGridSize [type] — core/src/components/ui/image-grid.tsx
 - ImageStatCard [value] — core/src/components/ui/image-stat-card.tsx
+- ImageStatCardProps [type] — core/src/components/ui/image-stat-card.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightCards [value] — core/src/components/ui/agent/insight-cards.tsx
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -278,12 +295,14 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - LegacyCardTheme [type] — core/src/components/ui/card-utils.tsx
 - LineChartColor [type] — core/src/components/ui/line-chart-stat-card.tsx
 - LineChartStatCard [value] — core/src/components/ui/line-chart-stat-card.tsx
+- LineChartStatCardProps [type] — core/src/components/ui/line-chart-stat-card.tsx
 - LinkColor [type] — core/src/components/ui/link.tsx
 - LiquidTabs [value] — core/src/components/ui/liquid-tabs.tsx
 - LiquidTabsItem [type] — core/src/components/ui/liquid-tabs.tsx
 - LiquidTabsProps [type] — core/src/components/ui/liquid-tabs.tsx
 - LiquidTabsTab [type] — core/src/components/ui/liquid-tabs.tsx
 - ListGroup [value] — core/src/components/ui/list-group.tsx
+- ListGroupProps [type] — core/src/components/ui/list-group.tsx
 - ListGroupTab [type] — core/src/components/ui/list-group.tsx
 - ListItem [value] — core/src/components/ui/list-item.tsx
 - ListItemAvatarLead [type] — core/src/components/ui/list-item.tsx
@@ -333,6 +352,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - PageTitleToolbarVariant [type] — core/src/components/ui/toolbar.tsx
 - Pagination [value] — core/src/components/ui/pagination.tsx
 - PaginationColor [type] — core/src/components/ui/pagination.tsx
+- Panel [value] — core/src/components/ui/panel.tsx
+- PanelProps [type] — core/src/components/ui/panel.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
@@ -350,6 +371,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - ProgressLabelVariant [type] — core/src/components/ui/progress-bar.tsx
 - ProgressSize [type] — core/src/components/ui/progress-bar.tsx
 - ProgressStatCard [value] — core/src/components/ui/progress-stat-card.tsx
+- ProgressStatCardProps [type] — core/src/components/ui/progress-stat-card.tsx
 - ProjectCard [value] — core/src/components/ui/project-card.tsx
 - ProjectCardColor [type] — core/src/components/ui/project-card.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
@@ -380,6 +402,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
 - SmoothLineChart [value] — core/src/components/ui/charts/smooth-line-chart.tsx
 - StatCard [value] — core/src/components/ui/stat-card.tsx
+- StatCardProps [type] — core/src/components/ui/stat-card.tsx
 - StatCardShell [value] — core/src/components/ui/card-utils.tsx
 - StatCardSize [type] — core/src/components/ui/card-utils.tsx
 - statCardSizes [value] — core/src/components/ui/card-utils.tsx
@@ -465,7 +488,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - TypographyWeightSample [value] — core/src/components/ui/style-guide.tsx
 - UserCard [value] — core/src/components/ui/user-card.tsx
 - useToast [value] — core/src/components/ui/toast.tsx
+- WalletGoalCard [value] — core/src/components/ui/wallet-goal-card.tsx
+- WalletGoalCardProps [type] — core/src/components/ui/wallet-goal-card.tsx
 - WheelChartStatCard [value] — core/src/components/ui/wheel-chart-stat-card.tsx
+- WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 
 ---
@@ -474,7 +500,7 @@ Source: skills/forge-skill/references/components/accent-utils.md
 
 # accent-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AccentColor (type)
@@ -520,7 +546,7 @@ Source: skills/forge-skill/references/components/accordion.md
 
 # accordion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Accordion (value)
@@ -559,7 +585,7 @@ Source: skills/forge-skill/references/components/activity-card.md
 
 # activity-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ActivityCard (value)
@@ -591,7 +617,7 @@ Source: skills/forge-skill/references/components/add-member.md
 
 # add-member
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AddMember (value)
@@ -665,7 +691,7 @@ Source: skills/forge-skill/references/components/agent-code-block.md
 
 # agent-code-block
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentCodeBlock (value)
@@ -737,7 +763,7 @@ Source: skills/forge-skill/references/components/agent-diff-table.md
 
 # agent-diff-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentDiffChange (type)
@@ -791,7 +817,7 @@ Source: skills/forge-skill/references/components/agent-flowchart.md
 
 # agent-flowchart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentFlowchart (value)
@@ -848,7 +874,7 @@ Source: skills/forge-skill/references/components/agent-task-rows.md
 
 # agent-task-rows
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentTask (type)
@@ -899,7 +925,7 @@ Source: skills/forge-skill/references/components/app-layout.md
 
 # app-layout
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppLayout (value)
@@ -1124,7 +1150,7 @@ Source: skills/forge-skill/references/components/approval-card.md
 
 # approval-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ApprovalCard (value)
@@ -1164,7 +1190,7 @@ Source: skills/forge-skill/references/components/ask-ai.md
 
 # ask-ai
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAi (value)
@@ -1276,7 +1302,7 @@ Source: skills/forge-skill/references/components/ask-ai-fullscreen.md
 
 # ask-ai-fullscreen
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ASK_AI_FS_LAYER_ATTR (value)
@@ -1297,7 +1323,7 @@ Source: skills/forge-skill/references/components/ask-ai-types.md
 
 # ask-ai-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAiLink (type)
@@ -1352,7 +1378,7 @@ Source: skills/forge-skill/references/components/avatar.md
 
 # avatar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Avatar (value)
@@ -1405,7 +1431,7 @@ Source: skills/forge-skill/references/components/badge.md
 
 # badge
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ArtisticIcon (value)
@@ -1529,13 +1555,13 @@ Source: skills/forge-skill/references/components/balance-card.md
 
 # balance-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BalanceCard (value)
 
 ```ts
-({ title, balance, trend, trendDirection, subtitle, theme, balanceHidden, cardNumber, cardIcon, onTransfer, onRequest, density, width, className, }: { title?: string; balance: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: BalanceCardTheme; balanceHidden?: boolean; cardNumber?: string; cardIcon?: string; onTransfer?: () => void; onRequest?: () => void; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, balance, trend, trendDirection, subtitle, theme, balanceHidden, cardNumber, cardIcon, onTransfer, onRequest, density, width, className, }: { title?: string; balance: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: BalanceCardTheme; balanceHidden?: boolean; cardNumber?: string; cardIcon?: string; onTransfer?: () => void; onRequest?: () => void; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1551,9 +1577,15 @@ Source: skills/forge-skill/references/components/balance-card.md
 | `cardIcon` | 否 | `string \| undefined` |  |
 | `onTransfer` | 否 | `(() => void) \| undefined` |  |
 | `onRequest` | 否 | `(() => void) \| undefined` |  |
-| `density` | 否 | `"default" \| "compact" \| undefined` |  |
+| `density` | 否 | `CardDensity \| undefined` |  |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
+
+## BalanceCardProps (type)
+
+```ts
+export type BalanceCardProps = Parameters<typeof BalanceCard>[0];
+```
 
 ## 选型
 
@@ -1561,13 +1593,17 @@ Source: skills/forge-skill/references/components/balance-card.md
 - 支付卡展示（借记 / 信用） → `DebitCard` / `CreditCard`
 - 纯金额指标 → `StatCard`（`labelVariant="value"`）
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/bar-chart.md
 
 # bar-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChart (value)
@@ -1604,7 +1640,7 @@ Source: skills/forge-skill/references/components/bar-chart-stat-card.md
 
 # bar-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChartStatCard (value)
@@ -1628,6 +1664,12 @@ Source: skills/forge-skill/references/components/bar-chart-stat-card.md
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
 
+## BarChartStatCardProps (type)
+
+```ts
+export type BarChartStatCardProps = Parameters<typeof BarChartStatCard>[0];
+```
+
 ## BarColor (type)
 
 ```ts
@@ -1641,13 +1683,17 @@ export type BarColor = "purple" | "blue" | "green" | "red" | "orange" | "yellow"
 - 完成度占比 → `WheelChartStatCard`
 - 多维图表 → 用 `charts/` 下的 `BarChart`
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/bar-horizontal-chart.md
 
 # bar-horizontal-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarHorizontalChart (value)
@@ -1680,7 +1726,7 @@ Source: skills/forge-skill/references/components/bar-upside-down-chart.md
 
 # bar-upside-down-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarUpsideDownChart (value)
@@ -1710,7 +1756,7 @@ Source: skills/forge-skill/references/components/breadcrumbs.md
 
 # breadcrumbs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BreadcrumbColor (type)
@@ -1753,7 +1799,7 @@ Source: skills/forge-skill/references/components/bubble-chart.md
 
 # bubble-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BubbleChart (value)
@@ -1774,7 +1820,7 @@ Source: skills/forge-skill/references/components/button.md
 
 # button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Button (value)
@@ -2152,7 +2198,7 @@ Source: skills/forge-skill/references/components/button-group.md
 
 # button-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ButtonGroup (value)
@@ -2205,7 +2251,7 @@ Source: skills/forge-skill/references/components/calendar-card.md
 
 # calendar-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarCard (value)
@@ -2260,7 +2306,7 @@ Source: skills/forge-skill/references/components/calendar-day-cell.md
 
 # calendar-day-cell
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarDayCell (value)
@@ -2291,7 +2337,7 @@ Source: skills/forge-skill/references/components/calendar-week-row.md
 
 # calendar-week-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarWeekRow (value)
@@ -2316,7 +2362,7 @@ Source: skills/forge-skill/references/components/card-utils.md
 
 # card-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ALL_CARD_THEMES (value)
@@ -2342,6 +2388,12 @@ readonly CardTheme[]
 
 ```ts
 export type CardBadgeVariant = "default" | "greyBg" | "solid" | "opacity" | "white";
+```
+
+## CardDensity (type)
+
+```ts
+export type CardDensity = "default" | "compact";
 ```
 
 ## CardGlow (value)
@@ -2557,7 +2609,7 @@ export type LegacyCardTheme = "dark" | "orange";
 ## StatCardShell (value)
 
 ```ts
-({ title, value, trend, trendDirection, subtitle, theme, themeKey, size, icon, iconVariant, action, chartSlot, footerSlot, density, width, className, }: { title: string; value: ReactNode; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme: CardThemeConfig; themeKey?: CardTheme; size?: StatCardSize; icon?: ReactNode; iconVariant?: CardBadgeVariant; action?: ReactNode; chartSlot?: ReactNode; footerSlot?: ReactNode; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, value, trend, trendDirection, subtitle, theme, themeKey, size, icon, iconVariant, action, chartSlot, footerSlot, density, width, className, }: { title: string; value: ReactNode; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme: CardThemeConfig; themeKey?: CardTheme; size?: StatCardSize; icon?: ReactNode; iconVariant?: CardBadgeVariant; action?: ReactNode; chartSlot?: ReactNode; footerSlot?: ReactNode; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -2575,7 +2627,7 @@ export type LegacyCardTheme = "dark" | "orange";
 | `action` | 否 | `ReactNode` |  |
 | `chartSlot` | 否 | `ReactNode` |  |
 | `footerSlot` | 否 | `ReactNode` |  |
-| `density` | 否 | `"default" \| "compact" \| undefined` |  |
+| `density` | 否 | `CardDensity \| undefined` |  |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -2624,7 +2676,7 @@ Source: skills/forge-skill/references/components/chart-card.md
 
 # chart-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartCard (value)
@@ -2652,7 +2704,7 @@ Source: skills/forge-skill/references/components/chart-legend-item.md
 
 # chart-legend-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartLegendItem (value)
@@ -2675,7 +2727,7 @@ Source: skills/forge-skill/references/components/chart-list-item.md
 
 # chart-list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartListItem (value)
@@ -2700,7 +2752,7 @@ Source: skills/forge-skill/references/components/chart-stat-footer.md
 
 # chart-stat-footer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartStatFooter (value)
@@ -2720,7 +2772,7 @@ Source: skills/forge-skill/references/components/chart-tooltip.md
 
 # chart-tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartTooltip (value)
@@ -2740,7 +2792,7 @@ Source: skills/forge-skill/references/components/chart-value-row.md
 
 # chart-value-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartValueRow (value)
@@ -2763,7 +2815,7 @@ Source: skills/forge-skill/references/components/chat-bubble.md
 
 # chat-bubble
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatBubble (value)
@@ -2809,7 +2861,7 @@ Source: skills/forge-skill/references/components/chat-input-bar.md
 
 # chat-input-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatInputBar (value)
@@ -2948,7 +3000,7 @@ Source: skills/forge-skill/references/components/chat-interactions.md
 
 # chat-interactions
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatReaction (type)
@@ -2969,7 +3021,7 @@ Source: skills/forge-skill/references/components/checkbox.md
 
 # checkbox
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checkbox (value)
@@ -3587,7 +3639,7 @@ Source: skills/forge-skill/references/components/checklist.md
 
 # checklist
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checklist (value)
@@ -3654,7 +3706,7 @@ Source: skills/forge-skill/references/components/command-search.md
 
 # command-search
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommandSearch (value)
@@ -3700,7 +3752,7 @@ Source: skills/forge-skill/references/components/comment-item.md
 
 # comment-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommentData (type)
@@ -3756,7 +3808,7 @@ Source: skills/forge-skill/references/components/composer-types.md
 
 # composer-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ComposerModel (type)
@@ -3789,7 +3841,7 @@ Source: skills/forge-skill/references/components/confirmation-dialog.md
 
 # confirmation-dialog
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ConfirmationDialog (value)
@@ -3841,7 +3893,7 @@ Source: skills/forge-skill/references/components/contact-item.md
 
 # contact-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContactItem (value)
@@ -3876,7 +3928,7 @@ Source: skills/forge-skill/references/components/context-cards.md
 
 # context-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContextCards (value)
@@ -3913,7 +3965,7 @@ Source: skills/forge-skill/references/components/credit-card.md
 
 # credit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CreditCard (value)
@@ -3947,7 +3999,7 @@ Source: skills/forge-skill/references/components/currency-converter.md
 
 # currency-converter
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CurrencyConverter (value)
@@ -3991,11 +4043,147 @@ export type CurrencyConverterColor = "purple" | "blue" | "dark";
 
 ---
 
+Source: skills/forge-skill/references/components/dashboard-charts.md
+
+# dashboard-charts
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.5.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ChartHeader (value)
+
+```ts
+({ title, subtitle, tabs, activeTab, defaultTab, onTabChange, action, }: { title: string; subtitle?: string; tabs?: string[]; activeTab?: string; defaultTab?: string; onTabChange?: (tab: string) => void; action?: ReactNode; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `string` |  |
+| `subtitle` | 否 | `string \| undefined` |  |
+| `tabs` | 否 | `string[] \| undefined` |  |
+| `activeTab` | 否 | `string \| undefined` |  |
+| `defaultTab` | 否 | `string \| undefined` |  |
+| `onTabChange` | 否 | `((tab: string) => void) \| undefined` |  |
+| `action` | 否 | `ReactNode` |  |
+
+## ChartHeaderProps (type)
+
+```ts
+export type ChartHeaderProps = Parameters<typeof ChartHeader>[0];
+```
+
+## ChartMetricRow (value)
+
+```ts
+({ series }: { series: ChartMetricSeries[]; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `series` | 是 | `ChartMetricSeries[]` |  |
+
+## ChartMetricRowProps (type)
+
+```ts
+export type ChartMetricRowProps = Parameters<typeof ChartMetricRow>[0];
+```
+
+## ChartMetricSeries (type)
+
+```ts
+export type ChartMetricSeries = {
+  label: string;
+  colorClass: string;
+  value?: string;
+  trend?: ChartTrend;
+  trendValue?: string;
+};
+```
+
+## ChartTrend (type)
+
+```ts
+export type ChartTrend = "up" | "down";
+```
+
+## DivergingBarChart (value)
+
+```ts
+({ data, upperColor, lowerColor, activeIndex, tooltipUpperValue, tooltipLowerValue, heightClass, upperLabel, lowerLabel, }: { upperLabel?: string; lowerLabel?: string; data: { label: string; upperValue: number; lowerValue: number; }[]; upperColor?: string; lowerColor?: string; activeIndex?: number; tooltipUpperValue?: string; tooltipLowerValue?: string; heightClass?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `upperLabel` | 否 | `string \| undefined` |  |
+| `lowerLabel` | 否 | `string \| undefined` |  |
+| `data` | 是 | `{ label: string; upperValue: number; lowerValue: number; }[]` |  |
+| `upperColor` | 否 | `string \| undefined` |  |
+| `lowerColor` | 否 | `string \| undefined` |  |
+| `activeIndex` | 否 | `number \| undefined` |  |
+| `tooltipUpperValue` | 否 | `string \| undefined` |  |
+| `tooltipLowerValue` | 否 | `string \| undefined` |  |
+| `heightClass` | 否 | `string \| undefined` |  |
+
+## DivergingBarChartProps (type)
+
+```ts
+export type DivergingBarChartProps = Parameters<typeof DivergingBarChart>[0];
+```
+
+## GroupedBarChart (value)
+
+```ts
+({ data, series, activeIndex, tooltipItems, yAxisLabels, heightClass, }: { data: GroupedBarPoint[]; series: ChartMetricSeries[]; activeIndex?: number; tooltipItems?: GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `data` | 是 | `GroupedBarPoint[]` |  |
+| `series` | 是 | `ChartMetricSeries[]` |  |
+| `activeIndex` | 否 | `number \| undefined` |  |
+| `tooltipItems` | 否 | `GroupedBarTooltipItem[] \| undefined` |  |
+| `yAxisLabels` | 否 | `string[] \| undefined` |  |
+| `heightClass` | 否 | `string \| undefined` |  |
+
+## GroupedBarChartProps (type)
+
+```ts
+export type GroupedBarChartProps = Parameters<typeof GroupedBarChart>[0];
+```
+
+## GroupedBarPoint (type)
+
+```ts
+export type GroupedBarPoint = {
+  label: string;
+  values: number[];
+};
+```
+
+## GroupedBarTooltipItem (type)
+
+```ts
+export type GroupedBarTooltipItem = {
+  label: string;
+  value: string;
+  colorClass: string;
+  trend?: ChartTrend;
+};
+```
+
+## 选型建议
+
+ChartHeader 为可控/非可控页签标题；ChartMetricRow 为指标与趋势；GroupedBarChart 为多系列分组柱；DivergingBarChart 为上下柱。均保留模板样式，非交互图形编辑器。数据、颜色、轴与趋势文案由调用方提供；示例见 /cases/dashboard-kit。
+
+导入自 `@forge-ui-official/core`；交互示例 `/cases/dashboard-kit`，Blocks 画廊 `/blocks`。源码实现不等于截图验收或 npm 已发布。
+
+---
+
 Source: skills/forge-skill/references/components/dashed-half-donut-chart.md
 
 # dashed-half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DashedHalfDonutChart (value)
@@ -4020,7 +4208,7 @@ Source: skills/forge-skill/references/components/data-table.md
 
 # data-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CellActionKey (type)
@@ -4506,7 +4694,7 @@ Source: skills/forge-skill/references/components/datepicker.md
 
 # datepicker
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Datepicker (value)
@@ -4566,7 +4754,7 @@ Source: skills/forge-skill/references/components/debit-card.md
 
 # debit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DebitCard (value)
@@ -4599,7 +4787,7 @@ Source: skills/forge-skill/references/components/donut-chart.md
 
 # donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DonutChart (value)
@@ -4631,7 +4819,7 @@ Source: skills/forge-skill/references/components/drawer.md
 
 # drawer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Drawer (value)
@@ -4667,7 +4855,7 @@ Source: skills/forge-skill/references/components/dropdown-panel.md
 
 # dropdown-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DropdownDivider (value)
@@ -4702,7 +4890,7 @@ Source: skills/forge-skill/references/components/event-card.md
 
 # event-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventCard (value)
@@ -4737,7 +4925,7 @@ Source: skills/forge-skill/references/components/event-tag.md
 
 # event-tag
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventTag (value)
@@ -4784,7 +4972,7 @@ Source: skills/forge-skill/references/components/file-upload.md
 
 # file-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileCard (value)
@@ -4865,7 +5053,7 @@ Source: skills/forge-skill/references/components/filter-group.md
 
 # filter-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterGroup (value)
@@ -4949,7 +5137,7 @@ Source: skills/forge-skill/references/components/filter-panel.md
 
 # filter-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterPanel (value)
@@ -4981,7 +5169,7 @@ Source: skills/forge-skill/references/components/filter-trigger.md
 
 # filter-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterTrigger (value)
@@ -5009,7 +5197,7 @@ Source: skills/forge-skill/references/components/folder.md
 
 # folder
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Folder (value)
@@ -5090,7 +5278,7 @@ Source: skills/forge-skill/references/components/folder-float.md
 
 # folder-float
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FolderFloat (value)
@@ -5127,7 +5315,7 @@ Source: skills/forge-skill/references/components/full-calendar.md
 
 # full-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarEvent (type)
@@ -5173,7 +5361,7 @@ Source: skills/forge-skill/references/components/grid.md
 
 # grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Grid (value)
@@ -5821,7 +6009,7 @@ Source: skills/forge-skill/references/components/half-donut-chart.md
 
 # half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HalfDonutChart (value)
@@ -5846,13 +6034,13 @@ Source: skills/forge-skill/references/components/highlight-card.md
 
 # highlight-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HighlightCard (value)
 
 ```ts
-({ title, theme, image, annotations, products, density, width, className, }: { title: string; theme?: HighlightCardTheme; image: string; annotations?: Annotation[]; products?: Product[]; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, theme, image, annotations, products, density, width, className, }: { title: string; theme?: HighlightCardTheme; image: string; annotations?: Annotation[]; products?: Product[]; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -5862,9 +6050,15 @@ Source: skills/forge-skill/references/components/highlight-card.md
 | `image` | 是 | `string` |  |
 | `annotations` | 否 | `Annotation[] \| undefined` |  |
 | `products` | 否 | `Product[] \| undefined` |  |
-| `density` | 否 | `"default" \| "compact" \| undefined` | Use compact inside dense dashboards while preserving the default showcase scale. |
+| `density` | 否 | `CardDensity \| undefined` | Use compact inside dense dashboards while preserving the default showcase scale. |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
+
+## HighlightCardProps (type)
+
+```ts
+export type HighlightCardProps = Parameters<typeof HighlightCard>[0];
+```
 
 ## 选型
 
@@ -5872,13 +6066,17 @@ Source: skills/forge-skill/references/components/highlight-card.md
 - 单纯指标 → 用 `StatCard` 家族
 - 产品卡列表 → 用 `ProductRow`
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/history-grouped.md
 
 # history-grouped
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryGrouped (value)
@@ -5910,7 +6108,7 @@ Source: skills/forge-skill/references/components/history-item.md
 
 # history-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryItem (value)
@@ -5982,7 +6180,7 @@ Source: skills/forge-skill/references/components/icon-button.md
 
 # icon-button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconButton (value)
@@ -6336,7 +6534,7 @@ Source: skills/forge-skill/references/components/icon-selector.md
 
 # icon-selector
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorPicker (value)
@@ -6396,7 +6594,7 @@ Source: skills/forge-skill/references/components/icon-trigger.md
 
 # icon-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconTrigger (value)
@@ -6453,7 +6651,7 @@ Source: skills/forge-skill/references/components/image-grid.md
 
 # image-grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageGrid (value)
@@ -6486,13 +6684,13 @@ Source: skills/forge-skill/references/components/image-stat-card.md
 
 # image-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageStatCard (value)
 
 ```ts
-({ title, subtitle, value, trend, trendDirection, trendSubtitle, theme, size, action, onKebabClick, avatars, backgroundImage, backgroundImageAlt, density, width, className, }: { title: string; subtitle?: string; value: string; trend?: string; trendDirection?: TrendDirection; trendSubtitle?: string; theme?: ImageStatCardTheme; size?: ImageStatCardSize; action?: ReactNode; onKebabClick?: () => void; avatars?: string[]; backgroundImage?: string; backgroundImageAlt?: string; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, subtitle, value, trend, trendDirection, trendSubtitle, theme, size, action, onKebabClick, avatars, backgroundImage, backgroundImageAlt, density, width, className, }: { title: string; subtitle?: string; value: string; trend?: string; trendDirection?: TrendDirection; trendSubtitle?: string; theme?: ImageStatCardTheme; size?: ImageStatCardSize; action?: ReactNode; onKebabClick?: () => void; avatars?: string[]; backgroundImage?: string; backgroundImageAlt?: string; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -6510,9 +6708,15 @@ Source: skills/forge-skill/references/components/image-stat-card.md
 | `avatars` | 否 | `string[] \| undefined` | Bottom-right overlapping avatar group. Hidden when `backgroundImage` is set. |
 | `backgroundImage` | 否 | `string \| undefined` | Subject photo source (e.g. team-of-the-month portrait). Pinned to the card's bottom-right; text content stays in the left half above it. |
 | `backgroundImageAlt` | 否 | `string \| undefined` |  |
-| `density` | 否 | `"default" \| "compact" \| undefined` | Use compact inside dense dashboards while preserving the default Figma showcase scale. |
+| `density` | 否 | `CardDensity \| undefined` | Use compact inside dense dashboards while preserving the default Figma showcase scale. |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
+
+## ImageStatCardProps (type)
+
+```ts
+export type ImageStatCardProps = Parameters<typeof ImageStatCard>[0];
+```
 
 ## 选型
 
@@ -6520,13 +6724,17 @@ Source: skills/forge-skill/references/components/image-stat-card.md
 - 日期范围的汇总指标 → 用 `subtitle` 标注期间
 - 纯数字指标不需要头像 → `StatCard lg`
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/insight-cards.md
 
 # insight-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InsightCard (type)
@@ -6589,7 +6797,7 @@ Source: skills/forge-skill/references/components/kebab-menu.md
 
 # kebab-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## KebabMenu (value)
@@ -6636,7 +6844,7 @@ Source: skills/forge-skill/references/components/line-chart-stat-card.md
 
 # line-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LineChartColor (type)
@@ -6649,7 +6857,7 @@ export type LineChartColor =
 ## LineChartStatCard (value)
 
 ```ts
-({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, chartColor, chartDirection, series, icon, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: LineChartStatCardTheme; size?: StatCardSize; chartColor?: LineChartColor; chartDirection?: "up" | "down"; series?: number[]; icon?: ReactNode; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, chartColor, chartDirection, series, icon, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: LineChartStatCardTheme; size?: StatCardSize; chartColor?: LineChartColor; chartDirection?: "up" | "down"; series?: number[]; icon?: ReactNode; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -6669,9 +6877,15 @@ export type LineChartColor =
 | `chartDirection` | 否 | `"up" \| "down" \| undefined` |  |
 | `series` | 否 | `number[] \| undefined` | Optional data points for the wide-mode line chart. Ignored when size !== "wide". |
 | `icon` | 否 | `ReactNode` | Icon for the top-right chip (only rendered in size="wide"). |
-| `density` | 否 | `"default" \| "compact" \| undefined` |  |
+| `density` | 否 | `CardDensity \| undefined` |  |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
+
+## LineChartStatCardProps (type)
+
+```ts
+export type LineChartStatCardProps = Parameters<typeof LineChartStatCard>[0];
+```
 
 ## 选型
 
@@ -6680,13 +6894,17 @@ export type LineChartColor =
 - 带百分比进度 → `ProgressStatCard`
 - 多数据对比 → `BarChartStatCard`
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/link.md
 
 # link
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LinkColor (type)
@@ -6725,7 +6943,7 @@ Source: skills/forge-skill/references/components/liquid-tabs.md
 
 # liquid-tabs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LiquidTabs (value)
@@ -6790,13 +7008,13 @@ Source: skills/forge-skill/references/components/list-group.md
 
 # list-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ListGroup (value)
 
 ```ts
-({ title, subtitle, color, badge, items, action, tabs, activeTab, onTabChange, closable, onClose, density, className, }: { title: string; subtitle?: string; color?: AccentColor; badge?: ReactNode; items: ReactNode; action?: ReactNode; tabs?: ListGroupTab[]; activeTab?: string; onTabChange?: (value: string) => void; closable?: boolean; onClose?: () => void; density?: "default" | "compact"; className?: string; }) => JSX.Element
+({ title, subtitle, color, badge, items, action, tabs, activeTab, onTabChange, closable, onClose, density, className, }: { title: string; subtitle?: string; color?: AccentColor; badge?: ReactNode; items: ReactNode; action?: ReactNode; tabs?: ListGroupTab[]; activeTab?: string; onTabChange?: (value: string) => void; closable?: boolean; onClose?: () => void; density?: CardDensity; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -6812,8 +7030,14 @@ Source: skills/forge-skill/references/components/list-group.md
 | `onTabChange` | 否 | `((value: string) => void) \| undefined` |  |
 | `closable` | 否 | `boolean \| undefined` |  |
 | `onClose` | 否 | `(() => void) \| undefined` |  |
-| `density` | 否 | `"default" \| "compact" \| undefined` |  |
+| `density` | 否 | `CardDensity \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
+
+## ListGroupProps (type)
+
+```ts
+export type ListGroupProps = Parameters<typeof ListGroup>[0];
+```
 
 ## ListGroupTab (type)
 
@@ -6827,13 +7051,17 @@ export type ListGroupTab = { value: string; label: string };
 - 纯列表无卡外框 → 直接用一串 `ListItem`
 - 带 tab 切换数据源 → `tabs` + `activeTab`
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/list-item.md
 
 # list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DescriptionItem (value)
@@ -6934,7 +7162,7 @@ Source: skills/forge-skill/references/components/map-card.md
 
 # map-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MapCard (value)
@@ -6999,7 +7227,7 @@ Source: skills/forge-skill/references/components/media-upload.md
 
 # media-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MediaItem (type)
@@ -7057,7 +7285,7 @@ Source: skills/forge-skill/references/components/menu-item.md
 
 # menu-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MenuItem (value)
@@ -7135,7 +7363,7 @@ Source: skills/forge-skill/references/components/meter-chart.md
 
 # meter-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MeterChart (value)
@@ -7159,7 +7387,7 @@ Source: skills/forge-skill/references/components/modal.md
 
 # modal
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Modal (value)
@@ -7202,7 +7430,7 @@ Source: skills/forge-skill/references/components/motion.md
 
 # motion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MotionPreference (type)
@@ -7217,7 +7445,7 @@ Source: skills/forge-skill/references/components/multilayer-donut-chart.md
 
 # multilayer-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MultilayerDonutChart (value)
@@ -7245,7 +7473,7 @@ Source: skills/forge-skill/references/components/notification-item.md
 
 # notification-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## NotificationItem (value)
@@ -7285,7 +7513,7 @@ Source: skills/forge-skill/references/components/otp-input.md
 
 # otp-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## OtpInput (value)
@@ -7350,7 +7578,7 @@ Source: skills/forge-skill/references/components/page-dot.md
 
 # page-dot
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageDot (value)
@@ -7384,7 +7612,7 @@ Source: skills/forge-skill/references/components/page-header.md
 
 # page-header
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageHeader (value)
@@ -7569,7 +7797,7 @@ Source: skills/forge-skill/references/components/pagination.md
 
 # pagination
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Pagination (value)
@@ -7601,11 +7829,332 @@ export type PaginationColor = PageDotColor;
 
 ---
 
+Source: skills/forge-skill/references/components/panel.md
+
+# panel
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.5.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Panel (value)
+
+```ts
+({ title, subtitle, action, footer, children, variant, gap, className, ...props }: PanelProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 否 | `ReactNode` |  |
+| `subtitle` | 否 | `ReactNode` |  |
+| `action` | 否 | `ReactNode` |  |
+| `footer` | 否 | `ReactNode` |  |
+| `children` | 是 | `ReactNode` |  |
+| `variant` | 否 | `"dashboard" \| "template" \| undefined` |  |
+| `gap` | 否 | `"md" \| "sm" \| "none" \| undefined` |  |
+| `color` | 否 | `string \| undefined` |  |
+| `defaultChecked` | 否 | `boolean \| undefined` |  |
+| `defaultValue` | 否 | `string \| number \| readonly string[] \| undefined` |  |
+| `suppressContentEditableWarning` | 否 | `boolean \| undefined` |  |
+| `suppressHydrationWarning` | 否 | `boolean \| undefined` |  |
+| `accessKey` | 否 | `string \| undefined` |  |
+| `autoCapitalize` | 否 | `"none" \| "off" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {}) \| undefined` |  |
+| `autoFocus` | 否 | `boolean \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `contentEditable` | 否 | `Booleanish \| "inherit" \| "plaintext-only" \| undefined` |  |
+| `contextMenu` | 否 | `string \| undefined` |  |
+| `dir` | 否 | `string \| undefined` |  |
+| `draggable` | 否 | `Booleanish \| undefined` |  |
+| `enterKeyHint` | 否 | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send" \| undefined` |  |
+| `hidden` | 否 | `boolean \| undefined` |  |
+| `id` | 否 | `string \| undefined` |  |
+| `lang` | 否 | `string \| undefined` |  |
+| `nonce` | 否 | `string \| undefined` |  |
+| `slot` | 否 | `string \| undefined` |  |
+| `spellCheck` | 否 | `Booleanish \| undefined` |  |
+| `style` | 否 | `CSSProperties \| undefined` |  |
+| `tabIndex` | 否 | `number \| undefined` |  |
+| `translate` | 否 | `"yes" \| "no" \| undefined` |  |
+| `radioGroup` | 否 | `string \| undefined` |  |
+| `role` | 否 | `AriaRole \| undefined` |  |
+| `about` | 否 | `string \| undefined` |  |
+| `content` | 否 | `string \| undefined` |  |
+| `datatype` | 否 | `string \| undefined` |  |
+| `inlist` | 否 | `any` |  |
+| `prefix` | 否 | `string \| undefined` |  |
+| `property` | 否 | `string \| undefined` |  |
+| `rel` | 否 | `string \| undefined` |  |
+| `resource` | 否 | `string \| undefined` |  |
+| `rev` | 否 | `string \| undefined` |  |
+| `typeof` | 否 | `string \| undefined` |  |
+| `vocab` | 否 | `string \| undefined` |  |
+| `autoCorrect` | 否 | `string \| undefined` |  |
+| `autoSave` | 否 | `string \| undefined` |  |
+| `itemProp` | 否 | `string \| undefined` |  |
+| `itemScope` | 否 | `boolean \| undefined` |  |
+| `itemType` | 否 | `string \| undefined` |  |
+| `itemID` | 否 | `string \| undefined` |  |
+| `itemRef` | 否 | `string \| undefined` |  |
+| `results` | 否 | `number \| undefined` |  |
+| `security` | 否 | `string \| undefined` |  |
+| `unselectable` | 否 | `"off" \| "on" \| undefined` |  |
+| `popover` | 否 | `"" \| "auto" \| "manual" \| "hint" \| undefined` |  |
+| `popoverTargetAction` | 否 | `"toggle" \| "show" \| "hide" \| undefined` |  |
+| `popoverTarget` | 否 | `string \| undefined` |  |
+| `inert` | 否 | `boolean \| undefined` |  |
+| `inputMode` | 否 | `"none" \| "search" \| "text" \| "tel" \| "url" \| "email" \| "numeric" \| "decimal" \| undefined` | Hints at the type of data that might be entered by the user while editing the element or its contents |
+| `is` | 否 | `string \| undefined` | Specify that a standard HTML element should behave like a defined custom built-in element |
+| `exportparts` | 否 | `string \| undefined` |  |
+| `part` | 否 | `string \| undefined` |  |
+| `aria-activedescendant` | 否 | `string \| undefined` | Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. |
+| `aria-atomic` | 否 | `Booleanish \| undefined` | Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. |
+| `aria-autocomplete` | 否 | `"none" \| "list" \| "inline" \| "both" \| undefined` | Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be presented if they are made. |
+| `aria-braillelabel` | 否 | `string \| undefined` | Defines a string value that labels the current element, which is intended to be converted into Braille. |
+| `aria-brailleroledescription` | 否 | `string \| undefined` | Defines a human-readable, author-localized abbreviated description for the role of an element, which is intended to be converted into Braille. |
+| `aria-busy` | 否 | `Booleanish \| undefined` |  |
+| `aria-checked` | 否 | `boolean \| "true" \| "false" \| "mixed" \| undefined` | Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. |
+| `aria-colcount` | 否 | `number \| undefined` | Defines the total number of columns in a table, grid, or treegrid. |
+| `aria-colindex` | 否 | `number \| undefined` | Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid. |
+| `aria-colindextext` | 否 | `string \| undefined` | Defines a human readable text alternative of aria-colindex. |
+| `aria-colspan` | 否 | `number \| undefined` | Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid. |
+| `aria-controls` | 否 | `string \| undefined` | Identifies the element (or elements) whose contents or presence are controlled by the current element. |
+| `aria-current` | 否 | `boolean \| "true" \| "false" \| "page" \| "step" \| "location" \| "date" \| "time" \| undefined` | Indicates the element that represents the current item within a container or set of related elements. |
+| `aria-describedby` | 否 | `string \| undefined` | Identifies the element (or elements) that describes the object. |
+| `aria-description` | 否 | `string \| undefined` | Defines a string value that describes or annotates the current element. |
+| `aria-details` | 否 | `string \| undefined` | Identifies the element that provides a detailed, extended description for the object. |
+| `aria-disabled` | 否 | `Booleanish \| undefined` | Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable. |
+| `aria-dropeffect` | 否 | `"none" \| "link" \| "copy" \| "execute" \| "move" \| "popup" \| undefined` | Indicates what functions can be performed when a dragged object is released on the drop target. |
+| `aria-errormessage` | 否 | `string \| undefined` | Identifies the element that provides an error message for the object. |
+| `aria-expanded` | 否 | `Booleanish \| undefined` | Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. |
+| `aria-flowto` | 否 | `string \| undefined` | Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion, allows assistive technology to override the general default of reading in document source order. |
+| `aria-grabbed` | 否 | `Booleanish \| undefined` | Indicates an element's "grabbed" state in a drag-and-drop operation. |
+| `aria-haspopup` | 否 | `boolean \| "true" \| "false" \| "dialog" \| "grid" \| "listbox" \| "menu" \| "tree" \| undefined` | Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. |
+| `aria-hidden` | 否 | `Booleanish \| undefined` | Indicates whether the element is exposed to an accessibility API. |
+| `aria-invalid` | 否 | `boolean \| "true" \| "false" \| "grammar" \| "spelling" \| undefined` | Indicates the entered value does not conform to the format expected by the application. |
+| `aria-keyshortcuts` | 否 | `string \| undefined` | Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element. |
+| `aria-label` | 否 | `string \| undefined` | Defines a string value that labels the current element. |
+| `aria-labelledby` | 否 | `string \| undefined` | Identifies the element (or elements) that labels the current element. |
+| `aria-level` | 否 | `number \| undefined` | Defines the hierarchical level of an element within a structure. |
+| `aria-live` | 否 | `"off" \| "assertive" \| "polite" \| undefined` | Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. |
+| `aria-modal` | 否 | `Booleanish \| undefined` | Indicates whether an element is modal when displayed. |
+| `aria-multiline` | 否 | `Booleanish \| undefined` | Indicates whether a text box accepts multiple lines of input or only a single line. |
+| `aria-multiselectable` | 否 | `Booleanish \| undefined` | Indicates that the user may select more than one item from the current selectable descendants. |
+| `aria-orientation` | 否 | `"horizontal" \| "vertical" \| undefined` | Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous. |
+| `aria-owns` | 否 | `string \| undefined` | Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship between DOM elements where the DOM hierarchy cannot be used to represent the relationship. |
+| `aria-placeholder` | 否 | `string \| undefined` | Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value. A hint could be a sample value or a brief description of the expected format. |
+| `aria-posinset` | 否 | `number \| undefined` | Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM. |
+| `aria-pressed` | 否 | `boolean \| "true" \| "false" \| "mixed" \| undefined` | Indicates the current "pressed" state of toggle buttons. |
+| `aria-readonly` | 否 | `Booleanish \| undefined` | Indicates that the element is not editable, but is otherwise operable. |
+| `aria-relevant` | 否 | `"text" \| "additions" \| "additions removals" \| "additions text" \| "all" \| "removals" \| "removals additions" \| "removals text" \| "text additions" \| "text removals" \| undefined` | Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified. |
+| `aria-required` | 否 | `Booleanish \| undefined` | Indicates that user input is required on the element before a form may be submitted. |
+| `aria-roledescription` | 否 | `string \| undefined` | Defines a human-readable, author-localized description for the role of an element. |
+| `aria-rowcount` | 否 | `number \| undefined` | Defines the total number of rows in a table, grid, or treegrid. |
+| `aria-rowindex` | 否 | `number \| undefined` | Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid. |
+| `aria-rowindextext` | 否 | `string \| undefined` | Defines a human readable text alternative of aria-rowindex. |
+| `aria-rowspan` | 否 | `number \| undefined` | Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid. |
+| `aria-selected` | 否 | `Booleanish \| undefined` | Indicates the current "selected" state of various widgets. |
+| `aria-setsize` | 否 | `number \| undefined` | Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM. |
+| `aria-sort` | 否 | `"none" \| "ascending" \| "descending" \| "other" \| undefined` | Indicates if items in a table or grid are sorted in ascending or descending order. |
+| `aria-valuemax` | 否 | `number \| undefined` | Defines the maximum allowed value for a range widget. |
+| `aria-valuemin` | 否 | `number \| undefined` | Defines the minimum allowed value for a range widget. |
+| `aria-valuenow` | 否 | `number \| undefined` | Defines the current value for a range widget. |
+| `aria-valuetext` | 否 | `string \| undefined` | Defines the human readable text alternative of aria-valuenow for a range widget. |
+| `dangerouslySetInnerHTML` | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |  |
+| `onCopy` | 否 | `ClipboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCopyCapture` | 否 | `ClipboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCut` | 否 | `ClipboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCutCapture` | 否 | `ClipboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPaste` | 否 | `ClipboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPasteCapture` | 否 | `ClipboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCompositionEnd` | 否 | `CompositionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCompositionEndCapture` | 否 | `CompositionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCompositionStart` | 否 | `CompositionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCompositionStartCapture` | 否 | `CompositionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCompositionUpdate` | 否 | `CompositionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCompositionUpdateCapture` | 否 | `CompositionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onFocus` | 否 | `FocusEventHandler<HTMLDivElement> \| undefined` |  |
+| `onFocusCapture` | 否 | `FocusEventHandler<HTMLDivElement> \| undefined` |  |
+| `onBlur` | 否 | `FocusEventHandler<HTMLDivElement> \| undefined` |  |
+| `onBlurCapture` | 否 | `FocusEventHandler<HTMLDivElement> \| undefined` |  |
+| `onChange` | 否 | `ChangeEventHandler<HTMLDivElement, Element> \| undefined` |  |
+| `onChangeCapture` | 否 | `ChangeEventHandler<HTMLDivElement, Element> \| undefined` |  |
+| `onBeforeInput` | 否 | `InputEventHandler<HTMLDivElement> \| undefined` |  |
+| `onBeforeInputCapture` | 否 | `InputEventHandler<HTMLDivElement> \| undefined` |  |
+| `onInput` | 否 | `InputEventHandler<HTMLDivElement> \| undefined` |  |
+| `onInputCapture` | 否 | `InputEventHandler<HTMLDivElement> \| undefined` |  |
+| `onReset` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onResetCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSubmit` | 否 | `SubmitEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSubmitCapture` | 否 | `SubmitEventHandler<HTMLDivElement> \| undefined` |  |
+| `onInvalid` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onInvalidCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoad` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onError` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onErrorCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onKeyDown` | 否 | `KeyboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onKeyDownCapture` | 否 | `KeyboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onKeyPress` | 否 | `KeyboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onKeyPressCapture` | 否 | `KeyboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onKeyUp` | 否 | `KeyboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onKeyUpCapture` | 否 | `KeyboardEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAbort` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAbortCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCanPlay` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCanPlayCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCanPlayThrough` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onCanPlayThroughCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDurationChange` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDurationChangeCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onEmptied` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onEmptiedCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onEncrypted` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onEncryptedCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onEnded` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onEndedCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadedData` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadedDataCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadedMetadata` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadedMetadataCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadStart` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLoadStartCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPause` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPauseCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPlay` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPlayCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPlaying` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPlayingCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onProgress` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onProgressCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onRateChange` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onRateChangeCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSeeked` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSeekedCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSeeking` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSeekingCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onStalled` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onStalledCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSuspend` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSuspendCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTimeUpdate` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTimeUpdateCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onVolumeChange` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onVolumeChangeCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onWaiting` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onWaitingCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAuxClick` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAuxClickCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onClick` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onClickCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onContextMenu` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onContextMenuCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDoubleClick` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDoubleClickCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDrag` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragEnd` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragEndCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragEnter` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragEnterCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragExit` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragExitCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragLeave` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragLeaveCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragOver` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragOverCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragStart` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDragStartCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDrop` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onDropCapture` | 否 | `DragEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseDown` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseDownCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseEnter` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseLeave` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseMove` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseMoveCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseOut` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseOutCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseOver` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseOverCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseUp` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onMouseUpCapture` | 否 | `MouseEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSelect` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onSelectCapture` | 否 | `ReactEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchCancel` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchCancelCapture` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchEnd` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchEndCapture` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchMove` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchMoveCapture` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchStart` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTouchStartCapture` | 否 | `TouchEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerDown` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerDownCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerMove` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerMoveCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerUp` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerUpCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerCancel` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerCancelCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerEnter` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerLeave` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerOver` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerOverCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerOut` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onPointerOutCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onGotPointerCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onGotPointerCaptureCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLostPointerCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onLostPointerCaptureCapture` | 否 | `PointerEventHandler<HTMLDivElement> \| undefined` |  |
+| `onScroll` | 否 | `UIEventHandler<HTMLDivElement> \| undefined` |  |
+| `onScrollCapture` | 否 | `UIEventHandler<HTMLDivElement> \| undefined` |  |
+| `onScrollEnd` | 否 | `UIEventHandler<HTMLDivElement> \| undefined` |  |
+| `onScrollEndCapture` | 否 | `UIEventHandler<HTMLDivElement> \| undefined` |  |
+| `onWheel` | 否 | `WheelEventHandler<HTMLDivElement> \| undefined` |  |
+| `onWheelCapture` | 否 | `WheelEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAnimationStart` | 否 | `AnimationEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAnimationStartCapture` | 否 | `AnimationEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAnimationEnd` | 否 | `AnimationEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAnimationEndCapture` | 否 | `AnimationEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAnimationIteration` | 否 | `AnimationEventHandler<HTMLDivElement> \| undefined` |  |
+| `onAnimationIterationCapture` | 否 | `AnimationEventHandler<HTMLDivElement> \| undefined` |  |
+| `onToggle` | 否 | `ToggleEventHandler<HTMLDivElement> \| undefined` |  |
+| `onBeforeToggle` | 否 | `ToggleEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionCancel` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionCancelCapture` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionEnd` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionEndCapture` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionRun` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionRunCapture` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionStart` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+| `onTransitionStartCapture` | 否 | `TransitionEventHandler<HTMLDivElement> \| undefined` |  |
+
+## PanelProps (type)
+
+```ts
+export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  action?: ReactNode;
+  footer?: ReactNode;
+  children: ReactNode;
+  variant?: "dashboard" | "template";
+  gap?: "none" | "sm" | "md";
+}
+```
+
+## 选型建议
+
+模板风格标题容器用 Panel；dashboard 为圆角24px、边框、padding16，template 兼容原共享容器。SurfaceCard 原有分区内容容器不变，不做全局替换。title/subtitle/action/footer 为插槽；无插槽时只渲染 children。
+
+导入自 `@forge-ui-official/core`；交互示例 `/cases/dashboard-kit`，Blocks 画廊 `/blocks`。源码实现不等于截图验收或 npm 已发布。
+
+---
+
 Source: skills/forge-skill/references/components/pie-chart.md
 
 # pie-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PieChart (value)
@@ -7627,7 +8176,7 @@ Source: skills/forge-skill/references/components/plain-icons.md
 
 # plain-icons
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckIcon (value)
@@ -7666,7 +8215,7 @@ Source: skills/forge-skill/references/components/product-row.md
 
 # product-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProductRow (value)
@@ -7693,7 +8242,7 @@ Source: skills/forge-skill/references/components/profile-card.md
 
 # profile-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProfileCard (value)
@@ -7738,7 +8287,7 @@ Source: skills/forge-skill/references/components/progress-bar.md
 
 # progress-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressBar (value)
@@ -7801,7 +8350,7 @@ Source: skills/forge-skill/references/components/progress-card.md
 
 # progress-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressCard (value)
@@ -7835,13 +8384,13 @@ Source: skills/forge-skill/references/components/progress-stat-card.md
 
 # progress-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressStatCard (value)
 
 ```ts
-({ title, value, trend, trendDirection, subtitle, theme, size, progressValue, progressColor, icon, action, onKebabClick, density, width, className, }: { title: string; value: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: ProgressStatCardTheme; size?: StatCardSize; progressValue?: number; progressColor?: ProgressFillColor; icon?: ReactNode; action?: ReactNode; onKebabClick?: () => void; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, value, trend, trendDirection, subtitle, theme, size, progressValue, progressColor, icon, action, onKebabClick, density, width, className, }: { title: string; value: string; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: ProgressStatCardTheme; size?: StatCardSize; progressValue?: number; progressColor?: ProgressFillColor; icon?: ReactNode; action?: ReactNode; onKebabClick?: () => void; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -7858,9 +8407,15 @@ Source: skills/forge-skill/references/components/progress-stat-card.md
 | `icon` | 否 | `ReactNode` |  |
 | `action` | 否 | `ReactNode` |  |
 | `onKebabClick` | 否 | `(() => void) \| undefined` |  |
-| `density` | 否 | `"default" \| "compact" \| undefined` | Use compact inside dense dashboards while preserving the default Figma showcase scale. |
+| `density` | 否 | `CardDensity \| undefined` | Use compact inside dense dashboards while preserving the default Figma showcase scale. |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
+
+## ProgressStatCardProps (type)
+
+```ts
+export type ProgressStatCardProps = Parameters<typeof ProgressStatCard>[0];
+```
 
 ## 选型
 
@@ -7868,13 +8423,17 @@ Source: skills/forge-skill/references/components/progress-stat-card.md
 - 纯数字指标 → `StatCard`
 - 带小图 sparkline 的 → `LineChartStatCard`
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/project-card.md
 
 # project-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProjectCard (value)
@@ -7918,7 +8477,7 @@ Source: skills/forge-skill/references/components/rating-stars.md
 
 # rating-stars
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RatingStars (value)
@@ -7957,7 +8516,7 @@ Source: skills/forge-skill/references/components/recommendation-card.md
 
 # recommendation-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RecommendationCard (value)
@@ -8004,7 +8563,7 @@ Source: skills/forge-skill/references/components/review-item.md
 
 # review-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ReviewItem (value)
@@ -8038,7 +8597,7 @@ Source: skills/forge-skill/references/components/select-option.md
 
 # select-option
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SelectOption (value)
@@ -8121,7 +8680,7 @@ Source: skills/forge-skill/references/components/selection-control.md
 
 # selection-control
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckboxWithLabel (value)
@@ -8226,7 +8785,7 @@ Source: skills/forge-skill/references/components/sidebar-menu.md
 
 # sidebar-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SidebarMenu (value)
@@ -8301,7 +8860,7 @@ Source: skills/forge-skill/references/components/sidebar-popovers.md
 
 # sidebar-popovers
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppSwitcherDropdown (value)
@@ -8352,7 +8911,7 @@ Source: skills/forge-skill/references/components/small-calendar.md
 
 # small-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmallCalendar (value)
@@ -8394,7 +8953,7 @@ Source: skills/forge-skill/references/components/small-daily-calendar.md
 
 # small-daily-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DailyEvent (type)
@@ -8440,7 +8999,7 @@ Source: skills/forge-skill/references/components/smooth-line-chart.md
 
 # smooth-line-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmoothLineChart (value)
@@ -8476,13 +9035,13 @@ Source: skills/forge-skill/references/components/stat-card.md
 
 # stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StatCard (value)
 
 ```ts
-({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, icon, badgeVariant, action, onKebabClick, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: StatCardTheme; size?: StatCardSize; icon?: ReactNode; badgeVariant?: CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: "default" | "compact"; width?: CardWidth; className?: string; }) => JSX.Element
+({ title, value, animateValue, locale, numberFormat, motion, trend, trendDirection, subtitle, theme, size, icon, badgeVariant, action, onKebabClick, density, width, className, }: { title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: MotionPreference; trend?: string; trendDirection?: TrendDirection; subtitle?: string; theme?: StatCardTheme; size?: StatCardSize; icon?: ReactNode; badgeVariant?: CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: CardDensity; width?: CardWidth; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -8502,9 +9061,15 @@ Source: skills/forge-skill/references/components/stat-card.md
 | `badgeVariant` | 否 | `CardBadgeVariant \| undefined` | Badge style for the icon chip. Defaults to the theme's iconChipBg in sm/lg, and to "opacity" (themed 10% bg + colored icon) in wide. |
 | `action` | 否 | `ReactNode` | Custom action slot (e.g. button). Takes priority over onKebabClick. |
 | `onKebabClick` | 否 | `(() => void) \| undefined` | If set, renders the built-in kebab-menu button. |
-| `density` | 否 | `"default" \| "compact" \| undefined` | Use compact inside dense dashboards while preserving the default Figma showcase scale. |
+| `density` | 否 | `CardDensity \| undefined` | Use compact inside dense dashboards while preserving the default Figma showcase scale. |
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
+
+## StatCardProps (type)
+
+```ts
+export type StatCardProps = Parameters<typeof StatCard>[0];
+```
 
 ## 选型
 
@@ -8514,13 +9079,17 @@ Source: skills/forge-skill/references/components/stat-card.md
 - 需要右上菜单 → `onKebabClick`，或传 `action` 自定义
 - 需要图表的指标 → 用 `ProgressStatCard` / `LineChartStatCard` 等变体
 
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
+
 ---
 
 Source: skills/forge-skill/references/components/stepper.md
 
 # stepper
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Stepper (value)
@@ -8565,7 +9134,7 @@ Source: skills/forge-skill/references/components/streaming-answer.md
 
 # streaming-answer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StreamingAnswer (value)
@@ -8641,7 +9210,7 @@ Source: skills/forge-skill/references/components/style-guide.md
 
 # style-guide
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorScaleStop (type)
@@ -8730,7 +9299,7 @@ Source: skills/forge-skill/references/components/surface-card.md
 
 # surface-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SurfaceCard (value)
@@ -9045,7 +9614,7 @@ Source: skills/forge-skill/references/components/tab-bar.md
 
 # tab-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabBar (value)
@@ -9104,7 +9673,7 @@ Source: skills/forge-skill/references/components/tabs-content.md
 
 # tabs-content
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabsContent (value)
@@ -9157,7 +9726,7 @@ Source: skills/forge-skill/references/components/task-card.md
 
 # task-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TaskCard (value)
@@ -9204,7 +9773,7 @@ Source: skills/forge-skill/references/components/text-area.md
 
 # text-area
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextArea (value)
@@ -9558,7 +10127,7 @@ Source: skills/forge-skill/references/components/text-field.md
 
 # text-field
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextField (value)
@@ -9942,7 +10511,7 @@ Source: skills/forge-skill/references/components/text-field-select.md
 
 # text-field-select
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextFieldSelectSuffix (value)
@@ -9965,7 +10534,7 @@ Source: skills/forge-skill/references/components/thinking-trace.md
 
 # thinking-trace
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ThinkingRow (type)
@@ -10013,7 +10582,7 @@ Source: skills/forge-skill/references/components/toast.md
 
 # toast
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToastApi (type)
@@ -10053,7 +10622,7 @@ Source: skills/forge-skill/references/components/tool-chips.md
 
 # tool-chips
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToolChipDetail (type)
@@ -10119,7 +10688,7 @@ Source: skills/forge-skill/references/components/toolbar.md
 
 # toolbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageTitleToolbar (value)
@@ -10385,7 +10954,7 @@ Source: skills/forge-skill/references/components/tooltip.md
 
 # tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Tooltip (value)
@@ -10761,7 +11330,7 @@ Source: skills/forge-skill/references/components/topbar.md
 
 # topbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TopBar (value)
@@ -10794,7 +11363,7 @@ Source: skills/forge-skill/references/components/user-card.md
 
 # user-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## UserCard (value)
@@ -10829,7 +11398,7 @@ Source: skills/forge-skill/references/components/utils.md
 
 # utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## cn (value)
@@ -10884,11 +11453,70 @@ Source: skills/forge-skill/references/components/utils.md
 
 ---
 
+Source: skills/forge-skill/references/components/wallet-goal-card.md
+
+# wallet-goal-card
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.5.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## WalletGoalCard (value)
+
+```ts
+({ title, date, amount, progress, progressColor, showActions, onEdit, onTopUp, onWithdraw, topUpLabel, withdrawLabel, editLabel, iconBg, icon, }: WalletGoalCardProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `string` |  |
+| `date` | 是 | `string` |  |
+| `amount` | 是 | `string` |  |
+| `progress` | 是 | `number` |  |
+| `progressColor` | 是 | `"purple" \| "blue" \| "orange" \| "green" \| "yellow" \| "cyan" \| "red"` |  |
+| `showActions` | 否 | `boolean \| undefined` |  |
+| `onEdit` | 否 | `(() => void) \| undefined` |  |
+| `onTopUp` | 否 | `(() => void) \| undefined` |  |
+| `onWithdraw` | 否 | `(() => void) \| undefined` |  |
+| `topUpLabel` | 否 | `string \| undefined` |  |
+| `withdrawLabel` | 否 | `string \| undefined` |  |
+| `editLabel` | 否 | `string \| undefined` |  |
+| `iconBg` | 否 | `string \| undefined` |  |
+| `icon` | 否 | `ReactNode` |  |
+
+## WalletGoalCardProps (type)
+
+```ts
+export interface WalletGoalCardProps {
+  title: string;
+  date: string;
+  amount: string;
+  progress: number;
+  progressColor: "purple" | "green" | "blue" | "red" | "orange" | "yellow" | "cyan";
+  showActions?: boolean;
+  onEdit?: () => void;
+  onTopUp?: () => void;
+  onWithdraw?: () => void;
+  topUpLabel?: string;
+  withdrawLabel?: string;
+  editLabel?: string;
+  iconBg?: string;
+  icon?: ReactNode;
+}
+```
+
+## 选型建议
+
+目标金额、日期、进度与可选操作用 WalletGoalCard；列表组合用可复制 GoalProgressList，财务特定储蓄外观用 WalletProgressPanel。onEdit/onTopUp/onWithdraw 由业务方实现；不附带资金操作后台。
+
+导入自 `@forge-ui-official/core`；交互示例 `/cases/dashboard-kit`，Blocks 画廊 `/blocks`。源码实现不等于截图验收或 npm 已发布。
+
+---
+
 Source: skills/forge-skill/references/components/wheel-chart-stat-card.md
 
 # wheel-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.4.7**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.5.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WheelChartStatCard (value)
@@ -10913,6 +11541,12 @@ Source: skills/forge-skill/references/components/wheel-chart-stat-card.md
 | `width` | 否 | `CardWidth \| undefined` | Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. |
 | `className` | 否 | `string \| undefined` |  |
 
+## WheelChartStatCardProps (type)
+
+```ts
+export type WheelChartStatCardProps = Parameters<typeof WheelChartStatCard>[0];
+```
+
 ## WheelColor (type)
 
 ```ts
@@ -10924,3 +11558,7 @@ export type WheelColor = "purple" | "blue" | "green" | "red" | "orange" | "yello
 - 单指标完成度展示（使用率 / 满意度 / 目标达成） → `WheelChartStatCard`
 - 线性进度 → `ProgressStatCard`
 - 多指标对比环 → `DonutChart`（`charts/`）
+
+## 看板密度
+
+看板使用 `density="compact"`，不要复制私有 `!important` 覆盖。省略 density 保持默认外观；完整九类卡片对照见 `/cases/dashboard-kit`。公开类型 `CardDensity` 与对应 `*Props` 可从 core 导入。
