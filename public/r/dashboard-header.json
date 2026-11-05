@@ -7,6 +7,1430 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { DashboardHeader } from \"@/components/blocks/dashboard-header\";\n\nexport default function Example() {\n  return (<DashboardHeader title=\"订单运营\" description=\"近 30 天\" primaryAction={<button type=\"button\">导出</button>} dateSelection={<input type=\"date\" aria-label=\"统计日期\" />} />);\n}\n",
+    "props": [
+      {
+        "component": "DashboardHeader",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "description",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "dateSelection",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "primaryAction",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "defaultChecked",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "defaultValue",
+            "required": false,
+            "type": "string | number | readonly string[] | undefined"
+          },
+          {
+            "name": "suppressContentEditableWarning",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "suppressHydrationWarning",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "accessKey",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "autoCapitalize",
+            "required": false,
+            "type": "\"none\" | \"off\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {}) | undefined"
+          },
+          {
+            "name": "autoFocus",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "contentEditable",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | \"inherit\" | \"plaintext-only\" | undefined"
+          },
+          {
+            "name": "contextMenu",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "dir",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "draggable",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "enterKeyHint",
+            "required": false,
+            "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\" | undefined"
+          },
+          {
+            "name": "hidden",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "lang",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "nonce",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "slot",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "spellCheck",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "style",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CSSProperties | undefined"
+          },
+          {
+            "name": "tabIndex",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "translate",
+            "required": false,
+            "type": "\"yes\" | \"no\" | undefined"
+          },
+          {
+            "name": "radioGroup",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "role",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AriaRole | undefined"
+          },
+          {
+            "name": "about",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "content",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "datatype",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "inlist",
+            "required": false,
+            "type": "any"
+          },
+          {
+            "name": "prefix",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "property",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "rel",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "resource",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "rev",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "typeof",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "vocab",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "autoCorrect",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "autoSave",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "itemProp",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "itemScope",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "itemType",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "itemID",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "itemRef",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "results",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "security",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "unselectable",
+            "required": false,
+            "type": "\"off\" | \"on\" | undefined"
+          },
+          {
+            "name": "popover",
+            "required": false,
+            "type": "\"\" | \"auto\" | \"manual\" | \"hint\" | undefined"
+          },
+          {
+            "name": "popoverTargetAction",
+            "required": false,
+            "type": "\"toggle\" | \"show\" | \"hide\" | undefined"
+          },
+          {
+            "name": "popoverTarget",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "inert",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "inputMode",
+            "required": false,
+            "type": "\"none\" | \"search\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | undefined"
+          },
+          {
+            "name": "is",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "exportparts",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "part",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-activedescendant",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-atomic",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-autocomplete",
+            "required": false,
+            "type": "\"none\" | \"list\" | \"inline\" | \"both\" | undefined"
+          },
+          {
+            "name": "aria-braillelabel",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-brailleroledescription",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-busy",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-checked",
+            "required": false,
+            "type": "boolean | \"true\" | \"false\" | \"mixed\" | undefined"
+          },
+          {
+            "name": "aria-colcount",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-colindex",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-colindextext",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-colspan",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-controls",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-current",
+            "required": false,
+            "type": "boolean | \"true\" | \"false\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\" | undefined"
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-description",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-details",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-disabled",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-dropeffect",
+            "required": false,
+            "type": "\"none\" | \"link\" | \"copy\" | \"execute\" | \"move\" | \"popup\" | undefined"
+          },
+          {
+            "name": "aria-errormessage",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-expanded",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-flowto",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-grabbed",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-haspopup",
+            "required": false,
+            "type": "boolean | \"true\" | \"false\" | \"dialog\" | \"grid\" | \"listbox\" | \"menu\" | \"tree\" | undefined"
+          },
+          {
+            "name": "aria-hidden",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\" | undefined"
+          },
+          {
+            "name": "aria-keyshortcuts",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-level",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-live",
+            "required": false,
+            "type": "\"off\" | \"assertive\" | \"polite\" | undefined"
+          },
+          {
+            "name": "aria-modal",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-multiline",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-multiselectable",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-orientation",
+            "required": false,
+            "type": "\"horizontal\" | \"vertical\" | undefined"
+          },
+          {
+            "name": "aria-owns",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-placeholder",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-posinset",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-pressed",
+            "required": false,
+            "type": "boolean | \"true\" | \"false\" | \"mixed\" | undefined"
+          },
+          {
+            "name": "aria-readonly",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-relevant",
+            "required": false,
+            "type": "\"text\" | \"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text additions\" | \"text removals\" | undefined"
+          },
+          {
+            "name": "aria-required",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-roledescription",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-rowcount",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-rowindex",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-rowindextext",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "aria-rowspan",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-selected",
+            "required": false,
+            "type": "(boolean | \"true\" | \"false\") | undefined"
+          },
+          {
+            "name": "aria-setsize",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-sort",
+            "required": false,
+            "type": "\"none\" | \"ascending\" | \"descending\" | \"other\" | undefined"
+          },
+          {
+            "name": "aria-valuemax",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-valuemin",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-valuenow",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "aria-valuetext",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "dangerouslySetInnerHTML",
+            "required": false,
+            "type": "{ __html: string | TrustedHTML; } | undefined"
+          },
+          {
+            "name": "onCopy",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ClipboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCopyCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ClipboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCut",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ClipboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCutCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ClipboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPaste",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ClipboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPasteCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ClipboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCompositionEnd",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CompositionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCompositionEndCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CompositionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCompositionStart",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CompositionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCompositionStartCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CompositionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCompositionUpdate",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CompositionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCompositionUpdateCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").CompositionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onFocus",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").FocusEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onFocusCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").FocusEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onBlur",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").FocusEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onBlurCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").FocusEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onChange",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ChangeEventHandler<HTMLDivElement, Element> | undefined"
+          },
+          {
+            "name": "onChangeCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ChangeEventHandler<HTMLDivElement, Element> | undefined"
+          },
+          {
+            "name": "onBeforeInput",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").InputEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onBeforeInputCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").InputEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onInput",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").InputEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onInputCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").InputEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onReset",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onResetCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSubmit",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").SubmitEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSubmitCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").SubmitEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onInvalid",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onInvalidCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoad",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onError",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onErrorCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onKeyDown",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").KeyboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onKeyDownCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").KeyboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onKeyPress",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").KeyboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onKeyPressCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").KeyboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onKeyUp",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").KeyboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onKeyUpCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").KeyboardEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAbort",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAbortCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCanPlay",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCanPlayCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCanPlayThrough",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onCanPlayThroughCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDurationChange",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDurationChangeCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onEmptied",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onEmptiedCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onEncrypted",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onEncryptedCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onEnded",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onEndedCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadedData",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadedDataCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadedMetadata",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadedMetadataCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadStart",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLoadStartCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPause",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPauseCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPlay",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPlayCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPlaying",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPlayingCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onProgress",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onProgressCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onRateChange",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onRateChangeCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSeeked",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSeekedCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSeeking",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSeekingCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onStalled",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onStalledCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSuspend",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSuspendCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTimeUpdate",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTimeUpdateCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onVolumeChange",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onVolumeChangeCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onWaiting",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onWaitingCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAuxClick",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAuxClickCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onClick",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onClickCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onContextMenu",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onContextMenuCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDoubleClick",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDoubleClickCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDrag",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragEnd",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragEndCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragEnter",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragEnterCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragExit",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragExitCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragLeave",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragLeaveCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragOver",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragOverCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragStart",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDragStartCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDrop",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onDropCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").DragEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseDown",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseDownCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseEnter",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseLeave",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseMove",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseMoveCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseOut",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseOutCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseOver",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseOverCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseUp",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onMouseUpCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").MouseEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSelect",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onSelectCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchCancel",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchCancelCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchEnd",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchEndCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchMove",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchMoveCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchStart",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTouchStartCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TouchEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerDown",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerDownCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerMove",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerMoveCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerUp",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerUpCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerCancel",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerCancelCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerEnter",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerLeave",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerOver",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerOverCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerOut",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onPointerOutCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onGotPointerCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onGotPointerCaptureCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLostPointerCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onLostPointerCaptureCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").PointerEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onScroll",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").UIEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onScrollCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").UIEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onScrollEnd",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").UIEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onScrollEndCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").UIEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onWheel",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").WheelEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onWheelCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").WheelEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAnimationStart",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AnimationEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAnimationStartCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AnimationEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAnimationEnd",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AnimationEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAnimationEndCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AnimationEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAnimationIteration",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AnimationEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onAnimationIterationCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").AnimationEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onToggle",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ToggleEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onBeforeToggle",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ToggleEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionCancel",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionCancelCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionEnd",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionEndCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionRun",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionRunCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionStart",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          },
+          {
+            "name": "onTransitionStartCapture",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").TransitionEventHandler<HTMLDivElement> | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": []
+    }
+  },
   "files": [
     {
       "path": "blocks/dashboard-header/dashboard-header.tsx",

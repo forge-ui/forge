@@ -7,6 +7,35 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { ConversationHeader } from \"@/components/blocks/conversation-header\";\n\nexport default function Example() {\n  return (<ConversationHeader title=\"订单协作\" subtitle=\"运营工作区\" />);\n}\n",
+    "props": [
+      {
+        "component": "ConversationHeader",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subtitle",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": []
+    }
+  },
   "files": [
     {
       "path": "blocks/conversation-header/conversation-header.tsx",

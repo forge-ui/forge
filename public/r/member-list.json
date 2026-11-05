@@ -7,6 +7,93 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { MemberList } from \"@/components/blocks/member-list\";\n\nexport default function Example() {\n  return (<MemberList title=\"成员\" items={[<span key=\"1\">张三 · 负责人</span>]} />);\n}\n",
+    "props": [
+      {
+        "component": "MemberList",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+          },
+          {
+            "name": "badge",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+          },
+          {
+            "name": "tabs",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").ListGroupTab[] | undefined"
+          },
+          {
+            "name": "activeTab",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "onTabChange",
+            "required": false,
+            "type": "((value: string) => void) | undefined"
+          },
+          {
+            "name": "closable",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "onClose",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "density",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity | undefined"
+          },
+          {
+            "name": "items",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+          },
+          {
+            "name": "members",
+            "required": false,
+            "type": "({ avatar?: string; initials?: string; initialsColor?: \"purple\" | \"blue\" | \"green\" | \"orange\"; name: string; badge?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; subtitle?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; stats?: { label: string; value: string; }[]; checked?: boolean; onMenuClick?: () => void; width?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth; className?: string; } & { id: string; })[] | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "ListGroup",
+        "UserCard"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/member-list/member-list.tsx",

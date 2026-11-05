@@ -7,6 +7,42 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { ProjectSection } from \"@/components/blocks/project-section\";\n\nexport default function Example() {\n  return (<ProjectSection title=\"项目进度\">已完成 6 / 10 项</ProjectSection>);\n}\n",
+    "props": [
+      {
+        "component": "ProjectSection",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Panel"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/project-section/project-section.tsx",

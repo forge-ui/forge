@@ -7,6 +7,67 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { RegionDistribution } from \"@/components/blocks/region-distribution\";\n\nexport default function Example() {\n  return (<RegionDistribution title=\"地区分布\" />);\n}\n",
+    "props": [
+      {
+        "component": "RegionDistribution",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapVariant | undefined"
+          },
+          {
+            "name": "regions",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapRegion[] | undefined"
+          },
+          {
+            "name": "highlights",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapContinent[] | undefined"
+          },
+          {
+            "name": "onMenuClick",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "MapCard"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/region-distribution/region-distribution.tsx",

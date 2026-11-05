@@ -7,6 +7,75 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { KpiMetrics } from \"@/components/blocks/kpi-metrics\";\n\nexport default function Example() {\n  return (<KpiMetrics metrics={[{ id: \"orders\", title: \"订单\", value: \"1020\", trend: \"32%\" }]} />);\n}\n",
+    "props": [
+      {
+        "component": "KpiMetrics",
+        "properties": [
+          {
+            "name": "metrics",
+            "required": false,
+            "type": "({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MotionPreference; trend?: string; trendDirection?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").TrendDirection; subtitle?: string; theme?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardTheme | (\"dark\" | \"orange\"); size?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").StatCardSize; icon?: ReactNode; badgeVariant?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity; width?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth; className?: string; } & { id: string; })[] | undefined"
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"chart\" | \"plain\" | undefined"
+          },
+          {
+            "name": "bars",
+            "required": false,
+            "type": "number[] | undefined"
+          }
+        ]
+      },
+      {
+        "component": "FinanceMetricCard",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "color",
+            "required": true,
+            "type": "\"purple\" | \"red\""
+          },
+          {
+            "name": "direction",
+            "required": true,
+            "type": "\"up\" | \"down\""
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "BarChartStatCard",
+        "Panel",
+        "StatCard",
+        "cn"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/kpi-metrics/kpi-metrics.tsx",

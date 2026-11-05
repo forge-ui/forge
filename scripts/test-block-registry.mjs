@@ -18,6 +18,9 @@ test("registry generation is deterministic and every catalog item can be copied 
     assert.deepEqual(item.dependencies, ["@forge-ui-official/core@^" + JSON.parse(fs.readFileSync("core/package.json", "utf8")).version]);
     assert.equal(item.files.length, 1);
     const file = item.files[0];
+    assert.ok(item.meta.example.includes(entry.component));
+    assert.ok(item.meta.props.some(props => props.component === entry.component));
+    assert.equal(item.meta.core.version, item.dependencies[0].split("@").at(-1));
     assert.equal(file.type, "registry:component");
     assert.equal(file.target, `@components/blocks/${entry.name}.tsx`);
     assert.equal(file.content, fs.readFileSync(file.path, "utf8"));
@@ -51,8 +54,10 @@ test("copied registry sources typecheck against built public declarations withou
       const item = JSON.parse(fs.readFileSync("public/r/" + name + ".json", "utf8"));
       const file = directory + "/" + name + ".tsx";
       fs.writeFileSync(file, item.files[0].content);
-      return file;
-    });
+      const exampleFile = directory + "/" + name + "-example.tsx";
+      fs.writeFileSync(exampleFile, item.meta.example.replace(`@/components/blocks/${name}`, `./${name}`));
+      return [file, exampleFile];
+    }).flat();
     const program = ts.createProgram(files, {
       strict: true, noEmit: true, skipLibCheck: true,
       jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2020,

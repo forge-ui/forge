@@ -7,6 +7,140 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { CrmMetricCard } from \"@/components/blocks/crm-summary\";\n\nexport default function Example() {\n  return (<CrmMetricCard title=\"客户数\" date=\"本月\" value=\"120\" trend=\"10%\" note=\"较上月\" icon={null} iconClassName=\"text-fg-blue\" footer=\"已更新\" />);\n}\n",
+    "props": [
+      {
+        "component": "CrmSurface",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      },
+      {
+        "component": "CrmStat",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tone",
+            "required": false,
+            "type": "\"purple\" | \"blue\" | \"green\" | undefined"
+          },
+          {
+            "name": "bars",
+            "required": true,
+            "type": "number[]"
+          }
+        ]
+      },
+      {
+        "component": "DetailLine",
+        "properties": [
+          {
+            "name": "label",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "component": "CrmMetricCard",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "trend",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "trendDirection",
+            "required": false,
+            "type": "\"up\" | \"down\" | undefined"
+          },
+          {
+            "name": "note",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "icon",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "iconClassName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "footer",
+            "required": true,
+            "type": "ReactNode"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Panel",
+        "DescriptionItem",
+        "LineChartStatCard",
+        "SurfaceCard"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/crm-summary/crm-summary.tsx",

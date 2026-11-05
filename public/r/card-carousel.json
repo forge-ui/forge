@@ -7,6 +7,53 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { CardCarousel } from \"@/components/blocks/card-carousel\";\n\nexport default function Example() {\n  return (<CardCarousel cards={[{ id: \"main\", holderName: \"运营账户\", cardNumber: \"9090\" }]} showPagination />);\n}\n",
+    "props": [
+      {
+        "component": "CardCarousel",
+        "properties": [
+          {
+            "name": "cards",
+            "required": true,
+            "type": "({ locale?: \"zh\" | \"en\"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").FinancialTheme; variant?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").FinancialVariant; width?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth; className?: string; } & { id: string; })[]"
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "\"default\" | \"compact\" | undefined"
+          },
+          {
+            "name": "index",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "defaultIndex",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onIndexChange",
+            "required": false,
+            "type": "((index: number) => void) | undefined"
+          },
+          {
+            "name": "showPagination",
+            "required": false,
+            "type": "boolean | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "CreditCard",
+        "PageDot"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/card-carousel/card-carousel.tsx",

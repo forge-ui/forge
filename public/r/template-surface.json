@@ -7,6 +7,47 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { TemplateSurface } from \"@/components/blocks/template-surface\";\n\nexport default function Example() {\n  return (<TemplateSurface title=\"经营摘要\">本月经营数据</TemplateSurface>);\n}\n",
+    "props": [
+      {
+        "component": "TemplateSurface",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "SurfaceCard"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/template-surface/template-surface.tsx",

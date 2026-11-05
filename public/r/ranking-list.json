@@ -7,6 +7,87 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { RankingList } from \"@/components/blocks/ranking-list\";\n\nexport default function Example() {\n  return (<RankingList title=\"商品排行\" items={[<span key=\"1\">商品 A · 192 件</span>]} />);\n}\n",
+    "props": [
+      {
+        "component": "RankingList",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+          },
+          {
+            "name": "badge",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+          },
+          {
+            "name": "items",
+            "required": true,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+          },
+          {
+            "name": "tabs",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").ListGroupTab[] | undefined"
+          },
+          {
+            "name": "activeTab",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "onTabChange",
+            "required": false,
+            "type": "((value: string) => void) | undefined"
+          },
+          {
+            "name": "closable",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "onClose",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "density",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "ListGroup"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/ranking-list/ranking-list.tsx",

@@ -7,6 +7,188 @@
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { FinanceSurface } from \"@/components/blocks/finance-workspace\";\n\nexport default function Example() {\n  return (<FinanceSurface title=\"财务摘要\">本月收入：12000 元</FinanceSurface>);\n}\n",
+    "props": [
+      {
+        "component": "FinanceSurface",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "eyebrow",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      },
+      {
+        "component": "FieldLine",
+        "properties": [
+          {
+            "name": "label",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "component": "VisualCard",
+        "properties": [
+          {
+            "name": "theme",
+            "required": true,
+            "type": "\"purple\" | \"blue\" | \"yellow\" | \"dark\""
+          },
+          {
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "last4",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "balance",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "component": "FinanceMetricCard",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "trend",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "note",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "chartColor",
+            "required": false,
+            "type": "\"blue\" | \"green\" | \"red\" | undefined"
+          }
+        ]
+      },
+      {
+        "component": "WalletProgressLine",
+        "properties": [
+          {
+            "name": "value",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "color",
+            "required": true,
+            "type": "\"purple\" | \"blue\" | \"green\" | \"red\" | \"yellow\" | \"cyan\""
+          }
+        ]
+      },
+      {
+        "component": "FinanceGoalCell",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": true,
+            "type": "\"purple\" | \"blue\" | \"green\" | \"red\" | \"yellow\" | \"cyan\""
+          }
+        ]
+      },
+      {
+        "component": "FinanceTransactionCell",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subtitle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "color",
+            "required": true,
+            "type": "\"purple\" | \"blue\" | \"green\" | \"red\" | \"yellow\" | \"cyan\""
+          }
+        ]
+      },
+      {
+        "component": "FinanceExpenseGauge",
+        "properties": []
+      },
+      {
+        "component": "FinanceBudgetPanel",
+        "properties": []
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Panel",
+        "DescriptionItem",
+        "SurfaceCard",
+        "ToolbarKebabButton"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/finance-workspace/finance-workspace.tsx",
