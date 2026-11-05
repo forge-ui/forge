@@ -1,5 +1,7 @@
 "use client";
 
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { Panel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -27,7 +29,7 @@ import {
 import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { projects, type Project, type ProjectStatus } from "../_data";
-import { projectPageStackClass, projectStatCardClass } from "../_density";
+import { projectPageStackClass } from "../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";
 import { ProjectLogo } from "../_logos";
 
@@ -65,14 +67,14 @@ export default function ProjectTemplatePage() {
       header: "Project Name",
       flex: true,
       render: (row) => (
-        <button
+        <Button variant="unstyled"
           type="button"
           onClick={() => router.push(`/templates/project-template/projects/${row.id}`)}
           className="flex items-center gap-4 text-left"
         >
           <ProjectLogo name={row.logo} />
           <CellText>{row.name}</CellText>
-        </button>
+        </Button>
       ),
     },
     { key: "client", header: "Client", width: "w-[180px]", render: (row) => <CellMuted>{row.client}</CellMuted> },
@@ -120,12 +122,12 @@ export default function ProjectTemplatePage() {
           }
         />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Total Project" value="6,784" trend="4%" trendDirection="up" subtitle="+150 today" chartColor="purple" series={[18, 28, 21, 30, 29, 38, 33, 35, 52, 36, 41, 43, 44, 58]} />
-          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="In Progress" value="4,412" trend="10%" trendDirection="up" subtitle="+150 today" chartColor="cyan" series={[20, 24, 18, 29, 23, 32, 30, 44, 36, 42, 39, 51, 55, 66]} />
-          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Completed" value="1,920" trend="2%" trendDirection="down" subtitle="+150 today" chartColor="green" series={[50, 48, 35, 30, 42, 39, 41, 48, 54, 46, 52, 51, 55, 53]} />
-          <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Blocked" value="140" trend="0%" trendDirection="down" subtitle="+50 today" chartColor="red" series={[60, 49, 45, 31, 28, 32, 30, 22, 18, 20, 16, 17, 15, 14]} />
-        </div>
+        <KpiMetrics className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <LineChartStatCard density="compact" size="wide" theme="white" title="Total Project" value="6,784" trend="4%" trendDirection="up" subtitle="+150 today" chartColor="purple" series={[18, 28, 21, 30, 29, 38, 33, 35, 52, 36, 41, 43, 44, 58]} />
+          <LineChartStatCard density="compact" size="wide" theme="white" title="In Progress" value="4,412" trend="10%" trendDirection="up" subtitle="+150 today" chartColor="cyan" series={[20, 24, 18, 29, 23, 32, 30, 44, 36, 42, 39, 51, 55, 66]} />
+          <LineChartStatCard density="compact" size="wide" theme="white" title="Completed" value="1,920" trend="2%" trendDirection="down" subtitle="+150 today" chartColor="green" series={[50, 48, 35, 30, 42, 39, 41, 48, 54, 46, 52, 51, 55, 53]} />
+          <LineChartStatCard density="compact" size="wide" theme="white" title="Blocked" value="140" trend="0%" trendDirection="down" subtitle="+50 today" chartColor="red" series={[60, 49, 45, 31, 28, 32, 30, 22, 18, 20, 16, 17, 15, 14]} />
+        </KpiMetrics>
 
         <div className="h-px bg-fg-grey-200" />
 
@@ -192,7 +194,7 @@ function ProjectCardGrid({
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {projects.map((project) => (
-        <article key={project.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+        <Panel variant="custom" as="article" key={project.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
           <div className="flex items-start justify-between">
             <ProjectLogo name={project.logo} />
             <CellActions
@@ -204,10 +206,10 @@ function ProjectCardGrid({
               }}
             />
           </div>
-          <button type="button" className="mt-3 text-left" onClick={() => router.push(`/templates/project-template/projects/${project.id}`)}>
+          <Button variant="unstyled" type="button" className="mt-3 text-left" onClick={() => router.push(`/templates/project-template/projects/${project.id}`)}>
             <h2 className="text-xl font-semibold text-fg-black">{project.name}</h2>
             <p className="mt-1 text-sm text-fg-grey-500">{project.client}</p>
-          </button>
+          </Button>
           <div className="mt-3 flex items-center justify-between">
             <StatusBadge label={project.status} color={statusColors[project.status]} />
             <span className="text-sm text-fg-grey-500">{project.dueDate}</span>
@@ -225,7 +227,7 @@ function ProjectCardGrid({
             </AvatarGroup>
             <span className="font-semibold text-fg-black">{project.budget}</span>
           </div>
-        </article>
+        </Panel>
       ))}
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel as CorePanel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { AddCircleLinear, Pen2Linear, UserPlusLinear } from "@forge-ui-official/core/icons";
@@ -74,7 +75,7 @@ export default function TaskDetailPage() {
 }
 
 function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
-  return <section className={projectPanelClass}><div className="mb-3 flex items-center justify-between"><h3 className="text-lg font-semibold text-fg-black">{title}</h3>{action}</div><div className="flex flex-col gap-3">{children}</div></section>;
+  return <CorePanel variant="custom" as="section" className={projectPanelClass}><div className="mb-3 flex items-center justify-between"><h3 className="text-lg font-semibold text-fg-black">{title}</h3>{action}</div><div className="flex flex-col gap-3">{children}</div></CorePanel>;
 }
 
 function Info({ label, value }: { label: string; value: string }) {

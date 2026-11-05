@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear, MagniferLinear } from "@forge-ui-official/core/icons";
@@ -21,7 +22,7 @@ export default function MembersPage() {
   };
 
   const columns: ColumnDef<Member>[] = [
-    { key: "name", header: "Name", flex: true, render: (row) => <button type="button" className="flex items-center gap-4 text-left" onClick={() => router.push(`/templates/project-template/members/${row.id}`)}><Avatar src={row.avatar} size="md" /><CellTextSubtitle title={row.name} subtitle={row.email} /></button> },
+    { key: "name", header: "Name", flex: true, render: (row) => <Button variant="unstyled" type="button" className="flex items-center gap-4 text-left" onClick={() => router.push(`/templates/project-template/members/${row.id}`)}><Avatar src={row.avatar} size="md" /><CellTextSubtitle title={row.name} subtitle={row.email} /></Button> },
     { key: "role", header: "Role", width: "w-[220px]", render: (row) => <CellMuted>{row.role}</CellMuted> },
     { key: "assigned", header: "Project Assigned", width: "w-[190px]", render: (row) => <CellMuted>{row.assigned} Project</CellMuted> },
     { key: "phone", header: "Phone", width: "w-[180px]", render: (row) => <CellMuted>{row.phone}</CellMuted> },
@@ -35,7 +36,7 @@ export default function MembersPage() {
         <PageTop title="Team Member" current="Team Members" actions={<div className="flex gap-4"><Button variant="tertiary" iconLeft={<CloudDownloadLinear size={20} />}>Export</Button><Button iconLeft={<AddCircleLinear size={20} />} onClick={() => openModal("add")}>Add New</Button></div>} />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color="#71717A" />} /></div>
+            <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} /></div>
             <ButtonGroup color="purple" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
           </div>
           <div className="flex items-center gap-4"><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
@@ -62,21 +63,21 @@ function MemberCards({ members, onOpen, onEdit, onDelete }: { members: Member[];
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {members.concat(members.slice(0, 5)).map((member, index) => (
-        <article key={`${member.id}-${index}`} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+        <Panel variant="custom" as="article" key={`${member.id}-${index}`} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
           <div className="flex items-center justify-between">
             <button type="button" className="size-8 rounded-lg border border-fg-grey-300" aria-label="Select member" />
             <CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") onOpen(member); if (action === "pen") onEdit(member); if (action === "trash") onDelete(member); }} />
           </div>
-          <button type="button" className="mt-3 flex w-full flex-col items-center text-center" onClick={() => onOpen(member)}>
+          <Button variant="unstyled" type="button" className="mt-3 flex w-full flex-col items-center text-center" onClick={() => onOpen(member)}>
             <Avatar src={member.avatar} size="lg" />
             <h2 className="mt-3 text-lg font-semibold text-fg-black">{member.name}</h2>
             <p className="mt-1 text-fg-grey-500">{member.role}</p>
-          </button>
+          </Button>
           <div className="mt-4 border-t border-fg-grey-200 pt-3">
             <InfoLine label={index % 2 === 0 ? "Oksy.co" : "Target"} value={member.email} />
             <InfoLine label="Phone" value={member.phone} />
           </div>
-        </article>
+        </Panel>
       ))}
     </div>
   );

@@ -11,6 +11,7 @@ import {
   TargetBold,
   TickerStarBoldDuotone,
 } from "@forge-ui-official/core/icons";
+import { projectLogoPalette } from "./_mock-palette";
 import type { ProjectLogoKey } from "./_data";
 
 export function ProjectLogo({ name, size = "md" }: { name: ProjectLogoKey; size?: "sm" | "md" | "lg" }) {
@@ -21,20 +22,20 @@ export function ProjectLogo({ name, size = "md" }: { name: ProjectLogoKey; size?
   const logos: Record<ProjectLogoKey, React.ReactNode> = {
     oksy: (
       <span className={`${baseClass} bg-fg-blue-500`}>
-        <PieChart3BoldDuotone size={Math.round(iconSize * 0.82)} color="#FFFFFF" />
+        <PieChart3BoldDuotone size={Math.round(iconSize * 0.82)} color={projectLogoPalette[0]} />
       </span>
     ),
-    target: <TargetBold size={iconSize} color="#EF3340" />,
-    fourSquare: <StarsBold size={iconSize} color="#FF6B1A" />,
+    target: <TargetBold size={iconSize} color={projectLogoPalette[1]} />,
+    fourSquare: <StarsBold size={iconSize} color={projectLogoPalette[2]} />,
     odoble: <HashtagBoldDuotone size={iconSize} color="var(--fg-violet)" />,
     loopline: <LinkRoundAngleLinear size={iconSize} color="var(--fg-black)" />,
-    oce: <TickerStarBoldDuotone size={iconSize} color="#050505" />,
-    zola: <Rocket2Bold size={iconSize} color="#4318FF" />,
-    slashtri: <TargetBold size={iconSize} color="#FF1717" />,
-    shieldfy: <ShieldUpBold size={iconSize} color="#2448B8" />,
+    oce: <TickerStarBoldDuotone size={iconSize} color={projectLogoPalette[3]} />,
+    zola: <Rocket2Bold size={iconSize} color={projectLogoPalette[4]} />,
+    slashtri: <TargetBold size={iconSize} color={projectLogoPalette[5]} />,
+    shieldfy: <ShieldUpBold size={iconSize} color={projectLogoPalette[6]} />,
     lightbulb: (
       <span className={`${baseClass} bg-fg-red`}>
-        <StarBold size={Math.round(iconSize * 0.72)} color="#FFFFFF" />
+        <StarBold size={Math.round(iconSize * 0.72)} color={projectLogoPalette[0]} />
       </span>
     ),
   };

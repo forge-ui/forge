@@ -1,5 +1,7 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Pen2Linear } from "@forge-ui-official/core/icons";
@@ -7,7 +9,7 @@ import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard,
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, members, projects, tasks, type Project, type Task } from "../../_data";
-import { projectPageStackClass, projectPanelClass, projectStatCardClass } from "../../_density";
+import { projectPageStackClass, projectPanelClass } from "../../_density";
 import { ProjectLogo } from "../../_logos";
 
 const memberTabs = [
@@ -23,12 +25,12 @@ export default function MemberDetailPage() {
   const member = useMemo(() => members.find((item) => item.id === params.id) ?? members[0], [params.id]);
   const [tab, setTab] = useState("project");
   const projectColumns: ColumnDef<Project>[] = [
-    { key: "name", header: "Project Name", flex: true, render: (row) => <button type="button" onClick={() => router.push(`/templates/project-template/projects/${row.id}`)} className="flex items-center gap-4 text-left"><ProjectLogo name={row.logo} /><span>{row.name}</span></button> },
+    { key: "name", header: "Project Name", flex: true, render: (row) => <Button variant="unstyled" type="button" onClick={() => router.push(`/templates/project-template/projects/${row.id}`)} className="flex items-center gap-4 text-left"><ProjectLogo name={row.logo} /><span>{row.name}</span></Button> },
     { key: "status", header: "Status", width: "w-[160px]", render: (row) => row.status },
     { key: "budget", header: "Budget", width: "w-[180px]", render: (row) => row.budget },
   ];
   const taskColumns: ColumnDef<Task>[] = [
-    { key: "name", header: "Task Name", flex: true, render: (row) => <button type="button" onClick={() => router.push(`/templates/project-template/tasks/${row.id}`)} className="flex items-center gap-4 text-left"><ProjectLogo name={row.logo} /><span>{row.name}</span></button> },
+    { key: "name", header: "Task Name", flex: true, render: (row) => <Button variant="unstyled" type="button" onClick={() => router.push(`/templates/project-template/tasks/${row.id}`)} className="flex items-center gap-4 text-left"><ProjectLogo name={row.logo} /><span>{row.name}</span></Button> },
     { key: "progress", header: "Progress", width: "w-[160px]", render: (row) => `${row.progress}%` },
     { key: "priority", header: "Priority", width: "w-[140px]", render: (row) => row.priority },
   ];
@@ -38,24 +40,24 @@ export default function MemberDetailPage() {
       <div className={projectPageStackClass}>
         <PageTop title="Member Details" parent="Overview / Team Members" current="Member Details" actions={<Button iconLeft={<Pen2Linear size={18} />}>Edit</Button>} />
         <section className="grid grid-cols-1 gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
-          <aside className={`${projectPanelClass} text-center`}>
+          <Panel variant="custom" as="aside" className={`${projectPanelClass} text-center`}>
             <div className="h-24 rounded-xl bg-gradient-to-r from-fg-violet to-fg-yellow-100" />
             <Avatar src={member.avatar} size="lg" />
             <h2 className="mt-3 text-xl font-semibold text-fg-black">{member.name}</h2>
             <p className="text-fg-grey-500">ID: {member.handle}</p>
             <div className="mt-5 space-y-3 text-left"><Info label="Member ID" value="ID011221" /><Info label="Role" value={member.role} /><Info label="Project Assigned" value={`${member.assigned} Project`} /><Info label="Email" value={member.email} /><Info label="Phone Number" value={member.phone} /><Info label="Last Online" value={member.lastOnline} /><Info label="Joined" value={member.joined} /></div>
-          </aside>
+          </Panel>
           <main className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-              <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="In Progress" value="11" trend="5%" trendDirection="up" subtitle="+2 today" chartColor="red" />
-              <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Not Started" value="4" trend="25%" trendDirection="up" subtitle="+1 today" chartColor="purple" />
-              <LineChartStatCard className={projectStatCardClass} size="wide" theme="white" title="Finished" value="28" trend="2%" trendDirection="up" subtitle="+2 today" chartColor="green" />
-            </div>
+            <KpiMetrics className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+              <LineChartStatCard density="compact" size="wide" theme="white" title="In Progress" value="11" trend="5%" trendDirection="up" subtitle="+2 today" chartColor="red" />
+              <LineChartStatCard density="compact" size="wide" theme="white" title="Not Started" value="4" trend="25%" trendDirection="up" subtitle="+1 today" chartColor="purple" />
+              <LineChartStatCard density="compact" size="wide" theme="white" title="Finished" value="28" trend="2%" trendDirection="up" subtitle="+2 today" chartColor="green" />
+            </KpiMetrics>
             <TabBar color="purple" surface="page" tabs={memberTabs.map((item) => ({ label: item.label, active: tab === item.value }))} onChange={(index) => setTab(memberTabs[index]?.value ?? "project")} />
             {tab === "project" && <DataTable<Project> columns={projectColumns} rows={projects.slice(0, 5)} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
             {tab === "task" && <DataTable<Task> columns={taskColumns} rows={tasks} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
-            {tab === "activity" && <section className={projectPanelClass}>{activityItems.map((item) => <div key={item.title} className="border-b border-fg-grey-200 py-3"><h3 className="font-semibold text-fg-black">{item.title}</h3><p className="text-sm text-fg-grey-700">{item.body}</p></div>)}</section>}
-            {tab === "chat" && <section className={projectPanelClass}><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="purple" variant="text" content="Oke thank you ~~" /><ChatInputBar placeholder="Type a message..." /></section>}
+            {tab === "activity" && <Panel variant="custom" as="section" className={projectPanelClass}>{activityItems.map((item) => <div key={item.title} className="border-b border-fg-grey-200 py-3"><h3 className="font-semibold text-fg-black">{item.title}</h3><p className="text-sm text-fg-grey-700">{item.body}</p></div>)}</Panel>}
+            {tab === "chat" && <Panel variant="custom" as="section" className={projectPanelClass}><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="purple" variant="text" content="Oke thank you ~~" /><ChatInputBar placeholder="Type a message..." /></Panel>}
           </main>
         </section>
       </div>
