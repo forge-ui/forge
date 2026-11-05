@@ -48,6 +48,9 @@ Project states:
 
 ```text
 planning -> active -> at_risk -> completed
+active -> completed
+at_risk -> active
+at_risk -> completed
 active -> paused
 paused -> active
 active | at_risk -> archived
@@ -82,7 +85,7 @@ review -> changes_requested -> in_progress
 
 ## Forge Mapping
 
-- Closest templates: `/templates/project-template/{overview,projects,tasks,members,files,invoices,clients}`
+- Closest templates: `/templates/project-template/{overview,projects,members,files,invoices,clients}`; task list `/templates/task-board`, detail `/templates/project-template/tasks/[id]`
 - Shell: `AppLayout`
 - Project/task lists: `FullWidthTable`, `Toolbar`, `StatusBadge`, `KebabMenu`, `Pagination`
 - Project detail: `TabBar`, `DescriptionItem`, related `DataTable`, `HistoryGrouped`
@@ -96,3 +99,6 @@ review -> changes_requested -> in_progress
 - Do not show tasks without assignee, due date, priority, status, and blocker handling.
 - Do not make dashboard shortcuts dead cards; they should link to overdue tasks, blockers, or project detail.
 
+## 实施边界
+
+这些状态/路由是业务蓝图建议，不代表已有后端。实施前确认每条迁移的权限、责任人、失败/重试、并发与审计；support 还需确认 SLA、等待客户与重开计时口径。仅执行已授权范围。

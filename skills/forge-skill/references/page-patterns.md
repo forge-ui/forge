@@ -15,7 +15,7 @@ Before composing JSX, choose the page model:
 5. If the user asks for settings, permissions, integrations, notifications, or rules, model grouped configuration with save/reset behavior and danger zones.
 6. If the page mixes multiple intents, give each intent a clear surface: dashboard for insight, list/detail for operations, settings for configuration.
 
-Pick the nearest Forge template after the page model is clear. For example, ecommerce products/orders/customers are good CRUD references; project-template projects/members/files/invoices/tasks are good operational module references; dashboards are good entry pages, not replacements for CRUD flows.
+For dashboards, start from the ten Screens in [screens](screens.md); missing primitives require FORGE-GAP. Pick the nearest Forge template after the page model is clear. For example, ecommerce products/orders/customers are good CRUD references; project-template projects/members/files/invoices/tasks are good operational module references; dashboards are good entry pages, not replacements for CRUD flows.
 
 When a blueprint exists, prefer its module map and state model over inventing generic fields. The page pattern decides the surface; the blueprint decides the business logic.
 
@@ -55,7 +55,7 @@ For system generation, combine patterns instead of picking only one: app shell +
 
 ## Universal Admin Skeleton
 
-1. Wrap the page in `<AppLayout>`.
+1. Reuse the host AppLayout; add one only when the host has no shell.
 2. Build navigation from business domains: dashboard/workbench, operations, relationships, output/finance, governance/settings.
 3. Use `pageHeaderVariant="home"` for dashboard/list pages and `pageHeaderVariant="detail"` for detail/create/edit pages.
 4. Use `Toolbar` for search, filters, view switches, export/import, and primary actions.

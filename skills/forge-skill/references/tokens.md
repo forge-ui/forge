@@ -6,9 +6,9 @@ Tailwind usage: `bg-fg-violet-500` / `text-fg-grey-700` / `border-fg-grey-200`. 
 
 ## Primitive palette (`--fg-*`)
 
-All 8 hues share the same 10-shade scale. Aliases point at `500`.
+The 7 color families plus grey and white share the same 10-shade scale. Aliases point at `500`.
 
-### Violet (brand primary — alias `--fg-violet`)
+### Violet (optional theme — alias `--fg-violet`)
 | Shade | Hex | Typical use |
 |---|---|---|
 | 50 | `#F1EBFD` | soft background for violet surfaces |
@@ -140,10 +140,10 @@ Always prefer these over primitives when the meaning matches.
 | `--surface` | `fg-grey-50` | raised card background |
 | `--surface-foreground` | `fg-black` | text on surface |
 | `--overlay` | `rgba(0,10,25,0.40)` | modal scrim |
-| `--accent` | `fg-violet` | primary action |
+| `--accent` | `fg-blue` | primary action |
 | `--accent-foreground` | `fg-white` | text on accent |
-| `--accent-soft` | `fg-violet-100` | soft accent background |
-| `--accent-soft-foreground` | `fg-violet` | text on soft accent |
+| `--accent-soft` | `fg-blue-100` | soft accent background |
+| `--accent-soft-foreground` | `fg-blue` | text on soft accent |
 | `--text-primary` | `fg-black` | body text |
 | `--text-secondary` | `fg-grey-900` | secondary text |
 | `--text-muted` | `fg-grey-700` | muted text, helper text |
@@ -157,7 +157,7 @@ Always prefer these over primitives when the meaning matches.
 | `--warning-foreground` | `fg-black` | text on warning |
 | `--warning-soft` | `fg-yellow-50` | soft warning background |
 | `--warning-muted` | `fg-yellow-600` | warning text |
-| `--focus` | `fg-violet` | focus ring |
+| `--focus` | `fg-blue` | focus ring |
 | `--hover` | `fg-grey-100` | hover background |
 
 Dark theme overrides these via `[data-theme="dark"]` — toggle by setting that attribute on a parent element.
@@ -187,3 +187,7 @@ Tailwind utility for the standard letter-spacing: `tracking-fg`.
 ## 中文应用约定
 
 先按文本、背景、边框、焦点语义选择 token；图表颜色保持指标语义一致，不用颜色制造无业务意义的分类。内容区跟随父容器，页面 padding 由 AppLayout 负责。
+
+## 默认主题与名称映射
+
+默认 accent/focus 是 **blue**，依据 core/src/styles/tokens.css:185–241；purple/black 是可选主题，不是所有页面的默认。7 个色族为 violet、blue、green、red、yellow、cyan、black，另有 grey 与 white。CSS token `fg-violet` 对应组件 color prop `"purple"`；二者是不同命名层，不要写 color="violet"。主题继承宿主，未授权不修改全局 Token。

@@ -1,4 +1,4 @@
-> R2适用边界：以SKILL.md的授权范围为先。仅设计检查规范与图纸；单页/局部任务只应用相关契约，不增加系统模块、实施或构建。以下完整系统清单及代码示例仅适用于已授权的相应实施范围；StatusBadge示例不覆盖状态偏好规则。
+> 适用边界：以 SKILL.md 的用户授权范围为先。单页/局部任务只用相关契约；仅设计时不实施，已授权实施时再接对应模块与验证。状态默认 soft StatusBadge。
 
 # Admin Module Playbook
 
@@ -73,7 +73,7 @@ For system requests, build at least:
 - One supporting module or surface: settings, permissions, files, invoices, members, messages, audit, or job center.
 - Cross-module links so the UI feels like a product: customer -> orders, project -> tasks/files/members, invoice -> client/project, task -> assignee/activity.
 
-If time or scope only allows one screen, make that screen a product workbench plus one operational module, not a disconnected demo table.
+If scope authorizes one screen, deliver that screen only; do not add a workbench or another module without approval.
 
 ## System Archetypes
 
@@ -860,6 +860,8 @@ export function OrdersScreen({
 
 `AppLayout` is a client component. Server pages should pass serializable data into a client screen when header actions need `onClick`; do not pass functions from a Server Component into `primaryAction`.
 
+教学片段：下列 _data 层必须在实际写入之前执行会话、租户、对象权限与状态迁移校验；未接入时不得用于真实数据。
+
 ```tsx
 // app/orders/actions.ts
 "use server";
@@ -1064,3 +1066,7 @@ Then write the UI.
 ## 中文实施补充
 
 先定义对象画布：对象标识、负责人、生命周期、权限、输入输出、证据和下一步动作，再选择页面地图。导入导出等异步任务要提供进度、失败原因、重试和结果下载。配置模块需给出测试结果、影响范围、回滚和审计；仅设计任务不接接口或扩展为完整系统。
+
+## 服务端示例安全前提
+
+以上 Server Action 是教学片段，不是可直接部署的安全实现。archiveOrderById 必须在实际持久化之前验证当前会话、租户归属、对象级权限和允许状态迁移；只检查 id 或隐藏按钮不构成授权。未接入这些能力不得接真实数据或报告上线就绪。

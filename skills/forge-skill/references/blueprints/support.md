@@ -46,6 +46,8 @@ open -> pending -> resolved -> closed
 open -> assigned -> pending
 pending -> waiting_customer
 closed -> reopened
+waiting_customer -> assigned | pending
+reopened -> assigned | pending
 ```
 
 ## Core Routes
@@ -77,3 +79,6 @@ closed -> reopened
 - Do not omit customer context next to ticket detail.
 - Do not use the same actions for closed, pending, and reopened tickets.
 
+## 实施边界
+
+这些状态/路由是业务蓝图建议，不代表已有后端。实施前确认每条迁移的权限、责任人、失败/重试、并发与审计；support 还需确认 SLA、等待客户与重开计时口径。仅执行已授权范围。

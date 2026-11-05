@@ -45,7 +45,10 @@ File states:
 uploading -> uploaded
 uploading -> failed
 uploaded -> archived
-uploaded -> deleted -> restored
+uploaded -> deleted
+deleted -> uploaded (restore)
+archived -> uploaded (unarchive)
+failed -> uploading (retry)
 ```
 
 ## Core Routes
@@ -75,3 +78,6 @@ uploaded -> deleted -> restored
 - Do not omit failed upload and retry states.
 - Do not make delete irreversible unless the product explicitly requires it.
 
+## 实施边界
+
+这些状态/路由是业务蓝图建议，不代表已有后端。实施前确认每条迁移的权限、责任人、失败/重试、并发与审计；support 还需确认 SLA、等待客户与重开计时口径。仅执行已授权范围。
