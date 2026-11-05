@@ -1,7 +1,7 @@
-# 内容面板边界
+# SurfaceCard 与标题 Panel 边界
 
-core/src/components/ui/surface-card.tsx 存在内部 SurfaceCard 实现，但当前主入口未导出。不得从 @forge-ui-official/core import SurfaceCard，也不能把它当已发布的通用标题 Panel。
+SurfaceCard 已从当前 core 主入口间接导出，Props 和类型见 [生成 API](components/surface-card.md)，不要仅 grep 根 index.ts 就判定未导出。它提供中性内容容器，不自动等于后续计划中的模板风格通用标题 Panel。
 
-按任务选真实 Screen：ecommerce-2 的表格卡壳是有效模板现状；不要把 ChartCard 伪装非图表面板。可复用模板已存在的局部结构；需要新公共 Panel API 时记录 FORGE-GAP 并等待决定。本阶段不新增公共组件。
+按任务选真实 Screen：ecommerce-2 的表格卡壳是有效模板现状。不要把 ChartCard 伪装非图表面板，也不要把 SurfaceCard 的现有 API 宣称为已完成所有目标 Panel 契约。新增公共 API 时记录 FORGE-GAP 并等待决定，本阶段不修改 core。
 
-查看 [生成导出目录](../../../docs/for-agents/components.md)、[Blocks 计划](blocks.md) 与 [统一审计清单](audit-checklist.md)。
+参阅 [Blocks 计划](blocks.md) 与 [统一审计清单](audit-checklist.md)。

@@ -20,7 +20,7 @@ for (const file of files(skill).filter(file => file.endsWith(".md"))) {
 const inventory = JSON.parse(fs.readFileSync(path.join(root, "docs/for-agents/inventory.json"), "utf8"));
 const core = JSON.parse(fs.readFileSync(path.join(root, "core/package.json"), "utf8"));
 if (inventory.version !== core.version || !inventory.components.length) errors.push("Missing or stale core inventory");
-for (const name of ["Button", "DataTable", "AppLayout", "StatusBadge", "Grid", "GridItem", "Drawer", "ToastProvider", "useToast"]) {
+for (const name of ["Button", "DataTable", "AppLayout", "StatusBadge", "Grid", "GridItem", "Drawer", "ToastProvider", "useToast", "SurfaceCard", "CheckboxWithLabel"]) {
   if (!inventory.components.some(item => item.name === name)) errors.push("Missing public export: " + name);
 }
 const entry = fs.readFileSync(path.join(skill, "SKILL.md"), "utf8");
