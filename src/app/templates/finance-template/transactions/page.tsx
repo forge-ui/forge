@@ -19,7 +19,7 @@ import {
   ProtaskSaveChangesDialog,
   ProtaskViewDialog,
 } from "../../_shared/protask-actions";
-import { FinanceBudgetPanel, FinanceExpenseGauge, FinanceSurface, FinanceTransactionCell } from "../_components";
+import { FinanceBudgetPanel, FinanceExpenseGauge, FinanceSurface, FinanceTransactionCell } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell, transactionStatusColor } from "../_chrome";
 import { transactions, type Transaction } from "../_data";
 

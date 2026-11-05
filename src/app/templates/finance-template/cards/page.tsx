@@ -20,7 +20,7 @@ import {
   ProtaskFormDialog,
   ProtaskSaveChangesDialog,
 } from "../../_shared/protask-actions";
-import { FieldLine, FinanceBudgetPanel, FinanceSurface, FinanceTransactionCell, VisualCard } from "../_components";
+import { FieldLine, FinanceBudgetPanel, FinanceSurface, FinanceTransactionCell, VisualCard } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell, transactionStatusColor } from "../_chrome";
 import { cards, transactions, type Transaction } from "../_data";
 

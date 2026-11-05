@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { CloudDownloadLinear, Pen2Linear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, CellText, DataTable, StatusBadge } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
-import { FieldLine, FinanceSurface } from "../../_components";
+import { FieldLine, FinanceSurface } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell, financeStatusColor } from "../../_chrome";
 import { invoices } from "../../_data";
 

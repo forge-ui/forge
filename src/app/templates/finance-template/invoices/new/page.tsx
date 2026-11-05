@@ -6,7 +6,7 @@ import { AddCircleLinear } from "@forge-ui-official/core/icons";
 import { Button, CellActions, CellText, DataTable, SelectOption, TextField } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { ProtaskDeleteDialog, ProtaskSaveChangesDialog } from "../../../_shared/protask-actions";
-import { FieldLine, FinanceSurface } from "../../_components";
+import { FieldLine, FinanceSurface } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell } from "../../_chrome";
 
 type LineItem = {

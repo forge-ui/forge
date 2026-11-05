@@ -1,3 +1,4 @@
+import { Panel } from "@forge-ui-official/core";
 import type { ReactNode } from "react";
 import { DescriptionItem, SurfaceCard, ToolbarKebabButton } from "@forge-ui-official/core";
 
@@ -57,7 +58,7 @@ export function VisualCard({
   const numberTextClass = theme === "yellow" ? "text-fg-black" : "text-white";
 
   return (
-    <div className={`relative min-h-[180px] overflow-hidden rounded-[20px] p-5 ${themeClass}`}>
+    <Panel variant="custom" className={`relative min-h-[180px] overflow-hidden rounded-[20px] p-5 ${themeClass}`}>
       <div className="absolute right-10 top-[-44px] size-36 rounded-full border-[34px] border-white/18" />
       <div className="absolute bottom-[-58px] right-8 size-36 rounded-full border-[34px] border-fg-green-500/55" />
       <div className="relative flex h-full min-h-[140px] flex-col justify-between">
@@ -79,7 +80,7 @@ export function VisualCard({
           <p className={`text-base font-semibold tracking-fg ${numberTextClass}`}>07/25</p>
         </div>
       </div>
-    </div>
+    </Panel>
   );
 }
 
@@ -108,7 +109,7 @@ export function FinanceMetricCard({
   }[chartColor];
 
   return (
-    <div className="relative min-h-[196px] overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white p-5">
+    <Panel variant="custom" className="relative min-h-[196px] overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white p-5">
       <div className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-fg-grey-50">
         <span className={`block size-4 rounded-[5px] ${chartColor === "blue" ? "bg-fg-blue-500" : chartColor === "green" ? "bg-fg-green-500" : "bg-fg-red"}`} />
       </div>
@@ -126,7 +127,7 @@ export function FinanceMetricCard({
           <path d="M4 62H140V22C118 25 110 38 99 35C88 32 78 40 68 42C58 44 47 50 36 36C25 22 17 38 4 26V62Z" fill={lineStroke} opacity="0.08" />
         </svg>
       </div>
-    </div>
+    </Panel>
   );
 }
 
@@ -246,7 +247,7 @@ export function FinanceExpenseGauge() {
 
 export function FinanceBudgetPanel() {
   return (
-    <div className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
+    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xl font-semibold text-fg-black">Budget</p>
@@ -271,6 +272,6 @@ export function FinanceBudgetPanel() {
           <p className="mt-2 text-2xl font-semibold text-fg-black">$42,000</p>
         </div>
       </div>
-    </div>
+    </Panel>
   );
 }
