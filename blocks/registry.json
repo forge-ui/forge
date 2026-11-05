@@ -88,5 +88,11 @@
     "title": "模板内容分区",
     "description": "带标题、说明、操作与紧凑内容间距的模板分区。",
     "component": "TemplateSurface"
+  },
+  {
+    "name": "conversation-header",
+    "title": "对话页标题栏",
+    "description": "对话名称、工作区说明与操作插槽，业务会话状态由宿主管理。",
+    "component": "ConversationHeader"
   }
 ]

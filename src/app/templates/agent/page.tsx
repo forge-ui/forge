@@ -27,6 +27,7 @@ import {
   StarBoldDuotone,
 } from "@forge-ui-official/core/icons";
 import { ANSWERS, EXAMPLES, WORKSPACE_KEY, parseSessions, parseWorkspaces, workspaceSessionKey, initialWorkspaceSessions, type Workspace, type Session, type Turn } from "./_data";
+import { ConversationHeader } from "@/blocks/conversation-header/conversation-header";
 import { AgentTurn } from "./_agent-turn";
 import "../task-board/task-board.css";
 
@@ -243,16 +244,7 @@ function AgentWorkspace() {
         }
       >
         <div className="flex min-h-0 flex-1 flex-col gap-4">
-          <header className="flex flex-wrap items-center justify-between gap-3 border-b border-fg-grey-200 pb-4">
-            <div>
-              <h1 className="text-lg font-semibold text-fg-black">
-                {thread.title}
-              </h1>
-              <p className="mt-1 text-xs text-fg-grey-700">
-                {workspaces.find(item => item.id === workspace)?.name || "设计工作室"} / 工作助手
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
+          <ConversationHeader title={thread.title} subtitle={<>{workspaces.find(item => item.id === workspace)?.name || "设计工作室"} / 工作助手</>}>
               <div aria-label="当前对话操作"><KebabMenu accent="black" items={[
                 { label: "重命名对话", onSelect: () => { setRenameDraft(thread.title); setRenameOpen(true); } },
                 { label: "删除对话", danger: true, onSelect: () => setDeleteOpen(true) },
@@ -298,8 +290,7 @@ function AgentWorkspace() {
               >
                 复制对话
               </Button>
-            </div>
-          </header>
+          </ConversationHeader>
           <div ref={scroll} className="min-h-0 flex-1 overflow-auto">
             <div className="agent-conversation mx-auto flex w-full max-w-3xl flex-col gap-8 py-5">
               {thread.turns.length === 0 && (
