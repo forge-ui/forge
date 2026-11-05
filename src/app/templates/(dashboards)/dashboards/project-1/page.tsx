@@ -143,7 +143,7 @@ export default function Project1Page() {
         {/* Statistic + All Project bubble */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <TrendChart className="lg:col-span-2">
-            <ChartHeader title="Statistic" subtitle="Income and expenses" />
+            <ChartHeader title="Statistic" subtitle="Income and expenses" tabs={["All", "Income", "Expenses", "Profit"]} />
             <ChartMetricRow series={groupedStatisticSeries} />
             <GroupedBarChart
               data={groupedStatisticBarData}

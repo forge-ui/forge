@@ -197,7 +197,7 @@ export default function AnalyticsPage() {
         {/* Statistic + Campaign */}
         <Grid data-testid="analytics-primary">
           <GridItem span={{ base: "full", lg: 8 }}><TrendChart >
-            <ChartHeader title="Statistic" subtitle="Income and expenses" />
+            <ChartHeader title="Statistic" subtitle="Income and expenses" tabs={["All", "Income", "Expenses", "Profit"]} />
             <ChartMetricRow series={groupedStatisticSeries.slice(0, 2)} />
             <GroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 2) }))}

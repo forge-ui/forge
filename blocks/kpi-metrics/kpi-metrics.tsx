@@ -1,15 +1,18 @@
 import { ArrowRightUpLinear, ArrowRightDownLinear } from "@forge-ui-official/core/icons";
-import type { ReactNode } from "react";
-import { Panel, StatCard, cn, type StatCardProps } from "@forge-ui-official/core";
+import type { ComponentProps, ReactNode } from "react";
+import { BarChartStatCard, Panel, StatCard, cn, type StatCardProps } from "@forge-ui-official/core";
 
 export interface KpiMetricsProps {
   metrics?: (StatCardProps & { id: string })[];
   children?: ReactNode;
   className?: string;
+  variant?: "chart" | "plain";
+  bars?: ComponentProps<typeof BarChartStatCard>["bars"];
 }
 
-export function KpiMetrics({ metrics = [], children, className = "grid grid-cols-1 items-stretch gap-4 lg:grid-cols-4 [&>*]:w-full" }: KpiMetricsProps) {
-  return <div className={cn(className)}>{children ?? metrics.map(({ id, ...metric }) => <StatCard key={id} {...metric} density="compact" />)}</div>;
+export function KpiMetrics({ metrics = [], children, variant = "chart", bars, className = "grid grid-cols-1 items-stretch gap-4 lg:grid-cols-4 [&>*]:w-full" }: KpiMetricsProps) {
+  const themes = ["purple", "blue", "green", "red"] as const;
+  return <div className={cn(className)}>{children ?? metrics.map(({ id, ...metric }, index) => variant === "plain" ? <StatCard key={id} {...metric} density="compact" /> : <BarChartStatCard key={id} {...metric} value={String(metric.value ?? "")} theme={metric.theme ?? themes[index % themes.length]} size={metric.size ?? "wide"} barColor={themes[index % themes.length]} bars={bars} density="compact" />)}</div>;
 }
 
 function MiniFinanceLine({
