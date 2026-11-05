@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import { Children, cloneElement, isValidElement, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
 export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
@@ -9,10 +9,18 @@ export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
   children: ReactNode;
   variant?: "dashboard" | "template" | "custom";
   as?: "div" | "section" | "aside" | "article";
+  asChild?: boolean;
   gap?: "none" | "sm" | "md";
 }
 
-export function Panel({ title, subtitle, action, footer, children, variant = "dashboard", as: Element = "div", gap = "md", className, ...props }: PanelProps) {
+export function Panel({ title, subtitle, action, footer, children, variant = "dashboard", as: Element = "div", asChild = false, gap = "md", className, ...props }: PanelProps) {
+  if (asChild) {
+    const child = Children.only(children);
+    if (variant !== "custom" || title || subtitle || action || footer || !isValidElement<HTMLAttributes<HTMLElement>>(child)) {
+      throw new Error("Panel asChild requires variant=custom, one element, and no header or footer slots.");
+    }
+    return cloneElement(child, { ...props, className: cn(className, child.props.className) });
+  }
   const template = variant === "template";
   return (
     <Element {...props} className={cn(

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Panel } from "@forge-ui-official/core";
 import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "@/app/_components/site-header";
 import { variants } from "./_variants";
@@ -18,6 +19,7 @@ export default function DashboardBuilderGallery() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {variants.map((v) => (
+            <Panel key={v.slug} variant="custom" asChild>
             <Link
               key={v.slug}
               href={`/templates/dashboard-builder/${v.slug}`}
@@ -42,6 +44,7 @@ export default function DashboardBuilderGallery() {
                 </div>
               </div>
             </Link>
+            </Panel>
           ))}
         </div>
       </main>

@@ -27,3 +27,8 @@ test("file inputs preserve native selection and accessibility attributes", () =>
   const props = { hidden: true, multiple: true, accept: "image/*", "aria-label": "选择附件" };
   assert.equal(renderToStaticMarkup(<FileInput {...props} />), renderToStaticMarkup(<input {...props} type="file" />));
 });
+
+test("custom panels preserve link roots without adding a wrapper", () => {
+  assert.equal(renderToStaticMarkup(<Panel variant="custom" asChild className="rounded-card"><a href="/templates">模板</a></Panel>), '<a href="/templates" class="rounded-card">模板</a>');
+  assert.throws(() => renderToStaticMarkup(<Panel asChild><a href="/">模板</a></Panel>), /variant=custom/);
+});

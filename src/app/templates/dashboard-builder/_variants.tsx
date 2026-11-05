@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { asset } from "@/lib/asset";
 import {
   HomeSmileBoldDuotone,
@@ -84,7 +83,7 @@ export const variants: BuilderVariant[] = [
     accent: "blue",
     profilePosition: "topbar",
     showPageHeader: false,
-    swatch: "bg-blue-600",
+    swatch: "bg-fg-blue-600",
     thumbnail: asset("/images/showcase/dashboard-builder/blue-topbar.png"),
   },
   {
@@ -95,7 +94,7 @@ export const variants: BuilderVariant[] = [
     accent: "blue",
     profilePosition: "sidebar",
     showPageHeader: true,
-    swatch: "bg-blue-600",
+    swatch: "bg-fg-blue-600",
     thumbnail: asset("/images/showcase/dashboard-builder/blue-sidebar.png"),
   },
   {
@@ -157,5 +156,3 @@ export function findVariant(slug: string): BuilderVariant | undefined {
 export function variantHref(slug: string): string {
   return `/templates/dashboard-builder/${slug}`;
 }
-
-export const emptyContent: ReactNode = <div className="min-h-[calc(100vh-12rem)]" />;
