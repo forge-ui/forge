@@ -125,7 +125,7 @@ export default function OrderDetailPage() {
         </div>
       </Modal>
 
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <h1 className="text-3xl font-semibold text-fg-black leading-10 tracking-fg">Orders</h1>
           <Breadcrumbs

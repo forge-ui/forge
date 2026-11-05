@@ -120,7 +120,7 @@ export default function Project1Page() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <DashboardHeader className="flex items-start justify-between">
+        <DashboardHeader className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Overview</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your project</p>

@@ -81,7 +81,7 @@ export default function OrderInvoicePage() {
 
   return (
     <>
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
             <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => window.history.back()}>

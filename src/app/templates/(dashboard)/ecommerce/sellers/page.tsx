@@ -448,7 +448,7 @@ export default function SellersPage() {
       </Modal>
 
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Seller</h1>
           <Breadcrumbs
