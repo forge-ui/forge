@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 37b9a4ddc7490b163344c7d3f169056113675f42dc6e03bbcdc17263f288dc52
+Source fingerprint: 6436fffc8edb09a2221b00a5fde2b576a48c32dc09c39a9698ccc8440e50f663
 
 ## Adopted rules / 采用规则
 
@@ -18,6 +18,12 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ---
 
 # Forge 页面设计与实施
+
+## 唯一入口与阅读顺序
+
+唯一通用入口是本文件 `forge-skill/SKILL.md`，不同时拼读全局安装版与项目同步版。优先级：用户指定的版本/checkout > starter 已校验的 `docs/forge-skill/upstream/SKILL.md` > 全局安装的 forge-skill。项目内没有同步副本时才用全局版；版本不符应先同步并核对 manifest，不能静默混用。
+
+在 starter 内先读该仓 AGENTS.md 与本任务对应的 quick-start / new-module / new-page，然后读项目 `docs/forge-skill/upstream/SKILL.md`；依次读 Screens → 主对照 Screen 源码 → Blocks 配方及单项 Props → 所用 Components 契约 → audit-checklist。全局 skill 在 starter 中仅负责找到并转入这一入口；starter 的路由、RBAC、数据与工程规则仍以 starter 专用 skill 为准。
 
 ## 先确定范围
 
@@ -206,6 +212,39 @@ Source: skills/forge-skill/references/blocks.md
 
 ## 使用边界
 
+每个 registry item 的 `meta.example` 是完整最小示例，`meta.props` 是从当前 TypeScript 导出生成的 Props 表（含所有导出及继承属性），`meta.core` 列出实际依赖组件和版本；示例与复制源码一起编译校验。对应可读文档位于本目录的 `blocks/<name>.md`，由 `blocks:generate` 同步，不手工维护第二份 API。`CellText` 使用 children：`<CellText>订单 1</CellText>`，没有 text prop。
+
+## 看板配方
+
+| Screen | 推荐组合（按阅读顺序） | KPI 选型 |
+|---|---|---|
+| ecommerce-3 | DashboardHeader → KpiMetrics → TrendChart + CompositionCard → RankingList + RegionDistribution → RecentRecords | 默认 chart，主题色 BarChartStatCard |
+| analytics | DashboardHeader → KpiMetrics → TrendChart → RankingList + GoalProgressList | children 传 ProgressStatCard，保持原模板 |
+| ecommerce-1 / ecommerce-2 | DashboardHeader → KpiMetrics → TrendChart → CompositionCard + RecentRecords | 按 Screen 的 StatCard 家族传 children |
+| finance-1 / finance-2 / finance-3 | DashboardHeader → FinanceSurface + KpiMetrics → CardCarousel → TrendChart + GoalProgressList → RecentRecords | FinanceMetricCard / 模板插槽 |
+| project-1 / project-2 | DashboardHeader → KpiMetrics → TrendChart → MemberList + ScheduleCard + ActivityFeed | 按项目 Screen 传 children |
+| crm | DashboardHeader → KpiMetrics → TrendChart → RankingList + RecentRecords | CrmMetricCard |
+
+`KpiMetrics variant="plain"` 还原纯指标卡；默认 `chart` 使用紫/蓝/绿/红主题和迷你柱图。真实序列用 bars 提供，默认迷你图仅为模板演示，不是业务统计。已有 children 优先，模板不受默认变化影响。
+
+### 周期切换
+
+`TrendChart periods={[{ label: "日", chart: daily }, { label: "周", chart: weekly }, { label: "月", chart: monthly }]}` 提供非受控切换；`activePeriod/onPeriodChange` 提供受控方式，每项传对应聚合数据，不只换标签。`ChartHeader` 默认无 tabs，传入本地化 tabs 才显示，`tabs={[]}` 关闭。
+
+### 长周期计数：30 天与上一周期
+
+用 `TrendChart countChart` 接受 SmoothLineChart 配置：series 两条分别为本期/上期订单笔数，各 30 个非负数；xAxisLabels 只标起止日期，showYAxis=true，yDomain 从 0 到两期最大值，yAxisLabels 用整数，不用货币。按序号对齐两个连续的 30 天窗口，说明时区、是否含退款、缺日补零。上期合计为零时不展示增长百分比。
+
+```tsx
+<TrendChart title="近 30 天订单趋势" subtitle="与上一周期逐日对齐 · 单位：笔" countChart={{
+  series: [{ label: "本期", data: currentCounts }, { label: "上期", data: previousCounts }],
+  showYAxis: true, yDomain: [0, maximum], yAxisLabels: [String(maximum), "0"],
+  xAxisLabels: [startDate, endDate], interpolation: "linear",
+}} />
+```
+
+宿主提供 currentCounts/previousCounts（各 30 项）、maximum（至少 1）及起止日期。dateSelection 可放真实 Datepicker，primaryAction 放导出等主操作；不要用 disabled 假按钮代替可用操作。
+
 - 画廊：`/blocks`（17 项均有预览）；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
 - 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
 - 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
@@ -243,6 +282,18 @@ Source: skills/forge-skill/references/component-content-contracts.md
 - 复杂图形标外包络/keep-out、安全区域；数量/内容支持域未知记 FORGE-GAP。Calendar、分页等输入边界、路由与数据归一仍由宿主负责，不把异常现状当规范。
 
 本轮未做浏览器内容极限/字体/读屏器验证；按 [审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 分开记录源码与实测。
+
+## Dialog / DataTable 解剖方法
+
+提炼自 forge PR #16 的 component-anatomy.md（来源提交 `1175d3cbe8795f5f7bb198479f6d7f9771884794`），只保留可复用契约，不复制历史自测记录、静态成片或待办清单。
+
+- 区分 DialogSurface 外壳、ConfirmationDialog 内容布局与 Modal 内层，不能因共用外壳就假设 padding、gap、标题行高相同。记录实际 variant/layout 和源码版本。
+- 尺寸图每个标注对应一条源码 Token / class / 公式；Tailwind 间距基准 0.25rem，只有根字号 16px 时 p-6 才是 24px。`outline` + 负 outline-offset 不增加盒模型尺寸，不能当 border 加进预算。
+- ConfirmationDialog 的默认 spread 是剩余宽 justify-between，而 right 布局是显式按钮 gap；标题/说明一行时的参考高度不是固定组件高度。视口上限和滚动应按实际 DialogSurface 样式验证，窄屏必须仍能关闭/提交。
+- DataTable 外壳 w-full 与列的 min-width 预算不同。示例勾选/身份/普通/操作列预算 56+240+128+88=512px 只属于那套列组合，不可写成所有表的固定宽。FullWidthTable 也不继承 DataTable 的表头 gap。
+- 分开核对表头/页脚 padding、普通单元格 padding、勾选单元格 padding，以及单元格助手的高度。行高由最高单元格决定：max(勾选控件+上下padding，内容+上下padding)，不是简单套助手高度。
+- 同时标明固定宽、最大宽和内容溢出包络；控件落进 padding 与越出列框是两种问题。排序、分页和勾选的命中区单独记录；不要用 overflow-hidden 隐藏不可达操作。
+- 交付源码映射表、尺寸图与运行截图三类证据，静态 HTML/PNG 不能证明真实 Dialog 焦点恢复、表格排序/分页或 375px 操作可达性。读安装版真实声明，CellText 内容用 children，不猜 text prop。
 
 ---
 
@@ -446,6 +497,19 @@ Source: skills/forge-skill/references/screens.md
 # 全部模板 Screen 目录
 
 以下为仓内实际页面，不承诺样例数据具有业务后端。先选最接近任务的一个作风格基准，再改内容与路由。
+
+## 如何本地预览模板
+
+在用户授权的 Forge 主仓 checkout 中运行（不要在 starter 目录运行模板服务）：
+
+```sh
+export PATH=~/.nvm/versions/node/v22.23.2/bin:$PATH
+corepack pnpm dev --hostname 127.0.0.1 --port 3219
+```
+
+如依赖未安装，先 `corepack pnpm install --frozen-lockfile`。打开 `http://127.0.0.1:3219/templates/dashboards/ecommerce-3`；analytics 为 `/templates/dashboards/analytics`，项目成员页为 `/templates/project-template/members`。路由分组 `(dashboards)` 不进入 URL。完整路由可运行 `node skills/forge-skill/scripts/list.mjs templates`。
+
+生产预览可先 `corepack pnpm build`，再 `corepack pnpm start --hostname 127.0.0.1 --port 3219`，只在本地监听，不发布。starter 的业务页与 Forge 模板是两个服务：对照时保持同视口、侧栏状态与字号，复用已有 Chrome，不启动系统 Chrome 新 profile。端口被占用时核对服务归属，不能杀其他任务；结束只停止自己创建的服务。没有可运行的源码/服务或浏览器权限时，报告未验证，静态源码不能冒充视觉验收。
 
 | Screen | 适用场景 | 源码 |
 |---|---|---|
