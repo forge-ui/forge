@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftLinear } from "@forge-ui-official/core/icons";
@@ -82,7 +83,7 @@ export default function EditCategoryPage() {
       </div>
 
       <div className="flex items-start gap-4">
-        <div className="flex-1 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+        <Panel variant="custom" className="flex-1 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">
             General Information
           </h3>
@@ -100,9 +101,9 @@ export default function EditCategoryPage() {
               rows={6}
             />
           </div>
-        </div>
+        </Panel>
 
-        <div className="w-[266px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+        <Panel variant="custom" className="w-[266px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">Category</h3>
           <p className="text-sm text-fg-grey-700 mb-1.5">Photo</p>
           <div className="flex flex-col items-center gap-4 py-4">
@@ -113,7 +114,7 @@ export default function EditCategoryPage() {
                 alt="category-preview"
                 className="w-[100px] h-[100px] rounded-xl object-cover"
               />
-              <span className="absolute top-1 right-1 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+              <span className="absolute top-1 right-1 w-6 h-6 rounded-full bg-fg-green-500 flex items-center justify-center">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path
                     d="M3.5 7L6 9.5L10.5 4.5"
@@ -132,7 +133,7 @@ export default function EditCategoryPage() {
             </p>
             <Button variant="primary">Change Image</Button>
           </div>
-        </div>
+        </Panel>
       </div>
     </div>
   );

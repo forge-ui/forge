@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -200,23 +201,23 @@ export default function ProductDetailPage() {
       {activeTabValue === "details" && (
         <div className="flex items-start gap-4">
           {/* Image Gallery */}
-          <div className="w-[360px] p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
+          <Panel variant="custom" className="w-[360px] p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
             <div className="relative">
               <img
                 src={imageList[activeImageIndex]}
                 alt="product-preview"
                 className="w-full aspect-square rounded-3xl object-cover"
               />
-              <button
+              <Button variant="unstyled"
                 type="button"
                 className="absolute top-2 right-2 w-10 h-10 rounded-full bg-white outline outline-1 outline-fg-grey-200 flex items-center justify-center cursor-pointer"
               >
                 <MagniferLinear size={20} className="text-fg-grey-700" />
-              </button>
+              </Button>
             </div>
             <div className="flex items-center gap-3">
               {imageList.map((imgUrl, index) => (
-                <button
+                <Button variant="unstyled"
                   key={index}
                   type="button"
                   className={`w-20 h-20 rounded-2xl overflow-hidden border-2 cursor-pointer ${
@@ -225,7 +226,7 @@ export default function ProductDetailPage() {
                   onClick={() => setActiveImageIndex(index)}
                 >
                   <img src={imgUrl} alt={`thumb-${index}`} className="w-full h-full object-cover" />
-                </button>
+                </Button>
               ))}
             </div>
             <div className="flex items-center justify-center gap-1.5">
@@ -238,23 +239,23 @@ export default function ProductDetailPage() {
                 />
               ))}
             </div>
-          </div>
+          </Panel>
 
           {/* Product Info */}
-          <div className="flex-1 p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
+          <Panel variant="custom" className="flex-1 p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
             <div className="relative">
               <h2 className="text-display-l font-semibold text-fg-black mb-4">Smartwatch E2</h2>
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-fg-grey-700">Sold:</span>
                 <span className="text-fg-black font-medium">1,316</span>
-                <span className="text-gray-200">|</span>
+                <span className="text-fg-grey-200">|</span>
                 <span className="text-fg-grey-700">Rating:</span>
-                <StarBold size={14} color="#F9C80E" />
+                <StarBold size={14} color={"var(--fg-yellow-500)"} />
                 <span className="text-fg-black font-medium">4.5/5</span>
-                <span className="text-gray-200">|</span>
+                <span className="text-fg-grey-200">|</span>
                 <span className="text-fg-grey-700">Stock:</span>
                 <span className="text-fg-black font-medium">140</span>
-                <span className="text-gray-200">|</span>
+                <span className="text-fg-grey-200">|</span>
                 <span className="text-fg-grey-700">Message:</span>
                 <span className="text-fg-black font-medium">25</span>
               </div>
@@ -314,7 +315,7 @@ export default function ProductDetailPage() {
                 <span className="text-fg-black">14 January 2022</span>
               </div>
             </div>
-          </div>
+          </Panel>
         </div>
       )}
 
@@ -333,7 +334,7 @@ export default function ProductDetailPage() {
 
       {/* Reviews Tab */}
       {activeTabValue === "reviews" && (
-        <div className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
+        <Panel variant="custom" className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
           <h3 className="text-xl font-semibold text-fg-black">Customer Reviews</h3>
           <div className="flex flex-col gap-4">
             {reviewList.map((review) => (
@@ -344,19 +345,19 @@ export default function ProductDetailPage() {
                 </div>
                 <div className="flex items-center gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <StarBold key={i} size={14} color={i < review.rating ? "#F9C80E" : "#E5E5E5"} />
+                    <StarBold key={i} size={14} color={i < review.rating ? "var(--fg-yellow-500)" : "var(--fg-black-50)"} />
                   ))}
                 </div>
                 <p className="text-sm text-fg-grey-700">{review.comment}</p>
               </div>
             ))}
           </div>
-        </div>
+        </Panel>
       )}
 
       {/* Messages Tab */}
       {activeTabValue === "messages" && (
-        <div className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
+        <Panel variant="custom" className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
           <h3 className="text-xl font-semibold text-fg-black">Messages</h3>
           <div className="flex flex-col gap-4">
             {messageList.map((msg) => (
@@ -369,7 +370,7 @@ export default function ProductDetailPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Panel>
       )}
     </div>
   );

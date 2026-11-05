@@ -158,13 +158,13 @@ export default function OrderDetailPage() {
                   <Label color={statusLabelColor[orderStatus]} variant="outline" size="sm">
                     {orderStatus[0].toUpperCase() + orderStatus.slice(1)}
                   </Label>
-                  <button
+                  <Button variant="unstyled"
                     type="button"
                     onClick={() => setIsTrackingModalOpen(true)}
                     className="p-2 cursor-pointer text-fg-grey-700"
                   >
                     <EyeBoldDuotone size={20} />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className="flex-1 min-w-[140px]">
@@ -175,9 +175,9 @@ export default function OrderDetailPage() {
                 <p className="text-sm font-medium text-fg-grey-700">Invoice</p>
                 <div className="mt-1.5 flex items-center gap-2">
                   <span className="text-sm font-medium text-fg-black">INV302012</span>
-                  <button type="button" className="p-2 cursor-pointer text-fg-grey-700">
+                  <Button variant="unstyled" type="button" className="p-2 cursor-pointer text-fg-grey-700">
                     <EyeBoldDuotone size={20} />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className="flex-1 min-w-[140px]">
@@ -231,12 +231,12 @@ export default function OrderDetailPage() {
                       <p className="text-xs text-fg-grey-700">Total</p>
                       <p className="text-sm font-semibold text-fg-black mt-2">{item.total}</p>
                     </div>
-                    <button
+                    <Button variant="unstyled"
                       type="button"
                       className="p-2 cursor-pointer text-fg-grey-700 hover:text-fg-red"
                     >
                       <TrashBinTrashLinear size={16} />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}

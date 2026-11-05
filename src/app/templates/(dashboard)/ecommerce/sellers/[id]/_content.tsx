@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState, useMemo } from "react";
 import {
   DataTable,
@@ -146,10 +147,10 @@ const sellerReviews: SellerReviewItem[] = [
 ];
 
 const attachmentBadgeStyles: Record<Exclude<AttachmentKind, "image">, { wrapper: string; label: string }> = {
-  wav: { wrapper: "bg-indigo-100", label: "bg-indigo-500 text-white" },
-  zip: { wrapper: "bg-amber-100", label: "bg-amber-500 text-white" },
-  pdf: { wrapper: "bg-rose-100", label: "bg-fg-red text-white" },
-  mp4: { wrapper: "bg-purple-100", label: "bg-fg-violet text-white" },
+  wav: { wrapper: "bg-fg-violet-100", label: "bg-fg-violet-500 text-white" },
+  zip: { wrapper: "bg-fg-yellow-100", label: "bg-fg-yellow-500 text-white" },
+  pdf: { wrapper: "bg-fg-red-100", label: "bg-fg-red text-white" },
+  mp4: { wrapper: "bg-fg-violet-100", label: "bg-fg-violet text-white" },
 };
 
 const sellerAttachments: SellerAttachmentItem[] = [
@@ -343,7 +344,7 @@ export default function SellerDetailPage() {
       {/* Content */}
       <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-[336px_minmax(0,1fr)]" data-testid="seller-layout">
         {/* Left Sidebar */}
-        <div className="min-w-0 rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
+        <Panel variant="custom" className="min-w-0 rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
           <div className="absolute left-[7px] right-[7px] top-[7px] h-[109px] rounded-xl bg-gradient-to-r from-fg-violet via-purple-300 to-fg-yellow-100" />
 
           <div className="relative z-10 flex flex-col items-center gap-3 pt-10">
@@ -354,7 +355,7 @@ export default function SellerDetailPage() {
                 className="w-[100px] h-[100px] rounded-full object-cover bg-fg-grey-200 border-4 border-white"
               />
               <div className="absolute bottom-0 right-0 flex h-7 w-7 items-center justify-center">
-                <StarBold size={16} color="#EAB308" />
+                <StarBold size={16} color={"var(--fg-yellow-600)"} />
               </div>
             </div>
             <div className="text-center">
@@ -389,26 +390,26 @@ export default function SellerDetailPage() {
                 <p className="text-sm font-semibold text-fg-grey-700">Email</p>
                 <p className="mt-1 text-sm font-medium text-fg-black">{display.email}</p>
               </div>
-              <button
+              <Button variant="unstyled"
                 type="button"
                 className="mt-6 cursor-pointer border-none bg-transparent p-0 text-fg-grey-500 hover:text-fg-violet transition-colors"
                 onClick={() => void copyToClipboard(display.email)}
               >
                 <CopyLinear size={18} />
-              </button>
+              </Button>
             </div>
             <div className="flex gap-2">
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold text-fg-grey-700">Phone Number</p>
                 <p className="mt-1 text-sm font-medium text-fg-black">{display.phone}</p>
               </div>
-              <button
+              <Button variant="unstyled"
                 type="button"
                 className="mt-6 cursor-pointer border-none bg-transparent p-0 text-fg-grey-500 hover:text-fg-violet transition-colors"
                 onClick={() => void copyToClipboard(display.phone)}
               >
                 <CopyLinear size={18} />
-              </button>
+              </Button>
             </div>
             <div>
               <p className="text-sm font-semibold text-fg-grey-700">Address</p>
@@ -423,7 +424,7 @@ export default function SellerDetailPage() {
               <p className="mt-1 text-sm font-medium text-fg-black">{display.added}</p>
             </div>
           </div>
-        </div>
+        </Panel>
 
         {/* Right Panel */}
         <div className="min-w-0">
@@ -444,7 +445,7 @@ export default function SellerDetailPage() {
           </Grid>
 
           {/* Tabbed Content */}
-          <div className="mt-4 rounded-card border border-fg-grey-200 bg-white overflow-hidden">
+          <Panel variant="custom" className="mt-4 rounded-card border border-fg-grey-200 bg-white overflow-hidden">
             <TabBar
               tabs={sellerTabs.map((tab, i) => ({
                 label: tab,
@@ -536,19 +537,19 @@ export default function SellerDetailPage() {
                 </div>
                 <Grid columns={{ base: 1, sm: 2, xl: 3 }} className="px-5 pb-5">
                   {sellerAttachments.map((item) => (
-                    <div
+                    <Panel variant="custom"
                       key={item.id}
                       className="relative rounded-2xl border border-fg-grey-200 bg-white p-1 pb-5"
                     >
                       {/* Checkbox placeholder */}
-                      <div className="absolute left-4 top-4 h-5 w-5 rounded-md border-2 border-gray-300 bg-white" />
+                      <div className="absolute left-4 top-4 h-5 w-5 rounded-md border-2 border-fg-grey-300 bg-white" />
                       {/* Kebab */}
-                      <button
+                      <Button variant="unstyled"
                         type="button"
                         className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center text-fg-grey-500 cursor-pointer rotate-90"
                       >
                         <MenuDotsBold size={16} />
-                      </button>
+                      </Button>
                       {/* Preview */}
                       <div className="h-44 w-full overflow-hidden rounded-t-xl bg-fg-grey-100">
                         {item.kind === "image" ? (
@@ -579,12 +580,12 @@ export default function SellerDetailPage() {
                           {item.fileSize}
                         </p>
                       </div>
-                    </div>
+                    </Panel>
                   ))}
                 </Grid>
               </div>
             )}
-          </div>
+          </Panel>
         </div>
       </div>
     </div>

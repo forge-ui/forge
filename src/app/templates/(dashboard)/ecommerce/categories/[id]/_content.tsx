@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -123,7 +124,7 @@ export default function CategoryDetailPage() {
       {/* Content */}
       <div className="flex items-start gap-4">
         {/* Left: Category Info */}
-        <div className="w-[320px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-5">
+        <Panel variant="custom" className="w-[320px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-5">
           <img
             src="https://placehold.co/280x280/e2e8f0/64748b?text=Watch"
             alt="watch"
@@ -148,7 +149,7 @@ export default function CategoryDetailPage() {
               <p className="text-sm font-semibold text-fg-black mt-0.5">12 December 2022</p>
             </div>
           </div>
-        </div>
+        </Panel>
 
         {/* Right: Products in Category */}
         <div className="flex-1">

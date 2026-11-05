@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -72,7 +73,7 @@ export default function AddCategoryPage() {
       {/* Form Content */}
       <div className="flex items-start gap-4">
         {/* Left: General Information */}
-        <div className="flex-1 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+        <Panel variant="custom" className="flex-1 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">General Information</h3>
           <TextField
             label="Product Name"
@@ -90,10 +91,10 @@ export default function AddCategoryPage() {
               rows={6}
             />
           </div>
-        </div>
+        </Panel>
 
         {/* Right: Category Photo */}
-        <div className="w-[266px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+        <Panel variant="custom" className="w-[266px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">Category</h3>
           <p className="text-sm text-fg-grey-700 mb-1.5">Photo</p>
           <div className="flex flex-col items-center gap-4 py-4">
@@ -111,7 +112,7 @@ export default function AddCategoryPage() {
               Add Image
             </Button>
           </div>
-        </div>
+        </Panel>
       </div>
     </div>
   );

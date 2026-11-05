@@ -322,7 +322,7 @@ export default function OrdersPage() {
                 : "Do you want to delete this order? This action can't be undone"
             }
             color="red"
-            icon={<TrashBinTrashLinear size={24} color="#ea580c" />}
+            icon={<TrashBinTrashLinear size={24} color={"var(--fg-red-600)"} />}
             confirmLabel="Delete"
             cancelLabel="Cancel"
             onConfirm={() => {

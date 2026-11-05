@@ -1,5 +1,6 @@
 "use client";
 
+import { FileInput } from "@forge-ui-official/core";
 import { useState, useCallback, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -393,7 +394,7 @@ export default function CustomersPage() {
             title="Delete Customer?"
             description="Do you want to delete this customer? This action can't be undone"
             color="red"
-            icon={<TrashBinMinimalisticLinear size={32} color="#EA580C" />}
+            icon={<TrashBinMinimalisticLinear size={32} color={"var(--fg-red-600)"} />}
             confirmLabel="Delete"
             cancelLabel="Cancel"
             onCancel={handleCloseDeleteModal}
@@ -425,9 +426,9 @@ export default function CustomersPage() {
                   initials="N"
                   size="lg"
                 />
-                <input
+                <FileInput
                   ref={fileInputRef}
-                  type="file"
+
                   accept="image/*"
                   className="hidden"
                   onChange={handleUploadProfileImage}

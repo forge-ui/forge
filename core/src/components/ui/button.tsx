@@ -70,7 +70,7 @@ const buttonSizes = {
 } as const;
 
 export type ButtonColor = keyof typeof buttonVariants;
-export type ButtonVariant = "primary" | "secondary" | "tertiary" | "hold";
+export type ButtonVariant = "primary" | "secondary" | "tertiary" | "hold" | "unstyled";
 export type ButtonHoldLabels = { idle?: string; done?: string; undo?: string };
 export type ButtonEffect = "glass" | "magnetic" | "ripple" | "roll";
 export type ButtonProps = {
@@ -101,6 +101,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const effects = useActionEffect(effect, motion, disabled || loading);
+  if (variant === "unstyled") return <button {...props} type={type} disabled={disabled || loading} className={className || undefined} aria-busy={loading || props["aria-busy"] || undefined}>{children}</button>;
   if (variant === "hold") return <HoldButton {...props} type={type} disabled={disabled || loading} aria-busy={loading || props["aria-busy"]} color={color} size={size} motion={motion} iconLeft={iconLeft} iconRight={iconRight} className={className} holdDuration={holdDuration} onConfirm={onConfirm} onUndo={onUndo} confirmed={confirmed} locale={locale} holdLabels={holdLabels}>{children}</HoldButton>;
   const sizeConfig = buttonSizes[size];
   const hasIcon = !!(iconLeft || iconRight);

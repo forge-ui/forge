@@ -456,6 +456,8 @@ export { FolderFloat } from "./folder-float";
 export type { FolderFloatProps } from "./folder-float";
 
 export { Panel } from "./panel";
+export { FileInput } from "./forms/file-input";
+export type { FileInputProps } from "./forms/file-input";
 export type { PanelProps } from "./panel";
 export { WalletGoalCard } from "./wallet-goal-card";
 export type { WalletGoalCardProps } from "./wallet-goal-card";
