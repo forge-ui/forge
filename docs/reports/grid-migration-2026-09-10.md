@@ -8,10 +8,10 @@
 - 使用静态 CSS Grid 和 CSS 变量；不依赖客户端窗口测量。`full` 占满一行，`auto` 重置起始位置，嵌套栅格重置自身变量。`AppLayout` 边距和默认外壳行为未改变。
 - 迁移 analytics 仪表盘、商品新增页、卖家详情页。商品与卖家详情在 xl 开始主次分栏；仪表盘主区在 lg 使用 8∶4。窄屏操作区换行、表单堆叠、表格保留内部滚动。
 - 复用卡片的 `width="full"`；仪表盘 Campaign 的 `ListGroup` 通过现有 className 填满 GridItem。不增加业务组件参数，不修改现有业务组件实现。
-- 新增 `/components/grid`、`/cases/grid`、导航、组件清单、公共 API 快照及消费方样例；更新仓库内 forge-react skill、页面模式和统一布局审计规则。
+- 新增 `/components/grid`、`/cases/grid`、导航、组件清单、公共 API 快照及消费方样例；更新仓库内 forge-skill skill、页面模式和统一布局审计规则。
 - 文档生成器在缺少可选外部 registry 时保留已有生成目录内容，仅合入本地栅格条目；已验证重复生成结果一致。
 
-规范：[layout-grid.md](../../skills/forge-react/references/layout-grid.md)。当前本地查看：[组件文档](http://localhost:3100/components/grid)、[矩阵案例](http://localhost:3100/cases/grid)。这些 API 尚未发布至 npm。
+规范：[layout-grid.md](../../skills/forge-skill/references/layout-grid.md)。当前本地查看：[组件文档](http://localhost:3100/components/grid)、[矩阵案例](http://localhost:3100/cases/grid)。这些 API 尚未发布至 npm。
 
 ## 检查结果
 
@@ -60,7 +60,7 @@
 
 证据保存在被 git 忽略的 `tmp/grid-audit/`，供本地审阅，不随包发布。
 
-仓库本地旧入口 `.agents/skills/forge/SKILL.md` 已更新包名、Core 路径和布局规范链接；该目录原本被 git 忽略，此改动只在当前机器生效。可分发的规范与规则以已纳入仓库的 `skills/forge-react` 为准。全局 skill 安装目录、插件缓存、外部 Forge Design 均未写入；未来发布后再通过现有 skill 安装入口更新消费者，外部 Forge Design 需要在其自身仓库同步组件映射。
+仓库本地旧入口 `.agents/skills/forge/SKILL.md` 已更新包名、Core 路径和布局规范链接；该目录原本被 git 忽略，此改动只在当前机器生效。可分发的规范与规则以已纳入仓库的 `skills/forge-skill` 为准。全局 skill 安装目录、插件缓存、外部 Forge Design 均未写入；未来发布后再通过现有 skill 安装入口更新消费者，外部 Forge Design 需要在其自身仓库同步组件映射。
 
 ## 2026-09-11 Case 展示修订
 

@@ -1,329 +1,465 @@
-# Forge 组件介绍表（Agent）
+# Forge 公开导出清单
 
-**来源：** 合并 [forge-readdy/catalog](../../../forge-readdy/catalog/forge-components.md)（core 0.1.7 全量）+ monorepo cases。  
-**机器清单：** [`inventory.json`](./inventory.json)（181 项）  
-**查 props：** 打开下表 **Case** 列对应的 `src/app/cases/<case>/page.tsx`，见 [`routes.md`](./routes.md)。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.4.7，共 457 项（区分 value/type，不将类型误称为可渲染组件）。
 
-## 怎么用
+[机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
-1. 按场景在下表找组件（或先看 [`routes.md` 场景速查](./routes.md)）  
-2. 读 Case 源码看真实 props  
-3. 业务页只 `import { X } from "@forge-ui-official/core"`  
-4. 表里没有 → **FORGE-GAP**，禁止手搓  
-
-### 标记（沿用 readdy）
-
-| 标记 | 含义 |
-|------|------|
-| ★ | 后台 CRUD / 壳 高频默认 |
-| ◇ | 常用加分 |
-| ○ | 域可选（日历/聊天/金融等） |
-| ✗ | 慎用 |
-
-### Starter 注意
-
-- 通用 Modal：core 无导出，用业务仓 `components/ui/modal.tsx` 包 `ConfirmationDialog`  
-- `DataTable.sortable` **不会自动排序**，未实现逻辑不要开  
-- Starter 列表筛选：优先 `ButtonGroup` + 搜索（见 forge-starter 样板）  
-
----
-
-## 组件一览（含 Case）
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-
-### cards
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `ActivityCard` | ◇ | 动态流 | `card` |
-| `BalanceCard` | ○ | 见 case / 源码 | `card` |
-| `BarChartStatCard` | ◇ | 柱状 KPI 卡 | `card` |
-| `CardAvatarGroup` | ○ | 见 case / 源码 | — |
-| `CardGlow` | ○ | 见 case / 源码 | — |
-| `CardIconChip` | ○ | 见 case / 源码 | — |
-| `CardKebabButton` | ○ | 见 case / 源码 | — |
-| `CardTrend` | ○ | 见 case / 源码 | — |
-| `CardWidth` | ○ | 见 case / 源码 | — |
-| `CreditCard` | ○ | 见 case / 源码 | `card` |
-| `DebitCard` | ○ | 见 case / 源码 | `card` |
-| `EventCard` | ○ | 日程事件卡 | `calendar` `card` |
-| `FinancialOrbs` | ○ | 见 case / 源码 | — |
-| `HighlightCard` | ○ | 强调内容卡 | `card` |
-| `ImageStatCard` | ○ | 带图 KPI | `card` |
-| `LineChartStatCard` | ★ | KPI 波形卡 | `card` |
-| `MapCard` | ○ | 地图区域 | `map` |
-| `MapContinent` | ○ | 见 case / 源码 | — |
-| `MapRegion` | ○ | 见 case / 源码 | — |
-| `MastercardLogo` | ○ | 见 case / 源码 | — |
-| `ProfileCard` | ○ | 见 case / 源码 | `card` `menu` |
-| `ProgressCard` | ✗ | 完成度卡 | `card` |
-| `ProgressStatCard` | ○ | 进度 KPI 卡 | `card` |
-| `ProjectCard` | ◇ | 项目卡片（card-grid） | `card` |
-| `StatCard` | ○ | 见 case / 源码 | `card` |
-| `StatCardShell` | ○ | 见 case / 源码 | — |
-| `SurfaceCard` | ★ | 表单分组 / 详情块 | — |
-| `TaskCard` | ◇ | 任务卡片 | `card` |
-| `UserCard` | ○ | 见 case / 源码 | `card` |
-| `WheelChartStatCard` | ◇ | 环形 KPI 卡 | `card` |
-
-### charts
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `BarChart` | ○ | 见 case / 源码 | `chart` |
-| `BarHorizontalChart` | ○ | 见 case / 源码 | `chart` |
-| `BarUpsideDownChart` | ○ | 见 case / 源码 | `chart` |
-| `BubbleChart` | ○ | 气泡图 | `chart` |
-| `ChartCard` | ★ | 图容器 | `chart` |
-| `ChartLegendItem` | ◇ | 图例项 | `chart` |
-| `ChartListItem` | ★ | 图例/占比行 | `chart` |
-| `ChartStatFooter` | ◇ | 图底部统计 | `chart` |
-| `ChartTooltip` | ○ | 图提示 | `chart` |
-| `ChartValueRow` | ◇ | 数值行 | `chart` |
-| `DashedHalfDonutChart` | ○ | 见 case / 源码 | `chart` |
-| `DonutChart` | ★ | 分布环图（dashboard） | `chart` |
-| `HalfDonutChart` | ○ | 见 case / 源码 | `chart` |
-| `MeterChart` | ○ | 仪表 | `chart` |
-| `MultilayerDonutChart` | ○ | 多层环 | `chart` |
-| `PieChart` | ◇ | 饼图 | `chart` |
-| `SmoothLineChart` | ◇ | 平滑折线 | `chart` |
-
-### chrome
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `BreadcrumbItem` | ○ | 见 case / 源码 | — |
-| `Breadcrumbs` | ○ | 见 case / 源码 | `toolbar` |
-| `PageDot` | ○ | 见 case / 源码 | `pagination-stepper` |
-| `PageHeader` | ◇ | 更完整页头（含 profile/variant） | `page-header` |
-| `PageHeaderAction` | ○ | 见 case / 源码 | — |
-| `PageHeaderProfile` | ○ | 见 case / 源码 | — |
-| `PageTitleToolbar` | ★ | 页标题 + 右侧 actions | `toolbar` |
-| `Pagination` | ○ | 见 case / 源码 | `pagination-stepper` |
-| `SidebarMenu` | ○ | 见 case / 源码 | `menu` |
-| `SidebarMenuItem` | ○ | 见 case / 源码 | — |
-| `Stepper` | ◇ | 流程步骤（详情 pipeline） | `pagination-stepper` |
-| `TabBar` | ○ | 见 case / 源码 | `tab` |
-| `TabItem` | ○ | 见 case / 源码 | — |
-| `Toolbar` | ★ | 列表工具条容器 | `toolbar` |
-| `ToolbarActions` | ★ | 工具条右侧；无内容则省略 prop，勿 `null` | `toolbar` |
-| `ToolbarDatepicker` | ◇ | 工具条日期 | `toolbar` |
-| `ToolbarFavoriteButton` | ○ | 见 case / 源码 | `toolbar` |
-| `ToolbarFilterButton` | ◇ | 打开 FilterPanel | `toolbar` |
-| `ToolbarKebabButton` | ○ | 见 case / 源码 | `toolbar` |
-| `ToolbarPillTab` | ○ | 见 case / 源码 | — |
-| `ToolbarPillTabs` | ○ | 见 case / 源码 | `toolbar` |
-| `ToolbarSearchInput` | ★ | 搜索 | `toolbar` |
-| `ToolbarSelectDropdown` | ★ | 下拉筛选 | `toolbar` |
-| `ToolbarShowSelect` | ★ | 显示/密度类 | `toolbar` |
-| `TopBar` | ○ | 独立顶栏（一般走 AppLayout） | `page-header` |
-
-### forms
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `CheckboxWithLabel` | ◇ | 带标签勾选 | `input-field` |
-| `ColorPicker` | ○ | 见 case / 源码 | `input-field` |
-| `Datepicker` | ◇ | 日期（field role=datetime） | `input-field` |
-| `FileCard` | ○ | 见 case / 源码 | `input-field` |
-| `FileItem` | ○ | 见 case / 源码 | — |
-| `FileTypeIcon` | ○ | 见 case / 源码 | `input-field` |
-| `FileUpload` | ○ | 见 case / 源码 | `input-field` |
-| `IconPicker` | ○ | 见 case / 源码 | `input-field` |
-| `IconSelector` | ○ | 见 case / 源码 | `input-field` |
-| `MediaItem` | ○ | 见 case / 源码 | — |
-| `MediaUpload` | ○ | 见 case / 源码 | `input-field` |
-| `ProfileImgUpload` | ○ | 见 case / 源码 | `input-field` |
-| `RadioButton` | ○ | 见 case / 源码 | `input-field` |
-| `RadioWithLabel` | ○ | 见 case / 源码 | — |
-| `SelectOption` | ★ | 高频默认（见 readdy one-shot） | `input-field` |
-| `SelectOptionItem` | ○ | 见 case / 源码 | — |
-| `TextArea` | ★ | 长文本 | `input-field` |
-| `TextField` | ★ | 文本/数字 | `input-field` |
-| `TextFieldSelectSuffix` | ◇ | 输入+后缀选择 | `input-field` |
-| `Toggle` | ◇ | 开关（settings） | `input-field` |
-
-### layouts
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `AppLayout` | ★ | 全站壳：侧栏 + 顶栏 + content | — |
-| `AppLayoutBreadcrumb` | ○ | 见 case / 源码 | — |
-| `AppLayoutMenuItem` | ○ | 见 case / 源码 | — |
-| `AppLayoutProfile` | ○ | 见 case / 源码 | — |
-
-### other
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `IconTrigger` | ○ | 图标触发器 | `menu` |
-
-### agent
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `ThinkingTrace` | ◇ | Agent 思考痕迹（steps / reasoning / search / coding） | `agent` |
-| `StreamingAnswer` | ◇ | 流式回答 + 来源 + follow-up | `agent` |
-| `ApprovalCard` | ◇ | 行动前 HITL 选择题 | `agent` |
-| `ToolChips` | ◇ | 工具调用 / 代码编辑 chip | `agent` |
-| `AgentTaskRows` | ◇ | Agent 任务 running / failed / completed | `agent` |
-| `ChatInputBar` | ◇ | @ 来源、/ 命令、模型选择；`status`（idle / running / stopping）切换发送与停止，`onStop` 由业务层取消任务；保留生成中草稿 | `chat-input-bar` / `agent` |
-| `ContextCards` | ○ | 检索片段 + 来源 | `agent` |
-| `RecommendationCard` | ○ | 建议 + 置信度 + Accept | `agent` |
-| `AgentDiffTable` | ◇ | Agent 提议的表格增删，不替代 DataTable | `agent` |
-| `AgentCodeBlock` | ◇ | 代码 listing + 统一 diff | `agent` |
-| `InsightCards` | ○ | 洞察轮播 + spark / bars / segments | `agent` |
-| `CommandSearch` | ○ | 命令过滤，不替代 ToolbarSearchInput | `agent` |
-| `AgentFlowchart` | ○ | 可选中工作流节点，不做拖拽画布 | `agent` |
-
-`ChatInputBar` 默认 `status="idle"`，所有工具集中在加号菜单。请求发出时设为 `running`（包括等待首字阶段），传入 `onStop`；收到停止请求后设为 `stopping`，在取消完成或任务完成后恢复 `idle`。运行中允许编辑草稿，Enter 和发送按钮只在 `idle` 时发送。`disabled` 禁用输入与发送，仍可通过 `onStop` 停止运行中的任务。`sendLabel` 可选，默认显示发送图标，`stopLabel` 默认 `停止生成`，`stoppingLabel` 默认 `正在停止…`；这些标签用于按钮提示和无障碍名称。组件只发出停止回调，实际请求取消、回答保留和结束状态由业务层管理，参见 `/cases/chat-input-bar` 本地模拟示例。
-
-### patterns
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `CalendarDayCell` | ○ | 见 case / 源码 | `calendar` |
-| `CalendarEvent` | ○ | 见 case / 源码 | — |
-| `CalendarWeekRow` | ○ | 见 case / 源码 | `calendar` |
-| `ChatBubble` | ○ | 见 case / 源码 | `chat` |
-| `ChatInputBar` | ○ | 见 case / 源码 | `chat` |
-| `ChatInputBarToggle` | ○ | 见 case / 源码 | — |
-| `CommentData` | ○ | 见 case / 源码 | — |
-| `CommentItem` | ○ | 见 case / 源码 | `comment` |
-| `CommentReply` | ○ | 见 case / 源码 | — |
-| `ConfirmationDialog` | ◇ | 确认弹窗（删除/发布） | `modal` |
-| `ContactItem` | ○ | 见 case / 源码 | `chat` |
-| `CurrencyConverter` | ○ | 汇率换算 | `other-widget` |
-| `DailyEvent` | ○ | 见 case / 源码 | — |
-| `DescriptionItem` | ○ | 见 case / 源码 | `list` |
-| `DropdownDivider` | ○ | 见 case / 源码 | — |
-| `DropdownPanel` | ○ | 见 case / 源码 | `menu` |
-| `EventTag` | ○ | 事件标签 | `calendar` |
-| `FilterGroup` | ○ | 见 case / 源码 | `filter` |
-| `FilterGroupCheckboxOption` | ○ | 见 case / 源码 | — |
-| `FilterGroupContent` | ○ | 见 case / 源码 | — |
-| `FilterGroupRadioOption` | ○ | 见 case / 源码 | — |
-| `FilterPanel` | ○ | 见 case / 源码 | `filter` |
-| `FilterTrigger` | ○ | 见 case / 源码 | `filter` |
-| `FullCalendar` | ○ | 见 case / 源码 | `calendar` |
-| `HistoryGrouped` | ○ | 见 case / 源码 | `history` |
-| `HistoryItem` | ○ | 见 case / 源码 | `history` |
-| `ImageGrid` | ○ | 图片宫格 | — |
-| `KebabMenu` | ○ | 见 case / 源码 | `menu` |
-| `KebabMenuItem` | ○ | 见 case / 源码 | — |
-| `ListGroup` | ○ | 见 case / 源码 | `list` |
-| `ListGroupTab` | ○ | 见 case / 源码 | — |
-| `ListItem` | ○ | 见 case / 源码 | `list` |
-| `Checklist` | ◇ | 勾选后划掉并沉底；不替代 TaskCard / AgentTaskRows / Checkbox | `checklist` |
-| `ChecklistItem` | ○ | 单行清单，不重排 | `checklist` |
-| `MenuItem` | ○ | 菜单项 | `menu` |
-| `NotificationItem` | ○ | 通知行 | `menu` |
-| `ProductRow` | ○ | 商品行（电商） | — |
-| `RatingStars` | ○ | 星级 | — |
-| `ReviewItem` | ○ | 见 case / 源码 | `comment` |
-| `SmallCalendar` | ○ | 见 case / 源码 | `calendar` |
-| `SmallCalendarEvent` | ○ | 见 case / 源码 | — |
-| `SmallDailyCalendar` | ○ | 见 case / 源码 | `calendar` |
-| `Tooltip` | ○ | 见 case / 源码 | `tooltip` |
-| `TooltipAnchor` | ○ | 见 case / 源码 | `tooltip` |
-| `TooltipBubble` | ○ | 见 case / 源码 | `tooltip` |
-
-### primitives
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `ArtisticIcon` | ○ | 见 case / 源码 | `badge` |
-| `Avatar` | ○ | 见 case / 源码 | — |
-| `AvatarGroup` | ○ | 见 case / 源码 | — |
-| `Button` | ★ | 主/次 CTA；一页仅一个 visual primary 提交 | `button-link` |
-| `ButtonGroup` | ○ | 见 case / 源码 | `tab` |
-| `ButtonGroupItem` | ○ | 见 case / 源码 | — |
-| `Checkbox` | ○ | 见 case / 源码 | — |
-| `CheckboxControl` | ○ | 见 case / 源码 | `input-field` |
-| `CheckIcon` | ○ | 见 case / 源码 | — |
-| `CircleIcon` | ○ | 见 case / 源码 | `badge` |
-| `CloseIcon` | ○ | 见 case / 源码 | — |
-| `IconButton` | ◇ | 图标按钮 | `button-link` |
-| `Label` | ○ | 标签文本 | `badge` |
-| `NotificationBadge` | ◇ | 角标数字 | `badge` |
-| `PlusIcon` | ○ | 见 case / 源码 | — |
-| `ProgressBar` | ◇ | 细进度条（列表 metric 可用） | `progress` |
-| `StyledLink` | ◇ | 文字链接 | `button-link` |
-
-### table
-
-数字与标识对齐（TN0，新页强制）：
-
-- **右对齐数字**：金额、数量、单价、百分比，以及同类可比较数值。`CellNumber` 默认 `text-align: right`（token `--forge-table-align-number`）。列写 `valueKind: "number"`，省略 `align` 即右对齐。
-- **左对齐标识**：工号、日期、时间、电话、邮编、订单号、业务 ID，以及同类标识符。列写 `valueKind: "identifier"`（或省略语义），默认左对齐（token `--forge-table-align-identifier`）。
-- **列头同向**：列头与该列内容对齐方向一致。
-- **数字列左对齐**：必须同时写 `align: "left"` 与非空 `alignOverrideReason`。缺原因会警告并标 `data-forge-align-violation`。把 `CellNumber` 放进未声明 `valueKind: "number"` 的列也会警告（列头仍靠左）。
-- **分期**：本批是 core API、`/cases/table`、`/components/table`。存量模板页与 forge-starter `/ref` 下一批再扫。图表轴、KPI 大数字、表单控件内数字不在此规则内。
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `CellActions` | ★ | 行操作（eye 等） | `table` |
-| `CellCode` | ○ | 代码/SKU | `table` |
-| `CellFile` | ○ | 见 case / 源码 | `table` |
-| `CellImageText` | ○ | 见 case / 源码 | `table` |
-| `CellKebabMenu` | ◇ | 行内 kebab | `table` |
-| `CellLink` | ◇ | 链接列 | `table` |
-| `CellMuted` | ◇ | 次要文本 | `table` |
-| `CellNumber` | ◇ | 金额/数量/单价/百分比，默认右对齐 | `table` |
-| `CellProgressBar` | ○ | 见 case / 源码 | `table` |
-| `CellProgressValue` | ○ | 见 case / 源码 | `table` |
-| `CellRating` | ○ | 评分 | `table` |
-| `CellStatusDot` | ◇ | 状态点 | `table` |
-| `CellText` | ★ | 主文本列 | `table` |
-| `CellTextSubtitle` | ★ | 主+副标题 | `table` |
-| `ColumnDef` | ★ | `valueKind` + `align`；数字列默认右，标识列默认左 | `table` |
-| `DataTable` | ★ | 业务主表 | `table` |
-| `FullWidthTable` | ○ | 全宽表变体 | `table` |
-| `ProgressBadge` | ◇ | 进度徽章 | `table` |
-| `StatusBadge` | ○ | 语义状态胶囊，默认 `variant="soft"`（浅底+细边+同色字，对齐 finance Transaction）。禁止 `solid` / 给分类刷彩虹 | `table` |
-| `TableCell` | ○ | 底层单元格 | `table` |
-
-### tokens-utils
-
-| 组件 | 标记 | 典型用途 | Case |
-|------|------|----------|------|
-| `ColorSwatch` | ○ | 见 case / 源码 | — |
-| `TypefaceBlock` | ○ | 见 case / 源码 | — |
-| `TypographySizeRow` | ○ | 见 case / 源码 | — |
-| `TypographyWeightSample` | ○ | 见 case / 源码 | — |
-
----
-
-## 后台页面速配（Starter 对齐）
-
-| 页面 | 优先组件 | Case | Starter 样板 |
-|------|----------|------|--------------|
-| 列表 | DataTable, Button, ButtonGroup, TextField, StatusBadge, Breadcrumbs | table, tab, toolbar | accounts / approvals 列表 |
-| 表单弹窗 | TextField, TextArea, SelectOption + 宿主 Modal | input-field, modal | *-form-dialog |
-| 轻详情 | StatusBadge, DescriptionItem/List*, Button | list, modal | approval-detail-dialog |
-| 重详情 | StatCard, TabBar, DataTable, Breadcrumbs | card, tab, table, list | accounts/[id] |
-| 工作台 | StatCard, ChartCard, DonutChart… | card, chart | dashboard |
-| 删除确认 | ConfirmationDialog + 宿主 | modal | accounts 删除 |
-
-## 刷新 inventory
-
-从已安装 core 刷新（脚本在 forge-readdy）：
-
-```bash
-node ../forge-readdy/scripts/sync-forge-catalog.mjs --from ./node_modules/@forge-ui-official/core
-# 然后将 catalog/forge-components.inventory.json 复制为 docs/for-agents/inventory.json
-# 并视需要更新本 md
-```
-
-当前 inventory 同步自 forge-readdy（generatedAt: 2026-08-04T06:13:11.864Z）。
-
-## Layout grid
-
-| Component | Purpose | Reference |
-| --- | --- | --- |
-| `Grid` | Responsive 1–24 tracks and pixel gap presets; default 12 tracks / 16px | `/components/grid` |
-| `GridItem` | Responsive span/start; default full row | `/cases/grid` |
-
-Read `skills/forge-react/references/layout-grid.md` before page composition. Choose the source template first and preserve its fixed/proportional columns and spacing. Fixed rails use static CSS Grid/Flex, not forced 8:4 spans. AppLayout retains padding ownership; ordinary toolbar rows remain Flex.
+| 导出 | 种类 | 源码 | API |
+|---|---|---|---|
+| AccentColor | type | [源码](../../core/src/components/ui/accent-utils.ts) | [accent-utils](../../skills/forge-skill/references/components/accent-utils.md) |
+| accentColors | value | [源码](../../core/src/components/ui/accent-utils.ts) | [accent-utils](../../skills/forge-skill/references/components/accent-utils.md) |
+| AccentConfig | type | [源码](../../core/src/components/ui/accent-utils.ts) | [accent-utils](../../skills/forge-skill/references/components/accent-utils.md) |
+| Accordion | value | [源码](../../core/src/components/ui/accordion.tsx) | [accordion](../../skills/forge-skill/references/components/accordion.md) |
+| AccordionItem | type | [源码](../../core/src/components/ui/accordion.tsx) | [accordion](../../skills/forge-skill/references/components/accordion.md) |
+| AccordionProps | type | [源码](../../core/src/components/ui/accordion.tsx) | [accordion](../../skills/forge-skill/references/components/accordion.md) |
+| ActivityCard | value | [源码](../../core/src/components/ui/activity-card.tsx) | [activity-card](../../skills/forge-skill/references/components/activity-card.md) |
+| AddMember | value | [源码](../../core/src/components/ui/add-member.tsx) | [add-member](../../skills/forge-skill/references/components/add-member.md) |
+| AddMemberItem | type | [源码](../../core/src/components/ui/add-member.tsx) | [add-member](../../skills/forge-skill/references/components/add-member.md) |
+| AddMemberLabels | type | [源码](../../core/src/components/ui/add-member.tsx) | [add-member](../../skills/forge-skill/references/components/add-member.md) |
+| AddMemberProps | type | [源码](../../core/src/components/ui/add-member.tsx) | [add-member](../../skills/forge-skill/references/components/add-member.md) |
+| AgentCodeBlock | value | [源码](../../core/src/components/ui/agent/agent-code-block.tsx) | [agent-code-block](../../skills/forge-skill/references/components/agent-code-block.md) |
+| AgentCodeDiffRow | type | [源码](../../core/src/components/ui/agent/agent-code-block.tsx) | [agent-code-block](../../skills/forge-skill/references/components/agent-code-block.md) |
+| AgentCodeDiffType | type | [源码](../../core/src/components/ui/agent/agent-code-block.tsx) | [agent-code-block](../../skills/forge-skill/references/components/agent-code-block.md) |
+| AgentCodeFoldRange | type | [源码](../../core/src/components/ui/agent/agent-code-block.tsx) | [agent-code-block](../../skills/forge-skill/references/components/agent-code-block.md) |
+| AgentCodePiece | type | [源码](../../core/src/components/ui/agent/agent-code-block.tsx) | [agent-code-block](../../skills/forge-skill/references/components/agent-code-block.md) |
+| AgentDiffChange | type | [源码](../../core/src/components/ui/agent/agent-diff-table.tsx) | [agent-diff-table](../../skills/forge-skill/references/components/agent-diff-table.md) |
+| AgentDiffColumn | type | [源码](../../core/src/components/ui/agent/agent-diff-table.tsx) | [agent-diff-table](../../skills/forge-skill/references/components/agent-diff-table.md) |
+| AgentDiffRow | type | [源码](../../core/src/components/ui/agent/agent-diff-table.tsx) | [agent-diff-table](../../skills/forge-skill/references/components/agent-diff-table.md) |
+| AgentDiffTable | value | [源码](../../core/src/components/ui/agent/agent-diff-table.tsx) | [agent-diff-table](../../skills/forge-skill/references/components/agent-diff-table.md) |
+| AgentFlowchart | value | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
+| AgentFlowEdge | type | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
+| AgentFlowKind | type | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
+| AgentFlowNode | type | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
+| AgentTask | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
+| AgentTaskChild | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
+| AgentTaskRows | value | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
+| AgentTaskStatus | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
+| ALL_CARD_THEMES | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| AppLayout | value | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutAccentColor | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutBreadcrumb | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutLanguage | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutMenuItem | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutMenuSection | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutMode | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutPageHeaderVariant | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutProfile | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutProfilePosition | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| AppLayoutProps | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
+| ApprovalCard | value | [源码](../../core/src/components/ui/agent/approval-card.tsx) | [approval-card](../../skills/forge-skill/references/components/approval-card.md) |
+| ApprovalQuestion | type | [源码](../../core/src/components/ui/agent/approval-card.tsx) | [approval-card](../../skills/forge-skill/references/components/approval-card.md) |
+| AppSwitcherDropdown | value | [源码](../../core/src/components/layouts/sidebar-popovers.tsx) | [sidebar-popovers](../../skills/forge-skill/references/components/sidebar-popovers.md) |
+| AppSwitcherItem | type | [源码](../../core/src/components/layouts/sidebar-popovers.tsx) | [sidebar-popovers](../../skills/forge-skill/references/components/sidebar-popovers.md) |
+| ArtisticIcon | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| ArtisticIconColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| ArtisticIconVariant | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| ASK_AI_FS_LAYER_ATTR | value | [源码](../../core/src/internal/ask-ai-fullscreen.tsx) | [ask-ai-fullscreen](../../skills/forge-skill/references/components/ask-ai-fullscreen.md) |
+| ASK_AI_FULLSCREEN_RAIL_WIDTH | value | [源码](../../core/src/internal/ask-ai-fullscreen.tsx) | [ask-ai-fullscreen](../../skills/forge-skill/references/components/ask-ai-fullscreen.md) |
+| AskAi | value | [源码](../../core/src/components/ui/ask-ai.tsx) | [ask-ai](../../skills/forge-skill/references/components/ask-ai.md) |
+| AskAiLink | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |
+| AskAiMessage | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |
+| AskAiProps | type | [源码](../../core/src/components/ui/ask-ai.tsx) | [ask-ai](../../skills/forge-skill/references/components/ask-ai.md) |
+| AskAiRequest | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |
+| AskAiResponse | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |
+| AskAiSessionItem | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |
+| Avatar | value | [源码](../../core/src/components/ui/avatar.tsx) | [avatar](../../skills/forge-skill/references/components/avatar.md) |
+| AvatarGroup | value | [源码](../../core/src/components/ui/avatar.tsx) | [avatar](../../skills/forge-skill/references/components/avatar.md) |
+| AvatarInitialColor | type | [源码](../../core/src/components/ui/avatar.tsx) | [avatar](../../skills/forge-skill/references/components/avatar.md) |
+| AvatarSize | type | [源码](../../core/src/components/ui/avatar.tsx) | [avatar](../../skills/forge-skill/references/components/avatar.md) |
+| BalanceCard | value | [源码](../../core/src/components/ui/balance-card.tsx) | [balance-card](../../skills/forge-skill/references/components/balance-card.md) |
+| BarChart | value | [源码](../../core/src/components/ui/charts/bar-chart.tsx) | [bar-chart](../../skills/forge-skill/references/components/bar-chart.md) |
+| BarChartStatCard | value | [源码](../../core/src/components/ui/bar-chart-stat-card.tsx) | [bar-chart-stat-card](../../skills/forge-skill/references/components/bar-chart-stat-card.md) |
+| BarColor | type | [源码](../../core/src/components/ui/bar-chart-stat-card.tsx) | [bar-chart-stat-card](../../skills/forge-skill/references/components/bar-chart-stat-card.md) |
+| BarHorizontalChart | value | [源码](../../core/src/components/ui/charts/bar-horizontal-chart.tsx) | [bar-horizontal-chart](../../skills/forge-skill/references/components/bar-horizontal-chart.md) |
+| BarUpsideDownChart | value | [源码](../../core/src/components/ui/charts/bar-upside-down-chart.tsx) | [bar-upside-down-chart](../../skills/forge-skill/references/components/bar-upside-down-chart.md) |
+| BreadcrumbColor | type | [源码](../../core/src/components/ui/breadcrumbs.tsx) | [breadcrumbs](../../skills/forge-skill/references/components/breadcrumbs.md) |
+| BreadcrumbItem | type | [源码](../../core/src/components/ui/breadcrumbs.tsx) | [breadcrumbs](../../skills/forge-skill/references/components/breadcrumbs.md) |
+| Breadcrumbs | value | [源码](../../core/src/components/ui/breadcrumbs.tsx) | [breadcrumbs](../../skills/forge-skill/references/components/breadcrumbs.md) |
+| BubbleChart | value | [源码](../../core/src/components/ui/charts/bubble-chart.tsx) | [bubble-chart](../../skills/forge-skill/references/components/bubble-chart.md) |
+| Button | value | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| ButtonColor | type | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| ButtonEffect | type | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| ButtonGroup | value | [源码](../../core/src/components/ui/button-group.tsx) | [button-group](../../skills/forge-skill/references/components/button-group.md) |
+| ButtonGroupColor | type | [源码](../../core/src/components/ui/button-group.tsx) | [button-group](../../skills/forge-skill/references/components/button-group.md) |
+| ButtonGroupItem | type | [源码](../../core/src/components/ui/button-group.tsx) | [button-group](../../skills/forge-skill/references/components/button-group.md) |
+| ButtonGroupShape | type | [源码](../../core/src/components/ui/button-group.tsx) | [button-group](../../skills/forge-skill/references/components/button-group.md) |
+| ButtonHoldLabels | type | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| ButtonProps | type | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| ButtonSize | type | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| ButtonVariant | type | [源码](../../core/src/components/ui/button.tsx) | [button](../../skills/forge-skill/references/components/button.md) |
+| CalendarCard | value | [源码](../../core/src/components/ui/calendar-card.tsx) | [calendar-card](../../skills/forge-skill/references/components/calendar-card.md) |
+| CalendarCardLabels | type | [源码](../../core/src/components/ui/calendar-card.tsx) | [calendar-card](../../skills/forge-skill/references/components/calendar-card.md) |
+| CalendarCardProps | type | [源码](../../core/src/components/ui/calendar-card.tsx) | [calendar-card](../../skills/forge-skill/references/components/calendar-card.md) |
+| CalendarDayCell | value | [源码](../../core/src/components/ui/calendar-day-cell.tsx) | [calendar-day-cell](../../skills/forge-skill/references/components/calendar-day-cell.md) |
+| CalendarEvent | type | [源码](../../core/src/components/ui/full-calendar.tsx) | [full-calendar](../../skills/forge-skill/references/components/full-calendar.md) |
+| CalendarWeekRow | value | [源码](../../core/src/components/ui/calendar-week-row.tsx) | [calendar-week-row](../../skills/forge-skill/references/components/calendar-week-row.md) |
+| CardAvatarGroup | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardBadgeVariant | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardGlow | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardIconChip | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardKebabButton | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardTheme | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardThemeConfig | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| cardThemes | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardTrend | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CardWidth | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| CellActionKey | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellActions | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellCode | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellContentType | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellFile | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellImageText | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellKebabMenu | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellLink | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellLinkColor | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellMuted | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellNumber | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellProgressBar | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellProgressValue | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellRating | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellStatusDot | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellText | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CellTextSubtitle | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| ChartCard | value | [源码](../../core/src/components/ui/charts/chart-card.tsx) | [chart-card](../../skills/forge-skill/references/components/chart-card.md) |
+| ChartLegendItem | value | [源码](../../core/src/components/ui/charts/chart-legend-item.tsx) | [chart-legend-item](../../skills/forge-skill/references/components/chart-legend-item.md) |
+| ChartListItem | value | [源码](../../core/src/components/ui/charts/chart-list-item.tsx) | [chart-list-item](../../skills/forge-skill/references/components/chart-list-item.md) |
+| ChartStatFooter | value | [源码](../../core/src/components/ui/charts/chart-stat-footer.tsx) | [chart-stat-footer](../../skills/forge-skill/references/components/chart-stat-footer.md) |
+| ChartTooltip | value | [源码](../../core/src/components/ui/charts/chart-tooltip.tsx) | [chart-tooltip](../../skills/forge-skill/references/components/chart-tooltip.md) |
+| ChartValueRow | value | [源码](../../core/src/components/ui/charts/chart-value-row.tsx) | [chart-value-row](../../skills/forge-skill/references/components/chart-value-row.md) |
+| ChatBubble | value | [源码](../../core/src/components/ui/chat-bubble.tsx) | [chat-bubble](../../skills/forge-skill/references/components/chat-bubble.md) |
+| ChatInputBar | value | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ChatInputBarQuickAction | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ChatInputBarSendContext | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ChatInputBarToggle | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ChatReaction | type | [源码](../../core/src/internal/chat-interactions.tsx) | [chat-interactions](../../skills/forge-skill/references/components/chat-interactions.md) |
+| ChatReactionOption | type | [源码](../../core/src/internal/chat-interactions.tsx) | [chat-interactions](../../skills/forge-skill/references/components/chat-interactions.md) |
+| Checkbox | value | [源码](../../core/src/components/ui/checkbox.tsx) | [checkbox](../../skills/forge-skill/references/components/checkbox.md) |
+| CheckboxColor | type | [源码](../../core/src/components/ui/checkbox.tsx) | [checkbox](../../skills/forge-skill/references/components/checkbox.md) |
+| CheckboxControl | value | [源码](../../core/src/components/ui/checkbox.tsx) | [checkbox](../../skills/forge-skill/references/components/checkbox.md) |
+| CheckboxWithLabel | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| CheckIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
+| Checklist | value | [源码](../../core/src/components/ui/checklist.tsx) | [checklist](../../skills/forge-skill/references/components/checklist.md) |
+| ChecklistColor | type | [源码](../../core/src/components/ui/checklist.tsx) | [checklist](../../skills/forge-skill/references/components/checklist.md) |
+| ChecklistItem | value | [源码](../../core/src/components/ui/checklist.tsx) | [checklist](../../skills/forge-skill/references/components/checklist.md) |
+| ChecklistSize | type | [源码](../../core/src/components/ui/checklist.tsx) | [checklist](../../skills/forge-skill/references/components/checklist.md) |
+| ChecklistTask | type | [源码](../../core/src/components/ui/checklist.tsx) | [checklist](../../skills/forge-skill/references/components/checklist.md) |
+| CircleIcon | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| CircleIconColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| CircleIconSize | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| CircleIconVariant | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| CloseIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
+| cn | value | [源码](../../core/src/lib/utils.ts) | [utils](../../skills/forge-skill/references/components/utils.md) |
+| ColorPicker | value | [源码](../../core/src/components/ui/forms/icon-selector.tsx) | [icon-selector](../../skills/forge-skill/references/components/icon-selector.md) |
+| ColorScaleStop | type | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| ColorSection | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| ColorSwatch | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| ColorSwatchSize | type | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| ColumnDef | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| CommandSearch | value | [源码](../../core/src/components/ui/agent/command-search.tsx) | [command-search](../../skills/forge-skill/references/components/command-search.md) |
+| CommandSearchItem | type | [源码](../../core/src/components/ui/agent/command-search.tsx) | [command-search](../../skills/forge-skill/references/components/command-search.md) |
+| CommentData | type | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
+| CommentItem | value | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
+| CommentReply | type | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
+| ComposerCommand | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ComposerModel | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ComposerReply | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ComposerSource | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ComposerStatus | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ComposerVoiceState | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ConfirmationDialog | value | [源码](../../core/src/components/ui/confirmation-dialog.tsx) | [confirmation-dialog](../../skills/forge-skill/references/components/confirmation-dialog.md) |
+| ConfirmationDialogColor | type | [源码](../../core/src/components/ui/confirmation-dialog.tsx) | [confirmation-dialog](../../skills/forge-skill/references/components/confirmation-dialog.md) |
+| ConfirmationDialogLayout | type | [源码](../../core/src/components/ui/confirmation-dialog.tsx) | [confirmation-dialog](../../skills/forge-skill/references/components/confirmation-dialog.md) |
+| ContactItem | value | [源码](../../core/src/components/ui/contact-item.tsx) | [contact-item](../../skills/forge-skill/references/components/contact-item.md) |
+| ContextCards | value | [源码](../../core/src/components/ui/agent/context-cards.tsx) | [context-cards](../../skills/forge-skill/references/components/context-cards.md) |
+| ContextChunk | type | [源码](../../core/src/components/ui/agent/context-cards.tsx) | [context-cards](../../skills/forge-skill/references/components/context-cards.md) |
+| ControlColor | type | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| CreditCard | value | [源码](../../core/src/components/ui/credit-card.tsx) | [credit-card](../../skills/forge-skill/references/components/credit-card.md) |
+| CurrencyConverter | value | [源码](../../core/src/components/ui/currency-converter.tsx) | [currency-converter](../../skills/forge-skill/references/components/currency-converter.md) |
+| CurrencyConverterColor | type | [源码](../../core/src/components/ui/currency-converter.tsx) | [currency-converter](../../skills/forge-skill/references/components/currency-converter.md) |
+| DailyEvent | type | [源码](../../core/src/components/ui/small-daily-calendar.tsx) | [small-daily-calendar](../../skills/forge-skill/references/components/small-daily-calendar.md) |
+| DashedHalfDonutChart | value | [源码](../../core/src/components/ui/charts/dashed-half-donut-chart.tsx) | [dashed-half-donut-chart](../../skills/forge-skill/references/components/dashed-half-donut-chart.md) |
+| DataTable | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| DataTableColor | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| DataTableProps | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| Datepicker | value | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
+| DatepickerColor | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
+| DatepickerMode | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
+| DatepickerShape | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
+| DatepickerState | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
+| DebitCard | value | [源码](../../core/src/components/ui/debit-card.tsx) | [debit-card](../../skills/forge-skill/references/components/debit-card.md) |
+| DescriptionItem | value | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| DescriptionItemLead | type | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| DonutChart | value | [源码](../../core/src/components/ui/charts/donut-chart.tsx) | [donut-chart](../../skills/forge-skill/references/components/donut-chart.md) |
+| Drawer | value | [源码](../../core/src/components/ui/drawer.tsx) | [drawer](../../skills/forge-skill/references/components/drawer.md) |
+| DrawerProps | type | [源码](../../core/src/components/ui/drawer.tsx) | [drawer](../../skills/forge-skill/references/components/drawer.md) |
+| DropdownDivider | value | [源码](../../core/src/components/ui/dropdown-panel.tsx) | [dropdown-panel](../../skills/forge-skill/references/components/dropdown-panel.md) |
+| DropdownPanel | value | [源码](../../core/src/components/ui/dropdown-panel.tsx) | [dropdown-panel](../../skills/forge-skill/references/components/dropdown-panel.md) |
+| EventCard | value | [源码](../../core/src/components/ui/event-card.tsx) | [event-card](../../skills/forge-skill/references/components/event-card.md) |
+| EventCardColor | type | [源码](../../core/src/components/ui/event-card.tsx) | [event-card](../../skills/forge-skill/references/components/event-card.md) |
+| EventTag | value | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
+| EventTagColor | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
+| EventTagSize | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
+| EventTagVariant | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
+| FileCard | value | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FileItem | type | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FileState | type | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FileTypeIcon | value | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FileUpload | value | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FileUploadColor | type | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FilterGroup | value | [源码](../../core/src/components/ui/filter-group.tsx) | [filter-group](../../skills/forge-skill/references/components/filter-group.md) |
+| FilterGroupCheckboxOption | type | [源码](../../core/src/components/ui/filter-group.tsx) | [filter-group](../../skills/forge-skill/references/components/filter-group.md) |
+| FilterGroupColor | type | [源码](../../core/src/components/ui/filter-group.tsx) | [filter-group](../../skills/forge-skill/references/components/filter-group.md) |
+| FilterGroupContent | type | [源码](../../core/src/components/ui/filter-group.tsx) | [filter-group](../../skills/forge-skill/references/components/filter-group.md) |
+| FilterGroupRadioOption | type | [源码](../../core/src/components/ui/filter-group.tsx) | [filter-group](../../skills/forge-skill/references/components/filter-group.md) |
+| FilterPanel | value | [源码](../../core/src/components/ui/filter-panel.tsx) | [filter-panel](../../skills/forge-skill/references/components/filter-panel.md) |
+| FilterTrigger | value | [源码](../../core/src/components/ui/filter-trigger.tsx) | [filter-trigger](../../skills/forge-skill/references/components/filter-trigger.md) |
+| FinancialOrbs | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| FinancialTheme | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| FinancialThemeConfig | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| financialThemes | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| FinancialVariant | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| Folder | value | [源码](../../core/src/components/ui/folder.tsx) | [folder](../../skills/forge-skill/references/components/folder.md) |
+| FolderFloat | value | [源码](../../core/src/components/ui/folder-float.tsx) | [folder-float](../../skills/forge-skill/references/components/folder-float.md) |
+| FolderFloatProps | type | [源码](../../core/src/components/ui/folder-float.tsx) | [folder-float](../../skills/forge-skill/references/components/folder-float.md) |
+| FolderItem | type | [源码](../../core/src/components/ui/folder.tsx) | [folder](../../skills/forge-skill/references/components/folder.md) |
+| FolderProps | type | [源码](../../core/src/components/ui/folder.tsx) | [folder](../../skills/forge-skill/references/components/folder.md) |
+| FullCalendar | value | [源码](../../core/src/components/ui/full-calendar.tsx) | [full-calendar](../../skills/forge-skill/references/components/full-calendar.md) |
+| FullWidthTable | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| FullWidthTableProps | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| Grid | value | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridBreakpoint | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridColumns | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridGap | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridItem | value | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridItemProps | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridProps | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridResponsive | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| GridSpan | type | [源码](../../core/src/components/layouts/grid.tsx) | [grid](../../skills/forge-skill/references/components/grid.md) |
+| HalfDonutChart | value | [源码](../../core/src/components/ui/charts/half-donut-chart.tsx) | [half-donut-chart](../../skills/forge-skill/references/components/half-donut-chart.md) |
+| HighlightCard | value | [源码](../../core/src/components/ui/highlight-card.tsx) | [highlight-card](../../skills/forge-skill/references/components/highlight-card.md) |
+| HistoryGrouped | value | [源码](../../core/src/components/ui/history-grouped.tsx) | [history-grouped](../../skills/forge-skill/references/components/history-grouped.md) |
+| HistoryItem | value | [源码](../../core/src/components/ui/history-item.tsx) | [history-item](../../skills/forge-skill/references/components/history-item.md) |
+| HistoryItemColor | type | [源码](../../core/src/components/ui/history-item.tsx) | [history-item](../../skills/forge-skill/references/components/history-item.md) |
+| HistoryItemProps | type | [源码](../../core/src/components/ui/history-item.tsx) | [history-item](../../skills/forge-skill/references/components/history-item.md) |
+| HistoryItemShowDatetime | type | [源码](../../core/src/components/ui/history-item.tsx) | [history-item](../../skills/forge-skill/references/components/history-item.md) |
+| HistoryItemVariant | type | [源码](../../core/src/components/ui/history-item.tsx) | [history-item](../../skills/forge-skill/references/components/history-item.md) |
+| IconButton | value | [源码](../../core/src/components/ui/icon-button.tsx) | [icon-button](../../skills/forge-skill/references/components/icon-button.md) |
+| IconButtonColor | type | [源码](../../core/src/components/ui/icon-button.tsx) | [icon-button](../../skills/forge-skill/references/components/icon-button.md) |
+| IconButtonEffect | type | [源码](../../core/src/components/ui/icon-button.tsx) | [icon-button](../../skills/forge-skill/references/components/icon-button.md) |
+| IconButtonShape | type | [源码](../../core/src/components/ui/icon-button.tsx) | [icon-button](../../skills/forge-skill/references/components/icon-button.md) |
+| IconButtonSize | type | [源码](../../core/src/components/ui/icon-button.tsx) | [icon-button](../../skills/forge-skill/references/components/icon-button.md) |
+| IconButtonVariant | type | [源码](../../core/src/components/ui/icon-button.tsx) | [icon-button](../../skills/forge-skill/references/components/icon-button.md) |
+| IconPicker | value | [源码](../../core/src/components/ui/forms/icon-selector.tsx) | [icon-selector](../../skills/forge-skill/references/components/icon-selector.md) |
+| IconSelector | value | [源码](../../core/src/components/ui/forms/icon-selector.tsx) | [icon-selector](../../skills/forge-skill/references/components/icon-selector.md) |
+| IconSelectorColor | type | [源码](../../core/src/components/ui/forms/icon-selector.tsx) | [icon-selector](../../skills/forge-skill/references/components/icon-selector.md) |
+| IconTrigger | value | [源码](../../core/src/components/ui/icon-trigger.tsx) | [icon-trigger](../../skills/forge-skill/references/components/icon-trigger.md) |
+| IconTriggerAccent | type | [源码](../../core/src/components/ui/icon-trigger.tsx) | [icon-trigger](../../skills/forge-skill/references/components/icon-trigger.md) |
+| IconTriggerState | type | [源码](../../core/src/components/ui/icon-trigger.tsx) | [icon-trigger](../../skills/forge-skill/references/components/icon-trigger.md) |
+| IconTriggerSurface | type | [源码](../../core/src/components/ui/icon-trigger.tsx) | [icon-trigger](../../skills/forge-skill/references/components/icon-trigger.md) |
+| ImageGrid | value | [源码](../../core/src/components/ui/image-grid.tsx) | [image-grid](../../skills/forge-skill/references/components/image-grid.md) |
+| ImageGridSize | type | [源码](../../core/src/components/ui/image-grid.tsx) | [image-grid](../../skills/forge-skill/references/components/image-grid.md) |
+| ImageStatCard | value | [源码](../../core/src/components/ui/image-stat-card.tsx) | [image-stat-card](../../skills/forge-skill/references/components/image-stat-card.md) |
+| InsightCard | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
+| InsightCards | value | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
+| InsightChart | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
+| InsightSeries | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
+| InsightTone | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
+| KebabMenu | value | [源码](../../core/src/components/ui/kebab-menu.tsx) | [kebab-menu](../../skills/forge-skill/references/components/kebab-menu.md) |
+| KebabMenuAccent | type | [源码](../../core/src/components/ui/kebab-menu.tsx) | [kebab-menu](../../skills/forge-skill/references/components/kebab-menu.md) |
+| KebabMenuItem | type | [源码](../../core/src/components/ui/kebab-menu.tsx) | [kebab-menu](../../skills/forge-skill/references/components/kebab-menu.md) |
+| Label | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| LabelColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| LabelSize | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| LabelVariant | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| LegacyCardTheme | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| LineChartColor | type | [源码](../../core/src/components/ui/line-chart-stat-card.tsx) | [line-chart-stat-card](../../skills/forge-skill/references/components/line-chart-stat-card.md) |
+| LineChartStatCard | value | [源码](../../core/src/components/ui/line-chart-stat-card.tsx) | [line-chart-stat-card](../../skills/forge-skill/references/components/line-chart-stat-card.md) |
+| LinkColor | type | [源码](../../core/src/components/ui/link.tsx) | [link](../../skills/forge-skill/references/components/link.md) |
+| LiquidTabs | value | [源码](../../core/src/components/ui/liquid-tabs.tsx) | [liquid-tabs](../../skills/forge-skill/references/components/liquid-tabs.md) |
+| LiquidTabsItem | type | [源码](../../core/src/components/ui/liquid-tabs.tsx) | [liquid-tabs](../../skills/forge-skill/references/components/liquid-tabs.md) |
+| LiquidTabsProps | type | [源码](../../core/src/components/ui/liquid-tabs.tsx) | [liquid-tabs](../../skills/forge-skill/references/components/liquid-tabs.md) |
+| LiquidTabsTab | type | [源码](../../core/src/components/ui/liquid-tabs.tsx) | [liquid-tabs](../../skills/forge-skill/references/components/liquid-tabs.md) |
+| ListGroup | value | [源码](../../core/src/components/ui/list-group.tsx) | [list-group](../../skills/forge-skill/references/components/list-group.md) |
+| ListGroupTab | type | [源码](../../core/src/components/ui/list-group.tsx) | [list-group](../../skills/forge-skill/references/components/list-group.md) |
+| ListItem | value | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| ListItemAvatarLead | type | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| ListItemIconLead | type | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| ListItemImageLead | type | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| ListItemLead | type | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
+| MapCard | value | [源码](../../core/src/components/ui/map-card.tsx) | [map-card](../../skills/forge-skill/references/components/map-card.md) |
+| MapContinent | type | [源码](../../core/src/components/ui/map-card.tsx) | [map-card](../../skills/forge-skill/references/components/map-card.md) |
+| MapRegion | type | [源码](../../core/src/components/ui/map-card.tsx) | [map-card](../../skills/forge-skill/references/components/map-card.md) |
+| MapVariant | type | [源码](../../core/src/components/ui/map-card.tsx) | [map-card](../../skills/forge-skill/references/components/map-card.md) |
+| MastercardLogo | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| MediaItem | type | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
+| MediaUpload | value | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
+| MediaUploadColor | type | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
+| MenuItem | value | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MenuItemAccent | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MenuItemIntent | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MenuItemKind | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MenuItemLead | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MenuItemState | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MenuItemSurface | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MeterChart | value | [源码](../../core/src/components/ui/charts/meter-chart.tsx) | [meter-chart](../../skills/forge-skill/references/components/meter-chart.md) |
+| Modal | value | [源码](../../core/src/components/ui/modal.tsx) | [modal](../../skills/forge-skill/references/components/modal.md) |
+| ModalProps | type | [源码](../../core/src/components/ui/modal.tsx) | [modal](../../skills/forge-skill/references/components/modal.md) |
+| MotionPreference | type | [源码](../../core/src/lib/motion.ts) | [motion](../../skills/forge-skill/references/components/motion.md) |
+| MultilayerDonutChart | value | [源码](../../core/src/components/ui/charts/multilayer-donut-chart.tsx) | [multilayer-donut-chart](../../skills/forge-skill/references/components/multilayer-donut-chart.md) |
+| NotificationBadge | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| NotificationBadgeColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
+| NotificationItem | value | [源码](../../core/src/components/ui/notification-item.tsx) | [notification-item](../../skills/forge-skill/references/components/notification-item.md) |
+| NotificationItemColor | type | [源码](../../core/src/components/ui/notification-item.tsx) | [notification-item](../../skills/forge-skill/references/components/notification-item.md) |
+| OtpInput | value | [源码](../../core/src/components/ui/otp-input.tsx) | [otp-input](../../skills/forge-skill/references/components/otp-input.md) |
+| OtpInputProps | type | [源码](../../core/src/components/ui/otp-input.tsx) | [otp-input](../../skills/forge-skill/references/components/otp-input.md) |
+| PageDot | value | [源码](../../core/src/components/ui/page-dot.tsx) | [page-dot](../../skills/forge-skill/references/components/page-dot.md) |
+| PageDotColor | type | [源码](../../core/src/components/ui/page-dot.tsx) | [page-dot](../../skills/forge-skill/references/components/page-dot.md) |
+| PageHeader | value | [源码](../../core/src/components/ui/page-header.tsx) | [page-header](../../skills/forge-skill/references/components/page-header.md) |
+| PageHeaderAction | type | [源码](../../core/src/components/ui/page-header.tsx) | [page-header](../../skills/forge-skill/references/components/page-header.md) |
+| PageHeaderColor | type | [源码](../../core/src/components/ui/page-header.tsx) | [page-header](../../skills/forge-skill/references/components/page-header.md) |
+| PageHeaderProfile | type | [源码](../../core/src/components/ui/page-header.tsx) | [page-header](../../skills/forge-skill/references/components/page-header.md) |
+| PageHeaderProps | type | [源码](../../core/src/components/ui/page-header.tsx) | [page-header](../../skills/forge-skill/references/components/page-header.md) |
+| PageHeaderVariant | type | [源码](../../core/src/components/ui/page-header.tsx) | [page-header](../../skills/forge-skill/references/components/page-header.md) |
+| PageTitleToolbar | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| PageTitleToolbarAction | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| PageTitleToolbarDateAction | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| PageTitleToolbarMenuAction | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| PageTitleToolbarPresetProps | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| PageTitleToolbarProps | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| PageTitleToolbarVariant | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| Pagination | value | [源码](../../core/src/components/ui/pagination.tsx) | [pagination](../../skills/forge-skill/references/components/pagination.md) |
+| PaginationColor | type | [源码](../../core/src/components/ui/pagination.tsx) | [pagination](../../skills/forge-skill/references/components/pagination.md) |
+| PieChart | value | [源码](../../core/src/components/ui/charts/pie-chart.tsx) | [pie-chart](../../skills/forge-skill/references/components/pie-chart.md) |
+| PlusIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
+| ProductRow | value | [源码](../../core/src/components/ui/product-row.tsx) | [product-row](../../skills/forge-skill/references/components/product-row.md) |
+| ProfileCard | value | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |
+| ProfileCardState | type | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |
+| ProfileCardSurface | type | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |
+| ProfileImgUpload | value | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
+| ProgressBadge | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| ProgressBadgeColor | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| ProgressBar | value | [源码](../../core/src/components/ui/progress-bar.tsx) | [progress-bar](../../skills/forge-skill/references/components/progress-bar.md) |
+| ProgressBarColor | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| ProgressCard | value | [源码](../../core/src/components/ui/progress-card.tsx) | [progress-card](../../skills/forge-skill/references/components/progress-card.md) |
+| ProgressColor | type | [源码](../../core/src/components/ui/progress-bar.tsx) | [progress-bar](../../skills/forge-skill/references/components/progress-bar.md) |
+| ProgressLabelSize | type | [源码](../../core/src/components/ui/progress-bar.tsx) | [progress-bar](../../skills/forge-skill/references/components/progress-bar.md) |
+| ProgressLabelVariant | type | [源码](../../core/src/components/ui/progress-bar.tsx) | [progress-bar](../../skills/forge-skill/references/components/progress-bar.md) |
+| ProgressSize | type | [源码](../../core/src/components/ui/progress-bar.tsx) | [progress-bar](../../skills/forge-skill/references/components/progress-bar.md) |
+| ProgressStatCard | value | [源码](../../core/src/components/ui/progress-stat-card.tsx) | [progress-stat-card](../../skills/forge-skill/references/components/progress-stat-card.md) |
+| ProjectCard | value | [源码](../../core/src/components/ui/project-card.tsx) | [project-card](../../skills/forge-skill/references/components/project-card.md) |
+| ProjectCardColor | type | [源码](../../core/src/components/ui/project-card.tsx) | [project-card](../../skills/forge-skill/references/components/project-card.md) |
+| RadioButton | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| RadioWithLabel | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| RatingStars | value | [源码](../../core/src/components/ui/rating-stars.tsx) | [rating-stars](../../skills/forge-skill/references/components/rating-stars.md) |
+| RatingStarsSize | type | [源码](../../core/src/components/ui/rating-stars.tsx) | [rating-stars](../../skills/forge-skill/references/components/rating-stars.md) |
+| RecommendationCard | value | [源码](../../core/src/components/ui/agent/recommendation-card.tsx) | [recommendation-card](../../skills/forge-skill/references/components/recommendation-card.md) |
+| RecommendationConfidence | type | [源码](../../core/src/components/ui/agent/recommendation-card.tsx) | [recommendation-card](../../skills/forge-skill/references/components/recommendation-card.md) |
+| RecommendationOption | type | [源码](../../core/src/components/ui/agent/recommendation-card.tsx) | [recommendation-card](../../skills/forge-skill/references/components/recommendation-card.md) |
+| resolveCardTheme | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| resolveTableColumnAlign | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| ReviewItem | value | [源码](../../core/src/components/ui/review-item.tsx) | [review-item](../../skills/forge-skill/references/components/review-item.md) |
+| SelectOption | value | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionBgVariant | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionColor | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionItem | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionProps | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionShape | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionState | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SelectOptionType | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
+| SidebarMenu | value | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
+| SidebarMenuAccent | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
+| SidebarMenuBgMode | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
+| SidebarMenuItem | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
+| SidebarMenuMode | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
+| SmallCalendar | value | [源码](../../core/src/components/ui/small-calendar.tsx) | [small-calendar](../../skills/forge-skill/references/components/small-calendar.md) |
+| SmallCalendarEvent | type | [源码](../../core/src/components/ui/small-calendar.tsx) | [small-calendar](../../skills/forge-skill/references/components/small-calendar.md) |
+| SmallDailyCalendar | value | [源码](../../core/src/components/ui/small-daily-calendar.tsx) | [small-daily-calendar](../../skills/forge-skill/references/components/small-daily-calendar.md) |
+| SmoothLineChart | value | [源码](../../core/src/components/ui/charts/smooth-line-chart.tsx) | [smooth-line-chart](../../skills/forge-skill/references/components/smooth-line-chart.md) |
+| StatCard | value | [源码](../../core/src/components/ui/stat-card.tsx) | [stat-card](../../skills/forge-skill/references/components/stat-card.md) |
+| StatCardShell | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| StatCardSize | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| statCardSizes | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| StatusBadge | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| StatusBadgeColor | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| StatusBadgeVariant | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| StatusDotColor | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| Stepper | value | [源码](../../core/src/components/ui/stepper.tsx) | [stepper](../../skills/forge-skill/references/components/stepper.md) |
+| StepperColor | type | [源码](../../core/src/components/ui/stepper.tsx) | [stepper](../../skills/forge-skill/references/components/stepper.md) |
+| StepperItem | type | [源码](../../core/src/components/ui/stepper.tsx) | [stepper](../../skills/forge-skill/references/components/stepper.md) |
+| StreamingAnswer | value | [源码](../../core/src/components/ui/agent/streaming-answer.tsx) | [streaming-answer](../../skills/forge-skill/references/components/streaming-answer.md) |
+| StreamingAnswerProps | type | [源码](../../core/src/components/ui/agent/streaming-answer.tsx) | [streaming-answer](../../skills/forge-skill/references/components/streaming-answer.md) |
+| StreamingAnswerStatus | type | [源码](../../core/src/components/ui/agent/streaming-answer.tsx) | [streaming-answer](../../skills/forge-skill/references/components/streaming-answer.md) |
+| StreamingSource | type | [源码](../../core/src/components/ui/agent/streaming-answer.tsx) | [streaming-answer](../../skills/forge-skill/references/components/streaming-answer.md) |
+| StyledLink | value | [源码](../../core/src/components/ui/link.tsx) | [link](../../skills/forge-skill/references/components/link.md) |
+| SurfaceCard | value | [源码](../../core/src/components/ui/surface-card.tsx) | [surface-card](../../skills/forge-skill/references/components/surface-card.md) |
+| SurfaceCardPadding | type | [源码](../../core/src/components/ui/surface-card.tsx) | [surface-card](../../skills/forge-skill/references/components/surface-card.md) |
+| TabBar | value | [源码](../../core/src/components/ui/tab-bar.tsx) | [tab-bar](../../skills/forge-skill/references/components/tab-bar.md) |
+| TabBarColor | type | [源码](../../core/src/components/ui/tab-bar.tsx) | [tab-bar](../../skills/forge-skill/references/components/tab-bar.md) |
+| TabBarSurface | type | [源码](../../core/src/components/ui/tab-bar.tsx) | [tab-bar](../../skills/forge-skill/references/components/tab-bar.md) |
+| TabItem | type | [源码](../../core/src/components/ui/tab-bar.tsx) | [tab-bar](../../skills/forge-skill/references/components/tab-bar.md) |
+| TableCell | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TableCellProps | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TableCellVariant | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TableColumnAlign | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TableValueKind | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TabsContent | value | [源码](../../core/src/components/ui/tabs-content.tsx) | [tabs-content](../../skills/forge-skill/references/components/tabs-content.md) |
+| TabsContentProps | type | [源码](../../core/src/components/ui/tabs-content.tsx) | [tabs-content](../../skills/forge-skill/references/components/tabs-content.md) |
+| TaskCard | value | [源码](../../core/src/components/ui/task-card.tsx) | [task-card](../../skills/forge-skill/references/components/task-card.md) |
+| TaskCardColor | type | [源码](../../core/src/components/ui/task-card.tsx) | [task-card](../../skills/forge-skill/references/components/task-card.md) |
+| Team | type | [源码](../../core/src/components/layouts/sidebar-popovers.tsx) | [sidebar-popovers](../../skills/forge-skill/references/components/sidebar-popovers.md) |
+| TeamSwitcherLabels | type | [源码](../../core/src/components/layouts/sidebar-popovers.tsx) | [sidebar-popovers](../../skills/forge-skill/references/components/sidebar-popovers.md) |
+| TextArea | value | [源码](../../core/src/components/ui/forms/text-area.tsx) | [text-area](../../skills/forge-skill/references/components/text-area.md) |
+| TextAreaColor | type | [源码](../../core/src/components/ui/forms/text-area.tsx) | [text-area](../../skills/forge-skill/references/components/text-area.md) |
+| TextAreaProps | type | [源码](../../core/src/components/ui/forms/text-area.tsx) | [text-area](../../skills/forge-skill/references/components/text-area.md) |
+| TextAreaShape | type | [源码](../../core/src/components/ui/forms/text-area.tsx) | [text-area](../../skills/forge-skill/references/components/text-area.md) |
+| TextAreaState | type | [源码](../../core/src/components/ui/forms/text-area.tsx) | [text-area](../../skills/forge-skill/references/components/text-area.md) |
+| TextField | value | [源码](../../core/src/components/ui/forms/text-field.tsx) | [text-field](../../skills/forge-skill/references/components/text-field.md) |
+| TextFieldColor | type | [源码](../../core/src/components/ui/forms/text-field.tsx) | [text-field](../../skills/forge-skill/references/components/text-field.md) |
+| TextFieldProps | type | [源码](../../core/src/components/ui/forms/text-field.tsx) | [text-field](../../skills/forge-skill/references/components/text-field.md) |
+| TextFieldSelectSuffix | value | [源码](../../core/src/components/ui/forms/text-field-select.tsx) | [text-field-select](../../skills/forge-skill/references/components/text-field-select.md) |
+| TextFieldShape | type | [源码](../../core/src/components/ui/forms/text-field.tsx) | [text-field](../../skills/forge-skill/references/components/text-field.md) |
+| TextFieldState | type | [源码](../../core/src/components/ui/forms/text-field.tsx) | [text-field](../../skills/forge-skill/references/components/text-field.md) |
+| ThinkingRow | type | [源码](../../core/src/components/ui/agent/thinking-trace.tsx) | [thinking-trace](../../skills/forge-skill/references/components/thinking-trace.md) |
+| ThinkingTrace | value | [源码](../../core/src/components/ui/agent/thinking-trace.tsx) | [thinking-trace](../../skills/forge-skill/references/components/thinking-trace.md) |
+| ThinkingVariant | type | [源码](../../core/src/components/ui/agent/thinking-trace.tsx) | [thinking-trace](../../skills/forge-skill/references/components/thinking-trace.md) |
+| ToastApi | type | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
+| ToastOptions | type | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
+| ToastProvider | value | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
+| Toggle | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| ToggleProps | type | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| Toolbar | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarActions | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarColor | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarDatepicker | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarFavoriteButton | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarFilterButton | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarKebabButton | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarPillTab | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarPillTabs | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarProps | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarSearchInput | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarSelectDropdown | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarSelectionOptions | type | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolbarShowSelect | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
+| ToolChipDetail | type | [源码](../../core/src/components/ui/agent/tool-chips.tsx) | [tool-chips](../../skills/forge-skill/references/components/tool-chips.md) |
+| ToolChipItem | type | [源码](../../core/src/components/ui/agent/tool-chips.tsx) | [tool-chips](../../skills/forge-skill/references/components/tool-chips.md) |
+| ToolChipKind | type | [源码](../../core/src/components/ui/agent/tool-chips.tsx) | [tool-chips](../../skills/forge-skill/references/components/tool-chips.md) |
+| ToolChips | value | [源码](../../core/src/components/ui/agent/tool-chips.tsx) | [tool-chips](../../skills/forge-skill/references/components/tool-chips.md) |
+| ToolDiffChip | type | [源码](../../core/src/components/ui/agent/tool-chips.tsx) | [tool-chips](../../skills/forge-skill/references/components/tool-chips.md) |
+| Tooltip | value | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TooltipAnchor | value | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TooltipAnchorState | type | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TooltipBubble | value | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TooltipGroup | value | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TooltipPosition | type | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TooltipSize | type | [源码](../../core/src/components/ui/tooltip.tsx) | [tooltip](../../skills/forge-skill/references/components/tooltip.md) |
+| TopBar | value | [源码](../../core/src/components/ui/topbar.tsx) | [topbar](../../skills/forge-skill/references/components/topbar.md) |
+| TopBarColor | type | [源码](../../core/src/components/ui/topbar.tsx) | [topbar](../../skills/forge-skill/references/components/topbar.md) |
+| TrendDirection | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| TypefaceBlock | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| TypographySizeRow | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| TypographyWeightSample | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
+| UserCard | value | [源码](../../core/src/components/ui/user-card.tsx) | [user-card](../../skills/forge-skill/references/components/user-card.md) |
+| useToast | value | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
+| WheelChartStatCard | value | [源码](../../core/src/components/ui/wheel-chart-stat-card.tsx) | [wheel-chart-stat-card](../../skills/forge-skill/references/components/wheel-chart-stat-card.md) |
+| WheelColor | type | [源码](../../core/src/components/ui/wheel-chart-stat-card.tsx) | [wheel-chart-stat-card](../../skills/forge-skill/references/components/wheel-chart-stat-card.md) |

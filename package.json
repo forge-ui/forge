@@ -24,7 +24,9 @@
     "core:check-consumer": "pnpm --filter @forge-ui-official/core check:consumer",
     "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",
     "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase",
-    "test:interactions": "node --test scripts/test-component-fusion-*.mjs"
+    "test:interactions": "node --test scripts/test-component-fusion-*.mjs",
+    "docs:components": "node scripts/gen-component-docs.mjs",
+    "docs:components:check": "node scripts/gen-component-docs.mjs --check"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.8.0",
