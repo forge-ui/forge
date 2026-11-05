@@ -1,9 +1,3 @@
 ## 选型
 
-| 场景 | 选 |
-|---|---|
-| 普通标题面板 / section 容器 | `SurfaceCard` |
-| 图表容器 | `ChartCard` |
-| 看板任务卡 | `TaskCard` |
-| 有 logo / 项目进度卡 | `ProjectCard` |
-| 活动记录卡 | `ActivityCard` |
+SurfaceCard 为内部实现，当前主入口未导出，不能作为公共 Panel 导入。先复用 Screen 结构；公共标题面板缺口用 FORGE-GAP 请求决定。

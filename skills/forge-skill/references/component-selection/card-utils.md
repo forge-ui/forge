@@ -5,7 +5,7 @@
 ```tsx
 import { StatCardShell, CardIconChip, CardTrend, cardThemes } from "@forge-ui-official/core";
 
-export function MyCustomCard({ theme = "purple" }) {
+export function MyCustomCard({ theme = "blue" }) {
   const t = cardThemes[theme];
   return (
     <StatCardShell theme={t}>

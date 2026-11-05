@@ -44,4 +44,4 @@ export type ConfirmationDialogLayout = "spread" | "right";
 | 删除 / 移除 / 登出 | `red` |
 | 发布 / 提交成功确认 | `green` |
 | 谨慎操作警告 | `yellow` |
-| 普通业务确认 | `purple` / `blue` |
+| 普通业务确认 | `blue` / `blue` |
