@@ -2,6 +2,19 @@
 
 以下为仓内实际页面，不承诺样例数据具有业务后端。先选最接近任务的一个作风格基准，再改内容与路由。
 
+## 如何本地预览模板
+
+在用户授权的 Forge 主仓 checkout 中运行（不要在 starter 目录运行模板服务）：
+
+```sh
+export PATH=~/.nvm/versions/node/v22.23.2/bin:$PATH
+corepack pnpm dev --hostname 127.0.0.1 --port 3219
+```
+
+如依赖未安装，先 `corepack pnpm install --frozen-lockfile`。打开 `http://127.0.0.1:3219/templates/dashboards/ecommerce-3`；analytics 为 `/templates/dashboards/analytics`，项目成员页为 `/templates/project-template/members`。路由分组 `(dashboards)` 不进入 URL。完整路由可运行 `node skills/forge-skill/scripts/list.mjs templates`。
+
+生产预览可先 `corepack pnpm build`，再 `corepack pnpm start --hostname 127.0.0.1 --port 3219`，只在本地监听，不发布。starter 的业务页与 Forge 模板是两个服务：对照时保持同视口、侧栏状态与字号，复用已有 Chrome，不启动系统 Chrome 新 profile。端口被占用时核对服务归属，不能杀其他任务；结束只停止自己创建的服务。没有可运行的源码/服务或浏览器权限时，报告未验证，静态源码不能冒充视觉验收。
+
 | Screen | 适用场景 | 源码 |
 |---|---|---|
 | analytics | 经营指标、趋势与辅助分析 | src/app/templates/(dashboards)/dashboards/analytics/page.tsx |

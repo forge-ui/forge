@@ -5,6 +5,12 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 
 # Forge 页面设计与实施
 
+## 唯一入口与阅读顺序
+
+唯一通用入口是本文件 `forge-skill/SKILL.md`，不同时拼读全局安装版与项目同步版。优先级：用户指定的版本/checkout > starter 已校验的 `docs/forge-skill/upstream/SKILL.md` > 全局安装的 forge-skill。项目内没有同步副本时才用全局版；版本不符应先同步并核对 manifest，不能静默混用。
+
+在 starter 内先读该仓 AGENTS.md 与本任务对应的 quick-start / new-module / new-page，然后读项目 `docs/forge-skill/upstream/SKILL.md`；依次读 Screens → 主对照 Screen 源码 → Blocks 配方及单项 Props → 所用 Components 契约 → audit-checklist。全局 skill 在 starter 中仅负责找到并转入这一入口；starter 的路由、RBAC、数据与工程规则仍以 starter 专用 skill 为准。
+
 ## 先确定范围
 
 只交付用户授权的页面或系统；单页请求不自动扩成工作台、多模块或治理系统。先说明用户、对象、任务、页面角色、数据来源及完成标准。在 forge-starter 内先走该仓的 quick-start / new-module / new-page / audit skills：主 skill 提供通用规范，starter 负责路由、权限、数据库与工程约定。
