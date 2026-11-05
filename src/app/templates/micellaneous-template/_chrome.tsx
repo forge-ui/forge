@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { ChatRoundLineLinear, DocumentTextLinear, FolderOpenLinear, ListCheckLinear } from "@forge-ui-official/core/icons";
-import { AppLayout, PageTitleToolbar, SurfaceCard } from "@forge-ui-official/core";
+import { AppLayout, PageTitleToolbar } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem, PageTitleToolbarPresetProps } from "@forge-ui-official/core";
 import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta } from "./_data";
@@ -53,16 +53,5 @@ export function MicellaneousPageHeader({ current, ...props }: MicellaneousPageHe
       color={"purple" as const}
       breadcrumbItems={[{ label: "Dashboard", href: "/templates/micellaneous-template/calendar" }, { label: current }]}
     />
-  );
-}
-
-export function MiscSurface({ title, subtitle, action, children, className = "" }: { title?: string; subtitle?: string; action?: ReactNode; children: ReactNode; className?: string }) {
-  const padding = className.includes("p-0") ? "none" : "sm";
-  const shellClassName = className.replace(/\bp-0\b/g, "").trim();
-
-  return (
-    <SurfaceCard title={title} subtitle={subtitle} action={action} padding={padding} className={shellClassName}>
-      {children}
-    </SurfaceCard>
   );
 }

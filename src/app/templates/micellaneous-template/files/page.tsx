@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, CloudUploadLinear } from "@forge-ui-official/core/icons";
@@ -130,7 +131,7 @@ function FileManagerTile({ tile, onDelete }: { tile: FileTile; onDelete: () => v
   const iconFileName = tile.kind === "folder" ? "folder" : `${tile.name}.${tile.kind}`;
 
   return (
-    <div className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
       <div className="flex items-start justify-between">
         <Checkbox />
         <CellActions actions={[]} onKebab={onDelete} />
@@ -140,6 +141,6 @@ function FileManagerTile({ tile, onDelete }: { tile: FileTile; onDelete: () => v
       </div>
       <p className="mt-8 truncate text-center text-base font-semibold text-fg-black">{tile.name}</p>
       <p className="mt-2 text-center text-sm font-medium text-fg-grey-500">{tile.meta}</p>
-    </div>
+    </Panel>
   );
 }

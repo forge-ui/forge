@@ -82,5 +82,11 @@
     "title": "财务工作区",
     "description": "钱包、预算、费用与财务指标，使用公开 core 原语。",
     "component": "FinanceSurface"
+  },
+  {
+    "name": "template-surface",
+    "title": "模板内容分区",
+    "description": "带标题、说明、操作与紧凑内容间距的模板分区。",
+    "component": "TemplateSurface"
   }
 ]

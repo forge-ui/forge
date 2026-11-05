@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "template-surface",
+  "type": "registry:block",
+  "title": "模板内容分区",
+  "description": "带标题、说明、操作与紧凑内容间距的模板分区。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/template-surface/template-surface.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/template-surface.tsx",
+      "content": "import type { ReactNode } from \"react\";\nimport { SurfaceCard } from \"@forge-ui-official/core\";\n\nexport function TemplateSurface({ title, subtitle, action, children, className = \"\" }: { title?: string; subtitle?: string; action?: ReactNode; children: ReactNode; className?: string }) {\n  const padding = className.includes(\"p-0\") ? \"none\" : \"sm\";\n  const shellClassName = className.replace(/\\bp-0\\b/g, \"\").trim();\n\n  return (\n    <SurfaceCard title={title} subtitle={subtitle} action={action} padding={padding} className={shellClassName}>\n      {children}\n    </SurfaceCard>\n  );\n}\n"
+    }
+  ]
+}
