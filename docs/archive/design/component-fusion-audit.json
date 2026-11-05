@@ -15,7 +15,7 @@
   },
   "method": "99 项正式 React 实现逐项映射现有组件能力或组合案例；完整目录进行中英双语、三主题服务器渲染检查，并执行核心交互回归与定向真实 Chrome 验证。23 项暂缓保留独立快照；不声称 99 项均完成用户视觉验收。",
   "sources": [
-    "docs/design/component-taxonomy-proposal.json",
+    "docs/archive/design/component-taxonomy-proposal.json",
     "../forge-interaction-lab/public/component-taxonomy.json",
     "core/src/index.ts",
     "core/src/components/ui/index.ts",
@@ -3273,7 +3273,7 @@
     "record": "artifacts/component-fusion/verification-audit-fixes.json",
     "newUserAcceptances": false
   },
-  "implementationReport": "docs/design/component-fusion-implementation.md",
+  "implementationReport": "docs/archive/design/component-fusion-implementation.md",
   "implementationCounts": {
     "enhanced": 54,
     "composed": 45,

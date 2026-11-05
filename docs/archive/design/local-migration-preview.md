@@ -19,11 +19,11 @@
 
 可复用能力优先融入原组件，例如 Button 变体与反馈、SurfaceCard 效果、日期范围、交互评分、滑动标签、聊天回复与语音状态、工具调用状态、图表交互和代码折叠。注册流程、通知中心、协作分派、审批、搜索恢复等保留为组合案例。未恢复 AnimatedNumber、SelectionActionBar、EmptyState 等平行公共入口。
 
-- [99 项融合实现对照](./component-fusion-implementation.md)：逐项编号、归属、正式页面和实现文件。
-- [组件融合 API 用法](./component-fusion-api-guide.md)：可复制示例、默认兼容、语言/动效参数及 UI 与业务责任边界。
-- [原融合审查记录](./component-fusion-audit.md)与[审查数据](./component-fusion-audit.json)：保留迁移前的分析依据；其中旧批次进度及接口缺口是历史记录，当前实现以正式对照表和源码为准。
+- [99 项融合实现对照](component-fusion-implementation.md)：逐项编号、归属、正式页面和实现文件。
+- [组件融合 API 用法](component-fusion-api-guide.md)：可复制示例、默认兼容、语言/动效参数及 UI 与业务责任边界。
+- [原融合审查记录](component-fusion-audit.md)与[审查数据](component-fusion-audit.json)：保留迁移前的分析依据；其中旧批次进度及接口缺口是历史记录，当前实现以正式对照表和源码为准。
 
-066 社交登录组合已补齐 Kakao、Google、Apple 品牌入口、上次使用提示、选中后收拢其他方式、连接中/已连接展示、邮箱入口和返回其他方式；隐藏项同时退出可访问与键盘交互范围，返回时恢复触发器焦点。它是本地交互演示，没有真实 OAuth 或邮件发送。业务接入须以真实认证结果驱动状态，不能把演示定时器视为登录成功依据。见[社交登录预览](../../artifacts/component-fusion/screenshot-social-integrated.png)与[窄屏记录](../../artifacts/component-fusion/c-official-mobile-header-verified.png)。
+066 社交登录组合已补齐 Kakao、Google、Apple 品牌入口、上次使用提示、选中后收拢其他方式、连接中/已连接展示、邮箱入口和返回其他方式；隐藏项同时退出可访问与键盘交互范围，返回时恢复触发器焦点。它是本地交互演示，没有真实 OAuth 或邮件发送。业务接入须以真实认证结果驱动状态，不能把演示定时器视为登录成功依据。见[社交登录预览](../../../artifacts/component-fusion/screenshot-social-integrated.png)与[窄屏记录](../../../artifacts/component-fusion/c-official-mobile-header-verified.png)。
 
 同样，上传、语音、支付、工具运行、审批等案例展示可操作状态与回调边界，不提供相应业务后端。文件本地读取完成不等于服务器上传成功。
 
@@ -37,9 +37,9 @@
 
 ## 验证状态与保留问题
 
-本轮最终检查、包体积预算、浏览器覆盖及未覆盖项统一记录在[正式迁移验证记录](../../artifacts/component-fusion/verification-formal-migration.json)。该记录由本轮汇总验证更新；不在本文复述尚未汇总的通过数量，也不把第二、三批历史包预算失败延续为当前结论。
+本轮最终检查、包体积预算、浏览器覆盖及未覆盖项统一记录在[正式迁移验证记录](../../../artifacts/component-fusion/verification-formal-migration.json)。该记录由本轮汇总验证更新；不在本文复述尚未汇总的通过数量，也不把第二、三批历史包预算失败延续为当前结论。
 
-**保留问题：**命令弹窗的搜索框聚焦时，Escape 在此前的真实 Chrome 检查中未能确认关闭，原因未定。模拟测试的连续 Escape、焦点恢复与 IME 保护通过，不能替代这一真实浏览器结果。此前关闭按钮、按钮聚焦时的 Escape、Tab 焦点循环和局部 Ctrl/Cmd+K 可用；除非本轮取得新的明确浏览器证据，该项仍不记为通过。详见 [Escape 诊断记录](../../artifacts/component-fusion/command-escape-diagnosis.json)。
+**保留问题：**命令弹窗的搜索框聚焦时，Escape 在此前的真实 Chrome 检查中未能确认关闭，原因未定。模拟测试的连续 Escape、焦点恢复与 IME 保护通过，不能替代这一真实浏览器结果。此前关闭按钮、按钮聚焦时的 Escape、Tab 焦点循环和局部 Ctrl/Cmd+K 可用；除非本轮取得新的明确浏览器证据，该项仍不记为通过。详见 [Escape 诊断记录](../../../artifacts/component-fusion/command-escape-diagnosis.json)。
 
 正式融合不等于已发布。提交、合并与发布仍需依据本轮验证结论及当前授权分别完成，版本号没有因本地迁移自动变化。
 
@@ -47,6 +47,6 @@
 
 以下文件保留各批次的测试数量、浏览器步骤、截图与当时的包预算，不作为本轮当前状态：
 
-- [第一批验证](../../artifacts/component-fusion/verification.json)、[第二批验证](../../artifacts/component-fusion/verification-batch-2.json)、[第三批验证](../../artifacts/component-fusion/verification-batch-3.json)。
-- [集中评审验证](../../artifacts/component-fusion/verification-consolidated.json)、[审计修复验证](../../artifacts/component-fusion/verification-audit-fixes.json)、[评审导出验证](../../artifacts/component-fusion/review-export-verification.json)。
-- [集中评审截图](../../artifacts/component-fusion/screenshot-consolidated.png)、[第二批截图](../../artifacts/component-fusion/batch-2.png)、[第三批截图](../../artifacts/component-fusion/batch-3.png)。
+- [第一批验证](../../../artifacts/component-fusion/verification.json)、[第二批验证](../../../artifacts/component-fusion/verification-batch-2.json)、[第三批验证](../../../artifacts/component-fusion/verification-batch-3.json)。
+- [集中评审验证](../../../artifacts/component-fusion/verification-consolidated.json)、[审计修复验证](../../../artifacts/component-fusion/verification-audit-fixes.json)、[评审导出验证](../../../artifacts/component-fusion/review-export-verification.json)。
+- [集中评审截图](../../../artifacts/component-fusion/screenshot-consolidated.png)、[第二批截图](../../../artifacts/component-fusion/batch-2.png)、[第三批截图](../../../artifacts/component-fusion/batch-3.png)。

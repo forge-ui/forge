@@ -221,7 +221,7 @@ const report = { generatedAt: new Date().toISOString(), command: 'node scripts/a
   '有限属性统计包括组件声明的顶层样式与布尔状态；排除继承 React HTML 的通用透传属性，仅保留 disabled/checked/required/readOnly/multiple/type 等用户行为相关项。嵌套数据、焦点、时序和组合仍需跟进。',
   '调用图不能解析所有业务条件，公共 dispatcher 可能使一个组件静态可达多个分类（例如 Accordion）；所有页面关联都是可达候选，不能换算为确实可见覆盖率。',
 ], excluded, components: records };
-fs.writeFileSync('docs/component-coverage-audit.json', JSON.stringify(report, null, 2) + '\n');
+fs.writeFileSync('docs/archive/component-coverage-audit.json', JSON.stringify(report, null, 2) + '\n');
 const roleLabel = { 'user-facing-component': '用户组件', 'public-composition-subcomponent': '组合子组件', 'public-render-helper': '渲染辅助', 'context-or-composition-helper': '上下文辅助' };
 const cell = value => String(value).replaceAll('|', '\\|').replaceAll('\n', ' ');
 const missing = records.filter(record => record.cases === 'no-reachable-jsx');
@@ -241,5 +241,5 @@ for (const record of records) {
   lines.push(`| ${record.name}（${roleLabel[record.role]}） | ${record.file}:${record.line} | ${cell(docRoutes.join(', ') || (record.documentation === 'composed-jsx' ? '父组件内部组合展示，见 JSON' : '无 JSX 证据'))} | ${cell(caseRoutes.join(', ') || (record.evidence.injected.length ? '共享布局注入，见 JSON' : record.cases === 'composed-jsx' ? '父组件内部组合展示，见 JSON' : '无 JSX 证据'))} | ${cell(record.role === 'user-facing-component' ? (gaps.join('; ') || '未发现重要变体的字面量缺口；不代表状态全验收') : '辅助/组合能力，不要求独立业务卡；属性明细见 JSON')} |`);
 }
 lines.push('', '## 完整证据', '', '详见同目录 `component-coverage-audit.json`：每个组件包含导出位置、逐处 JSX 行号、props 表达式、有限联合值、明确字面量/默认值、推导候选、动态未决与未分配页面的 JSX。', '', '## 建议验收顺序', '', '1. 人工确认无案例/无文档项是可独立使用的组件，还是依赖父组件组合展示的子组件。', '2. 补齐有限属性轴的字面量缺口；优先 effect、variant、transition、state/status，避免重建冗长配色矩阵。', '3. 依据业务重要性测试有效/无效输入、加载、错误、空态、禁用、键盘焦点及中英文；每项记录真实操作证据。', '4. 对共享注入组件按 registry 官方分类验证页面可见性，不将仅源码可达当作已上屏。', '');
-fs.writeFileSync('docs/component-coverage-audit.md', lines.join('\n'));
+fs.writeFileSync('docs/archive/component-coverage-audit.md', lines.join('\n'));
 console.log(JSON.stringify(summary, null, 2));

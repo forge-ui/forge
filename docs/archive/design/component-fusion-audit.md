@@ -1,10 +1,10 @@
 # 组件融合审查（迁移前记录）
 
-> 当前进展：全部 99 项已落入迁移分支的正式 React 实现。下面保留的是迁移前接口缺口审查；以 [实施对照表](./component-fusion-implementation.md) 和 [API 用法](./component-fusion-api-guide.md) 为当前实现依据。
+> 当前进展：全部 99 项已落入迁移分支的正式 React 实现。下面保留的是迁移前接口缺口审查；以 [实施对照表](component-fusion-implementation.md) 和 [API 用法](component-fusion-api-guide.md) 为当前实现依据。
 
 本次覆盖 **123 项**（117 个 HTML 原型、6 个 React 案例）：**54 项增强现有组件、45 项组合示例、23 项暂缓、1 项排除**。默认不新增公共组件。
 
-这些是源码审查后的融合方向，不代表接口已经支持或迁移已经完成。完整理由、接口缺口和逐项源码路径见 [审查 JSON](./component-fusion-audit.json)。040 侧栏动效已通过用户验收。上一轮收到「可以，看到的这三个没问题，然后呢」的反馈，认可数量为 3，但未点名编号，不扩算为上一轮四项全部验收；013、043、044 后续已获用户「OK，过」明确验收；031、039、046 也于 2026-10-14 经用户「OK，过，其他的也都放到这里吧，我一次性看完」验收。已验收编号为 040、013、043、044、031、039、046；其他条目按各自状态推进，均未发布。
+这些是源码审查后的融合方向，不代表接口已经支持或迁移已经完成。完整理由、接口缺口和逐项源码路径见 [审查 JSON](component-fusion-audit.json)。040 侧栏动效已通过用户验收。上一轮收到「可以，看到的这三个没问题，然后呢」的反馈，认可数量为 3，但未点名编号，不扩算为上一轮四项全部验收；013、043、044 后续已获用户「OK，过」明确验收；031、039、046 也于 2026-10-14 经用户「OK，过，其他的也都放到这里吧，我一次性看完」验收。已验收编号为 040、013、043、044、031、039、046；其他条目按各自状态推进，均未发布。
 
 - **040 AppLayout 侧栏动效**：唯一目标为 `AppLayout`，本地已融入；[集成预览](/prototype/sidebar-motion) 已于 2026-10-14 通过用户验收，保留原有 Solar 菜单图标。`SidebarMenu` 无需同步扩展。
 - **031 / 039 / 046**：第三批本地融合到 SelectOption、TabBar / TabsContent、CommandSearch / Modal；现并入 `/prototype/component-fusion` 对应家族集中展示。官网仍归 input-field、tab、agent 原页面，不增加分类或公共组件。第三批已通过用户验收，验证结果及技术限制见第三批记录，未提交、未发布。
@@ -140,10 +140,10 @@
 | F05 | 协作席位 | 组合示例 | AddMember、Avatar、AvatarGroup、Button | AddMember 的待添加选择不等于 activeOwner，AvatarGroup 也不管理负责人。 |
 | F06 | 搜索无结果恢复 | 组合示例 | FilterPanel、ToolbarSearchInput、ListGroup、Button | FilterPanel 不产生搜索结果，原型 filters.length>0 即零结果仅为示例。本轮只有列表中的关键词搜索恢复组合示例，未覆盖原型全部业务状态。 |
 
-本轮集中展示已通过官网 TypeScript、定向 ESLint 与差异检查；目录断言确认 99 + 23 项无重复遗漏、186 排除、已认可 7 项及原型快照完整。Chrome 已验证原型保存交互、语言/主题/动效同步、评审及备注持久化、分类/状态筛选、040 侧栏折叠跨路由保留、090 局部示例标识、首次加载旧 hash 与暂缓项 hash、390px 窄屏无横向溢出及真实 JSON 导出。定向本地审阅检查完成，未对 122 项逐一完成功能 QA。详见 [集中评审验证记录](../../artifacts/component-fusion/verification-consolidated.json)。本轮只整理展示，不新增公共组件，不提交、不发布。
+本轮集中展示已通过官网 TypeScript、定向 ESLint 与差异检查；目录断言确认 99 + 23 项无重复遗漏、186 排除、已认可 7 项及原型快照完整。Chrome 已验证原型保存交互、语言/主题/动效同步、评审及备注持久化、分类/状态筛选、040 侧栏折叠跨路由保留、090 局部示例标识、首次加载旧 hash 与暂缓项 hash、390px 窄屏无横向溢出及真实 JSON 导出。定向本地审阅检查完成，未对 122 项逐一完成功能 QA。详见 [集中评审验证记录](../../../artifacts/component-fusion/verification-consolidated.json)。本轮只整理展示，不新增公共组件，不提交、不发布。
 
-第三批 031 / 039 / 046 已通过 core:check（235 项组件测试、17 项审计测试）、core:build、官网 TypeScript 与相关 ESLint。Chrome 已检查连续切换、搜索执行、选择、语言主题、窄屏与减弱动效。命令弹窗搜索框聚焦时 Escape 的当前浏览器验证未通过，组件模拟验证通过，原因未定；包检查仅体积/文件数预算失败。见 [第三批验证记录](../../artifacts/component-fusion/verification-batch-3.json)。第三批已通过用户验收，Escape 浏览器限制及包预算问题仍未解决，未提交、未发布。
+第三批 031 / 039 / 046 已通过 core:check（235 项组件测试、17 项审计测试）、core:build、官网 TypeScript 与相关 ESLint。Chrome 已检查连续切换、搜索执行、选择、语言主题、窄屏与减弱动效。命令弹窗搜索框聚焦时 Escape 的当前浏览器验证未通过，组件模拟验证通过，原因未定；包检查仅体积/文件数预算失败。见 [第三批验证记录](../../../artifacts/component-fusion/verification-batch-3.json)。第三批已通过用户验收，Escape 浏览器限制及包预算问题仍未解决，未提交、未发布。
 
-第二批（013 / 043 / 044）验证：pnpm core:check（220 项组件测试、17 项审计测试）、pnpm core:build、官网 TypeScript、相关 ESLint 和差异检查已通过。Chrome 已检查拖动、键盘导航、分页边界、窄屏、语言主题与关闭动效；运行时系统减弱动效问题已修复并复验。包体积与文件数预算仍超限，阈值未改。详见 [第二批验证记录](../../artifacts/component-fusion/verification-batch-2.json)。第二批已有明确用户验收记录，发布仍需单独完成包预算等检查。
+第二批（013 / 043 / 044）验证：pnpm core:check（220 项组件测试、17 项审计测试）、pnpm core:build、官网 TypeScript、相关 ESLint 和差异检查已通过。Chrome 已检查拖动、键盘导航、分页边界、窄屏、语言主题与关闭动效；运行时系统减弱动效问题已修复并复验。包体积与文件数预算仍超限，阈值未改。详见 [第二批验证记录](../../../artifacts/component-fusion/verification-batch-2.json)。第二批已有明确用户验收记录，发布仍需单独完成包预算等检查。
 
 证据边界：公共导出与来源路径已核验；原型中的定时器、随机进度、伪登录和自动成功仅是演示。真正的业务结果、权限和数据状态仍由宿主控制。

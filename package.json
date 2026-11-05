@@ -30,7 +30,8 @@
     "test:skill": "node --test scripts/test-skill-sources.mjs",
     "check:skill": "node scripts/check-skill-docs.mjs && pnpm docs:components:check && pnpm test:skill",
     "docs:llms:check": "node scripts/generate-llms-docs.mjs --check",
-    "test:llms": "node --test scripts/test-llms-docs.mjs"
+    "test:llms": "node --test scripts/test-llms-docs.mjs",
+    "check:doc-links": "node scripts/check-doc-links.mjs && node --test scripts/test-doc-links.mjs"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.8.0",

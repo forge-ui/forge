@@ -11,7 +11,7 @@
 - 新增 `/components/grid`、`/cases/grid`、导航、组件清单、公共 API 快照及消费方样例；更新仓库内 forge-skill skill、页面模式和统一布局审计规则。
 - 文档生成器在缺少可选外部 registry 时保留已有生成目录内容，仅合入本地栅格条目；已验证重复生成结果一致。
 
-规范：[layout-grid.md](../../skills/forge-skill/references/layout-grid.md)。当前本地查看：[组件文档](http://localhost:3100/components/grid)、[矩阵案例](http://localhost:3100/cases/grid)。这些 API 尚未发布至 npm。
+规范：[layout-grid.md](../../../skills/forge-skill/references/layout-grid.md)。当前本地查看：[组件文档](http://localhost:3100/components/grid)、[矩阵案例](http://localhost:3100/cases/grid)。这些 API 尚未发布至 npm。
 
 ## 检查结果
 
@@ -53,10 +53,10 @@
 
 ## 本地证据与后续同步
 
-- [四档页面截图总览](../../tmp/grid-audit/after/contact-sheet.png)
-- [商品页改造前后](../../tmp/grid-audit/product-before-after.png)
-- [改造前指标](../../tmp/grid-audit/before/metrics.json)、[改造后指标](../../tmp/grid-audit/after/metrics.json)、[断点指标](../../tmp/grid-audit/after/grid-metrics.json)、[侧栏指标](../../tmp/grid-audit/after/sidebar.json)
-- [交互记录](../../tmp/grid-audit/interaction-results.json)、[Core 检查日志](../../tmp/grid-audit/final-core-check.log)、[消费方日志](../../tmp/grid-audit/consumer.log)、[构建日志](../../tmp/grid-audit/site-build.log)
+- 四档页面截图总览（历史证据：`../../tmp/grid-audit/after/contact-sheet.png`；未纳入本仓，本轮未复核）
+- 商品页改造前后（历史证据：`../../tmp/grid-audit/product-before-after.png`；未纳入本仓，本轮未复核）
+- 改造前指标（历史证据：`../../tmp/grid-audit/before/metrics.json`；未纳入本仓，本轮未复核）、改造后指标（历史证据：`../../tmp/grid-audit/after/metrics.json`；未纳入本仓，本轮未复核）、断点指标（历史证据：`../../tmp/grid-audit/after/grid-metrics.json`；未纳入本仓，本轮未复核）、侧栏指标（历史证据：`../../tmp/grid-audit/after/sidebar.json`；未纳入本仓，本轮未复核）
+- 交互记录（历史证据：`../../tmp/grid-audit/interaction-results.json`；未纳入本仓，本轮未复核）、Core 检查日志（历史证据：`../../tmp/grid-audit/final-core-check.log`；未纳入本仓，本轮未复核）、消费方日志（历史证据：`../../tmp/grid-audit/consumer.log`；未纳入本仓，本轮未复核）、构建日志（历史证据：`../../tmp/grid-audit/site-build.log`；未纳入本仓，本轮未复核）
 
 证据保存在被 git 忽略的 `tmp/grid-audit/`，供本地审阅，不随包发布。
 

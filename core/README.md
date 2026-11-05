@@ -177,7 +177,7 @@ import { StreamingAnswer } from "@forge-ui-official/core";
 
 `ChatInputBar` 放进 AskAi 的 composer 插槽时，使用紧凑的自动增高输入框和工具菜单。紧凑菜单的无障碍名称用 `toolsMenuLabel`。已有的来源、命令、附件和模型文案仍然可用。
 
-全屏消息应使用自然高度的内容。滚动、回复跟随、回到最新和浮动输入栏的留白由 core 负责。用 `currentSessionId` 在切换外部会话时重置跟随。插槽约定见仓库里的 [`docs/ask-ai-fullscreen-layout.md`](https://github.com/forge-ui/forge/blob/main/docs/ask-ai-fullscreen-layout.md)。
+全屏消息应使用自然高度的内容。滚动、回复跟随、回到最新和浮动输入栏的留白由 core 负责。用 `currentSessionId` 在切换外部会话时重置跟随。插槽约定见仓库里的 [`docs/ask-ai-fullscreen-layout.md`](https://github.com/forge-ui/forge/blob/main/docs/archive/ask-ai-fullscreen-layout.md)。
 
 AskAi 管理自己内置的请求生命周期。应用如果有外部的生成或模型状态，可以把 `ChatInputBar` 通过 `AskAi.composer` 传入，插槽自己持有回调和状态。
 
@@ -277,7 +277,7 @@ import { CalendarCard, DropdownPanel, type ButtonColor } from "@forge-ui-officia
 
 0.4.7 把 99 项交互收成 54 项现有组件增强和 45 项组合案例。默认中文，可以切换语言。正式总览是 `/components/interactions`。各示例也在原来的 `/components` 或 `/cases` 里。`/prototype/component-fusion` 用的是同一套实现。
 
-完整说明：[API 用法与业务接入边界](https://github.com/forge-ui/forge/blob/main/docs/design/component-fusion-api-guide.md)、[99 项对照](https://github.com/forge-ui/forge/blob/main/docs/design/component-fusion-implementation.md)。玻璃按钮的装饰背景只属于官网示例，npm 里的 Button 只有玻璃材质。磁吸按钮不带扩散光晕。
+完整说明：[API 用法与业务接入边界](https://github.com/forge-ui/forge/blob/main/docs/archive/design/component-fusion-api-guide.md)、[99 项对照](https://github.com/forge-ui/forge/blob/main/docs/archive/design/component-fusion-implementation.md)。玻璃按钮的装饰背景只属于官网示例，npm 里的 Button 只有玻璃材质。磁吸按钮不带扩散光晕。
 
 | 组件 | 用途 | 主要参数 |
 | --- | --- | --- |

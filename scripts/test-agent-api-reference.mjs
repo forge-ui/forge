@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import ts from 'typescript';
 import { execFileSync } from 'node:child_process';
 const data = JSON.parse(fs.readFileSync('src/app/components/_agent-api-data.json', 'utf8'));
-const comparison = JSON.parse(fs.readFileSync('docs/public-api-comparison.json', 'utf8'));
+const comparison = JSON.parse(fs.readFileSync('docs/archive/public-api-comparison.json', 'utf8'));
 test('ChatInputBar reference includes every declared property and exact send signature', () => {
   const file = ts.createSourceFile('chat.tsx', fs.readFileSync('core/src/components/ui/chat-input-bar.tsx', 'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const fn = file.statements.find(n => ts.isFunctionDeclaration(n) && n.name?.text === 'ChatInputBar');
@@ -43,6 +43,6 @@ test('reference describes domain fields rather than built-in String methods', ()
   assert.match(data.ChatInputBar.types.find(t => t.name === 'ComposerStatus').definition, /stopping/);
 });
 
-test('generated comparison matches current source and main', () => {
-  execFileSync(process.execPath, ['scripts/audit-public-api-comparison.mjs', '--check'], { stdio: 'pipe' });
+test('current API reference matches source independently of archived migration snapshots', () => {
+  execFileSync(process.execPath, ['scripts/gen-component-docs.mjs', '--check'], { stdio: 'pipe' });
 });

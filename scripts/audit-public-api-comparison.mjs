@@ -6,12 +6,12 @@ const root = process.cwd();
 // A documentation-only commit must not invalidate an unchanged API snapshot.
 // Keep recording HEAD as provenance, but compare the actual interfaces and defaults.
 function comparable(file, content) {
-  if (file === 'docs/public-api-comparison.json') {
+  if (file === 'docs/archive/public-api-comparison.json') {
     const snapshot = JSON.parse(content);
     delete snapshot.currentCommit;
     return JSON.stringify(snapshot);
   }
-  if (file === 'docs/public-api-comparison.md') return content.replace(/当前 HEAD：[a-f0-9]{40}/, '当前 HEAD：<snapshot>');
+  if (file === 'docs/archive/public-api-comparison.md') return content.replace(/当前 HEAD：[a-f0-9]{40}/, '当前 HEAD：<snapshot>');
   return content;
 }
 function save(file, content) {
@@ -82,7 +82,7 @@ const comparisons = Object.entries(current.components).map(([name, component]) =
   return { name, file: component.file, mainCount: old?.props.length ?? 0, currentCount: component.props.length, added: component.props.filter(p => !old?.props.some(o => o.name === p.name)).map(p => p.name), removed: old?.props.filter(p => !component.props.some(o => o.name === p.name)).map(p => p.name) ?? [], changed: component.props.filter(p => old?.props.some(o => o.name === p.name && o.type !== p.type)).map(p => p.name) };
 });
 const report = { mainCommit: execFileSync('git', ['rev-parse', 'main'], {encoding:'utf8'}).trim(), currentCommit: execFileSync('git', ['rev-parse','HEAD'], {encoding:'utf8'}).trim(), main, current, comparisons, removedExports: main.exports.filter(n => !current.exports.includes(n)), addedExports: current.exports.filter(n => !main.exports.includes(n)) };
-save('docs/public-api-comparison.json', JSON.stringify(report, null, 2) + '\n');
+save('docs/archive/public-api-comparison.json', JSON.stringify(report, null, 2) + '\n');
 const focus = comparisons.filter(c => /\/agent\/|chat-input-bar|ask-ai|chat-|composer/.test(c.file) || /PageTitleToolbar|TopBar|AppLayout/.test(c.name));
 let md = `# 主分支与迁移版本 API 对照\n\n基准 main：${report.mainCommit}。当前 HEAD：${report.currentCommit}，包含本地未提交源码。\n\n通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。\n\n## 智能体与聊天相关组件\n\n| 组件 | main 参数数 | 当前参数数 | 新增参数 | 删除参数 | 类型变化 |\n|---|---:|---:|---|---|---|\n`;
 const row = c => `| ${c.name} | ${c.mainCount} | ${c.currentCount} | ${c.added.join(', ') || '—'} | ${c.removed.join(', ') || '—'} | ${c.changed.join(', ') || '—'} |\n`;
@@ -90,7 +90,7 @@ md += focus.map(row).join('');
 md += '\n## 全部公开组件\n\n| 组件 | main 参数数 | 当前参数数 | 新增参数 | 删除参数 | 类型变化 |\n|---|---:|---:|---|---|---|\n' + comparisons.map(row).join('');
 md += `\n## 导出变化\n\n删除：${report.removedExports.join(', ') || '无'}。\n\n新增：${report.addedExports.join(', ') || '无'}。\n\n## 智能体与聊天参数明细\n`;
 for (const c of focus) md += `\n### ${c.name}\n\n源码：\`${c.file}\`。\n\n| 参数 | 类型 | 是否必填 | 源码默认值 |\n|---|---|---|---|\n` + current.components[c.name].props.map(p => `| ${p.name} | \`${p.type.replaceAll('|','\\|')}\` | ${p.optional ? '否':'是'} | ${p.defaultValue ?? '未在参数解构处设置'} |\n`).join('');
-save('docs/public-api-comparison.md', md);
+save('docs/archive/public-api-comparison.md', md);
 console.log(JSON.stringify({ main: Object.keys(main.components).length, current: comparisons.length, focus: focus.length, removedExports: report.removedExports, removedProps: comparisons.filter(c=>c.removed.length), focusSummary: focus.map(c=>({name:c.name,main:c.mainCount,current:c.currentCount})) }, null, 2));
 
 function relatedTypes(name) {
@@ -111,5 +111,5 @@ save('src/app/components/_agent-api-data.json', JSON.stringify(Object.fromEntrie
 const catalog = JSON.parse(fs.readFileSync('src/app/prototype/component-fusion/_catalog-data.json', 'utf8'));
 const active = catalog.items.filter(item => item.mode !== 'defer');
 const migration = active.map(item => ({ id: item.id, name: item.name, family: item.family, mode: item.mode, targets: item.target.map(name => ({ name, publicComponent: !!current.components[name], publicExport: current.exports.includes(name) })), declaredHref: item.href, accepted: item.accepted }));
-save('docs/migration-api-crosswalk.json', JSON.stringify(migration, null, 2) + '\n');
-save('docs/migration-api-crosswalk.md', '# 迁移清单与公开 API 对照\n\n逐项核对目录中的目标名称是否可从 core 根入口导入。目标对应不代表单个组件本身拥有整套案例交互；组合案例的状态管理仍由应用负责。accepted 是目录原字段，不代替本轮验收。页面路径保留目录声明，实际路由还须结合 registry 的分类覆盖规则。\n\n| 编号 | 案例 | 分类 | 目标组件 | 目录验收标记 |\n|---|---|---|---|---|\n' + migration.map(item => `| ${item.id} | ${item.name} | ${item.family} | ${item.targets.map(t => `${t.name}${t.publicComponent ? '' : t.publicExport ? '（公开导出，非本脚本识别的组件）' : '（未在根入口找到）'}`).join('、')} | ${item.accepted ? '已标记' : '未标记'} |`).join('\n') + '\n');
+save('docs/archive/migration-api-crosswalk.json', JSON.stringify(migration, null, 2) + '\n');
+save('docs/archive/migration-api-crosswalk.md', '# 迁移清单与公开 API 对照\n\n逐项核对目录中的目标名称是否可从 core 根入口导入。目标对应不代表单个组件本身拥有整套案例交互；组合案例的状态管理仍由应用负责。accepted 是目录原字段，不代替本轮验收。页面路径保留目录声明，实际路由还须结合 registry 的分类覆盖规则。\n\n| 编号 | 案例 | 分类 | 目标组件 | 目录验收标记 |\n|---|---|---|---|---|\n' + migration.map(item => `| ${item.id} | ${item.name} | ${item.family} | ${item.targets.map(t => `${t.name}${t.publicComponent ? '' : t.publicExport ? '（公开导出，非本脚本识别的组件）' : '（未在根入口找到）'}`).join('、')} | ${item.accepted ? '已标记' : '未标记'} |`).join('\n') + '\n');

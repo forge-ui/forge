@@ -26,7 +26,7 @@ test('agent descriptions and complete API render as one table per component',()=
  const { JSDOM } = require('../core/node_modules/jsdom');
  const dom = new JSDOM(html);
  const api = JSON.parse(fs.readFileSync('src/app/components/_agent-api-data.json', 'utf8'));
- const components = JSON.parse(fs.readFileSync('docs/public-api-comparison.json', 'utf8')).current.components;
+ const components = JSON.parse(fs.readFileSync('docs/archive/public-api-comparison.json', 'utf8')).current.components;
  try {
    for (const [name, component] of Object.entries(components)) {
      if (!component.file.includes('/agent/')) continue;
@@ -49,8 +49,8 @@ for(const only of ['otp','tabs','members'])test(`${only} widget has one named gu
  assert.match(html,/参数说明/);
 });
 test('duplication table covers every public component exactly once',()=>{
- const inventory=JSON.parse(fs.readFileSync('docs/component-coverage-audit.json')).components;
- const report=JSON.parse(fs.readFileSync('docs/component-duplication-audit.json'));
+ const inventory=JSON.parse(fs.readFileSync('docs/archive/component-coverage-audit.json')).components;
+ const report=JSON.parse(fs.readFileSync('docs/archive/component-duplication-audit.json'));
  assert.deepEqual(report.records.map(x=>x.name).sort(),inventory.map(x=>x.name).sort());
  assert.equal(new Set(report.records.map(x=>x.name)).size,182);
  assert.equal(report.summary.remainingDuplicateCandidates,0);

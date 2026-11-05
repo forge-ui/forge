@@ -6,7 +6,7 @@
 
 当前不能认定“所有组件及有独立意义的变体均有完整案例，且官网已适合首次使用者”。问题包括真实展示缺口、文档与实现不一致、示例场景不完整、内置语言切换遗漏，以及没有实际功能的公共入口。已形成逐页和逐组件清单，本轮没有修改产品实现、提交或发布。
 
-审计始终采用同一标准：组件与官网服务于实际使用者。标题说明用途，描述解释行为，案例呈现可信的业务场景；代码标识保持准确，中文解释正规、简洁、易懂。该标准已写入 [公开内容规范](./design/public-content-guidelines.md)。
+审计始终采用同一标准：组件与官网服务于实际使用者。标题说明用途，描述解释行为，案例呈现可信的业务场景；代码标识保持准确，中文解释正规、简洁、易懂。该标准已写入 [公开内容规范](../design/public-content-guidelines.md)。
 
 ## 范围与证据
 
@@ -67,11 +67,11 @@
 
 ## 分项报告与复现
 
-- [公共组件与变体覆盖清单](./component-coverage-audit.md)：182 个导出逐项证据。
-- [组件参考文案审计](./component-public-copy-audit.md)：30 个页面与核心内置文案。
-- [案例全面审计](./component-cases-full-audit.md)：案例问题、位置和建议。
-- [使用文档与共享入口审计](./public-documentation-audit.md)：接入错误、入口与正式文案。
-- [公开内容规范](./design/public-content-guidelines.md)：后续实现与审查基准。
-- [完整机器清单](./component-coverage-audit.json)；复现命令：`node scripts/audit-component-coverage.mjs`。
+- [公共组件与变体覆盖清单](component-coverage-audit.md)：182 个导出逐项证据。
+- [组件参考文案审计](component-public-copy-audit.md)：30 个页面与核心内置文案。
+- [案例全面审计](component-cases-full-audit.md)：案例问题、位置和建议。
+- [使用文档与共享入口审计](public-documentation-audit.md)：接入错误、入口与正式文案。
+- [公开内容规范](../design/public-content-guidelines.md)：后续实现与审查基准。
+- [完整机器清单](component-coverage-audit.json)；复现命令：`node scripts/audit-component-coverage.mjs`。
 
 参考 [HeroUI 中文入门](https://heroui.com/cn/docs/react/getting-started)、[快速开始](https://heroui.com/cn/docs/react/getting-started/quick-start) 与 [按钮文档](https://heroui.com/cn/docs/react/components/button) 的阅读组织：用途、环境与安装、首次使用、按场景示例、参数参考。Forge 的具体目录和交互仍应以自身能力为准。

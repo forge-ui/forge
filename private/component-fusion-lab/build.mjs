@@ -10,7 +10,7 @@ const repository = resolve(directory, "../..");
 const lab = process.argv[2] ? resolve(repository, process.argv[2]) : null;
 const output = join(repository, "public/prototype/component-fusion");
 const prefix = "/prototype/component-fusion";
-const audit = JSON.parse(await readFile(join(repository, "docs/design/component-fusion-audit.json"), "utf8"));
+const audit = JSON.parse(await readFile(join(repository, "docs/archive/design/component-fusion-audit.json"), "utf8"));
 const catalog = lab
   ? JSON.parse(await readFile(join(lab, "public/catalog.json"), "utf8"))
   : JSON.parse(await readFile(join(repository, "src/app/prototype/component-fusion/_catalog-data.json"), "utf8")).items;
