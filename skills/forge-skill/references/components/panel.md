@@ -1,12 +1,12 @@
 # panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.5.0**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.6.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Panel (value)
 
 ```ts
-({ title, subtitle, action, footer, children, variant, gap, className, ...props }: PanelProps) => JSX.Element
+({ title, subtitle, action, footer, children, variant, as: Element, asChild, gap, className, ...props }: PanelProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -16,7 +16,9 @@
 | `action` | 否 | `ReactNode` |  |
 | `footer` | 否 | `ReactNode` |  |
 | `children` | 是 | `ReactNode` |  |
-| `variant` | 否 | `"dashboard" \| "template" \| undefined` |  |
+| `variant` | 否 | `"template" \| "dashboard" \| "custom" \| undefined` |  |
+| `as` | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |  |
+| `asChild` | 否 | `boolean \| undefined` |  |
 | `gap` | 否 | `"md" \| "sm" \| "none" \| undefined` |  |
 | `color` | 否 | `string \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
@@ -304,7 +306,9 @@ export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
   action?: ReactNode;
   footer?: ReactNode;
   children: ReactNode;
-  variant?: "dashboard" | "template";
+  variant?: "dashboard" | "template" | "custom";
+  as?: "div" | "section" | "aside" | "article";
+  asChild?: boolean;
   gap?: "none" | "sm" | "md";
 }
 ```

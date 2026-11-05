@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.5.0，共 483 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.6.0，共 487 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -212,6 +212,8 @@
 | EventTagSize | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
 | EventTagVariant | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
 | FileCard | value | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
+| FileInput | value | [源码](../../core/src/components/ui/forms/file-input.tsx) | [file-input](../../skills/forge-skill/references/components/file-input.md) |
+| FileInputProps | type | [源码](../../core/src/components/ui/forms/file-input.tsx) | [file-input](../../skills/forge-skill/references/components/file-input.md) |
 | FileItem | type | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
 | FileState | type | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
 | FileTypeIcon | value | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
@@ -276,6 +278,8 @@
 | ImageGridSize | type | [源码](../../core/src/components/ui/image-grid.tsx) | [image-grid](../../skills/forge-skill/references/components/image-grid.md) |
 | ImageStatCard | value | [源码](../../core/src/components/ui/image-stat-card.tsx) | [image-stat-card](../../skills/forge-skill/references/components/image-stat-card.md) |
 | ImageStatCardProps | type | [源码](../../core/src/components/ui/image-stat-card.tsx) | [image-stat-card](../../skills/forge-skill/references/components/image-stat-card.md) |
+| InfoRow | value | [源码](../../core/src/components/ui/info-row.tsx) | [info-row](../../skills/forge-skill/references/components/info-row.md) |
+| InfoRowProps | type | [源码](../../core/src/components/ui/info-row.tsx) | [info-row](../../skills/forge-skill/references/components/info-row.md) |
 | InsightCard | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
 | InsightCards | value | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
 | InsightChart | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |

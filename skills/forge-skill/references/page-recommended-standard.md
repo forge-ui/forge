@@ -154,5 +154,5 @@
 - 外壳：AppLayout；面板：Panel（dashboard/template），SurfaceCard 保持原 API。
 - 密度：StatCard、ProgressStatCard、LineChartStatCard、BarChartStatCard、WheelChartStatCard、BalanceCard、ImageStatCard、HighlightCard、ListGroup 使用 density="compact"；不再依赖模板 !important。默认密度不变。
 - 图表：ChartHeader、ChartMetricRow、GroupedBarChart、DivergingBarChart；目标：WalletGoalCard。
-- 12 类可复制 Block 的实现名、目录和支持边界见 [Blocks](blocks.md)，不要从 core import Block。
+- 17 类可复制 Block 的实现名、目录和支持边界见 [Blocks](blocks.md)，不要从 core import Block。
 - 以上为实现状态；前后像素一致须独立验收，当前环境未完成截图，不将尺寸公式当实测。

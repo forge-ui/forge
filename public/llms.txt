@@ -1,12 +1,12 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.5.0
+Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: d082f16b2b214f216a07fe79adc067065a8dc31c0d612350570973eb245771e5
+Source fingerprint: 37b9a4ddc7490b163344c7d3f169056113675f42dc6e03bbcdc17263f288dc52
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.5.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 17 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
 ## Documents
 

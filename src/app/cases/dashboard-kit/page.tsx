@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Panel, SurfaceCard, Button, FileInput, InfoRow, Modal, StatCard, ProgressStatCard, LineChartStatCard, BarChartStatCard, WheelChartStatCard, BalanceCard, ImageStatCard, HighlightCard, ListGroup, WalletGoalCard, ChartHeader, ChartMetricRow, GroupedBarChart, DivergingBarChart, type CardDensity } from "@forge-ui-official/core";
 import { PageHeading, Section } from "../_shared";
 
@@ -16,7 +17,7 @@ export default function DashboardKitCases() {
         <InfoRow icon={<span aria-hidden="true">●</span>} label="模板状态">本地演示</InfoRow>
         <Button onClick={() => setTemplateModalOpen(true)}>打开模板弹窗</Button>
       </Panel>
-      <Panel variant="custom" asChild className="rounded-card border border-fg-grey-200 p-6"><a href="/templates/dashboard-builder">查看模板外壳</a></Panel>
+      <Panel variant="custom" asChild className="rounded-card border border-fg-grey-200 p-6"><Link href="/templates/dashboard-builder">查看模板外壳</Link></Panel>
       <Modal variant="template" title="模板弹窗" open={templateModalOpen} onOpenChange={setTemplateModalOpen}><div className="p-6">保留原有标题和分割线；焦点和 Escape 由 core 管理。</div></Modal>
     </Section>
     <PageHeading title="看板组件" hint="模板风格面板、密度与图表组合；切换密度对比默认和紧凑尺寸。" />

@@ -29,5 +29,10 @@ const screens = fs.readFileSync(path.join(skill, "references/screens.md"), "utf8
 const sources = [...screens.matchAll(/src\/app\/templates\/\(dashboards\)\/dashboards\/[\w-]+\/page\.tsx/g)].map(match => match[0]);
 if (sources.length !== 10 || new Set(sources).size !== 10) errors.push("Expected 10 distinct dashboard sources");
 for (const source of sources) if (!fs.existsSync(path.join(root, source))) errors.push("Missing Screen: " + source);
+const templateSources = files(path.join(root, "src/app/templates")).filter(file => file.endsWith("/page.tsx")).map(file => path.relative(root, file));
+for (const source of templateSources) if (!screens.includes(source)) errors.push("Undocumented Screen: " + source);
+const catalog = JSON.parse(fs.readFileSync(path.join(root, "blocks/registry.json"), "utf8"));
+const blockReference = fs.readFileSync(path.join(skill, "references/blocks.md"), "utf8");
+for (const block of catalog) if (!blockReference.includes("blocks/" + block.name + "/")) errors.push("Undocumented Block: " + block.name);
 if (errors.length) { console.error(errors.join("\n")); process.exitCode = 1; }
-else console.log("Skill links, contracts, exports and 10 Screen sources verified; browser acceptance not included");
+else console.log(`Skill links, contracts, exports, ${templateSources.length} Screens and ${catalog.length} Blocks verified; browser acceptance not included`);

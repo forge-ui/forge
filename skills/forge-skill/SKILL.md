@@ -12,7 +12,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的区块；[区块目录](references/blocks.md) 列出 12 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
+2. **Blocks**：复用模板中职责明确的区块；[区块目录](references/blocks.md) 列出 17 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](references/components/button.md) 和 [组件选型](references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。
@@ -20,7 +20,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 模板和源码
 
 - 看板：analytics、ecommerce-1、ecommerce-2、finance-1、finance-2、finance-3、project-1、project-2、crm、ecommerce-3；以 [Screen 目录](references/screens.md) 的实际路径为准。
-- 业务模板：ecommerce、project-template、crm-template、finance-template、micellaneous-template、task-board、agent 等，以脚本枚举的实际路由为准，不把模板演示当后端能力。
+- 业务模板：ecommerce、project-template、crm-template、finance-template、micellaneous-template、task-board、agent、dashboard-builder；[Screen 目录](references/screens.md) 覆盖全部 85 个页面源码（10 个看板、看板入口、74 个其他页面），动态示例使用真实 mock ID；不把模板演示当后端能力。
 - 认证页使用 forge-starter 的实际路由，见 [认证模板](references/templates/auth.md)；不要引用不存在的 templates/auth；业务模板里的认证演示不提供真实会话能力。
 - 运行 `node skills/forge-skill/scripts/list.mjs templates` 查看完整路由；`get-template.mjs dashboards/analytics` 同时输出 wrapper 和它引用的内容源；`get-component.mjs Button DataTable` 查询真实文档页。
 - 脚本优先本地 `FORGE_REPO_DIR` 或当前 checkout，再只读回退 forge-ui/forge 的 main。离线缺源应报错，不能编造模板。

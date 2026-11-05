@@ -13,7 +13,7 @@ test("repository sources generate all seven deterministic documents", () => {
   assert.equal(first.fingerprint, second.fingerprint);
   for (const content of first.outputs.values()) {
     assert.ok(content.includes("@forge-ui-official/core@" + loadSources(root).core.version));
-    assert.match(content, /12 Blocks are implemented as copyable project source/);
+    assert.ok(content.includes(loadSources(root).blocks.length + " Blocks are implemented as copyable project source"));
     assert.match(content, /soft StatusBadge/);
     assert.match(content, /@forge-ui-official\/core\/icons/);
     assert.doesNotMatch(content, /forge-app-design/);

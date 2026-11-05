@@ -1,16 +1,16 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.5.0
+Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: d082f16b2b214f216a07fe79adc067065a8dc31c0d612350570973eb245771e5
+Source fingerprint: 37b9a4ddc7490b163344c7d3f169056113675f42dc6e03bbcdc17263f288dc52
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.5.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 17 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
-## Public exports (483, values and types distinguished)
+## Public exports (487, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -218,6 +218,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks
 - EventTagSize [type] — core/src/components/ui/event-tag.tsx
 - EventTagVariant [type] — core/src/components/ui/event-tag.tsx
 - FileCard [value] — core/src/components/ui/forms/file-upload.tsx
+- FileInput [value] — core/src/components/ui/forms/file-input.tsx
+- FileInputProps [type] — core/src/components/ui/forms/file-input.tsx
 - FileItem [type] — core/src/components/ui/forms/file-upload.tsx
 - FileState [type] — core/src/components/ui/forms/file-upload.tsx
 - FileTypeIcon [value] — core/src/components/ui/forms/file-upload.tsx
@@ -282,6 +284,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks
 - ImageGridSize [type] — core/src/components/ui/image-grid.tsx
 - ImageStatCard [value] — core/src/components/ui/image-stat-card.tsx
 - ImageStatCardProps [type] — core/src/components/ui/image-stat-card.tsx
+- InfoRow [value] — core/src/components/ui/info-row.tsx
+- InfoRowProps [type] — core/src/components/ui/info-row.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightCards [value] — core/src/components/ui/agent/insight-cards.tsx
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -638,7 +642,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的区块；[区块目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 12 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
+2. **Blocks**：复用模板中职责明确的区块；[区块目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 17 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/components/button.md) 和 [组件选型](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。
@@ -646,7 +650,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 模板和源码
 
 - 看板：analytics、ecommerce-1、ecommerce-2、finance-1、finance-2、finance-3、project-1、project-2、crm、ecommerce-3；以 [Screen 目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 的实际路径为准。
-- 业务模板：ecommerce、project-template、crm-template、finance-template、micellaneous-template、task-board、agent 等，以脚本枚举的实际路由为准，不把模板演示当后端能力。
+- 业务模板：ecommerce、project-template、crm-template、finance-template、micellaneous-template、task-board、agent、dashboard-builder；[Screen 目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 覆盖全部 85 个页面源码（10 个看板、看板入口、74 个其他页面），动态示例使用真实 mock ID；不把模板演示当后端能力。
 - 认证页使用 forge-starter 的实际路由，见 [认证模板](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/templates/auth.md)；不要引用不存在的 templates/auth；业务模板里的认证演示不提供真实会话能力。
 - 运行 `node skills/forge-skill/scripts/list.mjs templates` 查看完整路由；`get-template.mjs dashboards/analytics` 同时输出 wrapper 和它引用的内容源；`get-component.mjs Button DataTable` 查询真实文档页。
 - 脚本优先本地 `FORGE_REPO_DIR` 或当前 checkout，再只读回退 forge-ui/forge 的 main。离线缺源应报错，不能编造模板。
@@ -1895,9 +1899,9 @@ Source: skills/forge-skill/references/audit-checklist.md
 
 Source: skills/forge-skill/references/blocks.md
 
-# 看板 Blocks（复制到项目）
+# 页面 Blocks（复制到项目）
 
-12 类候选已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。
+17 类区块已实现为仓内源码与 registry-item，覆盖看板与业务模板；不是 core 包导出，也不意味着已发布或通过截图验收。
 
 | 区块 | 导出名 | 源码目录 | 支持内容 |
 |---|---|---|---|
@@ -1913,13 +1917,18 @@ Source: skills/forge-skill/references/blocks.md
 | 活动流 | ActivityFeed | blocks/activity-feed/ | ActivityCard 事件或自定义 items |
 | 日程/甘特 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | FullCalendar、六时段只读 GanttSchedule 或 children；不提供甘特编辑器 |
 | 卡片轮播 | CardCarousel | blocks/card-carousel/ | CreditCard 数据、受控/非受控页码、可选翻页 |
+| 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 客户分区、指标与趋势；业务文案和操作由宿主传入 |
+| 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 卡片主题、钱包进度、交易与预算，数据和回调由宿主提供 |
+| 模板内容分区 | TemplateSurface | blocks/template-surface/ | 标题、说明、操作和内容；p-0 兼容原模板无内边距分区 |
+| 对话标题栏 | ConversationHeader | blocks/conversation-header/ | 标题、工作区说明与操作插槽；不包含会话存储或流式请求 |
+| 项目详情分区 | ProjectSection | blocks/project-section/ | 标题操作栏与紧凑内容区；className 从选定 Screen 保留 |
 
 ## 使用边界
 
-- 画廊：`/blocks`；公共 API 对照：`/cases/dashboard-kit`。来源为[10 个 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
+- 画廊：`/blocks`（17 项均有预览）；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
 - 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
 - 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
-- 依赖 core `^0.5.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
+- 依赖 core `^0.6.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
 - 本地示例：`npx shadcn@latest add http://localhost:3000/r/kpi-metrics.json`。宿主须已有 React 19、Tailwind 4、core 样式及 Token，复制后的文件由用户维护。沿用[安装说明](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/SKILL.md)配置，不附带后台、数据请求、鉴权或持久化。
 - API 以各目录 TSX 类型为准。插槽不会额外套内容容器；接入时保留 Screen 的轨道、className、图域高与 compact 密度。图片、文案、业务回调由宿主提供，未绑定回调不代表业务已实现。
 
@@ -1929,9 +1938,13 @@ Source: skills/forge-skill/references/blocks.md
 `ChartHeader`、`ChartMetricRow`、`GroupedBarChart`、`DivergingBarChart` 归 charts；`WalletGoalCard` 归 core。
 原 DashboardShell 只有 AppLayout 默认值，无独立抽象价值，Screens 直接用 AppLayout；财务轮播和特定储蓄面板归 Blocks，不扩大业务化 core API。
 
+业务模板迁移新增 `FileInput` / `InfoRow` 及类型导出；Button 的 `unstyled` 不增加默认类名、图标或文字包装，适用于已验收的模板按钮。Panel 的 `custom` 保留原始几何，`as` 保留 section/aside/article 语义；`asChild` 仅允许 custom、单一子元素且无标题/页脚插槽，用于保留 Next Link 根节点。新页面应优先选标准变体，不以 custom 自由设计另一套卡片。Modal 的 `template` 保留标题和分割线，用共享 dialog 处理焦点与 Escape；窄屏最大宽高受视口约束，需单独比对。
+
 ## 验收状态
 
 源码、类型、单测、registry 与构建检查分开记录；1440/375 的前后截图与像素 diff 是独立门禁。本次环境 Chromium 启动被 macOS sandbox MachPort 拒绝，不能把静态迁移或构建通过当成视觉一致性通过。重放脚本、基线源码和实际结果记录在 `/tmp/forge-impl/G-shots/`。
+
+其余模板的 T 轮提供 81 条可访问路径作为外部基线输入；本轮未自行完成浏览器截图与像素验收。G 轮浏览器失败是历史记录，不代表本轮进行过同一尝试。图表和品牌演示色仅可保留在 mock 数据中；project 的品牌色集中在 `_mock-palette.ts`，不据此声称已完成视觉验收。
 
 ---
 
@@ -3799,14 +3812,14 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 - 外壳：AppLayout；面板：Panel（dashboard/template），SurfaceCard 保持原 API。
 - 密度：StatCard、ProgressStatCard、LineChartStatCard、BarChartStatCard、WheelChartStatCard、BalanceCard、ImageStatCard、HighlightCard、ListGroup 使用 density="compact"；不再依赖模板 !important。默认密度不变。
 - 图表：ChartHeader、ChartMetricRow、GroupedBarChart、DivergingBarChart；目标：WalletGoalCard。
-- 12 类可复制 Block 的实现名、目录和支持边界见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)，不要从 core import Block。
+- 17 类可复制 Block 的实现名、目录和支持边界见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)，不要从 core import Block。
 - 以上为实现状态；前后像素一致须独立验收，当前环境未完成截图，不将尺寸公式当实测。
 
 ---
 
 Source: skills/forge-skill/references/screens.md
 
-# 看板 Screen 目录
+# 全部模板 Screen 目录
 
 以下为仓内实际页面，不承诺样例数据具有业务后端。先选最接近任务的一个作风格基准，再改内容与路由。
 
@@ -3830,6 +3843,143 @@ Source: skills/forge-skill/references/screens.md
 十个页面已直接使用 AppLayout；卡壳用 Panel，区块从 blocks/ 复制。原 dashboard-density、DashboardShell、Figma 前缀图表与私有 WalletGoalCard 已删除；公共图表与密度 API 见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
 
 这是源码迁移状态，不是截图验收结论：须逐页比较 1440 与 375 两档、同字体/侧栏/固定数据的前后截图，记录不同尺寸或有意差异，不能用 build 代替。
+
+## 全部业务与工作区 Screens
+
+以下 74 个页面源码与前述 10 个看板及看板入口共同构成 85 个 Screen。看板入口 `/templates/dashboards` 的源码为 `src/app/templates/(dashboards)/dashboards/page.tsx`。路由组不进入 URL；示例路径使用各模板 mock 中存在的 ID。认证页仅演示界面，创建/编辑和协作默认使用本地数据，不代表已接入后台。
+
+### ecommerce
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/ecommerce/categories` | `/templates/ecommerce/categories` | src/app/templates/(dashboard)/ecommerce/categories/page.tsx |
+| `/templates/ecommerce/categories/[id]` | `/templates/ecommerce/categories/1`、`/templates/ecommerce/categories/new` | src/app/templates/(dashboard)/ecommerce/categories/[id]/page.tsx |
+| `/templates/ecommerce/categories/[id]/edit` | `/templates/ecommerce/categories/1/edit` | src/app/templates/(dashboard)/ecommerce/categories/[id]/edit/page.tsx |
+| `/templates/ecommerce/categories/new` | `/templates/ecommerce/categories/new` | src/app/templates/(dashboard)/ecommerce/categories/new/page.tsx |
+| `/templates/ecommerce/customers` | `/templates/ecommerce/customers` | src/app/templates/(dashboard)/ecommerce/customers/page.tsx |
+| `/templates/ecommerce/customers/[id]` | `/templates/ecommerce/customers/1` | src/app/templates/(dashboard)/ecommerce/customers/[id]/page.tsx |
+| `/templates/ecommerce/orders` | `/templates/ecommerce/orders` | src/app/templates/(dashboard)/ecommerce/orders/page.tsx |
+| `/templates/ecommerce/orders/[id]` | `/templates/ecommerce/orders/1`、`/templates/ecommerce/orders/new` | src/app/templates/(dashboard)/ecommerce/orders/[id]/page.tsx |
+| `/templates/ecommerce/orders/[id]/invoice` | `/templates/ecommerce/orders/1/invoice` | src/app/templates/(dashboard)/ecommerce/orders/[id]/invoice/page.tsx |
+| `/templates/ecommerce/orders/new` | `/templates/ecommerce/orders/new` | src/app/templates/(dashboard)/ecommerce/orders/new/page.tsx |
+| `/templates/ecommerce/products` | `/templates/ecommerce/products` | src/app/templates/(dashboard)/ecommerce/products/page.tsx |
+| `/templates/ecommerce/products/[id]` | `/templates/ecommerce/products/1`、`/templates/ecommerce/products/new` | src/app/templates/(dashboard)/ecommerce/products/[id]/page.tsx |
+| `/templates/ecommerce/products/[id]/edit` | `/templates/ecommerce/products/1/edit` | src/app/templates/(dashboard)/ecommerce/products/[id]/edit/page.tsx |
+| `/templates/ecommerce/products/new` | `/templates/ecommerce/products/new` | src/app/templates/(dashboard)/ecommerce/products/new/page.tsx |
+| `/templates/ecommerce/sellers` | `/templates/ecommerce/sellers` | src/app/templates/(dashboard)/ecommerce/sellers/page.tsx |
+| `/templates/ecommerce/sellers/[id]` | `/templates/ecommerce/sellers/1` | src/app/templates/(dashboard)/ecommerce/sellers/[id]/page.tsx |
+
+### agent
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/agent` | `/templates/agent` | src/app/templates/agent/page.tsx |
+
+### crm-template
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/crm-template` | `/templates/crm-template` | src/app/templates/crm-template/page.tsx |
+| `/templates/crm-template/activity` | `/templates/crm-template/activity` | src/app/templates/crm-template/activity/page.tsx |
+| `/templates/crm-template/customers` | `/templates/crm-template/customers` | src/app/templates/crm-template/customers/page.tsx |
+| `/templates/crm-template/customers/[id]` | `/templates/crm-template/customers/john-bushmill`、`/templates/crm-template/customers/new` | src/app/templates/crm-template/customers/[id]/page.tsx |
+| `/templates/crm-template/customers/new` | `/templates/crm-template/customers/new` | src/app/templates/crm-template/customers/new/page.tsx |
+| `/templates/crm-template/forgot-password` | `/templates/crm-template/forgot-password` | src/app/templates/crm-template/forgot-password/page.tsx |
+| `/templates/crm-template/leads` | `/templates/crm-template/leads` | src/app/templates/crm-template/leads/page.tsx |
+| `/templates/crm-template/leads/[id]` | `/templates/crm-template/leads/lead-john-bushmill`、`/templates/crm-template/leads/new` | src/app/templates/crm-template/leads/[id]/page.tsx |
+| `/templates/crm-template/leads/new` | `/templates/crm-template/leads/new` | src/app/templates/crm-template/leads/new/page.tsx |
+| `/templates/crm-template/overview` | `/templates/crm-template/overview` | src/app/templates/crm-template/overview/page.tsx |
+| `/templates/crm-template/register` | `/templates/crm-template/register` | src/app/templates/crm-template/register/page.tsx |
+| `/templates/crm-template/reset-password` | `/templates/crm-template/reset-password` | src/app/templates/crm-template/reset-password/page.tsx |
+| `/templates/crm-template/sales` | `/templates/crm-template/sales` | src/app/templates/crm-template/sales/page.tsx |
+| `/templates/crm-template/sales/[id]` | `/templates/crm-template/sales/sales-web-redesign-1`、`/templates/crm-template/sales/new` | src/app/templates/crm-template/sales/[id]/page.tsx |
+| `/templates/crm-template/sales/new` | `/templates/crm-template/sales/new` | src/app/templates/crm-template/sales/new/page.tsx |
+
+### dashboard-builder
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/dashboard-builder` | `/templates/dashboard-builder` | src/app/templates/dashboard-builder/page.tsx |
+| `/templates/dashboard-builder/[variant]` | `/templates/dashboard-builder/light-topbar`、`/templates/dashboard-builder/light-sidebar`、`/templates/dashboard-builder/purple-topbar`、`/templates/dashboard-builder/purple-sidebar`、`/templates/dashboard-builder/blue-topbar`、`/templates/dashboard-builder/blue-sidebar`、`/templates/dashboard-builder/black-topbar`、`/templates/dashboard-builder/black-sidebar` | src/app/templates/dashboard-builder/[variant]/page.tsx |
+
+### finance-template
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/finance-template` | `/templates/finance-template` | src/app/templates/finance-template/page.tsx |
+| `/templates/finance-template/cards` | `/templates/finance-template/cards` | src/app/templates/finance-template/cards/page.tsx |
+| `/templates/finance-template/forgot-password` | `/templates/finance-template/forgot-password` | src/app/templates/finance-template/forgot-password/page.tsx |
+| `/templates/finance-template/invoices` | `/templates/finance-template/invoices` | src/app/templates/finance-template/invoices/page.tsx |
+| `/templates/finance-template/invoices/[id]` | `/templates/finance-template/invoices/inv302012-lisa-greg`、`/templates/finance-template/invoices/new` | src/app/templates/finance-template/invoices/[id]/page.tsx |
+| `/templates/finance-template/invoices/new` | `/templates/finance-template/invoices/new` | src/app/templates/finance-template/invoices/new/page.tsx |
+| `/templates/finance-template/overview` | `/templates/finance-template/overview` | src/app/templates/finance-template/overview/page.tsx |
+| `/templates/finance-template/register` | `/templates/finance-template/register` | src/app/templates/finance-template/register/page.tsx |
+| `/templates/finance-template/reset-password` | `/templates/finance-template/reset-password` | src/app/templates/finance-template/reset-password/page.tsx |
+| `/templates/finance-template/transactions` | `/templates/finance-template/transactions` | src/app/templates/finance-template/transactions/page.tsx |
+| `/templates/finance-template/wallets` | `/templates/finance-template/wallets` | src/app/templates/finance-template/wallets/page.tsx |
+| `/templates/finance-template/wealth` | `/templates/finance-template/wealth` | src/app/templates/finance-template/wealth/page.tsx |
+
+### micellaneous-template
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/micellaneous-template` | `/templates/micellaneous-template` | src/app/templates/micellaneous-template/page.tsx |
+| `/templates/micellaneous-template/actions` | `/templates/micellaneous-template/actions` | src/app/templates/micellaneous-template/actions/page.tsx |
+| `/templates/micellaneous-template/calendar` | `/templates/micellaneous-template/calendar` | src/app/templates/micellaneous-template/calendar/page.tsx |
+| `/templates/micellaneous-template/chat` | `/templates/micellaneous-template/chat` | src/app/templates/micellaneous-template/chat/page.tsx |
+| `/templates/micellaneous-template/files` | `/templates/micellaneous-template/files` | src/app/templates/micellaneous-template/files/page.tsx |
+| `/templates/micellaneous-template/forgot-password` | `/templates/micellaneous-template/forgot-password` | src/app/templates/micellaneous-template/forgot-password/page.tsx |
+| `/templates/micellaneous-template/register` | `/templates/micellaneous-template/register` | src/app/templates/micellaneous-template/register/page.tsx |
+| `/templates/micellaneous-template/reset-password` | `/templates/micellaneous-template/reset-password` | src/app/templates/micellaneous-template/reset-password/page.tsx |
+
+### 模板入口
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates` | `/templates` | src/app/templates/page.tsx |
+
+### project-template
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/project-template` | `/templates/project-template` | src/app/templates/project-template/page.tsx |
+| `/templates/project-template/clients` | `/templates/project-template/clients` | src/app/templates/project-template/clients/page.tsx |
+| `/templates/project-template/clients/[id]` | `/templates/project-template/clients/mary` | src/app/templates/project-template/clients/[id]/page.tsx |
+| `/templates/project-template/files` | `/templates/project-template/files` | src/app/templates/project-template/files/page.tsx |
+| `/templates/project-template/invoices` | `/templates/project-template/invoices` | src/app/templates/project-template/invoices/page.tsx |
+| `/templates/project-template/members` | `/templates/project-template/members` | src/app/templates/project-template/members/page.tsx |
+| `/templates/project-template/members/[id]` | `/templates/project-template/members/linda` | src/app/templates/project-template/members/[id]/page.tsx |
+| `/templates/project-template/overview` | `/templates/project-template/overview` | src/app/templates/project-template/overview/page.tsx |
+| `/templates/project-template/projects` | `/templates/project-template/projects` | src/app/templates/project-template/projects/page.tsx |
+| `/templates/project-template/projects/[id]` | `/templates/project-template/projects/alpha` | src/app/templates/project-template/projects/[id]/page.tsx |
+| `/templates/project-template/tasks/[id]` | `/templates/project-template/tasks/marketing-partnership` | src/app/templates/project-template/tasks/[id]/page.tsx |
+
+### task-board
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/task-board` | `/templates/task-board` | src/app/templates/task-board/page.tsx |
+| `/templates/task-board/agents` | `/templates/task-board/agents` | src/app/templates/task-board/agents/page.tsx |
+| `/templates/task-board/agents/[agent]` | `/templates/task-board/agents/research` | src/app/templates/task-board/agents/[agent]/page.tsx |
+| `/templates/task-board/library` | `/templates/task-board/library` | src/app/templates/task-board/library/page.tsx |
+| `/templates/task-board/projects` | `/templates/task-board/projects` | src/app/templates/task-board/projects/page.tsx |
+| `/templates/task-board/projects/[project]` | `/templates/task-board/projects/%E5%93%81%E7%89%8C%E7%84%95%E6%96%B0%E8%AE%A1%E5%88%92` | src/app/templates/task-board/projects/[project]/page.tsx |
+| `/templates/task-board/tasks` | `/templates/task-board/tasks` | src/app/templates/task-board/tasks/page.tsx |
+| `/templates/task-board/today` | `/templates/task-board/today` | src/app/templates/task-board/today/page.tsx |
+
+## 复用与本地边界
+
+- ecommerce：公开 core 控件、Panel / InfoRow 与模板共用弹窗；订单、商品、分类、客户和物流的 mock、字段规则与路由适配保留本地。
+- crm-template：crm-summary Block 承担摘要与趋势，客户/线索/销售状态和活动演示保留本地。
+- project-template：KpiMetrics / ProjectSection Blocks；项目、客户、成员、任务与甘特演示模型保留本地，品牌色集中在 `_mock-palette.ts`。
+- finance-template：finance-workspace Block；账单/钱包/财富路由和 mock 保留本地。
+- task-board：core SurfaceCard、Board、TaskCard 及各业务控件；任务存储、拖拽、工作区上下文、编辑器和协作演示保留本地，不冒充通用 Block。
+- micellaneous-template：TemplateSurface Block；日历、聊天、文件和表格操作使用 core，页面导航、样例数据与本地状态保留。
+- agent：ConversationHeader Block；AgentTurn、样例来源、流式演示与会话存储保留本地。
+- dashboard-builder：core AppLayout，画廊使用 Panel custom/asChild 保留 Next Link 根节点；8 个变体的路由元数据保留本地。
+- `_shared`：Panel / InfoRow 直接转出 core；Modal 仅保留 onClose 接口适配；Protask 身份、mock 筛选、活动/认证演示不进入 core。
+
+以上为源码适配事实；1440/375 的前后截图、真实点击、移动端与辅助技术验收仍需逐条补齐，不以静态检查替代。
 
 ---
 

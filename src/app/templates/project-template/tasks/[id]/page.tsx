@@ -2,7 +2,6 @@
 
 import { Panel } from "@forge-ui-official/core";
 import { ProjectSection } from "@/blocks/project-section/project-section";
-import { Panel as CorePanel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { AddCircleLinear, Pen2Linear, UserPlusLinear } from "@forge-ui-official/core/icons";

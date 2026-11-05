@@ -1,6 +1,6 @@
-import { TemplateSurface as MiscSurface } from "@/blocks/template-surface/template-surface";
 "use client";
 
+import { TemplateSurface as MiscSurface } from "@/blocks/template-surface/template-surface";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, PhoneCallingRoundedLinear, VideocameraRecordLinear } from "@forge-ui-official/core/icons";

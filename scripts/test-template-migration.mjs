@@ -17,6 +17,10 @@ test("business templates use core controls and semantic color families", () => {
   for (const file of sources) {
     const text = fs.readFileSync(file, "utf8");
     const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    if (source.statements.some(statement => ts.isExpressionStatement(statement) && ts.isStringLiteral(statement.expression) && statement.expression.text === "use client")) {
+      const first = source.statements[0];
+      assert.ok(ts.isExpressionStatement(first) && ts.isStringLiteral(first.expression) && first.expression.text === "use client", `${file}: use client must precede imports`);
+    }
     function visit(node) {
       if (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) {
         assert.ok(!["button", "input", "select", "textarea", "table"].includes(node.tagName.getText(source)), `${file}: native ${node.tagName.getText(source)}`);

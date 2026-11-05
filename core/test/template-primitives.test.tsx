@@ -32,7 +32,7 @@ test("file inputs preserve native selection and accessibility attributes", () =>
 
 test("custom panels preserve link roots without adding a wrapper", () => {
   assert.equal(renderToStaticMarkup(<Panel variant="custom" asChild className="rounded-card"><a href="/templates">模板</a></Panel>), '<a href="/templates" class="rounded-card">模板</a>');
-  assert.throws(() => renderToStaticMarkup(<Panel asChild><a href="/">模板</a></Panel>), /variant=custom/);
+  assert.throws(() => renderToStaticMarkup(<Panel asChild><a href="https://example.invalid">模板</a></Panel>), /variant=custom/);
 });
 
 test("information rows retain unwrapped icons and readable value content", () => {
