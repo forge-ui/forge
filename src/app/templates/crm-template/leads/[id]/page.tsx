@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { Suspense, useMemo, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -12,7 +13,7 @@ import {
 } from "@forge-ui-official/core/icons";
 import { Avatar, FileTypeIcon, HistoryItem, StatusBadge, TabBar } from "@forge-ui-official/core";
 import { ProtaskActivityDialog, normalizeProtaskActivityDialogId } from "../../../_shared/protask-actions";
-import { CrmSurface, DetailLine } from "../../_components";
+import { CrmSurface, DetailLine } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell, leadStatusColor } from "../../_chrome";
 import { activities, leads } from "../../_data";
 
@@ -160,11 +161,11 @@ function LeadTabContent({ tab }: { tab: LeadTab }) {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {["Lead Brief.pdf", "File Name.mp4", "Contract Draft.doc"].map((file, index) => (
-          <div key={file} className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
+          <Panel variant="custom" key={file} className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
             <FileTypeIcon fileName={file} className="size-12" />
             <p className="mt-5 text-sm font-semibold text-fg-black">{file}</p>
             <p className="mt-1 text-xs font-medium text-fg-grey-500">{index + 1}.1 MB</p>
-          </div>
+          </Panel>
         ))}
       </div>
     );
@@ -174,7 +175,7 @@ function LeadTabContent({ tab }: { tab: LeadTab }) {
     return (
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {[0, 1, 2, 3].map((item) => (
-          <div key={item} className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
+          <Panel variant="custom" key={item} className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
             <HistoryItem
               variant="badge"
               color="purple"
@@ -184,7 +185,7 @@ function LeadTabContent({ tab }: { tab: LeadTab }) {
               datetime="14 Jan 2025, 10:00"
               showConnector={false}
             />
-          </div>
+          </Panel>
         ))}
       </div>
     );

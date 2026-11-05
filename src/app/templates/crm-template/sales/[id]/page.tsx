@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "@forge-ui-official/core/icons";
 import { ProgressBar, StatusBadge } from "@forge-ui-official/core";
-import { CrmSurface, DetailLine } from "../../_components";
+import { CrmSurface, DetailLine } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell, saleStatusColor } from "../../_chrome";
 import { sales } from "../../_data";
 

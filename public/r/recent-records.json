@@ -5,7 +5,7 @@
   "title": "最近记录表卡",
   "description": "标题、操作栏与带稳定行标识的数据表。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

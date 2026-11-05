@@ -8,7 +8,7 @@ export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
   footer?: ReactNode;
   children: ReactNode;
   variant?: "dashboard" | "template" | "custom";
-  as?: "div" | "section" | "aside";
+  as?: "div" | "section" | "aside" | "article";
   gap?: "none" | "sm" | "md";
 }
 

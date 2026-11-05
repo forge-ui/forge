@@ -10,7 +10,7 @@
       "title": "KPI 指标行",
       "description": "等分指标栅格；紧凑卡片或原有指标插槽。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -28,7 +28,7 @@
       "title": "最近记录表卡",
       "description": "标题、操作栏与带稳定行标识的数据表。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -46,7 +46,7 @@
       "title": "趋势图表卡",
       "description": "标题、指标行与分组柱状图，支持自定义图域。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -64,7 +64,7 @@
       "title": "排行列表卡",
       "description": "紧凑列表与排序口径、操作插槽。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -82,7 +82,7 @@
       "title": "构成占比卡",
       "description": "圆环图与构成说明，支持自定义图例。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -100,7 +100,7 @@
       "title": "看板页头",
       "description": "标题、说明与右侧操作。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -118,7 +118,7 @@
       "title": "地区分布卡",
       "description": "复用 MapCard 的地区、范围与度量契约。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -136,7 +136,7 @@
       "title": "成员列表",
       "description": "成员身份卡片与可替换条目。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -154,7 +154,7 @@
       "title": "目标进度列表",
       "description": "钱包目标卡列表与窄列钱包进度面板。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -172,7 +172,7 @@
       "title": "活动流",
       "description": "按传入顺序显示时间、对象与行为。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -190,7 +190,7 @@
       "title": "日程与甘特容器",
       "description": "日历配置或业务日程、甘特图域插槽；不声称实现通用甘特编辑器。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -208,7 +208,7 @@
       "title": "卡片轮播",
       "description": "财务卡片叠放与受控或非受控分页。",
       "dependencies": [
-        "@forge-ui-official/core@^0.5.0"
+        "@forge-ui-official/core@^0.6.0"
       ],
       "files": [
         {
@@ -216,6 +216,24 @@
           "type": "registry:component",
           "target": "@components/blocks/card-carousel.tsx",
           "content": "\"use client\";\n\nimport { useState, type ComponentProps } from \"react\";\nimport { CreditCard, PageDot } from \"@forge-ui-official/core\";\n\nexport interface CardCarouselProps {\n  cards: (ComponentProps<typeof CreditCard> & { id: string })[];\n  size?: \"compact\" | \"default\";\n  index?: number;\n  defaultIndex?: number;\n  onIndexChange?: (index: number) => void;\n  showPagination?: boolean;\n}\n\nexport function CardCarousel({ cards, size = \"default\", index, defaultIndex = 0, onIndexChange, showPagination = false }: CardCarouselProps) {\n  const [selected, setSelected] = useState(defaultIndex);\n  if (!cards.length) return null;\n  const current = Math.max(0, Math.min(cards.length - 1, index ?? selected));\n  const compact = size === \"compact\";\n  const { id: activeId, ...active } = cards[current];\n  const { id: previousId, ...previous } = cards[(current + cards.length - 1) % cards.length];\n  const { id: nextId, ...next } = cards[(current + 1) % cards.length];\n  return <>\n    <div className={compact ? \"relative -mx-4 h-40 overflow-hidden\" : \"relative -mx-4 h-56 overflow-hidden\"}>\n      <div className={compact ? \"absolute left-0 top-3 h-32 w-8 overflow-hidden rounded-r-xl\" : \"absolute left-0 top-6 h-40 w-10 overflow-hidden rounded-r-2xl\"}>\n        <div className=\"absolute left-[-236px] top-0\"><CreditCard key={previousId} {...previous} className=\"[&_*]:invisible\" /></div>\n      </div>\n      <div className={compact ? \"absolute right-0 top-3 h-32 w-8 overflow-hidden rounded-l-xl\" : \"absolute right-0 top-6 h-40 w-10 overflow-hidden rounded-l-2xl\"}>\n        <div className=\"absolute right-[-236px] top-0\"><CreditCard key={nextId} {...next} className=\"[&_*]:invisible\" /></div>\n      </div>\n      <div className={compact ? \"absolute left-1/2 top-3 w-[clamp(12rem,78%,15rem)] -translate-x-1/2\" : \"absolute left-1/2 top-6 -translate-x-1/2\"}>\n        <CreditCard key={activeId} {...active} className=\"shadow-card\" />\n      </div>\n    </div>\n    {showPagination && <div className=\"flex items-center justify-center gap-2\">{cards.map((card, cardIndex) => <PageDot key={card.id} active={current === cardIndex} onClick={() => { setSelected(cardIndex); onIndexChange?.(cardIndex); }}>{cardIndex + 1}</PageDot>)}</div>}\n  </>;\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "crm-summary",
+      "type": "registry:block",
+      "title": "客户经营摘要",
+      "description": "客户指标卡、信息行与经营趋势，保留模板几何。",
+      "dependencies": [
+        "@forge-ui-official/core@^0.6.0"
+      ],
+      "files": [
+        {
+          "path": "blocks/crm-summary/crm-summary.tsx",
+          "type": "registry:component",
+          "target": "@components/blocks/crm-summary.tsx",
+          "content": "import { Panel } from \"@forge-ui-official/core\";\nimport type { ReactNode } from \"react\";\nimport { DescriptionItem, LineChartStatCard, SurfaceCard } from \"@forge-ui-official/core\";\n\nexport function CrmSurface({\n  title,\n  subtitle,\n  action,\n  children,\n  className = \"\",\n}: {\n  title?: string;\n  subtitle?: string;\n  action?: ReactNode;\n  children: ReactNode;\n  className?: string;\n}) {\n  const padding = className.includes(\"p-0\") ? \"none\" : \"sm\";\n  const shellClassName = className.replace(/\\bp-0\\b/g, \"\").trim();\n\n  return (\n    <SurfaceCard title={title} subtitle={subtitle} action={action} padding={padding} className={shellClassName}>\n      {children}\n    </SurfaceCard>\n  );\n}\n\nexport function CrmStat({\n  title,\n  value,\n  tone = \"purple\",\n  bars,\n}: {\n  title: string;\n  value: string;\n  tone?: \"purple\" | \"green\" | \"blue\";\n  bars: number[];\n}) {\n  return (\n    <LineChartStatCard\n      title={title}\n      value={value}\n      trend=\"10%\"\n      subtitle=\"+150 today\"\n      theme={tone === \"purple\" ? \"purple\" : \"white\"}\n      chartColor={tone === \"purple\" ? \"purple\" : tone}\n      series={bars}\n      width=\"full\"\n    />\n  );\n}\n\nexport function DetailLine({ label, value }: { label: string; value: string }) {\n  return (\n    <DescriptionItem\n      label={label}\n      content={<span className=\"text-sm font-semibold text-fg-grey-900\">{value}</span>}\n      className=\"border-b border-fg-grey-100 py-3 last:border-b-0\"\n    />\n  );\n}\n\nexport function CrmMetricCard({\n  title,\n  date,\n  value,\n  trend,\n  trendDirection = \"up\",\n  note,\n  icon,\n  iconClassName,\n  footer,\n}: {\n  title: string;\n  date: string;\n  value: string;\n  trend: string;\n  trendDirection?: \"up\" | \"down\";\n  note: string;\n  icon: ReactNode;\n  iconClassName: string;\n  footer: ReactNode;\n}) {\n  return (\n    <Panel variant=\"custom\" className=\"flex h-52 min-w-0 flex-col justify-between overflow-hidden rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200\">\n      <div className=\"flex items-start gap-3\">\n        <div className=\"flex min-w-0 flex-1 flex-col gap-2\">\n          <p className=\"truncate text-lg font-semibold leading-7 tracking-fg text-fg-black\">{title}</p>\n          <p className=\"text-sm font-medium leading-5 tracking-fg text-fg-grey-700\">{date}</p>\n        </div>\n        <div className={`grid size-10 shrink-0 place-items-center rounded-full ${iconClassName}`}>\n          {icon}\n        </div>\n      </div>\n      <div className=\"flex items-end gap-4\">\n        <div className=\"flex min-w-36 flex-1 flex-col gap-3\">\n          <p className=\"text-2xl font-semibold tracking-fg text-fg-black\">{value}</p>\n          <div className=\"flex items-center gap-1 text-sm leading-5 tracking-fg\">\n            <span className={trendDirection === \"down\" ? \"font-bold text-fg-red\" : \"font-bold text-fg-green-500\"}>\n              {trend}\n            </span>\n            <span className={trendDirection === \"down\" ? \"text-fg-red\" : \"text-fg-green-500\"}>\n              {trendDirection === \"down\" ? \"v\" : \"^\"}\n            </span>\n            <span className=\"font-medium text-fg-grey-700\">{note}</span>\n          </div>\n        </div>\n        <div className=\"flex min-w-20 flex-1 items-end justify-end overflow-hidden\">\n          {footer}\n        </div>\n      </div>\n    </Panel>\n  );\n}\n"
         }
       ]
     }

@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button, SelectOption, TextArea, TextField } from "@forge-ui-official/core";
-import { CrmSurface } from "../../_components";
+import { CrmSurface } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell } from "../../_chrome";
 
 const sourceOptions = [

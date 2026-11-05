@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const catalog = JSON.parse(fs.readFileSync(path.join(root, "blocks/registry.json"), "utf8"));
+const core = JSON.parse(fs.readFileSync(path.join(root, "core/package.json"), "utf8"));
 const check = process.argv.includes("--check");
 const outputs = new Map();
 const items = catalog.map(({ name, title, description, component }) => {
@@ -13,7 +14,7 @@ const items = catalog.map(({ name, title, description, component }) => {
   const item = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name, type: "registry:block", title, description,
-    dependencies: ["@forge-ui-official/core@^0.5.0"],
+    dependencies: [`@forge-ui-official/core@^${core.version}`],
     files: [{ path: source, type: "registry:component", target: `@components/blocks/${name}.tsx`, content }],
   };
   outputs.set(`public/r/${name}.json`, JSON.stringify(item, null, 2) + "\n");

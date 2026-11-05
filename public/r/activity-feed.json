@@ -5,7 +5,7 @@
   "title": "活动流",
   "description": "按传入顺序显示时间、对象与行为。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

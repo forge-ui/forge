@@ -33,7 +33,7 @@ import {
   ProtaskFilterTrigger,
   ProtaskSaveChangesDialog,
 } from "../../_shared/protask-actions";
-import { CrmMetricCard } from "../_components";
+import { CrmMetricCard } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell, customerStatusColor } from "../_chrome";
 import { customers, type Customer } from "../_data";
 

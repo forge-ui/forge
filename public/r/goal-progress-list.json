@@ -5,7 +5,7 @@
   "title": "目标进度列表",
   "description": "钱包目标卡列表与窄列钱包进度面板。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

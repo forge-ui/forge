@@ -5,7 +5,7 @@
   "title": "构成占比卡",
   "description": "圆环图与构成说明，支持自定义图例。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

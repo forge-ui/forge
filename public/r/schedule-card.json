@@ -5,7 +5,7 @@
   "title": "日程与甘特容器",
   "description": "日历配置或业务日程、甘特图域插槽；不声称实现通用甘特编辑器。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

@@ -6,16 +6,16 @@ import ts from "typescript";
 
 const catalog = JSON.parse(fs.readFileSync("blocks/registry.json", "utf8"));
 
-test("registry generation is deterministic and all twelve items can be copied independently", () => {
+test("registry generation is deterministic and every catalog item can be copied independently", () => {
   execFileSync(process.execPath, ["scripts/generate-block-registry.mjs", "--check"]);
-  assert.equal(catalog.length, 12);
+  assert.ok(catalog.some(item => item.name === "crm-summary"));
   const index = JSON.parse(fs.readFileSync("public/r/index.json", "utf8"));
-  assert.equal(new Set(index.items.map(item => item.name)).size, 12);
+  assert.equal(new Set(index.items.map(item => item.name)).size, catalog.length);
   for (const entry of catalog) {
     const item = JSON.parse(fs.readFileSync(`public/r/${entry.name}.json`, "utf8"));
     assert.deepEqual(index.items.find(candidate => candidate.name === item.name), item);
     assert.equal(item.type, "registry:block");
-    assert.deepEqual(item.dependencies, ["@forge-ui-official/core@^0.5.0"]);
+    assert.deepEqual(item.dependencies, ["@forge-ui-official/core@^" + JSON.parse(fs.readFileSync("core/package.json", "utf8")).version]);
     assert.equal(item.files.length, 1);
     const file = item.files[0];
     assert.equal(file.type, "registry:component");

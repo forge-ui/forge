@@ -31,7 +31,7 @@ import {
   ProtaskFilterTrigger,
   ProtaskSaveChangesDialog,
 } from "../../_shared/protask-actions";
-import { CrmMetricCard } from "../_components";
+import { CrmMetricCard } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell, leadStatusColor } from "../_chrome";
 import { leads, logo, mainProfile, type Lead } from "../_data";
 

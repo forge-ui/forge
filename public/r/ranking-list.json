@@ -5,7 +5,7 @@
   "title": "排行列表卡",
   "description": "紧凑列表与排序口径、操作插槽。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

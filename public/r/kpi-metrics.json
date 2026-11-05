@@ -5,7 +5,7 @@
   "title": "KPI 指标行",
   "description": "等分指标栅格；紧凑卡片或原有指标插槽。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

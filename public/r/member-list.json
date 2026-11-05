@@ -5,7 +5,7 @@
   "title": "成员列表",
   "description": "成员身份卡片与可替换条目。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {

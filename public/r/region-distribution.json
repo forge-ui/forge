@@ -5,7 +5,7 @@
   "title": "地区分布卡",
   "description": "复用 MapCard 的地区、范围与度量契约。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
   "files": [
     {
