@@ -1,5 +1,6 @@
 "use client";
 
+import { ProjectSection } from "@/blocks/project-section/project-section";
 import { Panel as CorePanel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -97,13 +98,13 @@ export default function ProjectDetailPage() {
         {tab === "overview" && (
           <div className="grid grid-cols-1 gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
             <aside className="flex flex-col gap-4">
-              <Panel title="General Information">
+              <ProjectSection className={projectPanelClass} title="General Information">
                 <Info label="Status" value={project.status} />
                 <Info label="Client" value={project.client} />
                 <Info label="Budget" value={project.budget} />
                 <Info label="Due Date" value={project.dueDate} />
-              </Panel>
-              <Panel title="Teams" action={<Button variant="tertiary" onClick={() => setModal("member")}><AddCircleLinear size={18} /></Button>}>
+              </ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Teams" action={<Button variant="tertiary" onClick={() => setModal("member")}><AddCircleLinear size={18} /></Button>}>
                 {members.slice(0, 4).map((member) => (
                   <Button variant="unstyled" key={member.id} type="button" onClick={() => router.push(`/templates/project-template/members/${member.id}`)} className="flex items-center gap-3 py-2 text-left">
                     <Avatar src={member.avatar} size="sm" />
@@ -113,19 +114,19 @@ export default function ProjectDetailPage() {
                     </div>
                   </Button>
                 ))}
-              </Panel>
-              <Panel title="Attachment" action={<Button variant="tertiary" onClick={() => setModal("attachment")}><AddCircleLinear size={18} /></Button>}>
+              </ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Attachment" action={<Button variant="tertiary" onClick={() => setModal("attachment")}><AddCircleLinear size={18} /></Button>}>
                 {fileItems.map((file, index) => <FileCard key={index} file={{ id: file.name, name: file.name, size: file.size, state: "uploaded" }} />)}
-              </Panel>
+              </ProjectSection>
             </aside>
             <main className="flex flex-col gap-4">
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <Metric title="Progress" value={project.spent} progress={project.progress} />
                 <Metric title="Budget Spent" value={project.spent} progress={project.progress} color="red" />
               </div>
-              <Panel title="Description"><p className="leading-6 text-fg-grey-700">{project.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></Panel>
-              <Panel title="Activity"><ActivityList /></Panel>
-              <Panel title="Comments">
+              <ProjectSection className={projectPanelClass} title="Description"><p className="leading-6 text-fg-grey-700">{project.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Activity"><ActivityList /></ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Comments">
                 {members.slice(0, 2).map((member, index) => (
                   <div key={member.id} className="flex gap-3 rounded-xl border border-fg-grey-200 p-3">
                     <Avatar src={member.avatar} size="sm" />
@@ -139,7 +140,7 @@ export default function ProjectDetailPage() {
                   </div>
                 ))}
                 <Button className="self-end">Post Comment</Button>
-              </Panel>
+              </ProjectSection>
             </main>
           </div>
         )}
@@ -199,16 +200,14 @@ export default function ProjectDetailPage() {
   );
 }
 
-function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
-  return <CorePanel variant="custom" as="section" className={projectPanelClass}><div className="mb-3 flex items-center justify-between"><h3 className="text-lg font-semibold text-fg-black">{title}</h3>{action}</div><div className="flex flex-col gap-3">{children}</div></CorePanel>;
-}
+
 
 function Info({ label, value }: { label: string; value: string }) {
   return <div><div className="text-sm text-fg-grey-500">{label}</div><div className="mt-0.5 text-fg-black">{value}</div></div>;
 }
 
 function Metric({ title, value, progress, color = "purple" }: { title: string; value: string; progress: number; color?: "purple" | "red" }) {
-  return <Panel title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-3xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></Panel>;
+  return <ProjectSection className={projectPanelClass} title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-3xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></ProjectSection>;
 }
 
 function ActivityList() {

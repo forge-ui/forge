@@ -65,7 +65,7 @@ function MemberCards({ members, onOpen, onEdit, onDelete }: { members: Member[];
       {members.concat(members.slice(0, 5)).map((member, index) => (
         <Panel variant="custom" as="article" key={`${member.id}-${index}`} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
           <div className="flex items-center justify-between">
-            <button type="button" className="size-8 rounded-lg border border-fg-grey-300" aria-label="Select member" />
+            <Button variant="unstyled" type="button" className="size-8 rounded-lg border border-fg-grey-300" aria-label="Select member" />
             <CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") onOpen(member); if (action === "pen") onEdit(member); if (action === "trash") onDelete(member); }} />
           </div>
           <Button variant="unstyled" type="button" className="mt-3 flex w-full flex-col items-center text-center" onClick={() => onOpen(member)}>

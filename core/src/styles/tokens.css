@@ -721,6 +721,8 @@ body {
 /* Native dialog supplies top-layer stacking, focus containment and restoration. */
 .forge-dialog::backdrop { background: rgb(0 0 0 / .35); }
 .forge-modal { width: min(480px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; }
+.forge-template-modal { max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); margin: auto; }
+.forge-template-modal::backdrop { background: color-mix(in srgb, var(--fg-black) 30%, transparent); }
 .forge-drawer { position: fixed; inset-block: 0; width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; }
 .forge-drawer[data-side="right"] { left: auto; right: 0; }
 .forge-drawer[data-side="left"] { left: 0; right: auto; }

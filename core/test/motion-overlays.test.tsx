@@ -19,6 +19,24 @@ function setup(reduced = false) {
   return { root, cleanup: async () => { await act(async () => root.unmount()); dom.window.close(); } };
 }
 const wait = (ms: number) => act(async () => { await new Promise(resolve => setTimeout(resolve, ms)); });
+test("template modal delegates Escape, close and reopen to the shared dialog", async () => {
+  const env = setup();
+  let closes = 0;
+  const render = (open: boolean) => act(async () => env.root.render(<Modal variant="template" open={open} onOpenChange={() => { closes += 1; }} title="编辑"><button>保存</button></Modal>));
+  try {
+    await render(true);
+    const dialog = document.querySelector("dialog")!;
+    assert.equal(dialog.open, true);
+    await act(async () => dialog.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
+    assert.equal(closes, 1);
+    await act(async () => (document.querySelector('[aria-label="关闭弹窗"]') as HTMLButtonElement).click());
+    assert.equal(closes, 2);
+    await render(false);
+    assert.equal(document.querySelector("dialog"), null);
+    await render(true);
+    assert.equal(document.querySelector("dialog")!.open, true);
+  } finally { await env.cleanup(); }
+});
 test("Modal controlled cancel, inert exit, quick reopen and none", async () => {
   const env = setup(); let closed = 0;
   const render = (open: boolean, motion: "auto" | "none" = "auto") => act(async () => env.root.render(<Modal open={open} motion={motion} onOpenChange={() => closed++} title="Example"><button>Action</button></Modal>));

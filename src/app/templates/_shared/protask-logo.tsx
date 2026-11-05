@@ -1,5 +1,5 @@
 export function ProtaskLogoMark({ tone = "purple" }: { tone?: "purple" | "white" }) {
-  const primary = tone === "white" ? "#FFFFFF" : "var(--fg-violet)";
+  const primary = tone === "white" ? "var(--fg-white)" : "var(--fg-violet)";
   const secondary = tone === "white" ? "rgba(255,255,255,0.48)" : "var(--fg-violet-300)";
 
   return (

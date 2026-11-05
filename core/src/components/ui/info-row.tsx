@@ -1,20 +1,16 @@
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
-// ============================================================
-// InfoRow — examples sidebar 信息行（裸 icon + label + value 上下排）
-// 不在 UI Kit (DescriptionItem 用 CircleIcon 包，跟此处需要的裸 icon 视觉不同)
-// 仅 src/app/templates/ 下业务示例使用
-// ============================================================
+export interface InfoRowProps {
+  icon: ReactNode;
+  label: string;
+  children: ReactNode;
+}
 
 export function InfoRow({
   icon,
   label,
   children,
-}: {
-  icon: ReactNode;
-  label: string;
-  children: ReactNode;
-}) {
+}: InfoRowProps) {
   return (
     <div className="flex gap-2 items-start">
       <span className="shrink-0 mt-0.5 text-fg-grey-700">{icon}</span>

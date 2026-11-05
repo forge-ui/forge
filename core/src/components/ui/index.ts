@@ -474,3 +474,6 @@ export type { HighlightCardProps } from "./highlight-card";
 export type { ListGroupProps } from "./list-group";
 export { ChartHeader, ChartMetricRow, GroupedBarChart, DivergingBarChart } from "./charts/dashboard-charts";
 export type { ChartHeaderProps, ChartMetricRowProps, GroupedBarChartProps, DivergingBarChartProps, ChartTrend, GroupedBarPoint, ChartMetricSeries, GroupedBarTooltipItem } from "./charts/dashboard-charts";
+
+export { InfoRow } from "./info-row";
+export type { InfoRowProps } from "./info-row";

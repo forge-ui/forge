@@ -150,7 +150,7 @@ export default function OrderDetailPage() {
         {/* Left column */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
           {/* Order meta */}
-          <Panel>
+          <Panel variant="template">
             <div className="flex gap-6 flex-wrap">
               <div className="flex-1 min-w-[140px]">
                 <p className="text-sm font-medium text-fg-grey-700">Status</p>
@@ -188,7 +188,7 @@ export default function OrderDetailPage() {
           </Panel>
 
           {/* Order items */}
-          <Panel title="Order Items">
+          <Panel variant="template" title="Order Items">
             <div className="flex flex-col">
               {lineItems.map((item, index) => (
                 <div key={item.key}>
@@ -244,7 +244,7 @@ export default function OrderDetailPage() {
           </Panel>
 
           {/* Order summary */}
-          <Panel title="Order Summary">
+          <Panel variant="template" title="Order Summary">
             <div className="flex flex-col gap-4">
               {defaultSummaryLines.map((row) => (
                 <div key={row.label} className="flex items-center gap-2 text-sm">
@@ -264,7 +264,7 @@ export default function OrderDetailPage() {
         {/* Right sidebar */}
         <div className="w-[324px] flex flex-col gap-4">
           {/* General Information */}
-          <Panel title="General Information">
+          <Panel variant="template" title="General Information">
             <div className="flex flex-col gap-5">
               <InfoRow icon={<BoxBoldDuotone size={20} />} label="Order Status">
                 <SelectOption
@@ -293,7 +293,7 @@ export default function OrderDetailPage() {
           </Panel>
 
           {/* Address */}
-          <Panel title="Address">
+          <Panel variant="template" title="Address">
             <div className="flex flex-col gap-5">
               <InfoRow icon={<MapPointBoldDuotone size={20} />} label="Shipping Address">
                 {addressLines.map((line) => (

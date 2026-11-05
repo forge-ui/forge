@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "project-section",
+  "type": "registry:block",
+  "title": "项目详情分区",
+  "description": "项目与任务共用的标题操作栏和紧凑内容区。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/project-section/project-section.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/project-section.tsx",
+      "content": "import type { ReactNode } from \"react\";\nimport { Panel } from \"@forge-ui-official/core\";\n\nexport interface ProjectSectionProps {\n  title: string;\n  action?: ReactNode;\n  children: ReactNode;\n  className?: string;\n}\n\nexport function ProjectSection({ title, action, children, className }: ProjectSectionProps) {\n  return <Panel variant=\"custom\" as=\"section\" className={className}><div className=\"mb-3 flex items-center justify-between\"><h3 className=\"text-lg font-semibold text-fg-black\">{title}</h3>{action}</div><div className=\"flex flex-col gap-3\">{children}</div></Panel>;\n}\n"
+    }
+  ]
+}

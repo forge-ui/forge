@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "@forge-ui-official/core/icons";
@@ -64,12 +65,12 @@ export default function CrmSaleDetailPage() {
 
 function Metric({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="rounded-[20px] border border-fg-grey-200 p-4">
+    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 p-4">
       <div className="flex items-center gap-2 text-fg-violet">
         {icon}
         <span className="text-xs font-semibold text-fg-grey-500">{label}</span>
       </div>
       <p className="mt-3 text-xl font-semibold text-fg-black">{value}</p>
-    </div>
+    </Panel>
   );
 }

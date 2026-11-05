@@ -290,6 +290,24 @@
           "content": "import type { ReactNode } from \"react\";\n\nexport interface ConversationHeaderProps {\n  title: string;\n  subtitle: ReactNode;\n  children?: ReactNode;\n}\n\nexport function ConversationHeader({ title, subtitle, children }: ConversationHeaderProps) {\n  return (\n    <header className=\"flex flex-wrap items-center justify-between gap-3 border-b border-fg-grey-200 pb-4\">\n      <div>\n        <h1 className=\"text-lg font-semibold text-fg-black\">{title}</h1>\n        <p className=\"mt-1 text-xs text-fg-grey-700\">{subtitle}</p>\n      </div>\n      <div className=\"flex items-center gap-2\">{children}</div>\n    </header>\n  );\n}\n"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "project-section",
+      "type": "registry:block",
+      "title": "项目详情分区",
+      "description": "项目与任务共用的标题操作栏和紧凑内容区。",
+      "dependencies": [
+        "@forge-ui-official/core@^0.6.0"
+      ],
+      "files": [
+        {
+          "path": "blocks/project-section/project-section.tsx",
+          "type": "registry:component",
+          "target": "@components/blocks/project-section.tsx",
+          "content": "import type { ReactNode } from \"react\";\nimport { Panel } from \"@forge-ui-official/core\";\n\nexport interface ProjectSectionProps {\n  title: string;\n  action?: ReactNode;\n  children: ReactNode;\n  className?: string;\n}\n\nexport function ProjectSection({ title, action, children, className }: ProjectSectionProps) {\n  return <Panel variant=\"custom\" as=\"section\" className={className}><div className=\"mb-3 flex items-center justify-between\"><h3 className=\"text-lg font-semibold text-fg-black\">{title}</h3>{action}</div><div className=\"flex flex-col gap-3\">{children}</div></Panel>;\n}\n"
+        }
+      ]
     }
   ]
 }

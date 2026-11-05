@@ -102,7 +102,7 @@ function MicellaneousFilesContent() {
         />
         <Modal open={uploadOpen || isUploadDialog} onClose={closeState} title="Add Files" width="w-[620px]">
           <div className="flex flex-col gap-5 p-6">
-            <div className="rounded-2xl border border-dashed border-fg-violet-300 bg-fg-violet-100 p-5 text-center">
+            <Panel variant="custom" className="rounded-2xl border border-dashed border-fg-violet-300 bg-fg-violet-100 p-5 text-center">
               <CloudUploadLinear size={32} color="var(--fg-violet)" />
               <p className="mt-3 text-sm font-semibold leading-5 tracking-fg text-fg-black">
                 Drop files here or browse from your device
@@ -110,7 +110,7 @@ function MicellaneousFilesContent() {
               <p className="mt-1 text-xs font-medium leading-4 tracking-fg text-fg-grey-700">
                 Upload queue is ready for review.
               </p>
-            </div>
+            </Panel>
             <div className="flex flex-col gap-3">
               {files.slice(0, 3).map((file) => (
                 <FileCard key={file.id} file={{ id: file.id, name: file.name, size: file.size, state: dialog === "add-files-uploading" ? "uploading" : file.state }} />
