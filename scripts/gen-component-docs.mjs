@@ -86,7 +86,8 @@ const inventory = { package: packageInfo.name, version: packageInfo.version, sou
 outputs.set(path.join(root, "docs/for-agents/inventory.json"), JSON.stringify(inventory, null, 2) + "\n");
 outputs.set(path.join(root, "docs/for-agents/components.md"), `# Forge 公开导出清单\n\n由 \`scripts/gen-component-docs.mjs\` 从 \`core/src/index.ts\` 生成；core ${packageInfo.version}，共 ${components.length} 项（区分 value/type，不将类型误称为可渲染组件）。\n\n[机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)\n\n| 导出 | 种类 | 源码 | API |\n|---|---|---|---|\n${components.map(item => `| ${item.name} | ${item.kind} | [源码](../../${item.source}) | [${path.basename(item.source, path.extname(item.source))}](../../skills/forge-skill/references/components/${path.basename(item.source, path.extname(item.source))}.md) |`).join("\n")}\n`);
 let drift = false;
-for (const [file, content] of outputs) {
+for (const [file, rawContent] of outputs) {
+  const content = rawContent.trimEnd() + "\n";
   if (check) {
     if (!fs.existsSync(file) || fs.readFileSync(file, "utf8") !== content) {
       console.error(`Out of date: ${relative(file)}`);
