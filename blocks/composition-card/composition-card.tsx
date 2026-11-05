@@ -6,6 +6,6 @@ export type CompositionCardProps = Omit<PanelProps, "children"> & {
   chart?: ComponentProps<typeof DonutChart>;
 };
 
-export function CompositionCard({ children, chart, ...panel }: CompositionCardProps) {
-  return <Panel {...panel}>{children ?? (chart && <DonutChart {...chart} />)}</Panel>;
+export function CompositionCard({ children, chart = { segments: [] }, ...panel }: CompositionCardProps) {
+  return <Panel {...panel}>{children ?? <DonutChart {...chart} />}</Panel>;
 }

@@ -12,7 +12,7 @@
       "path": "blocks/composition-card/composition-card.tsx",
       "type": "registry:component",
       "target": "@components/blocks/composition-card.tsx",
-      "content": "import type { ComponentProps } from \"react\";\nimport { DonutChart, Panel, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type CompositionCardProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: ComponentProps<typeof DonutChart>;\n};\n\nexport function CompositionCard({ children, chart, ...panel }: CompositionCardProps) {\n  return <Panel {...panel}>{children ?? (chart && <DonutChart {...chart} />)}</Panel>;\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\nimport { DonutChart, Panel, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type CompositionCardProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: ComponentProps<typeof DonutChart>;\n};\n\nexport function CompositionCard({ children, chart = { segments: [] }, ...panel }: CompositionCardProps) {\n  return <Panel {...panel}>{children ?? <DonutChart {...chart} />}</Panel>;\n}\n"
     }
   ]
 }
