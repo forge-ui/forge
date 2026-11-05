@@ -227,7 +227,7 @@ export default function Ecommerce1Page() {
             density="compact"
             title="Top Product"
             theme="blue"
-            image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80&auto=format&fit=crop"
+            image="/images/showcase/top-product-headphones.jpg"
             annotations={[
               { label: "Earphone", value: "JDL Earnote Pro 2", position: { top: "20%", left: "8%" } },
               { label: "340 Sales", value: "$24.982", position: { bottom: "30%", right: "8%" } },
