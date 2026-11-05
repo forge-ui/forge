@@ -1,5 +1,11 @@
 "use client";
 
+import { AppLayout, WalletGoalCard, DivergingBarChart, Panel } from "@forge-ui-official/core";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import { useState } from "react";
 import {
   WidgetBoldDuotone,
@@ -19,8 +25,7 @@ import {
 } from "@forge-ui-official/core/icons";
 import {
   Button,
-  ListGroup,
-  ContactItem,
+    ContactItem,
   CreditCard,
   BalanceCard,
   CurrencyConverter,
@@ -39,18 +44,7 @@ import type {
   ColumnDef,
   StatusBadgeColor,
 } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  WalletGoalCard,
-  mainProfile,
-  transactions,
-  contacts,
-  upsideDownBarData,
-  FigmaUpsideDownBarChart,
-  compactBalanceCardClass,
-  compactListGroupClass,
-  type TransactionRow,
-} from "../_shared";
+import { mainProfile, transactions, contacts, upsideDownBarData, type TransactionRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Overview", href: "/templates/dashboards/finance-3" },
@@ -123,7 +117,10 @@ export default function Finance3Page() {
   ];
 
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="purple"
       profilePosition="sidebar"
@@ -148,12 +145,12 @@ export default function Finance3Page() {
               balanceHidden={false}
               onTransfer={() => {}}
               onRequest={() => {}}
-              className={`${compactBalanceCardClass} !w-full`}
+              density="compact" className="!w-full"
             />
 
             {/* Credit cards */}
-            <ListGroup
-              className={compactListGroupClass}
+            <RankingList
+              density="compact"
               title="Credit"
               subtitle="All Your Cards"
               items={
@@ -166,8 +163,8 @@ export default function Finance3Page() {
             />
 
             {/* Wallet */}
-            <ListGroup
-              className={compactListGroupClass}
+            <RankingList
+              density="compact"
               title="Wallet"
               subtitle="Your Savings Progress"
               items={
@@ -198,14 +195,14 @@ export default function Finance3Page() {
           {/* Right wide region (col-span-3) */}
           <div className="lg:col-span-3 flex flex-col gap-4">
             {/* Statistic full-width */}
-            <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-              <div className="flex items-start justify-between">
+            <TrendChart >
+              <DashboardHeader className="flex items-start justify-between">
                 <div>
                   <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                   <p className="text-sm text-fg-grey-500">Income and Expenses</p>
                 </div>
                 <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>
-              </div>
+              </DashboardHeader>
               <div className="flex items-center gap-6">
                 <div className="flex items-center gap-3">
                   <div className="size-10 rounded-full bg-fg-violet-100 flex items-center justify-center text-fg-violet">
@@ -236,7 +233,7 @@ export default function Finance3Page() {
                   </div>
                 </div>
               </div>
-              <FigmaUpsideDownBarChart
+              <DivergingBarChart
                 data={upsideDownBarData}
                 activeIndex={statisticActiveIndex}
                 tooltipUpperValue="$680"
@@ -245,12 +242,12 @@ export default function Finance3Page() {
                 lowerColor="bg-fg-red"
                 heightClass="h-56"
               />
-            </div>
+            </TrendChart>
 
             {/* Bottom: Transaction table (left) + Contact/Expenses (right) */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {/* Transaction (col-span-2) */}
-              <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+              <RecentRecords className="lg:col-span-2">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="text-sm font-semibold text-fg-black">Transaction</h3>
@@ -271,12 +268,12 @@ export default function Finance3Page() {
                   onPageChange={() => {}}
                   paginationLabel="Showing 1-5 from 100"
                 />
-              </div>
+              </RecentRecords>
 
               {/* Right column: Contact + All Expenses */}
               <div className="lg:col-span-1 flex flex-col gap-4">
-                <ListGroup
-                  className={compactListGroupClass}
+                <RankingList
+                  density="compact"
                   title="Contact"
                   subtitle="Recent transactions"
                   action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -297,7 +294,7 @@ export default function Finance3Page() {
                 />
 
                 {/* All Expenses */}
-                <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+                <Panel gap="sm" >
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="text-sm font-semibold text-fg-black">All Expenses</h3>
@@ -331,12 +328,12 @@ export default function Finance3Page() {
                       />
                     ))}
                   </div>
-                </div>
+                </Panel>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

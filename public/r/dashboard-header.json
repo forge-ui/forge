@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dashboard-header",
+  "type": "registry:block",
+  "title": "看板页头",
+  "description": "标题、说明与右侧操作。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/dashboard-header/dashboard-header.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/dashboard-header.tsx",
+      "content": "import type { HTMLAttributes, ReactNode } from \"react\";\n\nexport interface DashboardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, \"title\"> {\n  title?: ReactNode;\n  description?: ReactNode;\n  action?: ReactNode;\n}\n\nexport function DashboardHeader({ title, description, action, children, className = \"flex items-start justify-between\", ...props }: DashboardHeaderProps) {\n  return <div {...props} className={className}>{children ?? <><div className=\"flex flex-col gap-1\"><h1 className=\"text-2xl font-semibold text-fg-black\">{title}</h1>{description && <p className=\"text-sm text-fg-grey-500\">{description}</p>}</div>{action}</>}</div>;\n}\n"
+    }
+  ]
+}

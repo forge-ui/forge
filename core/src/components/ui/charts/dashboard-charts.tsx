@@ -1,36 +1,37 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
+import { useState, type ReactNode } from "react";
+import { ArrowRightUpLinear } from "../../../icons";
 
-type Trend = "up" | "down";
+export type ChartTrend = "up" | "down";
 
-type ChartPoint = {
+export type GroupedBarPoint = {
   label: string;
   values: number[];
 };
 
-type ChartSeries = {
+export type ChartMetricSeries = {
   label: string;
   colorClass: string;
   value?: string;
-  trend?: Trend;
+  trend?: ChartTrend;
+  trendValue?: string;
 };
 
-type TooltipItem = {
+export type GroupedBarTooltipItem = {
   label: string;
   value: string;
   colorClass: string;
-  trend?: Trend;
+  trend?: ChartTrend;
 };
 
 const defaultYAxis = ["$1.2k", "$1k", "$800", "$600", "$400", "$200", "0"];
 
-function maxValue(points: ChartPoint[]) {
+function maxValue(points: GroupedBarPoint[]) {
   return Math.max(...points.flatMap((point) => point.values), 1);
 }
 
-function TrendArrow({ trend }: { trend?: Trend }) {
+function TrendArrow({ trend }: { trend?: ChartTrend }) {
   if (!trend) return null;
   return (
     <span
@@ -43,19 +44,25 @@ function TrendArrow({ trend }: { trend?: Trend }) {
   );
 }
 
-export function FigmaChartHeader({
+export function ChartHeader({
   title,
   subtitle,
   tabs = ["All", "Income", "Expenses", "Profit"],
-  activeTab = "All",
+  activeTab,
+  defaultTab = "All",
+  onTabChange,
   action,
 }: {
   title: string;
   subtitle?: string;
   tabs?: string[];
   activeTab?: string;
+  defaultTab?: string;
+  onTabChange?: (tab: string) => void;
   action?: ReactNode;
 }) {
+  const [selected, setSelected] = useState(defaultTab);
+  const current = activeTab ?? selected;
   return (
     <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
@@ -68,8 +75,10 @@ export function FigmaChartHeader({
             <button
               key={tab}
               type="button"
+              aria-pressed={tab === current}
+              onClick={() => { setSelected(tab); onTabChange?.(tab); }}
               className={
-                tab === activeTab
+                tab === current
                   ? "rounded-full bg-white px-3 py-1.5 font-semibold text-fg-violet shadow-subtle"
                   : "rounded-full px-3 py-1.5 font-medium text-fg-grey-500"
               }
@@ -83,7 +92,7 @@ export function FigmaChartHeader({
   );
 }
 
-export function FigmaMetricRow({ series }: { series: ChartSeries[] }) {
+export function ChartMetricRow({ series }: { series: ChartMetricSeries[] }) {
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
       {series.map((item) => (
@@ -97,7 +106,7 @@ export function FigmaMetricRow({ series }: { series: ChartSeries[] }) {
               <span className="text-base font-semibold leading-6 text-fg-black">{item.value}</span>
               {item.trend && (
                 <span className={item.trend === "up" ? "text-xs font-bold text-fg-green" : "text-xs font-bold text-fg-red"}>
-                  10% <TrendArrow trend={item.trend} />
+                  {item.trendValue ?? "10%"} <TrendArrow trend={item.trend} />
                 </span>
               )}
             </div>
@@ -108,7 +117,7 @@ export function FigmaMetricRow({ series }: { series: ChartSeries[] }) {
   );
 }
 
-export function FigmaGroupedBarChart({
+export function GroupedBarChart({
   data,
   series,
   activeIndex = 6,
@@ -116,10 +125,10 @@ export function FigmaGroupedBarChart({
   yAxisLabels = defaultYAxis,
   heightClass = "h-56",
 }: {
-  data: ChartPoint[];
-  series: ChartSeries[];
+  data: GroupedBarPoint[];
+  series: ChartMetricSeries[];
   activeIndex?: number;
-  tooltipItems?: TooltipItem[];
+  tooltipItems?: GroupedBarTooltipItem[];
   yAxisLabels?: string[];
   heightClass?: string;
 }) {
@@ -182,7 +191,7 @@ export function FigmaGroupedBarChart({
   );
 }
 
-export function FigmaUpsideDownBarChart({
+export function DivergingBarChart({
   data,
   upperColor = "bg-fg-blue",
   lowerColor = "bg-fg-red",
@@ -190,7 +199,11 @@ export function FigmaUpsideDownBarChart({
   tooltipUpperValue = "$680",
   tooltipLowerValue = "$280",
   heightClass = "h-56",
+  upperLabel = "Income",
+  lowerLabel = "Expenses",
 }: {
+  upperLabel?: string;
+  lowerLabel?: string;
   data: { label: string; upperValue: number; lowerValue: number }[];
   upperColor?: string;
   lowerColor?: string;
@@ -211,11 +224,11 @@ export function FigmaUpsideDownBarChart({
       </div>
       <div className="absolute left-1/2 top-6 z-20 min-w-32 -translate-x-1/2 rounded-xl bg-fg-black px-3 py-2 text-white shadow-elevated">
         <div className="flex items-center justify-between gap-3 text-xs">
-          <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${upperColor}`} />Income</span>
+          <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${upperColor}`} />{upperLabel}</span>
           <span className="font-semibold">{tooltipUpperValue}</span>
         </div>
         <div className="mt-1.5 flex items-center justify-between gap-3 text-xs">
-          <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${lowerColor}`} />Expenses</span>
+          <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${lowerColor}`} />{lowerLabel}</span>
           <span className="font-semibold">{tooltipLowerValue}</span>
         </div>
       </div>
@@ -232,3 +245,8 @@ export function FigmaUpsideDownBarChart({
     </div>
   );
 }
+
+export type ChartHeaderProps = Parameters<typeof ChartHeader>[0];
+export type ChartMetricRowProps = Parameters<typeof ChartMetricRow>[0];
+export type GroupedBarChartProps = Parameters<typeof GroupedBarChart>[0];
+export type DivergingBarChartProps = Parameters<typeof DivergingBarChart>[0];

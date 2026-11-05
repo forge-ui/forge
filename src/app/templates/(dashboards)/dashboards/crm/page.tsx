@@ -1,5 +1,12 @@
 "use client";
 
+import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   UserBoldDuotone,
@@ -26,29 +33,14 @@ import {
   StatusBadge,
   Label,
   KebabMenu,
-  ListGroup,
-  ActivityCard,
+    ActivityCard,
 } from "@forge-ui-official/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
 } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  teamMeta,
-  leads,
-  groupedStatisticBarData,
-  groupedStatisticSeries,
-  groupedStatisticTooltip,
-  FigmaChartHeader,
-  FigmaGroupedBarChart,
-  FigmaMetricRow,
-  compactListGroupClass,
-  compactStatCardClass,
-  type LeadRow,
-} from "../_shared";
+import { mainProfile, teamMeta, leads, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip, type LeadRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Overview", href: "/templates/dashboards/crm" },
@@ -106,7 +98,10 @@ const leadColumns: ColumnDef<LeadRow>[] = [
 
 export default function CrmPage() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="purple"
       profilePosition="topbar"
@@ -118,7 +113,7 @@ export default function CrmPage() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <div className="flex items-start justify-between">
+        <DashboardHeader className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Overview</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your dashboard</p>
@@ -127,10 +122,10 @@ export default function CrmPage() {
             <Button color="grey" variant="tertiary" iconLeft={<CalendarMinimalisticLinear size={16} />}>Select Dates</Button>
             <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
           </div>
-        </div>
+        </DashboardHeader>
 
         {/* 3 stats: Revenue (highlight) + Leads (bar) + Customer (bar) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 [&>*]:!w-full">
+        <KpiMetrics className="grid grid-cols-1 lg:grid-cols-3 gap-4 [&>*]:!w-full">
           <div className="rounded-card bg-fg-violet text-white p-4 flex flex-col gap-3 relative overflow-hidden">
             <div className="absolute -right-10 -bottom-10 size-48 rounded-full bg-fg-violet-700 opacity-50" />
             <div className="absolute -right-6 -top-6 size-32 rounded-full bg-fg-violet-600 opacity-40" />
@@ -160,7 +155,7 @@ export default function CrmPage() {
           </div>
 
           <BarChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Leads"
             value="44,210"
             trend="10%"
@@ -171,7 +166,7 @@ export default function CrmPage() {
             bars={[16, 24, 32, 20, 40]}
           />
           <BarChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Customer"
             value="21,230"
             trend="10%"
@@ -181,22 +176,22 @@ export default function CrmPage() {
             barColor="purple"
             bars={[14, 22, 18, 38, 28]}
           />
-        </div>
+        </KpiMetrics>
 
         {/* Average Sales bar + Success Rate meter */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <FigmaChartHeader title="Average Sales" subtitle="Income and expenses" />
-            <FigmaMetricRow series={groupedStatisticSeries.slice(0, 1)} />
-            <FigmaGroupedBarChart
+          <TrendChart className="lg:col-span-2">
+            <ChartHeader title="Average Sales" subtitle="Income and expenses" />
+            <ChartMetricRow series={groupedStatisticSeries.slice(0, 1)} />
+            <GroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 1) }))}
               series={groupedStatisticSeries.slice(0, 1)}
               tooltipItems={groupedStatisticTooltip.slice(0, 1)}
               heightClass="h-56"
             />
-          </div>
+          </TrendChart>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <Panel gap="sm" >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Success Rate</h3>
@@ -224,12 +219,12 @@ export default function CrmPage() {
                 <span className="text-lg font-semibold text-fg-black inline-flex items-center gap-1">11.2k <span className="text-fg-green text-xs">▲</span></span>
               </div>
             </div>
-          </div>
+          </Panel>
         </div>
 
         {/* Recent Leads + Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Recent Leads</h3>
@@ -250,10 +245,10 @@ export default function CrmPage() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 100"
             />
-          </div>
+          </RecentRecords>
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Activity"
             subtitle="Recent activity"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -296,6 +291,6 @@ export default function CrmPage() {
           />
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

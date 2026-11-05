@@ -1,3 +1,4 @@
+import type { CardDensity } from "./card-utils";
 import { cn } from "../../lib/utils";
 import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
 
@@ -40,7 +41,7 @@ function BarSlot({
   color: BarColor;
   themeKey: CardTheme;
   size?: StatCardSize;
-  density?: "default" | "compact";
+  density?: CardDensity;
 }) {
   const isColored = themeKey !== "white" && themeKey !== "black";
   const isWide = size === "wide";
@@ -48,7 +49,7 @@ function BarSlot({
   const maxBar = Math.max(...bars);
   const visible = bars.slice(0, isWide ? 7 : 5);
   // In wide mode, normalize input heights to fit within the 64px container.
-  const wideMax = isCompact ? 44 : 60;
+  const wideMax = 60;
   return (
     <div
       className={cn(
@@ -122,3 +123,5 @@ export function BarChartStatCard({
     />
   );
 }
+
+export type BarChartStatCardProps = Parameters<typeof BarChartStatCard>[0];

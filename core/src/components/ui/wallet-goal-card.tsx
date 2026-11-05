@@ -1,17 +1,26 @@
 "use client";
 
-import { CalendarMinimalisticLinear } from "@forge-ui-official/core/icons";
-import { Button, KebabMenu, ProgressBar } from "@forge-ui-official/core";
+import type { ReactNode } from "react";
+import { CalendarMinimalisticLinear } from "../../icons";
+import { Button } from "./button";
+import { KebabMenu } from "./kebab-menu";
+import { ProgressBar } from "./progress-bar";
 
-interface WalletGoalCardProps {
+export interface WalletGoalCardProps {
   title: string;
   date: string;
   amount: string;
   progress: number;
   progressColor: "purple" | "green" | "blue" | "red" | "orange" | "yellow" | "cyan";
   showActions?: boolean;
+  onEdit?: () => void;
+  onTopUp?: () => void;
+  onWithdraw?: () => void;
+  topUpLabel?: string;
+  withdrawLabel?: string;
+  editLabel?: string;
   iconBg?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }
 
 export function WalletGoalCard({
@@ -21,6 +30,12 @@ export function WalletGoalCard({
   progress,
   progressColor,
   showActions = false,
+  onEdit,
+  onTopUp,
+  onWithdraw,
+  topUpLabel = "Top Up",
+  withdrawLabel = "Withdraw",
+  editLabel = "Edit",
   iconBg = "#ede9fe",
   icon,
 }: WalletGoalCardProps) {
@@ -36,7 +51,7 @@ export function WalletGoalCard({
             <div className="text-xs text-fg-grey-500">{date}</div>
           </div>
         </div>
-        <KebabMenu items={[{ label: "Edit", onSelect: () => {} }]} />
+        <KebabMenu items={[{ label: editLabel, onSelect: () => onEdit?.() }]} />
       </div>
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold text-fg-black">{amount}</span>
@@ -45,8 +60,8 @@ export function WalletGoalCard({
       <ProgressBar value={progress} color={progressColor} size="md" />
       {showActions && (
         <div className="flex items-center gap-2">
-          <Button variant="tertiary" size="sm" className="flex-1">Top Up</Button>
-          <Button variant="tertiary" size="sm" className="flex-1">Withdraw</Button>
+          <Button variant="tertiary" size="sm" className="flex-1" onClick={onTopUp}>{topUpLabel}</Button>
+          <Button variant="tertiary" size="sm" className="flex-1" onClick={onWithdraw}>{withdrawLabel}</Button>
         </div>
       )}
     </div>

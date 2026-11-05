@@ -1,4 +1,12 @@
 "use client";
+import { ScheduleCard, GanttSchedule } from "@/blocks/schedule-card/schedule-card";
+import { MemberList } from "@/blocks/member-list/member-list";
+
+import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
 
 import {
   WidgetBoldDuotone,
@@ -21,7 +29,6 @@ import {
   ImageStatCard,
   BarChartStatCard,
   BubbleChart,
-  EventCard,
   DataTable,
   CellImageText,
   CellMuted,
@@ -31,30 +38,13 @@ import {
   AvatarGroup,
   PlusIcon,
   IconButton,
-  ListGroup,
-} from "@forge-ui-official/core";
+  } from "@forge-ui-official/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
 } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  teamMeta,
-  projects,
-  teamMembers,
-  groupedStatisticBarData,
-  groupedStatisticSeries,
-  groupedStatisticTooltip,
-  FigmaChartHeader,
-  FigmaGroupedBarChart,
-  FigmaMetricRow,
-  compactImageStatCardClass,
-  compactListGroupClass,
-  compactStatCardClass,
-  type ProjectRow,
-} from "../_shared";
+import { mainProfile, teamMeta, projects, teamMembers, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip, type ProjectRow } from "../_shared";
 import { asset } from "@/lib/asset";
 
 const menuItems: AppLayoutMenuItem[] = [
@@ -114,7 +104,10 @@ const projectColumns: ColumnDef<ProjectRow>[] = [
 
 export default function Project1Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="dark"
       accent="purple"
       profilePosition="topbar"
@@ -127,7 +120,7 @@ export default function Project1Page() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <div className="flex items-start justify-between">
+        <DashboardHeader className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Overview</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your project</p>
@@ -137,30 +130,30 @@ export default function Project1Page() {
             <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
             <Button iconLeft={<PlusIcon size={16} />}>Add Project</Button>
           </div>
-        </div>
+        </DashboardHeader>
 
         {/* 4 stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard className={compactStatCardClass} size="wide" title="Total Project" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" icon={<FolderBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard className={compactStatCardClass} size="wide" title="In Progress" value="4,412" trend="5%" trendDirection="up" subtitle="+150 today" icon={<CartLargeBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard className={compactStatCardClass} size="wide" title="Completed" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" icon={<FolderWithFilesBoldDuotone size={20} />} badgeVariant="opacity" />
-          <StatCard className={compactStatCardClass} size="wide" title="Unfinished" value="329" trend="0%" trendDirection="down" subtitle="+150 today" icon={<BillListBoldDuotone size={20} />} badgeVariant="opacity" />
-        </div>
+        <KpiMetrics className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatCard density="compact" size="wide" title="Total Project" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" icon={<FolderBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard density="compact" size="wide" title="In Progress" value="4,412" trend="5%" trendDirection="up" subtitle="+150 today" icon={<CartLargeBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard density="compact" size="wide" title="Completed" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" icon={<FolderWithFilesBoldDuotone size={20} />} badgeVariant="opacity" />
+          <StatCard density="compact" size="wide" title="Unfinished" value="329" trend="0%" trendDirection="down" subtitle="+150 today" icon={<BillListBoldDuotone size={20} />} badgeVariant="opacity" />
+        </KpiMetrics>
 
         {/* Statistic + All Project bubble */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
-            <FigmaMetricRow series={groupedStatisticSeries} />
-            <FigmaGroupedBarChart
+          <TrendChart className="lg:col-span-2">
+            <ChartHeader title="Statistic" subtitle="Income and expenses" />
+            <ChartMetricRow series={groupedStatisticSeries} />
+            <GroupedBarChart
               data={groupedStatisticBarData}
               series={groupedStatisticSeries}
               tooltipItems={groupedStatisticTooltip}
               heightClass="h-56"
             />
-          </div>
+          </TrendChart>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <Panel >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">All Project</h3>
@@ -181,14 +174,14 @@ export default function Project1Page() {
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#10b981" }} /> Completed</span>
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#f97316" }} /> Unfinished</span>
             </div>
-          </div>
+          </Panel>
         </div>
 
         {/* Team of the Month + Client Growth + Daily Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <KpiMetrics className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-1 flex flex-col gap-4">
             <ImageStatCard
-              className={`${compactImageStatCardClass} !min-h-56`}
+              density="compact" className="!min-h-56"
               size="wide"
               title="Team of the Month"
               value="Edward Allen"
@@ -201,7 +194,7 @@ export default function Project1Page() {
               action={<IconButton variant="ghost" shape="square" size="sm"><AltArrowRightLinear size={16} /></IconButton>}
             />
             <BarChartStatCard
-              className={compactStatCardClass}
+              density="compact"
               size="wide"
               title="Client Growth"
               subtitle="2 Jul - Today"
@@ -214,7 +207,7 @@ export default function Project1Page() {
           </div>
 
           {/* Daily Activity gantt */}
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <ScheduleCard gap="sm" className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Daily Activity</h3>
@@ -222,70 +215,18 @@ export default function Project1Page() {
               </div>
               <KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />
             </div>
-            {/* Hour header */}
-            <div className="grid grid-cols-6 text-xs text-fg-grey-500 border-b border-fg-grey-200 pb-2">
-              {["09:00", "10:00", "11:00", "12:00", "13:00", "14:00"].map((h) => (
-                <div key={h}>{h}</div>
-              ))}
-            </div>
-            {/* Gantt rows */}
-            <div className="relative flex flex-col gap-2 pt-2 min-h-52">
-              <div className="absolute inset-0 grid grid-cols-6 pointer-events-none">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="border-l border-fg-grey-100" />
-                ))}
-              </div>
-              <div className="grid grid-cols-6 gap-1">
-                <div className="col-start-2 col-span-1">
-                  <EventCard
-                    title="Design Check-In"
-                    timeRange="10:00-11:00"
-                    color="purple"
-                    avatars={[1, 2, 3].map((i) => `https://i.pravatar.cc/80?u=daily-${i}`)}
-                    overflowCount={6}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-6 gap-1">
-                <div className="col-start-1 col-span-2">
-                  <EventCard
-                    title="Daily Meeting"
-                    timeRange="09:00-11:00"
-                    color="yellow"
-                    avatars={[4, 5, 6].map((i) => `https://i.pravatar.cc/80?u=daily-${i}`)}
-                    overflowCount={6}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-6 gap-1">
-                <div className="col-start-3 col-span-1">
-                  <EventCard
-                    title="Project Brainstorming"
-                    timeRange="11:00-12:00"
-                    color="orange"
-                    avatars={[7, 8, 9].map((i) => `https://i.pravatar.cc/80?u=daily-${i}`)}
-                    overflowCount={6}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-6 gap-1">
-                <div className="col-start-5 col-span-1">
-                  <EventCard
-                    title="Project Kick Off"
-                    timeRange="13:00-14:00"
-                    color="cyan"
-                    avatars={[10, 11, 12].map((i) => `https://i.pravatar.cc/80?u=daily-${i}`)}
-                    overflowCount={6}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            <GanttSchedule hours={["09:00", "10:00", "11:00", "12:00", "13:00", "14:00"]} entries={[
+                { id: "event-1", columnClassName: "col-start-2 col-span-1", event: { title: "Design Check-In", timeRange: "10:00-11:00", color: "purple", avatars: [1, 2, 3].map(index => `https://i.pravatar.cc/80?u=daily-${index}`), overflowCount: 6 } },
+                { id: "event-2", columnClassName: "col-start-1 col-span-2", event: { title: "Daily Meeting", timeRange: "09:00-11:00", color: "yellow", avatars: [4, 5, 6].map(index => `https://i.pravatar.cc/80?u=daily-${index}`), overflowCount: 6 } },
+                { id: "event-3", columnClassName: "col-start-3 col-span-1", event: { title: "Project Brainstorming", timeRange: "11:00-12:00", color: "orange", avatars: [7, 8, 9].map(index => `https://i.pravatar.cc/80?u=daily-${index}`), overflowCount: 6 } },
+                { id: "event-4", columnClassName: "col-start-5 col-span-1", event: { title: "Project Kick Off", timeRange: "13:00-14:00", color: "cyan", avatars: [10, 11, 12].map(index => `https://i.pravatar.cc/80?u=daily-${index}`), overflowCount: 6 } },
+              ]} />
+          </ScheduleCard>
+        </KpiMetrics>
 
         {/* Projects + Team Member */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Projects</h3>
@@ -306,10 +247,10 @@ export default function Project1Page() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 100"
             />
-          </div>
+          </RecentRecords>
 
-          <ListGroup
-            className={compactListGroupClass}
+          <MemberList
+            density="compact"
             title="Team Member"
             subtitle="All Team Member"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -335,6 +276,6 @@ export default function Project1Page() {
           />
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

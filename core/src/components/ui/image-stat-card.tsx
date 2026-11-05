@@ -1,3 +1,4 @@
+import type { CardDensity } from "./card-utils";
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import {
@@ -65,7 +66,7 @@ export function ImageStatCard({
   backgroundImage?: string;
   backgroundImageAlt?: string;
   /** Use compact inside dense dashboards while preserving the default Figma showcase scale. */
-  density?: "default" | "compact";
+  density?: CardDensity;
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -78,11 +79,7 @@ export function ImageStatCard({
   // Use default tailwind tokens (not arbitrary values) so the CSS is
   // generated even when this component is consumed from node_modules.
   // min-h-80 = 320px, min-h-72 = 288px.
-  const minHeight = hasImage
-    ? isCompact
-      ? isWide ? "min-h-56" : "min-h-52"
-      : isWide ? "min-h-80" : "min-h-72"
-    : "";
+  const minHeight = hasImage ? isWide ? "min-h-80" : "min-h-72" : "";
 
   const actionNode = action ?? (onKebabClick ? <CardKebabButton theme={cfg} onClick={onKebabClick} /> : null);
 
@@ -90,7 +87,7 @@ export function ImageStatCard({
     <div
       className={cn(
         "rounded-card flex-col justify-between overflow-hidden relative",
-        isCompact ? "gap-3 p-4" : "gap-6 p-6",
+        isCompact ? "gap-4 p-4" : "gap-6 p-6",
         resolveCardWidthClass(isWide ? "full" : width, "w-90"),
         minHeight,
         cfg.bg,
@@ -141,8 +138,10 @@ export function ImageStatCard({
             theme={cfg}
           />
         </div>
-        {!hasImage && <CardAvatarGroup avatars={avatars} theme={cfg} size={isCompact ? 32 : 40} />}
+        {!hasImage && <CardAvatarGroup avatars={avatars} theme={cfg} size={40} />}
       </div>
     </div>
   );
 }
+
+export type ImageStatCardProps = Parameters<typeof ImageStatCard>[0];

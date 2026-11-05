@@ -1,3 +1,4 @@
+import type { CardDensity } from "./card-utils";
 import { useId, type ReactNode } from "react";
 import { AnimatedNumber } from "../../internal/animated-number";
 import type { MotionPreference } from "../../lib/motion";
@@ -178,7 +179,7 @@ export function LineChartStatCard({
   series?: number[];
   /** Icon for the top-right chip (only rendered in size="wide"). */
   icon?: ReactNode;
-  density?: "default" | "compact";
+  density?: CardDensity;
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -209,3 +210,5 @@ export function LineChartStatCard({
     />
   );
 }
+
+export type LineChartStatCardProps = Parameters<typeof LineChartStatCard>[0];

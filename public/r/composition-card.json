@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "composition-card",
+  "type": "registry:block",
+  "title": "构成占比卡",
+  "description": "圆环图与构成说明，支持自定义图例。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/composition-card/composition-card.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/composition-card.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { DonutChart, Panel, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type CompositionCardProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: ComponentProps<typeof DonutChart>;\n};\n\nexport function CompositionCard({ children, chart, ...panel }: CompositionCardProps) {\n  return <Panel {...panel}>{children ?? (chart && <DonutChart {...chart} />)}</Panel>;\n}\n"
+    }
+  ]
+}

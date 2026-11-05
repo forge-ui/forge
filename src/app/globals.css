@@ -5,6 +5,7 @@
 
 /* Showcase 与 TypeScript alias 一致，直接展示当前 Core 源码。 */
 @source "../../core/src";
+@source "../../blocks";
 
 @keyframes twinkle {
   0%,

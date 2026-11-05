@@ -25,6 +25,8 @@
     "core:audit": "pnpm --filter @forge-ui-official/core run audit:components",
     "core:audit:showcase": "pnpm --filter @forge-ui-official/core run audit:components:showcase",
     "test:interactions": "node --test scripts/test-component-fusion-*.mjs",
+    "blocks:generate": "node scripts/generate-block-registry.mjs",
+    "blocks:check": "node scripts/generate-block-registry.mjs --check && node --test scripts/test-block-registry.mjs",
     "docs:components": "node scripts/gen-component-docs.mjs",
     "docs:components:check": "node scripts/gen-component-docs.mjs --check",
     "test:skill": "node --test scripts/test-skill-sources.mjs",
