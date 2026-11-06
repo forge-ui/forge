@@ -10,7 +10,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const file = process.argv[2];
+const scope = process.argv.includes("--scope=page") ? "page" : "system";
+const file = process.argv.slice(2).find(argument => !argument.startsWith("--"));
 
 if (!file) {
   console.error("Usage: node scripts/check-brief.mjs path/to/brief.md");
@@ -45,7 +46,14 @@ const checks = [
   ["Verification", /verification|quality bar|checks/i],
 ];
 
-const missing = checks.filter(([, pattern]) => !pattern.test(text)).map(([name]) => name);
+const activeChecks = scope === "page" ? [
+  ["role", /role\s*:|页面角色/i],
+  ["task", /task\s*:|主要任务/i],
+  ["source", /source\s*:|模板来源/i],
+  ["scope", /scope\s*:|授权范围/i],
+  ["verification", /verification|checks|验收/i],
+] : checks;
+const missing = activeChecks.filter(([, pattern]) => !pattern.test(text)).map(([name]) => name);
 
 if (missing.length > 0) {
   console.error("Missing required admin generation fields:");
@@ -53,4 +61,4 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log("Admin generation contracts look complete.");
+console.log("Scoped generation contracts look complete.");

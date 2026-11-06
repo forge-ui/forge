@@ -70,3 +70,7 @@ Keep DOM order aligned with reading and keyboard order. Decide equal height per 
 - Retain URL, screenshot and operation result. Record pre-existing failures separately; technical checks do not constitute user acceptance.
 
 References: [Ant Design](https://ant.design/components/grid-cn/), [MUI](https://mui.com/material-ui/react-grid/), [Chakra UI](https://chakra-ui.com/docs/components/grid).
+
+## 几何与验收单一来源
+
+看板尺寸、轨道公式与模板出处统一见 [页面规范](page-recommended-standard.md#看板screen-优先与分层几何)；验收统一见 [审计清单](audit-checklist.md)。固定280/336px业务侧栏不是比例Grid的默认替代品。

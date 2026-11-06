@@ -45,9 +45,8 @@ closest_forge_references: []
 ## Quality Bar
 
 - `archetype` must be selected before choosing templates or components.
-- `modules` must include at least one core module and one support or governance module.
+- For an explicitly authorized full system, include its necessary core/support/governance modules; a single-page task has no minimum module count.
 - Every KPI or queue in `workbench` must point to a list, detail, or workflow route.
 - `operational_loops` must describe actual work, not page sections.
 - `cross_links` must make the product feel connected, such as customer -> orders -> invoices.
-- If the user asks for only one screen, still describe the broader system and then state which slice will be implemented first.
-
+- If the user asks for one screen, implement only that authorized screen; broader system suggestions are optional and require approval before implementation.

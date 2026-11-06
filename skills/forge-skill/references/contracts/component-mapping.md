@@ -1,4 +1,4 @@
-> R2适用边界：以SKILL.md的授权范围为先。仅设计检查规范与图纸；单页/局部任务只应用相关契约，不增加系统模块、实施或构建。以下完整系统清单及代码示例仅适用于已授权的相应实施范围；StatusBadge示例不覆盖状态偏好规则。
+> 适用边界：以 SKILL.md 的用户授权范围为先。单页/局部任务只用相关契约；仅设计时不实施，已授权实施时再接对应模块与验证。状态默认 soft StatusBadge。
 
 # Forge Component Mapping Contract
 
@@ -43,9 +43,9 @@ missing_primitives:
 
 - Use `AppLayout` for admin chrome.
 - Use `FullWidthTable` for full-page management lists; use `DataTable` for embedded tables.
-- Follow [status presentation](../status-presentation.md); StatusBadge examples describe an available API, not an adopted visual default.
+- Follow [status presentation](../status-presentation.md); use soft StatusBadge as the adopted default; categories and roles stay plain text.
 - Use `DescriptionItem`, `ListGroup`, `HistoryGrouped`, and `TabBar` for detail and inspector surfaces.
 - Use `TextField`, `TextArea`, `SelectOption`, `Datepicker`, `FileUpload`, `MediaUpload`, and `Stepper` for forms.
 - Use controlled `ConfirmationDialog` for standalone confirmation; omit `open` only for inline content in one existing shell.
 - Use `fg-*` color tokens only.
-- Use `@forge-ui-official/core/icons` icons with the `color` prop and numeric `size`.
+- Use `@forge-ui-official/core/icons` icons with numeric `size`; currentColor may inherit from className, while an explicit color intentionally overrides it.

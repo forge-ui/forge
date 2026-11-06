@@ -104,3 +104,47 @@
 存在未保存更改时，应用内离开提供“继续编辑”（默认，保留输入）或“放弃更改”（明确放弃后离开）。不默认自动保存，不承诺关闭浏览器后恢复；刷新/关闭页面只能依平台能力提示。只有业务实际支持持久化草稿时才提供“保存草稿”，保存失败继续保留输入。此处是推荐行为，未实现弹窗或后端。
 
 状态表达采用[状态规则](status-presentation.md)。设置分类宽200与504堆叠条件只是独立审查试排建议，未纳入R1或本版推荐值；分类宽与收起点按业务内容预算确定。
+
+## 看板：Screen 优先与分层几何
+
+本节采用 A.md 第六节已批准草案；以下路径/行号为审计时源码锚点，数值按默认根字号16px推导，本轮未做浏览器实测。源码变动时重新核对，不把行号当永久 API。D/ 指 src/app/templates/(dashboards)/dashboards/。
+
+### 1. 适用、主模板与证据字段
+
+1. 每个看板先选一个Screen作为视觉主对照，不跨多个模板任意拼密度。基准优先analytics；需要窄侧区+宽业务区时选finance-3；不是所有业务必须四个KPI。
+2. 必填：Screen路径及版本/工作树、页面目标、KPI→实际业务入口、每行轨道/跨度/重排断点、section gap、Grid gap、卡内padding/gap、图表绘图区高度、整卡高度归属、文本层级、局部滚动、侧栏状态与内容净宽。
+3. 每个尺寸标“源码现状 / 公式推导 / 设计提案 / 未核实”。最终补主模板与业务页同viewport/同侧栏状态的并排截图；实际Computed Style与源码推导不符时先查宿主spacing/font/CSS覆盖，不反向把截图像素硬写成Token。
+
+### 2. 数值基线（不得把section gap与Grid gap混用）
+
+| 层级/部位 | 基线 / 响应式规则 | 源码出处 |
+|---|---|---|
+| 页面外壳内容padding | base `p-4`=16px；sm起 `p-5`=20px；页面不再叠一份 | `core/src/components/layouts/app-layout.tsx:863` |
+| 看板区块纵向间距 | 外层 `flex flex-col gap-5`=20px | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:183`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:135` |
+| Grid内部行/列gap | 默认16px，不继承section的20px | `core/src/components/layouts/grid.tsx:43`；analytics的Grid未显式改gap，见`:194`、`:202`、`:238`、`:297` |
+| KPI行 | base1列、sm2列、lg4等分；卡 `width="full"`、size=wide | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:194` 至`:198` |
+| 主图+辅助块 | base依DOM顺序全宽堆叠；lg默认12轨道中的8:4 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:202`、`:203`、`:214` |
+| 次级三列 | base1列；lg3等分 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:238` |
+| 底部两列 | base1列；lg2等分 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:297` |
+| finance-3主结构 | base1列；lg4轨道，左span1、右span3；列gap16px | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:137`、`:139`、`:199` |
+| finance-3右区内嵌行 | 独立3轨道，2:1；不是整页再次2:1 | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:251`、`:253`、`:277` |
+| 标题型图表/表格卡壳 | `rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4`；即padding16、卡内gap16、圆角24px（默认换算） | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:203`、`:298`、`:317`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:201` |
+| compact KPI | padding16、内部gap12；模板还对字级/行高/子图高度做覆盖，不能只改padding就说同密度 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:7` 至`:8` |
+| compact Balance/Image | Balance padding16/gap12；Image padding16/gap16 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:10` 至`:14` |
+| compact ListGroup | header左右/上16；body左右/上下16，条目gap12 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:18` 至`:19` |
+| compact Highlight特例 | `h-96`=384px，padding16/gap12；只适用该组件，不推广到所有卡 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:16` |
+| analytics主图绘图区 | `heightClass="h-56"`=224px；不是整卡高度 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:210`；`src/app/templates/(dashboards)/dashboards/_shared/figma-charts.tsx:117`、`:129` |
+| finance-3上下柱图绘图区 | `heightClass="h-56"`=224px；标题/指标行另计 | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:239` 至`:246` |
+| 主图纵轴槽 | 44px+剩余图域，轴与图gap12；图内还有pt-8等留量，不等于所有图都用44px轴 | `src/app/templates/(dashboards)/dashboards/_shared/figma-charts.tsx:129`、`:136` |
+| 断点 | sm640、md768、lg1024、xl1280、2xl1536；均是视口断点，不是净内容宽 | `core/src/styles/tokens.css:615`、`:626`、`:637`、`:648`、`:659` |
+
+### 3. 几何公式与线框标注
+
+设 `C` 为**扣除AppLayout侧栏与页面padding后**的看板内容净宽，`g=16px`。以下为公式推导，不是截图实测：
+
+- 四等分卡宽：`(C-3g)/4`；三等分：`(C-2g)/3`；两等分：`(C-g)/2`。不足以容纳真实标题/指标/操作时按模板断点堆叠，不给卡片另定固定宽去反挤容器。
+- **12轨道8:4不是简单先扣一个gap再乘2/3**：单轨 `t=(C-11g)/12`，主区 `8t+7g`，辅区 `4t+3g`，二者之间另有一个g。GridItem是跨轨道含中间gap，保持与真实Grid计算一致。
+- finance-3四轨1+3：`t=(C-3g)/4`；左区`t`、右区`3t+2g`，区间gap另计g。右区嵌套3轨独立以其自身净宽计算。
+- 图表卡高不指定一个“全站统一值”：整卡由上下padding、标题/指标/图例/绘图区及内部gap组成。224px只锁定对应图组件wrapper；文字换行、图例、提示层会影响整卡/可见区域。整卡实际高度未浏览器核实时标**未核实**。
+- 图内至少标出：外壳padding16/20、section gap20、Grid gap16、卡padding16、卡内gap12或16、图域224、响应式跨度。不要用一条“页面gap24”覆盖全部层级。
+- `--radius-card=20px` 与模板 `rounded-3xl=24px`并存：本草案记录模板24px现状，**不授权修改全局Token**。待Panel组件立项再决定模板兼容方式。

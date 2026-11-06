@@ -17,7 +17,6 @@ const entry = program.getSourceFile(path.join(root, "core/src/index.ts"));
 const moduleSymbol = checker.getSymbolAtLocation(entry);
 const flags = ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.UseAliasDefinedOutsideCurrentScope;
 const relative = file => path.relative(root, file).split(path.sep).join("/");
-const slug = name => name.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 const previous = JSON.parse(fs.readFileSync(path.join(root, "docs/for-agents/inventory.json"), "utf8"));
 const defaults = new Set(previous.components.filter(item => item.oneShotDefault).map(item => item.name));
 const components = checker.getExportsOfModule(moduleSymbol).map(exported => {
@@ -72,7 +71,7 @@ for (const [moduleName, exports] of oldByModule) {
   });
   outputs.set(path.join(docsDir, `${moduleName}.md`), `# ${moduleName}\n\n自动生成；请勿编辑 API 部分。来源：\`${exports[0].source}\`；core **${packageInfo.version}**。\n默认值和运行行为以源码初始化为准；类型表不推测默认值。\n\n${sections.join("\n\n")}\n${selection ? `\n${selection}\n` : ""}`);
 }
-const aliases = { charts: "line-chart", forms: "text-field", "layouts-app-layout": "app-layout", "plus-icon": "plain-icons" };
+const aliases = { charts: "smooth-line-chart", forms: "text-field", "layouts-app-layout": "app-layout", "plus-icon": "plain-icons" };
 for (const [alias, target] of Object.entries(aliases)) {
   const selectionPath = path.join(root, "skills/forge-skill/references/component-selection", `${alias}.md`);
   const selection = fs.existsSync(selectionPath) ? fs.readFileSync(selectionPath, "utf8") : "";

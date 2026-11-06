@@ -1,9 +1,3 @@
 ## 选型
 
-| 场景 | 选 |
-|---|---|
-| 普通标题面板 / section 容器 | `SurfaceCard` |
-| 图表容器 | `ChartCard` |
-| 看板任务卡 | `TaskCard` |
-| 有 logo / 项目进度卡 | `ProjectCard` |
-| 活动记录卡 | `ActivityCard` |
+当前已导出的 SurfaceCard 提供中性内容容器；API 以本页生成部分为准。它不自动证明计划中的模板风格标题 Panel 已完成。先对照 Screen；需要新增公共契约时用 FORGE-GAP 请求决定。
