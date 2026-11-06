@@ -54,7 +54,7 @@
     "typecheck:test": "tsc --noEmit -p tsconfig.test.json",
     "check": "pnpm typecheck && pnpm typecheck:test && pnpm lint && pnpm test && pnpm test:audit && pnpm audit:components",
     "preview": "pnpm --filter preview dev",
-    "prepublishOnly": "pnpm check && pnpm build && pnpm check:package && pnpm check:consumer"
+    "prepublishOnly": "pnpm build && pnpm check && pnpm check:package && pnpm check:consumer"
   },
   "peerDependencies": {
     "next": ">=15",

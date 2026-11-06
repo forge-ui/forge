@@ -20,7 +20,6 @@ export const approvedSemanticAliases = [
   ["src/components/ui/line-chart-stat-card.tsx", "chartGradient.orange", "from-fg-red/10"],
   ["src/components/ui/line-chart-stat-card.tsx", "chartBorder.orange", "border-fg-red"],
   ["src/components/ui/line-chart-stat-card.tsx", "chartStroke.orange", "var(--fg-red)"],
-  ["src/components/ui/link.tsx", "linkColors.orange", "text-fg-red hover:text-fg-red-800"],
   ["src/components/ui/progress-bar.tsx", "progressColors.orange", "bg-fg-red"],
   ["src/components/ui/progress-bar.tsx", "progressTextColors.orange", "text-fg-red"],
   ["src/components/ui/progress-stat-card.tsx", "progressFillBg.orange", "bg-fg-red"],
