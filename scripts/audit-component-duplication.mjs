@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
-const coverage = JSON.parse(fs.readFileSync('docs/component-coverage-audit.json', 'utf8'));
-const props = JSON.parse(fs.readFileSync('docs/documentation-props-audit.json', 'utf8')).records;
+const coverage = JSON.parse(fs.readFileSync('docs/archive/component-coverage-audit.json', 'utf8'));
+const props = JSON.parse(fs.readFileSync('docs/archive/documentation-props-audit.json', 'utf8')).records;
 const catalog = JSON.parse(fs.readFileSync('src/app/prototype/component-fusion/_catalog-data.json', 'utf8')).items.filter(x => x.mode !== 'defer');
 const names = new Set(coverage.components.map(c => c.name));
 const guides = Object.fromEntries([...names].map(n => [n, []]));
@@ -42,9 +42,9 @@ const records=coverage.components.map(c=>{
 });
 const summary={components:records.length,consolidatedComponents:records.filter(x=>changes[x.name]).length,remainingDuplicateCandidates:records.filter(x=>x.needsReview).length,withoutExplicitOwner:records.filter(x=>!x.owners.length).length};
 const report={summary,records};
-fs.writeFileSync('docs/component-duplication-audit.json',JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync('docs/archive/component-duplication-audit.json',JSON.stringify(report,null,2)+'\n');
 const role={'user-facing-component':'组件','public-composition-subcomponent':'组合子组件','public-render-helper':'渲染辅助','context-or-composition-helper':'上下文辅助'};
 let md=`# 组件重复检查与融合统计\n\n以 core 公共导出的 ${summary.components} 个 React 组件为统计范围，每个组件占一行。已处理 ${summary.consolidatedComponents} 个组件的重复展示或说明（含本轮之前已处理的 ChatInputBar）。剩余需核对的重复候选 ${summary.remainingDuplicateCandidates} 个；${summary.withoutExplicitOwner} 个未被命名标题或参数表扫描识别出主说明归属，须结合父组件说明核对，不能误记为“文档完整”。\n\n## 判断口径\n\n- 同一组件出现多次，不等于重复组件：颜色、大小、受控状态和业务组合保留。\n- 相同组件的基础展示、代码和参数在多个分类重复铺开时，集中到一个主说明，原位置保留链接。\n- 同名组件在示例和追加 API 区各占一节时，合成一节；简表与完整表重叠时，合成一张表。\n- “主说明”来自实际 Section 标题与 API 归属；“使用页面”来自 TypeScript JSX 调用图，只表示静态可达，不能当作重复页面数量或浏览器验收。\n- 交互清单只列该组件作为首个目标的条目，其他目标视为组合依赖；F03 与 178 共用一个列表操作台，沿用既有别名。99 条迁移记录不等于新增 99 个导出组件。\n- 此表检查文档组织与重复归属，不能据此认定全部参数、变体或动效已通过逐项运行验收。参数缺项另见 documentation-props-audit.md。\n\n## 全量统计\n\n| 组件 | 类型 | 主说明分类 | 使用页面数 | 主要交互条目 | 处理结论 |\n|---|---|---|---:|---|---|\n`;
 for(const r of records)md+=`| ${r.name} | ${role[r.role]??r.role} | ${r.owners.map(x=>`[${x}](/components/${x})`).join('、')||'未明确'} | ${r.reuseRoutes.length} | ${r.primaryCases.map(x=>x.id).join('、')||'—'} | ${r.disposition} |\n`;
 md+='\n## 来源与复查\n\n逐项源码位置、同名说明位置、页面路径和交互名称见同名 JSON 文件。复查命令：\n\n```sh\nnode scripts/audit-component-coverage.mjs\nnode scripts/audit-documentation-props.mjs\nnode scripts/audit-component-duplication.mjs\n```\n';
-fs.writeFileSync('docs/component-duplication-audit.md',md);console.log(summary);for(const r of records.filter(x=>x.needsReview)) console.log(r.name,r.owners,r.namedGuides);
+fs.writeFileSync('docs/archive/component-duplication-audit.md',md);console.log(summary);for(const r of records.filter(x=>x.needsReview)) console.log(r.name,r.owners,r.namedGuides);

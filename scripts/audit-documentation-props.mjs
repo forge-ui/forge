@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
-const inventory = JSON.parse(fs.readFileSync('docs/public-api-comparison.json', 'utf8')).current.components;
+const inventory = JSON.parse(fs.readFileSync('docs/archive/public-api-comparison.json', 'utf8')).current.components;
 const names = new Set(Object.keys(inventory));
 const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walk(path.join(directory, entry.name)) : /\.tsx?$/.test(entry.name) ? [path.join(directory, entry.name)] : []);
 const files = walk('src/app/components').filter(f => !f.includes('/_fusion/') && !f.includes('/_migration-'));
@@ -85,7 +85,7 @@ for (const file of files) {
   visit(source);
 }
 const generated = JSON.parse(fs.readFileSync('src/app/components/_agent-api-data.json', 'utf8'));
-const coverage = JSON.parse(fs.readFileSync('docs/component-coverage-audit.json', 'utf8'));
+const coverage = JSON.parse(fs.readFileSync('docs/archive/component-coverage-audit.json', 'utf8'));
 const records = Object.entries(inventory).map(([name, component]) => {
   const d = docs[name];
   const example = coverage.components.find(c => c.name === name);
@@ -96,10 +96,10 @@ const records = Object.entries(inventory).map(([name, component]) => {
   return { name, role: example?.role, exampleEvidence: { documentation: example?.documentation, cases: example?.cases }, file: component.file, customPropCount: owned.length, documentedNames: [...documented], generatedReference: d.references, sections: d.sections, missing: missing.map(p=>({name:p.name,type:p.type,optional:p.optional})), rows: d.rows, stale: [...documented].filter(n=>!component.props.some(p=>p.name===n)) };
 });
 const summary = { inspected: records.length, withMissing: records.filter(r=>r.missing.length).length, missingParameters: records.reduce((n,r)=>n+r.missing.length,0), withoutMappedReference: records.filter(r=>!r.rows.length && !r.generatedReference.length).map(r=>r.name), unresolvedTables: unresolved.length };
-fs.writeFileSync('docs/documentation-props-audit.json', JSON.stringify({summary,records,unresolved},null,2)+'\n');
+fs.writeFileSync('docs/archive/documentation-props-audit.json', JSON.stringify({summary,records,unresolved},null,2)+'\n');
 let md = '# 逐组件文档参数覆盖核查\n\n核对当前 core 根入口的实际组件参数与组件页面的 ApiTable、完整参数表及共享补充表。只统计定义在 core/src 的参数，排除 React 原生透传属性。斜杠合并的顶层参数分别计数，嵌套字段不冒充顶层参数。自动未关联的参数表单列，未关联不直接认定网站没有文档。完整参数表只证明名称和类型列出，不证明文字解释、示例和行为完整。\n\n';
 md += `## 自动核对结果\n\n- 核查组件：${summary.inspected}。\n- 存在未覆盖参数候选的组件：${summary.withMissing}。\n- 未覆盖参数候选：${summary.missingParameters}。\n- 需要人工关联的参数表：${summary.unresolvedTables}。\n\n## 全量候选清单\n\n| 组件 | 自定义参数数 | 未覆盖数 | 未覆盖参数 |\n|---|---:|---:|---|\n`;
 md += records.map(r=>`| ${r.name} | ${r.customPropCount} | ${r.missing.length} | ${r.missing.map(p=>p.name).join('、') || '—'} |`).join('\n');
 md += '\n\n## 无法自动关联的表格\n\n' + unresolved.map(u=>`- ${u.file}:${u.line}：${u.props.join('、') || '无法静态解析'}`).join('\n') + '\n';
-fs.writeFileSync('docs/documentation-props-audit.md',md);
+fs.writeFileSync('docs/archive/documentation-props-audit.md',md);
 console.log(JSON.stringify(summary,null,2));

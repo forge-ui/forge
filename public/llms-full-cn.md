@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.4.7
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 3308e8d6245fc26a9f73cfd17b2b328ef3af4a6adacab3034cd3810527ba7381
+Source fingerprint: 31ce1cd676f86258ee7b25ad692f4dcb84e4f2c2d95470d3050ebc1553d2dc4e
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -635,6 +635,8 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 交付前
 
 按 [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
+
+接入专项：[Ask AI 宿主契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/ask-ai-host-contract.md)、[交互接入边界](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/interaction-adoption.md)。
 
 ---
 
@@ -1715,6 +1717,32 @@ Then write the UI.
 
 ---
 
+Source: skills/forge-skill/references/ask-ai-host-contract.md
+
+# Ask AI 宿主接入契约
+
+适用当前 core 的 AskAi；API 以[生成参考](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/components/ask-ai.md)为准。以下是源码静态核对，不代替浏览器、辅助技术或业务后端验收。历史来源：[全屏布局记录](https://github.com/forge-ui/forge/blob/main/docs/archive/ask-ai-fullscreen-layout.md)、[面板变更记录](https://github.com/forge-ui/forge/blob/main/docs/archive/changes/2026-10-16-ask-ai-panel.md)。
+
+## 布局与滚动
+
+- 全屏消息区由 core 的 data-ask-ai-fs-scroll 管理纵向滚动。消息 slot 按自然高度展开，不加第二层 overflow 滚动；宿主不要另开跟随循环。会话列表可独立滚动，不与消息区争夺所有权。
+- CSS 以主内容容器而非整个 viewport 分档：默认最大40rem，主区至少54rem时最大48rem。来源：core/src/styles/tokens.css 的 forge-ask-ai-fs-content 容器规则；不是全站最小宽度保证。
+- core 根据 composer 实际高度预留底部空间；自定义 composer 应遵守同一所有权，不额外叠加固定页脚、重复 padding 或另一套 sticky 层。长内容、缩放、安全区、中文输入仍须实测。
+- 当前 core 内置输入区最高192px；消息接近底部48px内跟随，否则暂停并提供“回到最新”。来源：core/src/internal/ask-ai-fullscreen.tsx。会话切换与 ResizeObserver 跟随是 core 职责；不据此宣称所有异步内容已验收。
+
+## 面板与宿主
+
+- panelMode 的非模态侧栏在至少1440px时启用，较窄环境回退模态抽屉；仅在 onDockedChange 为 true 时由宿主预留460px，关闭、全屏、窄屏或卸载后释放。来源：core/src/components/ui/ask-ai.tsx 的属性说明与媒体查询。
+- 非模态布局不要锁住整个页面；模态焦点、关闭及 Escape 策略按[浮层规则](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/overlay-focus.md)验收，不用一次静态截图证明。保持稳定宿主实例，避免响应式切换丢失草稿与消息。
+- 关闭面板不等于取消任务。取消、重试、流式请求、鉴权、持久化和真实录音均由宿主接入；未提供回调时不伪造相应能力。
+- 异步结果绑定发起时的会话与请求身份，不能使用回调执行时恰好选中的会话。状态展示完成不等于真实任务完成。此为宿主约束，不是本轮实现后端或修复竞态的声明。
+
+## 验收边界
+
+分别记录宽窄屏、长消息、输入法、键盘、焦点恢复、会话切换与任务取消的实际证据。数据库、录音、模型服务和浏览器未连接时写“未核实”，不把模板演示当生产完成。
+
+---
+
 Source: skills/forge-skill/references/audit-checklist.md
 
 # Forge 统一审计清单
@@ -1841,24 +1869,24 @@ Source: skills/forge-skill/references/blocks.md
 
 # Blocks 抽取计划（未实现）
 
-以下约12项是从 Screen 抽取的计划，**不是当前 core 导出，不可直接 import**。先复用对应模板局部，新增公共原语须 FORGE-GAP 决策。
+BRIEF 决定5确定以下12类候选，**不是当前 core 导出，不可直接 import**。先复用对应 Screen 局部；新增公共原语须 FORGE-GAP 决策。
 
-| 计划区块 | 来源与插槽 |
+| 计划区块 | 内容插槽 |
 |---|---|
-| KPI 行 | analytics：指标、单位、趋势 |
-| 标题图表卡 | analytics：标题、指标、图域、图例 |
-| 标题表格卡 | ecommerce-2：标题、工具、DataTable |
-| 排行 | analytics：名称、指标、排序口径 |
-| 构成 | analytics：分组、值、图例 |
-| 地区 | ecommerce-3：地区、范围、度量 |
-| 成员 | crm：身份、角色、操作 |
-| 目标 | finance-3：余额、目标、进度 |
-| 活动 | project-1：时间、对象、行为 |
-| 收支 | finance-1：账户、金额、周期 |
-| 项目摘要 | project-1：项目、负责人、阶段 |
-| 看板外壳 | dashboards/_shared：页头、区块间距、响应式 |
+| KPI 指标行 | 指标、单位、趋势 |
+| 最近记录表卡 | 标题、工具、DataTable |
+| 趋势图表卡 | 标题、指标、图域、图例 |
+| 排行列表卡 | 名称、指标、排序口径 |
+| 构成占比卡 | 分组、值、图例 |
+| 页头 | 标题、说明、操作 |
+| 地区分布卡 | 地区、范围、度量 |
+| 成员列表 | 身份、角色、操作 |
+| 目标进度列表 | 当前、目标、进度 |
+| 活动流 | 时间、对象、行为 |
+| 日程/甘特 | 日期、资源、事件 |
+| 卡片轮播 | 项目、当前项、翻页 |
 
-来源为候选抽取范围，具体区块 API/命名/支持域均未实现、未验收。不要将 FilterPanel 或 DropdownPanel 当成已完成的通用标题 Panel。
+来源范围为[10个实际 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。区块与具体模板的逐项对应、API、命名、支持域均未实现、未验收；不把候选清单当成统计结果。不要将 FilterPanel 或 DropdownPanel 当成已完成的通用标题 Panel。
 
 ---
 
@@ -3181,6 +3209,21 @@ ls node_modules/@forge-ui-official/core/icons/dist/icons/ | grep -i <关键词>
 ```
 
 常用关键词 → 文件名 映射：用"搜索 = magnifer"、"邮件 = letter"、"钱包 = wallet"、"编辑 = pen"、"删除 = trash" 等英文词 grep。
+
+---
+
+Source: skills/forge-skill/references/interaction-adoption.md
+
+# 交互接入边界
+
+由[旧交互 API 指南](https://github.com/forge-ui/forge/blob/main/docs/archive/design/component-fusion-api-guide.md)提取稳定原则；历史指南中的参数表、示例数量、验收结论不是当前事实。组件属性以[源码生成 API](https://github.com/forge-ui/forge/blob/main/docs/for-agents/components.md)为准，只有明确声明的属性才可传入。
+
+- 回调表达操作意图；真实保存、撤销、支付、上传、录音、模型执行、权限校验与取消由宿主完成。点击有反馈不等于业务成功。
+- 未知总量使用不定进度，不伪造百分比。数值动画输入保持数值及真实口径，展示格式不应改变业务值。
+- Toast 需要 ToastProvider；展示时机与业务结果一致，重试/撤销必须有真实回调。持续通知提供明确关闭路径，不以自动消失掩盖错误。参数和返回值查看生成参考。
+- 支持 motion/locale 的组件才传对应属性；减少动效不应关闭业务行为。格式化 locale 与文案语言分开核对，不假定所有组件共享语言参数。
+- 组合案例负责展示状态和布局，不自动提供后端鉴权、幂等、持久化或异常恢复。宿主在真实写入边界校验租户、对象权限与状态。
+- 使用[统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)、[内容契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-content-contracts.md)、[浮层与焦点](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/overlay-focus.md)、[动效](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/motion.md)验收，不保留第二套完成门槛。
 
 ---
 

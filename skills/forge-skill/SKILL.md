@@ -36,3 +36,5 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 交付前
 
 按 [统一审计清单](references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
+
+接入专项：[Ask AI 宿主契约](references/ask-ai-host-contract.md)、[交互接入边界](references/interaction-adoption.md)。

@@ -1,6 +1,6 @@
 # Forge 组件迁移分类复核
 
-> 2026-10-14 更新：本文保留为历史分类讨论。最新 123 项融合决策以 [组件融合审查](./component-fusion-audit.md) 和 [审查 JSON](./component-fusion-audit.json) 为准；下文旧的独立组件建议已被覆盖，不代表当前实现、用户验收或发布。
+> 2026-10-14 更新：本文保留为历史分类讨论。最新 123 项融合决策以 [组件融合审查](component-fusion-audit.md) 和 [审查 JSON](component-fusion-audit.json) 为准；下文旧的独立组件建议已被覆盖，不代表当前实现、用户验收或发布。
 
 状态：分类提案，尚未应用到导航或迁移计划。2026-10-13。
 
@@ -120,4 +120,4 @@
 
 ## 全量对照
 
-逐项明细见 [component-taxonomy-matrix.md](./component-taxonomy-matrix.md)。原始审查记录保留原型任务、源码位置和风险，汇总数据见 [component-taxonomy-proposal.json](./component-taxonomy-proposal.json)。
+逐项明细见 [component-taxonomy-matrix.md](component-taxonomy-matrix.md)。原始审查记录保留原型任务、源码位置和风险，汇总数据见 [component-taxonomy-proposal.json](component-taxonomy-proposal.json)。

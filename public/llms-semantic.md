@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.4.7
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 3308e8d6245fc26a9f73cfd17b2b328ef3af4a6adacab3034cd3810527ba7381
+Source fingerprint: 31ce1cd676f86258ee7b25ad692f4dcb84e4f2c2d95470d3050ebc1553d2dc4e
 
 ## Adopted rules / 采用规则
 
@@ -50,6 +50,8 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 交付前
 
 按 [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
+
+接入专项：[Ask AI 宿主契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/ask-ai-host-contract.md)、[交互接入边界](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/interaction-adoption.md)。
 
 ---
 
@@ -179,24 +181,24 @@ Source: skills/forge-skill/references/blocks.md
 
 # Blocks 抽取计划（未实现）
 
-以下约12项是从 Screen 抽取的计划，**不是当前 core 导出，不可直接 import**。先复用对应模板局部，新增公共原语须 FORGE-GAP 决策。
+BRIEF 决定5确定以下12类候选，**不是当前 core 导出，不可直接 import**。先复用对应 Screen 局部；新增公共原语须 FORGE-GAP 决策。
 
-| 计划区块 | 来源与插槽 |
+| 计划区块 | 内容插槽 |
 |---|---|
-| KPI 行 | analytics：指标、单位、趋势 |
-| 标题图表卡 | analytics：标题、指标、图域、图例 |
-| 标题表格卡 | ecommerce-2：标题、工具、DataTable |
-| 排行 | analytics：名称、指标、排序口径 |
-| 构成 | analytics：分组、值、图例 |
-| 地区 | ecommerce-3：地区、范围、度量 |
-| 成员 | crm：身份、角色、操作 |
-| 目标 | finance-3：余额、目标、进度 |
-| 活动 | project-1：时间、对象、行为 |
-| 收支 | finance-1：账户、金额、周期 |
-| 项目摘要 | project-1：项目、负责人、阶段 |
-| 看板外壳 | dashboards/_shared：页头、区块间距、响应式 |
+| KPI 指标行 | 指标、单位、趋势 |
+| 最近记录表卡 | 标题、工具、DataTable |
+| 趋势图表卡 | 标题、指标、图域、图例 |
+| 排行列表卡 | 名称、指标、排序口径 |
+| 构成占比卡 | 分组、值、图例 |
+| 页头 | 标题、说明、操作 |
+| 地区分布卡 | 地区、范围、度量 |
+| 成员列表 | 身份、角色、操作 |
+| 目标进度列表 | 当前、目标、进度 |
+| 活动流 | 时间、对象、行为 |
+| 日程/甘特 | 日期、资源、事件 |
+| 卡片轮播 | 项目、当前项、翻页 |
 
-来源为候选抽取范围，具体区块 API/命名/支持域均未实现、未验收。不要将 FilterPanel 或 DropdownPanel 当成已完成的通用标题 Panel。
+来源范围为[10个实际 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。区块与具体模板的逐项对应、API、命名、支持域均未实现、未验收；不把候选清单当成统计结果。不要将 FilterPanel 或 DropdownPanel 当成已完成的通用标题 Panel。
 
 ---
 
