@@ -1,5 +1,12 @@
 "use client";
 
+import { AppLayout, WalletGoalCard, ChartHeader, GroupedBarChart, ChartMetricRow } from "@forge-ui-official/core";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { RegionDistribution } from "@/blocks/region-distribution/region-distribution";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   BoxBoldDuotone,
@@ -17,30 +24,16 @@ import {
 import {
   Button,
   ProgressStatCard,
-  MapCard,
-  DataTable,
+    DataTable,
   CellText,
   ProgressBadge,
   KebabMenu,
-  ListGroup,
-  ChartListItem,
+    ChartListItem,
   Grid,
   GridItem,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  WalletGoalCard,
-  mainProfile,
-  groupedStatisticBarData,
-  groupedStatisticSeries,
-  groupedStatisticTooltip,
-  FigmaChartHeader,
-  FigmaGroupedBarChart,
-  FigmaMetricRow,
-  compactListGroupClass,
-  compactStatCardClass,
-} from "../_shared";
+import { mainProfile, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/dashboards/analytics" },
@@ -173,7 +166,10 @@ const regionsForMap: MapRegion[] = [
 
 export default function AnalyticsPage() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="purple"
       profilePosition="topbar"
@@ -192,27 +188,27 @@ export default function AnalyticsPage() {
 
         {/* 4 progress stats */}
         <Grid columns={{ base: 1, sm: 2, lg: 4 }} data-testid="analytics-stats">
-          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
-          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
-          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
-          <ProgressStatCard width="full" className={compactStatCardClass} size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" density="compact" size="wide" title="Income" value="6,784" trend="10%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="purple" icon={<WalletBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" density="compact" size="wide" title="Orders" value="4,412" trend="5%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="blue" icon={<CartLargeBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" density="compact" size="wide" title="Profit" value="1,920" trend="2%" trendDirection="up" subtitle="+150 today" theme="white" progressValue={25} progressColor="green" icon={<ChartBoldDuotone size={18} />} />
+          <ProgressStatCard width="full" density="compact" size="wide" title="Expenses" value="329" trend="0%" trendDirection="down" subtitle="+150 today" theme="white" progressValue={25} progressColor="red" icon={<TagBoldDuotone size={18} />} />
         </Grid>
 
         {/* Statistic + Campaign */}
         <Grid data-testid="analytics-primary">
-          <GridItem span={{ base: "full", lg: 8 }}><div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <FigmaChartHeader title="Statistic" subtitle="Income and expenses" />
-            <FigmaMetricRow series={groupedStatisticSeries.slice(0, 2)} />
-            <FigmaGroupedBarChart
+          <GridItem span={{ base: "full", lg: 8 }}><TrendChart >
+            <ChartHeader title="Statistic" subtitle="Income and expenses" />
+            <ChartMetricRow series={groupedStatisticSeries.slice(0, 2)} />
+            <GroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 2) }))}
               series={groupedStatisticSeries.slice(0, 2)}
               tooltipItems={groupedStatisticTooltip.slice(0, 2)}
               heightClass="h-56"
             />
-          </div></GridItem>
+          </TrendChart></GridItem>
 
-          <GridItem span={{ base: "full", lg: 4 }}><ListGroup
-            className={`w-full ${compactListGroupClass}`}
+          <GridItem span={{ base: "full", lg: 4 }}><RankingList
+            density="compact" className="w-full"
             title="Campaign"
             subtitle="Active campaign"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -236,7 +232,7 @@ export default function AnalyticsPage() {
 
         {/* Top Region + Visit by Source + Top Category */}
         <Grid columns={{ base: 1, lg: 3 }}>
-          <MapCard
+          <RegionDistribution
             title="Top Region"
             subtitle="User session in each region"
             color="purple"
@@ -246,8 +242,8 @@ export default function AnalyticsPage() {
             onMenuClick={() => {}}
           />
 
-          <ListGroup
-            className={`w-full ${compactListGroupClass}`}
+          <RankingList
+            density="compact" className="w-full"
             title="Visit by Source"
             subtitle="Link clicked"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -269,8 +265,8 @@ export default function AnalyticsPage() {
             }
           />
 
-          <ListGroup
-            className={`w-full ${compactListGroupClass}`}
+          <RankingList
+            density="compact" className="w-full"
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -295,14 +291,14 @@ export default function AnalyticsPage() {
 
         {/* Top Referral Pages + Top Performing Pages */}
         <Grid columns={{ base: 1, lg: 2 }}>
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
+          <RecentRecords >
+            <DashboardHeader className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Top Referral Pages</h3>
                 <p className="text-sm text-fg-grey-500">Based on session</p>
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>
-            </div>
+            </DashboardHeader>
             <DataTable<ReferralRow>
               columns={referralColumns}
               rows={referralRows}
@@ -312,9 +308,9 @@ export default function AnalyticsPage() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 15"
             />
-          </div>
+          </RecentRecords>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <RecentRecords >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Top Performing Pages</h3>
@@ -331,9 +327,9 @@ export default function AnalyticsPage() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 15"
             />
-          </div>
+          </RecentRecords>
         </Grid>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

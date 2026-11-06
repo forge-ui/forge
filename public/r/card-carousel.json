@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-carousel",
+  "type": "registry:block",
+  "title": "卡片轮播",
+  "description": "财务卡片叠放与受控或非受控分页。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/card-carousel/card-carousel.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/card-carousel.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ComponentProps } from \"react\";\nimport { CreditCard, PageDot } from \"@forge-ui-official/core\";\n\nexport interface CardCarouselProps {\n  cards: (ComponentProps<typeof CreditCard> & { id: string })[];\n  size?: \"compact\" | \"default\";\n  index?: number;\n  defaultIndex?: number;\n  onIndexChange?: (index: number) => void;\n  showPagination?: boolean;\n}\n\nexport function CardCarousel({ cards, size = \"default\", index, defaultIndex = 0, onIndexChange, showPagination = false }: CardCarouselProps) {\n  const [selected, setSelected] = useState(defaultIndex);\n  if (!cards.length) return null;\n  const current = Math.max(0, Math.min(cards.length - 1, index ?? selected));\n  const compact = size === \"compact\";\n  const { id: activeId, ...active } = cards[current];\n  const { id: previousId, ...previous } = cards[(current + cards.length - 1) % cards.length];\n  const { id: nextId, ...next } = cards[(current + 1) % cards.length];\n  return <>\n    <div className={compact ? \"relative -mx-4 h-40 overflow-hidden\" : \"relative -mx-4 h-56 overflow-hidden\"}>\n      <div className={compact ? \"absolute left-0 top-3 h-32 w-8 overflow-hidden rounded-r-xl\" : \"absolute left-0 top-6 h-40 w-10 overflow-hidden rounded-r-2xl\"}>\n        <div className=\"absolute left-[-236px] top-0\"><CreditCard key={previousId} {...previous} className=\"[&_*]:invisible\" /></div>\n      </div>\n      <div className={compact ? \"absolute right-0 top-3 h-32 w-8 overflow-hidden rounded-l-xl\" : \"absolute right-0 top-6 h-40 w-10 overflow-hidden rounded-l-2xl\"}>\n        <div className=\"absolute right-[-236px] top-0\"><CreditCard key={nextId} {...next} className=\"[&_*]:invisible\" /></div>\n      </div>\n      <div className={compact ? \"absolute left-1/2 top-3 w-[clamp(12rem,78%,15rem)] -translate-x-1/2\" : \"absolute left-1/2 top-6 -translate-x-1/2\"}>\n        <CreditCard key={activeId} {...active} className=\"shadow-card\" />\n      </div>\n    </div>\n    {showPagination && <div className=\"flex items-center justify-center gap-2\">{cards.map((card, cardIndex) => <PageDot key={card.id} active={current === cardIndex} onClick={() => { setSelected(cardIndex); onIndexChange?.(cardIndex); }}>{cardIndex + 1}</PageDot>)}</div>}\n  </>;\n}\n"
+    }
+  ]
+}

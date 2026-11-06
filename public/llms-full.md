@@ -1,14 +1,14 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.4.7
+Package: @forge-ui-official/core@0.5.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 31ce1cd676f86258ee7b25ad692f4dcb84e4f2c2d95470d3050ebc1553d2dc4e
+Source fingerprint: d082f16b2b214f216a07fe79adc067065a8dc31c0d612350570973eb245771e5
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Blocks are a plan, not implemented exports. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.5.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
-## Public exports (457, values and types distinguished)
+## Public exports (483, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -71,8 +71,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - AvatarInitialColor [type] — core/src/components/ui/avatar.tsx
 - AvatarSize [type] — core/src/components/ui/avatar.tsx
 - BalanceCard [value] — core/src/components/ui/balance-card.tsx
+- BalanceCardProps [type] — core/src/components/ui/balance-card.tsx
 - BarChart [value] — core/src/components/ui/charts/bar-chart.tsx
 - BarChartStatCard [value] — core/src/components/ui/bar-chart-stat-card.tsx
+- BarChartStatCardProps [type] — core/src/components/ui/bar-chart-stat-card.tsx
 - BarColor [type] — core/src/components/ui/bar-chart-stat-card.tsx
 - BarHorizontalChart [value] — core/src/components/ui/charts/bar-horizontal-chart.tsx
 - BarUpsideDownChart [value] — core/src/components/ui/charts/bar-upside-down-chart.tsx
@@ -99,6 +101,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - CalendarWeekRow [value] — core/src/components/ui/calendar-week-row.tsx
 - CardAvatarGroup [value] — core/src/components/ui/card-utils.tsx
 - CardBadgeVariant [type] — core/src/components/ui/card-utils.tsx
+- CardDensity [type] — core/src/components/ui/card-utils.tsx
 - CardGlow [value] — core/src/components/ui/card-utils.tsx
 - CardIconChip [value] — core/src/components/ui/card-utils.tsx
 - CardKebabButton [value] — core/src/components/ui/card-utils.tsx
@@ -125,10 +128,16 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - CellText [value] — core/src/components/ui/data-table.tsx
 - CellTextSubtitle [value] — core/src/components/ui/data-table.tsx
 - ChartCard [value] — core/src/components/ui/charts/chart-card.tsx
+- ChartHeader [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- ChartHeaderProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartLegendItem [value] — core/src/components/ui/charts/chart-legend-item.tsx
 - ChartListItem [value] — core/src/components/ui/charts/chart-list-item.tsx
+- ChartMetricRow [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- ChartMetricRowProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
+- ChartMetricSeries [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartStatFooter [value] — core/src/components/ui/charts/chart-stat-footer.tsx
 - ChartTooltip [value] — core/src/components/ui/charts/chart-tooltip.tsx
+- ChartTrend [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartValueRow [value] — core/src/components/ui/charts/chart-value-row.tsx
 - ChatBubble [value] — core/src/components/ui/chat-bubble.tsx
 - ChatInputBar [value] — core/src/components/ui/chat-input-bar.tsx
@@ -193,6 +202,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
+- DivergingBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- DivergingBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - DonutChart [value] — core/src/components/ui/charts/donut-chart.tsx
 - Drawer [value] — core/src/components/ui/drawer.tsx
 - DrawerProps [type] — core/src/components/ui/drawer.tsx
@@ -239,8 +250,13 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - GridProps [type] — core/src/components/layouts/grid.tsx
 - GridResponsive [type] — core/src/components/layouts/grid.tsx
 - GridSpan [type] — core/src/components/layouts/grid.tsx
+- GroupedBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
+- GroupedBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
+- GroupedBarPoint [type] — core/src/components/ui/charts/dashboard-charts.tsx
+- GroupedBarTooltipItem [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - HalfDonutChart [value] — core/src/components/ui/charts/half-donut-chart.tsx
 - HighlightCard [value] — core/src/components/ui/highlight-card.tsx
+- HighlightCardProps [type] — core/src/components/ui/highlight-card.tsx
 - HistoryGrouped [value] — core/src/components/ui/history-grouped.tsx
 - HistoryItem [value] — core/src/components/ui/history-item.tsx
 - HistoryItemColor [type] — core/src/components/ui/history-item.tsx
@@ -263,6 +279,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - ImageGrid [value] — core/src/components/ui/image-grid.tsx
 - ImageGridSize [type] — core/src/components/ui/image-grid.tsx
 - ImageStatCard [value] — core/src/components/ui/image-stat-card.tsx
+- ImageStatCardProps [type] — core/src/components/ui/image-stat-card.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightCards [value] — core/src/components/ui/agent/insight-cards.tsx
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -278,12 +295,14 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - LegacyCardTheme [type] — core/src/components/ui/card-utils.tsx
 - LineChartColor [type] — core/src/components/ui/line-chart-stat-card.tsx
 - LineChartStatCard [value] — core/src/components/ui/line-chart-stat-card.tsx
+- LineChartStatCardProps [type] — core/src/components/ui/line-chart-stat-card.tsx
 - LinkColor [type] — core/src/components/ui/link.tsx
 - LiquidTabs [value] — core/src/components/ui/liquid-tabs.tsx
 - LiquidTabsItem [type] — core/src/components/ui/liquid-tabs.tsx
 - LiquidTabsProps [type] — core/src/components/ui/liquid-tabs.tsx
 - LiquidTabsTab [type] — core/src/components/ui/liquid-tabs.tsx
 - ListGroup [value] — core/src/components/ui/list-group.tsx
+- ListGroupProps [type] — core/src/components/ui/list-group.tsx
 - ListGroupTab [type] — core/src/components/ui/list-group.tsx
 - ListItem [value] — core/src/components/ui/list-item.tsx
 - ListItemAvatarLead [type] — core/src/components/ui/list-item.tsx
@@ -333,6 +352,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - PageTitleToolbarVariant [type] — core/src/components/ui/toolbar.tsx
 - Pagination [value] — core/src/components/ui/pagination.tsx
 - PaginationColor [type] — core/src/components/ui/pagination.tsx
+- Panel [value] — core/src/components/ui/panel.tsx
+- PanelProps [type] — core/src/components/ui/panel.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
@@ -350,6 +371,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - ProgressLabelVariant [type] — core/src/components/ui/progress-bar.tsx
 - ProgressSize [type] — core/src/components/ui/progress-bar.tsx
 - ProgressStatCard [value] — core/src/components/ui/progress-stat-card.tsx
+- ProgressStatCardProps [type] — core/src/components/ui/progress-stat-card.tsx
 - ProjectCard [value] — core/src/components/ui/project-card.tsx
 - ProjectCardColor [type] — core/src/components/ui/project-card.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
@@ -380,6 +402,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
 - SmoothLineChart [value] — core/src/components/ui/charts/smooth-line-chart.tsx
 - StatCard [value] — core/src/components/ui/stat-card.tsx
+- StatCardProps [type] — core/src/components/ui/stat-card.tsx
 - StatCardShell [value] — core/src/components/ui/card-utils.tsx
 - StatCardSize [type] — core/src/components/ui/card-utils.tsx
 - statCardSizes [value] — core/src/components/ui/card-utils.tsx
@@ -465,7 +488,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - TypographyWeightSample [value] — core/src/components/ui/style-guide.tsx
 - UserCard [value] — core/src/components/ui/user-card.tsx
 - useToast [value] — core/src/components/ui/toast.tsx
+- WalletGoalCard [value] — core/src/components/ui/wallet-goal-card.tsx
+- WalletGoalCardProps [type] — core/src/components/ui/wallet-goal-card.tsx
 - WheelChartStatCard [value] — core/src/components/ui/wheel-chart-stat-card.tsx
+- WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 
 ## Template routes
@@ -570,6 +596,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; the 12 Bl
 - /cases/chat-input-bar — src/app/cases/chat-input-bar/page.tsx
 - /cases/checklist — src/app/cases/checklist/page.tsx
 - /cases/comment — src/app/cases/comment/page.tsx
+- /cases/dashboard-kit — src/app/cases/dashboard-kit/page.tsx
 - /cases/feedback — src/app/cases/feedback/page.tsx
 - /cases/filter — src/app/cases/filter/page.tsx
 - /cases/grid — src/app/cases/grid/page.tsx
@@ -609,7 +636,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的区块；[区块目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 是约 12 项抽取计划，尚非发布导出。
+2. **Blocks**：复用模板中职责明确的区块；[区块目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 12 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/components/button.md) 和 [组件选型](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。
@@ -1853,10 +1880,11 @@ Source: skills/forge-skill/references/audit-checklist.md
 
 ## T — 模板一致性
 
-- **T1**：声明主 Screen、源码版本与任务适配理由，Screen→Blocks→Components 分层；计划 Blocks 不作为已发布导出。
-- **T2**：同视口、相同侧栏、相同字体条件比较；依据页面规范分别核对 shell/section/Grid/卡内间距、轨道公式、图域与整卡高度。
+- **T1**：声明主 Screen、源码版本与任务适配理由，Screen→Blocks→Components 分层；Blocks 从 blocks/ 复制，不作为 core 导出；registry 依赖版本与发布状态分别核实。
+- **T2**：1440 与 375 两档逐个 Screen 保存重构前后截图及像素 diff；同视口、相同侧栏、相同字体、固定时间和样例数据条件比较；依据页面规范分别核对 shell/section/Grid/卡内间距、轨道公式、图域与整卡高度。
 - **T3**：模板圆角24px与 Token20px现状并存，不未经授权改全局 Token；有意偏差单独列出。
 - **T4**：内容组件核到子层，例如表格单元格、详情阅读组件、弹层关闭/焦点；仅 import 相同不算一致。
+- **T6**：Panel 变体与密度须由公开 API 设置，不恢复私有 density 覆盖；registry 每项可独立复制，blocks:check 通过；缺少截图必须标未验收。
 - **T5**：未核实的尺寸、触摸/读屏/软键盘、缺少后台的动作明确列未验证；公共缺口用 FORGE-GAP，等待用户决定。
 
 尺寸来源见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)，专项见 [内容](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-content-contracts.md)、[焦点](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/overlay-focus.md)、[动效](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/motion.md)。
@@ -1865,26 +1893,43 @@ Source: skills/forge-skill/references/audit-checklist.md
 
 Source: skills/forge-skill/references/blocks.md
 
-# Blocks 抽取计划（未实现）
+# 看板 Blocks（复制到项目）
 
-BRIEF 决定5确定以下12类候选，**不是当前 core 导出，不可直接 import**。先复用对应 Screen 局部；新增公共原语须 FORGE-GAP 决策。
+12 类候选已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。
 
-| 计划区块 | 内容插槽 |
-|---|---|
-| KPI 指标行 | 指标、单位、趋势 |
-| 最近记录表卡 | 标题、工具、DataTable |
-| 趋势图表卡 | 标题、指标、图域、图例 |
-| 排行列表卡 | 名称、指标、排序口径 |
-| 构成占比卡 | 分组、值、图例 |
-| 页头 | 标题、说明、操作 |
-| 地区分布卡 | 地区、范围、度量 |
-| 成员列表 | 身份、角色、操作 |
-| 目标进度列表 | 当前、目标、进度 |
-| 活动流 | 时间、对象、行为 |
-| 日程/甘特 | 日期、资源、事件 |
-| 卡片轮播 | 项目、当前项、翻页 |
+| 区块 | 导出名 | 源码目录 | 支持内容 |
+|---|---|---|---|
+| KPI 指标行 | KpiMetrics / FinanceMetricCard | blocks/kpi-metrics/ | metrics 或 children，compact 指标卡 |
+| 最近记录表卡 | RecentRecords | blocks/recent-records/ | Panel + 泛型 DataTable，或 children |
+| 趋势图表卡 | TrendChart | blocks/trend-chart/ | Panel + GroupedBarChart，或图域插槽 |
+| 排行列表卡 | RankingList | blocks/ranking-list/ | ListGroup 的 items/tabs/action，默认 compact |
+| 构成占比卡 | CompositionCard | blocks/composition-card/ | Panel + DonutChart，或 children |
+| 页头 | DashboardHeader | blocks/dashboard-header/ | title/description/action 或原始标题内容 |
+| 地区分布卡 | RegionDistribution | blocks/region-distribution/ | MapCard 的地区、范围、度量 |
+| 成员列表 | MemberList | blocks/member-list/ | UserCard 成员数据或自定义 items |
+| 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | WalletGoalCard 列表 / 财务储蓄面板 |
+| 活动流 | ActivityFeed | blocks/activity-feed/ | ActivityCard 事件或自定义 items |
+| 日程/甘特 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | FullCalendar、六时段只读 GanttSchedule 或 children；不提供甘特编辑器 |
+| 卡片轮播 | CardCarousel | blocks/card-carousel/ | CreditCard 数据、受控/非受控页码、可选翻页 |
 
-来源范围为[10个实际 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。区块与具体模板的逐项对应、API、命名、支持域均未实现、未验收；不把候选清单当成统计结果。不要将 FilterPanel 或 DropdownPanel 当成已完成的通用标题 Panel。
+## 使用边界
+
+- 画廊：`/blocks`；公共 API 对照：`/cases/dashboard-kit`。来源为[10 个 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
+- 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
+- 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
+- 依赖 core `^0.5.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
+- 本地示例：`npx shadcn@latest add http://localhost:3000/r/kpi-metrics.json`。宿主须已有 React 19、Tailwind 4、core 样式及 Token，复制后的文件由用户维护。沿用[安装说明](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/SKILL.md)配置，不附带后台、数据请求、鉴权或持久化。
+- API 以各目录 TSX 类型为准。插槽不会额外套内容容器；接入时保留 Screen 的轨道、className、图域高与 compact 密度。图片、文案、业务回调由宿主提供，未绑定回调不代表业务已实现。
+
+## 公共组件决策
+
+新增 `Panel`，不改变 `SurfaceCard`；dashboard 变体为圆角 24px/边框/padding16，template 变体兼容旧共享 Panel 的圆角 Token/outline/padding24。
+`ChartHeader`、`ChartMetricRow`、`GroupedBarChart`、`DivergingBarChart` 归 charts；`WalletGoalCard` 归 core。
+原 DashboardShell 只有 AppLayout 默认值，无独立抽象价值，Screens 直接用 AppLayout；财务轮播和特定储蓄面板归 Blocks，不扩大业务化 core API。
+
+## 验收状态
+
+源码、类型、单测、registry 与构建检查分开记录；1440/375 的前后截图与像素 diff 是独立门禁。本次环境 Chromium 启动被 macOS sandbox MachPort 拒绝，不能把静态迁移或构建通过当成视觉一致性通过。重放脚本、基线源码和实际结果记录在 `/tmp/forge-impl/G-shots/`。
 
 ---
 
@@ -3727,13 +3772,13 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 | finance-3主结构 | base1列；lg4轨道，左span1、右span3；列gap16px | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:137`、`:139`、`:199` |
 | finance-3右区内嵌行 | 独立3轨道，2:1；不是整页再次2:1 | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:251`、`:253`、`:277` |
 | 标题型图表/表格卡壳 | `rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4`；即padding16、卡内gap16、圆角24px（默认换算） | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:203`、`:298`、`:317`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:201` |
-| compact KPI | padding16、内部gap12；模板还对字级/行高/子图高度做覆盖，不能只改padding就说同密度 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:7` 至`:8` |
-| compact Balance/Image | Balance padding16/gap12；Image padding16/gap16 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:10` 至`:14` |
-| compact ListGroup | header左右/上16；body左右/上下16，条目gap12 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:18` 至`:19` |
-| compact Highlight特例 | `h-96`=384px，padding16/gap12；只适用该组件，不推广到所有卡 | `src/app/templates/(dashboards)/dashboards/_shared/dashboard-density.ts:16` |
-| analytics主图绘图区 | `heightClass="h-56"`=224px；不是整卡高度 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:210`；`src/app/templates/(dashboards)/dashboards/_shared/figma-charts.tsx:117`、`:129` |
+| compact KPI | padding16、内部gap12；density="compact" 同时控制字级/行高/子图高度，不能只改padding就说同密度 | core 中对应组件的 density="compact" |
+| compact Balance/Image | Balance padding16/gap12；Image padding16/gap16 | core 中对应组件的 density="compact" |
+| compact ListGroup | header左右/上16；body左右/上下16，条目gap12 | core 中对应组件的 density="compact" |
+| compact Highlight特例 | `h-96`=384px，padding16/gap12；只适用该组件，不推广到所有卡 | core 中对应组件的 density="compact" |
+| analytics主图绘图区 | `heightClass="h-56"`=224px；不是整卡高度 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:210`；`core/src/components/ui/charts/dashboard-charts.tsx:117`、`:129` |
 | finance-3上下柱图绘图区 | `heightClass="h-56"`=224px；标题/指标行另计 | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:239` 至`:246` |
-| 主图纵轴槽 | 44px+剩余图域，轴与图gap12；图内还有pt-8等留量，不等于所有图都用44px轴 | `src/app/templates/(dashboards)/dashboards/_shared/figma-charts.tsx:129`、`:136` |
+| 主图纵轴槽 | 44px+剩余图域，轴与图gap12；图内还有pt-8等留量，不等于所有图都用44px轴 | `core/src/components/ui/charts/dashboard-charts.tsx:129`、`:136` |
 | 断点 | sm640、md768、lg1024、xl1280、2xl1536；均是视口断点，不是净内容宽 | `core/src/styles/tokens.css:615`、`:626`、`:637`、`:648`、`:659` |
 
 ### 3. 几何公式与线框标注
@@ -3746,6 +3791,14 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 - 图表卡高不指定一个“全站统一值”：整卡由上下padding、标题/指标/图例/绘图区及内部gap组成。224px只锁定对应图组件wrapper；文字换行、图例、提示层会影响整卡/可见区域。整卡实际高度未浏览器核实时标**未核实**。
 - 图内至少标出：外壳padding16/20、section gap20、Grid gap16、卡padding16、卡内gap12或16、图域224、响应式跨度。不要用一条“页面gap24”覆盖全部层级。
 - `--radius-card=20px` 与模板 `rounded-3xl=24px`并存：本草案记录模板24px现状，**不授权修改全局Token**。待Panel组件立项再决定模板兼容方式。
+
+### 已实现的看板组件与区块
+
+- 外壳：AppLayout；面板：Panel（dashboard/template），SurfaceCard 保持原 API。
+- 密度：StatCard、ProgressStatCard、LineChartStatCard、BarChartStatCard、WheelChartStatCard、BalanceCard、ImageStatCard、HighlightCard、ListGroup 使用 density="compact"；不再依赖模板 !important。默认密度不变。
+- 图表：ChartHeader、ChartMetricRow、GroupedBarChart、DivergingBarChart；目标：WalletGoalCard。
+- 12 类可复制 Block 的实现名、目录和支持边界见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)，不要从 core import Block。
+- 以上为实现状态；前后像素一致须独立验收，当前环境未完成截图，不将尺寸公式当实测。
 
 ---
 
@@ -3769,6 +3822,12 @@ Source: skills/forge-skill/references/screens.md
 | project-2 | 项目任务与资源概览 | src/app/templates/(dashboards)/dashboards/project-2/page.tsx |
 
 具体布局与尺寸见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)；区块抽取状态见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
+
+## 实现分层
+
+十个页面已直接使用 AppLayout；卡壳用 Panel，区块从 blocks/ 复制。原 dashboard-density、DashboardShell、Figma 前缀图表与私有 WalletGoalCard 已删除；公共图表与密度 API 见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
+
+这是源码迁移状态，不是截图验收结论：须逐页比较 1440 与 375 两档、同字体/侧栏/固定数据的前后截图，记录不同尺寸或有意差异，不能用 build 代替。
 
 ---
 

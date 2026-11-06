@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "@/blocks/*": ["./blocks/*"],
       "@/*": ["./src/*"],
       "@forge-ui-official/core": ["./core/src/index.ts"],
       "@forge-ui-official/core/*": ["./core/src/*"]

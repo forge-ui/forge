@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trend-chart",
+  "type": "registry:block",
+  "title": "趋势图表卡",
+  "description": "标题、指标行与分组柱状图，支持自定义图域。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/trend-chart/trend-chart.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/trend-chart.tsx",
+      "content": "import { GroupedBarChart, Panel, type GroupedBarChartProps, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type TrendChartProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: GroupedBarChartProps;\n};\n\nexport function TrendChart({ children, chart, ...panel }: TrendChartProps) {\n  return <Panel {...panel}>{children ?? (chart && <GroupedBarChart {...chart} />)}</Panel>;\n}\n"
+    }
+  ]
+}

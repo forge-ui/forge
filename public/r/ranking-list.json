@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ranking-list",
+  "type": "registry:block",
+  "title": "排行列表卡",
+  "description": "紧凑列表与排序口径、操作插槽。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/ranking-list/ranking-list.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/ranking-list.tsx",
+      "content": "import { ListGroup, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type RankingListProps = ListGroupProps;\n\nexport function RankingList(props: RankingListProps) {\n  return <ListGroup density=\"compact\" {...props} />;\n}\n"
+    }
+  ]
+}

@@ -1,5 +1,12 @@
 "use client";
 
+import { AppLayout, DivergingBarChart } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { RegionDistribution } from "@/blocks/region-distribution/region-distribution";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   BoxBoldDuotone,
@@ -24,8 +31,7 @@ import {
   LineChartStatCard,
   ImageStatCard,
   HighlightCard,
-  MapCard,
-  DataTable,
+    DataTable,
   CellImageText,
   CellText,
   CellTextSubtitle,
@@ -39,17 +45,7 @@ import type {
   StatusBadgeColor,
   MapRegion,
 } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  orders,
-  upsideDownBarData,
-  FigmaUpsideDownBarChart,
-  compactHighlightCardClass,
-  compactImageStatCardClass,
-  compactStatCardClass,
-  type OrderRow,
-} from "../_shared";
+import { mainProfile, orders, upsideDownBarData, type OrderRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/dashboards/ecommerce-1" },
@@ -125,7 +121,10 @@ const orderColumns: ColumnDef<OrderRow>[] = [
 
 export default function Ecommerce1Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="blue"
       profilePosition="topbar"
@@ -140,9 +139,9 @@ export default function Ecommerce1Page() {
     >
       <div className="flex flex-col gap-5">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 [&>*]:!w-full">
+        <KpiMetrics className="grid grid-cols-1 gap-4 lg:grid-cols-3 [&>*]:!w-full">
           <WheelChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Total Revenue"
             subtitle="2 Jul - Today"
             value="$32,200"
@@ -154,7 +153,7 @@ export default function Ecommerce1Page() {
             wheelPercent={75}
           />
           <LineChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Orders"
             subtitle="1 Jan - Today"
             value="31,300"
@@ -165,7 +164,7 @@ export default function Ecommerce1Page() {
             chartDirection="down"
           />
           <ImageStatCard
-            className={compactImageStatCardClass}
+            density="compact"
             title="Customers"
             subtitle="2 Jul - Today"
             value="14,000"
@@ -175,18 +174,18 @@ export default function Ecommerce1Page() {
             size="wide"
             avatars={[1, 2, 3].map((i) => `https://i.pravatar.cc/80?u=cust-${i}`)}
           />
-        </div>
+        </KpiMetrics>
 
         {/* Statistic + Top Product */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
+          <TrendChart className="lg:col-span-2">
+            <DashboardHeader className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
-            </div>
+            </DashboardHeader>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-3">
                 <div className="size-10 rounded-full bg-fg-blue-50 flex items-center justify-center text-fg-blue">
@@ -213,7 +212,7 @@ export default function Ecommerce1Page() {
                 </div>
               </div>
             </div>
-            <FigmaUpsideDownBarChart
+            <DivergingBarChart
               data={upsideDownBarData}
               activeIndex={5}
               tooltipUpperValue="$680"
@@ -222,13 +221,13 @@ export default function Ecommerce1Page() {
               lowerColor="bg-fg-red"
               heightClass="h-56"
             />
-          </div>
+          </TrendChart>
 
           <HighlightCard
-            className={compactHighlightCardClass}
+            density="compact"
             title="Top Product"
             theme="blue"
-            image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80&auto=format&fit=crop"
+            image="/images/showcase/top-product-headphones.jpg"
             annotations={[
               { label: "Earphone", value: "JDL Earnote Pro 2", position: { top: "20%", left: "8%" } },
               { label: "340 Sales", value: "$24.982", position: { bottom: "30%", right: "8%" } },
@@ -243,7 +242,7 @@ export default function Ecommerce1Page() {
 
         {/* Top Region + Recent Orders */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <MapCard
+          <RegionDistribution
             title="Top Region"
             subtitle="Sales by region"
             color="blue"
@@ -253,7 +252,7 @@ export default function Ecommerce1Page() {
             onMenuClick={() => {}}
           />
 
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
@@ -274,9 +273,9 @@ export default function Ecommerce1Page() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 100"
             />
-          </div>
+          </RecentRecords>
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

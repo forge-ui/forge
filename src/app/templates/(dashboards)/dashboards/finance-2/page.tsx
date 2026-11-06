@@ -1,5 +1,14 @@
 "use client";
 
+import { WalletProgressPanel } from "@/blocks/goal-progress-list/goal-progress-list";
+
+import { AppLayout, DivergingBarChart, Panel } from "@forge-ui-official/core";
+import { KpiMetrics, FinanceMetricCard } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { CardCarousel } from "@/blocks/card-carousel/card-carousel";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   ChartBoldDuotone,
@@ -17,7 +26,6 @@ import {
 } from "@forge-ui-official/core/icons";
 import {
   Button,
-  CreditCard,
   DashedHalfDonutChart,
   DataTable,
   CellImageText,
@@ -25,7 +33,6 @@ import {
   CellText,
   StatusBadge,
   KebabMenu,
-  PageDot,
   PlusIcon,
 } from "@forge-ui-official/core";
 import type {
@@ -33,14 +40,7 @@ import type {
   ColumnDef,
   StatusBadgeColor,
 } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  transactions,
-  upsideDownBarData,
-  FigmaUpsideDownBarChart,
-  type TransactionRow,
-} from "../_shared";
+import { mainProfile, transactions, upsideDownBarData, type TransactionRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Overview", href: "/templates/dashboards/finance-2" },
@@ -93,150 +93,9 @@ const transactionColumns: ColumnDef<TransactionRow>[] = [
   },
 ];
 
-function MiniFinanceLine({
-  color,
-  direction,
-}: {
-  color: "purple" | "red";
-  direction: "up" | "down";
-}) {
-  const stroke = color === "purple" ? "#7239EA" : "#FE4A23";
-  const points =
-    direction === "up"
-      ? "M2 50 C18 34 24 70 42 49 C55 32 60 53 74 45 C88 38 94 44 106 48 C121 54 126 32 138 18"
-      : "M2 18 C16 36 24 20 39 36 C52 50 58 58 73 55 C88 52 91 42 105 54 C119 66 128 60 138 58";
-
-  return (
-    <svg viewBox="0 0 140 76" className="h-14 w-36" aria-hidden="true">
-      <defs>
-        <linearGradient id={`finance-2-${color}-fade`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={stroke} stopOpacity="0.18" />
-          <stop offset="100%" stopColor={stroke} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d={`${points} L138 76 L2 76 Z`} fill={`url(#finance-2-${color}-fade)`} />
-      <path d={points} fill="none" stroke={stroke} strokeWidth="4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function FinanceStatCard({
-  title,
-  value,
-  color,
-  direction,
-}: {
-  title: "Income" | "Expenses";
-  value: string;
-  color: "purple" | "red";
-  direction: "up" | "down";
-}) {
-  const iconClass = color === "purple" ? "bg-fg-grey-100 text-fg-violet" : "bg-fg-grey-100 text-fg-red";
-
-  return (
-    <div className="rounded-3xl border border-fg-grey-200 bg-white p-4 min-h-44 flex flex-col justify-between gap-3">
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
-          <p className="mt-1 text-xs font-medium text-fg-grey-700">2 Jul - Today</p>
-        </div>
-        <span className={`flex size-9 items-center justify-center rounded-full ${iconClass}`}>
-          {direction === "up" ? <ArrowRightUpLinear size={18} /> : <ArrowRightDownLinear size={18} />}
-        </span>
-      </div>
-      <div className="flex items-end justify-between gap-3">
-        <div>
-          <div className="text-2xl font-semibold leading-8 text-fg-black">{value}</div>
-          <div className="mt-1 flex items-center gap-1 text-sm font-bold text-fg-green">
-            10%
-            <span className="inline-block size-0 border-x-[5px] border-b-[7px] border-x-transparent border-b-fg-green" />
-            <span className="font-medium text-fg-grey-700">+$150 today</span>
-          </div>
-        </div>
-        <MiniFinanceLine color={color} direction={direction} />
-      </div>
-    </div>
-  );
-}
-
-function CardCarouselPreview() {
-  return (
-    <div className="relative -mx-4 h-56 overflow-hidden">
-      <div className="absolute left-0 top-6 h-40 w-10 overflow-hidden rounded-r-2xl">
-        <div className="absolute left-[-236px] top-0">
-          <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="yellow" variant="flat" className="[&_*]:invisible" />
-        </div>
-      </div>
-      <div className="absolute right-0 top-6 h-40 w-10 overflow-hidden rounded-l-2xl">
-        <div className="absolute right-[-236px] top-0">
-          <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="blue" variant="flat" className="[&_*]:invisible" />
-        </div>
-      </div>
-      <div className="absolute left-1/2 top-6 -translate-x-1/2">
-        <CreditCard
-          cardNumber="9090"
-          holderName="John Doe Hoegan"
-          expiry="07/25"
-          theme="purple"
-          variant="gradient"
-          className="shadow-card"
-        />
-      </div>
-    </div>
-  );
-}
-
-function FinanceWalletPanel() {
-  return (
-    <div className="rounded-3xl border border-fg-grey-200 bg-white p-4 min-h-[420px] flex flex-col">
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">Wallet</h3>
-          <p className="mt-1 text-xs font-medium text-fg-grey-700">Your Savings Progress</p>
-        </div>
-        <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
-      </div>
-      <div className="relative mt-6 flex-1 overflow-hidden">
-        <div className="absolute left-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-white" />
-        <div className="absolute right-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-white" />
-        <div className="mx-4 rounded-[28px] border border-fg-grey-200 bg-white p-4 shadow-subtle">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <span className="flex size-10 items-center justify-center rounded-full bg-fg-grey-100 text-fg-violet">
-                <WalletBoldDuotone size={20} />
-              </span>
-              <div>
-                <div className="text-sm font-semibold text-fg-black">Holiday</div>
-                <div className="mt-1 text-xs text-fg-grey-700">12 December 2024</div>
-              </div>
-            </div>
-            <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
-          </div>
-          <div className="mt-6 flex items-end justify-between">
-            <span className="text-lg font-semibold text-fg-black">$1,600</span>
-            <span className="text-lg font-semibold text-fg-violet">50%</span>
-          </div>
-          <div className="mt-5 h-3 rounded-full bg-fg-grey-100">
-            <div className="h-full w-1/2 rounded-full bg-fg-violet" />
-          </div>
-          <div className="mt-5 border-t border-fg-grey-200 pt-5 grid grid-cols-2 gap-3">
-            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-semibold">Top Up</Button>
-            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-semibold">Withdraw</Button>
-          </div>
-        </div>
-      </div>
-      <div className="mt-5 flex items-center justify-center gap-2">
-        <PageDot active>1</PageDot>
-        <PageDot>2</PageDot>
-        <PageDot>3</PageDot>
-      </div>
-    </div>
-  );
-}
-
 function AllExpensesPanel() {
   return (
-    <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 min-h-[420px] flex flex-col gap-4">
+    <Panel className="min-h-[420px]">
       <div className="flex items-start justify-between">
         <div>
           <h3 className="text-sm font-semibold leading-5 text-fg-black">All Expenses</h3>
@@ -283,13 +142,16 @@ function AllExpensesPanel() {
           </div>
         ))}
       </div>
-    </div>
+    </Panel>
   );
 }
 
 export default function Finance2Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="black"
       profilePosition="topbar"
@@ -300,29 +162,33 @@ export default function Finance2Page() {
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div className="flex flex-col gap-4">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 min-h-[380px] flex flex-col">
-            <div className="flex items-start justify-between">
+          <Panel gap="none" className="min-h-[380px]">
+            <DashboardHeader className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold leading-5 text-fg-black">Card</h3>
                 <p className="mt-1 text-xs font-medium text-fg-grey-700">All Your Cards</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
-            </div>
-            <CardCarouselPreview />
+            </DashboardHeader>
+            <CardCarousel size="default" cards={[
+              { id: "primary", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "purple", variant: "gradient" },
+              { id: "next", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "blue", variant: "flat" },
+              { id: "previous", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "yellow", variant: "flat" },
+            ]} />
             <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={16} />} className="h-10 w-full rounded-full text-sm font-semibold">Add New Card</Button>
-          </div>
+          </Panel>
 
-          <FinanceWalletPanel />
+          <WalletProgressPanel />
           <AllExpensesPanel />
         </div>
 
         <div className="flex flex-col gap-4 lg:col-span-2">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <FinanceStatCard title="Income" value="$35,500" color="purple" direction="up" />
-            <FinanceStatCard title="Expenses" value="$14,000" color="red" direction="down" />
-          </div>
+          <KpiMetrics className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <FinanceMetricCard title="Income" value="$35,500" color="purple" direction="up" />
+            <FinanceMetricCard title="Expenses" value="$14,000" color="red" direction="down" />
+          </KpiMetrics>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 min-h-[460px] flex flex-col gap-4">
+          <TrendChart className="min-h-[460px]">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold leading-5 text-fg-black">Statistic</h3>
@@ -356,7 +222,7 @@ export default function Finance2Page() {
                 </div>
               </div>
             </div>
-            <FigmaUpsideDownBarChart
+            <DivergingBarChart
               data={upsideDownBarData}
               activeIndex={5}
               tooltipUpperValue="$680"
@@ -365,9 +231,9 @@ export default function Finance2Page() {
               lowerColor="bg-fg-red"
               heightClass="h-56"
             />
-          </div>
+          </TrendChart>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <RecentRecords >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Transaction</h3>
@@ -388,10 +254,10 @@ export default function Finance2Page() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 100"
             />
-          </div>
+          </RecentRecords>
         </div>
 
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

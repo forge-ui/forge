@@ -1,4 +1,13 @@
 "use client";
+import { ScheduleCard } from "@/blocks/schedule-card/schedule-card";
+import { MemberList } from "@/blocks/member-list/member-list";
+
+import { AppLayout } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { CompositionCard } from "@/blocks/composition-card/composition-card";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
 
 import {
   WidgetBoldDuotone,
@@ -23,19 +32,10 @@ import {
   Avatar,
   IconButton,
   KebabMenu,
-  ListGroup,
-  FullCalendar,
+    FullCalendar,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem, CalendarEvent } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  teamMeta,
-  teamMembers,
-  months,
-  compactListGroupClass,
-  compactStatCardClass,
-} from "../_shared";
+import { mainProfile, teamMeta, teamMembers, months } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Overview", href: "/templates/dashboards/project-2" },
@@ -68,7 +68,10 @@ const recentProjects = [
 
 export default function Project2Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="blue"
       profilePosition="sidebar"
@@ -82,9 +85,9 @@ export default function Project2Page() {
     >
       <div className="flex flex-col gap-5">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 items-stretch [&>*]:!w-full">
+        <KpiMetrics className="grid grid-cols-1 gap-4 lg:grid-cols-3 items-stretch [&>*]:!w-full">
           <ProgressStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Active Project"
             subtitle="+44 today"
             value="4,412"
@@ -97,7 +100,7 @@ export default function Project2Page() {
             size="wide"
           />
           <LineChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Active Client"
             subtitle="+0 today"
             value="1,456"
@@ -109,7 +112,7 @@ export default function Project2Page() {
             icon={<UserBoldDuotone size={20} />}
           />
           <WheelChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Team Assigned"
             subtitle="+5 today"
             value="324"
@@ -120,12 +123,12 @@ export default function Project2Page() {
             size="wide"
             icon={<UsersGroupTwoRoundedBoldDuotone size={20} />}
           />
-        </div>
+        </KpiMetrics>
 
         {/* Statistic + All Project pie */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
+          <TrendChart className="lg:col-span-2">
+            <DashboardHeader className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and expenses</p>
@@ -136,7 +139,7 @@ export default function Project2Page() {
                 <button className="px-3 py-1.5 text-fg-grey-500">Expenses</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Profit</button>
               </div>
-            </div>
+            </DashboardHeader>
             <div className="flex items-center gap-4">
               {[
                 { label: "Income", value: "$26,201", trend: "10%", up: true, color: "#7c3aed" },
@@ -177,9 +180,9 @@ export default function Project2Page() {
               xAxisLabels={months}
               height="h-56"
             />
-          </div>
+          </TrendChart>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <CompositionCard >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">All Project</h3>
@@ -204,13 +207,13 @@ export default function Project2Page() {
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#10b981" }} /> Completed</span>
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#ef4444" }} /> Unfinished</span>
             </div>
-          </div>
+          </CompositionCard>
         </div>
 
         {/* Recent Project + Team Member + Calendar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Recent Project"
             subtitle="Recent Active Project"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -234,8 +237,8 @@ export default function Project2Page() {
             }
           />
 
-          <ListGroup
-            className={compactListGroupClass}
+          <MemberList
+            density="compact"
             title="Team Member"
             subtitle="All Team Member"
             action={<KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />}
@@ -260,7 +263,7 @@ export default function Project2Page() {
             }
           />
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <ScheduleCard gap="sm" >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Calendar</h3>
@@ -276,9 +279,9 @@ export default function Project2Page() {
               day={4}
               events={calendarEvents}
             />
-          </div>
+          </ScheduleCard>
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

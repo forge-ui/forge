@@ -1,3 +1,4 @@
+import type { CardDensity } from "./card-utils";
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
@@ -31,7 +32,7 @@ function WheelSlot({
   color: WheelColor;
   themeKey: CardTheme;
   size?: StatCardSize;
-  density?: "default" | "compact";
+  density?: CardDensity;
 }) {
   const isWhite = themeKey === "white";
   const fillClass = isWhite ? wheelBg[color] : "bg-white";
@@ -40,7 +41,7 @@ function WheelSlot({
   const clamped = Math.max(0, Math.min(100, percent));
   const angle = (clamped / 100) * 360;
   const dimensionClass = density === "compact"
-    ? size === "wide" ? "w-16 h-16 ml-auto" : "w-12 h-12"
+    ? size === "wide" ? "w-20 h-20 ml-auto" : size === "lg" ? "w-16 h-12" : "w-12 h-12"
     : size === "wide" ? "w-20 h-20 ml-auto" : size === "lg" ? "w-16 h-16" : "w-12 h-12";
   return (
     <div className={cn("rounded-full relative overflow-hidden", dimensionClass)}>
@@ -106,3 +107,5 @@ export function WheelChartStatCard({
     />
   );
 }
+
+export type WheelChartStatCardProps = Parameters<typeof WheelChartStatCard>[0];

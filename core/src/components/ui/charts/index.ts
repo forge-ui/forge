@@ -16,3 +16,6 @@ export { ChartLegendItem } from "./chart-legend-item";
 export { ChartValueRow } from "./chart-value-row";
 export { ChartStatFooter } from "./chart-stat-footer";
 export { DashedHalfDonutChart } from "./dashed-half-donut-chart";
+
+export { ChartHeader, ChartMetricRow, GroupedBarChart, DivergingBarChart } from "./dashboard-charts";
+export type { ChartHeaderProps, ChartMetricRowProps, GroupedBarChartProps, DivergingBarChartProps, ChartTrend, GroupedBarPoint, ChartMetricSeries, GroupedBarTooltipItem } from "./dashboard-charts";

@@ -1,3 +1,4 @@
+import type { CardDensity } from "./card-utils";
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "../../lib/utils";
 import { cardThemes, resolveCardTheme, resolveCardWidthClass, type CardTheme, type CardWidth, type LegacyCardTheme } from "./card-utils";
@@ -40,7 +41,7 @@ export function HighlightCard({
   annotations?: Annotation[];
   products?: Product[];
   /** Use compact inside dense dashboards while preserving the default showcase scale. */
-  density?: "default" | "compact";
+  density?: CardDensity;
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -94,3 +95,5 @@ export function HighlightCard({
     </div>
   );
 }
+
+export type HighlightCardProps = Parameters<typeof HighlightCard>[0];

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "recent-records",
+  "type": "registry:block",
+  "title": "最近记录表卡",
+  "description": "标题、操作栏与带稳定行标识的数据表。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/recent-records/recent-records.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/recent-records.tsx",
+      "content": "\"use client\";\n\nimport { DataTable, Panel, type ColumnDef, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type RecentRecordsProps<RecordType> = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  columns?: ColumnDef<RecordType>[];\n  data?: RecordType[];\n  getRowKey?: (row: RecordType, index: number) => string;\n};\n\nexport function RecentRecords<RecordType>({ columns, data, getRowKey, children, ...panel }: RecentRecordsProps<RecordType>) {\n  return <Panel {...panel}>{children ?? (columns && data ? <DataTable columns={columns} rows={data} getRowKey={getRowKey} /> : null)}</Panel>;\n}\n"
+    }
+  ]
+}

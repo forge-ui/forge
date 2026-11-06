@@ -1,5 +1,13 @@
 "use client";
 
+import { AppLayout, Panel } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { RegionDistribution } from "@/blocks/region-distribution/region-distribution";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   BoxBoldDuotone,
@@ -21,16 +29,14 @@ import {
   BarChartStatCard,
   SmoothLineChart,
   BubbleChart,
-  MapCard,
-  DataTable,
+    DataTable,
   CellImageText,
   CellText,
   CellTextSubtitle,
   CellMuted,
   StatusBadge,
   KebabMenu,
-  ListGroup,
-  ChartListItem,
+    ChartListItem,
 } from "@forge-ui-official/core";
 import type {
   AppLayoutMenuItem,
@@ -38,16 +44,7 @@ import type {
   StatusBadgeColor,
   MapRegion,
 } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  orders,
-  topProducts,
-  months,
-  compactListGroupClass,
-  compactStatCardClass,
-  type OrderRow,
-} from "../_shared";
+import { mainProfile, orders, topProducts, months, type OrderRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/dashboards/ecommerce-2" },
@@ -135,7 +132,10 @@ const orderColumns: ColumnDef<OrderRow>[] = [
 
 export default function Ecommerce2Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="purple"
       profilePosition="topbar"
@@ -147,9 +147,9 @@ export default function Ecommerce2Page() {
     >
       <div className="flex flex-col gap-5">
         {/* 3 stats */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 [&>*]:!w-full">
+        <KpiMetrics className="grid grid-cols-1 gap-4 lg:grid-cols-3 [&>*]:!w-full">
           <ProgressStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Total Revenue"
             subtitle="2 Jul - Today"
             value="$32,200"
@@ -160,7 +160,7 @@ export default function Ecommerce2Page() {
             progressColor="red"
           />
           <LineChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Orders"
             subtitle="1 Jan - Today"
             value="31,300"
@@ -171,7 +171,7 @@ export default function Ecommerce2Page() {
             chartDirection="down"
           />
           <BarChartStatCard
-            className={compactStatCardClass}
+            density="compact"
             title="Customers"
             subtitle="2 Jul - Today"
             value="14,000"
@@ -181,12 +181,12 @@ export default function Ecommerce2Page() {
             barColor="purple"
             bars={[10, 30, 60, 95, 50, 40, 30]}
           />
-        </div>
+        </KpiMetrics>
 
         {/* Statistic + Expenses bubbles */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
+          <TrendChart className="lg:col-span-2">
+            <DashboardHeader className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
@@ -197,7 +197,7 @@ export default function Ecommerce2Page() {
                 <button className="px-3 py-1.5 rounded-full bg-white shadow-sm text-fg-black">Month</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Year</button>
               </div>
-            </div>
+            </DashboardHeader>
             <div className="flex items-center gap-4">
               {[
                 { label: "Income", value: "$26,201", trend: "10%", up: true, color: "#7c3aed" },
@@ -237,9 +237,9 @@ export default function Ecommerce2Page() {
               xAxisLabels={months}
               height="h-56"
             />
-          </div>
+          </TrendChart>
 
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <Panel >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Expenses</h3>
@@ -262,12 +262,12 @@ export default function Ecommerce2Page() {
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#0ea5e9" }} /> Discount</span>
               <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#f97316" }} /> Flyer</span>
             </div>
-          </div>
+          </Panel>
         </div>
 
         {/* Top Region + Top Product + Top Category */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <MapCard
+          <RegionDistribution
             title="Top Region"
             subtitle="Sales by region"
             color="purple"
@@ -277,8 +277,8 @@ export default function Ecommerce2Page() {
             onMenuClick={() => {}}
           />
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Top Product"
             subtitle="Based on Sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -303,8 +303,8 @@ export default function Ecommerce2Page() {
             }
           />
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -333,7 +333,7 @@ export default function Ecommerce2Page() {
         </div>
 
         {/* Recent Orders table */}
-        <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+        <RecentRecords >
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
@@ -355,8 +355,8 @@ export default function Ecommerce2Page() {
             onPageChange={() => {}}
             paginationLabel="Showing 1-10 from 100"
           />
-        </div>
+        </RecentRecords>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

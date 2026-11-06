@@ -1,3 +1,4 @@
+import type { CardDensity } from "./card-utils";
 import { type ReactNode } from "react";
 import { AnimatedNumber } from "../../internal/animated-number";
 import type { MotionPreference } from "../../lib/motion";
@@ -73,7 +74,7 @@ export function StatCard({
   /** If set, renders the built-in kebab-menu button. */
   onKebabClick?: () => void;
   /** Use compact inside dense dashboards while preserving the default Figma showcase scale. */
-  density?: "default" | "compact";
+  density?: CardDensity;
   /** Use full to fill dashboard/grid columns. Use fixed only for Figma-size showcases. */
   width?: CardWidth;
   className?: string;
@@ -83,7 +84,7 @@ export function StatCard({
   const sz = statCardSizes[size];
   const isWide = size === "wide";
   const isCompact = density === "compact";
-  const iconSize = size === "lg" && !isCompact ? 48 : isCompact ? 36 : 40;
+  const iconSize = size === "lg" ? 48 : 40;
   const renderedValue = typeof value === "number" && (animateValue || numberFormat)
     ? <AnimatedNumber value={value} locale={locale} formatOptions={numberFormat} motion={animateValue ? motion : "none"} />
     : value;
@@ -126,14 +127,14 @@ export function StatCard({
         </>
       ) : (
         <div className="self-stretch inline-flex justify-start items-start gap-2 relative z-10">
-          <div className={cn("flex-1 inline-flex flex-col justify-start items-start min-w-0", isCompact ? "gap-3" : "gap-4")}>
+          <div className={cn("flex-1 inline-flex flex-col justify-start items-start min-w-0", "gap-4")}>
             <div className="self-stretch inline-flex justify-start items-center gap-2">
               {icon && <CardIconChip icon={icon} theme={cfg} themeKey={themeKey} variant={badgeVariant} size={iconSize} />}
               <span className={cn("flex-1 text-sm font-medium leading-5 tracking-fg truncate", cfg.titleColor)}>
                 {title}
               </span>
             </div>
-            <div className={cn("self-stretch font-semibold tracking-fg", isCompact ? "text-2xl leading-8" : sz.value, cfg.valueColor)}>
+            <div className={cn("self-stretch font-semibold tracking-fg", isCompact && size !== "lg" ? "text-2xl leading-8" : sz.value, cfg.valueColor)}>
               {renderedValue}
             </div>
           </div>
@@ -145,3 +146,5 @@ export function StatCard({
     </div>
   );
 }
+
+export type StatCardProps = Parameters<typeof StatCard>[0];

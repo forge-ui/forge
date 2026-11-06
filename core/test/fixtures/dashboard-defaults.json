@@ -1,0 +1,491 @@
+{
+  "baseline": "10208a4a3c0bebb9c16063254256f0a0b0c5165c",
+  "cases": [
+    {
+      "name": "StatCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "0515db86320c7d9156b4a4142ec13ba7f2ca82e781242ab541e52e53f10666a8"
+    },
+    {
+      "name": "StatCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "3b970b39b4df59b33a82578b0869f2ac1ba69c7321e96f15131caf4064a04985"
+    },
+    {
+      "name": "StatCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "8656ca3d6d1e32121077b38cbd5a9a5bee7f79bb6d0f520b346e7f3de0a7d6e7"
+    },
+    {
+      "name": "StatCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "df2de7624d957eb9d5aa8bfe04e84562a3bf1fe33565ae183a0a896e4e9fbbef"
+    },
+    {
+      "name": "StatCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "0ceb60c275243474a8be1fb0913072814d10639f4a7d8eaf16c6201ea6e9cdec"
+    },
+    {
+      "name": "StatCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "70dbff7259ecedb56f60e74218244f12d27f27adc137337bddf1c4de5589582f"
+    },
+    {
+      "name": "StatCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "2005668f3e1d5508569bdc7ed697c3cd9dd128e6e41e3708a3d9cbc6e475ef6a"
+    },
+    {
+      "name": "StatCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "323a57c1989407fffb3bab0bc580aac5681033c5b6d1ce28a69fa0fe7df1045d"
+    },
+    {
+      "name": "StatCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "56ce49a660e18f180ba6a28a6ed5cd414135cfeab920a060ce3aa3919d56862a"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "68904cf1a4a9992b725c2e0f2453674ab5c6499d9ac1501040ffe29586b9065a"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "6a66f1e211ef28f8db6b77f37e984bd86e475160d6b27714c86845128a8ff23a"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "252fe4f91ec44faa44950e09fef3e718e9731a6a8c61d22ad05c897ba9979e40"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "48cd514edd1694ca8744ce0b2c4696423b2308de6bece57cfec1f4209f74c7be"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "df53cc9e4c0e4c36a9b3a1818479e1777d0230bed1ee485d4679d1885646abd8"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "d9f8be842f738b49334d0ad1f3f6323f20a90198848df02edb637fe78af63e12"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "95b3acdda12769121f68cc4a4ff2ae0f05f11e7303fae115566d36d8f75b0da4"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "b9310c44baeb9337d11b658c2ae8fa87c3cb22b7d82a6b0b62de21c3c7526475"
+    },
+    {
+      "name": "ProgressStatCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "7772004a7a2aa5ffd8c8f0441d4f0c5e0eb708b497eaccf735ef39426658cab0"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "db729e60b0fb3980519c6cde55e74c63015916538dc35440fa4c5e6b821f350e"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "befc6e8a134633840efebd6be83ab44be0d3696720664f4acf3a43231163c423"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "f15163a8c3baccc66fa981c8c92e2aab3a1ea7d4aa0d174d87e6203585c7936d"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "3c1dd4bf3773ea76826ad4d743fbf0156aabd46b4850e5ca87b903ae4330b797"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "1209c01eb7749b9ae6ff14cb980b09d6ddf4d5f43f46a24510c14ca5f73a7603"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "1efd324b30fa3c463a4ca084e9d1915c30c0d94c9b511e15f69e33e874ef3bcb"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "c025d89e08ae6c033eef07461d5093293ff26cb58bf527d352ad8b0eb45b6e4e"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "e940ff088615771c1177aae41f1da925b8015dfe8166512954057cf7db489335"
+    },
+    {
+      "name": "LineChartStatCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "56522ab3262ae5478e2a097503b873e0f9de50bb6863e8bcade2ddd86401e831"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "ebf82d67564293554da6016b544f397e40c2acbef1b60b15a3c95264e3b3637f"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "81af00e34a77f1fa2ccdb9491ad3749bb050ae32dbf6c6214d4b0fce10b996f5"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "b66071474c6fc4e467fc64059a49af2d046dfc988fb8d4ba77ab96ebb89b32c2"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "dab3cc334437c1db24861415d3b087d115555b1fb6a56bb8c7e1a531064f43c7"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "0cbeead5a066078765464a75b042e8a769d01ffebf6059165cd1cb46e776a2e2"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "1605ba4bced6b44537e8d997ecbb25da14f55bccec756f03275654a3516a89e7"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "a69600c78891972c3d56cf64118a1358ecd3c56cfdd931cc0e43f616e7036068"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "c837acf9dbf151c67b60c33793db4f68d8be9e84b69a4e6d451f0d00ebf8fd20"
+    },
+    {
+      "name": "BarChartStatCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "dd1669481a6252b7ef2e249f73051c262aafb751220ef51f3fc7183d957285d3"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "48bb82e464146520afad3e44eb2c3d3d40992b1896dfb59a40a85dfd0b02d416"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "32e0ccd237504b0311970787f5dd4e0b2e2f68ddeca749d702145cd21260c05e"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "1ab2b5da67fad561ae2ebfde52f69cb30149008e7805885aafb8d350727146eb"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "920da4bbdc606dbfef0fc82921d3d0998835d121d296ae859c867c93546e8959"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "24a6a00d9ead16e78c60642ea906be90eabc45611564f88ec159c819cf33fa84"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "4403af90c97a28ad8d2ca466defd8450393958dae2048471285e375a3851d39b"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "253da18798735408885428bf3dc5db359ceafe77055467244746d114015e366a"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "25481a5443cf7d6066289e4fca65c46c531ea34590c0002ba72aba22b1972c8b"
+    },
+    {
+      "name": "WheelChartStatCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "c232f05649b87f0cec39865db8f162872c8b514c87a3db71e013cd69172ff417"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "15941e9dccaeefbeed1be70b3b657f5821a4b4139ebc3179d190bfd1f283f59a"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "c3f8a5b8dd5c4e2e3993f3d29d5c445161883908f312112a220ae7fa84666249"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "6c8ccf5ffcba0c5f716419b2d623427fc995d831861a1a878d2d5c804d3a995d"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "15941e9dccaeefbeed1be70b3b657f5821a4b4139ebc3179d190bfd1f283f59a"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "c3f8a5b8dd5c4e2e3993f3d29d5c445161883908f312112a220ae7fa84666249"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "6c8ccf5ffcba0c5f716419b2d623427fc995d831861a1a878d2d5c804d3a995d"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "15941e9dccaeefbeed1be70b3b657f5821a4b4139ebc3179d190bfd1f283f59a"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "c3f8a5b8dd5c4e2e3993f3d29d5c445161883908f312112a220ae7fa84666249"
+    },
+    {
+      "name": "BalanceCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "6c8ccf5ffcba0c5f716419b2d623427fc995d831861a1a878d2d5c804d3a995d"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "5011806c81c62ef678de9dcc4f1e1e8827fb23aeaabcd3a2c59832bef52bdb87"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "c4fbc29c9f057e0150a8f7256181475ee632ba21f6dc322929430881f3dfd818"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "bd9254ab2c65b51bd477b18932b0dbc141f6a1f273f5d7b7347f8b20111a6618"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "5011806c81c62ef678de9dcc4f1e1e8827fb23aeaabcd3a2c59832bef52bdb87"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "c4fbc29c9f057e0150a8f7256181475ee632ba21f6dc322929430881f3dfd818"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "bd9254ab2c65b51bd477b18932b0dbc141f6a1f273f5d7b7347f8b20111a6618"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "5011806c81c62ef678de9dcc4f1e1e8827fb23aeaabcd3a2c59832bef52bdb87"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "c4fbc29c9f057e0150a8f7256181475ee632ba21f6dc322929430881f3dfd818"
+    },
+    {
+      "name": "ImageStatCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "bd9254ab2c65b51bd477b18932b0dbc141f6a1f273f5d7b7347f8b20111a6618"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "899111cdaeea0c69658b5a6ddb652da2738ba902c72878439185a93df612f768"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "c6bc64b7c79d25b618ec6ca24fc180fa443e93d8fb3c29c9ce7419edbd9e96a4"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "8b8c2fa977191cb7bc537cc405a0b17854ab847f4a68a97bf57f6d0c03bb1db5"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "899111cdaeea0c69658b5a6ddb652da2738ba902c72878439185a93df612f768"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "c6bc64b7c79d25b618ec6ca24fc180fa443e93d8fb3c29c9ce7419edbd9e96a4"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "8b8c2fa977191cb7bc537cc405a0b17854ab847f4a68a97bf57f6d0c03bb1db5"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "899111cdaeea0c69658b5a6ddb652da2738ba902c72878439185a93df612f768"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "c6bc64b7c79d25b618ec6ca24fc180fa443e93d8fb3c29c9ce7419edbd9e96a4"
+    },
+    {
+      "name": "HighlightCard",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "8b8c2fa977191cb7bc537cc405a0b17854ab847f4a68a97bf57f6d0c03bb1db5"
+    },
+    {
+      "name": "ListGroup",
+      "size": "sm",
+      "theme": "white",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "sm",
+      "theme": "blue",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "sm",
+      "theme": "purple",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "lg",
+      "theme": "white",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "lg",
+      "theme": "blue",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "lg",
+      "theme": "purple",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "wide",
+      "theme": "white",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "wide",
+      "theme": "blue",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    },
+    {
+      "name": "ListGroup",
+      "size": "wide",
+      "theme": "purple",
+      "sha256": "b1e003cb2c90ff7f697017adfbc5c2b2a6d83823914db3bf6804bc9865521400"
+    }
+  ]
+}

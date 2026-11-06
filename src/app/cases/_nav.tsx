@@ -14,6 +14,8 @@ export const casesNavGroups: NavGroup[] = [
   {
     title: "参考",
     items: [
+      { href: "/cases/dashboard-kit", label: "看板组件" },
+      { href: "/blocks", label: "看板区块", external: true },
       { href: "/docs", label: "文档", external: true },
       { href: "/templates", label: "模板", external: true },
     ],

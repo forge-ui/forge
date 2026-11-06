@@ -1,5 +1,11 @@
 "use client";
 
+import { AppLayout, WalletGoalCard, DivergingBarChart } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { CardCarousel } from "@/blocks/card-carousel/card-carousel";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   WalletBoldDuotone,
@@ -16,26 +22,14 @@ import {
 import {
   Button,
   BalanceCard,
-  CreditCard,
   LineChartStatCard,
   DonutChart,
-  ListGroup,
-  PlusIcon,
+    PlusIcon,
   KebabMenu,
   SurfaceCard,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  WalletGoalCard,
-  mainProfile,
-  transactions,
-  upsideDownBarData,
-  FigmaUpsideDownBarChart,
-  compactBalanceCardClass,
-  compactListGroupClass,
-  compactStatCardClass,
-} from "../_shared";
+import { mainProfile, transactions, upsideDownBarData } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Overview", href: "/templates/dashboards/finance-1" },
@@ -47,29 +41,14 @@ const menuItems: AppLayoutMenuItem[] = [
   { icon: <BillListBoldDuotone size={20} />, label: "Reports", href: "#reports" },
 ];
 
-function CardCarouselPreview() {
-  return (
-    <div className="relative -mx-4 h-40 overflow-hidden">
-      <div className="absolute left-0 top-3 h-32 w-8 overflow-hidden rounded-r-xl">
-        <div className="absolute left-[-236px] top-0">
-          <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="yellow" variant="flat" className="[&_*]:invisible" />
-        </div>
-      </div>
-      <div className="absolute right-0 top-3 h-32 w-8 overflow-hidden rounded-l-xl">
-        <div className="absolute right-[-236px] top-0">
-          <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="blue" variant="flat" className="[&_*]:invisible" />
-        </div>
-      </div>
-      <div className="absolute left-1/2 top-3 w-[clamp(12rem,78%,15rem)] -translate-x-1/2">
-        <CreditCard cardNumber="9090" holderName="John Doe Hoegan" expiry="07/25" theme="purple" variant="gradient" className="shadow-card" />
-      </div>
-    </div>
-  );
-}
+
 
 export default function Finance1Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="dark"
       accent="blue"
       profilePosition="topbar"
@@ -78,7 +57,7 @@ export default function Finance1Page() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <div className="flex items-start justify-between">
+        <DashboardHeader className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Overview</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your finance</p>
@@ -87,10 +66,10 @@ export default function Finance1Page() {
             <Button color="grey" variant="tertiary" iconLeft={<CalendarMinimalisticLinear size={16} />}>Select Dates</Button>
             <Button color="blue" iconLeft={<PlusIcon size={16} />}>Add Payment</Button>
           </div>
-        </div>
+        </DashboardHeader>
 
         {/* 3 stats */}
-        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-3 [&>*]:!w-full">
+        <KpiMetrics className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-3 [&>*]:!w-full">
           <BalanceCard
             title="Total Balance"
             balance="$21,500"
@@ -100,7 +79,7 @@ export default function Finance1Page() {
             cardNumber="*9821"
             onTransfer={() => {}}
             onRequest={() => {}}
-            className={compactBalanceCardClass}
+            density="compact"
           />
           <LineChartStatCard
             title="Income"
@@ -111,7 +90,7 @@ export default function Finance1Page() {
             chartColor="blue"
             chartDirection="up"
             size="wide"
-            className={compactStatCardClass}
+            density="compact"
             icon={<CardSendBoldDuotone size={20} />}
           />
           <LineChartStatCard
@@ -123,10 +102,10 @@ export default function Finance1Page() {
             chartColor="red"
             chartDirection="down"
             size="wide"
-            className={compactStatCardClass}
+            density="compact"
             icon={<CardSendBoldDuotone size={20} />}
           />
-        </div>
+        </KpiMetrics>
 
         {/* Card list + Statistic */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -137,7 +116,11 @@ export default function Finance1Page() {
             padding="sm"
             contentClassName="flex flex-col gap-3"
           >
-            <CardCarouselPreview />
+            <CardCarousel size="compact" cards={[
+              { id: "primary", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "purple", variant: "gradient" },
+              { id: "next", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "blue", variant: "flat" },
+              { id: "previous", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "yellow", variant: "flat" },
+            ]} />
             <Button color="grey" variant="tertiary" size="sm" iconLeft={<PlusIcon size={16} />} className="w-full rounded-full">Add New Card</Button>
           </SurfaceCard>
 
@@ -175,7 +158,7 @@ export default function Finance1Page() {
                 </div>
               </div>
             </div>
-            <FigmaUpsideDownBarChart
+            <DivergingBarChart
               data={upsideDownBarData}
               activeIndex={5}
               tooltipUpperValue="$680"
@@ -189,8 +172,8 @@ export default function Finance1Page() {
 
         {/* Wallet + Transactions + All Expenses */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Wallet"
             subtitle="Your saving progress"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -202,8 +185,8 @@ export default function Finance1Page() {
             }
           />
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Transactions"
             subtitle="Recent Transactions"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -263,6 +246,6 @@ export default function Finance1Page() {
           </SurfaceCard>
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

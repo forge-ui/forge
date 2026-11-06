@@ -23,15 +23,10 @@ const [pack] = JSON.parse(
   }),
 );
 
-// The 99-interaction migration extends existing primitives and adds internal helpers,
-// without adding parallel public component entries. Measured source bundle before
-// final documentation: ~840 KB packed, 3.37 MB unpacked, 488 entries, 96.4 KB CSS.
-// Website composition styles and prototype assets are excluded. Keep per-module
-// JavaScript limits unchanged; aggregate headroom remains below 6%.
 const limits = {
-  packed: 870_000,
-  unpacked: 3_500_000,
-  entries: 488,
+  packed: 890_000,
+  unpacked: 3_550_000,
+  entries: 506,
   sourceMaps: 1_900_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
@@ -40,7 +35,7 @@ const limits = {
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
   // Includes optional core effects, with all website-only scenes kept outside npm.
-  stylesRaw: 100_000,
+  stylesRaw: 103_000,
 };
 
 const expectedExports = {

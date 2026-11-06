@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "activity-feed",
+  "type": "registry:block",
+  "title": "活动流",
+  "description": "按传入顺序显示时间、对象与行为。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/activity-feed/activity-feed.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/activity-feed.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { ActivityCard, ListGroup, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type ActivityFeedProps = Omit<ListGroupProps, \"items\"> & {\n  items?: ListGroupProps[\"items\"];\n  events?: (ComponentProps<typeof ActivityCard> & { id: string })[];\n};\n\nexport function ActivityFeed({ events = [], items, ...props }: ActivityFeedProps) {\n  return <ListGroup density=\"compact\" {...props} items={items ?? events.map(({ id, ...event }) => <ActivityCard key={id} {...event} />)} />;\n}\n"
+    }
+  ]
+}

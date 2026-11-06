@@ -1,5 +1,13 @@
 "use client";
 
+import { AppLayout, ChartHeader, GroupedBarChart, Panel } from "@forge-ui-official/core";
+import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
+import { TrendChart } from "@/blocks/trend-chart/trend-chart";
+import { CompositionCard } from "@/blocks/composition-card/composition-card";
+import { RecentRecords } from "@/blocks/recent-records/recent-records";
+import { RankingList } from "@/blocks/ranking-list/ranking-list";
+import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+
 import {
   WidgetBoldDuotone,
   BoxBoldDuotone,
@@ -28,26 +36,11 @@ import {
   StatusBadge,
   KebabMenu,
   IconButton,
-  ListGroup,
-  ChartListItem,
+    ChartListItem,
   PlusIcon,
 } from "@forge-ui-official/core";
 import type { AppLayoutMenuItem, ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
-import {
-  DashboardShell,
-  mainProfile,
-  orders,
-  topProducts,
-  regions,
-  groupedStatisticBarData,
-  groupedStatisticSeries,
-  groupedStatisticTooltip,
-  FigmaChartHeader,
-  FigmaGroupedBarChart,
-  compactListGroupClass,
-  compactStatCardClass,
-  type OrderRow,
-} from "../_shared";
+import { mainProfile, orders, topProducts, regions, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip, type OrderRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [
   { icon: <WidgetBoldDuotone size={20} />, label: "Dashboard", href: "/templates/dashboards/ecommerce-3" },
@@ -115,7 +108,10 @@ const orderColumns: ColumnDef<OrderRow>[] = [
 
 export default function Ecommerce3Page() {
   return (
-    <DashboardShell
+    <AppLayout
+      notifications={99}
+      messages={99}
+      logoText="Protask"
       mode="light"
       accent="black"
       profilePosition="topbar"
@@ -125,7 +121,7 @@ export default function Ecommerce3Page() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <div className="flex items-start justify-between">
+        <DashboardHeader className="flex items-start justify-between">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Dashboard</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your store</p>
@@ -135,19 +131,19 @@ export default function Ecommerce3Page() {
             <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
             <Button color="black" iconLeft={<PlusIcon size={16} />}>Add Order</Button>
           </div>
-        </div>
+        </DashboardHeader>
 
         {/* 4 colorful stats */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
-          <BarChartStatCard className={compactStatCardClass} title="Income" value="$75,000" trend="10%" trendDirection="up" subtitle="+$750 today" theme="purple" size="wide" barColor="purple" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard className={compactStatCardClass} title="Orders" value="31,000" trend="5%" trendDirection="up" subtitle="+156 today" theme="blue" size="wide" barColor="blue" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard className={compactStatCardClass} title="Profit" value="$32,125" trend="10%" trendDirection="up" subtitle="+$321 today" theme="green" size="wide" barColor="green" bars={[10, 30, 60, 95, 50, 40, 30]} />
-          <BarChartStatCard className={compactStatCardClass} title="Expenses" value="$18,120" trend="10%" trendDirection="up" subtitle="+$321 today" theme="red" size="wide" barColor="red" bars={[10, 30, 60, 95, 50, 40, 30]} />
-        </div>
+        <KpiMetrics className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>*]:!w-full">
+          <BarChartStatCard density="compact" title="Income" value="$75,000" trend="10%" trendDirection="up" subtitle="+$750 today" theme="purple" size="wide" barColor="purple" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard density="compact" title="Orders" value="31,000" trend="5%" trendDirection="up" subtitle="+156 today" theme="blue" size="wide" barColor="blue" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard density="compact" title="Profit" value="$32,125" trend="10%" trendDirection="up" subtitle="+$321 today" theme="green" size="wide" barColor="green" bars={[10, 30, 60, 95, 50, 40, 30]} />
+          <BarChartStatCard density="compact" title="Expenses" value="$18,120" trend="10%" trendDirection="up" subtitle="+$321 today" theme="red" size="wide" barColor="red" bars={[10, 30, 60, 95, 50, 40, 30]} />
+        </KpiMetrics>
 
         {/* Target + Statistic */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <Panel gap="sm" >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Target</h3>
@@ -177,22 +173,22 @@ export default function Ecommerce3Page() {
                 <span className="text-base font-semibold text-fg-black inline-flex items-center gap-1">$1.5k <span className="text-emerald-500 text-xs">▲</span></span>
               </div>
             </div>
-          </div>
+          </Panel>
 
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
-            <FigmaChartHeader title="Statistic" subtitle="Income and Expenses" tabs={["Daily", "Weekly", "Monthly", "Annual"]} activeTab="Monthly" />
-            <FigmaGroupedBarChart
+          <TrendChart className="lg:col-span-2">
+            <ChartHeader title="Statistic" subtitle="Income and Expenses" tabs={["Daily", "Weekly", "Monthly", "Annual"]} activeTab="Monthly" />
+            <GroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 1) }))}
               series={groupedStatisticSeries.slice(0, 1)}
               tooltipItems={groupedStatisticTooltip.slice(0, 1)}
               heightClass="h-56"
             />
-          </div>
+          </TrendChart>
         </div>
 
         {/* All Expenses + Top Product + Top Category */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-3">
+          <CompositionCard gap="sm" >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">All Expenses</h3>
@@ -226,10 +222,10 @@ export default function Ecommerce3Page() {
                 </div>
               ))}
             </div>
-          </div>
+          </CompositionCard>
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Top Product"
             subtitle="Based on Sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -253,8 +249,8 @@ export default function Ecommerce3Page() {
             }
           />
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Top Category"
             subtitle="Based on sales"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -285,7 +281,7 @@ export default function Ecommerce3Page() {
 
         {/* Recent Orders + Top Region */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2 rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4">
+          <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
@@ -305,10 +301,10 @@ export default function Ecommerce3Page() {
               onPageChange={() => {}}
               paginationLabel="Showing 1-5 from 100"
             />
-          </div>
+          </RecentRecords>
 
-          <ListGroup
-            className={compactListGroupClass}
+          <RankingList
+            density="compact"
             title="Top Region"
             subtitle="Sales by region"
             action={<KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />}
@@ -329,6 +325,6 @@ export default function Ecommerce3Page() {
           />
         </div>
       </div>
-    </DashboardShell>
+    </AppLayout>
   );
 }

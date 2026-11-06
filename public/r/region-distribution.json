@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "region-distribution",
+  "type": "registry:block",
+  "title": "地区分布卡",
+  "description": "复用 MapCard 的地区、范围与度量契约。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/region-distribution/region-distribution.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/region-distribution.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { MapCard } from \"@forge-ui-official/core\";\n\nexport type RegionDistributionProps = ComponentProps<typeof MapCard>;\n\nexport function RegionDistribution(props: RegionDistributionProps) {\n  return <MapCard {...props} />;\n}\n"
+    }
+  ]
+}

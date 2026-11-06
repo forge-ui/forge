@@ -108,10 +108,11 @@
 
 ## T — 模板一致性
 
-- **T1**：声明主 Screen、源码版本与任务适配理由，Screen→Blocks→Components 分层；计划 Blocks 不作为已发布导出。
-- **T2**：同视口、相同侧栏、相同字体条件比较；依据页面规范分别核对 shell/section/Grid/卡内间距、轨道公式、图域与整卡高度。
+- **T1**：声明主 Screen、源码版本与任务适配理由，Screen→Blocks→Components 分层；Blocks 从 blocks/ 复制，不作为 core 导出；registry 依赖版本与发布状态分别核实。
+- **T2**：1440 与 375 两档逐个 Screen 保存重构前后截图及像素 diff；同视口、相同侧栏、相同字体、固定时间和样例数据条件比较；依据页面规范分别核对 shell/section/Grid/卡内间距、轨道公式、图域与整卡高度。
 - **T3**：模板圆角24px与 Token20px现状并存，不未经授权改全局 Token；有意偏差单独列出。
 - **T4**：内容组件核到子层，例如表格单元格、详情阅读组件、弹层关闭/焦点；仅 import 相同不算一致。
+- **T6**：Panel 变体与密度须由公开 API 设置，不恢复私有 density 覆盖；registry 每项可独立复制，blocks:check 通过；缺少截图必须标未验收。
 - **T5**：未核实的尺寸、触摸/读屏/软键盘、缺少后台的动作明确列未验证；公共缺口用 FORGE-GAP，等待用户决定。
 
 尺寸来源见 [页面规范](page-recommended-standard.md)，专项见 [内容](component-content-contracts.md)、[焦点](overlay-focus.md)、[动效](motion.md)。

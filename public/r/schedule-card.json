@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "schedule-card",
+  "type": "registry:block",
+  "title": "日程与甘特容器",
+  "description": "日历配置或业务日程、甘特图域插槽；不声称实现通用甘特编辑器。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.5.0"
+  ],
+  "files": [
+    {
+      "path": "blocks/schedule-card/schedule-card.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/schedule-card.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { EventCard, FullCalendar, Panel, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type ScheduleCardProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  calendar?: ComponentProps<typeof FullCalendar>;\n};\n\nexport function ScheduleCard({ children, calendar, ...panel }: ScheduleCardProps) {\n  return <Panel {...panel}>{children ?? (calendar && <FullCalendar {...calendar} />)}</Panel>;\n}\n\nexport interface GanttScheduleProps {\n  hours: [string, string, string, string, string, string];\n  entries: { id: string; columnClassName: string; event: ComponentProps<typeof EventCard> }[];\n}\n\nexport function GanttSchedule({ hours, entries }: GanttScheduleProps) {\n  return <>\n    <div className=\"grid grid-cols-6 text-xs text-fg-grey-500 border-b border-fg-grey-200 pb-2\">\n      {hours.map(hour => <div key={hour}>{hour}</div>)}\n    </div>\n    <div className=\"relative flex flex-col gap-2 pt-2 min-h-52\">\n      <div className=\"absolute inset-0 grid grid-cols-6 pointer-events-none\">\n        {Array.from({ length: 6 }).map((_, index) => <div key={index} className=\"border-l border-fg-grey-100\" />)}\n      </div>\n      {entries.map(entry => <div key={entry.id} className=\"grid grid-cols-6 gap-1\"><div className={entry.columnClassName}><EventCard {...entry.event} /></div></div>)}\n    </div>\n  </>;\n}\n"
+    }
+  ]
+}
