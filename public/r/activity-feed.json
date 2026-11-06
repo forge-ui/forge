@@ -8,7 +8,7 @@
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
-    "example": "import { ActivityFeed } from \"@/components/blocks/activity-feed\";\n\nexport default function Example() {\n  return (<ActivityFeed title=\"最近活动\" items={[<span key=\"1\">张三完成订单核对</span>]} />);\n}\n",
+    "example": "import { ActivityFeed } from \"@/components/blocks/activity-feed\";\n\nexport default function Example() {\n  return (<ActivityFeed title=\"最近活动\" events={[{ id: \"review\", headerText: \"订单动态\", datetime: \"今天 09:30\", title: \"张三完成订单核对\", description: \"核对完成\", metadata: [] }]} />);\n}\n",
     "props": [
       {
         "component": "ActivityFeed",
@@ -81,7 +81,7 @@
           {
             "name": "events",
             "required": false,
-            "type": "({ icon: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string | import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; }[]; onMenuClick?: () => void; } & { id: string; })[] | undefined"
+            "type": "(Omit<{ icon: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string | import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; }[]; onMenuClick?: () => void; }, \"icon\" | \"avatar\"> & { id: string; icon?: ComponentProps<typeof ActivityCard>[\"icon\"]; avatar?: string; })[] | undefined"
           }
         ]
       }
@@ -99,7 +99,7 @@
       "path": "blocks/activity-feed/activity-feed.tsx",
       "type": "registry:component",
       "target": "@components/blocks/activity-feed.tsx",
-      "content": "import type { ComponentProps } from \"react\";\nimport { ActivityCard, ListGroup, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type ActivityFeedProps = Omit<ListGroupProps, \"items\"> & {\n  items?: ListGroupProps[\"items\"];\n  events?: (ComponentProps<typeof ActivityCard> & { id: string })[];\n};\n\nexport function ActivityFeed({ events = [], items, ...props }: ActivityFeedProps) {\n  return <ListGroup density=\"compact\" {...props} items={items ?? events.map(({ id, ...event }) => <ActivityCard key={id} {...event} />)} />;\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\nimport { BellLinear } from \"@forge-ui-official/core/icons\";\nimport { ActivityCard, ListGroup, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type ActivityFeedProps = Omit<ListGroupProps, \"items\"> & {\n  items?: ListGroupProps[\"items\"];\n  events?: (Omit<ComponentProps<typeof ActivityCard>, \"icon\" | \"avatar\"> & { id: string; icon?: ComponentProps<typeof ActivityCard>[\"icon\"]; avatar?: string })[];\n};\n\nexport function ActivityFeed({ events = [], items, ...props }: ActivityFeedProps) {\n  return <ListGroup density=\"compact\" {...props} items={items ?? events.map(({ id, icon = <BellLinear size={18} />, avatar, ...event }) => <ActivityCard key={id} {...event} icon={icon} avatar={avatar ?? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"44\" height=\"44\"><text x=\"22\" y=\"30\" text-anchor=\"middle\" font-size=\"22\">${event.title.slice(0, 1).replace(/[<>&\"']/g, \"\")}</text></svg>`)}`} />)} />;\n}\n"
     }
   ]
 }

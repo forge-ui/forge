@@ -8,7 +8,7 @@
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
-    "example": "import { GoalProgressList } from \"@/components/blocks/goal-progress-list\";\n\nexport default function Example() {\n  return (<GoalProgressList title=\"目标进度\">月度目标：已完成 50%</GoalProgressList>);\n}\n",
+    "example": "import { GoalProgressList } from \"@/components/blocks/goal-progress-list\";\n\nexport default function Example() {\n  return (<GoalProgressList title=\"目标进度\" goals={[{ id: \"monthly\", title: \"月度目标\", date: \"2026 年 11 月\", amount: \"¥16,000\", progress: 50, progressColor: \"purple\" }]} />);\n}\n",
     "props": [
       {
         "component": "GoalProgressList",

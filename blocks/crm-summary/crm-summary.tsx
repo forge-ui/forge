@@ -1,5 +1,6 @@
 import { Panel } from "@forge-ui-official/core";
 import type { ReactNode } from "react";
+import { UsersGroupTwoRoundedBoldDuotone } from "@forge-ui-official/core/icons";
 import { DescriptionItem, LineChartStatCard, SurfaceCard } from "@forge-ui-official/core";
 
 export function CrmSurface({
@@ -67,8 +68,8 @@ export function CrmMetricCard({
   trend,
   trendDirection = "up",
   note,
-  icon,
-  iconClassName,
+  icon = <UsersGroupTwoRoundedBoldDuotone size={20} />,
+  iconClassName = "bg-fg-violet-100 text-fg-violet",
   footer,
 }: {
   title: string;
@@ -77,8 +78,8 @@ export function CrmMetricCard({
   trend: string;
   trendDirection?: "up" | "down";
   note: string;
-  icon: ReactNode;
-  iconClassName: string;
+  icon?: ReactNode;
+  iconClassName?: string;
   footer: ReactNode;
 }) {
   return (

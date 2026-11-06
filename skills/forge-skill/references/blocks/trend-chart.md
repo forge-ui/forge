@@ -2,7 +2,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：ChartHeader、GroupedBarChart、SmoothLineChart、Panel。
+依赖：core ^0.6.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel。
 
 ## 最小可用示例
 
@@ -10,7 +10,7 @@
 import { TrendChart } from "@/components/blocks/trend-chart";
 
 export default function Example() {
-  return (<TrendChart title="订单趋势" chart={{ data: [{ label: "今日", values: [26] }], series: [{ label: "订单", colorClass: "bg-fg-blue" }], yAxisLabels: ["30", "20", "10", "0"] }} />);
+  return (<TrendChart title="订单趋势" periods={[{ label: "日", countChart: { series: [{ label: "订单", data: [12, 26, 18, 30] }], xAxisLabels: ["09:00", "12:00", "15:00", "18:00"] } }, { label: "周", countChart: { series: [{ label: "订单", data: [50, 80, 60, 100] }], xAxisLabels: ["周一", "周二", "周三", "周四"] } }]} />);
 }
 ```
 
@@ -298,13 +298,13 @@ export default function Example() {
 | subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
 | children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | chart | 否 | `{ data: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").GroupedBarPoint[]; series: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
-| periods | 否 | `{ label: string; chart: GroupedBarChartProps; }[] \| undefined` |
+| periods | 否 | `TrendPeriod[] \| undefined` |
+| variant | 否 | `"plain" \| "template" \| undefined` |
 | activePeriod | 否 | `string \| undefined` |
 | onPeriodChange | 否 | `((period: string) => void) \| undefined` |
 | countChart | 否 | `SmoothLineChartProps \| undefined` |

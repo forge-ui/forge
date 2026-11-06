@@ -1,5 +1,19 @@
 # 页面 Blocks（复制到项目）
 
+## 默认即 Screen 效果
+
+以 ecommerce-2 为主对照时，KpiMetrics 数据入口默认首张 purple 主卡、其余白卡，并交替迷你折线/柱图；`visualization` 与 `data` 可逐指标替换，`variant="plain"` 才使用无图 StatCard。未提供 data 时迷你图仅是 core 的装饰性示意，不代表真实历史；生产数据须映射真实序列，不能从单个总数伪造趋势。
+
+TrendChart 默认保留周期控件、带图标的指标行及 tooltip。`periods: [{label, chart?, countChart?}]` 每期传自己的真实数据，柱图与折线二选一；切换更新图、总数与 tooltip，受控模式由 activePeriod/onPeriodChange 管理。只传一个 chart 时只显示「本期」，不能伪造日/周/月切换；指标 value 可传业务口径，否则按输入序列求和。plain 才省略这些装饰。
+
+RankingList 用 `entries: [{id,title,subtitle,value,avatar?,icon?,accent?}]`，未传 icon/accent 默认 Solar 商品图标与交替主题色；avatar 传首字母。默认 w-full，plain 为显式文字列表。items/children 是已验收 Screen 的完整插槽，不是推荐业务数据映射入口；使用插槽必须自行保留视觉元素，不能用 span 替代整张列表。
+
+RegionDistribution 始终保留世界地图；地区传 name/salesLabel/value，可传 flag 图片或 ISO 两位 countryCode 自动生成旗帜；未知国家用名称缩写，不猜旗帜。中国大区等不对应国家的业务区域不要伪造国家映射。highlights 明确传入；默认高亮仅为展示示意，不代表地区业务统计。
+
+CompositionCard 默认紫色起始配色与图例，segments 含 label/value，可覆盖颜色；plain 省略图例。DashboardHeader 保留 action/dateSelection/primaryAction 插槽，onExport 自动使用带下载图标的真实回调按钮；无授权或未接入操作时不显示假按钮，需在审计中注明原因。示例操作仅为接入边界，不声明导出已经实现。
+
+最小配方见各单项生成文档与 `/r/index.json` 的 meta.example；结构化入口优先，其他 Screen 已验收的 children/items 插槽保持原输出。[表格列宽与数字对齐](component-selection/data-table.md) 适用于 RecentRecords。
+
 17 类区块已实现为仓内源码与 registry-item，覆盖看板与业务模板；不是 core 包导出，也不意味着已发布或通过截图验收。
 
 | 区块 | 导出名 | 源码目录 | 支持内容 |
@@ -32,16 +46,16 @@
 |---|---|---|
 | ecommerce-3 | DashboardHeader → KpiMetrics → TrendChart + CompositionCard → RankingList + RegionDistribution → RecentRecords | 默认 chart，主题色 BarChartStatCard |
 | analytics | DashboardHeader → KpiMetrics → TrendChart → RankingList + GoalProgressList | children 传 ProgressStatCard，保持原模板 |
-| ecommerce-1 / ecommerce-2 | DashboardHeader → KpiMetrics → TrendChart → CompositionCard + RecentRecords | 按 Screen 的 StatCard 家族传 children |
+| ecommerce-1 / ecommerce-2 | DashboardHeader → KpiMetrics → TrendChart → CompositionCard + RecentRecords → RegionDistribution + RankingList | ecommerce-2 默认紫色主卡、红色迷你折线、紫色迷你柱图；精确复用既有 Screen 时保留 children |
 | finance-1 / finance-2 / finance-3 | DashboardHeader → FinanceSurface + KpiMetrics → CardCarousel → TrendChart + GoalProgressList → RecentRecords | FinanceMetricCard / 模板插槽 |
 | project-1 / project-2 | DashboardHeader → KpiMetrics → TrendChart → MemberList + ScheduleCard + ActivityFeed | 按项目 Screen 传 children |
 | crm | DashboardHeader → KpiMetrics → TrendChart → RankingList + RecentRecords | CrmMetricCard |
 
-`KpiMetrics variant="plain"` 还原纯指标卡；默认 `chart` 使用紫/蓝/绿/红主题和迷你柱图。真实序列用 bars 提供，默认迷你图仅为模板演示，不是业务统计。已有 children 优先，模板不受默认变化影响。
+`KpiMetrics variant="plain"` 还原纯指标卡；默认 `chart` 首卡为紫色主题，其余为白底，交替使用迷你折线与柱图。逐项使用 `data` 提供真实序列，`visualization` 指定图型，`theme` 覆盖主题；`bars` 可统一提供柱图序列。未传序列的迷你图仅为模板演示，不是业务统计。已有 children 优先，默认装饰不包裹插槽内容。
 
 ### 周期切换
 
-`TrendChart periods={[{ label: "日", chart: daily }, { label: "周", chart: weekly }, { label: "月", chart: monthly }]}` 提供非受控切换；`activePeriod/onPeriodChange` 提供受控方式，每项传对应聚合数据，不只换标签。`ChartHeader` 默认无 tabs，传入本地化 tabs 才显示，`tabs={[]}` 关闭。
+`TrendChart periods={[{ label: "日", chart: daily }, { label: "周", chart: weekly }, { label: "月", chart: monthly }]}` 提供非受控切换；每项也可使用 `countChart` 提供折线序列。`activePeriod/onPeriodChange` 提供受控方式，每项传对应聚合数据，不只换标签。Block 默认含周期控件、指标图标和 tooltip；没有多周期数据时仅显示「本期」，不伪造其他周期。显式 `variant="plain"` 移除这些装饰。底层 `ChartHeader` 本身默认无 tabs，与 Block 默认策略不同。
 
 ### 长周期计数：30 天与上一周期
 

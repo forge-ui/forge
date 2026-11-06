@@ -10,7 +10,7 @@
 import { GoalProgressList } from "@/components/blocks/goal-progress-list";
 
 export default function Example() {
-  return (<GoalProgressList title="目标进度">月度目标：已完成 50%</GoalProgressList>);
+  return (<GoalProgressList title="目标进度" goals={[{ id: "monthly", title: "月度目标", date: "2026 年 11 月", amount: "¥16,000", progress: 50, progressColor: "purple" }]} />);
 }
 ```
 

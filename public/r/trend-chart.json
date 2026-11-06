@@ -8,7 +8,7 @@
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
-    "example": "import { TrendChart } from \"@/components/blocks/trend-chart\";\n\nexport default function Example() {\n  return (<TrendChart title=\"订单趋势\" chart={{ data: [{ label: \"今日\", values: [26] }], series: [{ label: \"订单\", colorClass: \"bg-fg-blue\" }], yAxisLabels: [\"30\", \"20\", \"10\", \"0\"] }} />);\n}\n",
+    "example": "import { TrendChart } from \"@/components/blocks/trend-chart\";\n\nexport default function Example() {\n  return (<TrendChart title=\"订单趋势\" periods={[{ label: \"日\", countChart: { series: [{ label: \"订单\", data: [12, 26, 18, 30] }], xAxisLabels: [\"09:00\", \"12:00\", \"15:00\", \"18:00\"] } }, { label: \"周\", countChart: { series: [{ label: \"订单\", data: [50, 80, 60, 100] }], xAxisLabels: [\"周一\", \"周二\", \"周三\", \"周四\"] } }]} />);\n}\n",
     "props": [
       {
         "component": "TrendChart",
@@ -1414,11 +1414,6 @@
             "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
           },
           {
-            "name": "variant",
-            "required": false,
-            "type": "\"dashboard\" | \"template\" | \"custom\" | undefined"
-          },
-          {
             "name": "as",
             "required": false,
             "type": "\"article\" | \"div\" | \"section\" | \"aside\" | undefined"
@@ -1446,7 +1441,12 @@
           {
             "name": "periods",
             "required": false,
-            "type": "{ label: string; chart: GroupedBarChartProps; }[] | undefined"
+            "type": "TrendPeriod[] | undefined"
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"plain\" | \"template\" | undefined"
           },
           {
             "name": "activePeriod",
@@ -1470,6 +1470,7 @@
       "version": "^0.6.0",
       "components": [
         "ChartHeader",
+        "ChartMetricRow",
         "GroupedBarChart",
         "SmoothLineChart",
         "Panel"
@@ -1481,7 +1482,7 @@
       "path": "blocks/trend-chart/trend-chart.tsx",
       "type": "registry:component",
       "target": "@components/blocks/trend-chart.tsx",
-      "content": "\"use client\";\n\nimport { useState, type ComponentProps } from \"react\";\nimport { ChartHeader, GroupedBarChart, SmoothLineChart, Panel, type GroupedBarChartProps, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type TrendChartProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: GroupedBarChartProps;\n  periods?: { label: string; chart: GroupedBarChartProps }[];\n  activePeriod?: string;\n  onPeriodChange?: (period: string) => void;\n  countChart?: ComponentProps<typeof SmoothLineChart>;\n};\n\nexport function TrendChart({ children, chart, periods = [], activePeriod, onPeriodChange, countChart, ...panel }: TrendChartProps) {\n  const [selected, setSelected] = useState(periods[0]?.label);\n  const current = activePeriod ?? selected;\n  const currentChart = periods.find(period => period.label === current)?.chart ?? chart;\n  return <Panel {...panel}>{children ?? <>{periods.length > 0 && <ChartHeader title=\"\" tabs={periods.map(period => period.label)} activeTab={current} onTabChange={period => { setSelected(period); onPeriodChange?.(period); }} />}{countChart ? <SmoothLineChart {...countChart} /> : currentChart && <GroupedBarChart {...currentChart} />}</>}</Panel>;\n}\n"
+      "content": "\"use client\";\n\nimport { useState, type ComponentProps } from \"react\";\nimport { ChartHeader, ChartMetricRow, GroupedBarChart, SmoothLineChart, Panel, type GroupedBarChartProps, type PanelProps } from \"@forge-ui-official/core\";\n\ntype TrendPeriod = { label: string; chart?: GroupedBarChartProps; countChart?: ComponentProps<typeof SmoothLineChart> };\n\nexport type TrendChartProps = Omit<PanelProps, \"children\" | \"variant\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: GroupedBarChartProps;\n  periods?: TrendPeriod[];\n  variant?: \"template\" | \"plain\";\n  activePeriod?: string;\n  onPeriodChange?: (period: string) => void;\n  countChart?: ComponentProps<typeof SmoothLineChart>;\n};\n\nexport function TrendChart({ children, chart, periods = [], activePeriod, onPeriodChange, countChart, variant = \"template\", ...panel }: TrendChartProps) {\n  const [selected, setSelected] = useState(periods[0]?.label);\n  const [hovered, setHovered] = useState<number>();\n  const current = activePeriod ?? (periods.some(period => period.label === selected) ? selected : periods[0]?.label);\n  const period = periods.find(period => period.label === current);\n  const currentChart = period ? period.chart : chart;\n  const currentLine = period ? period.countChart : countChart;\n  const colors = [\"bg-fg-violet\", \"bg-fg-yellow\", \"bg-fg-cyan-500\"];\n  const series = currentLine ? currentLine.series.map((item, index) => ({ label: item.label ?? `指标 ${index + 1}`, colorClass: colors[index % colors.length], value: String(item.data.reduce((total, value) => total + value, 0)) })) : currentChart?.series.map((item, index) => ({ ...item, value: item.value ?? String(currentChart.data.reduce((total, point) => total + (point.values[index] ?? 0), 0)) })) ?? [];\n  const activeIndex = hovered ?? currentLine?.activeIndex ?? currentChart?.activeIndex ?? 0;\n  const decorated = variant !== \"plain\";\n  return <Panel {...panel}>{children ?? <>\n    {decorated && <ChartHeader title=\"\" tabs={periods.length ? periods.map(item => item.label) : [\"本期\"]} activeTab={current ?? \"本期\"} onTabChange={label => { setSelected(label); setHovered(undefined); onPeriodChange?.(label); }} />}\n    {decorated && <ChartMetricRow series={series} />}\n    {currentLine ? <SmoothLineChart {...currentLine} activeIndex={activeIndex} showTooltip={decorated && (currentLine.showTooltip ?? true)} tooltipItems={currentLine.tooltipItems ?? series.map((item, index) => ({ label: item.label, color: item.colorClass, value: String(currentLine.series[index].data[activeIndex] ?? 0) }))} onActiveIndexChange={index => { setHovered(index); currentLine.onActiveIndexChange?.(index); }} /> : currentChart && <GroupedBarChart {...currentChart} tooltipItems={currentChart.tooltipItems ?? (decorated ? series.map((item, index) => ({ label: item.label, colorClass: item.colorClass, value: String(currentChart.data[activeIndex]?.values[index] ?? 0) })) : undefined)} />}\n  </>}</Panel>;\n}\n"
     }
   ]
 }

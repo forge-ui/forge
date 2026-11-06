@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 6436fffc8edb09a2221b00a5fde2b576a48c32dc09c39a9698ccc8440e50f663
+Source fingerprint: e67e610c6703ac3b7c1de582d740e1adff3db5867db3df4d1385a75107acc917
 
 ## Adopted rules / 采用规则
 
@@ -1782,6 +1782,13 @@ Source: skills/forge-skill/references/audit-checklist.md
 
 # Forge 统一审计清单
 
+## Screen 元素保真
+
+- SF1：记录主对照 Screen 的源码版本、1440/375 截图与业务替换字段。逐项核对主题主卡、迷你图、图标/首字母头像、地图/旗帜、周期切换、指标行、tooltip、页头操作插槽，不得无理由省略。
+- SF2：每项写通过/违规/不适用/未验证与证据。使用 plain 或自定义 children/items 必须逐项说明省略原因，例如没有历史序列、没有导出权限、地区不对应国家。不得为了截图伪造趋势、国家或可点击但无作用的操作。
+- SF3：机械门禁运行 `pnpm blocks:check` 与 `pnpm test:interactions`：registry 与源码一致、默认迷你图/主题/图标/地图/图例、周期切换真实数据、受控选择、tooltip、插槽兼容。结构检查不替代主 Screen 并排截图和真实 hover/click。
+- SF4：修改共享 Block 后按基线全量重放模板截图并像素比对；画廊允许变化，模板不允许。表格另核 `flex` 预算、minWidth、valueKind 与表头同向，见 [DataTable 选型](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-selection/data-table.md)。
+
 编号底本：forge-starter/docs/audit-checklist.md；归属按 D.md 逐编号 G / G+S / S 审核。本清单只收通用规则及混合规则的通用部分，保留原编号，不重排。宿主路由、权限、存储、toast、数据库工程约定仍由宿主文档管理。
 
 每条结果：通过 / 违规 / 不适用（原因） / 未验证（缺少的环境或证据）。记录文件行号、版本、页面 URL、截图和动作；静态检查不能证明浏览器、业务或安全全面通过。
@@ -1905,6 +1912,20 @@ Source: skills/forge-skill/references/blocks.md
 
 # 页面 Blocks（复制到项目）
 
+## 默认即 Screen 效果
+
+以 ecommerce-2 为主对照时，KpiMetrics 数据入口默认首张 purple 主卡、其余白卡，并交替迷你折线/柱图；`visualization` 与 `data` 可逐指标替换，`variant="plain"` 才使用无图 StatCard。未提供 data 时迷你图仅是 core 的装饰性示意，不代表真实历史；生产数据须映射真实序列，不能从单个总数伪造趋势。
+
+TrendChart 默认保留周期控件、带图标的指标行及 tooltip。`periods: [{label, chart?, countChart?}]` 每期传自己的真实数据，柱图与折线二选一；切换更新图、总数与 tooltip，受控模式由 activePeriod/onPeriodChange 管理。只传一个 chart 时只显示「本期」，不能伪造日/周/月切换；指标 value 可传业务口径，否则按输入序列求和。plain 才省略这些装饰。
+
+RankingList 用 `entries: [{id,title,subtitle,value,avatar?,icon?,accent?}]`，未传 icon/accent 默认 Solar 商品图标与交替主题色；avatar 传首字母。默认 w-full，plain 为显式文字列表。items/children 是已验收 Screen 的完整插槽，不是推荐业务数据映射入口；使用插槽必须自行保留视觉元素，不能用 span 替代整张列表。
+
+RegionDistribution 始终保留世界地图；地区传 name/salesLabel/value，可传 flag 图片或 ISO 两位 countryCode 自动生成旗帜；未知国家用名称缩写，不猜旗帜。中国大区等不对应国家的业务区域不要伪造国家映射。highlights 明确传入；默认高亮仅为展示示意，不代表地区业务统计。
+
+CompositionCard 默认紫色起始配色与图例，segments 含 label/value，可覆盖颜色；plain 省略图例。DashboardHeader 保留 action/dateSelection/primaryAction 插槽，onExport 自动使用带下载图标的真实回调按钮；无授权或未接入操作时不显示假按钮，需在审计中注明原因。示例操作仅为接入边界，不声明导出已经实现。
+
+最小配方见各单项生成文档与 `/r/index.json` 的 meta.example；结构化入口优先，其他 Screen 已验收的 children/items 插槽保持原输出。[表格列宽与数字对齐](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-selection/data-table.md) 适用于 RecentRecords。
+
 17 类区块已实现为仓内源码与 registry-item，覆盖看板与业务模板；不是 core 包导出，也不意味着已发布或通过截图验收。
 
 | 区块 | 导出名 | 源码目录 | 支持内容 |
@@ -1937,16 +1958,16 @@ Source: skills/forge-skill/references/blocks.md
 |---|---|---|
 | ecommerce-3 | DashboardHeader → KpiMetrics → TrendChart + CompositionCard → RankingList + RegionDistribution → RecentRecords | 默认 chart，主题色 BarChartStatCard |
 | analytics | DashboardHeader → KpiMetrics → TrendChart → RankingList + GoalProgressList | children 传 ProgressStatCard，保持原模板 |
-| ecommerce-1 / ecommerce-2 | DashboardHeader → KpiMetrics → TrendChart → CompositionCard + RecentRecords | 按 Screen 的 StatCard 家族传 children |
+| ecommerce-1 / ecommerce-2 | DashboardHeader → KpiMetrics → TrendChart → CompositionCard + RecentRecords → RegionDistribution + RankingList | ecommerce-2 默认紫色主卡、红色迷你折线、紫色迷你柱图；精确复用既有 Screen 时保留 children |
 | finance-1 / finance-2 / finance-3 | DashboardHeader → FinanceSurface + KpiMetrics → CardCarousel → TrendChart + GoalProgressList → RecentRecords | FinanceMetricCard / 模板插槽 |
 | project-1 / project-2 | DashboardHeader → KpiMetrics → TrendChart → MemberList + ScheduleCard + ActivityFeed | 按项目 Screen 传 children |
 | crm | DashboardHeader → KpiMetrics → TrendChart → RankingList + RecentRecords | CrmMetricCard |
 
-`KpiMetrics variant="plain"` 还原纯指标卡；默认 `chart` 使用紫/蓝/绿/红主题和迷你柱图。真实序列用 bars 提供，默认迷你图仅为模板演示，不是业务统计。已有 children 优先，模板不受默认变化影响。
+`KpiMetrics variant="plain"` 还原纯指标卡；默认 `chart` 首卡为紫色主题，其余为白底，交替使用迷你折线与柱图。逐项使用 `data` 提供真实序列，`visualization` 指定图型，`theme` 覆盖主题；`bars` 可统一提供柱图序列。未传序列的迷你图仅为模板演示，不是业务统计。已有 children 优先，默认装饰不包裹插槽内容。
 
 ### 周期切换
 
-`TrendChart periods={[{ label: "日", chart: daily }, { label: "周", chart: weekly }, { label: "月", chart: monthly }]}` 提供非受控切换；`activePeriod/onPeriodChange` 提供受控方式，每项传对应聚合数据，不只换标签。`ChartHeader` 默认无 tabs，传入本地化 tabs 才显示，`tabs={[]}` 关闭。
+`TrendChart periods={[{ label: "日", chart: daily }, { label: "周", chart: weekly }, { label: "月", chart: monthly }]}` 提供非受控切换；每项也可使用 `countChart` 提供折线序列。`activePeriod/onPeriodChange` 提供受控方式，每项传对应聚合数据，不只换标签。Block 默认含周期控件、指标图标和 tooltip；没有多周期数据时仅显示「本期」，不伪造其他周期。显式 `variant="plain"` 移除这些装饰。底层 `ChartHeader` 本身默认无 tabs，与 Block 默认策略不同。
 
 ### 长周期计数：30 天与上一周期
 
@@ -1999,7 +2020,7 @@ Source: skills/forge-skill/references/blocks/activity-feed.md
 import { ActivityFeed } from "@/components/blocks/activity-feed";
 
 export default function Example() {
-  return (<ActivityFeed title="最近活动" items={[<span key="1">张三完成订单核对</span>]} />);
+  return (<ActivityFeed title="最近活动" events={[{ id: "review", headerText: "订单动态", datetime: "今天 09:30", title: "张三完成订单核对", description: "核对完成", metadata: [] }]} />);
 }
 ```
 
@@ -2020,7 +2041,7 @@ export default function Example() {
 | onClose | 否 | `(() => void) \| undefined` |
 | density | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity \| undefined` |
 | items | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| events | 否 | `({ icon: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; }[]; onMenuClick?: () => void; } & { id: string; })[] \| undefined` |
+| events | 否 | `(Omit<{ icon: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; }[]; onMenuClick?: () => void; }, "icon" \| "avatar"> & { id: string; icon?: ComponentProps<typeof ActivityCard>["icon"]; avatar?: string; })[] \| undefined` |
 
 ---
 
@@ -2357,12 +2378,12 @@ export default function Example() {
 | subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
 | children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | chart | 否 | `DonutChartProps \| undefined` |
+| variant | 否 | `"plain" \| "template" \| undefined` |
 
 ---
 
@@ -2408,7 +2429,7 @@ Source: skills/forge-skill/references/blocks/crm-summary.md
 import { CrmMetricCard } from "@/components/blocks/crm-summary";
 
 export default function Example() {
-  return (<CrmMetricCard title="客户数" date="本月" value="120" trend="10%" note="较上月" icon={null} iconClassName="text-fg-blue" footer="已更新" />);
+  return (<CrmMetricCard title="客户数" date="本月" value="120" trend="10%" note="较上月" footer="已更新" />);
 }
 ```
 
@@ -2448,8 +2469,8 @@ export default function Example() {
 | trend | 是 | `string` |
 | trendDirection | 否 | `"up" \| "down" \| undefined` |
 | note | 是 | `string` |
-| icon | 是 | `ReactNode` |
-| iconClassName | 是 | `string` |
+| icon | 否 | `ReactNode` |
+| iconClassName | 否 | `string \| undefined` |
 | footer | 是 | `ReactNode` |
 
 ---
@@ -2460,7 +2481,7 @@ Source: skills/forge-skill/references/blocks/dashboard-header.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：无。
+依赖：core ^0.6.0；组件：Button。
 
 ## 最小可用示例
 
@@ -2468,7 +2489,7 @@ Source: skills/forge-skill/references/blocks/dashboard-header.md
 import { DashboardHeader } from "@/components/blocks/dashboard-header";
 
 export default function Example() {
-  return (<DashboardHeader title="订单运营" description="近 30 天" primaryAction={<button type="button">导出</button>} dateSelection={<input type="date" aria-label="统计日期" />} />);
+  return (<DashboardHeader title="订单运营" description="近 30 天" onExport={() => { const link = document.createElement("a"); link.href = "data:text/csv;charset=utf-8,metric,value%0Aorders,1240"; link.download = "orders.csv"; link.click(); }} dateSelection={<input type="date" aria-label="统计日期" />} />);
 }
 ```
 
@@ -2481,6 +2502,7 @@ export default function Example() {
 | action | 否 | `ReactNode` |
 | dateSelection | 否 | `ReactNode` |
 | primaryAction | 否 | `ReactNode` |
+| onExport | 否 | `(() => void) \| undefined` |
 | children | 否 | `ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
@@ -2866,7 +2888,7 @@ Source: skills/forge-skill/references/blocks/goal-progress-list.md
 import { GoalProgressList } from "@/components/blocks/goal-progress-list";
 
 export default function Example() {
-  return (<GoalProgressList title="目标进度">月度目标：已完成 50%</GoalProgressList>);
+  return (<GoalProgressList title="目标进度" goals={[{ id: "monthly", title: "月度目标", date: "2026 年 11 月", amount: "¥16,000", progress: 50, progressColor: "purple" }]} />);
 }
 ```
 
@@ -3183,7 +3205,7 @@ Source: skills/forge-skill/references/blocks/kpi-metrics.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：BarChartStatCard、Panel、StatCard、cn。
+依赖：core ^0.6.0；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
 
 ## 最小可用示例
 
@@ -3191,7 +3213,7 @@ Source: skills/forge-skill/references/blocks/kpi-metrics.md
 import { KpiMetrics } from "@/components/blocks/kpi-metrics";
 
 export default function Example() {
-  return (<KpiMetrics metrics={[{ id: "orders", title: "订单", value: "1020", trend: "32%" }]} />);
+  return (<KpiMetrics metrics={[{ id: "revenue", title: "营业收入", value: "¥32,200", trend: "10%", data: [12, 24, 18, 36, 42] }, { id: "orders", title: "订单", value: "1020", trend: "32%", visualization: "line", data: [20, 30, 24, 40, 52] }, { id: "customers", title: "客户", value: "860", data: [10, 30, 60, 95, 50, 40, 30] }]} />);
 }
 ```
 
@@ -3199,7 +3221,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MotionPreference; trend?: string; trendDirection?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").TrendDirection; subtitle?: string; theme?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardTheme \| ("dark" \| "orange"); size?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").StatCardSize; icon?: ReactNode; badgeVariant?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity; width?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
+| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MotionPreference; trend?: string; trendDirection?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").TrendDirection; subtitle?: string; theme?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardTheme \| ("dark" \| "orange"); size?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").StatCardSize; icon?: ReactNode; badgeVariant?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity; width?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
 | children | 否 | `ReactNode` |
 | className | 否 | `string \| undefined` |
 | variant | 否 | `"chart" \| "plain" \| undefined` |
@@ -3230,7 +3252,7 @@ Source: skills/forge-skill/references/blocks/member-list.md
 import { MemberList } from "@/components/blocks/member-list";
 
 export default function Example() {
-  return (<MemberList title="成员" items={[<span key="1">张三 · 负责人</span>]} />);
+  return (<MemberList title="成员" members={[{ id: "zhang", name: "张三", initials: "张", subtitle: "负责人" }]} />);
 }
 ```
 
@@ -3290,7 +3312,7 @@ Source: skills/forge-skill/references/blocks/ranking-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：ListGroup。
+依赖：core ^0.6.0；组件：ChartListItem、ListGroup、cn。
 
 ## 最小可用示例
 
@@ -3298,7 +3320,7 @@ Source: skills/forge-skill/references/blocks/ranking-list.md
 import { RankingList } from "@/components/blocks/ranking-list";
 
 export default function Example() {
-  return (<RankingList title="商品排行" items={[<span key="1">商品 A · 192 件</span>]} />);
+  return (<RankingList title="商品排行" entries={[{ id: "keyboard", title: "机械键盘", subtitle: "192 件", value: "¥24,500", avatar: "KB" }, { id: "mouse", title: "无线鼠标", subtitle: "160 件", value: "¥12,500" }]} />);
 }
 ```
 
@@ -3307,18 +3329,20 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | title | 是 | `string` |
-| subtitle | 否 | `string \| undefined` |
+| className | 否 | `string \| undefined` |
 | color | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor \| undefined` |
-| badge | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| items | 是 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| subtitle | 否 | `string \| undefined` |
+| action | 否 | `ReactNode` |
+| badge | 否 | `ReactNode` |
 | tabs | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ListGroupTab[] \| undefined` |
 | activeTab | 否 | `string \| undefined` |
 | onTabChange | 否 | `((value: string) => void) \| undefined` |
 | closable | 否 | `boolean \| undefined` |
 | onClose | 否 | `(() => void) \| undefined` |
 | density | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity \| undefined` |
-| className | 否 | `string \| undefined` |
+| items | 否 | `ReactNode` |
+| entries | 否 | `{ id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>["icon"]; accent?: ComponentProps<typeof ChartListItem>["accent"]; avatar?: string; }[] \| undefined` |
+| variant | 否 | `"plain" \| "template" \| undefined` |
 
 ---
 
@@ -3649,7 +3673,7 @@ Source: skills/forge-skill/references/blocks/region-distribution.md
 import { RegionDistribution } from "@/components/blocks/region-distribution";
 
 export default function Example() {
-  return (<RegionDistribution title="地区分布" />);
+  return (<RegionDistribution title="地区分布" highlights={["asia", "europe"]} regions={[{ name: "中国", countryCode: "CN", salesLabel: "340 笔", value: "¥17,678" }, { name: "英国", countryCode: "GB", salesLabel: "100 笔", value: "¥5,500" }]} />);
 }
 ```
 
@@ -3658,14 +3682,14 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | title | 否 | `string \| undefined` |
-| subtitle | 否 | `string \| undefined` |
+| className | 否 | `string \| undefined` |
 | color | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor \| undefined` |
+| subtitle | 否 | `string \| undefined` |
 | variant | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapVariant \| undefined` |
-| regions | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapRegion[] \| undefined` |
 | highlights | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapContinent[] \| undefined` |
 | onMenuClick | 否 | `(() => void) \| undefined` |
 | width | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth \| undefined` |
-| className | 否 | `string \| undefined` |
+| regions | 否 | `(Omit<import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |
 
 ---
 
@@ -3683,7 +3707,7 @@ Source: skills/forge-skill/references/blocks/schedule-card.md
 import { ScheduleCard } from "@/components/blocks/schedule-card";
 
 export default function Example() {
-  return (<ScheduleCard title="日程">今日 10:00：订单复盘</ScheduleCard>);
+  return (<ScheduleCard title="日程" calendar={{ view: "month", year: 2026, month: 10, day: 6 }} />);
 }
 ```
 
@@ -4023,7 +4047,7 @@ Source: skills/forge-skill/references/blocks/trend-chart.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：ChartHeader、GroupedBarChart、SmoothLineChart、Panel。
+依赖：core ^0.6.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel。
 
 ## 最小可用示例
 
@@ -4031,7 +4055,7 @@ Source: skills/forge-skill/references/blocks/trend-chart.md
 import { TrendChart } from "@/components/blocks/trend-chart";
 
 export default function Example() {
-  return (<TrendChart title="订单趋势" chart={{ data: [{ label: "今日", values: [26] }], series: [{ label: "订单", colorClass: "bg-fg-blue" }], yAxisLabels: ["30", "20", "10", "0"] }} />);
+  return (<TrendChart title="订单趋势" periods={[{ label: "日", countChart: { series: [{ label: "订单", data: [12, 26, 18, 30] }], xAxisLabels: ["09:00", "12:00", "15:00", "18:00"] } }, { label: "周", countChart: { series: [{ label: "订单", data: [50, 80, 60, 100] }], xAxisLabels: ["周一", "周二", "周三", "周四"] } }]} />);
 }
 ```
 
@@ -4319,13 +4343,13 @@ export default function Example() {
 | subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
 | children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | chart | 否 | `{ data: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").GroupedBarPoint[]; series: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
-| periods | 否 | `{ label: string; chart: GroupedBarChartProps; }[] \| undefined` |
+| periods | 否 | `TrendPeriod[] \| undefined` |
+| variant | 否 | `"plain" \| "template" \| undefined` |
 | activePeriod | 否 | `string \| undefined` |
 | onPeriodChange | 否 | `((period: string) => void) \| undefined` |
 | countChart | 否 | `SmoothLineChartProps \| undefined` |

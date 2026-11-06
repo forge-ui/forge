@@ -8,7 +8,7 @@
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
-    "example": "import { MemberList } from \"@/components/blocks/member-list\";\n\nexport default function Example() {\n  return (<MemberList title=\"成员\" items={[<span key=\"1\">张三 · 负责人</span>]} />);\n}\n",
+    "example": "import { MemberList } from \"@/components/blocks/member-list\";\n\nexport default function Example() {\n  return (<MemberList title=\"成员\" members={[{ id: \"zhang\", name: \"张三\", initials: \"张\", subtitle: \"负责人\" }]} />);\n}\n",
     "props": [
       {
         "component": "MemberList",

@@ -298,9 +298,9 @@ export default function Example() {
 | subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
 | children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
 | chart | 否 | `DonutChartProps \| undefined` |
+| variant | 否 | `"plain" \| "template" \| undefined` |

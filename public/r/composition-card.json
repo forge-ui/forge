@@ -1414,11 +1414,6 @@
             "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
           },
           {
-            "name": "variant",
-            "required": false,
-            "type": "\"dashboard\" | \"template\" | \"custom\" | undefined"
-          },
-          {
             "name": "as",
             "required": false,
             "type": "\"article\" | \"div\" | \"section\" | \"aside\" | undefined"
@@ -1442,6 +1437,11 @@
             "name": "chart",
             "required": false,
             "type": "DonutChartProps | undefined"
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"plain\" | \"template\" | undefined"
           }
         ]
       }
@@ -1459,7 +1459,7 @@
       "path": "blocks/composition-card/composition-card.tsx",
       "type": "registry:component",
       "target": "@components/blocks/composition-card.tsx",
-      "content": "import type { ComponentProps } from \"react\";\nimport { DonutChart, Panel, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type CompositionCardProps = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: ComponentProps<typeof DonutChart>;\n};\n\nexport function CompositionCard({ children, chart = { segments: [] }, ...panel }: CompositionCardProps) {\n  return <Panel {...panel}>{children ?? <DonutChart {...chart} />}</Panel>;\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\nimport { DonutChart, Panel, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type CompositionCardProps = Omit<PanelProps, \"children\" | \"variant\"> & {\n  children?: PanelProps[\"children\"];\n  chart?: ComponentProps<typeof DonutChart>;\n  variant?: \"template\" | \"plain\";\n};\n\nexport function CompositionCard({ children, chart = { segments: [] }, variant = \"template\", ...panel }: CompositionCardProps) {\n  const colors = [\"bg-fg-violet\", \"bg-fg-yellow\", \"bg-fg-cyan-500\", \"bg-fg-red\"];\n  const segments = chart.segments.map((segment, index) => ({ ...segment, color: segment.color ?? colors[index % colors.length] }));\n  return <Panel {...panel}>{children ?? <><DonutChart accent=\"purple\" {...chart} segments={segments} />{variant !== \"plain\" && <div className=\"grid grid-cols-2 gap-2 text-xs text-fg-grey-700\">{segments.map((segment, index) => <span key={index} className=\"flex items-center gap-1.5\"><span className={`size-2 shrink-0 rounded-full ${segment.color}`} />{segment.label ?? `分类 ${index + 1}`}<span className=\"ml-auto tabular-nums\">{segment.value}</span></span>)}</div>}</>}</Panel>;\n}\n"
     }
   ]
 }

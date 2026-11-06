@@ -10,7 +10,7 @@
 import { ScheduleCard } from "@/components/blocks/schedule-card";
 
 export default function Example() {
-  return (<ScheduleCard title="日程">今日 10:00：订单复盘</ScheduleCard>);
+  return (<ScheduleCard title="日程" calendar={{ view: "month", year: 2026, month: 10, day: 6 }} />);
 }
 ```
 

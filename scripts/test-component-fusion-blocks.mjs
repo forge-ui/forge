@@ -17,6 +17,8 @@ await build({
   stdin: { contents: `export { KpiMetrics } from './blocks/kpi-metrics/kpi-metrics';
     export { TrendChart } from './blocks/trend-chart/trend-chart';
     export { CompositionCard } from './blocks/composition-card/composition-card';
+    export { RankingList } from './blocks/ranking-list/ranking-list';
+    export { RegionDistribution } from './blocks/region-distribution/region-distribution';
     export { DashboardHeader } from './blocks/dashboard-header/dashboard-header';`, resolveDir: root, loader: "tsx" },
   outfile: resolve(temporary, "blocks.mjs"), bundle: true, packages: "external", platform: "node", format: "esm", jsx: "automatic", logLevel: "silent",
   alias: { "@forge-ui-official/core": resolve(root, "core/src/index.ts"), "@forge-ui-official/core/icons": resolve(root, "core/src/icons.tsx") },
@@ -59,9 +61,57 @@ test("trend period controls switch the real data and respect controlled selectio
     await React.act(async () => app.render(React.createElement(blocks.TrendChart, { periods, activePeriod: "月" })));
     await React.act(async () => [...document.querySelectorAll("button")].find(button => button.textContent === "日").click());
     assert.match(document.body.textContent, /月数据/);
+    const linePeriods = [{ label: "日", countChart: { series: [{ label: "日订单", data: [11, 22] }], motion: "none", xAxisLabels: ["上午", "下午"] } }, { label: "周", countChart: { series: [{ label: "周订单", data: [30, 40] }], motion: "none", xAxisLabels: ["周一", "周二"] } }];
+    await React.act(async () => app.render(React.createElement(blocks.TrendChart, { periods: linePeriods })));
+    assert.match(document.body.textContent, /日订单/);
+    assert.match(document.body.textContent, /33/);
+    await React.act(async () => [...document.querySelectorAll("button")].find(button => button.textContent === "周").click());
+    assert.match(document.body.textContent, /周订单/);
+    assert.match(document.body.textContent, /70/);
+    assert.doesNotMatch(document.body.textContent, /日订单/);
+    const line = document.querySelector('[tabindex="0"]');
+    await React.act(async () => line.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "End", bubbles: true })));
+    assert.match(document.body.textContent, /40/);
+    let exports = 0;
+    await React.act(async () => app.render(React.createElement(blocks.DashboardHeader, { title: "订单运营", onExport: () => exports++ })));
+    await React.act(async () => [...document.querySelectorAll("button")].find(button => button.textContent === "导出").click());
+    assert.equal(exports, 1);
   } finally {
     await React.act(async () => app.unmount());
     dom.window.close();
     for (const [name, descriptor] of saved) { if (descriptor) Object.defineProperty(globalThis, name, descriptor); else delete globalThis[name]; }
+  }
+});
+
+test("structured ranking and region data retain Screen identity elements without private assets", () => {
+  const ranking = renderToString(React.createElement(blocks.RankingList, { title: "商品", entries: [{ id: "a", title: "键盘", value: "192" }, { id: "b", title: "鼠标", value: "80", avatar: "MS" }] }));
+  assert.match(ranking, /w-full/);
+  assert.match(ranking, /<svg/);
+  assert.match(ranking, /MS/);
+  const plain = renderToString(React.createElement(blocks.RankingList, { title: "商品", variant: "plain", entries: [{ id: "a", title: "键盘", value: "192" }] }));
+  assert.doesNotMatch(plain, /<svg/);
+  const region = renderToString(React.createElement(blocks.RegionDistribution, { regions: [{ name: "中国", countryCode: "CN", salesLabel: "340 笔", value: "17000" }, { name: "华北", salesLabel: "20 笔", value: "1000" }] }));
+  assert.match(region, /<svg/);
+  assert.match(region, /data:image\/svg\+xml/);
+  assert.match(region, new RegExp(encodeURIComponent("🇨🇳")));
+  assert.match(region, new RegExp(encodeURIComponent("华北")));
+});
+
+test("default trend and composition retain metric icons, tooltip and legend; plain is explicit", () => {
+  const props = { chart: { data: [{ label: "今日", values: [26] }], series: [{ label: "订单", colorClass: "bg-fg-violet" }] } };
+  const trend = renderToString(React.createElement(blocks.TrendChart, props));
+  assert.match(trend, /本期/);
+  assert.match(trend, /<svg/);
+  assert.match(trend, /26/);
+  assert.match(trend, /shadow-elevated/);
+  const plain = renderToString(React.createElement(blocks.TrendChart, { ...props, variant: "plain" }));
+  assert.doesNotMatch(plain, /本期|shadow-elevated/);
+  const composition = renderToString(React.createElement(blocks.CompositionCard, { chart: { segments: [{ label: "商城", value: 40 }] } }));
+  assert.match(composition, /商城/);
+  assert.match(composition, /bg-fg-violet/);
+  for (const Component of [blocks.KpiMetrics, blocks.TrendChart, blocks.CompositionCard, blocks.DashboardHeader]) {
+    const html = renderToString(React.createElement(Component, null, React.createElement("span", null, "原模板插槽")));
+    assert.match(html, /原模板插槽/);
+    assert.doesNotMatch(html, /本期|分类 1/);
   }
 });

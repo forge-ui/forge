@@ -10,7 +10,7 @@
 import { CrmMetricCard } from "@/components/blocks/crm-summary";
 
 export default function Example() {
-  return (<CrmMetricCard title="客户数" date="本月" value="120" trend="10%" note="较上月" icon={null} iconClassName="text-fg-blue" footer="已更新" />);
+  return (<CrmMetricCard title="客户数" date="本月" value="120" trend="10%" note="较上月" footer="已更新" />);
 }
 ```
 
@@ -50,6 +50,6 @@ export default function Example() {
 | trend | 是 | `string` |
 | trendDirection | 否 | `"up" \| "down" \| undefined` |
 | note | 是 | `string` |
-| icon | 是 | `ReactNode` |
-| iconClassName | 是 | `string` |
+| icon | 否 | `ReactNode` |
+| iconClassName | 否 | `string \| undefined` |
 | footer | 是 | `ReactNode` |

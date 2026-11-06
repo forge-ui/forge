@@ -1,9 +1,9 @@
 import { ArrowRightUpLinear, ArrowRightDownLinear } from "@forge-ui-official/core/icons";
 import type { ComponentProps, ReactNode } from "react";
-import { BarChartStatCard, Panel, StatCard, cn, type StatCardProps } from "@forge-ui-official/core";
+import { BarChartStatCard, LineChartStatCard, Panel, StatCard, cn, type StatCardProps } from "@forge-ui-official/core";
 
 export interface KpiMetricsProps {
-  metrics?: (StatCardProps & { id: string })[];
+  metrics?: (StatCardProps & { id: string; visualization?: "line" | "bar"; data?: number[] })[];
   children?: ReactNode;
   className?: string;
   variant?: "chart" | "plain";
@@ -11,8 +11,14 @@ export interface KpiMetricsProps {
 }
 
 export function KpiMetrics({ metrics = [], children, variant = "chart", bars, className = "grid grid-cols-1 items-stretch gap-4 lg:grid-cols-4 [&>*]:w-full" }: KpiMetricsProps) {
-  const themes = ["purple", "blue", "green", "red"] as const;
-  return <div className={cn(className)}>{children ?? metrics.map(({ id, ...metric }, index) => variant === "plain" ? <StatCard key={id} {...metric} density="compact" /> : <BarChartStatCard key={id} {...metric} value={String(metric.value ?? "")} theme={metric.theme ?? themes[index % themes.length]} size={metric.size ?? "wide"} barColor={themes[index % themes.length]} bars={bars} density="compact" />)}</div>;
+  return <div className={cn(className)}>{children ?? metrics.map(({ id, visualization, data, ...metric }, index) => {
+    const theme = metric.theme ?? (index === 0 ? "purple" : "white");
+    const shared = { ...metric, value: String(metric.value ?? ""), theme, size: metric.size ?? "wide", density: "compact" as const, width: "full" as const };
+    if (variant === "plain") return <StatCard key={id} {...metric} density="compact" />;
+    return (visualization ?? (index % 2 === 1 ? "line" : "bar")) === "line"
+      ? <LineChartStatCard key={id} {...shared} chartColor="red" series={data} />
+      : <BarChartStatCard key={id} {...shared} barColor="purple" bars={data ?? bars} />;
+  })}</div>;
 }
 
 function MiniFinanceLine({

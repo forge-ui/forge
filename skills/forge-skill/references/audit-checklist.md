@@ -1,5 +1,12 @@
 # Forge 统一审计清单
 
+## Screen 元素保真
+
+- SF1：记录主对照 Screen 的源码版本、1440/375 截图与业务替换字段。逐项核对主题主卡、迷你图、图标/首字母头像、地图/旗帜、周期切换、指标行、tooltip、页头操作插槽，不得无理由省略。
+- SF2：每项写通过/违规/不适用/未验证与证据。使用 plain 或自定义 children/items 必须逐项说明省略原因，例如没有历史序列、没有导出权限、地区不对应国家。不得为了截图伪造趋势、国家或可点击但无作用的操作。
+- SF3：机械门禁运行 `pnpm blocks:check` 与 `pnpm test:interactions`：registry 与源码一致、默认迷你图/主题/图标/地图/图例、周期切换真实数据、受控选择、tooltip、插槽兼容。结构检查不替代主 Screen 并排截图和真实 hover/click。
+- SF4：修改共享 Block 后按基线全量重放模板截图并像素比对；画廊允许变化，模板不允许。表格另核 `flex` 预算、minWidth、valueKind 与表头同向，见 [DataTable 选型](component-selection/data-table.md)。
+
 编号底本：forge-starter/docs/audit-checklist.md；归属按 D.md 逐编号 G / G+S / S 审核。本清单只收通用规则及混合规则的通用部分，保留原编号，不重排。宿主路由、权限、存储、toast、数据库工程约定仍由宿主文档管理。
 
 每条结果：通过 / 违规 / 不适用（原因） / 未验证（缺少的环境或证据）。记录文件行号、版本、页面 URL、截图和动作；静态检查不能证明浏览器、业务或安全全面通过。

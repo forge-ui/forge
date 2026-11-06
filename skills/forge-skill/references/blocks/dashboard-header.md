@@ -2,7 +2,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：无。
+依赖：core ^0.6.0；组件：Button。
 
 ## 最小可用示例
 
@@ -10,7 +10,7 @@
 import { DashboardHeader } from "@/components/blocks/dashboard-header";
 
 export default function Example() {
-  return (<DashboardHeader title="订单运营" description="近 30 天" primaryAction={<button type="button">导出</button>} dateSelection={<input type="date" aria-label="统计日期" />} />);
+  return (<DashboardHeader title="订单运营" description="近 30 天" onExport={() => { const link = document.createElement("a"); link.href = "data:text/csv;charset=utf-8,metric,value%0Aorders,1240"; link.download = "orders.csv"; link.click(); }} dateSelection={<input type="date" aria-label="统计日期" />} />);
 }
 ```
 
@@ -23,6 +23,7 @@ export default function Example() {
 | action | 否 | `ReactNode` |
 | dateSelection | 否 | `ReactNode` |
 | primaryAction | 否 | `ReactNode` |
+| onExport | 否 | `(() => void) \| undefined` |
 | children | 否 | `ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |

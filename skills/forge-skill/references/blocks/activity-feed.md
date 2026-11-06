@@ -10,7 +10,7 @@
 import { ActivityFeed } from "@/components/blocks/activity-feed";
 
 export default function Example() {
-  return (<ActivityFeed title="最近活动" items={[<span key="1">张三完成订单核对</span>]} />);
+  return (<ActivityFeed title="最近活动" events={[{ id: "review", headerText: "订单动态", datetime: "今天 09:30", title: "张三完成订单核对", description: "核对完成", metadata: [] }]} />);
 }
 ```
 
@@ -31,4 +31,4 @@ export default function Example() {
 | onClose | 否 | `(() => void) \| undefined` |
 | density | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity \| undefined` |
 | items | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| events | 否 | `({ icon: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; }[]; onMenuClick?: () => void; } & { id: string; })[] \| undefined` |
+| events | 否 | `(Omit<{ icon: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; }[]; onMenuClick?: () => void; }, "icon" \| "avatar"> & { id: string; icon?: ComponentProps<typeof ActivityCard>["icon"]; avatar?: string; })[] \| undefined` |

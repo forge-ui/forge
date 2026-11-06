@@ -10,7 +10,7 @@
 import { MemberList } from "@/components/blocks/member-list";
 
 export default function Example() {
-  return (<MemberList title="成员" items={[<span key="1">张三 · 负责人</span>]} />);
+  return (<MemberList title="成员" members={[{ id: "zhang", name: "张三", initials: "张", subtitle: "负责人" }]} />);
 }
 ```
 
