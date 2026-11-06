@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState, useCallback } from "react";
 import {
   Breadcrumbs,
@@ -68,7 +69,7 @@ export default function AddOrderPage() {
             title="Save Changes?"
             description="Do you want to save this order? This action can't be undone"
             color="purple"
-            icon={<DangerTriangleLinear size={24} color="#7c3aed" />}
+            icon={<DangerTriangleLinear size={24} color={"var(--fg-violet-500)"} />}
             confirmLabel="Yes, Save"
             cancelLabel="Don't Save"
             onConfirm={handleCloseSaveModal}
@@ -77,7 +78,7 @@ export default function AddOrderPage() {
         </div>
       )}
 
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
             <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => window.history.back()}>
@@ -107,7 +108,7 @@ export default function AddOrderPage() {
         {/* Left - main form */}
         <div className="flex-1 flex flex-col gap-4">
           {/* Product Information */}
-          <div className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-5">
               Product Information
             </h3>
@@ -148,10 +149,10 @@ export default function AddOrderPage() {
                 onChange={setQuantity}
               />
             </div>
-          </div>
+          </Panel>
 
           {/* Customer Information */}
-          <div className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-5">
               Customer Information
             </h3>
@@ -178,10 +179,10 @@ export default function AddOrderPage() {
                 />
               </div>
             </div>
-          </div>
+          </Panel>
 
           {/* Shipping Details */}
-          <div className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-5">
               Shipping Details
             </h3>
@@ -211,16 +212,16 @@ export default function AddOrderPage() {
                 />
               </div>
             </div>
-          </div>
+          </Panel>
         </div>
 
         {/* Right sidebar - Product Image */}
-        <div className="w-[266px] rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+        <Panel variant="custom" className="w-[266px] rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">
             Product Image
           </h3>
           <MediaUpload />
-        </div>
+        </Panel>
       </div>
     </>
   );

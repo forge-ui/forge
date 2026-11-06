@@ -1,0 +1,54 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "project-section",
+  "type": "registry:block",
+  "title": "项目详情分区",
+  "description": "项目与任务共用的标题操作栏和紧凑内容区。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "example": "import { ProjectSection } from \"@/components/blocks/project-section\";\n\nexport default function Example() {\n  return (<ProjectSection title=\"项目进度\">已完成 6 / 10 项</ProjectSection>);\n}\n",
+    "props": [
+      {
+        "component": "ProjectSection",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Panel"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/project-section/project-section.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/project-section.tsx",
+      "content": "import type { ReactNode } from \"react\";\nimport { Panel } from \"@forge-ui-official/core\";\n\nexport interface ProjectSectionProps {\n  title: string;\n  action?: ReactNode;\n  children: ReactNode;\n  className?: string;\n}\n\nexport function ProjectSection({ title, action, children, className }: ProjectSectionProps) {\n  return <Panel variant=\"custom\" as=\"section\" className={className}><div className=\"mb-3 flex items-center justify-between\"><h3 className=\"text-lg font-semibold text-fg-black\">{title}</h3>{action}</div><div className=\"flex flex-col gap-3\">{children}</div></Panel>;\n}\n"
+    }
+  ]
+}

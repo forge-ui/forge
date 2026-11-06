@@ -5,14 +5,107 @@
   "title": "排行列表卡",
   "description": "紧凑列表与排序口径、操作插槽。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { RankingList } from \"@/components/blocks/ranking-list\";\n\nexport default function Example() {\n  return (<RankingList title=\"商品排行\" entries={[{ id: \"keyboard\", title: \"机械键盘\", subtitle: \"192 件\", value: \"¥24,500\", avatar: \"KB\" }, { id: \"mouse\", title: \"无线鼠标\", subtitle: \"160 件\", value: \"¥12,500\" }]} />);\n}\n",
+    "props": [
+      {
+        "component": "RankingList",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "action",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "badge",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "tabs",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").ListGroupTab[] | undefined"
+          },
+          {
+            "name": "activeTab",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "onTabChange",
+            "required": false,
+            "type": "((value: string) => void) | undefined"
+          },
+          {
+            "name": "closable",
+            "required": false,
+            "type": "boolean | undefined"
+          },
+          {
+            "name": "onClose",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "density",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity | undefined"
+          },
+          {
+            "name": "items",
+            "required": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "entries",
+            "required": false,
+            "type": "{ id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>[\"icon\"]; accent?: ComponentProps<typeof ChartListItem>[\"accent\"]; avatar?: string; }[] | undefined"
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"plain\" | \"template\" | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "ChartListItem",
+        "ListGroup",
+        "cn"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/ranking-list/ranking-list.tsx",
       "type": "registry:component",
       "target": "@components/blocks/ranking-list.tsx",
-      "content": "import { ListGroup, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type RankingListProps = ListGroupProps;\n\nexport function RankingList(props: RankingListProps) {\n  return <ListGroup density=\"compact\" {...props} />;\n}\n"
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\nimport { BoxBoldDuotone } from \"@forge-ui-official/core/icons\";\nimport { ChartListItem, ListGroup, cn, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type RankingListProps = Omit<ListGroupProps, \"items\"> & {\n  items?: ReactNode;\n  entries?: { id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>[\"icon\"]; accent?: ComponentProps<typeof ChartListItem>[\"accent\"]; avatar?: string }[];\n  variant?: \"template\" | \"plain\";\n};\n\nexport function RankingList({ entries = [], items, variant = \"template\", className, ...props }: RankingListProps) {\n  return <ListGroup density=\"compact\" {...props} className={cn(\"w-full\", className)} items={items ?? entries.map((entry, index) => variant === \"plain\"\n    ? <div key={entry.id} className=\"flex justify-between gap-3 py-2\"><span>{entry.title}</span><span>{entry.value}</span></div>\n    : entry.avatar ? <div key={entry.id} className=\"flex items-center gap-3 py-2.5\"><span className=\"flex size-10 shrink-0 items-center justify-center rounded-lg bg-fg-violet-100 text-sm font-semibold text-fg-violet\">{entry.avatar}</span><div className=\"min-w-0 flex-1\"><div className=\"truncate text-sm font-semibold\">{entry.title}</div><div className=\"text-xs text-fg-grey-500\">{entry.subtitle}</div></div><span className=\"text-sm font-semibold tabular-nums\">{entry.value}</span></div>\n      : <ChartListItem key={entry.id} title={entry.title} subtitle={entry.subtitle} value={entry.value} icon={entry.icon ?? BoxBoldDuotone} accent={entry.accent ?? (index % 2 ? \"blue\" : \"purple\")} />)} />;\n}\n"
     }
   ]
 }

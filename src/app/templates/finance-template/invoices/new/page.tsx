@@ -1,12 +1,13 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear } from "@forge-ui-official/core/icons";
 import { Button, CellActions, CellText, DataTable, SelectOption, TextField } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { ProtaskDeleteDialog, ProtaskSaveChangesDialog } from "../../../_shared/protask-actions";
-import { FieldLine, FinanceSurface } from "../../_components";
+import { FieldLine, FinanceSurface } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell } from "../../_chrome";
 
 type LineItem = {
@@ -84,10 +85,10 @@ function FinanceInvoiceFormContent() {
               <FieldLine label="Subtotal" value="$2,320.00" />
               <FieldLine label="Tax" value="$232.00" />
               <FieldLine label="Discount" value="$0.00" />
-              <div className="rounded-[20px] bg-fg-blue-50 p-5">
+              <Panel variant="custom" className="rounded-[20px] bg-fg-blue-50 p-5">
                 <p className="text-sm font-medium text-fg-blue">Total</p>
                 <p className="mt-1 text-2xl font-semibold text-fg-blue">{isFilled ? "$2,552.00" : "$0.00"}</p>
-              </div>
+              </Panel>
               <Button color="blue" className="w-full">Send Invoice</Button>
             </div>
           </FinanceSurface>

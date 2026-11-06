@@ -456,6 +456,8 @@ export { FolderFloat } from "./folder-float";
 export type { FolderFloatProps } from "./folder-float";
 
 export { Panel } from "./panel";
+export { FileInput } from "./forms/file-input";
+export type { FileInputProps } from "./forms/file-input";
 export type { PanelProps } from "./panel";
 export { WalletGoalCard } from "./wallet-goal-card";
 export type { WalletGoalCardProps } from "./wallet-goal-card";
@@ -472,3 +474,6 @@ export type { HighlightCardProps } from "./highlight-card";
 export type { ListGroupProps } from "./list-group";
 export { ChartHeader, ChartMetricRow, GroupedBarChart, DivergingBarChart } from "./charts/dashboard-charts";
 export type { ChartHeaderProps, ChartMetricRowProps, GroupedBarChartProps, DivergingBarChartProps, ChartTrend, GroupedBarPoint, ChartMetricSeries, GroupedBarTooltipItem } from "./charts/dashboard-charts";
+
+export { InfoRow } from "./info-row";
+export type { InfoRowProps } from "./info-row";

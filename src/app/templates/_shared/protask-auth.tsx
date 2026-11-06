@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
@@ -90,7 +91,7 @@ export function ProtaskAuthPage({
   return (
     <main className="min-h-screen bg-white p-4 lg:p-6">
       <div className="grid min-h-[calc(100vh-32px)] grid-cols-1 gap-6 lg:min-h-[calc(100vh-48px)] lg:grid-cols-[minmax(360px,640px)_minmax(420px,1fr)]">
-        <section className="relative hidden overflow-hidden rounded-2xl bg-fg-grey-100 lg:block">
+        <Panel variant="custom" as="section" className="relative hidden overflow-hidden rounded-2xl bg-fg-grey-100 lg:block">
           <Image
             src={heroImage}
             alt="Protask auth preview"
@@ -99,9 +100,9 @@ export function ProtaskAuthPage({
             className="object-cover object-left"
             priority
           />
-        </section>
+        </Panel>
 
-        <section className="relative flex min-h-[720px] items-center justify-center rounded-2xl bg-white">
+        <Panel variant="custom" as="section" className="relative flex min-h-[720px] items-center justify-center rounded-2xl bg-white">
           <div className="flex w-full max-w-96 flex-col items-center gap-8">
             <div className="flex flex-col items-center gap-3 text-center">
               <h1 className="text-2xl font-semibold leading-8 tracking-fg text-fg-black">
@@ -166,13 +167,13 @@ export function ProtaskAuthPage({
                   iconLeft={<LockKeyholeLinear size={18} />}
                   iconRight={<EyeLinear size={18} />}
                   headerAction={
-                    <button
+                    <Button variant="unstyled"
                       type="button"
                       onClick={() => router.push(`${basePath}/forgot-password`)}
                       className="text-sm font-bold leading-5 tracking-fg text-fg-violet"
                     >
                       Forgot Password
-                    </button>
+                    </Button>
                   }
                 />
               )}
@@ -221,20 +222,20 @@ export function ProtaskAuthPage({
 
             <div className="flex items-center justify-center gap-2 text-sm leading-5 tracking-fg">
               <span className="font-normal text-fg-grey-700">{copy.footerText}</span>
-              <button
+              <Button variant="unstyled"
                 type="button"
                 onClick={() => router.push(footerHref)}
                 className="font-bold text-fg-violet"
               >
                 {copy.footerLabel}
-              </button>
+              </Button>
             </div>
           </div>
 
           <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-1 text-sm font-normal leading-5 tracking-fg text-fg-grey-700 md:flex">
             <span>2024 Made With By Sugab</span>
           </div>
-        </section>
+        </Panel>
       </div>
     </main>
   );

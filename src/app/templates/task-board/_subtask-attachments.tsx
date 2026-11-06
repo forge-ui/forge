@@ -1,5 +1,6 @@
 "use client";
 
+import { FileInput } from "@forge-ui-official/core";
 import { useEffect, useRef, useState } from "react";
 import { Button, IconButton } from "@forge-ui-official/core";
 import { PlusLinear, PaperclipLinear } from "@forge-ui-official/core/icons";
@@ -24,7 +25,7 @@ export function SubtaskAttachments({ value, onChange, onBusyChange, label = "子
       <a className="truncate text-sm text-fg-black underline" href={file.url} download={file.name}>{file.name}</a>
       <Button color="blue" variant="tertiary" size="sm" disabled={busy} aria-label={`移除附件：${file.name}`} onClick={() => onChange(value.filter((item) => item.id !== file.id))}>移除</Button>
     </div>)}
-    <input type="file" hidden multiple ref={input} aria-label={`选择${label}`} onChange={async (event) => {
+    <FileInput  hidden multiple ref={input} aria-label={`选择${label}`} onChange={async (event) => {
       const files = Array.from(event.target.files || []);
       event.target.value = "";
       if (!files.length) return;

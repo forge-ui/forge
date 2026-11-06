@@ -4,9 +4,10 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
 import type { MotionPreference } from "../lib/motion";
 import { cn } from "../lib/utils";
 
-export function DialogSurface({ open, onOpenChange, label, children, motion = "auto", side, className }: {
+export function DialogSurface({ open, onOpenChange, label, children, motion = "auto", side, className, appearance = "default" }: {
   open: boolean; onOpenChange: (open: boolean) => void; label: string; children: ReactNode;
   motion?: MotionPreference; side?: "left" | "right"; className?: string;
+  appearance?: "default" | "template";
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useLayoutEffect(() => {
@@ -70,7 +71,7 @@ export function DialogSurface({ open, onOpenChange, label, children, motion = "a
       const rect = event.currentTarget.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onOpenChange(false);
     }}
-    className={cn("forge-dialog border-0 bg-white p-0 text-fg-black shadow-xl", side ? "forge-drawer" : "forge-modal rounded-card", className)}>
+    className={cn("forge-dialog border-0 bg-white p-0 text-fg-black", appearance === "template" ? "forge-template-modal rounded-card shadow-lg" : cn("shadow-xl", side ? "forge-drawer" : "forge-modal rounded-card"), className)}>
     <div inert={!open || undefined} aria-hidden={!open || undefined}>{children}</div>
   </dialog>;
 }

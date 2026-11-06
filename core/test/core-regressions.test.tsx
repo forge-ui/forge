@@ -485,6 +485,11 @@ test("DataTable 默认把首列当成身份列并给出内容最小宽度", () =
   assert.match(html, /bg-fg-black/);
   assert.doesNotMatch(html, /bg-fg-violet/);
   assert.equal(getDefaultTableMinWidth(columns), 456);
+  assert.equal(getDefaultTableMinWidth(columns, true), 512);
+  assert.equal(getDefaultTableMinWidth(columns.map(column => column.key === columns[0].key ? { ...column, minWidth: 260 } : column)), 476);
+  const customWidth = render(DataTable as React.ElementType, { columns: [{ key: "amount", header: "金额", valueKind: "number", minWidth: 180, render: () => "100" }], rows: [{ id: "1" }] });
+  assert.match(customWidth, /min-width:180px/);
+  assert.match(customWidth, /data-forge-column-align="right"/);
 });
 
 test("FullWidthTable 旧索引模式不会把无效索引误判为全选", () => {

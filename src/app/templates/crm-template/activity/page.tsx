@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel, Button } from "@forge-ui-official/core";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -175,13 +176,13 @@ function CrmActivityContent() {
           primaryAction={{ label: "Add New", icon: <AddCircleLinear size={18} />, onClick: () => router.push("/templates/crm-template/activity?dialog=add-call-schedule") }}
         />
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-[320px_minmax(0,1fr)]">
-          <aside className="flex min-h-[680px] flex-col gap-5 rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+          <Panel variant="custom" as="aside" className="flex min-h-[680px] flex-col gap-5 rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
             <div className="flex items-center gap-3">
               <h2 className="flex-1 text-xl font-semibold leading-8 tracking-fg text-fg-black">Member</h2>
-              <button type="button" className="inline-flex items-center gap-1 text-sm font-bold leading-5 tracking-fg text-fg-violet">
+              <Button variant="unstyled" type="button" className="inline-flex items-center gap-1 text-sm font-bold leading-5 tracking-fg text-fg-violet">
                 <UsersGroupRoundedLinear size={18} />
                 Select All
-              </button>
+              </Button>
             </div>
             <div className="h-px bg-fg-grey-200" />
             <ToolbarSearchInput placeholder="Search. . ." className="w-full" />
@@ -197,7 +198,7 @@ function CrmActivityContent() {
                 </div>
               ))}
             </div>
-          </aside>
+          </Panel>
           <main className="flex min-w-0 flex-col gap-6">
             <TabBar
               tabs={activityTabs.map((label) => ({ label, active: label === activeTab }))}
@@ -235,7 +236,7 @@ function ActivityLogCard({ log, index }: { log: (typeof logs)[number]; index: nu
         : "bg-fg-violet-100 text-fg-violet";
 
   return (
-    <article className="overflow-hidden rounded-[20px] bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
       <header className="flex flex-col gap-4 border-b border-fg-grey-200 p-5 lg:flex-row lg:items-center">
         <div className="flex min-w-0 flex-1 items-center gap-3">
           <span className={`grid size-9 shrink-0 place-items-center rounded-full ${iconClassName}`}>{log.icon}</span>
@@ -269,7 +270,7 @@ function ActivityLogCard({ log, index }: { log: (typeof logs)[number]; index: nu
           )}
         </div>
       </div>
-    </article>
+    </Panel>
   );
 }
 

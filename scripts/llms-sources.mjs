@@ -22,15 +22,17 @@ export function loadSources(root) {
   if (templates.filter(item => /^dashboards\/[^/]+$/.test(item.route)).length !== 10) throw new Error("Expected ten dashboard Screens");
   const modules = [...new Set(inventory.components.map(item => path.basename(item.source, path.extname(item.source))))].sort().map(name => ({ file: "skills/forge-skill/references/components/" + name + ".md", content: read("skills/forge-skill/references/components/" + name + ".md") }));
   for (const apiModule of modules) if (!apiModule.content.includes("core **" + core.version + "**")) throw new Error("Stale API source: " + apiModule.file);
-  const fingerprint = createHash("sha256").update(JSON.stringify({ core: core.version, inventory, references, templates, cases, modules })).digest("hex");
-  return { core, inventory, references, templates, cases, modules, fingerprint };
+  const blocks = JSON.parse(read("blocks/registry.json"));
+  if (!Array.isArray(blocks) || !blocks.length) throw new Error("Empty block registry");
+  const fingerprint = createHash("sha256").update(JSON.stringify({ core: core.version, inventory, references, templates, cases, modules, blocks })).digest("hex");
+  return { core, inventory, references, templates, cases, modules, blocks, fingerprint };
 }
 
 export function generateDocuments(root) {
   const source = loadSources(root);
   const { core, inventory, references, templates, cases, modules, fingerprint } = source;
   const banner = "# Forge UI Kit\n\nPackage: " + core.name + "@" + core.version + "\nSource: this repository; forge-skill + generated core exports + real page routes\nSource fingerprint: " + fingerprint + "\n\n";
-  const policy = "## Adopted rules / 采用规则\n\nScreen → Blocks → Components. Start dashboards from a real Screen; 12 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.5.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.\n\n";
+  const policy = "## Adopted rules / 采用规则\n\nScreen → Blocks → Components. Start dashboards from a real Screen; " + source.blocks.length + " Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core " + core.version + " and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.\n\n";
   const catalog = "## Public exports (" + inventory.components.length + ", values and types distinguished)\n\n" + inventory.components.map(item => "- " + item.name + " [" + item.kind + "] — " + item.source).join("\n") + "\n\n";
   const pageList = (title, group, items) => "## " + title + "\n\n" + items.map(item => "- /" + group + (item.route ? "/" + item.route : "") + " — " + item.file + (item.route.includes("[") ? " (route pattern; use real IDs)" : "")).join("\n") + "\n\n";
   const expandLinks = item => item.content.replace(/\]\(([^\s)]+\.md(?:#[^\s)]*)?)\)/g, (match, href) => {

@@ -63,10 +63,10 @@ export function PageTop({
   actions?: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4">
-      <div className="flex flex-col gap-2">
+    <div className="flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-stretch max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
+      <div className="flex min-w-0 flex-col gap-2">
         <h1 className="text-3xl font-semibold leading-9 text-fg-black">{title}</h1>
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex flex-wrap items-center gap-2 text-sm">
           <span className="font-semibold text-fg-violet">{parent}</span>
           <span className="text-fg-grey-300">/</span>
           <span className="text-fg-grey-500">{current}</span>

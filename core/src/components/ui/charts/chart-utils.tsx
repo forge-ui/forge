@@ -73,7 +73,7 @@ export const tailwindColorMap: Record<string, string> = {
 export const TRACK_COLOR_HEX = "var(--fg-grey-200)";
 
 export function resolveColor(color: string): string {
-  return tailwindColorMap[color] || color;
+  return (tailwindColorMap[color] || color).replace(/var\(--fg-green\)/g, "var(--fg-green-500)");
 }
 
 export function trendColorClass(direction?: "up" | "down"): string {

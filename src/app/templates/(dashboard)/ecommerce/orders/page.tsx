@@ -322,7 +322,7 @@ export default function OrdersPage() {
                 : "Do you want to delete this order? This action can't be undone"
             }
             color="red"
-            icon={<TrashBinTrashLinear size={24} color="#ea580c" />}
+            icon={<TrashBinTrashLinear size={24} color={"var(--fg-red-600)"} />}
             confirmLabel="Delete"
             cancelLabel="Cancel"
             onConfirm={() => {
@@ -334,7 +334,7 @@ export default function OrdersPage() {
         </div>
       )}
 
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Orders</h1>
           <Breadcrumbs

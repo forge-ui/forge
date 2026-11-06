@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarCard, ChartHeader, ChartMetricRow, StatCard } from "@forge-ui-official/core";
+import { CalendarCard, ChartHeader, ChartMetricRow } from "@forge-ui-official/core";
 import { SiteHeader } from "../_components/site-header";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -16,15 +16,26 @@ import { ActivityFeed } from "@/blocks/activity-feed/activity-feed";
 import { ScheduleCard } from "@/blocks/schedule-card/schedule-card";
 import { CardCarousel } from "@/blocks/card-carousel/card-carousel";
 import catalog from "../../../blocks/registry.json";
+import corePackage from "../../../core/package.json";
+import { CrmStat } from "@/blocks/crm-summary/crm-summary";
+import { FinanceSurface, VisualCard } from "@/blocks/finance-workspace/finance-workspace";
+import { TemplateSurface } from "@/blocks/template-surface/template-surface";
+import { ConversationHeader } from "@/blocks/conversation-header/conversation-header";
+import { ProjectSection } from "@/blocks/project-section/project-section";
 
 const previews = {
-  "kpi-metrics": <KpiMetrics className="grid grid-cols-1 gap-4 sm:grid-cols-2" metrics={[{ id: "income", title: "营业收入", value: "¥35,500", trend: "10%", theme: "blue" }, { id: "orders", title: "订单数", value: "1,240", trend: "7%" }]} />,
+  "crm-summary": <CrmStat title="客户增长" value="1,240" bars={[20, 35, 28, 50, 60]} />,
+  "finance-workspace": <FinanceSurface title="账户概览"><VisualCard theme="blue" name="演示账户" type="借记卡" last4="2026" balance="¥12,000" /></FinanceSurface>,
+  "template-surface": <TemplateSurface title="会话详情" subtitle="演示内容区">可替换为列表、详情或聊天内容。</TemplateSurface>,
+  "conversation-header": <ConversationHeader title="项目计划" subtitle="设计工作室 / 工作助手"><span className="text-sm text-fg-grey-700">操作插槽</span></ConversationHeader>,
+  "project-section": <ProjectSection title="任务详情" className="rounded-card border border-fg-grey-200 bg-white p-4">本周重点任务与进展。</ProjectSection>,
+  "kpi-metrics": <KpiMetrics className="grid grid-cols-1 gap-4 sm:grid-cols-3" metrics={[{ id: "income", title: "营业收入", value: "¥35,500", trend: "10%", data: [12, 24, 18, 36, 42] }, { id: "orders", title: "订单数", value: "1,240", trend: "7%", data: [30, 20, 40, 35, 50] }, { id: "customers", title: "客户数", value: "860", data: [10, 30, 60, 95, 50, 40, 30] }]} />,
   "recent-records": <RecentRecords title="最近订单" columns={[{ key: "name", header: "订单", render: (row: { id: string; name: string }) => row.name }]} data={[{ id: "order-1", name: "企业年度订阅" }]} getRowKey={row => row.id} />,
-  "trend-chart": <TrendChart title="收入趋势" chart={{ data: [{ label: "周一", values: [40] }, { label: "周二", values: [60] }, { label: "周三", values: [50] }], series: [{ label: "收入", colorClass: "bg-fg-blue" }], yAxisLabels: ["60", "30", "0"], activeIndex: 1 }} />,
-  "ranking-list": <RankingList title="渠道排行" subtitle="按本月收入排序" items={<><StatCard title="自然搜索" value="¥12,500" density="compact" /><StatCard title="直接访问" value="¥8,200" density="compact" /></>} />,
-  "composition-card": <CompositionCard title="收入构成" chart={{ segments: [{ value: 60, color: "bg-fg-blue" }, { value: 40, color: "bg-fg-green" }], centerValue: "¥35,500", size: "sm" }} />,
-  "dashboard-header": <DashboardHeader title="经营概览" description="本月关键指标与待办事项" action={<span className="text-xs text-fg-grey-500">本月</span>} />,
-  "region-distribution": <RegionDistribution title="地区分布" subtitle="按销售额统计" />,
+  "trend-chart": <TrendChart title="订单趋势" periods={[{ label: "日", countChart: { series: [{ label: "订单", data: [12, 26, 18, 30] }], xAxisLabels: ["09:00", "12:00", "15:00", "18:00"] } }, { label: "周", countChart: { series: [{ label: "订单", data: [50, 80, 60, 100] }], xAxisLabels: ["周一", "周二", "周三", "周四"] } }]} />,
+  "ranking-list": <RankingList title="渠道排行" subtitle="按本月收入排序" entries={[{ id: "search", title: "自然搜索", subtitle: "340 笔订单", value: "¥12,500", avatar: "搜" }, { id: "direct", title: "直接访问", subtitle: "180 笔订单", value: "¥8,200" }]} />,
+  "composition-card": <CompositionCard title="收入构成" chart={{ segments: [{ label: "商城", value: 60 }, { label: "小店", value: 40 }], centerValue: "¥35,500", size: "sm" }} />,
+  "dashboard-header": <DashboardHeader title="经营概览" description="本月关键指标与待办事项" dateSelection={<input type="date" aria-label="统计日期" className="rounded-lg border border-fg-grey-200 px-3 py-2 text-sm" />} onExport={() => { const link = document.createElement("a"); link.href = "data:text/csv;charset=utf-8,%EF%BB%BF指标,数值%0A营业收入,35500%0A订单数,1240"; link.download = "经营概览.csv"; link.click(); }} />,
+  "region-distribution": <RegionDistribution title="地区分布" subtitle="按销售额统计" highlights={["asia", "europe"]} regions={[{ name: "中国", countryCode: "CN", salesLabel: "340 笔", value: "¥17,678" }, { name: "英国", countryCode: "GB", salesLabel: "100 笔", value: "¥5,500" }]} />,
   "member-list": <MemberList title="项目成员" members={[{ id: "member-1", name: "张宁", initials: "张", subtitle: "产品负责人" }]} />,
   "goal-progress-list": <GoalProgressList title="储蓄目标" goals={[{ id: "goal-1", title: "年度预算", date: "2026 年 12 月", amount: "¥16,000", progress: 50, progressColor: "blue" }]} />,
   "activity-feed": <ActivityFeed title="最近活动" events={[{ id: "event-1", icon: null, headerText: "项目动态", datetime: "今天 09:30", avatar: "/images/team/edward-allen.png", title: "需求评审已完成", description: "项目已进入设计阶段", metadata: [] }]} />,
@@ -36,9 +47,9 @@ export default function BlocksPage() {
   return <div className="min-h-screen bg-fg-grey-50">
     <SiteHeader />
     <main className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8">
-      <DashboardHeader title="看板区块" description="12 个可复制、可修改的页面区块。先选模板，再替换业务数据。" />
+      <DashboardHeader title="页面区块" description={`${catalog.length} 个可复制、可修改的页面区块。先选模板，再替换业务数据。`} />
       <p className="text-sm text-fg-grey-700">区块源码只使用 core 公开 API 与设计 token，不是 core 的额外导出。<Link className="text-fg-blue" href="/templates">查看完整模板</Link> · <a className="text-fg-blue" href="/r/index.json">注册表索引</a></p>
-      <p className="text-sm text-fg-grey-700">当前代码依赖尚未发布的 core 0.5.0；本地开发请使用 workspace 版本。安装示例仅在该版本和站点获准发布后可用。</p>
+      <p className="text-sm text-fg-grey-700">当前代码依赖本地 core {corePackage.version}；本地开发请使用 workspace 版本。本次不发布 npm 或网站，公网安装能力需另行核实。</p>
       <div className="grid min-w-0 gap-6 lg:grid-cols-2">
         {catalog.map(block => <section key={block.name} id={block.name} className="flex min-w-0 flex-col gap-4 rounded-3xl border border-fg-grey-200 bg-white p-4">
           <div><h2 className="text-lg font-semibold text-fg-black">{block.title}</h2><p className="text-sm text-fg-grey-700">{block.description}</p></div>

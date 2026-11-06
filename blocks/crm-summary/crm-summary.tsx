@@ -1,4 +1,6 @@
+import { Panel } from "@forge-ui-official/core";
 import type { ReactNode } from "react";
+import { UsersGroupTwoRoundedBoldDuotone } from "@forge-ui-official/core/icons";
 import { DescriptionItem, LineChartStatCard, SurfaceCard } from "@forge-ui-official/core";
 
 export function CrmSurface({
@@ -66,8 +68,8 @@ export function CrmMetricCard({
   trend,
   trendDirection = "up",
   note,
-  icon,
-  iconClassName,
+  icon = <UsersGroupTwoRoundedBoldDuotone size={20} />,
+  iconClassName = "bg-fg-violet-100 text-fg-violet",
   footer,
 }: {
   title: string;
@@ -76,12 +78,12 @@ export function CrmMetricCard({
   trend: string;
   trendDirection?: "up" | "down";
   note: string;
-  icon: ReactNode;
-  iconClassName: string;
+  icon?: ReactNode;
+  iconClassName?: string;
   footer: ReactNode;
 }) {
   return (
-    <div className="flex h-52 min-w-0 flex-col justify-between overflow-hidden rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+    <Panel variant="custom" className="flex h-52 min-w-0 flex-col justify-between overflow-hidden rounded-[20px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
       <div className="flex items-start gap-3">
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <p className="truncate text-lg font-semibold leading-7 tracking-fg text-fg-black">{title}</p>
@@ -108,6 +110,6 @@ export function CrmMetricCard({
           {footer}
         </div>
       </div>
-    </div>
+    </Panel>
   );
 }

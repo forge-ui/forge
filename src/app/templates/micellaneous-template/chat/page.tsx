@@ -1,11 +1,12 @@
 "use client";
 
+import { TemplateSurface as MiscSurface } from "@/blocks/template-surface/template-surface";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AddCircleLinear, PhoneCallingRoundedLinear, VideocameraRecordLinear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, ChatBubble, ChatInputBar, Checkbox, ContactItem, ToolbarSearchInput } from "@forge-ui-official/core";
 import { Modal } from "../../_shared/modal";
-import { MicellaneousPageHeader, MicellaneousTemplateShell, MiscSurface } from "../_chrome";
+import { MicellaneousPageHeader, MicellaneousTemplateShell } from "../_chrome";
 import { contacts } from "../_data";
 
 export default function MicellaneousChatPage() {

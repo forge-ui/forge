@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "conversation-header",
+  "type": "registry:block",
+  "title": "对话页标题栏",
+  "description": "对话名称、工作区说明与操作插槽，业务会话状态由宿主管理。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "example": "import { ConversationHeader } from \"@/components/blocks/conversation-header\";\n\nexport default function Example() {\n  return (<ConversationHeader title=\"订单协作\" subtitle=\"运营工作区\" />);\n}\n",
+    "props": [
+      {
+        "component": "ConversationHeader",
+        "properties": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subtitle",
+            "required": true,
+            "type": "ReactNode"
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": []
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/conversation-header/conversation-header.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/conversation-header.tsx",
+      "content": "import type { ReactNode } from \"react\";\n\nexport interface ConversationHeaderProps {\n  title: string;\n  subtitle: ReactNode;\n  children?: ReactNode;\n}\n\nexport function ConversationHeader({ title, subtitle, children }: ConversationHeaderProps) {\n  return (\n    <header className=\"flex flex-wrap items-center justify-between gap-3 border-b border-fg-grey-200 pb-4\">\n      <div>\n        <h1 className=\"text-lg font-semibold text-fg-black\">{title}</h1>\n        <p className=\"mt-1 text-xs text-fg-grey-700\">{subtitle}</p>\n      </div>\n      <div className=\"flex items-center gap-2\">{children}</div>\n    </header>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import { FileInput } from "@forge-ui-official/core";
 import { useState, useCallback, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -271,7 +272,7 @@ export default function SellersPage() {
         width: "w-28",
         render: (row) => (
           <div className="flex items-center gap-1 h-10">
-            <StarBold size={16} color="#EAB308" />
+            <StarBold size={16} color={"var(--fg-yellow-600)"} />
             <span className="text-sm font-medium text-fg-grey-700">
               {row.rating.toFixed(1)}
             </span>
@@ -352,7 +353,7 @@ export default function SellersPage() {
             title="Delete Seller?"
             description="Do you want to delete this seller? This action can't be undone"
             color="red"
-            icon={<TrashBinMinimalisticLinear size={32} color="#EA580C" />}
+            icon={<TrashBinMinimalisticLinear size={32} color={"var(--fg-red-600)"} />}
             confirmLabel="Delete"
             cancelLabel="Cancel"
             onCancel={handleCloseDeleteModal}
@@ -384,9 +385,9 @@ export default function SellersPage() {
                   initials="N"
                   size="lg"
                 />
-                <input
+                <FileInput
                   ref={fileInputRef}
-                  type="file"
+
                   accept="image/*"
                   className="hidden"
                   onChange={handleUploadProfileImage}
@@ -447,7 +448,7 @@ export default function SellersPage() {
       </Modal>
 
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Seller</h1>
           <Breadcrumbs

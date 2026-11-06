@@ -5,14 +5,75 @@
   "title": "地区分布卡",
   "description": "复用 MapCard 的地区、范围与度量契约。",
   "dependencies": [
-    "@forge-ui-official/core@^0.5.0"
+    "@forge-ui-official/core@^0.6.0"
   ],
+  "meta": {
+    "example": "import { RegionDistribution } from \"@/components/blocks/region-distribution\";\n\nexport default function Example() {\n  return (<RegionDistribution title=\"地区分布\" highlights={[\"asia\", \"europe\"]} regions={[{ name: \"中国\", countryCode: \"CN\", salesLabel: \"340 笔\", value: \"¥17,678\" }, { name: \"英国\", countryCode: \"GB\", salesLabel: \"100 笔\", value: \"¥5,500\" }]} />);\n}\n",
+    "props": [
+      {
+        "component": "RegionDistribution",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "color",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapVariant | undefined"
+          },
+          {
+            "name": "highlights",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapContinent[] | undefined"
+          },
+          {
+            "name": "onMenuClick",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth | undefined"
+          },
+          {
+            "name": "regions",
+            "required": false,
+            "type": "(Omit<import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapRegion, \"flag\"> & { flag?: string; countryCode?: string; })[] | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "MapCard"
+      ]
+    }
+  },
   "files": [
     {
       "path": "blocks/region-distribution/region-distribution.tsx",
       "type": "registry:component",
       "target": "@components/blocks/region-distribution.tsx",
-      "content": "import type { ComponentProps } from \"react\";\nimport { MapCard } from \"@forge-ui-official/core\";\n\nexport type RegionDistributionProps = ComponentProps<typeof MapCard>;\n\nexport function RegionDistribution(props: RegionDistributionProps) {\n  return <MapCard {...props} />;\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\nimport { MapCard } from \"@forge-ui-official/core\";\n\nexport type RegionDistributionProps = Omit<ComponentProps<typeof MapCard>, \"regions\"> & {\n  regions?: (Omit<NonNullable<ComponentProps<typeof MapCard>[\"regions\"]>[number], \"flag\"> & { flag?: string; countryCode?: string })[];\n};\n\nexport function RegionDistribution({ regions, ...props }: RegionDistributionProps) {\n  return <MapCard color=\"purple\" width=\"full\" {...props} regions={regions?.map(region => {\n    const countryCode = region.countryCode?.toUpperCase();\n    const label = countryCode && /^[A-Z]{2}$/.test(countryCode)\n      ? String.fromCodePoint(...Array.from(countryCode, letter => letter.charCodeAt(0) + 127397))\n      : region.name.slice(0, 2).replace(/[<>&\"']/g, \"\");\n    return { ...region, flag: region.flag ?? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"44\" height=\"44\"><text x=\"22\" y=\"30\" text-anchor=\"middle\" font-size=\"22\">${label}</text></svg>`)}` };\n  })} />;\n}\n"
     }
   ]
 }

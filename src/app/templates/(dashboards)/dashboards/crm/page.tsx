@@ -113,7 +113,7 @@ export default function CrmPage() {
     >
       <div className="flex flex-col gap-5">
         {/* Page header */}
-        <DashboardHeader className="flex items-start justify-between">
+        <DashboardHeader className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-semibold text-fg-black">Overview</h1>
             <p className="text-sm text-fg-grey-500">Hello John, here&apos;s what happen with your dashboard</p>
@@ -181,7 +181,7 @@ export default function CrmPage() {
         {/* Average Sales bar + Success Rate meter */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <TrendChart className="lg:col-span-2">
-            <ChartHeader title="Average Sales" subtitle="Income and expenses" />
+            <ChartHeader title="Average Sales" subtitle="Income and expenses" tabs={["All", "Income", "Expenses", "Profit"]} />
             <ChartMetricRow series={groupedStatisticSeries.slice(0, 1)} />
             <GroupedBarChart
               data={groupedStatisticBarData.map((item) => ({ ...item, values: item.values.slice(0, 1) }))}

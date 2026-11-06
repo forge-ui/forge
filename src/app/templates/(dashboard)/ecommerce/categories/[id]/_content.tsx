@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -99,7 +100,7 @@ export default function CategoryDetailPage() {
   return (
     <div className="flex flex-col gap-6">
       {/* Page Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Category Details</h1>
           <Breadcrumbs
@@ -123,7 +124,7 @@ export default function CategoryDetailPage() {
       {/* Content */}
       <div className="flex items-start gap-4">
         {/* Left: Category Info */}
-        <div className="w-[320px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-5">
+        <Panel variant="custom" className="w-[320px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-5">
           <img
             src="https://placehold.co/280x280/e2e8f0/64748b?text=Watch"
             alt="watch"
@@ -148,7 +149,7 @@ export default function CategoryDetailPage() {
               <p className="text-sm font-semibold text-fg-black mt-0.5">12 December 2022</p>
             </div>
           </div>
-        </div>
+        </Panel>
 
         {/* Right: Products in Category */}
         <div className="flex-1">

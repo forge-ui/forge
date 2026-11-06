@@ -47,9 +47,9 @@ function TrendArrow({ trend }: { trend?: ChartTrend }) {
 export function ChartHeader({
   title,
   subtitle,
-  tabs = ["All", "Income", "Expenses", "Profit"],
+  tabs = [],
   activeTab,
-  defaultTab = "All",
+  defaultTab,
   onTabChange,
   action,
 }: {
@@ -61,7 +61,7 @@ export function ChartHeader({
   onTabChange?: (tab: string) => void;
   action?: ReactNode;
 }) {
-  const [selected, setSelected] = useState(defaultTab);
+  const [selected, setSelected] = useState(defaultTab ?? tabs[0]);
   const current = activeTab ?? selected;
   return (
     <div className="flex items-start justify-between gap-4">
@@ -69,7 +69,7 @@ export function ChartHeader({
         <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
         {subtitle && <p className="text-xs leading-4 text-fg-grey-700">{subtitle}</p>}
       </div>
-      {action ?? (
+      {action ?? (tabs.length > 0 && (
         <div className="inline-flex shrink-0 items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
           {tabs.map((tab) => (
             <button
@@ -87,7 +87,7 @@ export function ChartHeader({
             </button>
           ))}
         </div>
-      )}
+      ))}
     </div>
   );
 }

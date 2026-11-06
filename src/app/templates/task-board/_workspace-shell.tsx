@@ -1025,14 +1025,14 @@ function WorkspaceController({ children }: { children: ReactNode }) {
               checked={task.done}
               onChange={() => toggle(task)}
             />
-            <button
+            <Button variant="unstyled"
               type="button"
               className={`min-w-0 flex-1 text-left text-sm font-medium leading-6 text-fg-black ${task.done ? "line-through" : ""}`}
               data-task-open={task.id}
               onClick={() => openDetail(task)}
             >
               {task.title}
-            </button>
+            </Button>
             <div className="task-card-actions" data-no-drag aria-label={`任务操作：${task.title}`}>
               <TaskMenu
                 task={task}
@@ -1060,12 +1060,12 @@ function WorkspaceController({ children }: { children: ReactNode }) {
             </div>
           </div>
           {!listMode && task.collaboration && <div className="task-card-eyebrow"><span>{task.collaboration.agent}</span><span>{collaborationStates[task.collaboration.state]}</span></div>}
-          {!listMode && task.collaboration && <button type="button" data-no-drag className="task-card-next" onClick={() => openDetail(task)}>
+          {!listMode && task.collaboration && <Button variant="unstyled" type="button" data-no-drag className="task-card-next" onClick={() => openDetail(task)}>
             <span>{({ ready: "任务已就绪，等待开始执行", running: "正在处理任务，查看执行进展", waiting: "需要补充信息后才能继续", review: "交付已准备好，等待你的审核", approved: "交付已审核通过", failed: "本次执行失败，需要重试", paused: "执行已暂停，可重新开始" })[task.collaboration.state]}</span>
             <strong>{({ ready: "开始执行", running: "查看执行", waiting: "回复问题", review: "审核交付", approved: "查看交付", failed: "查看原因", paused: "继续处理" })[task.collaboration.state]} <span aria-hidden="true">→</span></strong>
-          </button>}
+          </Button>}
           <div className="task-card-meta mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs text-fg-grey-700">
-            {listMode && task.collaboration && <button type="button" data-no-drag className={`task-agent-state${task.collaboration.state === "failed" ? " is-failed" : ""}`} onClick={() => openDetail(task)} aria-label={`查看协作：${collaborationStates[task.collaboration.state]}`}><ClipboardListBoldDuotone size={14} aria-hidden="true" />{collaborationStates[task.collaboration.state]}</button>}
+            {listMode && task.collaboration && <Button variant="unstyled" type="button" data-no-drag className={`task-agent-state${task.collaboration.state === "failed" ? " is-failed" : ""}`} onClick={() => openDetail(task)} aria-label={`查看协作：${collaborationStates[task.collaboration.state]}`}><ClipboardListBoldDuotone size={14} aria-hidden="true" />{collaborationStates[task.collaboration.state]}</Button>}
             {task.labels?.map((label) => <span key={label}>@{label}</span>)}
             {task.subtasks.length > 0 && (
               <Button color="black" size="sm" variant="tertiary" data-no-drag className="card-subtask-toggle" aria-label={`${expandedCardTasks[task.id] ? "收起" : "展开"}卡片子任务：${task.title}`} aria-expanded={!!expandedCardTasks[task.id]} aria-controls={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} onClick={() => setExpandedCardTasks(current => ({ ...current, [task.id]: !current[task.id] }))}>
@@ -1083,7 +1083,7 @@ function WorkspaceController({ children }: { children: ReactNode }) {
           {task.subtasks.length > 0 && expandedCardTasks[task.id] && <div data-no-drag id={`card-subtasks-${task.id}${preview ? "-preview" : ""}`} className="card-subtask-list" aria-label={`${task.title}的子任务`}>
             {task.subtasks.map(child => <div className="card-subtask-row" key={child.id}>
               <Checkbox color="blue" className="task-priority-check task-completion-circle" data-priority={(child.priority || "P4").slice(1)} title={`优先级 ${child.priority || "P4"}`} aria-description={`优先级 ${child.priority || "P4"}`} checked={child.done} aria-label={`${child.done ? "重新打开" : "完成"}卡片子任务：${child.title}`} onChange={(done) => change({ ...board, tasks: board.tasks.map(item => item.id === task.id ? { ...item, subtasks: item.subtasks.map(entry => entry.id === child.id ? { ...entry, done } : entry) } : item) }, done ? "子任务已完成" : "子任务已重新打开")} />
-              <button type="button" className={`min-w-0 flex-1 text-left text-sm leading-5 ${child.done ? "line-through text-fg-grey-500" : "text-fg-black"}`} aria-label={`打开卡片子任务：${child.title}`} onClick={() => openDetail(task, [child.id])}>{child.title}</button>
+              <Button variant="unstyled" type="button" className={`min-w-0 flex-1 text-left text-sm leading-5 ${child.done ? "line-through text-fg-grey-500" : "text-fg-black"}`} aria-label={`打开卡片子任务：${child.title}`} onClick={() => openDetail(task, [child.id])}>{child.title}</Button>
             </div>)}
           </div>}
         </SurfaceCard>

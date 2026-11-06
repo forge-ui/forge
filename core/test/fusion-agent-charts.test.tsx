@@ -33,6 +33,56 @@ async function setup() {
   };
 }
 
+test("line tooltip clamps first and last points and remeasures resized content", async () => {
+  const env = await setup();
+  const previousObserver = globalThis.ResizeObserver;
+  const previousRect = window.HTMLElement.prototype.getBoundingClientRect;
+  let tooltipWidth = 160;
+  let plotWidth = 400;
+  let resize: (() => void) | undefined;
+  let disconnected = false;
+  globalThis.ResizeObserver = class {
+    constructor(callback: () => void) { resize = callback; }
+    observe() {}
+    unobserve() {}
+    disconnect() { disconnected = true; }
+  } as unknown as typeof ResizeObserver;
+  window.HTMLElement.prototype.getBoundingClientRect = function () {
+    const width = this.hasAttribute("data-chart-tooltip") ? tooltipWidth : plotWidth;
+    return { x: 0, y: 0, left: 0, top: 0, right: width, bottom: 60, width, height: 60, toJSON() {} };
+  };
+  let activeIndex = 0;
+  const render = () => env.render(<SmoothLineChart series={[{ data: [10, 20, 15] }]} motion="none" activeIndex={activeIndex} showTooltip tooltipItems={[{ color: "bg-fg-blue", value: String(activeIndex) }]} onActiveIndexChange={index => { activeIndex = index ?? 0; }} />);
+  const position = () => document.querySelector<HTMLElement>('[data-chart-tooltip="true"]')!;
+  try {
+    await render();
+    assert.equal(position().style.left, "0px");
+    assert.ok(!position().classList.contains("-translate-x-1/2"));
+    const slider = document.querySelector('[role="slider"]')!;
+    await env.key(slider, "End");
+    await render();
+    assert.equal(position().style.left, "240px");
+    await env.key(slider, "ArrowLeft");
+    await render();
+    assert.equal(position().style.left, "120px");
+    tooltipWidth = 240;
+    await act(async () => resize?.());
+    assert.equal(position().style.left, "80px");
+    plotWidth = 280;
+    await act(async () => resize?.());
+    assert.equal(position().style.left, "20px");
+    await env.key(slider, "Home");
+    await render();
+    assert.equal(position().style.left, "0px");
+    assert.ok(position().classList.contains("max-w-full"));
+  } finally {
+    await env.close();
+    globalThis.ResizeObserver = previousObserver;
+    window.HTMLElement.prototype.getBoundingClientRect = previousRect;
+  }
+  assert.equal(disconnected, true);
+});
+
 test("chart geometry stacks each series on the previous upper bound and closes uncertainty bands", () => {
   assert.deepEqual(stackedBounds([[2, 3], [5, 7], [1, 2]]), [{ lower: [0, 0], upper: [2, 3] }, { lower: [2, 3], upper: [7, 10] }, { lower: [7, 10], upper: [8, 12] }]);
   assert.equal(bandPath(chartPoints([4, 8], [0, 10]), chartPoints([2, 5], [0, 10])), "M0,72 L400,24 L400,60 L0,96 Z");

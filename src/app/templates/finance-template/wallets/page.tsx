@@ -22,7 +22,7 @@ import {
   ProtaskFormDialog,
   ProtaskSaveChangesDialog,
 } from "../../_shared/protask-actions";
-import { FieldLine, FinanceGoalCell, FinanceSurface, WalletProgressLine } from "../_components";
+import { FieldLine, FinanceGoalCell, FinanceSurface, WalletProgressLine } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell } from "../_chrome";
 import { wallets, type Wallet } from "../_data";
 

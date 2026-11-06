@@ -1,11 +1,12 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { CloudDownloadLinear, Pen2Linear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, CellText, DataTable, StatusBadge } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
-import { FieldLine, FinanceSurface } from "../../_components";
+import { FieldLine, FinanceSurface } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell, financeStatusColor } from "../../_chrome";
 import { invoices } from "../../_data";
 
@@ -54,7 +55,7 @@ export default function FinanceInvoiceDetailPage() {
                 <StatusBadge label={invoice.status} color={financeStatusColor[invoice.status]} />
               </div>
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                <div className="rounded-[20px] border border-fg-grey-200 p-5">
+                <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 p-5">
                   <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">Bill To</p>
                   <div className="mt-4 flex items-center gap-3">
                     <Avatar src={invoice.avatar} size="md" />
@@ -63,15 +64,15 @@ export default function FinanceInvoiceDetailPage() {
                       <p className="text-xs font-medium text-fg-grey-500">{invoice.email}</p>
                     </div>
                   </div>
-                </div>
-                <div className="rounded-[20px] border border-fg-grey-200 p-5">
+                </Panel>
+                <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 p-5">
                   <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">Pay From</p>
                   <p className="mt-4 text-sm font-semibold text-fg-black">Sugab&apos;s Team</p>
                   <p className="mt-1 text-xs font-medium text-fg-grey-500">finance@protask.com</p>
-                </div>
+                </Panel>
               </div>
               <DataTable<LineItem> columns={columns} rows={lineItems} color="blue" />
-              <div className="ml-auto w-full max-w-[320px] rounded-[20px] bg-fg-grey-50 p-5">
+              <Panel variant="custom" className="ml-auto w-full max-w-[320px] rounded-[20px] bg-fg-grey-50 p-5">
                 <FieldLine label="Subtotal" value="$2,320.00" />
                 <FieldLine label="Tax" value="$232.00" />
                 <FieldLine label="Discount" value="$0.00" />
@@ -79,7 +80,7 @@ export default function FinanceInvoiceDetailPage() {
                   <span className="text-sm font-semibold text-fg-black">Total</span>
                   <span className="text-2xl font-semibold text-fg-black">$2,552.00</span>
                 </div>
-              </div>
+              </Panel>
             </div>
           </FinanceSurface>
           <FinanceSurface title="Invoice Summary" eyebrow="Payment schedule">

@@ -69,7 +69,7 @@ git clone --quiet \
 
 (
   cd "$TMP/repo"
-  git sparse-checkout set --no-cone "$SKILL_SUBDIR" >/dev/null
+  git sparse-checkout set --no-cone "$SKILL_SUBDIR" skills/dimensional-drawing skills/dimensional-drawing-motion >/dev/null
 )
 
 if [[ ! -d "$TMP/repo/$SKILL_SUBDIR" ]]; then
@@ -77,9 +77,13 @@ if [[ ! -d "$TMP/repo/$SKILL_SUBDIR" ]]; then
   exit 1
 fi
 
-test -f "$TMP/repo/$SKILL_SUBDIR/SKILL.md"
-rm -rf "$DEST"
-cp -R "$TMP/repo/$SKILL_SUBDIR" "$DEST"
+for skill in "$SKILL_NAME" dimensional-drawing dimensional-drawing-motion; do
+  test -f "$TMP/repo/skills/$skill/SKILL.md"
+done
+for skill in "$SKILL_NAME" dimensional-drawing dimensional-drawing-motion; do
+  rm -rf "${SKILLS_DIR:?}/$skill"
+  cp -R "$TMP/repo/skills/$skill" "$SKILLS_DIR/$skill"
+done
 if [[ -d "$SKILLS_DIR/forge-react" ]]; then
   rm -rf "$SKILLS_DIR/forge-react"
 fi

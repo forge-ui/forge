@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import type { ReactNode } from "react";
 import {
   BarChart,
@@ -274,7 +275,7 @@ function NotesUploadBlock() {
   return (
     <div>
       <p className="mb-2 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">Image</p>
-      <div className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-fg-grey-200 bg-white p-6 text-center">
+      <Panel variant="custom" className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-fg-grey-200 bg-white p-6 text-center">
         <span className="grid size-12 place-items-center rounded-full bg-fg-violet-100 text-fg-violet">
           <CloudUploadLinear size={24} />
         </span>
@@ -282,7 +283,7 @@ function NotesUploadBlock() {
           Drag and drop image here, or click add image
         </p>
         <Button className="mt-5">Upload Image</Button>
-      </div>
+      </Panel>
     </div>
   );
 }
@@ -400,7 +401,7 @@ export function ProtaskBarStatistic({
   color?: AccentColor;
 }) {
   return (
-    <div className="rounded-[20px] bg-fg-grey-50 p-5">
+    <Panel variant="custom" className="rounded-[20px] bg-fg-grey-50 p-5">
       <BarChart
         data={data}
         accent={color}
@@ -414,6 +415,6 @@ export function ProtaskBarStatistic({
         color={color === "blue" ? "bg-fg-blue-500" : "bg-fg-violet"}
         inactiveColor={color === "blue" ? "bg-fg-blue-500" : "bg-fg-violet"}
       />
-    </div>
+    </Panel>
   );
 }

@@ -18,7 +18,7 @@ import {
   FinanceSurface,
   VisualCard,
   WalletProgressLine,
-} from "../_components";
+} from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell } from "../_chrome";
 import { cards, wallets, type Wallet } from "../_data";
 

@@ -1,6 +1,5 @@
-export { Panel } from "./panel";
+export { Panel, InfoRow } from "@forge-ui-official/core";
 export { Modal } from "./modal";
-export { InfoRow } from "./info-row";
 export { MockFilterPanel } from "./mock-filter";
 export {
   PageMetaProvider,

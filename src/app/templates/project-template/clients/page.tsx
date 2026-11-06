@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AddCircleLinear, CloudDownloadLinear, MagniferLinear } from "@forge-ui-official/core/icons";
@@ -23,7 +24,7 @@ export default function ClientsPage() {
   };
 
   const columns: ColumnDef<Client>[] = [
-    { key: "name", header: "Name", flex: true, render: (row) => <button type="button" onClick={() => router.push(`/templates/project-template/clients/${row.id}`)} className="flex items-center gap-4 text-left"><Avatar src={row.avatar} size="md" /><CellTextSubtitle title={row.name} subtitle={row.email} /></button> },
+    { key: "name", header: "Name", flex: true, render: (row) => <Button variant="unstyled" type="button" onClick={() => router.push(`/templates/project-template/clients/${row.id}`)} className="flex items-center gap-4 text-left"><Avatar src={row.avatar} size="md" /><CellTextSubtitle title={row.name} subtitle={row.email} /></Button> },
     { key: "company", header: "Company", width: "w-[220px]", render: (row) => <span className="flex items-center gap-3"><ProjectLogo name={row.logo} size="sm" /><span>{row.company}</span></span> },
     { key: "phone", header: "Phone", width: "w-[180px]", render: (row) => <CellMuted>{row.phone}</CellMuted> },
     { key: "project", header: "Project", width: "w-[150px]", render: (row) => <CellMuted>{row.projects} Project</CellMuted> },
@@ -37,7 +38,7 @@ export default function ClientsPage() {
         <PageTop title="Client" current="Client" actions={<div className="flex gap-4"><Button variant="tertiary" iconLeft={<CloudDownloadLinear size={20} />}>Export</Button><Button iconLeft={<AddCircleLinear size={20} />} onClick={() => openModal("add")}>Add New</Button></div>} />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color="#71717A" />} /></div>
+            <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} /></div>
             <ButtonGroup color="purple" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
           </div>
           <div className="flex items-center gap-4"><ToolbarDatepicker label="Select Dates" /><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
@@ -62,5 +63,5 @@ export default function ClientsPage() {
 
 function ClientCards({ clients, onEdit, onDelete }: { clients: Client[]; onEdit: (client: Client) => void; onDelete: (client: Client) => void }) {
   const router = useRouter();
-  return <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">{clients.slice(0, 8).map((client) => <article key={client.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4 text-center"><Avatar src={client.avatar} size="lg" /><h2 className="mt-3 text-lg font-semibold text-fg-black">{client.name}</h2><p className="text-sm text-fg-grey-500">{client.email}</p><div className="mt-3 flex items-center justify-center gap-2"><ProjectLogo name={client.logo} size="sm" /><span>{client.company}</span></div><p className="mt-2 text-sm text-fg-grey-500">{client.projects} Project</p><div className="mt-3 flex justify-center"><CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") router.push(`/templates/project-template/clients/${client.id}`); if (action === "pen") onEdit(client); if (action === "trash") onDelete(client); }} /></div></article>)}</div>;
+  return <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">{clients.slice(0, 8).map((client) => <Panel variant="custom" as="article" key={client.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4 text-center"><Avatar src={client.avatar} size="lg" /><h2 className="mt-3 text-lg font-semibold text-fg-black">{client.name}</h2><p className="text-sm text-fg-grey-500">{client.email}</p><div className="mt-3 flex items-center justify-center gap-2"><ProjectLogo name={client.logo} size="sm" /><span>{client.company}</span></div><p className="mt-2 text-sm text-fg-grey-500">{client.projects} Project</p><div className="mt-3 flex justify-center"><CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") router.push(`/templates/project-template/clients/${client.id}`); if (action === "pen") onEdit(client); if (action === "trash") onDelete(client); }} /></div></Panel>)}</div>;
 }

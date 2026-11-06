@@ -1,5 +1,6 @@
 "use client";
 
+import { Panel } from "@forge-ui-official/core";
 import { Suspense, useMemo, useState, type ReactNode } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -270,7 +271,7 @@ function CustomerProfileCard({
   };
 
   return (
-    <aside className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="aside" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
       <div className="relative flex flex-col items-center gap-6 overflow-hidden p-6">
         <div className="absolute left-2 right-2 top-2 h-28 rounded-xl bg-gradient-to-br from-fg-violet via-fg-red-100 to-fg-yellow-50" />
         <div className="relative z-10 flex flex-col items-center gap-3 pt-10 text-center">
@@ -338,7 +339,7 @@ function CustomerProfileCard({
           </div>
         )}
       </div>
-    </aside>
+    </Panel>
   );
 }
 
@@ -358,13 +359,13 @@ function ProfileField({
         <div className="mt-1 text-sm font-medium leading-5 tracking-fg text-fg-black">{value}</div>
       </div>
       {action ? (
-        <button
+        <Button variant="unstyled"
           type="button"
           className="grid size-5 place-items-center text-sm font-medium text-fg-grey-700"
           aria-label={`Add ${label}`}
         >
           +
-        </button>
+        </Button>
       ) : null}
     </div>
   );
@@ -439,7 +440,7 @@ function ActivityEntry({ type }: { type: string }) {
   const isLog = type.includes("log");
   const config = isNotes
     ? {
-        icon: <DocumentTextLinear size={16} color="#09B96D" />,
+        icon: <DocumentTextLinear size={16} color={"var(--fg-green-500)"} />,
         iconClassName: "bg-fg-green-50",
         meta: "Notes created John Doe Hoegan",
         title: "Meeting Notes",
@@ -447,14 +448,14 @@ function ActivityEntry({ type }: { type: string }) {
       }
     : isCall
       ? {
-          icon: <PhoneLinear size={16} color="#F6C002" />,
+          icon: <PhoneLinear size={16} color={"var(--fg-yellow-500)"} />,
           iconClassName: "bg-fg-yellow-50",
           meta: isLog ? "Call schedule created Lisa Williams" : "Call schedule created John Doe Hoegan",
           title: "Call with Linda Blair",
           avatar: isLog ? lindaBlairAvatar : mainProfile.avatar,
         }
       : {
-          icon: <VideocameraRecordLinear size={16} color="#7239EA" />,
+          icon: <VideocameraRecordLinear size={16} color={"var(--fg-violet-500)"} />,
           iconClassName: "bg-fg-violet-50",
           meta: isLog ? "Call schedule created John Doe Hoegan" : "Call schedule created Lisa Williams",
           title: "Meeting with Linda Blair",
@@ -462,7 +463,7 @@ function ActivityEntry({ type }: { type: string }) {
         };
 
   return (
-    <article className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
       <div className="flex flex-col gap-3 border-b border-fg-grey-200 p-5 md:flex-row md:items-center md:justify-between">
         <div className="flex min-w-0 items-center gap-3">
           <div className={`grid size-9 shrink-0 place-items-center rounded-full ${config.iconClassName}`}>
@@ -471,9 +472,9 @@ function ActivityEntry({ type }: { type: string }) {
           <p className="truncate text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{config.meta}</p>
         </div>
         <div className="flex items-center gap-2 text-xs font-medium leading-4 tracking-fg text-fg-grey-700">
-          <CalendarMinimalisticLinear size={18} color="#868686" />
+          <CalendarMinimalisticLinear size={18} color={"var(--fg-grey-700)"} />
           <span>14 Jan 2025, 10:00</span>
-          <MenuDotsLinear size={18} color="#868686" />
+          <MenuDotsLinear size={18} color={"var(--fg-grey-700)"} />
         </div>
       </div>
       <div className="flex items-start gap-3 p-5">
@@ -486,14 +487,14 @@ function ActivityEntry({ type }: { type: string }) {
           {isNotes ? <NoteImages /> : isCall && isLog ? <CallLogDetailGrid /> : isCall || (isMeet && !isLog) ? <CallDetailGrid /> : <MeetDetailGrid />}
         </div>
       </div>
-    </article>
+    </Panel>
   );
 }
 
 function MeetDetailGrid() {
   return (
     <div className="mt-5 grid gap-4 rounded-xl border border-fg-grey-200 bg-fg-grey-50 p-4 md:grid-cols-3">
-      <InfoBlock label="Result" icon={<FileTextLinear size={18} color="#868686" />} value="Cost Agreement" />
+      <InfoBlock label="Result" icon={<FileTextLinear size={18} color={"var(--fg-grey-700)"} />} value="Cost Agreement" />
       <InfoBlock label="Record" fileName="File Name.mp4" value="File Name.mp4" />
       <InfoBlock label="Attachment" fileName="File Name.doc" value="File Name.mp4" />
     </div>
@@ -503,9 +504,9 @@ function MeetDetailGrid() {
 function CallDetailGrid() {
   return (
     <div className="mt-5 grid gap-4 rounded-xl border border-fg-grey-200 bg-fg-grey-50 p-4 md:grid-cols-3">
-      <InfoBlock label="Date" icon={<CalendarMinimalisticLinear size={18} color="#868686" />} value="14 Feb 2025, 14:00" />
+      <InfoBlock label="Date" icon={<CalendarMinimalisticLinear size={18} color={"var(--fg-grey-700)"} />} value="14 Feb 2025, 14:00" />
       <InfoBlock label="Purpose" value="Follow Up" />
-      <InfoBlock label="Reminder" icon={<CalendarMinimalisticLinear size={18} color="#868686" />} value="25 min before" />
+      <InfoBlock label="Reminder" icon={<CalendarMinimalisticLinear size={18} color={"var(--fg-grey-700)"} />} value="25 min before" />
     </div>
   );
 }
@@ -513,11 +514,11 @@ function CallDetailGrid() {
 function CallLogDetailGrid() {
   return (
     <div className="mt-5 grid gap-4 rounded-xl border border-fg-grey-200 bg-fg-grey-50 p-4 md:grid-cols-3">
-      <InfoBlock label="Result" icon={<FileTextLinear size={18} color="#868686" />} value="Cost Agreement" />
+      <InfoBlock label="Result" icon={<FileTextLinear size={18} color={"var(--fg-grey-700)"} />} value="Cost Agreement" />
       <div className="min-w-0 border-fg-grey-200 md:border-r md:pr-4">
         <p className="text-xs font-medium leading-4 tracking-fg text-fg-grey-700">Record</p>
         <div className="mt-2 flex min-w-0 items-center gap-2">
-          <PlayCircleBold size={24} color="#8E42FF" />
+          <PlayCircleBold size={24} color={"var(--fg-violet-400)"} />
           <Waveform />
         </div>
       </div>
@@ -559,7 +560,7 @@ function InfoBlock({
       <div className="mt-2 flex min-w-0 items-center gap-1.5 text-sm font-medium leading-5 tracking-fg text-fg-black">
         {fileName ? <FileTypeIcon fileName={fileName} className="size-8" /> : icon}
         <span className={fileName ? "truncate underline" : "truncate"}>{value}</span>
-        {fileName ? <MenuDotsLinear size={16} color="#868686" /> : null}
+        {fileName ? <MenuDotsLinear size={16} color={"var(--fg-grey-700)"} /> : null}
       </div>
     </div>
   );
@@ -567,7 +568,7 @@ function InfoBlock({
 
 function TransactionsPanel() {
   return (
-    <div className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
       <div className="overflow-x-auto">
         <div className="min-w-[760px]">
           <div className="grid grid-cols-[minmax(260px,1fr)_176px_148px_160px_52px] border-b border-fg-grey-200">
@@ -584,7 +585,7 @@ function TransactionsPanel() {
             >
               <div className="flex items-center gap-2 bg-white px-6 py-4">
                 <div className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-violet-50">
-                  <DocumentTextLinear size={18} color="#7239EA" />
+                  <DocumentTextLinear size={18} color={"var(--fg-violet-500)"} />
                 </div>
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold leading-5 tracking-fg text-fg-black">{row.name}</p>
@@ -602,14 +603,14 @@ function TransactionsPanel() {
                 <StatusBadge label={row.status} color={saleStatusColor[row.status]} />
               </div>
               <div className="flex items-center bg-white px-4 py-4">
-                <MenuDotsLinear size={18} color="#868686" />
+                <MenuDotsLinear size={18} color={"var(--fg-grey-700)"} />
               </div>
             </div>
           ))}
         </div>
       </div>
       <PaginationSummary label="Showing 1-5 from 100" />
-    </div>
+    </Panel>
   );
 }
 
@@ -617,7 +618,7 @@ function TableHeader({ children, sortable = false }: { children?: ReactNode; sor
   return (
     <div className="flex items-center gap-2 bg-white px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">
       <span>{children}</span>
-      {sortable ? <AltArrowDownLinear size={14} color="#ACACAC" /> : null}
+      {sortable ? <AltArrowDownLinear size={14} color={"var(--fg-grey-600)"} /> : null}
     </div>
   );
 }
@@ -627,15 +628,15 @@ function AttachmentPanel() {
     <div className="flex flex-col gap-5">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {files.map((file) => (
-          <article key={file.name} className="flex items-center gap-5 rounded-[20px] border border-fg-grey-200 bg-white p-5">
+          <Panel variant="custom" as="article" key={file.name} className="flex items-center gap-5 rounded-[20px] border border-fg-grey-200 bg-white p-5">
             <Checkbox />
             <FileTypeIcon fileName={file.name} className="size-14" />
             <div className="min-w-0 flex-1">
               <h3 className="truncate text-base font-semibold leading-6 tracking-fg text-fg-black">{file.name}</h3>
               <p className="text-sm font-medium leading-5 tracking-fg text-fg-grey-700">100 KB</p>
             </div>
-            <MenuDotsLinear size={18} color="#868686" />
-          </article>
+            <MenuDotsLinear size={18} color={"var(--fg-grey-700)"} />
+          </Panel>
         ))}
       </div>
       <PaginationSummary label="Showing 1-12 from 100" plain />
@@ -655,18 +656,18 @@ function NotesPanel() {
 
 function NoteEntry({ title, meta, images }: { title: string; meta: string; images: number }) {
   return (
-    <article className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
       <div className="flex flex-col gap-3 border-b border-fg-grey-200 p-5 md:flex-row md:items-center md:justify-between">
         <div className="flex min-w-0 items-center gap-3">
           <div className="grid size-9 shrink-0 place-items-center rounded-full bg-fg-green-50">
-            <DocumentTextLinear size={16} color="#09B96D" />
+            <DocumentTextLinear size={16} color={"var(--fg-green-500)"} />
           </div>
           <p className="truncate text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{meta}</p>
         </div>
         <div className="flex items-center gap-2 text-xs font-medium leading-4 tracking-fg text-fg-grey-700">
-          <CalendarMinimalisticLinear size={18} color="#868686" />
+          <CalendarMinimalisticLinear size={18} color={"var(--fg-grey-700)"} />
           <span>14 Jan 2025, 10:00</span>
-          <MenuDotsLinear size={18} color="#868686" />
+          <MenuDotsLinear size={18} color={"var(--fg-grey-700)"} />
         </div>
       </div>
       <div className="flex items-start gap-3 p-5">
@@ -679,7 +680,7 @@ function NoteEntry({ title, meta, images }: { title: string; meta: string; image
           {images > 0 ? <NoteImages count={images} /> : null}
         </div>
       </div>
-    </article>
+    </Panel>
   );
 }
 

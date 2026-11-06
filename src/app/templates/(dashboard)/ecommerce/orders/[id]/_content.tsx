@@ -125,7 +125,7 @@ export default function OrderDetailPage() {
         </div>
       </Modal>
 
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <h1 className="text-3xl font-semibold text-fg-black leading-10 tracking-fg">Orders</h1>
           <Breadcrumbs
@@ -150,7 +150,7 @@ export default function OrderDetailPage() {
         {/* Left column */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
           {/* Order meta */}
-          <Panel>
+          <Panel variant="template">
             <div className="flex gap-6 flex-wrap">
               <div className="flex-1 min-w-[140px]">
                 <p className="text-sm font-medium text-fg-grey-700">Status</p>
@@ -158,13 +158,13 @@ export default function OrderDetailPage() {
                   <Label color={statusLabelColor[orderStatus]} variant="outline" size="sm">
                     {orderStatus[0].toUpperCase() + orderStatus.slice(1)}
                   </Label>
-                  <button
+                  <Button variant="unstyled"
                     type="button"
                     onClick={() => setIsTrackingModalOpen(true)}
                     className="p-2 cursor-pointer text-fg-grey-700"
                   >
                     <EyeBoldDuotone size={20} />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className="flex-1 min-w-[140px]">
@@ -175,9 +175,9 @@ export default function OrderDetailPage() {
                 <p className="text-sm font-medium text-fg-grey-700">Invoice</p>
                 <div className="mt-1.5 flex items-center gap-2">
                   <span className="text-sm font-medium text-fg-black">INV302012</span>
-                  <button type="button" className="p-2 cursor-pointer text-fg-grey-700">
+                  <Button variant="unstyled" type="button" className="p-2 cursor-pointer text-fg-grey-700">
                     <EyeBoldDuotone size={20} />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className="flex-1 min-w-[140px]">
@@ -188,7 +188,7 @@ export default function OrderDetailPage() {
           </Panel>
 
           {/* Order items */}
-          <Panel title="Order Items">
+          <Panel variant="template" title="Order Items">
             <div className="flex flex-col">
               {lineItems.map((item, index) => (
                 <div key={item.key}>
@@ -231,12 +231,12 @@ export default function OrderDetailPage() {
                       <p className="text-xs text-fg-grey-700">Total</p>
                       <p className="text-sm font-semibold text-fg-black mt-2">{item.total}</p>
                     </div>
-                    <button
+                    <Button variant="unstyled"
                       type="button"
                       className="p-2 cursor-pointer text-fg-grey-700 hover:text-fg-red"
                     >
                       <TrashBinTrashLinear size={16} />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -244,7 +244,7 @@ export default function OrderDetailPage() {
           </Panel>
 
           {/* Order summary */}
-          <Panel title="Order Summary">
+          <Panel variant="template" title="Order Summary">
             <div className="flex flex-col gap-4">
               {defaultSummaryLines.map((row) => (
                 <div key={row.label} className="flex items-center gap-2 text-sm">
@@ -264,7 +264,7 @@ export default function OrderDetailPage() {
         {/* Right sidebar */}
         <div className="w-[324px] flex flex-col gap-4">
           {/* General Information */}
-          <Panel title="General Information">
+          <Panel variant="template" title="General Information">
             <div className="flex flex-col gap-5">
               <InfoRow icon={<BoxBoldDuotone size={20} />} label="Order Status">
                 <SelectOption
@@ -293,7 +293,7 @@ export default function OrderDetailPage() {
           </Panel>
 
           {/* Address */}
-          <Panel title="Address">
+          <Panel variant="template" title="Address">
             <div className="flex flex-col gap-5">
               <InfoRow icon={<MapPointBoldDuotone size={20} />} label="Shipping Address">
                 {addressLines.map((line) => (

@@ -1,14 +1,104 @@
 [
-  { "name": "kpi-metrics", "title": "KPI 指标行", "description": "等分指标栅格；紧凑卡片或原有指标插槽。", "component": "KpiMetrics" },
-  { "name": "recent-records", "title": "最近记录表卡", "description": "标题、操作栏与带稳定行标识的数据表。", "component": "RecentRecords" },
-  { "name": "trend-chart", "title": "趋势图表卡", "description": "标题、指标行与分组柱状图，支持自定义图域。", "component": "TrendChart" },
-  { "name": "ranking-list", "title": "排行列表卡", "description": "紧凑列表与排序口径、操作插槽。", "component": "RankingList" },
-  { "name": "composition-card", "title": "构成占比卡", "description": "圆环图与构成说明，支持自定义图例。", "component": "CompositionCard" },
-  { "name": "dashboard-header", "title": "看板页头", "description": "标题、说明与右侧操作。", "component": "DashboardHeader" },
-  { "name": "region-distribution", "title": "地区分布卡", "description": "复用 MapCard 的地区、范围与度量契约。", "component": "RegionDistribution" },
-  { "name": "member-list", "title": "成员列表", "description": "成员身份卡片与可替换条目。", "component": "MemberList" },
-  { "name": "goal-progress-list", "title": "目标进度列表", "description": "钱包目标卡列表与窄列钱包进度面板。", "component": "GoalProgressList" },
-  { "name": "activity-feed", "title": "活动流", "description": "按传入顺序显示时间、对象与行为。", "component": "ActivityFeed" },
-  { "name": "schedule-card", "title": "日程与甘特容器", "description": "日历配置或业务日程、甘特图域插槽；不声称实现通用甘特编辑器。", "component": "ScheduleCard" },
-  { "name": "card-carousel", "title": "卡片轮播", "description": "财务卡片叠放与受控或非受控分页。", "component": "CardCarousel" }
+  {
+    "name": "kpi-metrics",
+    "title": "KPI 指标行",
+    "description": "等分指标栅格；紧凑卡片或原有指标插槽。",
+    "component": "KpiMetrics"
+  },
+  {
+    "name": "recent-records",
+    "title": "最近记录表卡",
+    "description": "标题、操作栏与带稳定行标识的数据表。",
+    "component": "RecentRecords"
+  },
+  {
+    "name": "trend-chart",
+    "title": "趋势图表卡",
+    "description": "标题、指标行与分组柱状图，支持自定义图域。",
+    "component": "TrendChart"
+  },
+  {
+    "name": "ranking-list",
+    "title": "排行列表卡",
+    "description": "紧凑列表与排序口径、操作插槽。",
+    "component": "RankingList"
+  },
+  {
+    "name": "composition-card",
+    "title": "构成占比卡",
+    "description": "圆环图与构成说明，支持自定义图例。",
+    "component": "CompositionCard"
+  },
+  {
+    "name": "dashboard-header",
+    "title": "看板页头",
+    "description": "标题、说明与右侧操作。",
+    "component": "DashboardHeader"
+  },
+  {
+    "name": "region-distribution",
+    "title": "地区分布卡",
+    "description": "复用 MapCard 的地区、范围与度量契约。",
+    "component": "RegionDistribution"
+  },
+  {
+    "name": "member-list",
+    "title": "成员列表",
+    "description": "成员身份卡片与可替换条目。",
+    "component": "MemberList"
+  },
+  {
+    "name": "goal-progress-list",
+    "title": "目标进度列表",
+    "description": "钱包目标卡列表与窄列钱包进度面板。",
+    "component": "GoalProgressList"
+  },
+  {
+    "name": "activity-feed",
+    "title": "活动流",
+    "description": "按传入顺序显示时间、对象与行为。",
+    "component": "ActivityFeed"
+  },
+  {
+    "name": "schedule-card",
+    "title": "日程与甘特容器",
+    "description": "日历配置或业务日程、甘特图域插槽；不声称实现通用甘特编辑器。",
+    "component": "ScheduleCard"
+  },
+  {
+    "name": "card-carousel",
+    "title": "卡片轮播",
+    "description": "财务卡片叠放与受控或非受控分页。",
+    "component": "CardCarousel"
+  },
+  {
+    "name": "crm-summary",
+    "title": "客户经营摘要",
+    "description": "客户指标卡、信息行与经营趋势，保留模板几何。",
+    "component": "CrmMetricCard"
+  },
+  {
+    "name": "finance-workspace",
+    "title": "财务工作区",
+    "description": "钱包、预算、费用与财务指标，使用公开 core 原语。",
+    "component": "FinanceSurface"
+  },
+  {
+    "name": "template-surface",
+    "title": "模板内容分区",
+    "description": "带标题、说明、操作与紧凑内容间距的模板分区。",
+    "component": "TemplateSurface"
+  },
+  {
+    "name": "conversation-header",
+    "title": "对话页标题栏",
+    "description": "对话名称、工作区说明与操作插槽，业务会话状态由宿主管理。",
+    "component": "ConversationHeader"
+  },
+  {
+    "name": "project-section",
+    "title": "项目详情分区",
+    "description": "项目与任务共用的标题操作栏和紧凑内容区。",
+    "component": "ProjectSection"
+  }
 ]

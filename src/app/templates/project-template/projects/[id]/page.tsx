@@ -1,5 +1,7 @@
 "use client";
 
+import { ProjectSection } from "@/blocks/project-section/project-section";
+import { Panel as CorePanel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -96,35 +98,35 @@ export default function ProjectDetailPage() {
         {tab === "overview" && (
           <div className="grid grid-cols-1 gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
             <aside className="flex flex-col gap-4">
-              <Panel title="General Information">
+              <ProjectSection className={projectPanelClass} title="General Information">
                 <Info label="Status" value={project.status} />
                 <Info label="Client" value={project.client} />
                 <Info label="Budget" value={project.budget} />
                 <Info label="Due Date" value={project.dueDate} />
-              </Panel>
-              <Panel title="Teams" action={<Button variant="tertiary" onClick={() => setModal("member")}><AddCircleLinear size={18} /></Button>}>
+              </ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Teams" action={<Button variant="tertiary" onClick={() => setModal("member")}><AddCircleLinear size={18} /></Button>}>
                 {members.slice(0, 4).map((member) => (
-                  <button key={member.id} type="button" onClick={() => router.push(`/templates/project-template/members/${member.id}`)} className="flex items-center gap-3 py-2 text-left">
+                  <Button variant="unstyled" key={member.id} type="button" onClick={() => router.push(`/templates/project-template/members/${member.id}`)} className="flex items-center gap-3 py-2 text-left">
                     <Avatar src={member.avatar} size="sm" />
                     <div>
                       <div className="font-semibold text-fg-black">{member.name}</div>
                       <div className="text-sm text-fg-grey-500">{member.role}</div>
                     </div>
-                  </button>
+                  </Button>
                 ))}
-              </Panel>
-              <Panel title="Attachment" action={<Button variant="tertiary" onClick={() => setModal("attachment")}><AddCircleLinear size={18} /></Button>}>
+              </ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Attachment" action={<Button variant="tertiary" onClick={() => setModal("attachment")}><AddCircleLinear size={18} /></Button>}>
                 {fileItems.map((file, index) => <FileCard key={index} file={{ id: file.name, name: file.name, size: file.size, state: "uploaded" }} />)}
-              </Panel>
+              </ProjectSection>
             </aside>
             <main className="flex flex-col gap-4">
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <Metric title="Progress" value={project.spent} progress={project.progress} />
                 <Metric title="Budget Spent" value={project.spent} progress={project.progress} color="red" />
               </div>
-              <Panel title="Description"><p className="leading-6 text-fg-grey-700">{project.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></Panel>
-              <Panel title="Activity"><ActivityList /></Panel>
-              <Panel title="Comments">
+              <ProjectSection className={projectPanelClass} title="Description"><p className="leading-6 text-fg-grey-700">{project.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Activity"><ActivityList /></ProjectSection>
+              <ProjectSection className={projectPanelClass} title="Comments">
                 {members.slice(0, 2).map((member, index) => (
                   <div key={member.id} className="flex gap-3 rounded-xl border border-fg-grey-200 p-3">
                     <Avatar src={member.avatar} size="sm" />
@@ -138,7 +140,7 @@ export default function ProjectDetailPage() {
                   </div>
                 ))}
                 <Button className="self-end">Post Comment</Button>
-              </Panel>
+              </ProjectSection>
             </main>
           </div>
         )}
@@ -147,7 +149,7 @@ export default function ProjectDetailPage() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div className="max-w-[360px]">
-                <TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color="#71717A" />} />
+                <TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} />
               </div>
               <div className="flex items-center gap-4">
                 <Button variant="tertiary" onClick={() => setModal("task")}><AddCircleLinear size={18} /></Button>
@@ -161,7 +163,7 @@ export default function ProjectDetailPage() {
         {tab === "attachment" && (
           <div className="flex flex-col gap-5">
             <div className="flex items-center justify-between">
-              <div className="max-w-[360px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color="#71717A" />} /></div>
+              <div className="max-w-[360px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} /></div>
               <div className="flex items-center gap-4">
                 <ToolbarFilterButton label="Filters" />
                 <ToolbarShowSelect value="12" />
@@ -198,16 +200,14 @@ export default function ProjectDetailPage() {
   );
 }
 
-function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
-  return <section className={projectPanelClass}><div className="mb-3 flex items-center justify-between"><h3 className="text-lg font-semibold text-fg-black">{title}</h3>{action}</div><div className="flex flex-col gap-3">{children}</div></section>;
-}
+
 
 function Info({ label, value }: { label: string; value: string }) {
   return <div><div className="text-sm text-fg-grey-500">{label}</div><div className="mt-0.5 text-fg-black">{value}</div></div>;
 }
 
 function Metric({ title, value, progress, color = "purple" }: { title: string; value: string; progress: number; color?: "purple" | "red" }) {
-  return <Panel title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-3xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></Panel>;
+  return <ProjectSection className={projectPanelClass} title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-3xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></ProjectSection>;
 }
 
 function ActivityList() {
@@ -240,15 +240,15 @@ function KanbanBoard({ onOpenTask, onAddTask, compact = false }: { onOpenTask: (
 function TaskBoardCard({ task, tone, onOpen }: { task: Task; tone: "grey" | "yellow" | "green" | "red"; onOpen: () => void }) {
   const progressColor = task.progress === 100 ? "green" : task.priority === "High" ? "red" : "yellow";
   return (
-    <article className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+    <CorePanel variant="custom" as="article" className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
       <div className="flex items-start justify-between">
         <StatusBadge label={task.priority} color={task.priority === "High" ? "red" : task.priority === "Medium" ? "yellow" : "green"} />
         <CellActions actions={["pen"]} />
       </div>
-      <button type="button" className="mt-3 text-left" onClick={onOpen}>
+      <Button variant="unstyled" type="button" className="mt-3 text-left" onClick={onOpen}>
         <h4 className="text-lg font-semibold text-fg-black">{task.name.replace("...", "")}</h4>
         <p className="mt-1 text-sm leading-5 text-fg-grey-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel hendrerit ipsum.</p>
-      </button>
+      </Button>
       <div className="mt-3">
         <div className="mb-2 flex items-center justify-between text-sm">
           <span className="text-fg-grey-500">Progress</span>
@@ -260,7 +260,7 @@ function TaskBoardCard({ task, tone, onOpen }: { task: Task; tone: "grey" | "yel
         <AvatarGroup overflowCount={task.memberOverflow}>{task.members.slice(0, 3).map((src, index) => <Avatar key={index} src={src} size="sm" />)}</AvatarGroup>
         <span className="text-sm text-fg-grey-500">{task.dueDate}</span>
       </div>
-    </article>
+    </CorePanel>
   );
 }
 
@@ -278,7 +278,7 @@ const attachmentRows = [
 
 function AttachmentTile({ file, onDelete }: { file: { name: string; size: string }; onDelete: () => void }) {
   return (
-    <div className="flex items-center justify-between rounded-2xl border border-fg-grey-200 bg-white p-4">
+    <CorePanel variant="custom" className="flex items-center justify-between rounded-2xl border border-fg-grey-200 bg-white p-4">
       <div className="flex items-center gap-3">
         <FileTypeIcon fileName={file.name} />
         <div>
@@ -287,13 +287,13 @@ function AttachmentTile({ file, onDelete }: { file: { name: string; size: string
         </div>
       </div>
       <CellActions actions={["trash"]} onAction={onDelete} />
-    </div>
+    </CorePanel>
   );
 }
 
 function TeamDrawer({ onAddMember }: { onAddMember: () => void }) {
   return (
-    <aside className={projectPanelClass}>
+    <CorePanel variant="custom" as="aside" className={projectPanelClass}>
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-fg-black">Members</h3>
         <Button variant="tertiary" onClick={onAddMember}><AddCircleLinear size={18} /></Button>
@@ -313,6 +313,6 @@ function TeamDrawer({ onAddMember }: { onAddMember: () => void }) {
         ))}
       </div>
       <Button className="mt-5 w-full" iconLeft={<UserPlusLinear size={18} />} onClick={onAddMember}>Add Member</Button>
-    </aside>
+    </CorePanel>
   );
 }

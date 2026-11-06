@@ -127,6 +127,7 @@ type ColumnDefBase<T> = {
   sortable?: boolean;
   /** Tailwind width class for compact columns, e.g. `w-[120px]`. */
   width?: string;
+  minWidth?: number;
   /** Readable name column, capped at 280px. Does not absorb leftover table width. */
   flex?: boolean;
   render: (row: T, rowIndex: number) => ReactNode;
@@ -240,7 +241,8 @@ export function getDefaultTableMinWidth<T>(
 ): number {
   let minWidth = showCheckbox ? 56 : 0;
   for (const [index, column] of columns.entries()) {
-    if (isTableIdentityColumn(column, index)) minWidth += 240;
+    if (column.minWidth !== undefined && Number.isFinite(column.minWidth) && column.minWidth > 0) minWidth += column.minWidth;
+    else if (isTableIdentityColumn(column, index)) minWidth += 240;
     else if (isTableActionsColumn(column)) minWidth += 88;
     else minWidth += 128;
   }
@@ -271,6 +273,7 @@ function tableColumnStyle<T>(
 ): CSSProperties {
   return {
     textAlign: tableAlignToken(resolveTableColumnAlign(column)),
+    ...(column.minWidth !== undefined && Number.isFinite(column.minWidth) && column.minWidth > 0 ? { minWidth: column.minWidth } : {}),
     ...(isTableIdentityColumn(column, index)
       ? { maxWidth: TABLE_IDENTITY_COLUMN_MAX_PX }
       : {}),
