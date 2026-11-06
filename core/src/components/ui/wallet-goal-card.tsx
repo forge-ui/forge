@@ -36,7 +36,7 @@ export function WalletGoalCard({
   topUpLabel = "Top Up",
   withdrawLabel = "Withdraw",
   editLabel = "Edit",
-  iconBg = "#ede9fe",
+  iconBg = "var(--fg-violet-50)",
   icon,
 }: WalletGoalCardProps) {
   return (

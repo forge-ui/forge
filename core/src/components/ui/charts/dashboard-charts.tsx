@@ -105,7 +105,7 @@ export function ChartMetricRow({ series }: { series: ChartMetricSeries[] }) {
             <div className="flex items-center gap-2">
               <span className="text-base font-semibold leading-6 text-fg-black">{item.value}</span>
               {item.trend && (
-                <span className={item.trend === "up" ? "text-xs font-bold text-fg-green" : "text-xs font-bold text-fg-red"}>
+                <span className={item.trend === "up" ? "text-xs font-bold text-fg-green-500" : "text-xs font-bold text-fg-red"}>
                   {item.trendValue ?? "10%"} <TrendArrow trend={item.trend} />
                 </span>
               )}

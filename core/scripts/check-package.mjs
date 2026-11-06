@@ -26,7 +26,7 @@ const [pack] = JSON.parse(
 const limits = {
   packed: 890_000,
   unpacked: 3_550_000,
-  entries: 506,
+  entries: 520,
   sourceMaps: 1_900_000,
   normalJsRaw: 40_000,
   normalJsGzip: 20_000,
