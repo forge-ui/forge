@@ -6,6 +6,7 @@ import { useAnimatedChartValues } from "../../../internal/animated-chart-values"
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 import { ChartTooltip, type ChartTooltipItem } from "./chart-tooltip";
+import { ChartTooltipPosition } from "../../../internal/chart-tooltip-position";
 import { resolveColor, rampColors } from "./chart-utils";
 import { type AccentColor } from "../accent-utils";
 
@@ -155,12 +156,9 @@ export function SmoothLineChart({
             }}
           />
           {tooltipItems && tooltipItems.length > 0 && (
-            <div
-              className="absolute -translate-x-1/2 -translate-y-full pb-2"
-              style={{ left: `${(markerPoint[0] / VIEWBOX_W) * 100}%`, top: `${(markerPoint[1] / VIEWBOX_H) * 100}%` }}
-            >
+            <ChartTooltipPosition left={(markerPoint[0] / VIEWBOX_W) * 100} top={(markerPoint[1] / VIEWBOX_H) * 100}>
               <ChartTooltip items={tooltipItems} />
-            </div>
+            </ChartTooltipPosition>
           )}
         </>
       )}

@@ -65,6 +65,7 @@ test("trend period controls switch the real data and respect controlled selectio
     await React.act(async () => app.render(React.createElement(blocks.TrendChart, { periods: linePeriods })));
     assert.match(document.body.textContent, /日订单/);
     assert.match(document.body.textContent, /33/);
+    assert.equal(document.querySelector('[data-chart-tooltip="true"]').style.left, "0px");
     await React.act(async () => [...document.querySelectorAll("button")].find(button => button.textContent === "周").click());
     assert.match(document.body.textContent, /周订单/);
     assert.match(document.body.textContent, /70/);
@@ -72,6 +73,10 @@ test("trend period controls switch the real data and respect controlled selectio
     const line = document.querySelector('[tabindex="0"]');
     await React.act(async () => line.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "End", bubbles: true })));
     assert.match(document.body.textContent, /40/);
+    assert.equal(document.querySelector('[data-chart-tooltip="true"]').style.left, "0px");
+    await React.act(async () => line.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "Home", bubbles: true })));
+    assert.equal(document.querySelector('[data-chart-tooltip="true"]').style.left, "0px");
+    assert.match(document.body.textContent, /30/);
     let exports = 0;
     await React.act(async () => app.render(React.createElement(blocks.DashboardHeader, { title: "订单运营", onExport: () => exports++ })));
     await React.act(async () => [...document.querySelectorAll("button")].find(button => button.textContent === "导出").click());
