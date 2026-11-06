@@ -834,7 +834,7 @@ Use this file for quick component selection. For stricter generation, read the e
 - Purpose: Responsive CSS Grid tracks and pixel gaps
 - Best for: responsive page composition
 - Avoid for: none recorded
-- Required usage: Read skills/forge-react/references/layout-grid.md; AppLayout owns page padding
+- Required usage: Read skills/forge-skill/references/layout-grid.md; AppLayout owns page padding
 - Forbidden usage: do not rebuild existing Forge primitives with ad hoc markup
 
 ## GridItem
@@ -847,5 +847,5 @@ Use this file for quick component selection. For stricter generation, read the e
 - Purpose: Responsive column span and start
 - Best for: responsive page composition
 - Avoid for: none recorded
-- Required usage: Read skills/forge-react/references/layout-grid.md; AppLayout owns page padding
+- Required usage: Read skills/forge-skill/references/layout-grid.md; AppLayout owns page padding
 - Forbidden usage: do not rebuild existing Forge primitives with ad hoc markup

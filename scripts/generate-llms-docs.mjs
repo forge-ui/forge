@@ -22,7 +22,7 @@ const layoutComponents = ["Grid", "GridItem"].map((name) => ({
   purpose: name === "Grid" ? "Responsive CSS Grid tracks and pixel gaps" : "Responsive column span and start",
   responsive: "base/sm/md/lg/xl/2xl viewport breakpoints",
   recommendedFor: ["responsive page composition"],
-  requiredUsage: ["Read skills/forge-react/references/layout-grid.md", "AppLayout owns page padding"],
+  requiredUsage: ["Read skills/forge-skill/references/layout-grid.md", "AppLayout owns page padding"],
 }));
 const components = [...registry.components.filter((entry) => !layoutComponents.some((layout) => layout.name === entry.name)), ...layoutComponents].sort((a, b) => a.name.localeCompare(b.name));
 const blocks = [...blockCatalog.blocks].sort((a, b) => a.id.localeCompare(b.id));
@@ -350,7 +350,7 @@ Never invert this order. A component plan cannot replace business flow, data flo
 - Activity/history/audit: HistoryItem, HistoryGrouped, ActivityCard, NotificationItem.
 - Forms/settings: TextField, TextArea, SelectOption, Datepicker, Checkbox, RadioButton, Toggle, FileUpload, ColorPicker.
 - Navigation/shell: AppLayout, SidebarMenu, TopBar, PageHeader, Breadcrumbs, TabBar, ButtonGroup.
-- Layout: Grid / GridItem for responsive tracks, spans and pixel gaps; AppLayout retains page padding. Read skills/forge-react/references/layout-grid.md. Keep one-dimensional toolbars in Flex.
+- Layout: Grid / GridItem for responsive tracks, spans and pixel gaps; AppLayout retains page padding. Read skills/forge-skill/references/layout-grid.md. Keep one-dimensional toolbars in Flex.
 
 ## Red Lines
 

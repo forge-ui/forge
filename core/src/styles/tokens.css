@@ -1370,16 +1370,16 @@ body {
 /* Decorative reaction feedback stays separate from the Solar glyph. */
 .forge-button:is([data-effect="burst"],[data-effect="bookmark"]){position:relative;isolation:isolate}
 .forge-action-particles{position:absolute;inset:0;pointer-events:none}
-.forge-action-particles i{position:absolute;inset:50% auto auto 50%;width:3px;height:3px;border-radius:50%;background:currentColor;animation:forge-reaction-particle .6s both}
+.forge-action-particles i{position:absolute;inset:50% auto auto 50%;width:3px;height:3px;border-radius:50%;background:currentColor;animation:forge-skillion-particle .6s both}
 .forge-button[data-effect="bookmark"] .forge-action-icon{position:relative;isolation:isolate}
 .forge-button[data-effect="bookmark"][data-active] .forge-action-icon:before{content:"";position:absolute;inset:-5px -2px;background:currentColor;opacity:.18;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);animation:forge-bookmark-drop .4s;z-index:-1}
-@keyframes forge-reaction-particle{from{transform:translateY(-2px) scale(0);opacity:1}70%{opacity:.7}to{transform:translateY(-22px) scale(.4);opacity:0}}
+@keyframes forge-skillion-particle{from{transform:translateY(-2px) scale(0);opacity:1}70%{opacity:.7}to{transform:translateY(-22px) scale(.4);opacity:0}}
 [data-motion="none"] .forge-action-particles{display:none}
 @media(prefers-reduced-motion:reduce){.forge-action-particles{display:none}}
 
 .forge-member__feedback{position:relative}
 .forge-member__celebrate{position:absolute;left:50%;top:50%;pointer-events:none}
-.forge-member__celebrate i{position:absolute;width:4px;height:4px;border-radius:50%;background:currentColor;animation:forge-reaction-particle .7s both}
+.forge-member__celebrate i{position:absolute;width:4px;height:4px;border-radius:50%;background:currentColor;animation:forge-skillion-particle .7s both}
 
 /* A descendant pseudo-element is not covered by the descendant * selector. */
 :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-motion="none"] *::before,

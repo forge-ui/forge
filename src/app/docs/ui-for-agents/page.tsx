@@ -16,7 +16,7 @@ curl -fsSL https://forgeui.org/install-skill.sh | bash
 # Codex
 curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash`;
 
-const structureTree = `.claude/skills/forge-react/ 或 .codex/skills/forge-react/
+const structureTree = `.claude/skills/forge-skill/ 或 .codex/skills/forge-skill/
 ├── SKILL.md                       # 主入口（定位 / 铁律 / 工作流 / 脚本索引）
 ├── scripts/
 │   ├── list.mjs                   # 列出 components / cases / templates

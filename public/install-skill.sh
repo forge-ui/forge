@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Install the forge-react skill into Claude Code / Cursor / Codex.
+# Install the forge-skill skill into Claude Code / Cursor / Codex.
 #
 #   curl -fsSL https://forgeui.org/install-skill.sh | bash
 #
@@ -17,9 +17,11 @@ set -euo pipefail
 
 REPO="${FORGE_REPO:-forge-ui/forge}"
 BRANCH="${FORGE_BRANCH:-main}"
-SKILL_NAME="forge-react"
+SKILL_NAME="forge-skill"
 SKILL_SUBDIR="skills/${SKILL_NAME}"
 AGENT="${FORGE_AGENT:-claude}"
+
+err() { printf "%s\n" "$*" >&2; }
 
 case "$AGENT" in
   codex)
@@ -51,11 +53,6 @@ need git
 bold "Installing ${SKILL_NAME} skill from ${REPO}@${BRANCH}"
 info "target: ${DEST}"
 
-if [[ -d "$DEST" ]]; then
-  info "existing install detected — replacing"
-  rm -rf "$DEST"
-fi
-
 mkdir -p "$SKILLS_DIR"
 
 TMP="$(mktemp -d)"
@@ -80,11 +77,17 @@ if [[ ! -d "$TMP/repo/$SKILL_SUBDIR" ]]; then
   exit 1
 fi
 
+test -f "$TMP/repo/$SKILL_SUBDIR/SKILL.md"
+rm -rf "$DEST"
 cp -R "$TMP/repo/$SKILL_SUBDIR" "$DEST"
+if [[ -d "$SKILLS_DIR/forge-react" ]]; then
+  rm -rf "$SKILLS_DIR/forge-react"
+fi
 
 ok "Installed to ${DEST}"
 echo
+echo "Alternative: npx skills add https://github.com/${REPO} --skill forge-skill"
 echo "Next steps:"
 echo "  1. Restart Claude Code / Cursor / Codex so the agent picks up the skill."
-echo "  2. Try: 'Use the forge-react skill to build a dashboard page.'"
+echo "  2. Try: 'Use the forge-skill skill to build a dashboard page.'"
 echo "  3. Re-run this installer any time to update to the latest version."
