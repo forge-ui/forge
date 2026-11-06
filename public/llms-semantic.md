@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 4d6da0cfacb43237fb630f2e0992f1ce247eaeb35b9dadab86d9767983e5c4e5
+Source fingerprint: 044bcc607b4fc95b003f23b236c9cdf6f96b812800cac7b10189f2689d7d518f
 
 ## Adopted rules / 采用规则
 
@@ -20,6 +20,8 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 # Forge 页面设计与实施
 
 ## 唯一入口与阅读顺序
+
+可选检索入口：[MCP 接入](https://forgeui.org/docs/mcp)、[使用指南](https://forgeui.org/guides) 与 [llms.txt](https://forgeui.org/llms.txt)。MCP 地址为 `https://forgeui.org/api/mcp`；只读数据辅助选型，不替代本 skill 规范正文。
 
 唯一通用入口是本文件 `forge-skill/SKILL.md`，不同时拼读全局安装版与项目同步版。优先级：用户指定的版本/checkout > starter 已校验的 `docs/forge-skill/upstream/SKILL.md` > 全局安装的 forge-skill。项目内没有同步副本时才用全局版；版本不符应先同步并核对 manifest，不能静默混用。
 

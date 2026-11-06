@@ -8,14 +8,17 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "pnpm docs:examples && pnpm core:build && next dev",
-    "build": "pnpm docs:examples && pnpm core:build && next build",
+    "dev": "pnpm docs:mcp && pnpm docs:examples && pnpm core:build && next dev",
+    "build": "pnpm docs:mcp && pnpm docs:examples && pnpm core:build && next build",
     "start": "next start",
     "lint": "eslint",
     "license:check": "node scripts/check-production-licenses.mjs",
     "typecheck": "pnpm core:typecheck && tsc --noEmit",
     "docs:examples": "node scripts/generate-component-example-sources.mjs",
     "docs:llms": "node scripts/generate-llms-docs.mjs",
+    "docs:mcp": "node scripts/generate-mcp-data.mjs",
+    "docs:mcp:check": "node scripts/generate-mcp-data.mjs --check",
+    "test:mcp": "node --test scripts/test-mcp.mjs",
     "core:build": "pnpm --filter @forge-ui-official/core build",
     "core:typecheck": "pnpm --filter @forge-ui-official/core typecheck",
     "core:test": "pnpm --filter @forge-ui-official/core test",
@@ -30,7 +33,7 @@
     "docs:components": "node scripts/gen-component-docs.mjs",
     "docs:components:check": "node scripts/gen-component-docs.mjs --check",
     "test:skill": "node --test scripts/test-skill-sources.mjs",
-    "check:skill": "node scripts/check-skill-docs.mjs && pnpm docs:components:check && pnpm test:skill",
+    "check:skill": "pnpm docs:mcp:check && node scripts/check-skill-docs.mjs && pnpm docs:components:check && pnpm test:skill",
     "docs:llms:check": "node scripts/generate-llms-docs.mjs --check",
     "test:llms": "node --test scripts/test-llms-docs.mjs",
     "check:doc-links": "node scripts/check-doc-links.mjs && node --test scripts/test-doc-links.mjs"
@@ -40,6 +43,7 @@
     "@fontsource-variable/manrope": "5.2.8",
     "@fontsource-variable/plus-jakarta-sans": "5.2.8",
     "@forge-ui-official/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@solar-icons/react": "2.3.2",
     "@tiptap/extension-bubble-menu": "^3.32.0",
     "@tiptap/markdown": "^3.32.0",
@@ -52,7 +56,8 @@
     "next": "16.3.5",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

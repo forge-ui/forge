@@ -36,6 +36,7 @@ export const docsNavGroups: NavGroup[] = [
     items: [
       { href: "/docs", label: "介绍", icon: DocumentTextLinear },
       { href: "/docs/quick-start", label: "快速开始", icon: FlagLinear },
+      { href: "/guides", label: "使用指南", icon: DocumentTextLinear },
       { href: "/docs/installation", label: "详细安装", icon: DownloadLinear },
       { href: "/docs/troubleshoot", label: "故障排查", icon: DangerTriangleLinear },
       { href: "/docs/changelog", label: "更新日志", icon: ClockCircleLinear },
@@ -45,6 +46,7 @@ export const docsNavGroups: NavGroup[] = [
     title: "UI for Agents",
     items: [
       { href: "/docs/ui-for-agents", label: "Skill", icon: StarsLinear },
+      { href: "/docs/mcp", label: "MCP 接入", icon: StarsLinear },
       { href: "/docs/agents-md", label: "AGENTS.md", icon: FileTextLinear },
     ],
   },

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 4d6da0cfacb43237fb630f2e0992f1ce247eaeb35b9dadab86d9767983e5c4e5
+Source fingerprint: 044bcc607b4fc95b003f23b236c9cdf6f96b812800cac7b10189f2689d7d518f
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -10,6 +10,286 @@ Source fingerprint: 4d6da0cfacb43237fb630f2e0992f1ce247eaeb35b9dadab86d9767983e5
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
+## 使用指南与 MCP
+
+https://forgeui.org/guides · https://forgeui.org/docs/mcp · https://forgeui.org/api/mcp (read-only Streamable HTTP)
+
+---
+
+Source: content/guides/ai.md
+
+# 让 AI 用 Forge
+
+## 需要什么
+
+先安装唯一规范 forge-skill；MCP 提供可选的检索数据，不能覆盖规范正文。让 AI 先选择 Screen，再选 Blocks，最后查组件 API。
+
+## 选择配方
+
+forge-skill、MCP、llms.txt 与统一审计清单。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { Panel } from "@forge-ui-official/core";
+
+export function ReviewScope() {
+  return <Panel><p>按 Screen → Blocks → Components 实施，并提交真实验证证据。</p></Panel>;
+}
+```
+
+## 常见错误与验收
+
+安装：npx skills add https://github.com/forge-ui/forge --skill forge-skill。接入见 /docs/mcp，文本入口为 /llms.txt。示例提问：先检索运营看板 Screen 和趋势 Block，读取状态与布局规范，再给出配方。缺能力标记 FORGE-GAP 并询问；技术检查不能代替浏览器验收。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/dashboard.md
+
+# 用 Forge 搭运营看板
+
+## 需要什么
+
+先确认指标口径、时间范围、下钻对象与刷新频率。选择 /templates/dashboards/analytics 作为主对照，不从空白卡片墙开始。
+
+## 选择配方
+
+dashboard-header、kpi-metrics、trend-chart、recent-records。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { KpiMetrics } from "@/components/blocks/kpi-metrics";
+
+export function Overview() {
+  return <KpiMetrics metrics={[{ id: "orders", title: "订单", value: "128" }]} />;
+}
+```
+
+## 常见错误与验收
+
+保留 Screen 的层级与密度：外壳 16/20、区块间 20、Grid 16、卡片 padding 16；图域参考 224。按业务选择 4 等分、8:4、3 等分或 2 等分；窄屏重排。不要把模板圆角 24 和 token 20 混作同一标准。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/detail.md
+
+# 搭建详情页：全页与弹窗
+
+## 需要什么
+
+先确认阅读深度、可分享 URL、编辑权限和返回上下文。复杂详情用全页；轻量查看或局部编辑用 Modal 或 Drawer。
+
+## 选择配方
+
+Panel、Modal、Drawer；activity-feed。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { Panel } from "@forge-ui-official/core";
+
+export function Details() {
+  return <Panel><h2>订单详情</h2><p>订单编号：SO-128</p></Panel>;
+}
+```
+
+## 常见错误与验收
+
+轻量详情由宿主控制打开状态，并保持可恢复的对象标识。以下组件接收宿主状态，不另造全局弹窗宿主：
+
+```tsx
+"use client";
+
+import { Modal } from "@forge-ui-official/core";
+
+export function DetailDialog({ open, onOpenChange }: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return <Modal open={open} onOpenChange={onOpenChange} title="订单详情">
+    <p>订单编号：SO-128</p>
+  </Modal>;
+}
+```
+
+全页详情保留返回路径；弹窗关闭后恢复触发点焦点。不要用同一弹窗承载无限嵌套详情；删除必须确认并处理失败。未找到、无权限与加载失败分别反馈。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-patterns.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/feedback.md
+
+# 状态与反馈
+
+## 需要什么
+
+区分持久业务状态、一次动作反馈以及页面空、错、加载状态。颜色只辅助语义，文字必须清楚。
+
+## 选择配方
+
+StatusBadge soft、ToastProvider/useToast；现有空态与加载组件。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { StatusBadge } from "@forge-ui-official/core";
+
+export function PendingStatus() {
+  return <StatusBadge variant="soft" color="yellow" label="待处理" />;
+}
+```
+
+## 常见错误与验收
+
+成功 green、失败 red、警示 yellow、信息 blue、中性 grey。toast 由宿主统一提供，避免重复 Provider；空态给下一步，错误给重试，加载避免布局跳变。不要用 solid 或手写 pill 替代 soft 默认，也不要把徽章当按钮。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/status-presentation.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/form.md
+
+# 搭建表单页：基础、分组与分步
+
+## 需要什么
+
+先列字段、默认值、校验、保存动作和取消后的去向。短表单单页；长表单按业务分组；有先后依赖时再分步。
+
+## 选择配方
+
+Panel、Button；参考真实表单案例。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { Button, Panel } from "@forge-ui-official/core";
+
+export function BasicForm() {
+  return <Panel><form><label>名称<input name="name" required /></label><Button type="submit">保存</Button></form></Panel>;
+}
+```
+
+## 常见错误与验收
+
+示例只展示结构；接业务前需实现提交、服务端校验与错误关联。提交中防重复，失败保留输入；分步切换保留草稿。不要以 toast 代替字段错误，也不要为了视觉平均随意分列。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/list.md
+
+# 搭建业务列表页
+
+## 需要什么
+
+先确定管理对象、查询条件、排序、分页和批量操作权限。选择最接近的列表案例，而不是把列表包装成看板。
+
+## 选择配方
+
+recent-records；DataTable、StatusBadge。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { StatusBadge } from "@forge-ui-official/core";
+
+export function OrderStatus() {
+  return <StatusBadge variant="soft" color="green" label="已完成" />;
+}
+```
+
+## 常见错误与验收
+
+实体名称提供真实详情入口；筛选、排序与分页保持可恢复状态。空结果区分无数据与筛选无匹配；批量动作仅对已选对象生效。不要把分类、角色都画成彩色胶囊。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-patterns.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/settings.md
+
+# 搭建设置页
+
+## 需要什么
+
+先区分个人偏好、组织设置、权限范围与危险操作。明确即时保存还是显式保存，同一分组不要混用。
+
+## 选择配方
+
+Panel、Button；设置类 Screen 或案例。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { Button, Panel } from "@forge-ui-official/core";
+
+export function Settings() {
+  return <Panel><h2>通知偏好</h2><label><input type="checkbox" name="email" />邮件通知</label><Button type="button">保存设置</Button></Panel>;
+}
+```
+
+## 常见错误与验收
+
+示例按钮需接真实持久化后才可交付。分组说明影响范围，未保存离开时提示；重置需说明恢复值。危险区域与普通配置分开，不要让开关只改变视觉而不保存。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-patterns.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
+
+---
+
+Source: content/guides/starter-module.md
+
+# 在 Forge Starter 加业务模块
+
+## 需要什么
+
+先在 Starter 仓库读取其 new-module/new-page/audit skills，确认对象生命周期、数据权限、菜单与路由。这里不复制 Starter 的后端规则。
+
+## 选择配方
+
+模块 manifest、Ask AI 宿主；列表、详情和编辑界面。Blocks 是复制到项目的源码，不是 core 导出；先通过 MCP get_block 查询安装命令与完整 props。Screens 见 [模板](/templates)，组件见 [案例](/cases)。
+
+## 示例代码
+
+```tsx
+import { Panel } from "@forge-ui-official/core";
+
+export function ModuleOverview() {
+  return <Panel><h2>客户模块</h2><p>先完成模块声明、权限与数据接口，再接列表。</p></Panel>;
+}
+```
+
+## 常见错误与验收
+
+先确认 Starter 版本具备模块 manifest 和 `module:new`。在不支持该契约的旧版本中停止并升级或询问，不猜测 manifest 字段，也不把新版本接入方式套进旧宿主。
+
+接入时逐项核对：模块标识唯一；页面路由与菜单一致；读写能力声明与 RBAC 守卫一致；Ask AI 的知识与工具来自同一份模块声明；新模块对话能识别对象且写操作经确认。生成文件只是起点，还要验证实际接口、页面保存、权限拒绝和同一会话续办。
+
+在 Starter 中先用 corepack pnpm run 查看脚本，再按该仓 module:new 的帮助创建模块；参数以已安装版本为准，不猜命令。manifest 声明与菜单、路由、RBAC 一起核对；Ask AI 自动知识由宿主注册链接入，不另造第二份知识库。不要仅交静态 CRUD 即声称模块完成。
+
+## 规范依据
+
+[对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
 ## Public exports (487, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
@@ -710,6 +990,8 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 # Forge 页面设计与实施
 
 ## 唯一入口与阅读顺序
+
+可选检索入口：[MCP 接入](https://forgeui.org/docs/mcp)、[使用指南](https://forgeui.org/guides) 与 [llms.txt](https://forgeui.org/llms.txt)。MCP 地址为 `https://forgeui.org/api/mcp`；只读数据辅助选型，不替代本 skill 规范正文。
 
 唯一通用入口是本文件 `forge-skill/SKILL.md`，不同时拼读全局安装版与项目同步版。优先级：用户指定的版本/checkout > starter 已校验的 `docs/forge-skill/upstream/SKILL.md` > 全局安装的 forge-skill。项目内没有同步副本时才用全局版；版本不符应先同步并核对 manifest，不能静默混用。
 

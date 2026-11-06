@@ -6,6 +6,7 @@ import { generateDocuments } from "./llms-sources.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
+execFileSync(process.execPath, [path.join(root, "scripts/generate-mcp-data.mjs"), ...(check ? ["--check"] : [])], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, [path.join(root, "scripts/gen-component-docs.mjs"), "--check"], { cwd: root, stdio: "inherit" });
 const { outputs, fingerprint } = generateDocuments(root);
 let drift = false;

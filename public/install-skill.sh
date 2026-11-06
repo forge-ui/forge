@@ -92,6 +92,7 @@ ok "Installed to ${DEST}"
 echo
 echo "Alternative: npx skills add https://github.com/${REPO} --skill forge-skill"
 echo "Next steps:"
+echo "Optional read-only MCP: https://forgeui.org/api/mcp (setup: https://forgeui.org/docs/mcp)"
 echo "  1. Restart Claude Code / Cursor / Codex so the agent picks up the skill."
 echo "  2. Try: 'Use the forge-skill skill to build a dashboard page.'"
 echo "  3. Re-run this installer any time to update to the latest version."
