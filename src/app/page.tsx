@@ -30,6 +30,7 @@ export default function HomePage() {
                 <ArrowRightLinear size={16} color="currentColor" className="home-cta-icon" aria-hidden="true" />
               </Link>
               <Link href="/components" className="home-cta home-cta-light">浏览组件</Link>
+              <Link href="/guides" className="home-cta home-cta-light">使用指南</Link>
             </div>
           </HomeHero>
         </section>
