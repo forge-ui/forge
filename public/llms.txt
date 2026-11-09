@@ -20,6 +20,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - /llms-full-cn.md — 中文入口（同一规范正文）
 - /llms-semantic.md — semantic/layout/interaction standards
 - /llms-components.md — generated API signatures and Props
+- /DESIGN.md — one-page visual rules (tokens, text hierarchy, shape, status, layout)
 - /blocks — categorized Block gallery; /blocks/<name> contains live preview, full source, usage and Props
 - /r/index.json — copyable Block registry with category and related Screen metadata
 

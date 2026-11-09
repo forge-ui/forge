@@ -7,7 +7,6 @@ import { CommandSearch, type CommandSearchItem } from "@forge-ui-official/core";
 import { HamburgerMenuLinear, MagniferLinear } from "@forge-ui-official/core/icons";
 import { docsNavGroups } from "../docs/_nav";
 import { componentsNavGroups } from "../components/_nav";
-import { casesNavGroups } from "../cases/_nav";
 import pageIndex from "./search-index.json";
 
 const templateItems: CommandSearchItem[] = [
@@ -27,8 +26,7 @@ const searchItems: CommandSearchItem[] = [...(pageIndex as CommandSearchItem[]),
 );
 
 function directoryGroups(pathname: string) {
-  if (pathname === "/components" || pathname.startsWith("/components/")) return componentsNavGroups;
-  if (pathname === "/cases" || pathname.startsWith("/cases/")) return casesNavGroups;
+  if (["/components", "/cases"].some((root) => pathname === root || pathname.startsWith(`${root}/`))) return componentsNavGroups;
   if (pathname === "/docs" || pathname.startsWith("/docs/")) return docsNavGroups;
   return null;
 }

@@ -153,10 +153,10 @@ export default function UIForAgentsPage() {
             {" "}— 从 0 到第一个业务页
           </li>
           <li>
-            <Link href="/cases" className="text-fg-blue hover:underline">
-              组件案例
+            <Link href="/components" className="text-fg-blue hover:underline">
+              组件
             </Link>
-            {" "}— 各组件的用法和可操作场景
+            {" "}— 各组件的用法、参数和案例
           </li>
         </ul>
       </DocSection>

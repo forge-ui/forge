@@ -14,6 +14,8 @@ export const componentsNavGroups: NavGroup[] = [
   {
     title: "参考",
     items: [
+      { href: "/cases/dashboard-kit", label: "看板组件" },
+      { href: "/blocks", label: "页面组件", external: true },
       { href: "/docs", label: "文档", external: true },
       { href: "/templates", label: "模板", external: true },
     ],
@@ -22,6 +24,7 @@ export const componentsNavGroups: NavGroup[] = [
 
 export function ComponentsNav() {
   const pathname = usePathname();
+  const current = pathname.replace(/^\/cases\/(?!dashboard-kit)/, "/components/");
 
   return (
     <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto lg:block">
@@ -32,7 +35,7 @@ export function ComponentsNav() {
               {group.title}
             </p>
             {group.items.map((item) => {
-              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+              const active = current === item.href || current.startsWith(`${item.href}/`);
               return (
                 <Link
                   key={item.href}

@@ -15,6 +15,7 @@ import { type ReactNode } from "react";
 import { componentLabel } from "../components/_labels";
 import { cn } from "@forge-ui-official/core";
 import { ScenarioOutlet } from "./_scenario-outlet";
+import { CopyPageMenu } from "../_components/copy-page-menu";
 
 export function slugify(text: string): string {
   return text
@@ -102,9 +103,12 @@ export function PageHeading({ title, hint }: { title: string; hint?: string }) {
   return (
     <>
       <header className="flex flex-col gap-5">
-        <h1 className="min-w-0 break-words font-display text-4xl font-bold tracking-fg text-fg-black">
-          {componentLabel(title)}
-        </h1>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <h1 className="min-w-0 break-words font-display text-4xl font-bold tracking-fg text-fg-black">
+            {componentLabel(title)}
+          </h1>
+          <CopyPageMenu title={componentLabel(title)} />
+        </div>
         {hint && (
           <p className="max-w-2xl text-sm font-normal leading-6 text-fg-grey-900">
             {hint}

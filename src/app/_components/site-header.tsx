@@ -8,8 +8,7 @@ import { SiteSearch } from "./site-search";
 
 const tabs = [
   { href: "/docs", label: "文档" },
-  { href: "/components", label: "组件" },
-  { href: "/cases", label: "组件案例" },
+  { href: "/components", label: "组件", also: "/cases" },
   { href: "/blocks", label: "页面组件" },
   { href: "/templates", label: "模板" },
 ] as const;
@@ -42,7 +41,9 @@ export function SiteHeader({ tone = "default" }: { tone?: "default" | "blend" })
         <div className="flex min-w-0 flex-1 items-center gap-3 pr-3 sm:gap-6 sm:px-8 lg:px-12">
           <nav aria-label="主导航" className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap sm:gap-7">
             {tabs.map((t) => {
-              const active = pathname === t.href || pathname.startsWith(`${t.href}/`);
+              const active = [t.href, "also" in t ? t.also : undefined].some(
+                (href) => href && (pathname === href || pathname.startsWith(`${href}/`)),
+              );
               return (
                 <Link
                   key={t.label}

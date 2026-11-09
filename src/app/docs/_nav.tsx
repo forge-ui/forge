@@ -46,14 +46,17 @@ export const docsNavGroups: NavGroup[] = [
     title: "UI for Agents",
     items: [
       { href: "/docs/ui-for-agents", label: "Skill", icon: StarsLinear },
-      { href: "/docs/mcp", label: "MCP 接入", icon: StarsLinear },
+      { href: "/docs/mcp", label: "MCP 服务器", icon: StarsLinear },
       { href: "/docs/agents-md", label: "AGENTS.md", icon: FileTextLinear },
+      { href: "/docs/design-md", label: "DESIGN.md", icon: FileTextLinear },
+      { href: "/docs/llms-txt", label: "LLMs.txt", icon: FileTextLinear },
     ],
   },
   {
     title: "参考",
     items: [
-      { href: "/cases", label: "组件案例", icon: WidgetLinear, external: true },
+      { href: "/components", label: "组件", icon: WidgetLinear, external: true },
+      { href: "/blocks", label: "页面组件", icon: WidgetLinear, external: true },
       { href: "/templates", label: "模板", icon: FolderLinear, external: true },
     ],
   },

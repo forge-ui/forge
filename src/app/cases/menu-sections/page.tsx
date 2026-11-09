@@ -10,7 +10,7 @@ import {
   ShieldCheckBold,
 } from "@forge-ui-official/core/icons";
 import { usePathname } from "next/navigation";
-import { ScenarioOutlet } from "../_scenario-outlet";
+import { PageHeading } from "../_shared";
 
 function menuSections(base: string): AppLayoutMenuSection[] {
   return [
@@ -61,11 +61,7 @@ export default function MenuSectionsCasePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-fg-black">应用布局</h1>
-        <p className="mt-2 text-sm text-fg-grey-700">侧栏分成工作区、智能体和平台三组。选中、子菜单和收窄后的图标在各组里一致。左上角按钮切换侧栏宽度。</p>
-      </div>
-      <ScenarioOutlet />
+      <PageHeading title="应用布局" hint="侧栏分成工作区、智能体和平台三组。选中、子菜单和收窄后的图标在各组里一致。左上角按钮切换侧栏宽度。" />
       <div className="relative h-[560px] overflow-hidden rounded-xl outline outline-1 outline-fg-grey-200 [transform:translateZ(0)]">
         <AppLayout menuSections={menuSections(base)} profilePosition="sidebar" hideSidebarWidgets hideHeader logoText="Forge 案例">
           <div className="p-8 text-sm text-fg-grey-700">当前页：{currentLabel[currentView] ?? "工作台"}。调整浏览器宽度可以查看移动端抽屉。</div>
