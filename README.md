@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <img alt="Forge 首页：左侧是定位和示例代码，右侧是统计、日程、对话等组件墙" src="./public/images/readme/hero.png" width="1200">
+  <img alt="Forge 首页：居中的标题和入口按钮，下方是可按组件、数据概览、财务、智能体、看板切换的组件墙" src="./public/images/readme/hero.png" width="1200">
 </p>
 
 ### 仓库镜像

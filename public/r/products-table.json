@@ -1,0 +1,88 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "products-table",
+  "type": "registry:block",
+  "title": "商品列表",
+  "description": "按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "数据列表",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/products",
+        "title": "商品列表页"
+      }
+    ],
+    "example": "import { ProductsTable } from \"@/components/blocks/products-table\";\n\nexport default function Example() {\n  return (<ProductsTable onAdd={() => {}} onEdit={product => console.log(product.id)} />);\n}\n",
+    "props": [
+      {
+        "component": "ProductsTable",
+        "properties": [
+          {
+            "name": "products",
+            "required": false,
+            "type": "ProductRecord[] | undefined"
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onAdd",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onEdit",
+            "required": false,
+            "type": "((product: ProductRecord) => void) | undefined"
+          },
+          {
+            "name": "onDelete",
+            "required": false,
+            "type": "((product: ProductRecord) => void) | undefined"
+          },
+          {
+            "name": "onExport",
+            "required": false,
+            "type": "((products: ProductRecord[]) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "ButtonGroup",
+        "CellImageText",
+        "CellMuted",
+        "CellText",
+        "CellTextSubtitle",
+        "ConfirmationDialog",
+        "DataTable",
+        "IconButton",
+        "PlusIcon",
+        "StatusBadge",
+        "ToolbarSearchInput",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/products-table/products-table.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/products-table.tsx",
+      "content": "\"use client\";\n\nimport { useState, type Key } from \"react\";\nimport { Button, ButtonGroup, CellImageText, CellMuted, CellText, CellTextSubtitle, ConfirmationDialog, DataTable, IconButton, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from \"@forge-ui-official/core\";\nimport { DownloadMinimalisticLinear, PenLinear, TrashBinMinimalisticLinear } from \"@forge-ui-official/core/icons\";\n\nexport type ProductStatus = \"published\" | \"low-stock\" | \"sold-out\" | \"draft\";\n\nexport interface ProductRecord {\n  id: string;\n  sku: string;\n  name: string;\n  variants: string;\n  category: string;\n  stock: number;\n  price: number;\n  status: ProductStatus;\n  addedDate: string;\n  addedTime: string;\n  image: string;\n}\n\nexport const defaultProducts: ProductRecord[] = [\n  { id: \"p-302012\", sku: \"302012\", name: \"知行智能手表 E2\", variants: \"3 个规格\", category: \"智能穿戴\", stock: 204, price: 1299, status: \"published\", addedDate: \"2026-10-29\", addedTime: \"10:00\", image: \"/images/blocks/products/smartwatch.jpg\" },\n  { id: \"p-302011\", sku: \"302011\", name: \"降噪头戴耳机 G1 Pro\", variants: \"2 个规格\", category: \"影音\", stock: 18, price: 899, status: \"low-stock\", addedDate: \"2026-10-24\", addedTime: \"14:30\", image: \"/images/blocks/products/headphones.jpg\" },\n  { id: \"p-302002\", sku: \"302002\", name: \"通勤双肩包\", variants: \"4 个规格\", category: \"箱包\", stock: 132, price: 459, status: \"published\", addedDate: \"2026-10-12\", addedTime: \"09:20\", image: \"/images/blocks/products/backpack.jpg\" },\n  { id: \"p-301901\", sku: \"301901\", name: \"无线静音鼠标\", variants: \"2 个规格\", category: \"电脑外设\", stock: 401, price: 129, status: \"published\", addedDate: \"2026-09-21\", addedTime: \"16:45\", image: \"/images/blocks/products/mouse.jpg\" },\n  { id: \"p-301900\", sku: \"301900\", name: \"矮轴机械键盘\", variants: \"3 个规格\", category: \"电脑外设\", stock: 0, price: 599, status: \"sold-out\", addedDate: \"2026-09-21\", addedTime: \"11:10\", image: \"/images/blocks/products/keyboard.jpg\" },\n  { id: \"p-301881\", sku: \"301881\", name: \"游戏手柄 S\", variants: \"1 个规格\", category: \"游戏\", stock: 47, price: 349, status: \"draft\", addedDate: \"2026-09-08\", addedTime: \"15:00\", image: \"/images/blocks/products/gamepad.jpg\" },\n  { id: \"p-301643\", sku: \"301643\", name: \"旗舰手机 X5\", variants: \"4 个规格\", category: \"手机\", stock: 9, price: 5999, status: \"low-stock\", addedDate: \"2026-08-19\", addedTime: \"10:30\", image: \"/images/blocks/products/phone-dark.jpg\" },\n  { id: \"p-301600\", sku: \"301600\", name: \"经典腕表\", variants: \"2 个规格\", category: \"智能穿戴\", stock: 76, price: 1899, status: \"published\", addedDate: \"2026-08-02\", addedTime: \"13:15\", image: \"/images/blocks/products/watch.jpg\" },\n];\n\nconst statusMeta: Record<ProductStatus, { label: string; color: StatusBadgeColor }> = {\n  published: { label: \"已上架\", color: \"green\" },\n  \"low-stock\": { label: \"库存不足\", color: \"yellow\" },\n  \"sold-out\": { label: \"已售罄\", color: \"red\" },\n  draft: { label: \"草稿\", color: \"grey\" },\n};\n\nconst filters: { label: string; value: ProductStatus | \"all\" }[] = [\n  { label: \"全部商品\", value: \"all\" },\n  { label: \"已上架\", value: \"published\" },\n  { label: \"库存不足\", value: \"low-stock\" },\n  { label: \"已售罄\", value: \"sold-out\" },\n  { label: \"草稿\", value: \"draft\" },\n];\n\nexport interface ProductsTableProps {\n  products?: ProductRecord[];\n  pageSize?: number;\n  onAdd?: () => void;\n  onEdit?: (product: ProductRecord) => void;\n  onDelete?: (product: ProductRecord) => void;\n  onExport?: (products: ProductRecord[]) => void;\n  className?: string;\n}\n\nexport function ProductsTable({ products = defaultProducts, pageSize = 8, onAdd, onEdit, onDelete, onExport, className }: ProductsTableProps) {\n  const [rows, setRows] = useState(products);\n  const [filter, setFilter] = useState(0);\n  const [query, setQuery] = useState(\"\");\n  const [page, setPage] = useState(1);\n  const [selected, setSelected] = useState<Set<Key>>(new Set());\n  const [pendingDelete, setPendingDelete] = useState<ProductRecord | null>(null);\n  const status = filters[filter].value;\n  const keyword = query.trim().toLocaleLowerCase();\n  const filtered = rows.filter(product => (status === \"all\" || product.status === status) && `${product.name} ${product.sku} ${product.category}`.toLocaleLowerCase().includes(keyword));\n  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));\n  const currentPage = Math.min(page, totalPages);\n  const visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);\n  const price = (value: number) => `¥${value.toLocaleString(\"zh-CN\", { minimumFractionDigits: 2 })}`;\n\n  const columns: ColumnDef<ProductRecord>[] = [\n    { key: \"sku\", header: \"SKU\", minWidth: 80, render: product => <CellText>{product.sku}</CellText> },\n    { key: \"product\", header: \"商品\", minWidth: 200, render: product => <CellImageText src={product.image} title={product.name} subtitle={product.variants} /> },\n    { key: \"category\", header: \"分类\", minWidth: 96, render: product => <CellMuted>{product.category}</CellMuted> },\n    { key: \"stock\", header: \"库存\", minWidth: 72, valueKind: \"number\", render: product => <CellText>{product.stock.toLocaleString(\"zh-CN\")}</CellText> },\n    { key: \"price\", header: \"售价\", minWidth: 110, valueKind: \"number\", render: product => <CellText>{price(product.price)}</CellText> },\n    { key: \"status\", header: \"状态\", minWidth: 100, render: product => <StatusBadge {...statusMeta[product.status]} variant=\"soft\" /> },\n    { key: \"added\", header: \"上架时间\", minWidth: 104, render: product => <CellTextSubtitle title={product.addedDate} subtitle={product.addedTime} /> },\n    { key: \"actions\", header: \"操作\", minWidth: 88, render: product => <div className=\"flex items-center gap-1\">\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`编辑${product.name}`} onClick={() => onEdit?.(product)}><PenLinear size={16} /></IconButton>\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`删除${product.name}`} onClick={() => setPendingDelete(product)}><TrashBinMinimalisticLinear size={16} /></IconButton>\n    </div> },\n  ];\n\n  function confirmDelete() {\n    if (!pendingDelete) return;\n    setRows(current => current.filter(product => product.id !== pendingDelete.id));\n    setSelected(new Set());\n    onDelete?.(pendingDelete);\n    setPendingDelete(null);\n  }\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"flex min-w-0 flex-col gap-3 xl:flex-row xl:items-center xl:justify-between\">\n      <div className=\"-mx-1 min-w-0 fg-scrollbar-hidden overflow-x-auto px-1 pb-1\"><ButtonGroup ariaLabel=\"商品状态\" shape=\"pill\" items={filters.map(item => ({ label: item.label }))} activeIndex={filter} onChange={index => { setFilter(index); setPage(1); }} /></div>\n      <div className=\"flex min-w-0 flex-wrap items-center gap-3\">\n        <ToolbarSearchInput className=\"w-full sm:w-64\" value={query} onChange={value => { setQuery(value); setPage(1); }} placeholder=\"搜索商品名称或 SKU\" />\n        <Button variant=\"tertiary\" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => onExport?.(filtered)}>导出</Button>\n        <Button iconLeft={<PlusIcon size={16} />} onClick={onAdd}>新增商品</Button>\n      </div>\n    </div>\n    <DataTable<ProductRecord>\n      columns={columns}\n      rows={visible}\n      getRowKey={product => product.id}\n      showCheckbox\n      selectedRowKeys={selected}\n      onSelectedRowKeysChange={setSelected}\n      showPagination\n      currentPage={currentPage}\n      totalPages={totalPages}\n      onPageChange={setPage}\n      paginationLabel={filtered.length ? `显示第 ${(currentPage - 1) * pageSize + 1}–${Math.min(currentPage * pageSize, filtered.length)} 条，共 ${filtered.length} 条${selected.size ? `，已选 ${selected.size} 条` : \"\"}` : \"没有符合条件的商品\"}\n      emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">没有符合条件的商品，请调整筛选或搜索。</p>}\n    />\n    {pendingDelete && <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4\">\n      <ConfirmationDialog title={`删除「${pendingDelete.name}」？`} description=\"删除后商品将从列表中移除，此操作无法撤销。\" confirmLabel=\"删除\" cancelLabel=\"取消\" color=\"red\" onConfirm={confirmDelete} onCancel={() => setPendingDelete(null)} />\n    </div>}\n  </section>;\n}\n"
+    }
+  ]
+}

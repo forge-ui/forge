@@ -3,11 +3,42 @@
   "name": "ranking-list",
   "type": "registry:block",
   "title": "排行列表卡",
-  "description": "紧凑列表与排序口径、操作插槽。",
+  "description": "展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "数据列表",
+    "screens": [
+      {
+        "href": "/templates/dashboards/analytics",
+        "title": "经营分析看板"
+      },
+      {
+        "href": "/templates/dashboards/crm",
+        "title": "客户经营看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-2",
+        "title": "电商明细看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-3",
+        "title": "渠道分析看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-1",
+        "title": "财务概览看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-3",
+        "title": "财务工作台"
+      },
+      {
+        "href": "/templates/dashboards/project-2",
+        "title": "项目进展看板"
+      }
+    ],
     "example": "import { RankingList } from \"@/components/blocks/ranking-list\";\n\nexport default function Example() {\n  return (<RankingList title=\"商品排行\" entries={[{ id: \"keyboard\", title: \"机械键盘\", subtitle: \"192 件\", value: \"¥24,500\", avatar: \"KB\" }, { id: \"mouse\", title: \"无线鼠标\", subtitle: \"160 件\", value: \"¥12,500\" }]} />);\n}\n",
     "props": [
       {
@@ -26,7 +57,7 @@
           {
             "name": "color",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+            "type": "import(\"@forge-ui-official/core\").AccentColor | undefined"
           },
           {
             "name": "subtitle",
@@ -46,7 +77,7 @@
           {
             "name": "tabs",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").ListGroupTab[] | undefined"
+            "type": "import(\"@forge-ui-official/core\").ListGroupTab[] | undefined"
           },
           {
             "name": "activeTab",
@@ -71,7 +102,7 @@
           {
             "name": "density",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity | undefined"
+            "type": "import(\"@forge-ui-official/core\").CardDensity | undefined"
           },
           {
             "name": "items",

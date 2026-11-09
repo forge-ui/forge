@@ -1,0 +1,81 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sellers-table",
+  "type": "registry:block",
+  "title": "商家列表",
+  "description": "展示店铺评分、营收与待结算金额的入驻商家管理表。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "数据列表",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/sellers",
+        "title": "商家列表页"
+      }
+    ],
+    "example": "import { SellersTable } from \"@/components/blocks/sellers-table\";\n\nexport default function Example() {\n  return (<SellersTable onMessage={(seller, channel) => console.log(seller.store, channel)} />);\n}\n",
+    "props": [
+      {
+        "component": "SellersTable",
+        "properties": [
+          {
+            "name": "sellers",
+            "required": false,
+            "type": "SellerRecord[] | undefined"
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onAdd",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onExport",
+            "required": false,
+            "type": "((sellers: SellerRecord[]) => void) | undefined"
+          },
+          {
+            "name": "onMessage",
+            "required": false,
+            "type": "((seller: SellerRecord, channel: \"email\" | \"chat\") => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "CellImageText",
+        "CellRating",
+        "CellText",
+        "DataTable",
+        "IconButton",
+        "Modal",
+        "PlusIcon",
+        "StatusBadge",
+        "ToolbarSearchInput",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/sellers-table/sellers-table.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/sellers-table.tsx",
+      "content": "\"use client\";\n\nimport { useState, type Key } from \"react\";\nimport { Button, CellImageText, CellRating, CellText, DataTable, IconButton, Modal, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef } from \"@forge-ui-official/core\";\nimport { ChatRoundLinear, DownloadMinimalisticLinear, EyeLinear, LetterLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface SellerRecord {\n  id: string;\n  store: string;\n  owner: string;\n  avatar: string;\n  rating: number;\n  products: number;\n  revenue: number;\n  balance: number;\n  joinedAt: string;\n}\n\nexport const defaultSellers: SellerRecord[] = [\n  { id: \"s-01\", store: \"远山设计旗舰店\", owner: \"陈思远\", avatar: \"/images/blocks/people/chen-siyuan.jpg\", rating: 4.9, products: 124, revenue: 286400, balance: 32800, joinedAt: \"2024-03-12\" },\n  { id: \"s-02\", store: \"木禾生活馆\", owner: \"林悦\", avatar: \"/images/blocks/people/lin-yue.jpg\", rating: 4.8, products: 145, revenue: 198200, balance: 21600, joinedAt: \"2024-06-28\" },\n  { id: \"s-03\", store: \"青石数码\", owner: \"许知夏\", avatar: \"/images/blocks/people/xu-zhixia.jpg\", rating: 4.6, products: 766, revenue: 412900, balance: 48100, joinedAt: \"2023-11-04\" },\n  { id: \"s-04\", store: \"云帆电子\", owner: \"周予安\", avatar: \"/images/blocks/people/zhou-yuan.jpg\", rating: 4.4, products: 99, revenue: 92000, balance: 9200, joinedAt: \"2025-01-17\" },\n  { id: \"s-05\", store: \"拾光好物\", owner: \"苏晚晴\", avatar: \"/images/blocks/people/su-wanqing.jpg\", rating: 4.7, products: 451, revenue: 175000, balance: 17500, joinedAt: \"2024-09-09\" },\n  { id: \"s-06\", store: \"桥川户外\", owner: \"陆景行\", avatar: \"/images/blocks/people/lu-jingxing.jpg\", rating: 4.0, products: 12, revenue: 20400, balance: 2040, joinedAt: \"2025-08-21\" },\n  { id: \"s-07\", store: \"星屿影音\", owner: \"江雨桐\", avatar: \"/images/blocks/people/jiang-yutong.jpg\", rating: 4.5, products: 46, revenue: 122300, balance: 12230, joinedAt: \"2025-04-02\" },\n  { id: \"s-08\", store: \"承泽办公\", owner: \"顾承泽\", avatar: \"/images/blocks/people/gu-chengze.jpg\", rating: 3.8, products: 72, revenue: 56700, balance: 5670, joinedAt: \"2025-10-15\" },\n];\n\nexport interface SellersTableProps {\n  sellers?: SellerRecord[];\n  pageSize?: number;\n  onAdd?: () => void;\n  onExport?: (sellers: SellerRecord[]) => void;\n  onMessage?: (seller: SellerRecord, channel: \"email\" | \"chat\") => void;\n  className?: string;\n}\n\nexport function SellersTable({ sellers = defaultSellers, pageSize = 8, onAdd, onExport, onMessage, className }: SellersTableProps) {\n  const [query, setQuery] = useState(\"\");\n  const [page, setPage] = useState(1);\n  const [selected, setSelected] = useState<Set<Key>>(new Set());\n  const [viewing, setViewing] = useState<SellerRecord | null>(null);\n  const keyword = query.trim().toLocaleLowerCase();\n  const filtered = sellers.filter(seller => `${seller.store} ${seller.owner}`.toLocaleLowerCase().includes(keyword));\n  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));\n  const currentPage = Math.min(page, totalPages);\n  const visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);\n  const money = (value: number) => `¥${value.toLocaleString(\"zh-CN\")}`;\n\n  const columns: ColumnDef<SellerRecord>[] = [\n    { key: \"store\", header: \"店铺\", minWidth: 220, render: seller => <CellImageText src={seller.avatar} title={seller.store} subtitle={seller.owner} rounded=\"full\" /> },\n    { key: \"rating\", header: \"评分\", minWidth: 80, render: seller => <CellRating score={seller.rating.toFixed(1)} /> },\n    { key: \"products\", header: \"商品数\", minWidth: 80, valueKind: \"number\", render: seller => <CellText>{seller.products}</CellText> },\n    { key: \"revenue\", header: \"累计营收\", minWidth: 120, valueKind: \"number\", render: seller => <CellText>{money(seller.revenue)}</CellText> },\n    { key: \"balance\", header: \"待结算\", minWidth: 110, valueKind: \"number\", render: seller => <CellText>{money(seller.balance)}</CellText> },\n    { key: \"joinedAt\", header: \"入驻日期\", minWidth: 110, render: seller => <CellText>{seller.joinedAt}</CellText> },\n    { key: \"actions\", header: \"操作\", minWidth: 120, render: seller => <div className=\"flex items-center gap-1\">\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`给${seller.store}发邮件`} onClick={() => onMessage?.(seller, \"email\")}><LetterLinear size={16} /></IconButton>\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`联系${seller.store}`} onClick={() => onMessage?.(seller, \"chat\")}><ChatRoundLinear size={16} /></IconButton>\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`查看${seller.store}`} onClick={() => setViewing(seller)}><EyeLinear size={16} /></IconButton>\n    </div> },\n  ];\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"flex min-w-0 flex-wrap items-center justify-between gap-3\">\n      <ToolbarSearchInput className=\"w-full sm:w-72\" value={query} onChange={value => { setQuery(value); setPage(1); }} placeholder=\"搜索店铺或店主\" />\n      <div className=\"flex flex-wrap items-center gap-3\">\n        <Button variant=\"tertiary\" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => onExport?.(filtered)}>导出</Button>\n        <Button iconLeft={<PlusIcon size={16} />} onClick={onAdd}>邀请商家</Button>\n      </div>\n    </div>\n    <DataTable<SellerRecord>\n      columns={columns}\n      rows={visible}\n      getRowKey={seller => seller.id}\n      showCheckbox\n      selectedRowKeys={selected}\n      onSelectedRowKeysChange={setSelected}\n      showPagination\n      currentPage={currentPage}\n      totalPages={totalPages}\n      onPageChange={setPage}\n      paginationLabel={filtered.length ? `显示第 ${(currentPage - 1) * pageSize + 1}–${Math.min(currentPage * pageSize, filtered.length)} 家，共 ${filtered.length} 家商家` : \"没有找到匹配的商家\"}\n      emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">没有找到匹配的商家。</p>}\n    />\n    <Modal open={viewing !== null} onOpenChange={open => { if (!open) setViewing(null); }} title={viewing?.store ?? \"商家详情\"}>\n      {viewing && <dl className=\"grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 text-sm\">\n        <dt className=\"text-fg-grey-700\">店主</dt><dd className=\"text-fg-black\">{viewing.owner}</dd>\n        <dt className=\"text-fg-grey-700\">评分</dt><dd><StatusBadge label={`${viewing.rating.toFixed(1)} 分`} color={viewing.rating >= 4.5 ? \"green\" : viewing.rating >= 4 ? \"blue\" : \"yellow\"} variant=\"soft\" /></dd>\n        <dt className=\"text-fg-grey-700\">在售商品</dt><dd className=\"text-fg-black\">{viewing.products} 件</dd>\n        <dt className=\"text-fg-grey-700\">累计营收</dt><dd className=\"font-semibold text-fg-black\">{money(viewing.revenue)}</dd>\n        <dt className=\"text-fg-grey-700\">待结算</dt><dd className=\"text-fg-black\">{money(viewing.balance)}</dd>\n        <dt className=\"text-fg-grey-700\">入驻日期</dt><dd className=\"text-fg-black\">{viewing.joinedAt}</dd>\n      </dl>}\n    </Modal>\n  </section>;\n}\n"
+    }
+  ]
+}

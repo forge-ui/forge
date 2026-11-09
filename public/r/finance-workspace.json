@@ -3,11 +3,18 @@
   "name": "finance-workspace",
   "type": "registry:block",
   "title": "财务工作区",
-  "description": "钱包、预算、费用与财务指标，使用公开 core 原语。",
+  "description": "整合账户余额、预算与费用明细，集中查看财务状况。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "财务",
+    "screens": [
+      {
+        "href": "/templates/finance-template",
+        "title": "财务管理"
+      }
+    ],
     "example": "import { FinanceSurface } from \"@/components/blocks/finance-workspace\";\n\nexport default function Example() {\n  return (<FinanceSurface title=\"财务摘要\">本月收入：12000 元</FinanceSurface>);\n}\n",
     "props": [
       {

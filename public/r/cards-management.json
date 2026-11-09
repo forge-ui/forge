@@ -1,0 +1,67 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cards-management",
+  "type": "registry:block",
+  "title": "企业卡管理",
+  "description": "企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "财务",
+    "screens": [
+      {
+        "href": "/templates/finance-template/cards",
+        "title": "银行卡页"
+      }
+    ],
+    "example": "import { CardsManagement } from \"@/components/blocks/cards-management\";\n\nexport default function Example() {\n  return (<CardsManagement onFreezeChange={(cardId, frozen) => console.log(cardId, frozen)} />);\n}\n",
+    "props": [
+      {
+        "component": "CardsManagement",
+        "properties": [
+          {
+            "name": "cards",
+            "required": false,
+            "type": "ManagedCard[] | undefined"
+          },
+          {
+            "name": "onAddCard",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onFreezeChange",
+            "required": false,
+            "type": "((cardId: string, frozen: boolean) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "CreditCard",
+        "Panel",
+        "PlusIcon",
+        "ProgressBar",
+        "StatusBadge",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/cards-management/cards-management.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/cards-management.tsx",
+      "content": "\"use client\";\n\nimport { useState, type ComponentProps } from \"react\";\nimport { Button, CreditCard, Panel, PlusIcon, ProgressBar, StatusBadge, cn } from \"@forge-ui-official/core\";\nimport { LockKeyholeLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface ManagedCard {\n  id: string;\n  name: string;\n  card: ComponentProps<typeof CreditCard>;\n  limit: number;\n  spent: number;\n  frozen?: boolean;\n  transactions: { id: string; merchant: string; amount: number; time: string }[];\n}\n\nexport const defaultManagedCards: ManagedCard[] = [\n  { id: \"card-ops\", name: \"日常运营卡\", card: { cardNumber: \"6829\", holderName: \"知行科技\", expiry: \"12/28\", theme: \"blue\" }, limit: 50000, spent: 18640, transactions: [\n    { id: \"o1\", merchant: \"云服务器续费\", amount: 6800, time: \"10-30 11:05\" },\n    { id: \"o2\", merchant: \"设计软件订阅\", amount: 1980, time: \"10-27 08:30\" },\n    { id: \"o3\", merchant: \"办公用品\", amount: 1260, time: \"10-24 15:12\" },\n  ] },\n  { id: \"card-travel\", name: \"差旅卡\", card: { cardNumber: \"3056\", holderName: \"知行科技\", expiry: \"08/29\", theme: \"dark\" }, limit: 20000, spent: 15840, transactions: [\n    { id: \"t1\", merchant: \"杭州往返高铁\", amount: 1320, time: \"10-29 18:40\" },\n    { id: \"t2\", merchant: \"酒店住宿 · 2 晚\", amount: 1940, time: \"10-29 21:10\" },\n  ] },\n  { id: \"card-market\", name: \"市场活动卡\", card: { cardNumber: \"1288\", holderName: \"知行科技\", expiry: \"05/27\", theme: \"yellow\" }, limit: 30000, spent: 4200, frozen: true, transactions: [\n    { id: \"m1\", merchant: \"客户招待\", amount: 860, time: \"10-25 20:10\" },\n  ] },\n];\n\nexport interface CardsManagementProps {\n  cards?: ManagedCard[];\n  onAddCard?: () => void;\n  onFreezeChange?: (cardId: string, frozen: boolean) => void;\n  className?: string;\n}\n\nexport function CardsManagement({ cards = defaultManagedCards, onAddCard, onFreezeChange, className }: CardsManagementProps) {\n  const [items, setItems] = useState(cards);\n  const [activeId, setActiveId] = useState(cards[0]?.id ?? \"\");\n  const active = items.find(item => item.id === activeId) ?? items[0];\n  const used = active ? Math.round((active.spent / active.limit) * 100) : 0;\n\n  function toggleFreeze() {\n    if (!active) return;\n    const frozen = !active.frozen;\n    setItems(current => current.map(item => item.id === active.id ? { ...item, frozen } : item));\n    onFreezeChange?.(active.id, frozen);\n  }\n\n  return <div className={cn(\"grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[320px_minmax(0,1fr)]\", className)}>\n    <Panel variant=\"template\" title=\"企业卡\" subtitle={`${items.length} 张卡片`}>\n      <ul className=\"flex flex-col gap-3\" role=\"listbox\" aria-label=\"企业卡\">{items.map(item => <li key={item.id}>\n        <Button variant=\"unstyled\" type=\"button\" role=\"option\" aria-selected={item.id === active?.id} className={cn(\"relative block w-full rounded-[20px] outline-offset-2 transition-opacity\", item.id === active?.id ? \"outline outline-2 outline-fg-blue\" : \"opacity-80 hover:opacity-100\")} onClick={() => setActiveId(item.id)}>\n          <CreditCard {...item.card} width=\"full\" />\n          {item.frozen && <span className=\"absolute inset-0 grid place-items-center rounded-[20px] bg-fg-black/40\"><span className=\"rounded-full bg-white px-3 py-1 text-xs font-semibold text-fg-black\">已冻结</span></span>}\n        </Button>\n      </li>)}</ul>\n      <Button variant=\"tertiary\" className=\"w-full\" iconLeft={<PlusIcon size={16} />} onClick={onAddCard}>申请新卡</Button>\n    </Panel>\n    {active && <div className=\"flex min-w-0 flex-col gap-4\">\n      <Panel variant=\"template\" title={active.name} subtitle={`尾号 ${active.card.cardNumber} · 有效期 ${active.card.expiry}`} action={<StatusBadge label={active.frozen ? \"已冻结\" : \"正常使用\"} color={active.frozen ? \"grey\" : \"green\"} variant=\"soft\" />}>\n        <dl className=\"grid grid-cols-1 gap-4 sm:grid-cols-3\">\n          <div className=\"rounded-2xl bg-fg-grey-50 p-4\"><dt className=\"text-xs text-fg-grey-700\">本月额度</dt><dd className=\"mt-1 text-xl font-semibold tabular-nums text-fg-black\">¥{active.limit.toLocaleString(\"zh-CN\")}</dd></div>\n          <div className=\"rounded-2xl bg-fg-grey-50 p-4\"><dt className=\"text-xs text-fg-grey-700\">已使用</dt><dd className=\"mt-1 text-xl font-semibold tabular-nums text-fg-black\">¥{active.spent.toLocaleString(\"zh-CN\")}</dd></div>\n          <div className=\"rounded-2xl bg-fg-grey-50 p-4\"><dt className=\"text-xs text-fg-grey-700\">可用余额</dt><dd className=\"mt-1 text-xl font-semibold tabular-nums text-fg-black\">¥{(active.limit - active.spent).toLocaleString(\"zh-CN\")}</dd></div>\n        </dl>\n        <ProgressBar value={used} color={used > 75 ? \"red\" : \"blue\"} label={`额度使用 ${used}%`} />\n        <div className=\"flex flex-wrap gap-3\">\n          <Button variant={active.frozen ? \"primary\" : \"tertiary\"} iconLeft={<LockKeyholeLinear size={16} />} onClick={toggleFreeze}>{active.frozen ? \"解除冻结\" : \"临时冻结\"}</Button>\n        </div>\n      </Panel>\n      <Panel variant=\"template\" title=\"最近消费\" subtitle={`${active.transactions.length} 笔`}>\n        <ul className=\"flex flex-col divide-y divide-fg-grey-200\">{active.transactions.map(item => <li key={item.id} className=\"flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0\"><div><p className=\"text-sm font-semibold text-fg-black\">{item.merchant}</p><p className=\"text-xs text-fg-grey-700\">{item.time}</p></div><span className=\"text-sm font-semibold tabular-nums text-fg-black\">-¥{item.amount.toLocaleString(\"zh-CN\")}</span></li>)}</ul>\n      </Panel>\n    </div>}\n  </div>;\n}\n"
+    }
+  ]
+}

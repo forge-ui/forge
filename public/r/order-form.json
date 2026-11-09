@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "order-form",
+  "type": "registry:block",
+  "title": "新建订单表单",
+  "description": "商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "表单",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/orders/new",
+        "title": "新建订单页"
+      }
+    ],
+    "example": "import { OrderForm } from \"@/components/blocks/order-form\";\n\nexport default function Example() {\n  return (<OrderForm onSubmit={value => console.log(value.customer)} onCancel={() => {}} />);\n}\n",
+    "props": [
+      {
+        "component": "OrderForm",
+        "properties": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "OrderFormValue | undefined"
+          },
+          {
+            "name": "onSubmit",
+            "required": false,
+            "type": "((value: OrderFormValue, images: MediaItem[]) => void) | undefined"
+          },
+          {
+            "name": "onCancel",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "MediaUpload",
+        "SelectOption",
+        "TextArea",
+        "TextField",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/order-form/order-form.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/order-form.tsx",
+      "content": "\"use client\";\n\nimport { useState, type FormEvent, type ReactNode } from \"react\";\nimport { Button, MediaUpload, SelectOption, TextArea, TextField, cn, type MediaItem } from \"@forge-ui-official/core\";\nimport { CheckCircleLinear, CloseCircleLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface OrderFormValue {\n  product: string;\n  description: string;\n  category: string;\n  unitPrice: string;\n  quantity: string;\n  customer: string;\n  email: string;\n  phone: string;\n  address: string;\n  payment: string;\n  shipping: string;\n}\n\nexport const emptyOrderForm: OrderFormValue = { product: \"\", description: \"\", category: \"\", unitPrice: \"\", quantity: \"1\", customer: \"\", email: \"\", phone: \"\", address: \"\", payment: \"\", shipping: \"\" };\n\nconst required: (keyof OrderFormValue)[] = [\"product\", \"unitPrice\", \"quantity\", \"customer\", \"phone\", \"address\", \"payment\", \"shipping\"];\nconst labels: Partial<Record<keyof OrderFormValue, string>> = { product: \"商品名称\", unitPrice: \"单价\", quantity: \"数量\", customer: \"客户姓名\", phone: \"手机号\", address: \"收货地址\", payment: \"支付方式\", shipping: \"配送方式\" };\n\nfunction Section({ title, children }: { title: string; children: ReactNode }) {\n  return <section className=\"flex min-w-0 flex-col gap-4 rounded-card border border-fg-grey-200 bg-white p-6\"><h3 className=\"text-lg font-semibold text-fg-black\">{title}</h3>{children}</section>;\n}\n\nexport interface OrderFormProps {\n  value?: OrderFormValue;\n  onSubmit?: (value: OrderFormValue, images: MediaItem[]) => void;\n  onCancel?: () => void;\n  className?: string;\n}\n\nexport function OrderForm({ value = emptyOrderForm, onSubmit, onCancel, className }: OrderFormProps) {\n  const [form, setForm] = useState(value);\n  const [images, setImages] = useState<MediaItem[]>([]);\n  const [touched, setTouched] = useState(false);\n  const [submitted, setSubmitted] = useState(false);\n  const missing = required.filter(key => !form[key].trim());\n  const quantity = Number(form.quantity);\n  const unitPrice = Number(form.unitPrice);\n  const total = Number.isFinite(quantity * unitPrice) ? quantity * unitPrice : 0;\n  const update = (key: keyof OrderFormValue) => (next: string) => { setForm(current => ({ ...current, [key]: next })); setSubmitted(false); };\n  const error = (key: keyof OrderFormValue) => touched && missing.includes(key) ? { state: \"error\" as const, errorMessage: `请填写${labels[key]}` } : {};\n\n  function submit(event: FormEvent) {\n    event.preventDefault();\n    setTouched(true);\n    if (missing.length) return;\n    onSubmit?.(form, images);\n    setSubmitted(true);\n  }\n\n  return <form className={cn(\"flex min-w-0 flex-col gap-4\", className)} onSubmit={submit} noValidate>\n    <div className=\"flex flex-wrap items-center justify-end gap-3\">\n      <p role=\"status\" className={cn(\"mr-auto text-sm\", submitted ? \"text-fg-green-500\" : \"text-fg-grey-700\")}>{submitted ? \"订单已创建，已通知仓库备货\" : touched && missing.length ? `还有 ${missing.length} 项必填未完成` : `订单金额 ¥${total.toLocaleString(\"zh-CN\", { minimumFractionDigits: 2 })}`}</p>\n      <Button type=\"button\" variant=\"tertiary\" iconLeft={<CloseCircleLinear size={16} />} onClick={onCancel}>取消</Button>\n      <Button type=\"submit\" iconLeft={<CheckCircleLinear size={16} />}>创建订单</Button>\n    </div>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_300px]\">\n      <div className=\"flex min-w-0 flex-col gap-4\">\n        <Section title=\"商品信息\">\n          <TextField label=\"商品名称\" shape=\"pill\" required value={form.product} onChange={update(\"product\")} placeholder=\"例如：知行智能手表 E2\" {...error(\"product\")} />\n          <TextArea label=\"备注\" rows={3} value={form.description} onChange={update(\"description\")} placeholder=\"颜色、规格或定制要求\" />\n          <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-3\">\n            <SelectOption label=\"商品分类\" shape=\"pill\" placeholder=\"请选择分类\" options={[{ label: \"智能穿戴\", value: \"wearable\" }, { label: \"影音\", value: \"audio\" }, { label: \"电脑外设\", value: \"peripheral\" }]} value={form.category} onChange={update(\"category\")} />\n            <TextField label=\"单价（元）\" shape=\"pill\" inputMode=\"decimal\" value={form.unitPrice} onChange={update(\"unitPrice\")} placeholder=\"0.00\" {...error(\"unitPrice\")} />\n            <TextField label=\"数量\" shape=\"pill\" inputMode=\"numeric\" value={form.quantity} onChange={update(\"quantity\")} {...error(\"quantity\")} />\n          </div>\n        </Section>\n        <Section title=\"客户信息\">\n          <TextField label=\"客户姓名\" shape=\"pill\" value={form.customer} onChange={update(\"customer\")} placeholder=\"请输入收货人姓名\" {...error(\"customer\")} />\n          <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-2\">\n            <TextField label=\"邮箱\" type=\"email\" shape=\"pill\" value={form.email} onChange={update(\"email\")} placeholder=\"name@company.com\" />\n            <TextField label=\"手机号\" type=\"tel\" shape=\"pill\" value={form.phone} onChange={update(\"phone\")} placeholder=\"138 0000 0000\" {...error(\"phone\")} />\n          </div>\n        </Section>\n        <Section title=\"配送信息\">\n          <TextArea label=\"收货地址\" rows={3} value={form.address} onChange={update(\"address\")} placeholder=\"省市区 + 详细地址\" {...error(\"address\")} />\n          <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-2\">\n            <SelectOption label=\"支付方式\" shape=\"pill\" placeholder=\"请选择\" options={[{ label: \"对公转账\", value: \"transfer\" }, { label: \"微信支付\", value: \"wechat\" }, { label: \"支付宝\", value: \"alipay\" }]} value={form.payment} onChange={update(\"payment\")} {...error(\"payment\")} />\n            <SelectOption label=\"配送方式\" shape=\"pill\" placeholder=\"请选择\" options={[{ label: \"顺丰标快\", value: \"sf\" }, { label: \"京东物流\", value: \"jd\" }, { label: \"门店自提\", value: \"pickup\" }]} value={form.shipping} onChange={update(\"shipping\")} {...error(\"shipping\")} />\n          </div>\n        </Section>\n      </div>\n      <Section title=\"商品图片\">\n        <MediaUpload items={images} buttonLabel=\"添加图片\" message=\"拖放图片到这里，或点击添加\" color=\"blue\" onUpload={files => setImages(current => [...current, ...Array.from(files).map(file => ({ id: `${file.name}-${file.lastModified}`, src: URL.createObjectURL(file), state: \"success\" as const }))])} onRemove={id => setImages(current => current.filter(item => item.id !== id))} />\n      </Section>\n    </div>\n  </form>;\n}\n"
+    }
+  ]
+}

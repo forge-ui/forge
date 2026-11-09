@@ -18,3 +18,10 @@
     transform: scale(1.15);
   }
 }
+
+.fg-scrollbar-thin { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.fg-scrollbar-thin:is(:hover, :focus-within) { scrollbar-color: var(--fg-grey-300) transparent; }
+.fg-scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+.fg-scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.fg-scrollbar-thin::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
+.fg-scrollbar-thin:is(:hover, :focus-within)::-webkit-scrollbar-thumb { background: var(--fg-grey-300); }

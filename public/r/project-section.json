@@ -3,11 +3,18 @@
   "name": "project-section",
   "type": "registry:block",
   "title": "项目详情分区",
-  "description": "项目与任务共用的标题操作栏和紧凑内容区。",
+  "description": "围绕项目或任务组织详情内容与操作，保持阅读层次清晰。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "协作与项目",
+    "screens": [
+      {
+        "href": "/templates/project-template",
+        "title": "项目管理"
+      }
+    ],
     "example": "import { ProjectSection } from \"@/components/blocks/project-section\";\n\nexport default function Example() {\n  return (<ProjectSection title=\"项目进度\">已完成 6 / 10 项</ProjectSection>);\n}\n",
     "props": [
       {

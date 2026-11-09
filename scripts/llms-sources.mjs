@@ -43,9 +43,10 @@ export function generateDocuments(root) {
   const embed = entries => entries.map(item => "---\n\nSource: " + item.file + "\n\n" + expandLinks(item).trim()).join("\n\n") + "\n";
   const semanticNames = ["SKILL.md", "audit-checklist.md", "status-presentation.md", "tokens.md", "page-recommended-standard.md", "screens.md", "blocks.md", "overlay-focus.md", "component-content-contracts.md", "motion.md"];
   const semantic = references.filter(item => semanticNames.includes(path.basename(item.file)));
-  const full = banner + policy + catalog + pageList("Template routes", "templates", templates) + pageList("Case routes", "cases", cases) + embed(references);
+  const blockRoutes = "## Block gallery and detail routes\n\n- /blocks — category-filtered gallery of " + source.blocks.length + " copyable Blocks\n" + source.blocks.map(block => "- /blocks/" + block.name + " — " + block.category + " / " + block.title + "; /r/" + block.name + ".json").join("\n") + "\n\n";
+  const full = banner + policy + catalog + blockRoutes + pageList("Template routes", "templates", templates) + pageList("Case routes", "cases", cases) + embed(references);
   const outputs = new Map([
-    ["llms.txt", banner + policy + "## Documents\n\n- /llms-full.md — complete portable rules and route/export catalog\n- /llms-full-cn.md — 中文入口（同一规范正文）\n- /llms-semantic.md — semantic/layout/interaction standards\n- /llms-components.md — generated API signatures and Props\n\nGenerated locally; deployment is a separate explicitly authorized action. Source paths identify repository files, not additional installed packages.\n"],
+    ["llms.txt", banner + policy + "## Documents\n\n- /llms-full.md — complete portable rules and route/export catalog\n- /llms-full-cn.md — 中文入口（同一规范正文）\n- /llms-semantic.md — semantic/layout/interaction standards\n- /llms-components.md — generated API signatures and Props\n- /blocks — categorized Block gallery; /blocks/<name> contains live preview, full source, usage and Props\n- /r/index.json — copyable Block registry with category and related Screen metadata\n\nGenerated locally; deployment is a separate explicitly authorized action. Source paths identify repository files, not additional installed packages.\n"],
     ["llms-full.md", full], ["llms-full.txt", full],
     ["llms-full-cn.md", banner + "中文入口：采用正文与英文入口完全同源，保留 API 原名。\n\n" + full.slice(banner.length)],
     ["llms-full-cn.txt", banner + "中文入口：采用正文与英文入口完全同源，保留 API 原名。\n\n" + full.slice(banner.length)],

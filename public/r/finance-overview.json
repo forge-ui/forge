@@ -1,0 +1,89 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "finance-overview",
+  "type": "registry:block",
+  "title": "财务概览",
+  "description": "结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "看板首屏",
+    "screens": [
+      {
+        "href": "/templates/dashboards/finance-1",
+        "title": "财务概览看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-2",
+        "title": "账户分析看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-3",
+        "title": "财务工作台"
+      }
+    ],
+    "example": "import { FinanceOverview } from \"@/components/blocks/finance-overview\";\n\nexport default function Example() {\n  return (<FinanceOverview title=\"财务概览\" periodLabel=\"2026.10.25 — 10.31\" />);\n}\n",
+    "props": [
+      {
+        "component": "FinanceOverview",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "description",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "periodLabel",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "accounts",
+            "required": false,
+            "type": "FinanceAccount[] | undefined"
+          },
+          {
+            "name": "trend",
+            "required": false,
+            "type": "{ data: import(\"@forge-ui-official/core\").GroupedBarPoint[]; series: import(\"@forge-ui-official/core\").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import(\"@forge-ui-official/core\").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } | undefined"
+          },
+          {
+            "name": "goals",
+            "required": false,
+            "type": "(WalletGoalCardProps & { id: string; })[] | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "ChartMetricRow",
+        "CreditCard",
+        "GroupedBarChart",
+        "Panel",
+        "WalletGoalCard",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/finance-overview/finance-overview.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/finance-overview.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { ChartMetricRow, CreditCard, GroupedBarChart, Panel, WalletGoalCard, cn, type GroupedBarChartProps, type WalletGoalCardProps } from \"@forge-ui-official/core\";\nimport { WalletBoldDuotone } from \"@forge-ui-official/core/icons\";\n\nexport type FinanceAccount = ComponentProps<typeof CreditCard> & { id: string; name: string; balance: string };\nexport const defaultFinanceAccounts: FinanceAccount[] = [\n  { id: \"operating\", name: \"日常经营账户\", balance: \"¥326,800\", holderName: \"知行科技\", cardNumber: \"6829\", expiry: \"12/28\", theme: \"blue\", variant: \"flat\" },\n  { id: \"reserve\", name: \"企业储备账户\", balance: \"¥140,000\", holderName: \"知行科技\", cardNumber: \"3056\", expiry: \"08/29\", theme: \"dark\", variant: \"flat\" },\n];\nexport const defaultFinanceGoals: (WalletGoalCardProps & { id: string })[] = [\n  { id: \"reserve\", title: \"年度经营储备\", date: \"2026 年 12 月 31 日\", amount: \"¥160,000 / ¥200,000\", progress: 80, progressColor: \"blue\" },\n  { id: \"product\", title: \"产品研发基金\", date: \"2026 年 12 月 15 日\", amount: \"¥84,000 / ¥120,000\", progress: 70, progressColor: \"green\" },\n  { id: \"team\", title: \"团队成长预算\", date: \"2026 年 12 月 31 日\", amount: \"¥36,000 / ¥60,000\", progress: 60, progressColor: \"purple\" },\n];\nexport const defaultFinanceTrend: GroupedBarChartProps = {\n  data: [\n    { label: \"10/25\", values: [14200, 8200] }, { label: \"10/26\", values: [16800, 9400] },\n    { label: \"10/27\", values: [15300, 8800] }, { label: \"10/28\", values: [20400, 12000] },\n    { label: \"10/29\", values: [18600, 11200] }, { label: \"10/30\", values: [21500, 12300] },\n    { label: \"10/31\", values: [21800, 12900] },\n  ],\n  series: [{ label: \"收入\", value: \"¥128,600\", colorClass: \"bg-fg-blue\" }, { label: \"支出\", value: \"¥74,800\", colorClass: \"bg-fg-yellow\" }],\n  yAxisLabels: [\"¥22k\", \"¥16.5k\", \"¥11k\", \"¥5.5k\", \"0\"],\n  heightClass: \"h-44\",\n};\n\nexport interface FinanceOverviewProps {\n  title?: string;\n  description?: string;\n  periodLabel?: string;\n  accounts?: FinanceAccount[];\n  trend?: GroupedBarChartProps;\n  goals?: (WalletGoalCardProps & { id: string })[];\n  className?: string;\n}\n\nexport function FinanceOverview({ title = \"财务概览\", description = \"知行科技 · 账户与资金计划\", periodLabel = \"2026.10.25 — 10.31\", accounts = defaultFinanceAccounts, trend = defaultFinanceTrend, goals = defaultFinanceGoals, className }: FinanceOverviewProps) {\n  return <section className={cn(\"@container flex min-w-0 flex-col gap-5\", className)}>\n    <header className=\"flex flex-wrap items-start justify-between gap-4\"><div><h2 className=\"text-2xl font-semibold text-fg-black\">{title}</h2><p className=\"mt-1 text-sm text-fg-grey-700\">{description}</p></div><span className=\"text-sm text-fg-grey-700\">{periodLabel}</span></header>\n    <div className=\"grid min-w-0 grid-cols-1 gap-4 @min-[840px]:grid-cols-2\">\n      <Panel title=\"我的账户\" subtitle={`${accounts.length} 个企业账户`} className=\"min-w-0 justify-start\"><div className=\"grid grid-cols-1 gap-4 @min-[840px]:grid-cols-2\">{accounts.map(({ id, name, balance, ...card }) => <div key={id} className=\"flex min-w-0 flex-col gap-3\"><div className=\"flex flex-wrap items-center gap-2 text-sm\"><WalletBoldDuotone size={18} className=\"shrink-0 text-fg-blue\" /><span className=\"text-fg-grey-700\">{name}</span><span className=\"ml-auto whitespace-nowrap font-semibold tabular-nums\">{balance}</span></div><CreditCard {...card} width=\"full\" /></div>)}</div></Panel>\n      <Panel title=\"收入与支出\" subtitle=\"按日统计 · 人民币\" className=\"min-w-0\"><ChartMetricRow series={trend.series} /><div className=\"@container min-w-0\"><GroupedBarChart {...trend} heightClass={cn(trend.heightClass ?? \"h-56\", \"min-h-44 min-w-0 grid-cols-[44px_minmax(0,1fr)] @max-[480px]:grid-cols-[32px_minmax(0,1fr)] @max-[480px]:gap-2 @max-[480px]:[&>div:last-child]:gap-1 [&>div:last-child>div]:min-w-0 @max-[480px]:[&>div:last-child>div>div]:gap-1 @max-[480px]:[&>div:last-child>div>div>span]:w-2 @max-[480px]:[&>div:last-child>div>div:last-child]:text-[10px]\")} /></div></Panel>\n    </div>\n    <Panel title=\"储蓄目标\" subtitle=\"为接下来的投入提前规划\" className=\"min-w-0\"><div className=\"grid min-w-0 grid-cols-1 gap-4 @min-[960px]:grid-cols-3\">{goals.map(({ id, ...goal }) => <WalletGoalCard key={id} {...goal} />)}</div></Panel>\n  </section>;\n}\n"
+    }
+  ]
+}

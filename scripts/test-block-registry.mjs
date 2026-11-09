@@ -3,8 +3,11 @@ import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 import { test } from "node:test";
 import ts from "typescript";
+import { collectFiles, publicRoute } from "../skills/forge-skill/scripts/source-index.mjs";
 
 const catalog = JSON.parse(fs.readFileSync("blocks/registry.json", "utf8"));
+const screenRoutes = collectFiles(process.cwd(), "src/app/templates").filter(file => file.endsWith("/page.tsx")).map(file => publicRoute(file, "templates")).filter(route => route !== null).map(route => new RegExp(`^/templates/${route.replace(/\[[^\]]+\]/g, "[^/]+")}$`.replace(/\/$/, "")));
+const isScreenRoute = href => screenRoutes.some(route => route.test(href));
 
 test("registry generation is deterministic and every catalog item can be copied independently", () => {
   execFileSync(process.execPath, ["scripts/generate-block-registry.mjs", "--check"]);
@@ -15,6 +18,15 @@ test("registry generation is deterministic and every catalog item can be copied 
     const item = JSON.parse(fs.readFileSync(`public/r/${entry.name}.json`, "utf8"));
     assert.deepEqual(index.items.find(candidate => candidate.name === item.name), item);
     assert.equal(item.type, "registry:block");
+    assert.ok(["看板首屏", "AI 与智能体", "数据列表", "详情页", "表单", "协作与项目", "财务", "设置", "图表与指标", "页面结构", "认证"].includes(entry.category));
+    assert.equal(item.meta.category, entry.category);
+    assert.doesNotMatch(JSON.stringify(item.meta.props), /\/Users\/|\/private\/|import\("\//);
+    assert.ok(item.meta.screens.length > 0, `${entry.name} has no related Screen`);
+    for (const screen of item.meta.screens) {
+      assert.match(screen.href, /^\/templates\//);
+      assert.ok(screen.title);
+      assert.ok(isScreenRoute(screen.href), `${entry.name}: missing Screen ${screen.href}`);
+    }
     assert.deepEqual(item.dependencies, ["@forge-ui-official/core@^" + JSON.parse(fs.readFileSync("core/package.json", "utf8")).version]);
     assert.equal(item.files.length, 1);
     const file = item.files[0];
@@ -29,6 +41,22 @@ test("registry generation is deterministic and every catalog item can be copied 
       assert.ok(["react", "@forge-ui-official/core", "@forge-ui-official/core/icons"].includes(statement.moduleSpecifier.text), `${entry.name} uses a private dependency`);
     }
     assert.doesNotMatch(file.content, /#[\da-f]{3,8}\b|(?:bg|text|border)-(?:blue|purple|gray|slate)-\d|!important/);
+  }
+});
+
+test("business page components are independently installable and indexed by category", () => {
+  for (const name of ["overview-dashboard", "orders-table-section", "project-overview", "finance-overview"]) {
+    const entry = catalog.find(item => item.name === name);
+    assert.ok(["看板首屏", "数据列表"].includes(entry.category));
+    const item = JSON.parse(fs.readFileSync(`public/r/${name}.json`, "utf8"));
+    assert.match(item.files[0].content, /Props/);
+    assert.ok(item.meta.example.includes(entry.component));
+  }
+  const search = JSON.parse(fs.readFileSync("src/app/_components/search-index.json", "utf8"));
+  for (const entry of catalog) {
+    const matches = search.filter(item => item.id === `/blocks/${entry.name}`);
+    assert.equal(matches.length, 1);
+    assert.ok(matches[0].keywords.includes(entry.category));
   }
 });
 

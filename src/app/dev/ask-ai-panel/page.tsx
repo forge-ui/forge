@@ -41,7 +41,7 @@ export default function AskAiPanelReview() {
         <Button onClick={() => setCount(value => value + 1)}>已点击 {count} 次</Button>
         <label className="flex flex-col gap-2 text-sm">页面草稿<input className="rounded-lg border border-fg-grey-200 p-3" placeholder="并排时可以在这里输入" /></label>
       </section>
-      {Array.from({length: 8}, (_, index) => <section key={index} className="rounded-2xl border border-fg-grey-200 bg-white p-6"><h2 className="font-semibold">内容区块 {index + 1}</h2><p className="mt-2 text-sm leading-6 text-fg-grey-700">滚动主页面不会关闭助手；助手输入栏保留自己的底部间距。</p></section>)}
+      {Array.from({length: 8}, (_, index) => <section key={index} className="rounded-2xl border border-fg-grey-200 bg-white p-6"><h2 className="font-semibold">内容页面组件 {index + 1}</h2><p className="mt-2 text-sm leading-6 text-fg-grey-700">滚动主页面不会关闭助手；助手输入栏保留自己的底部间距。</p></section>)}
     </div>
   </main>;
 }

@@ -19,6 +19,9 @@ test("repository sources generate all seven deterministic documents", () => {
     assert.doesNotMatch(content, /forge-app-design/);
   }
   assert.match(first.outputs.get("llms-full.md"), /dashboards\/finance-3/);
+  for (const block of loadSources(root).blocks) {
+    assert.ok(first.outputs.get("llms-full.md").includes(`/blocks/${block.name} — ${block.category}`));
+  }
   assert.match(first.outputs.get("llms-components.md"), /## DataTable/);
 });
 

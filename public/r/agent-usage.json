@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-usage",
+  "type": "registry:block",
+  "title": "用量与成本",
+  "description": "本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "AI 与智能体",
+    "screens": [
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
+    "example": "import { AgentUsage } from \"@/components/blocks/agent-usage\";\n\nexport default function Example() {\n  return (<AgentUsage />);\n}\n",
+    "props": [
+      {
+        "component": "AgentUsage",
+        "properties": [
+          {
+            "name": "usage",
+            "required": false,
+            "type": "AgentUsageData | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "ButtonGroup",
+        "Panel",
+        "ProgressBar",
+        "SmoothLineChart",
+        "StatCard",
+        "StatusBadge",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/agent-usage/agent-usage.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/agent-usage.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { ButtonGroup, Panel, ProgressBar, SmoothLineChart, StatCard, StatusBadge, cn } from \"@forge-ui-official/core\";\n\nexport interface UsageBreakdown {\n  id: string;\n  name: string;\n  amount: number;\n  change: number;\n  color: string;\n}\n\nexport interface AgentUsageData {\n  month: string;\n  budget: number;\n  spent: number;\n  forecast: number;\n  daily: number[];\n  tasks: number;\n  runs: number;\n  tokens: string;\n  byProject: UsageBreakdown[];\n  byModel: UsageBreakdown[];\n  alerts: { id: string; title: string; detail: string; tone: \"yellow\" | \"red\" }[];\n}\n\nexport const defaultAgentUsage: AgentUsageData = {\n  month: \"11 月\",\n  budget: 3000,\n  spent: 1862.4,\n  forecast: 2910,\n  daily: [42, 58, 61, 72, 55, 48, 66, 81, 94, 78],\n  tasks: 186,\n  runs: 1285,\n  tokens: \"48.3M\",\n  byProject: [\n    { id: \"p1\", name: \"客户工作台升级\", amount: 712.6, change: 24, color: \"bg-fg-blue\" },\n    { id: \"p2\", name: \"售后客服\", amount: 498.2, change: -8, color: \"bg-fg-violet\" },\n    { id: \"p3\", name: \"经营分析\", amount: 386.0, change: 102, color: \"bg-fg-green-500\" },\n    { id: \"p4\", name: \"内部办公\", amount: 265.6, change: 12, color: \"bg-fg-yellow\" },\n  ],\n  byModel: [\n    { id: \"m1\", name: \"通用大模型 · 旗舰\", amount: 1024.5, change: 18, color: \"bg-fg-blue\" },\n    { id: \"m2\", name: \"通用大模型 · 轻量\", amount: 512.3, change: -4, color: \"bg-fg-violet\" },\n    { id: \"m3\", name: \"代码模型\", amount: 248.1, change: 36, color: \"bg-fg-green-500\" },\n    { id: \"m4\", name: \"向量模型\", amount: 77.5, change: 6, color: \"bg-fg-yellow\" },\n  ],\n  alerts: [\n    { id: \"a1\", title: \"经营分析昨日成本 ¥94.2\", detail: \"通常一次约 ¥18，本次读取了全部 1,286 条客户记录\", tone: \"yellow\" },\n    { id: \"a2\", title: \"代码模型用量较上月 +36%\", detail: \"编程助手批量生成测试导致，可改用轻量模型\", tone: \"yellow\" },\n    { id: \"a3\", title: \"月底预计接近预算上限\", detail: \"按当前速度预计 ¥2,910，仅剩 ¥90 余量，可调高预算或限制高成本任务\", tone: \"red\" },\n  ],\n};\n\nexport interface AgentUsageProps {\n  usage?: AgentUsageData;\n  className?: string;\n}\n\nexport function AgentUsage({ usage = defaultAgentUsage, className }: AgentUsageProps) {\n  const [view, setView] = useState(0);\n  const breakdown = view === 0 ? usage.byProject : usage.byModel;\n  const max = Math.max(...breakdown.map(item => item.amount));\n  const used = Math.round((usage.spent / usage.budget) * 100);\n  const money = (value: number) => `¥${value.toLocaleString(\"zh-CN\", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_340px]\">\n      <Panel variant=\"template\" title={`${usage.month}已花费`} action={<StatusBadge label={`预计 ${money(usage.forecast)}`} color={usage.forecast > usage.budget * 0.95 ? \"yellow\" : \"green\"} variant=\"soft\" />}>\n        <div className=\"flex flex-wrap items-end gap-3\"><p className=\"text-4xl font-semibold tabular-nums text-fg-black\">{money(usage.spent)}</p><p className=\"pb-1 text-sm text-fg-grey-700\">/ 预算 {money(usage.budget)}</p></div>\n        <ProgressBar value={used} color={used > 85 ? \"red\" : \"blue\"} label={`已使用 ${used}%`} size=\"sm\" />\n        <SmoothLineChart series={[{ data: usage.daily, color: \"blue\", fillArea: true }]} accent=\"blue\" showYAxis yAxisLabels={[\"¥100\", \"¥50\", \"¥0\"]} xAxisLabels={usage.daily.map((_, index) => `${index + 1}日`)} height=\"h-48\" />\n      </Panel>\n      <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-3 xl:grid-cols-1\">\n        <StatCard title=\"任务\" value={usage.tasks} animateValue subtitle=\"本月发起\" theme=\"white\" width=\"full\" density=\"compact\" />\n        <StatCard title=\"运行次数\" value={usage.runs} animateValue subtitle=\"含重试\" theme=\"white\" width=\"full\" density=\"compact\" />\n        <StatCard title=\"Token\" value={usage.tokens} subtitle=\"输入 + 输出\" theme=\"white\" width=\"full\" density=\"compact\" />\n      </div>\n    </div>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-2\">\n      <Panel variant=\"template\" title=\"花在哪里\" action={<ButtonGroup ariaLabel=\"分组方式\" shape=\"pill\" items={[{ label: \"按项目\" }, { label: \"按模型\" }]} activeIndex={view} onChange={setView} />}>\n        <ul className=\"flex flex-col gap-4\">{breakdown.map(item => <li key={item.id} className=\"grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2\">\n          <span className=\"flex min-w-0 items-center gap-2 text-sm text-fg-black\"><span className={cn(\"size-2.5 shrink-0 rounded-full\", item.color)} /><span className=\"truncate\">{item.name}</span></span>\n          <span className=\"text-sm font-semibold tabular-nums text-fg-black\">{money(item.amount)} <span className={cn(\"ml-1 text-xs font-medium\", item.change > 0 ? \"text-fg-red\" : \"text-fg-green-500\")}>{item.change > 0 ? \"+\" : \"\"}{item.change}%</span></span>\n          <span className=\"col-span-2 h-1.5 overflow-hidden rounded-full bg-fg-grey-100\"><span className={cn(\"block h-full rounded-full transition-[width] duration-500\", item.color)} style={{ width: `${(item.amount / max) * 100}%` }} /></span>\n        </li>)}</ul>\n      </Panel>\n      <Panel variant=\"template\" title=\"值得关注\" subtitle=\"自动发现的异常用量\">\n        <ul className=\"flex flex-col gap-3\">{usage.alerts.map(alert => <li key={alert.id} className={cn(\"rounded-xl border p-4\", alert.tone === \"red\" ? \"border-fg-red-200 bg-fg-red-50\" : \"border-fg-yellow-200 bg-fg-yellow-50\")}><p className=\"text-sm font-semibold text-fg-black\">{alert.title}</p><p className=\"mt-1 text-xs leading-5 text-fg-grey-700\">{alert.detail}</p></li>)}</ul>\n      </Panel>\n    </div>\n  </section>;\n}\n"
+    }
+  ]
+}

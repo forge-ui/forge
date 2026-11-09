@@ -3,11 +3,26 @@
   "name": "region-distribution",
   "type": "registry:block",
   "title": "地区分布卡",
-  "description": "复用 MapCard 的地区、范围与度量契约。",
+  "description": "结合地图与地区明细，查看客户或收入的地域分布。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "图表与指标",
+    "screens": [
+      {
+        "href": "/templates/dashboards/analytics",
+        "title": "经营分析看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-1",
+        "title": "电商经营看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-2",
+        "title": "电商明细看板"
+      }
+    ],
     "example": "import { RegionDistribution } from \"@/components/blocks/region-distribution\";\n\nexport default function Example() {\n  return (<RegionDistribution title=\"地区分布\" highlights={[\"asia\", \"europe\"]} regions={[{ name: \"中国\", countryCode: \"CN\", salesLabel: \"340 笔\", value: \"¥17,678\" }, { name: \"英国\", countryCode: \"GB\", salesLabel: \"100 笔\", value: \"¥5,500\" }]} />);\n}\n",
     "props": [
       {
@@ -26,7 +41,7 @@
           {
             "name": "color",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+            "type": "import(\"@forge-ui-official/core\").AccentColor | undefined"
           },
           {
             "name": "subtitle",
@@ -36,12 +51,12 @@
           {
             "name": "variant",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapVariant | undefined"
+            "type": "import(\"@forge-ui-official/core\").MapVariant | undefined"
           },
           {
             "name": "highlights",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapContinent[] | undefined"
+            "type": "import(\"@forge-ui-official/core\").MapContinent[] | undefined"
           },
           {
             "name": "onMenuClick",
@@ -51,12 +66,12 @@
           {
             "name": "width",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth | undefined"
+            "type": "import(\"@forge-ui-official/core\").CardWidth | undefined"
           },
           {
             "name": "regions",
             "required": false,
-            "type": "(Omit<import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MapRegion, \"flag\"> & { flag?: string; countryCode?: string; })[] | undefined"
+            "type": "(Omit<import(\"@forge-ui-official/core\").MapRegion, \"flag\"> & { flag?: string; countryCode?: string; })[] | undefined"
           }
         ]
       }

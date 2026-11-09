@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ComponentProps } from "react";
-import { ChartHeader, ChartMetricRow, GroupedBarChart, SmoothLineChart, Panel, type GroupedBarChartProps, type PanelProps } from "@forge-ui-official/core";
+import { ChartHeader, ChartMetricRow, GroupedBarChart, SmoothLineChart, Panel, cn, type GroupedBarChartProps, type PanelProps } from "@forge-ui-official/core";
 
 type TrendPeriod = { label: string; chart?: GroupedBarChartProps; countChart?: ComponentProps<typeof SmoothLineChart> };
 
@@ -29,6 +29,6 @@ export function TrendChart({ children, chart, periods = [], activePeriod, onPeri
   return <Panel {...panel}>{children ?? <>
     {decorated && <ChartHeader title="" tabs={periods.length ? periods.map(item => item.label) : ["本期"]} activeTab={current ?? "本期"} onTabChange={label => { setSelected(label); setHovered(undefined); onPeriodChange?.(label); }} />}
     {decorated && <ChartMetricRow series={series} />}
-    {currentLine ? <SmoothLineChart {...currentLine} activeIndex={activeIndex} showTooltip={decorated && (currentLine.showTooltip ?? true)} tooltipItems={currentLine.tooltipItems ?? series.map((item, index) => ({ label: item.label, color: item.colorClass, value: String(currentLine.series[index].data[activeIndex] ?? 0) }))} onActiveIndexChange={index => { setHovered(index); currentLine.onActiveIndexChange?.(index); }} /> : currentChart && <GroupedBarChart {...currentChart} tooltipItems={currentChart.tooltipItems ?? (decorated ? series.map((item, index) => ({ label: item.label, colorClass: item.colorClass, value: String(currentChart.data[activeIndex]?.values[index] ?? 0) })) : undefined)} />}
+    {currentLine ? <SmoothLineChart {...currentLine} activeIndex={activeIndex} showTooltip={decorated && (currentLine.showTooltip ?? true)} tooltipItems={currentLine.tooltipItems ?? series.map((item, index) => ({ label: item.label, color: item.colorClass, value: String(currentLine.series[index].data[activeIndex] ?? 0) }))} onActiveIndexChange={index => { setHovered(index); currentLine.onActiveIndexChange?.(index); }} /> : currentChart && <div className="@container min-w-0"><GroupedBarChart {...currentChart} heightClass={cn(currentChart.heightClass ?? "h-56", "min-w-0 grid-cols-[44px_minmax(0,1fr)] @max-[480px]:grid-cols-[32px_minmax(0,1fr)] @max-[480px]:gap-2 @max-[480px]:[&>div:last-child]:gap-1 [&>div:last-child>div]:min-w-0 @max-[480px]:[&>div:last-child>div>div]:gap-1 @max-[480px]:[&>div:last-child>div>div>span]:w-2 @max-[480px]:[&>div:last-child>div>div:last-child]:text-[10px]")} tooltipItems={currentChart.tooltipItems ?? (decorated ? series.map((item, index) => ({ label: item.label, colorClass: item.colorClass, value: String(currentChart.data[activeIndex]?.values[index] ?? 0) })) : undefined)} /></div>}
   </>}</Panel>;
 }

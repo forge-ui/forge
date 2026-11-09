@@ -3,11 +3,18 @@
   "name": "conversation-header",
   "type": "registry:block",
   "title": "对话页标题栏",
-  "description": "对话名称、工作区说明与操作插槽，业务会话状态由宿主管理。",
+  "description": "展示会话名称、参与者与常用操作，适用于团队对话页面。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "页面结构",
+    "screens": [
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
     "example": "import { ConversationHeader } from \"@/components/blocks/conversation-header\";\n\nexport default function Example() {\n  return (<ConversationHeader title=\"订单协作\" subtitle=\"运营工作区\" />);\n}\n",
     "props": [
       {

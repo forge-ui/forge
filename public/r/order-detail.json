@@ -1,0 +1,69 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "order-detail",
+  "type": "registry:block",
+  "title": "订单详情",
+  "description": "订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "详情页",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/orders/1",
+        "title": "订单详情页"
+      }
+    ],
+    "example": "import { OrderDetail } from \"@/components/blocks/order-detail\";\n\nexport default function Example() {\n  return (<OrderDetail onStatusChange={status => console.log(status)} />);\n}\n",
+    "props": [
+      {
+        "component": "OrderDetail",
+        "properties": [
+          {
+            "name": "order",
+            "required": false,
+            "type": "OrderDetailData | undefined"
+          },
+          {
+            "name": "onStatusChange",
+            "required": false,
+            "type": "((status: OrderDetailStatus) => void) | undefined"
+          },
+          {
+            "name": "onViewInvoice",
+            "required": false,
+            "type": "((invoiceId: string) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "HistoryItem",
+        "InfoRow",
+        "Label",
+        "Modal",
+        "Panel",
+        "SelectOption",
+        "StatusBadge",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/order-detail/order-detail.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/order-detail.tsx",
+      "content": "\"use client\";\n\n/* eslint-disable @next/next/no-img-element */\nimport { useState } from \"react\";\nimport { Button, HistoryItem, InfoRow, Label, Modal, Panel, SelectOption, StatusBadge, cn, type StatusBadgeColor } from \"@forge-ui-official/core\";\nimport { BoxBoldDuotone, CardBoldDuotone, DocumentBoldDuotone, EyeLinear, LetterBoldDuotone, MapPointBoldDuotone, PhoneBoldDuotone, UserBoldDuotone } from \"@forge-ui-official/core/icons\";\n\nexport type OrderDetailStatus = \"processing\" | \"shipped\" | \"delivered\" | \"canceled\";\n\nexport interface OrderLine {\n  id: string;\n  name: string;\n  image: string;\n  specs: string[];\n  sku: string;\n  quantity: number;\n  unitPrice: number;\n}\n\nexport interface OrderDetailData {\n  id: string;\n  invoiceId: string;\n  placedAt: string;\n  status: OrderDetailStatus;\n  customer: { name: string; email: string; phone: string };\n  payment: string;\n  shipping: string;\n  shippingAddress: string;\n  billingAddress: string;\n  lines: OrderLine[];\n  discount: { label: string; amount: number };\n  shippingFee: number;\n  taxRate: number;\n}\n\nexport const defaultOrderDetail: OrderDetailData = {\n  id: \"ZX2026103106\",\n  invoiceId: \"INV-2026-1031\",\n  placedAt: \"2026-10-31 10:24\",\n  status: \"processing\",\n  customer: { name: \"陈思远\", email: \"siyuan@yuanshan.design\", phone: \"138 1024 5521\" },\n  payment: \"企业网银 · 招商银行尾号 6829\",\n  shipping: \"顺丰标快 · SF1092831130\",\n  shippingAddress: \"陈思远 · 上海市徐汇区漕溪北路 398 号 12 楼\",\n  billingAddress: \"远山设计有限公司 · 上海市徐汇区漕溪北路 398 号\",\n  lines: [\n    { id: \"line-1\", name: \"知行智能手表 E2\", image: \"/images/blocks/products/smartwatch.jpg\", specs: [\"曜石黑\", \"46mm\"], sku: \"302012\", quantity: 2, unitPrice: 1299 },\n    { id: \"line-2\", name: \"降噪头戴耳机 G1 Pro\", image: \"/images/blocks/products/headphones.jpg\", specs: [\"柠檬黄\"], sku: \"302011\", quantity: 1, unitPrice: 899 },\n    { id: \"line-3\", name: \"矮轴机械键盘\", image: \"/images/blocks/products/keyboard.jpg\", specs: [\"月白\", \"茶轴\"], sku: \"301900\", quantity: 1, unitPrice: 599 },\n  ],\n  discount: { label: \"双十一满减\", amount: 300 },\n  shippingFee: 0,\n  taxRate: 0.06,\n};\n\nconst statusMeta: Record<OrderDetailStatus, { label: string; color: StatusBadgeColor }> = {\n  processing: { label: \"处理中\", color: \"yellow\" },\n  shipped: { label: \"已发货\", color: \"blue\" },\n  delivered: { label: \"已签收\", color: \"green\" },\n  canceled: { label: \"已取消\", color: \"red\" },\n};\n\nconst trackingSteps = [\"已下单\", \"支付成功\", \"商家已确认\", \"仓库拣货\", \"等待揽收\", \"运输中\", \"已签收\"];\nconst reachedStep: Record<OrderDetailStatus, number> = { processing: 4, shipped: 5, delivered: 6, canceled: 1 };\n\nexport interface OrderDetailProps {\n  order?: OrderDetailData;\n  onStatusChange?: (status: OrderDetailStatus) => void;\n  onViewInvoice?: (invoiceId: string) => void;\n  className?: string;\n}\n\nexport function OrderDetail({ order = defaultOrderDetail, onStatusChange, onViewInvoice, className }: OrderDetailProps) {\n  const [status, setStatus] = useState(order.status);\n  const [tracking, setTracking] = useState(false);\n  const money = (value: number) => `¥${value.toLocaleString(\"zh-CN\", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;\n  const subtotal = order.lines.reduce((sum, line) => sum + line.quantity * line.unitPrice, 0);\n  const taxable = subtotal - order.discount.amount + order.shippingFee;\n  const tax = Math.round(taxable * order.taxRate * 100) / 100;\n  const summary = [\n    { label: \"商品小计\", value: money(subtotal) },\n    { label: order.discount.label, value: `-${money(order.discount.amount)}` },\n    { label: \"运费\", value: order.shippingFee ? money(order.shippingFee) : \"包邮\" },\n    { label: `税费（${Math.round(order.taxRate * 100)}%）`, value: money(tax) },\n  ];\n  const step = reachedStep[status];\n\n  function changeStatus(value: string) {\n    const next = value as OrderDetailStatus;\n    setStatus(next);\n    onStatusChange?.(next);\n  }\n\n  return <div className={cn(\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_320px]\", className)}>\n    <div className=\"flex min-w-0 flex-col gap-4\">\n      <Panel variant=\"template\">\n        <dl className=\"grid grid-cols-2 gap-6 lg:grid-cols-4\">\n          <div><dt className=\"text-sm font-medium text-fg-grey-700\">订单状态</dt><dd className=\"mt-2 flex items-center gap-2\"><StatusBadge {...statusMeta[status]} variant=\"soft\" /><Button variant=\"unstyled\" type=\"button\" aria-label=\"查看物流进度\" className=\"p-1 text-fg-grey-700\" onClick={() => setTracking(true)}><EyeLinear size={18} /></Button></dd></div>\n          <div><dt className=\"text-sm font-medium text-fg-grey-700\">下单时间</dt><dd className=\"mt-2 text-sm font-medium text-fg-black\">{order.placedAt}</dd></div>\n          <div><dt className=\"text-sm font-medium text-fg-grey-700\">发票</dt><dd className=\"mt-2\"><Button variant=\"unstyled\" type=\"button\" className=\"text-sm font-medium text-fg-blue\" onClick={() => onViewInvoice?.(order.invoiceId)}>{order.invoiceId}</Button></dd></div>\n          <div><dt className=\"text-sm font-medium text-fg-grey-700\">商品</dt><dd className=\"mt-2 text-sm font-medium text-fg-black\">{order.lines.length} 种 · {order.lines.reduce((sum, line) => sum + line.quantity, 0)} 件</dd></div>\n        </dl>\n      </Panel>\n      <Panel variant=\"template\" title={`订单 ${order.id}`}>\n        <ul className=\"flex flex-col divide-y divide-fg-grey-200\">\n          {order.lines.map(line => <li key={line.id} className=\"grid grid-cols-[56px_minmax(0,1fr)_auto] items-center gap-4 py-4 first:pt-0 last:pb-0 sm:grid-cols-[64px_minmax(0,1fr)_112px_112px]\">\n            <img src={line.image} alt={line.name} className=\"size-14 rounded-xl bg-fg-grey-100 object-cover sm:size-16\" />\n            <div className=\"min-w-0\">\n              <p className=\"truncate text-sm font-semibold text-fg-black\">{line.name}</p>\n              <p className=\"mt-1 text-xs text-fg-grey-700\">SKU #{line.sku}</p>\n              <div className=\"mt-2 flex flex-wrap gap-2\">{line.specs.map(spec => <Label key={spec} color=\"gray\" variant=\"outline\" size=\"sm\">{spec}</Label>)}</div>\n            </div>\n            <div className=\"hidden sm:block\"><p className=\"text-xs text-fg-grey-700\">单价</p><p className=\"mt-1 text-sm tabular-nums text-fg-black\">{line.quantity} × {money(line.unitPrice)}</p></div>\n            <div className=\"text-right\"><p className=\"text-xs text-fg-grey-700\">小计</p><p className=\"mt-1 text-sm font-semibold tabular-nums text-fg-black\">{money(line.quantity * line.unitPrice)}</p></div>\n          </li>)}\n        </ul>\n      </Panel>\n      <Panel variant=\"template\" title=\"费用明细\">\n        <dl className=\"flex flex-col gap-3 text-sm\">\n          {summary.map(item => <div key={item.label} className=\"flex justify-between gap-4\"><dt className=\"text-fg-grey-700\">{item.label}</dt><dd className=\"tabular-nums text-fg-black\">{item.value}</dd></div>)}\n          <div className=\"mt-2 flex justify-between gap-4 border-t border-fg-grey-200 pt-4 text-base font-semibold\"><dt className=\"text-fg-black\">实付金额</dt><dd className=\"tabular-nums text-fg-black\">{money(taxable + tax)}</dd></div>\n        </dl>\n      </Panel>\n    </div>\n    <div className=\"flex min-w-0 flex-col gap-4\">\n      <Panel variant=\"template\" title=\"订单信息\">\n        <div className=\"flex flex-col gap-4\">\n          <InfoRow icon={<BoxBoldDuotone size={20} />} label=\"订单状态\"><SelectOption shape=\"pill\" options={Object.entries(statusMeta).map(([value, item]) => ({ value, label: item.label }))} value={status} onChange={changeStatus} /></InfoRow>\n          <InfoRow icon={<UserBoldDuotone size={20} />} label=\"客户\">{order.customer.name}</InfoRow>\n          <InfoRow icon={<LetterBoldDuotone size={20} />} label=\"邮箱\">{order.customer.email}</InfoRow>\n          <InfoRow icon={<PhoneBoldDuotone size={20} />} label=\"手机号\">{order.customer.phone}</InfoRow>\n          <InfoRow icon={<CardBoldDuotone size={20} />} label=\"支付方式\">{order.payment}</InfoRow>\n          <InfoRow icon={<BoxBoldDuotone size={20} />} label=\"配送方式\">{order.shipping}</InfoRow>\n        </div>\n      </Panel>\n      <Panel variant=\"template\" title=\"地址\">\n        <div className=\"flex flex-col gap-4\">\n          <InfoRow icon={<MapPointBoldDuotone size={20} />} label=\"收货地址\">{order.shippingAddress}</InfoRow>\n          <InfoRow icon={<DocumentBoldDuotone size={20} />} label=\"开票信息\">{order.billingAddress}</InfoRow>\n        </div>\n      </Panel>\n    </div>\n    <Modal open={tracking} onOpenChange={setTracking} title=\"物流进度\">\n      <div className=\"flex flex-col gap-1\">\n        {trackingSteps.map((title, index) => <HistoryItem key={title} variant=\"regular\" title={title} color={index < step ? \"green\" : index === step ? \"purple\" : \"gray\"} showConnector={index < trackingSteps.length - 1} />)}\n      </div>\n    </Modal>\n  </div>;\n}\n"
+    }
+  ]
+}

@@ -2,11 +2,11 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: a50d9f9fda81f5b7694cd0b40b75f7b427cf99934d664296e60071d69668d498
+Source fingerprint: e6b8dbbbe6dadd87781f8248e19c21676feaef6bc7b57cd62c2d99febd001774
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 17 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
 ---
 
@@ -32,7 +32,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的区块；[区块目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 17 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
+2. **Blocks**：复用模板中职责明确的页面组件；[页面组件目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 74 个可复制源码（blocks/ 与 public/r/），覆盖看板首屏、AI 与智能体、数据列表、详情页、表单、协作、财务、设置与认证；不是 core 导出，按需复制进项目后自行维护。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/components/button.md) 和 [组件选型](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。
@@ -119,7 +119,7 @@ Source: skills/forge-skill/references/audit-checklist.md
 - **L2**（通用部分；starter 适配留宿主）：壳层 padding 只算一次，section/Grid/卡内间距按模板各自归属，不强制一律24px。
 - **L3**（通用）：搜索、过滤、批量操作组织为一条功能工具带；必要换行可保留，不机械禁止多行。
 - **L4**（通用部分；starter 适配留宿主）：详情以身份、内容、操作分层，选同角色真实对照，而非空卡堆字段。
-- **L5**（通用）：看板从 Screen 起步，记录轨道、列宽、gap、区块高与密度；同视口/侧栏并排截图，不仅核对排列。
+- **L5**（通用）：看板从 Screen 起步，记录轨道、列宽、gap、页面组件高与密度；同视口/侧栏并排截图，不仅核对排列。
 - **L6**（通用）：密度符合业务与模板；只用真实存在的 density/size API，不虚构 prop。
 - **L7**（通用）：列宽按内容预算，身份可辨、数字对齐、尾操作 HUG，明确剩宽归属；宽表局部横滚，不强塞最后一列掩盖空白。
 - **L8**（通用）：按角色/模板判定卡壳；ecommerce-2 的 DataTable 在卡内是有效例子，不执行“表绝不能套卡”；公共标题 Panel 未提供时用 FORGE-GAP。
@@ -193,7 +193,7 @@ Source: skills/forge-skill/references/audit-checklist.md
 
 Source: skills/forge-skill/references/blocks.md
 
-# 页面 Blocks（复制到项目）
+# 页面组件（Blocks，复制到项目）
 
 ## 默认即 Screen 效果
 
@@ -209,31 +209,90 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 最小配方见各单项生成文档与 `/r/index.json` 的 meta.example；结构化入口优先，其他 Screen 已验收的 children/items 插槽保持原输出。[表格列宽与数字对齐](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-selection/data-table.md) 适用于 RecentRecords。
 
-17 类区块已实现为仓内源码与 registry-item，覆盖看板与业务模板；不是 core 包导出，也不意味着已发布或通过截图验收。
+74 个页面组件分为 11 类，已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。画廊 `/blocks` 可按分类筛选；每个 `/blocks/<name>` 提供同源 iframe 预览、1280px 桌面 / 390px 移动视口切换、完整代码、安装、用法、Props 与相关模板。预览路由 `/blocks/<name>/preview` 使用站点内的 AppLayout 外壳，按 registry.json 的 shell.menu / shell.active / shell.title 选择业务菜单、高亮项与顶栏标题；shell 为 none 时不显示后台外壳（认证类页面）；shell.with 指定窄卡页面并排展示的相关页面组件。菜单定义集中在站点 _shell.tsx，不进入安装源码。预览路由禁止索引，不进入 sitemap 与站内搜索；缩略图进入视口附近后才挂载。
 
-| 区块 | 导出名 | 源码目录 | 支持内容 |
-|---|---|---|---|
-| KPI 指标行 | KpiMetrics / FinanceMetricCard | blocks/kpi-metrics/ | metrics 或 children，compact 指标卡 |
-| 最近记录表卡 | RecentRecords | blocks/recent-records/ | Panel + 泛型 DataTable，或 children |
-| 趋势图表卡 | TrendChart | blocks/trend-chart/ | Panel + GroupedBarChart，或图域插槽 |
-| 排行列表卡 | RankingList | blocks/ranking-list/ | ListGroup 的 items/tabs/action，默认 compact |
-| 构成占比卡 | CompositionCard | blocks/composition-card/ | Panel + DonutChart，或 children |
-| 页头 | DashboardHeader | blocks/dashboard-header/ | title/description/action 或原始标题内容 |
-| 地区分布卡 | RegionDistribution | blocks/region-distribution/ | MapCard 的地区、范围、度量 |
-| 成员列表 | MemberList | blocks/member-list/ | UserCard 成员数据或自定义 items |
-| 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | WalletGoalCard 列表 / 财务储蓄面板 |
-| 活动流 | ActivityFeed | blocks/activity-feed/ | ActivityCard 事件或自定义 items |
-| 日程/甘特 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | FullCalendar、六时段只读 GanttSchedule 或 children；不提供甘特编辑器 |
-| 卡片轮播 | CardCarousel | blocks/card-carousel/ | CreditCard 数据、受控/非受控页码、可选翻页 |
-| 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 客户分区、指标与趋势；业务文案和操作由宿主传入 |
-| 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 卡片主题、钱包进度、交易与预算，数据和回调由宿主提供 |
-| 模板内容分区 | TemplateSurface | blocks/template-surface/ | 标题、说明、操作和内容；p-0 兼容原模板无内边距分区 |
-| 对话标题栏 | ConversationHeader | blocks/conversation-header/ | 标题、工作区说明与操作插槽；不包含会话存储或流式请求 |
-| 项目详情分区 | ProjectSection | blocks/project-section/ | 标题操作栏与紧凑内容区；className 从选定 Screen 保留 |
+| 分类 | 页面组件 | 导出名 | 源码目录 | 适用场景 |
+|---|---|---|---|---|
+| 看板首屏 | 经营概览 | OverviewDashboard | blocks/overview-dashboard/ | 将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。 |
+| 看板首屏 | 项目概览 | ProjectOverview | blocks/project-overview/ | 汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。 |
+| 看板首屏 | 财务概览 | FinanceOverview | blocks/finance-overview/ | 结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。 |
+| 看板首屏 | 资产概览 | WealthOverview | blocks/wealth-overview/ | 总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。 |
+| AI 与智能体 | 智能体工作台 | AiWorkspaceOverview | blocks/ai-workspace-overview/ | 智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。 |
+| AI 与智能体 | 应用智能体目录 | AgentCatalog | blocks/agent-catalog/ | 左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。 |
+| AI 与智能体 | 智能体运行 | AgentRun | blocks/agent-run/ | 一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。 |
+| AI 与智能体 | 任务执行详情 | TaskRunDetail | blocks/task-run-detail/ | 任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。 |
+| AI 与智能体 | 运行时管理 | RuntimeList | blocks/runtime-list/ | 智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。 |
+| AI 与智能体 | 消息渠道 | MessageChannels | blocks/message-channels/ | 把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。 |
+| AI 与智能体 | 自主智能体 | AutonomousAgents | blocks/autonomous-agents/ | 系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。 |
+| AI 与智能体 | AI 助手首页 | AiAssistantHome | blocks/ai-assistant-home/ | 问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。 |
+| AI 与智能体 | 多智能体编排 | AgentOrchestration | blocks/agent-orchestration/ | 编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。 |
+| AI 与智能体 | 用量与成本 | AgentUsage | blocks/agent-usage/ | 本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。 |
+| AI 与智能体 | 提示词评测 | PromptEvals | blocks/prompt-evals/ | 按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。 |
+| AI 与智能体 | 工作流编辑器 | WorkflowBuilder | blocks/workflow-builder/ | 左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。 |
+| 数据列表 | 最近记录表卡 | RecentRecords | blocks/recent-records/ | 在一张卡片内查看最近订单、交易或业务记录。 |
+| 数据列表 | 排行列表卡 | RankingList | blocks/ranking-list/ | 展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。 |
+| 数据列表 | 订单列表 | OrdersTableSection | blocks/orders-table-section/ | 包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。 |
+| 数据列表 | 商品列表 | ProductsTable | blocks/products-table/ | 按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。 |
+| 数据列表 | 客户列表 | CustomersTable | blocks/customers-table/ | 带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。 |
+| 数据列表 | 商家列表 | SellersTable | blocks/sellers-table/ | 展示店铺评分、营收与待结算金额的入驻商家管理表。 |
+| 数据列表 | 商品分类 | CategoriesTable | blocks/categories-table/ | 维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。 |
+| 数据列表 | 销售线索 | LeadsTable | blocks/leads-table/ | 线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。 |
+| 数据列表 | 商机列表 | DealsTable | blocks/deals-table/ | 按回款状态汇总金额，列出商机、客户、付款方式与回款状态。 |
+| 数据列表 | 发票列表 | InvoicesTable | blocks/invoices-table/ | 按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。 |
+| 数据列表 | 客户名录 | ClientDirectory | blocks/client-directory/ | 可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。 |
+| 详情页 | 订单详情 | OrderDetail | blocks/order-detail/ | 订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。 |
+| 详情页 | 发票单据 | InvoiceDocument | blocks/invoice-document/ | 可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。 |
+| 详情页 | 客户详情 | CustomerProfile | blocks/customer-profile/ | 客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。 |
+| 详情页 | 商品详情 | ProductDetail | blocks/product-detail/ | 商品图集、价格与规格选择、描述参数，以及订单和评价分页签。 |
+| 详情页 | 线索详情 | LeadDetail | blocks/lead-detail/ | 线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。 |
+| 详情页 | 任务详情 | TaskDetail | blocks/task-detail/ | 任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。 |
+| 详情页 | 成员详情 | MemberProfile | blocks/member-profile/ | 成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。 |
+| 表单 | 商品编辑表单 | ProductForm | blocks/product-form/ | 基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。 |
+| 表单 | 新建订单表单 | OrderForm | blocks/order-form/ | 商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。 |
+| 表单 | 新建发票表单 | InvoiceForm | blocks/invoice-form/ | 选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。 |
+| 协作与项目 | 成员列表 | MemberList | blocks/member-list/ | 展示团队成员、职位与在线状态，适用于项目和工作区。 |
+| 协作与项目 | 活动流 | ActivityFeed | blocks/activity-feed/ | 汇总团队近期的任务、文件和项目动态，方便追踪协作进展。 |
+| 协作与项目 | 日程与甘特容器 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | 按日历或时间线安排会议与项目任务，掌握团队近期日程。 |
+| 协作与项目 | 项目详情分区 | ProjectSection | blocks/project-section/ | 围绕项目或任务组织详情内容与操作，保持阅读层次清晰。 |
+| 协作与项目 | 客户动态 | CrmActivity | blocks/crm-activity/ | 按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。 |
+| 协作与项目 | 任务看板 | KanbanBoard | blocks/kanban-board/ | 按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。 |
+| 协作与项目 | 月历日程 | CalendarMonth | blocks/calendar-month/ | 月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。 |
+| 协作与项目 | 即时会话 | ChatWorkspace | blocks/chat-workspace/ | 联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。 |
+| 协作与项目 | 文件管理 | FileManager | blocks/file-manager/ | 按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。 |
+| 协作与项目 | 智能体列表 | AgentDirectory | blocks/agent-directory/ | 按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。 |
+| 协作与项目 | 知识库 | KnowledgeLibrary | blocks/knowledge-library/ | 按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。 |
+| 协作与项目 | 项目总览 | ProjectPortfolio | blocks/project-portfolio/ | 整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。 |
+| 财务 | 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | 跟踪储蓄与预算目标，查看已积累金额和完成进度。 |
+| 财务 | 卡片轮播 | CardCarousel | blocks/card-carousel/ | 以可切换的卡片展示多个账户，适用于钱包和财务首页。 |
+| 财务 | 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 整合账户余额、预算与费用明细，集中查看财务状况。 |
+| 财务 | 交易流水 | TransactionsTable | blocks/transactions-table/ | 支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。 |
+| 财务 | 企业卡管理 | CardsManagement | blocks/cards-management/ | 企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。 |
+| 财务 | 储蓄目标表 | SavingsGoalsTable | blocks/savings-goals-table/ | 资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。 |
+| 设置 | 个人资料设置 | SettingsProfile | blocks/settings-profile/ | 头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。 |
+| 设置 | 成员与团队 | SettingsMembers | blocks/settings-members/ | 席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。 |
+| 设置 | 角色与权限 | SettingsRoles | blocks/settings-roles/ | 左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。 |
+| 设置 | 通知设置 | SettingsNotifications | blocks/settings-notifications/ | 按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。 |
+| 设置 | 安全设置 | SettingsSecurity | blocks/settings-security/ | 密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。 |
+| 设置 | 账单与套餐 | SettingsBilling | blocks/settings-billing/ | 本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。 |
+| 设置 | 集成目录 | IntegrationsDirectory | blocks/integrations-directory/ | 按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。 |
+| 图表与指标 | KPI 指标行 | KpiMetrics / FinanceMetricCard | blocks/kpi-metrics/ | 集中展示收入、订单与客户等关键指标，适用于经营看板首屏。 |
+| 图表与指标 | 趋势图表卡 | TrendChart | blocks/trend-chart/ | 对比不同周期的业务走势，适用于收入、订单和流量分析。 |
+| 图表与指标 | 构成占比卡 | CompositionCard | blocks/composition-card/ | 用圆环图展示收入、渠道或费用的构成与占比。 |
+| 图表与指标 | 地区分布卡 | RegionDistribution | blocks/region-distribution/ | 结合地图与地区明细，查看客户或收入的地域分布。 |
+| 图表与指标 | 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 概览客户规模与增长情况，为销售团队提供经营摘要。 |
+| 页面结构 | 看板页头 | DashboardHeader | blocks/dashboard-header/ | 为经营看板组织标题、统计周期与导出操作。 |
+| 页面结构 | 模板内容分区 | TemplateSurface | blocks/template-surface/ | 为列表或详情组织独立内容分区，适用于后台业务页面。 |
+| 页面结构 | 对话页标题栏 | ConversationHeader | blocks/conversation-header/ | 展示会话名称、参与者与常用操作，适用于团队对话页面。 |
+| 认证 | 注册 | RegisterForm | blocks/register-form/ | 左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。 |
+| 认证 | 找回密码 | PasswordRecovery | blocks/password-recovery/ | 邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。 |
+| 认证 | 引导流程 | OnboardingFlow | blocks/onboarding-flow/ | 首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。 |
+| 认证 | 登录 | LoginForm | blocks/login-form/ | 邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。 |
 
 ## 使用边界
 
-每个 registry item 的 `meta.example` 是完整最小示例，`meta.props` 是从当前 TypeScript 导出生成的 Props 表（含所有导出及继承属性），`meta.core` 列出实际依赖组件和版本；示例与复制源码一起编译校验。对应可读文档位于本目录的 `blocks/<name>.md`，由 `blocks:generate` 同步，不手工维护第二份 API。`CellText` 使用 children：`<CellText>订单 1</CellText>`，没有 text prop。
+每个 registry item 的 `meta.category` 为分类，`meta.screens` 为主对照或使用该页面组件的相关模板，`meta.example` 是完整最小示例，`meta.props` 是从当前 TypeScript 导出生成的 Props 表（含所有导出及继承属性），`meta.core` 列出实际依赖组件和版本；示例与复制源码一起编译校验。对应可读文档位于本目录的 `blocks/<name>.md`，由 `blocks:generate` 同步，不手工维护第二份 API。`CellText` 使用 children：`<CellText>订单 1</CellText>`，没有 text prop。
+
+4 个组合页面组件均只依赖 React 与 core，不依赖其他 Block，提供可替换的默认业务数据。订单列表搜索、筛选和分页在本地运行，导出当前筛选结果；`onViewOrder` / `onExport` 可接入宿主流程。图表、金额与状态的口径仍由业务端负责，默认数据不代表生产业务。
 
 ## 看板配方
 
@@ -266,7 +325,7 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 宿主提供 currentCounts/previousCounts（各 30 项）、maximum（至少 1）及起止日期。dateSelection 可放真实 Datepicker，primaryAction 放导出等主操作；不要用 disabled 假按钮代替可用操作。
 
-- 画廊：`/blocks`（17 项均有预览）；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
+- 画廊：`/blocks`（74 项共用完整预览数据）；详情：`/blocks/<name>`；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
 - 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
 - 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
 - 依赖 core `^0.6.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
@@ -378,7 +437,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 |---|---|---|
 | 基础表单填写区上限 | 640px，实际宽为 min(可用宽, 640px) | 限制长视线与字段过宽；外层页面可继续填满，不要求所有卡片等宽 |
 | 分组表单/详情主阅读区上限 | 960px，实际宽不超过可用宽 | 容纳相关短字段与描述组；大表、附件预览可独立用满内容区 |
-| 页面区块间距 | 24px；窄空间可用16px | 区别于字段内部间距；不与已有外壳 padding 叠加成双份留白 |
+| 页面组件间距 | 24px；窄空间可用16px | 区别于字段内部间距；不与已有外壳 padding 叠加成双份留白 |
 | 独立字段间距 / 业务组间距 | 16px / 24px | 通过节奏表达关联层次；组件内标签、错误间距沿组件契约 |
 | 两列字段间距 / 单列最小预算 | 24px / 280px | 为标签、输入、说明保留基础空间；280仅为起点，长字段可要求更宽 |
 | 左右标签变体 | 初始标签预算120px，标签与值间距16px | 只用于短而稳定的同组标签；允许多行，不强行省略；更长标签优先改上标签 |
@@ -474,7 +533,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 | 层级/部位 | 基线 / 响应式规则 | 源码出处 |
 |---|---|---|
 | 页面外壳内容padding | base `p-4`=16px；sm起 `p-5`=20px；页面不再叠一份 | `core/src/components/layouts/app-layout.tsx:863` |
-| 看板区块纵向间距 | 外层 `flex flex-col gap-5`=20px | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:183`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:135` |
+| 看板页面组件纵向间距 | 外层 `flex flex-col gap-5`=20px | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:183`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:135` |
 | Grid内部行/列gap | 默认16px，不继承section的20px | `core/src/components/layouts/grid.tsx:43`；analytics的Grid未显式改gap，见`:194`、`:202`、`:238`、`:297` |
 | KPI行 | base1列、sm2列、lg4等分；卡 `width="full"`、size=wide | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:194` 至`:198` |
 | 主图+辅助块 | base依DOM顺序全宽堆叠；lg默认12轨道中的8:4 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:202`、`:203`、`:214` |
@@ -503,7 +562,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 - 图内至少标出：外壳padding16/20、section gap20、Grid gap16、卡padding16、卡内gap12或16、图域224、响应式跨度。不要用一条“页面gap24”覆盖全部层级。
 - `--radius-card=20px` 与模板 `rounded-3xl=24px`并存：本草案记录模板24px现状，**不授权修改全局Token**。待Panel组件立项再决定模板兼容方式。
 
-### 已实现的看板组件与区块
+### 已实现的看板组件与页面组件
 
 - 外壳：AppLayout；面板：Panel（dashboard/template），SurfaceCard 保持原 API。
 - 密度：StatCard、ProgressStatCard、LineChartStatCard、BarChartStatCard、WheelChartStatCard、BalanceCard、ImageStatCard、HighlightCard、ListGroup 使用 density="compact"；不再依赖模板 !important。默认密度不变。
@@ -545,11 +604,11 @@ corepack pnpm dev --hostname 127.0.0.1 --port 3219
 | project-1 | 项目进展与协作概览 | src/app/templates/(dashboards)/dashboards/project-1/page.tsx |
 | project-2 | 项目任务与资源概览 | src/app/templates/(dashboards)/dashboards/project-2/page.tsx |
 
-具体布局与尺寸见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)；区块抽取状态见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
+具体布局与尺寸见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)；页面组件抽取状态见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
 
 ## 实现分层
 
-十个页面已直接使用 AppLayout；卡壳用 Panel，区块从 blocks/ 复制。原 dashboard-density、DashboardShell、Figma 前缀图表与私有 WalletGoalCard 已删除；公共图表与密度 API 见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
+十个页面已直接使用 AppLayout；卡壳用 Panel，页面组件从 blocks/ 复制。原 dashboard-density、DashboardShell、Figma 前缀图表与私有 WalletGoalCard 已删除；公共图表与密度 API 见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
 
 这是源码迁移状态，不是截图验收结论：须逐页比较 1440 与 375 两档、同字体/侧栏/固定数据的前后截图，记录不同尺寸或有意差异，不能用 build 代替。
 

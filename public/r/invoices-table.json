@@ -1,0 +1,80 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "invoices-table",
+  "type": "registry:block",
+  "title": "发票列表",
+  "description": "按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "数据列表",
+    "screens": [
+      {
+        "href": "/templates/finance-template/invoices",
+        "title": "发票列表页"
+      },
+      {
+        "href": "/templates/project-template/invoices",
+        "title": "项目发票页"
+      }
+    ],
+    "example": "import { InvoicesTable } from \"@/components/blocks/invoices-table\";\n\nexport default function Example() {\n  return (<InvoicesTable onOpen={invoice => console.log(invoice.id)} />);\n}\n",
+    "props": [
+      {
+        "component": "InvoicesTable",
+        "properties": [
+          {
+            "name": "invoices",
+            "required": false,
+            "type": "InvoiceRecord[] | undefined"
+          },
+          {
+            "name": "onCreate",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onOpen",
+            "required": false,
+            "type": "((invoice: InvoiceRecord) => void) | undefined"
+          },
+          {
+            "name": "onDownload",
+            "required": false,
+            "type": "((invoice: InvoiceRecord) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "ButtonGroup",
+        "CellImageText",
+        "CellMuted",
+        "CellText",
+        "DataTable",
+        "IconButton",
+        "PlusIcon",
+        "StatusBadge",
+        "ToolbarSearchInput",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/invoices-table/invoices-table.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/invoices-table.tsx",
+      "content": "\"use client\";\n\nimport { useState, type Key } from \"react\";\nimport { Button, ButtonGroup, CellImageText, CellMuted, CellText, DataTable, IconButton, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from \"@forge-ui-official/core\";\nimport { DownloadMinimalisticLinear, EyeLinear } from \"@forge-ui-official/core/icons\";\n\nexport type InvoiceStatus = \"paid\" | \"pending\" | \"overdue\" | \"draft\";\n\nexport interface InvoiceRecord {\n  id: string;\n  customer: string;\n  email: string;\n  avatar: string;\n  amount: number;\n  issuedAt: string;\n  dueAt: string;\n  status: InvoiceStatus;\n}\n\nexport const defaultInvoices: InvoiceRecord[] = [\n  { id: \"INV-2026-1031\", customer: \"陈思远\", email: \"siyuan@yuanshan.design\", avatar: \"/images/blocks/people/chen-siyuan.jpg\", amount: 128000, issuedAt: \"2026-10-31\", dueAt: \"2026-11-30\", status: \"pending\" },\n  { id: \"INV-2026-1028\", customer: \"苏晚晴\", email: \"wanqing@shiguang.shop\", avatar: \"/images/blocks/people/su-wanqing.jpg\", amount: 43000, issuedAt: \"2026-10-28\", dueAt: \"2026-11-10\", status: \"paid\" },\n  { id: \"INV-2026-1019\", customer: \"许知夏\", email: \"zhixia@qingshi.build\", avatar: \"/images/blocks/people/xu-zhixia.jpg\", amount: 42000, issuedAt: \"2026-10-19\", dueAt: \"2026-10-31\", status: \"overdue\" },\n  { id: \"INV-2026-1015\", customer: \"林悦\", email: \"linyue@muhe.art\", avatar: \"/images/blocks/people/lin-yue.jpg\", amount: 36800, issuedAt: \"2026-10-15\", dueAt: \"2026-10-30\", status: \"paid\" },\n  { id: \"INV-2026-1012\", customer: \"周予安\", email: \"yuan@yunfan.tech\", avatar: \"/images/blocks/people/zhou-yuan.jpg\", amount: 58000, issuedAt: \"2026-10-12\", dueAt: \"2026-11-12\", status: \"pending\" },\n  { id: \"INV-2026-1008\", customer: \"江雨桐\", email: \"yutong@xingyu.media\", avatar: \"/images/blocks/people/jiang-yutong.jpg\", amount: 92000, issuedAt: \"2026-10-08\", dueAt: \"2026-11-08\", status: \"paid\" },\n  { id: \"INV-2026-1102\", customer: \"顾承泽\", email: \"chengze@chengze.office\", avatar: \"/images/blocks/people/gu-chengze.jpg\", amount: 27500, issuedAt: \"2026-11-02\", dueAt: \"2026-12-02\", status: \"draft\" },\n];\n\nconst statusMeta: Record<InvoiceStatus, { label: string; color: StatusBadgeColor }> = {\n  paid: { label: \"已付款\", color: \"green\" },\n  pending: { label: \"待付款\", color: \"yellow\" },\n  overdue: { label: \"已逾期\", color: \"red\" },\n  draft: { label: \"草稿\", color: \"grey\" },\n};\nconst filters: { label: string; value: InvoiceStatus | \"all\" }[] = [{ label: \"全部\", value: \"all\" }, { label: \"待付款\", value: \"pending\" }, { label: \"已付款\", value: \"paid\" }, { label: \"已逾期\", value: \"overdue\" }, { label: \"草稿\", value: \"draft\" }];\n\nexport interface InvoicesTableProps {\n  invoices?: InvoiceRecord[];\n  onCreate?: () => void;\n  onOpen?: (invoice: InvoiceRecord) => void;\n  onDownload?: (invoice: InvoiceRecord) => void;\n  className?: string;\n}\n\nexport function InvoicesTable({ invoices = defaultInvoices, onCreate, onOpen, onDownload, className }: InvoicesTableProps) {\n  const [filter, setFilter] = useState(0);\n  const [query, setQuery] = useState(\"\");\n  const [selected, setSelected] = useState<Set<Key>>(new Set());\n  const status = filters[filter].value;\n  const visible = invoices.filter(invoice => (status === \"all\" || invoice.status === status) && `${invoice.id} ${invoice.customer}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));\n  const outstanding = invoices.filter(invoice => invoice.status === \"pending\" || invoice.status === \"overdue\").reduce((sum, invoice) => sum + invoice.amount, 0);\n\n  const columns: ColumnDef<InvoiceRecord>[] = [\n    { key: \"id\", header: \"发票号\", minWidth: 130, render: invoice => <CellText>{invoice.id}</CellText> },\n    { key: \"customer\", header: \"付款方\", minWidth: 210, render: invoice => <CellImageText src={invoice.avatar} title={invoice.customer} subtitle={invoice.email} rounded=\"full\" /> },\n    { key: \"amount\", header: \"金额\", minWidth: 110, valueKind: \"number\", render: invoice => <CellText>¥{invoice.amount.toLocaleString(\"zh-CN\")}</CellText> },\n    { key: \"issuedAt\", header: \"开票日期\", minWidth: 110, render: invoice => <CellMuted>{invoice.issuedAt}</CellMuted> },\n    { key: \"dueAt\", header: \"到期日\", minWidth: 110, render: invoice => <CellMuted>{invoice.dueAt}</CellMuted> },\n    { key: \"status\", header: \"状态\", minWidth: 90, render: invoice => <StatusBadge {...statusMeta[invoice.status]} variant=\"soft\" /> },\n    { key: \"actions\", header: \"\", minWidth: 80, render: invoice => <div className=\"flex gap-1\"><IconButton variant=\"ghost\" color=\"grey\" size=\"sm\" aria-label={`下载${invoice.id}`} onClick={() => onDownload?.(invoice)}><DownloadMinimalisticLinear size={16} /></IconButton><IconButton variant=\"ghost\" color=\"grey\" size=\"sm\" aria-label={`查看${invoice.id}`} onClick={() => onOpen?.(invoice)}><EyeLinear size={16} /></IconButton></div> },\n  ];\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"flex min-w-0 flex-col gap-3 xl:flex-row xl:items-center xl:justify-between\">\n      <div className=\"-mx-1 min-w-0 fg-scrollbar-hidden overflow-x-auto px-1 pb-1\"><ButtonGroup ariaLabel=\"发票状态\" shape=\"pill\" items={filters.map(item => ({ label: item.label }))} activeIndex={filter} onChange={setFilter} /></div>\n      <div className=\"flex min-w-0 flex-wrap items-center gap-3\">\n        <ToolbarSearchInput className=\"w-full sm:w-60\" value={query} onChange={setQuery} placeholder=\"搜索发票号或付款方\" />\n        <Button iconLeft={<PlusIcon size={16} />} onClick={onCreate}>新建发票</Button>\n      </div>\n    </div>\n    <DataTable<InvoiceRecord>\n      columns={columns}\n      rows={visible}\n      getRowKey={invoice => invoice.id}\n      showCheckbox\n      selectedRowKeys={selected}\n      onSelectedRowKeysChange={setSelected}\n      footerLeft={<p className=\"text-sm text-fg-grey-700\">共 {visible.length} 张发票 · 待收 ¥{outstanding.toLocaleString(\"zh-CN\")}</p>}\n      emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">没有符合条件的发票。</p>}\n    />\n  </section>;\n}\n"
+    }
+  ]
+}

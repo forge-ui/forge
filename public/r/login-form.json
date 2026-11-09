@@ -1,0 +1,81 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "login-form",
+  "type": "registry:block",
+  "title": "登录",
+  "description": "邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "认证",
+    "screens": [
+      {
+        "href": "/templates/finance-template/register",
+        "title": "财务注册页"
+      }
+    ],
+    "example": "import { LoginForm } from \"@/components/blocks/login-form\";\n\nexport default function Example() {\n  return (<LoginForm onLogin={payload => console.log(payload.account)} />);\n}\n",
+    "props": [
+      {
+        "component": "LoginForm",
+        "properties": [
+          {
+            "name": "productName",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "image",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "onLogin",
+            "required": false,
+            "type": "((payload: { method: \"password\" | \"code\"; account: string; secret: string; remember: boolean; }) => Promise<void> | void) | undefined"
+          },
+          {
+            "name": "onSso",
+            "required": false,
+            "type": "((provider: string) => void) | undefined"
+          },
+          {
+            "name": "onForgot",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onRegister",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "ButtonGroup",
+        "Checkbox",
+        "OtpInput",
+        "TextField",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/login-form/login-form.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/login-form.tsx",
+      "content": "\"use client\";\n\n/* eslint-disable @next/next/no-img-element */\nimport { useState, type FormEvent } from \"react\";\nimport { Button, ButtonGroup, Checkbox, OtpInput, TextField, cn } from \"@forge-ui-official/core\";\nimport { EyeClosedLinear, EyeLinear, LockKeyholeLinear, MailboxLinear, PhoneLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface LoginFormProps {\n  productName?: string;\n  image?: string;\n  onLogin?: (payload: { method: \"password\" | \"code\"; account: string; secret: string; remember: boolean }) => Promise<void> | void;\n  onSso?: (provider: string) => void;\n  onForgot?: () => void;\n  onRegister?: () => void;\n  className?: string;\n}\n\nexport function LoginForm({ productName = \"知行科技工作台\", image = \"/images/blocks/auth-workspace.jpg\", onLogin, onSso, onForgot, onRegister, className }: LoginFormProps) {\n  const [method, setMethod] = useState(0);\n  const [account, setAccount] = useState(\"\");\n  const [password, setPassword] = useState(\"\");\n  const [code, setCode] = useState(\"\");\n  const [visible, setVisible] = useState(false);\n  const [remember, setRemember] = useState(true);\n  const [countdown, setCountdown] = useState(0);\n  const [status, setStatus] = useState<\"idle\" | \"loading\" | \"error\">(\"idle\");\n  const accountValid = method === 0 ? /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(account) : /^1\\d{10}$/.test(account.replace(/\\s/g, \"\"));\n  const secret = method === 0 ? password : code;\n  const ready = accountValid && (method === 0 ? password.length >= 8 : code.length === 6);\n\n  function sendCode() {\n    setCountdown(60);\n    const timer = window.setInterval(() => setCountdown(current => { if (current <= 1) { window.clearInterval(timer); return 0; } return current - 1; }), 1000);\n  }\n\n  async function submit(event: FormEvent) {\n    event.preventDefault();\n    if (!ready) return;\n    setStatus(\"loading\");\n    try {\n      await onLogin?.({ method: method === 0 ? \"password\" : \"code\", account, secret, remember });\n      setStatus(\"idle\");\n    } catch {\n      setStatus(\"error\");\n    }\n  }\n\n  return <div className={cn(\"mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 rounded-card bg-white p-4 sm:p-6 lg:grid-cols-2\", className)}>\n    <img src={image} alt=\"\" className=\"hidden h-full max-h-[600px] w-full rounded-card object-cover lg:block\" />\n    <div className=\"mx-auto flex w-full max-w-sm flex-col gap-6 py-6\">\n      <div className=\"text-center\"><h1 className=\"text-2xl font-semibold text-fg-black\">欢迎回来</h1><p className=\"mt-2 text-sm text-fg-grey-700\">登录{productName}继续工作</p></div>\n      <ButtonGroup ariaLabel=\"登录方式\" shape=\"pill\" className=\"self-center\" items={[{ label: \"邮箱密码\" }, { label: \"手机验证码\" }]} activeIndex={method} onChange={index => { setMethod(index); setAccount(\"\"); setStatus(\"idle\"); }} />\n      <form className=\"flex flex-col gap-4\" onSubmit={submit} noValidate>\n        {method === 0 ? <>\n          <TextField label=\"工作邮箱\" type=\"email\" shape=\"pill\" iconLeft={<MailboxLinear size={16} />} value={account} onChange={setAccount} placeholder=\"name@company.com\" autoComplete=\"email\" />\n          <TextField label=\"密码\" type={visible ? \"text\" : \"password\"} shape=\"pill\" iconLeft={<LockKeyholeLinear size={16} />} iconRight={<Button variant=\"unstyled\" type=\"button\" aria-label={visible ? \"隐藏密码\" : \"显示密码\"} className=\"text-fg-grey-700\" onClick={() => setVisible(current => !current)}>{visible ? <EyeClosedLinear size={16} /> : <EyeLinear size={16} />}</Button>} value={password} onChange={setPassword} autoComplete=\"current-password\" headerAction={<Button variant=\"unstyled\" type=\"button\" className=\"text-xs font-semibold text-fg-blue\" onClick={onForgot}>忘记密码？</Button>} />\n        </> : <>\n          <TextField label=\"手机号\" type=\"tel\" shape=\"pill\" iconLeft={<PhoneLinear size={16} />} value={account} onChange={setAccount} placeholder=\"138 0000 0000\" autoComplete=\"tel\" />\n          <div className=\"flex flex-col gap-2\"><div className=\"flex items-center justify-between\"><span className=\"text-sm font-medium text-fg-grey-700\">验证码</span><Button variant=\"unstyled\" type=\"button\" className=\"text-xs font-semibold text-fg-blue disabled:text-fg-grey-500\" disabled={!accountValid || countdown > 0} onClick={sendCode}>{countdown > 0 ? `${countdown} 秒后重发` : \"获取验证码\"}</Button></div><OtpInput length={6} value={code} onChange={setCode} /></div>\n        </>}\n        <label className=\"flex items-center gap-2 text-sm text-fg-grey-700\"><Checkbox color=\"blue\" checked={remember} onChange={setRemember} />30 天内保持登录</label>\n        {status === \"error\" && <p role=\"alert\" className=\"rounded-xl bg-fg-red-50 px-4 py-3 text-sm text-fg-red\">账号或密码不正确，请重试。</p>}\n        <Button type=\"submit\" className=\"w-full\" disabled={!ready || status === \"loading\"}>{status === \"loading\" ? \"登录中…\" : \"登录\"}</Button>\n      </form>\n      <div className=\"flex items-center gap-3 text-xs text-fg-grey-500\"><span className=\"h-px flex-1 bg-fg-grey-200\" />企业账号<span className=\"h-px flex-1 bg-fg-grey-200\" /></div>\n      <div className=\"grid grid-cols-2 gap-3\"><Button variant=\"tertiary\" onClick={() => onSso?.(\"feishu\")}>飞书登录</Button><Button variant=\"tertiary\" onClick={() => onSso?.(\"wecom\")}>企业微信登录</Button></div>\n      <p className=\"text-center text-sm text-fg-grey-700\">还没有账号？<Button variant=\"unstyled\" type=\"button\" className=\"font-semibold text-fg-blue\" onClick={onRegister}>免费注册</Button></p>\n    </div>\n  </div>;\n}\n"
+    }
+  ]
+}

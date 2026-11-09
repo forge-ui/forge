@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "runtime-list",
+  "type": "registry:block",
+  "title": "运行时管理",
+  "description": "智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "AI 与智能体",
+    "screens": [
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
+    "example": "import { RuntimeList } from \"@/components/blocks/runtime-list\";\n\nexport default function Example() {\n  return (<RuntimeList />);\n}\n",
+    "props": [
+      {
+        "component": "RuntimeList",
+        "properties": [
+          {
+            "name": "runtimes",
+            "required": false,
+            "type": "AgentRuntime[] | undefined"
+          },
+          {
+            "name": "check",
+            "required": false,
+            "type": "((runtime: AgentRuntime) => Promise<RuntimeState>) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "DataTable",
+        "StatusBadge",
+        "ToolbarSearchInput",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/runtime-list/runtime-list.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/runtime-list.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { Button, DataTable, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from \"@forge-ui-official/core\";\nimport { RefreshLinear } from \"@forge-ui-official/core/icons\";\n\nexport type RuntimeState = \"online\" | \"offline\" | \"missing\" | \"checking\";\n\nexport interface AgentRuntime {\n  id: string;\n  name: string;\n  description: string;\n  kind: string;\n  state: RuntimeState;\n  endpoint: string;\n  checkedAt: string;\n  isDefault?: boolean;\n}\n\nexport const defaultRuntimes: AgentRuntime[] = [\n  { id: \"deep-agents\", name: \"Deep Agents\", description: \"LangChain 深度智能体运行时，支持计划、子任务与文件读写。\", kind: \"Deep Agents\", state: \"online\", endpoint: \"http://deep-runtime:8791\", checkedAt: \"11-09 14:21\", isDefault: true },\n  { id: \"codex\", name: \"Codex\", description: \"代码编写与评审，适合代码修复与测试补全。\", kind: \"Codex\", state: \"online\", endpoint: \"codex\", checkedAt: \"11-09 14:21\" },\n  { id: \"claude-code\", name: \"Claude Code\", description: \"仓库级编码与重构，在隔离工作区内执行。\", kind: \"Claude Code\", state: \"offline\", endpoint: \"claude\", checkedAt: \"11-09 14:20\" },\n  { id: \"opencode\", name: \"OpenCode\", description: \"开源编码运行时，支持多模型切换。\", kind: \"OpenCode\", state: \"missing\", endpoint: \"opencode\", checkedAt: \"11-09 14:20\" },\n  { id: \"workflow\", name: \"工作流引擎\", description: \"执行可视化编排的工作流与定时自动化。\", kind: \"Workflow\", state: \"online\", endpoint: \"http://workflow:8080\", checkedAt: \"11-09 14:19\" },\n  { id: \"sandbox\", name: \"代码沙箱\", description: \"隔离执行 Python 与 Shell 脚本，限制网络与文件访问。\", kind: \"Sandbox\", state: \"online\", endpoint: \"http://sandbox:9000\", checkedAt: \"11-09 14:19\" },\n];\n\nconst stateMeta: Record<RuntimeState, { label: string; color: StatusBadgeColor }> = {\n  online: { label: \"在线\", color: \"green\" },\n  offline: { label: \"离线\", color: \"red\" },\n  missing: { label: \"未安装\", color: \"grey\" },\n  checking: { label: \"检查中\", color: \"blue\" },\n};\n\nexport interface RuntimeListProps {\n  runtimes?: AgentRuntime[];\n  check?: (runtime: AgentRuntime) => Promise<RuntimeState>;\n  className?: string;\n}\n\nexport function RuntimeList({ runtimes = defaultRuntimes, check, className }: RuntimeListProps) {\n  const [rows, setRows] = useState(runtimes);\n  const [query, setQuery] = useState(\"\");\n  const timers = useRef<number[]>([]);\n  useEffect(() => () => timers.current.forEach(timer => window.clearTimeout(timer)), []);\n  const visible = rows.filter(runtime => `${runtime.name} ${runtime.kind} ${runtime.endpoint}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));\n  const online = rows.filter(runtime => runtime.state === \"online\").length;\n\n  function probe(targets: AgentRuntime[]) {\n    const ids = new Set(targets.map(runtime => runtime.id));\n    const previous = new Map(rows.map(runtime => [runtime.id, runtime.state]));\n    setRows(current => current.map(runtime => ids.has(runtime.id) ? { ...runtime, state: \"checking\" } : runtime));\n    targets.forEach((runtime, index) => {\n      const finish = (state: RuntimeState) => setRows(current => current.map(item => item.id === runtime.id ? { ...item, state, checkedAt: \"刚刚\" } : item));\n      if (check) { check(runtime).then(finish, () => finish(\"offline\")); return; }\n      timers.current.push(window.setTimeout(() => finish(previous.get(runtime.id) === \"checking\" ? \"online\" : previous.get(runtime.id) ?? \"online\"), 700 + index * 250));\n    });\n  }\n\n  const columns: ColumnDef<AgentRuntime>[] = [\n    { key: \"name\", header: \"名称\", minWidth: 260, render: runtime => <div className=\"min-w-0\"><p className=\"flex items-center gap-2 text-sm font-semibold text-fg-black\">{runtime.name}{runtime.isDefault && <span className=\"rounded-md bg-fg-grey-100 px-1.5 py-0.5 text-[11px] font-medium text-fg-grey-700\">默认</span>}</p><p className=\"mt-1 line-clamp-2 text-xs leading-5 text-fg-grey-700\">{runtime.description}</p></div> },\n    { key: \"kind\", header: \"类型\", minWidth: 110, render: runtime => <span className=\"text-sm text-fg-grey-900\">{runtime.kind}</span> },\n    { key: \"state\", header: \"状态\", minWidth: 130, render: runtime => <div className=\"flex flex-col items-start gap-1\"><StatusBadge {...stateMeta[runtime.state]} variant=\"soft\" /><span className=\"text-xs text-fg-grey-500\">检测 {runtime.checkedAt}</span></div> },\n    { key: \"endpoint\", header: \"连接\", minWidth: 170, render: runtime => <span className=\"break-all font-mono text-xs text-fg-grey-700\">{runtime.endpoint}</span> },\n    { key: \"action\", header: \"操作\", minWidth: 80, render: runtime => <Button size=\"sm\" variant=\"tertiary\" disabled={runtime.state === \"checking\"} onClick={() => probe([runtime])}>检查</Button> },\n  ];\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"flex min-w-0 flex-wrap items-center justify-between gap-3\">\n      <ToolbarSearchInput className=\"w-full sm:w-72\" value={query} onChange={setQuery} placeholder=\"搜索名称、类型或连接\" />\n      <div className=\"flex flex-wrap items-center gap-3\"><span className=\"text-sm text-fg-grey-700\">{online} / {rows.length} 在线</span><Button iconLeft={<RefreshLinear size={16} />} disabled={rows.some(runtime => runtime.state === \"checking\")} onClick={() => probe(rows)}>探测全部运行时</Button></div>\n    </div>\n    <DataTable<AgentRuntime> columns={columns} rows={visible} getRowKey={runtime => runtime.id} emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">没有找到匹配的运行时。</p>} />\n  </section>;\n}\n"
+    }
+  ]
+}

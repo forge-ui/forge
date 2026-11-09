@@ -1,0 +1,83 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "register-form",
+  "type": "registry:block",
+  "title": "注册",
+  "description": "左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "认证",
+    "screens": [
+      {
+        "href": "/templates/finance-template/register",
+        "title": "财务注册页"
+      },
+      {
+        "href": "/templates/micellaneous-template/register",
+        "title": "注册页"
+      }
+    ],
+    "example": "import { RegisterForm } from \"@/components/blocks/register-form\";\n\nexport default function Example() {\n  return (<RegisterForm onSubmit={value => console.log(value.email)} onLogin={() => {}} />);\n}\n",
+    "props": [
+      {
+        "component": "RegisterForm",
+        "properties": [
+          {
+            "name": "productName",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "image",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "providers",
+            "required": false,
+            "type": "{ id: string; label: string; icon: string; }[] | undefined"
+          },
+          {
+            "name": "onSubmit",
+            "required": false,
+            "type": "((value: RegisterValue) => void) | undefined"
+          },
+          {
+            "name": "onProvider",
+            "required": false,
+            "type": "((providerId: string) => void) | undefined"
+          },
+          {
+            "name": "onLogin",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "Checkbox",
+        "TextField",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/register-form/register-form.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/register-form.tsx",
+      "content": "\"use client\";\n\n/* eslint-disable @next/next/no-img-element */\nimport { useState, type FormEvent } from \"react\";\nimport { Button, Checkbox, TextField, cn } from \"@forge-ui-official/core\";\nimport { EyeClosedLinear, EyeLinear, LockKeyholeLinear, MailboxLinear, UserLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface RegisterValue {\n  name: string;\n  company: string;\n  email: string;\n  password: string;\n}\n\nexport interface RegisterFormProps {\n  productName?: string;\n  image?: string;\n  providers?: { id: string; label: string; icon: string }[];\n  onSubmit?: (value: RegisterValue) => void;\n  onProvider?: (providerId: string) => void;\n  onLogin?: () => void;\n  className?: string;\n}\n\nconst defaultProviders = [\n  { id: \"google\", label: \"使用 Google 注册\", icon: \"/images/brands/google.svg\" },\n  { id: \"apple\", label: \"使用 Apple 注册\", icon: \"/images/brands/apple.svg\" },\n];\n\nexport function RegisterForm({ productName = \"知行科技工作台\", image = \"/images/blocks/auth-workspace.jpg\", providers = defaultProviders, onSubmit, onProvider, onLogin, className }: RegisterFormProps) {\n  const [value, setValue] = useState<RegisterValue>({ name: \"\", company: \"\", email: \"\", password: \"\" });\n  const [agreed, setAgreed] = useState(false);\n  const [visible, setVisible] = useState(false);\n  const [touched, setTouched] = useState(false);\n  const [done, setDone] = useState(false);\n  const errors = {\n    name: !value.name.trim() ? \"请填写姓名\" : \"\",\n    email: !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value.email) ? \"请填写有效的工作邮箱\" : \"\",\n    password: value.password.length < 8 ? \"密码至少 8 位\" : \"\",\n  };\n  const invalid = Object.values(errors).some(Boolean) || !agreed;\n  const field = (key: keyof typeof errors) => touched && errors[key] ? { state: \"error\" as const, errorMessage: errors[key] } : {};\n  const update = (key: keyof RegisterValue) => (next: string) => setValue(current => ({ ...current, [key]: next }));\n\n  function submit(event: FormEvent) {\n    event.preventDefault();\n    setTouched(true);\n    if (invalid) return;\n    onSubmit?.(value);\n    setDone(true);\n  }\n\n  return <div className={cn(\"mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 rounded-card bg-white p-4 sm:p-6 lg:grid-cols-2\", className)}>\n    <img src={image} alt=\"\" className=\"hidden h-full max-h-[640px] w-full rounded-card object-cover lg:block\" />\n    <div className=\"mx-auto flex w-full max-w-sm flex-col gap-6 py-6\">\n      <div className=\"text-center\"><h1 className=\"text-2xl font-semibold text-fg-black\">欢迎加入{productName}</h1><p className=\"mt-2 text-sm text-fg-grey-700\">创建账号，三分钟开始管理你的业务。</p></div>\n      {done ? <div role=\"status\" className=\"flex flex-col gap-3 rounded-card bg-fg-green-50 p-6 text-center\"><p className=\"text-base font-semibold text-fg-green-600\">注册成功</p><p className=\"text-sm text-fg-grey-700\">验证邮件已发送到 {value.email}，请在 24 小时内完成验证。</p><Button variant=\"tertiary\" onClick={onLogin}>去登录</Button></div> : <>\n        <div className=\"flex flex-col gap-3\">{providers.map(provider => <Button key={provider.id} variant=\"tertiary\" className=\"w-full\" iconLeft={<img src={provider.icon} alt=\"\" className=\"size-4\" />} onClick={() => onProvider?.(provider.id)}>{provider.label}</Button>)}</div>\n        <div className=\"flex items-center gap-3 text-xs text-fg-grey-500\"><span className=\"h-px flex-1 bg-fg-grey-200\" />或使用邮箱<span className=\"h-px flex-1 bg-fg-grey-200\" /></div>\n        <form className=\"flex flex-col gap-4\" onSubmit={submit} noValidate>\n          <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-2\">\n            <TextField label=\"姓名\" shape=\"pill\" iconLeft={<UserLinear size={16} />} value={value.name} onChange={update(\"name\")} placeholder=\"张宁\" autoComplete=\"name\" {...field(\"name\")} />\n            <TextField label=\"公司\" shape=\"pill\" value={value.company} onChange={update(\"company\")} placeholder=\"选填\" autoComplete=\"organization\" />\n          </div>\n          <TextField label=\"工作邮箱\" type=\"email\" shape=\"pill\" iconLeft={<MailboxLinear size={16} />} value={value.email} onChange={update(\"email\")} placeholder=\"name@company.com\" autoComplete=\"email\" {...field(\"email\")} />\n          <TextField label=\"密码\" type={visible ? \"text\" : \"password\"} shape=\"pill\" iconLeft={<LockKeyholeLinear size={16} />} iconRight={<Button variant=\"unstyled\" type=\"button\" aria-label={visible ? \"隐藏密码\" : \"显示密码\"} className=\"text-fg-grey-700\" onClick={() => setVisible(current => !current)}>{visible ? <EyeClosedLinear size={16} /> : <EyeLinear size={16} />}</Button>} value={value.password} onChange={update(\"password\")} placeholder=\"至少 8 位\" autoComplete=\"new-password\" {...field(\"password\")} />\n          <label className=\"flex items-center gap-2 text-sm text-fg-grey-700\"><Checkbox color=\"blue\" checked={agreed} onChange={setAgreed} />我已阅读并同意《服务协议》和《隐私政策》</label>\n          {touched && !agreed && <p className=\"-mt-2 text-xs text-fg-red\">请先同意服务协议</p>}\n          <Button type=\"submit\" className=\"w-full\">注册</Button>\n        </form>\n        <p className=\"text-center text-sm text-fg-grey-700\">已有账号？<Button variant=\"unstyled\" type=\"button\" className=\"font-semibold text-fg-blue\" onClick={onLogin}>直接登录</Button></p>\n      </>}\n    </div>\n  </div>;\n}\n"
+    }
+  ]
+}

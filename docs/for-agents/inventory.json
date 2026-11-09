@@ -2,10 +2,10 @@
   "package": "@forge-ui-official/core",
   "version": "0.6.0",
   "source": "core/src/index.ts",
-  "revision": "47811a30612c0999c04aad48efbf77123cbd5c96",
+  "revision": "a99610e53139de938a182a76b2b07ddb1d2d912a",
   "dirty": false,
-  "exportFingerprint": "92ad4e39dbb57bd490a5173d3e869c23a47ba582",
-  "generatedAt": "2026-11-06T23:16:32+08:00",
+  "exportFingerprint": "6d4b7f698c57b03752b3bb4983f9d94e714dff86",
+  "generatedAt": "2026-11-09T12:52:23+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
   "componentCount": 487,
   "oneShotDefaultCount": 24,
@@ -720,7 +720,7 @@
       "module": "app-layout",
       "group": "layouts",
       "oneShotDefault": true,
-      "signature": "({ motion, mode, profilePosition, accent, children, logo, logoText, appName, appIcon, appSubtitle, apps, onAppChange, teamName: legacyTeamName, teamAvatar: legacyTeamAvatar, teamMemberCount, teamSubtitle: legacyTeamSubtitle, menuSectionLabel, favoriteSectionLabel, teams: legacyTeams, menuItems, favoriteItems, menuSections, profile, notifications, messages, language, defaultLanguage, onLanguageChange, searchPlaceholder, topbarLeftMode, topbarAccent, pageTitle, breadcrumbs, pageHeaderVariant, askAi, onBack, primaryAction, secondaryAction, showDatePicker, showKebab, showFavorite, hideHeader, sidebarSlot, sidebarWidth, collapsedSidebarWidth, hideSidebarWidgets, teamLabels, showTeamActions, }: AppLayoutProps) => JSX.Element",
+      "signature": "({ motion, mode, profilePosition, accent, children, logo, logoText, appName, appIcon, appSubtitle, apps, onAppChange, teamName: legacyTeamName, teamAvatar: legacyTeamAvatar, teamMemberCount, teamSubtitle: legacyTeamSubtitle, menuSectionLabel, favoriteSectionLabel, teams: legacyTeams, menuItems, favoriteItems, menuSections, profile, notifications, messages, language, defaultLanguage, onLanguageChange, searchPlaceholder, topbarLeftMode, topbarAccent, pageTitle, breadcrumbs, pageHeaderVariant, askAi, onBack, primaryAction, secondaryAction, showDatePicker, showKebab, showFavorite, hideHeader, sidebarSlot, sidebarWidth, collapsedSidebarWidth, defaultSidebarCollapsed, hideSidebarWidgets, teamLabels, showTeamActions, }: AppLayoutProps) => JSX.Element",
       "props": [
         {
           "name": "motion",
@@ -991,6 +991,12 @@
           "optional": true,
           "type": "string | undefined",
           "description": "Collapsed sidebar rail width. Accepts any CSS length; default keeps the Forge starter density."
+        },
+        {
+          "name": "defaultSidebarCollapsed",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "桌面端侧栏初始收起为窄条，用户仍可通过菜单按钮展开"
         },
         {
           "name": "hideSidebarWidgets",
