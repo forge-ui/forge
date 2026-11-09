@@ -1,0 +1,61 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout-topbar-profile",
+  "type": "registry:block",
+  "title": "顶栏头像布局",
+  "description": "侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操作。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "页面结构",
+    "screens": [
+      {
+        "href": "/templates/dashboards/ecommerce-1",
+        "title": "电商经营看板"
+      },
+      {
+        "href": "/templates/ecommerce/orders",
+        "title": "订单管理"
+      }
+    ],
+    "example": "import { LayoutTopbarProfile } from \"@/components/blocks/layout-topbar-profile\";\n\nexport default function Example() {\n  return (<LayoutTopbarProfile><p>页面内容</p></LayoutTopbarProfile>);\n}\n",
+    "props": [
+      {
+        "component": "LayoutTopbarProfile",
+        "properties": [
+          {
+            "name": "menuSections",
+            "required": false,
+            "type": "AppLayoutMenuSection[] | undefined"
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "AppLayout",
+        "Breadcrumbs",
+        "Button",
+        "DataTable",
+        "PageTitleToolbar",
+        "StatCard",
+        "StatusBadge"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/layout-topbar-profile/layout-topbar-profile.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/layout-topbar-profile.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { AppLayout, Breadcrumbs, Button, DataTable, PageTitleToolbar, StatCard, StatusBadge, type AppLayoutMenuSection, type ColumnDef } from \"@forge-ui-official/core\";\nimport { BagBoldDuotone, BoxBoldDuotone, ChartSquareBoldDuotone, SettingsBoldDuotone, UsersGroupRoundedBoldDuotone, WalletMoneyBoldDuotone, WidgetBoldDuotone } from \"@forge-ui-official/core/icons\";\n\ninterface RecentOrder {\n  id: string;\n  customer: string;\n  amount: string;\n  status: \"已发货\" | \"待发货\" | \"已退款\";\n}\n\nconst orders: RecentOrder[] = [\n  { id: \"SO-20261109-018\", customer: \"远山设计\", amount: \"¥12,800\", status: \"待发货\" },\n  { id: \"SO-20261109-017\", customer: \"星河零售\", amount: \"¥3,260\", status: \"已发货\" },\n  { id: \"SO-20261108-042\", customer: \"青禾教育\", amount: \"¥8,940\", status: \"已发货\" },\n  { id: \"SO-20261108-031\", customer: \"远帆物流\", amount: \"¥1,180\", status: \"已退款\" },\n];\n\nconst columns: ColumnDef<RecentOrder>[] = [\n  { key: \"id\", header: \"订单号\", width: \"w-[200px]\", render: row => <span className=\"whitespace-nowrap font-medium text-fg-black\">{row.id}</span> },\n  { key: \"customer\", header: \"客户\", render: row => row.customer },\n  { key: \"amount\", header: \"金额\", render: row => <span className=\"tabular-nums\">{row.amount}</span> },\n  { key: \"status\", header: \"状态\", render: row => <StatusBadge label={row.status} color={row.status === \"已发货\" ? \"green\" : row.status === \"待发货\" ? \"yellow\" : \"grey\"} /> },\n];\n\nexport const defaultTopbarMenu: AppLayoutMenuSection[] = [\n  { label: \"经营\", items: [\n    { label: \"概览\", icon: <WidgetBoldDuotone size={20} />, href: \"#overview\" },\n    { label: \"订单\", icon: <BagBoldDuotone size={20} />, href: \"#orders\" },\n    { label: \"商品\", icon: <BoxBoldDuotone size={20} />, href: \"#products\" },\n    { label: \"客户\", icon: <UsersGroupRoundedBoldDuotone size={20} />, href: \"#customers\" },\n  ] },\n  { label: \"分析\", items: [\n    { label: \"销售报表\", icon: <ChartSquareBoldDuotone size={20} />, href: \"#reports\" },\n    { label: \"财务对账\", icon: <WalletMoneyBoldDuotone size={20} />, href: \"#finance\" },\n  ] },\n  { label: \"\", items: [{ label: \"系统设置\", icon: <SettingsBoldDuotone size={20} />, href: \"#settings\" }] },\n];\n\nfunction SamplePage() {\n  return <div className=\"flex flex-col gap-5\">\n    <PageTitleToolbar title=\"经营概览\" breadcrumbs={<Breadcrumbs color=\"blue\" items={[{ label: \"经营\", href: \"#overview\" }, { label: \"概览\" }]} />} actions={<Button color=\"blue\">导出日报</Button>} />\n    <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-3 [&>*]:!w-full\">\n      <StatCard title=\"今日成交\" value=\"¥86,420\" trend=\"12%\" trendDirection=\"up\" subtitle=\"较昨日\" theme=\"white\" width=\"full\" />\n      <StatCard title=\"待发货\" value=\"38\" subtitle=\"其中 6 单超过 24 小时\" theme=\"white\" width=\"full\" />\n      <StatCard title=\"退款中\" value=\"4\" trend=\"2\" trendDirection=\"down\" subtitle=\"较昨日\" theme=\"white\" width=\"full\" />\n    </div>\n    <DataTable columns={columns} rows={orders} getRowKey={row => row.id} tableMinWidth={560} />\n  </div>;\n}\n\nexport interface LayoutTopbarProfileProps {\n  menuSections?: AppLayoutMenuSection[];\n  children?: ReactNode;\n}\n\n/** 侧栏展开并分组；搜索在顶栏左侧，头像、通知和语言在顶栏右侧 */\nexport function LayoutTopbarProfile({ menuSections = defaultTopbarMenu, children = <SamplePage /> }: LayoutTopbarProfileProps) {\n  return <AppLayout\n    accent=\"blue\"\n    logoText=\"知行科技\"\n    appName=\"电商运营中心\"\n    appSubtitle=\"华东大区\"\n    menuSections={menuSections}\n    profilePosition=\"topbar\"\n    profile={{ name: \"张宁\", role: \"运营负责人\", avatar: \"/images/team/edward-allen.png\" }}\n    topbarLeftMode=\"search\"\n    searchPlaceholder=\"搜索订单、商品或客户\"\n    notifications={3}\n    messages={2}\n  >\n    {children}\n  </AppLayout>;\n}\n"
+    }
+  ]
+}

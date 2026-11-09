@@ -14,7 +14,7 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 最小配方见各单项生成文档与 `/r/index.json` 的 meta.example；结构化入口优先，其他 Screen 已验收的 children/items 插槽保持原输出。[表格列宽与数字对齐](component-selection/data-table.md) 适用于 RecentRecords。
 
-74 个页面组件分为 11 类，已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。画廊 `/blocks` 可按分类筛选；每个 `/blocks/<name>` 提供同源 iframe 预览、1280px 桌面 / 390px 移动视口切换、完整代码、安装、用法、Props 与相关模板。预览路由 `/blocks/<name>/preview` 使用站点内的 AppLayout 外壳，按 registry.json 的 shell.menu / shell.active / shell.title 选择业务菜单、高亮项与顶栏标题；shell 为 none 时不显示后台外壳（认证类页面）；shell.with 指定窄卡页面并排展示的相关页面组件。菜单定义集中在站点 _shell.tsx，不进入安装源码。预览路由禁止索引，不进入 sitemap 与站内搜索；缩略图进入视口附近后才挂载。
+70 个页面组件分为 11 类，已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。画廊 `/blocks` 可按分类筛选；每个 `/blocks/<name>` 提供同源 iframe 预览、1280px 桌面 / 390px 移动视口切换、完整代码、安装、用法、Props 与相关模板。预览路由 `/blocks/<name>/preview` 使用站点内的 AppLayout 外壳，按 registry.json 的 shell.menu / shell.active / shell.title 选择业务菜单、高亮项与顶栏标题；shell 为 none 时不显示后台外壳（认证类页面）；shell 为 frame 时页面组件自带整页外壳（页面结构类布局），预览不再另套；shell.with 指定窄卡页面并排展示的相关页面组件，shell.below 指定在下方接着展示的相关页面组件。菜单定义集中在站点 _shell.tsx，不进入安装源码。预览路由禁止索引，不进入 sitemap 与站内搜索；缩略图进入视口附近后才挂载。
 
 | 分类 | 页面组件 | 导出名 | 源码目录 | 适用场景 |
 |---|---|---|---|---|
@@ -22,18 +22,18 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 | 看板首屏 | 项目概览 | ProjectOverview | blocks/project-overview/ | 汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。 |
 | 看板首屏 | 财务概览 | FinanceOverview | blocks/finance-overview/ | 结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。 |
 | 看板首屏 | 资产概览 | WealthOverview | blocks/wealth-overview/ | 总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。 |
-| AI 与智能体 | 智能体工作台 | AiWorkspaceOverview | blocks/ai-workspace-overview/ | 智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。 |
-| AI 与智能体 | 应用智能体目录 | AgentCatalog | blocks/agent-catalog/ | 左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。 |
-| AI 与智能体 | 智能体运行 | AgentRun | blocks/agent-run/ | 一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。 |
-| AI 与智能体 | 任务执行详情 | TaskRunDetail | blocks/task-run-detail/ | 任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。 |
-| AI 与智能体 | 运行时管理 | RuntimeList | blocks/runtime-list/ | 智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。 |
-| AI 与智能体 | 消息渠道 | MessageChannels | blocks/message-channels/ | 把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。 |
-| AI 与智能体 | 自主智能体 | AutonomousAgents | blocks/autonomous-agents/ | 系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。 |
-| AI 与智能体 | AI 助手首页 | AiAssistantHome | blocks/ai-assistant-home/ | 问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。 |
+| AI 与智能体 | 智能体工作台 | AiWorkspaceOverview | blocks/ai-workspace-overview/ | 工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图和 TOP5 排行榜。 |
+| AI 与智能体 | 应用智能体目录 | AgentCatalog | blocks/agent-catalog/ | 左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高级工作流智能体。 |
+| AI 与智能体 | 任务会话 | AgentRun | blocks/agent-run/ | 短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要、知识库授权与结果产物。 |
+| AI 与智能体 | 任务执行详情 | TaskRunDetail | blocks/task-run-detail/ | 自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载复制的结果产物。 |
+| AI 与智能体 | 运行时管理 | RuntimeList | blocks/runtime-list/ | 自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探测本机运行时。 |
+| AI 与智能体 | 消息渠道 | MessageChannels | blocks/message-channels/ | 把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以及填写凭据和绑定智能体的连接弹窗。 |
+| AI 与智能体 | 自主智能体 | AutonomousAgents | blocks/autonomous-agents/ | 系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模式与人工确认，最近任务跟踪状态。 |
+| AI 与智能体 | 智能体对话 | AiAssistantHome | blocks/ai-assistant-home/ | 按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，带快捷操作和访问权限的输入框，回复逐字生成。 |
 | AI 与智能体 | 多智能体编排 | AgentOrchestration | blocks/agent-orchestration/ | 编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。 |
 | AI 与智能体 | 用量与成本 | AgentUsage | blocks/agent-usage/ | 本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。 |
 | AI 与智能体 | 提示词评测 | PromptEvals | blocks/prompt-evals/ | 按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。 |
-| AI 与智能体 | 工作流编辑器 | WorkflowBuilder | blocks/workflow-builder/ | 左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。 |
+| AI 与智能体 | 工作流编辑器 | WorkflowBuilder | blocks/workflow-builder/ | 高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做、添加组件、一键美化、问题检查、调试运行与发布。 |
 | 数据列表 | 最近记录表卡 | RecentRecords | blocks/recent-records/ | 在一张卡片内查看最近订单、交易或业务记录。 |
 | 数据列表 | 排行列表卡 | RankingList | blocks/ranking-list/ | 展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。 |
 | 数据列表 | 订单列表 | OrdersTableSection | blocks/orders-table-section/ | 包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。 |
@@ -52,27 +52,23 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 | 详情页 | 线索详情 | LeadDetail | blocks/lead-detail/ | 线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。 |
 | 详情页 | 任务详情 | TaskDetail | blocks/task-detail/ | 任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。 |
 | 详情页 | 成员详情 | MemberProfile | blocks/member-profile/ | 成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。 |
-| 表单 | 商品编辑表单 | ProductForm | blocks/product-form/ | 基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。 |
-| 表单 | 新建订单表单 | OrderForm | blocks/order-form/ | 商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。 |
-| 表单 | 新建发票表单 | InvoiceForm | blocks/invoice-form/ | 选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。 |
-| 协作与项目 | 成员列表 | MemberList | blocks/member-list/ | 展示团队成员、职位与在线状态，适用于项目和工作区。 |
-| 协作与项目 | 活动流 | ActivityFeed | blocks/activity-feed/ | 汇总团队近期的任务、文件和项目动态，方便追踪协作进展。 |
-| 协作与项目 | 日程与甘特容器 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | 按日历或时间线安排会议与项目任务，掌握团队近期日程。 |
-| 协作与项目 | 项目详情分区 | ProjectSection | blocks/project-section/ | 围绕项目或任务组织详情内容与操作，保持阅读层次清晰。 |
-| 协作与项目 | 客户动态 | CrmActivity | blocks/crm-activity/ | 按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。 |
-| 协作与项目 | 任务看板 | KanbanBoard | blocks/kanban-board/ | 按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。 |
+| 表单 | 分组表单 | ProductForm | blocks/product-form/ | 字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在输入框尾部，底部固定操作栏带校验结果与保存状态。 |
+| 表单 | 分步表单 | OrderForm | blocks/order-form/ | 流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步修改，提交后展示结果页。 |
+| 表单 | 单卡表单 | InvoiceForm | blocks/invoice-form/ | 一张卡片从上到下填完：客户与日期两列排开，收费明细在表格里直接编辑，合计紧跟在明细下方，付款说明和操作按钮收在卡片底部。 |
+| 表单 | 服务配置表单 | ProviderSettingsForm | blocks/provider-settings-form/ | 设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址，卡片底部单独测试连接与保存。 |
+| 表单 | 弹窗表单 | DialogForm | blocks/dialog-form/ | 列表页里的新建与编辑：树形部门列表，点新增、修改或新增下级弹出两列表单，带必填校验，确定后回写列表。 |
+| 协作与项目 | 项目看板 | KanbanBoard | blocks/kanban-board/ | 项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与资源，点任务卡片打开带动态、评论和属性的任务详情。 |
 | 协作与项目 | 月历日程 | CalendarMonth | blocks/calendar-month/ | 月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。 |
-| 协作与项目 | 即时会话 | ChatWorkspace | blocks/chat-workspace/ | 联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。 |
 | 协作与项目 | 文件管理 | FileManager | blocks/file-manager/ | 按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。 |
-| 协作与项目 | 智能体列表 | AgentDirectory | blocks/agent-directory/ | 按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。 |
-| 协作与项目 | 知识库 | KnowledgeLibrary | blocks/knowledge-library/ | 按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。 |
-| 协作与项目 | 项目总览 | ProjectPortfolio | blocks/project-portfolio/ | 整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。 |
+| 协作与项目 | 项目总览 | ProjectPortfolio | blocks/project-portfolio/ | 整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表格之间切换。 |
 | 财务 | 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | 跟踪储蓄与预算目标，查看已积累金额和完成进度。 |
 | 财务 | 卡片轮播 | CardCarousel | blocks/card-carousel/ | 以可切换的卡片展示多个账户，适用于钱包和财务首页。 |
 | 财务 | 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 整合账户余额、预算与费用明细，集中查看财务状况。 |
 | 财务 | 交易流水 | TransactionsTable | blocks/transactions-table/ | 支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。 |
 | 财务 | 企业卡管理 | CardsManagement | blocks/cards-management/ | 企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。 |
 | 财务 | 储蓄目标表 | SavingsGoalsTable | blocks/savings-goals-table/ | 资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。 |
+| 财务 | 目标进度列表 | GoalProgressList | blocks/goal-progress-list/ | 跟踪储蓄与预算目标，查看已积累金额和完成进度。 |
+| 财务 | 财务工作区 | FinanceSurface | blocks/finance-workspace/ | 整合账户余额、预算与费用明细，集中查看财务状况。 |
 | 设置 | 个人资料设置 | SettingsProfile | blocks/settings-profile/ | 头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。 |
 | 设置 | 成员与团队 | SettingsMembers | blocks/settings-members/ | 席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。 |
 | 设置 | 角色与权限 | SettingsRoles | blocks/settings-roles/ | 左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。 |
@@ -85,13 +81,17 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 | 图表与指标 | 构成占比卡 | CompositionCard | blocks/composition-card/ | 用圆环图展示收入、渠道或费用的构成与占比。 |
 | 图表与指标 | 地区分布卡 | RegionDistribution | blocks/region-distribution/ | 结合地图与地区明细，查看客户或收入的地域分布。 |
 | 图表与指标 | 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 概览客户规模与增长情况，为销售团队提供经营摘要。 |
-| 页面结构 | 看板页头 | DashboardHeader | blocks/dashboard-header/ | 为经营看板组织标题、统计周期与导出操作。 |
-| 页面结构 | 模板内容分区 | TemplateSurface | blocks/template-surface/ | 为列表或详情组织独立内容分区，适用于后台业务页面。 |
-| 页面结构 | 对话页标题栏 | ConversationHeader | blocks/conversation-header/ | 展示会话名称、参与者与常用操作，适用于团队对话页面。 |
+| 图表与指标 | KPI 指标行 | KpiMetrics | blocks/kpi-metrics/ | 集中展示收入、订单与客户等关键指标，适用于经营看板首屏。 |
+| 图表与指标 | 客户经营摘要 | CrmMetricCard | blocks/crm-summary/ | 概览客户规模与增长情况，为销售团队提供经营摘要。 |
 | 认证 | 注册 | RegisterForm | blocks/register-form/ | 左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。 |
 | 认证 | 找回密码 | PasswordRecovery | blocks/password-recovery/ | 邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。 |
 | 认证 | 引导流程 | OnboardingFlow | blocks/onboarding-flow/ | 首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。 |
 | 认证 | 登录 | LoginForm | blocks/login-form/ | 邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。 |
+| 页面结构 | 顶栏头像布局 | LayoutTopbarProfile | blocks/layout-topbar-profile/ | 侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操作。 |
+| 页面结构 | 侧栏头像布局 | LayoutSidebarProfile | blocks/layout-sidebar-profile/ | 头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操作。 |
+| 页面结构 | 图标栏布局 | LayoutIconRail | blocks/layout-icon-rail/ | 侧栏默认收起为图标条，把宽度留给表格与筛选；顶栏左侧用汉堡按钮展开菜单，头像在右侧。 |
+| 页面结构 | 设置页布局 | LayoutSettings | blocks/layout-settings/ | 设置类页面：左侧二级导航切换分类，右侧按主题分卡，说明在上、字段居中、每张卡底部单独保存。 |
+| 页面结构 | 沉浸式布局 | LayoutImmersive | blocks/layout-immersive/ | 去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。 |
 
 ## 使用边界
 

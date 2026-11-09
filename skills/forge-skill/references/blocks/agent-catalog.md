@@ -1,10 +1,10 @@
 # 应用智能体目录
 
-分类：AI 与智能体。左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。
+分类：AI 与智能体。左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高级工作流智能体。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、ButtonGroup、IconButton、Pagination、Panel、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -12,7 +12,7 @@
 import { AgentCatalog } from "@/components/blocks/agent-catalog";
 
 export default function Example() {
-  return (<AgentCatalog onOpen={agent => console.log(agent.name)} />);
+  return (<AgentCatalog folders={[{ id: "default", name: "根目录" }, { id: "service", name: "客服中心" }]} />);
 }
 ```
 
@@ -21,8 +21,6 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | agents | 否 | `AppAgent[] \| undefined` |
-| pageSize | 否 | `number \| undefined` |
-| onCreate | 否 | `(() => void) \| undefined` |
-| onCreateFromTemplate | 否 | `(() => void) \| undefined` |
-| onOpen | 否 | `((agent: AppAgent) => void) \| undefined` |
+| folders | 否 | `AgentFolder[] \| undefined` |
+| templates | 否 | `AgentTemplate[] \| undefined` |
 | className | 否 | `string \| undefined` |

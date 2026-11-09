@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Accordion, Button, ButtonGroup, CheckboxControl, Checklist, CommentItem, Datepicker, FileUpload, IconButton, OtpInput, ProgressBar, RadioWithLabel, RatingStars, Stepper, SurfaceCard, TextArea, TextField, Toggle, type FileItem } from "@forge-ui-official/core";
-import { CheckCircleLinear, EyeLinear, LockKeyholeLinear, PenLinear, SunLinear, MoonLinear } from "@forge-ui-official/core/icons";
+import { CheckCircleLinear, PenLinear, SunLinear, MoonLinear } from "@forge-ui-official/core/icons";
 import type { FusionExampleProps } from "./types";
 
 import { useActionTimers } from "./actions-shared";
+import { EyeBoldIcon, LockKeyholeBoldIcon } from "@solar-icons/react";
 type Props = FusionExampleProps;
 const text = (p: Props, zh: string, en: string) => p.locale === "zh" ? zh : en;
 const avatar = "/images/protask/crm/linda-blair-avatar.png";
@@ -179,7 +180,7 @@ function PasswordExample(p: Props) {
   const [value, setValue] = useState(""), [visible, setVisible] = useState(false);
   const checks = [value.length >= 10, /[A-Z]/.test(value), /\d/.test(value), /[^\w\s]/.test(value)];
   const labels = p.locale === "zh" ? ["至少 10 个字符", "包含大写字母", "包含数字", "包含符号"] : ["At least 10 characters", "An uppercase letter", "A number", "A symbol"];
-  return <SurfaceCard title={text(p, "设置密码", "Set a password")}><div className="flex flex-col gap-4"><TextField type={visible ? "text" : "password"} value={value} onChange={setValue} color={p.color} label={text(p, "新密码", "New password")} iconLeft={<LockKeyholeLinear size={18} />} iconRight={<button type="button" aria-label={text(p, "显示或隐藏密码", "Show or hide password")} aria-pressed={visible} onClick={() => setVisible(!visible)}><EyeLinear size={18} /></button>} /><ProgressBar value={checks.filter(Boolean).length * 25} color={p.color} label={text(p, "格式要求", "Format requirements")} /><ul className="flex flex-col gap-2">{labels.map((label, i) => <li key={label} className={`flex items-center gap-2 text-sm ${checks[i] ? "text-fg-black" : "text-fg-grey-700"}`}><CheckCircleLinear size={16} color={checks[i] ? "var(--fusion-accent)" : "currentColor"} />{label}</li>)}</ul><Note>{text(p, "格式提示不等同于密码安全性评估。", "Format guidance is not a password security assessment.")}</Note></div></SurfaceCard>;
+  return <SurfaceCard title={text(p, "设置密码", "Set a password")}><div className="flex flex-col gap-4"><TextField type={visible ? "text" : "password"} value={value} onChange={setValue} color={p.color} label={text(p, "新密码", "New password")} iconLeft={<LockKeyholeBoldIcon size={18} />} iconRight={<button type="button" aria-label={text(p, "显示或隐藏密码", "Show or hide password")} aria-pressed={visible} onClick={() => setVisible(!visible)}><EyeBoldIcon size={18} /></button>} /><ProgressBar value={checks.filter(Boolean).length * 25} color={p.color} label={text(p, "格式要求", "Format requirements")} /><ul className="flex flex-col gap-2">{labels.map((label, i) => <li key={label} className={`flex items-center gap-2 text-sm ${checks[i] ? "text-fg-black" : "text-fg-grey-700"}`}><CheckCircleLinear size={16} color={checks[i] ? "var(--fusion-accent)" : "currentColor"} />{label}</li>)}</ul><Note>{text(p, "格式提示不等同于密码安全性评估。", "Format guidance is not a password security assessment.")}</Note></div></SurfaceCard>;
 }
 
 function LoginExample(p: Props) {

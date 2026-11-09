@@ -5,7 +5,7 @@ import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
-import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+import { DashboardHeader } from "@/app/templates/_shared/dashboard-header";
 
 import {
   WidgetBoldDuotone,

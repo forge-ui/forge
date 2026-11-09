@@ -3,7 +3,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, type FormEvent } from "react";
 import { Button, OtpInput, TextField, cn } from "@forge-ui-official/core";
-import { CheckCircleBold, LockKeyholeLinear, MailboxLinear } from "@forge-ui-official/core/icons";
+import { CheckCircleBold } from "@forge-ui-official/core/icons";
+
+function LockKeyholeBoldIcon({ size = 16 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden><path fillRule="evenodd" clipRule="evenodd" d="M5.25 10.0546V8C5.25 4.27208 8.27208 1.25 12 1.25C15.7279 1.25 18.75 4.27208 18.75 8V10.0546C19.8648 10.1379 20.5907 10.348 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2 16C2 13.1716 2 11.7574 2.87868 10.8787C3.40931 10.348 4.13525 10.1379 5.25 10.0546ZM6.75 8C6.75 5.10051 9.10051 2.75 12 2.75C14.8995 2.75 17.25 5.10051 17.25 8V10.0036C16.867 10 16.4515 10 16 10H8C7.54849 10 7.13301 10 6.75 10.0036V8ZM14 16C14 17.1046 13.1046 18 12 18C10.8954 18 10 17.1046 10 16C10 14.8954 10.8954 14 12 14C13.1046 14 14 14.8954 14 16Z" fill="currentColor" /></svg>;
+}
+
+function LetterBoldIcon({ size = 16 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden><path fillRule="evenodd" clipRule="evenodd" d="M3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H14C17.7712 20 19.6569 20 20.8284 18.8284C22 17.6569 22 15.7712 22 12C22 8.22876 22 6.34315 20.8284 5.17157C19.6569 4 17.7712 4 14 4H10C6.22876 4 4.34315 4 3.17157 5.17157ZM18.5762 7.51986C18.8413 7.83807 18.7983 8.31099 18.4801 8.57617L16.2837 10.4066C15.3973 11.1452 14.6789 11.7439 14.0448 12.1517C13.3843 12.5765 12.7411 12.8449 12 12.8449C11.2589 12.8449 10.6157 12.5765 9.95518 12.1517C9.32112 11.7439 8.60271 11.1452 7.71636 10.4066L5.51986 8.57617C5.20165 8.31099 5.15866 7.83807 5.42383 7.51986C5.68901 7.20165 6.16193 7.15866 6.48014 7.42383L8.63903 9.22291C9.57199 10.0004 10.2197 10.5384 10.7666 10.8901C11.2959 11.2306 11.6549 11.3449 12 11.3449C12.3451 11.3449 12.7041 11.2306 13.2334 10.8901C13.7803 10.5384 14.428 10.0004 15.361 9.22291L17.5199 7.42383C17.8381 7.15866 18.311 7.20165 18.5762 7.51986Z" fill="currentColor" /></svg>;
+}
 
 export interface PasswordRecoveryProps {
   image?: string;
@@ -55,13 +63,13 @@ export function PasswordRecovery({ image = "/images/blocks/auth-workspace.jpg", 
       <ol className="flex items-center gap-2" aria-label="找回进度">{(["email", "reset", "done"] as Step[]).map((item, index) => <li key={item} className={cn("h-1.5 flex-1 rounded-full", (["email", "reset", "done"] as Step[]).indexOf(step) >= index ? "bg-fg-blue" : "bg-fg-grey-200")} />)}</ol>
       <div className="text-center">{step === "done" && <CheckCircleBold size={48} className="mx-auto mb-3 text-fg-green-500" />}<h1 className="text-2xl font-semibold text-fg-black">{copy[step].title}</h1><p className="mt-2 text-sm leading-6 text-fg-grey-700">{copy[step].subtitle}</p></div>
       {step === "email" && <form className="flex flex-col gap-4" onSubmit={sendCode} noValidate>
-        <TextField label="邮箱" type="email" shape="pill" iconLeft={<MailboxLinear size={16} />} value={email} onChange={setEmail} placeholder="name@company.com" autoComplete="email" {...(touched && emailError ? { state: "error" as const, errorMessage: emailError } : {})} />
+        <TextField label="邮箱" type="email" shape="pill" iconLeft={<LetterBoldIcon size={16} />} value={email} onChange={setEmail} placeholder="name@company.com" autoComplete="email" {...(touched && emailError ? { state: "error" as const, errorMessage: emailError } : {})} />
         <Button type="submit" className="w-full">发送验证码</Button>
       </form>}
       {step === "reset" && <form className="flex flex-col gap-4" onSubmit={reset} noValidate>
         <div className="flex flex-col gap-2"><span className="text-sm font-medium text-fg-black">验证码</span><OtpInput length={6} value={code} onChange={setCode} />{touched && resetErrors.code && <p className="text-xs text-fg-red">{resetErrors.code}</p>}</div>
-        <TextField label="新密码" type="password" shape="pill" iconLeft={<LockKeyholeLinear size={16} />} value={password} onChange={setPassword} placeholder="至少 8 位" autoComplete="new-password" {...(touched && resetErrors.password ? { state: "error" as const, errorMessage: resetErrors.password } : {})} />
-        <TextField label="确认新密码" type="password" shape="pill" iconLeft={<LockKeyholeLinear size={16} />} value={confirm} onChange={setConfirm} autoComplete="new-password" {...(touched && resetErrors.confirm ? { state: "error" as const, errorMessage: resetErrors.confirm } : {})} />
+        <TextField label="新密码" type="password" shape="pill" iconLeft={<LockKeyholeBoldIcon size={16} />} value={password} onChange={setPassword} placeholder="至少 8 位" autoComplete="new-password" {...(touched && resetErrors.password ? { state: "error" as const, errorMessage: resetErrors.password } : {})} />
+        <TextField label="确认新密码" type="password" shape="pill" iconLeft={<LockKeyholeBoldIcon size={16} />} value={confirm} onChange={setConfirm} autoComplete="new-password" {...(touched && resetErrors.confirm ? { state: "error" as const, errorMessage: resetErrors.confirm } : {})} />
         <Button type="submit" className="w-full">重置密码</Button>
         <Button variant="unstyled" type="button" className="text-sm font-semibold text-fg-blue" onClick={() => { setStep("email"); setCode(""); setTouched(false); }}>没收到？重新发送</Button>
       </form>}

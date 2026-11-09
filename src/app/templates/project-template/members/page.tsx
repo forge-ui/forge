@@ -3,13 +3,14 @@
 import { Panel } from "@forge-ui-official/core";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AddCircleLinear, CloudDownloadLinear, MagniferLinear } from "@forge-ui-official/core/icons";
+import { AddCircleLinear, CloudDownloadLinear } from "@forge-ui-official/core/icons";
 import { Avatar, Button, ButtonGroup, CellActions, CellMuted, CellTextSubtitle, DataTable, TextField, ToolbarFilterButton, ToolbarShowSelect } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { members, type Member } from "../_data";
 import { projectPageStackClass } from "../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../_modals";
+import { MagnifierBoldIcon } from "@solar-icons/react";
 
 export default function MembersPage() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function MembersPage() {
         <PageTop title="Team Member" current="Team Members" actions={<div className="flex gap-4"><Button variant="tertiary" iconLeft={<CloudDownloadLinear size={20} />}>Export</Button><Button iconLeft={<AddCircleLinear size={20} />} onClick={() => openModal("add")}>Add New</Button></div>} />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} /></div>
+            <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagnifierBoldIcon size={18} color={"var(--fg-grey-800)"} />} /></div>
             <ButtonGroup color="purple" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
           </div>
           <div className="flex items-center gap-4"><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>

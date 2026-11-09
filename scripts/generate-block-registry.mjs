@@ -56,8 +56,9 @@ function portableType(type) {
 }
 const items = catalog.map(({ name, title, description, component, category, screens, shell }) => {
   if (!categories.includes(category)) throw new Error(`${name}: unknown category ${category}`);
-  if (shell !== "none" && (!shell || ![shell.menu, shell.active, shell.title].every(value => typeof value === "string" && value.trim()))) throw new Error(`${name}: missing shell configuration`);
-  if (shell !== "none" && shell.with !== undefined && !catalog.some(entry => entry.name === shell.with && entry.name !== name)) throw new Error(`${name}: unknown shell partner ${shell.with}`);
+  if (shell !== "none" && shell !== "frame" && (!shell || ![shell.menu, shell.active, shell.title].every(value => typeof value === "string" && value.trim()))) throw new Error(`${name}: missing shell configuration`);
+  if (typeof shell === "object" && shell.below !== undefined && !catalog.some(entry => entry.name === shell.below && entry.name !== name)) throw new Error(`${name}: unknown shell partner ${shell.below}`);
+  if (typeof shell === "object" && shell.with !== undefined && !catalog.some(entry => entry.name === shell.with && entry.name !== name)) throw new Error(`${name}: unknown shell partner ${shell.with}`);
   if (!examples[name]) throw new Error(`${name}: missing example`);
   const source = `blocks/${name}/${name}.tsx`;
   const content = fs.readFileSync(path.join(root, source), "utf8");

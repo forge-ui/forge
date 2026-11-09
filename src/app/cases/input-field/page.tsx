@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import {
-  MagniferLinear,
+  
   CalendarLinear,
-  LetterLinear,
-  EyeLinear,
+  
+  
   StarLinear,
   HeartLinear,
   BellLinear,
@@ -52,6 +52,7 @@ import {
   type IconSelectorColor,
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
+import { EyeBoldIcon, LetterBoldIcon, MagnifierBoldIcon } from "@solar-icons/react";
 
 const fieldStates: TextFieldState[] = ["idle", "focus", "filled", "disabled", "error"];
 const fieldShapes: TextFieldShape[] = ["rounded", "pill"];
@@ -166,7 +167,7 @@ export default function InputFieldCasePage() {
             <div className="w-64">
               <TextField
                 placeholder="搜索…"
-                iconLeft={<MagniferLinear size={18} color="currentColor" />}
+                iconLeft={<MagnifierBoldIcon size={18} color="currentColor" />}
               />
             </div>
           </Labeled>
@@ -174,7 +175,7 @@ export default function InputFieldCasePage() {
             <div className="w-64">
               <TextField
                 placeholder="you@example.com"
-                iconRight={<LetterLinear size={18} color="currentColor" />}
+                iconRight={<LetterBoldIcon size={18} color="currentColor" />}
               />
             </div>
           </Labeled>
@@ -187,7 +188,7 @@ export default function InputFieldCasePage() {
             <div className="w-64">
               <TextField
                 placeholder="密码"
-                iconRight={<EyeLinear size={18} color="currentColor" />}
+                iconRight={<EyeBoldIcon size={18} color="currentColor" />}
               />
             </div>
           </Labeled>

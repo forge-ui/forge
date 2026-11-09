@@ -1,162 +1,151 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
-import { Button, Checkbox, ConfirmationDialog, IconButton, MediaUpload, PlusIcon, SelectOption, StatusBadge, TextArea, TextField, cn, type MediaItem } from "@forge-ui-official/core";
-import { CheckCircleLinear, CloseCircleLinear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { useState, type ReactNode } from "react";
+import { Breadcrumbs, Button, MediaUpload, PageTitleToolbar, RadioWithLabel, SelectOption, TextArea, TextField } from "@forge-ui-official/core";
 
-export interface ProductVariant {
-  id: string;
-  type: string;
-  value: string;
-  quantity: string;
-}
-
-export interface ProductFormValue {
+export interface ProductDraft {
   name: string;
+  sku: string;
+  category: string;
+  brand: string;
+  tags: string;
   description: string;
   price: string;
-  discountType: string;
-  discount: string;
-  taxClass: string;
-  sku: string;
-  barcode: string;
-  quantity: string;
-  variants: ProductVariant[];
-  physical: boolean;
+  listPrice: string;
+  cost: string;
+  stock: string;
+  alertStock: string;
+  taxRate: string;
   weight: string;
-  height: string;
-  length: string;
-  width: string;
-  category: string;
-  tags: string[];
-  status: "draft" | "published" | "scheduled";
+  origin: string;
+  shipping: string;
+  publish: "now" | "scheduled" | "draft";
+  publishAt: string;
 }
 
-export const defaultProductFormValue: ProductFormValue = {
+export const defaultProductDraft: ProductDraft = {
   name: "知行智能手表 E2",
-  description: "支持来电与消息提醒、心率与睡眠监测、50 米防水，单次充电续航 14 天。",
-  price: "1299",
-  discountType: "none",
-  discount: "",
-  taxClass: "standard",
-  sku: "302012",
-  barcode: "6971234502012",
-  quantity: "204",
-  variants: [
-    { id: "v1", type: "color", value: "曜石黑", quantity: "120" },
-    { id: "v2", type: "size", value: "46mm", quantity: "84" },
-  ],
-  physical: true,
-  weight: "0.32",
-  height: "4.6",
-  length: "4.6",
-  width: "1.2",
+  sku: "ZX-WATCH-E2-BLK",
   category: "wearable",
-  tags: ["new", "hot"],
-  status: "draft",
+  brand: "zhixing",
+  tags: "新品, 热卖",
+  description: "支持来电与消息提醒、心率与睡眠监测，50 米防水，单次充电续航 14 天。",
+  price: "1299",
+  listPrice: "1499",
+  cost: "620",
+  stock: "204",
+  alertStock: "30",
+  taxRate: "13",
+  weight: "0.32",
+  origin: "shanghai",
+  shipping: "free",
+  publish: "now",
+  publishAt: "",
 };
 
-const statusMeta: Record<ProductFormValue["status"], { label: string; color: "grey" | "green" | "blue" }> = {
-  draft: { label: "草稿", color: "grey" },
-  published: { label: "已上架", color: "green" },
-  scheduled: { label: "定时上架", color: "blue" },
-};
+const categoryOptions = [{ value: "wearable", label: "智能穿戴" }, { value: "audio", label: "影音耳机" }, { value: "office", label: "办公外设" }];
+const brandOptions = [{ value: "zhixing", label: "知行" }, { value: "yuanshan", label: "远山" }];
+const taxOptions = [{ value: "13", label: "13%（一般货物）" }, { value: "9", label: "9%" }, { value: "6", label: "6%" }, { value: "0", label: "免税" }];
+const originOptions = [{ value: "shanghai", label: "上海仓" }, { value: "guangzhou", label: "广州仓" }, { value: "chengdu", label: "成都仓" }];
+const shippingOptions = [{ value: "free", label: "包邮" }, { value: "weight", label: "按重量计费" }, { value: "fixed", label: "固定运费 10 元" }];
 
-function Section({ title, children, action }: { title: string; children: ReactNode; action?: ReactNode }) {
-  return <section className="flex min-w-0 flex-col gap-4 rounded-card border border-fg-grey-200 bg-white p-6">
-    <div className="flex items-center justify-between gap-3"><h3 className="text-lg font-semibold text-fg-black">{title}</h3>{action}</div>
+function Section({ title, description, children }: { title: string; description: string; children: ReactNode }) {
+  return <section className="flex flex-col gap-5 border-t border-fg-grey-100 px-5 py-6 first:border-t-0 sm:px-6">
+    <div><h2 className="text-base font-semibold text-fg-black">{title}</h2><p className="mt-1 text-sm text-fg-grey-600">{description}</p></div>
     {children}
   </section>;
 }
 
+const unit = (text: string) => <span className="text-xs text-fg-grey-500">{text}</span>;
+
 export interface ProductFormProps {
-  value?: ProductFormValue;
-  media?: MediaItem[];
-  onSubmit?: (value: ProductFormValue) => void;
-  onCancel?: () => void;
+  initial?: ProductDraft;
+  onSubmit?: (draft: ProductDraft, mode: "draft" | "publish") => void;
   className?: string;
 }
 
-export function ProductForm({ value = defaultProductFormValue, media = [], onSubmit, onCancel, className }: ProductFormProps) {
-  const [form, setForm] = useState(value);
-  const [photos, setPhotos] = useState(media);
-  const [confirming, setConfirming] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const update = <K extends keyof ProductFormValue>(key: K, next: ProductFormValue[K]) => { setForm(current => ({ ...current, [key]: next })); setSaved(false); };
-  const updateVariant = (id: string, patch: Partial<ProductVariant>) => update("variants", form.variants.map(variant => variant.id === id ? { ...variant, ...patch } : variant));
-  const nameMissing = !form.name.trim();
+export function ProductForm({ initial = defaultProductDraft, onSubmit, className = "" }: ProductFormProps) {
+  const [draft, setDraft] = useState(initial);
+  const [dirty, setDirty] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof ProductDraft, string>>>({});
+  const [saved, setSaved] = useState<string | null>(null);
+  const [images, setImages] = useState([
+    { id: "front", src: "/images/blocks/products/smartwatch.jpg" },
+    { id: "side", src: "/images/blocks/products/watch.jpg" },
+  ]);
+  const set = <K extends keyof ProductDraft>(key: K) => (value: ProductDraft[K]) => { setDraft(current => ({ ...current, [key]: value })); setDirty(true); setErrors(current => ({ ...current, [key]: undefined })); };
+  const margin = Number(draft.price) > 0 && Number(draft.cost) > 0 ? Math.round((1 - Number(draft.cost) / Number(draft.price)) * 100) : null;
 
-  function upload(files: FileList) {
-    setPhotos(current => [...current, ...Array.from(files).map(file => ({ id: `${file.name}-${file.lastModified}`, src: URL.createObjectURL(file), state: "success" as const }))]);
+  function submit(mode: "draft" | "publish") {
+    const next: typeof errors = {};
+    if (!draft.name.trim()) next.name = "请填写商品名称";
+    if (mode === "publish") {
+      if (!draft.sku.trim()) next.sku = "发布前需要填写商品编码";
+      if (!(Number(draft.price) > 0)) next.price = "售价需大于 0";
+      if (draft.listPrice && Number(draft.listPrice) < Number(draft.price)) next.listPrice = "划线价不能低于售价";
+      if (!/^\d+$/.test(draft.stock)) next.stock = "库存需为整数";
+    }
+    setErrors(next);
+    if (Object.keys(next).length) return;
+    onSubmit?.(draft, mode);
+    setDirty(false);
+    setSaved(mode === "publish" ? "已发布，商品将在前台展示" : "草稿已保存");
   }
 
-  function submit(event: FormEvent) {
-    event.preventDefault();
-    if (nameMissing) return;
-    setConfirming(true);
-  }
+  return <div className={`flex min-w-0 flex-col gap-5 ${className}`}>
+    <PageTitleToolbar title="编辑商品" subtitle="修改会在发布后同步到商城前台与小程序。" breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "电商运营", href: "#overview" }, { label: "商品", href: "#products" }, { label: "编辑商品" }]} />} />
+    <form className="overflow-hidden rounded-2xl border border-fg-grey-200 bg-white" onSubmit={event => { event.preventDefault(); submit("publish"); }}>
+      <Section title="基本信息" description="名称和描述会出现在商品详情页与搜索结果里。">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-3">
+          <div className="md:col-span-2"><TextField color="blue" inputClassName="h-6" label="商品名称 *" value={draft.name} onChange={set("name")} state={errors.name ? "error" : "idle"} errorMessage={errors.name} maxLength={60} /></div>
+          <TextField color="blue" inputClassName="h-6" label="商品编码 *" value={draft.sku} onChange={set("sku")} state={errors.sku ? "error" : "idle"} errorMessage={errors.sku} placeholder="如 ZX-WATCH-E2-BLK" />
+          <SelectOption color="blue" label="商品分类" width="100%" className="w-full" value={draft.category} onChange={set("category")} options={categoryOptions} />
+          <SelectOption color="blue" label="品牌" width="100%" className="w-full" value={draft.brand} onChange={set("brand")} options={brandOptions} />
+          <TextField color="blue" inputClassName="h-6" label="标签" value={draft.tags} onChange={set("tags")} placeholder="用逗号分隔" />
+          <div className="md:col-span-3"><TextArea color="blue" label="商品描述" value={draft.description} onChange={set("description")} rows={3} /></div>
+        </div>
+      </Section>
 
-  return <form className={cn("flex min-w-0 flex-col gap-4", className)} onSubmit={submit} noValidate>
-    <div className="flex flex-wrap items-center justify-end gap-3">
-      {saved && <p role="status" className="mr-auto text-sm text-fg-green-500">商品已保存</p>}
-      <Button type="button" variant="tertiary" iconLeft={<CloseCircleLinear size={16} />} onClick={onCancel}>取消</Button>
-      <Button type="submit" iconLeft={<CheckCircleLinear size={16} />} disabled={nameMissing}>保存商品</Button>
-    </div>
-    <div className="grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_300px]">
-      <div className="flex min-w-0 flex-col gap-4">
-        <Section title="基本信息">
-          <TextField label="商品名称" shape="pill" required value={form.name} onChange={next => update("name", next)} placeholder="请输入商品名称" state={nameMissing ? "error" : undefined} errorMessage={nameMissing ? "商品名称不能为空" : undefined} />
-          <TextArea label="商品描述" rows={5} value={form.description} onChange={next => update("description", next)} placeholder="介绍商品卖点、材质与使用场景" />
-        </Section>
-        <Section title="商品图片">
-          <MediaUpload items={photos} label="主图与详情图" buttonLabel="添加图片" message="拖放图片到这里，或点击添加，建议 800×800 以上" color="blue" onUpload={upload} onRemove={id => setPhotos(current => current.filter(item => item.id !== id))} />
-        </Section>
-        <Section title="价格">
-          <TextField label="售价（元）" shape="pill" inputMode="decimal" value={form.price} onChange={next => update("price", next)} placeholder="0.00" />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <SelectOption label="优惠类型" shape="pill" options={[{ label: "无优惠", value: "none" }, { label: "折扣", value: "percent" }, { label: "直降", value: "amount" }]} value={form.discountType} onChange={next => update("discountType", next)} />
-            <TextField label={form.discountType === "amount" ? "直降金额（元）" : "折扣比例（%）"} shape="pill" inputMode="decimal" value={form.discount} onChange={next => update("discount", next)} placeholder={form.discountType === "none" ? "未设置优惠" : "请输入"} disabled={form.discountType === "none"} />
-            <SelectOption label="税率" shape="pill" options={[{ label: "标准税率 13%", value: "standard" }, { label: "低税率 9%", value: "reduced" }, { label: "免税", value: "exempt" }]} value={form.taxClass} onChange={next => update("taxClass", next)} />
-          </div>
-        </Section>
-        <Section title="库存">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <TextField label="SKU" shape="pill" value={form.sku} onChange={next => update("sku", next)} />
-            <TextField label="条形码" shape="pill" value={form.barcode} onChange={next => update("barcode", next)} />
-            <TextField label="库存数量" shape="pill" inputMode="numeric" value={form.quantity} onChange={next => update("quantity", next)} />
-          </div>
-        </Section>
-        <Section title="规格" action={<Button type="button" size="sm" variant="tertiary" iconLeft={<PlusIcon size={16} />} onClick={() => update("variants", [...form.variants, { id: `v-${Date.now()}`, type: "color", value: "", quantity: "" }])}>添加规格</Button>}>
-          {form.variants.map((variant, index) => <div key={variant.id} className="grid grid-cols-1 items-end gap-3 sm:grid-cols-[repeat(3,minmax(0,1fr))_auto]">
-            <SelectOption label={index === 0 ? "规格类型" : undefined} shape="pill" options={[{ label: "颜色", value: "color" }, { label: "尺寸", value: "size" }, { label: "材质", value: "material" }]} value={variant.type} onChange={next => updateVariant(variant.id, { type: next })} />
-            <TextField label={index === 0 ? "规格值" : undefined} shape="pill" value={variant.value} onChange={next => updateVariant(variant.id, { value: next })} placeholder="例如：曜石黑" />
-            <TextField label={index === 0 ? "数量" : undefined} shape="pill" inputMode="numeric" value={variant.quantity} onChange={next => updateVariant(variant.id, { quantity: next })} placeholder="0" />
-            <IconButton type="button" variant="tertiary" aria-label="删除规格" onClick={() => update("variants", form.variants.filter(item => item.id !== variant.id))}><TrashBinMinimalisticLinear size={16} /></IconButton>
-          </div>)}
-          {!form.variants.length && <p className="text-sm text-fg-grey-700">暂无规格，商品将以单一规格售卖。</p>}
-        </Section>
-        <Section title="物流">
-          <label className="flex items-center gap-2 text-sm text-fg-black"><Checkbox color="blue" checked={form.physical} onChange={next => update("physical", next)} />实体商品，需要发货</label>
-          {form.physical && <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-4">
-            <TextField label="重量（kg）" shape="pill" value={form.weight} onChange={next => update("weight", next)} />
-            <TextField label="高（cm）" shape="pill" value={form.height} onChange={next => update("height", next)} />
-            <TextField label="长（cm）" shape="pill" value={form.length} onChange={next => update("length", next)} />
-            <TextField label="宽（cm）" shape="pill" value={form.width} onChange={next => update("width", next)} />
-          </div>}
-        </Section>
+      <Section title="价格与库存" description={margin === null ? "填写售价和成本价后会自动计算毛利率。" : `按当前售价与成本价计算，毛利率约 ${margin}%。`}>
+        <div className="grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-3">
+          <TextField color="blue" inputClassName="h-6" label="售价 *" inputMode="decimal" value={draft.price} onChange={set("price")} suffix={unit("元")} state={errors.price ? "error" : "idle"} errorMessage={errors.price} />
+          <TextField color="blue" inputClassName="h-6" label="划线价" inputMode="decimal" value={draft.listPrice} onChange={set("listPrice")} suffix={unit("元")} state={errors.listPrice ? "error" : "idle"} errorMessage={errors.listPrice} />
+          <TextField color="blue" inputClassName="h-6" label="成本价" inputMode="decimal" value={draft.cost} onChange={set("cost")} suffix={unit("元")} />
+          <TextField color="blue" inputClassName="h-6" label="库存数量 *" inputMode="numeric" value={draft.stock} onChange={set("stock")} suffix={unit("件")} state={errors.stock ? "error" : "idle"} errorMessage={errors.stock} />
+          <TextField color="blue" inputClassName="h-6" label="库存预警" inputMode="numeric" value={draft.alertStock} onChange={set("alertStock")} suffix={unit("件")} />
+          <SelectOption color="blue" label="税率" width="100%" className="w-full" value={draft.taxRate} onChange={set("taxRate")} options={taxOptions} />
+        </div>
+      </Section>
+
+      <Section title="商品图片" description="第一张作为主图，建议 800×800 以上的白底图，最多 6 张。">
+        <MediaUpload color="blue" items={images} buttonLabel="添加图片" message="拖拽图片到这里，或点击添加" onUpload={files => { setImages(current => [...current, ...Array.from(files).slice(0, 6 - current.length).map((file, index) => ({ id: `${file.name}-${index}`, src: URL.createObjectURL(file) }))]); setDirty(true); }} onRemove={id => { setImages(current => current.filter(image => image.id !== id)); setDirty(true); }} />
+      </Section>
+
+      <Section title="物流与上架" description="决定从哪个仓发货、运费怎么算，以及什么时候在前台上架。">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-3">
+          <TextField color="blue" inputClassName="h-6" label="包装重量" inputMode="decimal" value={draft.weight} onChange={set("weight")} suffix={unit("kg")} />
+          <SelectOption color="blue" label="发货仓" width="100%" className="w-full" value={draft.origin} onChange={set("origin")} options={originOptions} />
+          <SelectOption color="blue" label="运费模板" width="100%" className="w-full" value={draft.shipping} onChange={set("shipping")} options={shippingOptions} />
+        </div>
+        <div role="radiogroup" aria-label="上架方式" className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <span className="text-sm font-medium text-fg-black">上架方式</span>
+          <RadioWithLabel color="blue" label="发布后立即上架" checked={draft.publish === "now"} onChange={() => set("publish")("now")} />
+          <RadioWithLabel color="blue" label="定时上架" checked={draft.publish === "scheduled"} onChange={() => set("publish")("scheduled")} />
+          <RadioWithLabel color="blue" label="暂不上架" checked={draft.publish === "draft"} onChange={() => set("publish")("draft")} />
+        </div>
+        {draft.publish === "scheduled" ? <div className="max-w-xs"><TextField color="blue" inputClassName="h-6" label="上架时间" type="datetime-local" value={draft.publishAt} onChange={set("publishAt")} /></div> : null}
+      </Section>
+
+      <div className="sticky bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 border-t border-fg-grey-200 bg-white/95 px-5 py-3 backdrop-blur sm:px-6">
+        <span className={`text-sm ${Object.keys(errors).some(key => errors[key as keyof ProductDraft]) ? "text-fg-red" : "text-fg-grey-600"}`}>
+          {Object.values(errors).filter(Boolean).length ? `还有 ${Object.values(errors).filter(Boolean).length} 处需要修改` : saved ?? (dirty ? "有未保存的修改" : "上次保存于今天 10:24")}
+        </span>
+        <div className="flex flex-wrap gap-2">
+          <Button color="grey" variant="tertiary" type="button" onClick={() => { setDraft(initial); setErrors({}); setDirty(false); setSaved(null); }}>放弃修改</Button>
+          <Button color="blue" variant="secondary" type="button" onClick={() => submit("draft")}>保存草稿</Button>
+          <Button color="blue" type="submit">发布商品</Button>
+        </div>
       </div>
-      <div className="flex min-w-0 flex-col gap-4">
-        <Section title="分类">
-          <SelectOption label="商品分类" shape="pill" options={[{ label: "智能穿戴", value: "wearable" }, { label: "影音", value: "audio" }, { label: "电脑外设", value: "peripheral" }, { label: "箱包", value: "bags" }]} value={form.category} onChange={next => update("category", next)} />
-          <SelectOption type="multiple" label="商品标签" shape="pill" options={[{ label: "新品", value: "new" }, { label: "热卖", value: "hot" }, { label: "限时", value: "limited" }]} value={form.tags} onChange={next => update("tags", next)} />
-        </Section>
-        <Section title="状态" action={<StatusBadge {...statusMeta[form.status]} variant="soft" />}>
-          <SelectOption label="上架状态" shape="pill" options={Object.entries(statusMeta).map(([key, item]) => ({ value: key, label: item.label }))} value={form.status} onChange={next => update("status", next as ProductFormValue["status"])} />
-        </Section>
-      </div>
-    </div>
-    {confirming && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <ConfirmationDialog title="保存商品修改？" description={`「${form.name}」将以「${statusMeta[form.status].label}」状态保存。`} confirmLabel="保存" cancelLabel="再看看" color="green" onConfirm={() => { onSubmit?.(form); setConfirming(false); setSaved(true); }} onCancel={() => setConfirming(false)} />
-    </div>}
-  </form>;
+    </form>
+  </div>;
 }

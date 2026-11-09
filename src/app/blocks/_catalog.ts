@@ -1,7 +1,7 @@
 import registry from "../../../blocks/registry.json";
 
 export const categories = ["看板首屏", "AI 与智能体", "数据列表", "详情页", "表单", "协作与项目", "财务", "设置", "图表与指标", "页面结构", "认证"];
-type BlockShellConfig = { menu: string; active: string; title: string; with?: string } | "none";
+type BlockShellConfig = { menu: string; active: string; title: string; with?: string; below?: string; header?: "block" } | "none" | "frame";
 type BlockEntry = Omit<(typeof registry)[number], "shell"> & { shell: BlockShellConfig };
 export const blocks: BlockEntry[] = [...(registry as unknown as BlockEntry[])].sort((left, right) => categories.indexOf(left.category) - categories.indexOf(right.category));
 export const categoryItems = categories.map(category => ({

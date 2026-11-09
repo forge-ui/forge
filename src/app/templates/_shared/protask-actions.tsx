@@ -14,8 +14,9 @@ import {
   TextField,
   type AccentColor,
 } from "@forge-ui-official/core";
-import { CalendarMinimalisticLinear, CloudUploadLinear, Pen2Linear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { CloudUploadLinear, Pen2Linear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
 import { Modal } from "./modal";
+import { CalendarMinimalisticBoldIcon } from "@solar-icons/react";
 
 export function normalizeProtaskActivityDialogId(dialogId?: string | null) {
   const raw = (dialogId ?? "").replace(/^leads-/, "").toLowerCase();
@@ -254,7 +255,7 @@ function ScheduleFields() {
           { value: "60", label: "1 hour before" },
         ]}
       />
-      <TextField label="Date" placeholder="Select Dates" iconLeft={<CalendarMinimalisticLinear size={18} />} />
+      <TextField label="Date" placeholder="Select Dates" iconLeft={<CalendarMinimalisticBoldIcon size={18} />} />
     </>
   );
 }

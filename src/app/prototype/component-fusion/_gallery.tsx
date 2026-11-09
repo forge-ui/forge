@@ -8,6 +8,7 @@ import { officialHref } from "../../components/_fusion/registry";
 import { LabPreview } from "./_lab-preview";
 import { reviewStore } from "./_review-store";
 import catalog from "./_catalog-data.json";
+import { MagnifierBoldIcon } from "@solar-icons/react";
 
 type Item = (typeof catalog.items)[number];
 type Settings = { locale: "zh" | "en"; color: "blue" | "purple" | "black"; motion: "auto" | "none" };
@@ -174,7 +175,7 @@ export function FusionGallery() {
           <Button size="sm" variant="tertiary" color="black" onClick={reviewStore.retry}>{zh ? "重试保存" : "Retry saving"}</Button>
         </div>}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="min-w-52 flex-1"><TextField color={color} aria-label={zh ? "搜索交互" : "Search interactions"} placeholder={zh ? "搜索名称、编号或组件…" : "Search by name, ID or component…"} value={query} onChange={setQuery} iconLeft={<MagniferLinear size={18} />} /></div>
+          <div className="min-w-52 flex-1"><TextField color={color} aria-label={zh ? "搜索交互" : "Search interactions"} placeholder={zh ? "搜索名称、编号或组件…" : "Search by name, ID or component…"} value={query} onChange={setQuery} iconLeft={<MagnifierBoldIcon size={18} />} /></div>
           <SelectOption width="220px" color={color} placeholder={zh ? "组件分类" : "Component category"} value={family}
             options={[{ value: "all", label: zh ? "全部分类" : "All categories" }, ...(filter === "deferred" ? [] : catalog.families.map(group => ({ value: group.id, label: zh ? group.name : group.english })))]}
             onChange={value => setFamily(String(value))} />

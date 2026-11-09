@@ -1,10 +1,10 @@
-# 新建订单表单
+# 分步表单
 
-分类：表单。商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。
+分类：表单。流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步修改，提交后展示结果页。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、MediaUpload、SelectOption、TextArea、TextField、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -12,7 +12,7 @@
 import { OrderForm } from "@/components/blocks/order-form";
 
 export default function Example() {
-  return (<OrderForm onSubmit={value => console.log(value.customer)} onCancel={() => {}} />);
+  return (<OrderForm onSubmit={draft => console.log(draft.customer)} />);
 }
 ```
 
@@ -20,7 +20,6 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| value | 否 | `OrderFormValue \| undefined` |
-| onSubmit | 否 | `((value: OrderFormValue, images: MediaItem[]) => void) \| undefined` |
-| onCancel | 否 | `(() => void) \| undefined` |
+| products | 否 | `OrderProduct[] \| undefined` |
+| onSubmit | 否 | `((draft: OrderDraft) => void) \| undefined` |
 | className | 否 | `string \| undefined` |
