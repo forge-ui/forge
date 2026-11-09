@@ -1,0 +1,58 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layout-sidebar-profile",
+  "type": "registry:block",
+  "title": "侧栏头像布局",
+  "description": "头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操作。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "页面结构",
+    "screens": [
+      {
+        "href": "/templates/project-template",
+        "title": "项目管理"
+      },
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
+    "example": "import { LayoutSidebarProfile } from \"@/components/blocks/layout-sidebar-profile\";\n\nexport default function Example() {\n  return (<LayoutSidebarProfile><p>页面内容</p></LayoutSidebarProfile>);\n}\n",
+    "props": [
+      {
+        "component": "LayoutSidebarProfile",
+        "properties": [
+          {
+            "name": "menuSections",
+            "required": false,
+            "type": "AppLayoutMenuSection[] | undefined"
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "AppLayout",
+        "ProgressBar",
+        "StatusBadge",
+        "SurfaceCard"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/layout-sidebar-profile/layout-sidebar-profile.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/layout-sidebar-profile.tsx",
+      "content": "\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { AppLayout, ProgressBar, StatusBadge, SurfaceCard, type AppLayoutMenuSection } from \"@forge-ui-official/core\";\nimport { BookBoldDuotone, ChatDotsLinear, ClipboardListBoldDuotone, FolderWithFilesBoldDuotone, SettingsBoldDuotone, UserBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone } from \"@forge-ui-official/core/icons\";\n\nexport const defaultSidebarMenu: AppLayoutMenuSection[] = [\n  { label: \"工作区\", items: [\n    { label: \"项目\", icon: <FolderWithFilesBoldDuotone size={20} />, href: \"#projects\" },\n    { label: \"我的任务\", icon: <ClipboardListBoldDuotone size={20} />, href: \"#tasks\" },\n    { label: \"对话\", icon: <ChatDotsLinear size={20} />, href: \"#chats\" },\n  ] },\n  { label: \"智能体\", items: [\n    { label: \"应用智能体\", icon: <UsersGroupRoundedBoldDuotone size={20} />, href: \"#apps\" },\n    { label: \"自主智能体\", icon: <UserBoldDuotone size={20} />, href: \"#autonomous\" },\n  ] },\n  { label: \"平台\", items: [\n    { label: \"工作台\", icon: <WidgetBoldDuotone size={20} />, href: \"#overview\" },\n    { label: \"知识库\", icon: <BookBoldDuotone size={20} />, href: \"#knowledge\" },\n    { label: \"系统管理\", icon: <SettingsBoldDuotone size={20} />, href: \"#settings\" },\n  ] },\n];\n\nconst projects = [\n  { name: \"官网改版上线\", owner: \"编程助手\", done: 8, total: 12, status: \"进行中\" },\n  { name: \"第三季度经营复盘\", owner: \"季度经营分析\", done: 2, total: 6, status: \"进行中\" },\n  { name: \"售后知识库整理\", owner: \"办公助理\", done: 0, total: 8, status: \"计划中\" },\n];\n\nfunction SamplePage() {\n  return <div className=\"grid grid-cols-1 gap-4 lg:grid-cols-3\">\n    {projects.map(project => <SurfaceCard key={project.name} padding=\"md\" contentClassName=\"flex flex-col gap-4\">\n      <div className=\"flex items-center justify-between gap-2\"><h3 className=\"truncate text-base font-semibold text-fg-black\">{project.name}</h3><StatusBadge label={project.status} color={project.status === \"进行中\" ? \"blue\" : \"grey\"} /></div>\n      <ProgressBar value={project.done / project.total * 100} color=\"blue\" size=\"sm\" />\n      <div className=\"flex justify-between text-xs text-fg-grey-600\"><span>负责：{project.owner}</span><span>{project.done}/{project.total} 任务</span></div>\n    </SurfaceCard>)}\n  </div>;\n}\n\nexport interface LayoutSidebarProfileProps {\n  menuSections?: AppLayoutMenuSection[];\n  children?: ReactNode;\n}\n\n/** 头像与语言、通知收进侧栏底部；顶部只留页头：标题、操作与日期 */\nexport function LayoutSidebarProfile({ menuSections = defaultSidebarMenu, children = <SamplePage /> }: LayoutSidebarProfileProps) {\n  return <AppLayout\n    accent=\"blue\"\n    logoText=\"智能体工场\"\n    appName=\"知行科技\"\n    appSubtitle=\"产品与交付团队\"\n    menuSections={menuSections}\n    profilePosition=\"sidebar\"\n    profile={{ name: \"张宁\", role: \"管理员\", avatar: \"/images/team/edward-allen.png\" }}\n    notifications={6}\n    pageTitle=\"项目\"\n    breadcrumbs={[{ label: \"工作台\", href: \"#overview\" }, { label: \"工作区\", href: \"#projects\" }, { label: \"项目\" }]}\n    primaryAction={{ label: \"新建项目\" }}\n    secondaryAction={{ label: \"导入\" }}\n  >\n    {children}\n  </AppLayout>;\n}\n"
+    }
+  ]
+}

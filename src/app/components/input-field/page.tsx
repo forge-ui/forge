@@ -25,11 +25,12 @@ import {
   BellBoldDuotone,
   StarBoldDuotone,
   HeartBoldDuotone,
-  MagniferLinear,
+  
 } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
+import { MagnifierBoldIcon } from "@solar-icons/react";
 
 const sampleOptions = [
   { label: "选项一", value: "o1" },
@@ -66,8 +67,8 @@ const CODE_TF_STATES = `<TextField placeholder="默认" />
 <TextField state="disabled" placeholder="禁用" />
 <TextField state="error" placeholder="输入内容" errorMessage="请输入有效内容" />`;
 
-const CODE_TF_FIELDS = `<TextField iconLeft={<MagniferLinear size={20} />} placeholder="搜索…" />
-<TextField iconRight={<MagniferLinear size={20} />} placeholder="输入内容" />
+const CODE_TF_FIELDS = `<TextField iconLeft={<MagnifierBoldIcon size={20} />} placeholder="搜索…" />
+<TextField iconRight={<MagnifierBoldIcon size={20} />} placeholder="输入内容" />
 <TextField suffix="cm" placeholder="输入长度" />
 <TextField shape="rounded" placeholder="圆角矩形" />
 <TextField shape="pill" placeholder="胶囊" />`;
@@ -248,8 +249,8 @@ export default function InputFieldCasePage() {
             <TextField color="purple" state="focus" placeholder="紫色聚焦" className="w-56" />
             <TextField color="blue" state="focus" placeholder="蓝色聚焦" className="w-56" />
             <TextField color="black" state="focus" placeholder="黑色聚焦" className="w-56" />
-            <TextField iconLeft={<MagniferLinear size={20} />} placeholder="搜索…" className="w-56" />
-            <TextField iconRight={<MagniferLinear size={20} />} placeholder="输入内容" className="w-56" />
+            <TextField iconLeft={<MagnifierBoldIcon size={20} />} placeholder="搜索…" className="w-56" />
+            <TextField iconRight={<MagnifierBoldIcon size={20} />} placeholder="输入内容" className="w-56" />
             <TextField suffix="cm" placeholder="输入长度" className="w-56" />
             <TextField shape="rounded" placeholder="圆角矩形" className="w-56" />
             <TextField shape="pill" placeholder="胶囊" className="w-56" />

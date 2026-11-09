@@ -125,12 +125,12 @@ test("compact donut values match their content", () => {
 test("thumbnail lazily mounts a 1024 by 640 iframe and retains it after leaving", async () => {
   await withDom(async ({ dom, render, observers }) => {
     Object.defineProperty(dom.window.HTMLElement.prototype, "clientWidth", { configurable: true, get: () => 320 });
-    await render(gallery.PreviewThumbnail, { name: "member-list" });
+    await render(gallery.PreviewThumbnail, { name: "kanban-board" });
     assert.equal(document.querySelector("iframe"), null);
     const intersection = observers.find(observer => observer.constructor.name === "IntersectionObserver");
     await React.act(async () => intersection.callback([{ isIntersecting: true }]));
     const iframe = document.querySelector("iframe");
-    assert.equal(iframe.getAttribute("src"), "/blocks/member-list/preview");
+    assert.equal(iframe.getAttribute("src"), "/blocks/kanban-board/preview");
     assert.equal(iframe.style.width, "1024px");
     assert.equal(iframe.style.height, "640px");
     assert.equal(iframe.style.transform, "scale(0.3125)");
@@ -164,10 +164,10 @@ test("finance accounts align content at the top and all three goals share the wi
 
 test("project and collaboration previews use existing portraits and concise member context", () => {
   for (const member of gallery.defaultProjectMembers) assert.ok(existsSync(resolve(root, "public", member.avatar.slice(1))), member.name);
-  for (const name of ["project-overview", "member-list", "activity-feed", "conversation-header", "project-section"]) {
+  for (const name of ["project-overview"]) {
     const dom = new JSDOM(renderToStaticMarkup(React.createElement(gallery.BlockPreview, { name })));
     const portraits = [...dom.window.document.querySelectorAll('img[src^="/images/"]')];
-    assert.ok(portraits.length >= (name === "project-overview" ? 10 : name === "member-list" ? 6 : name === "conversation-header" ? 1 : 4), name);
+    assert.ok(portraits.length >= (name === "project-overview" ? 10 : 1), name);
     if (name === "project-overview") {
       assert.match(dom.window.document.body.textContent, /6 人 · 负责人 张宁/);
       assert.ok(!dom.window.document.body.textContent.includes(gallery.defaultProjectMembers.map(member => member.name).join("、")));
@@ -458,11 +458,13 @@ test("shell config and static preview routes cover every entry without indexing 
   const search = JSON.parse(readFileSync(resolve(root, "src/app/_components/search-index.json"), "utf8"));
   for (const entry of catalog) {
     assert.ok(entry.shell);
-    if (entry.shell !== "none") assert.ok(gallery.shellMenus[entry.shell.menu].items.some(item => item.key === entry.shell.active));
+    if (typeof entry.shell === "object") assert.ok(gallery.shellMenus[entry.shell.menu].items.some(item => item.key === entry.shell.active));
     const element = await gallery.PreviewPage({ params: Promise.resolve({ name: entry.name }) });
     const html = renderToStaticMarkup(React.createElement(gallery.AppRouterContext.Provider, { value: { push() {}, replace() {}, prefetch() {}, refresh() {}, back() {}, forward() {} } }, React.createElement(gallery.PathnameContext.Provider, { value: "/blocks/" + entry.name + "/preview" }, element)));
     if (entry.shell === "none") {
       assert.doesNotMatch(html, /forge-app-sidebar/);
+    } else if (entry.shell === "frame") {
+      assert.match(html, /forge-app-sidebar/);
     } else {
       assert.match(html, /知行科技/);
       assert.match(html, /forge-app-sidebar/);
@@ -475,7 +477,7 @@ test("shell config and static preview routes cover every entry without indexing 
     assert.ok(!gallery.sitemap().some(item => item.url.endsWith("/preview")));
     assert.ok(!search.some(item => item.id.endsWith("/preview")));
     const item = JSON.parse(readFileSync(resolve(root, "public/r/" + entry.name + ".json"), "utf8"));
-    assert.doesNotMatch(item.files[0].content, /AppLayout|BlockShell/);
+    assert.doesNotMatch(item.files[0].content, entry.shell === "frame" ? /BlockShell/ : /AppLayout|BlockShell/);
   }
   await assert.rejects(() => gallery.PreviewPage({ params: Promise.resolve({ name: "unknown" }) }), /NEXT_HTTP_ERROR_FALLBACK;404/);
 });
@@ -487,14 +489,14 @@ test("public Chinese copy consistently names page components", () => {
 });
 
 test("shell none renders a centered page without sidebar navigation", () => {
-  const block = gallery.blocks.find(entry => entry.name === "member-list");
+  const block = gallery.blocks.find(entry => entry.name === "file-manager");
   const original = block.shell;
   try {
     block.shell = "none";
     const html = renderToStaticMarkup(React.createElement(gallery.BlockShell, { name: block.name }));
     assert.doesNotMatch(html, /forge-app-sidebar/);
     assert.match(html, /items-center justify-center/);
-    assert.match(html, /成员/);
+    assert.match(html, /文件/);
   } finally {
     block.shell = original;
   }

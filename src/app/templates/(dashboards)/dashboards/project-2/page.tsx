@@ -1,13 +1,13 @@
 "use client";
-import { ScheduleCard } from "@/blocks/schedule-card/schedule-card";
-import { MemberList } from "@/blocks/member-list/member-list";
+import { ScheduleCard } from "@/app/templates/_shared/schedule-card";
+import { MemberList } from "@/app/templates/_shared/member-list";
 
 import { AppLayout } from "@forge-ui-official/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { CompositionCard } from "@/blocks/composition-card/composition-card";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
-import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+import { DashboardHeader } from "@/app/templates/_shared/dashboard-header";
 
 import {
   WidgetBoldDuotone,

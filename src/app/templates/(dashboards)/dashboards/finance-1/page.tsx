@@ -4,7 +4,7 @@ import { AppLayout, WalletGoalCard, DivergingBarChart } from "@forge-ui-official
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
 import { CardCarousel } from "@/blocks/card-carousel/card-carousel";
-import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+import { DashboardHeader } from "@/app/templates/_shared/dashboard-header";
 
 import {
   WidgetBoldDuotone,

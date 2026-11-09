@@ -4,7 +4,7 @@ import { AppLayout, WalletGoalCard, DivergingBarChart, Panel } from "@forge-ui-o
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
-import { DashboardHeader } from "@/blocks/dashboard-header/dashboard-header";
+import { DashboardHeader } from "@/app/templates/_shared/dashboard-header";
 
 import { useState } from "react";
 import {

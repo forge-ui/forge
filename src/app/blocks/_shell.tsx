@@ -5,12 +5,9 @@ import { AppLayout, Breadcrumbs, type AppLayoutMenuItem } from "@forge-ui-offici
 import {
   BagBoldDuotone,
   BellBoldDuotone,
-  CardSendBoldDuotone,
-  KeyboardBoldDuotone,
   SettingsBoldDuotone,
   ShieldKeyholeBoldDuotone,
   ShieldUserBoldDuotone,
-  StarBoldDuotone,
   UserBoldDuotone,
   BillListBoldDuotone,
   BookBoldDuotone,
@@ -33,6 +30,16 @@ import {
   WalletMoneyBoldDuotone,
   WidgetBoldDuotone,
 } from "@forge-ui-official/core/icons";
+import {
+  BoltBoldDuotoneIcon,
+  ChatRoundDotsBoldDuotoneIcon,
+  ChecklistMinimalisticBoldDuotoneIcon,
+  CpuBoltBoldDuotoneIcon,
+  PaletteRoundBoldDuotoneIcon,
+  ProgrammingBoldDuotoneIcon,
+  Screencast2BoldDuotoneIcon,
+  Widget5BoldDuotoneIcon,
+} from "@solar-icons/react";
 import { blocks } from "./_catalog";
 import { BlockPreview } from "./_previews";
 
@@ -71,13 +78,18 @@ export const shellMenus: Record<string, { label: string; items: { key: string; l
     { key: "library", label: "知识库", icon: BookBoldDuotone },
   ] },
   agents: { label: "智能体工场", items: [
-    { key: "overview", label: "工作台", icon: WidgetBoldDuotone },
-    { key: "apps", label: "应用智能体", icon: StarBoldDuotone },
+    { key: "overview", label: "工作台", icon: Widget5BoldDuotoneIcon },
+    { key: "projects", label: "项目", icon: FolderWithFilesBoldDuotone },
+    { key: "work-items", label: "我的任务", icon: ChecklistMinimalisticBoldDuotoneIcon },
+    { key: "automations", label: "自动化", icon: BoltBoldDuotoneIcon },
+    { key: "chats", label: "对话", icon: ChatRoundDotsBoldDuotoneIcon },
+    { key: "apps", label: "应用智能体", icon: Screencast2BoldDuotoneIcon },
     { key: "autonomous", label: "自主智能体", icon: UserBoldDuotone },
-    { key: "chats", label: "对话", icon: LetterBoldDuotone },
-    { key: "runtimes", label: "运行时", icon: KeyboardBoldDuotone },
-    { key: "channels", label: "消息渠道", icon: CardSendBoldDuotone },
+    { key: "runtimes", label: "运行时", icon: ProgrammingBoldDuotoneIcon },
     { key: "knowledge", label: "知识库", icon: BookBoldDuotone },
+    { key: "tools", label: "工具", icon: PaletteRoundBoldDuotoneIcon },
+    { key: "models", label: "模型", icon: CpuBoltBoldDuotoneIcon },
+    { key: "channels", label: "消息渠道", icon: ChatRoundDotsBoldDuotoneIcon },
     { key: "usage", label: "用量", icon: PieChart3BoldDuotone },
   ] },
   settings: { label: "设置", items: [
@@ -126,6 +138,10 @@ export function BlockShell({ name }: { name: string }) {
   const block = blocks.find(entry => entry.name === name)!;
   const shell = block.shell;
 
+  if (shell === "frame") {
+    return <div ref={content} className="min-h-screen w-full min-w-0"><BlockPreview name={name} /></div>;
+  }
+
   if (shell === "none") {
     return <main className="flex min-h-screen items-center justify-center bg-fg-grey-50 p-4 sm:p-8"><div ref={content} className="w-full min-w-0"><BlockPreview name={name} /></div></main>;
   }
@@ -141,13 +157,14 @@ export function BlockShell({ name }: { name: string }) {
   return <div className="flow-root min-h-screen bg-fg-grey-50">
     <AppLayout defaultSidebarCollapsed logoText="知行科技" appName="知行科技" appSubtitle={menu.label} menuSectionLabel={menu.label} menuItems={items} pageTitle={shell.title} topbarLeftMode="search" searchPlaceholder="搜索工作台" profilePosition="topbar" profile={{ name: "张宁", role: "管理员", avatar: "/images/team/edward-allen.png" }} notifications={3} messages={2} showDatePicker={false} showKebab={false}>
       <div ref={content} className="flex w-full min-w-0 flex-col gap-6">
-        <header className="flex flex-col gap-1">
+        {shell.header === "block" ? null : <header className="flex flex-col gap-1">
           <h1 className="text-display-l font-semibold leading-9 tracking-fg text-fg-black">{shell.title}</h1>
           <Breadcrumbs items={trail} />
-        </header>
+        </header>}
         {shell.with
-          ? <div className="grid min-w-0 grid-cols-1 items-start gap-6 xl:grid-cols-2"><div className="min-w-0"><BlockPreview name={name} /></div><div className="min-w-0"><BlockPreview name={shell.with} /></div></div>
+          ? <div className="grid min-w-0 grid-cols-1 items-stretch gap-6 xl:grid-cols-2"><div className="flex min-w-0 flex-col [&>*]:flex-1"><BlockPreview name={name} /></div><div className="flex min-w-0 flex-col [&>*]:flex-1"><BlockPreview name={shell.with} /></div></div>
           : <BlockPreview name={name} />}
+        {shell.below ? <BlockPreview name={shell.below} /> : null}
       </div>
     </AppLayout>
   </div>;

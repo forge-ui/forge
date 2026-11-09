@@ -1,10 +1,10 @@
-# 智能体运行
+# 任务会话
 
-分类：AI 与智能体。一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。
+分类：AI 与智能体。短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要、知识库授权与结果产物。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：AgentTaskRows、ApprovalCard、Button、Panel、StatusBadge、StreamingAnswer、ThinkingTrace、ToolChips、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -12,7 +12,7 @@
 import { AgentRun } from "@/components/blocks/agent-run";
 
 export default function Example() {
-  return (<AgentRun onApprove={answer => console.log(answer)} />);
+  return (<AgentRun />);
 }
 ```
 
@@ -20,7 +20,5 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| run | 否 | `AgentRunData \| undefined` |
-| stepDuration | 否 | `number \| undefined` |
-| onApprove | 否 | `((answer: string[]) => void) \| undefined` |
+| session | 否 | `AgentRunSession \| undefined` |
 | className | 否 | `string \| undefined` |

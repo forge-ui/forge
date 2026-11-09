@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: a526246de8b4ba63de92323dcb33e8aa29d6967612d6810190fb980d4869e708
+Source fingerprint: 4d6da0cfacb43237fb630f2e0992f1ce247eaeb35b9dadab86d9767983e5c4e5
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
 ## Public exports (487, values and types distinguished)
 
@@ -502,24 +502,17 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks
 
 ## Block gallery and detail routes
 
-- /blocks — category-filtered gallery of 74 copyable Blocks
+- /blocks — category-filtered gallery of 70 copyable Blocks
 - /blocks/kpi-metrics — 图表与指标 / KPI 指标行; /r/kpi-metrics.json
 - /blocks/recent-records — 数据列表 / 最近记录表卡; /r/recent-records.json
 - /blocks/trend-chart — 图表与指标 / 趋势图表卡; /r/trend-chart.json
 - /blocks/ranking-list — 数据列表 / 排行列表卡; /r/ranking-list.json
 - /blocks/composition-card — 图表与指标 / 构成占比卡; /r/composition-card.json
-- /blocks/dashboard-header — 页面结构 / 看板页头; /r/dashboard-header.json
 - /blocks/region-distribution — 图表与指标 / 地区分布卡; /r/region-distribution.json
-- /blocks/member-list — 协作与项目 / 成员列表; /r/member-list.json
 - /blocks/goal-progress-list — 财务 / 目标进度列表; /r/goal-progress-list.json
-- /blocks/activity-feed — 协作与项目 / 活动流; /r/activity-feed.json
-- /blocks/schedule-card — 协作与项目 / 日程与甘特容器; /r/schedule-card.json
 - /blocks/card-carousel — 财务 / 卡片轮播; /r/card-carousel.json
 - /blocks/crm-summary — 图表与指标 / 客户经营摘要; /r/crm-summary.json
 - /blocks/finance-workspace — 财务 / 财务工作区; /r/finance-workspace.json
-- /blocks/template-surface — 页面结构 / 模板内容分区; /r/template-surface.json
-- /blocks/conversation-header — 页面结构 / 对话页标题栏; /r/conversation-header.json
-- /blocks/project-section — 协作与项目 / 项目详情分区; /r/project-section.json
 - /blocks/overview-dashboard — 看板首屏 / 经营概览; /r/overview-dashboard.json
 - /blocks/orders-table-section — 数据列表 / 订单列表; /r/orders-table-section.json
 - /blocks/project-overview — 看板首屏 / 项目概览; /r/project-overview.json
@@ -535,34 +528,30 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks
 - /blocks/leads-table — 数据列表 / 销售线索; /r/leads-table.json
 - /blocks/deals-table — 数据列表 / 商机列表; /r/deals-table.json
 - /blocks/lead-detail — 详情页 / 线索详情; /r/lead-detail.json
-- /blocks/crm-activity — 协作与项目 / 客户动态; /r/crm-activity.json
-- /blocks/product-form — 表单 / 商品编辑表单; /r/product-form.json
-- /blocks/order-form — 表单 / 新建订单表单; /r/order-form.json
-- /blocks/invoice-form — 表单 / 新建发票表单; /r/invoice-form.json
-- /blocks/kanban-board — 协作与项目 / 任务看板; /r/kanban-board.json
+- /blocks/product-form — 表单 / 分组表单; /r/product-form.json
+- /blocks/order-form — 表单 / 分步表单; /r/order-form.json
+- /blocks/invoice-form — 表单 / 单卡表单; /r/invoice-form.json
+- /blocks/kanban-board — 协作与项目 / 项目看板; /r/kanban-board.json
 - /blocks/task-detail — 详情页 / 任务详情; /r/task-detail.json
 - /blocks/member-profile — 详情页 / 成员详情; /r/member-profile.json
 - /blocks/calendar-month — 协作与项目 / 月历日程; /r/calendar-month.json
-- /blocks/chat-workspace — 协作与项目 / 即时会话; /r/chat-workspace.json
 - /blocks/file-manager — 协作与项目 / 文件管理; /r/file-manager.json
 - /blocks/transactions-table — 财务 / 交易流水; /r/transactions-table.json
 - /blocks/invoices-table — 数据列表 / 发票列表; /r/invoices-table.json
 - /blocks/cards-management — 财务 / 企业卡管理; /r/cards-management.json
 - /blocks/savings-goals-table — 财务 / 储蓄目标表; /r/savings-goals-table.json
 - /blocks/wealth-overview — 看板首屏 / 资产概览; /r/wealth-overview.json
-- /blocks/agent-directory — 协作与项目 / 智能体列表; /r/agent-directory.json
-- /blocks/knowledge-library — 协作与项目 / 知识库; /r/knowledge-library.json
 - /blocks/client-directory — 数据列表 / 客户名录; /r/client-directory.json
 - /blocks/register-form — 认证 / 注册; /r/register-form.json
 - /blocks/password-recovery — 认证 / 找回密码; /r/password-recovery.json
 - /blocks/ai-workspace-overview — AI 与智能体 / 智能体工作台; /r/ai-workspace-overview.json
 - /blocks/agent-catalog — AI 与智能体 / 应用智能体目录; /r/agent-catalog.json
-- /blocks/agent-run — AI 与智能体 / 智能体运行; /r/agent-run.json
+- /blocks/agent-run — AI 与智能体 / 任务会话; /r/agent-run.json
 - /blocks/task-run-detail — AI 与智能体 / 任务执行详情; /r/task-run-detail.json
 - /blocks/runtime-list — AI 与智能体 / 运行时管理; /r/runtime-list.json
 - /blocks/message-channels — AI 与智能体 / 消息渠道; /r/message-channels.json
 - /blocks/autonomous-agents — AI 与智能体 / 自主智能体; /r/autonomous-agents.json
-- /blocks/ai-assistant-home — AI 与智能体 / AI 助手首页; /r/ai-assistant-home.json
+- /blocks/ai-assistant-home — AI 与智能体 / 智能体对话; /r/ai-assistant-home.json
 - /blocks/agent-orchestration — AI 与智能体 / 多智能体编排; /r/agent-orchestration.json
 - /blocks/agent-usage — AI 与智能体 / 用量与成本; /r/agent-usage.json
 - /blocks/prompt-evals — AI 与智能体 / 提示词评测; /r/prompt-evals.json
@@ -577,6 +566,13 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks
 - /blocks/integrations-directory — 设置 / 集成目录; /r/integrations-directory.json
 - /blocks/onboarding-flow — 认证 / 引导流程; /r/onboarding-flow.json
 - /blocks/login-form — 认证 / 登录; /r/login-form.json
+- /blocks/layout-topbar-profile — 页面结构 / 顶栏头像布局; /r/layout-topbar-profile.json
+- /blocks/layout-sidebar-profile — 页面结构 / 侧栏头像布局; /r/layout-sidebar-profile.json
+- /blocks/layout-icon-rail — 页面结构 / 图标栏布局; /r/layout-icon-rail.json
+- /blocks/layout-settings — 页面结构 / 设置页布局; /r/layout-settings.json
+- /blocks/layout-immersive — 页面结构 / 沉浸式布局; /r/layout-immersive.json
+- /blocks/provider-settings-form — 表单 / 服务配置表单; /r/provider-settings-form.json
+- /blocks/dialog-form — 表单 / 弹窗表单; /r/dialog-form.json
 
 ## Template routes
 
@@ -726,7 +722,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的页面组件；[页面组件目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 74 个可复制源码（blocks/ 与 public/r/），覆盖看板首屏、AI 与智能体、数据列表、详情页、表单、协作、财务、设置与认证；不是 core 导出，按需复制进项目后自行维护。
+2. **Blocks**：复用模板中职责明确的页面组件；[页面组件目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 70 个可复制源码（blocks/ 与 public/r/），覆盖看板首屏、AI 与智能体、数据列表、详情页、表单、协作、财务、设置与认证；不是 core 导出，按需复制进项目后自行维护。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/components/button.md) 和 [组件选型](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。
@@ -2006,7 +2002,7 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 最小配方见各单项生成文档与 `/r/index.json` 的 meta.example；结构化入口优先，其他 Screen 已验收的 children/items 插槽保持原输出。[表格列宽与数字对齐](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-selection/data-table.md) 适用于 RecentRecords。
 
-74 个页面组件分为 11 类，已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。画廊 `/blocks` 可按分类筛选；每个 `/blocks/<name>` 提供同源 iframe 预览、1280px 桌面 / 390px 移动视口切换、完整代码、安装、用法、Props 与相关模板。预览路由 `/blocks/<name>/preview` 使用站点内的 AppLayout 外壳，按 registry.json 的 shell.menu / shell.active / shell.title 选择业务菜单、高亮项与顶栏标题；shell 为 none 时不显示后台外壳（认证类页面）；shell.with 指定窄卡页面并排展示的相关页面组件。菜单定义集中在站点 _shell.tsx，不进入安装源码。预览路由禁止索引，不进入 sitemap 与站内搜索；缩略图进入视口附近后才挂载。
+70 个页面组件分为 11 类，已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。画廊 `/blocks` 可按分类筛选；每个 `/blocks/<name>` 提供同源 iframe 预览、1280px 桌面 / 390px 移动视口切换、完整代码、安装、用法、Props 与相关模板。预览路由 `/blocks/<name>/preview` 使用站点内的 AppLayout 外壳，按 registry.json 的 shell.menu / shell.active / shell.title 选择业务菜单、高亮项与顶栏标题；shell 为 none 时不显示后台外壳（认证类页面）；shell 为 frame 时页面组件自带整页外壳（页面结构类布局），预览不再另套；shell.with 指定窄卡页面并排展示的相关页面组件，shell.below 指定在下方接着展示的相关页面组件。菜单定义集中在站点 _shell.tsx，不进入安装源码。预览路由禁止索引，不进入 sitemap 与站内搜索；缩略图进入视口附近后才挂载。
 
 | 分类 | 页面组件 | 导出名 | 源码目录 | 适用场景 |
 |---|---|---|---|---|
@@ -2014,18 +2010,18 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 | 看板首屏 | 项目概览 | ProjectOverview | blocks/project-overview/ | 汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。 |
 | 看板首屏 | 财务概览 | FinanceOverview | blocks/finance-overview/ | 结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。 |
 | 看板首屏 | 资产概览 | WealthOverview | blocks/wealth-overview/ | 总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。 |
-| AI 与智能体 | 智能体工作台 | AiWorkspaceOverview | blocks/ai-workspace-overview/ | 智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。 |
-| AI 与智能体 | 应用智能体目录 | AgentCatalog | blocks/agent-catalog/ | 左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。 |
-| AI 与智能体 | 智能体运行 | AgentRun | blocks/agent-run/ | 一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。 |
-| AI 与智能体 | 任务执行详情 | TaskRunDetail | blocks/task-run-detail/ | 任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。 |
-| AI 与智能体 | 运行时管理 | RuntimeList | blocks/runtime-list/ | 智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。 |
-| AI 与智能体 | 消息渠道 | MessageChannels | blocks/message-channels/ | 把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。 |
-| AI 与智能体 | 自主智能体 | AutonomousAgents | blocks/autonomous-agents/ | 系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。 |
-| AI 与智能体 | AI 助手首页 | AiAssistantHome | blocks/ai-assistant-home/ | 问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。 |
+| AI 与智能体 | 智能体工作台 | AiWorkspaceOverview | blocks/ai-workspace-overview/ | 工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图和 TOP5 排行榜。 |
+| AI 与智能体 | 应用智能体目录 | AgentCatalog | blocks/agent-catalog/ | 左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高级工作流智能体。 |
+| AI 与智能体 | 任务会话 | AgentRun | blocks/agent-run/ | 短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要、知识库授权与结果产物。 |
+| AI 与智能体 | 任务执行详情 | TaskRunDetail | blocks/task-run-detail/ | 自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载复制的结果产物。 |
+| AI 与智能体 | 运行时管理 | RuntimeList | blocks/runtime-list/ | 自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探测本机运行时。 |
+| AI 与智能体 | 消息渠道 | MessageChannels | blocks/message-channels/ | 把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以及填写凭据和绑定智能体的连接弹窗。 |
+| AI 与智能体 | 自主智能体 | AutonomousAgents | blocks/autonomous-agents/ | 系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模式与人工确认，最近任务跟踪状态。 |
+| AI 与智能体 | 智能体对话 | AiAssistantHome | blocks/ai-assistant-home/ | 按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，带快捷操作和访问权限的输入框，回复逐字生成。 |
 | AI 与智能体 | 多智能体编排 | AgentOrchestration | blocks/agent-orchestration/ | 编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。 |
 | AI 与智能体 | 用量与成本 | AgentUsage | blocks/agent-usage/ | 本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。 |
 | AI 与智能体 | 提示词评测 | PromptEvals | blocks/prompt-evals/ | 按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。 |
-| AI 与智能体 | 工作流编辑器 | WorkflowBuilder | blocks/workflow-builder/ | 左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。 |
+| AI 与智能体 | 工作流编辑器 | WorkflowBuilder | blocks/workflow-builder/ | 高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做、添加组件、一键美化、问题检查、调试运行与发布。 |
 | 数据列表 | 最近记录表卡 | RecentRecords | blocks/recent-records/ | 在一张卡片内查看最近订单、交易或业务记录。 |
 | 数据列表 | 排行列表卡 | RankingList | blocks/ranking-list/ | 展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。 |
 | 数据列表 | 订单列表 | OrdersTableSection | blocks/orders-table-section/ | 包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。 |
@@ -2044,27 +2040,23 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 | 详情页 | 线索详情 | LeadDetail | blocks/lead-detail/ | 线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。 |
 | 详情页 | 任务详情 | TaskDetail | blocks/task-detail/ | 任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。 |
 | 详情页 | 成员详情 | MemberProfile | blocks/member-profile/ | 成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。 |
-| 表单 | 商品编辑表单 | ProductForm | blocks/product-form/ | 基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。 |
-| 表单 | 新建订单表单 | OrderForm | blocks/order-form/ | 商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。 |
-| 表单 | 新建发票表单 | InvoiceForm | blocks/invoice-form/ | 选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。 |
-| 协作与项目 | 成员列表 | MemberList | blocks/member-list/ | 展示团队成员、职位与在线状态，适用于项目和工作区。 |
-| 协作与项目 | 活动流 | ActivityFeed | blocks/activity-feed/ | 汇总团队近期的任务、文件和项目动态，方便追踪协作进展。 |
-| 协作与项目 | 日程与甘特容器 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | 按日历或时间线安排会议与项目任务，掌握团队近期日程。 |
-| 协作与项目 | 项目详情分区 | ProjectSection | blocks/project-section/ | 围绕项目或任务组织详情内容与操作，保持阅读层次清晰。 |
-| 协作与项目 | 客户动态 | CrmActivity | blocks/crm-activity/ | 按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。 |
-| 协作与项目 | 任务看板 | KanbanBoard | blocks/kanban-board/ | 按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。 |
+| 表单 | 分组表单 | ProductForm | blocks/product-form/ | 字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在输入框尾部，底部固定操作栏带校验结果与保存状态。 |
+| 表单 | 分步表单 | OrderForm | blocks/order-form/ | 流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步修改，提交后展示结果页。 |
+| 表单 | 单卡表单 | InvoiceForm | blocks/invoice-form/ | 一张卡片从上到下填完：客户与日期两列排开，收费明细在表格里直接编辑，合计紧跟在明细下方，付款说明和操作按钮收在卡片底部。 |
+| 表单 | 服务配置表单 | ProviderSettingsForm | blocks/provider-settings-form/ | 设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址，卡片底部单独测试连接与保存。 |
+| 表单 | 弹窗表单 | DialogForm | blocks/dialog-form/ | 列表页里的新建与编辑：树形部门列表，点新增、修改或新增下级弹出两列表单，带必填校验，确定后回写列表。 |
+| 协作与项目 | 项目看板 | KanbanBoard | blocks/kanban-board/ | 项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与资源，点任务卡片打开带动态、评论和属性的任务详情。 |
 | 协作与项目 | 月历日程 | CalendarMonth | blocks/calendar-month/ | 月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。 |
-| 协作与项目 | 即时会话 | ChatWorkspace | blocks/chat-workspace/ | 联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。 |
 | 协作与项目 | 文件管理 | FileManager | blocks/file-manager/ | 按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。 |
-| 协作与项目 | 智能体列表 | AgentDirectory | blocks/agent-directory/ | 按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。 |
-| 协作与项目 | 知识库 | KnowledgeLibrary | blocks/knowledge-library/ | 按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。 |
-| 协作与项目 | 项目总览 | ProjectPortfolio | blocks/project-portfolio/ | 整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。 |
+| 协作与项目 | 项目总览 | ProjectPortfolio | blocks/project-portfolio/ | 整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表格之间切换。 |
 | 财务 | 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | 跟踪储蓄与预算目标，查看已积累金额和完成进度。 |
 | 财务 | 卡片轮播 | CardCarousel | blocks/card-carousel/ | 以可切换的卡片展示多个账户，适用于钱包和财务首页。 |
 | 财务 | 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 整合账户余额、预算与费用明细，集中查看财务状况。 |
 | 财务 | 交易流水 | TransactionsTable | blocks/transactions-table/ | 支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。 |
 | 财务 | 企业卡管理 | CardsManagement | blocks/cards-management/ | 企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。 |
 | 财务 | 储蓄目标表 | SavingsGoalsTable | blocks/savings-goals-table/ | 资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。 |
+| 财务 | 目标进度列表 | GoalProgressList | blocks/goal-progress-list/ | 跟踪储蓄与预算目标，查看已积累金额和完成进度。 |
+| 财务 | 财务工作区 | FinanceSurface | blocks/finance-workspace/ | 整合账户余额、预算与费用明细，集中查看财务状况。 |
 | 设置 | 个人资料设置 | SettingsProfile | blocks/settings-profile/ | 头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。 |
 | 设置 | 成员与团队 | SettingsMembers | blocks/settings-members/ | 席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。 |
 | 设置 | 角色与权限 | SettingsRoles | blocks/settings-roles/ | 左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。 |
@@ -2077,13 +2069,17 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 | 图表与指标 | 构成占比卡 | CompositionCard | blocks/composition-card/ | 用圆环图展示收入、渠道或费用的构成与占比。 |
 | 图表与指标 | 地区分布卡 | RegionDistribution | blocks/region-distribution/ | 结合地图与地区明细，查看客户或收入的地域分布。 |
 | 图表与指标 | 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 概览客户规模与增长情况，为销售团队提供经营摘要。 |
-| 页面结构 | 看板页头 | DashboardHeader | blocks/dashboard-header/ | 为经营看板组织标题、统计周期与导出操作。 |
-| 页面结构 | 模板内容分区 | TemplateSurface | blocks/template-surface/ | 为列表或详情组织独立内容分区，适用于后台业务页面。 |
-| 页面结构 | 对话页标题栏 | ConversationHeader | blocks/conversation-header/ | 展示会话名称、参与者与常用操作，适用于团队对话页面。 |
+| 图表与指标 | KPI 指标行 | KpiMetrics | blocks/kpi-metrics/ | 集中展示收入、订单与客户等关键指标，适用于经营看板首屏。 |
+| 图表与指标 | 客户经营摘要 | CrmMetricCard | blocks/crm-summary/ | 概览客户规模与增长情况，为销售团队提供经营摘要。 |
 | 认证 | 注册 | RegisterForm | blocks/register-form/ | 左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。 |
 | 认证 | 找回密码 | PasswordRecovery | blocks/password-recovery/ | 邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。 |
 | 认证 | 引导流程 | OnboardingFlow | blocks/onboarding-flow/ | 首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。 |
 | 认证 | 登录 | LoginForm | blocks/login-form/ | 邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。 |
+| 页面结构 | 顶栏头像布局 | LayoutTopbarProfile | blocks/layout-topbar-profile/ | 侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操作。 |
+| 页面结构 | 侧栏头像布局 | LayoutSidebarProfile | blocks/layout-sidebar-profile/ | 头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操作。 |
+| 页面结构 | 图标栏布局 | LayoutIconRail | blocks/layout-icon-rail/ | 侧栏默认收起为图标条，把宽度留给表格与筛选；顶栏左侧用汉堡按钮展开菜单，头像在右侧。 |
+| 页面结构 | 设置页布局 | LayoutSettings | blocks/layout-settings/ | 设置类页面：左侧二级导航切换分类，右侧按主题分卡，说明在上、字段居中、每张卡底部单独保存。 |
+| 页面结构 | 沉浸式布局 | LayoutImmersive | blocks/layout-immersive/ | 去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。 |
 
 ## 使用边界
 
@@ -2145,56 +2141,15 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 ---
 
-Source: skills/forge-skill/references/blocks/activity-feed.md
-
-# 活动流
-
-分类：协作与项目。汇总团队近期的任务、文件和项目动态，方便追踪协作进展。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：ActivityCard、ListGroup。
-
-## 最小可用示例
-
-```tsx
-import { ActivityFeed } from "@/components/blocks/activity-feed";
-
-export default function Example() {
-  return (<ActivityFeed title="最近活动" events={[{ id: "review", headerText: "订单动态", datetime: "今天 09:30", title: "张三完成订单核对", description: "核对完成", metadata: [] }]} />);
-}
-```
-
-## ActivityFeed Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 是 | `string` |
-| className | 否 | `string \| undefined` |
-| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
-| subtitle | 否 | `string \| undefined` |
-| action | 否 | `import("react").ReactNode` |
-| badge | 否 | `import("react").ReactNode` |
-| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
-| activeTab | 否 | `string \| undefined` |
-| onTabChange | 否 | `((value: string) => void) \| undefined` |
-| closable | 否 | `boolean \| undefined` |
-| onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
-| items | 否 | `import("react").ReactNode` |
-| events | 否 | `(Omit<{ icon: import("react").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("react").ReactNode; }[]; onMenuClick?: () => void; }, "icon" \| "avatar"> & { id: string; icon?: ComponentProps<typeof ActivityCard>["icon"]; avatar?: string; })[] \| undefined` |
-
----
-
 Source: skills/forge-skill/references/blocks/agent-catalog.md
 
 # 应用智能体目录
 
-分类：AI 与智能体。左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。
+分类：AI 与智能体。左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高级工作流智能体。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、ButtonGroup、IconButton、Pagination、Panel、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -2202,7 +2157,7 @@ Source: skills/forge-skill/references/blocks/agent-catalog.md
 import { AgentCatalog } from "@/components/blocks/agent-catalog";
 
 export default function Example() {
-  return (<AgentCatalog onOpen={agent => console.log(agent.name)} />);
+  return (<AgentCatalog folders={[{ id: "default", name: "根目录" }, { id: "service", name: "客服中心" }]} />);
 }
 ```
 
@@ -2211,42 +2166,8 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | agents | 否 | `AppAgent[] \| undefined` |
-| pageSize | 否 | `number \| undefined` |
-| onCreate | 否 | `(() => void) \| undefined` |
-| onCreateFromTemplate | 否 | `(() => void) \| undefined` |
-| onOpen | 否 | `((agent: AppAgent) => void) \| undefined` |
-| className | 否 | `string \| undefined` |
-
----
-
-Source: skills/forge-skill/references/blocks/agent-directory.md
-
-# 智能体列表
-
-分类：协作与项目。按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：Avatar、Button、ButtonGroup、Panel、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
-
-## 最小可用示例
-
-```tsx
-import { AgentDirectory } from "@/components/blocks/agent-directory";
-
-export default function Example() {
-  return (<AgentDirectory onAssign={agent => console.log(agent.name)} />);
-}
-```
-
-## AgentDirectory Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| agents | 否 | `AgentProfile[] \| undefined` |
-| onCreate | 否 | `(() => void) \| undefined` |
-| onChat | 否 | `((agent: AgentProfile) => void) \| undefined` |
-| onAssign | 否 | `((agent: AgentProfile) => void) \| undefined` |
+| folders | 否 | `AgentFolder[] \| undefined` |
+| templates | 否 | `AgentTemplate[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -2282,13 +2203,13 @@ export default function Example() {
 
 Source: skills/forge-skill/references/blocks/agent-run.md
 
-# 智能体运行
+# 任务会话
 
-分类：AI 与智能体。一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。
+分类：AI 与智能体。短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要、知识库授权与结果产物。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：AgentTaskRows、ApprovalCard、Button、Panel、StatusBadge、StreamingAnswer、ThinkingTrace、ToolChips、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -2296,7 +2217,7 @@ Source: skills/forge-skill/references/blocks/agent-run.md
 import { AgentRun } from "@/components/blocks/agent-run";
 
 export default function Example() {
-  return (<AgentRun onApprove={answer => console.log(answer)} />);
+  return (<AgentRun />);
 }
 ```
 
@@ -2304,9 +2225,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| run | 否 | `AgentRunData \| undefined` |
-| stepDuration | 否 | `number \| undefined` |
-| onApprove | 否 | `((answer: string[]) => void) \| undefined` |
+| session | 否 | `AgentRunSession \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -2342,13 +2261,13 @@ export default function Example() {
 
 Source: skills/forge-skill/references/blocks/ai-assistant-home.md
 
-# AI 助手首页
+# 智能体对话
 
-分类：AI 与智能体。问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。
+分类：AI 与智能体。按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，带快捷操作和访问权限的输入框，回复逐字生成。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、ChatBubble、ChatInputBar、StreamingAnswer、ThinkingTrace、cn。
+依赖：core ^0.6.0；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
 
 ## 最小可用示例
 
@@ -2356,7 +2275,7 @@ Source: skills/forge-skill/references/blocks/ai-assistant-home.md
 import { AiAssistantHome } from "@/components/blocks/ai-assistant-home";
 
 export default function Example() {
-  return (<AiAssistantHome userName="张宁" />);
+  return (<AiAssistantHome />);
 }
 ```
 
@@ -2364,10 +2283,8 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| userName | 否 | `string \| undefined` |
-| suggestions | 否 | `AssistantSuggestion[] \| undefined` |
-| apps | 否 | `string[] \| undefined` |
-| answer | 否 | `((prompt: string) => string) \| undefined` |
+| peers | 否 | `ChatPeer[] \| undefined` |
+| threads | 否 | `ChatThread[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -2376,11 +2293,11 @@ Source: skills/forge-skill/references/blocks/ai-workspace-overview.md
 
 # 智能体工作台
 
-分类：AI 与智能体。智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。
+分类：AI 与智能体。工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图和 TOP5 排行榜。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
 
 ## 最小可用示例
 
@@ -2396,8 +2313,11 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| resources | 否 | `WorkspaceResource[] \| undefined` |
-| periods | 否 | `WorkspacePeriod[] \| undefined` |
+| aggregation | 否 | `WorkspaceAggregation \| undefined` |
+| agents | 否 | `WorkspaceAgentOption[] \| undefined` |
+| tokenRank | 否 | `RankItem[] \| undefined` |
+| chatRank | 否 | `RankItem[] \| undefined` |
+| userRank | 否 | `RankItem[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -2406,11 +2326,11 @@ Source: skills/forge-skill/references/blocks/autonomous-agents.md
 
 # 自主智能体
 
-分类：AI 与智能体。系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。
+分类：AI 与智能体。系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模式与人工确认，最近任务跟踪状态。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、Modal、PlusIcon、SelectOption、StatusBadge、TextArea、ToolbarSearchInput、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -2418,7 +2338,7 @@ Source: skills/forge-skill/references/blocks/autonomous-agents.md
 import { AutonomousAgents } from "@/components/blocks/autonomous-agents";
 
 export default function Example() {
-  return (<AutonomousAgents onRun={(agent, prompt) => console.log(agent.name, prompt)} />);
+  return (<AutonomousAgents knowledge={[{ id: "kb-after-sales", name: "售后服务手册", documents: 48 }]} />);
 }
 ```
 
@@ -2428,8 +2348,7 @@ export default function Example() {
 |---|---|---|
 | agents | 否 | `AutonomousAgent[] \| undefined` |
 | tasks | 否 | `AutonomousTask[] \| undefined` |
-| onRun | 否 | `((agent: AutonomousAgent, prompt: string) => void) \| undefined` |
-| onCreate | 否 | `(() => void) \| undefined` |
+| knowledge | 否 | `KnowledgeBase[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -2558,37 +2477,6 @@ export default function Example() {
 | categories | 否 | `CategoryRecord[] \| undefined` |
 | onSave | 否 | `((category: CategoryDraft, id?: string) => void) \| undefined` |
 | onDelete | 否 | `((category: CategoryRecord) => void) \| undefined` |
-| className | 否 | `string \| undefined` |
-
----
-
-Source: skills/forge-skill/references/blocks/chat-workspace.md
-
-# 即时会话
-
-分类：协作与项目。联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：Avatar、Button、ChatBubble、ChatInputBar、ContactItem、IconButton、ToolbarSearchInput、cn。
-
-## 最小可用示例
-
-```tsx
-import { ChatWorkspace } from "@/components/blocks/chat-workspace";
-
-export default function Example() {
-  return (<ChatWorkspace onSend={(contactId, content) => console.log(contactId, content)} />);
-}
-```
-
-## ChatWorkspace Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| contacts | 否 | `ChatContact[] \| undefined` |
-| messages | 否 | `ChatMessage[] \| undefined` |
-| onSend | 否 | `((contactId: string, content: string) => void) \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -2937,66 +2825,6 @@ export default function Example() {
 
 ---
 
-Source: skills/forge-skill/references/blocks/conversation-header.md
-
-# 对话页标题栏
-
-分类：页面结构。展示会话名称、参与者与常用操作，适用于团队对话页面。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：无。
-
-## 最小可用示例
-
-```tsx
-import { ConversationHeader } from "@/components/blocks/conversation-header";
-
-export default function Example() {
-  return (<ConversationHeader title="订单协作" subtitle="运营工作区" />);
-}
-```
-
-## ConversationHeader Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 是 | `string` |
-| subtitle | 是 | `ReactNode` |
-| children | 否 | `ReactNode` |
-
----
-
-Source: skills/forge-skill/references/blocks/crm-activity.md
-
-# 客户动态
-
-分类：协作与项目。按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：Avatar、Button、Checkbox、Panel、TabBar、ToolbarSearchInput、cn。
-
-## 最小可用示例
-
-```tsx
-import { CrmActivity } from "@/components/blocks/crm-activity";
-
-export default function Example() {
-  return (<CrmActivity />);
-}
-```
-
-## CrmActivity Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| members | 否 | `CrmMember[] \| undefined` |
-| activities | 否 | `CrmActivityItem[] \| undefined` |
-| className | 否 | `string \| undefined` |
-
----
-
 Source: skills/forge-skill/references/blocks/crm-summary.md
 
 # 客户经营摘要
@@ -3123,316 +2951,6 @@ export default function Example() {
 
 ---
 
-Source: skills/forge-skill/references/blocks/dashboard-header.md
-
-# 看板页头
-
-分类：页面结构。为经营看板组织标题、统计周期与导出操作。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：Button。
-
-## 最小可用示例
-
-```tsx
-import { DashboardHeader } from "@/components/blocks/dashboard-header";
-
-export default function Example() {
-  return (<DashboardHeader title="订单运营" description="近 30 天" onExport={() => { const link = document.createElement("a"); link.href = "data:text/csv;charset=utf-8,metric,value%0Aorders,1240"; link.download = "orders.csv"; link.click(); }} dateSelection={<input type="date" aria-label="统计日期" />} />);
-}
-```
-
-## DashboardHeader Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 否 | `ReactNode` |
-| description | 否 | `ReactNode` |
-| action | 否 | `ReactNode` |
-| dateSelection | 否 | `ReactNode` |
-| primaryAction | 否 | `ReactNode` |
-| onExport | 否 | `(() => void) \| undefined` |
-| children | 否 | `ReactNode` |
-| defaultChecked | 否 | `boolean \| undefined` |
-| defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
-| suppressContentEditableWarning | 否 | `boolean \| undefined` |
-| suppressHydrationWarning | 否 | `boolean \| undefined` |
-| accessKey | 否 | `string \| undefined` |
-| autoCapitalize | 否 | `"none" \| "off" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {}) \| undefined` |
-| autoFocus | 否 | `boolean \| undefined` |
-| className | 否 | `string \| undefined` |
-| contentEditable | 否 | `(boolean \| "true" \| "false") \| "inherit" \| "plaintext-only" \| undefined` |
-| contextMenu | 否 | `string \| undefined` |
-| dir | 否 | `string \| undefined` |
-| draggable | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| enterKeyHint | 否 | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send" \| undefined` |
-| hidden | 否 | `boolean \| undefined` |
-| id | 否 | `string \| undefined` |
-| lang | 否 | `string \| undefined` |
-| nonce | 否 | `string \| undefined` |
-| slot | 否 | `string \| undefined` |
-| spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("react").CSSProperties \| undefined` |
-| tabIndex | 否 | `number \| undefined` |
-| translate | 否 | `"yes" \| "no" \| undefined` |
-| radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("react").AriaRole \| undefined` |
-| about | 否 | `string \| undefined` |
-| content | 否 | `string \| undefined` |
-| datatype | 否 | `string \| undefined` |
-| inlist | 否 | `any` |
-| prefix | 否 | `string \| undefined` |
-| property | 否 | `string \| undefined` |
-| rel | 否 | `string \| undefined` |
-| resource | 否 | `string \| undefined` |
-| rev | 否 | `string \| undefined` |
-| typeof | 否 | `string \| undefined` |
-| vocab | 否 | `string \| undefined` |
-| autoCorrect | 否 | `string \| undefined` |
-| autoSave | 否 | `string \| undefined` |
-| color | 否 | `string \| undefined` |
-| itemProp | 否 | `string \| undefined` |
-| itemScope | 否 | `boolean \| undefined` |
-| itemType | 否 | `string \| undefined` |
-| itemID | 否 | `string \| undefined` |
-| itemRef | 否 | `string \| undefined` |
-| results | 否 | `number \| undefined` |
-| security | 否 | `string \| undefined` |
-| unselectable | 否 | `"off" \| "on" \| undefined` |
-| popover | 否 | `"" \| "auto" \| "manual" \| "hint" \| undefined` |
-| popoverTargetAction | 否 | `"toggle" \| "show" \| "hide" \| undefined` |
-| popoverTarget | 否 | `string \| undefined` |
-| inert | 否 | `boolean \| undefined` |
-| inputMode | 否 | `"none" \| "search" \| "text" \| "tel" \| "url" \| "email" \| "numeric" \| "decimal" \| undefined` |
-| is | 否 | `string \| undefined` |
-| exportparts | 否 | `string \| undefined` |
-| part | 否 | `string \| undefined` |
-| aria-activedescendant | 否 | `string \| undefined` |
-| aria-atomic | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-autocomplete | 否 | `"none" \| "list" \| "inline" \| "both" \| undefined` |
-| aria-braillelabel | 否 | `string \| undefined` |
-| aria-brailleroledescription | 否 | `string \| undefined` |
-| aria-busy | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-checked | 否 | `boolean \| "true" \| "false" \| "mixed" \| undefined` |
-| aria-colcount | 否 | `number \| undefined` |
-| aria-colindex | 否 | `number \| undefined` |
-| aria-colindextext | 否 | `string \| undefined` |
-| aria-colspan | 否 | `number \| undefined` |
-| aria-controls | 否 | `string \| undefined` |
-| aria-current | 否 | `boolean \| "true" \| "false" \| "page" \| "step" \| "location" \| "date" \| "time" \| undefined` |
-| aria-describedby | 否 | `string \| undefined` |
-| aria-description | 否 | `string \| undefined` |
-| aria-details | 否 | `string \| undefined` |
-| aria-disabled | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-dropeffect | 否 | `"none" \| "link" \| "copy" \| "execute" \| "move" \| "popup" \| undefined` |
-| aria-errormessage | 否 | `string \| undefined` |
-| aria-expanded | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-flowto | 否 | `string \| undefined` |
-| aria-grabbed | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-haspopup | 否 | `boolean \| "true" \| "false" \| "dialog" \| "grid" \| "listbox" \| "menu" \| "tree" \| undefined` |
-| aria-hidden | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-invalid | 否 | `boolean \| "true" \| "false" \| "grammar" \| "spelling" \| undefined` |
-| aria-keyshortcuts | 否 | `string \| undefined` |
-| aria-label | 否 | `string \| undefined` |
-| aria-labelledby | 否 | `string \| undefined` |
-| aria-level | 否 | `number \| undefined` |
-| aria-live | 否 | `"off" \| "assertive" \| "polite" \| undefined` |
-| aria-modal | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-multiline | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-multiselectable | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-orientation | 否 | `"horizontal" \| "vertical" \| undefined` |
-| aria-owns | 否 | `string \| undefined` |
-| aria-placeholder | 否 | `string \| undefined` |
-| aria-posinset | 否 | `number \| undefined` |
-| aria-pressed | 否 | `boolean \| "true" \| "false" \| "mixed" \| undefined` |
-| aria-readonly | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-relevant | 否 | `"text" \| "additions" \| "additions removals" \| "additions text" \| "all" \| "removals" \| "removals additions" \| "removals text" \| "text additions" \| "text removals" \| undefined` |
-| aria-required | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-roledescription | 否 | `string \| undefined` |
-| aria-rowcount | 否 | `number \| undefined` |
-| aria-rowindex | 否 | `number \| undefined` |
-| aria-rowindextext | 否 | `string \| undefined` |
-| aria-rowspan | 否 | `number \| undefined` |
-| aria-selected | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-setsize | 否 | `number \| undefined` |
-| aria-sort | 否 | `"none" \| "ascending" \| "descending" \| "other" \| undefined` |
-| aria-valuemax | 否 | `number \| undefined` |
-| aria-valuemin | 否 | `number \| undefined` |
-| aria-valuenow | 否 | `number \| undefined` |
-| aria-valuetext | 否 | `string \| undefined` |
-| dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-
----
-
 Source: skills/forge-skill/references/blocks/deals-table.md
 
 # 商机列表
@@ -3462,6 +2980,35 @@ export default function Example() {
 | onOpen | 否 | `((deal: DealRecord) => void) \| undefined` |
 | onEdit | 否 | `((deal: DealRecord) => void) \| undefined` |
 | onExport | 否 | `((deals: DealRecord[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/dialog-form.md
+
+# 弹窗表单
+
+分类：表单。列表页里的新建与编辑：树形部门列表，点新增、修改或新增下级弹出两列表单，带必填校验，确定后回写列表。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
+
+## 最小可用示例
+
+```tsx
+import { DialogForm } from "@/components/blocks/dialog-form";
+
+export default function Example() {
+  return (<DialogForm />);
+}
+```
+
+## DialogForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| departments | 否 | `Department[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -4016,13 +3563,13 @@ export default function Example() {
 
 Source: skills/forge-skill/references/blocks/invoice-form.md
 
-# 新建发票表单
+# 单卡表单
 
-分类：表单。选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。
+分类：表单。一张卡片从上到下填完：客户与日期两列排开，收费明细在表格里直接编辑，合计紧跟在明细下方，付款说明和操作按钮收在卡片底部。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、IconButton、Panel、PlusIcon、SelectOption、TextField、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4080,13 +3627,13 @@ export default function Example() {
 
 Source: skills/forge-skill/references/blocks/kanban-board.md
 
-# 任务看板
+# 项目看板
 
-分类：协作与项目。按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。
+分类：协作与项目。项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与资源，点任务卡片打开带动态、评论和属性的任务详情。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Avatar、Button、PlusIcon、TextField、cn。
+依赖：core ^0.6.0；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
 
 ## 最小可用示例
 
@@ -4094,7 +3641,7 @@ Source: skills/forge-skill/references/blocks/kanban-board.md
 import { KanbanBoard } from "@/components/blocks/kanban-board";
 
 export default function Example() {
-  return (<KanbanBoard onMove={(taskId, columnId) => console.log(taskId, columnId)} />);
+  return (<KanbanBoard />);
 }
 ```
 
@@ -4102,40 +3649,9 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| columns | 否 | `KanbanColumn[] \| undefined` |
-| onMove | 否 | `((taskId: string, toColumnId: string) => void) \| undefined` |
-| onAdd | 否 | `((columnId: string, title: string) => void) \| undefined` |
-| className | 否 | `string \| undefined` |
-
----
-
-Source: skills/forge-skill/references/blocks/knowledge-library.md
-
-# 知识库
-
-分类：协作与项目。按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：Avatar、Button、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
-
-## 最小可用示例
-
-```tsx
-import { KnowledgeLibrary } from "@/components/blocks/knowledge-library";
-
-export default function Example() {
-  return (<KnowledgeLibrary onOpen={doc => console.log(doc.title)} />);
-}
-```
-
-## KnowledgeLibrary Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| documents | 否 | `LibraryDocument[] \| undefined` |
-| onCreate | 否 | `(() => void) \| undefined` |
-| onOpen | 否 | `((document: LibraryDocument) => void) \| undefined` |
+| project | 否 | `BoardProject \| undefined` |
+| lanes | 否 | `BoardLane[] \| undefined` |
+| items | 否 | `WorkItem[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -4178,6 +3694,151 @@ export default function Example() {
 | value | 是 | `string` |
 | color | 是 | `"purple" \| "red"` |
 | direction | 是 | `"up" \| "down"` |
+
+---
+
+Source: skills/forge-skill/references/blocks/layout-icon-rail.md
+
+# 图标栏布局
+
+分类：页面结构。侧栏默认收起为图标条，把宽度留给表格与筛选；顶栏左侧用汉堡按钮展开菜单，头像在右侧。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+
+## 最小可用示例
+
+```tsx
+import { LayoutIconRail } from "@/components/blocks/layout-icon-rail";
+
+export default function Example() {
+  return (<LayoutIconRail><p>页面内容</p></LayoutIconRail>);
+}
+```
+
+## LayoutIconRail Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| menuItems | 否 | `AppLayoutMenuItem[] \| undefined` |
+| children | 否 | `ReactNode` |
+
+---
+
+Source: skills/forge-skill/references/blocks/layout-immersive.md
+
+# 沉浸式布局
+
+分类：页面结构。去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AppLayout、ChatBubble、ChatInputBar。
+
+## 最小可用示例
+
+```tsx
+import { LayoutImmersive } from "@/components/blocks/layout-immersive";
+
+export default function Example() {
+  return (<LayoutImmersive><p>页面内容</p></LayoutImmersive>);
+}
+```
+
+## LayoutImmersive Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| menuItems | 否 | `AppLayoutMenuItem[] \| undefined` |
+| children | 否 | `ReactNode` |
+
+---
+
+Source: skills/forge-skill/references/blocks/layout-settings.md
+
+# 设置页布局
+
+分类：页面结构。设置类页面：左侧二级导航切换分类，右侧按主题分卡，说明在上、字段居中、每张卡底部单独保存。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
+
+## 最小可用示例
+
+```tsx
+import { LayoutSettings } from "@/components/blocks/layout-settings";
+
+export default function Example() {
+  return (<LayoutSettings><p>页面内容</p></LayoutSettings>);
+}
+```
+
+## LayoutSettings Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| menuItems | 否 | `AppLayoutMenuItem[] \| undefined` |
+| children | 否 | `ReactNode` |
+
+---
+
+Source: skills/forge-skill/references/blocks/layout-sidebar-profile.md
+
+# 侧栏头像布局
+
+分类：页面结构。头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操作。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
+
+## 最小可用示例
+
+```tsx
+import { LayoutSidebarProfile } from "@/components/blocks/layout-sidebar-profile";
+
+export default function Example() {
+  return (<LayoutSidebarProfile><p>页面内容</p></LayoutSidebarProfile>);
+}
+```
+
+## LayoutSidebarProfile Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| menuSections | 否 | `AppLayoutMenuSection[] \| undefined` |
+| children | 否 | `ReactNode` |
+
+---
+
+Source: skills/forge-skill/references/blocks/layout-topbar-profile.md
+
+# 顶栏头像布局
+
+分类：页面结构。侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操作。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
+
+## 最小可用示例
+
+```tsx
+import { LayoutTopbarProfile } from "@/components/blocks/layout-topbar-profile";
+
+export default function Example() {
+  return (<LayoutTopbarProfile><p>页面内容</p></LayoutTopbarProfile>);
+}
+```
+
+## LayoutTopbarProfile Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| menuSections | 否 | `AppLayoutMenuSection[] \| undefined` |
+| children | 否 | `ReactNode` |
 
 ---
 
@@ -4278,47 +3939,6 @@ export default function Example() {
 
 ---
 
-Source: skills/forge-skill/references/blocks/member-list.md
-
-# 成员列表
-
-分类：协作与项目。展示团队成员、职位与在线状态，适用于项目和工作区。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：ListGroup、UserCard。
-
-## 最小可用示例
-
-```tsx
-import { MemberList } from "@/components/blocks/member-list";
-
-export default function Example() {
-  return (<MemberList title="成员" members={[{ id: "zhang", name: "张三", initials: "张", subtitle: "负责人" }]} />);
-}
-```
-
-## MemberList Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 是 | `string` |
-| className | 否 | `string \| undefined` |
-| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
-| subtitle | 否 | `string \| undefined` |
-| action | 否 | `import("react").ReactNode` |
-| badge | 否 | `import("react").ReactNode` |
-| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
-| activeTab | 否 | `string \| undefined` |
-| onTabChange | 否 | `((value: string) => void) \| undefined` |
-| closable | 否 | `boolean \| undefined` |
-| onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
-| items | 否 | `import("react").ReactNode` |
-| members | 否 | `({ avatar?: string; initials?: string; initialsColor?: "purple" \| "blue" \| "green" \| "orange"; name: string; badge?: import("react").ReactNode; subtitle?: import("react").ReactNode; stats?: { label: string; value: string; }[]; checked?: boolean; onMenuClick?: () => void; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
-
----
-
 Source: skills/forge-skill/references/blocks/member-profile.md
 
 # 成员详情
@@ -4352,11 +3972,11 @@ Source: skills/forge-skill/references/blocks/message-channels.md
 
 # 消息渠道
 
-分类：AI 与智能体。把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。
+分类：AI 与智能体。把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以及填写凭据和绑定智能体的连接弹窗。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、Checkbox、IconButton、Modal、PlusIcon、SelectOption、StatusBadge、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4364,7 +3984,7 @@ Source: skills/forge-skill/references/blocks/message-channels.md
 import { MessageChannels } from "@/components/blocks/message-channels";
 
 export default function Example() {
-  return (<MessageChannels onSave={connection => console.log(connection.name)} />);
+  return (<MessageChannels />);
 }
 ```
 
@@ -4372,9 +3992,9 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| channels | 否 | `ChannelType[] \| undefined` |
 | connections | 否 | `ChannelConnection[] \| undefined` |
-| onSave | 否 | `((connection: ChannelConnection) => void) \| undefined` |
+| applications | 否 | `ChannelAgentOption[] \| undefined` |
+| autonomousAgents | 否 | `ChannelAgentOption[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -4442,13 +4062,13 @@ export default function Example() {
 
 Source: skills/forge-skill/references/blocks/order-form.md
 
-# 新建订单表单
+# 分步表单
 
-分类：表单。商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。
+分类：表单。流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步修改，提交后展示结果页。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、MediaUpload、SelectOption、TextArea、TextField、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4456,7 +4076,7 @@ Source: skills/forge-skill/references/blocks/order-form.md
 import { OrderForm } from "@/components/blocks/order-form";
 
 export default function Example() {
-  return (<OrderForm onSubmit={value => console.log(value.customer)} onCancel={() => {}} />);
+  return (<OrderForm onSubmit={draft => console.log(draft.customer)} />);
 }
 ```
 
@@ -4464,9 +4084,8 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| value | 否 | `OrderFormValue \| undefined` |
-| onSubmit | 否 | `((value: OrderFormValue, images: MediaItem[]) => void) \| undefined` |
-| onCancel | 否 | `(() => void) \| undefined` |
+| products | 否 | `OrderProduct[] \| undefined` |
+| onSubmit | 否 | `((draft: OrderDraft) => void) \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -4605,13 +4224,13 @@ export default function Example() {
 
 Source: skills/forge-skill/references/blocks/product-form.md
 
-# 商品编辑表单
+# 分组表单
 
-分类：表单。基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。
+分类：表单。字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在输入框尾部，底部固定操作栏带校验结果与保存状态。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、Checkbox、ConfirmationDialog、IconButton、MediaUpload、PlusIcon、SelectOption、StatusBadge、TextArea、TextField、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4619,7 +4238,7 @@ Source: skills/forge-skill/references/blocks/product-form.md
 import { ProductForm } from "@/components/blocks/product-form";
 
 export default function Example() {
-  return (<ProductForm onSubmit={value => console.log(value.name)} onCancel={() => {}} />);
+  return (<ProductForm onSubmit={(draft, mode) => console.log(mode, draft.name)} />);
 }
 ```
 
@@ -4627,10 +4246,8 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| value | 否 | `ProductFormValue \| undefined` |
-| media | 否 | `MediaItem[] \| undefined` |
-| onSubmit | 否 | `((value: ProductFormValue) => void) \| undefined` |
-| onCancel | 否 | `(() => void) \| undefined` |
+| initial | 否 | `ProductDraft \| undefined` |
+| onSubmit | 否 | `((draft: ProductDraft, mode: "draft" \| "publish") => void) \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -4709,11 +4326,11 @@ Source: skills/forge-skill/references/blocks/project-portfolio.md
 
 # 项目总览
 
-分类：协作与项目。整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。
+分类：协作与项目。整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表格之间切换。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、ButtonGroup、DataTable、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
+依赖：core ^0.6.0；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
 
 ## 最小可用示例
 
@@ -4721,7 +4338,7 @@ Source: skills/forge-skill/references/blocks/project-portfolio.md
 import { ProjectPortfolio } from "@/components/blocks/project-portfolio";
 
 export default function Example() {
-  return (<ProjectPortfolio onOpen={project => console.log(project.name)} />);
+  return (<ProjectPortfolio />);
 }
 ```
 
@@ -4730,39 +4347,7 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | projects | 否 | `PortfolioProject[] \| undefined` |
-| onCreate | 否 | `(() => void) \| undefined` |
-| onOpen | 否 | `((project: PortfolioProject) => void) \| undefined` |
-| className | 否 | `string \| undefined` |
-
----
-
-Source: skills/forge-skill/references/blocks/project-section.md
-
-# 项目详情分区
-
-分类：协作与项目。围绕项目或任务组织详情内容与操作，保持阅读层次清晰。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：Panel。
-
-## 最小可用示例
-
-```tsx
-import { ProjectSection } from "@/components/blocks/project-section";
-
-export default function Example() {
-  return (<ProjectSection title="项目进度">已完成 6 / 10 项</ProjectSection>);
-}
-```
-
-## ProjectSection Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 是 | `string` |
-| action | 否 | `ReactNode` |
-| children | 是 | `ReactNode` |
+| stats | 否 | `PortfolioTaskStats \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -4793,6 +4378,35 @@ export default function Example() {
 |---|---|---|
 | evals | 否 | `PromptEvalsData \| undefined` |
 | onRun | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/provider-settings-form.md
+
+# 服务配置表单
+
+分类：表单。设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址，卡片底部单独测试连接与保存。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
+
+## 最小可用示例
+
+```tsx
+import { ProviderSettingsForm } from "@/components/blocks/provider-settings-form";
+
+export default function Example() {
+  return (<ProviderSettingsForm />);
+}
+```
+
+## ProviderSettingsForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| groups | 否 | `ProviderGroup[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -5228,11 +4842,11 @@ Source: skills/forge-skill/references/blocks/runtime-list.md
 
 # 运行时管理
 
-分类：AI 与智能体。智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。
+分类：AI 与智能体。自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探测本机运行时。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、DataTable、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -5249,7 +4863,7 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | runtimes | 否 | `AgentRuntime[] \| undefined` |
-| check | 否 | `((runtime: AgentRuntime) => Promise<RuntimeState>) \| undefined` |
+| defaultRuntimeId | 否 | `string \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -5281,326 +4895,6 @@ export default function Example() {
 | goals | 否 | `SavingsGoal[] \| undefined` |
 | onCreate | 否 | `((goal: SavingsGoal) => void) \| undefined` |
 | className | 否 | `string \| undefined` |
-
----
-
-Source: skills/forge-skill/references/blocks/schedule-card.md
-
-# 日程与甘特容器
-
-分类：协作与项目。按日历或时间线安排会议与项目任务，掌握团队近期日程。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：EventCard、FullCalendar、Panel。
-
-## 最小可用示例
-
-```tsx
-import { ScheduleCard } from "@/components/blocks/schedule-card";
-
-export default function Example() {
-  return (<ScheduleCard title="日程" calendar={{ view: "month", year: 2026, month: 10, day: 6 }} />);
-}
-```
-
-## ScheduleCard Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 否 | `import("react").ReactNode` |
-| defaultChecked | 否 | `boolean \| undefined` |
-| defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
-| suppressContentEditableWarning | 否 | `boolean \| undefined` |
-| suppressHydrationWarning | 否 | `boolean \| undefined` |
-| accessKey | 否 | `string \| undefined` |
-| autoCapitalize | 否 | `"none" \| "off" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {}) \| undefined` |
-| autoFocus | 否 | `boolean \| undefined` |
-| className | 否 | `string \| undefined` |
-| contentEditable | 否 | `(boolean \| "true" \| "false") \| "inherit" \| "plaintext-only" \| undefined` |
-| contextMenu | 否 | `string \| undefined` |
-| dir | 否 | `string \| undefined` |
-| draggable | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| enterKeyHint | 否 | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send" \| undefined` |
-| hidden | 否 | `boolean \| undefined` |
-| id | 否 | `string \| undefined` |
-| lang | 否 | `string \| undefined` |
-| nonce | 否 | `string \| undefined` |
-| slot | 否 | `string \| undefined` |
-| spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("react").CSSProperties \| undefined` |
-| tabIndex | 否 | `number \| undefined` |
-| translate | 否 | `"yes" \| "no" \| undefined` |
-| radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("react").AriaRole \| undefined` |
-| about | 否 | `string \| undefined` |
-| content | 否 | `string \| undefined` |
-| datatype | 否 | `string \| undefined` |
-| inlist | 否 | `any` |
-| prefix | 否 | `string \| undefined` |
-| property | 否 | `string \| undefined` |
-| rel | 否 | `string \| undefined` |
-| resource | 否 | `string \| undefined` |
-| rev | 否 | `string \| undefined` |
-| typeof | 否 | `string \| undefined` |
-| vocab | 否 | `string \| undefined` |
-| autoCorrect | 否 | `string \| undefined` |
-| autoSave | 否 | `string \| undefined` |
-| color | 否 | `string \| undefined` |
-| itemProp | 否 | `string \| undefined` |
-| itemScope | 否 | `boolean \| undefined` |
-| itemType | 否 | `string \| undefined` |
-| itemID | 否 | `string \| undefined` |
-| itemRef | 否 | `string \| undefined` |
-| results | 否 | `number \| undefined` |
-| security | 否 | `string \| undefined` |
-| unselectable | 否 | `"off" \| "on" \| undefined` |
-| popover | 否 | `"" \| "auto" \| "manual" \| "hint" \| undefined` |
-| popoverTargetAction | 否 | `"toggle" \| "show" \| "hide" \| undefined` |
-| popoverTarget | 否 | `string \| undefined` |
-| inert | 否 | `boolean \| undefined` |
-| inputMode | 否 | `"none" \| "search" \| "text" \| "tel" \| "url" \| "email" \| "numeric" \| "decimal" \| undefined` |
-| is | 否 | `string \| undefined` |
-| exportparts | 否 | `string \| undefined` |
-| part | 否 | `string \| undefined` |
-| aria-activedescendant | 否 | `string \| undefined` |
-| aria-atomic | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-autocomplete | 否 | `"none" \| "list" \| "inline" \| "both" \| undefined` |
-| aria-braillelabel | 否 | `string \| undefined` |
-| aria-brailleroledescription | 否 | `string \| undefined` |
-| aria-busy | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-checked | 否 | `boolean \| "true" \| "false" \| "mixed" \| undefined` |
-| aria-colcount | 否 | `number \| undefined` |
-| aria-colindex | 否 | `number \| undefined` |
-| aria-colindextext | 否 | `string \| undefined` |
-| aria-colspan | 否 | `number \| undefined` |
-| aria-controls | 否 | `string \| undefined` |
-| aria-current | 否 | `boolean \| "true" \| "false" \| "page" \| "step" \| "location" \| "date" \| "time" \| undefined` |
-| aria-describedby | 否 | `string \| undefined` |
-| aria-description | 否 | `string \| undefined` |
-| aria-details | 否 | `string \| undefined` |
-| aria-disabled | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-dropeffect | 否 | `"none" \| "link" \| "copy" \| "execute" \| "move" \| "popup" \| undefined` |
-| aria-errormessage | 否 | `string \| undefined` |
-| aria-expanded | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-flowto | 否 | `string \| undefined` |
-| aria-grabbed | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-haspopup | 否 | `boolean \| "true" \| "false" \| "dialog" \| "grid" \| "listbox" \| "menu" \| "tree" \| undefined` |
-| aria-hidden | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-invalid | 否 | `boolean \| "true" \| "false" \| "grammar" \| "spelling" \| undefined` |
-| aria-keyshortcuts | 否 | `string \| undefined` |
-| aria-label | 否 | `string \| undefined` |
-| aria-labelledby | 否 | `string \| undefined` |
-| aria-level | 否 | `number \| undefined` |
-| aria-live | 否 | `"off" \| "assertive" \| "polite" \| undefined` |
-| aria-modal | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-multiline | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-multiselectable | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-orientation | 否 | `"horizontal" \| "vertical" \| undefined` |
-| aria-owns | 否 | `string \| undefined` |
-| aria-placeholder | 否 | `string \| undefined` |
-| aria-posinset | 否 | `number \| undefined` |
-| aria-pressed | 否 | `boolean \| "true" \| "false" \| "mixed" \| undefined` |
-| aria-readonly | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-relevant | 否 | `"text" \| "additions" \| "additions removals" \| "additions text" \| "all" \| "removals" \| "removals additions" \| "removals text" \| "text additions" \| "text removals" \| undefined` |
-| aria-required | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-roledescription | 否 | `string \| undefined` |
-| aria-rowcount | 否 | `number \| undefined` |
-| aria-rowindex | 否 | `number \| undefined` |
-| aria-rowindextext | 否 | `string \| undefined` |
-| aria-rowspan | 否 | `number \| undefined` |
-| aria-selected | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| aria-setsize | 否 | `number \| undefined` |
-| aria-sort | 否 | `"none" \| "ascending" \| "descending" \| "other" \| undefined` |
-| aria-valuemax | 否 | `number \| undefined` |
-| aria-valuemin | 否 | `number \| undefined` |
-| aria-valuenow | 否 | `number \| undefined` |
-| aria-valuetext | 否 | `string \| undefined` |
-| dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| subtitle | 否 | `import("react").ReactNode` |
-| action | 否 | `import("react").ReactNode` |
-| footer | 否 | `import("react").ReactNode` |
-| variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
-| as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
-| asChild | 否 | `boolean \| undefined` |
-| gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
-| children | 否 | `import("react").ReactNode` |
-| calendar | 否 | `{ view?: import("@forge-ui-official/core").CalendarView; color?: import("@forge-ui-official/core").AccentColor; year?: number; month?: number; day?: number; events?: import("@forge-ui-official/core").CalendarEvent[]; detailPanel?: import("react").ReactNode; onCloseDetail?: () => void; onViewChange?: (view: import("@forge-ui-official/core").CalendarView) => void; onEdit?: () => void; onMore?: () => void; className?: string; } \| undefined` |
-
-## GanttSchedule Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| hours | 是 | `[string, string, string, string, string, string]` |
-| entries | 是 | `{ id: string; columnClassName: string; event: ComponentProps<typeof EventCard>; }[]` |
 
 ---
 
@@ -5708,7 +5002,7 @@ Source: skills/forge-skill/references/blocks/settings-notifications.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、Panel、SelectOption、Toggle、cn。
+依赖：core ^0.6.0；组件：Button、SelectOption、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5738,7 +5032,7 @@ Source: skills/forge-skill/references/blocks/settings-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、Panel、SelectOption、TextArea、TextField、cn。
+依赖：core ^0.6.0；组件：Button、SelectOption、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -5800,7 +5094,7 @@ Source: skills/forge-skill/references/blocks/settings-security.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、Modal、Panel、StatusBadge、TextField、Toggle、cn。
+依赖：core ^0.6.0；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5856,11 +5150,11 @@ Source: skills/forge-skill/references/blocks/task-run-detail.md
 
 # 任务执行详情
 
-分类：AI 与智能体。任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。
+分类：AI 与智能体。自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载复制的结果产物。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、HistoryItem、Modal、Panel、StatusBadge、StreamingAnswer、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -5868,7 +5162,7 @@ Source: skills/forge-skill/references/blocks/task-run-detail.md
 import { TaskRunDetail } from "@/components/blocks/task-run-detail";
 
 export default function Example() {
-  return (<TaskRunDetail onDownload={artifact => console.log(artifact.name)} />);
+  return (<TaskRunDetail />);
 }
 ```
 
@@ -5877,39 +5171,6 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | task | 否 | `TaskRunDetailData \| undefined` |
-| onDownload | 否 | `((artifact: TaskArtifact) => void) \| undefined` |
-| className | 否 | `string \| undefined` |
-
----
-
-Source: skills/forge-skill/references/blocks/template-surface.md
-
-# 模板内容分区
-
-分类：页面结构。为列表或详情组织独立内容分区，适用于后台业务页面。
-
-由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
-
-依赖：core ^0.6.0；组件：SurfaceCard。
-
-## 最小可用示例
-
-```tsx
-import { TemplateSurface } from "@/components/blocks/template-surface";
-
-export default function Example() {
-  return (<TemplateSurface title="经营摘要">本月经营数据</TemplateSurface>);
-}
-```
-
-## TemplateSurface Props
-
-| Prop | 必填 | Type |
-|---|---|---|
-| title | 否 | `string \| undefined` |
-| subtitle | 否 | `string \| undefined` |
-| action | 否 | `ReactNode` |
-| children | 是 | `ReactNode` |
 | className | 否 | `string \| undefined` |
 
 ---
@@ -6298,11 +5559,11 @@ Source: skills/forge-skill/references/blocks/workflow-builder.md
 
 # 工作流编辑器
 
-分类：AI 与智能体。左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。
+分类：AI 与智能体。高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做、添加组件、一键美化、问题检查、调试运行与发布。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：AgentFlowchart、Button、Panel、SelectOption、StatusBadge、TextArea、TextField、cn。
+依赖：core ^0.6.0；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
 
 ## 最小可用示例
 
@@ -6310,7 +5571,7 @@ Source: skills/forge-skill/references/blocks/workflow-builder.md
 import { WorkflowBuilder } from "@/components/blocks/workflow-builder";
 
 export default function Example() {
-  return (<WorkflowBuilder onPublish={nodes => console.log(nodes.length)} />);
+  return (<WorkflowBuilder />);
 }
 ```
 
@@ -6318,9 +5579,8 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| nodes | 否 | `AgentFlowNode[] \| undefined` |
-| edges | 否 | `AgentFlowEdge[] \| undefined` |
-| onPublish | 否 | `((nodes: AgentFlowNode[]) => void) \| undefined` |
+| nodes | 否 | `WorkflowNode[] \| undefined` |
+| edges | 否 | `WorkflowEdge[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
 ---

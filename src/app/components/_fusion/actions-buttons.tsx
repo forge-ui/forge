@@ -5,6 +5,7 @@ import { Button, IconButton, ProgressBar, SurfaceCard, TextField, Tooltip } from
 import { ArrowRightLinear, BellLinear, BookmarkLinear, CheckCircleLinear, CopyLinear, DownloadLinear, HeartLinear, HeartBoldDuotone, LetterLinear, LockKeyholeLinear, MinusSquareLinear, PlainLinear, PlayBoldDuotone, PlusLinear, PauseLinear, RefreshLinear } from "@forge-ui-official/core/icons";
 import type { FusionExampleProps } from "./types";
 import { ActionHint, ActionStage, useActionTimers } from "./actions-shared";
+import { ArrowRightBoldIcon } from "@solar-icons/react";
 
 export function AsyncActionExample(settings: FusionExampleProps) {
   const { id, locale, color, motion } = settings;
@@ -161,7 +162,7 @@ export function SocialExample(settings: FusionExampleProps) {
       </div>
       <p className="fusion-social-message" role="status">{continued ? (en ? "Welcome back, Lin Xiao" : "欢迎回来，林晓") : connecting ? (en ? `Connecting to ${provider}…` : `正在连接 ${provider}…`) : connected ? (en ? `${provider} account connected` : `${provider} 账号已连接`) : state === "sent" ? (en ? `Sign-in link request demonstrated: ${email}` : `登录链接请求演示完成：${email}`) : ""}</p>
       <div className="fusion-social-email-entry" data-hidden={provider !== null} aria-hidden={provider !== null || undefined} inert={provider !== null || undefined}><div><div className="fusion-social-divider"><span>{en ? "or" : "或"}</span></div><Button color={color} variant="secondary" motion={motion} className="w-full" iconLeft={<LetterLinear size={18} />} onClick={() => { clear(); setProvider("email"); setState("idle"); }}>{en ? "Continue with email" : "使用邮箱继续"}</Button></div></div>
-      {provider === "email" && <form className="fusion-social-email-form" onSubmit={event => { event.preventDefault(); setState("sent"); }}><TextField type="email" label={en ? "Email address" : "邮箱地址"} value={email} onChange={value => { setEmail(value); setState("idle"); }} placeholder="name@example.com" color={color} autoFocus required /><Button color={color} motion={motion} type="submit" disabled={!email || state === "sent"} iconRight={<ArrowRightLinear size={18} />}>{state === "sent" ? (en ? "Link requested" : "已请求登录链接") : (en ? "Get sign-in link" : "获取登录链接")}</Button></form>}
+      {provider === "email" && <form className="fusion-social-email-form" onSubmit={event => { event.preventDefault(); setState("sent"); }}><TextField type="email" label={en ? "Email address" : "邮箱地址"} value={email} onChange={value => { setEmail(value); setState("idle"); }} placeholder="name@example.com" color={color} autoFocus required /><Button color={color} motion={motion} type="submit" disabled={!email || state === "sent"} iconRight={<ArrowRightBoldIcon size={18} />}>{state === "sent" ? (en ? "Link requested" : "已请求登录链接") : (en ? "Get sign-in link" : "获取登录链接")}</Button></form>}
       <div className="fusion-social-back" data-visible={provider !== null} aria-hidden={provider === null || undefined} inert={provider === null || undefined}><Button color={color} motion={motion} variant="tertiary" className="w-full" onClick={reset}>{en ? "Use another method" : "使用其他方式"}</Button></div>
       <p className="mt-4 text-xs leading-5 text-fg-grey-700">{en ? "Local interaction demo. No account is connected and no email is sent." : "本地交互演示，不连接真实账号，也不会发送邮件。"}</p>
     </div>

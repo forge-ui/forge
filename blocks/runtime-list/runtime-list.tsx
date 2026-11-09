@@ -1,76 +1,110 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Button, DataTable, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@forge-ui-official/core";
-import { RefreshLinear } from "@forge-ui-official/core/icons";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Breadcrumbs, Button, DataTable, PageTitleToolbar, StatusBadge, TextField, type ColumnDef } from "@forge-ui-official/core";
 
-export type RuntimeState = "online" | "offline" | "missing" | "checking";
+export type RuntimeStatus = "online" | "offline" | "unknown";
 
 export interface AgentRuntime {
   id: string;
   name: string;
-  description: string;
   kind: string;
-  state: RuntimeState;
-  endpoint: string;
-  checkedAt: string;
-  isDefault?: boolean;
+  description: string;
+  status: RuntimeStatus;
+  installed: boolean;
+  version?: string;
+  connection?: string;
+  lastHealthAt?: string;
+  lastError?: string;
 }
 
 export const defaultRuntimes: AgentRuntime[] = [
-  { id: "deep-agents", name: "Deep Agents", description: "LangChain 深度智能体运行时，支持计划、子任务与文件读写。", kind: "Deep Agents", state: "online", endpoint: "http://deep-runtime:8791", checkedAt: "11-09 14:21", isDefault: true },
-  { id: "codex", name: "Codex", description: "代码编写与评审，适合代码修复与测试补全。", kind: "Codex", state: "online", endpoint: "codex", checkedAt: "11-09 14:21" },
-  { id: "claude-code", name: "Claude Code", description: "仓库级编码与重构，在隔离工作区内执行。", kind: "Claude Code", state: "offline", endpoint: "claude", checkedAt: "11-09 14:20" },
-  { id: "opencode", name: "OpenCode", description: "开源编码运行时，支持多模型切换。", kind: "OpenCode", state: "missing", endpoint: "opencode", checkedAt: "11-09 14:20" },
-  { id: "workflow", name: "工作流引擎", description: "执行可视化编排的工作流与定时自动化。", kind: "Workflow", state: "online", endpoint: "http://workflow:8080", checkedAt: "11-09 14:19" },
-  { id: "sandbox", name: "代码沙箱", description: "隔离执行 Python 与 Shell 脚本，限制网络与文件访问。", kind: "Sandbox", state: "online", endpoint: "http://sandbox:9000", checkedAt: "11-09 14:19" },
+  { id: "codex", name: "Codex", kind: "Codex", description: "OpenAI Codex CLI (`codex exec`). Install codex and run discover to go online.", status: "online", installed: true, version: "codex-cli 0.146.0", connection: "codex", lastHealthAt: "2026/11/9 15:02:35" },
+  { id: "deep-agents", name: "Deep Agents", kind: "Deep Agents", description: "LangChain deep-runtime HTTP worker", status: "online", installed: true, connection: "http://127.0.0.1:8791", lastHealthAt: "2026/11/9 15:02:35" },
+  { id: "dsh", name: "DeepSeek Harness", kind: "DeepSeek Harness", description: "DeepSeek Harness headless CLI; uses the configured headless profile.", status: "online", installed: true, version: "0.2.0-rc.2", connection: "dsh", lastHealthAt: "2026/11/9 15:02:35" },
+  { id: "grok-bot", name: "Grok Bot", kind: "Grok Bot", description: "把任务 POST 到该智能体自己的 webhook，由 Grok Bot 执行后回调工场。不启动本地 grok CLI，也不选择执行电脑。", status: "online", installed: true, version: "webhook", lastHealthAt: "2026/11/9 15:02:35" },
+  { id: "grok-build", name: "Grok Build", kind: "Grok Build", description: "External Grok Build CLI (headless). Install grok and discover to go online.", status: "offline", installed: true, version: "grok 1.0.52 (0920c8169e27)", connection: "grok", lastHealthAt: "2026/11/9 15:01:12", lastError: "登录已过期，请在执行电脑上重新运行 grok login" },
+  { id: "opencode", name: "OpenCode", kind: "OpenCode", description: "OpenCode CLI (`opencode run`). Install: npm i -g opencode-ai, then discover.", status: "unknown", installed: false, connection: "opencode" },
 ];
 
-const stateMeta: Record<RuntimeState, { label: string; color: StatusBadgeColor }> = {
-  online: { label: "在线", color: "green" },
-  offline: { label: "离线", color: "red" },
-  missing: { label: "未安装", color: "grey" },
-  checking: { label: "检查中", color: "blue" },
-};
+const statusLabel: Record<RuntimeStatus, string> = { online: "在线", offline: "离线", unknown: "未知" };
+const statusColor: Record<RuntimeStatus, "green" | "red" | "grey"> = { online: "green", offline: "red", unknown: "grey" };
+
+/** 智能体工场的品牌色是蓝色：把 core 默认的紫色色阶整体映射到蓝色 */
+const brandBlue = Object.fromEntries(["", "-50", "-100", "-200", "-300", "-400", "-500", "-600", "-700", "-800", "-900"].flatMap(step => [[`--fg-violet${step}`, `var(--fg-blue${step})`], [`--color-fg-violet${step}`, `var(--fg-blue${step})`]])) as CSSProperties;
+
+function now() {
+  return new Date().toLocaleString("zh-CN", { hour12: false });
+}
 
 export interface RuntimeListProps {
   runtimes?: AgentRuntime[];
-  check?: (runtime: AgentRuntime) => Promise<RuntimeState>;
+  defaultRuntimeId?: string;
   className?: string;
 }
 
-export function RuntimeList({ runtimes = defaultRuntimes, check, className }: RuntimeListProps) {
-  const [rows, setRows] = useState(runtimes);
-  const [query, setQuery] = useState("");
-  const timers = useRef<number[]>([]);
-  useEffect(() => () => timers.current.forEach(timer => window.clearTimeout(timer)), []);
-  const visible = rows.filter(runtime => `${runtime.name} ${runtime.kind} ${runtime.endpoint}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
-  const online = rows.filter(runtime => runtime.state === "online").length;
+export function RuntimeList({ runtimes = defaultRuntimes, defaultRuntimeId = "deep-agents", className = "" }: RuntimeListProps) {
+  const [items, setItems] = useState(runtimes);
+  const [search, setSearch] = useState("");
+  const [checking, setChecking] = useState<string | "all" | null>(null);
+  const timer = useRef<number | null>(null);
+  useEffect(() => () => { if (timer.current) window.clearTimeout(timer.current); }, []);
 
-  function probe(targets: AgentRuntime[]) {
-    const ids = new Set(targets.map(runtime => runtime.id));
-    const previous = new Map(rows.map(runtime => [runtime.id, runtime.state]));
-    setRows(current => current.map(runtime => ids.has(runtime.id) ? { ...runtime, state: "checking" } : runtime));
-    targets.forEach((runtime, index) => {
-      const finish = (state: RuntimeState) => setRows(current => current.map(item => item.id === runtime.id ? { ...item, state, checkedAt: "刚刚" } : item));
-      if (check) { check(runtime).then(finish, () => finish("offline")); return; }
-      timers.current.push(window.setTimeout(() => finish(previous.get(runtime.id) === "checking" ? "online" : previous.get(runtime.id) ?? "online"), 700 + index * 250));
-    });
+  function check(id: string | "all") {
+    setChecking(id);
+    timer.current = window.setTimeout(() => {
+      setItems(current => current.map(runtime => id === "all" || runtime.id === id ? { ...runtime, lastHealthAt: runtime.installed ? now() : runtime.lastHealthAt } : runtime));
+      setChecking(null);
+    }, 900);
   }
 
+  const query = search.trim().toLowerCase();
+  const filtered = items.filter(runtime => `${runtime.name} ${runtime.kind} ${runtime.description} ${runtime.connection ?? ""}`.toLowerCase().includes(query));
+  const busy = checking !== null;
   const columns: ColumnDef<AgentRuntime>[] = [
-    { key: "name", header: "名称", minWidth: 260, render: runtime => <div className="min-w-0"><p className="flex items-center gap-2 text-sm font-semibold text-fg-black">{runtime.name}{runtime.isDefault && <span className="rounded-md bg-fg-grey-100 px-1.5 py-0.5 text-[11px] font-medium text-fg-grey-700">默认</span>}</p><p className="mt-1 line-clamp-2 text-xs leading-5 text-fg-grey-700">{runtime.description}</p></div> },
-    { key: "kind", header: "类型", minWidth: 110, render: runtime => <span className="text-sm text-fg-grey-900">{runtime.kind}</span> },
-    { key: "state", header: "状态", minWidth: 130, render: runtime => <div className="flex flex-col items-start gap-1"><StatusBadge {...stateMeta[runtime.state]} variant="soft" /><span className="text-xs text-fg-grey-500">检测 {runtime.checkedAt}</span></div> },
-    { key: "endpoint", header: "连接", minWidth: 170, render: runtime => <span className="break-all font-mono text-xs text-fg-grey-700">{runtime.endpoint}</span> },
-    { key: "action", header: "操作", minWidth: 80, render: runtime => <Button size="sm" variant="tertiary" disabled={runtime.state === "checking"} onClick={() => probe([runtime])}>检查</Button> },
+    {
+      key: "name", header: "名称", width: "w-[30%]",
+      render: runtime => <div className="min-w-0 whitespace-normal">
+        <div className="break-words font-medium text-fg-black">{runtime.name}{runtime.id === defaultRuntimeId ? <span className="ml-2 text-xs font-normal text-fg-grey-500">默认</span> : null}</div>
+        <p className="mt-1 break-words text-xs text-fg-grey-500">{runtime.description}</p>
+      </div>,
+    },
+    { key: "kind", header: "类型", width: "w-[14%]", render: runtime => <span className="text-sm text-fg-grey-700">{runtime.kind}</span> },
+    {
+      key: "status", header: "状态", width: "w-[30%]",
+      render: runtime => <div className="flex flex-col items-start gap-1 whitespace-normal">
+        <StatusBadge label={runtime.installed ? statusLabel[runtime.status] : "未安装"} color={runtime.installed ? statusColor[runtime.status] : "grey"} />
+        {runtime.version ? <span className="break-all text-xs text-fg-grey-500">{runtime.version}</span> : null}
+        <span className="whitespace-nowrap text-xs text-fg-grey-500">最后检测：{checking === runtime.id || (checking === "all" && runtime.installed) ? "检测中…" : runtime.lastHealthAt ?? "尚未检测"}</span>
+        {runtime.lastError && runtime.installed ? <p className="break-words text-xs text-fg-red-600">{runtime.lastError}</p> : null}
+      </div>,
+    },
+    { key: "connection", header: "连接", width: "w-[18%]", render: runtime => <span className="whitespace-normal break-all font-mono text-xs text-fg-grey-600">{runtime.connection ?? "—"}</span> },
+    { key: "actions", header: "操作", width: "w-[8%]", render: runtime => <Button color="blue" variant="tertiary" size="sm" disabled={busy} aria-label={`检查 ${runtime.name}`} onClick={() => check(runtime.id)}>检查</Button> },
   ];
 
-  return <section className={cn("flex min-w-0 flex-col gap-4", className)}>
-    <div className="flex min-w-0 flex-wrap items-center justify-between gap-3">
-      <ToolbarSearchInput className="w-full sm:w-72" value={query} onChange={setQuery} placeholder="搜索名称、类型或连接" />
-      <div className="flex flex-wrap items-center gap-3"><span className="text-sm text-fg-grey-700">{online} / {rows.length} 在线</span><Button iconLeft={<RefreshLinear size={16} />} disabled={rows.some(runtime => runtime.state === "checking")} onClick={() => probe(rows)}>探测全部运行时</Button></div>
-    </div>
-    <DataTable<AgentRuntime> columns={columns} rows={visible} getRowKey={runtime => runtime.id} emptyState={<p className="py-10 text-center text-sm text-fg-grey-700">没有找到匹配的运行时。</p>} />
-  </section>;
+  return <div style={brandBlue} className={`flex min-w-0 flex-col gap-6 ${className}`}>
+    <PageTitleToolbar
+      title="运行时"
+      subtitle="支持 Deep Agents、Grok Build、Codex、OpenCode、DeepSeek Harness（DSH）和 Grok Bot。探测后可在自主智能体里选择引擎。Grok Bot 只是引擎表里的一行，webhook 写在智能体上。"
+      breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "工作台", href: "#overview" }, { label: "智能体", href: "#apps" }, { label: "运行时" }]} />}
+      askAi={{ placeholder: "问问运行时…", suggestions: ["Grok Build 为什么离线？", "OpenCode 怎么安装？"], onSend: () => "Grok Build 最近一次检测返回登录过期，在执行电脑上运行 grok login 后点「检查」即可。OpenCode 用 npm i -g opencode-ai 安装，再点「探测本机运行时」。" }}
+      actions={<div className="flex flex-wrap items-center gap-2">
+        <Button color="blue" variant="secondary" disabled={busy}>刷新</Button>
+        <Button color="blue" disabled={busy} onClick={() => check("all")}>{checking === "all" ? "探测中…" : "探测本机运行时"}</Button>
+      </div>}
+      className="flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-end sm:gap-4 [&>div:first-child]:w-full [&>div:first-child]:min-w-0 [&>div:first-child]:sm:min-w-48 [&>div:last-child]:sm:flex-wrap"
+    />
+    <section className="flex min-w-0 flex-col gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="w-full sm:max-w-sm"><TextField color="blue" aria-label="搜索运行时" placeholder="搜索名称、类型或连接" value={search} onChange={setSearch} /></div>
+        <span className="text-sm text-fg-grey-500">共 {filtered.length} 个运行时</span>
+      </div>
+      <DataTable color="blue" columns={columns} rows={filtered} getRowKey={runtime => runtime.id} tableMinWidth={1000}
+        emptyState={<div className="flex flex-col items-center gap-3 py-4 text-sm text-fg-grey-600">
+          <p>没有匹配的运行时</p>
+          <Button color="blue" variant="tertiary" size="sm" onClick={() => setSearch("")}>清除搜索</Button>
+        </div>} />
+    </section>
+  </div>;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProjectSection } from "@/blocks/project-section/project-section";
+import { ProjectSection } from "@/app/templates/_shared/project-section";
 import { Panel as CorePanel } from "@forge-ui-official/core";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -8,7 +8,7 @@ import {
   AddCircleLinear,
   CalendarMinimalisticLinear,
   Pen2Linear,
-  MagniferLinear,
+  
   UserPlusLinear,
 } from "@forge-ui-official/core/icons";
 import {
@@ -32,6 +32,7 @@ import { activityItems, fileItems, members, projects, tasks, type ProjectStatus,
 import { projectPageStackClass, projectPanelClass } from "../../_density";
 import { TemplateDeleteDialog, TemplateFormModal } from "../../_modals";
 import { ProjectLogo } from "../../_logos";
+import { MagnifierBoldIcon } from "@solar-icons/react";
 
 const statusColors: Record<ProjectStatus, StatusBadgeColor> = {
   "In Progress": "yellow",
@@ -149,7 +150,7 @@ export default function ProjectDetailPage() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div className="max-w-[360px]">
-                <TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} />
+                <TextField placeholder="Search..." iconLeft={<MagnifierBoldIcon size={18} color={"var(--fg-grey-800)"} />} />
               </div>
               <div className="flex items-center gap-4">
                 <Button variant="tertiary" onClick={() => setModal("task")}><AddCircleLinear size={18} /></Button>
@@ -163,7 +164,7 @@ export default function ProjectDetailPage() {
         {tab === "attachment" && (
           <div className="flex flex-col gap-5">
             <div className="flex items-center justify-between">
-              <div className="max-w-[360px]"><TextField placeholder="Search..." iconLeft={<MagniferLinear size={18} color={"var(--fg-grey-800)"} />} /></div>
+              <div className="max-w-[360px]"><TextField placeholder="Search..." iconLeft={<MagnifierBoldIcon size={18} color={"var(--fg-grey-800)"} />} /></div>
               <div className="flex items-center gap-4">
                 <ToolbarFilterButton label="Filters" />
                 <ToolbarShowSelect value="12" />

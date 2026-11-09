@@ -27,7 +27,7 @@ import {
   StarBoldDuotone,
 } from "@forge-ui-official/core/icons";
 import { ANSWERS, EXAMPLES, WORKSPACE_KEY, parseSessions, parseWorkspaces, workspaceSessionKey, initialWorkspaceSessions, type Workspace, type Session, type Turn } from "./_data";
-import { ConversationHeader } from "@/blocks/conversation-header/conversation-header";
+import { ConversationHeader } from "@/app/templates/_shared/conversation-header";
 import { AgentTurn } from "./_agent-turn";
 import "../task-board/task-board.css";
 

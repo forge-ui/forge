@@ -3,8 +3,9 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion as m, useReducedMotion } from "motion/react";
 import { Button, CheckboxWithLabel, FilterPanel, ListGroup, ListItem, SurfaceCard, TextField } from "@forge-ui-official/core";
-import { CloseCircleLinear, DocumentTextLinear, MagniferLinear } from "@forge-ui-official/core/icons";
+import { CloseCircleLinear, DocumentTextLinear } from "@forge-ui-official/core/icons";
 import type { FusionExampleProps, FusionSettings } from "./types";
+import { MagnifierBoldIcon } from "@solar-icons/react";
 
 type Result = { id: string; zh: string; en: string; red?: boolean; size?: boolean; cheap?: boolean; pdf?: boolean; recent?: boolean; team?: boolean };
 const products: Result[] = [
@@ -41,7 +42,7 @@ export function SearchRecoveryExample({ id, locale, color, motion }: FusionExamp
   function remove(key: keyof Result) { setActive(current => current.filter(item => item !== key)); input.current?.focus(); }
   function reset() { setActive([]); setQuery(""); input.current?.focus(); }
   return <div className="flex w-full flex-col gap-4">
-    <TextField ref={input} label={zh ? (isProducts ? "搜索商品" : "搜索文档") : (isProducts ? "Search products" : "Search documents")} value={query} onChange={setQuery} color={color} iconLeft={<MagniferLinear size={18} />} />
+    <TextField ref={input} label={zh ? (isProducts ? "搜索商品" : "搜索文档") : (isProducts ? "Search products" : "Search documents")} value={query} onChange={setQuery} color={color} iconLeft={<MagnifierBoldIcon size={18} />} />
     <div className="flex flex-wrap gap-2">
       {filters.filter(filter => active.includes(filter.key)).map(filter => <Button motion={motion} key={filter.key} size="sm" color={color} variant="secondary" iconRight={<CloseCircleLinear size={14} />} aria-label={`${zh ? "移除" : "Remove"} ${filter.label}`} onClick={() => remove(filter.key)}>{filter.label}</Button>)}
       <Button motion={motion} size="sm" color="black" variant="tertiary" aria-expanded={open} onClick={() => { setDraft(active); setOpen(!open); }}>{zh ? "筛选条件" : "Filters"}</Button>

@@ -3,17 +3,12 @@
 import { Panel } from "@forge-ui-official/core";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { EyeBoldIcon, LockKeyholeBoldIcon, LetterBoldIcon, UserBoldIcon } from "@solar-icons/react";
 import {
   Button,
   Checkbox,
   TextField,
 } from "@forge-ui-official/core";
-import {
-  EyeLinear,
-  LockKeyholeLinear,
-  MailboxLinear,
-  UserLinear,
-} from "@forge-ui-official/core/icons";
 
 type AuthMode = "login" | "register" | "forgot" | "reset";
 
@@ -141,12 +136,12 @@ export function ProtaskAuthPage({
                   <TextField
                     label="Name"
                     placeholder="Your name..."
-                    iconLeft={<UserLinear size={18} />}
+                    iconLeft={<UserBoldIcon size={18} />}
                   />
                   <TextField
                     label="Username"
                     placeholder="Your username..."
-                    iconLeft={<UserLinear size={18} />}
+                    iconLeft={<UserBoldIcon size={18} />}
                   />
                 </div>
               )}
@@ -155,7 +150,7 @@ export function ProtaskAuthPage({
                 <TextField
                   label={mode === "login" ? "Username/email" : "Email"}
                   placeholder={mode === "login" ? "Your username/email..." : "Your email..."}
-                  iconLeft={<MailboxLinear size={18} />}
+                  iconLeft={<LetterBoldIcon size={18} />}
                 />
               )}
 
@@ -164,8 +159,8 @@ export function ProtaskAuthPage({
                   label="Password"
                   placeholder="Your password..."
                   type="password"
-                  iconLeft={<LockKeyholeLinear size={18} />}
-                  iconRight={<EyeLinear size={18} />}
+                  iconLeft={<LockKeyholeBoldIcon size={18} />}
+                  iconRight={<EyeBoldIcon size={18} />}
                   headerAction={
                     <Button variant="unstyled"
                       type="button"
@@ -184,8 +179,8 @@ export function ProtaskAuthPage({
                     label="Password"
                     placeholder="Your password..."
                     type="password"
-                    iconLeft={<LockKeyholeLinear size={18} />}
-                    iconRight={<EyeLinear size={18} />}
+                    iconLeft={<LockKeyholeBoldIcon size={18} />}
+                    iconRight={<EyeBoldIcon size={18} />}
                   />
                   <div className="flex items-start gap-2 overflow-hidden">
                     <Checkbox checked={false} color="purple" />
@@ -202,15 +197,15 @@ export function ProtaskAuthPage({
                     label="New Password"
                     placeholder="Your password..."
                     type="password"
-                    iconLeft={<LockKeyholeLinear size={18} />}
-                    iconRight={<EyeLinear size={18} />}
+                    iconLeft={<LockKeyholeBoldIcon size={18} />}
+                    iconRight={<EyeBoldIcon size={18} />}
                   />
                   <TextField
                     label="Confirm Password"
                     placeholder="Your password..."
                     type="password"
-                    iconLeft={<LockKeyholeLinear size={18} />}
-                    iconRight={<EyeLinear size={18} />}
+                    iconLeft={<LockKeyholeBoldIcon size={18} />}
+                    iconRight={<EyeBoldIcon size={18} />}
                   />
                 </>
               )}

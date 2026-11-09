@@ -1,10 +1,10 @@
-# AI 助手首页
+# 智能体对话
 
-分类：AI 与智能体。问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。
+分类：AI 与智能体。按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，带快捷操作和访问权限的输入框，回复逐字生成。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：Button、ChatBubble、ChatInputBar、StreamingAnswer、ThinkingTrace、cn。
+依赖：core ^0.6.0；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
 
 ## 最小可用示例
 
@@ -12,7 +12,7 @@
 import { AiAssistantHome } from "@/components/blocks/ai-assistant-home";
 
 export default function Example() {
-  return (<AiAssistantHome userName="张宁" />);
+  return (<AiAssistantHome />);
 }
 ```
 
@@ -20,8 +20,6 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| userName | 否 | `string \| undefined` |
-| suggestions | 否 | `AssistantSuggestion[] \| undefined` |
-| apps | 否 | `string[] \| undefined` |
-| answer | 否 | `((prompt: string) => string) \| undefined` |
+| peers | 否 | `ChatPeer[] \| undefined` |
+| threads | 否 | `ChatThread[] \| undefined` |
 | className | 否 | `string \| undefined` |

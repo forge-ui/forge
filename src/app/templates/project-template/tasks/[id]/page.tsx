@@ -1,7 +1,7 @@
 "use client";
 
 import { Panel } from "@forge-ui-official/core";
-import { ProjectSection } from "@/blocks/project-section/project-section";
+import { ProjectSection } from "@/app/templates/_shared/project-section";
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { AddCircleLinear, Pen2Linear, UserPlusLinear } from "@forge-ui-official/core/icons";
