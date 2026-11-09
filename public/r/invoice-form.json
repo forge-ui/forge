@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "invoice-form",
+  "type": "registry:block",
+  "title": "新建发票表单",
+  "description": "选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "表单",
+    "screens": [
+      {
+        "href": "/templates/finance-template/invoices/new",
+        "title": "新建发票页"
+      }
+    ],
+    "example": "import { InvoiceForm } from \"@/components/blocks/invoice-form\";\n\nexport default function Example() {\n  return (<InvoiceForm onSend={(value, total) => console.log(value.invoiceId, total)} />);\n}\n",
+    "props": [
+      {
+        "component": "InvoiceForm",
+        "properties": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "InvoiceFormValue | undefined"
+          },
+          {
+            "name": "onSave",
+            "required": false,
+            "type": "((value: InvoiceFormValue) => void) | undefined"
+          },
+          {
+            "name": "onSend",
+            "required": false,
+            "type": "((value: InvoiceFormValue, total: number) => void) | undefined"
+          },
+          {
+            "name": "onCancel",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "IconButton",
+        "Panel",
+        "PlusIcon",
+        "SelectOption",
+        "TextField",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/invoice-form/invoice-form.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/invoice-form.tsx",
+      "content": "\"use client\";\n\nimport { useState, type FormEvent } from \"react\";\nimport { Button, IconButton, Panel, PlusIcon, SelectOption, TextField, cn } from \"@forge-ui-official/core\";\nimport { TrashBinMinimalisticLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface InvoiceItemDraft {\n  id: string;\n  name: string;\n  rate: string;\n  quantity: string;\n}\n\nexport interface InvoiceFormValue {\n  customer: string;\n  invoiceId: string;\n  issuedAt: string;\n  dueAt: string;\n  taxRate: number;\n  discount: string;\n  items: InvoiceItemDraft[];\n}\n\nexport const defaultInvoiceForm: InvoiceFormValue = {\n  customer: \"yuanshan\",\n  invoiceId: \"INV-2026-1102\",\n  issuedAt: \"2026-11-02\",\n  dueAt: \"2026-11-30\",\n  taxRate: 0.06,\n  discount: \"0\",\n  items: [\n    { id: \"i1\", name: \"客户工作台升级 · 二期开发\", rate: \"18000\", quantity: \"1\" },\n    { id: \"i2\", name: \"数据看板定制\", rate: \"2400\", quantity: \"3\" },\n  ],\n};\n\nconst customers = [{ label: \"远山设计有限公司\", value: \"yuanshan\" }, { label: \"拾光好物\", value: \"shiguang\" }, { label: \"青石建筑\", value: \"qingshi\" }, { label: \"云帆科技\", value: \"yunfan\" }];\n\nexport interface InvoiceFormProps {\n  value?: InvoiceFormValue;\n  onSave?: (value: InvoiceFormValue) => void;\n  onSend?: (value: InvoiceFormValue, total: number) => void;\n  onCancel?: () => void;\n  className?: string;\n}\n\nexport function InvoiceForm({ value = defaultInvoiceForm, onSave, onSend, onCancel, className }: InvoiceFormProps) {\n  const [form, setForm] = useState(value);\n  const [status, setStatus] = useState(\"\");\n  const amount = (item: InvoiceItemDraft) => (Number(item.rate) || 0) * (Number(item.quantity) || 0);\n  const subtotal = form.items.reduce((sum, item) => sum + amount(item), 0);\n  const discount = Math.min(Number(form.discount) || 0, subtotal);\n  const tax = Math.round((subtotal - discount) * form.taxRate * 100) / 100;\n  const total = subtotal - discount + tax;\n  const money = (number: number) => `¥${number.toLocaleString(\"zh-CN\", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;\n  const valid = Boolean(form.customer && form.invoiceId.trim() && form.items.some(item => item.name.trim() && amount(item) > 0));\n  const update = <K extends keyof InvoiceFormValue>(key: K, next: InvoiceFormValue[K]) => { setForm(current => ({ ...current, [key]: next })); setStatus(\"\"); };\n  const updateItem = (id: string, patch: Partial<InvoiceItemDraft>) => update(\"items\", form.items.map(item => item.id === id ? { ...item, ...patch } : item));\n\n  function save(event: FormEvent) {\n    event.preventDefault();\n    if (!valid) return;\n    onSave?.(form);\n    setStatus(\"草稿已保存\");\n  }\n\n  return <form className={cn(\"flex min-w-0 flex-col gap-4\", className)} onSubmit={save} noValidate>\n    <div className=\"flex flex-wrap items-center justify-end gap-3\">\n      {status && <p role=\"status\" className=\"mr-auto text-sm text-fg-green-500\">{status}</p>}\n      <Button type=\"button\" variant=\"tertiary\" onClick={onCancel}>取消</Button>\n      <Button type=\"submit\" disabled={!valid}>保存草稿</Button>\n    </div>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_320px]\">\n      <Panel variant=\"template\" title=\"发票信息\" subtitle=\"付款方、日期与明细\">\n        <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-2\">\n          <SelectOption label=\"付款客户\" shape=\"pill\" placeholder=\"请选择客户\" options={customers} value={form.customer} onChange={next => update(\"customer\", next)} />\n          <TextField label=\"发票编号\" shape=\"pill\" value={form.invoiceId} onChange={next => update(\"invoiceId\", next)} />\n          <TextField label=\"开票日期\" type=\"date\" shape=\"pill\" value={form.issuedAt} onChange={next => update(\"issuedAt\", next)} />\n          <TextField label=\"付款截止\" type=\"date\" shape=\"pill\" value={form.dueAt} onChange={next => update(\"dueAt\", next)} />\n        </div>\n        <section className=\"overflow-hidden rounded-card border border-fg-grey-200\">\n          <h3 className=\"border-b border-fg-grey-200 px-5 py-4 text-sm font-semibold text-fg-black\">收费明细</h3>\n          <div className=\"hidden grid-cols-[minmax(0,1fr)_96px_64px_104px_32px] gap-3 border-b border-fg-grey-200 px-5 py-3 text-sm text-fg-grey-700 md:grid\"><span>项目</span><span>单价（元）</span><span>数量</span><span className=\"text-right\">金额</span><span /></div>\n          <ul className=\"flex flex-col divide-y divide-fg-grey-200\">{form.items.map(item => <li key={item.id} className=\"grid grid-cols-2 items-center gap-3 px-5 py-3 md:grid-cols-[minmax(0,1fr)_96px_64px_104px_32px]\">\n            <TextField className=\"col-span-2 md:col-span-1\" shape=\"pill\" aria-label=\"项目名称\" value={item.name} onChange={next => updateItem(item.id, { name: next })} placeholder=\"服务或商品名称\" />\n            <TextField shape=\"pill\" aria-label=\"单价\" inputMode=\"decimal\" value={item.rate} onChange={next => updateItem(item.id, { rate: next })} />\n            <TextField shape=\"pill\" aria-label=\"数量\" inputMode=\"numeric\" value={item.quantity} onChange={next => updateItem(item.id, { quantity: next })} />\n            <span className=\"text-sm font-semibold tabular-nums text-fg-black md:text-right\">{money(amount(item))}</span>\n            <IconButton type=\"button\" variant=\"ghost\" color=\"grey\" size=\"sm\" aria-label=\"删除此项\" onClick={() => update(\"items\", form.items.filter(entry => entry.id !== item.id))}><TrashBinMinimalisticLinear size={16} /></IconButton>\n          </li>)}</ul>\n          {!form.items.length && <p className=\"py-10 text-center text-sm text-fg-grey-700\">还没有收费项目</p>}\n        </section>\n        <div><Button type=\"button\" variant=\"tertiary\" iconLeft={<PlusIcon size={16} />} onClick={() => update(\"items\", [...form.items, { id: `i-${Date.now()}`, name: \"\", rate: \"\", quantity: \"1\" }])}>添加收费项</Button></div>\n      </Panel>\n      <Panel variant=\"template\" title=\"金额汇总\" subtitle=\"自动计算\">\n        <dl className=\"flex flex-col divide-y divide-fg-grey-200 text-sm\">\n          <div className=\"flex justify-between py-3 first:pt-0\"><dt className=\"text-fg-grey-700\">小计</dt><dd className=\"font-medium tabular-nums text-fg-black\">{money(subtotal)}</dd></div>\n          <div className=\"flex items-center justify-between gap-3 py-3\"><dt className=\"text-fg-grey-700\">优惠（元）</dt><dd className=\"w-28\"><TextField shape=\"pill\" aria-label=\"优惠金额\" inputMode=\"decimal\" value={form.discount} onChange={next => update(\"discount\", next)} /></dd></div>\n          <div className=\"flex items-center justify-between gap-3 py-3\"><dt className=\"text-fg-grey-700\">税率</dt><dd className=\"w-32\"><SelectOption shape=\"pill\" options={[{ label: \"6%\", value: \"0.06\" }, { label: \"9%\", value: \"0.09\" }, { label: \"13%\", value: \"0.13\" }]} value={String(form.taxRate)} onChange={next => update(\"taxRate\", Number(next))} /></dd></div>\n          <div className=\"flex justify-between py-3\"><dt className=\"text-fg-grey-700\">税额</dt><dd className=\"font-medium tabular-nums text-fg-black\">{money(tax)}</dd></div>\n        </dl>\n        <div className=\"rounded-2xl bg-fg-blue-50 p-5\"><p className=\"text-sm text-fg-blue\">应收合计</p><p className=\"mt-1 text-3xl font-semibold tabular-nums text-fg-blue\">{money(total)}</p></div>\n        <Button type=\"button\" className=\"w-full\" disabled={!valid} onClick={() => { onSend?.(form, total); setStatus(`发票已发送，应收 ${money(total)}`); }}>发送发票</Button>\n      </Panel>\n    </div>\n  </form>;\n}\n"
+    }
+  ]
+}

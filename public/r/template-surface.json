@@ -3,11 +3,18 @@
   "name": "template-surface",
   "type": "registry:block",
   "title": "模板内容分区",
-  "description": "带标题、说明、操作与紧凑内容间距的模板分区。",
+  "description": "为列表或详情组织独立内容分区，适用于后台业务页面。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "页面结构",
+    "screens": [
+      {
+        "href": "/templates/micellaneous-template",
+        "title": "团队工作区"
+      }
+    ],
     "example": "import { TemplateSurface } from \"@/components/blocks/template-surface\";\n\nexport default function Example() {\n  return (<TemplateSurface title=\"经营摘要\">本月经营数据</TemplateSurface>);\n}\n",
     "props": [
       {

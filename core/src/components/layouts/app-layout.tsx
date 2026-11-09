@@ -143,6 +143,8 @@ export interface AppLayoutProps {
   sidebarWidth?: string;
   /** Collapsed sidebar rail width. Accepts any CSS length; default keeps the Forge starter density. */
   collapsedSidebarWidth?: string;
+  /** 桌面端侧栏初始收起为窄条，用户仍可通过菜单按钮展开 */
+  defaultSidebarCollapsed?: boolean;
   /** 隐藏 sidebar 底部那一排 widget icon（语言、日历、通知、消息），profile 卡保留 */
   hideSidebarWidgets?: boolean;
   /** 自定义 team switcher 下拉里 invite / settings / createNew 按钮的文案 */
@@ -210,6 +212,7 @@ export function AppLayout({
   sidebarSlot,
   sidebarWidth = "16rem",
   collapsedSidebarWidth = "5rem",
+  defaultSidebarCollapsed = false,
   hideSidebarWidgets,
   teamLabels,
   showTeamActions = false,
@@ -245,7 +248,7 @@ export function AppLayout({
   const outerBg = mode === "dark" ? accentCfg.activeBg : config.outer;
 
   // Sidebar collapse state
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(defaultSidebarCollapsed);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [internalLanguage, setInternalLanguage] = useState<AppLayoutLanguage>(defaultLanguage);

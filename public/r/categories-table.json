@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "categories-table",
+  "type": "registry:block",
+  "title": "商品分类",
+  "description": "维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "数据列表",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/categories",
+        "title": "分类管理页"
+      }
+    ],
+    "example": "import { CategoriesTable } from \"@/components/blocks/categories-table\";\n\nexport default function Example() {\n  return (<CategoriesTable onSave={(category, id) => console.log(id ?? \"new\", category.name)} />);\n}\n",
+    "props": [
+      {
+        "component": "CategoriesTable",
+        "properties": [
+          {
+            "name": "categories",
+            "required": false,
+            "type": "CategoryRecord[] | undefined"
+          },
+          {
+            "name": "onSave",
+            "required": false,
+            "type": "((category: CategoryDraft, id?: string) => void) | undefined"
+          },
+          {
+            "name": "onDelete",
+            "required": false,
+            "type": "((category: CategoryRecord) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "CellImageText",
+        "CellMuted",
+        "CellText",
+        "ConfirmationDialog",
+        "DataTable",
+        "IconButton",
+        "Modal",
+        "PlusIcon",
+        "TextArea",
+        "TextField",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/categories-table/categories-table.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/categories-table.tsx",
+      "content": "\"use client\";\n\nimport { useState, type FormEvent, type Key } from \"react\";\nimport { Button, CellImageText, CellMuted, CellText, ConfirmationDialog, DataTable, IconButton, Modal, PlusIcon, TextArea, TextField, cn, type ColumnDef } from \"@forge-ui-official/core\";\nimport { PenLinear, TrashBinMinimalisticLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface CategoryRecord {\n  id: string;\n  name: string;\n  description: string;\n  image: string;\n  sales: number;\n  stock: number;\n  updatedAt: string;\n}\n\nexport const defaultCategories: CategoryRecord[] = [\n  { id: \"wearable\", name: \"智能穿戴\", description: \"手表、手环与健康监测设备\", image: \"/images/blocks/products/smartwatch.jpg\", sales: 15020, stock: 901, updatedAt: \"2026-10-29\" },\n  { id: \"audio\", name: \"影音\", description: \"耳机、音箱与录音设备\", image: \"/images/blocks/products/headphones.jpg\", sales: 10405, stock: 400, updatedAt: \"2026-10-24\" },\n  { id: \"phone\", name: \"手机\", description: \"旗舰与入门智能手机\", image: \"/images/blocks/products/phone.jpg\", sales: 3245, stock: 132, updatedAt: \"2026-10-12\" },\n  { id: \"peripheral\", name: \"电脑外设\", description: \"键盘、鼠标与桌面配件\", image: \"/images/blocks/products/keyboard.jpg\", sales: 11902, stock: 1201, updatedAt: \"2026-09-21\" },\n  { id: \"bags\", name: \"箱包\", description: \"通勤包、旅行箱与收纳\", image: \"/images/blocks/products/backpack.jpg\", sales: 4901, stock: 451, updatedAt: \"2026-09-21\" },\n  { id: \"gaming\", name: \"游戏\", description: \"手柄、主机与游戏周边\", image: \"/images/blocks/products/gamepad.jpg\", sales: 900, stock: 234, updatedAt: \"2026-09-08\" },\n];\n\nexport interface CategoryDraft {\n  name: string;\n  description: string;\n}\n\nexport interface CategoriesTableProps {\n  categories?: CategoryRecord[];\n  onSave?: (category: CategoryDraft, id?: string) => void;\n  onDelete?: (category: CategoryRecord) => void;\n  className?: string;\n}\n\nexport function CategoriesTable({ categories = defaultCategories, onSave, onDelete, className }: CategoriesTableProps) {\n  const [rows, setRows] = useState(categories);\n  const [selected, setSelected] = useState<Set<Key>>(new Set());\n  const [editing, setEditing] = useState<{ id?: string; draft: CategoryDraft } | null>(null);\n  const [pendingDelete, setPendingDelete] = useState<CategoryRecord | null>(null);\n\n  const columns: ColumnDef<CategoryRecord>[] = [\n    { key: \"name\", header: \"分类\", minWidth: 280, render: category => <CellImageText src={category.image} title={category.name} subtitle={category.description} /> },\n    { key: \"sales\", header: \"销量\", minWidth: 96, valueKind: \"number\", render: category => <CellText>{category.sales.toLocaleString(\"zh-CN\")}</CellText> },\n    { key: \"stock\", header: \"库存\", minWidth: 96, valueKind: \"number\", render: category => <CellText>{category.stock.toLocaleString(\"zh-CN\")}</CellText> },\n    { key: \"updatedAt\", header: \"更新日期\", minWidth: 120, render: category => <CellMuted>{category.updatedAt}</CellMuted> },\n    { key: \"actions\", header: \"操作\", minWidth: 88, render: category => <div className=\"flex items-center gap-1\">\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`编辑${category.name}`} onClick={() => setEditing({ id: category.id, draft: { name: category.name, description: category.description } })}><PenLinear size={16} /></IconButton>\n      <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={`删除${category.name}`} onClick={() => setPendingDelete(category)}><TrashBinMinimalisticLinear size={16} /></IconButton>\n    </div> },\n  ];\n\n  function save(event: FormEvent) {\n    event.preventDefault();\n    if (!editing || !editing.draft.name.trim()) return;\n    const draft = { name: editing.draft.name.trim(), description: editing.draft.description.trim() };\n    setRows(current => editing.id\n      ? current.map(category => category.id === editing.id ? { ...category, ...draft, updatedAt: new Date().toISOString().slice(0, 10) } : category)\n      : [{ id: `category-${Date.now()}`, ...draft, image: \"/images/blocks/products/watch.jpg\", sales: 0, stock: 0, updatedAt: new Date().toISOString().slice(0, 10) }, ...current]);\n    onSave?.(draft, editing.id);\n    setEditing(null);\n  }\n\n  function confirmDelete() {\n    if (!pendingDelete) return;\n    setRows(current => current.filter(category => category.id !== pendingDelete.id));\n    onDelete?.(pendingDelete);\n    setPendingDelete(null);\n  }\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"flex flex-wrap items-center justify-between gap-3\">\n      <p className=\"text-sm text-fg-grey-700\">共 {rows.length} 个分类{selected.size ? `，已选 ${selected.size} 个` : \"\"}</p>\n      <Button iconLeft={<PlusIcon size={16} />} onClick={() => setEditing({ draft: { name: \"\", description: \"\" } })}>新增分类</Button>\n    </div>\n    <DataTable<CategoryRecord>\n      columns={columns}\n      rows={rows}\n      getRowKey={category => category.id}\n      showCheckbox\n      selectedRowKeys={selected}\n      onSelectedRowKeysChange={setSelected}\n      emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">还没有分类，先新增一个吧。</p>}\n    />\n    <Modal open={editing !== null} onOpenChange={open => { if (!open) setEditing(null); }} title={editing?.id ? \"编辑分类\" : \"新增分类\"}>\n      {editing && <form className=\"flex flex-col gap-4\" onSubmit={save}>\n        <TextField label=\"分类名称\" shape=\"pill\" required value={editing.draft.name} onChange={value => setEditing({ ...editing, draft: { ...editing.draft, name: value } })} placeholder=\"例如：智能穿戴\" />\n        <TextArea label=\"分类说明\" rows={4} value={editing.draft.description} onChange={value => setEditing({ ...editing, draft: { ...editing.draft, description: value } })} placeholder=\"一句话说明这个分类包含哪些商品\" />\n        <div className=\"flex justify-end gap-3 pt-2\"><Button type=\"button\" variant=\"tertiary\" onClick={() => setEditing(null)}>取消</Button><Button type=\"submit\" disabled={!editing.draft.name.trim()}>保存</Button></div>\n      </form>}\n    </Modal>\n    {pendingDelete && <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4\">\n      <ConfirmationDialog title={`删除「${pendingDelete.name}」分类？`} description=\"分类下的商品不会被删除，但需要重新归类。\" confirmLabel=\"删除\" cancelLabel=\"取消\" color=\"red\" onConfirm={confirmDelete} onCancel={() => setPendingDelete(null)} />\n    </div>}\n  </section>;\n}\n"
+    }
+  ]
+}

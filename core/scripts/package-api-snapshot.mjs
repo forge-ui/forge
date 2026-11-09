@@ -30,7 +30,7 @@ export const expectedPublicApi = [
   "AgentTaskChild:type:88ec57cca71b4310cdce4206ab2b6d3f5d42e1fd482c434eabd46fccabec5ea0",
   "AgentTaskRows:value:e7aafadc660935b63c24f0729d15b83f605a8ab17859016dbbc549ebc122feff",
   "AgentTaskStatus:type:161f6b1e68a0dd6d50e006b75c568ebbb06d95365650485bbdd99bdc5322f125",
-  "AppLayout:value:cd0a34f0589a19f186bf5182aac71cd74146d3e8451fc5af27c841a8c716817c",
+  "AppLayout:value:9b2ad4934948c1579ad368cde93da338c83a4dc66333cdc60e254415cb122eb3",
   "AppLayoutAccentColor:type:c585b2913e4f85cf673e6e2776da00da69a167f9736f5c3075aacb487c7b7a1d",
   "AppLayoutBreadcrumb:type:95356762b225f33843590fa2abc75dde711ea80d6b090cd1c5971280ed7a8623",
   "AppLayoutLanguage:type:65cbd3e416571bc1c07a8b0bfa2ac1b0d8dc602babdda8e3accf22dbde86dac7",
@@ -40,7 +40,7 @@ export const expectedPublicApi = [
   "AppLayoutPageHeaderVariant:type:83ab41122109fd85be82a817d39b82a3e2813343cca9200ed16ff0910dc975b2",
   "AppLayoutProfile:type:80cac5ead273178b6e722732e36438bb4f868c88b156b5aa373b31016188cf21",
   "AppLayoutProfilePosition:type:a8008726307b4ff6d697cde2f248872bd52ab77379017c3ae4fed23769ff0c6a",
-  "AppLayoutProps:type:4cbe50d311ac48c66529f309cf3071218383afa5aefbdc014709e09d74548a5f",
+  "AppLayoutProps:type:f99e9b22e14c6626116069f8724713a518ecdc9bc5353b61c50ed0eb53e2bd01",
   "AppSwitcherDropdown:value:a40def7763c6f0a76b4cdc246ffcb8b9d809b78999e771d404c98bdd3bb9d3b1",
   "AppSwitcherItem:type:35916d7c71b652be8adb9e7430bd2355bf3f4b61c01eb1b46d1f92a6ffb51c2b",
   "ApprovalCard:value:fb60584882e52e55b9f5bc7d8807aebc369187f9dd3605a5d4dee97db2faa94a",
@@ -490,9 +490,9 @@ export const expectedPublicApi = [
 ];
 
 export const expectedWildcardApi = [
-  "./components/layouts/app-layout:d7527aa813423efea60565ac8a0a89136c2cca0e488b59c0ac234e70f23cbe20",
+  "./components/layouts/app-layout:e83fd5f81195beebd5d9edcac8335485cf87e801d39ed6df20ea5f0796a9600c",
   "./components/layouts/grid:be3c0eaa1886937e735470e74b809c950d5e0428d5684d393d0792478c0dc149",
-  "./components/layouts/index:5abd1d5374f4e09c79a266e5696670d73d730eac54f8188e286dae04e7a0b8ab",
+  "./components/layouts/index:6f67e149bfd06019dd9d66aac41386dced08c7d12f040ee82a5bf51497140657",
   "./components/layouts/sidebar-popovers:4de201bfa583b240e25cbb13cf1ab23705b9d60cb685894f812c13a6f6a6a1d0",
   "./components/ui/accent-utils:dc88870fd996d0c5ebf1be6c82f3910bd3d080ee0f1be9c77579ebad3418bfb9",
   "./components/ui/accordion:62e195e6bee3ddc4534e91e48effd66444fdde27d6269af9c65c994618964bde",
@@ -587,7 +587,7 @@ export const expectedWildcardApi = [
   "./components/ui/icon-trigger:f32d52b778242b56640e48ff3236c9be8e001d406d8728c64d92d4ce2748a4a2",
   "./components/ui/image-grid:142f66a1b94749daa6d5fcf0637ba96915ee966ab2e0a1a76cb830c589e084d6",
   "./components/ui/image-stat-card:1dbeb391930709bbcb92716d31cd38bf79eb9e234a24987da3a0a6ab437fdcff",
-  "./components/ui/index:dab0040568d8ce41861919b1a64fb5a3416b1053cfe09efcefba0b708915c0ce",
+  "./components/ui/index:e54996f2604fcb43d7c3b2213f9bcef9ea0d97a17fc78df8a4e01abe001b98f5",
   "./components/ui/info-row:e023cd99fa2da3d5f370f7312c1b7fb7b39aea0fd94573721af046b778ef62b4",
   "./components/ui/kebab-menu:8f352bcb09251b80457df8c89b1bf3b7761a565ca53ab27b0ab64e8526fbd5f6",
   "./components/ui/line-chart-stat-card:0bdfb76efa3773559526e2e382b0a4db073df315e16b5f4e2ef7c7a444393de2",

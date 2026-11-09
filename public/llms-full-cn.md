@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: a50d9f9fda81f5b7694cd0b40b75f7b427cf99934d664296e60071d69668d498
+Source fingerprint: a526246de8b4ba63de92323dcb33e8aa29d6967612d6810190fb980d4869e708
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 17 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
 ## Public exports (487, values and types distinguished)
 
@@ -500,6 +500,84 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 17 Blocks
 - WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 
+## Block gallery and detail routes
+
+- /blocks — category-filtered gallery of 74 copyable Blocks
+- /blocks/kpi-metrics — 图表与指标 / KPI 指标行; /r/kpi-metrics.json
+- /blocks/recent-records — 数据列表 / 最近记录表卡; /r/recent-records.json
+- /blocks/trend-chart — 图表与指标 / 趋势图表卡; /r/trend-chart.json
+- /blocks/ranking-list — 数据列表 / 排行列表卡; /r/ranking-list.json
+- /blocks/composition-card — 图表与指标 / 构成占比卡; /r/composition-card.json
+- /blocks/dashboard-header — 页面结构 / 看板页头; /r/dashboard-header.json
+- /blocks/region-distribution — 图表与指标 / 地区分布卡; /r/region-distribution.json
+- /blocks/member-list — 协作与项目 / 成员列表; /r/member-list.json
+- /blocks/goal-progress-list — 财务 / 目标进度列表; /r/goal-progress-list.json
+- /blocks/activity-feed — 协作与项目 / 活动流; /r/activity-feed.json
+- /blocks/schedule-card — 协作与项目 / 日程与甘特容器; /r/schedule-card.json
+- /blocks/card-carousel — 财务 / 卡片轮播; /r/card-carousel.json
+- /blocks/crm-summary — 图表与指标 / 客户经营摘要; /r/crm-summary.json
+- /blocks/finance-workspace — 财务 / 财务工作区; /r/finance-workspace.json
+- /blocks/template-surface — 页面结构 / 模板内容分区; /r/template-surface.json
+- /blocks/conversation-header — 页面结构 / 对话页标题栏; /r/conversation-header.json
+- /blocks/project-section — 协作与项目 / 项目详情分区; /r/project-section.json
+- /blocks/overview-dashboard — 看板首屏 / 经营概览; /r/overview-dashboard.json
+- /blocks/orders-table-section — 数据列表 / 订单列表; /r/orders-table-section.json
+- /blocks/project-overview — 看板首屏 / 项目概览; /r/project-overview.json
+- /blocks/finance-overview — 看板首屏 / 财务概览; /r/finance-overview.json
+- /blocks/products-table — 数据列表 / 商品列表; /r/products-table.json
+- /blocks/customers-table — 数据列表 / 客户列表; /r/customers-table.json
+- /blocks/sellers-table — 数据列表 / 商家列表; /r/sellers-table.json
+- /blocks/categories-table — 数据列表 / 商品分类; /r/categories-table.json
+- /blocks/order-detail — 详情页 / 订单详情; /r/order-detail.json
+- /blocks/invoice-document — 详情页 / 发票单据; /r/invoice-document.json
+- /blocks/customer-profile — 详情页 / 客户详情; /r/customer-profile.json
+- /blocks/product-detail — 详情页 / 商品详情; /r/product-detail.json
+- /blocks/leads-table — 数据列表 / 销售线索; /r/leads-table.json
+- /blocks/deals-table — 数据列表 / 商机列表; /r/deals-table.json
+- /blocks/lead-detail — 详情页 / 线索详情; /r/lead-detail.json
+- /blocks/crm-activity — 协作与项目 / 客户动态; /r/crm-activity.json
+- /blocks/product-form — 表单 / 商品编辑表单; /r/product-form.json
+- /blocks/order-form — 表单 / 新建订单表单; /r/order-form.json
+- /blocks/invoice-form — 表单 / 新建发票表单; /r/invoice-form.json
+- /blocks/kanban-board — 协作与项目 / 任务看板; /r/kanban-board.json
+- /blocks/task-detail — 详情页 / 任务详情; /r/task-detail.json
+- /blocks/member-profile — 详情页 / 成员详情; /r/member-profile.json
+- /blocks/calendar-month — 协作与项目 / 月历日程; /r/calendar-month.json
+- /blocks/chat-workspace — 协作与项目 / 即时会话; /r/chat-workspace.json
+- /blocks/file-manager — 协作与项目 / 文件管理; /r/file-manager.json
+- /blocks/transactions-table — 财务 / 交易流水; /r/transactions-table.json
+- /blocks/invoices-table — 数据列表 / 发票列表; /r/invoices-table.json
+- /blocks/cards-management — 财务 / 企业卡管理; /r/cards-management.json
+- /blocks/savings-goals-table — 财务 / 储蓄目标表; /r/savings-goals-table.json
+- /blocks/wealth-overview — 看板首屏 / 资产概览; /r/wealth-overview.json
+- /blocks/agent-directory — 协作与项目 / 智能体列表; /r/agent-directory.json
+- /blocks/knowledge-library — 协作与项目 / 知识库; /r/knowledge-library.json
+- /blocks/client-directory — 数据列表 / 客户名录; /r/client-directory.json
+- /blocks/register-form — 认证 / 注册; /r/register-form.json
+- /blocks/password-recovery — 认证 / 找回密码; /r/password-recovery.json
+- /blocks/ai-workspace-overview — AI 与智能体 / 智能体工作台; /r/ai-workspace-overview.json
+- /blocks/agent-catalog — AI 与智能体 / 应用智能体目录; /r/agent-catalog.json
+- /blocks/agent-run — AI 与智能体 / 智能体运行; /r/agent-run.json
+- /blocks/task-run-detail — AI 与智能体 / 任务执行详情; /r/task-run-detail.json
+- /blocks/runtime-list — AI 与智能体 / 运行时管理; /r/runtime-list.json
+- /blocks/message-channels — AI 与智能体 / 消息渠道; /r/message-channels.json
+- /blocks/autonomous-agents — AI 与智能体 / 自主智能体; /r/autonomous-agents.json
+- /blocks/ai-assistant-home — AI 与智能体 / AI 助手首页; /r/ai-assistant-home.json
+- /blocks/agent-orchestration — AI 与智能体 / 多智能体编排; /r/agent-orchestration.json
+- /blocks/agent-usage — AI 与智能体 / 用量与成本; /r/agent-usage.json
+- /blocks/prompt-evals — AI 与智能体 / 提示词评测; /r/prompt-evals.json
+- /blocks/settings-profile — 设置 / 个人资料设置; /r/settings-profile.json
+- /blocks/settings-members — 设置 / 成员与团队; /r/settings-members.json
+- /blocks/settings-roles — 设置 / 角色与权限; /r/settings-roles.json
+- /blocks/settings-notifications — 设置 / 通知设置; /r/settings-notifications.json
+- /blocks/settings-security — 设置 / 安全设置; /r/settings-security.json
+- /blocks/settings-billing — 设置 / 账单与套餐; /r/settings-billing.json
+- /blocks/project-portfolio — 协作与项目 / 项目总览; /r/project-portfolio.json
+- /blocks/workflow-builder — AI 与智能体 / 工作流编辑器; /r/workflow-builder.json
+- /blocks/integrations-directory — 设置 / 集成目录; /r/integrations-directory.json
+- /blocks/onboarding-flow — 认证 / 引导流程; /r/onboarding-flow.json
+- /blocks/login-form — 认证 / 登录; /r/login-form.json
+
 ## Template routes
 
 - /templates — src/app/templates/page.tsx
@@ -648,7 +726,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## Screen → Blocks → Components
 
 1. **Screen**：先选同角色、同业务密度的真实模板，记录源码路径与版本。看板必须从 [10 个 Screen](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md) 起步，不从四张指标卡自由拼页。
-2. **Blocks**：复用模板中职责明确的区块；[区块目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 17 类已实现的可复制源码（blocks/ 与 public/r/），不是 core 导出；发布状态和截图验收另行核实。
+2. **Blocks**：复用模板中职责明确的页面组件；[页面组件目录](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md) 列出 74 个可复制源码（blocks/ 与 public/r/），覆盖看板首屏、AI 与智能体、数据列表、详情页、表单、协作、财务、设置与认证；不是 core 导出，按需复制进项目后自行维护。
 3. **Components**：使用安装版本真实导出与 Props；查看 [生成 API](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/components/button.md) 和 [组件选型](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-recommended-standard.md)。不要猜测组件、图标、密度或交互参数。
 
 缺失能力记录 **FORGE-GAP**：业务用途、已查组件与版本、缺口、影响、候选方案。标记并询问用户，不自行手搓公共原语或改 core。
@@ -1838,7 +1916,7 @@ Source: skills/forge-skill/references/audit-checklist.md
 - **L2**（通用部分；starter 适配留宿主）：壳层 padding 只算一次，section/Grid/卡内间距按模板各自归属，不强制一律24px。
 - **L3**（通用）：搜索、过滤、批量操作组织为一条功能工具带；必要换行可保留，不机械禁止多行。
 - **L4**（通用部分；starter 适配留宿主）：详情以身份、内容、操作分层，选同角色真实对照，而非空卡堆字段。
-- **L5**（通用）：看板从 Screen 起步，记录轨道、列宽、gap、区块高与密度；同视口/侧栏并排截图，不仅核对排列。
+- **L5**（通用）：看板从 Screen 起步，记录轨道、列宽、gap、页面组件高与密度；同视口/侧栏并排截图，不仅核对排列。
 - **L6**（通用）：密度符合业务与模板；只用真实存在的 density/size API，不虚构 prop。
 - **L7**（通用）：列宽按内容预算，身份可辨、数字对齐、尾操作 HUG，明确剩宽归属；宽表局部横滚，不强塞最后一列掩盖空白。
 - **L8**（通用）：按角色/模板判定卡壳；ecommerce-2 的 DataTable 在卡内是有效例子，不执行“表绝不能套卡”；公共标题 Panel 未提供时用 FORGE-GAP。
@@ -1912,7 +1990,7 @@ Source: skills/forge-skill/references/audit-checklist.md
 
 Source: skills/forge-skill/references/blocks.md
 
-# 页面 Blocks（复制到项目）
+# 页面组件（Blocks，复制到项目）
 
 ## 默认即 Screen 效果
 
@@ -1928,31 +2006,90 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 最小配方见各单项生成文档与 `/r/index.json` 的 meta.example；结构化入口优先，其他 Screen 已验收的 children/items 插槽保持原输出。[表格列宽与数字对齐](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-selection/data-table.md) 适用于 RecentRecords。
 
-17 类区块已实现为仓内源码与 registry-item，覆盖看板与业务模板；不是 core 包导出，也不意味着已发布或通过截图验收。
+74 个页面组件分为 11 类，已实现为仓内源码与 registry-item；不是 core 包导出，也不意味着已发布或通过截图验收。画廊 `/blocks` 可按分类筛选；每个 `/blocks/<name>` 提供同源 iframe 预览、1280px 桌面 / 390px 移动视口切换、完整代码、安装、用法、Props 与相关模板。预览路由 `/blocks/<name>/preview` 使用站点内的 AppLayout 外壳，按 registry.json 的 shell.menu / shell.active / shell.title 选择业务菜单、高亮项与顶栏标题；shell 为 none 时不显示后台外壳（认证类页面）；shell.with 指定窄卡页面并排展示的相关页面组件。菜单定义集中在站点 _shell.tsx，不进入安装源码。预览路由禁止索引，不进入 sitemap 与站内搜索；缩略图进入视口附近后才挂载。
 
-| 区块 | 导出名 | 源码目录 | 支持内容 |
-|---|---|---|---|
-| KPI 指标行 | KpiMetrics / FinanceMetricCard | blocks/kpi-metrics/ | metrics 或 children，compact 指标卡 |
-| 最近记录表卡 | RecentRecords | blocks/recent-records/ | Panel + 泛型 DataTable，或 children |
-| 趋势图表卡 | TrendChart | blocks/trend-chart/ | Panel + GroupedBarChart，或图域插槽 |
-| 排行列表卡 | RankingList | blocks/ranking-list/ | ListGroup 的 items/tabs/action，默认 compact |
-| 构成占比卡 | CompositionCard | blocks/composition-card/ | Panel + DonutChart，或 children |
-| 页头 | DashboardHeader | blocks/dashboard-header/ | title/description/action 或原始标题内容 |
-| 地区分布卡 | RegionDistribution | blocks/region-distribution/ | MapCard 的地区、范围、度量 |
-| 成员列表 | MemberList | blocks/member-list/ | UserCard 成员数据或自定义 items |
-| 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | WalletGoalCard 列表 / 财务储蓄面板 |
-| 活动流 | ActivityFeed | blocks/activity-feed/ | ActivityCard 事件或自定义 items |
-| 日程/甘特 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | FullCalendar、六时段只读 GanttSchedule 或 children；不提供甘特编辑器 |
-| 卡片轮播 | CardCarousel | blocks/card-carousel/ | CreditCard 数据、受控/非受控页码、可选翻页 |
-| 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 客户分区、指标与趋势；业务文案和操作由宿主传入 |
-| 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 卡片主题、钱包进度、交易与预算，数据和回调由宿主提供 |
-| 模板内容分区 | TemplateSurface | blocks/template-surface/ | 标题、说明、操作和内容；p-0 兼容原模板无内边距分区 |
-| 对话标题栏 | ConversationHeader | blocks/conversation-header/ | 标题、工作区说明与操作插槽；不包含会话存储或流式请求 |
-| 项目详情分区 | ProjectSection | blocks/project-section/ | 标题操作栏与紧凑内容区；className 从选定 Screen 保留 |
+| 分类 | 页面组件 | 导出名 | 源码目录 | 适用场景 |
+|---|---|---|---|---|
+| 看板首屏 | 经营概览 | OverviewDashboard | blocks/overview-dashboard/ | 将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。 |
+| 看板首屏 | 项目概览 | ProjectOverview | blocks/project-overview/ | 汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。 |
+| 看板首屏 | 财务概览 | FinanceOverview | blocks/finance-overview/ | 结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。 |
+| 看板首屏 | 资产概览 | WealthOverview | blocks/wealth-overview/ | 总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。 |
+| AI 与智能体 | 智能体工作台 | AiWorkspaceOverview | blocks/ai-workspace-overview/ | 智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。 |
+| AI 与智能体 | 应用智能体目录 | AgentCatalog | blocks/agent-catalog/ | 左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。 |
+| AI 与智能体 | 智能体运行 | AgentRun | blocks/agent-run/ | 一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。 |
+| AI 与智能体 | 任务执行详情 | TaskRunDetail | blocks/task-run-detail/ | 任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。 |
+| AI 与智能体 | 运行时管理 | RuntimeList | blocks/runtime-list/ | 智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。 |
+| AI 与智能体 | 消息渠道 | MessageChannels | blocks/message-channels/ | 把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。 |
+| AI 与智能体 | 自主智能体 | AutonomousAgents | blocks/autonomous-agents/ | 系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。 |
+| AI 与智能体 | AI 助手首页 | AiAssistantHome | blocks/ai-assistant-home/ | 问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。 |
+| AI 与智能体 | 多智能体编排 | AgentOrchestration | blocks/agent-orchestration/ | 编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。 |
+| AI 与智能体 | 用量与成本 | AgentUsage | blocks/agent-usage/ | 本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。 |
+| AI 与智能体 | 提示词评测 | PromptEvals | blocks/prompt-evals/ | 按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。 |
+| AI 与智能体 | 工作流编辑器 | WorkflowBuilder | blocks/workflow-builder/ | 左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。 |
+| 数据列表 | 最近记录表卡 | RecentRecords | blocks/recent-records/ | 在一张卡片内查看最近订单、交易或业务记录。 |
+| 数据列表 | 排行列表卡 | RankingList | blocks/ranking-list/ | 展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。 |
+| 数据列表 | 订单列表 | OrdersTableSection | blocks/orders-table-section/ | 包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。 |
+| 数据列表 | 商品列表 | ProductsTable | blocks/products-table/ | 按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。 |
+| 数据列表 | 客户列表 | CustomersTable | blocks/customers-table/ | 带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。 |
+| 数据列表 | 商家列表 | SellersTable | blocks/sellers-table/ | 展示店铺评分、营收与待结算金额的入驻商家管理表。 |
+| 数据列表 | 商品分类 | CategoriesTable | blocks/categories-table/ | 维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。 |
+| 数据列表 | 销售线索 | LeadsTable | blocks/leads-table/ | 线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。 |
+| 数据列表 | 商机列表 | DealsTable | blocks/deals-table/ | 按回款状态汇总金额，列出商机、客户、付款方式与回款状态。 |
+| 数据列表 | 发票列表 | InvoicesTable | blocks/invoices-table/ | 按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。 |
+| 数据列表 | 客户名录 | ClientDirectory | blocks/client-directory/ | 可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。 |
+| 详情页 | 订单详情 | OrderDetail | blocks/order-detail/ | 订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。 |
+| 详情页 | 发票单据 | InvoiceDocument | blocks/invoice-document/ | 可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。 |
+| 详情页 | 客户详情 | CustomerProfile | blocks/customer-profile/ | 客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。 |
+| 详情页 | 商品详情 | ProductDetail | blocks/product-detail/ | 商品图集、价格与规格选择、描述参数，以及订单和评价分页签。 |
+| 详情页 | 线索详情 | LeadDetail | blocks/lead-detail/ | 线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。 |
+| 详情页 | 任务详情 | TaskDetail | blocks/task-detail/ | 任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。 |
+| 详情页 | 成员详情 | MemberProfile | blocks/member-profile/ | 成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。 |
+| 表单 | 商品编辑表单 | ProductForm | blocks/product-form/ | 基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。 |
+| 表单 | 新建订单表单 | OrderForm | blocks/order-form/ | 商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。 |
+| 表单 | 新建发票表单 | InvoiceForm | blocks/invoice-form/ | 选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。 |
+| 协作与项目 | 成员列表 | MemberList | blocks/member-list/ | 展示团队成员、职位与在线状态，适用于项目和工作区。 |
+| 协作与项目 | 活动流 | ActivityFeed | blocks/activity-feed/ | 汇总团队近期的任务、文件和项目动态，方便追踪协作进展。 |
+| 协作与项目 | 日程与甘特容器 | ScheduleCard / GanttSchedule | blocks/schedule-card/ | 按日历或时间线安排会议与项目任务，掌握团队近期日程。 |
+| 协作与项目 | 项目详情分区 | ProjectSection | blocks/project-section/ | 围绕项目或任务组织详情内容与操作，保持阅读层次清晰。 |
+| 协作与项目 | 客户动态 | CrmActivity | blocks/crm-activity/ | 按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。 |
+| 协作与项目 | 任务看板 | KanbanBoard | blocks/kanban-board/ | 按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。 |
+| 协作与项目 | 月历日程 | CalendarMonth | blocks/calendar-month/ | 月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。 |
+| 协作与项目 | 即时会话 | ChatWorkspace | blocks/chat-workspace/ | 联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。 |
+| 协作与项目 | 文件管理 | FileManager | blocks/file-manager/ | 按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。 |
+| 协作与项目 | 智能体列表 | AgentDirectory | blocks/agent-directory/ | 按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。 |
+| 协作与项目 | 知识库 | KnowledgeLibrary | blocks/knowledge-library/ | 按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。 |
+| 协作与项目 | 项目总览 | ProjectPortfolio | blocks/project-portfolio/ | 整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。 |
+| 财务 | 目标进度列表 | GoalProgressList / WalletProgressPanel | blocks/goal-progress-list/ | 跟踪储蓄与预算目标，查看已积累金额和完成进度。 |
+| 财务 | 卡片轮播 | CardCarousel | blocks/card-carousel/ | 以可切换的卡片展示多个账户，适用于钱包和财务首页。 |
+| 财务 | 财务工作区 | FinanceSurface / FieldLine / VisualCard / FinanceMetricCard / WalletProgressLine / FinanceGoalCell / FinanceTransactionCell / FinanceExpenseGauge / FinanceBudgetPanel | blocks/finance-workspace/ | 整合账户余额、预算与费用明细，集中查看财务状况。 |
+| 财务 | 交易流水 | TransactionsTable | blocks/transactions-table/ | 支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。 |
+| 财务 | 企业卡管理 | CardsManagement | blocks/cards-management/ | 企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。 |
+| 财务 | 储蓄目标表 | SavingsGoalsTable | blocks/savings-goals-table/ | 资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。 |
+| 设置 | 个人资料设置 | SettingsProfile | blocks/settings-profile/ | 头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。 |
+| 设置 | 成员与团队 | SettingsMembers | blocks/settings-members/ | 席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。 |
+| 设置 | 角色与权限 | SettingsRoles | blocks/settings-roles/ | 左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。 |
+| 设置 | 通知设置 | SettingsNotifications | blocks/settings-notifications/ | 按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。 |
+| 设置 | 安全设置 | SettingsSecurity | blocks/settings-security/ | 密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。 |
+| 设置 | 账单与套餐 | SettingsBilling | blocks/settings-billing/ | 本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。 |
+| 设置 | 集成目录 | IntegrationsDirectory | blocks/integrations-directory/ | 按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。 |
+| 图表与指标 | KPI 指标行 | KpiMetrics / FinanceMetricCard | blocks/kpi-metrics/ | 集中展示收入、订单与客户等关键指标，适用于经营看板首屏。 |
+| 图表与指标 | 趋势图表卡 | TrendChart | blocks/trend-chart/ | 对比不同周期的业务走势，适用于收入、订单和流量分析。 |
+| 图表与指标 | 构成占比卡 | CompositionCard | blocks/composition-card/ | 用圆环图展示收入、渠道或费用的构成与占比。 |
+| 图表与指标 | 地区分布卡 | RegionDistribution | blocks/region-distribution/ | 结合地图与地区明细，查看客户或收入的地域分布。 |
+| 图表与指标 | 客户经营摘要 | CrmSurface / CrmStat / DetailLine / CrmMetricCard | blocks/crm-summary/ | 概览客户规模与增长情况，为销售团队提供经营摘要。 |
+| 页面结构 | 看板页头 | DashboardHeader | blocks/dashboard-header/ | 为经营看板组织标题、统计周期与导出操作。 |
+| 页面结构 | 模板内容分区 | TemplateSurface | blocks/template-surface/ | 为列表或详情组织独立内容分区，适用于后台业务页面。 |
+| 页面结构 | 对话页标题栏 | ConversationHeader | blocks/conversation-header/ | 展示会话名称、参与者与常用操作，适用于团队对话页面。 |
+| 认证 | 注册 | RegisterForm | blocks/register-form/ | 左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。 |
+| 认证 | 找回密码 | PasswordRecovery | blocks/password-recovery/ | 邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。 |
+| 认证 | 引导流程 | OnboardingFlow | blocks/onboarding-flow/ | 首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。 |
+| 认证 | 登录 | LoginForm | blocks/login-form/ | 邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。 |
 
 ## 使用边界
 
-每个 registry item 的 `meta.example` 是完整最小示例，`meta.props` 是从当前 TypeScript 导出生成的 Props 表（含所有导出及继承属性），`meta.core` 列出实际依赖组件和版本；示例与复制源码一起编译校验。对应可读文档位于本目录的 `blocks/<name>.md`，由 `blocks:generate` 同步，不手工维护第二份 API。`CellText` 使用 children：`<CellText>订单 1</CellText>`，没有 text prop。
+每个 registry item 的 `meta.category` 为分类，`meta.screens` 为主对照或使用该页面组件的相关模板，`meta.example` 是完整最小示例，`meta.props` 是从当前 TypeScript 导出生成的 Props 表（含所有导出及继承属性），`meta.core` 列出实际依赖组件和版本；示例与复制源码一起编译校验。对应可读文档位于本目录的 `blocks/<name>.md`，由 `blocks:generate` 同步，不手工维护第二份 API。`CellText` 使用 children：`<CellText>订单 1</CellText>`，没有 text prop。
+
+4 个组合页面组件均只依赖 React 与 core，不依赖其他 Block，提供可替换的默认业务数据。订单列表搜索、筛选和分页在本地运行，导出当前筛选结果；`onViewOrder` / `onExport` 可接入宿主流程。图表、金额与状态的口径仍由业务端负责，默认数据不代表生产业务。
 
 ## 看板配方
 
@@ -1985,7 +2122,7 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 
 宿主提供 currentCounts/previousCounts（各 30 项）、maximum（至少 1）及起止日期。dateSelection 可放真实 Datepicker，primaryAction 放导出等主操作；不要用 disabled 假按钮代替可用操作。
 
-- 画廊：`/blocks`（17 项均有预览）；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
+- 画廊：`/blocks`（74 项共用完整预览数据）；详情：`/blocks/<name>`；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
 - 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
 - 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
 - 依赖 core `^0.6.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
@@ -2012,6 +2149,8 @@ Source: skills/forge-skill/references/blocks/activity-feed.md
 
 # 活动流
 
+分类：协作与项目。汇总团队近期的任务、文件和项目动态，方便追踪协作进展。
+
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
 依赖：core ^0.6.0；组件：ActivityCard、ListGroup。
@@ -2032,24 +2171,307 @@ export default function Example() {
 |---|---|---|
 | title | 是 | `string` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor \| undefined` |
+| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| badge | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| tabs | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ListGroupTab[] \| undefined` |
+| action | 否 | `import("react").ReactNode` |
+| badge | 否 | `import("react").ReactNode` |
+| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
 | activeTab | 否 | `string \| undefined` |
 | onTabChange | 否 | `((value: string) => void) \| undefined` |
 | closable | 否 | `boolean \| undefined` |
 | onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity \| undefined` |
-| items | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| events | 否 | `(Omit<{ icon: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; }[]; onMenuClick?: () => void; }, "icon" \| "avatar"> & { id: string; icon?: ComponentProps<typeof ActivityCard>["icon"]; avatar?: string; })[] \| undefined` |
+| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
+| items | 否 | `import("react").ReactNode` |
+| events | 否 | `(Omit<{ icon: import("react").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string \| import("react").ReactNode; }[]; onMenuClick?: () => void; }, "icon" \| "avatar"> & { id: string; icon?: ComponentProps<typeof ActivityCard>["icon"]; avatar?: string; })[] \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/agent-catalog.md
+
+# 应用智能体目录
+
+分类：AI 与智能体。左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、IconButton、Pagination、Panel、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { AgentCatalog } from "@/components/blocks/agent-catalog";
+
+export default function Example() {
+  return (<AgentCatalog onOpen={agent => console.log(agent.name)} />);
+}
+```
+
+## AgentCatalog Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| agents | 否 | `AppAgent[] \| undefined` |
+| pageSize | 否 | `number \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| onCreateFromTemplate | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((agent: AppAgent) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/agent-directory.md
+
+# 智能体列表
+
+分类：协作与项目。按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、ButtonGroup、Panel、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { AgentDirectory } from "@/components/blocks/agent-directory";
+
+export default function Example() {
+  return (<AgentDirectory onAssign={agent => console.log(agent.name)} />);
+}
+```
+
+## AgentDirectory Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| agents | 否 | `AgentProfile[] \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| onChat | 否 | `((agent: AgentProfile) => void) \| undefined` |
+| onAssign | 否 | `((agent: AgentProfile) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/agent-orchestration.md
+
+# 多智能体编排
+
+分类：AI 与智能体。编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Panel、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { AgentOrchestration } from "@/components/blocks/agent-orchestration";
+
+export default function Example() {
+  return (<AgentOrchestration />);
+}
+```
+
+## AgentOrchestration Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| run | 否 | `AgentOrchestrationData \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/agent-run.md
+
+# 智能体运行
+
+分类：AI 与智能体。一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AgentTaskRows、ApprovalCard、Button、Panel、StatusBadge、StreamingAnswer、ThinkingTrace、ToolChips、cn。
+
+## 最小可用示例
+
+```tsx
+import { AgentRun } from "@/components/blocks/agent-run";
+
+export default function Example() {
+  return (<AgentRun onApprove={answer => console.log(answer)} />);
+}
+```
+
+## AgentRun Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| run | 否 | `AgentRunData \| undefined` |
+| stepDuration | 否 | `number \| undefined` |
+| onApprove | 否 | `((answer: string[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/agent-usage.md
+
+# 用量与成本
+
+分类：AI 与智能体。本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { AgentUsage } from "@/components/blocks/agent-usage";
+
+export default function Example() {
+  return (<AgentUsage />);
+}
+```
+
+## AgentUsage Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| usage | 否 | `AgentUsageData \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/ai-assistant-home.md
+
+# AI 助手首页
+
+分类：AI 与智能体。问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ChatBubble、ChatInputBar、StreamingAnswer、ThinkingTrace、cn。
+
+## 最小可用示例
+
+```tsx
+import { AiAssistantHome } from "@/components/blocks/ai-assistant-home";
+
+export default function Example() {
+  return (<AiAssistantHome userName="张宁" />);
+}
+```
+
+## AiAssistantHome Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| userName | 否 | `string \| undefined` |
+| suggestions | 否 | `AssistantSuggestion[] \| undefined` |
+| apps | 否 | `string[] \| undefined` |
+| answer | 否 | `((prompt: string) => string) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/ai-workspace-overview.md
+
+# 智能体工作台
+
+分类：AI 与智能体。智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、cn。
+
+## 最小可用示例
+
+```tsx
+import { AiWorkspaceOverview } from "@/components/blocks/ai-workspace-overview";
+
+export default function Example() {
+  return (<AiWorkspaceOverview />);
+}
+```
+
+## AiWorkspaceOverview Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| resources | 否 | `WorkspaceResource[] \| undefined` |
+| periods | 否 | `WorkspacePeriod[] \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/autonomous-agents.md
+
+# 自主智能体
+
+分类：AI 与智能体。系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Modal、PlusIcon、SelectOption、StatusBadge、TextArea、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { AutonomousAgents } from "@/components/blocks/autonomous-agents";
+
+export default function Example() {
+  return (<AutonomousAgents onRun={(agent, prompt) => console.log(agent.name, prompt)} />);
+}
+```
+
+## AutonomousAgents Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| agents | 否 | `AutonomousAgent[] \| undefined` |
+| tasks | 否 | `AutonomousTask[] \| undefined` |
+| onRun | 否 | `((agent: AutonomousAgent, prompt: string) => void) \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/calendar-month.md
+
+# 月历日程
+
+分类：协作与项目。月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
+
+## 最小可用示例
+
+```tsx
+import { CalendarMonth } from "@/components/blocks/calendar-month";
+
+export default function Example() {
+  return (<CalendarMonth onCreate={() => {}} />);
+}
+```
+
+## CalendarMonth Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| events | 否 | `ScheduleEvent[] \| undefined` |
+| year | 否 | `number \| undefined` |
+| month | 否 | `number \| undefined` |
+| day | 否 | `number \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
 
 ---
 
 Source: skills/forge-skill/references/blocks/card-carousel.md
 
 # 卡片轮播
+
+分类：财务。以可切换的卡片展示多个账户，适用于钱包和财务首页。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -2069,7 +2491,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| cards | 是 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").FinancialTheme; variant?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").FinancialVariant; width?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth; className?: string; } & { id: string; })[]` |
+| cards | 是 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@forge-ui-official/core").FinancialTheme; variant?: import("@forge-ui-official/core").FinancialVariant; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[]` |
 | size | 否 | `"default" \| "compact" \| undefined` |
 | index | 否 | `number \| undefined` |
 | defaultIndex | 否 | `number \| undefined` |
@@ -2078,9 +2500,135 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/cards-management.md
+
+# 企业卡管理
+
+分类：财务。企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { CardsManagement } from "@/components/blocks/cards-management";
+
+export default function Example() {
+  return (<CardsManagement onFreezeChange={(cardId, frozen) => console.log(cardId, frozen)} />);
+}
+```
+
+## CardsManagement Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| cards | 否 | `ManagedCard[] \| undefined` |
+| onAddCard | 否 | `(() => void) \| undefined` |
+| onFreezeChange | 否 | `((cardId: string, frozen: boolean) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/categories-table.md
+
+# 商品分类
+
+分类：数据列表。维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { CategoriesTable } from "@/components/blocks/categories-table";
+
+export default function Example() {
+  return (<CategoriesTable onSave={(category, id) => console.log(id ?? "new", category.name)} />);
+}
+```
+
+## CategoriesTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| categories | 否 | `CategoryRecord[] \| undefined` |
+| onSave | 否 | `((category: CategoryDraft, id?: string) => void) \| undefined` |
+| onDelete | 否 | `((category: CategoryRecord) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/chat-workspace.md
+
+# 即时会话
+
+分类：协作与项目。联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、ChatBubble、ChatInputBar、ContactItem、IconButton、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { ChatWorkspace } from "@/components/blocks/chat-workspace";
+
+export default function Example() {
+  return (<ChatWorkspace onSend={(contactId, content) => console.log(contactId, content)} />);
+}
+```
+
+## ChatWorkspace Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| contacts | 否 | `ChatContact[] \| undefined` |
+| messages | 否 | `ChatMessage[] \| undefined` |
+| onSend | 否 | `((contactId: string, content: string) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/client-directory.md
+
+# 客户名录
+
+分类：数据列表。可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { ClientDirectory } from "@/components/blocks/client-directory";
+
+export default function Example() {
+  return (<ClientDirectory onOpen={client => console.log(client.company)} />);
+}
+```
+
+## ClientDirectory Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| clients | 否 | `ClientRecord[] \| undefined` |
+| onAdd | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((client: ClientRecord) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/composition-card.md
 
 # 构成占比卡
+
+分类：图表与指标。用圆环图展示收入、渠道或费用的构成与占比。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -2100,7 +2648,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| title | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| title | 否 | `import("react").ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
 | suppressContentEditableWarning | 否 | `boolean \| undefined` |
@@ -2120,11 +2668,11 @@ export default function Example() {
 | nonce | 否 | `string \| undefined` |
 | slot | 否 | `string \| undefined` |
 | spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CSSProperties \| undefined` |
+| style | 否 | `import("react").CSSProperties \| undefined` |
 | tabIndex | 否 | `number \| undefined` |
 | translate | 否 | `"yes" \| "no" \| undefined` |
 | radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AriaRole \| undefined` |
+| role | 否 | `import("react").AriaRole \| undefined` |
 | about | 否 | `string \| undefined` |
 | content | 否 | `string \| undefined` |
 | datatype | 否 | `string \| undefined` |
@@ -2209,181 +2757,181 @@ export default function Example() {
 | aria-valuenow | 否 | `number \| undefined` |
 | aria-valuetext | 否 | `string \| undefined` |
 | dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| subtitle | 否 | `import("react").ReactNode` |
+| action | 否 | `import("react").ReactNode` |
+| footer | 否 | `import("react").ReactNode` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
-| children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| children | 否 | `import("react").ReactNode` |
 | chart | 否 | `DonutChartProps \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |
 
@@ -2392,6 +2940,8 @@ export default function Example() {
 Source: skills/forge-skill/references/blocks/conversation-header.md
 
 # 对话页标题栏
+
+分类：页面结构。展示会话名称、参与者与常用操作，适用于团队对话页面。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -2417,9 +2967,41 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/crm-activity.md
+
+# 客户动态
+
+分类：协作与项目。按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、Checkbox、Panel、TabBar、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { CrmActivity } from "@/components/blocks/crm-activity";
+
+export default function Example() {
+  return (<CrmActivity />);
+}
+```
+
+## CrmActivity Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| members | 否 | `CrmMember[] \| undefined` |
+| activities | 否 | `CrmActivityItem[] \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/crm-summary.md
 
 # 客户经营摘要
+
+分类：图表与指标。概览客户规模与增长情况，为销售团队提供经营摘要。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -2477,9 +3059,75 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/customer-profile.md
+
+# 客户详情
+
+分类：详情页。客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
+
+## 最小可用示例
+
+```tsx
+import { CustomerProfile } from "@/components/blocks/customer-profile";
+
+export default function Example() {
+  return (<CustomerProfile onMessage={() => {}} />);
+}
+```
+
+## CustomerProfile Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| customer | 否 | `CustomerProfileData \| undefined` |
+| onCall | 否 | `(() => void) \| undefined` |
+| onMessage | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/customers-table.md
+
+# 客户列表
+
+分类：数据列表。带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { CustomersTable } from "@/components/blocks/customers-table";
+
+export default function Example() {
+  return (<CustomersTable onCreate={customer => console.log(customer.name)} />);
+}
+```
+
+## CustomersTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| customers | 否 | `CustomerRecord[] \| undefined` |
+| pageSize | 否 | `number \| undefined` |
+| onCreate | 否 | `((customer: NewCustomer) => void) \| undefined` |
+| onExport | 否 | `((customers: CustomerRecord[]) => void) \| undefined` |
+| onContact | 否 | `((customer: CustomerRecord, channel: "email" \| "phone") => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/dashboard-header.md
 
 # 看板页头
+
+分类：页面结构。为经营看板组织标题、统计周期与导出操作。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -2525,11 +3173,11 @@ export default function Example() {
 | nonce | 否 | `string \| undefined` |
 | slot | 否 | `string \| undefined` |
 | spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CSSProperties \| undefined` |
+| style | 否 | `import("react").CSSProperties \| undefined` |
 | tabIndex | 否 | `number \| undefined` |
 | translate | 否 | `"yes" \| "no" \| undefined` |
 | radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AriaRole \| undefined` |
+| role | 否 | `import("react").AriaRole \| undefined` |
 | about | 否 | `string \| undefined` |
 | content | 否 | `string \| undefined` |
 | datatype | 否 | `string \| undefined` |
@@ -2614,180 +3262,281 @@ export default function Example() {
 | aria-valuenow | 否 | `number \| undefined` |
 | aria-valuetext | 否 | `string \| undefined` |
 | dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/deals-table.md
+
+# 商机列表
+
+分类：数据列表。按回款状态汇总金额，列出商机、客户、付款方式与回款状态。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { DealsTable } from "@/components/blocks/deals-table";
+
+export default function Example() {
+  return (<DealsTable onOpen={deal => console.log(deal.title)} />);
+}
+```
+
+## DealsTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| deals | 否 | `DealRecord[] \| undefined` |
+| onAdd | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((deal: DealRecord) => void) \| undefined` |
+| onEdit | 否 | `((deal: DealRecord) => void) \| undefined` |
+| onExport | 否 | `((deals: DealRecord[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/file-manager.md
+
+# 文件管理
+
+分类：协作与项目。按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { FileManager } from "@/components/blocks/file-manager";
+
+export default function Example() {
+  return (<FileManager onOpen={file => console.log(file.name)} />);
+}
+```
+
+## FileManager Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| files | 否 | `FileEntry[] \| undefined` |
+| onUpload | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((file: FileEntry) => void) \| undefined` |
+| onDelete | 否 | `((file: FileEntry) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/finance-overview.md
+
+# 财务概览
+
+分类：看板首屏。结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
+
+## 最小可用示例
+
+```tsx
+import { FinanceOverview } from "@/components/blocks/finance-overview";
+
+export default function Example() {
+  return (<FinanceOverview title="财务概览" periodLabel="2026.10.25 — 10.31" />);
+}
+```
+
+## FinanceOverview Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| title | 否 | `string \| undefined` |
+| description | 否 | `string \| undefined` |
+| periodLabel | 否 | `string \| undefined` |
+| accounts | 否 | `FinanceAccount[] \| undefined` |
+| trend | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| goals | 否 | `(WalletGoalCardProps & { id: string; })[] \| undefined` |
+| className | 否 | `string \| undefined` |
 
 ---
 
 Source: skills/forge-skill/references/blocks/finance-workspace.md
 
 # 财务工作区
+
+分类：财务。整合账户余额、预算与费用明细，集中查看财务状况。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -2880,6 +3629,8 @@ Source: skills/forge-skill/references/blocks/goal-progress-list.md
 
 # 目标进度列表
 
+分类：财务。跟踪储蓄与预算目标，查看已积累金额和完成进度。
+
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
 依赖：core ^0.6.0；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
@@ -2898,7 +3649,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| title | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| title | 否 | `import("react").ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
 | suppressContentEditableWarning | 否 | `boolean \| undefined` |
@@ -2918,11 +3669,11 @@ export default function Example() {
 | nonce | 否 | `string \| undefined` |
 | slot | 否 | `string \| undefined` |
 | spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CSSProperties \| undefined` |
+| style | 否 | `import("react").CSSProperties \| undefined` |
 | tabIndex | 否 | `number \| undefined` |
 | translate | 否 | `"yes" \| "no" \| undefined` |
 | radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AriaRole \| undefined` |
+| role | 否 | `import("react").AriaRole \| undefined` |
 | about | 否 | `string \| undefined` |
 | content | 否 | `string \| undefined` |
 | datatype | 否 | `string \| undefined` |
@@ -3007,182 +3758,182 @@ export default function Example() {
 | aria-valuenow | 否 | `number \| undefined` |
 | aria-valuetext | 否 | `string \| undefined` |
 | dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| subtitle | 否 | `import("react").ReactNode` |
+| action | 否 | `import("react").ReactNode` |
+| footer | 否 | `import("react").ReactNode` |
 | variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
-| children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| children | 否 | `import("react").ReactNode` |
 | goals | 否 | `(WalletGoalCardProps & { id: string; })[] \| undefined` |
 
 ## WalletProgressPanel Props
@@ -3201,9 +3952,199 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/integrations-directory.md
+
+# 集成目录
+
+分类：设置。按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { IntegrationsDirectory } from "@/components/blocks/integrations-directory";
+
+export default function Example() {
+  return (<IntegrationsDirectory onConnect={app => console.log(app.name)} />);
+}
+```
+
+## IntegrationsDirectory Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| integrations | 否 | `Integration[] \| undefined` |
+| onConnect | 否 | `((integration: Integration) => Promise<void> \| void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/invoice-document.md
+
+# 发票单据
+
+分类：详情页。可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { InvoiceDocument } from "@/components/blocks/invoice-document";
+
+export default function Example() {
+  return (<InvoiceDocument onSend={invoice => console.log(invoice.id)} />);
+}
+```
+
+## InvoiceDocument Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| invoice | 否 | `InvoiceDocumentData \| undefined` |
+| onSend | 否 | `((invoice: InvoiceDocumentData) => void) \| undefined` |
+| onDownload | 否 | `((invoice: InvoiceDocumentData) => void) \| undefined` |
+| onEdit | 否 | `((invoice: InvoiceDocumentData) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/invoice-form.md
+
+# 新建发票表单
+
+分类：表单。选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、IconButton、Panel、PlusIcon、SelectOption、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { InvoiceForm } from "@/components/blocks/invoice-form";
+
+export default function Example() {
+  return (<InvoiceForm onSend={(value, total) => console.log(value.invoiceId, total)} />);
+}
+```
+
+## InvoiceForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| value | 否 | `InvoiceFormValue \| undefined` |
+| onSave | 否 | `((value: InvoiceFormValue) => void) \| undefined` |
+| onSend | 否 | `((value: InvoiceFormValue, total: number) => void) \| undefined` |
+| onCancel | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/invoices-table.md
+
+# 发票列表
+
+分类：数据列表。按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { InvoicesTable } from "@/components/blocks/invoices-table";
+
+export default function Example() {
+  return (<InvoicesTable onOpen={invoice => console.log(invoice.id)} />);
+}
+```
+
+## InvoicesTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| invoices | 否 | `InvoiceRecord[] \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((invoice: InvoiceRecord) => void) \| undefined` |
+| onDownload | 否 | `((invoice: InvoiceRecord) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/kanban-board.md
+
+# 任务看板
+
+分类：协作与项目。按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、PlusIcon、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { KanbanBoard } from "@/components/blocks/kanban-board";
+
+export default function Example() {
+  return (<KanbanBoard onMove={(taskId, columnId) => console.log(taskId, columnId)} />);
+}
+```
+
+## KanbanBoard Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| columns | 否 | `KanbanColumn[] \| undefined` |
+| onMove | 否 | `((taskId: string, toColumnId: string) => void) \| undefined` |
+| onAdd | 否 | `((columnId: string, title: string) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/knowledge-library.md
+
+# 知识库
+
+分类：协作与项目。按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { KnowledgeLibrary } from "@/components/blocks/knowledge-library";
+
+export default function Example() {
+  return (<KnowledgeLibrary onOpen={doc => console.log(doc.title)} />);
+}
+```
+
+## KnowledgeLibrary Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| documents | 否 | `LibraryDocument[] \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((document: LibraryDocument) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/kpi-metrics.md
 
 # KPI 指标行
+
+分类：图表与指标。集中展示收入、订单与客户等关键指标，适用于经营看板首屏。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3223,7 +4164,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MotionPreference; trend?: string; trendDirection?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").TrendDirection; subtitle?: string; theme?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardTheme \| ("dark" \| "orange"); size?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").StatCardSize; icon?: ReactNode; badgeVariant?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity; width?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
+| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("@forge-ui-official/core").MotionPreference; trend?: string; trendDirection?: import("@forge-ui-official/core").TrendDirection; subtitle?: string; theme?: import("@forge-ui-official/core").CardTheme \| ("dark" \| "orange"); size?: import("@forge-ui-official/core").StatCardSize; icon?: ReactNode; badgeVariant?: import("@forge-ui-official/core").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("@forge-ui-official/core").CardDensity; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
 | children | 否 | `ReactNode` |
 | className | 否 | `string \| undefined` |
 | variant | 否 | `"chart" \| "plain" \| undefined` |
@@ -3240,9 +4181,108 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/lead-detail.md
+
+# 线索详情
+
+分类：详情页。线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
+
+## 最小可用示例
+
+```tsx
+import { LeadDetail } from "@/components/blocks/lead-detail";
+
+export default function Example() {
+  return (<LeadDetail onAddActivity={activity => console.log(activity.kind)} />);
+}
+```
+
+## LeadDetail Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| lead | 否 | `LeadDetailData \| undefined` |
+| onAddActivity | 否 | `((activity: LeadActivity) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/leads-table.md
+
+# 销售线索
+
+分类：数据列表。线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { LeadsTable } from "@/components/blocks/leads-table";
+
+export default function Example() {
+  return (<LeadsTable onOpen={lead => console.log(lead.id)} />);
+}
+```
+
+## LeadsTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| leads | 否 | `LeadRecord[] \| undefined` |
+| pageSize | 否 | `number \| undefined` |
+| onAdd | 否 | `(() => void) \| undefined` |
+| onExport | 否 | `((leads: LeadRecord[]) => void) \| undefined` |
+| onOpen | 否 | `((lead: LeadRecord) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/login-form.md
+
+# 登录
+
+分类：认证。邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { LoginForm } from "@/components/blocks/login-form";
+
+export default function Example() {
+  return (<LoginForm onLogin={payload => console.log(payload.account)} />);
+}
+```
+
+## LoginForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| productName | 否 | `string \| undefined` |
+| image | 否 | `string \| undefined` |
+| onLogin | 否 | `((payload: { method: "password" \| "code"; account: string; secret: string; remember: boolean; }) => Promise<void> \| void) \| undefined` |
+| onSso | 否 | `((provider: string) => void) \| undefined` |
+| onForgot | 否 | `(() => void) \| undefined` |
+| onRegister | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/member-list.md
 
 # 成员列表
+
+分类：协作与项目。展示团队成员、职位与在线状态，适用于项目和工作区。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3264,24 +4304,443 @@ export default function Example() {
 |---|---|---|
 | title | 是 | `string` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor \| undefined` |
+| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| badge | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| tabs | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ListGroupTab[] \| undefined` |
+| action | 否 | `import("react").ReactNode` |
+| badge | 否 | `import("react").ReactNode` |
+| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
 | activeTab | 否 | `string \| undefined` |
 | onTabChange | 否 | `((value: string) => void) \| undefined` |
 | closable | 否 | `boolean \| undefined` |
 | onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity \| undefined` |
-| items | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| members | 否 | `({ avatar?: string; initials?: string; initialsColor?: "purple" \| "blue" \| "green" \| "orange"; name: string; badge?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; subtitle?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; stats?: { label: string; value: string; }[]; checked?: boolean; onMenuClick?: () => void; width?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
+| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
+| items | 否 | `import("react").ReactNode` |
+| members | 否 | `({ avatar?: string; initials?: string; initialsColor?: "purple" \| "blue" \| "green" \| "orange"; name: string; badge?: import("react").ReactNode; subtitle?: import("react").ReactNode; stats?: { label: string; value: string; }[]; checked?: boolean; onMenuClick?: () => void; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/member-profile.md
+
+# 成员详情
+
+分类：详情页。成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
+
+## 最小可用示例
+
+```tsx
+import { MemberProfile } from "@/components/blocks/member-profile";
+
+export default function Example() {
+  return (<MemberProfile />);
+}
+```
+
+## MemberProfile Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| member | 否 | `MemberProfileData \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/message-channels.md
+
+# 消息渠道
+
+分类：AI 与智能体。把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Checkbox、IconButton、Modal、PlusIcon、SelectOption、StatusBadge、TextField、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { MessageChannels } from "@/components/blocks/message-channels";
+
+export default function Example() {
+  return (<MessageChannels onSave={connection => console.log(connection.name)} />);
+}
+```
+
+## MessageChannels Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| channels | 否 | `ChannelType[] \| undefined` |
+| connections | 否 | `ChannelConnection[] \| undefined` |
+| onSave | 否 | `((connection: ChannelConnection) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/onboarding-flow.md
+
+# 引导流程
+
+分类：认证。首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
+
+## 最小可用示例
+
+```tsx
+import { OnboardingFlow } from "@/components/blocks/onboarding-flow";
+
+export default function Example() {
+  return (<OnboardingFlow onFinish={value => console.log(value.workspace)} />);
+}
+```
+
+## OnboardingFlow Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| initialValue | 否 | `Partial<OnboardingValue> \| undefined` |
+| onFinish | 否 | `((value: OnboardingValue) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/order-detail.md
+
+# 订单详情
+
+分类：详情页。订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { OrderDetail } from "@/components/blocks/order-detail";
+
+export default function Example() {
+  return (<OrderDetail onStatusChange={status => console.log(status)} />);
+}
+```
+
+## OrderDetail Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| order | 否 | `OrderDetailData \| undefined` |
+| onStatusChange | 否 | `((status: OrderDetailStatus) => void) \| undefined` |
+| onViewInvoice | 否 | `((invoiceId: string) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/order-form.md
+
+# 新建订单表单
+
+分类：表单。商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、MediaUpload、SelectOption、TextArea、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { OrderForm } from "@/components/blocks/order-form";
+
+export default function Example() {
+  return (<OrderForm onSubmit={value => console.log(value.customer)} onCancel={() => {}} />);
+}
+```
+
+## OrderForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| value | 否 | `OrderFormValue \| undefined` |
+| onSubmit | 否 | `((value: OrderFormValue, images: MediaItem[]) => void) \| undefined` |
+| onCancel | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/orders-table-section.md
+
+# 订单列表
+
+分类：数据列表。包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
+
+## 最小可用示例
+
+```tsx
+import { OrdersTableSection } from "@/components/blocks/orders-table-section";
+
+export default function Example() {
+  return (<OrdersTableSection title="订单列表" pageSize={6} />);
+}
+```
+
+## OrdersTableSection Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| title | 否 | `string \| undefined` |
+| description | 否 | `string \| undefined` |
+| orders | 否 | `OrderRecord[] \| undefined` |
+| pageSize | 否 | `number \| undefined` |
+| onViewOrder | 否 | `((order: OrderRecord) => void) \| undefined` |
+| onExport | 否 | `((orders: OrderRecord[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/overview-dashboard.md
+
+# 经营概览
+
+分类：看板首屏。将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
+
+## 最小可用示例
+
+```tsx
+import { OverviewDashboard } from "@/components/blocks/overview-dashboard";
+
+export default function Example() {
+  return (<OverviewDashboard title="经营概览" description="知行科技 · 本周经营情况" />);
+}
+```
+
+## OverviewDashboard Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| title | 否 | `string \| undefined` |
+| description | 否 | `string \| undefined` |
+| periodLabel | 否 | `string \| undefined` |
+| metrics | 否 | `OverviewMetric[] \| undefined` |
+| trend | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| composition | 否 | `DonutChartProps \| undefined` |
+| onExport | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/password-recovery.md
+
+# 找回密码
+
+分类：认证。邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、OtpInput、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { PasswordRecovery } from "@/components/blocks/password-recovery";
+
+export default function Example() {
+  return (<PasswordRecovery onReset={payload => console.log(payload.email)} onBack={() => {}} />);
+}
+```
+
+## PasswordRecovery Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| image | 否 | `string \| undefined` |
+| defaultEmail | 否 | `string \| undefined` |
+| onSendCode | 否 | `((email: string) => void) \| undefined` |
+| onReset | 否 | `((payload: { email: string; code: string; password: string; }) => void) \| undefined` |
+| onBack | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/product-detail.md
+
+# 商品详情
+
+分类：详情页。商品图集、价格与规格选择、描述参数，以及订单和评价分页签。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Panel、StatusBadge、TabBar、cn。
+
+## 最小可用示例
+
+```tsx
+import { ProductDetail } from "@/components/blocks/product-detail";
+
+export default function Example() {
+  return (<ProductDetail onEdit={() => {}} />);
+}
+```
+
+## ProductDetail Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| product | 否 | `ProductDetailData \| undefined` |
+| onEdit | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/product-form.md
+
+# 商品编辑表单
+
+分类：表单。基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Checkbox、ConfirmationDialog、IconButton、MediaUpload、PlusIcon、SelectOption、StatusBadge、TextArea、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { ProductForm } from "@/components/blocks/product-form";
+
+export default function Example() {
+  return (<ProductForm onSubmit={value => console.log(value.name)} onCancel={() => {}} />);
+}
+```
+
+## ProductForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| value | 否 | `ProductFormValue \| undefined` |
+| media | 否 | `MediaItem[] \| undefined` |
+| onSubmit | 否 | `((value: ProductFormValue) => void) \| undefined` |
+| onCancel | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/products-table.md
+
+# 商品列表
+
+分类：数据列表。按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { ProductsTable } from "@/components/blocks/products-table";
+
+export default function Example() {
+  return (<ProductsTable onAdd={() => {}} onEdit={product => console.log(product.id)} />);
+}
+```
+
+## ProductsTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| products | 否 | `ProductRecord[] \| undefined` |
+| pageSize | 否 | `number \| undefined` |
+| onAdd | 否 | `(() => void) \| undefined` |
+| onEdit | 否 | `((product: ProductRecord) => void) \| undefined` |
+| onDelete | 否 | `((product: ProductRecord) => void) \| undefined` |
+| onExport | 否 | `((products: ProductRecord[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/project-overview.md
+
+# 项目概览
+
+分类：看板首屏。汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { ProjectOverview } from "@/components/blocks/project-overview";
+
+export default function Example() {
+  return (<ProjectOverview title="客户工作台升级" progress={75} progressLabel="已完成 18 / 24 项任务" />);
+}
+```
+
+## ProjectOverview Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| title | 否 | `string \| undefined` |
+| description | 否 | `string \| undefined` |
+| progress | 否 | `number \| undefined` |
+| progressLabel | 否 | `string \| undefined` |
+| deadline | 否 | `string \| undefined` |
+| members | 否 | `ProjectMember[] \| undefined` |
+| milestones | 否 | `ProjectMilestone[] \| undefined` |
+| activities | 否 | `ProjectActivity[] \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/project-portfolio.md
+
+# 项目总览
+
+分类：协作与项目。整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、DataTable、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { ProjectPortfolio } from "@/components/blocks/project-portfolio";
+
+export default function Example() {
+  return (<ProjectPortfolio onOpen={project => console.log(project.name)} />);
+}
+```
+
+## ProjectPortfolio Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| projects | 否 | `PortfolioProject[] \| undefined` |
+| onCreate | 否 | `(() => void) \| undefined` |
+| onOpen | 否 | `((project: PortfolioProject) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
 
 ---
 
 Source: skills/forge-skill/references/blocks/project-section.md
 
 # 项目详情分区
+
+分类：协作与项目。围绕项目或任务组织详情内容与操作，保持阅读层次清晰。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3308,9 +4767,41 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/prompt-evals.md
+
+# 提示词评测
+
+分类：AI 与智能体。按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { PromptEvals } from "@/components/blocks/prompt-evals";
+
+export default function Example() {
+  return (<PromptEvals onRun={() => {}} />);
+}
+```
+
+## PromptEvals Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| evals | 否 | `PromptEvalsData \| undefined` |
+| onRun | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/ranking-list.md
 
 # 排行列表卡
+
+分类：数据列表。展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3332,16 +4823,16 @@ export default function Example() {
 |---|---|---|
 | title | 是 | `string` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor \| undefined` |
+| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
 | action | 否 | `ReactNode` |
 | badge | 否 | `ReactNode` |
-| tabs | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ListGroupTab[] \| undefined` |
+| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
 | activeTab | 否 | `string \| undefined` |
 | onTabChange | 否 | `((value: string) => void) \| undefined` |
 | closable | 否 | `boolean \| undefined` |
 | onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardDensity \| undefined` |
+| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
 | items | 否 | `ReactNode` |
 | entries | 否 | `{ id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>["icon"]; accent?: ComponentProps<typeof ChartListItem>["accent"]; avatar?: string; }[] \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |
@@ -3351,6 +4842,8 @@ export default function Example() {
 Source: skills/forge-skill/references/blocks/recent-records.md
 
 # 最近记录表卡
+
+分类：数据列表。在一张卡片内查看最近订单、交易或业务记录。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3370,7 +4863,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| title | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| title | 否 | `import("react").ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
 | suppressContentEditableWarning | 否 | `boolean \| undefined` |
@@ -3390,11 +4883,11 @@ export default function Example() {
 | nonce | 否 | `string \| undefined` |
 | slot | 否 | `string \| undefined` |
 | spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CSSProperties \| undefined` |
+| style | 否 | `import("react").CSSProperties \| undefined` |
 | tabIndex | 否 | `number \| undefined` |
 | translate | 否 | `"yes" \| "no" \| undefined` |
 | radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AriaRole \| undefined` |
+| role | 否 | `import("react").AriaRole \| undefined` |
 | about | 否 | `string \| undefined` |
 | content | 否 | `string \| undefined` |
 | datatype | 否 | `string \| undefined` |
@@ -3479,182 +4972,182 @@ export default function Example() {
 | aria-valuenow | 否 | `number \| undefined` |
 | aria-valuetext | 否 | `string \| undefined` |
 | dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| subtitle | 否 | `import("react").ReactNode` |
+| action | 否 | `import("react").ReactNode` |
+| footer | 否 | `import("react").ReactNode` |
 | variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
-| children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| children | 否 | `import("react").ReactNode` |
 | columns | 否 | `ColumnDef<RecordType>[] \| undefined` |
 | data | 否 | `RecordType[] \| undefined` |
 | getRowKey | 否 | `((row: RecordType, index: number) => string) \| undefined` |
@@ -3664,6 +5157,8 @@ export default function Example() {
 Source: skills/forge-skill/references/blocks/region-distribution.md
 
 # 地区分布卡
+
+分类：图表与指标。结合地图与地区明细，查看客户或收入的地域分布。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3685,19 +5180,115 @@ export default function Example() {
 |---|---|---|
 | title | 否 | `string \| undefined` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor \| undefined` |
+| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
-| variant | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapVariant \| undefined` |
-| highlights | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapContinent[] \| undefined` |
+| variant | 否 | `import("@forge-ui-official/core").MapVariant \| undefined` |
+| highlights | 否 | `import("@forge-ui-official/core").MapContinent[] \| undefined` |
 | onMenuClick | 否 | `(() => void) \| undefined` |
-| width | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CardWidth \| undefined` |
-| regions | 否 | `(Omit<import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |
+| width | 否 | `import("@forge-ui-official/core").CardWidth \| undefined` |
+| regions | 否 | `(Omit<import("@forge-ui-official/core").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/register-form.md
+
+# 注册
+
+分类：认证。左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Checkbox、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { RegisterForm } from "@/components/blocks/register-form";
+
+export default function Example() {
+  return (<RegisterForm onSubmit={value => console.log(value.email)} onLogin={() => {}} />);
+}
+```
+
+## RegisterForm Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| productName | 否 | `string \| undefined` |
+| image | 否 | `string \| undefined` |
+| providers | 否 | `{ id: string; label: string; icon: string; }[] \| undefined` |
+| onSubmit | 否 | `((value: RegisterValue) => void) \| undefined` |
+| onProvider | 否 | `((providerId: string) => void) \| undefined` |
+| onLogin | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/runtime-list.md
+
+# 运行时管理
+
+分类：AI 与智能体。智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、DataTable、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { RuntimeList } from "@/components/blocks/runtime-list";
+
+export default function Example() {
+  return (<RuntimeList />);
+}
+```
+
+## RuntimeList Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| runtimes | 否 | `AgentRuntime[] \| undefined` |
+| check | 否 | `((runtime: AgentRuntime) => Promise<RuntimeState>) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/savings-goals-table.md
+
+# 储蓄目标表
+
+分类：财务。资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { SavingsGoalsTable } from "@/components/blocks/savings-goals-table";
+
+export default function Example() {
+  return (<SavingsGoalsTable onCreate={goal => console.log(goal.title)} />);
+}
+```
+
+## SavingsGoalsTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| goals | 否 | `SavingsGoal[] \| undefined` |
+| onCreate | 否 | `((goal: SavingsGoal) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
 
 ---
 
 Source: skills/forge-skill/references/blocks/schedule-card.md
 
 # 日程与甘特容器
+
+分类：协作与项目。按日历或时间线安排会议与项目任务，掌握团队近期日程。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -3717,7 +5308,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| title | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| title | 否 | `import("react").ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
 | suppressContentEditableWarning | 否 | `boolean \| undefined` |
@@ -3737,11 +5328,11 @@ export default function Example() {
 | nonce | 否 | `string \| undefined` |
 | slot | 否 | `string \| undefined` |
 | spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CSSProperties \| undefined` |
+| style | 否 | `import("react").CSSProperties \| undefined` |
 | tabIndex | 否 | `number \| undefined` |
 | translate | 否 | `"yes" \| "no" \| undefined` |
 | radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AriaRole \| undefined` |
+| role | 否 | `import("react").AriaRole \| undefined` |
 | about | 否 | `string \| undefined` |
 | content | 否 | `string \| undefined` |
 | datatype | 否 | `string \| undefined` |
@@ -3826,183 +5417,183 @@ export default function Example() {
 | aria-valuenow | 否 | `number \| undefined` |
 | aria-valuetext | 否 | `string \| undefined` |
 | dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| subtitle | 否 | `import("react").ReactNode` |
+| action | 否 | `import("react").ReactNode` |
+| footer | 否 | `import("react").ReactNode` |
 | variant | 否 | `"dashboard" \| "template" \| "custom" \| undefined` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
-| children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| calendar | 否 | `{ view?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/components/ui/full-calendar").CalendarView; color?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").AccentColor; year?: number; month?: number; day?: number; events?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").CalendarEvent[]; detailPanel?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode; onCloseDetail?: () => void; onViewChange?: (view: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/components/ui/full-calendar").CalendarView) => void; onEdit?: () => void; onMore?: () => void; className?: string; } \| undefined` |
+| children | 否 | `import("react").ReactNode` |
+| calendar | 否 | `{ view?: import("@forge-ui-official/core").CalendarView; color?: import("@forge-ui-official/core").AccentColor; year?: number; month?: number; day?: number; events?: import("@forge-ui-official/core").CalendarEvent[]; detailPanel?: import("react").ReactNode; onCloseDetail?: () => void; onViewChange?: (view: import("@forge-ui-official/core").CalendarView) => void; onEdit?: () => void; onMore?: () => void; className?: string; } \| undefined` |
 
 ## GanttSchedule Props
 
@@ -4013,9 +5604,289 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/sellers-table.md
+
+# 商家列表
+
+分类：数据列表。展示店铺评分、营收与待结算金额的入驻商家管理表。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { SellersTable } from "@/components/blocks/sellers-table";
+
+export default function Example() {
+  return (<SellersTable onMessage={(seller, channel) => console.log(seller.store, channel)} />);
+}
+```
+
+## SellersTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| sellers | 否 | `SellerRecord[] \| undefined` |
+| pageSize | 否 | `number \| undefined` |
+| onAdd | 否 | `(() => void) \| undefined` |
+| onExport | 否 | `((sellers: SellerRecord[]) => void) \| undefined` |
+| onMessage | 否 | `((seller: SellerRecord, channel: "email" \| "chat") => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/settings-billing.md
+
+# 账单与套餐
+
+分类：设置。本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { SettingsBilling } from "@/components/blocks/settings-billing";
+
+export default function Example() {
+  return (<SettingsBilling onChangePlan={(plan, yearly) => console.log(plan, yearly)} />);
+}
+```
+
+## SettingsBilling Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| plans | 否 | `BillingPlan[] \| undefined` |
+| currentPlan | 否 | `string \| undefined` |
+| usage | 否 | `{ label: string; used: number; limit: number; unit: string; }[] \| undefined` |
+| onChangePlan | 否 | `((planId: string, yearly: boolean) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/settings-members.md
+
+# 成员与团队
+
+分类：设置。席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { SettingsMembers } from "@/components/blocks/settings-members";
+
+export default function Example() {
+  return (<SettingsMembers seats={10} onInvite={(email, role) => console.log(email, role)} />);
+}
+```
+
+## SettingsMembers Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| members | 否 | `WorkspaceMember[] \| undefined` |
+| seats | 否 | `number \| undefined` |
+| onInvite | 否 | `((email: string, role: MemberRole) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/settings-notifications.md
+
+# 通知设置
+
+分类：设置。按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Panel、SelectOption、Toggle、cn。
+
+## 最小可用示例
+
+```tsx
+import { SettingsNotifications } from "@/components/blocks/settings-notifications";
+
+export default function Example() {
+  return (<SettingsNotifications onSave={(rules, digest) => console.log(rules.length, digest)} />);
+}
+```
+
+## SettingsNotifications Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| rules | 否 | `NotificationRule[] \| undefined` |
+| onSave | 否 | `((rules: NotificationRule[], digest: string) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/settings-profile.md
+
+# 个人资料设置
+
+分类：设置。头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Panel、SelectOption、TextArea、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { SettingsProfile } from "@/components/blocks/settings-profile";
+
+export default function Example() {
+  return (<SettingsProfile onSave={value => console.log(value.name)} />);
+}
+```
+
+## SettingsProfile Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| value | 否 | `ProfileValue \| undefined` |
+| avatar | 否 | `string \| undefined` |
+| onSave | 否 | `((value: ProfileValue) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/settings-roles.md
+
+# 角色与权限
+
+分类：设置。左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
+
+## 最小可用示例
+
+```tsx
+import { SettingsRoles } from "@/components/blocks/settings-roles";
+
+export default function Example() {
+  return (<SettingsRoles onSave={role => console.log(role.permissions)} />);
+}
+```
+
+## SettingsRoles Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| tree | 否 | `PermissionNode[] \| undefined` |
+| roles | 否 | `WorkspaceRole[] \| undefined` |
+| onSave | 否 | `((role: WorkspaceRole) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/settings-security.md
+
+# 安全设置
+
+分类：设置。密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、Modal、Panel、StatusBadge、TextField、Toggle、cn。
+
+## 最小可用示例
+
+```tsx
+import { SettingsSecurity } from "@/components/blocks/settings-security";
+
+export default function Example() {
+  return (<SettingsSecurity />);
+}
+```
+
+## SettingsSecurity Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| sessions | 否 | `LoginSession[] \| undefined` |
+| apiKeys | 否 | `ApiKey[] \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/task-detail.md
+
+# 任务详情
+
+分类：详情页。任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { TaskDetail } from "@/components/blocks/task-detail";
+
+export default function Example() {
+  return (<TaskDetail onChecklistChange={items => console.log(items.length)} />);
+}
+```
+
+## TaskDetail Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| task | 否 | `TaskDetailData \| undefined` |
+| onChecklistChange | 否 | `((items: TaskChecklistItem[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/task-run-detail.md
+
+# 任务执行详情
+
+分类：AI 与智能体。任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、HistoryItem、Modal、Panel、StatusBadge、StreamingAnswer、cn。
+
+## 最小可用示例
+
+```tsx
+import { TaskRunDetail } from "@/components/blocks/task-run-detail";
+
+export default function Example() {
+  return (<TaskRunDetail onDownload={artifact => console.log(artifact.name)} />);
+}
+```
+
+## TaskRunDetail Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| task | 否 | `TaskRunDetailData \| undefined` |
+| onDownload | 否 | `((artifact: TaskArtifact) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/template-surface.md
 
 # 模板内容分区
+
+分类：页面结构。为列表或详情组织独立内容分区，适用于后台业务页面。
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
@@ -4043,13 +5914,46 @@ export default function Example() {
 
 ---
 
+Source: skills/forge-skill/references/blocks/transactions-table.md
+
+# 交易流水
+
+分类：财务。支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
+
+## 最小可用示例
+
+```tsx
+import { TransactionsTable } from "@/components/blocks/transactions-table";
+
+export default function Example() {
+  return (<TransactionsTable budget={80000} />);
+}
+```
+
+## TransactionsTable Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| transactions | 否 | `TransactionRecord[] \| undefined` |
+| categories | 否 | `ExpenseCategory[] \| undefined` |
+| budget | 否 | `number \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
 Source: skills/forge-skill/references/blocks/trend-chart.md
 
 # 趋势图表卡
 
+分类：图表与指标。对比不同周期的业务走势，适用于收入、订单和流量分析。
+
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.6.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel。
+依赖：core ^0.6.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
 
 ## 最小可用示例
 
@@ -4065,7 +5969,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| title | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| title | 否 | `import("react").ReactNode` |
 | defaultChecked | 否 | `boolean \| undefined` |
 | defaultValue | 否 | `string \| number \| readonly string[] \| undefined` |
 | suppressContentEditableWarning | 否 | `boolean \| undefined` |
@@ -4085,11 +5989,11 @@ export default function Example() {
 | nonce | 否 | `string \| undefined` |
 | slot | 否 | `string \| undefined` |
 | spellCheck | 否 | `(boolean \| "true" \| "false") \| undefined` |
-| style | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CSSProperties \| undefined` |
+| style | 否 | `import("react").CSSProperties \| undefined` |
 | tabIndex | 否 | `number \| undefined` |
 | translate | 否 | `"yes" \| "no" \| undefined` |
 | radioGroup | 否 | `string \| undefined` |
-| role | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AriaRole \| undefined` |
+| role | 否 | `import("react").AriaRole \| undefined` |
 | about | 否 | `string \| undefined` |
 | content | 否 | `string \| undefined` |
 | datatype | 否 | `string \| undefined` |
@@ -4174,187 +6078,250 @@ export default function Example() {
 | aria-valuenow | 否 | `number \| undefined` |
 | aria-valuetext | 否 | `string \| undefined` |
 | dangerouslySetInnerHTML | 否 | `{ __html: string \| TrustedHTML; } \| undefined` |
-| onCopy | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCopyCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPaste | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onPasteCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ClipboardEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onCompositionUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").CompositionEventHandler<HTMLDivElement> \| undefined` |
-| onFocus | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onFocusCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlur | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onBlurCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").FocusEventHandler<HTMLDivElement> \| undefined` |
-| onChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
-| onBeforeInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInput | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onInputCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").InputEventHandler<HTMLDivElement> \| undefined` |
-| onReset | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onResetCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSubmit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onSubmitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").SubmitEventHandler<HTMLDivElement> \| undefined` |
-| onInvalid | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onInvalidCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoad | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onError | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onErrorCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyPressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onKeyUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").KeyboardEventHandler<HTMLDivElement> \| undefined` |
-| onAbort | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAbortCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThrough | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onCanPlayThroughCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onDurationChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptied | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEmptiedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncrypted | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEncryptedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEnded | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onEndedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedData | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedDataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadata | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadedMetadataCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onLoadStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPause | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPauseCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlay | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlaying | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onPlayingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgress | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onProgressCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onRateChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeked | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekedCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeeking | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSeekingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalled | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onStalledCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspend | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSuspendCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdate | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTimeUpdateCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChange | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onVolumeChangeCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaiting | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onWaitingCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onAuxClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenu | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onContextMenuCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClick | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDoubleClickCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onDrag | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragEnterCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExit | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragExitCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragLeaveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDragStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDrop | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onDropCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").DragEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onMouseUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").MouseEventHandler<HTMLDivElement> \| undefined` |
-| onSelect | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onSelectCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onTouchStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TouchEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDown | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerDownCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMove | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerMoveCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUp | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerUpCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerEnter | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerLeave | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOver | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOverCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOut | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onPointerOutCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onGotPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onLostPointerCaptureCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").PointerEventHandler<HTMLDivElement> \| undefined` |
-| onScroll | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onScrollEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").UIEventHandler<HTMLDivElement> \| undefined` |
-| onWheel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onWheelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").WheelEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIteration | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onAnimationIterationCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").AnimationEventHandler<HTMLDivElement> \| undefined` |
-| onToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onBeforeToggle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ToggleEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancel | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionCancelCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEnd | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionEndCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRun | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionRunCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStart | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| onTransitionStartCapture | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").TransitionEventHandler<HTMLDivElement> \| undefined` |
-| subtitle | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| action | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| footer | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
+| onCopy | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCopyCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCut | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCutCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPaste | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onPasteCapture | 否 | `import("react").ClipboardEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEnd | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionEndCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStart | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionStartCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdate | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onCompositionUpdateCapture | 否 | `import("react").CompositionEventHandler<HTMLDivElement> \| undefined` |
+| onFocus | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onFocusCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlur | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onBlurCapture | 否 | `import("react").FocusEventHandler<HTMLDivElement> \| undefined` |
+| onChange | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onChangeCapture | 否 | `import("react").ChangeEventHandler<HTMLDivElement, Element> \| undefined` |
+| onBeforeInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInput | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onInputCapture | 否 | `import("react").InputEventHandler<HTMLDivElement> \| undefined` |
+| onReset | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onResetCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSubmit | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onSubmitCapture | 否 | `import("react").SubmitEventHandler<HTMLDivElement> \| undefined` |
+| onInvalid | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onInvalidCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoad | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onError | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onErrorCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDown | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyDownCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPress | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyPressCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUp | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onKeyUpCapture | 否 | `import("react").KeyboardEventHandler<HTMLDivElement> \| undefined` |
+| onAbort | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAbortCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThrough | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onCanPlayThroughCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onDurationChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptied | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEmptiedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncrypted | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEncryptedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEnded | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onEndedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedData | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedDataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadata | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadedMetadataCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStart | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onLoadStartCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPause | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPauseCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlay | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlaying | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onPlayingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgress | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onProgressCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onRateChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeked | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekedCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeeking | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSeekingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalled | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onStalledCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspend | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSuspendCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdate | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTimeUpdateCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChange | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onVolumeChangeCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaiting | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onWaitingCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onAuxClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenu | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onContextMenuCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClick | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDoubleClickCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onDrag | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnd | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEndCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnter | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragEnterCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExit | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragExitCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeave | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragLeaveCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOver | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragOverCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStart | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDragStartCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDrop | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onDropCapture | 否 | `import("react").DragEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDown | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseDownCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseEnter | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseLeave | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMove | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseMoveCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOut | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOutCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOver | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseOverCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUp | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onMouseUpCapture | 否 | `import("react").MouseEventHandler<HTMLDivElement> \| undefined` |
+| onSelect | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onSelectCapture | 否 | `import("react").ReactEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancel | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchCancelCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEnd | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchEndCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMove | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchMoveCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStart | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onTouchStartCapture | 否 | `import("react").TouchEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDown | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerDownCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMove | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerMoveCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUp | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerUpCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancel | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerCancelCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerEnter | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerLeave | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOver | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOverCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOut | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onPointerOutCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onGotPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onLostPointerCaptureCapture | 否 | `import("react").PointerEventHandler<HTMLDivElement> \| undefined` |
+| onScroll | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEnd | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onScrollEndCapture | 否 | `import("react").UIEventHandler<HTMLDivElement> \| undefined` |
+| onWheel | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onWheelCapture | 否 | `import("react").WheelEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStart | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationStartCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEnd | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationEndCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIteration | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onAnimationIterationCapture | 否 | `import("react").AnimationEventHandler<HTMLDivElement> \| undefined` |
+| onToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onBeforeToggle | 否 | `import("react").ToggleEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancel | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionCancelCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEnd | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionEndCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRun | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionRunCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStart | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| onTransitionStartCapture | 否 | `import("react").TransitionEventHandler<HTMLDivElement> \| undefined` |
+| subtitle | 否 | `import("react").ReactNode` |
+| action | 否 | `import("react").ReactNode` |
+| footer | 否 | `import("react").ReactNode` |
 | as | 否 | `"article" \| "div" \| "section" \| "aside" \| undefined` |
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
-| children | 否 | `import("/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index").ReactNode` |
-| chart | 否 | `{ data: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").GroupedBarPoint[]; series: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| children | 否 | `import("react").ReactNode` |
+| chart | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | periods | 否 | `TrendPeriod[] \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |
 | activePeriod | 否 | `string \| undefined` |
 | onPeriodChange | 否 | `((period: string) => void) \| undefined` |
 | countChart | 否 | `SmoothLineChartProps \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/wealth-overview.md
+
+# 资产概览
+
+分类：看板首屏。总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
+
+## 最小可用示例
+
+```tsx
+import { WealthOverview } from "@/components/blocks/wealth-overview";
+
+export default function Example() {
+  return (<WealthOverview onAddCard={() => {}} />);
+}
+```
+
+## WealthOverview Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| metrics | 否 | `WealthMetric[] \| undefined` |
+| cards | 否 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@forge-ui-official/core").FinancialTheme; variant?: import("@forge-ui-official/core").FinancialVariant; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
+| goals | 否 | `WealthGoal[] \| undefined` |
+| onAddCard | 否 | `(() => void) \| undefined` |
+| className | 否 | `string \| undefined` |
+
+---
+
+Source: skills/forge-skill/references/blocks/workflow-builder.md
+
+# 工作流编辑器
+
+分类：AI 与智能体。左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。
+
+由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
+
+依赖：core ^0.6.0；组件：AgentFlowchart、Button、Panel、SelectOption、StatusBadge、TextArea、TextField、cn。
+
+## 最小可用示例
+
+```tsx
+import { WorkflowBuilder } from "@/components/blocks/workflow-builder";
+
+export default function Example() {
+  return (<WorkflowBuilder onPublish={nodes => console.log(nodes.length)} />);
+}
+```
+
+## WorkflowBuilder Props
+
+| Prop | 必填 | Type |
+|---|---|---|
+| nodes | 否 | `AgentFlowNode[] \| undefined` |
+| edges | 否 | `AgentFlowEdge[] \| undefined` |
+| onPublish | 否 | `((nodes: AgentFlowNode[]) => void) \| undefined` |
+| className | 否 | `string \| undefined` |
 
 ---
 
@@ -5841,7 +7808,7 @@ Source: skills/forge-skill/references/page-design-dimensional.md
 使用随本仓独立分发的 [dimensional-drawing](https://github.com/forge-ui/forge/blob/main/skills/dimensional-drawing/SKILL.md) 画静态尺寸图；只有用户明确要求动画成片时才使用 [dimensional-drawing-motion](https://github.com/forge-ui/forge/blob/main/skills/dimensional-drawing-motion/SKILL.md)。install-skill.sh 同时安装三者，不依赖固定本机路径。先选真实同角色 Screen；另行截图验证实际 UI，图纸不能替代运行验收。安装 skill 不自动执行 headless 依赖或下载浏览器。
 
 1. 标注角色、任务、模板源码/版本、视口、侧栏状态及净内容宽。
-2. 按外壳→区块→组件拆槽，标 FILL/FLEX/HUG，说明 padding、gap、宽高、滚动归属。操作先保留 HUG，正文取得非负剩余宽。
+2. 按外壳→页面组件→组件拆槽，标 FILL/FLEX/HUG，说明 padding、gap、宽高、滚动归属。操作先保留 HUG，正文取得非负剩余宽。
 3. 尺寸线、变量表与公式一一对应，区分源码值、公式推导、建议值、未核实；不以截图比例猜参数。
 4. 宽屏与窄屏分别画，保留阅读顺序、关闭/提交入口；长文字重排，宽代码/表局部横滚，不隐藏不可达操作。
 5. 看板必填：Screen 路径与版本、目标/KPI业务入口、轨道/span/断点、section gap、Grid gap、卡padding与内部gap、图域高度与整卡高度的区别、字体层次、滚动与侧栏净宽。公式与数值单一来源见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)。
@@ -6104,7 +8071,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 |---|---|---|
 | 基础表单填写区上限 | 640px，实际宽为 min(可用宽, 640px) | 限制长视线与字段过宽；外层页面可继续填满，不要求所有卡片等宽 |
 | 分组表单/详情主阅读区上限 | 960px，实际宽不超过可用宽 | 容纳相关短字段与描述组；大表、附件预览可独立用满内容区 |
-| 页面区块间距 | 24px；窄空间可用16px | 区别于字段内部间距；不与已有外壳 padding 叠加成双份留白 |
+| 页面组件间距 | 24px；窄空间可用16px | 区别于字段内部间距；不与已有外壳 padding 叠加成双份留白 |
 | 独立字段间距 / 业务组间距 | 16px / 24px | 通过节奏表达关联层次；组件内标签、错误间距沿组件契约 |
 | 两列字段间距 / 单列最小预算 | 24px / 280px | 为标签、输入、说明保留基础空间；280仅为起点，长字段可要求更宽 |
 | 左右标签变体 | 初始标签预算120px，标签与值间距16px | 只用于短而稳定的同组标签；允许多行，不强行省略；更长标签优先改上标签 |
@@ -6200,7 +8167,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 | 层级/部位 | 基线 / 响应式规则 | 源码出处 |
 |---|---|---|
 | 页面外壳内容padding | base `p-4`=16px；sm起 `p-5`=20px；页面不再叠一份 | `core/src/components/layouts/app-layout.tsx:863` |
-| 看板区块纵向间距 | 外层 `flex flex-col gap-5`=20px | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:183`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:135` |
+| 看板页面组件纵向间距 | 外层 `flex flex-col gap-5`=20px | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:183`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:135` |
 | Grid内部行/列gap | 默认16px，不继承section的20px | `core/src/components/layouts/grid.tsx:43`；analytics的Grid未显式改gap，见`:194`、`:202`、`:238`、`:297` |
 | KPI行 | base1列、sm2列、lg4等分；卡 `width="full"`、size=wide | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:194` 至`:198` |
 | 主图+辅助块 | base依DOM顺序全宽堆叠；lg默认12轨道中的8:4 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:202`、`:203`、`:214` |
@@ -6229,7 +8196,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 - 图内至少标出：外壳padding16/20、section gap20、Grid gap16、卡padding16、卡内gap12或16、图域224、响应式跨度。不要用一条“页面gap24”覆盖全部层级。
 - `--radius-card=20px` 与模板 `rounded-3xl=24px`并存：本草案记录模板24px现状，**不授权修改全局Token**。待Panel组件立项再决定模板兼容方式。
 
-### 已实现的看板组件与区块
+### 已实现的看板组件与页面组件
 
 - 外壳：AppLayout；面板：Panel（dashboard/template），SurfaceCard 保持原 API。
 - 密度：StatCard、ProgressStatCard、LineChartStatCard、BarChartStatCard、WheelChartStatCard、BalanceCard、ImageStatCard、HighlightCard、ListGroup 使用 density="compact"；不再依赖模板 !important。默认密度不变。
@@ -6271,11 +8238,11 @@ corepack pnpm dev --hostname 127.0.0.1 --port 3219
 | project-1 | 项目进展与协作概览 | src/app/templates/(dashboards)/dashboards/project-1/page.tsx |
 | project-2 | 项目任务与资源概览 | src/app/templates/(dashboards)/dashboards/project-2/page.tsx |
 
-具体布局与尺寸见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)；区块抽取状态见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
+具体布局与尺寸见 [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md)；页面组件抽取状态见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
 
 ## 实现分层
 
-十个页面已直接使用 AppLayout；卡壳用 Panel，区块从 blocks/ 复制。原 dashboard-density、DashboardShell、Figma 前缀图表与私有 WalletGoalCard 已删除；公共图表与密度 API 见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
+十个页面已直接使用 AppLayout；卡壳用 Panel，页面组件从 blocks/ 复制。原 dashboard-density、DashboardShell、Figma 前缀图表与私有 WalletGoalCard 已删除；公共图表与密度 API 见 [Blocks](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/blocks.md)。
 
 这是源码迁移状态，不是截图验收结论：须逐页比较 1440 与 375 两档、同字体/侧栏/固定数据的前后截图，记录不同尺寸或有意差异，不能用 build 代替。
 

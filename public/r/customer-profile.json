@@ -1,0 +1,73 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "customer-profile",
+  "type": "registry:block",
+  "title": "客户详情",
+  "description": "客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "详情页",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/customers/1",
+        "title": "客户详情页"
+      },
+      {
+        "href": "/templates/crm-template/customers/john-bushmill",
+        "title": "CRM 客户详情页"
+      }
+    ],
+    "example": "import { CustomerProfile } from \"@/components/blocks/customer-profile\";\n\nexport default function Example() {\n  return (<CustomerProfile onMessage={() => {}} />);\n}\n",
+    "props": [
+      {
+        "component": "CustomerProfile",
+        "properties": [
+          {
+            "name": "customer",
+            "required": false,
+            "type": "CustomerProfileData | undefined"
+          },
+          {
+            "name": "onCall",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onMessage",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "IconButton",
+        "Panel",
+        "ReviewItem",
+        "SmoothLineChart",
+        "StatCard",
+        "StatusBadge",
+        "TabBar",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/customer-profile/customer-profile.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/customer-profile.tsx",
+      "content": "\"use client\";\n\n/* eslint-disable @next/next/no-img-element */\nimport { useState } from \"react\";\nimport { Button, IconButton, Panel, ReviewItem, SmoothLineChart, StatCard, StatusBadge, TabBar, cn, type StatusBadgeColor } from \"@forge-ui-official/core\";\nimport { ChatRoundLinear, CheckCircleLinear, CopyLinear, PhoneCallingLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface CustomerProfileData {\n  name: string;\n  handle: string;\n  tier: string;\n  avatar: string;\n  email: string;\n  phone: string;\n  address: string;\n  stats: { title: string; value: string; trend: string; subtitle: string }[];\n  purchases: { id: string; name: string; note: string; total: string; image: string }[];\n  monthlySpend: number[];\n  orders: { id: string; product: string; total: string; status: \"processing\" | \"shipped\" | \"delivered\" | \"canceled\"; date: string }[];\n  reviews: { id: string; product: string; rating: number; date: string; comment: string }[];\n  timeline: { id: string; title: string; description: string; time: string; status?: { label: string; color: StatusBadgeColor } }[];\n}\n\nexport const defaultCustomerProfile: CustomerProfileData = {\n  name: \"苏晚晴\",\n  handle: \"拾光好物 · 采购负责人\",\n  tier: \"VIP\",\n  avatar: \"/images/blocks/people/su-wanqing.jpg\",\n  email: \"wanqing@shiguang.shop\",\n  phone: \"135 8841 2290\",\n  address: \"杭州市西湖区文三路 478 号华星科技大厦 9 楼\",\n  stats: [\n    { title: \"累计订单\", value: \"154\", trend: \"12%\", subtitle: \"本月 +18 单\" },\n    { title: \"已完成\", value: \"139\", trend: \"9%\", subtitle: \"完成率 90.3%\" },\n    { title: \"累计消费\", value: \"¥61,200\", trend: \"15%\", subtitle: \"本月 +¥8,400\" },\n  ],\n  purchases: [\n    { id: \"pu-1\", name: \"无线静音鼠标\", note: \"另含 2 件商品\", total: \"¥1,780\", image: \"/images/blocks/products/mouse.jpg\" },\n    { id: \"pu-2\", name: \"游戏手柄 S\", note: \"单件\", total: \"¥349\", image: \"/images/blocks/products/gamepad.jpg\" },\n    { id: \"pu-3\", name: \"矮轴机械键盘\", note: \"另含 1 件商品\", total: \"¥1,198\", image: \"/images/blocks/products/keyboard.jpg\" },\n    { id: \"pu-4\", name: \"降噪头戴耳机 G1 Pro\", note: \"单件\", total: \"¥899\", image: \"/images/blocks/products/headphones.jpg\" },\n    { id: \"pu-5\", name: \"旗舰手机 X5\", note: \"另含 1 件商品\", total: \"¥6,598\", image: \"/images/blocks/products/phone-dark.jpg\" },\n  ],\n  monthlySpend: [3200, 2800, 4100, 3600, 3900, 5200, 6100, 5400, 4800, 7300, 8400, 6900],\n  orders: [\n    { id: \"ZX2026103112\", product: \"旗舰手机 X5 等 2 件\", total: \"¥6,598\", status: \"processing\", date: \"2026-10-31\" },\n    { id: \"ZX2026102408\", product: \"降噪头戴耳机 G1 Pro\", total: \"¥899\", status: \"shipped\", date: \"2026-10-24\" },\n    { id: \"ZX2026101203\", product: \"矮轴机械键盘 等 2 件\", total: \"¥1,198\", status: \"delivered\", date: \"2026-10-12\" },\n    { id: \"ZX2026092101\", product: \"游戏手柄 S\", total: \"¥349\", status: \"canceled\", date: \"2026-09-21\" },\n  ],\n  reviews: [\n    { id: \"rv-1\", product: \"矮轴机械键盘\", rating: 5, date: \"2026-10-15\", comment: \"手感很稳，团队里写代码的同事都在用，打算再采购一批。\" },\n    { id: \"rv-2\", product: \"无线静音鼠标\", rating: 4, date: \"2026-09-02\", comment: \"静音效果好，续航比预期长，希望增加更多颜色。\" },\n  ],\n  timeline: [\n    { id: \"tl-1\", title: \"订单已签收\", description: \"订单 ZX2026101203 已由前台代收\", time: \"10-14 12:45\", status: { label: \"已签收\", color: \"green\" } },\n    { id: \"tl-2\", title: \"发表评价\", description: \"为矮轴机械键盘打出 5 星\", time: \"10-15 06:15\" },\n    { id: \"tl-3\", title: \"新订单\", description: \"订单 ZX2026103112 已提交并完成支付\", time: \"10-31 09:00\", status: { label: \"处理中\", color: \"yellow\" } },\n  ],\n};\n\nconst orderStatus: Record<CustomerProfileData[\"orders\"][number][\"status\"], { label: string; color: StatusBadgeColor }> = {\n  processing: { label: \"处理中\", color: \"yellow\" },\n  shipped: { label: \"已发货\", color: \"blue\" },\n  delivered: { label: \"已签收\", color: \"green\" },\n  canceled: { label: \"已取消\", color: \"red\" },\n};\n\nconst tabs = [\"概览\", \"订单\", \"评价\"];\nconst months = [\"1月\", \"\", \"3月\", \"\", \"5月\", \"\", \"7月\", \"\", \"9月\", \"\", \"11月\", \"\"];\n\nexport interface CustomerProfileProps {\n  customer?: CustomerProfileData;\n  onCall?: () => void;\n  onMessage?: () => void;\n  className?: string;\n}\n\nexport function CustomerProfile({ customer = defaultCustomerProfile, onCall, onMessage, className }: CustomerProfileProps) {\n  const [tab, setTab] = useState(0);\n  const [copied, setCopied] = useState<string | null>(null);\n  const total = customer.monthlySpend.reduce((sum, value) => sum + value, 0);\n\n  async function copy(label: string, value: string) {\n    try {\n      await navigator.clipboard.writeText(value);\n      setCopied(label);\n      window.setTimeout(() => setCopied(null), 1500);\n    } catch {\n      setCopied(null);\n    }\n  }\n\n  return <div className={cn(\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_320px]\", className)}>\n    <div className=\"flex min-w-0 flex-col gap-4\">\n      <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-3\">\n        {customer.stats.map(stat => <StatCard key={stat.title} title={stat.title} value={stat.value} trend={stat.trend} trendDirection=\"up\" subtitle={stat.subtitle} theme=\"white\" width=\"full\" />)}\n      </div>\n      <div className=\"fg-scrollbar-hidden overflow-x-auto border-b border-fg-grey-200\"><TabBar color=\"blue\" tabs={tabs.map((label, index) => ({ label, active: index === tab }))} onChange={setTab} /></div>\n      {tab === 0 && <div className=\"grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-[300px_minmax(0,1fr)]\">\n        <Panel variant=\"template\" title=\"最近购买\" subtitle=\"近 30 天\">\n          <ul className=\"flex flex-col gap-3\">{customer.purchases.map(item => <li key={item.id} className=\"flex items-center gap-3\">\n            <img src={item.image} alt={item.name} className=\"size-12 shrink-0 rounded-lg bg-fg-grey-100 object-cover\" />\n            <div className=\"min-w-0 flex-1\"><p className=\"truncate text-sm font-semibold text-fg-black\">{item.name}</p><p className=\"text-xs text-fg-grey-700\">{item.note}</p></div>\n            <p className=\"shrink-0 text-sm font-semibold tabular-nums text-fg-black\">{item.total}</p>\n          </li>)}</ul>\n        </Panel>\n        <Panel variant=\"template\" title=\"消费走势\" subtitle=\"2026 年按月统计\">\n          <div className=\"flex items-center gap-3\"><span className=\"flex size-10 items-center justify-center rounded-full bg-fg-blue-50\"><span className=\"size-3 rounded-full bg-fg-blue\" /></span><div><p className=\"text-xs text-fg-grey-700\">全年消费</p><p className=\"text-2xl font-semibold tabular-nums text-fg-black\">¥{total.toLocaleString(\"zh-CN\")}</p></div></div>\n          <SmoothLineChart series={[{ data: customer.monthlySpend, color: \"blue\" }]} accent=\"blue\" activeIndex={10} showYAxis yAxisLabels={[\"¥9k\", \"¥6k\", \"¥3k\", \"¥0\"]} xAxisLabels={months} height=\"h-64\" />\n        </Panel>\n      </div>}\n      {tab === 1 && <Panel variant=\"template\" title=\"订单记录\" subtitle={`共 ${customer.orders.length} 笔`}>\n        <ul className=\"flex flex-col divide-y divide-fg-grey-200\">{customer.orders.map(order => <li key={order.id} className=\"flex flex-wrap items-center justify-between gap-3 py-3 first:pt-0 last:pb-0\">\n          <div className=\"min-w-0\"><p className=\"text-sm font-semibold text-fg-black\">{order.product}</p><p className=\"text-xs text-fg-grey-700\">{order.id} · {order.date}</p></div>\n          <div className=\"flex items-center gap-4\"><span className=\"text-sm font-semibold tabular-nums text-fg-black\">{order.total}</span><StatusBadge {...orderStatus[order.status]} variant=\"soft\" /></div>\n        </li>)}</ul>\n      </Panel>}\n      {tab === 2 && <Panel variant=\"template\" title=\"商品评价\" subtitle={`共 ${customer.reviews.length} 条`}>\n        <div className=\"flex flex-col gap-4\">{customer.reviews.map(review => <ReviewItem key={review.id} name={customer.name} avatar={customer.avatar} date={`${review.date} · ${review.product}`} rating={review.rating} content={review.comment} />)}</div>\n      </Panel>}\n    </div>\n    <Panel variant=\"custom\" as=\"aside\" className=\"overflow-hidden rounded-card border border-fg-grey-200 bg-white p-6\">\n      <div className=\"-mx-6 -mt-6 h-28 bg-gradient-to-r from-fg-blue via-fg-violet-300 to-fg-yellow-100\" />\n      <div className=\"-mt-12 flex flex-col items-center gap-3\">\n        <img src={customer.avatar} alt={customer.name} className=\"size-24 rounded-full border-4 border-white object-cover\" />\n        <div className=\"text-center\"><p className=\"flex items-center justify-center gap-2 text-xl font-semibold text-fg-black\">{customer.name}<span className=\"rounded-md bg-fg-blue px-1.5 py-0.5 text-[10px] font-bold text-white\">{customer.tier}</span></p><p className=\"mt-1 text-sm text-fg-grey-700\">{customer.handle}</p></div>\n      </div>\n      <div className=\"mt-5 grid grid-cols-2 gap-3\"><Button variant=\"tertiary\" iconLeft={<PhoneCallingLinear size={16} />} onClick={onCall}>致电</Button><Button iconLeft={<ChatRoundLinear size={16} />} onClick={onMessage}>发消息</Button></div>\n      <dl className=\"mt-5 flex flex-col gap-4 border-t border-fg-grey-200 pt-5\">\n        {[{ label: \"邮箱\", value: customer.email, copyable: true }, { label: \"手机号\", value: customer.phone, copyable: true }, { label: \"地址\", value: customer.address, copyable: false }].map(field => <div key={field.label}>\n          <dt className=\"flex items-center justify-between text-sm font-semibold text-fg-grey-700\">{field.label}{field.copyable && <IconButton variant=\"ghost\" color=\"grey\" shape=\"square\" size=\"sm\" aria-label={copied === field.label ? \"已复制\" : `复制${field.label}`} onClick={() => copy(field.label, field.value)}>{copied === field.label ? <CheckCircleLinear size={14} /> : <CopyLinear size={14} />}</IconButton>}</dt>\n          <dd className=\"mt-1 text-sm font-medium leading-relaxed text-fg-black\">{field.value}</dd>\n        </div>)}\n      </dl>\n      <ol className=\"mt-5 flex flex-col gap-5 border-t border-fg-grey-200 pt-5\">\n        {customer.timeline.map(item => <li key={item.id} className=\"flex gap-3\">\n          <img src={customer.avatar} alt=\"\" className=\"size-9 shrink-0 rounded-full object-cover\" />\n          <div className=\"flex flex-col gap-1\"><p className=\"text-sm font-semibold text-fg-black\">{item.title}</p><p className=\"text-xs leading-relaxed text-fg-grey-700\">{item.description}</p>{item.status && <div className=\"flex\"><StatusBadge {...item.status} variant=\"soft\" /></div>}<p className=\"text-xs text-fg-grey-700\">{item.time}</p></div>\n        </li>)}\n      </ol>\n    </Panel>\n  </div>;\n}\n"
+    }
+  ]
+}

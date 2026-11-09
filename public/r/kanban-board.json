@@ -1,0 +1,65 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kanban-board",
+  "type": "registry:block",
+  "title": "任务看板",
+  "description": "按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "协作与项目",
+    "screens": [
+      {
+        "href": "/templates/task-board",
+        "title": "任务看板"
+      }
+    ],
+    "example": "import { KanbanBoard } from \"@/components/blocks/kanban-board\";\n\nexport default function Example() {\n  return (<KanbanBoard onMove={(taskId, columnId) => console.log(taskId, columnId)} />);\n}\n",
+    "props": [
+      {
+        "component": "KanbanBoard",
+        "properties": [
+          {
+            "name": "columns",
+            "required": false,
+            "type": "KanbanColumn[] | undefined"
+          },
+          {
+            "name": "onMove",
+            "required": false,
+            "type": "((taskId: string, toColumnId: string) => void) | undefined"
+          },
+          {
+            "name": "onAdd",
+            "required": false,
+            "type": "((columnId: string, title: string) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Avatar",
+        "Button",
+        "PlusIcon",
+        "TextField",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/kanban-board/kanban-board.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/kanban-board.tsx",
+      "content": "\"use client\";\n\nimport { useState, type DragEvent, type FormEvent } from \"react\";\nimport { Avatar, Button, PlusIcon, TextField, cn } from \"@forge-ui-official/core\";\nimport { CalendarMinimalisticLinear, ChatRoundLinear, CheckCircleBold, PaperclipLinear } from \"@forge-ui-official/core/icons\";\n\nexport type KanbanPriority = \"high\" | \"medium\" | \"low\";\n\nexport interface KanbanTask {\n  id: string;\n  title: string;\n  project: string;\n  due: string;\n  priority: KanbanPriority;\n  assignee: { name: string; avatar: string };\n  comments?: number;\n  attachments?: number;\n  subtasks?: { done: number; total: number };\n}\n\nexport interface KanbanColumn {\n  id: string;\n  title: string;\n  tasks: KanbanTask[];\n}\n\nconst people = {\n  zhang: { name: \"张宁\", avatar: \"/images/team/edward-allen.png\" },\n  lin: { name: \"林悦\", avatar: \"/images/blocks/people/lin-yue.jpg\" },\n  chen: { name: \"陈思远\", avatar: \"/images/blocks/people/chen-siyuan.jpg\" },\n  xu: { name: \"许知夏\", avatar: \"/images/blocks/people/xu-zhixia.jpg\" },\n};\n\nexport const defaultKanbanColumns: KanbanColumn[] = [\n  { id: \"todo\", title: \"待开始\", tasks: [\n    { id: \"t1\", title: \"整理客户访谈结论\", project: \"客户工作台升级\", due: \"今天\", priority: \"high\", assignee: people.lin, comments: 3 },\n    { id: \"t2\", title: \"确定订单页信息架构\", project: \"客户工作台升级\", due: \"明天\", priority: \"medium\", assignee: people.zhang, attachments: 2 },\n    { id: \"t3\", title: \"准备第二阶段评审材料\", project: \"交付管理\", due: \"11月11日\", priority: \"low\", assignee: people.zhang, comments: 1 },\n  ] },\n  { id: \"doing\", title: \"进行中\", tasks: [\n    { id: \"t4\", title: \"订单搜索与状态筛选\", project: \"客户工作台升级\", due: \"11月4日\", priority: \"high\", assignee: people.chen, subtasks: { done: 2, total: 4 }, comments: 5 },\n    { id: \"t5\", title: \"高保真首页设计\", project: \"品牌官网改版\", due: \"今天\", priority: \"medium\", assignee: people.lin, subtasks: { done: 1, total: 2 }, attachments: 6 },\n  ] },\n  { id: \"review\", title: \"待验收\", tasks: [\n    { id: \"t6\", title: \"支付回调验收清单\", project: \"客户工作台升级\", due: \"11月6日\", priority: \"high\", assignee: people.xu, comments: 2 },\n  ] },\n  { id: \"done\", title: \"已完成\", tasks: [\n    { id: \"t7\", title: \"需求梳理与方案评审\", project: \"客户工作台升级\", due: \"10月21日\", priority: \"medium\", assignee: people.zhang },\n    { id: \"t8\", title: \"核心流程与交互设计\", project: \"客户工作台升级\", due: \"10月25日\", priority: \"medium\", assignee: people.lin },\n  ] },\n];\n\nconst priorityMeta: Record<KanbanPriority, { label: string; ring: string }> = {\n  high: { label: \"高优先级\", ring: \"border-fg-red\" },\n  medium: { label: \"中优先级\", ring: \"border-fg-yellow-500\" },\n  low: { label: \"低优先级\", ring: \"border-fg-blue\" },\n};\n\nexport interface KanbanBoardProps {\n  columns?: KanbanColumn[];\n  onMove?: (taskId: string, toColumnId: string) => void;\n  onAdd?: (columnId: string, title: string) => void;\n  className?: string;\n}\n\nexport function KanbanBoard({ columns = defaultKanbanColumns, onMove, onAdd, className }: KanbanBoardProps) {\n  const [board, setBoard] = useState(columns);\n  const [dragging, setDragging] = useState<string | null>(null);\n  const [over, setOver] = useState<string | null>(null);\n  const [adding, setAdding] = useState<string | null>(null);\n  const [draft, setDraft] = useState(\"\");\n  const doneId = board.at(-1)?.id;\n\n  function move(taskId: string, toColumnId: string) {\n    setBoard(current => {\n      const task = current.flatMap(column => column.tasks).find(item => item.id === taskId);\n      if (!task) return current;\n      return current.map(column => ({ ...column, tasks: column.id === toColumnId ? [...column.tasks.filter(item => item.id !== taskId), task] : column.tasks.filter(item => item.id !== taskId) }));\n    });\n    onMove?.(taskId, toColumnId);\n  }\n\n  function drop(event: DragEvent, columnId: string) {\n    event.preventDefault();\n    const taskId = event.dataTransfer.getData(\"text/plain\");\n    if (taskId) move(taskId, columnId);\n    setDragging(null);\n    setOver(null);\n  }\n\n  function add(event: FormEvent, columnId: string) {\n    event.preventDefault();\n    const title = draft.trim();\n    if (!title) return;\n    setBoard(current => current.map(column => column.id === columnId ? { ...column, tasks: [...column.tasks, { id: `t-${Date.now()}`, title, project: \"未分组\", due: \"未设置\", priority: \"low\", assignee: people.zhang }] } : column));\n    onAdd?.(columnId, title);\n    setDraft(\"\");\n    setAdding(null);\n  }\n\n  return <div className={cn(\"fg-scrollbar-hidden -mx-1 overflow-x-auto px-1 pb-2\", className)}>\n    <div className=\"grid auto-cols-[minmax(232px,1fr)] grid-flow-col gap-4\">\n      {board.map(column => <section key={column.id} aria-label={column.title} onDragOver={event => { event.preventDefault(); setOver(column.id); }} onDragLeave={() => setOver(current => current === column.id ? null : current)} onDrop={event => drop(event, column.id)} className={cn(\"flex flex-col gap-3 rounded-card p-2 transition-colors\", over === column.id && dragging ? \"bg-fg-blue-50\" : \"bg-transparent\")}>\n        <header className=\"flex items-center justify-between px-1\"><h3 className=\"text-sm font-semibold text-fg-black\">{column.title}<span className=\"ml-2 text-fg-grey-500\">{column.tasks.length}</span></h3></header>\n        <ul className=\"flex min-h-16 flex-col gap-3\">\n          {column.tasks.map(task => {\n            const done = column.id === doneId;\n            return <li key={task.id} draggable onDragStart={event => { event.dataTransfer.setData(\"text/plain\", task.id); event.dataTransfer.effectAllowed = \"move\"; setDragging(task.id); }} onDragEnd={() => { setDragging(null); setOver(null); }} className={cn(\"flex cursor-grab flex-col gap-3 rounded-card border border-fg-grey-200 bg-white p-4 active:cursor-grabbing\", dragging === task.id && \"opacity-50\")}>\n              <div className=\"flex items-start gap-2\">\n                {done ? <CheckCircleBold size={20} className=\"mt-px shrink-0 text-fg-green-500\" /> : <span title={priorityMeta[task.priority].label} className={cn(\"mt-0.5 size-4 shrink-0 rounded-full border-2\", priorityMeta[task.priority].ring)} />}\n                <p className={cn(\"text-sm font-semibold\", done ? \"text-fg-grey-500 line-through\" : \"text-fg-black\")}>{task.title}</p>\n              </div>\n              {task.subtasks && <div className=\"flex items-center gap-2\"><div className=\"h-1.5 flex-1 overflow-hidden rounded-full bg-fg-grey-100\"><div className=\"h-full rounded-full bg-fg-blue\" style={{ width: `${(task.subtasks.done / task.subtasks.total) * 100}%` }} /></div><span className=\"text-xs text-fg-grey-700\">{task.subtasks.done}/{task.subtasks.total}</span></div>}\n              <div className=\"flex items-center justify-between gap-2 text-xs text-fg-grey-700\">\n                <span className=\"truncate\">{task.project}</span>\n                <span className=\"flex shrink-0 items-center gap-1\"><CalendarMinimalisticLinear size={14} />{task.due}</span>\n              </div>\n              <div className=\"flex items-center justify-between border-t border-fg-grey-100 pt-3\">\n                <div className=\"flex items-center gap-3 text-xs text-fg-grey-700\">{task.comments ? <span className=\"flex items-center gap-1\"><ChatRoundLinear size={14} />{task.comments}</span> : null}{task.attachments ? <span className=\"flex items-center gap-1\"><PaperclipLinear size={14} />{task.attachments}</span> : null}</div>\n                <Avatar src={task.assignee.avatar} alt={task.assignee.name} size=\"sm\" />\n              </div>\n            </li>;\n          })}\n        </ul>\n        {adding === column.id\n          ? <form className=\"flex flex-col gap-2\" onSubmit={event => add(event, column.id)}><TextField shape=\"pill\" autoFocus aria-label=\"任务标题\" value={draft} onChange={setDraft} placeholder=\"输入任务标题后回车\" /><div className=\"flex gap-2\"><Button type=\"submit\" size=\"sm\" disabled={!draft.trim()}>添加</Button><Button type=\"button\" size=\"sm\" variant=\"tertiary\" onClick={() => { setAdding(null); setDraft(\"\"); }}>取消</Button></div></form>\n          : <Button variant=\"unstyled\" type=\"button\" className=\"flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-fg-grey-700 transition-colors hover:bg-fg-grey-100\" onClick={() => { setAdding(column.id); setDraft(\"\"); }}><PlusIcon size={16} />添加任务</Button>}\n      </section>)}\n    </div>\n  </div>;\n}\n"
+    }
+  ]
+}

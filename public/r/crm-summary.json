@@ -3,11 +3,18 @@
   "name": "crm-summary",
   "type": "registry:block",
   "title": "客户经营摘要",
-  "description": "客户指标卡、信息行与经营趋势，保留模板几何。",
+  "description": "概览客户规模与增长情况，为销售团队提供经营摘要。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "图表与指标",
+    "screens": [
+      {
+        "href": "/templates/crm-template",
+        "title": "客户关系管理"
+      }
+    ],
     "example": "import { CrmMetricCard } from \"@/components/blocks/crm-summary\";\n\nexport default function Example() {\n  return (<CrmMetricCard title=\"客户数\" date=\"本月\" value=\"120\" trend=\"10%\" note=\"较上月\" footer=\"已更新\" />);\n}\n",
     "props": [
       {

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wealth-overview",
+  "type": "registry:block",
+  "title": "资产概览",
+  "description": "总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "看板首屏",
+    "screens": [
+      {
+        "href": "/templates/finance-template/wealth",
+        "title": "资产配置页"
+      }
+    ],
+    "example": "import { WealthOverview } from \"@/components/blocks/wealth-overview\";\n\nexport default function Example() {\n  return (<WealthOverview onAddCard={() => {}} />);\n}\n",
+    "props": [
+      {
+        "component": "WealthOverview",
+        "properties": [
+          {
+            "name": "metrics",
+            "required": false,
+            "type": "WealthMetric[] | undefined"
+          },
+          {
+            "name": "cards",
+            "required": false,
+            "type": "({ locale?: \"zh\" | \"en\"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import(\"@forge-ui-official/core\").FinancialTheme; variant?: import(\"@forge-ui-official/core\").FinancialVariant; width?: import(\"@forge-ui-official/core\").CardWidth; className?: string; } & { id: string; })[] | undefined"
+          },
+          {
+            "name": "goals",
+            "required": false,
+            "type": "WealthGoal[] | undefined"
+          },
+          {
+            "name": "onAddCard",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "CreditCard",
+        "LineChartStatCard",
+        "Panel",
+        "PlusIcon",
+        "ProgressBar",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/wealth-overview/wealth-overview.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/wealth-overview.tsx",
+      "content": "\"use client\";\n\nimport { type ComponentProps } from \"react\";\nimport { Button, CreditCard, LineChartStatCard, Panel, PlusIcon, ProgressBar, cn } from \"@forge-ui-official/core\";\n\nexport interface WealthMetric {\n  id: string;\n  title: string;\n  value: string;\n  trend: string;\n  subtitle: string;\n  color: \"blue\" | \"red\" | \"green\";\n  series: number[];\n}\n\nexport interface WealthGoal {\n  id: string;\n  title: string;\n  saved: number;\n  target: number;\n  color: \"blue\" | \"purple\" | \"green\" | \"red\" | \"cyan\";\n}\n\nexport const defaultWealthMetrics: WealthMetric[] = [\n  { id: \"assets\", title: \"总资产\", value: \"¥3,286,000\", trend: \"10%\", subtitle: \"较上月 +¥29.8万\", color: \"blue\", series: [262, 271, 268, 280, 291, 302, 328] },\n  { id: \"cash\", title: \"现金余额\", value: \"¥466,800\", trend: \"6%\", subtitle: \"两个企业账户\", color: \"red\", series: [41, 43, 40, 44, 45, 43, 46] },\n  { id: \"receivable\", title: \"待收款\", value: \"¥228,000\", trend: \"12%\", subtitle: \"4 张未结发票\", color: \"green\", series: [18, 17, 20, 19, 22, 21, 23] },\n];\n\nexport const defaultWealthCards: (ComponentProps<typeof CreditCard> & { id: string })[] = [\n  { id: \"c1\", cardNumber: \"6829\", holderName: \"知行科技\", expiry: \"12/28\", theme: \"blue\" },\n  { id: \"c2\", cardNumber: \"3056\", holderName: \"知行科技\", expiry: \"08/29\", theme: \"dark\" },\n  { id: \"c3\", cardNumber: \"1288\", holderName: \"知行科技\", expiry: \"05/27\", theme: \"yellow\" },\n];\n\nexport const defaultWealthGoals: WealthGoal[] = [\n  { id: \"g1\", title: \"年度经营储备\", saved: 160000, target: 200000, color: \"blue\" },\n  { id: \"g2\", title: \"产品研发基金\", saved: 84000, target: 120000, color: \"purple\" },\n  { id: \"g3\", title: \"设备更新\", saved: 40800, target: 48000, color: \"green\" },\n  { id: \"g4\", title: \"办公室扩租\", saved: 37500, target: 150000, color: \"red\" },\n  { id: \"g5\", title: \"团队成长预算\", saved: 36000, target: 60000, color: \"cyan\" },\n];\n\nexport interface WealthOverviewProps {\n  metrics?: WealthMetric[];\n  cards?: (ComponentProps<typeof CreditCard> & { id: string })[];\n  goals?: WealthGoal[];\n  onAddCard?: () => void;\n  className?: string;\n}\n\nexport function WealthOverview({ metrics = defaultWealthMetrics, cards = defaultWealthCards, goals = defaultWealthGoals, onAddCard, className }: WealthOverviewProps) {\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"grid grid-cols-1 gap-4 md:grid-cols-3\">\n      {metrics.map(metric => <LineChartStatCard key={metric.id} title={metric.title} value={metric.value} trend={metric.trend} subtitle={metric.subtitle} series={metric.series} chartColor={metric.color} theme=\"white\" density=\"compact\" size=\"wide\" width=\"full\" />)}\n    </div>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[300px_minmax(0,1fr)]\">\n      <Panel variant=\"template\" title=\"企业卡\" subtitle={`${cards.length} 张卡片`}>\n        <div className=\"flex flex-col gap-3\">{cards.map(({ id, ...card }) => <CreditCard key={id} {...card} width=\"full\" />)}</div>\n        <Button variant=\"tertiary\" className=\"w-full\" iconLeft={<PlusIcon size={16} />} onClick={onAddCard}>申请新卡</Button>\n      </Panel>\n      <Panel variant=\"template\" title=\"资金目标\" subtitle=\"按完成度排序\">\n        <ul className=\"flex flex-col divide-y divide-fg-grey-200\">{[...goals].sort((left, right) => right.saved / right.target - left.saved / left.target).map(goal => {\n          const percent = Math.min(100, Math.round((goal.saved / goal.target) * 100));\n          return <li key={goal.id} className=\"grid grid-cols-1 items-center gap-3 py-4 first:pt-0 last:pb-0 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]\">\n            <div className=\"min-w-0\"><p className=\"truncate text-sm font-semibold text-fg-black\">{goal.title}</p><p className=\"text-xs tabular-nums text-fg-grey-700\">¥{goal.saved.toLocaleString(\"zh-CN\")} / ¥{goal.target.toLocaleString(\"zh-CN\")}</p></div>\n            <ProgressBar value={percent} color={goal.color} label={`${percent}%`} size=\"sm\" />\n          </li>;\n        })}</ul>\n      </Panel>\n    </div>\n  </section>;\n}\n"
+    }
+  ]
+}

@@ -2,11 +2,11 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: a50d9f9fda81f5b7694cd0b40b75f7b427cf99934d664296e60071d69668d498
+Source fingerprint: a526246de8b4ba63de92323dcb33e8aa29d6967612d6810190fb980d4869e708
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 17 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
+Screen → Blocks → Components. Start dashboards from a real Screen; 74 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; core 0.6.0 and registry publication require separate approval; visual screenshot acceptance remains pending. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration. Technical checks do not establish browser or production readiness.
 
 ## Public exports (487, values and types distinguished)
 
@@ -935,7 +935,7 @@ Source: skills/forge-skill/references/components/app-layout.md
 ## AppLayout (value)
 
 ```ts
-({ motion, mode, profilePosition, accent, children, logo, logoText, appName, appIcon, appSubtitle, apps, onAppChange, teamName: legacyTeamName, teamAvatar: legacyTeamAvatar, teamMemberCount, teamSubtitle: legacyTeamSubtitle, menuSectionLabel, favoriteSectionLabel, teams: legacyTeams, menuItems, favoriteItems, menuSections, profile, notifications, messages, language, defaultLanguage, onLanguageChange, searchPlaceholder, topbarLeftMode, topbarAccent, pageTitle, breadcrumbs, pageHeaderVariant, askAi, onBack, primaryAction, secondaryAction, showDatePicker, showKebab, showFavorite, hideHeader, sidebarSlot, sidebarWidth, collapsedSidebarWidth, hideSidebarWidgets, teamLabels, showTeamActions, }: AppLayoutProps) => JSX.Element
+({ motion, mode, profilePosition, accent, children, logo, logoText, appName, appIcon, appSubtitle, apps, onAppChange, teamName: legacyTeamName, teamAvatar: legacyTeamAvatar, teamMemberCount, teamSubtitle: legacyTeamSubtitle, menuSectionLabel, favoriteSectionLabel, teams: legacyTeams, menuItems, favoriteItems, menuSections, profile, notifications, messages, language, defaultLanguage, onLanguageChange, searchPlaceholder, topbarLeftMode, topbarAccent, pageTitle, breadcrumbs, pageHeaderVariant, askAi, onBack, primaryAction, secondaryAction, showDatePicker, showKebab, showFavorite, hideHeader, sidebarSlot, sidebarWidth, collapsedSidebarWidth, defaultSidebarCollapsed, hideSidebarWidgets, teamLabels, showTeamActions, }: AppLayoutProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -985,6 +985,7 @@ Source: skills/forge-skill/references/components/app-layout.md
 | `sidebarSlot` | 否 | `ReactNode` | 完全自定义 sidebar 主体，优先于 menuSections 和旧的两个菜单分组。 |
 | `sidebarWidth` | 否 | `string \| undefined` | Expanded sidebar width. Accepts any CSS length; default keeps the Forge starter density. |
 | `collapsedSidebarWidth` | 否 | `string \| undefined` | Collapsed sidebar rail width. Accepts any CSS length; default keeps the Forge starter density. |
+| `defaultSidebarCollapsed` | 否 | `boolean \| undefined` | 桌面端侧栏初始收起为窄条，用户仍可通过菜单按钮展开 |
 | `hideSidebarWidgets` | 否 | `boolean \| undefined` | 隐藏 sidebar 底部那一排 widget icon（语言、日历、通知、消息），profile 卡保留 |
 | `teamLabels` | 否 | `TeamSwitcherLabels \| undefined` | 自定义 team switcher 下拉里 invite / settings / createNew 按钮的文案 |
 | `showTeamActions` | 否 | `boolean \| undefined` | Team switcher 是否显示邀请 / 设置 / 新建。 false = 仅当前工作区标题 + teams 列表（应用切换器用）。默认 false。 |
@@ -1127,6 +1128,8 @@ export interface AppLayoutProps {
   sidebarWidth?: string;
   /** Collapsed sidebar rail width. Accepts any CSS length; default keeps the Forge starter density. */
   collapsedSidebarWidth?: string;
+  /** 桌面端侧栏初始收起为窄条，用户仍可通过菜单按钮展开 */
+  defaultSidebarCollapsed?: boolean;
   /** 隐藏 sidebar 底部那一排 widget icon（语言、日历、通知、消息），profile 卡保留 */
   hideSidebarWidgets?: boolean;
   /** 自定义 team switcher 下拉里 invite / settings / createNew 按钮的文案 */

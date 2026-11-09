@@ -175,7 +175,7 @@ accordion / agent / badge / button-link / calendar / card / chart / chat / chat-
 
 **Step 3. 拆页面 → 拼组件**
 - 先写页面骨架（AppLayout + Toolbar + 主内容容器）
-- 主内容按区块拆：每块对应一个 Kit 组件或组件组合
+- 主内容按页面组件拆：每块对应一个 Kit 组件或组件组合
 - 遇到不确定的组件 → 打开 `/cases/<name>` 对应示例页复制用法
 - 颜色选 `fg-*`，icon 选 `@forge-ui-official/core/icons`
 

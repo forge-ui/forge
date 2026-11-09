@@ -3,11 +3,18 @@
   "name": "activity-feed",
   "type": "registry:block",
   "title": "活动流",
-  "description": "按传入顺序显示时间、对象与行为。",
+  "description": "汇总团队近期的任务、文件和项目动态，方便追踪协作进展。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "协作与项目",
+    "screens": [
+      {
+        "href": "/templates/dashboards/crm",
+        "title": "客户经营看板"
+      }
+    ],
     "example": "import { ActivityFeed } from \"@/components/blocks/activity-feed\";\n\nexport default function Example() {\n  return (<ActivityFeed title=\"最近活动\" events={[{ id: \"review\", headerText: \"订单动态\", datetime: \"今天 09:30\", title: \"张三完成订单核对\", description: \"核对完成\", metadata: [] }]} />);\n}\n",
     "props": [
       {
@@ -26,7 +33,7 @@
           {
             "name": "color",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+            "type": "import(\"@forge-ui-official/core\").AccentColor | undefined"
           },
           {
             "name": "subtitle",
@@ -36,17 +43,17 @@
           {
             "name": "action",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+            "type": "import(\"react\").ReactNode"
           },
           {
             "name": "badge",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+            "type": "import(\"react\").ReactNode"
           },
           {
             "name": "tabs",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").ListGroupTab[] | undefined"
+            "type": "import(\"@forge-ui-official/core\").ListGroupTab[] | undefined"
           },
           {
             "name": "activeTab",
@@ -71,17 +78,17 @@
           {
             "name": "density",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity | undefined"
+            "type": "import(\"@forge-ui-official/core\").CardDensity | undefined"
           },
           {
             "name": "items",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+            "type": "import(\"react\").ReactNode"
           },
           {
             "name": "events",
             "required": false,
-            "type": "(Omit<{ icon: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string | import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; }[]; onMenuClick?: () => void; }, \"icon\" | \"avatar\"> & { id: string; icon?: ComponentProps<typeof ActivityCard>[\"icon\"]; avatar?: string; })[] | undefined"
+            "type": "(Omit<{ icon: import(\"react\").ReactNode; headerText: string; datetime: string; avatar: string; title: string; description: string; metadata: { label: string; value: string | import(\"react\").ReactNode; }[]; onMenuClick?: () => void; }, \"icon\" | \"avatar\"> & { id: string; icon?: ComponentProps<typeof ActivityCard>[\"icon\"]; avatar?: string; })[] | undefined"
           }
         ]
       }

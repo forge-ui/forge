@@ -10,7 +10,7 @@ const tabs = [
   { href: "/docs", label: "文档" },
   { href: "/components", label: "组件" },
   { href: "/cases", label: "组件案例" },
-  { href: "/blocks", label: "区块" },
+  { href: "/blocks", label: "页面组件" },
   { href: "/templates", label: "模板" },
 ] as const;
 

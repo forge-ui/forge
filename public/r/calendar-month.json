@@ -1,0 +1,76 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-month",
+  "type": "registry:block",
+  "title": "月历日程",
+  "description": "月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "协作与项目",
+    "screens": [
+      {
+        "href": "/templates/micellaneous-template/calendar",
+        "title": "日历页"
+      }
+    ],
+    "example": "import { CalendarMonth } from \"@/components/blocks/calendar-month\";\n\nexport default function Example() {\n  return (<CalendarMonth onCreate={() => {}} />);\n}\n",
+    "props": [
+      {
+        "component": "CalendarMonth",
+        "properties": [
+          {
+            "name": "events",
+            "required": false,
+            "type": "ScheduleEvent[] | undefined"
+          },
+          {
+            "name": "year",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "month",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "day",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onCreate",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Avatar",
+        "Button",
+        "FullCalendar",
+        "Modal",
+        "SurfaceCard",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/calendar-month/calendar-month.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/calendar-month.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Avatar, Button, FullCalendar, Modal, SurfaceCard, cn, type CalendarEvent } from \"@forge-ui-official/core\";\nimport { CalendarMinimalisticLinear, ClockCircleLinear, MapPointBoldDuotone, UsersGroupRoundedLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface ScheduleEvent extends CalendarEvent {\n  id: string;\n  title: string;\n  time: string;\n  place: string;\n  attendees: { name: string; avatar: string }[];\n}\n\nconst people = {\n  zhang: { name: \"张宁\", avatar: \"/images/team/edward-allen.png\" },\n  lin: { name: \"林悦\", avatar: \"/images/blocks/people/lin-yue.jpg\" },\n  chen: { name: \"陈思远\", avatar: \"/images/blocks/people/chen-siyuan.jpg\" },\n  xu: { name: \"许知夏\", avatar: \"/images/blocks/people/xu-zhixia.jpg\" },\n  zhou: { name: \"周予安\", avatar: \"/images/blocks/people/zhou-yuan.jpg\" },\n};\n\nexport const defaultScheduleEvents: ScheduleEvent[] = [\n  { id: \"e1\", day: 3, hour: 9, label: \"周会\", title: \"交付周会\", time: \"09:00–10:00\", place: \"3 号会议室\", color: \"blue\", avatar: people.zhang.avatar, attendees: [people.zhang, people.lin, people.chen] },\n  { id: \"e2\", day: 4, hour: 14, label: \"联调\", title: \"订单与客户模块联调\", time: \"14:00–16:00\", place: \"线上会议\", color: \"purple\", avatar: people.chen.avatar, attendees: [people.chen, people.zhou] },\n  { id: \"e3\", day: 6, hour: 10, label: \"评审\", title: \"高保真设计评审\", time: \"10:00–11:30\", place: \"设计中心\", color: \"yellow\", avatar: people.lin.avatar, attendees: [people.lin, people.zhang, people.xu] },\n  { id: \"e4\", day: 11, hour: 9, label: \"客户\", title: \"知意教育方案汇报\", time: \"09:30–11:00\", place: \"客户现场\", color: \"red\", avatar: people.zhang.avatar, attendees: [people.zhang, people.zhou] },\n  { id: \"e5\", day: 12, hour: 15, label: \"验收\", title: \"全流程验收\", time: \"15:00–17:00\", place: \"3 号会议室\", color: \"green\", avatar: people.xu.avatar, attendees: [people.xu, people.chen, people.lin] },\n  { id: \"e6\", day: 18, hour: 10, label: \"复盘\", title: \"第二阶段复盘\", time: \"10:00–11:00\", place: \"线上会议\", color: \"blue\", avatar: people.zhang.avatar, attendees: [people.zhang, people.lin, people.chen, people.xu] },\n  { id: \"e7\", day: 25, hour: 13, label: \"培训\", title: \"客户上线培训\", time: \"13:30–15:00\", place: \"客户现场\", color: \"purple\", avatar: people.zhou.avatar, attendees: [people.zhou, people.xu] },\n];\n\nconst dotColor: Record<ScheduleEvent[\"color\"], string> = { blue: \"bg-fg-blue\", purple: \"bg-fg-violet\", yellow: \"bg-fg-yellow-500\", red: \"bg-fg-red\", green: \"bg-fg-green-500\", black: \"bg-fg-black\", cyan: \"bg-fg-cyan-500\", orange: \"bg-fg-red\" };\n\nexport interface CalendarMonthProps {\n  events?: ScheduleEvent[];\n  year?: number;\n  month?: number;\n  day?: number;\n  onCreate?: () => void;\n  className?: string;\n}\n\nexport function CalendarMonth({ events = defaultScheduleEvents, year = 2026, month = 10, day = 9, onCreate, className }: CalendarMonthProps) {\n  const [selected, setSelected] = useState<ScheduleEvent | null>(null);\n  const upcoming = [...events].sort((left, right) => left.day - right.day || (left.hour ?? 0) - (right.hour ?? 0)).filter(event => event.day >= day).slice(0, 4);\n\n  return <div className={cn(\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_300px]\", className)}>\n    <div className=\"min-w-0 fg-scrollbar-hidden overflow-x-auto\"><FullCalendar view=\"month\" color=\"blue\" year={year} month={month} day={day} events={events} className=\"min-w-[640px]\" /></div>\n    <SurfaceCard className=\"flex flex-col gap-4\">\n      <div className=\"flex items-center justify-between gap-3\"><h3 className=\"text-lg font-semibold text-fg-black\">近期日程</h3><Button size=\"sm\" onClick={onCreate}>新建日程</Button></div>\n      <ul className=\"flex flex-col gap-3\">{upcoming.map(event => <li key={event.id}><Button variant=\"unstyled\" type=\"button\" className=\"flex w-full items-start gap-3 rounded-xl border border-fg-grey-200 p-3 text-left transition-colors hover:bg-fg-grey-50\" onClick={() => setSelected(event)}>\n        <span className={cn(\"mt-1 size-2.5 shrink-0 rounded-full\", dotColor[event.color])} />\n        <span className=\"min-w-0 flex-1\"><span className=\"block truncate text-sm font-semibold text-fg-black\">{event.title}</span><span className=\"mt-1 block text-xs text-fg-grey-700\">{month + 1} 月 {event.day} 日 · {event.time}</span></span>\n      </Button></li>)}</ul>\n    </SurfaceCard>\n    <Modal open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }} title={selected?.title ?? \"日程详情\"}>\n      {selected && <dl className=\"flex flex-col gap-4 text-sm\">\n        <div className=\"flex items-center gap-3\"><dt className=\"text-fg-grey-700\"><CalendarMinimalisticLinear size={18} /></dt><dd className=\"text-fg-black\">{year} 年 {month + 1} 月 {selected.day} 日</dd></div>\n        <div className=\"flex items-center gap-3\"><dt className=\"text-fg-grey-700\"><ClockCircleLinear size={18} /></dt><dd className=\"text-fg-black\">{selected.time}</dd></div>\n        <div className=\"flex items-center gap-3\"><dt className=\"text-fg-grey-700\"><MapPointBoldDuotone size={18} /></dt><dd className=\"text-fg-black\">{selected.place}</dd></div>\n        <div className=\"flex items-start gap-3\"><dt className=\"pt-1 text-fg-grey-700\"><UsersGroupRoundedLinear size={18} /></dt><dd className=\"flex flex-wrap gap-3\">{selected.attendees.map(person => <span key={person.name} className=\"flex items-center gap-2\"><Avatar src={person.avatar} alt={person.name} size=\"sm\" />{person.name}</span>)}</dd></div>\n      </dl>}\n    </Modal>\n  </div>;\n}\n"
+    }
+  ]
+}

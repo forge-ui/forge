@@ -1,0 +1,69 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-run",
+  "type": "registry:block",
+  "title": "智能体运行",
+  "description": "一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "AI 与智能体",
+    "screens": [
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
+    "example": "import { AgentRun } from \"@/components/blocks/agent-run\";\n\nexport default function Example() {\n  return (<AgentRun onApprove={answer => console.log(answer)} />);\n}\n",
+    "props": [
+      {
+        "component": "AgentRun",
+        "properties": [
+          {
+            "name": "run",
+            "required": false,
+            "type": "AgentRunData | undefined"
+          },
+          {
+            "name": "stepDuration",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onApprove",
+            "required": false,
+            "type": "((answer: string[]) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "AgentTaskRows",
+        "ApprovalCard",
+        "Button",
+        "Panel",
+        "StatusBadge",
+        "StreamingAnswer",
+        "ThinkingTrace",
+        "ToolChips",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/agent-run/agent-run.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/agent-run.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { AgentTaskRows, ApprovalCard, Button, Panel, StatusBadge, StreamingAnswer, ThinkingTrace, ToolChips, cn, type AgentTask, type ToolChipItem } from \"@forge-ui-official/core\";\nimport { RestartCircleLinear, StopBold } from \"@forge-ui-official/core/icons\";\n\nexport interface AgentRunStep {\n  id: string;\n  title: string;\n  meta: string;\n  tool: ToolChipItem;\n}\n\nexport interface AgentRunData {\n  prompt: string;\n  agent: string;\n  runtime: string;\n  steps: AgentRunStep[];\n  approvalAfter: number;\n  approval: { prompt: string; options: { id: string; label: string }[] };\n  draft: string;\n}\n\nexport const defaultAgentRun: AgentRunData = {\n  prompt: \"整理第三季度客户续约与流失情况，起草给管理层的简报，发送前请我确认。\",\n  agent: \"研究助手\",\n  runtime: \"Deep Agents\",\n  steps: [\n    { id: \"s1\", title: \"拉取第三季度续约与流失数据\", meta: \"CRM · 1,286 条客户记录\", tool: { id: \"t1\", kind: \"read\", label: \"查询客户数据\", chip: \"crm.query(Q3)\", mono: true, detail: [{ text: \"续约 312 · 流失 41 · 新签 86\" }] } },\n    { id: \"s2\", title: \"读取上季度简报的结构\", meta: \"知识库 · 经营简报模板\", tool: { id: \"t2\", kind: \"read\", label: \"检索知识库\", chip: \"knowledge.search\", mono: true, detail: [{ text: \"命中 3 篇，选用《Q2 经营简报》\" }] } },\n    { id: \"s3\", title: \"计算续约率与流失原因分布\", meta: \"数据分析\", tool: { id: \"t3\", kind: \"run\", label: \"运行分析脚本\", chip: \"python analyze.py\", mono: true, detail: [{ text: \"续约率 88.4%（+2.1%）\", tone: \"add\" }, { text: \"价格敏感流失 17 家\", tone: \"del\" }] } },\n    { id: \"s4\", title: \"起草管理层简报\", meta: \"等待你确认后发送\", tool: { id: \"t4\", kind: \"write\", label: \"生成简报草稿\", chip: \"brief-q3.md\", mono: true } },\n    { id: \"s5\", title: \"发送给管理层并归档\", meta: \"邮件 · 知识库\", tool: { id: \"t5\", kind: \"edit\", label: \"发送并归档\", chip: \"mail.send\", mono: true } },\n  ],\n  approvalAfter: 3,\n  approval: { prompt: \"简报草稿已生成，下一步发送给管理层邮件组。是否继续？\", options: [{ id: \"send\", label: \"确认发送\" }, { id: \"hold\", label: \"先不发送，我再改改\" }] },\n  draft: \"## 第三季度客户续约简报\\n\\n- **续约率 88.4%**，较上季度提升 2.1 个百分点，主要来自企业年度订阅。\\n- **流失 41 家**，其中 17 家因价格敏感，建议针对中小客户推出季度套餐。\\n- **新签 86 家**，教育与零售行业贡献 54%。\\n\\n下季度重点：把续约提醒提前到到期前 45 天，并为高风险客户配置专属客户经理。\",\n};\n\ntype Phase = \"running\" | \"waiting\" | \"finishing\" | \"done\" | \"stopped\";\n\nexport interface AgentRunProps {\n  run?: AgentRunData;\n  stepDuration?: number;\n  onApprove?: (answer: string[]) => void;\n  className?: string;\n}\n\nexport function AgentRun({ run = defaultAgentRun, stepDuration = 1400, onApprove, className }: AgentRunProps) {\n  const [step, setStep] = useState(0);\n  const [phase, setPhase] = useState<Phase>(\"running\");\n  const [round, setRound] = useState(0);\n\n  useEffect(() => {\n    if (phase !== \"running\" && phase !== \"finishing\") return;\n    const timer = window.setTimeout(() => {\n      if (phase === \"running\" && step + 1 >= run.approvalAfter) { setStep(run.approvalAfter); setPhase(\"waiting\"); return; }\n      if (step + 1 >= run.steps.length) { setStep(run.steps.length); setPhase(\"done\"); return; }\n      setStep(current => current + 1);\n    }, stepDuration);\n    return () => window.clearTimeout(timer);\n  }, [phase, step, run.approvalAfter, run.steps.length, stepDuration]);\n\n  function restart() {\n    setStep(0);\n    setPhase(\"running\");\n    setRound(current => current + 1);\n  }\n\n  function approve(answers: Record<string, string[]>) {\n    const answer = answers.approval ?? [];\n    onApprove?.(answer);\n    if (answer.includes(\"send\")) setPhase(\"finishing\");\n    else setPhase(\"stopped\");\n  }\n\n  const tasks: AgentTask[] = run.steps\n    .map((item, index) => ({ id: item.id, title: item.title, meta: item.meta, status: phase === \"done\" || index < step ? \"completed\" as const : phase === \"stopped\" ? \"failed\" as const : \"running\" as const }))\n    .filter((_, index) => phase === \"done\" || index <= step);\n  const visibleTools = run.steps.slice(0, Math.min(step + (phase === \"running\" || phase === \"finishing\" ? 1 : 0), run.steps.length)).map((item, index) => ({ ...item.tool, status: index < step ? \"complete\" as const : \"running\" as const }));\n  const statusMeta = { running: { label: \"运行中\", color: \"blue\" as const }, waiting: { label: \"等待确认\", color: \"yellow\" as const }, finishing: { label: \"运行中\", color: \"blue\" as const }, done: { label: \"已完成\", color: \"green\" as const }, stopped: { label: \"已暂停\", color: \"grey\" as const } }[phase];\n  const showDraft = step >= run.approvalAfter;\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <Panel variant=\"template\">\n      <div className=\"flex flex-wrap items-start justify-between gap-4\">\n        <div className=\"min-w-0 flex-1\"><div className=\"flex flex-wrap items-center gap-2\"><StatusBadge {...statusMeta} variant=\"soft\" /><span className=\"text-xs text-fg-grey-700\">{run.agent} · {run.runtime}</span></div><p className=\"mt-2 text-base font-semibold leading-7 text-fg-black\">{run.prompt}</p></div>\n        <div className=\"flex gap-2\">{phase === \"running\" || phase === \"finishing\" ? <Button variant=\"tertiary\" iconLeft={<StopBold size={14} />} onClick={() => setPhase(\"stopped\")}>停止</Button> : <Button variant=\"tertiary\" iconLeft={<RestartCircleLinear size={16} />} onClick={restart}>重新运行</Button>}</div>\n      </div>\n      <dl className=\"grid grid-cols-3 gap-3 border-t border-fg-grey-200 pt-4 text-sm\"><div><dt className=\"text-xs text-fg-grey-700\">步骤</dt><dd className=\"mt-1 font-semibold tabular-nums text-fg-black\">{Math.min(step, run.steps.length)} / {run.steps.length}</dd></div><div><dt className=\"text-xs text-fg-grey-700\">工具调用</dt><dd className=\"mt-1 font-semibold tabular-nums text-fg-black\">{visibleTools.length}</dd></div><div><dt className=\"text-xs text-fg-grey-700\">预估成本</dt><dd className=\"mt-1 font-semibold tabular-nums text-fg-black\">¥{(0.18 * Math.max(1, step)).toFixed(2)}</dd></div></dl>\n    </Panel>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]\">\n      <div className=\"flex min-w-0 flex-col gap-4\">\n        <Panel variant=\"template\" title=\"执行计划\" subtitle=\"按步骤推进，危险操作前暂停确认\"><AgentTaskRows key={`plan-${round}`} tasks={tasks} /></Panel>\n        <Panel variant=\"template\" title=\"思考过程\"><ThinkingTrace key={`think-${round}`} variant=\"steps\" rows={run.steps.slice(0, Math.max(1, step)).map(item => ({ primary: item.title, secondary: item.meta }))} settled={phase === \"done\"} /></Panel>\n      </div>\n      <div className=\"flex min-w-0 flex-col gap-4\">\n        <Panel variant=\"template\" title=\"工具调用\">{visibleTools.length ? <ToolChips key={`tools-${round}`} items={visibleTools} state={phase === \"done\" ? \"success\" : phase === \"stopped\" ? \"cancelled\" : \"running\"} /> : <p className=\"text-sm text-fg-grey-700\">正在规划步骤…</p>}</Panel>\n        {phase === \"waiting\" && <ApprovalCard key={`approval-${round}`} questions={[{ id: \"approval\", prompt: run.approval.prompt, type: \"radio\", options: run.approval.options }]} onSubmitted={approve} />}\n        {showDraft && <Panel variant=\"template\" title=\"简报草稿\" action={phase === \"done\" ? <StatusBadge label=\"已发送\" color=\"green\" variant=\"soft\" /> : undefined}><StreamingAnswer key={`draft-${round}`} text={run.draft} format=\"markdown\" streaming /></Panel>}\n      </div>\n    </div>\n  </section>;\n}\n"
+    }
+  ]
+}

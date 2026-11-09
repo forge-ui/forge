@@ -1,0 +1,79 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-manager",
+  "type": "registry:block",
+  "title": "文件管理",
+  "description": "按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "协作与项目",
+    "screens": [
+      {
+        "href": "/templates/micellaneous-template/files",
+        "title": "文件管理页"
+      },
+      {
+        "href": "/templates/project-template/files",
+        "title": "项目文件页"
+      }
+    ],
+    "example": "import { FileManager } from \"@/components/blocks/file-manager\";\n\nexport default function Example() {\n  return (<FileManager onOpen={file => console.log(file.name)} />);\n}\n",
+    "props": [
+      {
+        "component": "FileManager",
+        "properties": [
+          {
+            "name": "files",
+            "required": false,
+            "type": "FileEntry[] | undefined"
+          },
+          {
+            "name": "onUpload",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "onOpen",
+            "required": false,
+            "type": "((file: FileEntry) => void) | undefined"
+          },
+          {
+            "name": "onDelete",
+            "required": false,
+            "type": "((file: FileEntry) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "ButtonGroup",
+        "CellActions",
+        "Checkbox",
+        "ConfirmationDialog",
+        "FileTypeIcon",
+        "Panel",
+        "PlusIcon",
+        "ToolbarSearchInput",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/file-manager/file-manager.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/file-manager.tsx",
+      "content": "\"use client\";\n\nimport { useState, type Key } from \"react\";\nimport { Button, ButtonGroup, CellActions, Checkbox, ConfirmationDialog, FileTypeIcon, Panel, PlusIcon, ToolbarSearchInput, cn } from \"@forge-ui-official/core\";\n\nexport interface FileEntry {\n  id: string;\n  name: string;\n  kind: \"folder\" | \"doc\" | \"fig\" | \"pdf\" | \"xls\" | \"ppt\" | \"png\" | \"zip\" | \"mp4\";\n  meta: string;\n}\n\nexport const defaultFiles: FileEntry[] = [\n  { id: \"d1\", name: \"客户工作台升级\", kind: \"folder\", meta: \"24 个文件\" },\n  { id: \"d2\", name: \"品牌官网改版\", kind: \"folder\", meta: \"18 个文件\" },\n  { id: \"d3\", name: \"设计规范\", kind: \"folder\", meta: \"36 个文件\" },\n  { id: \"d4\", name: \"客户合同\", kind: \"folder\", meta: \"12 个文件\" },\n  { id: \"f1\", name: \"第二阶段需求说明\", kind: \"doc\", meta: \"860 KB\" },\n  { id: \"f2\", name: \"订单详情交互稿\", kind: \"fig\", meta: \"4.2 MB\" },\n  { id: \"f3\", name: \"接口字段说明\", kind: \"pdf\", meta: \"1.1 MB\" },\n  { id: \"f4\", name: \"验收用例清单\", kind: \"xls\", meta: \"320 KB\" },\n  { id: \"f5\", name: \"方案汇报\", kind: \"ppt\", meta: \"8.6 MB\" },\n  { id: \"f6\", name: \"首页视觉稿\", kind: \"png\", meta: \"2.4 MB\" },\n  { id: \"f7\", name: \"素材打包\", kind: \"zip\", meta: \"56 MB\" },\n  { id: \"f8\", name: \"上线培训录屏\", kind: \"mp4\", meta: \"212 MB\" },\n];\n\nconst views = [\"全部\", \"文件夹\", \"文档\", \"设计稿\", \"媒体\"];\nconst viewKinds: Record<string, FileEntry[\"kind\"][] | null> = { 全部: null, 文件夹: [\"folder\"], 文档: [\"doc\", \"pdf\", \"xls\", \"ppt\"], 设计稿: [\"fig\", \"png\"], 媒体: [\"mp4\", \"zip\"] };\n\nexport interface FileManagerProps {\n  files?: FileEntry[];\n  onUpload?: () => void;\n  onOpen?: (file: FileEntry) => void;\n  onDelete?: (file: FileEntry) => void;\n  className?: string;\n}\n\nexport function FileManager({ files = defaultFiles, onUpload, onOpen, onDelete, className }: FileManagerProps) {\n  const [entries, setEntries] = useState(files);\n  const [view, setView] = useState(0);\n  const [query, setQuery] = useState(\"\");\n  const [selected, setSelected] = useState<Set<Key>>(new Set());\n  const [pendingDelete, setPendingDelete] = useState<FileEntry | null>(null);\n  const kinds = viewKinds[views[view]];\n  const visible = entries.filter(file => (!kinds || kinds.includes(file.kind)) && file.name.includes(query.trim()));\n  const groups = [{ title: \"文件夹\", items: visible.filter(file => file.kind === \"folder\") }, { title: \"文件\", items: visible.filter(file => file.kind !== \"folder\") }].filter(group => group.items.length);\n\n  function toggle(id: string, value: boolean) {\n    setSelected(current => {\n      const next = new Set(current);\n      if (value) next.add(id); else next.delete(id);\n      return next;\n    });\n  }\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-6\", className)}>\n    <div className=\"flex min-w-0 flex-col gap-3 xl:flex-row xl:items-center xl:justify-between\">\n      <div className=\"-mx-1 min-w-0 fg-scrollbar-hidden overflow-x-auto px-1 pb-1\"><ButtonGroup ariaLabel=\"文件类型\" shape=\"pill\" items={views.map(label => ({ label }))} activeIndex={view} onChange={setView} /></div>\n      <div className=\"flex min-w-0 flex-wrap items-center gap-3\">\n        {selected.size > 0 && <span className=\"text-sm text-fg-grey-700\">已选 {selected.size} 项</span>}\n        <ToolbarSearchInput className=\"w-full sm:w-60\" value={query} onChange={setQuery} placeholder=\"搜索文件\" />\n        <Button iconLeft={<PlusIcon size={16} />} onClick={onUpload}>上传文件</Button>\n      </div>\n    </div>\n    {groups.length ? groups.map(group => <div key={group.title} className=\"flex flex-col gap-4\">\n      <h3 className=\"text-lg font-semibold text-fg-black\">{group.title}</h3>\n      <ul className=\"grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6\">{group.items.map(file => <li key={file.id}>\n        <Panel variant=\"custom\" className={cn(\"rounded-card border bg-white p-4 transition-colors\", selected.has(file.id) ? \"border-fg-blue\" : \"border-fg-grey-200\")}>\n          <div className=\"flex items-start justify-between\"><Checkbox color=\"blue\" checked={selected.has(file.id)} onChange={value => toggle(file.id, value)} aria-label={`选择${file.name}`} /><CellActions actions={[]} onKebab={() => setPendingDelete(file)} /></div>\n          <Button variant=\"unstyled\" type=\"button\" className=\"flex w-full flex-col items-center gap-4 pt-4 text-center\" onClick={() => onOpen?.(file)}>\n            <FileTypeIcon fileName={file.kind === \"folder\" ? \"folder\" : `${file.name}.${file.kind}`} className=\"h-16 w-16\" />\n            <span className=\"w-full\"><span className=\"block truncate text-sm font-semibold text-fg-black\">{file.name}</span><span className=\"mt-1 block text-xs text-fg-grey-500\">{file.meta}</span></span>\n          </Button>\n        </Panel>\n      </li>)}</ul>\n    </div>) : <p className=\"rounded-card border border-dashed border-fg-grey-200 py-16 text-center text-sm text-fg-grey-700\">没有找到相关文件</p>}\n    {pendingDelete && <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4\">\n      <ConfirmationDialog title={`删除「${pendingDelete.name}」？`} description={pendingDelete.kind === \"folder\" ? \"文件夹内的所有文件会一起移入回收站。\" : \"文件会移入回收站，30 天内可以恢复。\"} confirmLabel=\"删除\" cancelLabel=\"取消\" color=\"red\" onConfirm={() => { setEntries(current => current.filter(file => file.id !== pendingDelete.id)); onDelete?.(pendingDelete); setPendingDelete(null); }} onCancel={() => setPendingDelete(null)} />\n    </div>}\n  </section>;\n}\n"
+    }
+  ]
+}

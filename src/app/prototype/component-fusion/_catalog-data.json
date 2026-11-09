@@ -1848,7 +1848,7 @@
       "id": "129",
       "name": "代码折叠",
       "english": "Foldable code blocks",
-      "description": "折叠代码区块以缩短阅读长度",
+      "description": "折叠代码页面组件以缩短阅读长度",
       "descriptionEn": "Fold code blocks to shorten the reading view.",
       "family": "cases",
       "caseTag": "内容与编辑",

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "settings-members",
+  "type": "registry:block",
+  "title": "成员与团队",
+  "description": "席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "设置",
+    "screens": [
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
+    "example": "import { SettingsMembers } from \"@/components/blocks/settings-members\";\n\nexport default function Example() {\n  return (<SettingsMembers seats={10} onInvite={(email, role) => console.log(email, role)} />);\n}\n",
+    "props": [
+      {
+        "component": "SettingsMembers",
+        "properties": [
+          {
+            "name": "members",
+            "required": false,
+            "type": "WorkspaceMember[] | undefined"
+          },
+          {
+            "name": "seats",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onInvite",
+            "required": false,
+            "type": "((email: string, role: MemberRole) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "ButtonGroup",
+        "CellImageText",
+        "DataTable",
+        "Modal",
+        "Panel",
+        "PlusIcon",
+        "ProgressBar",
+        "SelectOption",
+        "TabBar",
+        "TextField",
+        "ToolbarSearchInput",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/settings-members/settings-members.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/settings-members.tsx",
+      "content": "\"use client\";\n\nimport { useState, type FormEvent, type Key } from \"react\";\nimport { Button, ButtonGroup, CellImageText, DataTable, Modal, Panel, PlusIcon, ProgressBar, SelectOption, TabBar, TextField, ToolbarSearchInput, cn, type ColumnDef } from \"@forge-ui-official/core\";\n\nexport type MemberRole = \"owner\" | \"admin\" | \"member\" | \"viewer\";\n\nexport interface WorkspaceMember {\n  id: string;\n  name: string;\n  email: string;\n  avatar: string;\n  role: MemberRole;\n  team: string;\n  usage: number;\n  invited?: boolean;\n}\n\nexport const defaultWorkspaceMembers: WorkspaceMember[] = [\n  { id: \"m1\", name: \"张宁\", email: \"zhangning@zhixing.tech\", avatar: \"/images/team/edward-allen.png\", role: \"owner\", team: \"运营\", usage: 68 },\n  { id: \"m2\", name: \"林悦\", email: \"linyue@zhixing.tech\", avatar: \"/images/blocks/people/lin-yue.jpg\", role: \"admin\", team: \"设计\", usage: 42 },\n  { id: \"m3\", name: \"陈思远\", email: \"chensiyuan@zhixing.tech\", avatar: \"/images/blocks/people/chen-siyuan.jpg\", role: \"member\", team: \"研发\", usage: 81 },\n  { id: \"m4\", name: \"许知夏\", email: \"xuzhixia@zhixing.tech\", avatar: \"/images/blocks/people/xu-zhixia.jpg\", role: \"member\", team: \"质量\", usage: 23 },\n  { id: \"m5\", name: \"周予安\", email: \"zhouyuan@zhixing.tech\", avatar: \"/images/blocks/people/zhou-yuan.jpg\", role: \"member\", team: \"研发\", usage: 55 },\n  { id: \"m6\", name: \"唐可欣\", email: \"tangkexin@zhixing.tech\", avatar: \"/images/blocks/people/tang-kexin.jpg\", role: \"viewer\", team: \"销售\", usage: 6 },\n  { id: \"m7\", name: \"gu.chengze@partner.cn\", email: \"gu.chengze@partner.cn\", avatar: \"/images/blocks/people/gu-chengze.jpg\", role: \"member\", team: \"外部\", usage: 0, invited: true },\n];\n\nexport const defaultTeams = [\n  { id: \"t1\", name: \"研发\", members: 12, lead: \"陈思远\" },\n  { id: \"t2\", name: \"设计\", members: 5, lead: \"林悦\" },\n  { id: \"t3\", name: \"运营\", members: 8, lead: \"张宁\" },\n  { id: \"t4\", name: \"销售\", members: 9, lead: \"唐可欣\" },\n];\n\nconst roleLabel: Record<MemberRole, string> = { owner: \"所有者\", admin: \"管理员\", member: \"成员\", viewer: \"只读\" };\nconst roleFilters: { label: string; value: MemberRole | \"all\" }[] = [{ label: \"全部\", value: \"all\" }, { label: \"管理员\", value: \"admin\" }, { label: \"成员\", value: \"member\" }, { label: \"只读\", value: \"viewer\" }];\n\nexport interface SettingsMembersProps {\n  members?: WorkspaceMember[];\n  seats?: number;\n  onInvite?: (email: string, role: MemberRole) => void;\n  className?: string;\n}\n\nexport function SettingsMembers({ members = defaultWorkspaceMembers, seats = 10, onInvite, className }: SettingsMembersProps) {\n  const [rows, setRows] = useState(members);\n  const [tab, setTab] = useState(0);\n  const [filter, setFilter] = useState(0);\n  const [query, setQuery] = useState(\"\");\n  const [selected, setSelected] = useState<Set<Key>>(new Set());\n  const [inviting, setInviting] = useState(false);\n  const [invite, setInvite] = useState<{ email: string; role: MemberRole }>({ email: \"\", role: \"member\" });\n  const role = roleFilters[filter].value;\n  const visible = rows.filter(member => (role === \"all\" || member.role === role || (role === \"admin\" && member.role === \"owner\")) && `${member.name} ${member.email} ${member.team}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));\n  const used = rows.length;\n  const admins = rows.filter(member => member.role === \"owner\" || member.role === \"admin\").length;\n\n  const columns: ColumnDef<WorkspaceMember>[] = [\n    { key: \"name\", header: \"成员\", minWidth: 230, render: member => <CellImageText src={member.avatar} title={member.invited ? \"待接受邀请\" : member.name} subtitle={member.email} rounded=\"full\" /> },\n    { key: \"role\", header: \"角色\", minWidth: 130, render: member => member.role === \"owner\" ? <span className=\"text-sm font-medium text-fg-black\">所有者</span> : <SelectOption shape=\"pill\" options={([\"admin\", \"member\", \"viewer\"] as MemberRole[]).map(value => ({ value, label: roleLabel[value] }))} value={member.role} onChange={value => setRows(current => current.map(item => item.id === member.id ? { ...item, role: value as MemberRole } : item))} /> },\n    { key: \"team\", header: \"团队\", minWidth: 80, render: member => <span className=\"text-sm text-fg-grey-900\">{member.team}</span> },\n    { key: \"usage\", header: \"本月用量\", minWidth: 150, render: member => <ProgressBar value={member.usage} color={member.usage > 75 ? \"yellow\" : \"blue\"} label={`${member.usage}%`} size=\"sm\" /> },\n  ];\n\n  function submit(event: FormEvent) {\n    event.preventDefault();\n    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(invite.email)) return;\n    setRows(current => [...current, { id: `m-${Date.now()}`, name: invite.email, email: invite.email, avatar: \"/images/blocks/people/song-zhiyi.jpg\", role: invite.role, team: \"未分组\", usage: 0, invited: true }]);\n    onInvite?.(invite.email, invite.role);\n    setInvite({ email: \"\", role: \"member\" });\n    setInviting(false);\n  }\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"fg-scrollbar-hidden overflow-x-auto border-b border-fg-grey-200\"><TabBar color=\"blue\" tabs={[{ label: \"成员\", active: tab === 0 }, { label: \"团队\", active: tab === 1 }]} onChange={setTab} /></div>\n    <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-3\">\n      <Panel variant=\"template\"><p className=\"text-sm text-fg-grey-700\">成员</p><p className=\"text-2xl font-semibold tabular-nums text-fg-black\">{used}</p><p className=\"text-xs text-fg-grey-700\">{rows.filter(member => member.invited).length} 人待接受邀请</p></Panel>\n      <Panel variant=\"template\"><p className=\"text-sm text-fg-grey-700\">席位</p><p className=\"text-2xl font-semibold tabular-nums text-fg-black\">{used} <span className=\"text-base font-medium text-fg-grey-500\">/ {seats}</span></p><ProgressBar value={Math.round((used / seats) * 100)} color=\"blue\" size=\"sm\" /></Panel>\n      <Panel variant=\"template\"><p className=\"text-sm text-fg-grey-700\">管理员</p><p className=\"text-2xl font-semibold tabular-nums text-fg-black\">{admins}</p><p className=\"text-xs text-fg-grey-700\">可邀请、移除与修改账单</p></Panel>\n    </div>\n    {tab === 0 ? <>\n      <div className=\"flex min-w-0 flex-col gap-3 xl:flex-row xl:items-center xl:justify-between\">\n        <ButtonGroup ariaLabel=\"角色筛选\" shape=\"pill\" items={roleFilters.map(item => ({ label: item.label }))} activeIndex={filter} onChange={setFilter} />\n        <div className=\"flex min-w-0 flex-wrap items-center gap-3\">\n          {selected.size > 0 && <Button variant=\"tertiary\" onClick={() => { setRows(current => current.filter(member => member.role === \"owner\" || !selected.has(member.id))); setSelected(new Set()); }}>移除 {selected.size} 人</Button>}\n          <ToolbarSearchInput className=\"w-full sm:w-60\" value={query} onChange={setQuery} placeholder=\"搜索姓名、邮箱或团队\" />\n          <Button iconLeft={<PlusIcon size={16} />} disabled={used >= seats} onClick={() => setInviting(true)}>邀请成员</Button>\n        </div>\n      </div>\n      <DataTable<WorkspaceMember> columns={columns} rows={visible} getRowKey={member => member.id} showCheckbox selectedRowKeys={selected} onSelectedRowKeysChange={setSelected} emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">没有匹配的成员。</p>} />\n    </> : <ul className=\"grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4\">{defaultTeams.map(team => <li key={team.id}><Panel variant=\"template\"><p className=\"text-base font-semibold text-fg-black\">{team.name}</p><p className=\"text-sm text-fg-grey-700\">{team.members} 名成员 · 负责人 {team.lead}</p></Panel></li>)}</ul>}\n    <Modal open={inviting} onOpenChange={setInviting} title=\"邀请成员\">\n      <form className=\"flex flex-col gap-4\" onSubmit={submit}>\n        <TextField label=\"邮箱\" type=\"email\" shape=\"pill\" value={invite.email} onChange={value => setInvite({ ...invite, email: value })} placeholder=\"name@company.com\" />\n        <SelectOption label=\"角色\" shape=\"pill\" options={([\"admin\", \"member\", \"viewer\"] as MemberRole[]).map(value => ({ value, label: roleLabel[value] }))} value={invite.role} onChange={value => setInvite({ ...invite, role: value as MemberRole })} />\n        <p className=\"text-xs text-fg-grey-700\">剩余 {seats - used} 个席位，邀请链接 7 天内有效。</p>\n        <div className=\"flex justify-end gap-3\"><Button type=\"button\" variant=\"tertiary\" onClick={() => setInviting(false)}>取消</Button><Button type=\"submit\" disabled={!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(invite.email)}>发送邀请</Button></div>\n      </form>\n    </Modal>\n  </section>;\n}\n"
+    }
+  ]
+}

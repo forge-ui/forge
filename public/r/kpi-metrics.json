@@ -3,11 +3,50 @@
   "name": "kpi-metrics",
   "type": "registry:block",
   "title": "KPI 指标行",
-  "description": "等分指标栅格；紧凑卡片或原有指标插槽。",
+  "description": "集中展示收入、订单与客户等关键指标，适用于经营看板首屏。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "图表与指标",
+    "screens": [
+      {
+        "href": "/templates/dashboards/crm",
+        "title": "客户经营看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-1",
+        "title": "电商经营看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-2",
+        "title": "电商明细看板"
+      },
+      {
+        "href": "/templates/dashboards/ecommerce-3",
+        "title": "渠道分析看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-1",
+        "title": "财务概览看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-2",
+        "title": "账户分析看板"
+      },
+      {
+        "href": "/templates/dashboards/project-1",
+        "title": "项目协作看板"
+      },
+      {
+        "href": "/templates/dashboards/project-2",
+        "title": "项目进展看板"
+      },
+      {
+        "href": "/templates/project-template",
+        "title": "项目管理"
+      }
+    ],
     "example": "import { KpiMetrics } from \"@/components/blocks/kpi-metrics\";\n\nexport default function Example() {\n  return (<KpiMetrics metrics={[{ id: \"revenue\", title: \"营业收入\", value: \"¥32,200\", trend: \"10%\", data: [12, 24, 18, 36, 42] }, { id: \"orders\", title: \"订单\", value: \"1020\", trend: \"32%\", visualization: \"line\", data: [20, 30, 24, 40, 52] }, { id: \"customers\", title: \"客户\", value: \"860\", data: [10, 30, 60, 95, 50, 40, 30] }]} />);\n}\n",
     "props": [
       {
@@ -16,7 +55,7 @@
           {
             "name": "metrics",
             "required": false,
-            "type": "({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").MotionPreference; trend?: string; trendDirection?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").TrendDirection; subtitle?: string; theme?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardTheme | (\"dark\" | \"orange\"); size?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").StatCardSize; icon?: ReactNode; badgeVariant?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity; width?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth; className?: string; } & { id: string; visualization?: \"line\" | \"bar\"; data?: number[]; })[] | undefined"
+            "type": "({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import(\"@forge-ui-official/core\").MotionPreference; trend?: string; trendDirection?: import(\"@forge-ui-official/core\").TrendDirection; subtitle?: string; theme?: import(\"@forge-ui-official/core\").CardTheme | (\"dark\" | \"orange\"); size?: import(\"@forge-ui-official/core\").StatCardSize; icon?: ReactNode; badgeVariant?: import(\"@forge-ui-official/core\").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import(\"@forge-ui-official/core\").CardDensity; width?: import(\"@forge-ui-official/core\").CardWidth; className?: string; } & { id: string; visualization?: \"line\" | \"bar\"; data?: number[]; })[] | undefined"
           },
           {
             "name": "children",

@@ -3,11 +3,22 @@
   "name": "card-carousel",
   "type": "registry:block",
   "title": "卡片轮播",
-  "description": "财务卡片叠放与受控或非受控分页。",
+  "description": "以可切换的卡片展示多个账户，适用于钱包和财务首页。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "财务",
+    "screens": [
+      {
+        "href": "/templates/dashboards/finance-1",
+        "title": "财务概览看板"
+      },
+      {
+        "href": "/templates/dashboards/finance-2",
+        "title": "账户分析看板"
+      }
+    ],
     "example": "import { CardCarousel } from \"@/components/blocks/card-carousel\";\n\nexport default function Example() {\n  return (<CardCarousel cards={[{ id: \"main\", holderName: \"运营账户\", cardNumber: \"9090\" }]} showPagination />);\n}\n",
     "props": [
       {
@@ -16,7 +27,7 @@
           {
             "name": "cards",
             "required": true,
-            "type": "({ locale?: \"zh\" | \"en\"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").FinancialTheme; variant?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").FinancialVariant; width?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth; className?: string; } & { id: string; })[]"
+            "type": "({ locale?: \"zh\" | \"en\"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import(\"@forge-ui-official/core\").FinancialTheme; variant?: import(\"@forge-ui-official/core\").FinancialVariant; width?: import(\"@forge-ui-official/core\").CardWidth; className?: string; } & { id: string; })[]"
           },
           {
             "name": "size",

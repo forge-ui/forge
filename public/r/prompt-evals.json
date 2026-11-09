@@ -1,0 +1,62 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prompt-evals",
+  "type": "registry:block",
+  "title": "提示词评测",
+  "description": "按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "AI 与智能体",
+    "screens": [
+      {
+        "href": "/templates/agent",
+        "title": "智能体工作台"
+      }
+    ],
+    "example": "import { PromptEvals } from \"@/components/blocks/prompt-evals\";\n\nexport default function Example() {\n  return (<PromptEvals onRun={() => {}} />);\n}\n",
+    "props": [
+      {
+        "component": "PromptEvals",
+        "properties": [
+          {
+            "name": "evals",
+            "required": false,
+            "type": "PromptEvalsData | undefined"
+          },
+          {
+            "name": "onRun",
+            "required": false,
+            "type": "(() => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Button",
+        "ButtonGroup",
+        "DataTable",
+        "Panel",
+        "SmoothLineChart",
+        "StatusBadge",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/prompt-evals/prompt-evals.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/prompt-evals.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Button, ButtonGroup, DataTable, Panel, SmoothLineChart, StatusBadge, cn, type ColumnDef } from \"@forge-ui-official/core\";\nimport { PlayBoldDuotone } from \"@forge-ui-official/core/icons\";\n\nexport type EvalResult = \"pass\" | \"partial\" | \"fail\";\n\nexport interface EvalCase {\n  id: string;\n  input: string;\n  expected: string;\n  output: string;\n  result: EvalResult;\n  latency: number;\n}\n\nexport interface PromptEvalsData {\n  prompt: string;\n  version: string;\n  metrics: { label: string; value: string; delta: string; positive: boolean }[];\n  history: number[];\n  change: { removed: string; added: string };\n  cases: EvalCase[];\n}\n\nexport const defaultPromptEvals: PromptEvalsData = {\n  prompt: \"售后问答助手 · 系统提示词\",\n  version: \"v12\",\n  metrics: [\n    { label: \"通过率\", value: \"92%\", delta: \"+4%\", positive: true },\n    { label: \"平均得分\", value: \"4.6\", delta: \"+0.3\", positive: true },\n    { label: \"P50 延迟\", value: \"1.2s\", delta: \"-0.2s\", positive: true },\n    { label: \"每百次成本\", value: \"¥1.84\", delta: \"+¥0.06\", positive: false },\n  ],\n  history: [74, 78, 77, 81, 83, 82, 86, 85, 88, 88, 90, 92],\n  change: { removed: \"回答尽可能详细，覆盖所有可能情况。\", added: \"先给结论，再列出依据条款；不确定时说明需要人工确认。\" },\n  cases: [\n    { id: \"c1\", input: \"退货超过 7 天还能退吗？\", expected: \"说明质量问题可走换货\", output: \"可以走质量换货流程，需要提供照片（《售后服务规范》3.2）\", result: \"pass\", latency: 1.1 },\n    { id: \"c2\", input: \"发票抬头开错了怎么办？\", expected: \"30 天内可重开\", output: \"开票 30 天内可在订单详情申请重开\", result: \"pass\", latency: 0.9 },\n    { id: \"c3\", input: \"物流三天没更新\", expected: \"安抚并给出查询方式\", output: \"抱歉让您久等，已为您催件，可在订单页查看最新轨迹\", result: \"pass\", latency: 1.3 },\n    { id: \"c4\", input: \"能不能赔我 100 元\", expected: \"不承诺具体金额\", output: \"可为您申请 20 元优惠券作为补偿\", result: \"partial\", latency: 1.4 },\n    { id: \"c5\", input: \"我要投诉你们客服\", expected: \"转人工并记录\", output: \"已为您转接人工客服，工单号 ZX-20261109\", result: \"pass\", latency: 1.0 },\n    { id: \"c6\", input: \"英文能回答吗 can you help\", expected: \"用英文回答\", output: \"可以，请问需要什么帮助？\", result: \"fail\", latency: 1.2 },\n  ],\n};\n\nconst resultMeta: Record<EvalResult, { label: string; color: \"green\" | \"yellow\" | \"red\" }> = { pass: { label: \"通过\", color: \"green\" }, partial: { label: \"部分\", color: \"yellow\" }, fail: { label: \"失败\", color: \"red\" } };\nconst filters: { label: string; value: EvalResult | \"all\" }[] = [{ label: \"全部\", value: \"all\" }, { label: \"通过\", value: \"pass\" }, { label: \"部分\", value: \"partial\" }, { label: \"失败\", value: \"fail\" }];\n\nexport interface PromptEvalsProps {\n  evals?: PromptEvalsData;\n  onRun?: () => void;\n  className?: string;\n}\n\nexport function PromptEvals({ evals = defaultPromptEvals, onRun, className }: PromptEvalsProps) {\n  const [filter, setFilter] = useState(0);\n  const [running, setRunning] = useState(false);\n  const value = filters[filter].value;\n  const visible = evals.cases.filter(item => value === \"all\" || item.result === value);\n  const columns: ColumnDef<EvalCase>[] = [\n    { key: \"input\", header: \"输入\", minWidth: 180, render: item => <span className=\"text-sm text-fg-black\">{item.input}</span> },\n    { key: \"expected\", header: \"期望\", minWidth: 160, render: item => <span className=\"text-sm text-fg-grey-700\">{item.expected}</span> },\n    { key: \"output\", header: `${evals.version} 输出`, minWidth: 240, render: item => <span className=\"text-sm text-fg-grey-900\">{item.output}</span> },\n    { key: \"result\", header: \"结果\", minWidth: 80, render: item => <StatusBadge {...resultMeta[item.result]} variant=\"soft\" /> },\n    { key: \"latency\", header: \"延迟\", minWidth: 70, valueKind: \"number\", render: item => <span className=\"text-sm tabular-nums text-fg-grey-700\">{item.latency}s</span> },\n  ];\n\n  return <section className={cn(\"flex min-w-0 flex-col gap-4\", className)}>\n    <div className=\"flex flex-wrap items-center justify-between gap-3\"><div className=\"flex items-center gap-2\"><span className=\"text-sm font-semibold text-fg-black\">{evals.prompt}</span><StatusBadge label={`${evals.version} 当前`} color=\"blue\" variant=\"soft\" /></div><Button iconLeft={<PlayBoldDuotone size={16} />} disabled={running} onClick={() => { setRunning(true); onRun?.(); window.setTimeout(() => setRunning(false), 1600); }}>{running ? \"评测中…\" : \"重新评测\"}</Button></div>\n    <div className=\"grid grid-cols-2 gap-4 xl:grid-cols-4\">{evals.metrics.map(metric => <Panel key={metric.label} variant=\"template\"><p className=\"text-sm text-fg-grey-700\">{metric.label}</p><p className=\"text-2xl font-semibold tabular-nums text-fg-black\">{metric.value}</p><p className={cn(\"text-xs font-semibold\", metric.positive ? \"text-fg-green-500\" : \"text-fg-red\")}>{metric.delta} 较 v11</p></Panel>)}</div>\n    <div className=\"grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_360px]\">\n      <Panel variant=\"template\" title=\"各版本通过率\" subtitle=\"最近 12 个版本 · 25 个测试用例\">\n        <SmoothLineChart series={[{ data: evals.history, color: \"blue\", fillArea: true }]} accent=\"blue\" showYAxis yAxisLabels={[\"100%\", \"85%\", \"70%\"]} yDomain={[70, 100]} xAxisLabels={evals.history.map((_, index) => `v${index + 1}`)} height=\"h-52\" />\n      </Panel>\n      <Panel variant=\"template\" title={`${evals.version} 改动`} subtitle=\"系统提示词差异\">\n        <div className=\"flex flex-col gap-2 font-mono text-xs leading-6\"><p className=\"rounded-lg bg-fg-red-50 px-3 py-2 text-fg-red line-through decoration-fg-red/50\">- {evals.change.removed}</p><p className=\"rounded-lg bg-fg-green-50 px-3 py-2 text-fg-green-600\">+ {evals.change.added}</p></div>\n      </Panel>\n    </div>\n    <div className=\"flex flex-wrap items-center justify-between gap-3\"><h2 className=\"text-base font-semibold text-fg-black\">测试用例 <span className=\"text-fg-grey-500\">{evals.cases.length}</span></h2><ButtonGroup ariaLabel=\"结果筛选\" shape=\"pill\" items={filters.map(item => ({ label: item.label }))} activeIndex={filter} onChange={setFilter} /></div>\n    <DataTable<EvalCase> columns={columns} rows={visible} getRowKey={item => item.id} emptyState={<p className=\"py-10 text-center text-sm text-fg-grey-700\">没有这类结果的用例。</p>} />\n  </section>;\n}\n"
+    }
+  ]
+}

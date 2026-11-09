@@ -1,0 +1,87 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "orders-table-section",
+  "type": "registry:block",
+  "title": "订单列表",
+  "description": "包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。",
+  "dependencies": [
+    "@forge-ui-official/core@^0.6.0"
+  ],
+  "meta": {
+    "category": "数据列表",
+    "screens": [
+      {
+        "href": "/templates/ecommerce/orders",
+        "title": "订单管理"
+      }
+    ],
+    "example": "import { OrdersTableSection } from \"@/components/blocks/orders-table-section\";\n\nexport default function Example() {\n  return (<OrdersTableSection title=\"订单列表\" pageSize={6} />);\n}\n",
+    "props": [
+      {
+        "component": "OrdersTableSection",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "description",
+            "required": false,
+            "type": "string | undefined"
+          },
+          {
+            "name": "orders",
+            "required": false,
+            "type": "OrderRecord[] | undefined"
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "type": "number | undefined"
+          },
+          {
+            "name": "onViewOrder",
+            "required": false,
+            "type": "((order: OrderRecord) => void) | undefined"
+          },
+          {
+            "name": "onExport",
+            "required": false,
+            "type": "((orders: OrderRecord[]) => void) | undefined"
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined"
+          }
+        ]
+      }
+    ],
+    "core": {
+      "version": "^0.6.0",
+      "components": [
+        "Avatar",
+        "Button",
+        "DataTable",
+        "IconButton",
+        "Modal",
+        "Pagination",
+        "Panel",
+        "StatusBadge",
+        "Toolbar",
+        "ToolbarSearchInput",
+        "ToolbarSelectDropdown",
+        "cn"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "blocks/orders-table-section/orders-table-section.tsx",
+      "type": "registry:component",
+      "target": "@components/blocks/orders-table-section.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Avatar, Button, DataTable, IconButton, Modal, Pagination, Panel, StatusBadge, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown, cn, type ColumnDef, type StatusBadgeColor } from \"@forge-ui-official/core\";\nimport { DownloadLinear, EyeLinear } from \"@forge-ui-official/core/icons\";\n\nexport interface OrderRecord {\n  id: string;\n  customer: string;\n  company: string;\n  avatar?: string;\n  amount: number;\n  status: \"paid\" | \"processing\" | \"refunded\";\n  date: string;\n}\n\nexport const defaultOrders: OrderRecord[] = [\n  { id: \"ZX2026103106\", customer: \"陈思远\", company: \"远山设计\", amount: 12800, status: \"paid\", date: \"2026-10-31\" },\n  { id: \"ZX2026103105\", customer: \"林悦\", company: \"木禾文化\", amount: 6800, status: \"paid\", date: \"2026-10-31\" },\n  { id: \"ZX2026103004\", customer: \"周予安\", company: \"云帆科技\", amount: 3200, status: \"processing\", date: \"2026-10-30\" },\n  { id: \"ZX2026103003\", customer: \"许知夏\", company: \"青石建筑\", amount: 15800, status: \"paid\", date: \"2026-10-30\" },\n  { id: \"ZX2026102902\", customer: \"沈清和\", company: \"拾光商业\", amount: 9800, status: \"paid\", date: \"2026-10-29\" },\n  { id: \"ZX2026102901\", customer: \"陆景行\", company: \"桥川咨询\", amount: 2400, status: \"refunded\", date: \"2026-10-29\" },\n];\n\nconst orderStatuses: Record<OrderRecord[\"status\"], { label: string; color: StatusBadgeColor }> = {\n  paid: { label: \"已支付\", color: \"green\" },\n  processing: { label: \"处理中\", color: \"blue\" },\n  refunded: { label: \"已退款\", color: \"grey\" },\n};\n\nexport interface OrdersTableSectionProps {\n  title?: string;\n  description?: string;\n  orders?: OrderRecord[];\n  pageSize?: number;\n  onViewOrder?: (order: OrderRecord) => void;\n  onExport?: (orders: OrderRecord[]) => void;\n  className?: string;\n}\n\nexport function OrdersTableSection({ title = \"订单列表\", description = \"知行科技 · 最近成交与待处理订单\", orders = defaultOrders, pageSize = 6, onViewOrder, onExport, className }: OrdersTableSectionProps) {\n  const [query, setQuery] = useState(\"\");\n  const [status, setStatus] = useState(\"all\");\n  const [page, setPage] = useState(1);\n  const [selected, setSelected] = useState<OrderRecord | null>(null);\n  const [feedback, setFeedback] = useState(\"\");\n  const keyword = query.trim().toLocaleLowerCase();\n  const filtered = orders.filter(order => (status === \"all\" || order.status === status) && `${order.id} ${order.customer} ${order.company}`.toLocaleLowerCase().includes(keyword));\n  const size = Number.isFinite(pageSize) ? Math.max(1, Math.floor(pageSize)) : 6;\n  const totalPages = Math.max(1, Math.ceil(filtered.length / size));\n  const currentPage = Math.min(page, totalPages);\n  const visible = filtered.slice((currentPage - 1) * size, currentPage * size);\n  const currency = (amount: number) => `¥${amount.toLocaleString(\"zh-CN\", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;\n  const columns: ColumnDef<OrderRecord>[] = [\n    { key: \"id\", header: \"订单号\", minWidth: 160, render: order => <span className=\"font-medium text-fg-black\">{order.id}</span> },\n    { key: \"customer\", header: \"客户\", minWidth: 190, render: order => <div className=\"flex items-center gap-3\"><Avatar src={order.avatar} initials={order.customer.slice(0, 1)} alt={order.customer} size=\"sm\" /><div><div className=\"font-semibold text-fg-black\">{order.customer}</div><div className=\"text-xs text-fg-grey-500\">{order.company}</div></div></div> },\n    { key: \"amount\", header: \"金额\", minWidth: 120, valueKind: \"number\", render: order => <span className=\"font-semibold tabular-nums\">{currency(order.amount)}</span> },\n    { key: \"status\", header: \"状态\", minWidth: 100, render: order => <StatusBadge {...orderStatuses[order.status]} variant=\"soft\" /> },\n    { key: \"date\", header: \"日期\", minWidth: 130, render: order => <span className=\"text-fg-grey-700\">{order.date}</span> },\n    { key: \"action\", header: \"操作\", minWidth: 64, render: order => <IconButton variant=\"ghost\" color=\"grey\" size=\"sm\" aria-label={`查看订单 ${order.id}`} onClick={() => onViewOrder ? onViewOrder(order) : setSelected(order)}><EyeLinear size={16} /></IconButton> },\n  ];\n\n  function exportOrders() {\n    if (onExport) { onExport(filtered); return; }\n    const csvCell = (value: string | number) => `\"${String(value).replace(/^\\s*[=+@-]|^[\\t\\r\\n]/, \"'$&\").replace(/\"/g, '\"\"')}\"`;\n    const rows = [[\"订单号\", \"客户\", \"公司\", \"金额\", \"状态\", \"日期\"], ...filtered.map(order => [order.id, order.customer, order.company, order.amount, orderStatuses[order.status].label, order.date])];\n    const url = URL.createObjectURL(new Blob([\"\\uFEFF\", rows.map(row => row.map(csvCell).join(\",\")).join(\"\\r\\n\")], { type: \"text/csv;charset=utf-8\" }));\n    const link = document.createElement(\"a\");\n    link.href = url;\n    link.download = \"知行科技-订单.csv\";\n    link.click();\n    URL.revokeObjectURL(url);\n    setFeedback(`已导出 ${filtered.length} 条订单`);\n  }\n\n  return <Panel className={cn(\"min-w-0\", className)} title={title} subtitle={description}>\n    <Toolbar className=\"sm:flex-wrap\" left={<ToolbarSearchInput className=\"sm:w-auto sm:max-w-none sm:flex-1 sm:basis-64\" value={query} onChange={value => { setQuery(value); setPage(1); setFeedback(\"\"); }} placeholder=\"搜索订单号、客户或公司\" />} right={<div className=\"flex flex-wrap items-center gap-3\"><ToolbarSelectDropdown placeholder=\"订单状态\" value={status} options={[{ label: \"全部状态\", value: \"all\" }, ...Object.entries(orderStatuses).map(([value, item]) => ({ value, label: item.label }))]} onChange={value => { setStatus(value); setPage(1); setFeedback(\"\"); }} /><Button size=\"sm\" variant=\"tertiary\" iconLeft={<DownloadLinear size={16} />} onClick={exportOrders} disabled={!filtered.length}>导出</Button></div>} />\n    <div className=\"@container min-w-0\">\n      <div className=\"hidden @min-[900px]:block\"><DataTable columns={columns} rows={visible} getRowKey={order => order.id} /></div>\n      <ul aria-label=\"订单列表\" className=\"divide-y divide-fg-grey-200 rounded-2xl border border-fg-grey-200 @min-[900px]:hidden\">{visible.map(order => <li key={order.id} className=\"flex min-w-0 flex-col gap-3 p-4\">\n        <div className=\"flex items-center justify-between gap-3\"><span className=\"min-w-0 break-all text-sm font-semibold text-fg-black\">{order.id}</span><IconButton variant=\"ghost\" color=\"grey\" size=\"sm\" aria-label={`查看订单 ${order.id}`} onClick={() => onViewOrder ? onViewOrder(order) : setSelected(order)}><EyeLinear size={16} /></IconButton></div>\n        <div className=\"flex min-w-0 items-center gap-3\"><Avatar src={order.avatar} initials={order.customer.slice(0, 1)} alt={order.customer} size=\"sm\" /><div className=\"min-w-0 break-words\"><p className=\"text-sm font-semibold text-fg-black\">{order.customer}</p><p className=\"text-xs text-fg-grey-500\">{order.company}</p></div></div>\n        <div className=\"flex flex-wrap items-center justify-between gap-2\"><span className=\"text-sm font-semibold tabular-nums\">{currency(order.amount)}</span><StatusBadge {...orderStatuses[order.status]} variant=\"soft\" /></div>\n        <time dateTime={order.date} className=\"text-xs text-fg-grey-700\">{order.date}</time>\n      </li>)}</ul>\n    </div>\n    {!visible.length && <div className=\"py-10 text-center text-sm text-fg-grey-700\">{orders.length ? \"没有符合条件的订单，请调整搜索或筛选。\" : \"暂无订单记录。\"}</div>}\n    <footer className=\"flex flex-wrap items-center justify-between gap-3\"><p className=\"text-sm text-fg-grey-700\" role=\"status\">{feedback || `共 ${filtered.length} 条${filtered.length ? `，第 ${(currentPage - 1) * size + 1}–${Math.min(currentPage * size, filtered.length)} 条` : \"\"}`}</p><Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setPage} /></footer>\n    <Modal open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }} title={selected ? `订单 ${selected.id}` : \"订单详情\"}>\n      {selected && <dl className=\"grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 text-sm\"><dt className=\"text-fg-grey-700\">客户</dt><dd>{selected.customer} · {selected.company}</dd><dt className=\"text-fg-grey-700\">金额</dt><dd className=\"font-semibold\">{currency(selected.amount)}</dd><dt className=\"text-fg-grey-700\">状态</dt><dd><StatusBadge {...orderStatuses[selected.status]} variant=\"soft\" /></dd><dt className=\"text-fg-grey-700\">日期</dt><dd>{selected.date}</dd></dl>}\n    </Modal>\n  </Panel>;\n}\n"
+    }
+  ]
+}

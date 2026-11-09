@@ -35,6 +35,6 @@ test("business templates use core controls and semantic color families", () => {
 
 test("all registered blocks have discoverable gallery previews", () => {
   const catalog = JSON.parse(fs.readFileSync("blocks/registry.json", "utf8"));
-  const gallery = fs.readFileSync("src/app/blocks/page.tsx", "utf8");
+  const gallery = fs.readFileSync("src/app/blocks/_previews.tsx", "utf8");
   for (const entry of catalog) assert.ok(gallery.includes(`"${entry.name}":`), entry.name);
 });

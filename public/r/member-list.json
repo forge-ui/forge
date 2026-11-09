@@ -3,11 +3,22 @@
   "name": "member-list",
   "type": "registry:block",
   "title": "成员列表",
-  "description": "成员身份卡片与可替换条目。",
+  "description": "展示团队成员、职位与在线状态，适用于项目和工作区。",
   "dependencies": [
     "@forge-ui-official/core@^0.6.0"
   ],
   "meta": {
+    "category": "协作与项目",
+    "screens": [
+      {
+        "href": "/templates/dashboards/project-1",
+        "title": "项目协作看板"
+      },
+      {
+        "href": "/templates/dashboards/project-2",
+        "title": "项目进展看板"
+      }
+    ],
     "example": "import { MemberList } from \"@/components/blocks/member-list\";\n\nexport default function Example() {\n  return (<MemberList title=\"成员\" members={[{ id: \"zhang\", name: \"张三\", initials: \"张\", subtitle: \"负责人\" }]} />);\n}\n",
     "props": [
       {
@@ -26,7 +37,7 @@
           {
             "name": "color",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").AccentColor | undefined"
+            "type": "import(\"@forge-ui-official/core\").AccentColor | undefined"
           },
           {
             "name": "subtitle",
@@ -36,17 +47,17 @@
           {
             "name": "action",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+            "type": "import(\"react\").ReactNode"
           },
           {
             "name": "badge",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+            "type": "import(\"react\").ReactNode"
           },
           {
             "name": "tabs",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").ListGroupTab[] | undefined"
+            "type": "import(\"@forge-ui-official/core\").ListGroupTab[] | undefined"
           },
           {
             "name": "activeTab",
@@ -71,17 +82,17 @@
           {
             "name": "density",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardDensity | undefined"
+            "type": "import(\"@forge-ui-official/core\").CardDensity | undefined"
           },
           {
             "name": "items",
             "required": false,
-            "type": "import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode"
+            "type": "import(\"react\").ReactNode"
           },
           {
             "name": "members",
             "required": false,
-            "type": "({ avatar?: string; initials?: string; initialsColor?: \"purple\" | \"blue\" | \"green\" | \"orange\"; name: string; badge?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; subtitle?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/node_modules/.pnpm/@types+react@19.2.14/node_modules/@types/react/index\").ReactNode; stats?: { label: string; value: string; }[]; checked?: boolean; onMenuClick?: () => void; width?: import(\"/Users/hesong/Documents/forge-worktrees/forge-templates/core/src/index\").CardWidth; className?: string; } & { id: string; })[] | undefined"
+            "type": "({ avatar?: string; initials?: string; initialsColor?: \"purple\" | \"blue\" | \"green\" | \"orange\"; name: string; badge?: import(\"react\").ReactNode; subtitle?: import(\"react\").ReactNode; stats?: { label: string; value: string; }[]; checked?: boolean; onMenuClick?: () => void; width?: import(\"@forge-ui-official/core\").CardWidth; className?: string; } & { id: string; })[] | undefined"
           }
         ]
       }

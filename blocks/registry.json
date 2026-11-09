@@ -2,103 +2,1070 @@
   {
     "name": "kpi-metrics",
     "title": "KPI 指标行",
-    "description": "等分指标栅格；紧凑卡片或原有指标插槽。",
-    "component": "KpiMetrics"
+    "description": "集中展示收入、订单与客户等关键指标，适用于经营看板首屏。",
+    "category": "图表与指标",
+    "component": "KpiMetrics",
+    "shell": {
+      "menu": "commerce",
+      "active": "overview",
+      "title": "经营概览"
+    }
   },
   {
     "name": "recent-records",
     "title": "最近记录表卡",
-    "description": "标题、操作栏与带稳定行标识的数据表。",
-    "component": "RecentRecords"
+    "description": "在一张卡片内查看最近订单、交易或业务记录。",
+    "category": "数据列表",
+    "component": "RecentRecords",
+    "shell": {
+      "menu": "commerce",
+      "active": "orders",
+      "title": "最近订单"
+    }
   },
   {
     "name": "trend-chart",
     "title": "趋势图表卡",
-    "description": "标题、指标行与分组柱状图，支持自定义图域。",
-    "component": "TrendChart"
+    "description": "对比不同周期的业务走势，适用于收入、订单和流量分析。",
+    "category": "图表与指标",
+    "component": "TrendChart",
+    "shell": {
+      "menu": "finance",
+      "active": "overview",
+      "title": "收支趋势"
+    }
   },
   {
     "name": "ranking-list",
     "title": "排行列表卡",
-    "description": "紧凑列表与排序口径、操作插槽。",
-    "component": "RankingList"
+    "description": "展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。",
+    "category": "数据列表",
+    "component": "RankingList",
+    "shell": {
+      "menu": "crm",
+      "active": "customers",
+      "title": "客户排行",
+      "with": "composition-card"
+    }
   },
   {
     "name": "composition-card",
     "title": "构成占比卡",
-    "description": "圆环图与构成说明，支持自定义图例。",
-    "component": "CompositionCard"
+    "description": "用圆环图展示收入、渠道或费用的构成与占比。",
+    "category": "图表与指标",
+    "component": "CompositionCard",
+    "shell": {
+      "menu": "finance",
+      "active": "overview",
+      "title": "收入构成",
+      "with": "ranking-list"
+    }
   },
   {
     "name": "dashboard-header",
     "title": "看板页头",
-    "description": "标题、说明与右侧操作。",
-    "component": "DashboardHeader"
+    "description": "为经营看板组织标题、统计周期与导出操作。",
+    "category": "页面结构",
+    "component": "DashboardHeader",
+    "shell": {
+      "menu": "commerce",
+      "active": "overview",
+      "title": "经营概览"
+    }
   },
   {
     "name": "region-distribution",
     "title": "地区分布卡",
-    "description": "复用 MapCard 的地区、范围与度量契约。",
-    "component": "RegionDistribution"
+    "description": "结合地图与地区明细，查看客户或收入的地域分布。",
+    "category": "图表与指标",
+    "component": "RegionDistribution",
+    "shell": {
+      "menu": "crm",
+      "active": "customers",
+      "title": "客户分布",
+      "with": "ranking-list"
+    }
   },
   {
     "name": "member-list",
     "title": "成员列表",
-    "description": "成员身份卡片与可替换条目。",
-    "component": "MemberList"
+    "description": "展示团队成员、职位与在线状态，适用于项目和工作区。",
+    "category": "协作与项目",
+    "component": "MemberList",
+    "shell": {
+      "menu": "projects",
+      "active": "members",
+      "title": "团队成员",
+      "with": "activity-feed"
+    }
   },
   {
     "name": "goal-progress-list",
     "title": "目标进度列表",
-    "description": "钱包目标卡列表与窄列钱包进度面板。",
-    "component": "GoalProgressList"
+    "description": "跟踪储蓄与预算目标，查看已积累金额和完成进度。",
+    "category": "财务",
+    "component": "GoalProgressList",
+    "shell": {
+      "menu": "finance",
+      "active": "overview",
+      "title": "储蓄目标",
+      "with": "card-carousel"
+    }
   },
   {
     "name": "activity-feed",
     "title": "活动流",
-    "description": "按传入顺序显示时间、对象与行为。",
-    "component": "ActivityFeed"
+    "description": "汇总团队近期的任务、文件和项目动态，方便追踪协作进展。",
+    "category": "协作与项目",
+    "component": "ActivityFeed",
+    "screens": [
+      "/templates/dashboards/crm"
+    ],
+    "shell": {
+      "menu": "projects",
+      "active": "overview",
+      "title": "项目动态",
+      "with": "member-list"
+    }
   },
   {
     "name": "schedule-card",
     "title": "日程与甘特容器",
-    "description": "日历配置或业务日程、甘特图域插槽；不声称实现通用甘特编辑器。",
-    "component": "ScheduleCard"
+    "description": "按日历或时间线安排会议与项目任务，掌握团队近期日程。",
+    "category": "协作与项目",
+    "component": "ScheduleCard",
+    "shell": {
+      "menu": "projects",
+      "active": "schedule",
+      "title": "团队日程",
+      "with": "project-section"
+    }
   },
   {
     "name": "card-carousel",
     "title": "卡片轮播",
-    "description": "财务卡片叠放与受控或非受控分页。",
-    "component": "CardCarousel"
+    "description": "以可切换的卡片展示多个账户，适用于钱包和财务首页。",
+    "category": "财务",
+    "component": "CardCarousel",
+    "shell": {
+      "menu": "finance",
+      "active": "cards",
+      "title": "企业账户",
+      "with": "goal-progress-list"
+    }
   },
   {
     "name": "crm-summary",
     "title": "客户经营摘要",
-    "description": "客户指标卡、信息行与经营趋势，保留模板几何。",
-    "component": "CrmMetricCard"
+    "description": "概览客户规模与增长情况，为销售团队提供经营摘要。",
+    "category": "图表与指标",
+    "component": "CrmMetricCard",
+    "shell": {
+      "menu": "crm",
+      "active": "overview",
+      "title": "客户经营",
+      "with": "composition-card"
+    }
   },
   {
     "name": "finance-workspace",
     "title": "财务工作区",
-    "description": "钱包、预算、费用与财务指标，使用公开 core 原语。",
-    "component": "FinanceSurface"
+    "description": "整合账户余额、预算与费用明细，集中查看财务状况。",
+    "category": "财务",
+    "component": "FinanceSurface",
+    "shell": {
+      "menu": "finance",
+      "active": "accounts",
+      "title": "账户概览",
+      "with": "goal-progress-list"
+    }
   },
   {
     "name": "template-surface",
     "title": "模板内容分区",
-    "description": "带标题、说明、操作与紧凑内容间距的模板分区。",
-    "component": "TemplateSurface"
+    "description": "为列表或详情组织独立内容分区，适用于后台业务页面。",
+    "category": "页面结构",
+    "component": "TemplateSurface",
+    "shell": {
+      "menu": "crm",
+      "active": "customers",
+      "title": "客户档案",
+      "with": "activity-feed"
+    }
   },
   {
     "name": "conversation-header",
     "title": "对话页标题栏",
-    "description": "对话名称、工作区说明与操作插槽，业务会话状态由宿主管理。",
-    "component": "ConversationHeader"
+    "description": "展示会话名称、参与者与常用操作，适用于团队对话页面。",
+    "category": "页面结构",
+    "component": "ConversationHeader",
+    "shell": {
+      "menu": "workspace",
+      "active": "messages",
+      "title": "项目会话"
+    }
   },
   {
     "name": "project-section",
     "title": "项目详情分区",
-    "description": "项目与任务共用的标题操作栏和紧凑内容区。",
-    "component": "ProjectSection"
+    "description": "围绕项目或任务组织详情内容与操作，保持阅读层次清晰。",
+    "category": "协作与项目",
+    "component": "ProjectSection",
+    "shell": {
+      "menu": "projects",
+      "active": "tasks",
+      "title": "交付任务",
+      "with": "schedule-card"
+    }
+  },
+  {
+    "name": "overview-dashboard",
+    "title": "经营概览",
+    "description": "将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。",
+    "category": "看板首屏",
+    "component": "OverviewDashboard",
+    "screens": [
+      "/templates/dashboards/analytics",
+      "/templates/dashboards/ecommerce-1"
+    ],
+    "shell": {
+      "menu": "commerce",
+      "active": "overview",
+      "title": "经营概览"
+    }
+  },
+  {
+    "name": "orders-table-section",
+    "title": "订单列表",
+    "description": "包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。",
+    "category": "数据列表",
+    "component": "OrdersTableSection",
+    "screens": [
+      "/templates/ecommerce/orders"
+    ],
+    "shell": {
+      "menu": "commerce",
+      "active": "orders",
+      "title": "订单列表"
+    }
+  },
+  {
+    "name": "project-overview",
+    "title": "项目概览",
+    "description": "汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。",
+    "category": "看板首屏",
+    "component": "ProjectOverview",
+    "screens": [
+      "/templates/dashboards/project-1",
+      "/templates/dashboards/project-2"
+    ],
+    "shell": {
+      "menu": "projects",
+      "active": "overview",
+      "title": "项目概览"
+    }
+  },
+  {
+    "name": "finance-overview",
+    "title": "财务概览",
+    "description": "结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。",
+    "category": "看板首屏",
+    "component": "FinanceOverview",
+    "screens": [
+      "/templates/dashboards/finance-1",
+      "/templates/dashboards/finance-2",
+      "/templates/dashboards/finance-3"
+    ],
+    "shell": {
+      "menu": "finance",
+      "active": "overview",
+      "title": "财务概览"
+    }
+  },
+  {
+    "name": "products-table",
+    "title": "商品列表",
+    "description": "按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。",
+    "category": "数据列表",
+    "component": "ProductsTable",
+    "shell": {
+      "menu": "commerce",
+      "active": "products",
+      "title": "商品列表"
+    },
+    "screens": [
+      "/templates/ecommerce/products"
+    ]
+  },
+  {
+    "name": "customers-table",
+    "title": "客户列表",
+    "description": "带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。",
+    "category": "数据列表",
+    "component": "CustomersTable",
+    "shell": {
+      "menu": "commerce",
+      "active": "customers",
+      "title": "客户列表"
+    },
+    "screens": [
+      "/templates/ecommerce/customers"
+    ]
+  },
+  {
+    "name": "sellers-table",
+    "title": "商家列表",
+    "description": "展示店铺评分、营收与待结算金额的入驻商家管理表。",
+    "category": "数据列表",
+    "component": "SellersTable",
+    "shell": {
+      "menu": "commerce",
+      "active": "sellers",
+      "title": "商家列表"
+    },
+    "screens": [
+      "/templates/ecommerce/sellers"
+    ]
+  },
+  {
+    "name": "categories-table",
+    "title": "商品分类",
+    "description": "维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。",
+    "category": "数据列表",
+    "component": "CategoriesTable",
+    "shell": {
+      "menu": "commerce",
+      "active": "categories",
+      "title": "商品分类"
+    },
+    "screens": [
+      "/templates/ecommerce/categories"
+    ]
+  },
+  {
+    "name": "order-detail",
+    "title": "订单详情",
+    "description": "订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。",
+    "category": "详情页",
+    "component": "OrderDetail",
+    "shell": {
+      "menu": "commerce",
+      "active": "orders",
+      "title": "订单详情"
+    },
+    "screens": [
+      "/templates/ecommerce/orders/1"
+    ]
+  },
+  {
+    "name": "invoice-document",
+    "title": "发票单据",
+    "description": "可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。",
+    "category": "详情页",
+    "component": "InvoiceDocument",
+    "shell": {
+      "menu": "finance",
+      "active": "invoices",
+      "title": "发票 INV-2026-1031"
+    },
+    "screens": [
+      "/templates/ecommerce/orders/1/invoice",
+      "/templates/finance-template/invoices/inv302012-lisa-greg"
+    ]
+  },
+  {
+    "name": "customer-profile",
+    "title": "客户详情",
+    "description": "客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。",
+    "category": "详情页",
+    "component": "CustomerProfile",
+    "shell": {
+      "menu": "commerce",
+      "active": "customers",
+      "title": "客户详情"
+    },
+    "screens": [
+      "/templates/ecommerce/customers/1",
+      "/templates/crm-template/customers/john-bushmill"
+    ]
+  },
+  {
+    "name": "product-detail",
+    "title": "商品详情",
+    "description": "商品图集、价格与规格选择、描述参数，以及订单和评价分页签。",
+    "category": "详情页",
+    "component": "ProductDetail",
+    "shell": {
+      "menu": "commerce",
+      "active": "products",
+      "title": "商品详情"
+    },
+    "screens": [
+      "/templates/ecommerce/products/1"
+    ]
+  },
+  {
+    "name": "leads-table",
+    "title": "销售线索",
+    "description": "线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。",
+    "category": "数据列表",
+    "component": "LeadsTable",
+    "shell": {
+      "menu": "crm",
+      "active": "leads",
+      "title": "销售线索"
+    },
+    "screens": [
+      "/templates/crm-template/leads"
+    ]
+  },
+  {
+    "name": "deals-table",
+    "title": "商机列表",
+    "description": "按回款状态汇总金额，列出商机、客户、付款方式与回款状态。",
+    "category": "数据列表",
+    "component": "DealsTable",
+    "shell": {
+      "menu": "crm",
+      "active": "deals",
+      "title": "商机列表"
+    },
+    "screens": [
+      "/templates/crm-template/sales"
+    ]
+  },
+  {
+    "name": "lead-detail",
+    "title": "线索详情",
+    "description": "线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。",
+    "category": "详情页",
+    "component": "LeadDetail",
+    "shell": {
+      "menu": "crm",
+      "active": "leads",
+      "title": "线索详情"
+    },
+    "screens": [
+      "/templates/crm-template/leads/lead-john-bushmill"
+    ]
+  },
+  {
+    "name": "crm-activity",
+    "title": "客户动态",
+    "description": "按团队成员勾选筛选的会议、电话与备注动态流，适合销售周会复盘。",
+    "category": "协作与项目",
+    "component": "CrmActivity",
+    "shell": {
+      "menu": "crm",
+      "active": "activity",
+      "title": "客户动态"
+    },
+    "screens": [
+      "/templates/crm-template/activity"
+    ]
+  },
+  {
+    "name": "product-form",
+    "title": "商品编辑表单",
+    "description": "基本信息、图片、价格、库存、规格与物流分区的商品表单，侧栏设置分类与上架状态。",
+    "category": "表单",
+    "component": "ProductForm",
+    "shell": {
+      "menu": "commerce",
+      "active": "products",
+      "title": "编辑商品"
+    },
+    "screens": [
+      "/templates/ecommerce/products/new",
+      "/templates/ecommerce/products/1/edit"
+    ]
+  },
+  {
+    "name": "order-form",
+    "title": "新建订单表单",
+    "description": "商品、客户与配送三段式录单表单，带必填校验、金额实时计算与图片上传。",
+    "category": "表单",
+    "component": "OrderForm",
+    "shell": {
+      "menu": "commerce",
+      "active": "orders",
+      "title": "新建订单"
+    },
+    "screens": [
+      "/templates/ecommerce/orders/new"
+    ]
+  },
+  {
+    "name": "invoice-form",
+    "title": "新建发票表单",
+    "description": "选择付款客户、填写收费明细，自动汇总优惠、税额与应收合计后发送发票。",
+    "category": "表单",
+    "component": "InvoiceForm",
+    "shell": {
+      "menu": "finance",
+      "active": "invoices",
+      "title": "新建发票"
+    },
+    "screens": [
+      "/templates/finance-template/invoices/new"
+    ]
+  },
+  {
+    "name": "kanban-board",
+    "title": "任务看板",
+    "description": "按阶段分列的任务看板，支持在列之间拖拽卡片、快速添加任务，显示优先级、子任务进度与负责人。",
+    "category": "协作与项目",
+    "component": "KanbanBoard",
+    "shell": {
+      "menu": "projects",
+      "active": "tasks",
+      "title": "任务看板"
+    },
+    "screens": [
+      "/templates/task-board"
+    ]
+  },
+  {
+    "name": "task-detail",
+    "title": "任务详情",
+    "description": "任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。",
+    "category": "详情页",
+    "component": "TaskDetail",
+    "shell": {
+      "menu": "projects",
+      "active": "tasks",
+      "title": "任务详情"
+    },
+    "screens": [
+      "/templates/project-template/tasks/marketing-partnership"
+    ]
+  },
+  {
+    "name": "member-profile",
+    "title": "成员详情",
+    "description": "成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。",
+    "category": "详情页",
+    "component": "MemberProfile",
+    "shell": {
+      "menu": "projects",
+      "active": "members",
+      "title": "成员详情"
+    },
+    "screens": [
+      "/templates/project-template/members/linda"
+    ]
+  },
+  {
+    "name": "calendar-month",
+    "title": "月历日程",
+    "description": "月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。",
+    "category": "协作与项目",
+    "component": "CalendarMonth",
+    "shell": {
+      "menu": "workspace",
+      "active": "calendar",
+      "title": "团队日历"
+    },
+    "screens": [
+      "/templates/micellaneous-template/calendar"
+    ]
+  },
+  {
+    "name": "chat-workspace",
+    "title": "即时会话",
+    "description": "联系人列表与会话窗口，支持搜索联系人、切换会话、文件与语音消息以及发送新消息。",
+    "category": "协作与项目",
+    "component": "ChatWorkspace",
+    "shell": {
+      "menu": "workspace",
+      "active": "messages",
+      "title": "消息"
+    },
+    "screens": [
+      "/templates/micellaneous-template/chat"
+    ]
+  },
+  {
+    "name": "file-manager",
+    "title": "文件管理",
+    "description": "按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。",
+    "category": "协作与项目",
+    "component": "FileManager",
+    "shell": {
+      "menu": "workspace",
+      "active": "files",
+      "title": "文件"
+    },
+    "screens": [
+      "/templates/micellaneous-template/files",
+      "/templates/project-template/files"
+    ]
+  },
+  {
+    "name": "transactions-table",
+    "title": "交易流水",
+    "description": "支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。",
+    "category": "财务",
+    "component": "TransactionsTable",
+    "shell": {
+      "menu": "finance",
+      "active": "transactions",
+      "title": "交易流水"
+    },
+    "screens": [
+      "/templates/finance-template/transactions"
+    ]
+  },
+  {
+    "name": "invoices-table",
+    "title": "发票列表",
+    "description": "按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。",
+    "category": "数据列表",
+    "component": "InvoicesTable",
+    "shell": {
+      "menu": "finance",
+      "active": "invoices",
+      "title": "发票列表"
+    },
+    "screens": [
+      "/templates/finance-template/invoices",
+      "/templates/project-template/invoices"
+    ]
+  },
+  {
+    "name": "cards-management",
+    "title": "企业卡管理",
+    "description": "企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。",
+    "category": "财务",
+    "component": "CardsManagement",
+    "shell": {
+      "menu": "finance",
+      "active": "cards",
+      "title": "企业卡"
+    },
+    "screens": [
+      "/templates/finance-template/cards"
+    ]
+  },
+  {
+    "name": "savings-goals-table",
+    "title": "储蓄目标表",
+    "description": "资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。",
+    "category": "财务",
+    "component": "SavingsGoalsTable",
+    "shell": {
+      "menu": "finance",
+      "active": "accounts",
+      "title": "资金目标"
+    },
+    "screens": [
+      "/templates/finance-template/wallets"
+    ]
+  },
+  {
+    "name": "wealth-overview",
+    "title": "资产概览",
+    "description": "总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。",
+    "category": "看板首屏",
+    "component": "WealthOverview",
+    "shell": {
+      "menu": "finance",
+      "active": "wealth",
+      "title": "资产概览"
+    },
+    "screens": [
+      "/templates/finance-template/wealth"
+    ]
+  },
+  {
+    "name": "agent-directory",
+    "title": "智能体列表",
+    "description": "按运行状态筛选的智能体卡片墙，显示职责、技能、任务数与最近运行，可直接对话或分配任务。",
+    "category": "协作与项目",
+    "component": "AgentDirectory",
+    "shell": {
+      "menu": "workspace",
+      "active": "agents",
+      "title": "智能体"
+    },
+    "screens": [
+      "/templates/agent",
+      "/templates/task-board"
+    ]
+  },
+  {
+    "name": "knowledge-library",
+    "title": "知识库",
+    "description": "按分类与收藏浏览团队文档，支持搜索、收藏与新建文档。",
+    "category": "协作与项目",
+    "component": "KnowledgeLibrary",
+    "shell": {
+      "menu": "workspace",
+      "active": "library",
+      "title": "知识库"
+    },
+    "screens": [
+      "/templates/task-board"
+    ]
+  },
+  {
+    "name": "client-directory",
+    "title": "客户名录",
+    "description": "可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。",
+    "category": "数据列表",
+    "component": "ClientDirectory",
+    "shell": {
+      "menu": "projects",
+      "active": "clients",
+      "title": "客户名录"
+    },
+    "screens": [
+      "/templates/project-template/clients"
+    ]
+  },
+  {
+    "name": "register-form",
+    "title": "注册",
+    "description": "左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。",
+    "category": "认证",
+    "component": "RegisterForm",
+    "shell": "none",
+    "screens": [
+      "/templates/finance-template/register",
+      "/templates/micellaneous-template/register"
+    ]
+  },
+  {
+    "name": "password-recovery",
+    "title": "找回密码",
+    "description": "邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。",
+    "category": "认证",
+    "component": "PasswordRecovery",
+    "shell": "none",
+    "screens": [
+      "/templates/finance-template/forgot-password"
+    ]
+  },
+  {
+    "name": "ai-workspace-overview",
+    "title": "智能体工作台",
+    "description": "智能体、知识库、工具与模型的资源概况，按 7/30/90 天切换的监控统计与用户、对话趋势。",
+    "category": "AI 与智能体",
+    "component": "AiWorkspaceOverview",
+    "shell": {
+      "menu": "agents",
+      "active": "overview",
+      "title": "工作台"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "agent-catalog",
+    "title": "应用智能体目录",
+    "description": "左侧目录分组，按发布状态与复杂度筛选的智能体卡片，支持搜索、分页与从模板创建。",
+    "category": "AI 与智能体",
+    "component": "AgentCatalog",
+    "shell": {
+      "menu": "agents",
+      "active": "apps",
+      "title": "应用智能体"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "agent-run",
+    "title": "智能体运行",
+    "description": "一次自主运行的实时过程：计划逐步推进、工具调用、发送前的人工确认与流式生成的草稿。",
+    "category": "AI 与智能体",
+    "component": "AgentRun",
+    "shell": {
+      "menu": "agents",
+      "active": "autonomous",
+      "title": "运行中的任务"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "task-run-detail",
+    "title": "任务执行详情",
+    "description": "任务概要、带时间线的执行过程，以及可预览、下载、复制的结果产物。",
+    "category": "AI 与智能体",
+    "component": "TaskRunDetail",
+    "shell": {
+      "menu": "agents",
+      "active": "autonomous",
+      "title": "任务详情"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "runtime-list",
+    "title": "运行时管理",
+    "description": "智能体运行时的类型、在线状态与连接地址，支持单个检查与全部探测。",
+    "category": "AI 与智能体",
+    "component": "RuntimeList",
+    "shell": {
+      "menu": "agents",
+      "active": "runtimes",
+      "title": "运行时"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "message-channels",
+    "title": "消息渠道",
+    "description": "把智能体接入企业微信、飞书、钉钉等渠道：渠道入口、已建连接卡片与绑定弹窗。",
+    "category": "AI 与智能体",
+    "component": "MessageChannels",
+    "shell": {
+      "menu": "agents",
+      "active": "channels",
+      "title": "消息渠道"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "autonomous-agents",
+    "title": "自主智能体",
+    "description": "系统预置与我的自主智能体卡片，显示运行时与确认策略，一键运行并在最近任务中跟踪状态。",
+    "category": "AI 与智能体",
+    "component": "AutonomousAgents",
+    "shell": {
+      "menu": "agents",
+      "active": "autonomous",
+      "title": "自主智能体"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "ai-assistant-home",
+    "title": "AI 助手首页",
+    "description": "问候、已连接应用、带快捷操作的输入框与建议问题；提问后展示思考过程与流式回答。",
+    "category": "AI 与智能体",
+    "component": "AiAssistantHome",
+    "shell": {
+      "menu": "agents",
+      "active": "chats",
+      "title": "AI 助手"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "agent-orchestration",
+    "title": "多智能体编排",
+    "description": "编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。",
+    "category": "AI 与智能体",
+    "component": "AgentOrchestration",
+    "shell": {
+      "menu": "agents",
+      "active": "autonomous",
+      "title": "编排运行"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "agent-usage",
+    "title": "用量与成本",
+    "description": "本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。",
+    "category": "AI 与智能体",
+    "component": "AgentUsage",
+    "shell": {
+      "menu": "agents",
+      "active": "usage",
+      "title": "用量"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "prompt-evals",
+    "title": "提示词评测",
+    "description": "按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。",
+    "category": "AI 与智能体",
+    "component": "PromptEvals",
+    "shell": {
+      "menu": "agents",
+      "active": "apps",
+      "title": "评测"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "settings-profile",
+    "title": "个人资料设置",
+    "description": "头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。",
+    "category": "设置",
+    "component": "SettingsProfile",
+    "shell": {
+      "menu": "settings",
+      "active": "profile",
+      "title": "个人资料"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "settings-members",
+    "title": "成员与团队",
+    "description": "席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。",
+    "category": "设置",
+    "component": "SettingsMembers",
+    "shell": {
+      "menu": "settings",
+      "active": "members",
+      "title": "成员与团队"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "settings-roles",
+    "title": "角色与权限",
+    "description": "左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。",
+    "category": "设置",
+    "component": "SettingsRoles",
+    "shell": {
+      "menu": "settings",
+      "active": "roles",
+      "title": "角色权限"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "settings-notifications",
+    "title": "通知设置",
+    "description": "按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。",
+    "category": "设置",
+    "component": "SettingsNotifications",
+    "shell": {
+      "menu": "settings",
+      "active": "notifications",
+      "title": "通知"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "settings-security",
+    "title": "安全设置",
+    "description": "密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。",
+    "category": "设置",
+    "component": "SettingsSecurity",
+    "shell": {
+      "menu": "settings",
+      "active": "security",
+      "title": "安全"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "settings-billing",
+    "title": "账单与套餐",
+    "description": "本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。",
+    "category": "设置",
+    "component": "SettingsBilling",
+    "shell": {
+      "menu": "settings",
+      "active": "billing",
+      "title": "账单"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "project-portfolio",
+    "title": "项目总览",
+    "description": "整体任务进度、各状态项目分布与需要关注的事项，项目可按状态筛选并在卡片和表格间切换。",
+    "category": "协作与项目",
+    "component": "ProjectPortfolio",
+    "shell": {
+      "menu": "projects",
+      "active": "projects",
+      "title": "项目总览"
+    },
+    "screens": [
+      "/templates/project-template"
+    ]
+  },
+  {
+    "name": "workflow-builder",
+    "title": "工作流编辑器",
+    "description": "左侧节点库、中间流程画布、右侧节点配置，可添加、编辑、删除节点并发布。",
+    "category": "AI 与智能体",
+    "component": "WorkflowBuilder",
+    "shell": {
+      "menu": "agents",
+      "active": "apps",
+      "title": "工作流"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "integrations-directory",
+    "title": "集成目录",
+    "description": "按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。",
+    "category": "设置",
+    "component": "IntegrationsDirectory",
+    "shell": {
+      "menu": "settings",
+      "active": "preferences",
+      "title": "集成"
+    },
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "onboarding-flow",
+    "title": "引导流程",
+    "description": "首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。",
+    "category": "认证",
+    "component": "OnboardingFlow",
+    "shell": "none",
+    "screens": [
+      "/templates/agent"
+    ]
+  },
+  {
+    "name": "login-form",
+    "title": "登录",
+    "description": "邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。",
+    "category": "认证",
+    "component": "LoginForm",
+    "shell": "none",
+    "screens": [
+      "/templates/finance-template/register"
+    ]
   }
 ]
