@@ -10,6 +10,7 @@ export default function DashboardKitCases() {
   const [notice, setNotice] = useState("");
   const [templateModalOpen, setTemplateModalOpen] = useState(false);
   return <>
+    <PageHeading title="看板组件" hint="模板风格面板、密度与图表组合；切换密度对比默认和紧凑尺寸。" />
     <Section title="保留模板外形" description="custom Panel 保留已验收卡壳；unstyled Button 只提供原生按钮语义，不增加颜色、尺寸或文字包装。">
       <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-white p-6">
         <Button variant="unstyled" className="text-sm font-semibold text-fg-blue" onClick={() => setNotice("已打开模板记录")}>查看记录</Button>
@@ -20,7 +21,6 @@ export default function DashboardKitCases() {
       <Panel variant="custom" asChild className="rounded-card border border-fg-grey-200 p-6"><Link href="/templates/dashboard-builder">查看模板外壳</Link></Panel>
       <Modal variant="template" title="模板弹窗" open={templateModalOpen} onOpenChange={setTemplateModalOpen}><div className="p-6">保留原有标题和分割线；焦点和 Escape 由 core 管理。</div></Modal>
     </Section>
-    <PageHeading title="看板组件" hint="模板风格面板、密度与图表组合；切换密度对比默认和紧凑尺寸。" />
     <Section title="Panel" description="24px 看板圆角；旧业务容器使用 template 变体，SurfaceCard 继续保持原有分区结构。">
       <Panel title="经营概览" subtitle="本月数据" action={<Button size="sm" onClick={() => setNotice("导出为示例操作，未连接后台")}>导出</Button>} footer="更新于今天">卡片内容</Panel>
       <Panel variant="template" title="业务分区" subtitle="兼容原模板容器">业务内容</Panel>

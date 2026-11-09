@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { Breadcrumbs, type BreadcrumbItem } from "@forge-ui-official/core";
-import { CopyPageButton } from "./_copy-page";
+import { CopyPageMenu } from "../_components/copy-page-menu";
 import { DocsToc, type TocItem } from "./_toc";
 
 // ============================================================
@@ -21,11 +21,11 @@ export function DocHeader({
       {breadcrumbs && breadcrumbs.length > 0 && (
         <Breadcrumbs items={breadcrumbs} color="black" />
       )}
-      <div className="flex items-start justify-between gap-6">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <h1 className="min-w-0 break-words font-display text-4xl font-bold tracking-fg text-fg-black">
           {title}
         </h1>
-        <CopyPageButton />
+        <CopyPageMenu title={title} />
       </div>
       {description && (
         <p className="max-w-2xl text-base font-normal leading-[1.8] text-fg-grey-900">

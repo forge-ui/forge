@@ -17,7 +17,7 @@ import {
   CloseSquareLinear,
   UserLinear,
 } from "@forge-ui-official/core/icons";
-import { ScenarioOutlet } from "../_scenario-outlet";
+import { PageHeading } from "../_shared";
 
 const COLORS = ["purple", "blue", "black"] as const;
 const AVATAR = "https://i.pravatar.cc/100?img=10";
@@ -713,13 +713,7 @@ function SmallChatSection() {
 export default function ChatCasePage() {
   return (
     <div className="flex min-w-0 max-w-full flex-col gap-12">
-      <header>
-        <h1 className="text-3xl font-bold text-fg-black">聊天</h1>
-        <p className="mt-1 text-sm text-fg-grey-700">
-          气泡和输入栏、四种整页布局，以及可以嵌进仪表盘的紧凑卡片。
-        </p>
-      </header>
-      <ScenarioOutlet />
+      <PageHeading title="聊天" hint="气泡和输入栏、四种整页布局，以及可以嵌进仪表盘的紧凑卡片。" />
       <BaseComponentsSection />
       <FullPageSection />
       <SmallChatSection />

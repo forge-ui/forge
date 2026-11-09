@@ -64,15 +64,15 @@ export default function IntroductionPage() {
                 组件
               </Link>
             </strong>{" "}
-            — 每个组件的用法和参数。
+            — 每个组件的用法和参数；“案例”页签里是颜色、尺寸、状态和可以操作的场景。
           </li>
           <li>
             <strong>
-              <Link href="/cases" className="text-fg-blue hover:underline">
-                组件案例
+              <Link href="/blocks" className="text-fg-blue hover:underline">
+                页面组件
               </Link>
             </strong>{" "}
-            — 颜色、尺寸、状态，以及可以操作的场景。
+            — 可以直接复制源码的整块页面，例如看板、列表、表单和设置页。
           </li>
           <li>
             <strong>
@@ -88,7 +88,7 @@ export default function IntroductionPage() {
                 UI for Agents
               </Link>
             </strong>{" "}
-            — 给 Claude Code、Cursor、Codex 的规则，说明组件从哪里引入、颜色和布局怎么用。
+            — 给 Claude Code、Cursor、Codex 的 Skill、MCP 服务器、AGENTS.md、DESIGN.md 和 llms.txt。
           </li>
         </ul>
       </DocSection>
