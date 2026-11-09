@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: e6b8dbbbe6dadd87781f8248e19c21676feaef6bc7b57cd62c2d99febd001774
+Source fingerprint: a526246de8b4ba63de92323dcb33e8aa29d6967612d6810190fb980d4869e708
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
