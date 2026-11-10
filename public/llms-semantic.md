@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 044bcc607b4fc95b003f23b236c9cdf6f96b812800cac7b10189f2689d7d518f
+Source fingerprint: fd3eef8b158064a36c12c2400a385b64184db6603cf3692014fb22b2b62524ae
 
 ## Adopted rules / 采用规则
 
@@ -57,7 +57,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 
 ## 交付前
 
-按 [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
+先跑页面检查：MCP 的 `check_code`，或在项目根目录运行 `curl -fsSL https://forgeui.org/forge-check.mjs -o forge-check.mjs && node forge-check.mjs src`；错误全部修完，警告逐条确认。再按 [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
 
 接入专项：[Ask AI 宿主契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/ask-ai-host-contract.md)、[交互接入边界](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/interaction-adoption.md)。
 

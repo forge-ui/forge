@@ -3,10 +3,11 @@ import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/
 import { z } from "zod";
 import data from "./data.json" with { type: "json" };
 import { closest, normalize, rank } from "./search.mjs";
+import { checkCode, ruleList } from "../../../public/forge-check.mjs";
 
 const groups = { components: data.components, blocks: data.blocks, screens: data.screens, guides: data.guides, rules: data.rules };
 const aliases = { icons: "icons", status: "status-presentation", layout: "layout-grid", "page-standards": "page-recommended-standard" };
-export const toolNames = ["search", "recommend", "list_components", "get_component", "list_blocks", "get_block", "list_screens", "get_screen", "get_tokens", "get_rules", "list_guides", "get_guide"];
+export const toolNames = ["search", "recommend", "list_components", "get_component", "list_blocks", "get_block", "list_screens", "get_screen", "get_tokens", "check_code", "get_rules", "list_guides", "get_guide"];
 const pagination = { page: z.number().int().min(1).default(1), pageSize: z.number().int().min(1).max(50).default(20) };
 const detail = { detail: z.enum(["summary", "full"]).default("summary") };
 const clip = (value, length) => { const text = String(value ?? "").replace(/\s+/g, " ").trim(); return text.length > length ? text.slice(0, length - 1) + "…" : text; };
@@ -91,7 +92,7 @@ function recommend({ need }) {
     need, role, coreVersion: data.coreVersion,
     screens, blocks, components: components.length ? components : pick("components", 8),
     rules: roleRules[role].map(slug => ({ slug, title: data.rules.find(rule => rule.slug === slug)?.title })),
-    next: ["先 get_screen 或 get_block 看最接近的现成页面，能复用就不重写。", "再用 get_component 查组件参数，组件一律从 @forge-ui-official/core 引入。", "颜色用 get_tokens 查语义 token，不写 hex。", "完成后按 audit-checklist 自查。"],
+    next: ["先 get_screen 或 get_block 看最接近的现成页面，能复用就不重写。", "再用 get_component 查组件参数，组件一律从 @forge-ui-official/core 引入。", "颜色用 get_tokens 查语义 token，不写 hex。", "写完后调用 check_code 检查，再按 audit-checklist 人工核对视觉和交互。"],
   };
 }
 
@@ -106,6 +107,7 @@ export function executeTool(name, args) {
   if (name === "search") return search(args);
   if (name === "recommend") return recommend(args);
   if (name === "get_tokens") return getTokens(args);
+  if (name === "check_code") return { ...checkCode(args.code, args.filename), rules: args.listRules ? ruleList : undefined };
   const group = name === "get_rules" ? "rules" : name.split("_")[1] + (name.startsWith("get_") ? "s" : "");
   const items = groups[group];
   if (!items) throw new Error("未知工具");
@@ -127,6 +129,7 @@ const descriptions = {
   list_screens: "分页列出模板页面。",
   get_screen: "查询模板页面的路由、预览地址、用到的页面组件和组件。默认精简；detail=\"full\" 返回源码。",
   get_tokens: "查询设计 token。query 可用中文（主色、正文、边框、危险）或 token 名；layer 默认 semantic，可选 primitive、all。",
+  check_code: "检查一段页面代码是否违反 Forge 规范：写死的 hex 颜色、裸 px、引入其他 UI 库、手写按钮/表格/表单控件/弹窗、紫色默认主题、solid 状态、灰色标题、href=\"#\"、空事件处理。返回行号、审计编号和改法。写完页面后调用，全部错误修完再交付。",
   get_rules: "读取规范全文；topic 支持 tokens、icons、status、layout、page-standards、audit-checklist、blocks、screens，也支持 reference 相对路径。",
   list_guides: "列出使用指南。",
   get_guide: "读取一篇使用指南全文。",
@@ -135,6 +138,7 @@ const descriptions = {
 function inputSchema(name) {
   if (name === "search") return { query: z.string().trim().min(1).max(200), type: z.enum(["all", "components", "blocks", "screens", "guides", "rules"]).default("all"), includeTypes: z.boolean().default(false), ...pagination };
   if (name === "recommend") return { need: z.string().trim().min(1).max(300) };
+  if (name === "check_code") return { code: z.string().min(1).max(200000), filename: z.string().max(200).default("page.tsx"), listRules: z.boolean().default(false) };
   if (name === "get_tokens") return { query: z.string().trim().max(60).optional(), layer: z.enum(["semantic", "primitive", "all"]).default("semantic") };
   if (name.startsWith("list_")) return pagination;
   if (name === "get_rules") return { topic: z.string().min(1).max(160) };
@@ -152,7 +156,7 @@ export function createServer() {
   }
   server.registerResource("forge-rules", "forge://rules", { description: "Forge 唯一规范目录", mimeType: "application/json" }, async uri => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(data.rules.map(summary)) }] }));
   server.registerPrompt("forge-dashboard", { description: "按 Forge 规范规划运营看板", argsSchema: { goal: z.string().min(1).max(500) } }, async ({ goal }) => ({ messages: [{ role: "user", content: { type: "text", text: "目标：" + goal + "。先 get_rules 读取 page-standards、status、audit-checklist，再 list_screens 选择主模板，检索 Blocks 与组件 API。按 Screen → Blocks → Components 输出配方，缺失能力标记 FORGE-GAP 并询问。区分技术检查与浏览器验收。" } }] }));
-  server.registerPrompt("forge-page", { description: "按 Forge 规范实现任意后台页面", argsSchema: { need: z.string().min(1).max(500) } }, async ({ need }) => ({ messages: [{ role: "user", content: { type: "text", text: "需求：" + need + "。先调用 recommend 拿到页面角色和最接近的模板页面、页面组件；能复用就复制，不重写。再用 get_component 查参数、get_tokens 查颜色。组件从 @forge-ui-official/core 引入，图标从 @forge-ui-official/core/icons 引入，不写 hex。完成后按 audit-checklist 自查。" } }] }));
+  server.registerPrompt("forge-page", { description: "按 Forge 规范实现任意后台页面", argsSchema: { need: z.string().min(1).max(500) } }, async ({ need }) => ({ messages: [{ role: "user", content: { type: "text", text: "需求：" + need + "。先调用 recommend 拿到页面角色和最接近的模板页面、页面组件；能复用就复制，不重写。再用 get_component 查参数、get_tokens 查颜色。组件从 @forge-ui-official/core 引入，图标从 @forge-ui-official/core/icons 引入，不写 hex。写完调用 check_code 修完所有错误，再按 audit-checklist 自查。" } }] }));
   return server;
 }
 

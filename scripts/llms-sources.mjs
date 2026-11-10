@@ -99,6 +99,7 @@ function llmsIndex(root, source) {
     ].join("\n"),
     "## 给编码助手\n\n" + [
       link("MCP 服务器", SITE + "/docs/mcp.md", "search、recommend、get_component、get_block、get_tokens 等只读工具"),
+      link("页面检查", SITE + "/docs/check.md", "MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码"),
       link("Skill", SITE + "/docs/ui-for-agents.md", "安装 forge-skill"),
       link("AGENTS.md", SITE + "/docs/agents-md.md", "放在项目根目录的使用规则"),
       link("DESIGN.md", SITE + "/DESIGN.md", "视觉规则，带 YAML token，遵循 google-labs-code/design.md"),
