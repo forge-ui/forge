@@ -78,13 +78,13 @@ export const kitNavGroups: KitNavGroup[] = [
   },
 ];
 
-export function surfaceNavGroups(surface: "components" | "cases") {
-  return kitNavGroups
-    .map((group) => ({
-      title: group.title,
-      items: group.items
-        .filter((item) => !item.surfaces || item.surfaces.includes(surface))
-        .map((item) => ({ href: `/${surface}/${item.slug}`, label: item.label })),
-    }))
-    .filter((group) => group.items.length > 0);
+// Effects first: each sidebar entry opens the case page when one exists, otherwise the API page.
+export function componentEntryGroups() {
+  return kitNavGroups.map((group) => ({
+    title: group.title,
+    items: group.items.map((item) => ({
+      href: !item.surfaces || item.surfaces.includes("cases") ? `/cases/${item.slug}` : `/components/${item.slug}`,
+      label: item.label,
+    })),
+  }));
 }

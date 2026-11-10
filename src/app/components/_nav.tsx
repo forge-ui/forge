@@ -4,13 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
 import { cn } from "@forge-ui-official/core";
-import { surfaceNavGroups } from "../_components/kit-nav";
+import { componentEntryGroups } from "../_components/kit-nav";
 
 type NavItem = { href: string; label: string; external?: boolean };
 type NavGroup = { title: string; items: NavItem[] };
 
 export const componentsNavGroups: NavGroup[] = [
-  ...surfaceNavGroups("components"),
+  ...componentEntryGroups(),
   {
     title: "参考",
     items: [
@@ -24,7 +24,8 @@ export const componentsNavGroups: NavGroup[] = [
 
 export function ComponentsNav() {
   const pathname = usePathname();
-  const current = pathname.replace(/^\/cases\/(?!dashboard-kit)/, "/components/");
+  const slugOf = (href: string) => href.match(/^\/(?:cases|components)\/([^/]+)/)?.[1];
+  const currentSlug = slugOf(pathname);
 
   return (
     <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto lg:block">
@@ -35,7 +36,7 @@ export function ComponentsNav() {
               {group.title}
             </p>
             {group.items.map((item) => {
-              const active = current === item.href || current.startsWith(`${item.href}/`);
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`) || (currentSlug !== undefined && slugOf(item.href) === currentSlug);
               return (
                 <Link
                   key={item.href}
