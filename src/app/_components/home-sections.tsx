@@ -189,7 +189,7 @@ export function HomeSections() {
             </div>
           ))}
         </div>
-        <p className="home-footer-note">Forge UI · MIT License · 图标来自 Solar Icons</p>
+        <p className="home-footer-note">Forge UI · MIT License</p>
       </footer>
     </>
   );
