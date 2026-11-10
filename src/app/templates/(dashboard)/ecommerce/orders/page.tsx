@@ -35,6 +35,7 @@ import {
   TrashBinTrashLinear,
 } from "@forge-ui-official/core/icons";
 import { PlusIcon } from "@forge-ui-official/core";
+import { downloadCsv } from "../../../_shared/download-csv";
 
 interface OrderItem {
   id: string;
@@ -345,7 +346,7 @@ export default function OrdersPage() {
           />
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="tertiary" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => {}}>
+          <Button variant="tertiary" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => downloadCsv("orders.csv", filteredOrders)}>
             Export
           </Button>
           <Link href="/templates/ecommerce/orders/new">

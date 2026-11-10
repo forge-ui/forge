@@ -1,5 +1,7 @@
 "use client";
 
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { AppLayout, Panel } from "@forge-ui-official/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
@@ -200,9 +202,9 @@ export default function Ecommerce2Page() {
             </DashboardHeader>
             <div className="flex items-center gap-4">
               {[
-                { label: "Income", value: "$26,201", trend: "10%", up: true, color: "#7c3aed" },
-                { label: "Expenses", value: "$18,120", trend: "10%", up: false, color: "#fbbf24" },
-                { label: "Profit", value: "$18,120", trend: "10%", up: true, color: "#0ea5e9" },
+                { label: "Income", value: "$26,201", trend: "10%", up: true, color: "var(--fg-violet-500)" },
+                { label: "Expenses", value: "$18,120", trend: "10%", up: false, color: "var(--fg-yellow-500)" },
+                { label: "Profit", value: "$18,120", trend: "10%", up: true, color: "var(--fg-cyan-500)" },
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
                   <div className="size-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: s.color }}>
@@ -220,17 +222,17 @@ export default function Ecommerce2Page() {
             </div>
             <SmoothLineChart
               series={[
-                { data: [0.5, 0.55, 0.65, 0.6, 0.55, 0.7, 0.55, 0.6, 0.6, 0.65, 0.55, 0.5].map((v) => v * 1000), color: "#7c3aed" },
-                { data: [0.4, 0.4, 0.5, 0.45, 0.42, 0.55, 0.45, 0.5, 0.45, 0.55, 0.4, 0.45].map((v) => v * 1000), color: "#fbbf24" },
-                { data: [0.2, 0.22, 0.25, 0.22, 0.2, 0.3, 0.22, 0.2, 0.18, 0.2, 0.18, 0.2].map((v) => v * 1000), color: "#ef4444" },
+                { data: [0.5, 0.55, 0.65, 0.6, 0.55, 0.7, 0.55, 0.6, 0.6, 0.65, 0.55, 0.5].map((v) => v * 1000), color: "var(--fg-violet-500)" },
+                { data: [0.4, 0.4, 0.5, 0.45, 0.42, 0.55, 0.45, 0.5, 0.45, 0.55, 0.4, 0.45].map((v) => v * 1000), color: "var(--fg-yellow-500)" },
+                { data: [0.2, 0.22, 0.25, 0.22, 0.2, 0.3, 0.22, 0.2, 0.18, 0.2, 0.18, 0.2].map((v) => v * 1000), color: "var(--fg-red-500)" },
               ]}
               accent="purple"
               activeIndex={6}
               showTooltip
               tooltipItems={[
-                { label: "Income", value: "$680", trend: "up", color: "#7c3aed" },
-                { label: "Expenses", value: "$280", trend: "down", color: "#fbbf24" },
-                { label: "Profit", value: "$280", trend: "down", color: "#ef4444" },
+                { label: "Income", value: "$680", trend: "up", color: "var(--fg-violet-500)" },
+                { label: "Expenses", value: "$280", trend: "down", color: "var(--fg-yellow-500)" },
+                { label: "Profit", value: "$280", trend: "down", color: "var(--fg-red-500)" },
               ]}
               showYAxis
               yAxisLabels={["$1.2k", "$1k", "$800", "$600", "$400", "$200", "0"]}
@@ -257,10 +259,10 @@ export default function Ecommerce2Page() {
               height={200}
             />
             <div className="grid grid-cols-2 gap-2 text-xs text-fg-grey-700">
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#7c3aed" }} /> Google Ads</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#fbbf24" }} /> Facebook Ads</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#0ea5e9" }} /> Discount</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#f97316" }} /> Flyer</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-violet-500)" }} /> Google Ads</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-yellow-500)" }} /> Facebook Ads</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-cyan-500)" }} /> Discount</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-red-300)" }} /> Flyer</span>
             </div>
           </Panel>
         </div>
@@ -274,7 +276,6 @@ export default function Ecommerce2Page() {
             variant="sm"
             regions={regionsForMap}
             highlights={["north-america", "europe", "asia", "oceania"]}
-            onMenuClick={() => {}}
           />
 
           <RankingList
@@ -345,15 +346,11 @@ export default function Ecommerce2Page() {
               <Button size="sm" iconRight={<AltArrowRightLinear size={14} />}>See More</Button>
             </div>
           </div>
-          <DataTable<OrderRow>
+          <PagedDataTable<OrderRow>
             columns={orderColumns}
+            pageSize={10}
             rows={orders}
             showCheckbox
-            showPagination
-            currentPage={1}
-            totalPages={20}
-            onPageChange={() => {}}
-            paginationLabel="Showing 1-10 from 100"
           />
         </RecentRecords>
       </div>

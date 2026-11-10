@@ -1,5 +1,7 @@
 "use client";
 
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@forge-ui-official/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
@@ -236,14 +238,9 @@ export default function CrmPage() {
                 <Button color="purple" size="sm" iconRight={<AltArrowRightLinear size={14} />} className="rounded-full">See More</Button>
               </div>
             </div>
-            <DataTable<LeadRow>
+            <PagedDataTable<LeadRow>
               columns={leadColumns}
               rows={leads}
-              showPagination
-              currentPage={1}
-              totalPages={20}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 100"
             />
           </RecentRecords>
 

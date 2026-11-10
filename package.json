@@ -39,7 +39,8 @@
     "test:regression": "node --test scripts/test-agent-api-reference.mjs scripts/test-agent-session-persistence.mjs scripts/test-component-documentation-dedup.mjs scripts/test-skill-installer.mjs scripts/test-subtask-drag-cancellation.mjs scripts/test-task-board-migration.mjs scripts/test-task-detail-history.mjs scripts/test-template-headers.mjs scripts/test-template-migration.mjs scripts/test-setup.mjs",
     "check:design": "node scripts/check-design-md.mjs",
     "test:check": "node --test scripts/test-forge-check.mjs",
-    "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links && pnpm check:design && pnpm test:check"
+    "check:pages": "node public/forge-check.mjs blocks src/app/templates",
+    "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links && pnpm check:design && pnpm test:check && pnpm check:pages"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.8.0",

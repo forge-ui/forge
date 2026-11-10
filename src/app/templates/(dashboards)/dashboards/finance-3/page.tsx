@@ -1,5 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { AppLayout, WalletGoalCard, DivergingBarChart, Panel } from "@forge-ui-official/core";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -65,12 +69,13 @@ const statusColorMap: Record<TransactionRow["status"], StatusBadgeColor> = {
 const statisticActiveIndex = 5;
 
 const expenseRows = [
-  { label: "Housing", value: "$5,500", color: "#7c3aed", subtitle: "Apartment, Electricity, etc", delta: "2.5%", trend: "up" as const },
-  { label: "Food", value: "$4,245", color: "#fbbf24", subtitle: "Milk, Coffee, Sereal, etc" },
-  { label: "Transportation", value: "$8,147", color: "#f97316", subtitle: "Gas, Taxi, Service", delta: "10%", trend: "up" as const },
+  { label: "Housing", value: "$5,500", color: "var(--fg-violet-500)", subtitle: "Apartment, Electricity, etc", delta: "2.5%", trend: "up" as const },
+  { label: "Food", value: "$4,245", color: "var(--fg-yellow-500)", subtitle: "Milk, Coffee, Sereal, etc" },
+  { label: "Transportation", value: "$8,147", color: "var(--fg-red-300)", subtitle: "Gas, Taxi, Service", delta: "10%", trend: "up" as const },
 ];
 
 export default function Finance3Page() {
+  const router = useRouter();
   const [fromValue, setFromValue] = useState("1,000");
   const [toValue, setToValue] = useState("1089.57");
 
@@ -143,8 +148,8 @@ export default function Finance3Page() {
               subtitle="+$150 today"
               cardNumber="*9821"
               balanceHidden={false}
-              onTransfer={() => {}}
-              onRequest={() => {}}
+              onTransfer={() => router.push("/templates/finance-template/transactions")}
+              onRequest={() => router.push("/templates/finance-template/invoices/new")}
               density="compact" className="!w-full"
             />
 
@@ -259,14 +264,9 @@ export default function Finance3Page() {
                     <Button color="purple" size="sm" iconRight={<AltArrowRightLinear size={14} />} className="rounded-full">See More</Button>
                   </div>
                 </div>
-                <DataTable<TransactionRow>
+                <PagedDataTable<TransactionRow>
                   columns={transactionColumns}
                   rows={transactions}
-                  showPagination
-                  currentPage={1}
-                  totalPages={20}
-                  onPageChange={() => {}}
-                  paginationLabel="Showing 1-5 from 100"
                 />
               </RecentRecords>
 
@@ -304,11 +304,11 @@ export default function Finance3Page() {
                   </div>
                   <MultilayerDonutChart
                     layers={[
-                      { value: 80, color: "#7c3aed" },
-                      { value: 60, color: "#2563eb" },
-                      { value: 50, color: "#10b981" },
-                      { value: 35, color: "#fbbf24" },
-                      { value: 20, color: "#f97316" },
+                      { value: 80, color: "var(--fg-violet-500)" },
+                      { value: 60, color: "var(--fg-blue-500)" },
+                      { value: 50, color: "var(--fg-green-500)" },
+                      { value: 35, color: "var(--fg-yellow-500)" },
+                      { value: 20, color: "var(--fg-red-300)" },
                     ]}
                     centerValue="$75.5k"
                     trend="10%"

@@ -503,7 +503,7 @@ export function KanbanBoard({ project = defaultBoardProject, lanes: initialLanes
       </aside>
     </div>
     {preview && dragged ? <div ref={previewNode} aria-hidden className="pointer-events-none fixed left-0 top-0 z-[100] will-change-transform [filter:drop-shadow(0_10px_16px_rgba(0,0,0,0.12))] [&_article]:outline [&_article]:outline-1 [&_article]:outline-fg-grey-300" style={{ width: preview.width, transformOrigin: `${preview.originX}px ${preview.originY}px`, transform: `translate3d(${preview.startX - preview.originX}px, ${preview.startY - preview.originY}px, 0)` }}>
-      <TaskCard item={dragged} lanes={lanes} onOpen={() => undefined} onToggle={() => undefined} onMove={() => undefined} onDelete={() => undefined} onSubtask={() => undefined} />
+      <TaskCard item={dragged} lanes={lanes} onOpen={() => undefined} onToggle={() => undefined} onMove={() => undefined} onDelete={() => undefined} onSubtask={() => undefined} /> {/* forge-check-disable-line 拖拽跟随预览：aria-hidden、不可交互 */}
     </div> : null}
     {opened ? <TaskDialog item={opened} project={project.title} lanes={lanes} onClose={() => setOpenId(null)} onChange={update} onStep={offset => { const index = order.indexOf(opened.id); setOpenId(order[(index + offset + order.length) % order.length]); }} /> : null}
   </div>;
