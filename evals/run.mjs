@@ -62,7 +62,17 @@ function workspaceFor(base, out, condition, task) {
   fs.symlinkSync(path.join(base, "node_modules"), path.join(dir, "node_modules"));
   if (condition === "forge") {
     const mode = agents[args.agent].client === "codex" ? "skill" : "both";
-    execFileSync("bash", [path.join(repo, "public/setup.sh"), "--client", agents[args.agent].client, "--mode", mode, "--scope", "project", "--design"], { cwd: dir, stdio: "pipe", env: { ...process.env, FORGE_SITE: SITE } });
+    // setup.sh clones from GitHub; retry transient network failures instead of aborting a long run.
+    for (let attempt = 1; ; attempt++) {
+      try {
+        execFileSync("bash", [path.join(repo, "public/setup.sh"), "--client", agents[args.agent].client, "--mode", mode, "--scope", "project", "--design"], { cwd: dir, stdio: "pipe", env: { ...process.env, FORGE_SITE: SITE } });
+        break;
+      } catch (error) {
+        if (attempt === 3) throw error;
+        console.error(`setup.sh failed (attempt ${attempt}): ${String(error.stderr ?? "").trim().split("\n")[0]}`);
+        execFileSync("sleep", [String(attempt * 10)]);
+      }
+    }
   }
   return dir;
 }
@@ -72,7 +82,7 @@ function summarize(results) {
   const rows = conditions.map(condition => {
     const items = results.filter(item => item.condition === condition);
     const rate = key => Math.round((items.filter(item => item.criteria[key]).length / items.length) * 100);
-    return { condition, tasks: items.length, pass: Math.round((items.filter(item => item.pass).length / items.length) * 100), score: Math.round(items.reduce((sum, item) => sum + item.score, 0) / items.length), compiles: rate("compiles"), usesCore: rate("usesCore"), checkClean: rate("checkClean"), expectedComponents: rate("expectedComponents"), minutes: Math.round(items.reduce((sum, item) => sum + item.seconds, 0) / 60) };
+    return { condition, tasks: items.length, pass: Math.round((items.filter(item => item.pass).length / items.length) * 100), score: Math.round(items.reduce((sum, item) => sum + item.score, 0) / items.length), compiles: rate("compiles"), usesCore: rate("usesCore"), checkClean: rate("checkClean"), expectedComponents: rate("expectedComponents"), warnings: (items.reduce((sum, item) => sum + item.warnings, 0) / items.length).toFixed(1), minutes: Math.round(items.reduce((sum, item) => sum + item.seconds, 0) / 60) };
   });
   const lines = [
     `# Forge 页面生成评测`,
@@ -81,9 +91,9 @@ function summarize(results) {
     "- baseline：项目已装 @forge-ui-official/core，没有 Forge 的 Skill、MCP 和 DESIGN.md；forge：额外运行 setup.sh 并接入 MCP。",
     "- 合格 = 页面存在、类型检查通过、从 core 引入组件、没有引入其他 UI 库、forge-check 无错误、用到任务要求的组件，六项全部通过。",
     "",
-    "| 条件 | 题数 | 合格率 | 平均分 | 编译通过 | 用 core 组件 | 检查无错误 | 用对组件 | 耗时（分钟） |",
-    "|---|---|---|---|---|---|---|---|---|",
-    ...rows.map(row => `| ${row.condition} | ${row.tasks} | ${row.pass}% | ${row.score} | ${row.compiles}% | ${row.usesCore}% | ${row.checkClean}% | ${row.expectedComponents}% | ${row.minutes} |`),
+    "| 条件 | 题数 | 合格率 | 平均分 | 编译通过 | 用 core 组件 | 检查无错误 | 用对组件 | 平均警告 | 总耗时（分钟） |",
+    "|---|---|---|---|---|---|---|---|---|---|",
+    ...rows.map(row => `| ${row.condition} | ${row.tasks} | ${row.pass}% | ${row.score} | ${row.compiles}% | ${row.usesCore}% | ${row.checkClean}% | ${row.expectedComponents}% | ${row.warnings} | ${row.minutes} |`),
     "",
     "| 任务 | " + conditions.join(" | ") + " |",
     "|---|" + conditions.map(() => "---").join("|") + "|",
@@ -98,7 +108,10 @@ function summarize(results) {
 }
 
 if (args.report) {
-  const results = JSON.parse(fs.readFileSync(path.join(args.report, "results.json"), "utf8"));
+  // --rescore re-applies score.mjs to the kept workspaces, e.g. after widening a task's accepted components.
+  const stored = JSON.parse(fs.readFileSync(path.join(args.report, "results.json"), "utf8"));
+  const results = args.rescore ? stored.map(item => ({ ...item, ...scoreTask(path.join(args.report, item.condition, item.task), item.task) })) : stored;
+  if (args.rescore) fs.writeFileSync(path.join(args.report, "results.json"), JSON.stringify(results, null, 2));
   fs.writeFileSync(path.join(args.report, "report.md"), summarize(results));
   console.log(summarize(results));
   process.exit(0);
@@ -119,9 +132,12 @@ const out = path.resolve(args.out ?? path.join(here, "results", new Date().toISO
 const base = prepareBase();
 const coreVersion = JSON.parse(fs.readFileSync(path.join(base, "node_modules/@forge-ui-official/core/package.json"), "utf8")).version;
 fs.mkdirSync(out, { recursive: true });
-const results = [];
+// Re-running with the same --out resumes: finished condition/task pairs are kept and skipped.
+const resultsFile = path.join(out, "results.json");
+const results = fs.existsSync(resultsFile) ? JSON.parse(fs.readFileSync(resultsFile, "utf8")) : [];
 for (const condition of conditions) {
   for (const task of selected) {
+    if (results.some(item => item.condition === condition && item.task === task.id)) continue;
     const cwd = workspaceFor(base, out, condition, task);
     const [bin, argv] = agents[args.agent].command(prompt(task), condition, cwd);
     const started = Date.now();
@@ -129,7 +145,7 @@ for (const condition of conditions) {
     fs.writeFileSync(path.join(cwd, "agent.log"), (run.stdout ?? "") + "\n--- stderr ---\n" + (run.stderr ?? ""));
     const result = { agent: args.agent, condition, coreVersion, date: new Date().toISOString().slice(0, 10), seconds: Math.round((Date.now() - started) / 1000), exitCode: run.status, ...scoreTask(cwd, task.id, typecheck(cwd)) };
     results.push(result);
-    fs.writeFileSync(path.join(out, "results.json"), JSON.stringify(results, null, 2));
+    fs.writeFileSync(resultsFile, JSON.stringify(results, null, 2));
     console.log(`${condition} ${task.id}: ${result.pass ? "合格" : result.score} (${result.seconds}s)`);
   }
 }
