@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0
+
+- 新增智能体对话组件：Conversation（新内容自动跟随、上翻后出现“回到最新”）、AgentMessage（用户气泡与助手整宽回复）、MessageActions（复制、重新生成、有帮助/没帮助）、PromptSuggestions（推荐提问）、ArtifactCard（生成的文档、代码、表格、图片和文件）。
+- 新增 AgentParts：直接渲染 AI SDK `useChat` 消息的 parts——文本按 Markdown 流式显示，思考过程可折叠，连续工具调用合成一组并显示状态，来源挂在回答下，文件显示为产物卡片；`renderTool` 可按工具名换成自己的组件（生成式界面）。不依赖 `ai` 包。
+- 图标新增 LikeLinear、DislikeLinear、ArrowDownLinear、GalleryLinear。
+
 ## 0.6.0
 
 - 新增 FileInput、InfoRow 及对应类型导出，统一模板附件选择与裸图标信息行。

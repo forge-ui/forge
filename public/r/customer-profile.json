@@ -5,7 +5,7 @@
   "title": "客户详情",
   "description": "客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "详情页",
@@ -48,7 +48,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "IconButton",

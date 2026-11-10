@@ -5,7 +5,7 @@
   "title": "商品分类",
   "description": "维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "数据列表",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "CellImageText",

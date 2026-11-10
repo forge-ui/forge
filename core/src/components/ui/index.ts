@@ -390,6 +390,12 @@ export {
   InsightCards,
   CommandSearch,
   AgentFlowchart,
+  Conversation,
+  AgentMessage,
+  MessageActions,
+  PromptSuggestions,
+  ArtifactCard,
+  AgentParts,
 } from "./agent";
 export type {
   ThinkingVariant,
@@ -423,6 +429,19 @@ export type {
   AgentFlowKind,
   AgentFlowNode,
   AgentFlowEdge,
+  ConversationProps,
+  AgentMessageRole,
+  AgentMessageProps,
+  MessageFeedback,
+  MessageActionsProps,
+  PromptSuggestionsProps,
+  ArtifactKind,
+  ArtifactStatus,
+  ArtifactCardProps,
+  AgentToolState,
+  AgentToolPart,
+  AgentMessagePart,
+  AgentPartsProps,
 } from "./agent";
 
 // Overlay, disclosure, content transitions and notifications.

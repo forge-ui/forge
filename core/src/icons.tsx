@@ -185,6 +185,10 @@ import { ShieldUserIcon as SolarShieldUserBoldDuotone } from "@solar-icons/react
 import { WidgetIcon as SolarWidgetLinear } from "@solar-icons/react/linear/widget";
 import { FullScreenIcon as SolarFullScreenLinear } from "@solar-icons/react/linear/full-screen";
 import { CodeIcon as SolarCodeLinear } from "@solar-icons/react/linear/code";
+import { LikeIcon as SolarLikeLinear } from "@solar-icons/react/linear/like";
+import { DislikeIcon as SolarDislikeLinear } from "@solar-icons/react/linear/dislike";
+import { ArrowDownIcon as SolarArrowDownLinear } from "@solar-icons/react/linear/arrow-down";
+import { GalleryIcon as SolarGalleryLinear } from "@solar-icons/react/linear/gallery";
 import { CommandIcon as SolarCommandLinear } from "@solar-icons/react/linear/command";
 import { HashtagIcon as SolarHashtagLinear } from "@solar-icons/react/linear/hashtag";
 import { LightbulbIcon as SolarLightbulbLinear } from "@solar-icons/react/linear/lightbulb";
@@ -393,6 +397,10 @@ export const ShieldUserBoldDuotone = createForgeIcon(SolarShieldUserBoldDuotone,
 export const WidgetLinear = createForgeIcon(SolarWidgetLinear, "WidgetLinear");
 export const FullScreenLinear = createForgeIcon(SolarFullScreenLinear, "FullScreenLinear");
 export const CodeLinear = createForgeIcon(SolarCodeLinear, "CodeLinear");
+export const LikeLinear = createForgeIcon(SolarLikeLinear, "LikeLinear");
+export const DislikeLinear = createForgeIcon(SolarDislikeLinear, "DislikeLinear");
+export const ArrowDownLinear = createForgeIcon(SolarArrowDownLinear, "ArrowDownLinear");
+export const GalleryLinear = createForgeIcon(SolarGalleryLinear, "GalleryLinear");
 export const CommandLinear = createForgeIcon(SolarCommandLinear, "CommandLinear");
 export const HashtagLinear = createForgeIcon(SolarHashtagLinear, "HashtagLinear");
 export const LightbulbLinear = createForgeIcon(SolarLightbulbLinear, "LightbulbLinear");

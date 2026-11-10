@@ -5,7 +5,7 @@
   "title": "目标进度列表",
   "description": "跟踪储蓄与预算目标，查看已积累金额和完成进度。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "财务",
@@ -1504,7 +1504,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "KebabMenu",

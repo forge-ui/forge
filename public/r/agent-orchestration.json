@@ -5,7 +5,7 @@
   "title": "多智能体编排",
   "description": "编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -34,7 +34,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "Panel",

@@ -5,7 +5,7 @@
   "title": "引导流程",
   "description": "首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "认证",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "Checkbox",

@@ -5,7 +5,7 @@
   "title": "自主智能体",
   "description": "系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模式与人工确认，最近任务跟踪状态。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Breadcrumbs",
         "Button",

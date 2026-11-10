@@ -5,7 +5,7 @@
   "title": "商家列表",
   "description": "展示店铺评分、营收与待结算金额的入驻商家管理表。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "数据列表",
@@ -54,7 +54,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "CellImageText",

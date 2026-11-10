@@ -5,7 +5,7 @@
   "title": "财务工作区",
   "description": "整合账户余额、预算与费用明细，集中查看财务状况。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "财务",
@@ -187,7 +187,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Panel",
         "DescriptionItem",
