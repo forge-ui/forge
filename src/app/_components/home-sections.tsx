@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { asset } from "@/lib/asset";
 import { HomeCopyPrompt } from "./home-copy-prompt";
+import { changelogHref } from "../docs/_changelog";
+import { coreVersion } from "../docs/_versions";
 
 function SectionHeading({ eyebrow, title, muted, children }: { eyebrow: string; title: string; muted: string; children?: ReactNode }) {
   return (
@@ -61,9 +63,9 @@ const agentTools = [
 
 const footerColumns = [
   { title: "产品", links: [{ label: "组件", href: "/components" }, { label: "页面组件", href: "/blocks" }, { label: "模板", href: "/templates" }, { label: "Forge Starter", href: "https://github.com/forge-ui/forge-starter" }] },
-  { title: "文档", links: [{ label: "快速开始", href: "/docs/quick-start" }, { label: "使用指南", href: "/guides" }, { label: "详细安装", href: "/docs/installation" }, { label: "更新日志", href: "/docs/changelog" }] },
+  { title: "文档", links: [{ label: "快速开始", href: "/docs/quick-start" }, { label: "使用指南", href: "/guides" }, { label: "详细安装", href: "/docs/installation" }, { label: "故障排查", href: "/docs/troubleshoot" }, { label: "更新日志", href: "/docs/changelog" }] },
   { title: "给编码助手", links: [{ label: "Skill", href: "/docs/ui-for-agents" }, { label: "MCP 服务器", href: "/docs/mcp" }, { label: "AGENTS.md", href: "/docs/agents-md" }, { label: "DESIGN.md", href: "/docs/design-md" }, { label: "LLMs.txt", href: "/docs/llms-txt" }] },
-  { title: "社区", links: [{ label: "GitHub", href: "https://github.com/forge-ui/forge" }, { label: "反馈问题", href: "https://github.com/forge-ui/forge/issues" }] },
+  { title: "社区", links: [{ label: "GitHub", href: "https://github.com/forge-ui/forge" }, { label: "反馈问题", href: "https://github.com/forge-ui/forge/issues" }, { label: "npm", href: "https://www.npmjs.com/package/@forge-ui-official/core" }] },
 ];
 
 export function HomeSections() {
@@ -173,9 +175,19 @@ export function HomeSections() {
       </section>
 
       <footer className="home-footer">
-        <div className="home-footer-grid">
+        <div className="home-footer-top">
+          <div className="home-footer-brand">
+            <Link href="/" className="home-footer-logo">
+              <img src={asset("/images/forge-logo-v2.svg")} alt="" className="size-7" />
+              <span>Forge</span>
+            </Link>
+            <p>中文后台的 React 组件库，从组件到整页，一套规范到底。</p>
+            <Link href={changelogHref(coreVersion)} className="home-footer-version">
+              <span aria-hidden="true" />core {coreVersion} 更新说明
+            </Link>
+          </div>
           {footerColumns.map((column) => (
-            <div key={column.title}>
+            <div key={column.title} className="home-footer-column">
               <p>{column.title}</p>
               <ul>
                 {column.links.map((link) => (
@@ -189,7 +201,12 @@ export function HomeSections() {
             </div>
           ))}
         </div>
-        <p className="home-footer-note">Forge UI · MIT License</p>
+        <div className="home-footer-bottom">
+          <span>© 2026 Forge UI · MIT License</span>
+          <a href="https://github.com/forge-ui/forge" target="_blank" rel="noreferrer" aria-label="GitHub" className="home-footer-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.57.11.78-.25.78-.55 0-.27-.01-1.18-.02-2.14-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.27-5.24-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.73 0c2.18-1.48 3.14-1.17 3.14-1.17.63 1.58.23 2.75.12 3.04.73.8 1.17 1.82 1.17 3.07 0 4.4-2.69 5.37-5.26 5.65.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .3.2.67.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" /></svg>
+          </a>
+        </div>
       </footer>
     </>
   );

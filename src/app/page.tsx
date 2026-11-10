@@ -20,7 +20,7 @@ export default function HomePage() {
               <span aria-hidden="true">→</span>
             </Link>
             <h1 className="home-hero-title">
-              为日常工作，构建出色界面
+              为<span className="home-title-scribble">日常<svg viewBox="0 0 120 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 15c22-7 58-11 96-8M14 20c26-5 58-7 92-4" /></svg></span>工作，<span className="home-title-nowrap">构建<span className="home-title-colorful">出色</span>界面</span>
             </h1>
             <p className="home-hero-lead">
               从基础控件到完整业务场景，用 Forge 把想法变成清晰、一致的产品体验。
