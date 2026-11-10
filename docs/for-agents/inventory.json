@@ -1,13 +1,13 @@
 {
   "package": "@forge-ui-official/core",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "source": "core/src/index.ts",
-  "revision": "811084a4264109108e301183a5058d64bc66e3eb",
+  "revision": "55fb2ef838c42c0f71cbcc5171e83dc9dd8100e4",
   "dirty": false,
-  "exportFingerprint": "6d4b7f698c57b03752b3bb4983f9d94e714dff86",
-  "generatedAt": "2026-11-09T14:24:35+08:00",
+  "exportFingerprint": "fcdf05e0b7fd650743b6d6332fd37507b01d460a",
+  "generatedAt": "2026-11-10T17:00:10+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 487,
+  "componentCount": 506,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -636,6 +636,142 @@
       "props": []
     },
     {
+      "name": "AgentMessage",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ role, children, name, avatar, time, actions, className }: AgentMessageProps) => JSX.Element",
+      "props": [
+        {
+          "name": "role",
+          "optional": false,
+          "type": "AgentMessageRole",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "avatar",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "time",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "actions",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Rendered under assistant content, usually MessageActions."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentMessagePart",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentMessageProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentMessageRole",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentParts",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ parts, status, renderTool, onOpenFile, locale, className }: AgentPartsProps) => JSX.Element",
+      "props": [
+        {
+          "name": "parts",
+          "optional": false,
+          "type": "AgentMessagePart[]",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "optional": true,
+          "type": "\"error\" | \"streaming\" | \"ready\" | \"submitted\" | undefined",
+          "description": "`useChat` status; \"streaming\" keeps the last text part animating."
+        },
+        {
+          "name": "renderTool",
+          "optional": true,
+          "type": "Record<string, (part: AgentToolPart) => ReactNode> | undefined",
+          "description": "Generative UI: render a tool result with your own component, keyed by tool name. Return null to fall back."
+        },
+        {
+          "name": "onOpenFile",
+          "optional": true,
+          "type": "((part: { url: string; filename?: string; mediaType: string; }) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentPartsProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "AgentTask",
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-task-rows.tsx",
@@ -699,6 +835,24 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-task-rows.tsx",
       "module": "agent/agent-task-rows",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentToolPart",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentToolState",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -1247,6 +1401,98 @@
       "source": "core/src/components/layouts/sidebar-popovers.tsx",
       "module": "sidebar-popovers",
       "group": "layouts",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ArtifactCard",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, kind, meta, status, onOpen, onDownload, locale, labels, className }: ArtifactCardProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "kind",
+          "optional": true,
+          "type": "ArtifactKind | undefined",
+          "description": ""
+        },
+        {
+          "name": "meta",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Short line under the title, e.g. \"Markdown · 2.4 KB\"."
+        },
+        {
+          "name": "status",
+          "optional": true,
+          "type": "ArtifactStatus | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpen",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDownload",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "Locale | undefined",
+          "description": ""
+        },
+        {
+          "name": "labels",
+          "optional": true,
+          "type": "Partial<Record<\"error\" | \"open\" | \"generating\" | \"download\", string>> | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ArtifactCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ArtifactKind",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ArtifactStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
       "oneShotDefault": false,
       "props": []
     },
@@ -10661,6 +10907,62 @@
       "kind": "type",
       "source": "core/src/components/ui/forms/selection-control.tsx",
       "module": "forms/selection-control",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Conversation",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, followKey, locale, latestLabel, motion, className }: ConversationProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "followKey",
+          "optional": true,
+          "type": "unknown",
+          "description": "Change this when new content arrives (message count, streamed length…) to keep following the latest reply."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "Locale | undefined",
+          "description": ""
+        },
+        {
+          "name": "latestLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ConversationProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -21897,6 +22199,77 @@
       "props": []
     },
     {
+      "name": "MessageActions",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ copyText, onRetry, onFeedback, feedback: controlled, locale, labels, className }: MessageActionsProps) => JSX.Element",
+      "props": [
+        {
+          "name": "copyText",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Text copied by the copy action; omit to hide copy."
+        },
+        {
+          "name": "onRetry",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onFeedback",
+          "optional": true,
+          "type": "((value: MessageFeedback) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "feedback",
+          "optional": true,
+          "type": "MessageFeedback | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "Locale | undefined",
+          "description": ""
+        },
+        {
+          "name": "labels",
+          "optional": true,
+          "type": "Partial<Record<\"copy\" | \"up\" | \"down\" | \"copied\" | \"retry\", string>> | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "MessageActionsProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "MessageFeedback",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "MeterChart",
       "kind": "value",
       "source": "core/src/components/ui/charts/meter-chart.tsx",
@@ -25348,6 +25721,50 @@
       "kind": "type",
       "source": "core/src/components/ui/project-card.tsx",
       "module": "project-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "PromptSuggestions",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ suggestions, onSelect, label, className }: PromptSuggestionsProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "suggestions",
+          "optional": false,
+          "type": "string[]",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": false,
+          "type": "(text: string, index: number) => void",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PromptSuggestionsProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-conversation.tsx",
+      "module": "agent/agent-conversation",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

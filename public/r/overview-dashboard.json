@@ -5,7 +5,7 @@
   "title": "经营概览",
   "description": "将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "看板首屏",
@@ -68,7 +68,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "BarChartStatCard",
         "Button",

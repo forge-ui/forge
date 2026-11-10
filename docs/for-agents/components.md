@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.6.0，共 487 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.7.0，共 506 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -30,10 +30,18 @@
 | AgentFlowEdge | type | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
 | AgentFlowKind | type | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
 | AgentFlowNode | type | [源码](../../core/src/components/ui/agent/agent-flowchart.tsx) | [agent-flowchart](../../skills/forge-skill/references/components/agent-flowchart.md) |
+| AgentMessage | value | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| AgentMessagePart | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
+| AgentMessageProps | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| AgentMessageRole | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| AgentParts | value | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
+| AgentPartsProps | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
 | AgentTask | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
 | AgentTaskChild | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
 | AgentTaskRows | value | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
 | AgentTaskStatus | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
+| AgentToolPart | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
+| AgentToolState | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
 | ALL_CARD_THEMES | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
 | AppLayout | value | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
 | AppLayoutAccentColor | type | [源码](../../core/src/components/layouts/app-layout.tsx) | [app-layout](../../skills/forge-skill/references/components/app-layout.md) |
@@ -50,6 +58,10 @@
 | ApprovalQuestion | type | [源码](../../core/src/components/ui/agent/approval-card.tsx) | [approval-card](../../skills/forge-skill/references/components/approval-card.md) |
 | AppSwitcherDropdown | value | [源码](../../core/src/components/layouts/sidebar-popovers.tsx) | [sidebar-popovers](../../skills/forge-skill/references/components/sidebar-popovers.md) |
 | AppSwitcherItem | type | [源码](../../core/src/components/layouts/sidebar-popovers.tsx) | [sidebar-popovers](../../skills/forge-skill/references/components/sidebar-popovers.md) |
+| ArtifactCard | value | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| ArtifactCardProps | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| ArtifactKind | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| ArtifactStatus | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
 | ArtisticIcon | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | ArtisticIconColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | ArtisticIconVariant | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
@@ -182,6 +194,8 @@
 | ContextCards | value | [源码](../../core/src/components/ui/agent/context-cards.tsx) | [context-cards](../../skills/forge-skill/references/components/context-cards.md) |
 | ContextChunk | type | [源码](../../core/src/components/ui/agent/context-cards.tsx) | [context-cards](../../skills/forge-skill/references/components/context-cards.md) |
 | ControlColor | type | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| Conversation | value | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| ConversationProps | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
 | CreditCard | value | [源码](../../core/src/components/ui/credit-card.tsx) | [credit-card](../../skills/forge-skill/references/components/credit-card.md) |
 | CurrencyConverter | value | [源码](../../core/src/components/ui/currency-converter.tsx) | [currency-converter](../../skills/forge-skill/references/components/currency-converter.md) |
 | CurrencyConverterColor | type | [源码](../../core/src/components/ui/currency-converter.tsx) | [currency-converter](../../skills/forge-skill/references/components/currency-converter.md) |
@@ -324,6 +338,9 @@
 | MenuItemLead | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
 | MenuItemState | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
 | MenuItemSurface | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
+| MessageActions | value | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| MessageActionsProps | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| MessageFeedback | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
 | MeterChart | value | [源码](../../core/src/components/ui/charts/meter-chart.tsx) | [meter-chart](../../skills/forge-skill/references/components/meter-chart.md) |
 | Modal | value | [源码](../../core/src/components/ui/modal.tsx) | [modal](../../skills/forge-skill/references/components/modal.md) |
 | ModalProps | type | [源码](../../core/src/components/ui/modal.tsx) | [modal](../../skills/forge-skill/references/components/modal.md) |
@@ -374,6 +391,8 @@
 | ProgressStatCardProps | type | [源码](../../core/src/components/ui/progress-stat-card.tsx) | [progress-stat-card](../../skills/forge-skill/references/components/progress-stat-card.md) |
 | ProjectCard | value | [源码](../../core/src/components/ui/project-card.tsx) | [project-card](../../skills/forge-skill/references/components/project-card.md) |
 | ProjectCardColor | type | [源码](../../core/src/components/ui/project-card.tsx) | [project-card](../../skills/forge-skill/references/components/project-card.md) |
+| PromptSuggestions | value | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| PromptSuggestionsProps | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
 | RadioButton | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
 | RadioWithLabel | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
 | RatingStars | value | [源码](../../core/src/components/ui/rating-stars.tsx) | [rating-stars](../../skills/forge-skill/references/components/rating-stars.md) |

@@ -5,7 +5,7 @@
   "title": "发票列表",
   "description": "按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "数据列表",
@@ -53,7 +53,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "ButtonGroup",

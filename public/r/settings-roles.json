@@ -5,7 +5,7 @@
   "title": "角色与权限",
   "description": "左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。",
   "dependencies": [
-    "@forge-ui-official/core@^0.6.0"
+    "@forge-ui-official/core@^0.7.0"
   ],
   "meta": {
     "category": "设置",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.6.0",
+      "version": "^0.7.0",
       "components": [
         "Button",
         "Checkbox",

@@ -18,8 +18,9 @@ import {
   AgentFlowchart,
 } from "@forge-ui-official/core";
 import { StreamingAnswerDemo } from "../../cases/agent/_streaming-demo";
+import { ArtifactDemo, ConversationDemo, PartsDemo } from "./_conversation-demo";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { DocExample, ExampleGrid } from "../_doc-blocks";
+import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 const CODE_IMPORT = `import {
@@ -35,7 +36,81 @@ const CODE_IMPORT = `import {
   InsightCards,
   CommandSearch,
   AgentFlowchart,
+  Conversation,
+  AgentMessage,
+  MessageActions,
+  PromptSuggestions,
+  ArtifactCard,
+  AgentParts,
 } from "@forge-ui-official/core";`;
+
+const CODE_CONVERSATION = `<Conversation followKey={messages.length}>
+  {messages.map(message => (
+    <AgentMessage
+      key={message.id}
+      role={message.role}
+      actions={message.role === "assistant" && (
+        <MessageActions copyText={message.text} onRetry={() => regenerate(message.id)} onFeedback={value => rate(message.id, value)} />
+      )}
+    >
+      {message.text}
+    </AgentMessage>
+  ))}
+  <PromptSuggestions suggestions={["本周退款最多的商品是哪个？"]} onSelect={send} />
+</Conversation>`;
+
+const CODE_PARTS = `// AI SDK v5：const { messages, status } = useChat();
+{messages.map(message => (
+  <AgentMessage key={message.id} role={message.role}>
+    <AgentParts
+      parts={message.parts}
+      status={status}
+      renderTool={{
+        getInventory: part => <InventoryCard {...(part.output as Inventory)} />,
+      }}
+    />
+  </AgentMessage>
+))}`;
+
+const CODE_ARTIFACT = `<ArtifactCard title="十一月运营周报.md" kind="document" meta="Markdown · 4.2 KB" onOpen={open} onDownload={download} />
+<ArtifactCard title="周报.md" status="generating" />
+<ArtifactCard title="渠道对账.xlsx" kind="table" status="error" />`;
+
+const CONVERSATION_ROWS: ApiTableRow[] = [
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "消息列表。" },
+  { attr: "followKey", type: "unknown", defaultValue: "—", description: "有新内容时变化（消息数、流式长度）。读者停在底部时自动跟随；上翻后停止跟随并出现“回到最新”。" },
+  { attr: "latestLabel", type: "string", defaultValue: "回到最新", description: "回到底部按钮的文字。" },
+  { attr: "locale / motion / className", type: "'zh' | 'en' / 'auto' | 'none' / string", defaultValue: "'zh' / 'auto'", description: "语言、动效偏好和外层类名。" },
+];
+const MESSAGE_ROWS: ApiTableRow[] = [
+  { attr: "role", type: "'user' | 'assistant'", defaultValue: "—", description: "用户消息是右侧气泡；助手回复整宽显示，带头像。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "消息内容；助手回复通常放 AgentParts。" },
+  { attr: "name / time / avatar", type: "string / string / ReactNode", defaultValue: "—", description: "助手名称、时间和头像。" },
+  { attr: "actions", type: "ReactNode", defaultValue: "—", description: "回复下方的操作，通常是 MessageActions。" },
+];
+const ACTIONS_ROWS: ApiTableRow[] = [
+  { attr: "copyText", type: "string", defaultValue: "—", description: "传了才显示复制按钮。" },
+  { attr: "onRetry", type: "() => void", defaultValue: "—", description: "传了才显示重新生成。" },
+  { attr: "onFeedback / feedback", type: "(value: 'up' | 'down' | null) => void / MessageFeedback", defaultValue: "—", description: "传了才显示有帮助、没帮助；再点一次取消。传 feedback 时受控。" },
+  { attr: "labels / locale", type: "Partial<Record<'copy' | 'copied' | 'retry' | 'up' | 'down', string>> / 'zh' | 'en'", defaultValue: "'zh'", description: "按钮文字和无障碍名称。" },
+];
+const SUGGESTION_ROWS: ApiTableRow[] = [
+  { attr: "suggestions", type: "string[]", defaultValue: "—", description: "推荐提问，空数组时不渲染。" },
+  { attr: "onSelect", type: "(text: string, index: number) => void", defaultValue: "—", description: "点了某个提问。" },
+  { attr: "label", type: "string", defaultValue: "—", description: "上方小标题。" },
+];
+const ARTIFACT_ROWS: ApiTableRow[] = [
+  { attr: "title / meta", type: "string", defaultValue: "—", description: "文件名和一行说明（格式、大小）。" },
+  { attr: "kind", type: "'document' | 'code' | 'table' | 'image' | 'file'", defaultValue: "'document'", description: "决定图标。" },
+  { attr: "status", type: "'generating' | 'ready' | 'error'", defaultValue: "'ready'", description: "生成中和失败时隐藏打开、下载。" },
+  { attr: "onOpen / onDownload", type: "() => void", defaultValue: "—", description: "传了才显示对应按钮。" },
+];
+const PARTS_ROWS: ApiTableRow[] = [
+  { attr: "parts", type: "AgentMessagePart[]", defaultValue: "—", description: "AI SDK UIMessage 的 parts。text 用 Markdown 流式显示，reasoning 可折叠，连续的 tool-* 合成一组，source-url 挂在回答下，file 显示为产物卡片；未知类型忽略。" },
+  { attr: "status", type: "'submitted' | 'streaming' | 'ready' | 'error'", defaultValue: "'ready'", description: "useChat 的 status；streaming 时最后一段文本逐字显示。" },
+  { attr: "renderTool", type: "Record<string, (part: AgentToolPart) => ReactNode>", defaultValue: "{}", description: "按工具名把完成的工具调用换成自己的组件（生成式界面）；返回 null 时仍显示工具记录。" },
+  { attr: "onOpenFile", type: "(file: { url; filename?; mediaType }) => void", defaultValue: "—", description: "点产物卡片的打开。" },
+];
 
 const THINKING_PROPS: ApiTableRow[] = [
   { attr: "variant", type: "'steps' | 'reasoning' | 'search' | 'coding'", defaultValue: "'steps'", description: "处理过程的展示类型。" },
@@ -183,7 +258,7 @@ export default function AgentSpecPage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="智能体"
-        hint="展示智能体的思考、回答、工具调用、任务和审批过程。"
+        hint="展示智能体的对话、思考、回答、工具调用、任务和审批过程；可以直接渲染 AI SDK 的消息。"
       />
 
       <p className="text-sm leading-6 text-fg-grey-700">
@@ -422,7 +497,25 @@ export default function AgentSpecPage() {
         </ExampleGrid>
       </Section>
 
+      <Section title="对话" description="把模型回复直接渲染成 Forge 组件：消息、操作、推荐提问、产物，以及 AI SDK 消息的适配。">
+        <DocExample id="conversation" title="Conversation" summary="可以输入或点推荐提问；新回复自动跟随，上翻后出现“回到最新”。" code={CODE_CONVERSATION} minHeight={460}>
+          <ConversationDemo />
+        </DocExample>
+        <DocExample id="agentparts" title="AgentParts" summary="一条 AI SDK 消息里的思考、两次工具调用、回答、来源和文件；打开开关后库存查询换成自定义卡片。" code={CODE_PARTS} minHeight={420}>
+          <PartsDemo />
+        </DocExample>
+        <DocExample id="artifactcard" title="ArtifactCard" summary="生成中、已完成和失败三种状态。" code={CODE_ARTIFACT} minHeight={260}>
+          <ArtifactDemo />
+        </DocExample>
+      </Section>
+
       <Section title="API">
+        <ApiBlock id="conversation" title="Conversation" rows={CONVERSATION_ROWS} />
+        <ApiBlock id="agentmessage" title="AgentMessage" rows={MESSAGE_ROWS} />
+        <ApiBlock id="messageactions" title="MessageActions" rows={ACTIONS_ROWS} />
+        <ApiBlock id="promptsuggestions" title="PromptSuggestions" rows={SUGGESTION_ROWS} />
+        <ApiBlock id="artifactcard" title="ArtifactCard" rows={ARTIFACT_ROWS} />
+        <ApiBlock id="agentparts" title="AgentParts" rows={PARTS_ROWS} />
         <AgentApi id="thinkingtrace" name="ThinkingTrace" descriptions={THINKING_PROPS} />
         <AgentApi id="streaminganswer" name="StreamingAnswer" descriptions={STREAM_PROPS} />
         <AgentApi id="approvalcard" name="ApprovalCard" descriptions={APPROVAL_PROPS} />
