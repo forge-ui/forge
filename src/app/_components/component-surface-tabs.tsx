@@ -16,8 +16,8 @@ export function ComponentSurfaceTabs() {
   if (!surfaces || surfaces.length < 2) return null;
 
   const tabs = [
+    { surface: "cases", href: `/cases/${slug}`, label: "效果与案例" },
     { surface: "components", href: `/components/${slug}`, label: "用法与参数" },
-    { surface: "cases", href: `/cases/${slug}`, label: "案例" },
   ];
 
   return (
