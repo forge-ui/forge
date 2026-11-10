@@ -11,6 +11,7 @@ import {
   FileTextLinear,
   FlagLinear,
   FolderLinear,
+  PenLinear,
   StarsLinear,
   WidgetLinear,
 } from "@forge-ui-official/core/icons";
@@ -38,6 +39,7 @@ export const docsNavGroups: NavGroup[] = [
       { href: "/docs/quick-start", label: "快速开始", icon: FlagLinear },
       { href: "/guides", label: "使用指南", icon: DocumentTextLinear },
       { href: "/docs/installation", label: "详细安装", icon: DownloadLinear },
+      { href: "/docs/theme", label: "主题定制", icon: PenLinear },
       { href: "/docs/troubleshoot", label: "故障排查", icon: DangerTriangleLinear },
       { href: "/docs/changelog", label: "更新日志", icon: ClockCircleLinear },
     ],
