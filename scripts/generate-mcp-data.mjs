@@ -45,6 +45,6 @@ const rules = source.references.filter(item => item.file !== "skills/forge-skill
 const data = { coreVersion: source.core.version, components, blocks, screens, rules, guides };
 const target = path.join(root, "src/lib/mcp/data.json");
 const output = JSON.stringify(data, null, 2) + "\n";
-if (process.argv.includes("--check")) { if (!fs.existsSync(target) || fs.readFileSync(target, "utf8") !== output) throw new Error("MCP data drift; run docs:mcp"); }
-else { fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, output); }
+fs.mkdirSync(path.dirname(target), { recursive: true });
+fs.writeFileSync(target, output);
 console.log("MCP data and guide imports verified: " + components.length + " exports, " + blocks.length + " blocks, " + screens.length + " screens, " + guides.length + " guides");

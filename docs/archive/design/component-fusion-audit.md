@@ -140,10 +140,10 @@
 | F05 | 协作席位 | 组合示例 | AddMember、Avatar、AvatarGroup、Button | AddMember 的待添加选择不等于 activeOwner，AvatarGroup 也不管理负责人。 |
 | F06 | 搜索无结果恢复 | 组合示例 | FilterPanel、ToolbarSearchInput、ListGroup、Button | FilterPanel 不产生搜索结果，原型 filters.length>0 即零结果仅为示例。本轮只有列表中的关键词搜索恢复组合示例，未覆盖原型全部业务状态。 |
 
-本轮集中展示已通过官网 TypeScript、定向 ESLint 与差异检查；目录断言确认 99 + 23 项无重复遗漏、186 排除、已认可 7 项及原型快照完整。Chrome 已验证原型保存交互、语言/主题/动效同步、评审及备注持久化、分类/状态筛选、040 侧栏折叠跨路由保留、090 局部示例标识、首次加载旧 hash 与暂缓项 hash、390px 窄屏无横向溢出及真实 JSON 导出。定向本地审阅检查完成，未对 122 项逐一完成功能 QA。详见 [集中评审验证记录](../../../artifacts/component-fusion/verification-consolidated.json)。本轮只整理展示，不新增公共组件，不提交、不发布。
+本轮集中展示已通过官网 TypeScript、定向 ESLint 与差异检查；目录断言确认 99 + 23 项无重复遗漏、186 排除、已认可 7 项及原型快照完整。Chrome 已验证原型保存交互、语言/主题/动效同步、评审及备注持久化、分类/状态筛选、040 侧栏折叠跨路由保留、090 局部示例标识、首次加载旧 hash 与暂缓项 hash、390px 窄屏无横向溢出及真实 JSON 导出。定向本地审阅检查完成，未对 122 项逐一完成功能 QA。详见 集中评审验证记录（`component-fusion/verification-consolidated.json`）。本轮只整理展示，不新增公共组件，不提交、不发布。
 
-第三批 031 / 039 / 046 已通过 core:check（235 项组件测试、17 项审计测试）、core:build、官网 TypeScript 与相关 ESLint。Chrome 已检查连续切换、搜索执行、选择、语言主题、窄屏与减弱动效。命令弹窗搜索框聚焦时 Escape 的当前浏览器验证未通过，组件模拟验证通过，原因未定；包检查仅体积/文件数预算失败。见 [第三批验证记录](../../../artifacts/component-fusion/verification-batch-3.json)。第三批已通过用户验收，Escape 浏览器限制及包预算问题仍未解决，未提交、未发布。
+第三批 031 / 039 / 046 已通过 core:check（235 项组件测试、17 项审计测试）、core:build、官网 TypeScript 与相关 ESLint。Chrome 已检查连续切换、搜索执行、选择、语言主题、窄屏与减弱动效。命令弹窗搜索框聚焦时 Escape 的当前浏览器验证未通过，组件模拟验证通过，原因未定；包检查仅体积/文件数预算失败。见 第三批验证记录（`component-fusion/verification-batch-3.json`）。第三批已通过用户验收，Escape 浏览器限制及包预算问题仍未解决，未提交、未发布。
 
-第二批（013 / 043 / 044）验证：pnpm core:check（220 项组件测试、17 项审计测试）、pnpm core:build、官网 TypeScript、相关 ESLint 和差异检查已通过。Chrome 已检查拖动、键盘导航、分页边界、窄屏、语言主题与关闭动效；运行时系统减弱动效问题已修复并复验。包体积与文件数预算仍超限，阈值未改。详见 [第二批验证记录](../../../artifacts/component-fusion/verification-batch-2.json)。第二批已有明确用户验收记录，发布仍需单独完成包预算等检查。
+第二批（013 / 043 / 044）验证：pnpm core:check（220 项组件测试、17 项审计测试）、pnpm core:build、官网 TypeScript、相关 ESLint 和差异检查已通过。Chrome 已检查拖动、键盘导航、分页边界、窄屏、语言主题与关闭动效；运行时系统减弱动效问题已修复并复验。包体积与文件数预算仍超限，阈值未改。详见 第二批验证记录（`component-fusion/verification-batch-2.json`）。第二批已有明确用户验收记录，发布仍需单独完成包预算等检查。
 
 证据边界：公共导出与来源路径已核验；原型中的定时器、随机进度、伪登录和自动成功仅是演示。真正的业务结果、权限和数据状态仍由宿主控制。

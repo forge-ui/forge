@@ -54,3 +54,5 @@
 | `docs/design/taxonomy-audit-feedback.json` | [快照](design/taxonomy-audit-feedback.json) |
 | `docs/design/taxonomy-audit-inputs.json` | [快照](design/taxonomy-audit-inputs.json) |
 | `docs/design/taxonomy-audit-workflows.json` | [快照](design/taxonomy-audit-workflows.json) |
+
+截图与验收记录原在仓库根 `artifacts/`，2026-11-10 已移出仓库（可在提交 83588877 及更早的历史中找到）；文中保留的文件名只作出处说明。

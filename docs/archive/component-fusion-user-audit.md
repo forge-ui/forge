@@ -27,7 +27,7 @@
 
 复用稳定 Chrome。实际检查：项目创建/打开/返回、文章预览首次点击与收起、邮箱纠错重试、步骤初始焦点和返回输入、仅发送附件、审批快速改选/返回/跳过/提交及成功焦点、分派任务反馈、存储单位、建议接受与备选、洞察追问；另检查精简后的按钮动作、余额显隐、交易演示反馈和成员选择。
 
-审批截图：[跳过与提交焦点](../../artifacts/component-fusion/browser-2026-10-15/approval-skip-focus-fixed.png)。案例排版：[卡片页](../../artifacts/component-fusion/browser-2026-10-15/card-user-cases.png)。
+审批截图：跳过与提交焦点（`component-fusion/browser-2026-10-15/approval-skip-focus-fixed.png`）。案例排版：卡片页（`component-fusion/browser-2026-10-15/card-user-cases.png`）。
 
 详细过程与历史发现见 [操作与表单复审](component-fusion-user-audit-actions.md)、[数据与协作复审](component-fusion-user-audit-data.md)。其中历史发现以各报告末尾修复/复测记录为准。
 
