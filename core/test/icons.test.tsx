@@ -11,7 +11,7 @@ import * as icons from "../src/icons";
 import { BellBoldDuotone, MagniferLinear, PlusLinear } from "../src/icons";
 
 test("Forge icon compatibility layer exposes the complete stable icon surface", () => {
-  assert.equal(Object.keys(icons).length, 193);
+  assert.equal(Object.keys(icons).length, 197);
   assert.ok(icons.StopBold);
   assert.ok(BellBoldDuotone);
   assert.ok(MagniferLinear);

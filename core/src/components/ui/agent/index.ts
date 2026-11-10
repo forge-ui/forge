@@ -34,3 +34,9 @@ export type { CommandSearchItem } from "./command-search";
 
 export { AgentFlowchart } from "./agent-flowchart";
 export type { AgentFlowKind, AgentFlowNode, AgentFlowEdge } from "./agent-flowchart";
+
+export { Conversation, AgentMessage, MessageActions, PromptSuggestions, ArtifactCard } from "./agent-conversation";
+export type { ConversationProps, AgentMessageRole, AgentMessageProps, MessageFeedback, MessageActionsProps, PromptSuggestionsProps, ArtifactKind, ArtifactStatus, ArtifactCardProps } from "./agent-conversation";
+
+export { AgentParts } from "./agent-parts";
+export type { AgentToolState, AgentToolPart, AgentMessagePart, AgentPartsProps } from "./agent-parts";
