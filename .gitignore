@@ -72,3 +72,9 @@ AGENTS.local.md
 
 # 本地 goal/任务跟踪文档（不入仓）
 goal/
+
+# 截图、验收记录等本地产物（不入仓）
+/artifacts/
+
+# 构建时生成（pnpm docs:mcp）
+/src/lib/mcp/data.json

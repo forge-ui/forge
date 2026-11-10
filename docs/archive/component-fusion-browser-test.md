@@ -32,7 +32,7 @@
 | P2 | 009 文字滚动按钮 | 原生 AX 名称重复朗读“已 已 选 选 择 择 作 作 品 品”；应只暴露一个完整按钮名称。 |
 | P2 | 181 英文模式 | English 下成员、任务及按钮已英文，但进度标题仍为“进度”；检查子组件 locale 传递。 |
 
-证据：[标签竞争](../../artifacts/component-fusion/browser-2026-10-15/048-race.png)、[百分比](../../artifacts/component-fusion/browser-2026-10-15/181-percent.png)。
+证据：标签竞争（`component-fusion/browser-2026-10-15/048-race.png`）、百分比（`component-fusion/browser-2026-10-15/181-percent.png`）。
 
 ## 实测确认的迁移差异
 
@@ -156,4 +156,4 @@
 | LiquidTabs 此前新增组件 | 提及→更多→归档 | 第三页签替换为归档，内容正确；菜单直接消失，无退出动画 |
 | OtpInput 此前新增组件 | 000000失败→123456成功 | pending→err→pending→ok；错误与成功后均不自动清空，原版时序差异确认 |
 
-[原始记录](../../artifacts/component-fusion/browser-2026-10-15/results.json)。本轮未改组件实现，未提交、push 或发布。
+原始记录（`component-fusion/browser-2026-10-15/results.json`）。本轮未改组件实现，未提交、push 或发布。

@@ -574,7 +574,6 @@ body:has(.task-board-shell) .forge-toast button[aria-label] .solar-close-circle-
 .task-detail-tab-panel .task-execution-actions { padding:12px 0; border-top:1px solid var(--fg-grey-200); }
 .task-detail-tab-panel .task-collaboration>div:first-child { padding-bottom:12px; border-bottom:1px solid var(--fg-grey-100); }
 
-/* Workspace dimensions follow artifacts/task-workspace-2026-10-28/architecture.html. */
 .workspace-product .workspace-navigation { display:flex; flex-direction:column; min-height:100%; gap:28px; padding:8px 0 0; }
 .workspace-module-nav,.workspace-project-nav { display:flex; flex-direction:column; gap:4px; }
 .workspace-nav-caption { display:flex; align-items:center; justify-content:space-between; padding:0 12px 8px; font-size:12px; color:var(--fg-grey-700); }
