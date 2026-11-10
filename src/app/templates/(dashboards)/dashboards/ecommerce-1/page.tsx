@@ -1,5 +1,7 @@
 "use client";
 
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { AppLayout, DivergingBarChart } from "@forge-ui-official/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
@@ -249,7 +251,6 @@ export default function Ecommerce1Page() {
             variant="sm"
             regions={regionsForMap}
             highlights={["north-america", "europe", "asia", "oceania"]}
-            onMenuClick={() => {}}
           />
 
           <RecentRecords className="lg:col-span-2">
@@ -264,14 +265,9 @@ export default function Ecommerce1Page() {
                 <Button color="blue" size="sm" iconRight={<AltArrowRightLinear size={14} />} className="rounded-full">See More</Button>
               </div>
             </div>
-            <DataTable<OrderRow>
+            <PagedDataTable<OrderRow>
               columns={orderColumns}
               rows={orders}
-              showPagination
-              currentPage={1}
-              totalPages={20}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 100"
             />
           </RecentRecords>
         </div>

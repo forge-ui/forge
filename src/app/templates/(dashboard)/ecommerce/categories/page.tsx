@@ -19,6 +19,7 @@ import {
   PlusIcon,
 } from "@forge-ui-official/core";
 import type { ColumnDef } from "@forge-ui-official/core";
+import { downloadCsv } from "../../../_shared/download-csv";
 
 interface CategoryItem {
   id: string;
@@ -172,7 +173,7 @@ export default function CategoriesPage() {
           />
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="tertiary" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => {}}>
+          <Button variant="tertiary" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => downloadCsv("categories.csv", categoryList)}>
             Export
           </Button>
           <Button iconLeft={<PlusIcon size={16} />} onClick={() => router.push("/templates/ecommerce/categories/new")}>

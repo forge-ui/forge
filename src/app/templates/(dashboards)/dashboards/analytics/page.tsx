@@ -1,5 +1,7 @@
 "use client";
 
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { AppLayout, WalletGoalCard, ChartHeader, GroupedBarChart, ChartMetricRow } from "@forge-ui-official/core";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -239,7 +241,6 @@ export default function AnalyticsPage() {
             variant="sm"
             regions={regionsForMap}
             highlights={["north-america", "europe", "asia", "oceania"]}
-            onMenuClick={() => {}}
           />
 
           <RankingList
@@ -299,14 +300,9 @@ export default function AnalyticsPage() {
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>
             </DashboardHeader>
-            <DataTable<ReferralRow>
+            <PagedDataTable<ReferralRow>
               columns={referralColumns}
               rows={referralRows}
-              showPagination
-              currentPage={1}
-              totalPages={3}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 15"
             />
           </RecentRecords>
 
@@ -318,14 +314,9 @@ export default function AnalyticsPage() {
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>
             </div>
-            <DataTable<PerformingRow>
+            <PagedDataTable<PerformingRow>
               columns={performingColumns}
               rows={performingRows}
-              showPagination
-              currentPage={1}
-              totalPages={3}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 15"
             />
           </RecentRecords>
         </Grid>

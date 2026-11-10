@@ -1,5 +1,7 @@
 "use client";
 
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { WalletProgressPanel } from "@/blocks/goal-progress-list/goal-progress-list";
 
 import { AppLayout, DivergingBarChart, Panel } from "@forge-ui-official/core";
@@ -105,11 +107,11 @@ function AllExpensesPanel() {
       </div>
       <DashedHalfDonutChart
         segments={[
-          { value: 40, color: "#7239EA" },
-          { value: 20, color: "#F6C002" },
-          { value: 15, color: "#09B96D" },
-          { value: 8, color: "#FE4A23" },
-          { value: 6, color: "#43CED7" },
+          { value: 40, color: "var(--fg-violet-500)" },
+          { value: 20, color: "var(--fg-yellow-500)" },
+          { value: 15, color: "var(--fg-green-500)" },
+          { value: 8, color: "var(--fg-red-500)" },
+          { value: 6, color: "var(--fg-cyan-500)" },
         ]}
         centerValue="75%"
         trend="10%"
@@ -118,9 +120,9 @@ function AllExpensesPanel() {
       />
       <div className="flex flex-col gap-3 pt-1">
         {[
-          { label: "Housing", value: "$5,731", color: "#7239EA", subtitle: "Apartment, Electricity, etc", delta: "2.5%" },
-          { label: "Food", value: "$4,245", color: "#F6C002", subtitle: "Milk, Coffee, Sereal, etc" },
-          { label: "Transportation", value: "$3,150", color: "#09B96D", subtitle: "Gas, Taxi, Service", delta: "5%" },
+          { label: "Housing", value: "$5,731", color: "var(--fg-violet-500)", subtitle: "Apartment, Electricity, etc", delta: "2.5%" },
+          { label: "Food", value: "$4,245", color: "var(--fg-yellow-500)", subtitle: "Milk, Coffee, Sereal, etc" },
+          { label: "Transportation", value: "$3,150", color: "var(--fg-green-500)", subtitle: "Gas, Taxi, Service", delta: "5%" },
         ].map((row) => (
           <div key={row.label} className="flex items-center gap-3">
             <div className="size-10 rounded-full flex items-center justify-center" style={{ backgroundColor: `${row.color}14` }}>
@@ -245,14 +247,9 @@ export default function Finance2Page() {
                 <Button color="black" size="sm" iconRight={<AltArrowRightLinear size={14} />} className="rounded-full">See More</Button>
               </div>
             </div>
-            <DataTable<TransactionRow>
+            <PagedDataTable<TransactionRow>
               columns={transactionColumns}
               rows={transactions}
-              showPagination
-              currentPage={1}
-              totalPages={20}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 100"
             />
           </RecentRecords>
         </div>

@@ -27,6 +27,7 @@ import {
 } from "@forge-ui-official/core";
 import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
+import { downloadCsv } from "../../../_shared/download-csv";
 
 interface ProductInventoryItem {
   id: string;
@@ -353,7 +354,7 @@ export default function ProductsPage() {
           />
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="tertiary" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => {}}>
+          <Button variant="tertiary" iconLeft={<DownloadMinimalisticLinear size={16} />} onClick={() => downloadCsv("products.csv", filteredList)}>
             Export
           </Button>
           <Button iconLeft={<PlusIcon size={16} />} onClick={() => router.push("/templates/ecommerce/products/new")}>

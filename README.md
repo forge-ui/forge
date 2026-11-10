@@ -7,7 +7,7 @@
 
 <h1 align="center">Forge</h1>
 
-<p align="center">面向企业后台和 SaaS 的 React 组件库与页面模板。</p>
+<p align="center">面向中文企业后台和 SaaS 的 React 组件库：组件、页面组件、模板，以及给编码助手的接入。</p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@forge-ui-official/core"><img alt="npm @forge-ui-official/core" src="https://img.shields.io/npm/v/@forge-ui-official/core?label=npm&color=3553FF"></a>
@@ -21,11 +21,13 @@
   ·
   <a href="https://forgeui.org/components">组件</a>
   ·
+  <a href="https://forgeui.org/blocks">页面组件</a>
+  ·
   <a href="https://forgeui.org/templates">模板</a>
 </p>
 
 <p align="center">
-  <img alt="Forge 首页：居中的标题和入口按钮，下方是可按组件、数据概览、财务、智能体、看板切换的组件墙" src="./public/images/readme/hero.png" width="1200">
+  <img alt="Forge 首页：标题“为日常工作，构建出色界面”，下方是可按组件、数据概览、财务、智能体、看板切换的组件墙" src="./public/images/readme/hero.png" width="1200">
 </p>
 
 ### 仓库镜像
@@ -38,18 +40,18 @@
 
 官方开发与 Issue / Release 以 GitHub 为准；Gitee、AtomGit 为国内镜像。
 
-人和 AI 按同一套组件规则做后台：设计 token、React 组件、`AppLayout`、业务模板，以及一份可安装的 Forge Skill。
+人和 AI 按同一套规则做后台：设计 token、React 组件、`AppLayout`、70 个页面组件、业务模板，以及给 Claude Code、Codex、Cursor 用的 Skill 和 MCP 服务器。
 
 ## 为什么用 Forge
 
-- **页面有现成结构。** 订单、商品、客户、项目、成员、文件、发票，以及列表、详情、新建和编辑，都有模板可以改。
-- **视觉规范在组件里。** Button、Form、DataTable、Calendar、Chart、Card、Toolbar、Dialog、Tooltip、File、Avatar 等走 `@forge-ui-official/core`。颜色、字体、圆角、边框和密度不用每页重写。
+- **整页有现成源码。** 70 个页面组件覆盖看板首屏、数据列表、详情、表单、设置、认证和智能体产品页，用 shadcn 命令一行装进项目；订单、商品、客户、项目等多页模板可以直接改。
+- **视觉规范在组件里。** Button、Form、DataTable、Calendar、Chart、Card、Toolbar、Dialog 等走 `@forge-ui-official/core`。颜色、字体、圆角、边框和密度不用每页重写。
 - **后台壳已经装好。** `AppLayout` 带 sidebar、topbar、profile、notification、language switcher、team switcher 和 page header。
-- **编码助手跟着同一套规则写。** Forge Skill 约束组件和 token，Forge Starter 负责快开，Forge Design Extension 在已经跑起来的页面上改界面。
+- **编码助手按同一套规则写，还能自查。** Skill 和只读 MCP 服务器提供组件参数、页面组件和模板；写完用 `check_code` 或 `forge-check` 按审计清单检查。
 
 ## 快速开始
 
-需要 React 19、Next.js 15 或以上、Tailwind v4，以及项目自行安装的 `@solar-icons/react` ^2.3.2。本仓库当前发布的组件包版本是 0.4.7。
+需要 React 19、Next.js 15 或以上、Tailwind v4，以及项目自行安装的 `@solar-icons/react` ^2.3.2。当前版本见上方 npm 徽章。
 
 ### 新项目
 
@@ -88,13 +90,28 @@ import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/co
 
 更细的安装说明见[文档站的快速开始](https://forgeui.org/docs/quick-start)。
 
+### 页面组件
+
+页面组件是复制进项目的源码，不在 core 包里。在[页面组件目录](https://forgeui.org/blocks)挑一个，用 shadcn 安装：
+
+```bash
+npx shadcn@latest add https://forgeui.org/r/kanban-board.json
+```
+
+也可以在项目的 `components.json` 里登记命名空间，之后按名字安装：
+
+```json
+{ "registries": { "@forge": "https://forgeui.org/r/{name}.json" } }
+```
+
 ## 生态
 
 | | 做什么 | 从哪里开始 |
 | --- | --- | --- |
 | `@forge-ui-official/core` | 组件、设计 token、`AppLayout` | `pnpm add @forge-ui-official/core` |
 | [Forge Starter](https://github.com/forge-ui/forge-starter) | 后台脚手架：登录、样板模块、加页面 | `git clone` 后 `pnpm dev` |
-| [Forge Skill](https://forgeui.org/docs/ui-for-agents) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | 下面的安装脚本 |
+| [页面组件](https://forgeui.org/blocks) | 70 个可复制的整页源码 | `npx shadcn@latest add https://forgeui.org/r/<name>.json` |
+| [Forge Skill](https://forgeui.org/docs/ui-for-agents) 与 [MCP](https://forgeui.org/docs/mcp) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | `curl -fsSL https://forgeui.org/setup.sh \| bash` |
 | [Forge Design Extension](https://github.com/forge-ui/forge-design-extension) | 在真实 Chrome 页面上点选、放置组件并改界面 | 独立仓库的 README |
 
 Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库，也不替代 Starter。Starter 负责把后台跑起来，Design Extension 负责改已经跑起来的页面：点中要改的位置，侧边栏里的本地模型带着真实 selector 改文案、样式和交互，或把 Forge 组件写入源码；也可以从组件盘拖到锚点旁，确认后再写入。页面内容留在本机，不经过云端。安装方式是启动本机桥接，在 Chrome 里加载 `extension/`。
@@ -116,12 +133,18 @@ Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库�
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="https://forgeui.org/components/button-link"><img alt="组件文档里的按钮尺寸、颜色和样式" src="./public/images/readme/components.png"></a><br>
-      <a href="https://forgeui.org/components/button-link">组件</a>
+      <a href="https://forgeui.org/cases/button-link"><img alt="组件页：按钮的效果与案例，可以直接操作" src="./public/images/readme/components.png"></a><br>
+      <a href="https://forgeui.org/cases/button-link">组件</a>
     </td>
     <td width="50%" align="center">
       <a href="https://forgeui.org/templates/agent"><img alt="智能体对话页，含思考过程、流式回答和输入栏" src="./public/images/readme/agent.png"></a><br>
       <a href="https://forgeui.org/templates/agent">智能体</a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <a href="https://forgeui.org/blocks"><img alt="页面组件目录：按看板首屏、AI 与智能体、数据列表等分类的 70 个页面组件" src="./public/images/readme/blocks.png" width="1200"></a><br>
+      <a href="https://forgeui.org/blocks">页面组件</a>
     </td>
   </tr>
   <tr>
@@ -136,32 +159,32 @@ Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库�
 
 ## 给 AI 编码助手
 
-写业务页之前，先读组件目录：
-
-- [`docs/for-agents/README.md`](./docs/for-agents/README.md)：总入口
-- [`docs/for-agents/routes.md`](./docs/for-agents/routes.md)：`/cases/*` 路由表
-- [`docs/for-agents/components.md`](./docs/for-agents/components.md)：组件用途和对应 case
-
-全量 export 清单在 [`docs/for-agents/inventory.json`](./docs/for-agents/inventory.json)。
-
-安装 Forge Skill：
+一条命令装好 Forge Skill 和只读 MCP 服务器，自动识别本机的 Claude Code、Cursor、Codex：
 
 ```bash
-# Claude Code / Cursor
-curl -fsSL https://forgeui.org/install-skill.sh | bash
+curl -fsSL https://forgeui.org/setup.sh | bash
 
-# Codex
-curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash
+# 只装到当前项目，并放好 DESIGN.md
+curl -fsSL https://forgeui.org/setup.sh | bash -s -- --scope project --design
+
+# 检查是否装好
+curl -fsSL https://forgeui.org/setup.sh | bash -s -- --check
 ```
 
-官网域名暂时不可用时，从 GitHub 安装同一份脚本：
+| | 用途 |
+| --- | --- |
+| [MCP 服务器](https://forgeui.org/docs/mcp) `https://forgeui.org/api/mcp` | `recommend` 按一句需求给出模板、页面组件和组件；`search`、`get_component`、`get_block`、`get_tokens` 查细节；`check_code` 检查代码 |
+| [页面检查](https://forgeui.org/docs/check) | `curl -fsSL https://forgeui.org/forge-check.mjs -o forge-check.mjs && node forge-check.mjs src`，按审计清单报行号和改法，可放进 CI |
+| [DESIGN.md](https://forgeui.org/DESIGN.md) | 视觉规则，遵循 google-labs-code/design.md 格式 |
+| [llms.txt](https://forgeui.org/llms.txt) | 文档索引；每个文档、组件、页面组件页面在地址后加 `.md` 就是 Markdown |
+| [AGENTS.md](https://forgeui.org/docs/agents-md) | 不装插件时放在项目根目录的使用规则 |
+
+仓库内给 AI 读的清单：[`docs/for-agents/README.md`](./docs/for-agents/README.md)（入口）、[`components.md`](./docs/for-agents/components.md)（组件用途）、[`inventory.json`](./docs/for-agents/inventory.json)（全量导出）。
+
+官网域名暂时不可用时，从 GitHub 获取同一份脚本：
 
 ```bash
-# Claude Code / Cursor
-curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-skill.sh | bash
-
-# Codex
-curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/install-skill.sh | FORGE_AGENT=codex bash
+curl -fsSL https://raw.githubusercontent.com/forge-ui/forge/main/public/setup.sh | FORGE_SITE=https://raw.githubusercontent.com/forge-ui/forge/main/public bash -s -- --mode skill
 ```
 
 <details>
@@ -208,6 +231,7 @@ pnpm dev
 常用命令：
 
 ```bash
+pnpm check           # 类型、lint 和全部测试（CI 跑的就是它）
 pnpm build           # 构建组件包和文档站
 pnpm typecheck       # 检查组件包和站点类型
 pnpm core:build      # 只构建 @forge-ui-official/core
@@ -218,16 +242,18 @@ pnpm lint            # ESLint
 | 路径 | 说明 |
 | --- | --- |
 | `core/` | `@forge-ui-official/core` 源码 |
+| `blocks/` | 页面组件源码，生成到 `public/r/` 供 shadcn 安装 |
+| `content/guides/` | 使用指南（Markdown） |
 | `docs/for-agents/` | 给 AI 的组件路由表和介绍表，先读 `README.md` |
 | `src/app/docs` | 文档页 |
 | `src/app/components` | 组件展示和变体 |
-| `src/app/cases` | 组件组合案例。props 以源码为准 |
+| `src/app/cases` | 组件的效果与案例页（组件入口默认打开这里） |
+| `src/lib/mcp` | MCP 服务器；数据在构建时由 `pnpm docs:mcp` 生成 |
 | `src/app/templates` | 完整后台模板和业务页 |
 | `skills/forge-skill` | 可安装的 Forge Skill，给 Codex、Claude Code 和 Cursor 用 |
-| `public/` | 图片、图标和安装脚本 |
+| `public/` | 图片、llms.txt、DESIGN.md、`setup.sh`、`forge-check.mjs` 和 registry |
 
 ## License
 
 源码使用 [MIT License](./LICENSE)。图标使用 Solar Icons：React 实现为 MIT，480 Design 的图形为 CC BY 4.0。完整声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
 
-安装 AI skill：`npx skills add https://github.com/forge-ui/forge --skill forge-skill`。

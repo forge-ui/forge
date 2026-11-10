@@ -1,5 +1,7 @@
 "use client";
 
+import { PagedDataTable } from "../../../_shared/paged-data-table";
+
 import { AppLayout, ChartHeader, GroupedBarChart, Panel } from "@forge-ui-official/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
@@ -152,7 +154,7 @@ export default function Ecommerce3Page() {
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
             </div>
             <HalfDonutChart
-              segments={[{ value: 60.02, color: "#7c3aed" }]}
+              segments={[{ value: 60.02, color: "var(--fg-violet-500)" }]}
               accent="purple"
               centerValue="60.02%"
               trend="10%"
@@ -199,22 +201,22 @@ export default function Ecommerce3Page() {
             <div className="flex justify-center">
               <PieChart
                 segments={[
-                  { value: 50, color: "#7c3aed" },
-                  { value: 20, color: "#fbbf24" },
-                  { value: 15, color: "#10b981" },
-                  { value: 10, color: "#f97316" },
-                  { value: 5, color: "#0ea5e9" },
+                  { value: 50, color: "var(--fg-violet-500)" },
+                  { value: 20, color: "var(--fg-yellow-500)" },
+                  { value: 15, color: "var(--fg-green-500)" },
+                  { value: 10, color: "var(--fg-red-300)" },
+                  { value: 5, color: "var(--fg-cyan-500)" },
                 ]}
                 size="md"
               />
             </div>
             <div className="flex flex-col gap-1.5 text-xs text-fg-grey-700">
               {[
-                { label: "Google Ads", value: "$10,000", color: "#7c3aed" },
-                { label: "Facebook Ads", value: "$4,000", color: "#fbbf24" },
-                { label: "Discount", value: "$2,100", color: "#10b981" },
-                { label: "Freebies", value: "$1,900", color: "#f97316" },
-                { label: "Flyer", value: "$742", color: "#0ea5e9" },
+                { label: "Google Ads", value: "$10,000", color: "var(--fg-violet-500)" },
+                { label: "Facebook Ads", value: "$4,000", color: "var(--fg-yellow-500)" },
+                { label: "Discount", value: "$2,100", color: "var(--fg-green-500)" },
+                { label: "Freebies", value: "$1,900", color: "var(--fg-red-300)" },
+                { label: "Flyer", value: "$742", color: "var(--fg-cyan-500)" },
               ].map((row) => (
                 <div key={row.label} className="flex items-center justify-between py-1">
                   <span className="flex items-center gap-2"><span className="size-2 rounded-full" style={{ backgroundColor: row.color }} /> {row.label}</span>
@@ -292,14 +294,9 @@ export default function Ecommerce3Page() {
                 <Button color="black" size="sm" iconRight={<AltArrowRightLinear size={14} />}>See More</Button>
               </div>
             </div>
-            <DataTable<OrderRow>
+            <PagedDataTable<OrderRow>
               columns={orderColumns}
               rows={orders}
-              showPagination
-              currentPage={1}
-              totalPages={20}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 100"
             />
           </RecentRecords>
 
