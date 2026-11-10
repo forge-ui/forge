@@ -1,0 +1,22 @@
+[
+  { "id": "orders-list", "role": "collection", "prompt": "做一个订单列表页：顶部有搜索和状态筛选，表格显示订单号、客户、金额、状态和下单时间，支持勾选后批量导出。", "expect": [["DataTable"], ["StatusBadge"]] },
+  { "id": "customer-detail", "role": "detail", "prompt": "做一个客户详情页：头部是客户名称、头像和状态，下面分区展示联系方式、合同信息和最近订单。", "expect": [["Avatar"], ["Panel", "SurfaceCard", "DescriptionItem"]] },
+  { "id": "ops-dashboard", "role": "dashboard", "prompt": "做一个运营看板首页：四个关键指标（收入、订单数、新客户、转化率），一张近 12 个月收入趋势图，一张最近订单表。", "expect": [["StatCard", "LineChartStatCard", "ProgressStatCard"], ["ChartCard", "LineChartStatCard", "BarChartStatCard", "GroupedBarChart"]] },
+  { "id": "product-form", "role": "form-page", "prompt": "做一个新建商品页：分组填写基本信息（名称、分类、价格）、库存和描述，底部有保存和取消。", "expect": [["TextField"], ["SelectOption"], ["Button"]] },
+  { "id": "checkout-steps", "role": "form-page", "prompt": "做一个三步下单表单：选择商品、填写收货信息、确认订单，可以上一步和下一步。", "expect": [["Stepper"], ["Button"]] },
+  { "id": "profile-settings", "role": "settings", "prompt": "做一个个人资料设置页：头像上传、姓名、邮箱、手机号、所在时区，保存后提示成功。", "expect": [["TextField"], ["Avatar"], ["Button"]] },
+  { "id": "notification-settings", "role": "settings", "prompt": "做一个通知设置页：按邮件、站内信、短信三个渠道，分别开关订单、审批、系统三类通知。", "expect": [["Toggle", "Checkbox"]] },
+  { "id": "members-roles", "role": "collection", "prompt": "做一个成员与角色管理页：成员列表显示姓名、邮箱、角色和状态，可以邀请成员和修改角色。", "expect": [["DataTable"], ["Button"]] },
+  { "id": "login", "role": "auth", "prompt": "做一个后台登录页：邮箱和密码登录，记住我，忘记密码链接，登录中要有加载状态。", "expect": [["TextField"], ["Button"]] },
+  { "id": "agent-chat", "role": "agent", "prompt": "做一个智能体对话页：左侧会话列表，中间是对话气泡和流式回答，底部是输入栏，可以附加文件。", "expect": [["ChatInputBar"], ["ChatBubble"]] },
+  { "id": "task-board", "role": "collection", "prompt": "做一个任务看板：待办、进行中、已完成三列，任务卡片显示标题、负责人和截止日期，可以新建任务。", "expect": [["Avatar", "Button"]] },
+  { "id": "file-manager", "role": "collection", "prompt": "做一个文件管理页：显示文件夹和文件列表（名称、类型、大小、更新时间），支持上传和删除。", "expect": [["FileCard", "DataTable", "FileTypeIcon"]] },
+  { "id": "calendar", "role": "dashboard", "prompt": "做一个团队日程页：月视图日历显示会议和截止日期，右侧是今天的日程列表。", "expect": [["FullCalendar", "CalendarCard"]] },
+  { "id": "invoice-detail", "role": "detail", "prompt": "做一个发票详情页：发票抬头、开票方和收票方信息、明细表格、合计和下载按钮。", "expect": [["DataTable", "Panel", "SurfaceCard"], ["Button"]] },
+  { "id": "transactions", "role": "collection", "prompt": "做一个交易流水页：按时间范围和类型筛选，表格显示时间、对方、金额（收入绿色、支出红色）和状态。", "expect": [["DataTable"], ["StatusBadge"]] },
+  { "id": "approval", "role": "detail", "prompt": "做一个报销审批详情页：申请人、金额、事由、附件和审批记录，底部可以同意或驳回，驳回要填写原因并确认。", "expect": [["Button"], ["ConfirmationDialog", "Modal"]] },
+  { "id": "delete-confirm", "role": "collection", "prompt": "做一个项目列表页，每行可以删除项目，删除前弹窗确认，并说明删除后不可恢复。", "expect": [["DataTable"], ["ConfirmationDialog", "Modal"]] },
+  { "id": "workflow-list", "role": "collection", "prompt": "做一个自动化工作流列表页：显示名称、触发方式、最近运行时间、运行状态，可以启用或停用。", "expect": [["DataTable"], ["Toggle", "StatusBadge"]] },
+  { "id": "runtime-monitor", "role": "dashboard", "prompt": "做一个智能体运行监控页：顶部是运行中、排队、失败、今日完成四个指标，下面是运行记录表。", "expect": [["StatCard", "ProgressStatCard", "LineChartStatCard"], ["DataTable"]] },
+  { "id": "app-shell", "role": "layout", "prompt": "给后台搭一个整体框架：左侧菜单（工作台、订单、客户、设置），顶部有搜索、通知和个人信息，内容区先放一个工作台标题。", "expect": [["AppLayout"]] }
+]
