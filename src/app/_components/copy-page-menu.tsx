@@ -22,8 +22,8 @@ function setupPrompt(title: string) {
   return [
     "在当前项目里用 Forge UI（@forge-ui-official/core）实现界面。",
     `1. 先读 ${SITE}/llms.txt 和这一页：${pageUrl()}（${title}）。`,
-    `2. 安装 Forge Skill：curl -fsSL ${SITE}/install-skill.sh | bash`,
-    `3. 可选：接入只读 MCP 服务 ${SITE}/api/mcp，查询组件参数、页面组件和模板。`,
+    `2. 运行 curl -fsSL ${SITE}/setup.sh | bash 安装 Forge Skill 和只读 MCP 服务（${SITE}/api/mcp）。`,
+    "3. 写页面前先用 MCP 的 recommend 找最接近的模板和页面组件，写完用 check_code 检查。",
     "4. 组件一律从 @forge-ui-official/core 引入，颜色、字号、间距走 Forge token，不要手写已有的基础组件。",
   ].join("\n");
 }
