@@ -102,22 +102,26 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
 
           <fieldset className="flex flex-col gap-3">
             <legend className="mb-3 text-sm font-semibold text-fg-black">圆角</legend>
-            <ButtonGroup
-              items={RADIUS_PRESETS.map((preset) => ({ label: preset.label }))}
-              activeIndex={RADIUS_PRESETS.findIndex((preset) => preset.id === theme.radius)}
-              onChange={(index) => setTheme((current) => ({ ...current, radius: RADIUS_PRESETS[index].id }))}
-              ariaLabel="圆角"
-            />
+            <div className="-mx-1 max-w-full overflow-x-auto px-1 py-1">
+              <ButtonGroup
+                items={RADIUS_PRESETS.map((preset) => ({ label: preset.label }))}
+                activeIndex={RADIUS_PRESETS.findIndex((preset) => preset.id === theme.radius)}
+                onChange={(index) => setTheme((current) => ({ ...current, radius: RADIUS_PRESETS[index].id }))}
+                ariaLabel="圆角"
+              />
+            </div>
           </fieldset>
 
           <fieldset className="flex flex-col gap-3">
             <legend className="mb-3 text-sm font-semibold text-fg-black">字体</legend>
-            <ButtonGroup
-              items={FONT_PRESETS.map((preset) => ({ label: preset.label.replace("（默认）", "") }))}
-              activeIndex={FONT_PRESETS.findIndex((preset) => preset.id === theme.font)}
-              onChange={(index) => setTheme((current) => ({ ...current, font: FONT_PRESETS[index].id }))}
-              ariaLabel="字体"
-            />
+            <div className="-mx-1 max-w-full overflow-x-auto px-1 py-1">
+              <ButtonGroup
+                items={FONT_PRESETS.map((preset) => ({ label: preset.label.replace("（默认）", "") }))}
+                activeIndex={FONT_PRESETS.findIndex((preset) => preset.id === theme.font)}
+                onChange={(index) => setTheme((current) => ({ ...current, font: FONT_PRESETS[index].id }))}
+                ariaLabel="字体"
+              />
+            </div>
             {font.note && <p className="text-xs leading-5 text-fg-grey-700">{font.note}</p>}
           </fieldset>
 
