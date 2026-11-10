@@ -21,6 +21,7 @@
 ## 给编码助手
 
 - [MCP 服务器](https://forgeui.org/docs/mcp.md): search、recommend、get_component、get_block、get_tokens 等只读工具
+- [页面检查](https://forgeui.org/docs/check.md): MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码
 - [Skill](https://forgeui.org/docs/ui-for-agents.md): 安装 forge-skill
 - [AGENTS.md](https://forgeui.org/docs/agents-md.md): 放在项目根目录的使用规则
 - [DESIGN.md](https://forgeui.org/DESIGN.md): 视觉规则，带 YAML token，遵循 google-labs-code/design.md

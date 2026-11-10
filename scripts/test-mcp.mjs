@@ -4,7 +4,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { executeTool, handleRequest, toolNames } from "../src/lib/mcp/server.mjs";
 const url = new URL(process.env.MCP_TEST_URL ?? "http://localhost/api/mcp");
-const inputs = { search: { query: "状态", type: "all", page: 1, pageSize: 5 }, recommend: { need: "订单列表，带筛选和批量导出" }, get_tokens: { query: "主色" }, list_components: { page: 1, pageSize: 5 }, get_component: { slug: "StatusBadge", detail: "summary" }, list_blocks: { page: 1, pageSize: 5 }, get_block: { slug: "kpi-metrics", detail: "summary" }, list_screens: { page: 1, pageSize: 5 }, get_screen: { slug: "dashboards/analytics", detail: "summary" }, get_rules: { topic: "status" }, list_guides: { page: 1, pageSize: 5 }, get_guide: { slug: "dashboard" } };
+const inputs = { search: { query: "状态", type: "all", page: 1, pageSize: 5 }, recommend: { need: "订单列表，带筛选和批量导出" }, get_tokens: { query: "主色" }, check_code: { code: '<a href="#">x</a>', filename: "page.tsx" }, list_components: { page: 1, pageSize: 5 }, get_component: { slug: "StatusBadge", detail: "summary" }, list_blocks: { page: 1, pageSize: 5 }, get_block: { slug: "kpi-metrics", detail: "summary" }, list_screens: { page: 1, pageSize: 5 }, get_screen: { slug: "dashboards/analytics", detail: "summary" }, get_rules: { topic: "status" }, list_guides: { page: 1, pageSize: 5 }, get_guide: { slug: "dashboard" } };
 test("all tool handlers, pagination, lookup failures", () => {
   for (const name of toolNames) assert.ok(executeTool(name, inputs[name]));
   assert.equal(executeTool("list_guides", { page: 2, pageSize: 5 }).items.length, 3);
@@ -37,6 +37,12 @@ test("summaries stay small and lookups tolerate naming differences", () => {
   assert.ok(executeTool("get_component", { slug: "DataTable", detail: "full" }).sourceCode.length > 10000);
   assert.ok(JSON.stringify(executeTool("get_block", { slug: "kanban-board", detail: "summary" })).length < 2000);
   assert.throws(() => executeTool("get_component", { slug: "DataTabel", detail: "summary" }), /可能是：DataTable/);
+});
+test("check_code reports rule, audit id and fix", () => {
+  const report = executeTool("check_code", { code: '<Button color="violet" onClick={() => {}}>保存</Button>', filename: "page.tsx", listRules: true });
+  assert.deepEqual(report.findings.map(item => item.rule).sort(), ["empty-handler", "violet-color-prop"]);
+  assert.equal(report.summary.errors, 2);
+  assert.ok(report.rules.length >= 15);
 });
 test("recommend and tokens", () => {
   const plan = executeTool("recommend", { need: "订单列表，带筛选和批量导出" });
