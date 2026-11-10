@@ -59,7 +59,7 @@ const items: ShowcaseItem[] = [
     href: "/templates/dashboards",
     title: "仪表盘",
     description: "10 个已填数据的控制台，覆盖项目、分析、客户、电商和财务。",
-    thumbnail: asset("/images/showcase/dashboards/finance-3.png"),
+    thumbnail: asset("/images/showcase/dashboards/ecommerce-1.png"),
   },
   {
     href: "https://github.com/forge-ui/forge-starter",

@@ -66,7 +66,7 @@ export default function CrmSaleDetailPage() {
 function Metric({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 p-4">
-      <div className="flex items-center gap-2 text-fg-violet">
+      <div className="flex items-center gap-2 text-fg-blue">
         {icon}
         <span className="text-xs font-semibold text-fg-grey-500">{label}</span>
       </div>

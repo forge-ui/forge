@@ -68,8 +68,8 @@ export default function AddOrderPage() {
           <ConfirmationDialog
             title="Save Changes?"
             description="Do you want to save this order? This action can't be undone"
-            color="purple"
-            icon={<DangerTriangleLinear size={24} color={"var(--fg-violet-500)"} />}
+            color="blue"
+            icon={<DangerTriangleLinear size={24} color={"var(--fg-blue-500)"} />}
             confirmLabel="Yes, Save"
             cancelLabel="Don't Save"
             onConfirm={handleCloseSaveModal}
@@ -81,7 +81,7 @@ export default function AddOrderPage() {
       <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => window.history.back()}>
+            <IconButton variant="tertiary" color="blue" shape="circle" onClick={() => window.history.back()}>
               <ArrowLeftLinear size={16} />
             </IconButton>
             <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Add Order</h1>

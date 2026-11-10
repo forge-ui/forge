@@ -165,7 +165,7 @@ export function ProtaskAuthPage({
                     <Button variant="unstyled"
                       type="button"
                       onClick={() => router.push(`${basePath}/forgot-password`)}
-                      className="text-sm font-bold leading-5 tracking-fg text-fg-violet"
+                      className="text-sm font-bold leading-5 tracking-fg text-fg-blue"
                     >
                       Forgot Password
                     </Button>
@@ -183,7 +183,7 @@ export function ProtaskAuthPage({
                     iconRight={<EyeBoldIcon size={18} />}
                   />
                   <div className="flex items-start gap-2 overflow-hidden">
-                    <Checkbox checked={false} color="purple" />
+                    <Checkbox checked={false} color="blue" />
                     <span className="text-sm font-medium leading-5 tracking-fg text-fg-grey-700">
                       I agree to all the Terms & Privacy Policy
                     </span>
@@ -220,7 +220,7 @@ export function ProtaskAuthPage({
               <Button variant="unstyled"
                 type="button"
                 onClick={() => router.push(footerHref)}
-                className="font-bold text-fg-violet"
+                className="font-bold text-fg-blue"
               >
                 {copy.footerLabel}
               </Button>

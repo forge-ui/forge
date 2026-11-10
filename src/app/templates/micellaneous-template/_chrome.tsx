@@ -18,7 +18,7 @@ export function MicellaneousTemplateShell({ children }: { children: ReactNode })
   return (
     <AppLayout
       mode="light"
-      accent="purple"
+      accent="blue"
       logo={<ProtaskLogoMark />}
       profilePosition="topbar"
       menuItems={menuItems}
@@ -50,7 +50,7 @@ export function MicellaneousPageHeader({ current, ...props }: MicellaneousPageHe
   return (
     <PageTitleToolbar
       {...props}
-      color={"purple" as const}
+      color={"blue" as const}
       breadcrumbItems={[{ label: "Dashboard", href: "/templates/micellaneous-template/calendar" }, { label: current }]}
     />
   );

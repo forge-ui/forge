@@ -133,14 +133,14 @@ export default function ProjectTemplatePage() {
 
         <div className="flex items-center justify-between">
           <ToolbarPillTabs
-            color="purple"
+            color="blue"
             tabs={statusTabs.map((label) => ({ label, active: label === activeStatus }))}
             onChange={(index) => setActiveStatus(statusTabs[index])}
             className="min-w-[500px]"
           />
           <div className="flex items-center gap-4">
             <ButtonGroup
-              color="purple"
+              color="blue"
               shape="pill"
               activeIndex={view === "table" ? 0 : 1}
               items={[{ label: "Table" }, { label: "Card" }]}
@@ -156,8 +156,8 @@ export default function ProjectTemplatePage() {
           <DataTable<Project>
             columns={columns}
             rows={filteredProjects}
-            color="purple"
-            checkboxColor="purple"
+            color="blue"
+            checkboxColor="blue"
             showCheckbox
             showPagination
             currentPage={1}
@@ -219,7 +219,7 @@ function ProjectCardGrid({
               <span className="text-fg-grey-500">Progress</span>
               <span className="font-semibold text-fg-black">{project.progress}%</span>
             </div>
-            <ProgressBar value={project.progress} color={project.status === "Blocked" ? "red" : project.status === "Completed" ? "green" : "purple"} />
+            <ProgressBar value={project.progress} color={project.status === "Blocked" ? "red" : project.status === "Completed" ? "green" : "blue"} />
           </div>
           <div className="mt-3 flex items-center justify-between">
             <AvatarGroup overflowCount={project.memberOverflow}>

@@ -47,7 +47,7 @@ export default function AddCategoryPage() {
       <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => router.push("/templates/ecommerce/categories")}>
+            <IconButton variant="tertiary" color="blue" shape="circle" onClick={() => router.push("/templates/ecommerce/categories")}>
               <ArrowLeftLinear size={16} />
             </IconButton>
             <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Add Category</h1>
@@ -98,11 +98,11 @@ export default function AddCategoryPage() {
           <h3 className="text-lg font-semibold text-fg-black mb-5">Category</h3>
           <p className="text-sm text-fg-grey-700 mb-1.5">Photo</p>
           <div className="flex flex-col items-center gap-4 py-4">
-            <div className="w-[100px] h-[100px] rounded-xl bg-fg-violet-50 flex items-center justify-center">
+            <div className="w-[100px] h-[100px] rounded-xl bg-fg-blue-50 flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                <path d="M21 15.4998V5.5C21 4.11929 19.8807 3 18.5 3H5.5C4.11929 3 3 4.11929 3 5.5V18.4998C3 19.8805 4.11929 20.9998 5.5 20.9998H18.5C19.0667 20.9998 19.5896 20.8113 20.0094 20.4937" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-fg-violet" />
-                <circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="1.5" className="text-fg-violet" />
-                <path d="M3 16L7 12.5C8 11.5 9 11.5 10 12.5L17 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-fg-violet" />
+                <path d="M21 15.4998V5.5C21 4.11929 19.8807 3 18.5 3H5.5C4.11929 3 3 4.11929 3 5.5V18.4998C3 19.8805 4.11929 20.9998 5.5 20.9998H18.5C19.0667 20.9998 19.5896 20.8113 20.0094 20.4937" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-fg-blue" />
+                <circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="1.5" className="text-fg-blue" />
+                <path d="M3 16L7 12.5C8 11.5 9 11.5 10 12.5L17 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-fg-blue" />
               </svg>
             </div>
             <p className="text-sm text-center text-fg-grey-700 leading-5">

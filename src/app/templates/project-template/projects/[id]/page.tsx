@@ -90,7 +90,7 @@ export default function ProjectDetailPage() {
         </section>
 
         <TabBar
-          color="purple"
+          color="blue"
           surface="page"
           tabs={detailTabs.map((item) => ({ label: item.label, active: tab === item.value }))}
           onChange={(index) => setTab(detailTabs[index]?.value ?? "overview")}
@@ -207,12 +207,12 @@ function Info({ label, value }: { label: string; value: string }) {
   return <div><div className="text-sm text-fg-grey-500">{label}</div><div className="mt-0.5 text-fg-black">{value}</div></div>;
 }
 
-function Metric({ title, value, progress, color = "purple" }: { title: string; value: string; progress: number; color?: "purple" | "red" }) {
+function Metric({ title, value, progress, color = "blue" }: { title: string; value: string; progress: number; color?: "blue" | "red" }) {
   return <ProjectSection className={projectPanelClass} title={title}><CellMuted>2 Jul - Today</CellMuted><div className="text-3xl font-semibold text-fg-black">{value}</div><ProgressBar value={progress} color={color} /><div className="flex justify-between text-sm"><span className="font-semibold text-fg-green-500">10%</span><span className="text-fg-grey-500">+150 today</span></div></ProjectSection>;
 }
 
 function ActivityList() {
-  return <div className="relative flex flex-col gap-5 border-l border-dashed border-fg-grey-300 pl-5">{activityItems.map((item) => <div key={item.title} className="relative"><span className="absolute -left-[27px] top-1 size-3 rounded-full border-2 border-fg-violet-100 bg-fg-violet" /><div className="flex justify-between"><h4 className="font-semibold text-fg-black">{item.title}</h4><span className="text-sm text-fg-grey-500">{item.time}</span></div><p className="mt-1 text-sm text-fg-grey-700"><span className="font-semibold text-fg-violet">Jay Parker</span> {item.body.replace("Jay Parker ", "")}</p></div>)}</div>;
+  return <div className="relative flex flex-col gap-5 border-l border-dashed border-fg-grey-300 pl-5">{activityItems.map((item) => <div key={item.title} className="relative"><span className="absolute -left-[27px] top-1 size-3 rounded-full border-2 border-fg-blue-100 bg-fg-blue" /><div className="flex justify-between"><h4 className="font-semibold text-fg-black">{item.title}</h4><span className="text-sm text-fg-grey-500">{item.time}</span></div><p className="mt-1 text-sm text-fg-grey-700"><span className="font-semibold text-fg-blue">Jay Parker</span> {item.body.replace("Jay Parker ", "")}</p></div>)}</div>;
 }
 
 const boardGroups = [

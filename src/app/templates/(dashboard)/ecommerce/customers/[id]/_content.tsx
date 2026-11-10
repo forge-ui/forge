@@ -194,7 +194,7 @@ function CustomerSidebar() {
         <div className="flex flex-col items-center gap-1">
           <div className="flex items-center gap-2">
             <h3 className="text-xl font-semibold text-fg-black">Linda Blair</h3>
-            <span className="rounded-md bg-fg-violet px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+            <span className="rounded-md bg-fg-blue px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
               Pro
             </span>
           </div>
@@ -419,8 +419,8 @@ export default function CustomerDetailPage() {
             >
               <div className="px-6 pb-6">
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-fg-violet-50">
-                    <span className="h-3 w-3 rounded-full bg-fg-violet" />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-fg-blue-50">
+                    <span className="h-3 w-3 rounded-full bg-fg-blue" />
                   </span>
                   <div>
                     <p className="text-xs text-fg-grey-700">Total</p>
@@ -431,11 +431,11 @@ export default function CustomerDetailPage() {
                   </div>
                 </div>
                 <SmoothLineChart
-                  series={[{ data: buyStatisticData, color: "purple" }]}
-                  accent="purple"
+                  series={[{ data: buyStatisticData, color: "blue" }]}
+                  accent="blue"
                   activeIndex={6}
                   showTooltip
-                  tooltipItems={[{ label: "Label", value: "$680", color: "bg-fg-violet", trend: "up" }]}
+                  tooltipItems={[{ label: "Label", value: "$680", color: "bg-fg-blue", trend: "up" }]}
                   showYAxis
                   yAxisLabels={["$200", "$400", "$600", "$800", "$1k", "$1.2k"]}
                   xAxisLabels={buyStatisticMonths}

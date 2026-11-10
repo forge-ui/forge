@@ -81,7 +81,7 @@ function MicellaneousActionsContent() {
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"
           left={<ToolbarSearchInput placeholder="Search actions..." />}
-          right={<ToolbarActions><ProtaskFilterTrigger color="purple" /><ToolbarShowSelect value="10" /></ToolbarActions>}
+          right={<ToolbarActions><ProtaskFilterTrigger color="blue" /><ToolbarShowSelect value="10" /></ToolbarActions>}
         />
         <DataTable<ActionRow> title="Action Board" subtitle="Table and row action pattern" columns={columns} rows={actions} showCheckbox showPagination currentPage={1} totalPages={3} paginationLabel="Showing 1-4 from 24" />
         <ProtaskDeleteDialog

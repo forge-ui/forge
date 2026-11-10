@@ -147,10 +147,10 @@ const sellerReviews: SellerReviewItem[] = [
 ];
 
 const attachmentBadgeStyles: Record<Exclude<AttachmentKind, "image">, { wrapper: string; label: string }> = {
-  wav: { wrapper: "bg-fg-violet-100", label: "bg-fg-violet-500 text-white" },
+  wav: { wrapper: "bg-fg-blue-100", label: "bg-fg-blue-500 text-white" },
   zip: { wrapper: "bg-fg-yellow-100", label: "bg-fg-yellow-500 text-white" },
   pdf: { wrapper: "bg-fg-red-100", label: "bg-fg-red text-white" },
-  mp4: { wrapper: "bg-fg-violet-100", label: "bg-fg-violet text-white" },
+  mp4: { wrapper: "bg-fg-blue-100", label: "bg-fg-blue text-white" },
 };
 
 const sellerAttachments: SellerAttachmentItem[] = [
@@ -345,7 +345,7 @@ export default function SellerDetailPage() {
       <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-[336px_minmax(0,1fr)]" data-testid="seller-layout">
         {/* Left Sidebar */}
         <Panel variant="custom" className="min-w-0 rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
-          <div className="absolute left-[7px] right-[7px] top-[7px] h-[109px] rounded-xl bg-gradient-to-r from-fg-violet via-purple-300 to-fg-yellow-100" />
+          <div className="absolute left-[7px] right-[7px] top-[7px] h-[109px] rounded-xl bg-gradient-to-r from-fg-blue via-purple-300 to-fg-yellow-100" />
 
           <div className="relative z-10 flex flex-col items-center gap-3 pt-10">
             <div className="relative">
@@ -392,7 +392,7 @@ export default function SellerDetailPage() {
               </div>
               <Button variant="unstyled"
                 type="button"
-                className="mt-6 cursor-pointer border-none bg-transparent p-0 text-fg-grey-500 hover:text-fg-violet transition-colors"
+                className="mt-6 cursor-pointer border-none bg-transparent p-0 text-fg-grey-500 hover:text-fg-blue transition-colors"
                 onClick={() => void copyToClipboard(display.email)}
               >
                 <CopyLinear size={18} />
@@ -405,7 +405,7 @@ export default function SellerDetailPage() {
               </div>
               <Button variant="unstyled"
                 type="button"
-                className="mt-6 cursor-pointer border-none bg-transparent p-0 text-fg-grey-500 hover:text-fg-violet transition-colors"
+                className="mt-6 cursor-pointer border-none bg-transparent p-0 text-fg-grey-500 hover:text-fg-blue transition-colors"
                 onClick={() => void copyToClipboard(display.phone)}
               >
                 <CopyLinear size={18} />

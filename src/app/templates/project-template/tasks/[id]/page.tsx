@@ -50,7 +50,7 @@ export default function TaskDetailPage() {
             </ProjectSection>
             <ProjectSection className={projectPanelClass} title="Description"><p className="leading-6 text-fg-grey-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl dui, fringilla ac venenatis ut, varius at arcu.</p></ProjectSection>
             <ProjectSection className={projectPanelClass} title="Checklist" action={<Button variant="tertiary"><AddCircleLinear size={18} /></Button>}>
-              {["Wireframe", "Moodboard", "Prototype"].map((item, index) => <Panel variant="custom" key={item} className="flex items-center justify-between rounded-2xl border border-fg-grey-200 p-4"><span className="text-fg-black">{item}</span><Checkbox color="purple" checked={index === 0} /></Panel>)}
+              {["Wireframe", "Moodboard", "Prototype"].map((item, index) => <Panel variant="custom" key={item} className="flex items-center justify-between rounded-2xl border border-fg-grey-200 p-4"><span className="text-fg-black">{item}</span><Checkbox color="blue" checked={index === 0} /></Panel>)}
             </ProjectSection>
             <ProjectSection className={projectPanelClass} title="Activity">
               {activityItems.map((item) => <div key={item.title} className="border-b border-fg-grey-200 py-3"><h3 className="font-semibold text-fg-black">{item.title}</h3><p className="text-sm text-fg-grey-700">{item.body}</p></div>)}

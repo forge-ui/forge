@@ -38,11 +38,11 @@ export default function MembersPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagnifierBoldIcon size={18} color={"var(--fg-grey-800)"} />} /></div>
-            <ButtonGroup color="purple" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
+            <ButtonGroup color="blue" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
           </div>
           <div className="flex items-center gap-4"><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
         </div>
-        {view === "table" ? <DataTable<Member> columns={columns} rows={members} color="purple" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" /> : <MemberCards members={members} onOpen={(member) => router.push(`/templates/project-template/members/${member.id}`)} onEdit={(member) => openModal("edit", member)} onDelete={(member) => openModal("delete", member)} />}
+        {view === "table" ? <DataTable<Member> columns={columns} rows={members} color="blue" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" /> : <MemberCards members={members} onOpen={(member) => router.push(`/templates/project-template/members/${member.id}`)} onEdit={(member) => openModal("edit", member)} onDelete={(member) => openModal("delete", member)} />}
       </div>
       <TemplateFormModal
         title={modal === "edit" ? "Member Edit" : "Member Add New"}

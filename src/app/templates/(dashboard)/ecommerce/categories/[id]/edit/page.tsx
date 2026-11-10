@@ -47,7 +47,7 @@ export default function EditCategoryPage() {
           <div className="flex items-center gap-3">
             <IconButton
               variant="tertiary"
-              color="purple"
+              color="blue"
               shape="circle"
               onClick={() => router.push("/templates/ecommerce/categories")}
             >

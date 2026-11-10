@@ -101,7 +101,7 @@ function CrmLeadsContent() {
             trend="10%"
             note="+150 today"
             icon={<UsersGroupTwoRoundedBoldDuotone size={20} />}
-            iconClassName="bg-fg-grey-50 text-fg-violet"
+            iconClassName="bg-fg-grey-50 text-fg-blue"
             footer={
               <AvatarGroup>
                 {leads.slice(0, 3).map((lead) => (
@@ -147,7 +147,7 @@ function CrmLeadsContent() {
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"
           left={<ToolbarSearchInput placeholder="Search. . ." />}
-          right={<ToolbarActions><ToolbarDatepicker label="Select Dates" /><ProtaskFilterTrigger color="purple" count={0} /><ToolbarShowSelect value="10" /></ToolbarActions>}
+          right={<ToolbarActions><ToolbarDatepicker label="Select Dates" /><ProtaskFilterTrigger color="blue" count={0} /><ToolbarShowSelect value="10" /></ToolbarActions>}
         />
         <DataTable<Lead> columns={columns} rows={leads} showCheckbox showPagination currentPage={1} totalPages={6} paginationLabel="Showing 1-10 from 100" />
         <ProtaskDeleteDialog

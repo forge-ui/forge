@@ -50,7 +50,7 @@ export default function AddProductPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => router.push("/templates/ecommerce/products")}>
+            <IconButton variant="tertiary" color="blue" shape="circle" onClick={() => router.push("/templates/ecommerce/products")}>
               <ArrowLeftLinear size={16} />
             </IconButton>
             <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">Add Product</h1>
@@ -205,8 +205,8 @@ export default function AddProductPage() {
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Shipping</h3>
             <div className="mb-3 flex items-center gap-2">
-              <Checkbox checked color="purple" />
-              <span className="text-sm text-fg-violet">This is a physical product</span>
+              <Checkbox checked color="blue" />
+              <span className="text-sm text-fg-blue">This is a physical product</span>
             </div>
             <Grid columns={{ base: 1, sm: 2, xl: 4 }} gap={8}>
               <TextField label="Weight" placeholder="Product weight..." shape="pill" />

@@ -27,7 +27,7 @@ export default function ProjectTemplateOverviewPage() {
               <div className="flex items-center justify-between"><ProjectLogo name={project.logo} /><StatusBadge label={project.status} color={project.status === "Completed" ? "green" : project.status === "Blocked" ? "red" : project.status === "Draft" ? "grey" : "yellow"} /></div>
               <h2 className="mt-3 text-lg font-semibold text-fg-black">{project.name}</h2>
               <p className="mt-1 text-fg-grey-500">{project.client}</p>
-              <div className="mt-3"><ProgressBar value={project.progress} color={project.status === "Completed" ? "green" : project.status === "Blocked" ? "red" : "purple"} /></div>
+              <div className="mt-3"><ProgressBar value={project.progress} color={project.status === "Completed" ? "green" : project.status === "Blocked" ? "red" : "blue"} /></div>
               <div className="mt-3 flex items-center justify-between"><AvatarGroup overflowCount={project.memberOverflow}>{project.members.map((src, index) => <Avatar key={index} src={src} size="sm" />)}</AvatarGroup><FolderOpenLinear size={18} color={"var(--fg-grey-800)"} /></div>
             </Button>
           ))}

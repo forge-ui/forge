@@ -203,7 +203,7 @@ function CrmCustomerDetailContent() {
       <div className="flex min-w-0 flex-col gap-6">
         <div className="min-w-0 overflow-x-auto">
           <TabBar
-            color="purple"
+            color="blue"
             tabs={detailTabs.map((label) => ({ label, active: label === activeTab }))}
             onChange={(index) => setManualTab(detailTabs[index])}
             className="min-w-max"
@@ -295,7 +295,7 @@ function CustomerProfileCard({
 
       <div className="border-t border-fg-grey-200 px-6 pt-4">
         <TabBar
-          color="purple"
+          color="blue"
           tabs={(["Details", "Address"] as const).map((label) => ({ label, active: activeTab === label }))}
           onChange={(index) => onTabChange((["Details", "Address"] as const)[index])}
           className="w-full [&>button]:flex-1 [&>button]:justify-center"
@@ -373,7 +373,7 @@ function ProfileField({
 
 function PillValue({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-full border border-fg-grey-200 px-3 py-1.5 text-sm font-medium leading-5 tracking-fg text-fg-violet">
+    <span className="inline-flex rounded-full border border-fg-grey-200 px-3 py-1.5 text-sm font-medium leading-5 tracking-fg text-fg-blue">
       {children}
     </span>
   );
@@ -386,7 +386,7 @@ function DetailToolbar() {
       left={<ToolbarSearchInput placeholder="Search. . ." />}
       right={
         <ToolbarActions>
-          <ProtaskFilterTrigger color="purple" count={0} />
+          <ProtaskFilterTrigger color="blue" count={0} />
           <ToolbarShowSelect value="5" />
         </ToolbarActions>
       }
@@ -455,8 +455,8 @@ function ActivityEntry({ type }: { type: string }) {
           avatar: isLog ? lindaBlairAvatar : mainProfile.avatar,
         }
       : {
-          icon: <VideocameraRecordLinear size={16} color={"var(--fg-violet-500)"} />,
-          iconClassName: "bg-fg-violet-50",
+          icon: <VideocameraRecordLinear size={16} color={"var(--fg-blue-500)"} />,
+          iconClassName: "bg-fg-blue-50",
           meta: isLog ? "Call schedule created John Doe Hoegan" : "Call schedule created Lisa Williams",
           title: "Meeting with Linda Blair",
           avatar: isLog ? mainProfile.avatar : lindaBlairAvatar,
@@ -518,7 +518,7 @@ function CallLogDetailGrid() {
       <div className="min-w-0 border-fg-grey-200 md:border-r md:pr-4">
         <p className="text-xs font-medium leading-4 tracking-fg text-fg-grey-700">Record</p>
         <div className="mt-2 flex min-w-0 items-center gap-2">
-          <PlayCircleBold size={24} color={"var(--fg-violet-400)"} />
+          <PlayCircleBold size={24} color={"var(--fg-blue-400)"} />
           <Waveform />
         </div>
       </div>
@@ -535,7 +535,7 @@ function Waveform() {
       {bars.map((height, index) => (
         <span
           key={`${height}-${index}`}
-          className={index < 10 ? "w-0.5 rounded-full bg-fg-violet" : "w-0.5 rounded-full bg-fg-grey-200"}
+          className={index < 10 ? "w-0.5 rounded-full bg-fg-blue" : "w-0.5 rounded-full bg-fg-grey-200"}
           style={{ height }}
         />
       ))}
@@ -584,8 +584,8 @@ function TransactionsPanel() {
               className="grid grid-cols-[minmax(260px,1fr)_176px_148px_160px_52px] border-b border-fg-grey-200 last:border-b-0"
             >
               <div className="flex items-center gap-2 bg-white px-6 py-4">
-                <div className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-violet-50">
-                  <DocumentTextLinear size={18} color={"var(--fg-violet-500)"} />
+                <div className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-blue-50">
+                  <DocumentTextLinear size={18} color={"var(--fg-blue-500)"} />
                 </div>
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold leading-5 tracking-fg text-fg-black">{row.name}</p>
@@ -712,7 +712,7 @@ function PaginationSummary({ label, plain = false }: { label: string; plain?: bo
   return (
     <div className={`flex flex-col gap-4 ${plain ? "" : "border-t border-fg-grey-200"} p-5 md:flex-row md:items-center md:justify-between`}>
       <p className="text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{label}</p>
-      <Pagination totalPages={5} currentPage={1} color="purple" />
+      <Pagination totalPages={5} currentPage={1} color="blue" />
     </div>
   );
 }

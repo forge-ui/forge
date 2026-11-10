@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "./_components/site-header";
 import { HomeHero } from "./_components/home-hero";
+import { HomeSections } from "./_components/home-sections";
 import { changelogHref } from "./docs/_changelog";
 import { coreVersion } from "./docs/_versions";
 import "./_components/home-page.css";
@@ -34,6 +35,7 @@ export default function HomePage() {
             </div>
           </HomeHero>
         </section>
+        <HomeSections />
       </main>
     </div>
   );

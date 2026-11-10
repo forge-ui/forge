@@ -32,7 +32,7 @@ export function ProjectTemplateShell({ children }: { children: React.ReactNode }
   return (
     <AppLayout
       mode="dark"
-      accent="purple"
+      accent="blue"
       profilePosition="topbar"
       logo={<ProtaskLogo />}
       logoText="Protask"
@@ -67,7 +67,7 @@ export function PageTop({
       <div className="flex min-w-0 flex-col gap-2">
         <h1 className="text-3xl font-semibold leading-9 text-fg-black">{title}</h1>
         <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="font-semibold text-fg-violet">{parent}</span>
+          <span className="font-semibold text-fg-blue">{parent}</span>
           <span className="text-fg-grey-300">/</span>
           <span className="text-fg-grey-500">{current}</span>
         </div>

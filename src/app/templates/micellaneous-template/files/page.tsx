@@ -76,7 +76,7 @@ function MicellaneousFilesContent() {
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"
           left={<ToolbarSearchInput placeholder="Search..." />}
-          right={<ToolbarActions><ToolbarDatepicker label="Select Dates" /><ProtaskFilterTrigger color="purple" count={0} /></ToolbarActions>}
+          right={<ToolbarActions><ToolbarDatepicker label="Select Dates" /><ProtaskFilterTrigger color="blue" count={0} /></ToolbarActions>}
         />
         <section>
           <h2 className="text-xl font-semibold text-fg-black">Folders</h2>
@@ -102,8 +102,8 @@ function MicellaneousFilesContent() {
         />
         <Modal open={uploadOpen || isUploadDialog} onClose={closeState} title="Add Files" width="w-[620px]">
           <div className="flex flex-col gap-5 p-6">
-            <Panel variant="custom" className="rounded-2xl border border-dashed border-fg-violet-300 bg-fg-violet-100 p-5 text-center">
-              <CloudUploadLinear size={32} color="var(--fg-violet)" />
+            <Panel variant="custom" className="rounded-2xl border border-dashed border-fg-blue-300 bg-fg-blue-100 p-5 text-center">
+              <CloudUploadLinear size={32} color="var(--fg-blue)" />
               <p className="mt-3 text-sm font-semibold leading-5 tracking-fg text-fg-black">
                 Drop files here or browse from your device
               </p>

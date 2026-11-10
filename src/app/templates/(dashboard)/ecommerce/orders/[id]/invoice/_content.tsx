@@ -84,7 +84,7 @@ export default function OrderInvoicePage() {
       <div className="flex items-start justify-between max-sm:flex-col max-sm:items-stretch max-sm:gap-3 max-sm:[&>div]:min-w-0 max-sm:[&>div]:max-w-full max-sm:[&>div]:flex-wrap">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <IconButton variant="tertiary" color="purple" shape="circle" onClick={() => window.history.back()}>
+            <IconButton variant="tertiary" color="blue" shape="circle" onClick={() => window.history.back()}>
               <ArrowLeftLinear size={16} />
             </IconButton>
             <h1 className="text-display-l font-semibold text-fg-black leading-9 tracking-fg">{invoiceId}</h1>
@@ -107,7 +107,7 @@ export default function OrderInvoicePage() {
           <div className="flex items-start justify-between pt-10 px-10">
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2 h-[34px]">
-                <div className="w-[34px] h-[34px] flex items-center justify-center bg-fg-violet rounded-lg">
+                <div className="w-[34px] h-[34px] flex items-center justify-center bg-fg-blue rounded-lg">
                   <span className="text-white font-bold text-sm">Z</span>
                 </div>
                 <span className="text-2xl font-semibold text-fg-black">

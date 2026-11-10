@@ -33,7 +33,7 @@ export default function FilesPage() {
       <div className={projectPageStackClass}>
         <PageTop title="File Manager" current="File Manager" actions={<Button iconLeft={<AddCircleLinear size={18} />} onClick={() => setModal("add")}>Add File</Button>} />
         <div className="flex justify-end gap-4"><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
-        <DataTable<FileRow> columns={columns} rows={rows} color="purple" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-9 from 100" />
+        <DataTable<FileRow> columns={columns} rows={rows} color="blue" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-9 from 100" />
       </div>
       <TemplateFormModal
         title="Add Attachment"
