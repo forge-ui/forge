@@ -25,7 +25,7 @@ export function CodeBlock({
   return (
     <div className="relative overflow-hidden rounded-lg border border-fg-grey-200 bg-white">
       {lang && (
-        <div className="border-b border-fg-grey-200 bg-fg-grey-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-fg-grey-700">
+        <div data-md-skip className="border-b border-fg-grey-200 bg-fg-grey-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-fg-grey-700">
           {lang}
         </div>
       )}

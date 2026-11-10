@@ -23,13 +23,14 @@ export default function DesignMdPage() {
       <DocHeader
         breadcrumbs={[{ label: "文档", href: "/docs" }, { label: "DESIGN.md" }]}
         title="DESIGN.md"
-        description="一页纸的 Forge 视觉规则：颜色、字色层级、字体、圆角、状态和布局，给编码助手做界面时对照。"
+        description="Forge 的视觉规则：颜色、字色层级、字体、圆角、状态和布局。按 google-labs-code/design.md 规范编写，开头是 YAML token，后面是说明和该做、不该做的事。"
       />
       <DocSection {...toc[0]}>
         <PromptBlock content={designSource} />
       </DocSection>
       <DocSection {...toc[1]}>
-        <p>放到项目根目录，在 AGENTS.md 或 CLAUDE.md 里写一句“做界面前先读 DESIGN.md”。</p>
+        <p>放到项目根目录。DESIGN.md 不会被编码助手自动读取，要在 AGENTS.md 或 CLAUDE.md 里加一句：“所有视觉和交互决定遵循 DESIGN.md，实现时用语义 token，不写 hex。”</p>
+        <p>文件里的颜色和 core 的 tokens.css 自动比对，并用官方 lint 检查结构，改动 token 时会一起报出来。</p>
         <CodeBlock code={usageCmd} lang="bash" />
       </DocSection>
       <DocSection {...toc[2]}>

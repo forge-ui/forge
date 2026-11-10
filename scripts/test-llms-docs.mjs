@@ -11,8 +11,9 @@ test("repository sources generate all seven deterministic documents", () => {
   const second = generateDocuments(root);
   assert.equal(first.outputs.size, 7);
   assert.equal(first.fingerprint, second.fingerprint);
-  for (const content of first.outputs.values()) {
+  for (const [name, content] of first.outputs) {
     assert.ok(content.includes("@forge-ui-official/core@" + loadSources(root).core.version));
+    if (name === "llms.txt") continue;
     assert.ok(content.includes(loadSources(root).blocks.length + " Blocks are implemented as copyable project source"));
     assert.match(content, /soft StatusBadge/);
     assert.match(content, /@forge-ui-official\/core\/icons/);
@@ -23,6 +24,19 @@ test("repository sources generate all seven deterministic documents", () => {
     assert.ok(first.outputs.get("llms-full.md").includes(`/blocks/${block.name} — ${block.category}`));
   }
   assert.match(first.outputs.get("llms-components.md"), /## DataTable/);
+});
+
+test("llms.txt follows the v2 format and links markdown pages", () => {
+  const index = generateDocuments(root).outputs.get("llms.txt");
+  const lines = index.split("\n");
+  assert.match(lines[0], /^# Forge UI$/);
+  assert.match(index, /\n> Forge 是/);
+  for (const line of lines.filter(item => item.startsWith("- ["))) assert.match(line, /^- \[[^\]]+\]\(https:\/\/[^)]+\)(: .+)?$/);
+  for (const block of loadSources(root).blocks) assert.ok(index.includes(`(https://forgeui.org/blocks/${block.name}.md)`), block.name);
+  assert.match(index, /\(https:\/\/forgeui\.org\/components\/table\.md\): DataTable/);
+  assert.match(index, /\n## Optional\n/);
+  assert.doesNotMatch(index, /explicitly authorized|separate approval|Source fingerprint/);
+  assert.ok(index.length < 40000);
 });
 
 test("missing, empty and version-mismatched sources fail closed", () => {

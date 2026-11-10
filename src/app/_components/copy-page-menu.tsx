@@ -29,7 +29,7 @@ function setupPrompt(title: string) {
 }
 
 function askPrompt() {
-  return `阅读 ${pageUrl()} ，它是 Forge UI 的文档。我接下来会问这一页的问题，请按页面内容回答。`;
+  return `阅读 ${pageUrl()}.md ，它是 Forge UI 文档的 Markdown 版本。我接下来会问这一页的问题，请按页面内容回答。`;
 }
 
 export function CopyPageMenu({ title }: { title: string }) {
@@ -50,12 +50,25 @@ export function CopyPageMenu({ title }: { title: string }) {
     };
   }, [open]);
 
-  async function copy(key: "prompt" | "page", text: () => string) {
+  async function pageMarkdown() {
+    const response = await fetch(window.location.pathname.replace(/\/$/, "") + ".md");
+    if (response.ok) return response.text();
+    return document.querySelector("article")?.innerText.trim() ?? "";
+  }
+
+  async function copy(key: "prompt" | "page", text: () => string | Promise<string>) {
     setOpen(false);
     try {
-      const value = text();
-      if (!value) throw new Error("empty");
-      await navigator.clipboard.writeText(value);
+      // Safari only allows clipboard writes started synchronously in the click; ClipboardItem accepts the pending text.
+      const pending = Promise.resolve(text()).then((value) => {
+        if (!value) throw new Error("empty");
+        return value;
+      });
+      if (typeof ClipboardItem !== "undefined" && navigator.clipboard.write) {
+        await navigator.clipboard.write([new ClipboardItem({ "text/plain": pending.then((value) => new Blob([value], { type: "text/plain" })) })]);
+      } else {
+        await navigator.clipboard.writeText(await pending);
+      }
       setStatus({ key, result: "done" });
     } catch {
       setStatus({ key, result: "error" });
@@ -81,7 +94,7 @@ export function CopyPageMenu({ title }: { title: string }) {
       <div className="flex items-center gap-px">
         <button
           type="button"
-          onClick={() => copy("page", () => document.querySelector("article")?.innerText.trim() ?? "")}
+          onClick={() => copy("page", pageMarkdown)}
           className={`${pill} rounded-l-full`}
         >
           <CopyLinear size={14} color="currentColor" />
@@ -103,6 +116,7 @@ export function CopyPageMenu({ title }: { title: string }) {
           <DropdownPanel width="w-56">
             <MenuItem className="w-full" lead={{ kind: "icon", icon: <ArrowRightUpLinear size={18} color="currentColor" /> }} label="在 Claude 中打开" onClick={() => openIn("https://claude.ai/new?q=")} />
             <MenuItem className="w-full" lead={{ kind: "icon", icon: <ArrowRightUpLinear size={18} color="currentColor" /> }} label="在 ChatGPT 中打开" onClick={() => openIn("https://chatgpt.com/?q=")} />
+            <MenuItem className="w-full" lead={{ kind: "icon", icon: <DocumentTextLinear size={18} color="currentColor" /> }} label="查看 Markdown" onClick={() => { setOpen(false); window.open(window.location.pathname.replace(/\/$/, "") + ".md", "_blank", "noopener"); }} />
             <MenuItem className="w-full" lead={{ kind: "icon", icon: <DocumentTextLinear size={18} color="currentColor" /> }} label="查看 llms.txt" onClick={() => { setOpen(false); window.open("/llms.txt", "_blank", "noopener"); }} />
           </DropdownPanel>
         </div>

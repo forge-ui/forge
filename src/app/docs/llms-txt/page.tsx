@@ -9,7 +9,7 @@ const toc = [
 ];
 
 const files = [
-  { href: "/llms.txt", description: "入口索引：列出下面这些文件和 MCP、使用指南的地址。" },
+  { href: "/llms.txt", description: "入口索引，按 llms.txt v2 规范编写：摘要、使用要点，以及按入门、组件、页面组件、模板分组的 Markdown 链接。" },
   { href: "/llms-full.md", description: "完整规范、页面组件和模板路由、组件导出清单。" },
   { href: "/llms-full-cn.md", description: "中文入口，正文与 llms-full.md 同源。" },
   { href: "/llms-semantic.md", description: "语义、布局、状态、浮层和动效规范。" },
@@ -40,6 +40,7 @@ export default function LlmsTxtPage() {
           ))}
         </ul>
         <p>文件由仓库源码生成，随站点一起发布，和当前组件版本一致。</p>
+        <p>每个文档页、组件页和页面组件页在地址后加 <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-black">.md</code> 就是对应的 Markdown，例如 <a href="/components/table.md" className="text-fg-blue hover:underline">/components/table.md</a>、<a href="/blocks/kanban-board.md" className="text-fg-blue hover:underline">/blocks/kanban-board.md</a>。页面响应头里带 <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-black">Link: rel=&quot;alternate&quot;; type=&quot;text/markdown&quot;</code>，支持的助手会自动找到。</p>
       </DocSection>
       <DocSection {...toc[1]}>
         <p>在对话开头发给助手：</p>

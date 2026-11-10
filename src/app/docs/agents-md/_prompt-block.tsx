@@ -48,7 +48,7 @@ export function PromptBlock({ content }: { content: string }) {
           <code className="block font-mono">
             {lines.map((line, i) => (
               <div key={i} className="flex">
-                <span className="w-12 shrink-0 select-none pr-4 text-right text-fg-grey-400">
+                <span data-md-skip className="w-12 shrink-0 select-none pr-4 text-right text-fg-grey-400">
                   {i + 1}
                 </span>
                 <span className="flex-1 whitespace-pre pr-6">
