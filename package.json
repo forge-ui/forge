@@ -37,7 +37,8 @@
     "test:llms": "node --test scripts/test-llms-docs.mjs",
     "check:doc-links": "node scripts/check-doc-links.mjs && node --test scripts/test-doc-links.mjs",
     "test:regression": "node --test scripts/test-agent-api-reference.mjs scripts/test-agent-session-persistence.mjs scripts/test-component-documentation-dedup.mjs scripts/test-skill-installer.mjs scripts/test-subtask-drag-cancellation.mjs scripts/test-task-board-migration.mjs scripts/test-task-detail-history.mjs scripts/test-template-headers.mjs scripts/test-template-migration.mjs",
-    "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links"
+    "check:design": "node scripts/check-design-md.mjs",
+    "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links && pnpm check:design"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.8.0",
@@ -58,13 +59,16 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-markdown": "^10.1.0",
+    "turndown": "7.2.5",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@google/design.md": "0.4.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20.19.43",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "@types/turndown": "^5.0.6",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.3.5",
     "tailwindcss": "^4.3.3",
