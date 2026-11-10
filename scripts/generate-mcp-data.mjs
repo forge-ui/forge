@@ -22,6 +22,8 @@ for (const guide of guides) for (const fence of guide.content.matchAll(/```(?:ts
     for (const binding of bindings.elements) if (!exports.includes((binding.propertyName ?? binding.name).text)) throw new Error("Unknown guide import: " + guide.slug + " " + binding.name.text);
   }
 }
+// Components documented with an ApiBlock on /components/<slug>, even when no case page uses them yet.
+const documentedOn = Object.entries(Object.groupBy(fs.readdirSync(path.join(root, "src/app/components"), { withFileTypes: true }).filter(entry => entry.isDirectory()).flatMap(entry => fs.readdirSync(path.join(root, "src/app/components", entry.name)).filter(file => file.endsWith(".tsx")).flatMap(file => [...read(`src/app/components/${entry.name}/${file}`).matchAll(/<ApiBlock\b[^>]*\btitle="([A-Z]\w*)"/g)].map(match => ({ name: match[1], slug: entry.name })))), item => item.name)).reduce((map, [name, entries]) => ({ ...map, [name]: [...new Set(entries.map(entry => entry.slug))] }), {});
 const componentDetails = item => {
   const content = read(item.source);
   const ast = ts.createSourceFile(item.source, content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -34,7 +36,7 @@ const componentDetails = item => {
   };
   inspect(ast);
   const cases = source.cases.filter(entry => new RegExp("\\b" + item.name + "\\b").test(read(entry.file)));
-  return { defaults, defaultsEvidence: Object.keys(defaults).length ? "源码函数参数初始化表达式" : "未提取到函数参数默认值；请核对 sourceCode，不推断", sourceCode: content, cases: cases.map(entry => "/cases/" + entry.route), examples: cases.slice(0, 1).map(entry => ({ source: entry.file, code: read(entry.file) })) };
+  return { defaults, defaultsEvidence: Object.keys(defaults).length ? "源码函数参数初始化表达式" : "未提取到函数参数默认值；请核对 sourceCode，不推断", sourceCode: content, cases: cases.map(entry => "/cases/" + entry.route), docs: documentedOn[item.name] ?? [], examples: cases.slice(0, 1).map(entry => ({ source: entry.file, code: read(entry.file) })) };
 };
 const labels = Object.fromEntries([...read("src/app/components/_labels.ts").matchAll(/"([^"]+)":\s*"([^"（]+)（/g)].map(match => [match[1], match[2]]));
 const families = Object.fromEntries([...read("src/app/_components/kit-nav.ts").matchAll(/slug: "([^"]+)", label: "([^"]+)"/g)].map(match => [match[1], match[2]]));

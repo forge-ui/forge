@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 const SITE = "https://forgeui.org";
 const families = kitNavGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title })));
 
-type Component = { name: string; label?: string; kind: string; oneShotDefault: boolean; import: string; cases: string[]; defaults: Record<string, string>; props: { name: string; optional: boolean; type: string; description: string }[] };
+type Component = { name: string; label?: string; kind: string; oneShotDefault: boolean; import: string; cases: string[]; docs?: string[]; defaults: Record<string, string>; props: { name: string; optional: boolean; type: string; description: string }[] };
 type Block = { slug: string; title: string; category: string; description: string; install: string };
 type Doc = { slug: string; title: string; content: string };
 const data = rawData as unknown as { coreVersion: string; components: Component[]; blocks: Block[]; rules: Doc[]; guides: Doc[] };
@@ -28,8 +28,8 @@ function componentSection(component: Component) {
 function familyMarkdown(slug: string) {
   const family = families.find((item) => item.slug === slug);
   if (!family) return null;
-  const members = data.components.filter((component) => component.kind === "value" && /^[A-Z]/.test(component.name) && component.cases.includes(`/cases/${slug}`));
-  const primary = members.filter((component) => component.oneShotDefault || component.label);
+  const members = data.components.filter((component) => component.kind === "value" && /^[A-Z]/.test(component.name) && (component.cases.includes(`/cases/${slug}`) || component.docs?.includes(slug)));
+  const primary = members.filter((component) => component.oneShotDefault || component.label || component.docs?.includes(slug));
   const listed = (primary.length ? primary : members).sort((left, right) => Number(right.oneShotDefault) - Number(left.oneShotDefault) || right.props.length - left.props.length).slice(0, 24);
   return [
     `# ${family.label}`,
