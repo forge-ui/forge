@@ -30,10 +30,10 @@ url = "https://forgeui.org/api/mcp"`} />
       </DocSection>
       <DocSection {...sections[1]}>
         <ul className="flex flex-wrap gap-2">{toolNames.map(name => <li key={name}><code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-[13px] text-fg-black">{name}</code></li>)}</ul>
-        <p>先 search 查询“运营看板”，读取 get_rules 的 page-standards 和 status，再用 get_screen、get_block、get_component 给出配方。</p>
+        <p>写新页面时先调用 recommend，传一句需求（例如“订单列表，带筛选和批量导出”），它会返回页面角色、最接近的模板页面、页面组件、真实页面里用到的组件，以及要先读的规范。再按需用 get_screen、get_block、get_component 查细节，用 get_tokens 查颜色。</p>
         <p>列表与搜索支持 page（从 1 开始）和 pageSize（1–50）；搜索 type 可选 all、components、blocks、screens、guides、rules。详情使用返回的 slug；规范使用 topic。</p>
-        <p>get_component 返回真实 import、Props、源码参数默认值、案例与示例、相关导出及 core 版本。get_block 返回 registry 源码、安装命令、依赖与 Props；get_screen 返回模板路由、预览地址和依赖。</p>
-        <p>还可读取 forge://rules 资源，使用 forge-dashboard 提示并提供 goal。例如：“按 Forge 规范设计运营看板，先列模板和区块，再核对状态与审计清单，不要自行增加基础组件。”</p>
+        <p>search 按相关度排序，支持中英文、多个关键词和常见同义词（看板 / 仪表盘 / dashboard，审批 / 确认），默认不返回 TypeScript 类型；查不到时会给出拼写相近的名称。get_component、get_block、get_screen 默认返回精简结果（import、Props、默认值、安装命令、案例地址），一般只有几千字；需要源码、完整示例时加 detail=&quot;full&quot;。名称不区分大小写和连字符，DataTable、data-table 都能查到。每个结果都带 coreVersion。</p>
+        <p>还可读取 forge://rules 资源，使用 forge-page（传 need）或 forge-dashboard（传 goal）提示。例如：“按 Forge 规范设计运营看板，先列模板和区块，再核对状态与审计清单，不要自行增加基础组件。”</p>
       </DocSection>
       <DocSection {...sections[2]}>
         <p>唯一规范正文为 forge-skill；MCP 是可选数据源，不能替代规范。数据由仓库生成并随函数打包；core 版本来自 core/package.json。</p>
