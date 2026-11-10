@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { execFileSync } from "node:child_process";
@@ -34,4 +37,21 @@ test("missing sources fail closed", () => {
 test("page briefs do not require unauthorized system modules", () => {
   const output = execFileSync(process.execPath, ["skills/forge-skill/scripts/check-brief.mjs", "-", "--scope=page"], { input: "role: dashboard\ntask: inspect\nsource: analytics\nscope: one page\nverification: pending", encoding: "utf8" });
   assert.match(output, /look complete/);
+});
+
+test("project-info reports version drift, starter layout and copied blocks", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "forge-project-"));
+  try {
+    fs.mkdirSync(path.join(dir, "node_modules/@forge-ui-official/core"), { recursive: true });
+    fs.writeFileSync(path.join(dir, "node_modules/@forge-ui-official/core/package.json"), JSON.stringify({ version: "0.1.0" }));
+    fs.writeFileSync(path.join(dir, "package.json"), JSON.stringify({ dependencies: { "@forge-ui-official/core": "0.1.0", react: "^18.2.0", next: "16.0.0" } }));
+    fs.mkdirSync(path.join(dir, "src/app"), { recursive: true });
+    fs.writeFileSync(path.join(dir, "src/app/page.tsx"), 'import { KanbanBoard } from "@/components/blocks/kanban-board";\n');
+    fs.writeFileSync(path.join(dir, "components.json"), JSON.stringify({ registries: { "@acme": "https://acme.dev/r/{name}.json" } }));
+    const report = JSON.parse(execFileSync(process.execPath, ["skills/forge-skill/scripts/project-info.mjs", dir, "--json"], { encoding: "utf8" }));
+    assert.equal(report.forge.installed, "0.1.0");
+    assert.match(report.forge.documentedBySkill, /^\d+\.\d+\.\d+$/);
+    assert.deepEqual(report.copiedBlocks, ["kanban-board"]);
+    for (const pattern of [/API 可能不同/, /React 19/, /kanban-board/, /DESIGN\.md/, /@forge/]) assert.ok(report.notes.some(note => pattern.test(note)), String(pattern));
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
