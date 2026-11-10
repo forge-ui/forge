@@ -1,4 +1,6 @@
 "use client";
+
+import { PagedDataTable } from "../../../_shared/paged-data-table";
 import { ScheduleCard, GanttSchedule } from "@/app/templates/_shared/schedule-card";
 import { MemberList } from "@/app/templates/_shared/member-list";
 
@@ -170,9 +172,9 @@ export default function Project1Page() {
               height={220}
             />
             <div className="flex items-center justify-center gap-4 text-xs text-fg-grey-700">
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#fbbf24" }} /> In Progress</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#10b981" }} /> Completed</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#f97316" }} /> Unfinished</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-yellow-500)" }} /> In Progress</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-green-500)" }} /> Completed</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-red-300)" }} /> Unfinished</span>
             </div>
           </Panel>
         </div>
@@ -238,14 +240,9 @@ export default function Project1Page() {
                 <Button size="sm" iconRight={<AltArrowRightLinear size={14} />}>See More</Button>
               </div>
             </div>
-            <DataTable<ProjectRow>
+            <PagedDataTable<ProjectRow>
               columns={projectColumns}
               rows={projects}
-              showPagination
-              currentPage={1}
-              totalPages={20}
-              onPageChange={() => {}}
-              paginationLabel="Showing 1-5 from 100"
             />
           </RecentRecords>
 

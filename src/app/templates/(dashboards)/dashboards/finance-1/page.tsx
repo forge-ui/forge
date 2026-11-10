@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { AppLayout, WalletGoalCard, DivergingBarChart } from "@forge-ui-official/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
@@ -44,6 +46,7 @@ const menuItems: AppLayoutMenuItem[] = [
 
 
 export default function Finance1Page() {
+  const router = useRouter();
   return (
     <AppLayout
       notifications={99}
@@ -77,8 +80,8 @@ export default function Finance1Page() {
             trendDirection="up"
             subtitle="+$150 today"
             cardNumber="*9821"
-            onTransfer={() => {}}
-            onRequest={() => {}}
+            onTransfer={() => router.push("/templates/finance-template/transactions")}
+            onRequest={() => router.push("/templates/finance-template/invoices/new")}
             density="compact"
           />
           <LineChartStatCard
@@ -217,11 +220,11 @@ export default function Finance1Page() {
           >
             <DonutChart
               segments={[
-                { value: 40, color: "#2563eb" },
-                { value: 25, color: "#fbbf24" },
-                { value: 15, color: "#f97316" },
-                { value: 12, color: "#10b981" },
-                { value: 8, color: "#0ea5e9" },
+                { value: 40, color: "var(--fg-blue-500)" },
+                { value: 25, color: "var(--fg-yellow-500)" },
+                { value: 15, color: "var(--fg-red-300)" },
+                { value: 12, color: "var(--fg-green-500)" },
+                { value: 8, color: "var(--fg-cyan-500)" },
               ]}
               centerValue="$14,000"
               trend="10%"
@@ -231,11 +234,11 @@ export default function Finance1Page() {
             />
             <div className="flex flex-col gap-1.5 text-xs text-fg-grey-700 pt-2 border-t border-fg-grey-200">
               {[
-                { label: "Housing", value: "$5,000", color: "#2563eb" },
-                { label: "Food", value: "$4,000", color: "#fbbf24" },
-                { label: "Transportation", value: "$3,000", color: "#f97316" },
-                { label: "Subscription", value: "$1,500", color: "#10b981" },
-                { label: "Entertainment", value: "$500", color: "#0ea5e9" },
+                { label: "Housing", value: "$5,000", color: "var(--fg-blue-500)" },
+                { label: "Food", value: "$4,000", color: "var(--fg-yellow-500)" },
+                { label: "Transportation", value: "$3,000", color: "var(--fg-red-300)" },
+                { label: "Subscription", value: "$1,500", color: "var(--fg-green-500)" },
+                { label: "Entertainment", value: "$500", color: "var(--fg-cyan-500)" },
               ].map((row) => (
                 <div key={row.label} className="flex items-center justify-between py-1">
                   <span className="flex items-center gap-2"><span className="size-2 rounded-full" style={{ backgroundColor: row.color }} /> {row.label}</span>

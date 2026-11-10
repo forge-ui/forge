@@ -1,7 +1,7 @@
 "use client";
 
 import { Panel } from "@forge-ui-official/core";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   BarChart,
   Button,
@@ -311,12 +311,18 @@ export function ProtaskFilterTrigger({
     <FilterTrigger
       color={color}
       count={count}
-      panel={(close) => (
-        <FilterPanel color={color} onReset={() => {}} onCancel={close} onApply={close}>
-          {groups ?? <DefaultFilterGroups color={color} />}
-        </FilterPanel>
-      )}
+      panel={(close) => <ProtaskFilterPanel color={color} groups={groups} close={close} />}
     />
+  );
+}
+
+// Reset remounts the groups so every option returns to its default selection.
+function ProtaskFilterPanel({ color, groups, close }: { color: AccentColor; groups?: ReactNode; close: () => void }) {
+  const [resetKey, setResetKey] = useState(0);
+  return (
+    <FilterPanel color={color} onReset={() => setResetKey((key) => key + 1)} onCancel={close} onApply={close}>
+      <div key={resetKey} className="contents">{groups ?? <DefaultFilterGroups color={color} />}</div>
+    </FilterPanel>
   );
 }
 

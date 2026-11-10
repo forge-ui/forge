@@ -142,9 +142,9 @@ export default function Project2Page() {
             </DashboardHeader>
             <div className="flex items-center gap-4">
               {[
-                { label: "Income", value: "$26,201", trend: "10%", up: true, color: "#7c3aed" },
-                { label: "Expenses", value: "$18,120", trend: "10%", up: false, color: "#f97316" },
-                { label: "Profit", value: "$18,120", trend: "10%", up: true, color: "#0ea5e9" },
+                { label: "Income", value: "$26,201", trend: "10%", up: true, color: "var(--fg-violet-500)" },
+                { label: "Expenses", value: "$18,120", trend: "10%", up: false, color: "var(--fg-red-300)" },
+                { label: "Profit", value: "$18,120", trend: "10%", up: true, color: "var(--fg-cyan-500)" },
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
                   <div className="size-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: s.color }}>
@@ -162,18 +162,18 @@ export default function Project2Page() {
             </div>
             <SmoothLineChart
               series={[
-                { data: [0.4, 0.5, 0.6, 0.55, 0.7, 0.65, 0.7, 0.75, 0.8, 0.7, 0.65, 0.7].map((v) => v * 1000), color: "#2563eb" },
-                { data: [0.5, 0.55, 0.6, 0.6, 0.55, 0.65, 0.6, 0.6, 0.65, 0.6, 0.55, 0.55].map((v) => v * 1000), color: "#fbbf24" },
-                { data: [0.3, 0.35, 0.4, 0.4, 0.35, 0.45, 0.5, 0.45, 0.45, 0.5, 0.45, 0.4].map((v) => v * 1000), color: "#10b981" },
-                { data: [0.55, 0.5, 0.55, 0.5, 0.55, 0.6, 0.55, 0.55, 0.5, 0.5, 0.45, 0.5].map((v) => v * 1000), color: "#ef4444" },
+                { data: [0.4, 0.5, 0.6, 0.55, 0.7, 0.65, 0.7, 0.75, 0.8, 0.7, 0.65, 0.7].map((v) => v * 1000), color: "var(--fg-blue-500)" },
+                { data: [0.5, 0.55, 0.6, 0.6, 0.55, 0.65, 0.6, 0.6, 0.65, 0.6, 0.55, 0.55].map((v) => v * 1000), color: "var(--fg-yellow-500)" },
+                { data: [0.3, 0.35, 0.4, 0.4, 0.35, 0.45, 0.5, 0.45, 0.45, 0.5, 0.45, 0.4].map((v) => v * 1000), color: "var(--fg-green-500)" },
+                { data: [0.55, 0.5, 0.55, 0.5, 0.55, 0.6, 0.55, 0.55, 0.5, 0.5, 0.45, 0.5].map((v) => v * 1000), color: "var(--fg-red-500)" },
               ]}
               accent="purple"
               activeIndex={6}
               showTooltip
               tooltipItems={[
-                { label: "Income", value: "$680", trend: "up", color: "#2563eb" },
-                { label: "Expenses", value: "$280", trend: "down", color: "#fbbf24" },
-                { label: "Profit", value: "$280", trend: "down", color: "#10b981" },
+                { label: "Income", value: "$680", trend: "up", color: "var(--fg-blue-500)" },
+                { label: "Expenses", value: "$280", trend: "down", color: "var(--fg-yellow-500)" },
+                { label: "Profit", value: "$280", trend: "down", color: "var(--fg-green-500)" },
               ]}
               showYAxis
               yAxisLabels={["$1.2k", "$1k", "$800", "$600", "$400", "$200", "0"]}
@@ -193,19 +193,19 @@ export default function Project2Page() {
             <div className="flex justify-center">
               <PieChart
                 segments={[
-                  { value: 40, color: "#2563eb" },
-                  { value: 30, color: "#fbbf24" },
-                  { value: 20, color: "#10b981" },
-                  { value: 10, color: "#ef4444" },
+                  { value: 40, color: "var(--fg-blue-500)" },
+                  { value: 30, color: "var(--fg-yellow-500)" },
+                  { value: 20, color: "var(--fg-green-500)" },
+                  { value: 10, color: "var(--fg-red-500)" },
                 ]}
                 size="md"
               />
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#2563eb" }} /> Total Project</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#fbbf24" }} /> In Progress</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#10b981" }} /> Completed</span>
-              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "#ef4444" }} /> Unfinished</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-blue-500)" }} /> Total Project</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-yellow-500)" }} /> In Progress</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-green-500)" }} /> Completed</span>
+              <span className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ backgroundColor: "var(--fg-red-500)" }} /> Unfinished</span>
             </div>
           </CompositionCard>
         </div>
