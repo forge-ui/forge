@@ -47,8 +47,8 @@ export function ProtaskLogo() {
   return (
     <span className="relative inline-flex size-10 items-center justify-center rounded-full">
       <span className="absolute inset-0 rounded-full border-[9px] border-white" />
-      <span className="absolute left-0 top-0 size-5 bg-fg-violet" />
-      <span className="absolute right-0 top-1/2 h-2.5 w-5 -translate-y-1/2 bg-fg-violet" />
+      <span className="absolute left-0 top-0 size-5 bg-fg-blue" />
+      <span className="absolute right-0 top-1/2 h-2.5 w-5 -translate-y-1/2 bg-fg-blue" />
     </span>
   );
 }

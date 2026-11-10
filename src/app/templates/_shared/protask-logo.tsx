@@ -1,6 +1,6 @@
-export function ProtaskLogoMark({ tone = "purple" }: { tone?: "purple" | "white" }) {
-  const primary = tone === "white" ? "var(--fg-white)" : "var(--fg-violet)";
-  const secondary = tone === "white" ? "rgba(255,255,255,0.48)" : "var(--fg-violet-300)";
+export function ProtaskLogoMark({ tone = "brand" }: { tone?: "brand" | "white" }) {
+  const primary = tone === "white" ? "var(--fg-white)" : "var(--fg-blue)";
+  const secondary = tone === "white" ? "rgba(255,255,255,0.48)" : "var(--fg-blue-300)";
 
   return (
     <svg className="size-8 shrink-0" viewBox="0 0 32 32" fill="none" aria-hidden="true">

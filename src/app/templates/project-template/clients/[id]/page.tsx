@@ -42,8 +42,8 @@ export default function ClientDetailPage() {
             <div className="mt-5 space-y-3 text-left"><Info label="Phone Number" value={client.phone} /><Info label="Project" value={`${client.projects} Project`} /><Info label="Added" value={client.added} /></div>
           </Panel>
           <main className="flex flex-col gap-4">
-            <TabBar color="purple" surface="page" tabs={clientTabs.map((item) => ({ label: item.label, active: tab === item.value }))} onChange={(index) => setTab(clientTabs[index]?.value ?? "project")} />
-            {tab === "project" && <DataTable<Project> columns={columns} rows={projects.slice(0, 5)} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
+            <TabBar color="blue" surface="page" tabs={clientTabs.map((item) => ({ label: item.label, active: tab === item.value }))} onChange={(index) => setTab(clientTabs[index]?.value ?? "project")} />
+            {tab === "project" && <DataTable<Project> columns={columns} rows={projects.slice(0, 5)} color="blue" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
             {tab === "chat" && <ChatPanel />}
             {tab === "activity" && <ActivityPanel />}
             {tab === "files" && <FilesPanel />}
@@ -59,7 +59,7 @@ function Info({ label, value }: { label: string; value: string }) {
 }
 
 function ChatPanel() {
-  return <Panel variant="custom" as="section" className={projectPanelClass}><div className="flex flex-col gap-3"><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="purple" variant="text" content="Oke Veronica thank you ~~" /><ChatBubble type="received" variant="file" fileName="Wireframe.doc" fileSize="300kb" /><ChatInputBar placeholder="Type a message..." /></div></Panel>;
+  return <Panel variant="custom" as="section" className={projectPanelClass}><div className="flex flex-col gap-3"><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="blue" variant="text" content="Oke Veronica thank you ~~" /><ChatBubble type="received" variant="file" fileName="Wireframe.doc" fileSize="300kb" /><ChatInputBar placeholder="Type a message..." /></div></Panel>;
 }
 
 function ActivityPanel() {

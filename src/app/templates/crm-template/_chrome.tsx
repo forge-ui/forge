@@ -34,7 +34,7 @@ export function CrmTemplateShell({ children }: { children: ReactNode }) {
   return (
     <AppLayout
       mode="light"
-      accent="purple"
+      accent="blue"
       logo={<ProtaskLogoMark />}
       profilePosition="topbar"
       menuItems={menuItems}
@@ -90,7 +90,7 @@ export function CrmPageHeader({ current, parents = [], ...props }: CrmPageHeader
   return (
     <PageTitleToolbar
       {...props}
-      color={"purple" as const}
+      color={"blue" as const}
       breadcrumbItems={[{ label: "Dashboard", href: "/templates/crm-template/customers" }, ...parents, { label: current }]}
     />
   );

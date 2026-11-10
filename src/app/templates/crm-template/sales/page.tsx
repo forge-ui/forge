@@ -46,7 +46,7 @@ function CrmSalesContent() {
       width: "w-[260px]",
       render: (row) => (
         <div className="flex min-w-0 items-center gap-2">
-          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-violet-100 text-fg-violet">
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-blue-100 text-fg-blue">
             <DocumentTextBoldDuotone size={18} />
           </span>
           <div className="min-w-0">
@@ -90,7 +90,7 @@ function CrmSalesContent() {
         <Toolbar
           className="flex-col gap-4 lg:flex-row lg:items-center"
           left={<ToolbarSearchInput placeholder="Search. . ." />}
-          right={<ToolbarActions><ToolbarDatepicker label="Select Dates" /><ProtaskFilterTrigger color="purple" count={0} /><ToolbarShowSelect value="10" /></ToolbarActions>}
+          right={<ToolbarActions><ToolbarDatepicker label="Select Dates" /><ProtaskFilterTrigger color="blue" count={0} /><ToolbarShowSelect value="10" /></ToolbarActions>}
         />
         <DataTable<Sale> columns={columns} rows={sales} showCheckbox showPagination currentPage={1} totalPages={6} paginationLabel="Showing 1-10 from 100" />
         <ProtaskDeleteDialog

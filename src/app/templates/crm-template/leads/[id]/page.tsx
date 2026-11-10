@@ -135,7 +135,7 @@ function CrmLeadDetailContent() {
           <main className="min-w-0">
             <CrmSurface className="p-0">
               <TabBar
-                color="purple"
+                color="blue"
                 surface="page"
                 tabs={leadTabs.map((label) => ({ label, active: label === activeTab }))}
                 onChange={(index) => setManualTab(leadTabs[index])}
@@ -178,7 +178,7 @@ function LeadTabContent({ tab }: { tab: LeadTab }) {
           <Panel variant="custom" key={item} className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
             <HistoryItem
               variant="badge"
-              color="purple"
+              color="blue"
               icon={<DocumentTextLinear size={18} />}
               title="Meeting Notes"
               description={<span className="text-fg-grey-700">Qualification note, expected budget and follow-up plan.</span>}
@@ -198,7 +198,7 @@ function LeadTabContent({ tab }: { tab: LeadTab }) {
         <HistoryItem
           key={`${activity.id}-${index}`}
           variant="badge"
-          color="purple"
+          color="blue"
           icon={activity.type === "Call" ? <VideocameraRecordLinear size={18} /> : activity.type === "Meet" ? <UsersGroupRoundedLinear size={18} /> : <CalendarMinimalisticLinear size={18} />}
           title={activity.type === "Call" ? "Call with Linda Blair" : activity.type === "Meet" ? "Meet With Linda Blair" : activity.title}
           description={<span className="text-fg-grey-700">{activity.note}</span>}

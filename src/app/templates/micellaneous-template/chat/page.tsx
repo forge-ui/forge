@@ -77,9 +77,9 @@ function MicellaneousChatContent() {
             </div>
             <div className="flex flex-1 flex-col gap-4 bg-fg-grey-50 p-5">
               <ChatBubble type="received" avatar={active.avatar} senderName={active.name} content="Can you check the latest CRM customer table spacing?" time="09:30" />
-              <ChatBubble type="sent" color="purple" content="Yes. I will compare it against the Protask screenshot and Forge DataTable." time="09:31" />
+              <ChatBubble type="sent" color="blue" content="Yes. I will compare it against the Protask screenshot and Forge DataTable." time="09:31" />
               <ChatBubble type="received" avatar={active.avatar} senderName={active.name} variant="file" fileName="Customer_Filter.png" fileSize="1.2 MB" time="09:32" />
-              <ChatBubble type="sent" color="purple" variant="voice" voiceDuration="0:18" time="09:35" />
+              <ChatBubble type="sent" color="blue" variant="voice" voiceDuration="0:18" time="09:35" />
             </div>
             <div className="border-t border-fg-grey-200 p-4">
               <ChatInputBar placeholder="Type a message..." />

@@ -73,7 +73,7 @@ export default function EditProductPage() {
           <div className="flex items-center gap-3">
             <IconButton
               variant="tertiary"
-              color="purple"
+              color="blue"
               shape="circle"
               onClick={() => router.push("/templates/ecommerce/products")}
             >
@@ -250,8 +250,8 @@ export default function EditProductPage() {
           <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Shiping</h3>
             <div className="mb-3 flex items-center gap-2">
-              <Checkbox checked color="purple" />
-              <span className="text-sm text-fg-violet">This is a physical product</span>
+              <Checkbox checked color="blue" />
+              <span className="text-sm text-fg-blue">This is a physical product</span>
             </div>
             <div className="grid grid-cols-4 gap-2">
               <TextField

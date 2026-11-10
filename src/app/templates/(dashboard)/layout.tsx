@@ -45,7 +45,7 @@ export default function AppLayoutRoot({ children }: { children: ReactNode }) {
     <AppLayout
       mode="light"
       profilePosition="topbar"
-      accent="purple"
+      accent="blue"
       menuItems={menuItems}
       favoriteItems={favoriteItems}
       profile={profile}

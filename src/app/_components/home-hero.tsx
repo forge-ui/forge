@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 
 const templateLoading = () => <p className="home-template-loading" role="status">正在加载模板…</p>;
-const OverviewExample = dynamic(() => import("../templates/(dashboards)/dashboards/ecommerce-2/page"), { loading: templateLoading });
+const OverviewExample = dynamic(() => import("../templates/(dashboards)/dashboards/ecommerce-1/page"), { loading: templateLoading });
 const FinanceExample = dynamic(() => import("../templates/(dashboards)/dashboards/finance-1/page"), { loading: templateLoading });
 const AgentExample = dynamic(() => import("../templates/agent/page"), { loading: templateLoading });
 const BoardExample = dynamic(() => import("../templates/task-board/_template-preview"), { loading: templateLoading });
@@ -41,8 +41,8 @@ function FormSamples() {
     <TextField label="工作邮箱" type="email" placeholder="you@company.com" value={email} onChange={setEmail} color="blue" />
     <div className="home-form-detail-grid">
     <div className="home-form-role"><SelectOption className="w-full" label="团队角色" options={[{ value: "designer", label: "设计师" }, { value: "developer", label: "开发者" }, { value: "manager", label: "项目经理" }]} value={role} onChange={value => setRole(String(value))} color="blue" /></div>
-    <div className="home-form-ring"><ProgressBar variant="ring" value={72} color="purple" label="完成度" showPercentage /></div>
-    <div className="home-control-row"><span>接收项目通知</span><Toggle color="purple" checked={enabled} onChange={setEnabled} ariaLabel="接收项目通知" /></div>
+    <div className="home-form-ring"><ProgressBar variant="ring" value={72} color="blue" label="完成度" showPercentage /></div>
+    <div className="home-control-row"><span>接收项目通知</span><Toggle color="blue" checked={enabled} onChange={setEnabled} ariaLabel="接收项目通知" /></div>
     <ChoiceSamples />
     <RatingStars value={rating} onChange={setRating} size="sm" showValue={false} ariaLabel="体验评分" />
     </div>
@@ -88,8 +88,8 @@ function InteractionSamples() {
 
 function FileSamples() {
   return <div className="home-file-samples">
-    <FileCard color="purple" file={{id:"brief",name:"品牌设计简报.pdf",size:"2.4 MB",state:"success"}} />
-    <FileCard color="purple" file={{id:"assets",name:"视觉素材.zip",size:"18.6 MB",state:"uploading",progress:64}} />
+    <FileCard color="blue" file={{id:"brief",name:"品牌设计简报.pdf",size:"2.4 MB",state:"success"}} />
+    <FileCard color="blue" file={{id:"assets",name:"视觉素材.zip",size:"18.6 MB",state:"uploading",progress:64}} />
   </div>;
 }
 
@@ -109,7 +109,7 @@ function ChoiceSamples() {
 function SelectionSamples() {
   const [period, setPeriod] = useState(2);
   return <div className="home-selection-samples">
-    <ProgressBar value={[28, 56, 72, 90][period]} color="purple" label="项目进度" showPercentage />
+    <ProgressBar value={[28, 56, 72, 90][period]} color="blue" label="项目进度" showPercentage />
     <div className="home-period-hover" onPointerOver={event => {
       if (event.pointerType !== "mouse" || !(event.target instanceof Element)) return;
       const button = event.target.closest("button");
@@ -143,7 +143,7 @@ function FeedbackSamples() {
 
 function StepsSample() {
   const [step, setStep] = useState(2);
-  return <Panel><Stepper color="purple" current={step} onStepChange={setStep} items={[{id:"design",label:"设计"},{id:"review",label:"评审"},{id:"publish",label:"交付"}]} /></Panel>;
+  return <Panel><Stepper color="blue" current={step} onStepChange={setStep} items={[{id:"design",label:"设计"},{id:"review",label:"评审"},{id:"publish",label:"交付"}]} /></Panel>;
 }
 
 function AiComposerSample() {
@@ -156,7 +156,7 @@ function AiComposerSample() {
 
 const examples = [
   { label: "组件", href: "/components" },
-  { label: "数据概览", href: "/templates/dashboards/ecommerce-2" },
+  { label: "数据概览", href: "/templates/dashboards/ecommerce-1" },
   { label: "财务", href: "/templates/dashboards/finance-1" },
   { label: "智能体", href: "/templates/agent" },
   { label: "看板", href: "/templates/task-board" },

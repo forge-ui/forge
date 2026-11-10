@@ -40,11 +40,11 @@ export default function ClientsPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-[480px]"><TextField placeholder="Search..." iconLeft={<MagnifierBoldIcon size={18} color={"var(--fg-grey-800)"} />} /></div>
-            <ButtonGroup color="purple" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
+            <ButtonGroup color="blue" shape="pill" activeIndex={view === "table" ? 0 : 1} items={[{ label: "Table" }, { label: "Card" }]} onChange={(index) => setView(index === 0 ? "table" : "card")} />
           </div>
           <div className="flex items-center gap-4"><ToolbarDatepicker label="Select Dates" /><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
         </div>
-        {view === "table" ? <DataTable<Client> columns={columns} rows={rows} color="purple" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-10 from 100" /> : <ClientCards clients={rows} onEdit={(client) => openModal("edit", client)} onDelete={(client) => openModal("delete", client)} />}
+        {view === "table" ? <DataTable<Client> columns={columns} rows={rows} color="blue" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-10 from 100" /> : <ClientCards clients={rows} onEdit={(client) => openModal("edit", client)} onDelete={(client) => openModal("delete", client)} />}
       </div>
       <TemplateFormModal
         title={modal === "edit" ? "Client Edit" : "Client Add New"}

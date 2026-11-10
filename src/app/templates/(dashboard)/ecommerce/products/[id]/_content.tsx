@@ -221,7 +221,7 @@ export default function ProductDetailPage() {
                   key={index}
                   type="button"
                   className={`w-20 h-20 rounded-2xl overflow-hidden border-2 cursor-pointer ${
-                    index === activeImageIndex ? "border-fg-violet" : "border-transparent"
+                    index === activeImageIndex ? "border-fg-blue" : "border-transparent"
                   }`}
                   onClick={() => setActiveImageIndex(index)}
                 >
@@ -234,7 +234,7 @@ export default function ProductDetailPage() {
                 <span
                   key={index}
                   className={`h-2 rounded-full ${
-                    index === activeImageIndex ? "w-5 bg-fg-violet" : "w-2 bg-fg-grey-200"
+                    index === activeImageIndex ? "w-5 bg-fg-blue" : "w-2 bg-fg-grey-200"
                   }`}
                 />
               ))}

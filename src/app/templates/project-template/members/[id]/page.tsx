@@ -53,11 +53,11 @@ export default function MemberDetailPage() {
               <LineChartStatCard density="compact" size="wide" theme="white" title="Not Started" value="4" trend="25%" trendDirection="up" subtitle="+1 today" chartColor="purple" />
               <LineChartStatCard density="compact" size="wide" theme="white" title="Finished" value="28" trend="2%" trendDirection="up" subtitle="+2 today" chartColor="green" />
             </KpiMetrics>
-            <TabBar color="purple" surface="page" tabs={memberTabs.map((item) => ({ label: item.label, active: tab === item.value }))} onChange={(index) => setTab(memberTabs[index]?.value ?? "project")} />
-            {tab === "project" && <DataTable<Project> columns={projectColumns} rows={projects.slice(0, 5)} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
-            {tab === "task" && <DataTable<Task> columns={taskColumns} rows={tasks} color="purple" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
+            <TabBar color="blue" surface="page" tabs={memberTabs.map((item) => ({ label: item.label, active: tab === item.value }))} onChange={(index) => setTab(memberTabs[index]?.value ?? "project")} />
+            {tab === "project" && <DataTable<Project> columns={projectColumns} rows={projects.slice(0, 5)} color="blue" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
+            {tab === "task" && <DataTable<Task> columns={taskColumns} rows={tasks} color="blue" showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-5 from 100" />}
             {tab === "activity" && <Panel variant="custom" as="section" className={projectPanelClass}>{activityItems.map((item) => <div key={item.title} className="border-b border-fg-grey-200 py-3"><h3 className="font-semibold text-fg-black">{item.title}</h3><p className="text-sm text-fg-grey-700">{item.body}</p></div>)}</Panel>}
-            {tab === "chat" && <Panel variant="custom" as="section" className={projectPanelClass}><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="purple" variant="text" content="Oke thank you ~~" /><ChatInputBar placeholder="Type a message..." /></Panel>}
+            {tab === "chat" && <Panel variant="custom" as="section" className={projectPanelClass}><ChatBubble type="received" variant="text" content="Lorem ipsum dolor si amet" /><ChatBubble type="sent" color="blue" variant="text" content="Oke thank you ~~" /><ChatInputBar placeholder="Type a message..." /></Panel>}
           </main>
         </section>
       </div>

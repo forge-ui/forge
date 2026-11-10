@@ -235,9 +235,9 @@ export function ProtaskActivityDialog({
 
 function ActivityDialogTab({ active, children }: { active: boolean; children: ReactNode }) {
   return (
-    <div className={`flex flex-col items-center gap-4 text-sm leading-5 tracking-fg ${active ? "font-bold text-fg-violet" : "font-semibold text-fg-grey-700"}`}>
+    <div className={`flex flex-col items-center gap-4 text-sm leading-5 tracking-fg ${active ? "font-bold text-fg-blue" : "font-semibold text-fg-grey-700"}`}>
       <span>{children}</span>
-      <span className={`h-0.5 w-full ${active ? "bg-fg-violet" : "bg-transparent"}`} />
+      <span className={`h-0.5 w-full ${active ? "bg-fg-blue" : "bg-transparent"}`} />
     </div>
   );
 }
@@ -277,7 +277,7 @@ function NotesUploadBlock() {
     <div>
       <p className="mb-2 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">Image</p>
       <Panel variant="custom" className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-fg-grey-200 bg-white p-6 text-center">
-        <span className="grid size-12 place-items-center rounded-full bg-fg-violet-100 text-fg-violet">
+        <span className="grid size-12 place-items-center rounded-full bg-fg-blue-100 text-fg-blue">
           <CloudUploadLinear size={24} />
         </span>
         <p className="mt-4 text-sm font-medium leading-5 tracking-fg text-fg-grey-700">
@@ -299,7 +299,7 @@ function UploadButton({ label }: { label: string }) {
 }
 
 export function ProtaskFilterTrigger({
-  color = "purple",
+  color = "blue",
   count = 3,
   groups,
 }: {
@@ -323,7 +323,7 @@ export function ProtaskFilterTrigger({
 export function ProtaskFilterDialog({
   open,
   onClose,
-  color = "purple",
+  color = "blue",
 }: {
   open: boolean;
   onClose: () => void;
@@ -346,7 +346,7 @@ export function ProtaskFilterDialog({
   );
 }
 
-export function DefaultFilterGroups({ color = "purple" }: { color?: AccentColor }) {
+export function DefaultFilterGroups({ color = "blue" }: { color?: AccentColor }) {
   return (
     <>
       <FilterGroup

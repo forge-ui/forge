@@ -33,7 +33,7 @@ function MicellaneousCalendarContent() {
         />
         <FullCalendar
           view={view}
-          color="purple"
+          color="blue"
           year={2025}
           month={4}
           day={13}

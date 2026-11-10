@@ -36,7 +36,7 @@ export default function InvoicesPage() {
       <div className={projectPageStackClass}>
         <PageTop title="Invoice" current="Invoice" actions={<Button iconLeft={<AddCircleLinear size={18} />}>Create Invoice</Button>} />
         <div className="flex justify-end gap-4"><ToolbarDatepicker label="Select Dates" /><ToolbarFilterButton label="Filters" /><ToolbarShowSelect value="10" /></div>
-        <DataTable<Invoice> columns={columns} rows={invoices} color="purple" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-10 from 100" />
+        <DataTable<Invoice> columns={columns} rows={invoices} color="blue" showCheckbox showPagination currentPage={1} totalPages={5} paginationLabel="Showing 1-10 from 100" />
       </div>
       <TemplateDeleteDialog open={deleteOpen} title="Delete Invoice?" description="Are you sure you want to delete this invoice?" onClose={() => setDeleteOpen(false)} />
     </ProjectTemplateShell>
