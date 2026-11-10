@@ -13,6 +13,10 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 
 在 starter 内先读该仓 AGENTS.md 与本任务对应的 quick-start / new-module / new-page，然后读项目 `docs/forge-skill/upstream/SKILL.md`；依次读 Screens → 主对照 Screen 源码 → Blocks 配方及单项 Props → 所用 Components 契约 → audit-checklist。全局 skill 在 starter 中仅负责找到并转入这一入口；starter 的路由、RBAC、数据与工程规则仍以 starter 专用 skill 为准。
 
+## 先读项目
+
+动手前运行 `node <skill目录>/scripts/project-info.mjs <项目根目录>`：它报告已装的 core 版本与本 skill 描述的版本是否一致、Next/React/Tailwind 版本、是否 forge-starter、项目里已有的页面组件和 AGENTS.md / DESIGN.md / MCP 配置。版本不一致时以项目 node_modules 里的类型为准；已有页面组件优先复用。
+
 ## 先确定范围
 
 只交付用户授权的页面或系统；单页请求不自动扩成工作台、多模块或治理系统。先说明用户、对象、任务、页面角色、数据来源及完成标准。在 forge-starter 内先走该仓的 quick-start / new-module / new-page / audit skills：主 skill 提供通用规范，starter 负责路由、权限、数据库与工程约定。

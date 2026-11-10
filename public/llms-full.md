@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.6.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: fd3eef8b158064a36c12c2400a385b64184db6603cf3692014fb22b2b62524ae
+Source fingerprint: 737f94955f76127c13a6f6e1dfe207cc9ae4a0ad3429c14d90825f13e717e712
 
 ## Adopted rules / 采用规则
 
@@ -994,6 +994,10 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 唯一通用入口是本文件 `forge-skill/SKILL.md`，不同时拼读全局安装版与项目同步版。优先级：用户指定的版本/checkout > starter 已校验的 `docs/forge-skill/upstream/SKILL.md` > 全局安装的 forge-skill。项目内没有同步副本时才用全局版；版本不符应先同步并核对 manifest，不能静默混用。
 
 在 starter 内先读该仓 AGENTS.md 与本任务对应的 quick-start / new-module / new-page，然后读项目 `docs/forge-skill/upstream/SKILL.md`；依次读 Screens → 主对照 Screen 源码 → Blocks 配方及单项 Props → 所用 Components 契约 → audit-checklist。全局 skill 在 starter 中仅负责找到并转入这一入口；starter 的路由、RBAC、数据与工程规则仍以 starter 专用 skill 为准。
+
+## 先读项目
+
+动手前运行 `node <skill目录>/scripts/project-info.mjs <项目根目录>`：它报告已装的 core 版本与本 skill 描述的版本是否一致、Next/React/Tailwind 版本、是否 forge-starter、项目里已有的页面组件和 AGENTS.md / DESIGN.md / MCP 配置。版本不一致时以项目 node_modules 里的类型为准；已有页面组件优先复用。
 
 ## 先确定范围
 
