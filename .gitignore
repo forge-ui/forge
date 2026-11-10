@@ -78,3 +78,7 @@ goal/
 
 # 构建时生成（pnpm docs:mcp）
 /src/lib/mcp/data.json
+
+# Eval runs: keep results.json and report.md, not the generated workspaces
+/evals/results/*/baseline/
+/evals/results/*/forge/

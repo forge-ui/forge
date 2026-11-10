@@ -1,0 +1,3 @@
+@import "tailwindcss";
+@import "@forge-ui-official/core/styles.css";
+@source "../node_modules/@forge-ui-official/core/dist";
