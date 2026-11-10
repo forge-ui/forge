@@ -10,11 +10,15 @@ const toc = [
   { id: "related", title: "相关文档" },
 ];
 
-const installCmd = `# Claude Code / Cursor
-curl -fsSL https://forgeui.org/install-skill.sh | bash
+const installCmd = `# 一条命令：Skill + MCP，自动识别 Claude Code / Cursor / Codex
+curl -fsSL https://forgeui.org/setup.sh | bash
 
-# Codex
-curl -fsSL https://forgeui.org/install-skill.sh | FORGE_AGENT=codex bash`;
+# 选项：--client claude|cursor|codex|all  --mode skill|mcp|both
+#       --scope user|project  --design  --dry-run  --check
+curl -fsSL https://forgeui.org/setup.sh | bash -s -- --scope project --design
+
+# 只装 Skill（旧命令，继续可用）
+curl -fsSL https://forgeui.org/install-skill.sh | bash`;
 
 const structureTree = `.claude/skills/forge-skill/ 或 .codex/skills/forge-skill/
 ├── SKILL.md                       # 主入口（定位 / 铁律 / 工作流 / 脚本索引）

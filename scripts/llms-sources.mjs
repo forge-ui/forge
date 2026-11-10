@@ -98,6 +98,7 @@ function llmsIndex(root, source) {
       link("使用指南", SITE + "/guides.md", "列表、详情、表单、设置、看板、反馈、AI 和 Starter 模块"),
     ].join("\n"),
     "## 给编码助手\n\n" + [
+      link("一键接入", SITE + "/docs/ui-for-agents.md", "curl -fsSL https://forgeui.org/setup.sh | bash，装 Skill 和 MCP，--check 自检"),
       link("MCP 服务器", SITE + "/docs/mcp.md", "search、recommend、get_component、get_block、get_tokens 等只读工具"),
       link("页面检查", SITE + "/docs/check.md", "MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码"),
       link("Skill", SITE + "/docs/ui-for-agents.md", "安装 forge-skill"),

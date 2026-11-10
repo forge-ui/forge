@@ -20,6 +20,7 @@
 
 ## 给编码助手
 
+- [一键接入](https://forgeui.org/docs/ui-for-agents.md): curl -fsSL https://forgeui.org/setup.sh | bash，装 Skill 和 MCP，--check 自检
 - [MCP 服务器](https://forgeui.org/docs/mcp.md): search、recommend、get_component、get_block、get_tokens 等只读工具
 - [页面检查](https://forgeui.org/docs/check.md): MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码
 - [Skill](https://forgeui.org/docs/ui-for-agents.md): 安装 forge-skill
