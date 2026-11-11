@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { type KeyboardEvent, useState } from "react";
+import { useShellPanel } from "../../internal/shell-popover";
 import { cn } from "../../lib/utils";
 import {
   CloseCircleLinear,
@@ -57,7 +58,7 @@ function handleMenuKeyDown(event: KeyboardEvent<HTMLDivElement>) {
   else nextIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
 
   event.preventDefault();
-  items[nextIndex]?.focus();
+  items[nextIndex]?.focus({ preventScroll: true });
 }
 
 // ============================================================
@@ -92,10 +93,11 @@ export function MessageMenu() {
 }
 
 export function NotificationPanel({ onClose }: { onClose: () => void }) {
+  const panelRef = useShellPanel(320);
   return (
-    <div role="dialog" aria-label="通知" className="w-[360px] max-w-[calc(100vw-2rem)] bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
+    <div ref={panelRef} role="dialog" aria-label="通知" className="w-[360px] max-w-[calc(100vw-2rem)] bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
       {/* Header */}
-      <div className="self-stretch p-5 bg-background border-b border-fg-grey-200 flex justify-start items-center gap-4 overflow-hidden">
+      <div className="self-stretch shrink-0 p-5 bg-background border-b border-fg-grey-200 flex justify-start items-center gap-4 overflow-hidden">
         <span className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">通知</span>
         <button type="button" aria-label="关闭通知" onClick={onClose} className="w-6 h-6 relative text-fg-grey-700 hover:text-fg-grey-900 transition-colors">
           <CloseCircleLinear size={24} />
@@ -103,7 +105,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Body */}
-      <div className="max-h-80 overflow-y-auto w-full">
+      <div data-shell-list className="min-h-0 max-h-80 overflow-y-auto w-full">
         {notificationItems.map((item) => (
           <div
             key={item.id}
@@ -134,7 +136,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Footer */}
-      <div className="self-stretch p-5 bg-background border-t border-fg-grey-200 inline-flex justify-between items-center overflow-hidden">
+      <div className="self-stretch shrink-0 p-5 bg-background border-t border-fg-grey-200 inline-flex justify-between items-center overflow-hidden">
         <button type="button" className="flex justify-start items-start gap-1 hover:underline">
           <span className="text-accent text-sm font-bold leading-5 tracking-fg">全部标为已读</span>
         </button>
@@ -197,6 +199,7 @@ export function LanguageSwitcher({
 }
 
 export function ProfileDropdown({ locale = "zh" }: { locale?: "zh" | "en" } = {}) {
+  const panelRef = useShellPanel();
   const items = [
     { label: locale === "en" ? "Edit profile" : "编辑资料", icon: <PenBold size={20} />, color: "text-fg-grey-700" },
     { label: locale === "en" ? "Change password" : "修改密码", icon: <LockPasswordBold size={20} />, color: "text-fg-grey-700" },
@@ -205,14 +208,14 @@ export function ProfileDropdown({ locale = "zh" }: { locale?: "zh" | "en" } = {}
   ];
 
   return (
-    <div role="menu" aria-label={locale === "en" ? "Profile menu" : "个人菜单"} onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
+    <div ref={panelRef} role="menu" aria-label={locale === "en" ? "Profile menu" : "个人菜单"} onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-start gap-1 overflow-hidden">
       {items.map((item) => (
         <button
           key={item.label}
           type="button"
           role="menuitem"
           className={cn(
-            "self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors",
+            "self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors",
             item.color
           )}
         >
@@ -256,6 +259,7 @@ export function TeamSwitcherDropdown({
   showActions?: boolean;
   onAppChange?: (app: AppSwitcherItem) => void;
 }) {
+  const panelRef = useShellPanel(288);
   const inviteLabel = labels?.invite ?? (locale === "en" ? "Invite members" : "邀请成员");
   const settingsLabel = labels?.settings ?? (locale === "en" ? "Settings" : "设置");
   const createNewLabel = labels?.createNew ?? (locale === "en" ? "Create team" : "新建团队");
@@ -263,18 +267,18 @@ export function TeamSwitcherDropdown({
   const subtitle = teamSubtitle ?? (showActions && teamMemberCount !== undefined ? (locale === "en" ? `${teamMemberCount} members` : `${teamMemberCount} 名成员`) : (locale === "en" ? "Current application" : "当前应用"));
 
   return (
-    <div role="menu" aria-label={locale === "en" ? "Switch application" : "应用切换"} onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
+    <div ref={panelRef} role="menu" aria-label={locale === "en" ? "Switch application" : "应用切换"} onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
-      <div className="self-stretch pt-2 flex flex-col justify-start items-center gap-3">
+      <div className="self-stretch shrink-0 pt-2 flex flex-col justify-start items-center gap-3">
         {teamAvatar && (
           <div className="relative inline-flex justify-start items-start gap-2">
             <img src={teamAvatar} alt={teamName} className="w-16 h-16 rounded-full object-cover" />
           </div>
         )}
-        <div className="self-stretch flex flex-col justify-center items-center gap-1">
-          <span className="self-stretch text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{teamName}</span>
+        <div className="self-stretch shrink-0 flex flex-col justify-center items-center gap-1">
+          <span className="self-stretch shrink-0 text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{teamName}</span>
           {subtitle && (
-            <span className="self-stretch text-center text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
+            <span className="self-stretch shrink-0 text-center text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
               {subtitle}
             </span>
           )}
@@ -283,18 +287,18 @@ export function TeamSwitcherDropdown({
 
       {showActions ? (
         <>
-          <div className="self-stretch flex flex-col justify-start items-start">
-            <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
+          <div className="self-stretch shrink-0 flex flex-col justify-start items-start">
+            <button type="button" role="menuitem" className="self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
               <span className="w-6 h-6 flex justify-center items-center"><UserPlusBold size={20} /></span>
               <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{inviteLabel}</span>
             </button>
-            <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
+            <button type="button" role="menuitem" className="self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
               <span className="w-6 h-6 flex justify-center items-center"><SettingsBold size={20} /></span>
               <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{settingsLabel}</span>
             </button>
           </div>
-          <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
-            <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+          <div className="self-stretch shrink-0 px-2.5 flex flex-col justify-start items-start gap-2">
+            <div className="self-stretch shrink-0 h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
           </div>
         </>
       ) : null}
@@ -303,11 +307,11 @@ export function TeamSwitcherDropdown({
       {hasTeams ? (
         <>
           {!showActions ? (
-            <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
-              <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+            <div className="self-stretch shrink-0 px-2.5 flex flex-col justify-start items-start gap-2">
+              <div className="self-stretch shrink-0 h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
             </div>
           ) : null}
-          <div className="self-stretch max-h-72 overflow-y-auto flex flex-col items-start">
+          <div data-shell-list className="self-stretch min-h-0 max-h-72 overflow-y-auto flex flex-col items-start">
             {teams!.map((team) => (
               <button
                 key={team.id}
@@ -316,7 +320,7 @@ export function TeamSwitcherDropdown({
                 aria-checked={!!team.active}
                 onClick={() => onAppChange?.(team)}
                 className={cn(
-                  "self-stretch px-2.5 py-3 inline-flex justify-start items-center gap-2 transition-colors",
+                  "self-stretch shrink-0 px-2.5 py-3 inline-flex justify-start items-center gap-2 transition-colors",
                   team.active ? "text-accent" : "text-fg-grey-700 hover:bg-fg-grey-100"
                 )}
               >
@@ -331,15 +335,15 @@ export function TeamSwitcherDropdown({
             ))}
           </div>
           {showActions ? (
-            <div className="self-stretch px-2.5 flex flex-col justify-start items-start gap-2">
-              <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+            <div className="self-stretch shrink-0 px-2.5 flex flex-col justify-start items-start gap-2">
+              <div className="self-stretch shrink-0 h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
             </div>
           ) : null}
         </>
       ) : null}
 
       {showActions ? (
-        <button type="button" role="menuitem" className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
+        <button type="button" role="menuitem" className="self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
           <span className="w-6 h-6 flex justify-center items-center"><AddCircleBold size={20} /></span>
           <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{createNewLabel}</span>
         </button>
