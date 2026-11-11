@@ -127,7 +127,7 @@ export function SearchHeader({
             controls={hamburgerControls}
           />
         ) : (
-          <div className="flex-1 max-w-none md:max-w-80 min-w-0 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden">
+          <div className="flex-1 max-w-none md:max-w-80 min-w-0 px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden">
             <div className="w-6 h-6 flex justify-center items-center gap-2 text-fg-grey-700">
               <MagniferLinear size={20} />
             </div>
@@ -305,7 +305,7 @@ export function TitleHeader({
   const accent = accentColors[color!];
 
   const iconButton =
-    "shrink-0 inline-flex items-center justify-center rounded-full bg-white p-2 text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:p-3.5";
+    "shrink-0 inline-flex items-center justify-center rounded-full bg-background p-2 text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:p-3.5";
 
   return (
     <div className="@container w-full min-w-0">
@@ -498,7 +498,7 @@ function DatePickerButton({
         aria-haspopup={usingInternal ? "dialog" : undefined}
         aria-expanded={usingInternal ? open : undefined}
         onClick={handleClick}
-        className="inline-flex items-center justify-center gap-1 overflow-hidden rounded-full bg-white p-2 text-sm font-normal leading-5 tracking-fg text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:px-4 @min-[1000px]:py-3.5"
+        className="inline-flex items-center justify-center gap-1 overflow-hidden rounded-full bg-background p-2 text-sm font-normal leading-5 tracking-fg text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:px-4 @min-[1000px]:py-3.5"
       >
         <CalendarBoldDuotone size={20} />
         <span className="hidden whitespace-nowrap @min-[1000px]:inline">{label}</span>

@@ -69,7 +69,7 @@ export function ConfirmationDialog({
   const content = (
     <div
       className={cn(
-        "w-full max-w-[480px] p-6 bg-white rounded-card flex flex-col items-center gap-8",
+        "w-full max-w-[480px] p-6 bg-background rounded-card flex flex-col items-center gap-8",
         className
       )}
     >

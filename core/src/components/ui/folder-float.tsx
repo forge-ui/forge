@@ -33,13 +33,13 @@ export function FolderFloat({ label, items, trigger = "hover", color = "blue", o
         <path d={folderOutline()} fill={folderBackFill(ink)} />
       </svg>
       <span aria-hidden className="absolute flex items-center justify-center whitespace-nowrap font-semibold text-fg-white" style={{ left: 108, top: -18, width: 58, height: 17, fontSize: 12, lineHeight: "17px", pointerEvents: "none" }}>{label}</span>
-      {[0, 1].map(index => <motion.div key={index} aria-hidden className="absolute inset-x-3 rounded-xl border border-fg-grey-200 bg-fg-white" style={{ height: 105, bottom: 10 }} animate={{ y: active ? -10 - index * 4 : -index * 4, rotate: index ? 3 : -3 }} transition={spring} />)}
+      {[0, 1].map(index => <motion.div key={index} aria-hidden className="absolute inset-x-3 rounded-xl border border-fg-grey-200 bg-background" style={{ height: 105, bottom: 10 }} animate={{ y: active ? -10 - index * 4 : -index * 4, rotate: index ? 3 : -3 }} transition={spring} />)}
       <div id={id} aria-label={`${label}中的便签`}>
         {items.slice(0, 8).map((item, index, visible) => {
           const row = Math.floor(index / 2), column = index % 2;
           const odd = visible.length % 2 === 1 && index === visible.length - 1;
           return <motion.button key={item.id} type="button" tabIndex={active ? 0 : -1} aria-hidden={!active} disabled={!active}
-            className="absolute left-1/2 top-0 z-20 max-w-44 truncate rounded-full border border-fg-grey-200 bg-fg-white px-4 py-2 text-xs font-medium text-fg-black shadow-md focus-visible:outline-2 focus-visible:outline-fg-violet"
+            className="absolute left-1/2 top-0 z-20 max-w-44 truncate rounded-full border border-fg-grey-200 bg-background px-4 py-2 text-xs font-medium text-fg-black shadow-md focus-visible:outline-2 focus-visible:outline-fg-violet"
             style={{ marginLeft: -65, width: 130, pointerEvents: active ? "auto" : "none" }} initial={false}
             animate={{ x: active ? odd ? 0 : (column ? 1 : -1) * (row % 2 ? 72 : 78) : 0, y: active ? -45 - row * 48 : 45, opacity: active ? 1 : 0, scale: active ? 1 : .45, rotate: active ? (index % 2 ? 5 : -5) : 0 }}
             transition={{ ...spring, delay: reduced ? 0 : active ? index * .045 : (visible.length - index - 1) * .025 }}

@@ -13,7 +13,7 @@ type ProgressCardTheme = CardTheme | LegacyCardTheme;
 // Map from cardTheme bg to the "solid" bg class needed for the
 // inner circle (the donut hole must match the card bg exactly).
 const innerBgMap: Record<CardTheme, string> = {
-  white: "bg-white",
+  white: "bg-background",
   black: "bg-fg-black",
   purple: "bg-fg-violet",
   blue: "bg-fg-blue",

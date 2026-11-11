@@ -53,7 +53,7 @@ export function SmallDailyCalendar({
   }
 
   return (
-    <div data-accent={color} className={cn("flex w-full min-w-0 max-w-[420px] flex-col overflow-hidden rounded-card bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200", className)}>
+    <div data-accent={color} className={cn("flex w-full min-w-0 max-w-[420px] flex-col overflow-hidden rounded-card bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200", className)}>
       {/* Header */}
       <div className="px-6 pt-6 pb-4 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-1">

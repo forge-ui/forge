@@ -39,7 +39,7 @@ export function HalfDonutChart({
           className="absolute left-1/2 top-0 h-[187.5%] w-[93.75%] -translate-x-1/2 rounded-full"
           style={{ background: gradient }}
         />
-        <div className="absolute left-1/2 top-[23.4375%] h-[140.625%] w-[70.3125%] -translate-x-1/2 rounded-full bg-white" />
+        <div className="absolute left-1/2 top-[23.4375%] h-[140.625%] w-[70.3125%] -translate-x-1/2 rounded-full bg-background" />
         <div className="absolute left-1/2 top-[54.6875%] -translate-x-1/2 flex flex-col items-center text-center">
           <ChartCenterText centerValue={centerValue} trend={trend} trendDirection={trendDirection} />
         </div>

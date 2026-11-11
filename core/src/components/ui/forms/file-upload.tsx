@@ -108,7 +108,7 @@ export function FileCard({
   return (
     <div
       className={cn(
-        "self-stretch p-4 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-3 overflow-hidden",
+        "self-stretch p-4 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-3 overflow-hidden",
         className,
       )}
     >

@@ -85,9 +85,9 @@ export function TabBar({
       aria-label={ariaLabel}
       className={cn(
         "relative isolate border-b border-fg-grey-200",
-        appearance === "dock" && "forge-tab-dock rounded-2xl border border-fg-grey-200 bg-white p-2",
+        appearance === "dock" && "forge-tab-dock rounded-2xl border border-fg-grey-200 bg-background p-2",
         isPage
-          ? "flex w-full bg-white px-6 pt-4"
+          ? "flex w-full bg-background px-6 pt-4"
           : "inline-flex",
         className,
       )}

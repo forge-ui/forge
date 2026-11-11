@@ -88,7 +88,7 @@ export function SmallCalendar({
   return (
     <div
       className={cn(
-        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+        "bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
         resolveCardWidthClass(width, "w-96"),
         className,
       )}

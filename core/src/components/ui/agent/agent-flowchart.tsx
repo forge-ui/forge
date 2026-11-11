@@ -84,7 +84,7 @@ export function AgentFlowchart({
                   type="button"
                   onClick={() => select(node.id)}
                   className={cn(
-                    "w-full rounded-2xl bg-white p-4 text-left outline outline-1 outline-offset-[-1px]",
+                    "w-full rounded-2xl bg-background p-4 text-left outline outline-1 outline-offset-[-1px]",
                     selectedId === node.id ? "outline-accent" : "outline-fg-grey-200",
                   )}
                 >

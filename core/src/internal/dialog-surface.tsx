@@ -71,7 +71,7 @@ export function DialogSurface({ open, onOpenChange, label, children, motion = "a
       const rect = event.currentTarget.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onOpenChange(false);
     }}
-    className={cn("forge-dialog border-0 bg-white p-0 text-fg-black", appearance === "template" ? "forge-template-modal rounded-card shadow-lg" : cn("shadow-xl", side ? "forge-drawer" : "forge-modal rounded-card"), className)}>
+    className={cn("forge-dialog border-0 bg-background p-0 text-fg-black", appearance === "template" ? "forge-template-modal rounded-card shadow-lg" : cn("shadow-xl", side ? "forge-drawer" : "forge-modal rounded-card"), className)}>
     <div inert={!open || undefined} aria-hidden={!open || undefined}>{children}</div>
   </dialog>;
 }

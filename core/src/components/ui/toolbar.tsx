@@ -98,7 +98,7 @@ export function ToolbarSearchInput({
         onSubmit?.(inputRef.current?.value ?? "");
       }}
       className={cn(
-        "w-full min-w-0 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden sm:w-80 sm:max-w-80",
+        "w-full min-w-0 px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden sm:w-80 sm:max-w-80",
         className,
       )}
     >
@@ -186,7 +186,7 @@ export function ToolbarSelectDropdown({
         aria-expanded={usingInternal ? open : undefined}
         onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
         className={cn(
-          "px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-2 overflow-hidden cursor-pointer",
+          "px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-2 overflow-hidden cursor-pointer",
           fixedWidth && "w-20",
         )}
       >
@@ -205,7 +205,7 @@ export function ToolbarSelectDropdown({
         </div>
       </button>
       {usingInternal && options && (
-        <MotionPresence open={open} motion={motion} className="absolute right-0 top-full mt-2 z-50 min-w-full bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-2 flex flex-col gap-1">
+        <MotionPresence open={open} motion={motion} className="absolute right-0 top-full mt-2 z-50 min-w-full bg-background rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-2 flex flex-col gap-1">
           <MotionMenu motion={motion} className="flex flex-col gap-1" >
           {options.map((opt) => (
             <button
@@ -264,7 +264,7 @@ export function ToolbarDatepicker({
       <button
         type="button"
         onClick={handleClick}
-        className="px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
+        className="px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
       >
         <div className="w-6 h-6 flex justify-center items-center">
           <CalendarBoldDuotone size={20} color="var(--fg-grey-700)" />
@@ -318,7 +318,7 @@ export function ToolbarFilterButton({
         type="button"
         onClick={handleClick}
         disabled={!onClick && panel === undefined}
-        className="px-4 py-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+        className="px-4 py-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
       >
         <FilterBold size={20} color="var(--fg-grey-700)" />
         <span className="justify-start text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap">
@@ -396,7 +396,7 @@ export function ToolbarKebabButton({
       aria-label={ariaLabel}
       onClick={onClick}
       className={cn(
-        "p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center cursor-pointer",
+        "p-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center cursor-pointer",
         className,
       )}
     >
@@ -419,7 +419,7 @@ export function ToolbarFavoriteButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center cursor-pointer",
+        "p-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center cursor-pointer",
         className,
       )}
     >
@@ -457,7 +457,7 @@ export function ToolbarPillTabs({
   return (
     <div ref={rootRef} data-motion={motion}
       className={cn(
-        "relative isolate inline-flex max-w-full items-start justify-start overflow-x-auto rounded-full bg-white p-1 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+        "relative isolate inline-flex max-w-full items-start justify-start overflow-x-auto rounded-full bg-background p-1 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         className,
       )}
     >

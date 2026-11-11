@@ -74,7 +74,7 @@ export function AgentTaskRows({
       {tasks.map((task) => (
         <div
           key={task.id}
-          className="rounded-xl bg-white px-3 py-2.5 outline outline-1 outline-offset-[-1px] outline-fg-grey-200"
+          className="rounded-xl bg-background px-3 py-2.5 outline outline-1 outline-offset-[-1px] outline-fg-grey-200"
         >
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">

@@ -42,8 +42,8 @@ export const accentTokens = {
 
 export const modeConfig = {
   light: {
-    outer: "bg-white",
-    sidebar: "bg-white shadow-subtle",
+    outer: "bg-background",
+    sidebar: "bg-background shadow-subtle",
     logoText: "text-fg-black",
     hamburger: "text-fg-grey-700 hover:text-fg-black",
     teamSwitcher: "bg-fg-grey-50 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",

@@ -33,7 +33,7 @@ export function CheckboxVisual({
 }) {
   return (
     <span aria-hidden className="forge-check-visual absolute inset-0" data-motion={motion} data-checked={checked}>
-      <span className="absolute inset-0 bg-white rounded-md border-2 border-fg-grey-300" />
+      <span className="absolute inset-0 bg-background rounded-md border-2 border-fg-grey-300" />
       <span className={cn("forge-check-fill absolute inset-0 rounded-md", checkboxColors[color])} />
       <svg className="absolute inset-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
         <path className="forge-check-tick" pathLength="1" d="M5.28 10.36L8.33 13.22L14.72 6.86" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

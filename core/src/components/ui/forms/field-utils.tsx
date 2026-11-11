@@ -46,7 +46,7 @@ export function getFieldClasses({
     state === "error" && "bg-fg-red-100 outline-fg-red",
     state === "disabled" && "bg-fg-grey-200 outline-fg-grey-200 cursor-not-allowed",
     state === "focus" && `bg-transparent ${accent.outline}`,
-    (state === "filled" || state === "idle") && "bg-white outline-fg-grey-200",
+    (state === "filled" || state === "idle") && "bg-background outline-fg-grey-200",
   );
 
   const text = cn(

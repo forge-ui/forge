@@ -32,7 +32,7 @@ function CurrencyInput({
   onCurrencyChange,
 }: CurrencyInputProps) {
   return (
-    <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex justify-start items-center gap-1 overflow-hidden">
+    <div className="self-stretch px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex justify-start items-center gap-1 overflow-hidden">
       <div className="flex-1 h-6 flex justify-start items-center gap-2 overflow-hidden">
         {value !== undefined ? (
           <input
@@ -114,7 +114,7 @@ export function CurrencyConverter({
   return (
     <div
       className={cn(
-        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-center overflow-hidden",
+        "bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-center overflow-hidden",
         resolveCardWidthClass(width, "w-96"),
         className
       )}
@@ -131,7 +131,7 @@ export function CurrencyConverter({
         </div>
         <button
           onClick={onMenuClick}
-          className="p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2 cursor-pointer text-fg-grey-700"
+          className="p-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2 cursor-pointer text-fg-grey-700"
         >
           <MenuDotsBold size={20} className="rotate-90" />
         </button>

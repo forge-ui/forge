@@ -52,7 +52,7 @@ export function ChartCard({
   const actionElement = action ?? (
     <button
       onClick={onMenuClick}
-      className="p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2"
+      className="p-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-2"
     >
       <ThreeDotsVerticalIcon />
     </button>
@@ -61,7 +61,7 @@ export function ChartCard({
   return (
     <div
       className={cn(
-        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-start overflow-hidden",
+        "bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-start items-start overflow-hidden",
         resolveCardWidthClass(widthMode, fixedWidthClasses[size]),
         minHeight,
         className

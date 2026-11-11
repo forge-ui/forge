@@ -232,11 +232,11 @@ export function IconSelector({
             aria-modal="false"
             aria-labelledby={label ? labelId : undefined}
             aria-label={label ? undefined : "图标选择器"}
-            className="absolute left-[76px] top-[50px] w-80 max-w-[calc(100vw-2rem)] z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-white shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]"
+            className="absolute left-[76px] top-[50px] w-80 max-w-[calc(100vw-2rem)] z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-background shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]"
           >
             {/* Search */}
             <div className="self-stretch p-4 border-b border-fg-grey-200 flex flex-col gap-2">
-              <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden">
+              <div className="self-stretch px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden">
                 <div className="w-6 h-6 flex justify-center items-center text-fg-grey-700">
                   <MagniferLinear size={20} />
                 </div>

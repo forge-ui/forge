@@ -397,7 +397,7 @@ export function AskAi({
       <button ref={triggerRef} type="button" aria-label={label} aria-haspopup="dialog"
         aria-expanded={open} aria-controls={open ? `${id}-dialog` : undefined}
         disabled={disabled} onClick={() => setOpen(true)}
-        className={cn("shrink-0 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-3 md:px-4 text-fg-grey-700 outline outline-1 -outline-offset-1 outline-fg-grey-200 hover:bg-fg-grey-100 focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors", className)}>
+        className={cn("shrink-0 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-background px-3 md:px-4 text-fg-grey-700 outline outline-1 -outline-offset-1 outline-fg-grey-200 hover:bg-fg-grey-100 focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors", className)}>
         <AskAiIcon />
         <span className="hidden md:inline text-sm font-semibold whitespace-nowrap">{label}</span>
       </button>
@@ -412,7 +412,7 @@ export function AskAi({
             const rect = event.currentTarget.getBoundingClientRect();
             if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) setOpen(false);
           }}
-          className={cn("fixed inset-y-0 left-auto right-0 m-0 h-dvh max-h-none w-full max-w-[460px] border-0 border-l border-fg-grey-200 bg-white p-0 text-fg-black", docked ? "z-40" : "shadow-xl backdrop:bg-fg-black/30")}>
+          className={cn("fixed inset-y-0 left-auto right-0 m-0 h-dvh max-h-none w-full max-w-[460px] border-0 border-l border-fg-grey-200 bg-background p-0 text-fg-black", docked ? "z-40" : "shadow-xl backdrop:bg-fg-black/30")}>
           <div className="flex h-full min-h-0 flex-col">
             <header className="flex shrink-0 items-center justify-between gap-3 border-b border-fg-grey-200 px-5 py-4">
               {header ?? (

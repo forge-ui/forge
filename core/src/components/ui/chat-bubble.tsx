@@ -115,7 +115,7 @@ export function ChatBubble({
     ? "rounded-tl-xl rounded-tr-xl rounded-bl-xl"
     : "rounded-tl-xl rounded-tr-xl rounded-br-xl";
 
-  const bubbleBg = isSent ? accent.bg : "bg-white";
+  const bubbleBg = isSent ? accent.bg : "bg-background";
   const bubbleText = isSent ? "text-white" : "text-fg-black";
   const fileSubColor = isSent ? c.fileSubText : "text-fg-grey-700";
 

@@ -153,7 +153,7 @@ function CardVariant({
   return (
     <div
       className={cn(
-        "p-4 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-center items-start gap-4",
+        "p-4 bg-background rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col justify-center items-start gap-4",
         resolveCardWidthClass(width, "w-96"),
         className,
       )}

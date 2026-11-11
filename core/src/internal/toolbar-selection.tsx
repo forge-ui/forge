@@ -75,7 +75,7 @@ export function ToolbarSelection({ selection, locale, motion, className, left, r
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: reduced ? 0 : 20 }}
           transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 26, mass: .8 }}
-          className="flex flex-wrap items-center gap-3 rounded-xl bg-fg-black p-3 text-fg-white shadow-md">
+          className="flex flex-wrap items-center gap-3 rounded-xl bg-fg-black p-3 text-white shadow-md">
           <span role="status" aria-atomic="true" className="mr-auto text-xs font-semibold leading-4 tracking-fg text-fg-white">
             {selection.label ?? <><span className="sr-only">{locale === "zh" ? `${count} 项已选` : `${count} selected`}</span><span aria-hidden="true">
               <AnimatePresence mode="popLayout" initial={false}><animated.span key={count} className="inline-block tabular-nums"

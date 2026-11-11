@@ -95,7 +95,7 @@ export function FilterGroup({
       </button>
 
       {open && content.type !== "empty" && (
-        <div className="self-stretch bg-white flex justify-start items-stretch">
+        <div className="self-stretch bg-background flex justify-start items-stretch">
           <div className="flex-1 p-4 flex flex-col gap-4">
             {content.type === "checkbox" &&
               content.options.map((option) => (
@@ -191,7 +191,7 @@ function CheckboxBox({
 }) {
   if (!checked) {
     return (
-      <span className="w-5 h-5 bg-white rounded-md border-2 border-fg-grey-200 inline-block" />
+      <span className="w-5 h-5 bg-background rounded-md border-2 border-fg-grey-200 inline-block" />
     );
   }
   return (
@@ -231,7 +231,7 @@ function RadioRow({
           <span className="w-2.5 h-2.5 bg-white rounded-full" />
         </span>
       ) : (
-        <span className="w-5 h-5 bg-white rounded-full border-2 border-fg-grey-200 inline-block" />
+        <span className="w-5 h-5 bg-background rounded-full border-2 border-fg-grey-200 inline-block" />
       )}
       <input
         type="radio"
@@ -284,7 +284,7 @@ function RangeField({
       <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
         {label}
       </span>
-      <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-2">
+      <div className="self-stretch px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-2">
         <span className="inline-flex text-fg-grey-700">
           <FiltersLinear size={20} />
         </span>

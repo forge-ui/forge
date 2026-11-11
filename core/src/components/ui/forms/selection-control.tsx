@@ -188,7 +188,7 @@ export function Toggle({
         }}
         className={cn(
           "forge-toggle-thumb rounded-full w-3 h-3 flex items-center justify-center text-fg-black",
-          active ? "bg-white" : "bg-fg-grey-50",
+          active ? "bg-background" : "bg-fg-grey-50",
         )}
       >{thumbIcon}</div>
     </button>
@@ -220,7 +220,7 @@ export function RadioButton({
       onClick={() => onChange?.(true)}
       className={cn(
         "w-5 h-5 rounded-full flex items-center justify-center transition-colors",
-        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-white",
+        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-background",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
       )}
     >
@@ -235,7 +235,7 @@ function RadioVisual({ checked, color }: { checked: boolean; color: ControlColor
       aria-hidden
       className={cn(
         "w-5 h-5 rounded-full flex items-center justify-center transition-colors shrink-0",
-        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-white",
+        checked ? cn("p-[5px]", formAccents[color].bg) : "border-2 border-fg-grey-300 bg-background",
       )}
     >
       {checked && <span className="w-2.5 h-2.5 bg-white rounded-full" />}

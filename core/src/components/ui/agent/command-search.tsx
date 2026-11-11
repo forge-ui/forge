@@ -173,7 +173,7 @@ export function CommandSearch({
                   </span>
                   {(item.hint || item.shortcut) && <span className="flex shrink-0 items-center gap-2 text-xs text-fg-grey-500">
                     {item.hint && <span>{item.hint}</span>}
-                    {item.shortcut && <kbd className="rounded-md border border-fg-grey-200 bg-white px-1.5 py-0.5 font-sans text-xs font-medium">{item.shortcut}</kbd>}
+                    {item.shortcut && <kbd className="rounded-md border border-fg-grey-200 bg-background px-1.5 py-0.5 font-sans text-xs font-medium">{item.shortcut}</kbd>}
                   </span>}
                 </button>;
               })}

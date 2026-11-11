@@ -57,7 +57,7 @@ export function EventCard({
   return (
     <div
       className={cn(
-        "bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+        "bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
         resolveCardWidthClass(width, "w-72"),
         className,
       )}

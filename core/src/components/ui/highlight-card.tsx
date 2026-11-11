@@ -79,7 +79,7 @@ export function HighlightCard({
           {products.map((p, i) => (
             <div
               key={`${p.name}-${i}`}
-              className="bg-white rounded-xl shadow-lg px-4 py-3 flex items-center gap-3"
+              className="bg-background rounded-xl shadow-lg px-4 py-3 flex items-center gap-3"
               style={{ width: `calc(100% - ${i * 16}px)`, marginTop: i > 0 ? "-4px" : "0", zIndex: products.length - i }}
             >
               <img className="w-10 h-10 rounded-lg object-cover shrink-0" src={p.image} alt="" />

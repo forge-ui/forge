@@ -65,7 +65,7 @@ export function TextFieldSelectSuffix({
         <span className="forge-chevron inline-flex" data-motion={motion} data-expanded={open}><AltArrowDownLinear size={16} /></span>
       </button>
 
-      <MotionPresence open={open} motion={motion} className="absolute top-full right-0 mt-1 min-w-40 max-w-[calc(100vw-2rem)] py-2 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden">
+      <MotionPresence open={open} motion={motion} className="absolute top-full right-0 mt-1 min-w-40 max-w-[calc(100vw-2rem)] py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden">
           <MotionMenu motion={motion} className="flex-1 flex flex-col overflow-y-auto max-h-60">
             {options.map((opt) => (
               <button type="button"

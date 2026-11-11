@@ -189,8 +189,8 @@ export function Datepicker({
     isError && "bg-fg-red-100 outline-fg-red",
     isDisabled && "bg-fg-grey-200 outline-fg-grey-200 cursor-not-allowed",
     isFocus && !isError && !isDisabled && `bg-transparent ${accent.outline}`,
-    isFilled && !isFocus && !isError && !isDisabled && "bg-white outline-fg-grey-200",
-    !isError && !isDisabled && !isFocus && !isFilled && "bg-white outline-fg-grey-200",
+    isFilled && !isFocus && !isError && !isDisabled && "bg-background outline-fg-grey-200",
+    !isError && !isDisabled && !isFocus && !isFilled && "bg-background outline-fg-grey-200",
     className,
   );
 
@@ -301,7 +301,7 @@ export function Datepicker({
         </button>}
 
         {visible && !isDisabled && (
-          <div id={dialogId} role="dialog" aria-label={label ?? placeholder} className={cn("mt-2 w-96 max-w-full bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50", !inline && "absolute top-full left-0 max-w-[calc(100vw-2rem)] shadow-sm")}>
+          <div id={dialogId} role="dialog" aria-label={label ?? placeholder} className={cn("mt-2 w-96 max-w-full bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50", !inline && "absolute top-full left-0 max-w-[calc(100vw-2rem)] shadow-sm")}>
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-fg-grey-200 p-4">
               <button type="button" aria-label={locale === "zh" ? "上个月" : "Previous month"} onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
@@ -312,7 +312,7 @@ export function Datepicker({
                 type="button"
                 onClick={() => setView(view === "months" ? "calendar" : "months")}
                 className={cn(
-                  "flex-1 h-10 px-3 py-2.5 bg-white rounded-lg flex items-center gap-2 cursor-pointer",
+                  "flex-1 h-10 px-3 py-2.5 bg-background rounded-lg flex items-center gap-2 cursor-pointer",
                   view === "months" && `outline outline-1 outline-offset-[-1px] ${accent.outline}`,
                 )}
               >
@@ -324,7 +324,7 @@ export function Datepicker({
                 type="button"
                 onClick={() => setView(view === "years" ? "calendar" : "years")}
                 className={cn(
-                  "w-24 h-10 px-3 py-2.5 bg-white rounded-lg flex items-center gap-2 cursor-pointer",
+                  "w-24 h-10 px-3 py-2.5 bg-background rounded-lg flex items-center gap-2 cursor-pointer",
                   view === "years" && `outline outline-1 outline-offset-[-1px] ${accent.outline}`,
                 )}
               >

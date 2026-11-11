@@ -169,7 +169,7 @@ export function AgentCodeBlock({
                   onClick={() => setView(option)}
                   className={cn(
                     "rounded-md px-2 py-1 text-xs font-semibold",
-                    view === option ? "bg-white text-fg-black" : "text-fg-grey-700",
+                    view === option ? "bg-background text-fg-black" : "text-fg-grey-700",
                   )}
                 >
                   {option === "code" ? (codeLabel ?? (zh ? "代码" : "Code")) : (diffLabel ?? (zh ? "差异" : "Diff"))}

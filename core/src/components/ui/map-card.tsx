@@ -180,7 +180,7 @@ export function MapCard({
     return (
       <div
         className={cn(
-          "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+          "bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
           resolveCardWidthClass("full", "w-full"),
           className,
         )}
@@ -193,9 +193,9 @@ export function MapCard({
           </div>
 
           {/* Floating search panel */}
-          <div className="absolute right-6 top-10 w-96 max-w-[calc(100%-3rem)] bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col">
+          <div className="absolute right-6 top-10 w-96 max-w-[calc(100%-3rem)] bg-background rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col">
             <div className="px-6 pt-6 flex flex-col gap-2">
-              <div className="self-stretch px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden text-fg-grey-700">
+              <div className="self-stretch px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-1 overflow-hidden text-fg-grey-700">
                 <MagniferLinear size={20} className="shrink-0" />
                 <input
                   type="text"
@@ -224,7 +224,7 @@ export function MapCard({
   return (
     <div
       className={cn(
-        "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
+        "bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex-col overflow-hidden",
         widthClass,
         className,
       )}

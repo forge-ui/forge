@@ -69,7 +69,7 @@ export function DonutChart({
   return (
     <div className="flex w-full flex-col items-center">
       <div className={cn("relative w-full aspect-square rounded-full", s.outer)} style={{ background: buildConicGradient(resolved, { trackColor }) }}>
-        <div className={cn("absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white", s.inner)} />
+        <div className={cn("absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-background", s.inner)} />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <ChartCenterText centerValue={centerValue} trend={trend} trendDirection={trendDirection} />
         </div>

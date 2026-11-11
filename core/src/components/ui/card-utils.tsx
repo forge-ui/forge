@@ -44,7 +44,7 @@ export interface CardThemeConfig {
 
 export const cardThemes: Record<CardTheme, CardThemeConfig> = {
   white: {
-    bg: "bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+    bg: "bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
     valueColor: "text-fg-black",
     titleColor: "text-fg-grey-700",
     trendColor: "text-fg-green-500",
@@ -253,7 +253,7 @@ export function CardIconChip({
       text = colors.text;
       break;
     case "white":
-      bg = "bg-white";
+      bg = "bg-background";
       text = colors.text;
       break;
     default:
