@@ -57,7 +57,7 @@ export function SettingsNotifications({ rules = defaultNotificationRules, onSave
     setSaved(false);
   }
 
-  return <section className={cn("flex w-full min-w-0 flex-col overflow-hidden rounded-card border border-fg-grey-200 bg-white", className)}>
+  return <section className={cn("flex w-full min-w-0 flex-col overflow-hidden rounded-card border border-fg-grey-200 bg-background", className)}>
     {groups.map(group => <Section key={group} title={group} description={groupHints[group] ?? "选择这类事件通过哪些渠道提醒你。"}>
       <div className="fg-scrollbar-hidden overflow-x-auto">
         <table className="w-full text-left text-sm">
@@ -73,6 +73,6 @@ export function SettingsNotifications({ rules = defaultNotificationRules, onSave
       <div className="flex flex-wrap items-center justify-between gap-4"><div><p className="text-sm font-semibold text-fg-black">邮件摘要</p><p className="text-xs text-fg-grey-700">把未读通知合并成一封邮件</p></div><div className="w-48"><SelectOption shape="pill" width="100%" className="w-full" options={[{ value: "off", label: "不发送" }, { value: "daily", label: "每天 9:00" }, { value: "weekly", label: "每周一" }]} value={digest} onChange={value => { setDigest(value); setSaved(false); }} /></div></div>
       <div className="flex items-center justify-between gap-4 border-t border-fg-grey-100 pt-4"><div><p className="text-sm font-semibold text-fg-black">夜间免打扰</p><p className="text-xs text-fg-grey-700">22:00–8:00 只保留「需要我确认」</p></div><Toggle color="blue" checked={quiet} onChange={value => { setQuiet(value); setSaved(false); }} ariaLabel="夜间免打扰" /></div>
     </Section>
-    <div className="flex items-center justify-between gap-3 border-t border-fg-grey-200 bg-white px-5 py-3 sm:px-6"><span role="status" className={cn("text-sm", saved ? "text-fg-green-500" : "text-fg-grey-700")}>{saved ? "通知设置已保存" : "修改后点保存生效"}</span><Button onClick={() => { onSave?.(items, digest); setSaved(true); }}>保存设置</Button></div>
+    <div className="flex items-center justify-between gap-3 border-t border-fg-grey-200 bg-background px-5 py-3 sm:px-6"><span role="status" className={cn("text-sm", saved ? "text-fg-green-500" : "text-fg-grey-700")}>{saved ? "通知设置已保存" : "修改后点保存生效"}</span><Button onClick={() => { onSave?.(items, digest); setSaved(true); }}>保存设置</Button></div>
   </section>;
 }

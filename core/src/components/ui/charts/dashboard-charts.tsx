@@ -79,7 +79,7 @@ export function ChartHeader({
               onClick={() => { setSelected(tab); onTabChange?.(tab); }}
               className={
                 tab === current
-                  ? "rounded-full bg-white px-3 py-1.5 font-semibold text-fg-violet shadow-subtle"
+                  ? "rounded-full bg-background px-3 py-1.5 font-semibold text-fg-violet shadow-subtle"
                   : "rounded-full px-3 py-1.5 font-medium text-fg-grey-500"
               }
             >

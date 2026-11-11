@@ -22,7 +22,7 @@ export function ActivityCard({
   onMenuClick?: () => void;
 }) {
   return (
-    <div className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-hidden">
+    <div className="bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-hidden">
       {/* Header */}
       <div className="p-5 border-b border-fg-grey-200 flex items-center justify-between">
         <div className="flex items-center gap-2">

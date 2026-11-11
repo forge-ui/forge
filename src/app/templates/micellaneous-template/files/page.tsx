@@ -131,7 +131,7 @@ function FileManagerTile({ tile, onDelete }: { tile: FileTile; onDelete: () => v
   const iconFileName = tile.kind === "folder" ? "folder" : `${tile.name}.${tile.kind}`;
 
   return (
-    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 bg-background p-4">
       <div className="flex items-start justify-between">
         <Checkbox />
         <CellActions actions={[]} onKebab={onDelete} />

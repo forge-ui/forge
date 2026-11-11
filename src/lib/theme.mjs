@@ -1,7 +1,7 @@
 // Theme generator logic for /docs/theme. Pure functions, shared by the page and scripts/test-theme.mjs.
 // A theme only overrides variables core already reads at runtime: the --fg-blue-* scale (every
 // blue/accent utility resolves through it), Tailwind's --radius-* scale, and the two font variables.
-import { clampChroma, converter, formatHex } from "culori";
+import { clampChroma, converter, formatHex, interpolate } from "culori";
 
 const toOklch = converter("oklch");
 
@@ -35,10 +35,25 @@ export const FONT_PRESETS = [
   { id: "noto", label: "思源黑体", sans: `"Noto Sans SC", "Source Han Sans SC", ${CJK_FALLBACK}`, display: `"Noto Sans SC", "Source Han Sans SC", ${CJK_FALLBACK}`, note: "需要自己加载 Noto Sans SC；没装时退回系统中文字体。" },
 ];
 
-export const DEFAULT_THEME = { color: "#3553FF", radius: "default", font: "default" };
+export const DEFAULT_THEME = { color: "#3553FF", radius: "default", font: "default", mode: "light" };
+
+// Dark mapping shared with scripts/generate-dark-tokens.mjs: tints (50–300) are the 500 mixed into
+// the dark card color, 400–600 stay, and the dark text steps (700–900) take the light 300–100.
+export const DARK_CARD = "#16181D";
+const DARK_TINT = { 50: 0.14, 100: 0.22, 200: 0.34, 300: 0.5 };
+const DARK_LIGHTER = { 700: 300, 800: 200, 900: 100 };
+
+export function darkColorScale(light) {
+  return Object.fromEntries(SCALE_STEPS.map(step => [step, DARK_TINT[step] !== undefined
+    ? formatHex(interpolate([DARK_CARD, light[500]], "oklab")(DARK_TINT[step])).toUpperCase()
+    : light[DARK_LIGHTER[step] ?? step]]));
+}
 
 export function parseScale(css, name = "blue") {
-  const scale = Object.fromEntries([...css.matchAll(new RegExp(`--fg-${name}-(\\d+):\\s*(#[0-9a-fA-F]{6})`, "g"))].map(match => [Number(match[1]), match[2].toUpperCase()]));
+  // First definition only: the light primitives come before the generated dark palette.
+  /** @type {Record<number, string>} */
+  const scale = {};
+  for (const match of css.matchAll(new RegExp(`--fg-${name}-(\\d+):\\s*(#[0-9a-fA-F]{6})`, "g"))) scale[Number(match[1])] ??= match[2].toUpperCase();
   for (const step of SCALE_STEPS) if (!scale[step]) throw new Error(`tokens.css is missing --fg-${name}-${step}`);
   return scale;
 }
@@ -83,7 +98,8 @@ export function fontPreset(id) {
 // Variables for a preview container. Unlike :root, a nested element must also restate the values
 // tokens.css derives on :root (--fg-blue, --accent…), because those resolve where they are declared.
 export function previewVariables(theme, reference) {
-  const scale = generateScale(theme.color, reference);
+  const light = generateScale(theme.color, reference);
+  const scale = theme.mode === "dark" ? darkColorScale(light) : light;
   const radius = radiusValues(theme.radius);
   const font = fontPreset(theme.font);
   return {
@@ -91,7 +107,8 @@ export function previewVariables(theme, reference) {
     "--fg-blue": scale[500],
     "--accent": scale[500],
     "--accent-soft": scale[100],
-    "--accent-soft-foreground": scale[500],
+    "--accent-soft-foreground": theme.mode === "dark" ? scale[800] : scale[500],
+    ...(theme.mode === "dark" ? { "--fg-blue-text": light[300] } : {}),
     "--focus": scale[500],
     ...Object.fromEntries(Object.entries(radius).filter(([key]) => key !== "card").map(([key, px]) => [`--radius-${key}`, `${px}px`])),
     ...(font.sans ? { "--font-manrope": font.sans, "--font-plus-jakarta-sans": font.display } : {}),
@@ -121,6 +138,14 @@ export function themeCss(theme, reference) {
     ":root:root {",
     ...declarations,
     "}",
+    ...(colorChanged ? [
+      "",
+      "/* 深色模式（<html data-theme=\"dark\">）下的同一主色 */",
+      ':root:root[data-theme="dark"] {',
+      ...Object.entries(darkColorScale(scale)).map(([step, value]) => `  --fg-blue-${step}: ${value};`),
+      `  --fg-blue-text: ${scale[300]};`,
+      "}",
+    ] : []),
     // rounded-card is compiled to a literal value, so it needs its own rule.
     ...(radiusChanged ? ["", `.rounded-card { border-radius: ${radius.card}px; }`] : []),
     "",

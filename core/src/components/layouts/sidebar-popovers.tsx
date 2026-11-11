@@ -71,7 +71,7 @@ function handleMenuKeyDown(event: KeyboardEvent<HTMLDivElement>) {
 
 export function MessageMenu() {
   return (
-    <div role="menu" aria-label="消息" onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
+    <div role="menu" aria-label="消息" onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
       {messageMenuItems.map((item) => (
         <button
           key={item.label}
@@ -93,9 +93,9 @@ export function MessageMenu() {
 
 export function NotificationPanel({ onClose }: { onClose: () => void }) {
   return (
-    <div role="dialog" aria-label="通知" className="w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
+    <div role="dialog" aria-label="通知" className="w-[360px] max-w-[calc(100vw-2rem)] bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col justify-start items-start overflow-hidden">
       {/* Header */}
-      <div className="self-stretch p-5 bg-white border-b border-fg-grey-200 flex justify-start items-center gap-4 overflow-hidden">
+      <div className="self-stretch p-5 bg-background border-b border-fg-grey-200 flex justify-start items-center gap-4 overflow-hidden">
         <span className="flex-1 text-fg-black text-lg font-semibold leading-7 tracking-fg">通知</span>
         <button type="button" aria-label="关闭通知" onClick={onClose} className="w-6 h-6 relative text-fg-grey-700 hover:text-fg-grey-900 transition-colors">
           <CloseCircleLinear size={24} />
@@ -134,7 +134,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Footer */}
-      <div className="self-stretch p-5 bg-white border-t border-fg-grey-200 inline-flex justify-between items-center overflow-hidden">
+      <div className="self-stretch p-5 bg-background border-t border-fg-grey-200 inline-flex justify-between items-center overflow-hidden">
         <button type="button" className="flex justify-start items-start gap-1 hover:underline">
           <span className="text-accent text-sm font-bold leading-5 tracking-fg">全部标为已读</span>
         </button>
@@ -168,7 +168,7 @@ export function LanguageSwitcher({
   };
 
   return (
-    <div role="menu" aria-label="语言" onKeyDown={handleMenuKeyDown} data-forge-language-switcher data-language-code={active} className="w-60 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
+    <div role="menu" aria-label="语言" onKeyDown={handleMenuKeyDown} data-forge-language-switcher data-language-code={active} className="w-60 p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
       {languageOptions.map((lang) => {
         const isActive = lang.code === active;
         return (
@@ -205,7 +205,7 @@ export function ProfileDropdown({ locale = "zh" }: { locale?: "zh" | "en" } = {}
   ];
 
   return (
-    <div role="menu" aria-label={locale === "en" ? "Profile menu" : "个人菜单"} onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
+    <div role="menu" aria-label={locale === "en" ? "Profile menu" : "个人菜单"} onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-1 overflow-hidden">
       {items.map((item) => (
         <button
           key={item.label}
@@ -263,7 +263,7 @@ export function TeamSwitcherDropdown({
   const subtitle = teamSubtitle ?? (showActions && teamMemberCount !== undefined ? (locale === "en" ? `${teamMemberCount} members` : `${teamMemberCount} 名成员`) : (locale === "en" ? "Current application" : "当前应用"));
 
   return (
-    <div role="menu" aria-label={locale === "en" ? "Switch application" : "应用切换"} onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-white rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
+    <div role="menu" aria-label={locale === "en" ? "Switch application" : "应用切换"} onKeyDown={handleMenuKeyDown} className="w-64 max-w-[calc(100vw-2rem)] p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-center items-start gap-2.5 overflow-hidden">
       {/* Header: current team (centered layout) */}
       <div className="self-stretch pt-2 flex flex-col justify-start items-center gap-3">
         {teamAvatar && (

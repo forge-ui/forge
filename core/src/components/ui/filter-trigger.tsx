@@ -58,7 +58,7 @@ export function FilterTrigger({
       <button
         type="button"
         onClick={handleClick}
-        className={`px-4 py-3.5 bg-white rounded-full outline ${borderCls} inline-flex items-center gap-1 transition-colors`}
+        className={`px-4 py-3.5 bg-background rounded-full outline ${borderCls} inline-flex items-center gap-1 transition-colors`}
       >
         <span className={`inline-flex ${iconColor}`}>
           <FilterBold size={20} />

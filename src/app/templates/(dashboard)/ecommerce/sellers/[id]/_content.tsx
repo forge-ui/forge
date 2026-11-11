@@ -344,7 +344,7 @@ export default function SellerDetailPage() {
       {/* Content */}
       <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-[336px_minmax(0,1fr)]" data-testid="seller-layout">
         {/* Left Sidebar */}
-        <Panel variant="custom" className="min-w-0 rounded-card border border-fg-grey-200 bg-white p-6 overflow-hidden relative break-words">
+        <Panel variant="custom" className="min-w-0 rounded-card border border-fg-grey-200 bg-background p-6 overflow-hidden relative break-words">
           <div className="absolute left-[7px] right-[7px] top-[7px] h-[109px] rounded-xl bg-gradient-to-r from-fg-blue via-purple-300 to-fg-yellow-100" />
 
           <div className="relative z-10 flex flex-col items-center gap-3 pt-10">
@@ -445,7 +445,7 @@ export default function SellerDetailPage() {
           </Grid>
 
           {/* Tabbed Content */}
-          <Panel variant="custom" className="mt-4 rounded-card border border-fg-grey-200 bg-white overflow-hidden">
+          <Panel variant="custom" className="mt-4 rounded-card border border-fg-grey-200 bg-background overflow-hidden">
             <TabBar
               tabs={sellerTabs.map((tab, i) => ({
                 label: tab,
@@ -539,10 +539,10 @@ export default function SellerDetailPage() {
                   {sellerAttachments.map((item) => (
                     <Panel variant="custom"
                       key={item.id}
-                      className="relative rounded-2xl border border-fg-grey-200 bg-white p-1 pb-5"
+                      className="relative rounded-2xl border border-fg-grey-200 bg-background p-1 pb-5"
                     >
                       {/* Checkbox placeholder */}
-                      <div className="absolute left-4 top-4 h-5 w-5 rounded-md border-2 border-fg-grey-300 bg-white" />
+                      <div className="absolute left-4 top-4 h-5 w-5 rounded-md border-2 border-fg-grey-300 bg-background" />
                       {/* Kebab */}
                       <Button variant="unstyled"
                         type="button"

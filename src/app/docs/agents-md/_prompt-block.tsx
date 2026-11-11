@@ -26,7 +26,7 @@ export function PromptBlock({ content }: { content: string }) {
   const showCollapsed = collapsible && !expanded;
 
   return (
-    <div className="relative overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
+    <div className="relative overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
       <button
         type="button"
         onClick={handleCopy}
@@ -65,7 +65,7 @@ export function PromptBlock({ content }: { content: string }) {
             <button
               type="button"
               onClick={() => setExpanded(true)}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm hover:bg-fg-grey-50 transition-colors"
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-background px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm hover:bg-fg-grey-50 transition-colors"
             >
               展开代码
             </button>
@@ -79,7 +79,7 @@ export function PromptBlock({ content }: { content: string }) {
             type="button"
             onClick={() => setExpanded(false)}
             className={cn(
-              "rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm",
+              "rounded-full bg-background px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm",
               "hover:bg-fg-grey-50 transition-colors",
             )}
           >

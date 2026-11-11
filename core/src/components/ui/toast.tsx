@@ -46,7 +46,7 @@ function ToastRow({ entry, motion, dismiss, remove, locale }: { entry: Entry; mo
     onPointerUp={(event) => { if (pointer.current?.id !== event.pointerId) return; if (Math.abs(event.clientX - pointer.current.x) > 100) dismiss(entry.id); pointer.current = null; event.currentTarget.style.translate = ""; setHovered(false); }}
     onPointerCancel={(event) => { pointer.current = null; event.currentTarget.style.translate = ""; setHovered(false); }}>
     <MotionCollapse open={entry.open} motion={motion}>
-      <div className="pb-3"><MotionPresence open={entry.open} motion={motion} className="pointer-events-auto rounded-xl border border-fg-grey-200 bg-white p-4 shadow-lg">
+      <div className="pb-3"><MotionPresence open={entry.open} motion={motion} className="pointer-events-auto rounded-xl border border-fg-grey-200 bg-background p-4 shadow-lg">
         <div className="flex items-start gap-4">
           {entry.status && <span aria-hidden className={entry.status === "error" ? "text-fg-red" : "text-fg-grey-700"}>{entry.status === "loading" ? <RefreshLinear size={20} className={reduced ? "" : "forge-action-spinner"} /> : entry.status === "success" ? <CheckCircleLinear size={20} /> : <CloseCircleLinear size={20} />}</span>}
           <div role="status" className="min-w-0 flex-1"><p className="text-sm font-semibold text-fg-black">{entry.title}</p>{entry.description && <p className="mt-1 text-sm leading-6 text-fg-grey-700">{entry.description}</p>}</div>

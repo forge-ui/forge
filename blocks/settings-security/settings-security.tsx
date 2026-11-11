@@ -63,7 +63,7 @@ export function SettingsSecurity({ sessions = defaultLoginSessions, apiKeys = de
     setNotice("密码已更新，其他设备需要重新登录");
   }
 
-  return <section className={cn("flex w-full min-w-0 flex-col overflow-hidden rounded-card border border-fg-grey-200 bg-white", className)}>
+  return <section className={cn("flex w-full min-w-0 flex-col overflow-hidden rounded-card border border-fg-grey-200 bg-background", className)}>
     {notice && <p role="status" className="bg-fg-green-50 px-5 py-3 text-sm text-fg-green-600 sm:px-6">{notice}</p>}
     <Section title="登录方式" description="密码、两步验证和企业单点登录。开启两步验证后，新设备登录需要手机验证码。">
       <div className="flex flex-wrap items-center justify-between gap-4"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-xl bg-fg-grey-50 text-fg-grey-700"><LockKeyholeLinear size={20} /></span><div><p className="text-sm font-semibold text-fg-black">登录密码</p><p className="text-xs text-fg-grey-700">上次修改于 92 天前</p></div></div><Button size="sm" variant="tertiary" onClick={() => setChanging(true)}>修改密码</Button></div>

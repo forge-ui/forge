@@ -54,7 +54,7 @@ function ChecklistMark({
 }) {
   return (
     <span className={cn("relative h-5 w-5 shrink-0", popping && "forge-checklist-pop")}>
-      <span className="absolute inset-0 rounded-md border-2 border-fg-grey-300 bg-white" />
+      <span className="absolute inset-0 rounded-md border-2 border-fg-grey-300 bg-background" />
       <span
         className={cn(
           "absolute inset-0 origin-center rounded-md",
@@ -172,7 +172,7 @@ export function ChecklistItem({
       }}
       className={cn(
         "forge-checklist-motion flex w-fit max-w-full cursor-pointer items-start text-left outline-none",
-        "rounded-[14px] bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+        "rounded-[14px] bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         "hover:bg-fg-grey-50 focus-visible:outline-fg-violet",
         SIZE[size].row,
         stage === "nudge" && "forge-checklist-nudge",

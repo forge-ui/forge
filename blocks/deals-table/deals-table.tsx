@@ -67,7 +67,7 @@ export function DealsTable({ deals = defaultDeals, onAdd, onOpen, onEdit, onExpo
 
   return <section className={cn("flex min-w-0 flex-col gap-4", className)}>
     <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      {totals.map(total => <div key={total.status} className="flex items-center justify-between rounded-card border border-fg-grey-200 bg-white p-4"><dt className="flex items-center gap-2 text-sm text-fg-grey-700"><StatusBadge {...statusMeta[total.status]} variant="soft" /></dt><dd className="text-xl font-semibold tabular-nums text-fg-black">¥{total.amount.toLocaleString("zh-CN")}</dd></div>)}
+      {totals.map(total => <div key={total.status} className="flex items-center justify-between rounded-card border border-fg-grey-200 bg-background p-4"><dt className="flex items-center gap-2 text-sm text-fg-grey-700"><StatusBadge {...statusMeta[total.status]} variant="soft" /></dt><dd className="text-xl font-semibold tabular-nums text-fg-black">¥{total.amount.toLocaleString("zh-CN")}</dd></div>)}
     </dl>
     <div className="flex min-w-0 flex-wrap items-center justify-between gap-3">
       <ToolbarSearchInput className="w-full sm:w-72" value={query} onChange={setQuery} placeholder="搜索商机、客户或发票号" />

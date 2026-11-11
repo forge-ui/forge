@@ -136,7 +136,7 @@ export function FullCalendar({
       : `${dy} ${MONTH_NAMES[mo]} ${yr}`;
 
   return (
-    <div className={cn("bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-hidden relative", className)}>
+    <div className={cn("bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-hidden relative", className)}>
 
       {/* ── Top bar ── */}
       <div className="px-4 py-3 border-b border-fg-grey-200 flex items-center gap-3">
@@ -155,7 +155,7 @@ export function FullCalendar({
               if (onViewChange) onViewChange(nextView);
               else setLocalView(nextView);
             }}
-            className="appearance-none rounded-lg bg-white py-1.5 pl-3 pr-7 text-xs font-medium text-fg-grey-900 outline outline-1 outline-offset-[-1px] outline-fg-grey-200"
+            className="appearance-none rounded-lg bg-background py-1.5 pl-3 pr-7 text-xs font-medium text-fg-grey-900 outline outline-1 outline-offset-[-1px] outline-fg-grey-200"
           >
             <option value="month">月</option>
             <option value="week">周</option>
@@ -252,7 +252,7 @@ export function FullCalendar({
 
       {/* ── Detail floating overlay ── */}
       {detailPanel && (
-        <div className="absolute right-4 top-14 w-72 max-w-[calc(100%-2rem)] bg-white rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.12)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-y-auto max-h-[calc(100%-70px)] z-30">
+        <div className="absolute right-4 top-14 w-72 max-w-[calc(100%-2rem)] bg-background rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.12)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 overflow-y-auto max-h-[calc(100%-70px)] z-30">
           <div className="flex items-center justify-end gap-1 px-4 pt-3">
             {onEdit && <button type="button" aria-label="编辑日程" onClick={onEdit} className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><PenLinear size={14} /></button>}
             {onMore && <button type="button" aria-label="更多操作" onClick={onMore} className="w-5 h-5 flex items-center justify-center text-fg-grey-700 hover:text-fg-black cursor-pointer"><MenuDotsBold size={14} /></button>}

@@ -69,7 +69,7 @@ export function BalanceCard({
     ? "bg-fg-violet text-white"
     : "bg-fg-black text-white";
   const requestBtn = isWhite
-    ? "bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-black"
+    ? "bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-black"
     : "outline outline-1 outline-offset-[-1px] outline-white/20 text-white";
   const divider = isWhite ? "outline-fg-grey-200" : "outline-white/20";
   const cardNumColor = isWhite ? "text-fg-black" : "text-white";

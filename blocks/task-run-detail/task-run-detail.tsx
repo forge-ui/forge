@@ -214,7 +214,7 @@ export function TaskRunDetail({ task = defaultTaskRun, className = "" }: TaskRun
     </div>
 
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-      <section className="rounded-2xl border border-fg-grey-200 bg-white p-4">
+      <section className="rounded-2xl border border-fg-grey-200 bg-background p-4">
         <h2 className="mb-3 text-sm font-semibold text-fg-black">概要</h2>
         <dl className="flex flex-col gap-2 text-sm">
           {rows.map(([label, value]) => <div key={label} className="flex justify-between gap-2"><dt className="text-fg-grey-600">{label}</dt><dd className="text-right text-fg-black">{value}</dd></div>)}
@@ -226,7 +226,7 @@ export function TaskRunDetail({ task = defaultTaskRun, className = "" }: TaskRun
           </ul>
         </> : null}
       </section>
-      <section className="rounded-2xl border border-fg-grey-200 bg-white p-4 lg:col-span-2">
+      <section className="rounded-2xl border border-fg-grey-200 bg-background p-4 lg:col-span-2">
         <h2 className="mb-3 text-sm font-semibold text-fg-black">执行过程</h2>
         <ol className="flex flex-col gap-3">
           {task.events.map(event => <li key={event.id} className="flex gap-3 text-sm">
@@ -237,7 +237,7 @@ export function TaskRunDetail({ task = defaultTaskRun, className = "" }: TaskRun
       </section>
     </div>
 
-    <section className="rounded-2xl border border-fg-grey-200 bg-white p-4">
+    <section className="rounded-2xl border border-fg-grey-200 bg-background p-4">
       <h2 className="mb-3 text-sm font-semibold text-fg-black">结果与产物</h2>
       <div className="flex flex-col gap-4">
         <div>

@@ -72,11 +72,11 @@ export function AgentOrchestration({ run = defaultAgentOrchestration, className 
     </Panel>
     <Panel variant="custom" className="forge-dot-canvas overflow-x-auto rounded-card border border-fg-grey-200 bg-fg-grey-50 p-6">
       <div className="mx-auto flex min-w-[720px] max-w-4xl flex-col items-center">
-        <div className="w-72 rounded-2xl border border-fg-blue-300 bg-white p-4 text-center shadow-sm"><p className="text-sm font-semibold text-fg-black">{run.orchestrator.name}</p><p className="mt-1 text-xs leading-5 text-fg-grey-700">{run.orchestrator.plan}</p></div>
+        <div className="w-72 rounded-2xl border border-fg-blue-300 bg-background p-4 text-center shadow-sm"><p className="text-sm font-semibold text-fg-black">{run.orchestrator.name}</p><p className="mt-1 text-xs leading-5 text-fg-grey-700">{run.orchestrator.plan}</p></div>
         <span className="h-6 w-px bg-fg-grey-300" />
         <div className="relative grid w-full grid-cols-4 gap-4 pt-6 before:absolute before:left-[12.5%] before:right-[12.5%] before:top-0 before:h-px before:bg-fg-grey-300">
           {run.agents.map(agent => <div key={agent.id} className="relative flex flex-col items-center before:absolute before:-top-6 before:h-6 before:w-px before:bg-fg-grey-300">
-            <Button variant="unstyled" type="button" aria-pressed={agent.id === selected} onClick={() => setSelected(agent.id)} className={cn("w-full rounded-2xl border bg-white p-3 text-left transition-colors", agent.id === selected ? "border-fg-blue ring-2 ring-fg-blue-100" : "border-fg-grey-200 hover:border-fg-grey-400")}>
+            <Button variant="unstyled" type="button" aria-pressed={agent.id === selected} onClick={() => setSelected(agent.id)} className={cn("w-full rounded-2xl border bg-background p-3 text-left transition-colors", agent.id === selected ? "border-fg-blue ring-2 ring-fg-blue-100" : "border-fg-grey-200 hover:border-fg-grey-400")}>
               <span className="flex items-center justify-between gap-2"><span className="truncate text-sm font-semibold text-fg-black">{agent.name}</span><span className={cn("size-2 shrink-0 rounded-full", stateMeta[agent.state].bar, agent.state === "running" && "animate-pulse")} /></span>
               <span className="mt-1 block text-xs text-fg-grey-700">{agent.role}</span>
               <span className="mt-2 block text-xs tabular-nums text-fg-grey-500">{agent.calls.length} 次调用 · ¥{agent.cost.toFixed(2)}</span>

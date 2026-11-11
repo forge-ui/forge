@@ -9,7 +9,7 @@ export default function SidebarMotionPage() {
   const label = routeLabels[section] ?? "菜单详情";
 
   return (
-    <section aria-labelledby="current-view" className="flex max-w-4xl flex-col gap-8 rounded-2xl border border-fg-grey-200 bg-fg-white p-6 sm:p-8">
+    <section aria-labelledby="current-view" className="flex max-w-4xl flex-col gap-8 rounded-2xl border border-fg-grey-200 bg-background p-6 sm:p-8">
       <div className="flex flex-col gap-3">
         <p className="text-xs font-semibold tracking-fg text-fg-grey-700">当前页面</p>
         <h1 id="current-view" className="text-3xl font-semibold text-fg-black">{label}</h1>

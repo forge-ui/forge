@@ -114,15 +114,15 @@ function BaseComponentsSection() {
         {COLORS.map((color) => (
           <ColorRow key={color} label={color}>
             <div className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-3">
-              <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
+              <div className="bg-background rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
                 <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} online />
                 <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} online />
               </div>
-              <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
+              <div className="bg-background rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
                 <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} unreadCount={120} />
                 <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} unreadCount={3} />
               </div>
-              <div className="bg-white rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
+              <div className="bg-background rounded-xl p-2 flex flex-col gap-1 outline outline-1 outline-fg-grey-200">
                 <ContactItem color={color} type="person" avatar={AVATAR} name="周宁" message={SHORT_TEXT} online active unreadCount={120} />
                 <ContactItem color={color} type="team" name="团队名称" message={SHORT_TEXT} online active unreadCount={2} />
               </div>
@@ -205,7 +205,7 @@ function BaseComponentsSection() {
 
 function ChatLeftSidebar() {
   return (
-    <aside className="w-80 shrink-0 border-r border-fg-grey-200 flex flex-col bg-white">
+    <aside className="w-80 shrink-0 border-r border-fg-grey-200 flex flex-col bg-background">
       <div className="h-20 px-6 py-5 border-b border-fg-grey-200 flex items-center gap-4 shrink-0">
         <h2 className="flex-1 text-2xl font-semibold text-fg-black">聊天</h2>
         <button className="w-5 h-5 flex items-center justify-center text-fg-grey-700">
@@ -254,7 +254,7 @@ function MiddleHeaderActions() {
 
 function PersonHeader() {
   return (
-    <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0 bg-white">
+    <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0 bg-background">
       <div className="relative shrink-0">
         <img src={AVATAR} alt="周宁" className="w-10 h-10 rounded-full object-cover" />
         <span className="absolute right-0 bottom-0 w-2.5 h-2.5 bg-emerald-500 rounded-full outline outline-2 outline-white" />
@@ -270,7 +270,7 @@ function PersonHeader() {
 
 function TeamHeader() {
   return (
-    <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0 bg-white">
+    <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0 bg-background">
       <div className="w-10 h-10 bg-rose-100 rounded-full inline-flex justify-center items-center shrink-0">
         <span className="text-orange-600 text-sm font-bold">TM</span>
       </div>
@@ -361,12 +361,12 @@ function ChatMessages({ msgs }: { msgs: "personA" | "personB" | "team" }) {
 
 function MiddlePanel({ kind, msgs }: { kind: "person" | "team"; msgs: "personA" | "personB" | "team" }) {
   return (
-    <main className="flex-1 min-w-0 flex flex-col bg-white">
+    <main className="flex-1 min-w-0 flex flex-col bg-background">
       {kind === "person" ? <PersonHeader /> : <TeamHeader />}
       <div className="flex-1 min-h-0 overflow-y-auto px-5 py-5 bg-stone-50 flex flex-col gap-4">
         <ChatMessages msgs={msgs} />
       </div>
-      <div className="px-4 py-4 border-t border-fg-grey-200 shrink-0 bg-white">
+      <div className="px-4 py-4 border-t border-fg-grey-200 shrink-0 bg-background">
         <ChatInputBar placeholder="输入消息…" />
       </div>
     </main>
@@ -404,7 +404,7 @@ function ProfileImagesGrid() {
 
 function PersonProfile() {
   return (
-    <aside className="w-80 shrink-0 border-l border-fg-grey-200 relative bg-white px-6 pt-16 pb-6 overflow-y-auto">
+    <aside className="w-80 shrink-0 border-l border-fg-grey-200 relative bg-background px-6 pt-16 pb-6 overflow-y-auto">
       <ProfileCover />
       <button className="absolute right-4 top-4 z-10 text-white">
         <CloseSquareLinear size={20} color="currentColor" />
@@ -435,7 +435,7 @@ function PersonProfile() {
 
 function TeamProfile({ withMembers }: { withMembers?: boolean }) {
   return (
-    <aside className="w-80 shrink-0 border-l border-fg-grey-200 relative bg-white px-6 pt-16 pb-6 overflow-y-auto">
+    <aside className="w-80 shrink-0 border-l border-fg-grey-200 relative bg-background px-6 pt-16 pb-6 overflow-y-auto">
       <ProfileCover />
       <button className="absolute right-4 top-4 z-10 text-white">
         <CloseSquareLinear size={20} color="currentColor" />
@@ -504,7 +504,7 @@ function AddMembersModal() {
   return (
     <div className="absolute inset-0 z-20 flex items-center justify-center">
       <div className="absolute inset-0 bg-slate-950/25" />
-      <div className="relative w-[480px] max-h-[660px] bg-white rounded-2xl flex flex-col overflow-hidden shadow-xl">
+      <div className="relative w-[480px] max-h-[660px] bg-background rounded-2xl flex flex-col overflow-hidden shadow-xl">
         {/* Header */}
         <div className="px-6 pt-6 flex items-center gap-4">
           <h3 className="flex-1 text-xl font-semibold text-fg-black">添加成员</h3>
@@ -517,7 +517,7 @@ function AddMembersModal() {
         </div>
         {/* Body */}
         <div className="flex-1 min-h-0 px-6 py-6 flex flex-col gap-6 overflow-hidden">
-          <div className="px-4 py-3 bg-white rounded-full outline outline-1 outline-fg-grey-200 flex items-center gap-2 shrink-0">
+          <div className="px-4 py-3 bg-background rounded-full outline outline-1 outline-fg-grey-200 flex items-center gap-2 shrink-0">
             <MagniferLinear size={18} color="#71717A" />
             <span className="flex-1 text-sm text-fg-grey-700">搜索团队成员…</span>
           </div>
@@ -531,7 +531,7 @@ function AddMembersModal() {
                     <p className="text-xs text-fg-grey-700 truncate">{m.role}</p>
                   </div>
                 </div>
-                <div className="w-5 h-5 rounded-md border-2 border-stone-300 bg-white shrink-0" />
+                <div className="w-5 h-5 rounded-md border-2 border-stone-300 bg-background shrink-0" />
               </div>
             ))}
           </div>
@@ -556,7 +556,7 @@ function FullChatPanel({
   variant: "person-1" | "team-1" | "person-2" | "team-members" | "team-modal";
 }) {
   return (
-    <div className="relative w-[1128px] h-[820px] bg-white rounded-2xl outline outline-1 outline-fg-grey-200 flex overflow-hidden shrink-0">
+    <div className="relative w-[1128px] h-[820px] bg-background rounded-2xl outline outline-1 outline-fg-grey-200 flex overflow-hidden shrink-0">
       <ChatLeftSidebar />
       {variant === "person-1" && (
         <>
@@ -644,7 +644,7 @@ function SmallChatCard({ type, color = "blue" }: { type: "person" | "team"; colo
     </div>
   );
   return (
-    <div className="w-[588px] h-[760px] rounded-2xl outline outline-1 outline-fg-grey-200 flex flex-col overflow-hidden bg-white">
+    <div className="w-[588px] h-[760px] rounded-2xl outline outline-1 outline-fg-grey-200 flex flex-col overflow-hidden bg-background">
       <div className="px-5 py-4 border-b border-fg-grey-200 flex items-center gap-3 shrink-0">
         {headerAvatar}
         <div className="flex-1 min-w-0">

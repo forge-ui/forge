@@ -120,7 +120,7 @@ export function CustomerProfile({ customer = defaultCustomerProfile, onCall, onM
         <div className="flex flex-col gap-4">{customer.reviews.map(review => <ReviewItem key={review.id} name={customer.name} avatar={customer.avatar} date={`${review.date} · ${review.product}`} rating={review.rating} content={review.comment} />)}</div>
       </Panel>}
     </div>
-    <Panel variant="custom" as="aside" className="overflow-hidden rounded-card border border-fg-grey-200 bg-white p-6">
+    <Panel variant="custom" as="aside" className="overflow-hidden rounded-card border border-fg-grey-200 bg-background p-6">
       <div className="-mx-6 -mt-6 h-28 bg-gradient-to-r from-fg-blue via-fg-violet-300 to-fg-yellow-100" />
       <div className="-mt-12 flex flex-col items-center gap-3">
         <img src={customer.avatar} alt={customer.name} className="size-24 rounded-full border-4 border-white object-cover" />

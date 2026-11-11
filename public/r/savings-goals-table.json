@@ -5,7 +5,7 @@
   "title": "储蓄目标表",
   "description": "资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。",
   "dependencies": [
-    "@forge-ui-official/core@^0.7.0"
+    "@forge-ui-official/core@^0.8.0"
   ],
   "meta": {
     "category": "财务",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.7.0",
+      "version": "^0.8.0",
       "components": [
         "Button",
         "DataTable",

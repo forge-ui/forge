@@ -2,13 +2,13 @@
 .forge-fusion-fn{font-family:inherit;font-size:14px;line-height:1.5;letter-spacing:var(--tracking-fg,0)}
 .forge-fusion-fn button:focus-visible,.forge-fusion-fn [role=slider]:focus-visible{outline:2px solid var(--fusion-accent);outline-offset:3px}
 .forge-fn-plan{transition:border-color .3s ease,background-color .3s ease,translate .3s ease}
-.forge-fn-plan[data-selected=true]{border-color:var(--fusion-accent);background:color-mix(in srgb,var(--fusion-accent) 5%,white)}
+.forge-fn-plan[data-selected=true]{border-color:var(--fusion-accent);background:color-mix(in srgb,var(--fusion-accent) 5%,var(--background))}
 .forge-fn-interest{transition:background-color .25s ease,border-color .25s ease}
-.forge-fn-interest[data-selected=true]{border-color:var(--fusion-accent);background:color-mix(in srgb,var(--fusion-accent) 5%,white)}
+.forge-fn-interest[data-selected=true]{border-color:var(--fusion-accent);background:color-mix(in srgb,var(--fusion-accent) 5%,var(--background))}
 .forge-fn-feedback,.forge-fn-number,.forge-fn-complete{animation:forge-fn-enter .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes forge-fn-enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 .forge-fn-daynight{background:var(--fg-grey-50);color:var(--fg-black);transition:background-color .6s ease,color .6s ease;overflow:hidden}
-.forge-fn-daynight[data-night=true]{background:var(--fg-black);color:white}
+.forge-fn-daynight[data-night=true]{background:var(--fg-black-fill, var(--fg-black));color:white}
 .forge-fn-scenery{height:130px;position:relative;overflow:hidden;margin-top:16px}
 .forge-fn-scenery i{position:absolute;width:160px;height:100px;border-radius:50%;bottom:-50px;background:color-mix(in srgb,var(--fusion-accent) 10%,var(--fg-grey-100));transition:translate .6s ease,background-color .6s ease}
 .forge-fn-scenery i:nth-child(2){left:35%;bottom:-30px;background:color-mix(in srgb,var(--fusion-accent) 18%,var(--fg-grey-100))}
@@ -19,7 +19,7 @@
 .forge-fn-collapse[data-open=true]{grid-template-rows:1fr;opacity:1}
 .forge-fn-menu-choice{transition:background-color .2s ease}
 .forge-fn-menu-choice:hover,.forge-fn-menu-choice:focus-visible{background:var(--fg-grey-100)}
-.forge-fn-menu-choice[aria-checked=true]{color:var(--fusion-accent);background:color-mix(in srgb,var(--fusion-accent) 5%,white)}
+.forge-fn-menu-choice[aria-checked=true]{color:var(--fusion-accent);background:color-mix(in srgb,var(--fusion-accent) 5%,var(--background))}
 .forge-fn-radial{position:relative;min-height:290px;display:flex;align-items:center;justify-content:center;padding-top:80px;isolation:isolate}
 .forge-fn-radial-items{visibility:hidden;position:absolute;left:50%;top:calc(50% + 40px);width:0;height:0}
 .forge-fn-radial-item{position:absolute;translate:-50% -50%;display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;transform:translate(0,0) scale(.3);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .2s ease;transition-delay:0ms;pointer-events:none}
@@ -33,7 +33,7 @@
 .forge-fn-search{margin-top:12px;transform-origin:top right}
 .forge-fn-search[data-open=true]{animation:forge-fn-search-in .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes forge-fn-search-in{from{opacity:0;transform:scale(.92);clip-path:inset(0 0 90% 60% round 20px)}to{opacity:1;transform:scale(1);clip-path:inset(0 round 20px)}}
-.forge-fn-reading{background:color-mix(in srgb,var(--fusion-accent) 8%,white);color:var(--fg-black);min-height:190px}
+.forge-fn-reading{background:color-mix(in srgb,var(--fusion-accent) 8%,var(--background));color:var(--fg-black);min-height:190px}
 .forge-fn-confetti{position:absolute;inset:0;pointer-events:none}
 .forge-fn-confetti i{position:absolute;width:5px;height:9px;background:var(--fusion-accent);top:50%;opacity:0;animation:forge-fn-confetti .8s ease-out both}
 @keyframes forge-fn-confetti{0%{opacity:1;translate:0 20px}70%{opacity:.7}100%{opacity:0;translate:0 -70px;rotate:180deg}}

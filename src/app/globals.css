@@ -25,3 +25,5 @@
 .fg-scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
 .fg-scrollbar-thin::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
 .fg-scrollbar-thin:is(:hover, :focus-within)::-webkit-scrollbar-thumb { background: var(--fg-grey-300); }
+
+[data-theme="dark"] .site-logo { filter: invert(1); }

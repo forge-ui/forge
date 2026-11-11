@@ -5,7 +5,7 @@
   "title": "KPI 指标行",
   "description": "集中展示收入、订单与客户等关键指标，适用于经营看板首屏。",
   "dependencies": [
-    "@forge-ui-official/core@^0.7.0"
+    "@forge-ui-official/core@^0.8.0"
   ],
   "meta": {
     "category": "图表与指标",
@@ -106,7 +106,7 @@
       }
     ],
     "core": {
-      "version": "^0.7.0",
+      "version": "^0.8.0",
       "components": [
         "BarChartStatCard",
         "LineChartStatCard",

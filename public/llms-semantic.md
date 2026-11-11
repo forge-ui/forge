@@ -1,8 +1,8 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.7.0
+Package: @forge-ui-official/core@0.8.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 6ae2165781f8327b6ae0e44ad2dfe76a56646f2a68ac71ad1f2b52baffc43d05
+Source fingerprint: 8188c7407912380e9f45cf13acaf113b6c1d1b63e66e864fa4f5142f77fa9ebd
 
 ## Adopted rules / 采用规则
 
@@ -547,7 +547,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 | 底部两列 | base1列；lg2等分 | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:297` |
 | finance-3主结构 | base1列；lg4轨道，左span1、右span3；列gap16px | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:137`、`:139`、`:199` |
 | finance-3右区内嵌行 | 独立3轨道，2:1；不是整页再次2:1 | `src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:251`、`:253`、`:277` |
-| 标题型图表/表格卡壳 | `rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col gap-4`；即padding16、卡内gap16、圆角24px（默认换算） | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:203`、`:298`、`:317`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:201` |
+| 标题型图表/表格卡壳 | `rounded-3xl bg-background border border-fg-grey-200 p-4 flex flex-col gap-4`；即padding16、卡内gap16、圆角24px（默认换算） | `src/app/templates/(dashboards)/dashboards/analytics/page.tsx:203`、`:298`、`:317`；`src/app/templates/(dashboards)/dashboards/finance-3/page.tsx:201` |
 | compact KPI | padding16、内部gap12；density="compact" 同时控制字级/行高/子图高度，不能只改padding就说同密度 | core 中对应组件的 density="compact" |
 | compact Balance/Image | Balance padding16/gap12；Image padding16/gap16 | core 中对应组件的 density="compact" |
 | compact ListGroup | header左右/上16；body左右/上下16，条目gap12 | core 中对应组件的 density="compact" |
@@ -935,7 +935,16 @@ Always prefer these over primitives when the meaning matches.
 | `--focus` | `fg-blue` | focus ring |
 | `--hover` | `fg-grey-100` | hover background |
 
-Dark theme overrides these via `[data-theme="dark"]` — toggle by setting that attribute on a parent element.
+## Dark mode
+
+Set `data-theme="dark"` on `<html>` (or on any container; a nested `data-theme="light"` restores light). Dark mode redefines the grey, black and color primitives, so `bg-fg-grey-*`, `text-fg-black` and `text-fg-grey-*` keep working without changes.
+
+- Surfaces (cards, panels, inputs, popovers): `bg-background`. Page background: `bg-fg-grey-50` or `bg-surface`. Do not use `bg-white` / `bg-fg-white` for surfaces — they stay white in dark.
+- Keep `bg-white` only for things that must stay white on a colored fill (switch knob, dot inside a checked radio, white pill on a colored sidebar).
+- `bg-fg-black` fills (dark buttons, tooltips, black cards) stay dark in dark mode via `--fg-black-fill`, so white text on them is fine. `text-fg-black` flips to the light ink.
+- Colored text (`text-fg-blue`, `text-fg-green`…) switches to a lighter shade automatically; `bg-fg-*-50/100/200` tints become dark tints; 700–900 text steps become light.
+- In CSS, never hard-code `#fff` / `white` as a background; use `var(--background)`. Mixing a tint: `color-mix(in srgb, var(--fg-blue) 8%, var(--background))`.
+- Brand themes from forgeui.org/docs/theme include the matching dark scale.
 
 ## Shape + elevation
 

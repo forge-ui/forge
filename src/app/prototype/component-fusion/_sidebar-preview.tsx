@@ -63,7 +63,7 @@ export function SidebarFusionPreview({ locale, color, motion }: SidebarSettings)
   }, [syncSettings]);
 
   return <div className="flex min-w-0 flex-col gap-3">
-    <div ref={container} className="relative w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-fg-white" style={{ height: frameHeight * scale }}>
+    <div ref={container} className="relative w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-background" style={{ height: frameHeight * scale }}>
       <iframe
         ref={frame}
         title={locale === "zh" ? "应用布局侧栏交互预览" : "AppLayout sidebar interaction preview"}
@@ -137,7 +137,7 @@ export function EmbeddedSidebarPreview() {
       showKebab={false}
       showFavorite={false}
     >
-      <section className="flex flex-col gap-5 rounded-2xl border border-fg-grey-200 bg-fg-white p-6">
+      <section className="flex flex-col gap-5 rounded-2xl border border-fg-grey-200 bg-background p-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-2">
             <p className="text-xs font-semibold text-fg-grey-700">{zh ? "当前页面" : "Current page"}</p>

@@ -90,7 +90,7 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
                 aria-label="选择颜色"
                 value={theme.color}
                 onChange={(event) => setColor(event.target.value.toUpperCase())}
-                className="mb-1 size-11 shrink-0 cursor-pointer rounded-lg border border-fg-grey-200 bg-white p-1"
+                className="mb-1 size-11 shrink-0 cursor-pointer rounded-lg border border-fg-grey-200 bg-background p-1"
               />
             </div>
             <div className="flex overflow-hidden rounded-lg" aria-label="生成的色阶">
@@ -125,6 +125,16 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
             {font.note && <p className="text-xs leading-5 text-fg-grey-700">{font.note}</p>}
           </fieldset>
 
+          <fieldset className="flex flex-col gap-3">
+            <legend className="mb-3 text-sm font-semibold text-fg-black">预览</legend>
+            <ButtonGroup
+              items={[{ label: "浅色" }, { label: "深色" }]}
+              activeIndex={theme.mode === "dark" ? 1 : 0}
+              onChange={(index) => setTheme((current) => ({ ...current, mode: index === 1 ? "dark" : "light" }))}
+              ariaLabel="预览模式"
+            />
+          </fieldset>
+
           <Button
             variant="secondary"
             color="black"
@@ -139,7 +149,7 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
           </Button>
         </div>
 
-        <div className="forge-theme-preview min-w-0 rounded-card bg-fg-grey-50 p-4 font-sans sm:p-6" style={variables}>
+        <div data-theme={theme.mode} className="forge-theme-preview min-w-0 rounded-card bg-fg-grey-50 p-4 font-sans sm:p-6" style={variables}>
           <style>{`.forge-theme-preview .rounded-card { border-radius: ${cardRadius}px; }`}</style>
           <SurfaceCard
             title="本周订单"

@@ -119,7 +119,7 @@ export function SidebarMenu({
   const surface: "default" | "onColoredBg" =
     bgMode === "colored" ? "onColoredBg" : "default";
 
-  const shellBg = bgMode === "colored" ? accentTheme.bg : "bg-white";
+  const shellBg = bgMode === "colored" ? accentTheme.bg : "bg-background";
   const titleColor = bgMode === "colored" ? "text-white" : "text-fg-black";
   const iconColor =
     bgMode === "colored"

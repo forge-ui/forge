@@ -55,7 +55,7 @@ const screens = source.templates.map(item => {
 const rules = source.references.filter(item => item.file !== "skills/forge-skill/SKILL.md").map(item => ({ slug: item.file.replace("skills/forge-skill/references/", "").replace(/\.md$/, ""), title: item.content.split("\n").find(line => line.startsWith("# "))?.slice(2) ?? item.file, content: item.content, source: item.file }));
 const tokenBlock = (css, selector) => css.slice(css.indexOf(selector)).split("\n}")[0];
 const tokensCss = read("core/src/styles/tokens.css");
-const tokens = [["primitive", ":root {"], ["semantic", ":root,\n[data-theme=\"light\"] {"]].flatMap(([layer, selector]) => [...tokenBlock(tokensCss, selector).matchAll(/^\s*(--[\w-]+):\s*([^;]+);/gm)].filter(match => !match[1].startsWith("--forge-")).map(match => ({ name: match[1], value: match[2].trim(), layer, ...(match[1].startsWith("--fg-") ? { tailwind: match[1].slice(2) } : {}) })));
+const tokens = [["primitive", ":root {"], ["semantic", ":root,\n[data-theme=\"light\"] {"], ["dark", "[data-theme=\"dark\"] {"]].flatMap(([layer, selector]) => [...tokenBlock(tokensCss, selector).matchAll(/^\s*(--[\w-]+):\s*([^;]+);/gm)].filter(match => !match[1].startsWith("--forge-")).map(match => ({ name: match[1], value: match[2].trim(), layer, ...(match[1].startsWith("--fg-") ? { tailwind: match[1].slice(2) } : {}) })));
 if (!tokens.some(token => token.name === "--accent")) throw new Error("Semantic tokens not found in tokens.css");
 const data = { coreVersion: source.core.version, components, blocks, screens, rules, guides, tokens };
 const target = path.join(root, "src/lib/mcp/data.json");

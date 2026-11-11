@@ -23,7 +23,7 @@ export default function ProjectTemplateOverviewPage() {
         </KpiMetrics>
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {projects.slice(0, 6).map((project) => (
-            <Button variant="unstyled" key={project.id} type="button" onClick={() => router.push(`/templates/project-template/projects/${project.id}`)} className="rounded-[20px] border border-fg-grey-200 bg-white p-4 text-left">
+            <Button variant="unstyled" key={project.id} type="button" onClick={() => router.push(`/templates/project-template/projects/${project.id}`)} className="rounded-[20px] border border-fg-grey-200 bg-background p-4 text-left">
               <div className="flex items-center justify-between"><ProjectLogo name={project.logo} /><StatusBadge label={project.status} color={project.status === "Completed" ? "green" : project.status === "Blocked" ? "red" : project.status === "Draft" ? "grey" : "yellow"} /></div>
               <h2 className="mt-3 text-lg font-semibold text-fg-black">{project.name}</h2>
               <p className="mt-1 text-fg-grey-500">{project.client}</p>

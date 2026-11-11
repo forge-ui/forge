@@ -25,8 +25,8 @@ export function Panel({ title, subtitle, action, footer, children, variant = "da
   return (
     <Element {...props} className={cn(
       variant === "custom" ? undefined : template
-        ? "bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6"
-        : "rounded-3xl bg-white border border-fg-grey-200 p-4 flex flex-col",
+        ? "bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6"
+        : "rounded-3xl bg-background border border-fg-grey-200 p-4 flex flex-col",
       variant === "dashboard" && (gap === "md" ? "gap-4" : gap === "sm" ? "gap-3" : undefined),
       className,
     )}>

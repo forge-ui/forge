@@ -598,7 +598,7 @@ function SendButton({
     const stopping = status === "stopping";
     const label = stopping ? stoppingLabel : stopLabel;
     return <motion.button whileTap={reduced ? undefined : { scale: 0.88 }} transition={reduced ? { duration: 0 } : composerMorph} type="button" aria-label={label} title={label} aria-busy={stopping || undefined} disabled={stopping || !onStop}
-      onClick={() => onStop?.()} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fg-black text-fg-white disabled:cursor-not-allowed disabled:opacity-50">
+      onClick={() => onStop?.()} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fg-black text-white disabled:cursor-not-allowed disabled:opacity-50">
       {stopping ? <RefreshLinear size={16} color="currentColor" /> : <StopBold size={16} color="currentColor" />}
     </motion.button>;
   }

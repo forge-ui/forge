@@ -57,7 +57,7 @@ export function PasswordRecovery({ image = "/images/blocks/auth-workspace.jpg", 
     done: { title: "密码已重置", subtitle: "请使用新密码重新登录。" },
   };
 
-  return <div className={cn("mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 rounded-card bg-white p-4 sm:p-6 lg:grid-cols-2", className)}>
+  return <div className={cn("mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 rounded-card bg-background p-4 sm:p-6 lg:grid-cols-2", className)}>
     <img src={image} alt="" className="hidden h-full max-h-[560px] w-full rounded-card object-cover lg:block" />
     <div className="mx-auto flex w-full max-w-sm flex-col gap-6 py-6">
       <ol className="flex items-center gap-2" aria-label="找回进度">{(["email", "reset", "done"] as Step[]).map((item, index) => <li key={item} className={cn("h-1.5 flex-1 rounded-full", (["email", "reset", "done"] as Step[]).indexOf(step) >= index ? "bg-fg-blue" : "bg-fg-grey-200")} />)}</ol>

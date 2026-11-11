@@ -61,7 +61,7 @@ export default function TroubleshootPage() {
       <DocSection id="issues" title="常见症状">
         <dl className="flex flex-col gap-5">
           {ISSUES.map((issue) => (
-            <div key={issue.id} className="rounded-xl border border-fg-grey-200 bg-white p-5">
+            <div key={issue.id} className="rounded-xl border border-fg-grey-200 bg-background p-5">
               <dt className="font-semibold text-fg-black">{issue.symptom}</dt>
               <dd className="mt-2 text-sm leading-relaxed text-fg-grey-900">{issue.fix}</dd>
             </div>

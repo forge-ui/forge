@@ -37,7 +37,7 @@ export function SidebarMotionPreview({ children }: { children: ReactNode }) {
       showKebab={false}
       showFavorite={false}
     >
-      <section aria-label="预览设置" className="flex flex-wrap items-center gap-x-8 gap-y-5 rounded-2xl border border-fg-grey-200 bg-fg-white p-5">
+      <section aria-label="预览设置" className="flex flex-wrap items-center gap-x-8 gap-y-5 rounded-2xl border border-fg-grey-200 bg-background p-5">
         <fieldset className="flex flex-col gap-2">
           <legend className="mb-2 text-xs font-semibold text-fg-grey-700">主题色</legend>
           <div className="flex gap-2">

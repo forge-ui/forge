@@ -180,7 +180,7 @@ function StarRow({ rating }: { rating: number }) {
 
 function CustomerSidebar() {
   return (
-    <Panel variant="custom" as="aside" className="w-[336px] shrink-0 rounded-card border border-fg-grey-200 bg-white p-6 self-start">
+    <Panel variant="custom" as="aside" className="w-[336px] shrink-0 rounded-card border border-fg-grey-200 bg-background p-6 self-start">
       {/* Gradient header */}
       <div className="relative -mx-6 -mt-6 h-[120px] rounded-t-card bg-gradient-to-r from-fg-violet via-purple-300 to-fg-yellow-100" />
 
@@ -376,7 +376,7 @@ export default function CustomerDetailPage() {
         {activeTab === "Overview" && (
           <div className="grid grid-cols-[336px_1fr] gap-4">
             {/* History card */}
-            <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-white p-5">
+            <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-background p-5">
               <div className="mb-4">
                 <h3 className="text-base font-semibold text-fg-black">History</h3>
                 <p className="text-xs text-fg-grey-700">Recent orders</p>
@@ -410,7 +410,7 @@ export default function CustomerDetailPage() {
               action={
                 <Button variant="unstyled"
                   type="button"
-                  className="flex items-center gap-2 rounded-full border border-fg-grey-200 bg-white px-3 py-2 text-sm font-medium text-fg-black"
+                  className="flex items-center gap-2 rounded-full border border-fg-grey-200 bg-background px-3 py-2 text-sm font-medium text-fg-black"
                 >
                   <CalendarLinear size={16} />
                   Month
@@ -468,7 +468,7 @@ export default function CustomerDetailPage() {
 
         {/* Reviews tab */}
         {activeTab === "Reviews" && (
-          <Panel variant="custom" className="space-y-3 rounded-card border border-fg-grey-200 bg-white p-5">
+          <Panel variant="custom" className="space-y-3 rounded-card border border-fg-grey-200 bg-background p-5">
             {customerReviews.map((review) => (
               <ReviewItem
                 key={review.id}
@@ -484,7 +484,7 @@ export default function CustomerDetailPage() {
 
         {/* Attachment tab */}
         {activeTab === "Attachment" && (
-          <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-white p-8 text-center text-sm text-fg-grey-700">
+          <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-background p-8 text-center text-sm text-fg-grey-700">
             No attachments yet.
           </Panel>
         )}

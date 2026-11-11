@@ -75,7 +75,7 @@ export function ToolChips({
   const [openRows, setOpenRows] = useState<Record<string, boolean>>({});
 
   return (
-    <div className={cn("flex flex-col gap-2 text-sm", state && "rounded-xl border border-fg-grey-200 bg-white p-4", className)} data-tool-state={state} data-motion={reduced ? "none" : motion}>
+    <div className={cn("flex flex-col gap-2 text-sm", state && "rounded-xl border border-fg-grey-200 bg-background p-4", className)} data-tool-state={state} data-motion={reduced ? "none" : motion}>
       <button
         type="button"
         aria-expanded={open}

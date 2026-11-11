@@ -361,8 +361,8 @@ export function SelectOption(props: SelectOptionProps) {
   const triggerState = cn(
     isError && "bg-fg-red-50 outline-fg-red",
     isDisabled && "bg-fg-grey-200 outline-fg-grey-200 cursor-not-allowed",
-    isOpen && !isError && !isDisabled && cn(isGrey ? "bg-fg-grey-50" : "bg-white", accent.outline),
-    !isError && !isDisabled && !isOpen && cn(isGrey ? "bg-fg-grey-50" : "bg-white", "outline-fg-grey-100"),
+    isOpen && !isError && !isDisabled && cn(isGrey ? "bg-fg-grey-50" : "bg-background", accent.outline),
+    !isError && !isDisabled && !isOpen && cn(isGrey ? "bg-fg-grey-50" : "bg-background", "outline-fg-grey-100"),
   );
 
   const ChevronIcon = AltArrowDownLinear;
@@ -446,7 +446,7 @@ export function SelectOption(props: SelectOptionProps) {
             aria-label={label ?? placeholder}
             aria-multiselectable={isMultiple || undefined}
             onKeyDown={handleListboxKeyDown}
-            className="absolute top-full left-0 mt-1 py-2 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden"
+            className="absolute top-full left-0 mt-1 py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden"
             style={surfaceStyle}
           >
             <MotionMenu motion={effectiveMotion} className="flex-1 flex flex-col overflow-y-auto max-h-60">

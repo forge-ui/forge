@@ -64,7 +64,7 @@ export function SurfaceCard({
         event.currentTarget.style.setProperty("--forge-tilt-y", "0deg");
       }}
       className={cn(
-        "forge-surface-card rounded-card bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+        "forge-surface-card rounded-card bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         className
       )}
     >

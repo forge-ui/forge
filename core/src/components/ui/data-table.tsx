@@ -74,7 +74,7 @@ export function TableCell({
   return (
     <div
       className={cn(
-        "self-stretch px-6 py-4 bg-white border-b border-fg-grey-200 flex justify-start items-center gap-2",
+        "self-stretch px-6 py-4 bg-background border-b border-fg-grey-200 flex justify-start items-center gap-2",
         className
       )}
     >
@@ -258,7 +258,7 @@ function tableColumnClass<T>(
   const align = resolveTableColumnAlign(column);
   return cn(
     variant === "header"
-      ? "px-5 py-3.5 bg-white text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap"
+      ? "px-5 py-3.5 bg-background text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap"
       : "px-5 py-3.5",
     align === "right" ? "text-right tabular-nums" : "text-left",
     "min-w-0",
@@ -904,7 +904,7 @@ function TableGrid<T>({
         <thead>
           <tr className="border-t border-b border-fg-grey-200">
             {showCheckbox && (
-              <th className="w-14 px-6 py-4 bg-white text-left">
+              <th className="w-14 px-6 py-4 bg-background text-left">
                 <Checkbox
                   aria-label="选择全部行"
                   checked={allSelected}
@@ -965,7 +965,7 @@ function TableGrid<T>({
         </thead>
         <tbody>
           {rows.map((row, rowIndex) => (
-            <tr key={getKey(row, rowIndex)} className="border-b border-fg-grey-200 bg-white">
+            <tr key={getKey(row, rowIndex)} className="border-b border-fg-grey-200 bg-background">
               {showCheckbox && (
                 <td className="w-14 px-6 py-4">
                   <Checkbox
@@ -997,7 +997,7 @@ function TableGrid<T>({
             </tr>
           ))}
           {rows.length === 0 && (
-            <tr className="border-b border-fg-grey-200 bg-white">
+            <tr className="border-b border-fg-grey-200 bg-background">
               <td
                 colSpan={columns.length + (showCheckbox ? 1 : 0)}
                 className="px-5 py-10 text-center text-sm text-fg-grey-700"
@@ -1113,7 +1113,7 @@ export function DataTable<T>({
     >
       {/* Header */}
       {(title || headerActions) && (
-        <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
+        <div className="self-stretch p-5 bg-background flex justify-start items-center gap-3">
           {(title || subtitle || badge) && (
             <div className="flex-1 flex justify-start items-center gap-4">
               <div className="inline-flex flex-col justify-center items-start gap-2">
@@ -1155,7 +1155,7 @@ export function DataTable<T>({
 
       {/* Footer */}
       {(showPagination || footerLeft || footerRight) && (
-        <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
+        <div className="self-stretch p-5 bg-background flex justify-start items-center gap-3">
           {paginationLabel ? (
             <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
               {paginationLabel}
@@ -1237,7 +1237,7 @@ export function FullWidthTable<T>({
     >
       {/* Header */}
       {(title || headerActions) && (
-        <div className="self-stretch p-5 bg-white flex justify-start items-center gap-4">
+        <div className="self-stretch p-5 bg-background flex justify-start items-center gap-4">
           <div className="flex-1 flex justify-start items-center gap-4">
             <div className="inline-flex flex-col justify-center items-start gap-2">
               {title && (
@@ -1262,7 +1262,7 @@ export function FullWidthTable<T>({
               <select
                 value={currentRowCount}
                 onChange={(e) => onRowCountChange?.(Number(e.target.value))}
-                className="w-20 px-4 py-3 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-center text-fg-black text-sm font-normal leading-5 tracking-fg cursor-pointer"
+                className="w-20 px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-center text-fg-black text-sm font-normal leading-5 tracking-fg cursor-pointer"
               >
                 {rowCountOptions.map((n) => (
                   <option key={n} value={n}>
@@ -1294,7 +1294,7 @@ export function FullWidthTable<T>({
       />
 
       {/* Footer */}
-      <div className="self-stretch p-5 bg-white flex justify-start items-center gap-3">
+      <div className="self-stretch p-5 bg-background flex justify-start items-center gap-3">
         {paginationLabel ? (
           <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
             {paginationLabel}

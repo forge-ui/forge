@@ -194,7 +194,7 @@ function ProjectCardGrid({
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {projects.map((project) => (
-        <Panel variant="custom" as="article" key={project.id} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+        <Panel variant="custom" as="article" key={project.id} className="rounded-[20px] border border-fg-grey-200 bg-background p-4">
           <div className="flex items-start justify-between">
             <ProjectLogo name={project.logo} />
             <CellActions

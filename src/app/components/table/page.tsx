@@ -418,7 +418,7 @@ const FULLWIDTH_PROPS: ApiTableRow[] = [
 
 function CellPreviewRow({ children }: { children: ReactNode }) {
   return (
-    <div className="self-stretch px-6 py-4 bg-white border border-fg-grey-200 rounded-lg flex justify-start items-center gap-2">
+    <div className="self-stretch px-6 py-4 bg-background border border-fg-grey-200 rounded-lg flex justify-start items-center gap-2">
       {children}
     </div>
   );

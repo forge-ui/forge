@@ -55,7 +55,7 @@ export function ButtonGroup({
       role="group"
       aria-label={ariaLabel}
       className={cn(
-        "relative isolate p-1 bg-white outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
+        "relative isolate p-1 bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
         isPill ? "rounded-full" : "rounded-xl",
         className
       )}

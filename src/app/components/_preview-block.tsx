@@ -41,13 +41,13 @@ export function PreviewBlock({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-fg-grey-200 bg-white",
+        "overflow-hidden rounded-xl border border-fg-grey-200 bg-background",
         className,
       )}
     >
       {codeOnly ? null : (
         <div
-          className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-center gap-3 overflow-hidden bg-white px-4 py-8"
+          className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-center gap-3 overflow-hidden bg-background px-4 py-8"
           style={{ minHeight: minHeight }}
         >
           {children}
@@ -95,7 +95,7 @@ export function PreviewBlock({
             <button
               type="button"
               onClick={() => setExpanded((v) => !v)}
-              className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm transition-colors hover:bg-fg-grey-50"
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-background px-4 py-1.5 text-xs font-semibold text-fg-black shadow-sm transition-colors hover:bg-fg-grey-50"
             >
               {expanded ? "收起代码" : "展开代码"}
             </button>

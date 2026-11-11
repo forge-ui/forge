@@ -49,7 +49,7 @@ export function UserCard({
   return (
     <div
       className={cn(
-        "p-4 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] flex-col justify-start items-center gap-4 overflow-hidden",
+        "p-4 bg-background rounded-2xl outline outline-1 outline-offset-[-1px] flex-col justify-start items-center gap-4 overflow-hidden",
         checked ? "outline-fg-violet" : "outline-fg-grey-200",
         resolveCardWidthClass(width, "w-52"),
         className,

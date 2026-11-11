@@ -70,7 +70,7 @@ function HoldDeletePreview({ locale, color, motion }: { locale: "zh" | "en"; col
     <div className="mx-auto flex min-h-[230px] w-full max-w-80 flex-col items-center justify-center gap-6">
       <div
         aria-hidden={deleted || undefined}
-        className="flex w-full max-w-[268px] origin-bottom items-center gap-3.5 rounded-2xl border border-fg-grey-200 bg-fg-white px-4 py-3.5 transition-[transform,opacity,filter] duration-700 motion-reduce:transition-none"
+        className="flex w-full max-w-[268px] origin-bottom items-center gap-3.5 rounded-2xl border border-fg-grey-200 bg-background px-4 py-3.5 transition-[transform,opacity,filter] duration-700 motion-reduce:transition-none"
         style={{ transform: deleted && !reduced ? "translateY(18px) scale(.55) rotate(-6deg)" : "none", opacity: deleted ? 0 : 1, filter: deleted && !reduced ? "blur(6px)" : "none", transitionDuration: reduced ? "0s" : undefined }}
       >
         <FileTypeIcon fileName="brand-concept.fig" className="h-12 w-10" />

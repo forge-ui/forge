@@ -109,7 +109,7 @@ export function FinanceMetricCard({
   }[chartColor];
 
   return (
-    <Panel variant="custom" className="relative min-h-[196px] overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white p-5">
+    <Panel variant="custom" className="relative min-h-[196px] overflow-hidden rounded-[20px] border border-fg-grey-200 bg-background p-5">
       <div className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-fg-grey-50">
         <span className={`block size-4 rounded-[5px] ${chartColor === "blue" ? "bg-fg-blue-500" : chartColor === "green" ? "bg-fg-green-500" : "bg-fg-red"}`} />
       </div>
@@ -217,7 +217,7 @@ export function FinanceExpenseGauge() {
       <div className="relative mx-auto mt-2 flex h-36 w-64 items-end justify-center overflow-hidden">
         <div className="absolute bottom-0 h-56 w-56 rounded-full border-[34px] border-fg-blue-500 border-b-fg-grey-100 border-l-fg-grey-100 border-r-fg-yellow" />
         <div className="absolute bottom-0 right-8 z-0 h-24 w-24 rounded-full border-[16px] border-fg-red border-b-fg-cyan-500 border-l-fg-green-500 border-t-fg-red" />
-        <div className="relative z-10 rounded-full bg-white/90 px-3 text-center">
+        <div className="relative z-10 rounded-full bg-background/90 px-3 text-center">
           <p className="text-3xl font-semibold text-fg-black">$3.1k</p>
           <p className="mt-3 text-sm font-semibold text-fg-green-500">10% <span className="font-medium text-fg-grey-500">+$181</span></p>
         </div>
@@ -247,7 +247,7 @@ export function FinanceExpenseGauge() {
 
 export function FinanceBudgetPanel() {
   return (
-    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 bg-white p-5">
+    <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 bg-background p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xl font-semibold text-fg-black">Budget</p>

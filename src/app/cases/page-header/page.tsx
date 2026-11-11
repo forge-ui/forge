@@ -209,7 +209,7 @@ export default function PageHeaderCasePage() {
         </div>
 
         <SubSection title="搜索" stack>
-          <div className="w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
+          <div className="w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
             <DemoPageHeader
               variant="search"
               color={headerColor}
@@ -226,7 +226,7 @@ export default function PageHeaderCasePage() {
         </SubSection>
 
         <SubSection title="菜单" stack>
-          <div className="w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
+          <div className="w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
             <DemoPageHeader
               variant="search"
               color={headerColor}
@@ -243,7 +243,7 @@ export default function PageHeaderCasePage() {
         </SubSection>
 
         <SubSection title="标题" stack>
-          <div className="w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
+          <div className="w-full overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
             <DemoPageHeader
               variant="title"
               color={headerColor}

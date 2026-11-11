@@ -134,7 +134,7 @@ export default function Project2Page() {
                 <p className="text-sm text-fg-grey-500">Income and expenses</p>
               </div>
               <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
-                <button className="px-3 py-1.5 rounded-full bg-white shadow-sm text-fg-black">All</button>
+                <button className="px-3 py-1.5 rounded-full bg-background shadow-sm text-fg-black">All</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Income</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Expenses</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Profit</button>

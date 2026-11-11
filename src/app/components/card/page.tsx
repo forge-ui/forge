@@ -426,7 +426,7 @@ export default function CardCasePage() {
         </SubSection>
 
         <SubSection title="怎么选" stack>
-          <div className="overflow-x-auto rounded-xl border border-fg-grey-200 bg-white">
+          <div className="overflow-x-auto rounded-xl border border-fg-grey-200 bg-background">
             <table className="w-full border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-fg-grey-200 bg-fg-grey-50">

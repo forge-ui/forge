@@ -45,7 +45,7 @@ export function ComponentsNav() {
                     "flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
                     active
                       ? "bg-fg-grey-100 font-bold text-fg-black"
-                      : "font-semibold text-fg-grey-900 hover:bg-white hover:text-fg-black",
+                      : "font-semibold text-fg-grey-900 hover:bg-background hover:text-fg-black",
                   )}
                 >
                   <span>{item.label}</span>

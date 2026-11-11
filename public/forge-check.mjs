@@ -84,6 +84,13 @@ const RULES = [
     fix: "正文用 text-fg-black，次要信息 text-fg-grey-900，辅助说明 text-fg-grey-700；只有不可操作的内容才用更浅的灰。",
   },
   {
+    rule: "white-surface", audit: "V1", severity: "warning",
+    pattern: /\bbg-(?:fg-)?white(?:\/[4-9]\d)?\b(?!\/)/g,
+    skip: line => /^\s*(import|\/\/|\*|\/\*)/.test(line),
+    message: "背景写死了白色，深色模式下不会跟着变。",
+    fix: "卡片、面板、输入框和浮层用 bg-background；只有压在彩色底上必须保持白色的小元素（开关圆点、选中单选的圆点）才用 bg-white。",
+  },
+  {
     rule: "placeholder-link", audit: "M4", severity: "error",
     pattern: /href=["']#["']/g,
     message: "链接指向 #。",

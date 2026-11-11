@@ -34,7 +34,7 @@ export function ConversationDemo() {
   };
 
   return (
-    <div className="flex h-[420px] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-white">
+    <div className="flex h-[420px] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
       <Conversation followKey={turns.length}>
         {turns.map(turn => turn.role === "user"
           ? <AgentMessage key={turn.id} role="user">{turn.text}</AgentMessage>

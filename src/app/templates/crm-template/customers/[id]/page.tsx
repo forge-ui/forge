@@ -271,7 +271,7 @@ function CustomerProfileCard({
   };
 
   return (
-    <Panel variant="custom" as="aside" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="aside" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-background">
       <div className="relative flex flex-col items-center gap-6 overflow-hidden p-6">
         <div className="absolute left-2 right-2 top-2 h-28 rounded-xl bg-gradient-to-br from-fg-violet via-fg-red-100 to-fg-yellow-50" />
         <div className="relative z-10 flex flex-col items-center gap-3 pt-10 text-center">
@@ -463,7 +463,7 @@ function ActivityEntry({ type }: { type: string }) {
         };
 
   return (
-    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-background">
       <div className="flex flex-col gap-3 border-b border-fg-grey-200 p-5 md:flex-row md:items-center md:justify-between">
         <div className="flex min-w-0 items-center gap-3">
           <div className={`grid size-9 shrink-0 place-items-center rounded-full ${config.iconClassName}`}>
@@ -568,7 +568,7 @@ function InfoBlock({
 
 function TransactionsPanel() {
   return (
-    <Panel variant="custom" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-background">
       <div className="overflow-x-auto">
         <div className="min-w-[760px]">
           <div className="grid grid-cols-[minmax(260px,1fr)_176px_148px_160px_52px] border-b border-fg-grey-200">
@@ -576,14 +576,14 @@ function TransactionsPanel() {
             <TableHeader>Added</TableHeader>
             <TableHeader sortable>Total</TableHeader>
             <TableHeader sortable>Status</TableHeader>
-            <div className="bg-white px-6 py-4" />
+            <div className="bg-background px-6 py-4" />
           </div>
           {transactions.map((row) => (
             <div
               key={row.name}
               className="grid grid-cols-[minmax(260px,1fr)_176px_148px_160px_52px] border-b border-fg-grey-200 last:border-b-0"
             >
-              <div className="flex items-center gap-2 bg-white px-6 py-4">
+              <div className="flex items-center gap-2 bg-background px-6 py-4">
                 <div className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-blue-50">
                   <DocumentTextLinear size={18} color={"var(--fg-blue-500)"} />
                 </div>
@@ -592,17 +592,17 @@ function TransactionsPanel() {
                   <p className="truncate text-xs font-normal leading-4 tracking-fg text-fg-grey-700">{row.invoice}</p>
                 </div>
               </div>
-              <div className="flex flex-col justify-center bg-white px-6 py-4">
+              <div className="flex flex-col justify-center bg-background px-6 py-4">
                 <span className="text-sm font-semibold leading-5 tracking-fg text-fg-black">{row.date}</span>
                 <span className="text-xs font-normal leading-4 tracking-fg text-fg-grey-700">{row.time}</span>
               </div>
-              <div className="flex items-center bg-white px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-black">
+              <div className="flex items-center bg-background px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-black">
                 {row.total}
               </div>
-              <div className="flex items-center bg-white px-6 py-4">
+              <div className="flex items-center bg-background px-6 py-4">
                 <StatusBadge label={row.status} color={saleStatusColor[row.status]} />
               </div>
-              <div className="flex items-center bg-white px-4 py-4">
+              <div className="flex items-center bg-background px-4 py-4">
                 <MenuDotsLinear size={18} color={"var(--fg-grey-700)"} />
               </div>
             </div>
@@ -616,7 +616,7 @@ function TransactionsPanel() {
 
 function TableHeader({ children, sortable = false }: { children?: ReactNode; sortable?: boolean }) {
   return (
-    <div className="flex items-center gap-2 bg-white px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">
+    <div className="flex items-center gap-2 bg-background px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">
       <span>{children}</span>
       {sortable ? <AltArrowDownLinear size={14} color={"var(--fg-grey-600)"} /> : null}
     </div>
@@ -628,7 +628,7 @@ function AttachmentPanel() {
     <div className="flex flex-col gap-5">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {files.map((file) => (
-          <Panel variant="custom" as="article" key={file.name} className="flex items-center gap-5 rounded-[20px] border border-fg-grey-200 bg-white p-5">
+          <Panel variant="custom" as="article" key={file.name} className="flex items-center gap-5 rounded-[20px] border border-fg-grey-200 bg-background p-5">
             <Checkbox />
             <FileTypeIcon fileName={file.name} className="size-14" />
             <div className="min-w-0 flex-1">
@@ -656,7 +656,7 @@ function NotesPanel() {
 
 function NoteEntry({ title, meta, images }: { title: string; meta: string; images: number }) {
   return (
-    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="article" className="overflow-hidden rounded-[20px] border border-fg-grey-200 bg-background">
       <div className="flex flex-col gap-3 border-b border-fg-grey-200 p-5 md:flex-row md:items-center md:justify-between">
         <div className="flex min-w-0 items-center gap-3">
           <div className="grid size-9 shrink-0 place-items-center rounded-full bg-fg-green-50">

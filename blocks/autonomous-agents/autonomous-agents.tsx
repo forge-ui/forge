@@ -203,7 +203,7 @@ export function AutonomousAgents({ agents: initialAgents = defaultAutonomousAgen
           <h2 className="text-base font-semibold text-fg-black">最近任务</h2>
           <Button color="blue" variant="tertiary" size="sm">全部</Button>
         </div>
-        <ul className="divide-y divide-fg-grey-100 overflow-hidden rounded-2xl border border-fg-grey-200 bg-white">
+        <ul className="divide-y divide-fg-grey-100 overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
           {tasks.map(task => <li key={task.id}>
             <a href={`#${task.id}`} className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-fg-grey-50">
               <div className="min-w-0 flex-1">

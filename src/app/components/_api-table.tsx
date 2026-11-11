@@ -10,7 +10,7 @@ export type ApiTableRow = {
 
 export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-fg-grey-200 bg-white">
+    <div className="overflow-x-auto rounded-xl border border-fg-grey-200 bg-background">
       <table className="w-full table-fixed border-collapse text-left text-sm">
         <colgroup>
           <col className="w-[28%]" />
@@ -69,7 +69,7 @@ export function ApiTable({ rows }: { rows: ApiTableRow[] }) {
 // Import / Usage code block — 纯展示代码，不带 Preview 区
 export function CodeBlock({ code }: { code: string }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
       <pre className="overflow-x-auto px-4 py-3 text-[13px] leading-relaxed text-fg-black">
         <code className="font-mono whitespace-pre">{code}</code>
       </pre>

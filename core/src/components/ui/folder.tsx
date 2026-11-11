@@ -73,7 +73,7 @@ export function Folder({ label, items = [], color = "blue", size = "md", open, d
           {items.slice(0, 6).map((item, index, visible) => {
             const offset = index - (visible.length - 1) / 2;
             return <motion.button key={item.id ?? index} type="button" disabled={disabled || !expanded} tabIndex={expanded ? 0 : -1} aria-hidden={!expanded} aria-pressed={zoomOnClick ? focused === index : undefined} onClick={() => { if (dragging.current) return; if (zoomOnClick) setFocused(current => current === index ? null : index); onItemClick?.(item, index); }}
-              className="absolute flex flex-col overflow-hidden rounded-xl bg-fg-white p-4 text-left text-fg-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg-violet"
+              className="absolute flex flex-col overflow-hidden rounded-xl bg-background p-4 text-left text-fg-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg-violet"
               drag={draggable && expanded && !reduced} dragMomentum={false} onDragStart={() => { dragging.current = true; }} onDragEnd={() => { setTimeout(() => { dragging.current = false; }, 0); }}
               style={{ touchAction: draggable ? "none" : undefined, bottom: "6%", left: book ? "10%" : "23%", width: book ? "80%" : "54%", height: book ? "88%" : "83%", transformOrigin: "50% 90%", zIndex: focused === index ? 30 : index + 1, boxShadow: "0 4px 12px rgba(0,0,0,.12)", background: paperColor }}
               initial={intro && !reduced ? { opacity: 0, y: 40 } : false} animate={{ opacity: 1,

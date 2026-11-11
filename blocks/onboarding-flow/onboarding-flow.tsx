@@ -39,13 +39,13 @@ export function OnboardingFlow({ initialValue, onFinish, className }: Onboarding
     onFinish?.(value);
   }
 
-  return <div className={cn("mx-auto grid w-full max-w-5xl grid-cols-1 overflow-hidden rounded-card border border-fg-grey-200 bg-white md:grid-cols-[280px_minmax(0,1fr)]", className)}>
+  return <div className={cn("mx-auto grid w-full max-w-5xl grid-cols-1 overflow-hidden rounded-card border border-fg-grey-200 bg-background md:grid-cols-[280px_minmax(0,1fr)]", className)}>
     <aside className="flex flex-col gap-6 bg-fg-grey-50 p-6">
       <div><p className="text-sm font-medium text-fg-blue">欢迎使用知行科技工作台</p><p className="mt-1 text-xl font-semibold text-fg-black">几步完成准备</p></div>
       <ProgressBar value={finished ? 100 : Math.round((step / steps.length) * 100)} color="blue" label={`${finished ? steps.length : step} / ${steps.length} 已完成`} size="sm" />
       <ol className="flex flex-col gap-2">{steps.map((item, index) => {
         const done = finished || index < step;
-        return <li key={item.id}><Button variant="unstyled" type="button" disabled={index > step || finished} onClick={() => setStep(index)} className={cn("flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors", index === step && !finished ? "bg-white shadow-sm" : "hover:bg-white/60")}>
+        return <li key={item.id}><Button variant="unstyled" type="button" disabled={index > step || finished} onClick={() => setStep(index)} className={cn("flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors", index === step && !finished ? "bg-background shadow-sm" : "hover:bg-background/60")}>
           {done ? <span className="text-fg-green-500"><CheckCircleBold size={22} /></span> : <span className={cn("grid size-[22px] place-items-center rounded-full border-2 text-[11px] font-semibold", index === step ? "border-fg-blue text-fg-blue" : "border-fg-grey-300 text-fg-grey-500")}>{index + 1}</span>}
           <span><span className={cn("block text-sm font-semibold", done ? "text-fg-grey-700" : "text-fg-black")}>{item.title}</span><span className="block text-xs text-fg-grey-500">{item.hint}</span></span>
         </Button></li>;

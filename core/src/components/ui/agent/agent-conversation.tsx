@@ -79,7 +79,7 @@ export function Conversation({ children, followKey, locale = "zh", latestLabel, 
         <button
           type="button"
           onClick={() => { following.current = true; setAtBottom(true); toBottom(true); }}
-          className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-fg-grey-200 bg-white px-3 py-1.5 text-xs font-semibold tracking-fg text-fg-black shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] hover:bg-fg-grey-50"
+          className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-fg-grey-200 bg-background px-3 py-1.5 text-xs font-semibold tracking-fg text-fg-black shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] hover:bg-fg-grey-50"
         >
           <ArrowDownLinear size={14} color="currentColor" />
           {latestLabel ?? pick(locale, "回到最新", "Jump to latest")}
@@ -206,7 +206,7 @@ export function PromptSuggestions({ suggestions, onSelect, label, className }: P
       <div className="flex flex-wrap gap-2">
         {suggestions.map((suggestion, index) => (
           <button key={suggestion} type="button" onClick={() => onSelect(suggestion, index)}
-            className="rounded-full border border-fg-grey-200 bg-white px-3 py-1.5 text-left text-sm tracking-fg text-fg-black transition-colors hover:border-fg-blue hover:text-fg-blue">
+            className="rounded-full border border-fg-grey-200 bg-background px-3 py-1.5 text-left text-sm tracking-fg text-fg-black transition-colors hover:border-fg-blue hover:text-fg-blue">
             {suggestion}
           </button>
         ))}
@@ -241,7 +241,7 @@ export function ArtifactCard({ title, kind = "document", meta, status = "ready",
   const text = { open: pick(locale, "打开", "Open"), download: pick(locale, "下载", "Download"), generating: pick(locale, "生成中…", "Generating…"), error: pick(locale, "生成失败", "Failed"), ...labels };
   const ready = status === "ready";
   return (
-    <div className={cn("flex items-center gap-3 rounded-2xl border border-fg-grey-200 bg-white p-3", className)} data-artifact-status={status}>
+    <div className={cn("flex items-center gap-3 rounded-2xl border border-fg-grey-200 bg-background p-3", className)} data-artifact-status={status}>
       <div className={cn("flex size-10 shrink-0 items-center justify-center rounded-xl", status === "error" ? "bg-fg-red-50 text-fg-red" : "bg-fg-blue-50 text-fg-blue")}>
         {status === "error" ? <DangerTriangleLinear size={20} color="currentColor" /> : <Icon size={20} color="currentColor" />}
       </div>

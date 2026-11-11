@@ -43,7 +43,7 @@ export function ListGroup({
   return (
     <div
       className={cn(
-        "bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-stretch overflow-hidden",
+        "bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-stretch overflow-hidden",
         className
       )}
     >
@@ -66,7 +66,7 @@ export function ListGroup({
             type="button"
             onClick={onClose}
             aria-label="关闭"
-            className="p-3.5 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-2 text-fg-grey-700"
+            className="p-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex items-center gap-2 text-fg-grey-700"
           >
             <CloseCircleLinear size={20} />
           </button>
@@ -79,7 +79,7 @@ export function ListGroup({
         <div className="self-stretch px-5 pt-5">
           <div
             role="tablist"
-            className="p-1 bg-white rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex w-full"
+            className="p-1 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex w-full"
           >
             {tabs.map((tab) => {
               const isActive = tab.value === activeTab;

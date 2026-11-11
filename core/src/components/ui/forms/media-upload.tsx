@@ -101,7 +101,7 @@ export function MediaUpload({
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
         className={cn(
-          "self-stretch p-6 bg-white rounded-xl outline outline-1 outline-offset-[-1px] flex flex-col justify-center items-center gap-4 overflow-hidden transition-colors",
+          "self-stretch p-6 bg-background rounded-xl outline outline-1 outline-offset-[-1px] flex flex-col justify-center items-center gap-4 overflow-hidden transition-colors",
           dragOver ? "outline-accent bg-accent-soft" : "outline-fg-grey-200",
         )}
       >

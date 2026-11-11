@@ -21,7 +21,7 @@ export default function ThemePage() {
       <DocHeader
         breadcrumbs={[{ label: "文档", href: "/docs" }, { label: "主题定制" }]}
         title="主题定制"
-        description="选主色、圆角和字体，右边是真实组件的预览，下面直接生成可以复制的 CSS。不用改组件代码，也不用等 core 发版。"
+        description="选主色、圆角和字体，右边是真实组件在浅色和深色下的预览，下面直接生成可以复制的 CSS，不用改组件代码。"
       />
       <DocSection {...toc[0]}>
         <ThemeGenerator reference={reference} />
@@ -38,7 +38,8 @@ export default function ThemePage() {
           <li>主色：按 Forge 蓝的明暗曲线生成 50 到 900 的整套色阶，覆盖 <code>--fg-blue-*</code>。所有用 <code>color=&quot;blue&quot;</code>（默认值）的组件和 <code>accent</code> 都跟着变，蓝色的状态标签也会变成主色。</li>
           <li>圆角：按比例缩放 Tailwind 的 <code>--radius-*</code> 和卡片圆角；<code>rounded-full</code> 的胶囊按钮、头像保持不变。</li>
           <li>字体：替换正文和标题两个字体变量。</li>
-          <li>灰色、白色和深色模式暂时不能改：core 里还有大量直接写死的灰色和白色，要先换成语义 token。</li>
+          <li>深色模式：在 <code>&lt;html&gt;</code> 上加 <code>data-theme=&quot;dark&quot;</code> 即可，灰阶、文字和彩色浅底都会切换；生成的 CSS 里已经带了自定义主色的深色版本。局部区域也可以单独加 <code>data-theme</code>。</li>
+          <li>灰色和白色本身暂不提供自定义。</li>
         </ul>
       </DocSection>
     </DocArticle>

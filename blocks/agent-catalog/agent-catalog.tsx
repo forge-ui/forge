@@ -90,7 +90,7 @@ function FolderSidebar({ folders, selectedId, onSelect, onCreate }: { folders: A
   const [name, setName] = useState("");
   const visible = folders.filter(folder => folder.name.includes(query.trim()));
   return <aside className="flex max-h-[40vh] w-full shrink-0 flex-col overflow-hidden lg:max-h-none lg:w-[240px]">
-    <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-white">
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
       <div className="shrink-0 border-b border-fg-grey-100 px-3 py-2.5">
         <div className="flex items-center justify-between gap-2">
           <h3 className="text-sm font-semibold text-fg-black">目录</h3>
@@ -114,7 +114,7 @@ function FolderSidebar({ folders, selectedId, onSelect, onCreate }: { folders: A
 }
 
 function AgentCard({ agent, onDelete }: { agent: AppAgent; onDelete: () => void }) {
-  return <article className="flex h-full min-h-[168px] cursor-pointer flex-col rounded-2xl border border-fg-grey-200 bg-white p-4 transition-colors hover:border-fg-grey-300">
+  return <article className="flex h-full min-h-[168px] cursor-pointer flex-col rounded-2xl border border-fg-grey-200 bg-background p-4 transition-colors hover:border-fg-grey-300">
     <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex items-start gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -145,7 +145,7 @@ function AgentCard({ agent, onDelete }: { agent: AppAgent; onDelete: () => void 
 }
 
 function TemplateCard({ template, onUse }: { template: AgentTemplate; onUse: () => void }) {
-  return <article className="group flex h-full min-h-[160px] flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-white transition-[border-color,box-shadow] hover:border-fg-blue-200 hover:shadow-[0_8px_24px_rgba(16,24,40,0.06)]">
+  return <article className="group flex h-full min-h-[160px] flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background transition-[border-color,box-shadow] hover:border-fg-blue-200 hover:shadow-[0_8px_24px_rgba(16,24,40,0.06)]">
     <button type="button" aria-label={`使用模板 ${template.name}`} className="flex min-h-0 flex-1 cursor-pointer flex-col text-left" onClick={onUse}>
       <div className={`flex items-center justify-center px-4 pb-2 pt-4 ${template.surface}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}

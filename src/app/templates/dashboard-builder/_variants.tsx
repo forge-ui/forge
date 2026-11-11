@@ -39,7 +39,7 @@ export const variants: BuilderVariant[] = [
     accent: "purple",
     profilePosition: "topbar",
     showPageHeader: false,
-    swatch: "bg-white border border-fg-grey-200",
+    swatch: "bg-background border border-fg-grey-200",
     thumbnail: asset("/images/showcase/dashboard-builder/light-topbar.png"),
   },
   {
@@ -50,7 +50,7 @@ export const variants: BuilderVariant[] = [
     accent: "purple",
     profilePosition: "sidebar",
     showPageHeader: true,
-    swatch: "bg-white border border-fg-grey-200",
+    swatch: "bg-background border border-fg-grey-200",
     thumbnail: asset("/images/showcase/dashboard-builder/light-sidebar.png"),
   },
   {

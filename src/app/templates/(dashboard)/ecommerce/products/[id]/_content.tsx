@@ -201,7 +201,7 @@ export default function ProductDetailPage() {
       {activeTabValue === "details" && (
         <div className="flex items-start gap-4">
           {/* Image Gallery */}
-          <Panel variant="custom" className="w-[360px] p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
+          <Panel variant="custom" className="w-[360px] p-6 bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
             <div className="relative">
               <img
                 src={imageList[activeImageIndex]}
@@ -210,7 +210,7 @@ export default function ProductDetailPage() {
               />
               <Button variant="unstyled"
                 type="button"
-                className="absolute top-2 right-2 w-10 h-10 rounded-full bg-white outline outline-1 outline-fg-grey-200 flex items-center justify-center cursor-pointer"
+                className="absolute top-2 right-2 w-10 h-10 rounded-full bg-background outline outline-1 outline-fg-grey-200 flex items-center justify-center cursor-pointer"
               >
                 <MagniferLinear size={20} className="text-fg-grey-700" />
               </Button>
@@ -242,7 +242,7 @@ export default function ProductDetailPage() {
           </Panel>
 
           {/* Product Info */}
-          <Panel variant="custom" className="flex-1 p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
+          <Panel variant="custom" className="flex-1 p-6 bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col gap-6">
             <div className="relative">
               <h2 className="text-display-l font-semibold text-fg-black mb-4">Smartwatch E2</h2>
               <div className="flex items-center gap-2 text-sm">
@@ -334,7 +334,7 @@ export default function ProductDetailPage() {
 
       {/* Reviews Tab */}
       {activeTabValue === "reviews" && (
-        <Panel variant="custom" className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
+        <Panel variant="custom" className="bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
           <h3 className="text-xl font-semibold text-fg-black">Customer Reviews</h3>
           <div className="flex flex-col gap-4">
             {reviewList.map((review) => (
@@ -357,7 +357,7 @@ export default function ProductDetailPage() {
 
       {/* Messages Tab */}
       {activeTabValue === "messages" && (
-        <Panel variant="custom" className="bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
+        <Panel variant="custom" className="bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6 flex flex-col gap-6">
           <h3 className="text-xl font-semibold text-fg-black">Messages</h3>
           <div className="flex flex-col gap-4">
             {messageList.map((msg) => (

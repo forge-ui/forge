@@ -49,7 +49,7 @@ export function FusionFamilyExamples() {
     {items.map(item => <section key={item.id} id={`interaction-${item.id}`} data-case-section={item.name} className="flex min-w-0 scroll-mt-24 flex-col gap-4">
       {item.id === "178" && <span id="interaction-F03" className="scroll-mt-24" />}
       <div className="flex items-start justify-between gap-3"><div className="flex flex-col gap-2"><h3 className="text-lg font-semibold">{zh ? item.name : item.english}</h3><p className="text-sm leading-6 text-fg-grey-700">{zh ? item.description : item.descriptionEn}</p><p className="text-xs text-fg-grey-500">{item.target.join(" · ")}</p></div><Button size="sm" color="black" variant="tertiary" aria-label={`${zh ? "重置" : "Reset"} ${zh ? item.name : item.english}`} iconLeft={<RestartCircleLinear size={16} />} onClick={() => setEpochs(current => ({ ...current, [item.id]: (current[item.id] ?? 0) + 1 }))}>{zh ? "重置" : "Reset"}</Button></div>
-      <div className="min-w-0 rounded-2xl border border-fg-grey-200 bg-fg-white p-5"><VisibleExample id={item.id} settings={{ locale, color, motion }} epoch={epochs[item.id] ?? 0} /></div>
+      <div className="min-w-0 rounded-2xl border border-fg-grey-200 bg-background p-5"><VisibleExample id={item.id} settings={{ locale, color, motion }} epoch={epochs[item.id] ?? 0} /></div>
       <ExampleCode files={exampleSourceFiles(item)} />
       <button type="button" onClick={() => { const table = document.querySelector("article table"); table?.scrollIntoView({ behavior: motion === "none" ? "instant" : "smooth", block: "start" }); }} className="text-xs font-semibold text-fg-grey-700 underline underline-offset-4">{zh ? "查看本页参数说明" : "View API reference on this page"}</button>
     </section>)}
