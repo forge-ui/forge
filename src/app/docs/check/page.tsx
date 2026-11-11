@@ -2,7 +2,6 @@ import { DocArticle, DocHeader, DocSection } from "../_shared";
 import { CodeBlock } from "../ui-for-agents/_code-block";
 import { ruleList } from "../../../../public/forge-check.mjs";
 
-export const metadata = { title: "页面检查 · Forge" };
 
 const toc = [
   { id: "run", title: "运行" },

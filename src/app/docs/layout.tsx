@@ -1,5 +1,9 @@
+import { pageMetadata } from "@/lib/seo";
 import { SiteHeader } from "../_components/site-header";
 import { DocsNav } from "./_nav";
+
+
+export const metadata = pageMetadata("/docs");
 
 export default function DocsLayout({
   children,

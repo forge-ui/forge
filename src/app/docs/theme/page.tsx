@@ -5,7 +5,6 @@ import { parseScale } from "@/lib/theme.mjs";
 import { DocArticle, DocHeader, DocSection } from "../_shared";
 import { ThemeGenerator } from "./_theme-generator";
 
-export const metadata = { title: "主题定制 · Forge" };
 
 const toc = [
   { id: "generator", title: "生成主题" },

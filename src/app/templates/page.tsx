@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { SiteHeader } from "@/app/_components/site-header";
@@ -69,6 +70,9 @@ const items: ShowcaseItem[] = [
     external: true,
   },
 ];
+
+
+export const metadata = pageMetadata("/templates");
 
 export default function ExamplesIndex() {
   return (

@@ -1,0 +1,372 @@
+{
+  "/": {
+    "title": "Forge UI · 中文后台 React 组件库",
+    "description": "面向中文后台的 React 组件库：500 多个组件、70 个可复制的页面组件和整套后台模板，配套 Skill、MCP 和页面检查，人和编码助手按同一套规范做出一致的界面。"
+  },
+  "/blocks": {
+    "title": "页面组件",
+    "description": "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。"
+  },
+  "/cases": {
+    "title": "跳转",
+    "description": "",
+    "noindex": true
+  },
+  "/cases/accordion": {
+    "title": "折叠面板组件 · 效果与案例",
+    "description": "同一时间展开一个面板。下面的场景可以实际打开和收起。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/agent": {
+    "title": "智能体组件 · 效果与案例",
+    "description": "展示智能体的思考、回答、工具调用、任务和审批过程。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/badge": {
+    "title": "徽章与标签组件 · 效果与案例",
+    "description": "展示数量、状态和分类，或用图标强调重要入口。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/button-link": {
+    "title": "按钮与链接组件 · 效果与案例",
+    "description": "把按钮、图标按钮和文字链接的全部变体放在一起对比。悬停可查看动效。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/calendar": {
+    "title": "日历与日程组件 · 效果与案例",
+    "description": "选择日期、浏览日程，并在月、周、日视图中查看事件。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/card": {
+    "title": "卡片组件 · 效果与案例",
+    "description": "把每种卡片的主题、尺寸和状态放在一起对照。层叠和光照倾斜在最后。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/chart": {
+    "title": "图表组件 · 效果与案例",
+    "description": "把每种图表的段数、尺寸和组合放在一起对照。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/chat": {
+    "title": "聊天组件 · 效果与案例",
+    "description": "气泡和输入栏、四种整页布局，以及可以嵌进仪表盘的紧凑卡片。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/chat-input-bar": {
+    "title": "消息输入栏组件 · 效果与案例",
+    "description": "发送与停止 · 草稿保留 · 模型菜单 · Ask AI 抽屉 · 全屏。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/checklist": {
+    "title": "待办清单组件 · 效果与案例",
+    "description": "勾选待办事项，已完成的内容自动移到列表底部。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/comment": {
+    "title": "评论与评价组件 · 效果与案例",
+    "description": "展示讨论、回复和评分，支持头像、时间和附图。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/dashboard-kit": {
+    "title": "看板组件 · 效果与案例",
+    "description": "模板风格面板、密度与图表组合；切换密度对比默认和紧凑尺寸。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/feedback": {
+    "title": "消息反馈组件 · 效果与案例",
+    "description": "页面上的短消息、地址错误提示和通知入口。下面的场景可以实际操作。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/filter": {
+    "title": "筛选组件 · 效果与案例",
+    "description": "用分组条件和筛选面板缩小结果范围，支持重置和应用。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/grid": {
+    "title": "布局栅格组件 · 效果与案例",
+    "description": "通过响应式分栏安排主内容和辅助区域。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/history": {
+    "title": "历史记录组件 · 效果与案例",
+    "description": "按时间展示操作和事件，支持分组和进度信息。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/input-field": {
+    "title": "表单与输入组件 · 效果与案例",
+    "description": "收集文本、选项、日期和文件，提供校验与状态反馈。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/list": {
+    "title": "列表组件 · 效果与案例",
+    "description": "组织条目、详情字段、联系人和通知，便于浏览与操作。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/map": {
+    "title": "地图组件 · 效果与案例",
+    "description": "在世界地图上高亮区域，并展示对应的统计数据。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/menu": {
+    "title": "菜单组件 · 效果与案例",
+    "description": "提供下拉菜单、菜单条目和图标入口，支持选中与禁用状态。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/menu-sections": {
+    "title": "应用布局 · 效果与案例",
+    "description": "AppLayout 侧栏菜单分组的实际效果：主菜单、分组标题、折叠和多级菜单。"
+  },
+  "/cases/modal": {
+    "title": "确认弹窗组件 · 效果与案例",
+    "description": "在删除、发送等重要操作前说明结果并请求确认。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/motion": {
+    "title": "跳转",
+    "description": "",
+    "noindex": true
+  },
+  "/cases/other-widget": {
+    "title": "实用组件 · 效果与案例",
+    "description": "提供货币换算、星级评分、图片排列和产品条目。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/page-header": {
+    "title": "页面顶栏组件 · 效果与案例",
+    "description": "组织页面标题、搜索、通知和常用操作，明确当前位置。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/pagination-stepper": {
+    "title": "分页与步骤组件 · 效果与案例",
+    "description": "切换列表页码，或展示分步流程的当前位置。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/progress": {
+    "title": "进度组件 · 效果与案例",
+    "description": "展示任务完成度、使用配额和当前进展。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/tab": {
+    "title": "页签与切换组件 · 效果与案例",
+    "description": "在同一页面中切换内容、分类或视图。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/table": {
+    "title": "数据表格组件 · 效果与案例",
+    "description": "按行列展示数据，支持选择、排序、分页和自定义单元格。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/toolbar": {
+    "title": "工具栏组件 · 效果与案例",
+    "description": "集中放置搜索、筛选、视图切换和页面操作。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/cases/tooltip": {
+    "title": "提示气泡组件 · 效果与案例",
+    "description": "在悬停或聚焦时补充简短说明，帮助用户理解操作。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+  },
+  "/components": {
+    "title": "跳转",
+    "description": "",
+    "noindex": true
+  },
+  "/components/accordion": {
+    "title": "折叠面板组件 · 用法与参数",
+    "description": "同一时间展开一个面板，用来收纳较长说明。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/agent": {
+    "title": "智能体组件 · 用法与参数",
+    "description": "展示智能体的对话、思考、回答、工具调用、任务和审批过程；可以直接渲染 AI SDK 的消息。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/badge": {
+    "title": "徽章与标签组件 · 用法与参数",
+    "description": "同一个组件的颜色、尺寸和样式放在一起，代码按行跟在这组下面。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/button-link": {
+    "title": "按钮与链接组件 · 用法与参数",
+    "description": "同一个组件的尺寸、颜色和样式放在一起，代码按行跟在这组下面。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/calendar": {
+    "title": "日历与日程组件 · 用法与参数",
+    "description": "先选日期。标签、单日格子、事件卡片和整月视图是不同用途，各留一个例子。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/card": {
+    "title": "卡片组件 · 用法与参数",
+    "description": "按用途选一张现成卡片，展示指标、进度、财务、项目和成员。样式都保留，差别写在每张卡多出来的那一块。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/chart": {
+    "title": "图表组件 · 用法与参数",
+    "description": "按要比较的东西选一张图：占比、数量或趋势。主色和尺寸只定一次，图例和提示按需要加上。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/chat": {
+    "title": "聊天组件 · 用法与参数",
+    "description": "展示文字、语音、图片和文件消息。消息输入栏在「消息输入栏」页。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/chat-input-bar": {
+    "title": "消息输入栏组件 · 用法与参数",
+    "description": "多行输入、发送和 @ 引用。发送与停止、模型菜单、抽屉、全屏和窄屏在组件案例。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/checklist": {
+    "title": "待办清单组件 · 用法与参数",
+    "description": "整份清单负责勾选后把完成项沉到底部。单独一行用 ChecklistItem。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/comment": {
+    "title": "评论与评价组件 · 用法与参数",
+    "description": "评论用来讨论，评价用来打分。附图和回复是评论多出来的部分，卡片外壳是评价的另一种摆法。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/feedback": {
+    "title": "消息反馈组件 · 用法与参数",
+    "description": "用 ToastProvider 在页面角落显示短消息。关闭后其余消息补位。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/file-type": {
+    "title": "文件展示组件 · 用法与参数",
+    "description": "图标按扩展名区分。文件卡片在图标旁边加上名称、大小和上传状态。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/filter": {
+    "title": "筛选组件 · 用法与参数",
+    "description": "用分组条件缩小结果。多选、单选和区间是三种内容，按钮和面板负责打开与确认。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/folder": {
+    "title": "跳转",
+    "description": "",
+    "noindex": true
+  },
+  "/components/grid": {
+    "title": "布局栅格组件 · 用法与参数",
+    "description": "通过响应式分栏安排主内容和辅助区域。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/history": {
+    "title": "历史记录组件 · 用法与参数",
+    "description": "一条记录是一个时间点。圆点、图标和头像是三种指示器，多条记录再收成一组。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/input-field": {
+    "title": "表单与输入组件 · 用法与参数",
+    "description": "收集文本、选项、日期和文件。颜色和展示态在单行输入上定一次。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/interactions": {
+    "title": "跳转",
+    "description": "",
+    "noindex": true
+  },
+  "/components/list": {
+    "title": "列表组件 · 用法与参数",
+    "description": "条目、字段、分组、联系人和通知各留一个。前置图标、头像和图片看起来不一样，所以都保留。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/map": {
+    "title": "地图组件 · 用法与参数",
+    "description": "在世界地图上高亮区域，并展示对应的统计数据。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/menu": {
+    "title": "菜单组件 · 用法与参数",
+    "description": "按入口选组件：一行选项、整块下拉、图标按钮或三点菜单。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/menu-sections": {
+    "title": "应用布局 · 用法与参数",
+    "description": "AppLayout 的侧栏菜单分组：主菜单、分组标题、折叠和多级菜单的写法与参数。"
+  },
+  "/components/modal": {
+    "title": "确认弹窗组件 · 用法与参数",
+    "description": "在删除、发送等重要操作前说明结果并请求确认。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/motion": {
+    "title": "跳转",
+    "description": "",
+    "noindex": true
+  },
+  "/components/other-widget": {
+    "title": "实用组件 · 用法与参数",
+    "description": "换算、评分、图片和商品行各做一件事。星级尺寸只演示一次。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/page-header": {
+    "title": "页面顶栏组件 · 用法与参数",
+    "description": "搜索顶栏和页面标题是两种布局。面包屑只负责当前位置，不再单独摆一套颜色。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/pagination-stepper": {
+    "title": "分页与步骤组件 · 用法与参数",
+    "description": "翻页、步骤条和单个页码点是三件东西。主色相同，不单独再摆一套颜色。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/progress": {
+    "title": "进度组件 · 用法与参数",
+    "description": "展示任务完成度、使用配额和当前进展。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/style-guide": {
+    "title": "设计规范 · 用法与参数",
+    "description": "了解 Forge 的颜色、字体、字号和字重，建立一致的界面风格。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/tab": {
+    "title": "页签与切换组件 · 用法与参数",
+    "description": "在同一页面中切换内容、分类或视图。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/table": {
+    "title": "数据表格组件 · 用法与参数",
+    "description": "按行列展示数据，支持选择、排序、分页和自定义单元格。可比较数字右对齐，标识左对齐，列头与内容同向。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/toolbar": {
+    "title": "工具栏组件 · 用法与参数",
+    "description": "先操作一组筛选。双行工具栏、页面标题、胶囊页签和每种控件再各看一次。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/components/tooltip": {
+    "title": "提示气泡组件 · 用法与参数",
+    "description": "悬停或聚焦时补一句说明。方向和单行、多行只定一次，入口图标再套上气泡。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+  },
+  "/docs": {
+    "title": "介绍",
+    "description": "Forge UI Kit 是什么，以及文档站里有哪些内容。"
+  },
+  "/docs/agents-md": {
+    "title": "AGENTS.md",
+    "description": "把 Forge 的使用规则放到项目根目录，编码助手会读取这个文件。"
+  },
+  "/docs/changelog": {
+    "title": "更新日志",
+    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.8.0。"
+  },
+  "/docs/check": {
+    "title": "页面检查",
+    "description": "把审计清单里能从源码判断的条目做成检查：写完页面跑一遍，按行号和改法修，错误清零再交付。"
+  },
+  "/docs/design-md": {
+    "title": "DESIGN.md",
+    "description": "Forge 的视觉规则：颜色、字色层级、字体、圆角、状态和布局。按 google-labs-code/design.md 规范编写，开头是 YAML token，后面是说明和该做、不该做的事。"
+  },
+  "/docs/installation": {
+    "title": "详细安装",
+    "description": "说明每一步在做什么。想先看到一颗按钮，直接看快速开始。"
+  },
+  "/docs/llms-txt": {
+    "title": "LLMs.txt",
+    "description": "把 Forge 文档整理成纯文本，方便 ChatGPT、Claude 等不装 Skill 的助手直接读取。"
+  },
+  "/docs/mcp": {
+    "title": "让 AI 通过 MCP 使用 Forge",
+    "description": "公开、只读、无鉴权的 Streamable HTTP 服务；不保存会话，不修改项目。"
+  },
+  "/docs/quick-start": {
+    "title": "快速开始",
+    "description": "把 @forge-ui-official/core 0.8.0 接到 Next.js 和 Tailwind v4 项目里。"
+  },
+  "/docs/theme": {
+    "title": "主题定制",
+    "description": "选主色、圆角和字体，右边是真实组件在浅色和深色下的预览，下面直接生成可以复制的 CSS，不用改组件代码。"
+  },
+  "/docs/troubleshoot": {
+    "title": "故障排查",
+    "description": "装不上 / 跑不起来，按症状对号入座。还没找到的欢迎开 issue。"
+  },
+  "/docs/ui-for-agents": {
+    "title": "UI for Agents",
+    "description": "让 AI 助手用 Forge UI Kit 拼业务页面。"
+  },
+  "/guides": {
+    "title": "使用指南",
+    "description": "用 Forge UI 搭后台的分场景指南：看板、列表、详情、表单、设置、反馈和让编码助手按规范生成页面。"
+  },
+  "/guides/ai": {
+    "title": "让 AI 用 Forge · 使用指南",
+    "description": "先安装唯一规范 forge-skill；MCP 提供可选的检索数据，不能覆盖规范正文。让 AI 先选择 Screen，再选 Blocks，最后查组件 API。"
+  },
+  "/guides/dashboard": {
+    "title": "用 Forge 搭运营看板 · 使用指南",
+    "description": "先确认指标口径、时间范围、下钻对象与刷新频率。选择 /templates/dashboards/analytics 作为主对照，不从空白卡片墙开始。"
+  },
+  "/guides/detail": {
+    "title": "搭建详情页：全页与弹窗 · 使用指南",
+    "description": "先确认阅读深度、可分享 URL、编辑权限和返回上下文。复杂详情用全页；轻量查看或局部编辑用 Modal 或 Drawer。"
+  },
+  "/guides/feedback": {
+    "title": "状态与反馈 · 使用指南",
+    "description": "区分持久业务状态、一次动作反馈以及页面空、错、加载状态。颜色只辅助语义，文字必须清楚。"
+  },
+  "/guides/form": {
+    "title": "搭建表单页：基础、分组与分步 · 使用指南",
+    "description": "先列字段、默认值、校验、保存动作和取消后的去向。短表单单页；长表单按业务分组；有先后依赖时再分步。"
+  },
+  "/guides/list": {
+    "title": "搭建业务列表页 · 使用指南",
+    "description": "先确定管理对象、查询条件、排序、分页和批量操作权限。选择最接近的列表案例，而不是把列表包装成看板。"
+  },
+  "/guides/settings": {
+    "title": "搭建设置页 · 使用指南",
+    "description": "先区分个人偏好、组织设置、权限范围与危险操作。明确即时保存还是显式保存，同一分组不要混用。"
+  },
+  "/guides/starter-module": {
+    "title": "在 Forge Starter 加业务模块 · 使用指南",
+    "description": "先在 Starter 仓库读取其 new-module/new-page/audit skills，确认对象生命周期、数据权限、菜单与路由。这里不复制 Starter 的后端规则。"
+  },
+  "/templates": {
+    "title": "后台模板",
+    "description": "Forge UI 的完整后台模板：CRM、电商、财务、项目管理、任务看板和智能体工作台，可以直接打开体验每个页面。"
+  }
+}

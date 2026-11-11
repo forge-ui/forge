@@ -1,7 +1,6 @@
 import { DocArticle, DocHeader, DocSection } from "../_shared";
 import { CodeBlock } from "../ui-for-agents/_code-block";
 
-export const metadata = { title: "LLMs.txt · Forge" };
 
 const toc = [
   { id: "files", title: "文件列表" },

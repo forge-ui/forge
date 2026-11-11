@@ -3,7 +3,6 @@ import { DocArticle, DocHeader, DocSection } from "../_shared";
 import { toolNames } from "@/lib/mcp/server.mjs";
 import { CodeBlock } from "../ui-for-agents/_code-block";
 
-export const metadata = { title: "MCP 服务器 · Forge" };
 
 const sections = [
   { id: "connect", title: "连接客户端" },

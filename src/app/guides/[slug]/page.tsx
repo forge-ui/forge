@@ -1,9 +1,14 @@
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import data from "@/lib/mcp/data.json";
 import { DocArticle, DocHeader, DocSection } from "../../docs/_shared";
 
 export function generateStaticParams() { return data.guides.map(guide => ({ slug: guide.slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  return pageMetadata(`/guides/${(await params).slug}`);
+}
+
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const guide = data.guides.find(item => item.slug === slug);

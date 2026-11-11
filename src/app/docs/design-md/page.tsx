@@ -5,7 +5,6 @@ import { DocArticle, DocHeader, DocSection } from "../_shared";
 import { PromptBlock } from "../agents-md/_prompt-block";
 import { CodeBlock } from "../ui-for-agents/_code-block";
 
-export const metadata = { title: "DESIGN.md · Forge" };
 
 const toc = [
   { id: "preview", title: "DESIGN.md 预览" },

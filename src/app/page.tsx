@@ -1,3 +1,4 @@
+import { SITE_NAME, SITE_URL, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "./_components/site-header";
@@ -7,9 +8,30 @@ import { changelogHref } from "./docs/_changelog";
 import { coreVersion } from "./docs/_versions";
 import "./_components/home-page.css";
 
+
+export const metadata = pageMetadata("/");
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: SITE_NAME, inLanguage: "zh-CN" },
+    {
+      "@type": "SoftwareSourceCode",
+      name: "@forge-ui-official/core",
+      description: "面向中文后台的 React 组件库，含组件、页面组件和后台模板。",
+      url: SITE_URL,
+      codeRepository: "https://github.com/forge-ui/forge",
+      programmingLanguage: ["TypeScript", "React"],
+      license: "https://opensource.org/licenses/MIT",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <div className="home-page flex min-h-screen min-w-0 flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <SiteHeader tone="blend" />
       <main className="flex min-w-0 flex-1 flex-col">
         <section className="home-hero">
