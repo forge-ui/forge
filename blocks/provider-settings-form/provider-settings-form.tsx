@@ -50,7 +50,7 @@ function ProviderCard({ provider, onChange }: { provider: ProviderConfig; onChan
   const [state, setState] = useState<"idle" | "saved" | "tested" | "missing">("idle");
   const [copied, setCopied] = useState(false);
   const missing = provider.fields.filter(field => !provider.values[field.key]?.trim());
-  return <section className="overflow-hidden rounded-2xl border border-fg-grey-200 bg-white">
+  return <section className="overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
     <div className="grid grid-cols-1 gap-6 p-5 sm:p-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10">
       <div className="flex min-w-0 flex-col gap-3">
         <div className="flex items-center justify-between gap-3">

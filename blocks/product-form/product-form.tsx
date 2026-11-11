@@ -94,7 +94,7 @@ export function ProductForm({ initial = defaultProductDraft, onSubmit, className
 
   return <div className={`flex min-w-0 flex-col gap-5 ${className}`}>
     <PageTitleToolbar title="编辑商品" subtitle="修改会在发布后同步到商城前台与小程序。" breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "电商运营", href: "#overview" }, { label: "商品", href: "#products" }, { label: "编辑商品" }]} />} />
-    <form className="overflow-hidden rounded-2xl border border-fg-grey-200 bg-white" onSubmit={event => { event.preventDefault(); submit("publish"); }}>
+    <form className="overflow-hidden rounded-2xl border border-fg-grey-200 bg-background" onSubmit={event => { event.preventDefault(); submit("publish"); }}>
       <Section title="基本信息" description="名称和描述会出现在商品详情页与搜索结果里。">
         <div className="grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-3">
           <div className="md:col-span-2"><TextField color="blue" inputClassName="h-6" label="商品名称 *" value={draft.name} onChange={set("name")} state={errors.name ? "error" : "idle"} errorMessage={errors.name} maxLength={60} /></div>
@@ -136,7 +136,7 @@ export function ProductForm({ initial = defaultProductDraft, onSubmit, className
         {draft.publish === "scheduled" ? <div className="max-w-xs"><TextField color="blue" inputClassName="h-6" label="上架时间" type="datetime-local" value={draft.publishAt} onChange={set("publishAt")} /></div> : null}
       </Section>
 
-      <div className="sticky bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 border-t border-fg-grey-200 bg-white/95 px-5 py-3 backdrop-blur sm:px-6">
+      <div className="sticky bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 border-t border-fg-grey-200 bg-background/95 px-5 py-3 backdrop-blur sm:px-6">
         <span className={`text-sm ${Object.keys(errors).some(key => errors[key as keyof ProductDraft]) ? "text-fg-red" : "text-fg-grey-600"}`}>
           {Object.values(errors).filter(Boolean).length ? `还有 ${Object.values(errors).filter(Boolean).length} 处需要修改` : saved ?? (dirty ? "有未保存的修改" : "上次保存于今天 10:24")}
         </span>

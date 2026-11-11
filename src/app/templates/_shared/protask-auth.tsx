@@ -84,7 +84,7 @@ export function ProtaskAuthPage({
   };
 
   return (
-    <main className="min-h-screen bg-white p-4 lg:p-6">
+    <main className="min-h-screen bg-background p-4 lg:p-6">
       <div className="grid min-h-[calc(100vh-32px)] grid-cols-1 gap-6 lg:min-h-[calc(100vh-48px)] lg:grid-cols-[minmax(360px,640px)_minmax(420px,1fr)]">
         <Panel variant="custom" as="section" className="relative hidden overflow-hidden rounded-2xl bg-fg-grey-100 lg:block">
           <Image
@@ -97,7 +97,7 @@ export function ProtaskAuthPage({
           />
         </Panel>
 
-        <Panel variant="custom" as="section" className="relative flex min-h-[720px] items-center justify-center rounded-2xl bg-white">
+        <Panel variant="custom" as="section" className="relative flex min-h-[720px] items-center justify-center rounded-2xl bg-background">
           <div className="flex w-full max-w-96 flex-col items-center gap-8">
             <div className="flex flex-col items-center gap-3 text-center">
               <h1 className="text-2xl font-semibold leading-8 tracking-fg text-fg-black">

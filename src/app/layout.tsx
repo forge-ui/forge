@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
+import { themeBootScript } from "@/lib/theme-boot";
 
 export const metadata: Metadata = {
   title: "Forge",
@@ -23,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh" data-accent="blue" className="h-full antialiased" style={fontVariables} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         {children}
         <Analytics />

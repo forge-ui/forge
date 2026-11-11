@@ -24,9 +24,11 @@ test("flags each static rule with line, audit id and fix", () => {
     '<a href="#">查看</a>',
     'alert("保存成功");',
     '<div role="dialog" />',
+    '<section className="rounded-card bg-white p-6" />',
+    '<footer className="sticky bottom-0 bg-white/95 backdrop-blur" />',
   ].join("\n");
   const found = checkCode(code);
-  for (const rule of ["foreign-ui-library", "direct-solar-import", "hex-color", "arbitrary-px", "raw-button", "empty-handler", "raw-table", "raw-form-control", "purple-default", "violet-color-prop", "solid-status", "handmade-status-pill", "grey-heading", "placeholder-link", "fake-success", "raw-dialog"]) {
+  for (const rule of ["foreign-ui-library", "direct-solar-import", "hex-color", "arbitrary-px", "raw-button", "empty-handler", "raw-table", "raw-form-control", "purple-default", "violet-color-prop", "solid-status", "handmade-status-pill", "grey-heading", "placeholder-link", "fake-success", "raw-dialog", "white-surface"]) {
     assert.ok(found.findings.some(item => item.rule === rule), rule);
   }
   const hex = found.findings.find(item => item.rule === "hex-color");
@@ -48,6 +50,7 @@ test("does not flag Forge-conforming code or data that only looks like hex", () 
     '<button type="button" data-forge-allow className="contents">卡片</button>',
     '<input type="hidden" name="id" />',
     '<td className="p-[13px]">x</td> {/* forge-check-disable-line 设计稿要求 */}',
+    '<section className="rounded-card bg-background p-6"><span className="bg-white/20" /></section>',
   ].join("\n");
   assert.deepEqual(rules(code), []);
 });

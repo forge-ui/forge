@@ -51,6 +51,7 @@ export function darkColorScale(light) {
 
 export function parseScale(css, name = "blue") {
   // First definition only: the light primitives come before the generated dark palette.
+  /** @type {Record<number, string>} */
   const scale = {};
   for (const match of css.matchAll(new RegExp(`--fg-${name}-(\\d+):\\s*(#[0-9a-fA-F]{6})`, "g"))) scale[Number(match[1])] ??= match[2].toUpperCase();
   for (const step of SCALE_STEPS) if (!scale[step]) throw new Error(`tokens.css is missing --fg-${name}-${step}`);

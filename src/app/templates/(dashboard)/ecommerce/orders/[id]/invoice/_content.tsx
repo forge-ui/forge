@@ -102,7 +102,7 @@ export default function OrderInvoicePage() {
 
       <div className="mt-6 flex gap-4 items-stretch">
         {/* Invoice content */}
-        <Panel variant="custom" className="flex-1 min-w-0 rounded-card outline outline-1 outline-fg-grey-200 bg-white overflow-hidden">
+        <Panel variant="custom" className="flex-1 min-w-0 rounded-card outline outline-1 outline-fg-grey-200 bg-background overflow-hidden">
           {/* Header */}
           <div className="flex items-start justify-between pt-10 px-10">
             <div className="flex flex-col gap-4">
@@ -169,8 +169,8 @@ export default function OrderInvoicePage() {
             </div>
 
             {/* Items */}
-            <Panel variant="custom" className="w-full overflow-hidden rounded-2xl outline outline-1 outline-fg-grey-200 bg-white">
-              <div className="flex items-center bg-white px-6 py-4 border-b border-fg-grey-200">
+            <Panel variant="custom" className="w-full overflow-hidden rounded-2xl outline outline-1 outline-fg-grey-200 bg-background">
+              <div className="flex items-center bg-background px-6 py-4 border-b border-fg-grey-200">
                 <h2 className="text-lg font-semibold text-fg-black m-0">
                   Items
                 </h2>
@@ -264,7 +264,7 @@ export default function OrderInvoicePage() {
         </Panel>
 
         {/* Right sidebar buttons */}
-        <Panel variant="custom" className="w-[266px] rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6 flex flex-col gap-4">
+        <Panel variant="custom" className="w-[266px] rounded-card outline outline-1 outline-fg-grey-200 bg-background p-6 flex flex-col gap-4">
           <Button
             iconLeft={<PlainLinear size={20} color={"var(--fg-white)"} />}
             className="w-full"

@@ -77,7 +77,7 @@ export function MemberProfile({ member = defaultMemberProfile, className }: Memb
   ];
 
   return <div className={cn("grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[280px_minmax(0,1fr)]", className)}>
-    <Panel variant="custom" as="aside" className="overflow-hidden rounded-card border border-fg-grey-200 bg-white p-5">
+    <Panel variant="custom" as="aside" className="overflow-hidden rounded-card border border-fg-grey-200 bg-background p-5">
       <div className="h-28 rounded-2xl bg-gradient-to-r from-fg-blue via-fg-violet-300 to-fg-yellow-100" />
       <div className="-mt-10 flex flex-col items-center gap-2 text-center">
         <img src={member.avatar} alt={member.name} className="size-20 rounded-full border-4 border-white object-cover" />
@@ -87,7 +87,7 @@ export function MemberProfile({ member = defaultMemberProfile, className }: Memb
       <dl className="mt-5 flex flex-col gap-3 border-t border-fg-grey-200 pt-5">{member.details.map(item => <div key={item.label}><dt className="text-xs text-fg-grey-700">{item.label}</dt><dd className="mt-1 text-sm font-medium text-fg-black">{item.value}</dd></div>)}</dl>
     </Panel>
     <div className="flex min-w-0 flex-col gap-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">{member.stats.map(stat => <div key={stat.title} className="flex flex-col gap-2 rounded-card border border-fg-grey-200 bg-white p-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">{member.stats.map(stat => <div key={stat.title} className="flex flex-col gap-2 rounded-card border border-fg-grey-200 bg-background p-4">
         <p className="text-sm text-fg-grey-700">{stat.title}</p>
         <div className="flex items-end justify-between gap-3"><div><p className="text-2xl font-semibold tabular-nums text-fg-black">{stat.value}</p><p className="mt-1 text-xs"><span className="font-bold text-fg-green-500">{stat.trend} ↑</span><span className="ml-1 text-fg-grey-700">{stat.note}</span></p></div><div className="w-20"><SmoothLineChart series={[{ data: stat.data, color: stat.color }]} height="h-10" /></div></div>
       </div>)}</div>

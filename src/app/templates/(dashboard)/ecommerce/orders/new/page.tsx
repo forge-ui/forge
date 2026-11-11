@@ -108,7 +108,7 @@ export default function AddOrderPage() {
         {/* Left - main form */}
         <div className="flex-1 flex flex-col gap-4">
           {/* Product Information */}
-          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-background p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-5">
               Product Information
             </h3>
@@ -152,7 +152,7 @@ export default function AddOrderPage() {
           </Panel>
 
           {/* Customer Information */}
-          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-background p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-5">
               Customer Information
             </h3>
@@ -182,7 +182,7 @@ export default function AddOrderPage() {
           </Panel>
 
           {/* Shipping Details */}
-          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+          <Panel variant="custom" className="rounded-card outline outline-1 outline-fg-grey-200 bg-background p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-5">
               Shipping Details
             </h3>
@@ -216,7 +216,7 @@ export default function AddOrderPage() {
         </div>
 
         {/* Right sidebar - Product Image */}
-        <Panel variant="custom" className="w-[266px] rounded-card outline outline-1 outline-fg-grey-200 bg-white p-6">
+        <Panel variant="custom" className="w-[266px] rounded-card outline outline-1 outline-fg-grey-200 bg-background p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">
             Product Image
           </h3>

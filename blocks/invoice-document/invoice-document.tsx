@@ -85,7 +85,7 @@ export function InvoiceDocument({ invoice = defaultInvoiceDocument, onSend, onDo
   const paidPercent = total ? Math.min(100, Math.round((invoice.paid / total) * 100)) : 0;
 
   return <div className={cn("grid min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_300px]", className)}>
-    <Panel variant="custom" as="article" className="flex min-w-0 flex-col rounded-card border border-fg-grey-200 bg-white">
+    <Panel variant="custom" as="article" className="flex min-w-0 flex-col rounded-card border border-fg-grey-200 bg-background">
       <div className="flex flex-col gap-8 p-6 sm:p-10">
         <header className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex flex-col gap-3">

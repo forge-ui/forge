@@ -7,7 +7,7 @@ import type { FusionExampleProps, FusionSettings } from "./types";
 type Settings = FusionSettings;
 const t = (locale: Settings["locale"], zh: string, en: string) => locale === "zh" ? zh : en;
 const number = (value: number, locale: Settings["locale"]) => Math.round(value).toLocaleString(locale === "zh" ? "zh-CN" : "en-US");
-function Panel({ children }: { children: ReactNode }) { return <div className="flex w-full max-w-lg flex-col gap-5 rounded-xl border border-fg-grey-200 bg-white p-5">{children}</div>; }
+function Panel({ children }: { children: ReactNode }) { return <div className="flex w-full max-w-lg flex-col gap-5 rounded-xl border border-fg-grey-200 bg-background p-5">{children}</div>; }
 function Choices({ labels, selected, onChange, locale, color, motion }: Settings & { labels: string[]; selected: number; onChange: (index: number) => void }) {
   return <div role="group" aria-label={t(locale, "切换数据", "Choose data")} className="flex flex-wrap gap-2">{labels.map((label, index) => <Button key={label} color={color} variant={index === selected ? "secondary" : "tertiary"} size="sm" motion={motion} aria-pressed={index === selected} onClick={() => onChange(index)}>{label}</Button>)}</div>;
 }

@@ -174,13 +174,13 @@ export function AiAssistantHome({ peers = defaultChatPeers, threads: initialThre
       placeholder={selected ? `给${selected.name}下达目标，可用 @` : "请先选择一个智能体"} disabled={!selected} />
   </div>;
 
-  return <div style={brandBlue} className={`relative flex h-[760px] min-h-0 min-w-0 overflow-hidden rounded-2xl border border-fg-grey-200 bg-white ${className}`}>
+  return <div style={brandBlue} className={`relative flex h-[760px] min-h-0 min-w-0 overflow-hidden rounded-2xl border border-fg-grey-200 bg-background ${className}`}>
     <aside className={`hidden shrink-0 transition-[width] duration-200 md:block ${sidebarOpen ? "w-[260px]" : "w-0 overflow-hidden"}`}>{sidebarOpen ? sidebar : null}</aside>
     {mobileNav ? <div className="absolute inset-0 z-50 flex md:hidden">
       <button type="button" className="absolute inset-0 bg-black/20" aria-label="关闭" onClick={() => setMobileNav(false)} />
       <div className="relative z-10 h-full shadow-xl">{sidebar}</div>
     </div> : null}
-    <div className="relative flex min-w-0 flex-1 flex-col bg-white">
+    <div className="relative flex min-w-0 flex-1 flex-col bg-background">
       <header className="flex h-12 shrink-0 items-center gap-2 px-2 sm:px-3">
         <IconButton variant="ghost" shape="square" size="sm" aria-label="菜单" className="md:hidden" onClick={() => setMobileNav(true)}><HamburgerMenuLinear size={20} /></IconButton>
         {!sidebarOpen ? <IconButton variant="ghost" shape="square" size="sm" aria-label="展开侧栏" className="hidden md:inline-flex" onClick={() => setSidebarOpen(true)}><AltArrowRightLinear size={20} /></IconButton> : null}

@@ -276,7 +276,7 @@ function NotesUploadBlock() {
   return (
     <div>
       <p className="mb-2 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">Image</p>
-      <Panel variant="custom" className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-fg-grey-200 bg-white p-6 text-center">
+      <Panel variant="custom" className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-fg-grey-200 bg-background p-6 text-center">
         <span className="grid size-12 place-items-center rounded-full bg-fg-blue-100 text-fg-blue">
           <CloudUploadLinear size={24} />
         </span>

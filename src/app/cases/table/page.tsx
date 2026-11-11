@@ -155,7 +155,7 @@ function HeaderCellContent({ kind }: { kind: HeaderRow["kind"] }) {
 // ── CellWrapper — 每个独立 cell 外层圆角 border 包装 ──────
 function CellWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-flex rounded-lg border border-fg-grey-200 overflow-hidden bg-white min-w-44">
+    <div className="inline-flex rounded-lg border border-fg-grey-200 overflow-hidden bg-background min-w-44">
       {children}
     </div>
   );

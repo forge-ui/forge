@@ -66,7 +66,7 @@ export function FileManager({ files = defaultFiles, onUpload, onOpen, onDelete, 
     {groups.length ? groups.map(group => <div key={group.title} className="flex flex-col gap-4">
       <h3 className="text-lg font-semibold text-fg-black">{group.title}</h3>
       <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">{group.items.map(file => <li key={file.id}>
-        <Panel variant="custom" className={cn("rounded-card border bg-white p-4 transition-colors", selected.has(file.id) ? "border-fg-blue" : "border-fg-grey-200")}>
+        <Panel variant="custom" className={cn("rounded-card border bg-background p-4 transition-colors", selected.has(file.id) ? "border-fg-blue" : "border-fg-grey-200")}>
           <div className="flex items-start justify-between"><Checkbox color="blue" checked={selected.has(file.id)} onChange={value => toggle(file.id, value)} aria-label={`选择${file.name}`} /><CellActions actions={[]} onKebab={() => setPendingDelete(file)} /></div>
           <Button variant="unstyled" type="button" className="flex w-full flex-col items-center gap-4 pt-4 text-center" onClick={() => onOpen?.(file)}>
             <FileTypeIcon fileName={file.kind === "folder" ? "folder" : `${file.name}.${file.kind}`} className="h-16 w-16" />

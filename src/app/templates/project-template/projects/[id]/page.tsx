@@ -241,7 +241,7 @@ function KanbanBoard({ onOpenTask, onAddTask, compact = false }: { onOpenTask: (
 function TaskBoardCard({ task, tone, onOpen }: { task: Task; tone: "grey" | "yellow" | "green" | "red"; onOpen: () => void }) {
   const progressColor = task.progress === 100 ? "green" : task.priority === "High" ? "red" : "yellow";
   return (
-    <CorePanel variant="custom" as="article" className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+    <CorePanel variant="custom" as="article" className="rounded-[20px] border border-fg-grey-200 bg-background p-4">
       <div className="flex items-start justify-between">
         <StatusBadge label={task.priority} color={task.priority === "High" ? "red" : task.priority === "Medium" ? "yellow" : "green"} />
         <CellActions actions={["pen"]} />
@@ -279,7 +279,7 @@ const attachmentRows = [
 
 function AttachmentTile({ file, onDelete }: { file: { name: string; size: string }; onDelete: () => void }) {
   return (
-    <CorePanel variant="custom" className="flex items-center justify-between rounded-2xl border border-fg-grey-200 bg-white p-4">
+    <CorePanel variant="custom" className="flex items-center justify-between rounded-2xl border border-fg-grey-200 bg-background p-4">
       <div className="flex items-center gap-3">
         <FileTypeIcon fileName={file.name} />
         <div>

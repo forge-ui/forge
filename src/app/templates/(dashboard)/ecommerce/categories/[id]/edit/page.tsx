@@ -83,7 +83,7 @@ export default function EditCategoryPage() {
       </div>
 
       <div className="flex items-start gap-4">
-        <Panel variant="custom" className="flex-1 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+        <Panel variant="custom" className="flex-1 bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">
             General Information
           </h3>
@@ -103,7 +103,7 @@ export default function EditCategoryPage() {
           </div>
         </Panel>
 
-        <Panel variant="custom" className="w-[266px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+        <Panel variant="custom" className="w-[266px] bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
           <h3 className="text-lg font-semibold text-fg-black mb-5">Category</h3>
           <p className="text-sm text-fg-grey-700 mb-1.5">Photo</p>
           <div className="flex flex-col items-center gap-4 py-4">

@@ -90,13 +90,13 @@ export default function ExamplesIndex() {
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noreferrer" : undefined}
-                className="flex flex-col gap-0 overflow-hidden rounded-3xl bg-white border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
+                className="flex flex-col gap-0 overflow-hidden rounded-3xl bg-background border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
               >
                 <div className="relative aspect-video w-full overflow-hidden border-b border-fg-grey-200 bg-fg-grey-100">
                   {item.thumbnails ? (
                     <div className="absolute inset-0 grid grid-cols-4 gap-px bg-fg-grey-200">
                       {item.thumbnails.slice(0, 4).map((src, i) => (
-                        <div key={i} className="relative overflow-hidden bg-white">
+                        <div key={i} className="relative overflow-hidden bg-background">
                           <Image
                             src={src}
                             alt=""

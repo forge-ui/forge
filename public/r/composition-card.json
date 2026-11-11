@@ -5,7 +5,7 @@
   "title": "构成占比卡",
   "description": "用圆环图展示收入、渠道或费用的构成与占比。",
   "dependencies": [
-    "@forge-ui-official/core@^0.7.0"
+    "@forge-ui-official/core@^0.8.0"
   ],
   "meta": {
     "category": "图表与指标",
@@ -1458,7 +1458,7 @@
       }
     ],
     "core": {
-      "version": "^0.7.0",
+      "version": "^0.8.0",
       "components": [
         "DonutChart",
         "Panel"

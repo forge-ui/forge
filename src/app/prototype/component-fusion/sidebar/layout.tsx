@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function EmbeddedSidebarLayout({ children }: { children: ReactNode }) {
   return <>
-    <Suspense fallback={<div className="min-h-screen bg-fg-white" />}>
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <EmbeddedSidebarPreview />
     </Suspense>
     {children}

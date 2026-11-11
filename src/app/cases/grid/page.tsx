@@ -14,7 +14,7 @@ function Ruler({ columns = 12, gap = 16 }: { columns?: GridColumns; gap?: GridGa
 }
 
 function Board({ children, columns = 12, gap = 16, guides = true, label }: { children: ReactNode; columns?: GridColumns; gap?: GridGap; guides?: boolean; label: string }) {
-  return <div role="region" aria-label={label} tabIndex={0} className="overflow-x-auto border-y border-fg-grey-200 bg-white py-5">
+  return <div role="region" aria-label={label} tabIndex={0} className="overflow-x-auto border-y border-fg-grey-200 bg-background py-5">
     <div className="min-w-[560px] px-4">
       <Ruler columns={columns} gap={gap} />
       <div className="relative">
@@ -114,7 +114,7 @@ export default function GridCases({ embedded = false }: { embedded?: boolean } =
       <Caption title="外层 8 : 4，内层 3 等分" detail="parent gap 16 / nested gap 8" />
       <Board label="嵌套栅格" guides={guides}>
         <Grid alignItems="start">
-          <GridItem span={8} className="border border-fg-violet bg-white p-3"><p className="mb-3 font-mono text-xs text-fg-violet">span 8 → columns 3</p><Grid columns={3} gap={8} data-testid="grid-nested">{[1, 2, 3].map(n => <Block key={n} span={1} secondary>1 / 3</Block>)}</Grid></GridItem>
+          <GridItem span={8} className="border border-fg-violet bg-background p-3"><p className="mb-3 font-mono text-xs text-fg-violet">span 8 → columns 3</p><Grid columns={3} gap={8} data-testid="grid-nested">{[1, 2, 3].map(n => <Block key={n} span={1} secondary>1 / 3</Block>)}</Grid></GridItem>
           <Block span={4} height={112}>span 4</Block>
         </Grid>
       </Board>

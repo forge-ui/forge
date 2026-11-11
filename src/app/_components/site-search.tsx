@@ -83,7 +83,7 @@ export function SiteSearch() {
         >
           <MagniferLinear size={14} color="#71717A" className="absolute left-3 top-1/2 -translate-y-1/2" />
           <span className="flex-1 truncate">搜索文档...</span>
-          <kbd className="rounded border border-fg-grey-200 bg-white px-1.5 py-0.5 text-[11px] text-fg-grey-700">⌘K</kbd>
+          <kbd className="rounded border border-fg-grey-200 bg-background px-1.5 py-0.5 text-[11px] text-fg-grey-700">⌘K</kbd>
         </button>
         <button
           type="button"
@@ -97,7 +97,7 @@ export function SiteSearch() {
           <>
             <div className="fixed inset-0 z-40" onClick={() => setPanel(null)} />
             <div className="absolute right-0 top-full z-50 mt-2 w-[min(24rem,calc(100vw-1.5rem))]" role="dialog" aria-label="目录">
-              <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-fg-grey-200 bg-white p-3">
+              <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-fg-grey-200 bg-background p-3">
                 {menu?.map((group) => (
                   <div key={group.title} className="mb-3 last:mb-0">
                     <p className="px-3 py-1.5 text-xs font-semibold text-fg-grey-500">{group.title}</p>
@@ -120,7 +120,7 @@ export function SiteSearch() {
       </div>
       {mounted && panel === "search" && createPortal(
         <div
-          className="fixed inset-0 z-[80] flex items-start justify-center bg-white/40 px-4 pt-[14vh] backdrop-blur-xl"
+          className="fixed inset-0 z-[80] flex items-start justify-center bg-background/40 px-4 pt-[14vh] backdrop-blur-xl"
           onClick={() => setPanel(null)}
         >
           <div

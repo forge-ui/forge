@@ -1,4 +1,4 @@
-.shell { height: 100dvh; min-height: 560px; display: flex; flex-direction: column; background: var(--fg-white, #fff); color: var(--fg-black); font-family: var(--font-manrope), "PingFang SC", sans-serif; }
+.shell { height: 100dvh; min-height: 560px; display: flex; flex-direction: column; background: var(--background); color: var(--fg-black); font-family: var(--font-manrope), "PingFang SC", sans-serif; }
 .header { height: 84px; flex-shrink: 0; padding: 0 42px; display: flex; justify-content: space-between; align-items: center; }
 .brand { font-size: 27px; letter-spacing: -1.2px; font-weight: 800; text-decoration: none; }
 .brand span { font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--fg-grey-700); margin-left: 12px; }
@@ -34,7 +34,7 @@
 .responseActions { display: flex; align-items: center; gap: 12px; color: var(--fg-grey-700); font-size: 11px; margin-top: 26px; animation: status-in 500ms ease both; }
 .responseActions button { border: 0; background: none; cursor: pointer; padding: 4px 0; }
 .responseActions button:hover { color: var(--fg-black); }
-.dock { flex-shrink: 0; width: min(792px, 100%); padding: 20px 24px 25px; margin: 0 auto; background: var(--fg-white, #fff); position: relative; }
+.dock { flex-shrink: 0; width: min(792px, 100%); padding: 20px 24px 25px; margin: 0 auto; background: var(--background); position: relative; }
 .dock::before { content: ""; position: absolute; height: 24px; left: 0; right: 0; top: -24px; background: linear-gradient(transparent, var(--fg-white, #fff)); pointer-events: none; }
 .playBar { min-height: 79px; padding: 13px 14px 13px 23px; display: flex; gap: 16px; align-items: center; justify-content: space-between; border: 1px solid var(--fg-grey-300); border-radius: 24px; box-shadow: 0 6px 28px color-mix(in srgb, var(--fg-black) 4%, transparent); }
 .playCopy { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
@@ -44,9 +44,9 @@
 .telemetry { display: flex; align-items: center; gap: 18px; padding: 14px 4px 0; font-size: 11px; color: var(--fg-grey-700); font-variant-numeric: tabular-nums; }
 .telemetry > span { display: flex; align-items: center; gap: 6px; }
 .telemetry i { display: block; height: 4px; width: 4px; border-radius: 50%; background: var(--fg-grey-500); }
-.telemetry i[data-active="true"] { background: var(--fg-black); animation: breathe 1.2s ease-in-out infinite; }
+.telemetry i[data-active="true"] { background: var(--fg-black-fill, var(--fg-black)); animation: breathe 1.2s ease-in-out infinite; }
 .localNote { margin-left: auto; }
-.latest { position: absolute; bottom: 142px; left: 50%; transform: translateX(-50%); border: 1px solid var(--fg-grey-200); border-radius: 24px; background: var(--fg-white, #fff); padding: 9px 16px; cursor: pointer; font-size: 11px; box-shadow: 0 3px 15px color-mix(in srgb, var(--fg-black) 5%, transparent); z-index: 1; }
+.latest { position: absolute; bottom: 142px; left: 50%; transform: translateX(-50%); border: 1px solid var(--fg-grey-200); border-radius: 24px; background: var(--background); padding: 9px 16px; cursor: pointer; font-size: 11px; box-shadow: 0 3px 15px color-mix(in srgb, var(--fg-black) 5%, transparent); z-index: 1; }
 .shell button:focus-visible, .shell select:focus-visible, .shell input:focus-visible { outline: 2px solid var(--fg-grey-500); outline-offset: 4px; }
 @keyframes status-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes breathe { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }

@@ -124,7 +124,7 @@ export default function CategoryDetailPage() {
       {/* Content */}
       <div className="flex items-start gap-4">
         {/* Left: Category Info */}
-        <Panel variant="custom" className="w-[320px] bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-5">
+        <Panel variant="custom" className="w-[320px] bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-5">
           <img
             src="https://placehold.co/280x280/e2e8f0/64748b?text=Watch"
             alt="watch"

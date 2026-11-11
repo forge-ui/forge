@@ -21,7 +21,7 @@
 .fusion-copy-command[data-copied="true"]:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,color-mix(in srgb,var(--fusion-accent) 15%,transparent),transparent);animation:fusion-copy-gleam .7s;pointer-events:none;z-index:-1}
 .fusion-social-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
 .fusion-social-list>*{animation:fusion-panel-in .3s ease-out}
-.fusion-editorial-landscape{height:165px;overflow:hidden;position:relative;border-radius:var(--radius-card,20px) var(--radius-card,20px) 0 0;background:color-mix(in srgb,var(--fusion-accent) 8%,var(--color-white,#fff));isolation:isolate}
+.fusion-editorial-landscape{height:165px;overflow:hidden;position:relative;border-radius:var(--radius-card,20px) var(--radius-card,20px) 0 0;background:color-mix(in srgb,var(--fusion-accent) 8%,var(--background));isolation:isolate}
 .fusion-editorial-sun{position:absolute;top:28px;right:60px;width:55px;height:55px;background:var(--fusion-accent);border-radius:50%;opacity:.5;transition:translate .4s}
 .fusion-editorial-hill{position:absolute;width:300px;height:180px;border-radius:50% 60% 0 0;background:var(--fusion-accent);opacity:.22;bottom:-100px;left:-40px;transform:rotate(12deg);transition:translate .4s}
 .fusion-editorial-hill-back{left:auto;right:-80px;bottom:-75px;opacity:.12;transform:rotate(-15deg)}
@@ -42,7 +42,7 @@
 .fusion-swipe-list>*+*{border-top:1px solid var(--color-fg-grey-200)}
 .fusion-tooltip-toolbar{display:flex;gap:8px;padding:10px;border:1px solid var(--color-fg-grey-200);background:var(--color-white,#fff);border-radius:16px}
 .fusion-orbit{width:150px;height:150px;display:grid;place-items:center;position:relative;color:var(--fusion-accent)}
-.fusion-orbit>span{display:grid;place-items:center;background:color-mix(in srgb,var(--fusion-accent) 10%,var(--color-white,#fff));border-radius:50%;width:54px;height:54px;transition:scale .4s}
+.fusion-orbit>span{display:grid;place-items:center;background:color-mix(in srgb,var(--fusion-accent) 10%,var(--background));border-radius:50%;width:54px;height:54px;transition:scale .4s}
 .fusion-orbit i{position:absolute;inset:12px;border:1px solid color-mix(in srgb,var(--fusion-accent) 30%,transparent);border-radius:50%;transform:rotateX(55deg) rotate(-25deg);transition:scale .5s,opacity .5s}
 .fusion-orbit i:before{content:"";position:absolute;left:0;top:46%;width:8px;height:8px;border-radius:50%;background:var(--fusion-accent)}
 .fusion-orbit i:nth-child(2){transform:rotateY(55deg) rotate(30deg)}.fusion-orbit i:nth-child(3){transform:rotate(70deg) rotateX(55deg)}

@@ -78,7 +78,7 @@ export default function AddProductPage() {
         {/* Main Content */}
         <div className="flex min-w-0 flex-col gap-2">
           {/* General Information */}
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">General Information</h3>
             <TextField
               label="Product Name"
@@ -95,7 +95,7 @@ export default function AddProductPage() {
           </div>
 
           {/* Media */}
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Media</h3>
             <p className="text-sm text-fg-grey-700 mb-2">Photo</p>
             <MediaUpload />
@@ -104,7 +104,7 @@ export default function AddProductPage() {
           </div>
 
           {/* Pricing */}
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Pricing</h3>
             <TextField
               label="Base Price"
@@ -138,7 +138,7 @@ export default function AddProductPage() {
           </div>
 
           {/* Inventory */}
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Inventory</h3>
             <Grid columns={{ base: 1, sm: 3 }} gap={8}>
               <TextField
@@ -160,7 +160,7 @@ export default function AddProductPage() {
           </div>
 
           {/* Variation */}
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Variation</h3>
             {[0, 1].map((rowIndex) => (
               <div key={rowIndex} className={`grid grid-cols-1 gap-2 sm:grid-cols-[repeat(3,minmax(0,1fr))_auto] ${rowIndex > 0 ? "mt-2" : ""}`}>
@@ -202,7 +202,7 @@ export default function AddProductPage() {
           </div>
 
           {/* Shipping */}
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Shipping</h3>
             <div className="mb-3 flex items-center gap-2">
               <Checkbox checked color="blue" />
@@ -219,7 +219,7 @@ export default function AddProductPage() {
 
         {/* Sidebar */}
         <div className="flex min-w-0 flex-col gap-2">
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Category</h3>
             <SelectOption
               label="Product Category"
@@ -237,7 +237,7 @@ export default function AddProductPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-fg-black">Status</h3>
               <span className="inline-flex h-6 px-2.5 rounded-full bg-fg-grey-500 text-white text-xs font-semibold items-center">

@@ -148,7 +148,7 @@ export function AgentRun({ session = defaultAgentRunSession, className = "" }: A
     </div>
 
     <div className="flex min-h-0 flex-col gap-4 xl:h-[680px] xl:flex-row">
-      <section className="flex min-h-[480px] min-w-0 flex-col rounded-2xl border border-fg-grey-200 bg-white xl:min-h-0 xl:flex-1">
+      <section className="flex min-h-[480px] min-w-0 flex-col rounded-2xl border border-fg-grey-200 bg-background xl:min-h-0 xl:flex-1">
         <div className="flex shrink-0 items-center justify-between gap-2 border-b border-fg-grey-100 px-4 py-3">
           <h2 className="text-sm font-semibold text-fg-black">对话</h2>
           <span className="text-xs text-fg-grey-500">{visibleTurns.length} 条{status === "running" ? " · 回复中…" : null}</span>
@@ -161,7 +161,7 @@ export function AgentRun({ session = defaultAgentRunSession, className = "" }: A
             <div className="rounded-2xl rounded-bl-md border border-fg-grey-100 bg-fg-grey-50 px-3.5 py-2 text-xs text-fg-grey-500">助手正在回复…</div>
           </div> : null}
         </div>
-        <div className="shrink-0 border-t border-fg-grey-100 bg-white p-3">
+        <div className="shrink-0 border-t border-fg-grey-100 bg-background p-3">
           <ChatInputBar className="mx-auto w-full max-w-[720px]" color="blue" multiline rows={2} density="compact" sendOnEnter clearOnSend={false}
             quickActions={conversationActions} quickActionsLabel="快捷操作" removeQuickActionLabel="移除操作" hasMessages={visibleTurns.length > 0}
             value={draft} onChange={setDraft} onSend={message => send(message)} onStop={stop} status={status === "running" ? "running" : "idle"}
@@ -171,7 +171,7 @@ export function AgentRun({ session = defaultAgentRunSession, className = "" }: A
       </section>
 
       <aside className="flex min-h-0 w-full shrink-0 flex-col gap-4 xl:w-[360px]">
-        <section className="shrink-0 rounded-2xl border border-fg-grey-200 bg-white p-4">
+        <section className="shrink-0 rounded-2xl border border-fg-grey-200 bg-background p-4">
           <h2 className="mb-3 text-sm font-semibold text-fg-black">概要</h2>
           <dl className="flex flex-col gap-2 text-sm">
             {rows.map(([label, value]) => <div key={label} className="flex justify-between gap-2"><dt className="shrink-0 text-fg-grey-600">{label}</dt><dd className="break-all text-right text-fg-black">{value}</dd></div>)}
@@ -181,7 +181,7 @@ export function AgentRun({ session = defaultAgentRunSession, className = "" }: A
             {session.knowledge.map(name => <li key={name}>{name}<span className="ml-1 text-xs text-fg-grey-500">只读</span></li>)}
           </ul>
         </section>
-        <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-white">
+        <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
           <h2 className="shrink-0 border-b border-fg-grey-100 px-4 py-3 text-sm font-semibold text-fg-black">结果与产物</h2>
           <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4">
             <div>

@@ -59,7 +59,7 @@ function PreviewCard({ item, settings, review, onReview }: {
   const isCore = item.mode !== "defer";
   const labels = zh ? { pending: "待看", accepted: "通过", changes: "需调整" } : { pending: "To review", accepted: "Approved", changes: "Needs changes" };
   return <article id={`item-${item.id}`} data-fusion-item={item.id} aria-labelledby={`title-${item.id}`}
-    className={`flex min-w-0 scroll-mt-56 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-fg-white ${wide || item.kind === "sidebar" ? "xl:col-span-2" : ""}`}>
+    className={`flex min-w-0 scroll-mt-56 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background ${wide || item.kind === "sidebar" ? "xl:col-span-2" : ""}`}>
     <header className="flex flex-col gap-3 border-b border-fg-grey-100 p-5">
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs leading-4 text-fg-grey-500">
         <span>{item.id} · {isCore ? (item.mode === "compose" ? (zh ? "正式组合案例" : "Composed example") : (zh ? "组件能力" : "Component enhancement")) : (zh ? "暂缓原型" : "Deferred prototype")}</span>
@@ -97,7 +97,7 @@ function PreviewCard({ item, settings, review, onReview }: {
           <span className="sr-only">{zh ? `${item.name}的修改意见` : `Feedback for ${item.english}`}</span>
           <textarea value={review.note ?? ""} maxLength={2000} rows={2} placeholder={zh ? "记录需要调整的地方…" : "Describe what should change…"}
             onChange={event => onReview({ ...review, note: event.target.value })}
-            className="w-full resize-y rounded-lg border border-fg-grey-200 bg-fg-white p-3 text-sm leading-5 text-fg-black placeholder:text-fg-grey-500" />
+            className="w-full resize-y rounded-lg border border-fg-grey-200 bg-background p-3 text-sm leading-5 text-fg-black placeholder:text-fg-grey-500" />
         </label>
       </details>
     </footer>
@@ -168,7 +168,7 @@ export function FusionGallery() {
           <Button size="sm" variant="tertiary" color="black" iconLeft={<DownloadLinear size={16} />} onClick={exportReview}>{zh ? "导出评审" : "Export review"}</Button>
         </div>
       </header>
-      <div className="sticky top-0 z-20 flex flex-col gap-4 rounded-2xl border border-fg-grey-200 bg-fg-white p-4 shadow-sm">
+      <div className="sticky top-0 z-20 flex flex-col gap-4 rounded-2xl border border-fg-grey-200 bg-background p-4 shadow-sm">
         {reviewState.persistenceFailed && <div className="flex flex-wrap items-center gap-3 border-b border-fg-grey-100 pb-3">
           <p role="alert" className="min-w-0 flex-1 text-sm leading-5 text-fg-red">{zh ? "本次修改仅保存在当前页面，刷新后会丢失。请导出备份。" : "These changes are only saved on this page and will be lost on reload. Please export a backup."}</p>
           <Button size="sm" variant="tertiary" color="black" onClick={exportReview}>{zh ? "导出评审" : "Export review"}</Button>
@@ -203,7 +203,7 @@ export function FusionGallery() {
           {group.items.map(item => <PreviewCard key={item.id} item={item} settings={settings} review={{ ...reviews[item.id], decision: decisionFor(item, reviews) }} onReview={value => updateReview(item.id, value)} />)}
         </div>
       </section>)}
-      {!filtered.length && <div className="flex flex-col items-center gap-4 rounded-2xl border border-fg-grey-200 bg-fg-white p-12 text-center"><MagniferLinear size={28} /><h2 className="text-lg font-semibold">{zh ? "没有匹配的交互" : "No matching interactions"}</h2><Button size="sm" color={color} onClick={() => { setQuery(""); setFamily("all"); setFilter("all"); }}>{zh ? "查看全部" : "View all"}</Button></div>}
+      {!filtered.length && <div className="flex flex-col items-center gap-4 rounded-2xl border border-fg-grey-200 bg-background p-12 text-center"><MagniferLinear size={28} /><h2 className="text-lg font-semibold">{zh ? "没有匹配的交互" : "No matching interactions"}</h2><Button size="sm" color={color} onClick={() => { setQuery(""); setFamily("all"); setFilter("all"); }}>{zh ? "查看全部" : "View all"}</Button></div>}
       <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-fg-grey-200 pt-5 text-xs leading-5 text-fg-grey-500"><span>{zh ? "Forge · 本地交互评审" : "Forge · Local interaction review"}</span><a href="#" className="text-fg-blue">{zh ? "回到顶部" : "Back to top"}</a></footer>
     </div>
   </main>;

@@ -28,7 +28,7 @@ function SamplePage() {
     { id: "m3", mine: false, author: "编程助手", text: "可以。轮播组件已通过单元测试，合并后我会在任务里贴上预览链接。" },
   ]);
   const channel = channels.find(item => item.id === active)!;
-  return <div className="flex h-[720px] min-h-0 overflow-hidden rounded-2xl border border-fg-grey-200 bg-white">
+  return <div className="flex h-[720px] min-h-0 overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
     <aside className="hidden w-64 shrink-0 flex-col border-r border-fg-grey-100 md:flex">
       <div className="px-4 py-3 text-sm font-semibold text-fg-black">消息</div>
       <ul className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto px-2 pb-3">

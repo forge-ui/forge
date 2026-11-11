@@ -40,7 +40,7 @@ const customers = [{ label: "远山设计有限公司", value: "yuanshan" }, { l
 
 const taxOptions = [{ label: "6%（技术服务）", value: "0.06" }, { label: "13%（货物销售）", value: "0.13" }, { label: "3%（小规模）", value: "0.03" }, { label: "免税", value: "0" }];
 const money = (value: number) => `¥${value.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-const cell = "h-10 w-full rounded-lg border border-transparent bg-transparent px-2 text-sm text-fg-black outline-none transition-colors hover:border-fg-grey-200 focus:border-fg-blue focus:bg-white";
+const cell = "h-10 w-full rounded-lg border border-transparent bg-transparent px-2 text-sm text-fg-black outline-none transition-colors hover:border-fg-grey-200 focus:border-fg-blue focus:bg-background";
 
 export interface InvoiceFormProps {
   value?: InvoiceFormValue;
@@ -72,7 +72,7 @@ export function InvoiceForm({ value = defaultInvoiceForm, onSave, onSend, onCanc
 
   return <div className={`flex min-w-0 flex-col gap-5 ${className}`}>
     <PageTitleToolbar title="新建发票" subtitle="发送后客户会收到带付款链接的电子发票。" breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "财务管理", href: "#overview" }, { label: "发票", href: "#invoices" }, { label: "新建发票" }]} />} />
-    <form onSubmit={send} className="flex w-full flex-col gap-8 rounded-2xl border border-fg-grey-200 bg-white p-5 sm:p-8">
+    <form onSubmit={send} className="flex w-full flex-col gap-8 rounded-2xl border border-fg-grey-200 bg-background p-5 sm:p-8">
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <SelectOption color="blue" label="付款客户" width="100%" className="w-full" value={form.customer} onChange={set("customer")} options={customers} />
         <TextField color="blue" inputClassName="h-6" label="发票编号" value={form.invoiceId} onChange={set("invoiceId")} />

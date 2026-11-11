@@ -36,9 +36,9 @@ export function WalletProgressPanel({ title = "Wallet", subtitle = "Your Savings
         <KebabMenu items={[{ label: "Refresh", onSelect: () => onRefresh?.() }]} />
       </div>
       <div className="relative mt-6 flex-1 overflow-hidden">
-        <div className="absolute left-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-white" />
-        <div className="absolute right-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-white" />
-        <div className="mx-4 rounded-[28px] border border-fg-grey-200 bg-white p-4 shadow-subtle">
+        <div className="absolute left-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-background" />
+        <div className="absolute right-[-280px] top-0 h-[310px] w-[260px] rounded-[28px] border border-fg-grey-200 bg-background" />
+        <div className="mx-4 rounded-[28px] border border-fg-grey-200 bg-background p-4 shadow-subtle">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
               <span className="flex size-10 items-center justify-center rounded-full bg-fg-grey-100 text-fg-violet">

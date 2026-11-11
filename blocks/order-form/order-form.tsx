@@ -88,7 +88,7 @@ export function OrderForm({ products = defaultOrderProducts, onSubmit, className
 
   return <div className={`flex min-w-0 flex-col gap-5 ${className}`}>
     <PageTitleToolbar title="新建订单" subtitle="代客户录入线下成交的订单，提交后进入待发货。" breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "电商运营", href: "#overview" }, { label: "订单", href: "#orders" }, { label: "新建订单" }]} />} />
-    <div className="rounded-2xl border border-fg-grey-200 bg-white px-5 py-8 sm:px-10">
+    <div className="rounded-2xl border border-fg-grey-200 bg-background px-5 py-8 sm:px-10">
       {done ? <div className="mx-auto flex max-w-md flex-col items-center gap-3 py-10 text-center">
         <span className="text-fg-green-500"><CheckCircleBold size={56} /></span>
         <h2 className="text-xl font-semibold text-fg-black">订单已提交</h2>

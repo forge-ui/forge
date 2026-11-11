@@ -57,7 +57,7 @@ export function IntegrationsDirectory({ integrations = defaultIntegrations, onCo
     </Panel>
     <div className="flex min-w-0 flex-col gap-4">
       <ToolbarSearchInput className="w-full sm:w-80" value={query} onChange={setQuery} placeholder="搜索应用或能力" />
-      {visible.length ? <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">{visible.map(item => <li key={item.id} className="flex flex-col gap-3 rounded-card border border-fg-grey-200 bg-white p-5">
+      {visible.length ? <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">{visible.map(item => <li key={item.id} className="flex flex-col gap-3 rounded-card border border-fg-grey-200 bg-background p-5">
         <div className="flex items-center gap-3"><span className={cn("grid size-11 place-items-center rounded-xl text-base font-semibold", item.tone)}>{item.initial}</span><div className="min-w-0 flex-1"><p className="truncate text-base font-semibold text-fg-black">{item.name}</p><p className="text-xs text-fg-grey-700">{item.category}</p></div>{item.state === "connected" && <StatusBadge label="已连接" color="green" variant="soft" />}</div>
         <p className="line-clamp-2 min-h-12 text-sm leading-6 text-fg-grey-700">{item.description}</p>
         <Button size="sm" variant={item.state === "available" ? "primary" : "tertiary"} disabled={item.state === "connecting"} onClick={() => toggle(item)}>{item.state === "connecting" ? "连接中…" : item.state === "connected" ? "断开连接" : "连接"}</Button>

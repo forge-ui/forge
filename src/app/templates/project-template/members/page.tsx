@@ -64,7 +64,7 @@ function MemberCards({ members, onOpen, onEdit, onDelete }: { members: Member[];
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {members.concat(members.slice(0, 5)).map((member, index) => (
-        <Panel variant="custom" as="article" key={`${member.id}-${index}`} className="rounded-[20px] border border-fg-grey-200 bg-white p-4">
+        <Panel variant="custom" as="article" key={`${member.id}-${index}`} className="rounded-[20px] border border-fg-grey-200 bg-background p-4">
           <div className="flex items-center justify-between">
             <Button variant="unstyled" type="button" className="size-8 rounded-lg border border-fg-grey-300" aria-label="Select member" />
             <CellActions actions={["eye", "pen", "trash"]} onAction={(action) => { if (action === "eye") onOpen(member); if (action === "pen") onEdit(member); if (action === "trash") onDelete(member); }} />

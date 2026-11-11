@@ -111,7 +111,7 @@ export default function EditProductPage() {
       <div className="flex gap-3 items-start">
         {/* Main */}
         <div className="flex-1 min-w-0 flex flex-col gap-2">
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">
               General Information
             </h3>
@@ -131,7 +131,7 @@ export default function EditProductPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Media</h3>
             <p className="text-sm text-fg-grey-700 mb-2">Photo</p>
             <MediaUpload />
@@ -139,7 +139,7 @@ export default function EditProductPage() {
             <MediaUpload />
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Pricing</h3>
             <TextField
               label="Base Price"
@@ -181,7 +181,7 @@ export default function EditProductPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Inventory</h3>
             <div className="grid grid-cols-3 gap-2">
               <TextField
@@ -205,7 +205,7 @@ export default function EditProductPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Variation</h3>
             {VARIATIONS.map((v, rowIndex) => (
               <div
@@ -247,7 +247,7 @@ export default function EditProductPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Shiping</h3>
             <div className="mb-3 flex items-center gap-2">
               <Checkbox checked color="blue" />
@@ -284,7 +284,7 @@ export default function EditProductPage() {
 
         {/* Sidebar */}
         <div className="w-[280px] flex-shrink-0 flex flex-col gap-2">
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <h3 className="text-lg font-semibold text-fg-black mb-3">Category</h3>
             <SelectOption
               label="Product Category"
@@ -307,7 +307,7 @@ export default function EditProductPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
+          <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-fg-black">Status</h3>
               <span className="inline-flex h-6 px-2.5 rounded-full bg-fg-green text-white text-xs font-semibold items-center">

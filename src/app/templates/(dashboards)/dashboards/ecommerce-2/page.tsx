@@ -196,7 +196,7 @@ export default function Ecommerce2Page() {
               <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
                 <button className="px-3 py-1.5 text-fg-grey-500">Day</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Week</button>
-                <button className="px-3 py-1.5 rounded-full bg-white shadow-sm text-fg-black">Month</button>
+                <button className="px-3 py-1.5 rounded-full bg-background shadow-sm text-fg-black">Month</button>
                 <button className="px-3 py-1.5 text-fg-grey-500">Year</button>
               </div>
             </DashboardHeader>

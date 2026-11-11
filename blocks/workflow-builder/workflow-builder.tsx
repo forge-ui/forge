@@ -61,7 +61,7 @@ const knowledgeBases = ["暂无知识库", "售后服务手册", "发票与报�
 const nodeWidth: Partial<Record<WorkflowNodeKind, number>> = { base: 260, condition: 280 };
 
 const fieldLabel = "mb-1 block text-[11px] text-fg-grey-500";
-const control = "w-full rounded-xl border border-fg-grey-200 bg-white px-3 py-2 text-xs text-fg-black outline-none focus:border-fg-blue";
+const control = "w-full rounded-xl border border-fg-grey-200 bg-background px-3 py-2 text-xs text-fg-black outline-none focus:border-fg-blue";
 
 function timestamp() {
   return new Date().toLocaleString("zh-CN", { hour12: false }).replace(/\//g, "-");
@@ -71,7 +71,7 @@ function Switch({ checked, onChange, label }: { checked: boolean; onChange: (val
   return <label className="flex items-center justify-between gap-2 py-1 text-xs text-fg-black">
     {label}
     <button type="button" role="switch" aria-checked={checked} aria-label={label} onClick={() => onChange(!checked)} className={`relative h-5 w-9 rounded-full transition ${checked ? "bg-fg-blue" : "bg-fg-grey-200"}`}>
-      <span className={`absolute top-0.5 size-4 rounded-full bg-white shadow transition-all ${checked ? "left-[18px]" : "left-0.5"}`} />
+      <span className={`absolute top-0.5 size-4 rounded-full bg-background shadow transition-all ${checked ? "left-[18px]" : "left-0.5"}`} />
     </button>
   </label>;
 }
@@ -347,7 +347,7 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
   const miniScale = Math.min(180 / bounds.width, 110 / bounds.height);
   const toolbarButton = (label: string, onClick: () => void, disabled?: boolean, icon?: ReactNode) => <Button color="blue" variant="tertiary" size="sm" iconLeft={icon} disabled={disabled} onClick={onClick}>{label}</Button>;
 
-  return <div className={`flex min-w-0 flex-col overflow-hidden rounded-3xl border border-fg-grey-200 bg-white ${className}`}>
+  return <div className={`flex min-w-0 flex-col overflow-hidden rounded-3xl border border-fg-grey-200 bg-background ${className}`}>
     <header className="flex flex-col gap-3 px-4 pt-5 sm:px-5">
       <div className="flex min-w-0 flex-col gap-1.5">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -363,12 +363,12 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
     </header>
 
     {tab === 1 ? <>
-      <div className="relative z-30 flex flex-wrap items-center justify-between gap-2 border-b border-fg-grey-200 bg-white px-3 py-2 sm:px-4">
+      <div className="relative z-30 flex flex-wrap items-center justify-between gap-2 border-b border-fg-grey-200 bg-background px-3 py-2 sm:px-4">
         <div className="flex min-w-0 flex-wrap items-center gap-2 text-xs text-fg-grey-500">
           <span>保存时间：<span className="text-fg-grey-700">{savedAt}</span></span>
           <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${published ? "bg-fg-green-50 text-fg-green-700" : "bg-fg-grey-100 text-fg-grey-600"}`}>{published ? "已发布" : "未发布"}</span>
           {issues.length
-            ? <button type="button" onClick={() => setIssuesOpen(open => !open)} className="inline-flex items-center gap-1 rounded-full border border-fg-grey-200 bg-white px-2 py-0.5 text-[10px] font-medium text-fg-yellow-800 hover:bg-fg-grey-50">{issues.length} 警告</button>
+            ? <button type="button" onClick={() => setIssuesOpen(open => !open)} className="inline-flex items-center gap-1 rounded-full border border-fg-grey-200 bg-background px-2 py-0.5 text-[10px] font-medium text-fg-yellow-800 hover:bg-fg-grey-50">{issues.length} 警告</button>
             : <span className="inline-flex items-center gap-1 text-[10px] text-fg-green-700"><CheckCircleLinear size={12} />检查通过</span>}
         </div>
         <div className="relative ml-auto flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -382,7 +382,7 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
           {toolbarButton("调试", () => setDebugOpen(true))}
           {toolbarButton("保存", () => setSavedAt(timestamp()))}
           <Button color="blue" size="sm" onClick={() => { setPublished(true); setSavedAt(timestamp()); }}>发布</Button>
-          {paletteOpen ? <div className="absolute right-0 top-[calc(100%+6px)] z-50 flex w-[min(400px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-fg-grey-200 bg-white shadow-[0_8px_24px_rgba(16,24,40,0.12)]">
+          {paletteOpen ? <div className="absolute right-0 top-[calc(100%+6px)] z-50 flex w-[min(400px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-fg-grey-200 bg-background shadow-[0_8px_24px_rgba(16,24,40,0.12)]">
             <div className="flex border-b border-fg-grey-100">
               {["基础组件", "工具", "应用"].map((label, index) => <button key={label} type="button" onClick={() => setPaletteTab(index)} className={`flex-1 px-3 py-2.5 text-sm font-medium ${paletteTab === index ? "border-b-2 border-fg-blue text-fg-blue" : "text-fg-grey-600 hover:text-fg-black"}`}>{label}</button>)}
             </div>
@@ -390,7 +390,7 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
               {paletteTab === 0 ? [...new Set(paletteKinds.map(kind => meta[kind].category))].map(category => <div key={category} className="pb-1">
                 <div className="px-3 py-1.5 text-[11px] font-medium text-fg-grey-400">{category}</div>
                 <div className="flex flex-wrap gap-2 px-3 pb-2">
-                  {paletteKinds.filter(kind => meta[kind].category === category).map(kind => <button key={kind} type="button" onClick={() => addNode(kind)} className="flex w-[calc(50%-4px)] items-center gap-2 rounded-lg border border-fg-grey-200 bg-white px-2.5 py-2 text-left text-sm text-fg-black transition-colors hover:border-fg-blue hover:bg-fg-blue-50/30">
+                  {paletteKinds.filter(kind => meta[kind].category === category).map(kind => <button key={kind} type="button" onClick={() => addNode(kind)} className="flex w-[calc(50%-4px)] items-center gap-2 rounded-lg border border-fg-grey-200 bg-background px-2.5 py-2 text-left text-sm text-fg-black transition-colors hover:border-fg-blue hover:bg-fg-blue-50/30">
                     <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-bold text-white ${meta[kind].chip}`}>{meta[kind].label.slice(0, 1)}</span>{meta[kind].label}
                   </button>)}
                 </div>
@@ -415,7 +415,7 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
             const position = run ? run.path.indexOf(node.id) : -1;
             const status = !run || position === -1 ? null : position < run.step ? "done" : position === run.step ? "running" : null;
             const border = selected === node.id ? "border-fg-blue ring-1 ring-fg-blue-100" : status === "running" ? "border-fg-blue" : status === "done" ? "border-fg-green-500" : "border-fg-grey-200";
-            return <div key={node.id} data-node={node.id} className={`absolute cursor-default rounded-lg border bg-white shadow-[0_1px_4px_rgba(16,24,40,0.05)] ${border}`} style={{ left: node.x, top: node.y, width: nodeWidth[node.kind] ?? 250 }} onClick={() => setSelected(node.id)}>
+            return <div key={node.id} data-node={node.id} className={`absolute cursor-default rounded-lg border bg-background shadow-[0_1px_4px_rgba(16,24,40,0.05)] ${border}`} style={{ left: node.x, top: node.y, width: nodeWidth[node.kind] ?? 250 }} onClick={() => setSelected(node.id)}>
               {node.kind !== "base" ? <Port id={`${node.id}:in`} side="in" /> : null}
               {node.kind !== "condition" && node.kind !== "reply" ? <Port id={`${node.id}:out`} side="out" /> : null}
               <div data-drag={node.id} className="flex cursor-move items-center gap-1.5 px-2 py-1.5">
@@ -432,19 +432,19 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
           })}
         </div>
 
-        <div data-overlay className="absolute bottom-3 left-3 flex flex-col overflow-hidden rounded-lg border border-fg-grey-200 bg-white shadow-sm">
+        <div data-overlay className="absolute bottom-3 left-3 flex flex-col overflow-hidden rounded-lg border border-fg-grey-200 bg-background shadow-sm">
           <button type="button" aria-label="放大" onClick={() => zoom(0.1)} className="p-1.5 text-fg-grey-700 hover:bg-fg-grey-50"><AddSquareLinear size={16} /></button>
           <button type="button" aria-label="缩小" onClick={() => zoom(-0.1)} className="border-y border-fg-grey-100 p-1.5 text-fg-grey-700 hover:bg-fg-grey-50"><MinusSquareLinear size={16} /></button>
           <button type="button" aria-label="适应画布" onClick={fit} className="p-1.5 text-fg-grey-700 hover:bg-fg-grey-50"><FullScreenLinear size={16} /></button>
         </div>
-        <span className="pointer-events-none absolute bottom-3 left-14 hidden rounded-lg bg-white/90 px-2 py-1 text-[11px] text-fg-grey-500 shadow-sm sm:block">{nodes.length} 节点 · {edges.length} 连线 · 拖动空白处平移，点击节点编辑</span>
-        <div className="pointer-events-none absolute bottom-3 right-3 hidden rounded-lg border border-fg-grey-200 bg-white p-2 shadow-sm sm:block">
+        <span className="pointer-events-none absolute bottom-3 left-14 hidden rounded-lg bg-background/90 px-2 py-1 text-[11px] text-fg-grey-500 shadow-sm sm:block">{nodes.length} 节点 · {edges.length} 连线 · 拖动空白处平移，点击节点编辑</span>
+        <div className="pointer-events-none absolute bottom-3 right-3 hidden rounded-lg border border-fg-grey-200 bg-background p-2 shadow-sm sm:block">
           <svg width={bounds.width * miniScale} height={bounds.height * miniScale} aria-hidden>
             {nodes.map(node => <rect key={node.id} x={node.x * miniScale} y={node.y * miniScale} width={(sizes[node.id]?.width ?? 250) * miniScale} height={(sizes[node.id]?.height ?? 200) * miniScale} rx={2} fill={meta[node.kind].fill} />)}
           </svg>
         </div>
 
-        {debugOpen ? <div data-overlay className="absolute bottom-3 right-3 z-40 flex h-[min(520px,calc(100%-24px))] w-[min(380px,calc(100%-24px))] flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-white shadow-2xl">
+        {debugOpen ? <div data-overlay className="absolute bottom-3 right-3 z-40 flex h-[min(520px,calc(100%-24px))] w-[min(380px,calc(100%-24px))] flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background shadow-2xl">
           <div className="flex items-center justify-between border-b border-fg-grey-100 px-4 py-3"><span className="text-sm font-semibold text-fg-black">调试</span><button type="button" className="text-xs text-fg-grey-500 hover:text-fg-black" onClick={() => { setDebugOpen(false); setRun(null); }}>关闭</button></div>
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-4 text-sm">
             {run ? <>

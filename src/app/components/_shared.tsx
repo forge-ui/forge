@@ -224,7 +224,7 @@ export function DemoCard({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 p-6 bg-white rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
+        "flex flex-col gap-4 p-6 bg-background rounded-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
         className,
       )}
     >

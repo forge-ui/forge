@@ -30,7 +30,7 @@ export function ToggleMotionPreview({ locale, color, motion }: {
   ];
 
   return <div className="flex flex-col gap-4">
-    <div className="overflow-hidden rounded-xl border border-fg-grey-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
       {rows.map((row, index) => <div key={index} className={`flex items-center justify-between gap-6 p-5 ${index ? "border-t border-fg-grey-200" : ""}`}>
         <div className="min-w-0">
           <p className="text-sm font-semibold leading-5 text-fg-grey-900">{row.label}</p>

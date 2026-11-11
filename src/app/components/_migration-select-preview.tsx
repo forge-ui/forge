@@ -24,7 +24,7 @@ export function SelectMotionPreview({ locale, color, motion }: {
   const selected = options.find(option => option.value === delivery)!;
 
   return <div className="flex min-w-0 flex-col gap-4">
-    <div className="max-w-full rounded-xl border border-fg-grey-200 bg-white p-5" style={{ width: narrow ? "280px" : "100%" }}>
+    <div className="max-w-full rounded-xl border border-fg-grey-200 bg-background p-5" style={{ width: narrow ? "280px" : "100%" }}>
       <SelectOption
         label={zh ? "通知投递方式" : "Notification delivery"}
         placeholder={zh ? "选择投递方式" : "Choose a delivery method"}

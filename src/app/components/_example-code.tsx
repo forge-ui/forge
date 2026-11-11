@@ -17,7 +17,7 @@ export function ExampleCode({ files }: { files: string[] }) {
     <div className="flex min-w-0 flex-col gap-3 px-4 pb-4">
       <p className="text-xs leading-5 text-fg-grey-700">以下为当前演示的完整源码。复用组合示例时，请同时保留辅助文件与样式文件，并按项目目录调整相对导入路径。</p>
       <label className="flex flex-wrap items-center gap-2 text-xs text-fg-grey-700">源文件
-        <select className="min-w-0 max-w-full rounded-lg border border-fg-grey-200 bg-fg-white px-2 py-1.5 text-fg-black" value={selected} onChange={event => { setSelected(event.target.value as SourcePath); setCopied(false); setError(false); }}>
+        <select className="min-w-0 max-w-full rounded-lg border border-fg-grey-200 bg-background px-2 py-1.5 text-fg-black" value={selected} onChange={event => { setSelected(event.target.value as SourcePath); setCopied(false); setError(false); }}>
           {available.map(file => <option key={file} value={file}>{file.replace("src/app/", "")}</option>)}
         </select>
         <button type="button" className="rounded-lg px-2 py-1.5 font-semibold hover:bg-fg-grey-100" onClick={async () => {

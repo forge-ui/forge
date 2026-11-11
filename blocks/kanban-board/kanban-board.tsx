@@ -102,7 +102,7 @@ function Face({ src, className }: { src: string; className: string }) {
 
 function CompleteToggle({ checked, priority, label, size = "md", onToggle }: { checked: boolean; priority: WorkItemPriority; label: string; size?: "sm" | "md" | "lg"; onToggle: () => void }) {
   const dimension = size === "lg" ? "size-6" : size === "sm" ? "size-4" : "size-5";
-  return <button type="button" role="checkbox" aria-checked={checked} aria-label={`${checked ? "重新打开" : "完成"}：${label}`} onClick={event => { event.stopPropagation(); onToggle(); }} className={`${dimension} shrink-0 rounded-full border-2 transition-transform active:scale-90 ${checked ? fill[priority] : `bg-fg-white ${ring[priority]}`}`}>
+  return <button type="button" role="checkbox" aria-checked={checked} aria-label={`${checked ? "重新打开" : "完成"}：${label}`} onClick={event => { event.stopPropagation(); onToggle(); }} className={`${dimension} shrink-0 rounded-full border-2 transition-transform active:scale-90 ${checked ? fill[priority] : `bg-background ${ring[priority]}`}`}>
     {checked ? <svg viewBox="0 0 16 16" aria-hidden className={`mx-auto ${size === "sm" ? "size-2.5" : "size-3"} text-fg-white`}><path d="M3.5 8.5 6.5 11.5 12.5 4.5" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" /></svg> : null}
   </button>;
 }
@@ -120,7 +120,7 @@ function TaskCard({ item, lanes, dragging, onPointerDown, onOpen, onToggle, onMo
   const done = item.status === "done";
   const finished = item.subtasks.filter(subtask => subtask.done).length;
   const comments = item.activity.filter(entry => entry.text.startsWith("评论")).length;
-  return <article data-task-id={item.id} onPointerDown={onPointerDown} style={dragging ? { height: 0, padding: 0, marginBottom: -12, overflow: "hidden", opacity: 0, pointerEvents: "none" } : { touchAction: "pan-y" }} className={`group relative shrink-0 cursor-grab select-none rounded-[10px] bg-fg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${done ? "opacity-65" : ""}`}>
+  return <article data-task-id={item.id} onPointerDown={onPointerDown} style={dragging ? { height: 0, padding: 0, marginBottom: -12, overflow: "hidden", opacity: 0, pointerEvents: "none" } : { touchAction: "pan-y" }} className={`group relative shrink-0 cursor-grab select-none rounded-[10px] bg-background p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] ${done ? "opacity-65" : ""}`}>
     <div className="flex items-start gap-2">
       <span data-no-drag className="relative z-10 inline-flex pt-px"><CompleteToggle checked={done} priority={item.priority} label={item.title} onToggle={onToggle} /></span>
       <div className="min-w-0 flex-1">
@@ -149,7 +149,7 @@ function QuickAdd({ onAdd }: { onAdd: (title: string, description: string) => vo
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   if (!open) return <button type="button" onClick={() => setOpen(true)} className="flex items-center gap-1.5 px-2 py-1.5 text-left text-sm text-fg-grey-500 hover:text-fg-grey-800"><PlusIcon size={14} />添加任务</button>;
-  return <form className="flex shrink-0 flex-col gap-2.5 rounded-[10px] border border-fg-grey-300 bg-fg-white p-3 focus-within:border-fg-grey-500" onSubmit={event => { event.preventDefault(); if (!title.trim()) return; onAdd(title.trim(), description.trim()); setTitle(""); setDescription(""); setOpen(false); }}>
+  return <form className="flex shrink-0 flex-col gap-2.5 rounded-[10px] border border-fg-grey-300 bg-background p-3 focus-within:border-fg-grey-500" onSubmit={event => { event.preventDefault(); if (!title.trim()) return; onAdd(title.trim(), description.trim()); setTitle(""); setDescription(""); setOpen(false); }}>
     <input autoFocus value={title} onChange={event => setTitle(event.target.value)} placeholder="任务标题" className="border-0 bg-transparent p-0 text-sm font-semibold text-fg-black outline-none placeholder:text-fg-grey-500" />
     <input value={description} onChange={event => setDescription(event.target.value)} placeholder="添加描述" className="border-0 bg-transparent p-0 text-xs text-fg-grey-700 outline-none placeholder:text-fg-grey-500" />
     <div className="flex items-center gap-2"><span className="inline-flex items-center gap-1 text-xs text-fg-grey-500"><CalendarMinimalisticLinear size={14} />日期</span><div className="ml-auto flex items-center gap-1"><Button color="blue" variant="tertiary" size="sm" type="button" onClick={() => setOpen(false)}>取消</Button><Button color="blue" size="sm" type="submit" disabled={!title.trim()}>添加任务</Button></div></div>
@@ -162,7 +162,7 @@ function TaskDialog({ item, project, lanes, onClose, onChange, onStep }: { item:
   const done = item.status === "done";
   const select = "w-full appearance-none rounded-lg bg-transparent px-2 py-1 text-sm text-fg-black outline-none hover:bg-fg-grey-50 focus:bg-fg-grey-50";
   return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4" onClick={onClose}>
-    <div role="dialog" aria-modal="true" aria-label={item.title} className="flex max-h-[calc(100%-32px)] w-[min(960px,100%)] flex-col overflow-hidden rounded-2xl bg-fg-white shadow-2xl" onClick={event => event.stopPropagation()}>
+    <div role="dialog" aria-modal="true" aria-label={item.title} className="flex max-h-[calc(100%-32px)] w-[min(960px,100%)] flex-col overflow-hidden rounded-2xl bg-background shadow-2xl" onClick={event => event.stopPropagation()}>
       <div className="flex shrink-0 items-center gap-2 border-b border-fg-grey-200 px-4 py-3">
         <Button color="blue" variant="secondary" size="sm" iconLeft={<ArrowLeftLinear size={14} />} onClick={onClose}>返回看板</Button>
         <span className="min-w-0 flex-1 truncate text-xs text-fg-grey-600">工作台 / 工作区 / {project} / {item.title}</span>
@@ -451,7 +451,7 @@ export function KanbanBoard({ project = defaultBoardProject, lanes: initialLanes
       actions={<KebabMenu accent="blue" items={[{ label: "编辑项目" }, { label: "归档项目" }, { label: "删除项目", danger: true }]} />}
       className="flex-col items-stretch gap-3 sm:flex-row sm:items-end sm:gap-4 [&>div:first-child]:w-full [&>div:first-child]:min-w-0"
     />
-    <div className="grid min-w-0 grid-cols-1 overflow-hidden rounded-3xl border border-fg-grey-200 bg-fg-white xl:grid-cols-[minmax(0,1fr)_280px]">
+    <div className="grid min-w-0 grid-cols-1 overflow-hidden rounded-3xl border border-fg-grey-200 bg-background xl:grid-cols-[minmax(0,1fr)_280px]">
       <div ref={board} className="fg-scrollbar-thin flex min-w-0 gap-4 overflow-x-auto p-5">
         {lanes.map((lane, index) => {
           const laneItems = items.filter(item => item.status === lane.id);
@@ -459,7 +459,7 @@ export function KanbanBoard({ project = defaultBoardProject, lanes: initialLanes
           return <div key={lane.id} className="contents">
             {naming && naming.before === lane.id ? <LaneEditor onSubmit={name => addLane(name, lane.id)} onCancel={() => setNaming(null)} /> : null}
             <div data-lane-slot={lane.id} className={`group/lane relative flex shrink-0 ${enteringLane === lane.id ? "motion-safe:animate-[kanban-lane-enter_260ms_cubic-bezier(.22,1,.36,1)]" : ""}`} onAnimationEnd={() => setEnteringLane(current => current === lane.id ? null : current)}>
-              {index > 0 && !preview && !naming ? <button type="button" aria-label={`在${lane.name}前添加列`} onClick={() => setNaming({ before: lane.id })} className="absolute -left-[10px] bottom-0 top-0 z-10 w-5 opacity-0 transition-opacity before:absolute before:bottom-0 before:left-1/2 before:top-0 before:w-px before:bg-fg-blue hover:opacity-100 focus-visible:opacity-100"><span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap bg-fg-white px-2.5 py-1.5 text-[13px] font-semibold text-fg-blue">添加列</span></button> : null}
+              {index > 0 && !preview && !naming ? <button type="button" aria-label={`在${lane.name}前添加列`} onClick={() => setNaming({ before: lane.id })} className="absolute -left-[10px] bottom-0 top-0 z-10 w-5 opacity-0 transition-opacity before:absolute before:bottom-0 before:left-1/2 before:top-0 before:w-px before:bg-fg-blue hover:opacity-100 focus-visible:opacity-100"><span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap bg-background px-2.5 py-1.5 text-[13px] font-semibold text-fg-blue">添加列</span></button> : null}
               <section data-lane={lane.id} aria-label={lane.name} className={`flex h-[520px] w-[272px] flex-col gap-2 rounded-[20px] border p-2 sm:h-[720px] ${lane.tint} ${preview?.lane === lane.id ? "border-fg-blue-300" : "border-transparent"}`}>
                 <div className="flex items-center gap-1 px-1">
                   <span className="min-w-0 flex-1 truncate text-sm font-medium text-fg-black">{lane.name}</span>

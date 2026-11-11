@@ -174,7 +174,7 @@ function RankRow({ rank, item, round }: { rank: number; item: RankItem; round?: 
 
 function ChartCard({ title, subtitle, wide, labels, series, legend }: { title: string; subtitle: string; wide?: boolean; labels: string[]; series: { data: number[]; color: string }[]; legend: { label: string; className: string }[] }) {
   const axis = yAxis(series.flatMap(item => item.data));
-  return <div className={`flex flex-col gap-4 rounded-3xl border border-fg-grey-200 bg-white p-6 ${wide ? "lg:col-span-2" : ""}`}>
+  return <div className={`flex flex-col gap-4 rounded-3xl border border-fg-grey-200 bg-background p-6 ${wide ? "lg:col-span-2" : ""}`}>
     <div>
       <h3 className="text-base font-semibold text-fg-black">{title}</h3>
       <p className="text-sm text-fg-grey-500">{subtitle}</p>

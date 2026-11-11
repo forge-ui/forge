@@ -40,7 +40,7 @@ export default function DashboardsGallery() {
             <Link
               key={e.slug}
               href={`/templates/dashboards/${e.slug}`}
-              className="group flex flex-col gap-0 overflow-hidden rounded-3xl bg-white border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
+              className="group flex flex-col gap-0 overflow-hidden rounded-3xl bg-background border border-fg-grey-200 hover:border-fg-grey-400 transition-colors"
             >
               <div className="relative aspect-video w-full overflow-hidden border-b border-fg-grey-200 bg-fg-grey-100">
                 <Image

@@ -54,7 +54,7 @@ export function SettingsBilling({ plans = defaultBillingPlans, currentPlan = "te
       </Panel>
     </div>
     <div className="flex flex-wrap items-center justify-between gap-3"><h2 className="text-base font-semibold text-fg-black">套餐</h2><ButtonGroup ariaLabel="计费周期" shape="pill" items={[{ label: "按月" }, { label: "按年 · 省 20%" }]} activeIndex={yearly} onChange={setYearly} /></div>
-    <ul className="grid grid-cols-1 gap-4 lg:grid-cols-3">{plans.map(plan => <li key={plan.id} className={cn("flex flex-col gap-4 rounded-card border bg-white p-6 transition-colors", selected === plan.id ? "border-fg-blue ring-2 ring-fg-blue-100" : "border-fg-grey-200")}>
+    <ul className="grid grid-cols-1 gap-4 lg:grid-cols-3">{plans.map(plan => <li key={plan.id} className={cn("flex flex-col gap-4 rounded-card border bg-background p-6 transition-colors", selected === plan.id ? "border-fg-blue ring-2 ring-fg-blue-100" : "border-fg-grey-200")}>
       <div className="flex items-center justify-between gap-2"><p className="text-base font-semibold text-fg-black">{plan.name}</p>{plan.id === currentPlan && <StatusBadge label="当前套餐" color="blue" variant="soft" />}</div>
       <p className="text-sm text-fg-grey-700">{plan.description}</p>
       <p className="text-3xl font-semibold tabular-nums text-fg-black">{plan.monthly ? `¥${price(plan).toLocaleString("zh-CN")}` : "免费"}{plan.monthly > 0 && <span className="text-sm font-medium text-fg-grey-700"> / 月</span>}</p>

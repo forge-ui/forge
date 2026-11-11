@@ -26,14 +26,14 @@
 
 /* Product workspaces retain the shared Forge shell and compact its density. */
 .agent-product [data-forge-app-content] { padding:0; }
-.agent-product [data-forge-app-content]>div { border-radius:0; outline:none; background:var(--fg-white); }
+.agent-product [data-forge-app-content]>div { border-radius:0; outline:none; background:var(--background); }
 .tasks-product [data-forge-app-content]>div>.overflow-auto { min-height:0; }
 .project-header { flex-shrink:0; }
 .kanban-columns { display:flex; gap:24px; align-items:stretch; min-height:calc(100dvh - 245px); width:max-content; }
 .kanban-columns>.board-column-slot { width:300px; flex-shrink:0; }
 .task-list-view { max-width:900px; margin:auto; }
 .task-list-view>.board-column-slot>.board-section { margin-bottom:24px; }
-.tasks-product .task-board-card { border-radius:10px; padding:14px 12px; background:var(--fg-white); box-shadow:0 2px 3px color-mix(in srgb,var(--fg-black) 3%,transparent); }
+.tasks-product .task-board-card { border-radius:10px; padding:14px 12px; background:var(--background); box-shadow:0 2px 3px color-mix(in srgb,var(--fg-black) 3%,transparent); }
 .task-description { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 .task-owner { display:flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--fg-grey-100); font-size:10px; color:var(--fg-grey-700); }
 .kanban-columns>.board-column-slot>button { border:0; outline:0; justify-content:flex-start; background:transparent; color:var(--fg-grey-700); padding-left:8px; }
@@ -63,7 +63,7 @@
 .agent-process>summary { cursor:pointer; margin-bottom:12px; }
 .agent-process>div { margin-top:12px; }
 @media(max-width:767px) { .tasks-product .task-board-card button[aria-label^="编辑"] { opacity:1; } }
-.agent-product .forge-menu-item.product-nav-active { background:color-mix(in srgb,var(--fg-black) 8%,var(--fg-white)); color:var(--fg-black); }
+.agent-product .forge-menu-item.product-nav-active { background:color-mix(in srgb,var(--fg-black) 8%,var(--background)); color:var(--fg-black); }
 .agent-product .forge-menu-item.product-nav-active>span:first-child { background:transparent; }
 .tasks-product .kanban-columns { min-height:480px; }
 @media(max-width:767px) {
@@ -202,7 +202,7 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 .subtask-add-trigger { align-self:flex-start; justify-content:flex-start; outline:0; border:0; padding:7px 0; height:auto; background:transparent; font-size:14px; font-weight:400; color:var(--fg-grey-700); }
 .subtask-add-trigger:hover { color:var(--fg-black); background:transparent; }
 .subtask-add-trigger:focus-visible { outline:1px solid var(--fg-grey-500); outline-offset:3px; }
-.subtask-inline-editor { display:flex; flex-direction:column; gap:12px; margin:6px 0; padding:12px; border:1px solid var(--fg-grey-300); border-radius:8px; background:var(--fg-white); }
+.subtask-inline-editor { display:flex; flex-direction:column; gap:12px; margin:6px 0; padding:12px; border:1px solid var(--fg-grey-300); border-radius:8px; background:var(--background); }
 .subtask-inline-editor:focus-within { border-color:var(--fg-grey-500); }
 .subtask-editor-name { outline:0; padding:2px 0; border-radius:0; background:transparent; }
 @media(hover:none) { .subtask-row-menu { opacity:1; } }
@@ -236,7 +236,7 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
   .workspace-board-scroll::-webkit-scrollbar-corner,.workspace-list-scroll::-webkit-scrollbar-corner,.kanban-section-tasks::-webkit-scrollbar-corner { background:transparent; }
 }
 
-.task-quick-add { display:flex; flex-direction:column; gap:10px; flex-shrink:0; border:1px solid var(--fg-grey-300); border-radius:10px; background:var(--fg-white); padding:12px; }
+.task-quick-add { display:flex; flex-direction:column; gap:10px; flex-shrink:0; border:1px solid var(--fg-grey-300); border-radius:10px; background:var(--background); padding:12px; }
 .task-quick-add:focus-within { border-color:var(--fg-grey-500); }
 .quick-add-date>summary { cursor:pointer; color:var(--fg-grey-700); font-size:12px; padding:6px 0; }
 .task-quick-add .quick-add-date>div { width:100%; }
@@ -271,7 +271,7 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 
 .task-drag-source { opacity:.35; }
 .task-drop-before { position:relative; }
-.task-drop-before::before,.task-drop-tail { content:""; display:block; height:3px; background:var(--fg-black); border-radius:3px; flex-shrink:0; }
+.task-drop-before::before,.task-drop-tail { content:""; display:block; height:3px; background:var(--fg-black-fill, var(--fg-black)); border-radius:3px; flex-shrink:0; }
 .task-drop-before::before { position:absolute; top:-7px; left:0; right:0; z-index:1; }
 .task-drag-preview { position:fixed; left:0; top:0; z-index:100; pointer-events:none; transform-origin:center; will-change:transform; filter:drop-shadow(0 10px 16px color-mix(in srgb,var(--fg-black) 12%,transparent)); }
 .task-drag-preview .task-board-card { outline:1px solid var(--fg-grey-300); }
@@ -296,7 +296,7 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 
 .subtask-detail-dialog { width:min(880px,calc(100vw - 32px)); overflow:auto; scrollbar-width:thin; scrollbar-color:var(--fg-grey-300) transparent; }
 .subtask-detail-dialog>div>div { padding:0; gap:0; }
-.subtask-detail-dialog>div>div>div:first-child { position:sticky; top:0; z-index:2; padding:18px 24px; background:var(--fg-white); border-bottom:1px solid var(--fg-grey-200); }
+.subtask-detail-dialog>div>div>div:first-child { position:sticky; top:0; z-index:2; padding:18px 24px; background:var(--background); border-bottom:1px solid var(--fg-grey-200); }
 .subtask-detail-layout { display:grid; grid-template-columns:minmax(0,1fr) 248px; }
 .subtask-detail-content { display:flex; flex-direction:column; gap:24px; min-width:0; padding:24px; }
 .subtask-detail-title { font-size:20px; line-height:30px; }
@@ -374,10 +374,10 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 .board-column-slot > .board-section { width:100%; height:100%; min-height:0; gap:8px; overflow:hidden; }
 .task-list-view > .board-column-slot { min-width:0; }
 .column-drag-placeholder { border-radius:10px; background:var(--fg-grey-100); outline:1px dashed var(--fg-grey-300); outline-offset:-1px; }
-.column-drag-floating { background:var(--fg-white); border-radius:10px; box-shadow:0 12px 30px color-mix(in srgb,var(--fg-black) 12%,transparent); outline:1px solid var(--fg-grey-200); cursor:grabbing; }
+.column-drag-floating { background:var(--background); border-radius:10px; box-shadow:0 12px 30px color-mix(in srgb,var(--fg-black) 12%,transparent); outline:1px solid var(--fg-grey-200); cursor:grabbing; }
 .section-insert-trigger { position:absolute !important; z-index:4; top:0; bottom:0; left:-10px; width:20px !important; min-width:20px !important; height:auto !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:transparent !important; overflow:visible; opacity:0; transition:opacity 120ms ease; }
-.section-insert-trigger::before { content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--fg-black); }
-.section-insert-trigger > span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); white-space:nowrap; padding:7px 10px; color:var(--fg-black); background:var(--fg-white); font-size:13px; font-weight:600; }
+.section-insert-trigger::before { content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--fg-black-fill, var(--fg-black)); }
+.section-insert-trigger > span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); white-space:nowrap; padding:7px 10px; color:var(--fg-black); background:var(--background); font-size:13px; font-weight:600; }
 .section-insert-trigger:hover,.section-insert-trigger:focus-visible { opacity:1; }
 .section-inline-editor { padding:4px; }
 @media (prefers-reduced-motion:reduce) { .section-insert-trigger { transition:none; } }
@@ -388,7 +388,7 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 .subtask-sort-list { position:relative; isolation:isolate; }
 .subtask-sort-list .task-subtask-row { cursor:grab; }
 .subtask-sort-placeholder { border-radius:6px; background:var(--fg-grey-100); outline:1px dashed var(--fg-grey-300); outline-offset:-1px; }
-.subtask-sort-floating { background:var(--fg-white); border-radius:6px; box-shadow:0 6px 18px color-mix(in srgb,var(--fg-black) 12%,transparent); outline:1px solid var(--fg-grey-200); }
+.subtask-sort-floating { background:var(--background); border-radius:6px; box-shadow:0 6px 18px color-mix(in srgb,var(--fg-black) 12%,transparent); outline:1px solid var(--fg-grey-200); }
 .subtask-sort-floating .task-subtask-row { cursor:grabbing; }
 
 /* Blue accent belongs to the task template; shared agent styles stay neutral. */
@@ -411,9 +411,9 @@ body:has(.task-board-shell) .forge-toast-timer { display:none; }
 /* A compact entry expands into one editor containing its tools and actions. */
 .comment-composer-row { display:flex; align-items:flex-start; gap:12px; min-width:0; }
 .comment-composer-row > .forge-avatar { flex-shrink:0; }
-.comment-composer-trigger { flex:1; min-width:0; min-height:40px; padding:9px 14px; justify-content:flex-start; border:1px solid var(--fg-grey-300); outline:0; background:var(--fg-white); color:var(--fg-grey-500); font-weight:400; border-radius:20px; }
-.comment-composer-trigger:hover { border-color:var(--fg-grey-500); background:var(--fg-white); }
-.comment-composer-box { flex:1; min-width:0; border:1px solid var(--fg-grey-300); border-radius:10px; background:var(--fg-white); overflow:hidden; }
+.comment-composer-trigger { flex:1; min-width:0; min-height:40px; padding:9px 14px; justify-content:flex-start; border:1px solid var(--fg-grey-300); outline:0; background:var(--background); color:var(--fg-grey-500); font-weight:400; border-radius:20px; }
+.comment-composer-trigger:hover { border-color:var(--fg-grey-500); background:var(--background); }
+.comment-composer-box { flex:1; min-width:0; border:1px solid var(--fg-grey-300); border-radius:10px; background:var(--background); overflow:hidden; }
 .comment-composer-box:focus-within { border-color:var(--fg-blue); }
 .comment-composer-input { border:0; outline:0 !important; border-radius:0; background:transparent; padding:12px 14px 4px; box-shadow:none; }
 .comment-composer-input textarea { min-height:72px; max-height:240px; overflow-y:auto; line-height:1.6; }
@@ -518,8 +518,8 @@ body:has(.task-board-shell) .forge-toast button[aria-label] .solar-close-circle-
 .task-detail-main > div:first-child:has(.task-title-editor) > [role="checkbox"] { margin-top:32px; }
 .task-rich-list-symbol { font-size:12px; white-space:nowrap; letter-spacing:0; }
 .task-rich-editor .tiptap:has(> p:only-child > br:only-child):before { content:attr(data-placeholder); color:var(--fg-grey-500); pointer-events:none; float:left; height:0; }
-.task-markdown-selection { max-width:min(380px,calc(100vw - 40px)); background:var(--fg-white); border:1px solid var(--fg-grey-200); border-radius:8px; box-shadow:0 4px 16px var(--fg-grey-200); }
-.task-markdown-selection .task-rich-toolbar { border:0; border-radius:8px; background:var(--fg-white); padding:4px; }
+.task-markdown-selection { max-width:min(380px,calc(100vw - 40px)); background:var(--background); border:1px solid var(--fg-grey-200); border-radius:8px; box-shadow:0 4px 16px var(--fg-grey-200); }
+.task-markdown-selection .task-rich-toolbar { border:0; border-radius:8px; background:var(--background); padding:4px; }
 .task-markdown-hint { padding:6px 16px 10px; margin:0; font-size:11px; color:var(--fg-grey-500); }
 .task-markdown-bubble { z-index:20; }
 
@@ -680,7 +680,7 @@ body:has(.workspace-product) dialog button[aria-label] .solar-close-circle-linea
 
 /* Completion stays a core Checkbox, with the task-specific circular visual. */
 .task-completion-circle .forge-check-visual > span { border-radius:50%; }
-.task-completion-circle .forge-check-visual[data-checked="false"] > span:first-child { background:var(--fg-white); }
+.task-completion-circle .forge-check-visual[data-checked="false"] > span:first-child { background:var(--background); }
 .task-completion-circle .forge-check-fill { background:var(--task-priority,var(--fg-grey-500)); }
 .task-card-footer .task-date-anchor { flex-shrink:0; margin-left:auto; }
 .task-list-view .task-card-footer { margin-top:0; padding-left:0; }

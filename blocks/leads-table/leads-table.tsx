@@ -42,7 +42,7 @@ const statusMeta: Record<LeadTemperature, { label: string; color: StatusBadgeCol
 const filters: { label: string; value: LeadTemperature | "all" }[] = [{ label: "全部", value: "all" }, { label: "新线索", value: "new" }, { label: "高意向", value: "hot" }, { label: "跟进中", value: "warm" }, { label: "已成交", value: "won" }];
 
 function LeadMetric({ title, period, value, trend, direction = "up", note, icon, iconClassName, footer }: { title: string; period: string; value: string; trend: string; direction?: "up" | "down"; note: string; icon: ReactNode; iconClassName: string; footer: ReactNode }) {
-  return <Panel variant="custom" className="flex h-48 min-w-0 flex-col justify-between overflow-hidden rounded-card border border-fg-grey-200 bg-white p-4">
+  return <Panel variant="custom" className="flex h-48 min-w-0 flex-col justify-between overflow-hidden rounded-card border border-fg-grey-200 bg-background p-4">
     <div className="flex items-start gap-3">
       <div className="flex min-w-0 flex-1 flex-col gap-1"><p className="truncate text-lg font-semibold text-fg-black">{title}</p><p className="text-sm font-medium text-fg-grey-700">{period}</p></div>
       <span className={cn("grid size-10 shrink-0 place-items-center rounded-full bg-fg-grey-50", iconClassName)}>{icon}</span>

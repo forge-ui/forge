@@ -64,7 +64,7 @@ export function LoginForm({ productName = "知行科技工作台", image = "/ima
     }
   }
 
-  return <div className={cn("mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 rounded-card bg-white p-4 sm:p-6 lg:grid-cols-2", className)}>
+  return <div className={cn("mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 rounded-card bg-background p-4 sm:p-6 lg:grid-cols-2", className)}>
     <img src={image} alt="" className="hidden h-full max-h-[600px] w-full rounded-card object-cover lg:block" />
     <div className="mx-auto flex w-full max-w-sm flex-col gap-6 py-6">
       <div className="text-center"><h1 className="text-2xl font-semibold text-fg-black">欢迎回来</h1><p className="mt-2 text-sm text-fg-grey-700">登录{productName}继续工作</p></div>

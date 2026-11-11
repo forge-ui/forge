@@ -131,7 +131,7 @@ Forge 用来做中文后台：列表、详情、表单、设置、看板和智�
 - 页面底（surface，#FAFAFA）和卡片（background，白色）：内容放在白卡里，卡片之间靠浅灰底分开。
 - 文字分四级：正文和标题用 text-primary（#000A19，冷调近黑，不是纯黑）；次要信息 text-secondary（#4F4F4F）；辅助说明 text-muted（#868686）；只有真正不可操作的内容才用 text-disabled（#BDBDBD）。
 - 边框和分割线用 border（#E1E1E1），更轻的分隔用 border-muted（#EBEBEB）。
-- 状态色：成功绿（#09B96D）、危险红（#FE4A23）、警告黄（#F6C002，黄底上用深色字）、提示青（#43CED7）。七个色族（violet、blue、green、red、yellow、cyan、black）加 grey 都有 50–900 十档，500 是基准，Tailwind 写法 `bg-fg-blue-500`、`text-fg-grey-700`。
+- 状态色：成功绿（#09B96D）、危险红（#FE4A23）、警告黄（#F6C002，黄底上用深色字）、提示青（#43CED7）。七个色族（violet、blue、green、red、yellow、cyan、black）加 grey 都有 50–900 十档，500 是基准，Tailwind 写法 `bg-fg-blue-500`、`text-fg-grey-700`。深色模式在 `<html>` 上加 `data-theme="dark"`，灰阶、文字和彩色浅底自动切换；卡片、面板、输入框背景用 `bg-background`，不要写 `bg-white`。
 
 ## Typography
 

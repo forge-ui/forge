@@ -7,6 +7,12 @@ const tokens = fs.readFileSync(new URL("../core/src/styles/tokens.css", import.m
 const blue = parseScale(tokens);
 const distance = (left, right) => Math.max(...[0, 2, 4].map(index => Math.abs(parseInt(left.slice(1 + index, 3 + index), 16) - parseInt(right.slice(1 + index, 3 + index), 16))));
 
+test("the reference scale is the light primitives, not the generated dark palette", () => {
+  assert.equal(blue[50], "#EBEEFF");
+  assert.equal(blue[500], "#3553FF");
+  assert.equal(blue[900], "#16236B");
+});
+
 test("the Forge blue reproduces its own scale exactly", () => {
   assert.deepEqual(generateScale("#3553FF", blue), blue);
 });

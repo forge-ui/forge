@@ -12,7 +12,7 @@ export default function DashboardKitCases() {
   return <>
     <PageHeading title="看板组件" hint="模板风格面板、密度与图表组合；切换密度对比默认和紧凑尺寸。" />
     <Section title="保留模板外形" description="custom Panel 保留已验收卡壳；unstyled Button 只提供原生按钮语义，不增加颜色、尺寸或文字包装。">
-      <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-white p-6">
+      <Panel variant="custom" className="rounded-card border border-fg-grey-200 bg-background p-6">
         <Button variant="unstyled" className="text-sm font-semibold text-fg-blue" onClick={() => setNotice("已打开模板记录")}>查看记录</Button>
         <FileInput aria-label="选择演示附件" accept="image/*" onChange={(event) => setNotice(event.target.files?.[0]?.name ?? "未选择附件")} />
         <InfoRow icon={<span aria-hidden="true">●</span>} label="模板状态">本地演示</InfoRow>

@@ -100,7 +100,7 @@ const tokenWords = { 主色: "accent", 强调: "accent", 焦点: "focus", 背景
 function getTokens({ query, layer = "semantic" }) {
   const term = query ? Object.entries(tokenWords).reduce((value, [word, token]) => value.replace(word, token), query.toLocaleLowerCase()).replace(/\s+/g, "") : "";
   const tokens = data.tokens.filter(token => (layer === "all" || token.layer === layer || (term && layer === "semantic" && token.layer === "primitive")) && (!term || token.name.includes(term) || token.value.toLocaleLowerCase().includes(term)));
-  return { coreVersion: data.coreVersion, total: tokens.length, tokens: tokens.slice(0, 60), usage: "业务代码优先用语义 token（如 var(--accent)）；原始色阶在 Tailwind 里写作 bg-fg-blue-500、text-fg-grey-700。默认主色是蓝色。" };
+  return { coreVersion: data.coreVersion, total: tokens.length, tokens: tokens.slice(0, 60), usage: "业务代码优先用语义 token（如 var(--accent)）；原始色阶在 Tailwind 里写作 bg-fg-blue-500、text-fg-grey-700。默认主色是蓝色。深色模式在 <html> 上加 data-theme=\"dark\"：卡片和面板背景用 bg-background，不要写 bg-white。" };
 }
 
 export function executeTool(name, args) {
@@ -128,7 +128,7 @@ const descriptions = {
   get_block: "查询页面组件的安装命令、依赖、文件和关联模板。默认精简；detail=\"full\" 返回完整源码。",
   list_screens: "分页列出模板页面。",
   get_screen: "查询模板页面的路由、预览地址、用到的页面组件和组件。默认精简；detail=\"full\" 返回源码。",
-  get_tokens: "查询设计 token。query 可用中文（主色、正文、边框、危险）或 token 名；layer 默认 semantic，可选 primitive、all。",
+  get_tokens: "查询设计 token。query 可用中文（主色、正文、边框、危险）或 token 名；layer 默认 semantic，可选 primitive、dark（<html data-theme=\"dark\"> 下的取值）、all。",
   check_code: "检查一段页面代码是否违反 Forge 规范：写死的 hex 颜色、裸 px、引入其他 UI 库、手写按钮/表格/表单控件/弹窗、紫色默认主题、solid 状态、灰色标题、href=\"#\"、空事件处理。返回行号、审计编号和改法。写完页面后调用，全部错误修完再交付。",
   get_rules: "读取规范全文；topic 支持 tokens、icons、status、layout、page-standards、audit-checklist、blocks、screens，也支持 reference 相对路径。",
   list_guides: "列出使用指南。",
@@ -139,7 +139,7 @@ function inputSchema(name) {
   if (name === "search") return { query: z.string().trim().min(1).max(200), type: z.enum(["all", "components", "blocks", "screens", "guides", "rules"]).default("all"), includeTypes: z.boolean().default(false), ...pagination };
   if (name === "recommend") return { need: z.string().trim().min(1).max(300) };
   if (name === "check_code") return { code: z.string().min(1).max(200000), filename: z.string().max(200).default("page.tsx"), listRules: z.boolean().default(false) };
-  if (name === "get_tokens") return { query: z.string().trim().max(60).optional(), layer: z.enum(["semantic", "primitive", "all"]).default("semantic") };
+  if (name === "get_tokens") return { query: z.string().trim().max(60).optional(), layer: z.enum(["semantic", "primitive", "dark", "all"]).default("semantic") };
   if (name.startsWith("list_")) return pagination;
   if (name === "get_rules") return { topic: z.string().min(1).max(160) };
   if (["get_component", "get_block", "get_screen"].includes(name)) return { slug: z.string().min(1).max(160), ...detail };

@@ -54,7 +54,7 @@ export function SettingsProfile({ value = defaultProfileValue, avatar = "/images
     onSave?.(form);
   }
 
-  return <form className={cn("flex w-full min-w-0 flex-col overflow-hidden rounded-card border border-fg-grey-200 bg-white", className)} onSubmit={submit} noValidate>
+  return <form className={cn("flex w-full min-w-0 flex-col overflow-hidden rounded-card border border-fg-grey-200 bg-background", className)} onSubmit={submit} noValidate>
     <Section title="头像" description="建议使用 400×400 以上的正方形图片，会显示在评论、任务和成员列表里。">
       <div className="flex flex-wrap items-center gap-4">
         {photo ? <img src={photo} alt={form.name} className="size-20 rounded-full object-cover" /> : <span className="flex size-20 items-center justify-center rounded-full bg-fg-grey-100 text-2xl font-semibold text-fg-grey-600">{form.name.slice(0, 1)}</span>}
@@ -77,7 +77,7 @@ export function SettingsProfile({ value = defaultProfileValue, avatar = "/images
         <SelectOption label="界面语言" shape="pill" width="100%" className="w-full" options={[{ value: "zh-CN", label: "简体中文" }, { value: "en-US", label: "English" }]} value={form.language} onChange={update("language")} />
       </div>
     </Section>
-    <div className="sticky bottom-0 flex items-center justify-between gap-3 border-t border-fg-grey-200 bg-white/95 px-5 py-3 backdrop-blur sm:px-6">
+    <div className="sticky bottom-0 flex items-center justify-between gap-3 border-t border-fg-grey-200 bg-background/95 px-5 py-3 backdrop-blur sm:px-6">
       <p role="status" className="text-sm text-fg-grey-700">{dirty ? "有未保存的修改" : "所有修改已保存"}</p>
       <div className="flex gap-3"><Button type="button" variant="tertiary" disabled={!dirty} onClick={() => setForm(saved)}>撤销</Button><Button type="submit" disabled={!dirty || emailInvalid || !form.name.trim()}>保存</Button></div>
     </div>
