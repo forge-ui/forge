@@ -108,7 +108,7 @@ export function SearchHeader({
 
   return (
     <div className={cn("w-full px-4 py-3 sm:px-6 border-b border-fg-grey-200 flex flex-col justify-center items-start", className)}>
-      <div className="self-stretch flex justify-between items-center gap-2 sm:gap-4">
+      <div className="self-stretch flex flex-wrap md:flex-nowrap justify-between items-center gap-2 sm:gap-4">
         {/* Left: search input or hamburger button */}
         {showMobileMenuButton && leftMode !== "hamburger" && (
           <HeaderMenuButton
@@ -127,7 +127,7 @@ export function SearchHeader({
             controls={hamburgerControls}
           />
         ) : (
-          <div className="flex-1 max-w-none md:max-w-80 min-w-0 px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden">
+          <div className={cn("flex-1 md:basis-auto max-w-none md:max-w-80 min-w-0 px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-start items-center gap-1 overflow-hidden", !showMobileMenuButton && "basis-full")}>
             <div className="w-6 h-6 flex justify-center items-center gap-2 text-fg-grey-700">
               <MagniferLinear size={20} />
             </div>
@@ -148,11 +148,11 @@ export function SearchHeader({
         {/* Right actions */}
         <div
           className={cn(
-            "shrink-0 justify-start items-center gap-2",
+            "min-w-0 max-w-full flex-wrap md:flex-nowrap md:shrink-0 justify-start items-center gap-2",
             showMobileMenuButton ? "hidden md:flex" : "flex",
           )}
         >
-          <div className="pr-3 flex justify-start items-center gap-2">
+          <div className="pr-3 max-w-full flex flex-wrap md:flex-nowrap justify-start items-center gap-2">
             {/* Calendar — Figma: data-style="Bold Duotone" */}
             {showCalendar && (
               <button
@@ -252,12 +252,12 @@ export function SearchHeader({
                 aria-expanded={profileExpanded}
                 data-popover-trigger="profile"
                 onClick={onProfileClick}
-                className={cn("px-3.5 py-3 rounded-xl flex justify-start items-center gap-3 transition-colors", profileButtonClassName ?? "hover:bg-fg-grey-100")}
+                className={cn("min-w-0 max-w-full px-3.5 py-3 rounded-xl flex justify-start items-center gap-3 transition-colors", profileButtonClassName ?? "hover:bg-fg-grey-100")}
               >
                 <div className="inline-flex flex-col justify-start items-end">
-                  <img className="w-10 h-10 rounded-full" src={profile.avatar} alt={profile.name} />
+                  <img className="w-10 h-10 shrink-0 rounded-full" src={profile.avatar} alt={profile.name} />
                 </div>
-                <div className="inline-flex flex-col justify-center items-start gap-0.5">
+                <div className="min-w-0 inline-flex flex-col justify-center items-start gap-0.5">
                   <div className={cn("self-stretch text-sm font-semibold leading-5 tracking-fg line-clamp-1", profileNameClassName ?? "text-fg-black")}>{profile.name}</div>
                   <div className={cn("self-stretch text-xs font-medium leading-4.5 tracking-fg line-clamp-1", profileRoleClassName ?? "text-fg-grey-700")}>{profile.role}</div>
                 </div>

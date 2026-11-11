@@ -117,6 +117,7 @@ test("KebabMenu 跟随滚动中的触发器定位并避开视口边缘", async (
   let triggerRect = makeRect(700, 660, 40, 40);
   const originalGetBoundingClientRect = dom.window.HTMLElement.prototype.getBoundingClientRect;
   dom.window.HTMLElement.prototype.getBoundingClientRect = function getBoundingClientRect() {
+    if (this.hasAttribute('data-forge-fixed-probe')) return makeRect(0, 0, 100, 100);
     if (this.querySelector('button[aria-label="更多操作"]')) return triggerRect;
     if (this.style.position === "fixed") return makeRect(0, 0, 240, 120);
     return makeRect(0, 0, 0, 0);
