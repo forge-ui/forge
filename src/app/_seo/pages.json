@@ -3,8 +3,20 @@
     "title": "Forge UI · 中文后台 React 组件库",
     "description": "面向中文后台的 React 组件库：500 多个组件、70 个可复制的页面组件和整套后台模板，配套 Skill、MCP 和页面检查，人和编码助手按同一套规范做出一致的界面。"
   },
+  "/articles": {
+    "title": "文章",
+    "description": "用 Forge 搭中文后台、让 Claude Code 和 Codex 按规范写页面、给产品加 AI 对话界面的实践文章。"
+  },
+  "/articles/claude-code-admin-pages": {
+    "title": "用 Claude Code 写后台页面：从一句话需求到通过规范检查",
+    "description": "AI 写的后台页面往往能跑、但不像同一个产品。本文用 Forge 的 Skill、MCP 和页面检查，演示 Claude Code 从一句中文需求生成订单列表页，并把颜色、组件和交互都收进同一套规范。"
+  },
+  "/articles/frontend-design-skill": {
+    "title": "前端设计 Skill 怎么选：通用审美、组件库规范与团队自写",
+    "description": "Claude Code、Codex、Cursor 都支持 Skill。前端设计类 Skill 大致分三种：通用审美、组件库自带规范、团队自己写。本文讲清它们的区别、怎么判断一个 Skill 好不好，以及怎么组合使用。"
+  },
   "/blocks": {
-    "title": "页面组件",
+    "title": "shadcn 后台页面组件",
     "description": "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。"
   },
   "/cases": {
@@ -326,8 +338,8 @@
     "description": "装不上 / 跑不起来，按症状对号入座。还没找到的欢迎开 issue。"
   },
   "/docs/ui-for-agents": {
-    "title": "UI for Agents",
-    "description": "让 AI 助手用 Forge UI Kit 拼业务页面。"
+    "title": "前端设计 Skill",
+    "description": "Forge Skill 让 Claude Code、Codex 和 Cursor 按同一套规范写后台页面：知道用哪个组件、怎么排版、颜色和状态怎么表达，写完还能自己检查。"
   },
   "/guides": {
     "title": "使用指南",
@@ -366,7 +378,7 @@
     "description": "先在 Starter 仓库读取其 new-module/new-page/audit skills，确认对象生命周期、数据权限、菜单与路由。这里不复制 Starter 的后端规则。"
   },
   "/templates": {
-    "title": "后台模板",
-    "description": "Forge UI 的完整后台模板：CRM、电商、财务、项目管理、任务看板和智能体工作台，可以直接打开体验每个页面。"
+    "title": "React 后台管理系统模板",
+    "description": "基于 Next.js 16、React 19 和 Tailwind v4 的后台模板：CRM、电商、财务、项目管理、任务看板、仪表盘和智能体工作台，可在线体验，页面可用 shadcn 命令复制，MIT 协议。"
   }
 }

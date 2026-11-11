@@ -15,8 +15,9 @@ const check = process.argv.includes("--check");
 
 const STATIC = {
   "/": { title: "Forge UI · 中文后台 React 组件库", description: "面向中文后台的 React 组件库：500 多个组件、70 个可复制的页面组件和整套后台模板，配套 Skill、MCP 和页面检查，人和编码助手按同一套规范做出一致的界面。" },
-  "/blocks": { title: "页面组件", description: "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。" },
-  "/templates": { title: "后台模板", description: "Forge UI 的完整后台模板：CRM、电商、财务、项目管理、任务看板和智能体工作台，可以直接打开体验每个页面。" },
+  "/blocks": { title: "shadcn 后台页面组件", description: "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。" },
+  "/templates": { title: "React 后台管理系统模板", description: "基于 Next.js 16、React 19 和 Tailwind v4 的后台模板：CRM、电商、财务、项目管理、任务看板、仪表盘和智能体工作台，可在线体验，页面可用 shadcn 命令复制，MIT 协议。" },
+  "/articles": { title: "文章", description: "用 Forge 搭中文后台、让 Claude Code 和 Codex 按规范写页面、给产品加 AI 对话界面的实践文章。" },
   "/guides": { title: "使用指南", description: "用 Forge UI 搭后台的分场景指南：看板、列表、详情、表单、设置、反馈和让编码助手按规范生成页面。" },
   "/components/menu-sections": { title: "应用布局 · 用法与参数", description: "AppLayout 的侧栏菜单分组：主菜单、分组标题、折叠和多级菜单的写法与参数。" },
   "/cases/menu-sections": { title: "应用布局 · 效果与案例", description: "AppLayout 侧栏菜单分组的实际效果：主菜单、分组标题、折叠和多级菜单。" },
@@ -75,6 +76,13 @@ for (const file of fs.readdirSync(path.join(root, "content/guides")).filter(name
   const title = lines.find(line => line.startsWith("# "))?.slice(2).trim();
   const paragraph = lines.find(line => line.trim() && !/^(#|>|-|\*|\d+\.|```|\|)/.test(line.trim()));
   pages[`/guides/${file.slice(0, -3)}`] = { title: `${title} · 使用指南`, description: decode(paragraph ?? title).replace(/[`*]/g, "").slice(0, 120) };
+}
+
+for (const file of fs.readdirSync(path.join(root, "content/articles")).filter(name => name.endsWith(".md")).sort()) {
+  const front = fs.readFileSync(path.join(root, "content/articles", file), "utf8").match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? "";
+  const field = key => front.match(new RegExp(`^${key}:\\s*(.+)$`, "m"))?.[1].trim();
+  if (!field("title") || !field("description")) throw new Error(`content/articles/${file} needs title and description`);
+  pages[`/articles/${file.slice(0, -3)}`] = { title: field("title"), description: field("description") };
 }
 
 const json = JSON.stringify(Object.fromEntries(Object.entries(pages).sort(([a], [b]) => a.localeCompare(b))), null, 2) + "\n";

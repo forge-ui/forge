@@ -47,7 +47,7 @@ export const docsNavGroups: NavGroup[] = [
   {
     title: "UI for Agents",
     items: [
-      { href: "/docs/ui-for-agents", label: "Skill", icon: StarsLinear },
+      { href: "/docs/ui-for-agents", label: "前端设计 Skill", icon: StarsLinear },
       { href: "/docs/mcp", label: "MCP 服务器", icon: StarsLinear },
       { href: "/docs/check", label: "页面检查", icon: StarsLinear },
       { href: "/docs/agents-md", label: "AGENTS.md", icon: FileTextLinear },

@@ -1,0 +1,18 @@
+/* Long-form typography for /articles; colors come from theme tokens so dark mode follows. */
+.article-prose { color: var(--color-fg-grey-900); font-size: 16px; line-height: 1.85; display: flex; flex-direction: column; gap: 1.1em; }
+.article-prose > * { margin: 0; min-width: 0; }
+.article-prose h2 { margin-top: 1.4em; font-family: var(--font-plus-jakarta-sans); font-size: 1.5rem; font-weight: 700; line-height: 1.35; letter-spacing: 0.5px; color: var(--color-fg-black); }
+.article-prose h3 { margin-top: 0.8em; font-size: 1.15rem; font-weight: 600; line-height: 1.5; color: var(--color-fg-black); }
+.article-prose strong { color: var(--color-fg-black); font-weight: 600; }
+.article-prose a { color: var(--fg-blue-text, var(--color-fg-blue)); text-decoration: underline; text-underline-offset: 3px; }
+.article-prose ul, .article-prose ol { padding-left: 1.4em; display: flex; flex-direction: column; gap: 0.35em; }
+.article-prose ul { list-style: disc; }
+.article-prose ol { list-style: decimal; }
+.article-prose blockquote { border-left: 3px solid var(--color-fg-grey-300); padding-left: 1em; color: var(--color-fg-grey-700); }
+.article-prose code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.875em; background: var(--color-fg-grey-100); border-radius: 6px; padding: 0.15em 0.4em; }
+.article-prose pre { overflow-x: auto; background: var(--color-fg-grey-100); border-radius: 12px; padding: 1em 1.2em; font-size: 14px; line-height: 1.7; }
+.article-prose pre code { background: none; padding: 0; font-size: inherit; }
+.article-prose table { width: 100%; border-collapse: collapse; font-size: 14px; display: block; overflow-x: auto; }
+.article-prose th, .article-prose td { border-bottom: 1px solid var(--color-fg-grey-200); padding: 0.6em 0.8em; text-align: left; vertical-align: top; }
+.article-prose th { color: var(--color-fg-black); font-weight: 600; white-space: nowrap; }
+.article-prose img { max-width: 100%; border-radius: 12px; border: 1px solid var(--color-fg-grey-200); }
