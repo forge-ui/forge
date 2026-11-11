@@ -432,9 +432,10 @@ test("static detail params, metadata, sitemap and navigation cover every registe
   const sitemap = gallery.sitemap().map(item => item.url);
   assert.equal(new Set(sitemap).size, sitemap.length);
   for (const entry of catalog) {
-    assert.ok(sitemap.includes(`https://forgeui.org/blocks/${entry.name}`));
+    assert.ok(sitemap.includes(`https://www.forgeui.org/blocks/${entry.name}`));
     const metadata = await gallery.generateMetadata({ params: Promise.resolve({ name: entry.name }) });
-    assert.ok(metadata.title.includes(entry.title));
+    assert.ok(metadata.title.absolute.includes(entry.title));
+    assert.equal(metadata.alternates.canonical, `/blocks/${entry.name}`);
     assert.equal(metadata.description, entry.description);
     const item = JSON.parse(readFileSync(resolve(root, `public/r/${entry.name}.json`), "utf8"));
     const element = await gallery.BlockPage({ params: Promise.resolve({ name: entry.name }) });

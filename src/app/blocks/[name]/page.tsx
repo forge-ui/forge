@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { ArrowLeftLinear, ArrowRightLinear } from "@forge-ui-official/core/icons";
 import { SiteHeader } from "@/app/_components/site-header";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: BlockPageProps): Promise<Meta
   const { name } = await params;
   const block = blocks.find(item => item.name === name);
   if (!block) notFound();
-  return { title: `${block.title} · 页面组件 · Forge UI`, description: block.description, alternates: { canonical: `https://forgeui.org/blocks/${name}` } };
+  return pageMetadata(`/blocks/${name}`, { title: `${block.title} · 页面组件`, description: block.description });
 }
 
 export default async function BlockPage({ params }: BlockPageProps) {
