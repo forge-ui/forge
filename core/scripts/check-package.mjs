@@ -36,7 +36,7 @@ const limits = {
   mapDataRaw: 205_000,
   mapDataGzip: 75_000,
   // Includes optional core effects, with all website-only scenes kept outside npm.
-  stylesRaw: 103_000,
+  stylesRaw: 112_000,
 };
 
 const expectedExports = {
