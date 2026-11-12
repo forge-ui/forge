@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import GithubSlugger from "github-slugger";
 
 export type Article = {
   slug: string;
@@ -56,4 +57,21 @@ export function readingMinutes(article: Article) {
   const text = article.content.replace(/```[\s\S]*?```/g, "");
   const characters = (text.match(/[一-鿿]/g)?.length ?? 0) + (text.match(/[A-Za-z0-9]+/g)?.length ?? 0);
   return Math.max(1, Math.round(characters / 400));
+}
+
+export type Heading = { id: string; text: string; level: 2 | 3 };
+
+// Same slugs rehype-slug gives the rendered headings, so the table of contents links line up.
+export function articleHeadings(article: Article): Heading[] {
+  const slugger = new GithubSlugger();
+  const headings: Heading[] = [];
+  let inFence = false;
+  for (const line of article.content.split("\n")) {
+    if (line.startsWith("```")) inFence = !inFence;
+    const match = !inFence && line.match(/^(##|###) (.+)$/);
+    if (!match) continue;
+    const text = match[2].replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/[`*_]/g, "").trim();
+    headings.push({ id: slugger.slug(text), text, level: match[1].length as 2 | 3 });
+  }
+  return headings;
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { listArticles, listTags } from "@/lib/articles";
 import { pageMetadata } from "@/lib/seo";
-import { PostItem } from "../../_parts";
+import { ArticleFooter, PostItem } from "../../_parts";
 
 type Props = { params: Promise<{ tag: string }> };
 
@@ -26,7 +26,7 @@ export default async function TagPage({ params }: Props) {
   const tag = await findTag(params);
   if (!tag) notFound();
   return (
-    <div className="flex flex-col gap-16">
+    <div className="mx-auto flex max-w-[44rem] flex-col gap-16">
       <header className="flex items-start gap-3">
         <h1 className="article-title grow">标签：{tag.name}</h1>
         <Link href="/articles" className="mt-3 shrink-0 text-sm text-fg-grey-700 underline underline-offset-4 hover:text-fg-black">全部文章</Link>
@@ -34,6 +34,7 @@ export default async function TagPage({ params }: Props) {
       <ul className="flex flex-col">
         {listArticles().filter(article => article.tags.includes(tag.name)).map(article => <PostItem key={article.slug} article={article} />)}
       </ul>
+      <ArticleFooter />
     </div>
   );
 }

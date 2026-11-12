@@ -53,6 +53,9 @@ importers:
       culori:
         specifier: ^4.0.2
         version: 4.0.2
+      github-slugger:
+        specifier: ^2.0.0
+        version: 2.0.0
       motion:
         specifier: 14.1.0
         version: 14.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)

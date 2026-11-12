@@ -26,3 +26,12 @@ export function PostItem({ article }: { article: Article }) {
     </li>
   );
 }
+
+export function ArticleFooter() {
+  return (
+    <footer className="mt-24 flex items-center justify-between text-sm text-fg-grey-700">
+      <span>© {new Date().getFullYear()} Forge UI · MIT</span>
+      <a href="/articles/rss.xml" className="hover:text-fg-black">RSS</a>
+    </footer>
+  );
+}
