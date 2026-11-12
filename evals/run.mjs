@@ -18,7 +18,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, "..");
 const tasks = JSON.parse(fs.readFileSync(path.join(here, "tasks.json"), "utf8"));
 const args = Object.fromEntries(process.argv.slice(2).reduce((pairs, arg, index, all) => (arg.startsWith("--") ? [...pairs, [arg.slice(2), all[index + 1]?.startsWith("--") ? true : all[index + 1] ?? true]] : pairs), []));
-const SITE = args.site ?? "https://forgeui.org";
+const SITE = args.site ?? "https://www.forgeui.org";
 const MCP_URL = `${SITE}/api/mcp`;
 
 const agents = {

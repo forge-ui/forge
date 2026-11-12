@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "forge-dashboard-blocks",
-  "homepage": "https://forgeui.org/blocks",
+  "homepage": "https://www.forgeui.org/blocks",
   "items": [
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

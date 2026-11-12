@@ -14,7 +14,7 @@ const toc = [
 
 const designSource = fs.readFileSync(path.join(process.cwd(), "public/DESIGN.md"), "utf-8");
 
-const usageCmd = `curl -fsSL https://forgeui.org/DESIGN.md > DESIGN.md`;
+const usageCmd = `curl -fsSL https://www.forgeui.org/DESIGN.md > DESIGN.md`;
 
 export default function DesignMdPage() {
   return (

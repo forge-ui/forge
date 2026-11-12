@@ -55,10 +55,10 @@ const agentPages = [
 ];
 
 const agentTools = [
-  { title: "Skill", body: "组件清单、页面规范和审计清单，编码助手按需读取。", command: "curl -fsSL https://forgeui.org/install-skill.sh | bash", href: "/docs/ui-for-agents" },
-  { title: "MCP 服务器", body: "查组件参数、页面组件源码和模板，一条命令接入。", command: "claude mcp add --transport http forge https://forgeui.org/api/mcp", href: "/docs/mcp" },
-  { title: "AGENTS.md", body: "放在项目根目录的使用规则，不装插件也能用。", command: "curl -fsSL https://forgeui.org/agents-md > AGENTS.md", href: "/docs/agents-md" },
-  { title: "DESIGN.md", body: "一页纸的视觉规则：颜色、字色层级、圆角和状态。", command: "curl -fsSL https://forgeui.org/DESIGN.md > DESIGN.md", href: "/docs/design-md" },
+  { title: "Skill", body: "组件清单、页面规范和审计清单，编码助手按需读取。", command: "curl -fsSL https://www.forgeui.org/install-skill.sh | bash", href: "/docs/ui-for-agents" },
+  { title: "MCP 服务器", body: "查组件参数、页面组件源码和模板，一条命令接入。", command: "claude mcp add --transport http forge https://www.forgeui.org/api/mcp", href: "/docs/mcp" },
+  { title: "AGENTS.md", body: "放在项目根目录的使用规则，不装插件也能用。", command: "curl -fsSL https://www.forgeui.org/agents-md > AGENTS.md", href: "/docs/agents-md" },
+  { title: "DESIGN.md", body: "一页纸的视觉规则：颜色、字色层级、圆角和状态。", command: "curl -fsSL https://www.forgeui.org/DESIGN.md > DESIGN.md", href: "/docs/design-md" },
 ];
 
 const footerColumns = [
@@ -99,7 +99,7 @@ export function HomeSections() {
       <section className="home-section">
         <SectionHeading eyebrow="页面组件" title="整页的结构，" muted="已经替你搭好。">
           每个页面组件都是一份完整源码，布局、状态和交互都在里面。用 shadcn 命令一行装进项目，或者直接复制。
-          <code className="home-command">npx shadcn@latest add https://forgeui.org/r/kanban-board.json</code>
+          <code className="home-command">npx shadcn@latest add https://www.forgeui.org/r/kanban-board.json</code>
         </SectionHeading>
         <div className="home-block-grid">
           {blocks.map((block) => (

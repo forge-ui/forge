@@ -8,9 +8,9 @@ const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const source = loadSources(root);
 const guides = fs.readdirSync(path.join(root, "content/guides")).filter(file => file.endsWith(".md")).sort().map(file => {
   const content = read("content/guides/" + file);
-  return { slug: file.slice(0, -3), title: content.split("\n")[0].slice(2), content, url: "https://forgeui.org/guides/" + file.slice(0, -3) };
+  return { slug: file.slice(0, -3), title: content.split("\n")[0].slice(2), content, url: "https://www.forgeui.org/guides/" + file.slice(0, -3) };
 });
-const blocks = source.blocks.map(block => ({ ...block, registry: JSON.parse(read("public/r/" + block.name + ".json")), slug: block.name, install: "npx shadcn@latest add https://forgeui.org/r/" + block.name + ".json" }));
+const blocks = source.blocks.map(block => ({ ...block, registry: JSON.parse(read("public/r/" + block.name + ".json")), slug: block.name, install: "npx shadcn@latest add https://www.forgeui.org/r/" + block.name + ".json" }));
 for (const guide of guides) for (const fence of guide.content.matchAll(/```(?:tsx?|jsx?)\n([\s\S]*?)```/g)) {
   const ast = ts.createSourceFile("guide.tsx", fence[1], ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   for (const statement of ast.statements) {
@@ -50,7 +50,7 @@ const knownScreenTitles = Object.fromEntries(blocks.flatMap(block => block.regis
 const screenTitle = content => content.match(/(?:pageTitle|current)=\{?"([^"]{2,40})"/)?.[1] ?? content.match(/<PageTitleToolbar[^>]*?\stitle="([^"]{2,40})"/)?.[1] ?? content.match(/<h1[^>]*>\s*([^<{]{2,40})</)?.[1]?.trim();
 const screens = source.templates.map(item => {
   const content = read(item.file);
-  return { slug: item.route || "index", title: item.route ? knownScreenTitles["/templates/" + item.route] ?? screenTitle(content) ?? item.route : "模板索引", source: item.file, route: "/templates" + (item.route ? "/" + item.route : ""), previewUrl: item.route.includes("[") ? null : "https://forgeui.org/templates" + (item.route ? "/" + item.route : ""), routePattern: item.route.includes("["), blocks: blocks.filter(block => content.includes(block.component)).map(block => block.slug), components: components.filter(component => component.kind === "value" && new RegExp("\\b" + component.name + "\\b").test(content)).map(component => component.name), sourceCode: content };
+  return { slug: item.route || "index", title: item.route ? knownScreenTitles["/templates/" + item.route] ?? screenTitle(content) ?? item.route : "模板索引", source: item.file, route: "/templates" + (item.route ? "/" + item.route : ""), previewUrl: item.route.includes("[") ? null : "https://www.forgeui.org/templates" + (item.route ? "/" + item.route : ""), routePattern: item.route.includes("["), blocks: blocks.filter(block => content.includes(block.component)).map(block => block.slug), components: components.filter(component => component.kind === "value" && new RegExp("\\b" + component.name + "\\b").test(content)).map(component => component.name), sourceCode: content };
 });
 const rules = source.references.filter(item => item.file !== "skills/forge-skill/SKILL.md").map(item => ({ slug: item.file.replace("skills/forge-skill/references/", "").replace(/\.md$/, ""), title: item.content.split("\n").find(line => line.startsWith("# "))?.slice(2) ?? item.file, content: item.content, source: item.file }));
 const tokenBlock = (css, selector) => css.slice(css.indexOf(selector)).split("\n}")[0];

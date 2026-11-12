@@ -2,11 +2,11 @@
 
 Package: @forge-ui-official/core@0.8.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: bb2648d534be76f98b97000b17b6e76d89efca1518e4d5e2cb5489ce3c7864f7
+Source fingerprint: 8d579d0c429f1a9289ce357d89047084696c394bce851d0e730a6d5581664a81
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
+Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
 ---
 
@@ -21,7 +21,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 
 ## 唯一入口与阅读顺序
 
-可选检索入口：[MCP 接入](https://forgeui.org/docs/mcp)、[使用指南](https://forgeui.org/guides) 与 [llms.txt](https://forgeui.org/llms.txt)。MCP 地址为 `https://forgeui.org/api/mcp`；只读数据辅助选型，不替代本 skill 规范正文。
+可选检索入口：[MCP 接入](https://www.forgeui.org/docs/mcp)、[使用指南](https://www.forgeui.org/guides) 与 [llms.txt](https://www.forgeui.org/llms.txt)。MCP 地址为 `https://www.forgeui.org/api/mcp`；只读数据辅助选型，不替代本 skill 规范正文。
 
 唯一通用入口是本文件 `forge-skill/SKILL.md`，不同时拼读全局安装版与项目同步版。优先级：用户指定的版本/checkout > starter 已校验的 `docs/forge-skill/upstream/SKILL.md` > 全局安装的 forge-skill。项目内没有同步副本时才用全局版；版本不符应先同步并核对 manifest，不能静默混用。
 
@@ -61,7 +61,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 
 ## 交付前
 
-先跑页面检查：MCP 的 `check_code`，或在项目根目录运行 `curl -fsSL https://forgeui.org/forge-check.mjs -o forge-check.mjs && node forge-check.mjs src`；错误全部修完，警告逐条确认。再按 [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
+先跑页面检查：MCP 的 `check_code`，或在项目根目录运行 `curl -fsSL https://www.forgeui.org/forge-check.mjs -o forge-check.mjs && node forge-check.mjs src`；错误全部修完，警告逐条确认。再按 [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md) 逐条记录通过、违规、不适用或未验证及证据。跑项目已有 typecheck、lint、测试和文档自检；需要数据库、浏览器、读屏器或实机而未执行的检查明确列出原因。不得把构建通过当视觉/真实操作验收。
 
 接入专项：[Ask AI 宿主契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/ask-ai-host-contract.md)、[交互接入边界](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/interaction-adoption.md)。
 

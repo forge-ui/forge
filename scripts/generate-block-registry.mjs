@@ -90,7 +90,7 @@ const items = catalog.map(({ name, title, description, component, category, scre
 });
 outputs.set("public/r/index.json", JSON.stringify({
   $schema: "https://ui.shadcn.com/schema/registry.json",
-  name: "forge-dashboard-blocks", homepage: "https://forgeui.org/blocks", items,
+  name: "forge-dashboard-blocks", homepage: "https://www.forgeui.org/blocks", items,
 }, null, 2) + "\n");
 const searchFile = "src/app/_components/search-index.json";
 const search = JSON.parse(fs.readFileSync(path.join(root, searchFile), "utf8")).filter(entry => !/^\/blocks(?:[/?#]|$)/.test(entry.id));

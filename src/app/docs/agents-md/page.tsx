@@ -19,7 +19,7 @@ const promptSource = fs.readFileSync(
 );
 
 const usageCmd = `# 下载到项目根的 AGENTS.md
-curl -fsSL https://forgeui.org/agents-md > AGENTS.md`;
+curl -fsSL https://www.forgeui.org/agents-md > AGENTS.md`;
 
 export default function AgentsMdPage() {
   return (

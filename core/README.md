@@ -1,6 +1,6 @@
 # @forge-ui-official/core
 
-Forge 的 React 组件包。面向后台业务页，基于 React 19 和 Tailwind v4。文档、组件展示和模板在 [forgeui.org](https://forgeui.org)，仓库说明见[根目录 README](https://github.com/forge-ui/forge)。
+Forge 的 React 组件包。面向后台业务页，基于 React 19 和 Tailwind v4。文档、组件展示和模板在 [forgeui.org](https://www.forgeui.org)，仓库说明见[根目录 README](https://github.com/forge-ui/forge)。
 
 ## 安装
 

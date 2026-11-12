@@ -32,7 +32,7 @@ test("llms.txt follows the v2 format and links markdown pages", () => {
   assert.match(lines[0], /^# Forge UI$/);
   assert.match(index, /\n> Forge 是/);
   for (const line of lines.filter(item => item.startsWith("- ["))) assert.match(line, /^- \[[^\]]+\]\(https:\/\/[^)]+\)(: .+)?$/);
-  for (const block of loadSources(root).blocks) assert.ok(index.includes(`(https://forgeui.org/blocks/${block.name}.md)`), block.name);
+  for (const block of loadSources(root).blocks) assert.ok(index.includes(`(https://www.forgeui.org/blocks/${block.name}.md)`), block.name);
   assert.match(index, /\(https:\/\/forgeui\.org\/components\/table\.md\): DataTable/);
   assert.match(index, /\n## Optional\n/);
   assert.doesNotMatch(index, /explicitly authorized|separate approval|Source fingerprint/);

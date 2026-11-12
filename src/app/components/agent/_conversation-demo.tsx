@@ -55,7 +55,7 @@ const partsExample: AgentMessagePart[] = [
   { type: "tool-getInventory", toolCallId: "call-1", state: "output-available", input: { sku: "G1-PRO" }, output: { stock: 12, warehouse: "华东仓" } },
   { type: "tool-getSales", toolCallId: "call-2", state: "output-available", input: { sku: "G1-PRO", days: 30 }, output: { sold: 248 } },
   { type: "text", text: "华东仓还剩 **12** 件，按近 30 天销量 248 件计算，建议补货 **90** 件。", state: "done" },
-  { type: "source-url", sourceId: "s1", url: "https://forgeui.org/templates/ecommerce/products", title: "商品库存" },
+  { type: "source-url", sourceId: "s1", url: "https://www.forgeui.org/templates/ecommerce/products", title: "商品库存" },
   { type: "file", mediaType: "text/csv", url: "#", filename: "补货清单.csv" },
 ];
 
