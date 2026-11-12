@@ -12,6 +12,7 @@ const tabs = [
   { href: "/components", label: "组件", also: "/cases" },
   { href: "/blocks", label: "页面组件" },
   { href: "/templates", label: "模板" },
+  { href: "/articles", label: "文章" },
 ] as const;
 
 export function SiteHeader({ tone = "default" }: { tone?: "default" | "blend" }) {
