@@ -5,7 +5,7 @@
   "title": "销售线索",
   "description": "线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "数据列表",
@@ -54,7 +54,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Avatar",
         "AvatarGroup",

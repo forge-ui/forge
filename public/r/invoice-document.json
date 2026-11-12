@@ -5,7 +5,7 @@
   "title": "发票单据",
   "description": "可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "详情页",
@@ -53,7 +53,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "HistoryItem",

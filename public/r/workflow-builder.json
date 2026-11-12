@@ -5,7 +5,7 @@
   "title": "工作流编辑器",
   "description": "高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做、添加组件、一键美化、问题检查、调试运行与发布。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Breadcrumbs",
         "Button",

@@ -5,7 +5,7 @@
   "title": "客户名录",
   "description": "可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "数据列表",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Avatar",
         "Button",

@@ -10,7 +10,7 @@
       "title": "KPI 指标行",
       "description": "集中展示收入、订单与客户等关键指标，适用于经营看板首屏。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "图表与指标",
@@ -111,7 +111,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "BarChartStatCard",
             "LineChartStatCard",
@@ -137,7 +137,7 @@
       "title": "最近记录表卡",
       "description": "在一张卡片内查看最近订单、交易或业务记录。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -1624,7 +1624,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "DataTable",
             "Panel"
@@ -1647,7 +1647,7 @@
       "title": "趋势图表卡",
       "description": "对比不同周期的业务走势，适用于收入、订单和流量分析。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "图表与指标",
@@ -3148,7 +3148,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "ChartHeader",
             "ChartMetricRow",
@@ -3175,7 +3175,7 @@
       "title": "排行列表卡",
       "description": "展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -3293,7 +3293,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "ChartListItem",
             "ListGroup",
@@ -3317,7 +3317,7 @@
       "title": "构成占比卡",
       "description": "用圆环图展示收入、渠道或费用的构成与占比。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "图表与指标",
@@ -4770,7 +4770,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "DonutChart",
             "Panel"
@@ -4793,7 +4793,7 @@
       "title": "地区分布卡",
       "description": "结合地图与地区明细，查看客户或收入的地域分布。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "图表与指标",
@@ -4865,7 +4865,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "MapCard"
           ]
@@ -4887,7 +4887,7 @@
       "title": "目标进度列表",
       "description": "跟踪储蓄与预算目标，查看已积累金额和完成进度。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "财务",
@@ -6386,7 +6386,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "KebabMenu",
@@ -6412,7 +6412,7 @@
       "title": "卡片轮播",
       "description": "以可切换的卡片展示多个账户，适用于钱包和财务首页。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "财务",
@@ -6465,7 +6465,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "CreditCard",
             "PageDot"
@@ -6488,7 +6488,7 @@
       "title": "客户经营摘要",
       "description": "概览客户规模与增长情况，为销售团队提供经营摘要。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "图表与指标",
@@ -6622,7 +6622,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Panel",
             "DescriptionItem",
@@ -6647,7 +6647,7 @@
       "title": "财务工作区",
       "description": "整合账户余额、预算与费用明细，集中查看财务状况。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "财务",
@@ -6829,7 +6829,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Panel",
             "DescriptionItem",
@@ -6854,7 +6854,7 @@
       "title": "经营概览",
       "description": "将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "看板首屏",
@@ -6917,7 +6917,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "BarChartStatCard",
             "Button",
@@ -6947,7 +6947,7 @@
       "title": "订单列表",
       "description": "包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7001,7 +7001,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "Button",
@@ -7034,7 +7034,7 @@
       "title": "项目概览",
       "description": "汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "看板首屏",
@@ -7102,7 +7102,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "AvatarGroup",
@@ -7129,7 +7129,7 @@
       "title": "财务概览",
       "description": "结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "看板首屏",
@@ -7191,7 +7191,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "ChartMetricRow",
             "CreditCard",
@@ -7218,7 +7218,7 @@
       "title": "商品列表",
       "description": "按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7272,7 +7272,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -7306,7 +7306,7 @@
       "title": "客户列表",
       "description": "带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7355,7 +7355,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "Button",
@@ -7389,7 +7389,7 @@
       "title": "商家列表",
       "description": "展示店铺评分、营收与待结算金额的入驻商家管理表。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7438,7 +7438,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "CellImageText",
@@ -7470,7 +7470,7 @@
       "title": "商品分类",
       "description": "维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7509,7 +7509,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "CellImageText",
@@ -7542,7 +7542,7 @@
       "title": "订单详情",
       "description": "订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -7581,7 +7581,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "HistoryItem",
@@ -7611,7 +7611,7 @@
       "title": "发票单据",
       "description": "可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -7659,7 +7659,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "HistoryItem",
@@ -7687,7 +7687,7 @@
       "title": "客户详情",
       "description": "客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -7730,7 +7730,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "IconButton",
@@ -7760,7 +7760,7 @@
       "title": "商品详情",
       "description": "商品图集、价格与规格选择、描述参数，以及订单和评价分页签。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -7794,7 +7794,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Panel",
@@ -7820,7 +7820,7 @@
       "title": "销售线索",
       "description": "线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7869,7 +7869,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "AvatarGroup",
@@ -7905,7 +7905,7 @@
       "title": "商机列表",
       "description": "按回款状态汇总金额，列出商机、客户、付款方式与回款状态。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -7954,7 +7954,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "CellImageText",
@@ -7985,7 +7985,7 @@
       "title": "线索详情",
       "description": "线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -8019,7 +8019,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Modal",
@@ -8049,7 +8049,7 @@
       "title": "分组表单",
       "description": "字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在输入框尾部，底部固定操作栏带校验结果与保存状态。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "表单",
@@ -8087,7 +8087,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -8116,7 +8116,7 @@
       "title": "分步表单",
       "description": "流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步修改，提交后展示结果页。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "表单",
@@ -8150,7 +8150,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -8179,7 +8179,7 @@
       "title": "单卡表单",
       "description": "一张卡片从上到下填完：客户与日期两列排开，收费明细在表格里直接编辑，合计紧跟在明细下方，付款说明和操作按钮收在卡片底部。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "表单",
@@ -8223,7 +8223,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -8252,7 +8252,7 @@
       "title": "项目看板",
       "description": "项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与资源，点任务卡片打开带动态、评论和属性的任务详情。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "协作与项目",
@@ -8291,7 +8291,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "Breadcrumbs",
@@ -8321,7 +8321,7 @@
       "title": "任务详情",
       "description": "任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -8355,7 +8355,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "AvatarGroup",
@@ -8387,7 +8387,7 @@
       "title": "成员详情",
       "description": "成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "详情页",
@@ -8416,7 +8416,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "DataTable",
             "Panel",
@@ -8443,7 +8443,7 @@
       "title": "月历日程",
       "description": "月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "协作与项目",
@@ -8492,7 +8492,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "Button",
@@ -8519,7 +8519,7 @@
       "title": "文件管理",
       "description": "按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "协作与项目",
@@ -8567,7 +8567,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -8598,7 +8598,7 @@
       "title": "交易流水",
       "description": "支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "财务",
@@ -8637,7 +8637,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "ButtonGroup",
             "CellTextSubtitle",
@@ -8669,7 +8669,7 @@
       "title": "发票列表",
       "description": "按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -8717,7 +8717,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -8749,7 +8749,7 @@
       "title": "企业卡管理",
       "description": "企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "财务",
@@ -8788,7 +8788,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "CreditCard",
@@ -8816,7 +8816,7 @@
       "title": "储蓄目标表",
       "description": "资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "财务",
@@ -8850,7 +8850,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "DataTable",
@@ -8878,7 +8878,7 @@
       "title": "资产概览",
       "description": "总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "看板首屏",
@@ -8922,7 +8922,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "CreditCard",
@@ -8950,7 +8950,7 @@
       "title": "客户名录",
       "description": "可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "数据列表",
@@ -8989,7 +8989,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "Button",
@@ -9022,7 +9022,7 @@
       "title": "注册",
       "description": "左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "认证",
@@ -9080,7 +9080,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Checkbox",
@@ -9105,7 +9105,7 @@
       "title": "找回密码",
       "description": "邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "认证",
@@ -9154,7 +9154,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "OtpInput",
@@ -9179,7 +9179,7 @@
       "title": "智能体工作台",
       "description": "工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图和 TOP5 排行榜。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9228,7 +9228,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9260,7 +9260,7 @@
       "title": "应用智能体目录",
       "description": "左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高级工作流智能体。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9299,7 +9299,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9331,7 +9331,7 @@
       "title": "任务会话",
       "description": "短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要、知识库授权与结果产物。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9360,7 +9360,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9387,7 +9387,7 @@
       "title": "任务执行详情",
       "description": "自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载复制的结果产物。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9416,7 +9416,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9443,7 +9443,7 @@
       "title": "运行时管理",
       "description": "自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探测本机运行时。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9477,7 +9477,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9504,7 +9504,7 @@
       "title": "消息渠道",
       "description": "把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以及填写凭据和绑定智能体的连接弹窗。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9543,7 +9543,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9581,7 +9581,7 @@
       "title": "自主智能体",
       "description": "系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模式与人工确认，最近任务跟踪状态。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9620,7 +9620,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -9655,7 +9655,7 @@
       "title": "智能体对话",
       "description": "按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，带快捷操作和访问权限的输入框，回复逐字生成。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9689,7 +9689,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "ChatBubble",
             "ChatInputBar",
@@ -9714,7 +9714,7 @@
       "title": "多智能体编排",
       "description": "编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9743,7 +9743,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Panel",
@@ -9768,7 +9768,7 @@
       "title": "用量与成本",
       "description": "本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9797,7 +9797,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "ButtonGroup",
             "Panel",
@@ -9825,7 +9825,7 @@
       "title": "提示词评测",
       "description": "按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -9859,7 +9859,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -9887,7 +9887,7 @@
       "title": "个人资料设置",
       "description": "头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -9926,7 +9926,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "SelectOption",
@@ -9952,7 +9952,7 @@
       "title": "成员与团队",
       "description": "席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -9991,7 +9991,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -10025,7 +10025,7 @@
       "title": "角色与权限",
       "description": "左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -10064,7 +10064,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Checkbox",
@@ -10091,7 +10091,7 @@
       "title": "通知设置",
       "description": "按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -10125,7 +10125,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "SelectOption",
@@ -10150,7 +10150,7 @@
       "title": "安全设置",
       "description": "密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -10184,7 +10184,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Modal",
@@ -10211,7 +10211,7 @@
       "title": "账单与套餐",
       "description": "本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -10255,7 +10255,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -10283,7 +10283,7 @@
       "title": "项目总览",
       "description": "整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表格之间切换。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "协作与项目",
@@ -10317,7 +10317,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Avatar",
             "Breadcrumbs",
@@ -10363,7 +10363,7 @@
       "title": "工作流编辑器",
       "description": "高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做、添加组件、一键美化、问题检查、调试运行与发布。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "AI 与智能体",
@@ -10397,7 +10397,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -10423,7 +10423,7 @@
       "title": "集成目录",
       "description": "按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "设置",
@@ -10457,7 +10457,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Panel",
@@ -10483,7 +10483,7 @@
       "title": "引导流程",
       "description": "首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "认证",
@@ -10517,7 +10517,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "Checkbox",
@@ -10545,7 +10545,7 @@
       "title": "登录",
       "description": "邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "认证",
@@ -10599,7 +10599,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Button",
             "ButtonGroup",
@@ -10626,7 +10626,7 @@
       "title": "顶栏头像布局",
       "description": "侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操作。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "页面结构",
@@ -10659,7 +10659,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "AppLayout",
             "Breadcrumbs",
@@ -10687,7 +10687,7 @@
       "title": "侧栏头像布局",
       "description": "头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操作。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "页面结构",
@@ -10720,7 +10720,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "AppLayout",
             "ProgressBar",
@@ -10745,7 +10745,7 @@
       "title": "图标栏布局",
       "description": "侧栏默认收起为图标条，把宽度留给表格与筛选；顶栏左侧用汉堡按钮展开菜单，头像在右侧。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "页面结构",
@@ -10774,7 +10774,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "AppLayout",
             "Breadcrumbs",
@@ -10805,7 +10805,7 @@
       "title": "设置页布局",
       "description": "设置类页面：左侧二级导航切换分类，右侧按主题分卡，说明在上、字段居中、每张卡底部单独保存。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "页面结构",
@@ -10834,7 +10834,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "AppLayout",
             "Avatar",
@@ -10864,7 +10864,7 @@
       "title": "沉浸式布局",
       "description": "去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "页面结构",
@@ -10897,7 +10897,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "AppLayout",
             "ChatBubble",
@@ -10921,7 +10921,7 @@
       "title": "服务配置表单",
       "description": "设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址，卡片底部单独测试连接与保存。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "表单",
@@ -10950,7 +10950,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
@@ -10978,7 +10978,7 @@
       "title": "弹窗表单",
       "description": "列表页里的新建与编辑：树形部门列表，点新增、修改或新增下级弹出两列表单，带必填校验，确定后回写列表。",
       "dependencies": [
-        "@forge-ui-official/core@^0.8.0"
+        "@forge-ui-official/core@^0.8.1"
       ],
       "meta": {
         "category": "表单",
@@ -11007,7 +11007,7 @@
           }
         ],
         "core": {
-          "version": "^0.8.0",
+          "version": "^0.8.1",
           "components": [
             "Breadcrumbs",
             "Button",
