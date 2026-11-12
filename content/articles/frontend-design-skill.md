@@ -2,7 +2,8 @@
 title: 前端设计 Skill 怎么选：通用审美、组件库规范与团队自写
 description: Claude Code、Codex、Cursor 都支持 Skill。前端设计类 Skill 大致分三种：通用审美、组件库自带规范、团队自己写。本文讲清它们的区别、怎么判断一个 Skill 好不好，以及怎么组合使用。
 date: 2026-11-12
-tags: 前端 Skill, 前端设计 Skill, Claude Code Skill, frontend design skill, Agent Skills
+keywords: 前端 Skill, 前端设计 Skill, Claude Code Skill, frontend design skill, Agent Skills
+tags: 前端 Skill, Claude Code
 ---
 
 Skill 是一份放在编码助手 skills 目录里的说明书：一个 `SKILL.md` 加上若干参考文档和脚本。和每次手写提示词不同，Skill 会被助手按需自动读取，内容也能随项目一起维护。Claude Code、Codex、Cursor 都支持这种格式（[Agent Skills 规范](https://agentskills.io/home)）。
@@ -10,6 +11,12 @@ Skill 是一份放在编码助手 skills 目录里的说明书：一个 `SKILL.m
 做前端时，最常见的需求是“让 AI 写出来的界面好看、而且一致”。围绕这个需求，前端设计类 Skill 大致有三种。
 
 ## 三种前端设计 Skill
+
+```cards 三种前端设计 Skill，一句话区别
+通用审美类 | 让每个界面都有鲜明、好记的视觉风格。代表是 Anthropic 的 frontend-design。 | 适合营销页、作品集、原型
+组件库规范类 | 告诉助手这套库有什么组件、什么场景用哪个、哪些写法不允许。 | 适合后台、SaaS 控制台
+团队自写类 | 把团队自己的目录结构、接口调用和上线检查写成 Skill。 | 适合规范成熟的团队
+```
 
 ### 1. 通用审美类
 
@@ -42,10 +49,23 @@ Skill 是一份放在编码助手 skills 目录里的说明书：一个 `SKILL.m
 
 ## Forge Skill 是怎么做的
 
+```flow 一次任务里，Forge Skill 的各部分按这个顺序被用到
+读 SKILL.md | 52 行，只有工作流和铁律
+按需读参考 | 列表页读 page-patterns，状态读 status-presentation
+查 MCP | 组件参数、页面组件和模板源码
+跑检查 | check_code 或 forge-check，错误清零
+```
+
 - **主文件只放工作流和铁律**：先判断页面角色（列表、详情、表单、看板……），再选模板、页面组件和组件，最后跑检查。
 - **细节按需读取**：组件选型、页面模式、颜色层级、弹窗焦点、状态表达等二十多份参考文档，用到才读。
 - **规则配检查**：写死的颜色、手搓的表格和弹窗、空的点击事件、指向 `#` 的链接，都能被 `forge-check` 和 MCP 的 `check_code` 从源码里查出来。
-- **有公开评测**：20 个后台任务，用 Claude Code 跑，装了 Skill 和 MCP 后合格率从 90% 到 100%，页面检查的平均警告从 0.7 降到 0，代价是每题平均多花约 50 秒。题目和结果都在 [Forge 仓库](https://github.com/forge-ui/forge/tree/main/evals)。
+- **有公开评测**：20 个后台任务，用 Claude Code 跑，代价是每题平均多花约 50 秒。题目和结果都在 [Forge 仓库](https://github.com/forge-ui/forge/tree/main/evals)。
+
+```stats 装了 Forge Skill 和 MCP 之后，“之前”是没装时的结果
+合格率 | 90% | 100%
+页面检查无错误 | 95% | 100%
+每页平均警告 | 0.7 | 0
+```
 
 ## 组合使用
 

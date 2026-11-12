@@ -15,6 +15,10 @@
     "title": "前端设计 Skill 怎么选：通用审美、组件库规范与团队自写",
     "description": "Claude Code、Codex、Cursor 都支持 Skill。前端设计类 Skill 大致分三种：通用审美、组件库自带规范、团队自己写。本文讲清它们的区别、怎么判断一个 Skill 好不好，以及怎么组合使用。"
   },
+  "/articles/react-ui-library-2026": {
+    "title": "2026 年 React 组件库怎么选：shadcn/ui、Ant Design、MUI、HeroUI 对比",
+    "description": "按样式方案、后台组件完整度、AI 编码助手友好度和团队技术栈，对比 shadcn/ui、Ant Design 6、MUI 9、HeroUI 3、Mantine、TDesign、Arco Design 和 Forge，给出不同场景下的选择建议。"
+  },
   "/blocks": {
     "title": "shadcn 后台页面组件",
     "description": "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。"

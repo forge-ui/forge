@@ -2,12 +2,21 @@
 title: 用 Claude Code 写后台页面：从一句话需求到通过规范检查
 description: AI 写的后台页面往往能跑、但不像同一个产品。本文用 Forge 的 Skill、MCP 和页面检查，演示 Claude Code 从一句中文需求生成订单列表页，并把颜色、组件和交互都收进同一套规范。
 date: 2026-11-12
-tags: Claude Code, AI 写前端, vibe coding, 后台页面, 前端 Skill
+keywords: Claude Code, AI 写前端, vibe coding, 后台页面, 前端 Skill
+tags: Claude Code, 前端 Skill, 后台页面
 ---
 
 让 Claude Code、Codex 或 Cursor 写一个后台页面，现在几分钟就能跑起来。问题通常出在第二个、第十个页面：按钮圆角不一样，表格有的自己画、有的用组件，状态颜色每页一套，弹窗按 Esc 有的能关、有的不能。单看每页都“能用”，放在一起却不像同一个产品。
 
-原因不在模型不会写代码，而在它不知道你的规范。下面用 Forge 演示怎么把规范交给编码助手，让它每次都按同一套组件和规则生成页面。
+原因不在模型不会写代码，而在它不知道你的规范。下面用 Forge 演示怎么把规范交给编码助手，让它每次都按同一套组件和规则生成页面。整个过程是这样的：
+
+```flow 装好 Skill 和 MCP 之后，Claude Code 写一个后台页面的过程
+一句话需求 | 用中文描述页面要什么
+读 Skill | 判断页面角色，比如列表页
+查 MCP | 取组件参数和页面组件源码
+写代码 | 按规范填列、状态和交互
+自查 | 跑页面检查，错误清零再交付
+```
 
 ## 准备：一条命令装好 Skill 和 MCP
 
@@ -46,6 +55,8 @@ const columns: ColumnDef<Order>[] = [
 ];
 ```
 
+![同类页面的效果：Forge 的订单列表页面组件 orders-table-section。搜索和状态筛选在上，金额右对齐，状态是浅色标签](/images/articles/orders-list.png)
+
 几个细节都来自规范，而不是临场发挥：金额标成 `number`，表格会自动右对齐；订单号和时间标成 `identifier`，保持左对齐；状态用 `StatusBadge` 的浅色样式，不手写彩色圆角块。导出 CSV 时还处理了中文乱码和公式注入。
 
 ## 检查：让问题在交付前暴露
@@ -57,24 +68,36 @@ curl -fsSL https://www.forgeui.org/forge-check.mjs -o forge-check.mjs
 node forge-check.mjs src/app/orders
 ```
 
-它从源码里找写死的颜色、手搓的表格和弹窗、指向 `#` 的链接、空的点击事件等问题，按行号列出问题和改法。比如下面这段来自一次没有装 Skill 的生成结果，助手给头像写死了一个紫色：
+它从源码里找写死的颜色、手搓的表格和弹窗、指向 `#` 的链接、空的点击事件等问题，按行号列出问题和改法。拿一个故意写得很随意的页面试一下，输出是这样的：
 
-```tsx
-const avatarSvg = `<svg ...><rect width="80" height="80" fill="#7c3aed"/>...</svg>`;
+```console
+$ node forge-check.mjs src/app/orders
+src/app/orders/page.tsx:4:21  错误  写死了 hex 颜色。（V1 hex-color）
+    改用语义 token 或色阶类，例如 text-fg-grey-700、bg-fg-blue-500、var(--accent)；用 get_tokens 查名称。
+src/app/orders/page.tsx:5:7  警告  手写了 <table>。（C2 raw-table）
+    普通数据列表用 DataTable 或 FullWidthTable；邮件、可访问性等确需原生表格时加 data-forge-allow 并注明原因。
+src/app/orders/page.tsx:6:10  错误  链接指向 #。（M4 placeholder-link）
+    链到真实路由；没有目标时不要渲染成链接。
+src/app/orders/page.tsx:7:7  警告  手写了 <button>。（C1 raw-button）
+    用 Button、IconButton 或 StyledLink；需要无样式按钮时用 <Button variant="unstyled">。
+src/app/orders/page.tsx:7:15  错误  事件处理函数是空的。（C6 empty-handler）
+    接上真实操作并给出反馈；暂时做不了就禁用并说明原因。
+
+检查了 1 个文件：3 个错误，2 个警告。
 ```
 
-检查会报 `hex-color`：写死了颜色，应改用色阶类或语义 token。改完、错误清零再交付。编码助手自己也能跑这条命令，或者调用 MCP 的 `check_code`，在 Claude Code 里直接说“检查一下这个页面，把错误修掉”就行。
+真实评测里也遇到过：一次没装 Skill 的生成结果给头像写死了紫色 `#7c3aed`，检查报出 `hex-color`。改完、错误清零再交付。编码助手自己也能跑这条命令，或者调用 MCP 的 `check_code`，在 Claude Code 里直接说“检查一下这个页面，把错误修掉”就行。
 
 ## 效果：同一批任务，装与不装的差别
 
 我们用 20 个常见后台任务（订单列表、客户详情、运营看板、设置页、登录、智能体对话、任务看板、日程等）做了一次对比，同一个 Claude Code，同样装了 Forge 组件库，区别只在有没有装 Skill 和 MCP：
 
-| | 没装 Skill 和 MCP | 装了 Skill 和 MCP |
-|---|---|---|
-| 合格率（20 题） | 90% | 100% |
-| 页面检查无错误 | 95% | 100% |
-| 平均警告数 | 0.7 | 0 |
-| 总耗时 | 38 分钟 | 55 分钟 |
+```stats 20 个后台任务，同一个 Claude Code，“之前”是没装 Skill 和 MCP 的结果
+合格率 | 90% | 100%
+页面检查无错误 | 95% | 100%
+每页平均警告 | 0.7 | 0
+20 题总耗时 | 38 分钟 | 55 分钟
+```
 
 两边差别最明显的两题：
 

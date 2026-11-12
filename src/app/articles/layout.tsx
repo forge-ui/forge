@@ -7,9 +7,9 @@ export const metadata = pageMetadata("/articles");
 
 export default function ArticlesLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col bg-fg-grey-50">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-3xl flex-1 px-5 py-12 sm:px-8">{children}</main>
+      <main className="w-full flex-1 px-5 pt-16 pb-24 sm:pt-20">{children}</main>
     </div>
   );
 }

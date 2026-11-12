@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Forge 设计 token 与基础 body reset */
 @import "../../core/src/styles/tokens.css";

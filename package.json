@@ -61,11 +61,13 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "culori": "^4.0.2",
+    "github-slugger": "^2.0.0",
     "motion": "14.1.0",
     "next": "16.3.5",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-markdown": "^10.1.0",
+    "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "turndown": "7.2.5",
     "zod": "^4.6.7"
@@ -73,6 +75,7 @@
   "devDependencies": {
     "@google/design.md": "0.4.0",
     "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/culori": "^4.0.1",
     "@types/node": "^20.19.43",
     "@types/react": "19.2.14",
