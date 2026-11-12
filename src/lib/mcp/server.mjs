@@ -51,7 +51,7 @@ function componentResult(item, level) {
   const example = item.examples[0];
   return {
     name: item.name, ...(item.label ? { label: item.label } : {}), kind: item.kind, import: item.import, signature: clip(item.signature, 600), props, defaults: item.defaults,
-    cases: item.cases.map(route => "https://forgeui.org" + route), related: item.related.slice(0, 12), coreVersion: item.coreVersion, source: item.source,
+    cases: item.cases.map(route => "https://www.forgeui.org" + route), related: item.related.slice(0, 12), coreVersion: item.coreVersion, source: item.source,
     omitted: { sourceCodeChars: item.sourceCode.length, exampleChars: example?.code.length ?? 0, documentationChars: item.documentation.length, hint: "需要源码、完整示例和模块文档时用 detail=\"full\"。示例来自：" + (example?.source ?? "无") },
   };
 }
@@ -59,7 +59,7 @@ function componentResult(item, level) {
 function blockResult(item, level) {
   if (level === "full") return item;
   const files = item.registry.files.map(file => ({ path: file.path, lines: file.content.split("\n").length, exports: [...file.content.matchAll(/export (?:function|const) (\w+)/g)].map(match => match[1]) }));
-  return { slug: item.slug, title: item.title, category: item.category, description: item.description, component: item.component, install: item.install, dependencies: item.registry.dependencies, files, screens: item.registry.meta?.screens ?? [], preview: "https://forgeui.org/blocks/" + item.slug, coreVersion: data.coreVersion, omitted: { hint: "需要完整源码时用 detail=\"full\"，或直接运行 install 命令。" } };
+  return { slug: item.slug, title: item.title, category: item.category, description: item.description, component: item.component, install: item.install, dependencies: item.registry.dependencies, files, screens: item.registry.meta?.screens ?? [], preview: "https://www.forgeui.org/blocks/" + item.slug, coreVersion: data.coreVersion, omitted: { hint: "需要完整源码时用 detail=\"full\"，或直接运行 install 命令。" } };
 }
 
 function screenResult(item, level) {

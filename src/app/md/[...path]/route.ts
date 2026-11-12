@@ -4,7 +4,7 @@ import { kitNavGroups } from "@/app/_components/kit-nav";
 
 export const runtime = "nodejs";
 
-const SITE = "https://forgeui.org";
+const SITE = "https://www.forgeui.org";
 const families = kitNavGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title })));
 
 type Component = { name: string; label?: string; kind: string; oneShotDefault: boolean; import: string; cases: string[]; docs?: string[]; defaults: Record<string, string>; props: { name: string; optional: boolean; type: string; description: string }[] };
@@ -115,7 +115,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ path
     headers: {
       "content-type": "text/markdown; charset=utf-8",
       "cache-control": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800",
-      link: `<${SITE}/llms.txt>; rel="describedby"`,
+      // The HTML page is the canonical copy; without this Google files each .md twin as an unclaimed duplicate.
+      link: `<${SITE}/${path.join("/")}>; rel="canonical", <${SITE}/llms.txt>; rel="describedby"`,
     },
   });
 }

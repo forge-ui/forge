@@ -28,7 +28,7 @@ export default function Page() {
   return <Button>开始使用</Button>;
 }`;
 
-const INSTALL_SKILL = `curl -fsSL https://forgeui.org/install-skill.sh | bash`;
+const INSTALL_SKILL = `curl -fsSL https://www.forgeui.org/install-skill.sh | bash`;
 
 function Step({
   n,

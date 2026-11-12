@@ -16,7 +16,7 @@ test("all tool handlers, pagination, lookup failures", () => {
   assert.ok(component.props.some(prop => prop.name === "label"));
   assert.ok(component.import.includes("@forge-ui-official/core"));
   const screen = executeTool("get_screen", { slug: "dashboards/analytics" });
-  assert.equal(screen.previewUrl, "https://forgeui.org/templates/dashboards/analytics");
+  assert.equal(screen.previewUrl, "https://www.forgeui.org/templates/dashboards/analytics");
 });
 test("search ranks by relevance across languages and keywords", () => {
   const top = (query, type = "all") => executeTool("search", { query, type, page: 1, pageSize: 5 }).items.map(item => item.slug);

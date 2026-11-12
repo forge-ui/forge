@@ -16,21 +16,21 @@ export default function McpPage() {
       <DocHeader title="让 AI 通过 MCP 使用 Forge" description="公开、只读、无鉴权的 Streamable HTTP 服务；不保存会话，不修改项目。" />
       <DocSection {...sections[0]}>
         <p>一条命令装好 Skill 和 MCP（自动识别本机的 Claude Code、Cursor、Codex）：</p>
-        <CodeBlock lang="bash" code={`curl -fsSL https://forgeui.org/setup.sh | bash
+        <CodeBlock lang="bash" code={`curl -fsSL https://www.forgeui.org/setup.sh | bash
 # 只装到当前项目，并加上 DESIGN.md
-curl -fsSL https://forgeui.org/setup.sh | bash -s -- --scope project --design
+curl -fsSL https://www.forgeui.org/setup.sh | bash -s -- --scope project --design
 # 检查是否装好
-curl -fsSL https://forgeui.org/setup.sh | bash -s -- --check`} />
+curl -fsSL https://www.forgeui.org/setup.sh | bash -s -- --check`} />
         <p>也可以按客户端手动配置：</p>
         <h3 className="font-semibold text-fg-black">Claude Code</h3>
-        <CodeBlock lang="bash" code="claude mcp add --transport http forge https://forgeui.org/api/mcp" />
+        <CodeBlock lang="bash" code="claude mcp add --transport http forge https://www.forgeui.org/api/mcp" />
         <h3 className="font-semibold text-fg-black">Codex：~/.codex/config.toml</h3>
         <CodeBlock lang="toml" code={`[mcp_servers.forge]
-url = "https://forgeui.org/api/mcp"`} />
+url = "https://www.forgeui.org/api/mcp"`} />
         <h3 className="font-semibold text-fg-black">Cursor：.cursor/mcp.json</h3>
         <CodeBlock lang="json" code={`{
   "mcpServers": {
-    "forge": { "url": "https://forgeui.org/api/mcp" }
+    "forge": { "url": "https://www.forgeui.org/api/mcp" }
   }
 }`} />
       </DocSection>

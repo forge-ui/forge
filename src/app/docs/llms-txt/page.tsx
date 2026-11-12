@@ -16,7 +16,7 @@ const files = [
   { href: "/DESIGN.md", description: "一页纸视觉规则。" },
 ];
 
-const usage = `请先读 https://forgeui.org/llms.txt ，
+const usage = `请先读 https://www.forgeui.org/llms.txt ，
 再按需读取 llms-components.md 里的组件参数，用 Forge 实现这个页面：……`;
 
 export default function LlmsTxtPage() {

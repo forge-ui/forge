@@ -10,7 +10,7 @@ const toc = [
   { id: "boundary", title: "能力边界" },
 ];
 
-const cli = `curl -fsSL https://forgeui.org/forge-check.mjs -o forge-check.mjs
+const cli = `curl -fsSL https://www.forgeui.org/forge-check.mjs -o forge-check.mjs
 node forge-check.mjs src            # 检查 src 下所有 .tsx / .jsx
 node forge-check.mjs src --json     # 输出 JSON，方便 CI 和编码助手读取`;
 
