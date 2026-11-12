@@ -3,6 +3,7 @@
 ## 0.8.1
 
 - AgentParts 支持 AI SDK 6 起的工具确认：`approval-requested` 时显示允许、拒绝（`onToolApproval` 直接传 `useChat` 的 `addToolApprovalResponse`），自动确认和已答复的调用按进行中显示，被拒绝的调用（`output-denied`）在工具组里标为已停止并显示原因。之前这几种状态没有对应显示。
+- Button 的 `effect="glass"` 改成液态玻璃：更通透的底、左上和右下的高光边、内部厚度感；Chromium 下按钮边缘会折射背后的内容，其他浏览器保留磨砂玻璃效果。
 - AppLayout 新增 `profileMenuItems`：头像菜单的条目可以自己配置并绑定操作（编辑资料、外观、退出登录等），点击后菜单自动关闭。不传时仍显示原来的占位条目。
 
 ## 0.8.0
