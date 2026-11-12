@@ -6,6 +6,7 @@ import { cn } from "@forge-ui-official/core";
 import { asset } from "@/lib/asset";
 import { SiteSearch } from "./site-search";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageSwitch } from "./language-switch";
 
 const tabs = [
   { href: "/docs", label: "文档" },
@@ -65,6 +66,7 @@ export function SiteHeader({ tone = "default" }: { tone?: "default" | "blend" })
           </nav>
 
           <SiteSearch />
+          <LanguageSwitch />
           <ThemeToggle />
           <div className="hidden items-center md:flex">
             <a

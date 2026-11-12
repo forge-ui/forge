@@ -341,6 +341,26 @@
     "title": "前端设计 Skill",
     "description": "Forge Skill 让 Claude Code、Codex 和 Cursor 按同一套规范写后台页面：知道用哪个组件、怎么排版、颜色和状态怎么表达，写完还能自己检查。"
   },
+  "/en": {
+    "lang": "en",
+    "title": "Forge UI · React admin UI kit with a frontend design skill for AI coding agents",
+    "description": "Open-source React components, 70 shadcn admin blocks and complete admin templates, plus a frontend design skill, MCP server and code checks so Claude Code, Codex and Cursor build consistent admin pages."
+  },
+  "/en/admin-templates": {
+    "lang": "en",
+    "title": "React Admin Templates for Next.js and shadcn",
+    "description": "Free, MIT-licensed React admin dashboard templates built on Next.js 16, React 19 and Tailwind v4: CRM, e-commerce, finance, projects, task board and an AI agent workspace. 70 page blocks install with the shadcn CLI."
+  },
+  "/en/ai-chat-components": {
+    "lang": "en",
+    "title": "React AI Chat Components for the AI SDK",
+    "description": "Conversation, message, actions, suggestions and artifact components for React, plus AgentParts that renders AI SDK useChat messages: streaming markdown, reasoning, grouped tool calls, sources and files."
+  },
+  "/en/frontend-design-skill": {
+    "lang": "en",
+    "title": "Frontend Design Skill for Claude Code, Codex and Cursor",
+    "description": "Install the Forge frontend design skill in one command. Claude Code, Codex and Cursor learn which components to use, how to lay out admin pages and how to check their own output. In our 20-task eval, pass rate went from 90% to 100%."
+  },
   "/guides": {
     "title": "使用指南",
     "description": "用 Forge UI 搭后台的分场景指南：看板、列表、详情、表单、设置、反馈和让编码助手按规范生成页面。"
