@@ -24,6 +24,7 @@ import {
   NotificationPanel,
   LanguageSwitcher,
   ProfileDropdown,
+  type ProfileMenuItem,
   TeamSwitcherDropdown,
   CalendarPopup,
   languageFlagDataUrls,
@@ -76,6 +77,8 @@ export interface AppLayoutProfile {
   role: string;
 }
 
+export type AppLayoutProfileMenuItem = ProfileMenuItem;
+
 export type AppLayoutPageHeaderVariant = "home" | "detail";
 
 export interface AppLayoutBreadcrumb {
@@ -115,6 +118,8 @@ export interface AppLayoutProps {
   /** 按顺序渲染的侧栏分组。传入后忽略旧的菜单项和分组标题；sidebarSlot 优先级更高。 */
   menuSections?: AppLayoutMenuSection[];
   profile?: AppLayoutProfile;
+  /** Entries of the profile menu (edit profile, appearance, sign out…). Without it the menu shows placeholder entries. */
+  profileMenuItems?: AppLayoutProfileMenuItem[];
   notifications?: number;
   messages?: number;
   language?: AppLayoutLanguage;
@@ -192,6 +197,7 @@ export function AppLayout({
   favoriteItems,
   menuSections,
   profile,
+  profileMenuItems,
   notifications,
   messages,
   language,
@@ -737,7 +743,7 @@ export function AppLayout({
             )}
             {openPopover === "profile" && (
               renderSidebarPopover(<div data-popover="profile" className="absolute left-4 bottom-4 z-[60] md:left-full md:ml-4 md:z-50">
-                <ProfileDropdown locale={locale} />
+                <ProfileDropdown locale={locale} items={profileMenuItems} onClose={() => closePopover()} />
               </div>)
             )}
           </div>
@@ -815,7 +821,7 @@ export function AppLayout({
               )}
               {!isMobile && openPopover === "profile" && (
                 <div data-popover="profile" className="absolute top-full right-0 mt-0 z-50">
-                  <ProfileDropdown locale={locale} />
+                  <ProfileDropdown locale={locale} items={profileMenuItems} onClose={() => closePopover()} />
                 </div>
               )}
             </div>
