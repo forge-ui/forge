@@ -5,7 +5,7 @@
   "title": "成员与团队",
   "description": "席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "设置",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "ButtonGroup",

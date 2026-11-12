@@ -1,13 +1,13 @@
 {
   "package": "@forge-ui-official/core",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "source": "core/src/index.ts",
-  "revision": "60796220092204822ca81d96e29894913bff00dc",
+  "revision": "85c6200960e08de2984eb2ff64a49ea78c6db9f6",
   "dirty": false,
-  "exportFingerprint": "fcdf05e0b7fd650743b6d6332fd37507b01d460a",
-  "generatedAt": "2026-11-11T12:32:52+08:00",
+  "exportFingerprint": "4a71d7174a719e594a03a6b46cdd03e69495da40",
+  "generatedAt": "2026-11-12T18:09:07+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 506,
+  "componentCount": 507,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -722,7 +722,7 @@
       "module": "agent/agent-parts",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ parts, status, renderTool, onOpenFile, locale, className }: AgentPartsProps) => JSX.Element",
+      "signature": "({ parts, status, renderTool, onOpenFile, onToolApproval, locale, className }: AgentPartsProps) => JSX.Element",
       "props": [
         {
           "name": "parts",
@@ -747,6 +747,12 @@
           "optional": true,
           "type": "((part: { url: string; filename?: string; mediaType: string; }) => void) | undefined",
           "description": ""
+        },
+        {
+          "name": "onToolApproval",
+          "optional": true,
+          "type": "((response: AgentToolApprovalResponse) => void) | undefined",
+          "description": "Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting."
         },
         {
           "name": "locale",
@@ -874,7 +880,7 @@
       "module": "app-layout",
       "group": "layouts",
       "oneShotDefault": true,
-      "signature": "({ motion, mode, profilePosition, accent, children, logo, logoText, appName, appIcon, appSubtitle, apps, onAppChange, teamName: legacyTeamName, teamAvatar: legacyTeamAvatar, teamMemberCount, teamSubtitle: legacyTeamSubtitle, menuSectionLabel, favoriteSectionLabel, teams: legacyTeams, menuItems, favoriteItems, menuSections, profile, notifications, messages, language, defaultLanguage, onLanguageChange, searchPlaceholder, topbarLeftMode, topbarAccent, pageTitle, breadcrumbs, pageHeaderVariant, askAi, onBack, primaryAction, secondaryAction, showDatePicker, showKebab, showFavorite, hideHeader, sidebarSlot, sidebarWidth, collapsedSidebarWidth, defaultSidebarCollapsed, hideSidebarWidgets, teamLabels, showTeamActions, }: AppLayoutProps) => JSX.Element",
+      "signature": "({ motion, mode, profilePosition, accent, children, logo, logoText, appName, appIcon, appSubtitle, apps, onAppChange, teamName: legacyTeamName, teamAvatar: legacyTeamAvatar, teamMemberCount, teamSubtitle: legacyTeamSubtitle, menuSectionLabel, favoriteSectionLabel, teams: legacyTeams, menuItems, favoriteItems, menuSections, profile, profileMenuItems, notifications, messages, language, defaultLanguage, onLanguageChange, searchPlaceholder, topbarLeftMode, topbarAccent, pageTitle, breadcrumbs, pageHeaderVariant, askAi, onBack, primaryAction, secondaryAction, showDatePicker, showKebab, showFavorite, hideHeader, sidebarSlot, sidebarWidth, collapsedSidebarWidth, defaultSidebarCollapsed, hideSidebarWidgets, teamLabels, showTeamActions, }: AppLayoutProps) => JSX.Element",
       "props": [
         {
           "name": "motion",
@@ -1013,6 +1019,12 @@
           "optional": true,
           "type": "AppLayoutProfile | undefined",
           "description": ""
+        },
+        {
+          "name": "profileMenuItems",
+          "optional": true,
+          "type": "ProfileMenuItem[] | undefined",
+          "description": "Entries of the profile menu (edit profile, appearance, sign out…). Without it the menu shows placeholder entries."
         },
         {
           "name": "notifications",
@@ -1237,6 +1249,15 @@
     },
     {
       "name": "AppLayoutProfile",
+      "kind": "type",
+      "source": "core/src/components/layouts/app-layout.tsx",
+      "module": "app-layout",
+      "group": "layouts",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AppLayoutProfileMenuItem",
       "kind": "type",
       "source": "core/src/components/layouts/app-layout.tsx",
       "module": "app-layout",

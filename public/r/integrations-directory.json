@@ -5,7 +5,7 @@
   "title": "集成目录",
   "description": "按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "设置",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "Panel",

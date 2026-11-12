@@ -5,7 +5,7 @@
   "title": "客户列表",
   "description": "带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "数据列表",
@@ -54,7 +54,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Avatar",
         "Button",

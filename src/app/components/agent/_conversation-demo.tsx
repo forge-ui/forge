@@ -92,3 +92,25 @@ export function ArtifactDemo() {
     </div>
   );
 }
+
+const approvalInput = { sku: "G1-PRO", quantity: 90, warehouse: "华东仓" };
+
+export function ApprovalPartsDemo() {
+  const [answer, setAnswer] = useState<boolean | null>(null);
+  const tool: AgentMessagePart = answer === null
+    ? { type: "tool-createPurchaseOrder", toolCallId: "call-po", state: "approval-requested", input: approvalInput, approval: { id: "approval-po", requestReason: "会向供应商发出采购单，金额约 ¥26,910。" } }
+    : answer
+      ? { type: "tool-createPurchaseOrder", toolCallId: "call-po", state: "output-available", input: approvalInput, output: { orderId: "PO-20261112-018" }, approval: { id: "approval-po", approved: true } }
+      : { type: "tool-createPurchaseOrder", toolCallId: "call-po", state: "output-denied", input: approvalInput, approval: { id: "approval-po", approved: false } };
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-3">
+      <AgentMessage role="assistant" name="补货助手">
+        <AgentParts
+          parts={[{ type: "text", text: "按近 30 天销量，建议给华东仓补货 90 件，我来下采购单。", state: "done" }, tool, ...(answer === null ? [] : [{ type: "text" as const, text: answer ? "采购单 PO-20261112-018 已提交。" : "好的，没有下单。", state: "done" as const }])]}
+          onToolApproval={response => setAnswer(response.approved)}
+        />
+      </AgentMessage>
+      {answer !== null && <Button variant="tertiary" size="sm" className="w-fit" onClick={() => setAnswer(null)}>重新演示</Button>}
+    </div>
+  );
+}

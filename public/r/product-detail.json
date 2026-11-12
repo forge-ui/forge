@@ -5,7 +5,7 @@
   "title": "商品详情",
   "description": "商品图集、价格与规格选择、描述参数，以及订单和评价分页签。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "详情页",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "Panel",
