@@ -5,7 +5,7 @@
   "title": "订单列表",
   "description": "包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "数据列表",
@@ -59,7 +59,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Avatar",
         "Button",

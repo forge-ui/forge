@@ -32,7 +32,7 @@ export function generateDocuments(root) {
   const source = loadSources(root);
   const { core, inventory, references, templates, cases, modules, fingerprint } = source;
   const banner = "# Forge UI Kit\n\nPackage: " + core.name + "@" + core.version + "\nSource: this repository; forge-skill + generated core exports + real page routes\nSource fingerprint: " + fingerprint + "\n\n";
-  const policy = "## Adopted rules / 采用规则\n\nScreen → Blocks → Components. Start dashboards from a real Screen; " + source.blocks.length + " Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.\n\n";
+  const policy = "## Adopted rules / 采用规则\n\nScreen → Blocks → Components. Start dashboards from a real Screen; " + source.blocks.length + " Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.\n\n";
   const catalog = "## Public exports (" + inventory.components.length + ", values and types distinguished)\n\n" + inventory.components.map(item => "- " + item.name + " [" + item.kind + "] — " + item.source).join("\n") + "\n\n";
   const pageList = (title, group, items) => "## " + title + "\n\n" + items.map(item => "- /" + group + (item.route ? "/" + item.route : "") + " — " + item.file + (item.route.includes("[") ? " (route pattern; use real IDs)" : "")).join("\n") + "\n\n";
   const expandLinks = item => item.content.replace(/\]\(([^\s)]+\.md(?:#[^\s)]*)?)\)/g, (match, href) => {
@@ -45,7 +45,7 @@ export function generateDocuments(root) {
   const semantic = references.filter(item => semanticNames.includes(path.basename(item.file)));
   const blockRoutes = "## Block gallery and detail routes\n\n- /blocks — category-filtered gallery of " + source.blocks.length + " copyable Blocks\n" + source.blocks.map(block => "- /blocks/" + block.name + " — " + block.category + " / " + block.title + "; /r/" + block.name + ".json").join("\n") + "\n\n";
   const guides = fs.readdirSync(path.join(root, "content/guides")).filter(file => file.endsWith(".md")).sort().map(file => ({ file: "content/guides/" + file, content: fs.readFileSync(path.join(root, "content/guides", file), "utf8") }));
-  const guideContent = "## 使用指南与 MCP\n\nhttps://forgeui.org/guides · https://forgeui.org/docs/mcp · https://forgeui.org/api/mcp (read-only Streamable HTTP)\n\n" + embed(guides);
+  const guideContent = "## 使用指南与 MCP\n\nhttps://www.forgeui.org/guides · https://www.forgeui.org/docs/mcp · https://www.forgeui.org/api/mcp (read-only Streamable HTTP)\n\n" + embed(guides);
   const full = banner + policy + guideContent + catalog + blockRoutes + pageList("Template routes", "templates", templates) + pageList("Case routes", "cases", cases) + embed(references);
   const outputs = new Map([
     ["llms.txt", llmsIndex(root, source)],
@@ -58,7 +58,7 @@ export function generateDocuments(root) {
   return { outputs, fingerprint };
 }
 
-const SITE = "https://forgeui.org";
+const SITE = "https://www.forgeui.org";
 const clip = (text, length) => (text.length > length ? text.slice(0, length - 1) + "…" : text);
 
 // llms.txt v2 (llmstxt.org): H1, summary blockquote, guidance, then H2 link lists pointing at markdown pages.
@@ -87,7 +87,7 @@ function llmsIndex(root, source) {
       "- 组件从 `" + source.core.name + "` 引入，图标从 `" + source.core.name + "/icons` 引入；颜色用语义 token，不写 hex。",
       "- 默认主色是蓝色，紫色和黑色是可选主题；状态用 soft StatusBadge，分类和角色用普通文字。",
       "- 页面组件不是 core 导出，用 `npx shadcn@latest add " + SITE + "/r/<name>.json` 安装，或在 /blocks/<name> 复制源码。",
-      "- 只读 MCP 服务：" + SITE + "/api/mcp，写新页面前先调用 recommend。",
+      "- 只读 MCP 服务：<" + SITE + "/api/mcp>（写新页面前先调用 recommend）。",
       "- 每个文档、组件和页面组件页面在地址后加 .md 就是 Markdown 版本。",
     ].join("\n"),
     "## 入门\n\n" + [
@@ -98,7 +98,7 @@ function llmsIndex(root, source) {
       link("使用指南", SITE + "/guides.md", "列表、详情、表单、设置、看板、反馈、AI 和 Starter 模块"),
     ].join("\n"),
     "## 给编码助手\n\n" + [
-      link("一键接入", SITE + "/docs/ui-for-agents.md", "curl -fsSL https://forgeui.org/setup.sh | bash，装 Skill 和 MCP，--check 自检"),
+      link("一键接入", SITE + "/docs/ui-for-agents.md", "curl -fsSL https://www.forgeui.org/setup.sh | bash，装 Skill 和 MCP，--check 自检"),
       link("MCP 服务器", SITE + "/docs/mcp.md", "search、recommend、get_component、get_block、get_tokens 等只读工具"),
       link("页面检查", SITE + "/docs/check.md", "MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码"),
       link("Skill", SITE + "/docs/ui-for-agents.md", "安装 forge-skill"),

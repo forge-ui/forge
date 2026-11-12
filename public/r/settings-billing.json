@@ -5,7 +5,7 @@
   "title": "账单与套餐",
   "description": "本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "设置",
@@ -49,7 +49,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "ButtonGroup",

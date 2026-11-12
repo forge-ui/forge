@@ -123,7 +123,7 @@ components:
 
 Forge 用来做中文后台：列表、详情、表单、设置、看板和智能体页面。整体是安静的浅色界面，浅灰页面底上放白色圆角卡片，主色只用在真正需要用户行动的地方。信息靠层级、间距和字色区分，不靠装饰色块和渐变。
 
-实现时组件一律从 `@forge-ui-official/core` 引入，图标从 `@forge-ui-official/core/icons` 引入。本文件的数值用于设计对照和视觉验收，代码里用语义 token（`var(--accent)`、`text-fg-grey-700` 等），不要把这里的 hex 抄进业务代码。组件 API 见 https://forgeui.org/llms-components.md 。
+实现时组件一律从 `@forge-ui-official/core` 引入，图标从 `@forge-ui-official/core/icons` 引入。本文件的数值用于设计对照和视觉验收，代码里用语义 token（`var(--accent)`、`text-fg-grey-700` 等），不要把这里的 hex 抄进业务代码。组件 API 见 https://www.forgeui.org/llms-components.md 。
 
 ## Colors
 

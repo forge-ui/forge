@@ -1,155 +1,155 @@
 # Forge UI
 
-> Forge 是面向中文后台的 React 组件库 @forge-ui-official/core@0.8.0（Next.js、React 19、Tailwind v4）。包含组件、70 个可复制的页面组件（blocks）、多页业务模板和 Next.js 起点仓库，以及给编码助手用的 Skill、MCP 服务器和 DESIGN.md。
+> Forge 是面向中文后台的 React 组件库 @forge-ui-official/core@0.8.1（Next.js、React 19、Tailwind v4）。包含组件、70 个可复制的页面组件（blocks）、多页业务模板和 Next.js 起点仓库，以及给编码助手用的 Skill、MCP 服务器和 DESIGN.md。
 
 使用要点：
 - 先找最接近的模板页面（Screen）或页面组件（Block），再查组件 API：Screen → Blocks → Components。
 - 组件从 `@forge-ui-official/core` 引入，图标从 `@forge-ui-official/core/icons` 引入；颜色用语义 token，不写 hex。
 - 默认主色是蓝色，紫色和黑色是可选主题；状态用 soft StatusBadge，分类和角色用普通文字。
-- 页面组件不是 core 导出，用 `npx shadcn@latest add https://forgeui.org/r/<name>.json` 安装，或在 /blocks/<name> 复制源码。
-- 只读 MCP 服务：https://forgeui.org/api/mcp，写新页面前先调用 recommend。
+- 页面组件不是 core 导出，用 `npx shadcn@latest add https://www.forgeui.org/r/<name>.json` 安装，或在 /blocks/<name> 复制源码。
+- 只读 MCP 服务：<https://www.forgeui.org/api/mcp>（写新页面前先调用 recommend）。
 - 每个文档、组件和页面组件页面在地址后加 .md 就是 Markdown 版本。
 
 ## 入门
 
-- [介绍](https://forgeui.org/docs.md): Forge 是什么、里面有什么
-- [快速开始](https://forgeui.org/docs/quick-start.md): 安装、接入 Tailwind、渲染第一个组件
-- [详细安装](https://forgeui.org/docs/installation.md): 依赖、样式接入和升级
-- [故障排查](https://forgeui.org/docs/troubleshoot.md): 常见安装问题
-- [使用指南](https://forgeui.org/guides.md): 列表、详情、表单、设置、看板、反馈、AI 和 Starter 模块
+- [介绍](https://www.forgeui.org/docs.md): Forge 是什么、里面有什么
+- [快速开始](https://www.forgeui.org/docs/quick-start.md): 安装、接入 Tailwind、渲染第一个组件
+- [详细安装](https://www.forgeui.org/docs/installation.md): 依赖、样式接入和升级
+- [故障排查](https://www.forgeui.org/docs/troubleshoot.md): 常见安装问题
+- [使用指南](https://www.forgeui.org/guides.md): 列表、详情、表单、设置、看板、反馈、AI 和 Starter 模块
 
 ## 给编码助手
 
-- [一键接入](https://forgeui.org/docs/ui-for-agents.md): curl -fsSL https://forgeui.org/setup.sh | bash，装 Skill 和 MCP，--check 自检
-- [MCP 服务器](https://forgeui.org/docs/mcp.md): search、recommend、get_component、get_block、get_tokens 等只读工具
-- [页面检查](https://forgeui.org/docs/check.md): MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码
-- [Skill](https://forgeui.org/docs/ui-for-agents.md): 安装 forge-skill
-- [AGENTS.md](https://forgeui.org/docs/agents-md.md): 放在项目根目录的使用规则
-- [DESIGN.md](https://forgeui.org/DESIGN.md): 视觉规则，带 YAML token，遵循 google-labs-code/design.md
+- [一键接入](https://www.forgeui.org/docs/ui-for-agents.md): curl -fsSL https://www.forgeui.org/setup.sh | bash，装 Skill 和 MCP，--check 自检
+- [MCP 服务器](https://www.forgeui.org/docs/mcp.md): search、recommend、get_component、get_block、get_tokens 等只读工具
+- [页面检查](https://www.forgeui.org/docs/check.md): MCP check_code 或 node forge-check.mjs，按审计清单检查页面代码
+- [Skill](https://www.forgeui.org/docs/ui-for-agents.md): 安装 forge-skill
+- [AGENTS.md](https://www.forgeui.org/docs/agents-md.md): 放在项目根目录的使用规则
+- [DESIGN.md](https://www.forgeui.org/DESIGN.md): 视觉规则，带 YAML token，遵循 google-labs-code/design.md
 
 ## 组件
 
-- [设计规范](https://forgeui.org/components/style-guide.md): ColorSwatch、ColorSection、TypefaceBlock、TypographyWeightSample、TypographySizeRow
-- [按钮与链接](https://forgeui.org/components/button-link.md): Button、IconButton、StyledLink、ButtonGroup
-- [表单与输入](https://forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Datepicker、RadioButton
-- [筛选](https://forgeui.org/components/filter.md): FilterGroup、FilterTrigger、FilterPanel
-- [消息输入栏](https://forgeui.org/components/chat-input-bar.md): ChatInputBar
-- [数据表格](https://forgeui.org/components/table.md): DataTable、CellActions、StatusBadge、CellTextSubtitle、CellText
-- [图表](https://forgeui.org/components/chart.md): DonutChart、ChartCard、ChartListItem、ChartTooltip、ChartLegendItem
-- [列表](https://forgeui.org/components/list.md): ListItem、DescriptionItem、ListGroup、Label、ContactItem
-- [卡片](https://forgeui.org/components/card.md): LineChartStatCard、StatCard、ProgressStatCard、ImageStatCard、WheelChartStatCard
-- [徽章与标签](https://forgeui.org/components/badge.md): NotificationBadge、Label、CircleIcon、ArtisticIcon
-- [日历与日程](https://forgeui.org/components/calendar.md): CalendarCard、EventTag、CalendarDayCell、EventCard、SmallCalendar
-- [地图](https://forgeui.org/components/map.md): MapCard
-- [历史记录](https://forgeui.org/components/history.md): HistoryItem、HistoryGrouped
-- [评论与评价](https://forgeui.org/components/comment.md): CommentItem、ReviewItem
-- [文件展示](https://forgeui.org/components/file-type.md): FileTypeIcon、FileCard
-- [聊天](https://forgeui.org/components/chat.md): ChatBubble
-- [待办清单](https://forgeui.org/components/checklist.md): Checklist、ChecklistItem
-- [智能体](https://forgeui.org/components/agent.md): Conversation、AgentMessage、MessageActions、PromptSuggestions、AgentParts
-- [实用组件](https://forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
-- [进度](https://forgeui.org/components/progress.md): ProgressBar
-- [消息反馈](https://forgeui.org/components/feedback.md)
-- [确认弹窗](https://forgeui.org/components/modal.md): ConfirmationDialog
-- [提示气泡](https://forgeui.org/components/tooltip.md): TooltipBubble、TooltipAnchor、Tooltip
-- [菜单](https://forgeui.org/components/menu.md): MenuItem、DropdownPanel、DropdownDivider、IconTrigger、KebabMenu
-- [页签与切换](https://forgeui.org/components/tab.md): TabBar
-- [分页与步骤](https://forgeui.org/components/pagination-stepper.md): Pagination、Stepper、PageDot
-- [页面顶栏](https://forgeui.org/components/page-header.md): AppLayout、PageHeader、Breadcrumbs、AskAi、ChatInputBar
-- [工具栏](https://forgeui.org/components/toolbar.md): ToolbarSelectDropdown、ToolbarSearchInput、Toolbar、ToolbarShowSelect、PageTitleToolbar
-- [布局栅格](https://forgeui.org/components/grid.md): Grid、GridItem、StatCard
-- [应用布局](https://forgeui.org/components/menu-sections.md): AppLayout
-- [折叠面板](https://forgeui.org/components/accordion.md)
+- [设计规范](https://www.forgeui.org/components/style-guide.md): ColorSwatch、ColorSection、TypefaceBlock、TypographyWeightSample、TypographySizeRow
+- [按钮与链接](https://www.forgeui.org/components/button-link.md): Button、IconButton、StyledLink、ButtonGroup
+- [表单与输入](https://www.forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Datepicker、RadioButton
+- [筛选](https://www.forgeui.org/components/filter.md): FilterGroup、FilterTrigger、FilterPanel
+- [消息输入栏](https://www.forgeui.org/components/chat-input-bar.md): ChatInputBar
+- [数据表格](https://www.forgeui.org/components/table.md): DataTable、CellActions、StatusBadge、CellTextSubtitle、CellText
+- [图表](https://www.forgeui.org/components/chart.md): DonutChart、ChartCard、ChartListItem、ChartTooltip、ChartLegendItem
+- [列表](https://www.forgeui.org/components/list.md): ListItem、DescriptionItem、ListGroup、Label、ContactItem
+- [卡片](https://www.forgeui.org/components/card.md): LineChartStatCard、StatCard、ProgressStatCard、ImageStatCard、WheelChartStatCard
+- [徽章与标签](https://www.forgeui.org/components/badge.md): NotificationBadge、Label、CircleIcon、ArtisticIcon
+- [日历与日程](https://www.forgeui.org/components/calendar.md): CalendarCard、EventTag、CalendarDayCell、EventCard、SmallCalendar
+- [地图](https://www.forgeui.org/components/map.md): MapCard
+- [历史记录](https://www.forgeui.org/components/history.md): HistoryItem、HistoryGrouped
+- [评论与评价](https://www.forgeui.org/components/comment.md): CommentItem、ReviewItem
+- [文件展示](https://www.forgeui.org/components/file-type.md): FileTypeIcon、FileCard
+- [聊天](https://www.forgeui.org/components/chat.md): ChatBubble
+- [待办清单](https://www.forgeui.org/components/checklist.md): Checklist、ChecklistItem
+- [智能体](https://www.forgeui.org/components/agent.md): Conversation、AgentMessage、MessageActions、PromptSuggestions、AgentParts
+- [实用组件](https://www.forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
+- [进度](https://www.forgeui.org/components/progress.md): ProgressBar
+- [消息反馈](https://www.forgeui.org/components/feedback.md)
+- [确认弹窗](https://www.forgeui.org/components/modal.md): ConfirmationDialog
+- [提示气泡](https://www.forgeui.org/components/tooltip.md): TooltipBubble、TooltipAnchor、Tooltip
+- [菜单](https://www.forgeui.org/components/menu.md): MenuItem、DropdownPanel、DropdownDivider、IconTrigger、KebabMenu
+- [页签与切换](https://www.forgeui.org/components/tab.md): TabBar
+- [分页与步骤](https://www.forgeui.org/components/pagination-stepper.md): Pagination、Stepper、PageDot
+- [页面顶栏](https://www.forgeui.org/components/page-header.md): AppLayout、PageHeader、Breadcrumbs、AskAi、ChatInputBar
+- [工具栏](https://www.forgeui.org/components/toolbar.md): ToolbarSelectDropdown、ToolbarSearchInput、Toolbar、ToolbarShowSelect、PageTitleToolbar
+- [布局栅格](https://www.forgeui.org/components/grid.md): Grid、GridItem、StatCard
+- [应用布局](https://www.forgeui.org/components/menu-sections.md): AppLayout
+- [折叠面板](https://www.forgeui.org/components/accordion.md)
 
 ## 页面组件
 
-- [全部页面组件](https://forgeui.org/blocks.md): 按分类列出
-- [KPI 指标行](https://forgeui.org/blocks/kpi-metrics.md): 图表与指标，集中展示收入、订单与客户等关键指标，适用于经营看板首屏。
-- [最近记录表卡](https://forgeui.org/blocks/recent-records.md): 数据列表，在一张卡片内查看最近订单、交易或业务记录。
-- [趋势图表卡](https://forgeui.org/blocks/trend-chart.md): 图表与指标，对比不同周期的业务走势，适用于收入、订单和流量分析。
-- [排行列表卡](https://forgeui.org/blocks/ranking-list.md): 数据列表，展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。
-- [构成占比卡](https://forgeui.org/blocks/composition-card.md): 图表与指标，用圆环图展示收入、渠道或费用的构成与占比。
-- [地区分布卡](https://forgeui.org/blocks/region-distribution.md): 图表与指标，结合地图与地区明细，查看客户或收入的地域分布。
-- [目标进度列表](https://forgeui.org/blocks/goal-progress-list.md): 财务，跟踪储蓄与预算目标，查看已积累金额和完成进度。
-- [卡片轮播](https://forgeui.org/blocks/card-carousel.md): 财务，以可切换的卡片展示多个账户，适用于钱包和财务首页。
-- [客户经营摘要](https://forgeui.org/blocks/crm-summary.md): 图表与指标，概览客户规模与增长情况，为销售团队提供经营摘要。
-- [财务工作区](https://forgeui.org/blocks/finance-workspace.md): 财务，整合账户余额、预算与费用明细，集中查看财务状况。
-- [经营概览](https://forgeui.org/blocks/overview-dashboard.md): 看板首屏，将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。
-- [订单列表](https://forgeui.org/blocks/orders-table-section.md): 数据列表，包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。
-- [项目概览](https://forgeui.org/blocks/project-overview.md): 看板首屏，汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。
-- [财务概览](https://forgeui.org/blocks/finance-overview.md): 看板首屏，结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。
-- [商品列表](https://forgeui.org/blocks/products-table.md): 数据列表，按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。
-- [客户列表](https://forgeui.org/blocks/customers-table.md): 数据列表，带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。
-- [商家列表](https://forgeui.org/blocks/sellers-table.md): 数据列表，展示店铺评分、营收与待结算金额的入驻商家管理表。
-- [商品分类](https://forgeui.org/blocks/categories-table.md): 数据列表，维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。
-- [订单详情](https://forgeui.org/blocks/order-detail.md): 详情页，订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。
-- [发票单据](https://forgeui.org/blocks/invoice-document.md): 详情页，可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。
-- [客户详情](https://forgeui.org/blocks/customer-profile.md): 详情页，客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。
-- [商品详情](https://forgeui.org/blocks/product-detail.md): 详情页，商品图集、价格与规格选择、描述参数，以及订单和评价分页签。
-- [销售线索](https://forgeui.org/blocks/leads-table.md): 数据列表，线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。
-- [商机列表](https://forgeui.org/blocks/deals-table.md): 数据列表，按回款状态汇总金额，列出商机、客户、付款方式与回款状态。
-- [线索详情](https://forgeui.org/blocks/lead-detail.md): 详情页，线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。
-- [分组表单](https://forgeui.org/blocks/product-form.md): 表单，字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在…
-- [分步表单](https://forgeui.org/blocks/order-form.md): 表单，流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步…
-- [单卡表单](https://forgeui.org/blocks/invoice-form.md): 表单，一张卡片从上到下填完：客户与日期两列排开，收费明细在表格里直接编辑，合计紧跟在明细下方，付款说…
-- [项目看板](https://forgeui.org/blocks/kanban-board.md): 协作与项目，项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与…
-- [任务详情](https://forgeui.org/blocks/task-detail.md): 详情页，任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。
-- [成员详情](https://forgeui.org/blocks/member-profile.md): 详情页，成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。
-- [月历日程](https://forgeui.org/blocks/calendar-month.md): 协作与项目，月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。
-- [文件管理](https://forgeui.org/blocks/file-manager.md): 协作与项目，按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。
-- [交易流水](https://forgeui.org/blocks/transactions-table.md): 财务，支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。
-- [发票列表](https://forgeui.org/blocks/invoices-table.md): 数据列表，按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。
-- [企业卡管理](https://forgeui.org/blocks/cards-management.md): 财务，企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。
-- [储蓄目标表](https://forgeui.org/blocks/savings-goals-table.md): 财务，资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。
-- [资产概览](https://forgeui.org/blocks/wealth-overview.md): 看板首屏，总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。
-- [客户名录](https://forgeui.org/blocks/client-directory.md): 数据列表，可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。
-- [注册](https://forgeui.org/blocks/register-form.md): 认证，左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。
-- [找回密码](https://forgeui.org/blocks/password-recovery.md): 认证，邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。
-- [智能体工作台](https://forgeui.org/blocks/ai-workspace-overview.md): AI 与智能体，工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图…
-- [应用智能体目录](https://forgeui.org/blocks/agent-catalog.md): AI 与智能体，左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高…
-- [任务会话](https://forgeui.org/blocks/agent-run.md): AI 与智能体，短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要…
-- [任务执行详情](https://forgeui.org/blocks/task-run-detail.md): AI 与智能体，自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载…
-- [运行时管理](https://forgeui.org/blocks/runtime-list.md): AI 与智能体，自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探…
-- [消息渠道](https://forgeui.org/blocks/message-channels.md): AI 与智能体，把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以…
-- [自主智能体](https://forgeui.org/blocks/autonomous-agents.md): AI 与智能体，系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模…
-- [智能体对话](https://forgeui.org/blocks/ai-assistant-home.md): AI 与智能体，按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，…
-- [多智能体编排](https://forgeui.org/blocks/agent-orchestration.md): AI 与智能体，编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。
-- [用量与成本](https://forgeui.org/blocks/agent-usage.md): AI 与智能体，本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。
-- [提示词评测](https://forgeui.org/blocks/prompt-evals.md): AI 与智能体，按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。
-- [个人资料设置](https://forgeui.org/blocks/settings-profile.md): 设置，头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。
-- [成员与团队](https://forgeui.org/blocks/settings-members.md): 设置，席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。
-- [角色与权限](https://forgeui.org/blocks/settings-roles.md): 设置，左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。
-- [通知设置](https://forgeui.org/blocks/settings-notifications.md): 设置，按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。
-- [安全设置](https://forgeui.org/blocks/settings-security.md): 设置，密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。
-- [账单与套餐](https://forgeui.org/blocks/settings-billing.md): 设置，本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。
-- [项目总览](https://forgeui.org/blocks/project-portfolio.md): 协作与项目，整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表…
-- [工作流编辑器](https://forgeui.org/blocks/workflow-builder.md): AI 与智能体，高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做…
-- [集成目录](https://forgeui.org/blocks/integrations-directory.md): 设置，按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。
-- [引导流程](https://forgeui.org/blocks/onboarding-flow.md): 认证，首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。
-- [登录](https://forgeui.org/blocks/login-form.md): 认证，邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。
-- [顶栏头像布局](https://forgeui.org/blocks/layout-topbar-profile.md): 页面结构，侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操…
-- [侧栏头像布局](https://forgeui.org/blocks/layout-sidebar-profile.md): 页面结构，头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操…
-- [图标栏布局](https://forgeui.org/blocks/layout-icon-rail.md): 页面结构，侧栏默认收起为图标条，把宽度留给表格与筛选；顶栏左侧用汉堡按钮展开菜单，头像在右侧。
-- [设置页布局](https://forgeui.org/blocks/layout-settings.md): 页面结构，设置类页面：左侧二级导航切换分类，右侧按主题分卡，说明在上、字段居中、每张卡底部单独保存。
-- [沉浸式布局](https://forgeui.org/blocks/layout-immersive.md): 页面结构，去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。
-- [服务配置表单](https://forgeui.org/blocks/provider-settings-form.md): 表单，设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址…
-- [弹窗表单](https://forgeui.org/blocks/dialog-form.md): 表单，列表页里的新建与编辑：树形部门列表，点新增、修改或新增下级弹出两列表单，带必填校验，确定后回写…
+- [全部页面组件](https://www.forgeui.org/blocks.md): 按分类列出
+- [KPI 指标行](https://www.forgeui.org/blocks/kpi-metrics.md): 图表与指标，集中展示收入、订单与客户等关键指标，适用于经营看板首屏。
+- [最近记录表卡](https://www.forgeui.org/blocks/recent-records.md): 数据列表，在一张卡片内查看最近订单、交易或业务记录。
+- [趋势图表卡](https://www.forgeui.org/blocks/trend-chart.md): 图表与指标，对比不同周期的业务走势，适用于收入、订单和流量分析。
+- [排行列表卡](https://www.forgeui.org/blocks/ranking-list.md): 数据列表，展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。
+- [构成占比卡](https://www.forgeui.org/blocks/composition-card.md): 图表与指标，用圆环图展示收入、渠道或费用的构成与占比。
+- [地区分布卡](https://www.forgeui.org/blocks/region-distribution.md): 图表与指标，结合地图与地区明细，查看客户或收入的地域分布。
+- [目标进度列表](https://www.forgeui.org/blocks/goal-progress-list.md): 财务，跟踪储蓄与预算目标，查看已积累金额和完成进度。
+- [卡片轮播](https://www.forgeui.org/blocks/card-carousel.md): 财务，以可切换的卡片展示多个账户，适用于钱包和财务首页。
+- [客户经营摘要](https://www.forgeui.org/blocks/crm-summary.md): 图表与指标，概览客户规模与增长情况，为销售团队提供经营摘要。
+- [财务工作区](https://www.forgeui.org/blocks/finance-workspace.md): 财务，整合账户余额、预算与费用明细，集中查看财务状况。
+- [经营概览](https://www.forgeui.org/blocks/overview-dashboard.md): 看板首屏，将关键指标、收支趋势与收入构成集中在一个完整的经营首屏。
+- [订单列表](https://www.forgeui.org/blocks/orders-table-section.md): 数据列表，包含搜索、状态筛选、导出与分页的订单列表，适用于交易管理页面。
+- [项目概览](https://www.forgeui.org/blocks/project-overview.md): 看板首屏，汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。
+- [财务概览](https://www.forgeui.org/blocks/finance-overview.md): 看板首屏，结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。
+- [商品列表](https://www.forgeui.org/blocks/products-table.md): 数据列表，按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。
+- [客户列表](https://www.forgeui.org/blocks/customers-table.md): 数据列表，带搜索、在线状态、联系方式与新增客户弹窗的客户管理表。
+- [商家列表](https://www.forgeui.org/blocks/sellers-table.md): 数据列表，展示店铺评分、营收与待结算金额的入驻商家管理表。
+- [商品分类](https://www.forgeui.org/blocks/categories-table.md): 数据列表，维护商品分类的名称、说明、销量与库存，支持新增、编辑与删除。
+- [订单详情](https://www.forgeui.org/blocks/order-detail.md): 详情页，订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。
+- [发票单据](https://www.forgeui.org/blocks/invoice-document.md): 详情页，可打印的发票版式，含开票方、收货方、商品明细、税费合计与发送下载操作。
+- [客户详情](https://www.forgeui.org/blocks/customer-profile.md): 详情页，客户画像卡、消费指标、最近购买、消费走势、订单与评价分页签。
+- [商品详情](https://www.forgeui.org/blocks/product-detail.md): 详情页，商品图集、价格与规格选择、描述参数，以及订单和评价分页签。
+- [销售线索](https://www.forgeui.org/blocks/leads-table.md): 数据列表，线索总数、成交与流失指标卡，配合状态筛选、搜索与线索表格。
+- [商机列表](https://www.forgeui.org/blocks/deals-table.md): 数据列表，按回款状态汇总金额，列出商机、客户、付款方式与回款状态。
+- [线索详情](https://www.forgeui.org/blocks/lead-detail.md): 详情页，线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。
+- [分组表单](https://www.forgeui.org/blocks/product-form.md): 表单，字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在…
+- [分步表单](https://www.forgeui.org/blocks/order-form.md): 表单，流程较长的录入拆成选择商品、客户信息、配送支付、确认订单四步，每步只校验当前字段，可回到上一步…
+- [单卡表单](https://www.forgeui.org/blocks/invoice-form.md): 表单，一张卡片从上到下填完：客户与日期两列排开，收费明细在表格里直接编辑，合计紧跟在明细下方，付款说…
+- [项目看板](https://www.forgeui.org/blocks/kanban-board.md): 协作与项目，项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与…
+- [任务详情](https://www.forgeui.org/blocks/task-detail.md): 详情页，任务基本信息、成员与附件，配合进度、描述、可勾选的检查清单和最近动态。
+- [成员详情](https://www.forgeui.org/blocks/member-profile.md): 详情页，成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。
+- [月历日程](https://www.forgeui.org/blocks/calendar-month.md): 协作与项目，月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。
+- [文件管理](https://www.forgeui.org/blocks/file-manager.md): 协作与项目，按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。
+- [交易流水](https://www.forgeui.org/blocks/transactions-table.md): 财务，支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。
+- [发票列表](https://www.forgeui.org/blocks/invoices-table.md): 数据列表，按付款状态筛选的发票表，显示付款方、金额、开票与到期日，并汇总待收金额。
+- [企业卡管理](https://www.forgeui.org/blocks/cards-management.md): 财务，企业卡列表与选中卡的额度、使用进度、临时冻结和最近消费。
+- [储蓄目标表](https://www.forgeui.org/blocks/savings-goals-table.md): 财务，资金目标的目标金额、存入进度与截止日期，支持多选和新建目标。
+- [资产概览](https://www.forgeui.org/blocks/wealth-overview.md): 看板首屏，总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。
+- [客户名录](https://www.forgeui.org/blocks/client-directory.md): 数据列表，可在表格与卡片视图间切换的客户名录，显示公司、联系方式与合作项目数。
+- [注册](https://www.forgeui.org/blocks/register-form.md): 认证，左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。
+- [找回密码](https://www.forgeui.org/blocks/password-recovery.md): 认证，邮箱验证、验证码与新密码三步找回流程，带进度提示与校验。
+- [智能体工作台](https://www.forgeui.org/blocks/ai-workspace-overview.md): AI 与智能体，工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图…
+- [应用智能体目录](https://www.forgeui.org/blocks/agent-catalog.md): AI 与智能体，左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高…
+- [任务会话](https://www.forgeui.org/blocks/agent-run.md): AI 与智能体，短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要…
+- [任务执行详情](https://www.forgeui.org/blocks/task-run-detail.md): AI 与智能体，自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载…
+- [运行时管理](https://www.forgeui.org/blocks/runtime-list.md): AI 与智能体，自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探…
+- [消息渠道](https://www.forgeui.org/blocks/message-channels.md): AI 与智能体，把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以…
+- [自主智能体](https://www.forgeui.org/blocks/autonomous-agents.md): AI 与智能体，系统预置与我的自主智能体卡片，标明运行时、确认策略与知识库要求；发起任务弹窗可选知识库、执行模…
+- [智能体对话](https://www.forgeui.org/blocks/ai-assistant-home.md): AI 与智能体，按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，…
+- [多智能体编排](https://www.forgeui.org/blocks/agent-orchestration.md): AI 与智能体，编排者拆分任务给多个子智能体：树状分工、调用时间线与选中智能体的调用明细，可回放。
+- [用量与成本](https://www.forgeui.org/blocks/agent-usage.md): AI 与智能体，本月花费对比预算、每日趋势，按项目或模型拆分成本，并列出值得关注的异常用量。
+- [提示词评测](https://www.forgeui.org/blocks/prompt-evals.md): AI 与智能体，按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。
+- [个人资料设置](https://www.forgeui.org/blocks/settings-profile.md): 设置，头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。
+- [成员与团队](https://www.forgeui.org/blocks/settings-members.md): 设置，席位与管理员概况、按角色筛选的成员表、行内改角色、批量移除与邀请成员。
+- [角色与权限](https://www.forgeui.org/blocks/settings-roles.md): 设置，左侧角色列表，右侧按模块分组的菜单权限勾选树，支持整组勾选与撤销保存。
+- [通知设置](https://www.forgeui.org/blocks/settings-notifications.md): 设置，按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。
+- [安全设置](https://www.forgeui.org/blocks/settings-security.md): 设置，密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。
+- [账单与套餐](https://www.forgeui.org/blocks/settings-billing.md): 设置，本期用量、付款方式、按月或按年对比的套餐卡片与历史账单下载。
+- [项目总览](https://www.forgeui.org/blocks/project-portfolio.md): 协作与项目，整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表…
+- [工作流编辑器](https://www.forgeui.org/blocks/workflow-builder.md): AI 与智能体，高级工作流智能体的编排页：点阵画布上可拖动、展开收起、直接编辑表单的节点与分支连线，带撤销重做…
+- [集成目录](https://www.forgeui.org/blocks/integrations-directory.md): 设置，按分类浏览可连接的应用，支持搜索、连接中状态与断开连接。
+- [引导流程](https://www.forgeui.org/blocks/onboarding-flow.md): 认证，首次使用的四步引导：创建工作区、连接工具、邀请成员、从模板创建第一个智能体。
+- [登录](https://www.forgeui.org/blocks/login-form.md): 认证，邮箱密码与手机验证码两种登录方式，带记住登录、错误提示与企业单点登录入口。
+- [顶栏头像布局](https://www.forgeui.org/blocks/layout-topbar-profile.md): 页面结构，侧栏展开并按业务分组，搜索在顶栏左侧，头像、通知与消息集中在顶栏右侧，页头带标题、面包屑和主操…
+- [侧栏头像布局](https://www.forgeui.org/blocks/layout-sidebar-profile.md): 页面结构，头像、通知与语言收进侧栏底部，菜单按工作区、智能体、平台分组；顶部只保留页头的标题、面包屑与操…
+- [图标栏布局](https://www.forgeui.org/blocks/layout-icon-rail.md): 页面结构，侧栏默认收起为图标条，把宽度留给表格与筛选；顶栏左侧用汉堡按钮展开菜单，头像在右侧。
+- [设置页布局](https://www.forgeui.org/blocks/layout-settings.md): 页面结构，设置类页面：左侧二级导航切换分类，右侧按主题分卡，说明在上、字段居中、每张卡底部单独保存。
+- [沉浸式布局](https://www.forgeui.org/blocks/layout-immersive.md): 页面结构，去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。
+- [服务配置表单](https://www.forgeui.org/blocks/provider-settings-form.md): 表单，设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址…
+- [弹窗表单](https://www.forgeui.org/blocks/dialog-form.md): 表单，列表页里的新建与编辑：树形部门列表，点新增、修改或新增下级弹出两列表单，带必填校验，确定后回写…
 
 ## 模板
 
-- [智能体](https://forgeui.org/templates/agent): 动态智能体工作台，支持流式生成、停止重试、工具调用、计划审核和交互输入。
-- [任务看板](https://forgeui.org/templates/task-board): 工作空间、项目和我的任务。支持拖动看板、列表、任务详情和本地保存。
-- [项目管理](https://forgeui.org/templates/project-template): 项目管理示例，包含项目、客户、成员、任务、文件和发票。
-- [财务](https://forgeui.org/templates/finance-template): 财务后台示例，包含概览、交易、钱包、卡片和发票。
-- [客户关系](https://forgeui.org/templates/crm-template): 客户、线索、销售和活动管理的多页示例。
-- [杂项](https://forgeui.org/templates/micellaneous-template): 日历、聊天、文件和表格操作放在同一套侧栏里的示例。
-- [电商后台](https://forgeui.org/templates/ecommerce/products): 商品、订单、客户、分类和卖家的列表、详情和表单。
-- [仪表盘](https://forgeui.org/templates/dashboards): 10 个已填数据的控制台，覆盖项目、分析、客户、电商和财务。
+- [智能体](https://www.forgeui.org/templates/agent): 动态智能体工作台，支持流式生成、停止重试、工具调用、计划审核和交互输入。
+- [任务看板](https://www.forgeui.org/templates/task-board): 工作空间、项目和我的任务。支持拖动看板、列表、任务详情和本地保存。
+- [项目管理](https://www.forgeui.org/templates/project-template): 项目管理示例，包含项目、客户、成员、任务、文件和发票。
+- [财务](https://www.forgeui.org/templates/finance-template): 财务后台示例，包含概览、交易、钱包、卡片和发票。
+- [客户关系](https://www.forgeui.org/templates/crm-template): 客户、线索、销售和活动管理的多页示例。
+- [杂项](https://www.forgeui.org/templates/micellaneous-template): 日历、聊天、文件和表格操作放在同一套侧栏里的示例。
+- [电商后台](https://www.forgeui.org/templates/ecommerce/products): 商品、订单、客户、分类和卖家的列表、详情和表单。
+- [仪表盘](https://www.forgeui.org/templates/dashboards): 10 个已填数据的控制台，覆盖项目、分析、客户、电商和财务。
 - [Forge Starter](https://github.com/forge-ui/forge-starter): 可直接上线的 Next.js 后台脚手架：登录、角色权限、从 OpenAPI 生成模块、Ask AI 和编码助手 Sk…
 
 ## Optional
 
-- [完整规范与导出清单](https://forgeui.org/llms-full.md): 约 40 万字，规范全文、页面路由和全部导出
-- [语义与交互规范](https://forgeui.org/llms-semantic.md)
-- [全部组件 API](https://forgeui.org/llms-components.md)
-- [页面组件 registry](https://forgeui.org/r/index.json)
+- [完整规范与导出清单](https://www.forgeui.org/llms-full.md): 约 40 万字，规范全文、页面路由和全部导出
+- [语义与交互规范](https://www.forgeui.org/llms-semantic.md)
+- [全部组件 API](https://www.forgeui.org/llms-components.md)
+- [页面组件 registry](https://www.forgeui.org/r/index.json)

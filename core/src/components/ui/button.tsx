@@ -5,6 +5,7 @@ import type { MotionPreference } from "../../lib/motion";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import { ActionStatus, useActionEffect, type ActionResult } from "../../internal/action-effect";
+import { GlassLens } from "../../internal/glass-lens";
 
 // ============================================================
 // Button — Forge UI Kit text button
@@ -132,7 +133,7 @@ export function Button({
       onPointerDown={(event) => { effects.move(event); props.onPointerDown?.(event); }}
       onClick={(event) => { effects.press(event.currentTarget); props.onClick?.(event); }}
     >
-      {effect === "glass" && <span aria-hidden className="forge-glass-sheen" />}
+      {effect === "glass" && <><GlassLens /><span aria-hidden className="forge-glass-sheen" /></>}
       {progress !== undefined && <span aria-hidden className="forge-action-progress" style={{ width: `${Number.isFinite(progress) ? Math.min(100, Math.max(0, progress)) : 0}%` }} />}
       {(loading || result !== "idle") && <ActionStatus loading={loading} result={result} motion={motion} />}
       {iconLeft && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconLeft}</span>}

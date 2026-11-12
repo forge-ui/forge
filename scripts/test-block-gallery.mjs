@@ -44,7 +44,7 @@ await build({
 const gallery = await import(pathToFileURL(resolve(temporary, "gallery.mjs")));
 after(() => rmSync(temporary, { recursive: true, force: true }));
 
-async function withDom(callback, url = "https://forgeui.org/blocks") {
+async function withDom(callback, url = "https://www.forgeui.org/blocks") {
   const dom = new JSDOM('<div id="root"></div>', { pretendToBeVisual: true, url });
   dom.window.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   dom.window.HTMLDialogElement.prototype.close = function () { this.open = false; };
@@ -199,7 +199,7 @@ test("gallery categories preserve URL state and expose inert linked cards with i
     assert.equal(copy.closest("a"), null);
     const before = window.location.href;
     await click(copy);
-    assert.deepEqual(copied, [`npx shadcn@latest add https://forgeui.org/r/${first.name}.json`]);
+    assert.deepEqual(copied, [`npx shadcn@latest add https://www.forgeui.org/r/${first.name}.json`]);
     assert.equal(copy.getAttribute("aria-label"), "已复制");
     assert.equal(window.location.href, before);
     await click(button(`图表与指标 ${count("图表与指标")}`));
@@ -212,7 +212,7 @@ test("gallery categories preserve URL state and expose inert linked cards with i
     assert.equal(document.querySelectorAll("article").length, count("财务"));
     await React.act(async () => { window.history.replaceState(null, "", "?category=unknown"); window.dispatchEvent(new dom.window.PopStateEvent("popstate")); });
     assert.equal(document.querySelectorAll("article").length, catalog.length);
-  }, "https://forgeui.org/blocks?category=看板首屏");
+  }, "https://www.forgeui.org/blocks?category=看板首屏");
 });
 
 test("clipboard denial never reports success and permits retry", async () => {

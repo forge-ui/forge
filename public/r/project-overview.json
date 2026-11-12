@@ -5,7 +5,7 @@
   "title": "项目概览",
   "description": "汇总项目进度、团队成员、里程碑与近期活动，掌握交付全貌。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "看板首屏",
@@ -73,7 +73,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Avatar",
         "AvatarGroup",

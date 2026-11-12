@@ -55,7 +55,7 @@ const partsExample: AgentMessagePart[] = [
   { type: "tool-getInventory", toolCallId: "call-1", state: "output-available", input: { sku: "G1-PRO" }, output: { stock: 12, warehouse: "华东仓" } },
   { type: "tool-getSales", toolCallId: "call-2", state: "output-available", input: { sku: "G1-PRO", days: 30 }, output: { sold: 248 } },
   { type: "text", text: "华东仓还剩 **12** 件，按近 30 天销量 248 件计算，建议补货 **90** 件。", state: "done" },
-  { type: "source-url", sourceId: "s1", url: "https://forgeui.org/templates/ecommerce/products", title: "商品库存" },
+  { type: "source-url", sourceId: "s1", url: "https://www.forgeui.org/templates/ecommerce/products", title: "商品库存" },
   { type: "file", mediaType: "text/csv", url: "#", filename: "补货清单.csv" },
 ];
 
@@ -89,6 +89,28 @@ export function ArtifactDemo() {
       <ArtifactCard title="退款原因分析.png" kind="image" meta="PNG · 1280×720" onOpen={() => window.open("/images/home/block-transactions-table.webp", "_blank", "noopener")} />
       <ArtifactCard title="渠道对账.xlsx" kind="table" status="error" />
       <Button variant="tertiary" size="sm" className="w-fit" onClick={() => setStatus("ready")}>模拟生成完成</Button>
+    </div>
+  );
+}
+
+const approvalInput = { sku: "G1-PRO", quantity: 90, warehouse: "华东仓" };
+
+export function ApprovalPartsDemo() {
+  const [answer, setAnswer] = useState<boolean | null>(null);
+  const tool: AgentMessagePart = answer === null
+    ? { type: "tool-createPurchaseOrder", toolCallId: "call-po", state: "approval-requested", input: approvalInput, approval: { id: "approval-po", requestReason: "会向供应商发出采购单，金额约 ¥26,910。" } }
+    : answer
+      ? { type: "tool-createPurchaseOrder", toolCallId: "call-po", state: "output-available", input: approvalInput, output: { orderId: "PO-20261112-018" }, approval: { id: "approval-po", approved: true } }
+      : { type: "tool-createPurchaseOrder", toolCallId: "call-po", state: "output-denied", input: approvalInput, approval: { id: "approval-po", approved: false } };
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-3">
+      <AgentMessage role="assistant" name="补货助手">
+        <AgentParts
+          parts={[{ type: "text", text: "按近 30 天销量，建议给华东仓补货 90 件，我来下采购单。", state: "done" }, tool, ...(answer === null ? [] : [{ type: "text" as const, text: answer ? "采购单 PO-20261112-018 已提交。" : "好的，没有下单。", state: "done" as const }])]}
+          onToolApproval={response => setAnswer(response.approved)}
+        />
+      </AgentMessage>
+      {answer !== null && <Button variant="tertiary" size="sm" className="w-fit" onClick={() => setAnswer(null)}>重新演示</Button>}
     </div>
   );
 }

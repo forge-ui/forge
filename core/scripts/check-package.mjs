@@ -25,7 +25,7 @@ const [pack] = JSON.parse(
 
 // 0.7.0 raised the budgets for the agent conversation kit (Conversation, AgentMessage, AgentParts…).
 const limits = {
-  packed: 920_000,
+  packed: 935_000,
   unpacked: 3_720_000,
   entries: 530,
   sourceMaps: 2_000_000,

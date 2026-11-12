@@ -5,6 +5,7 @@ import {
   Avatar,
   Button,
   ButtonGroup,
+  SelectOption,
   Checkbox,
   ProgressBar,
   StatusBadge,
@@ -59,7 +60,8 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
         <div className="flex flex-col gap-7">
           <fieldset className="flex flex-col gap-3">
             <legend className="mb-3 text-sm font-semibold text-fg-black">主色</legend>
-            <div className="flex flex-wrap gap-2">
+            {/* px-1 leaves room for the selected swatch's offset outline. */}
+            <div className="flex flex-wrap gap-2 px-1 py-1">
               {COLOR_PRESETS.map((preset) => (
                 <button
                   key={preset.id}
@@ -114,14 +116,13 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
 
           <fieldset className="flex flex-col gap-3">
             <legend className="mb-3 text-sm font-semibold text-fg-black">字体</legend>
-            <div className="-mx-1 max-w-full overflow-x-auto px-1 py-1">
-              <ButtonGroup
-                items={FONT_PRESETS.map((preset) => ({ label: preset.label.replace("（默认）", "") }))}
-                activeIndex={FONT_PRESETS.findIndex((preset) => preset.id === theme.font)}
-                onChange={(index) => setTheme((current) => ({ ...current, font: FONT_PRESETS[index].id }))}
-                ariaLabel="字体"
-              />
-            </div>
+            <SelectOption
+              type="single"
+              width="100%"
+              options={FONT_PRESETS.map((preset) => ({ value: preset.id, label: preset.label }))}
+              value={theme.font}
+              onChange={(value: string) => setTheme((current) => ({ ...current, font: value as typeof current.font }))}
+            />
             {font.note && <p className="text-xs leading-5 text-fg-grey-700">{font.note}</p>}
           </fieldset>
 

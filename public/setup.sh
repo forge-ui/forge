@@ -2,9 +2,9 @@
 #
 # Set up Forge for coding agents: forge-skill, the read-only MCP server and (optionally) DESIGN.md.
 #
-#   curl -fsSL https://forgeui.org/setup.sh | bash
-#   curl -fsSL https://forgeui.org/setup.sh | bash -s -- --client claude --mode both --scope project --design
-#   curl -fsSL https://forgeui.org/setup.sh | bash -s -- --check
+#   curl -fsSL https://www.forgeui.org/setup.sh | bash
+#   curl -fsSL https://www.forgeui.org/setup.sh | bash -s -- --client claude --mode both --scope project --design
+#   curl -fsSL https://www.forgeui.org/setup.sh | bash -s -- --check
 #
 # Options:
 #   --client claude|cursor|codex|all   default: every client detected on this machine
@@ -17,7 +17,7 @@
 
 set -euo pipefail
 
-SITE="${FORGE_SITE:-https://forgeui.org}"
+SITE="${FORGE_SITE:-https://www.forgeui.org}"
 MCP_URL="${SITE}/api/mcp"
 CLIENTS=""
 MODE="both"

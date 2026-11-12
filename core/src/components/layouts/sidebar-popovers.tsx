@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { type KeyboardEvent, useState } from "react";
+import { type KeyboardEvent, type ReactNode, useState } from "react";
 import { useShellPanel } from "../../internal/shell-popover";
 import { cn } from "../../lib/utils";
 import {
@@ -198,30 +198,42 @@ export function LanguageSwitcher({
   );
 }
 
-export function ProfileDropdown({ locale = "zh" }: { locale?: "zh" | "en" } = {}) {
+export type ProfileMenuItem = {
+  label: string;
+  icon?: ReactNode;
+  onSelect: () => void;
+  /** "danger" for sign-out and other destructive entries. */
+  tone?: "default" | "danger";
+};
+
+export function ProfileDropdown({ locale = "zh", items, onClose }: { locale?: "zh" | "en"; items?: ProfileMenuItem[]; onClose?: () => void } = {}) {
   const panelRef = useShellPanel();
-  const items = [
-    { label: locale === "en" ? "Edit profile" : "编辑资料", icon: <PenBold size={20} />, color: "text-fg-grey-700" },
-    { label: locale === "en" ? "Change password" : "修改密码", icon: <LockPasswordBold size={20} />, color: "text-fg-grey-700" },
-    { label: locale === "en" ? "Settings" : "系统设置", icon: <SettingsBold size={20} />, color: "text-fg-grey-700" },
-    { label: locale === "en" ? "Sign out" : "退出登录", icon: <Logout2Bold size={20} />, color: "text-fg-red" },
+  // Without items the menu shows placeholder entries for templates and demos.
+  const entries: (Omit<ProfileMenuItem, "onSelect"> & { onSelect?: () => void })[] = items ?? [
+    { label: locale === "en" ? "Edit profile" : "编辑资料", icon: <PenBold size={20} /> },
+    { label: locale === "en" ? "Change password" : "修改密码", icon: <LockPasswordBold size={20} /> },
+    { label: locale === "en" ? "Settings" : "系统设置", icon: <SettingsBold size={20} /> },
+    { label: locale === "en" ? "Sign out" : "退出登录", icon: <Logout2Bold size={20} />, tone: "danger" },
   ];
 
   return (
     <div ref={panelRef} role="menu" aria-label={locale === "en" ? "Profile menu" : "个人菜单"} onKeyDown={handleMenuKeyDown} className="w-60 p-3 bg-background rounded-2xl shadow-card outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-start gap-1 overflow-hidden">
-      {items.map((item) => (
+      {entries.map((item) => (
         <button
           key={item.label}
           type="button"
           role="menuitem"
+          onClick={item.onSelect ? () => { onClose?.(); item.onSelect?.(); } : undefined}
           className={cn(
             "self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors",
-            item.color
+            item.tone === "danger" ? "text-fg-red" : "text-fg-grey-700"
           )}
         >
-          <span className="w-6 h-6 flex justify-center items-center">
-            <span className="w-5 h-5">{item.icon}</span>
-          </span>
+          {item.icon && (
+            <span className="w-6 h-6 flex justify-center items-center">
+              <span className="w-5 h-5">{item.icon}</span>
+            </span>
+          )}
           <span className="flex-1 text-sm font-semibold leading-5 tracking-fg line-clamp-1">{item.label}</span>
         </button>
       ))}

@@ -10,7 +10,7 @@ import {
   StarsLinear,
 } from "@forge-ui-official/core/icons";
 
-const SITE = "https://forgeui.org";
+const SITE = "https://www.forgeui.org";
 
 type Status = { key: "prompt" | "page"; result: "done" | "error" } | null;
 

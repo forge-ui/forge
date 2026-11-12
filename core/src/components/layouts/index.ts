@@ -9,6 +9,7 @@ export type {
   AppLayoutMenuItem,
   AppLayoutMenuSection,
   AppLayoutProfile,
+  AppLayoutProfileMenuItem,
   AppLayoutBreadcrumb,
   AppLayoutPageHeaderVariant,
   AppLayoutProps,

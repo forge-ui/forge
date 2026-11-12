@@ -15,15 +15,15 @@
 </p>
 
 <p align="center">
-  <a href="https://forgeui.org">官网</a>
+  <a href="https://www.forgeui.org">官网</a>
   ·
-  <a href="https://forgeui.org/docs">文档</a>
+  <a href="https://www.forgeui.org/docs">文档</a>
   ·
-  <a href="https://forgeui.org/components">组件</a>
+  <a href="https://www.forgeui.org/components">组件</a>
   ·
-  <a href="https://forgeui.org/blocks">页面组件</a>
+  <a href="https://www.forgeui.org/blocks">页面组件</a>
   ·
-  <a href="https://forgeui.org/templates">模板</a>
+  <a href="https://www.forgeui.org/templates">模板</a>
 </p>
 
 <p align="center">
@@ -88,20 +88,20 @@ pnpm add -D tailwindcss @tailwindcss/postcss
 import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
 ```
 
-更细的安装说明见[文档站的快速开始](https://forgeui.org/docs/quick-start)。
+更细的安装说明见[文档站的快速开始](https://www.forgeui.org/docs/quick-start)。
 
 ### 页面组件
 
-页面组件是复制进项目的源码，不在 core 包里。在[页面组件目录](https://forgeui.org/blocks)挑一个，用 shadcn 安装：
+页面组件是复制进项目的源码，不在 core 包里。在[页面组件目录](https://www.forgeui.org/blocks)挑一个，用 shadcn 安装：
 
 ```bash
-npx shadcn@latest add https://forgeui.org/r/kanban-board.json
+npx shadcn@latest add https://www.forgeui.org/r/kanban-board.json
 ```
 
 也可以在项目的 `components.json` 里登记命名空间，之后按名字安装：
 
 ```json
-{ "registries": { "@forge": "https://forgeui.org/r/{name}.json" } }
+{ "registries": { "@forge": "https://www.forgeui.org/r/{name}.json" } }
 ```
 
 ## 生态
@@ -110,8 +110,8 @@ npx shadcn@latest add https://forgeui.org/r/kanban-board.json
 | --- | --- | --- |
 | `@forge-ui-official/core` | 组件、设计 token、`AppLayout` | `pnpm add @forge-ui-official/core` |
 | [Forge Starter](https://github.com/forge-ui/forge-starter) | 后台脚手架：登录、样板模块、加页面 | `git clone` 后 `pnpm dev` |
-| [页面组件](https://forgeui.org/blocks) | 70 个可复制的整页源码 | `npx shadcn@latest add https://forgeui.org/r/<name>.json` |
-| [Forge Skill](https://forgeui.org/docs/ui-for-agents) 与 [MCP](https://forgeui.org/docs/mcp) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | `curl -fsSL https://forgeui.org/setup.sh \| bash` |
+| [页面组件](https://www.forgeui.org/blocks) | 70 个可复制的整页源码 | `npx shadcn@latest add https://www.forgeui.org/r/<name>.json` |
+| [Forge Skill](https://www.forgeui.org/docs/ui-for-agents) 与 [MCP](https://www.forgeui.org/docs/mcp) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | `curl -fsSL https://www.forgeui.org/setup.sh \| bash` |
 | [Forge Design Extension](https://github.com/forge-ui/forge-design-extension) | 在真实 Chrome 页面上点选、放置组件并改界面 | 独立仓库的 README |
 
 Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库，也不替代 Starter。Starter 负责把后台跑起来，Design Extension 负责改已经跑起来的页面：点中要改的位置，侧边栏里的本地模型带着真实 selector 改文案、样式和交互，或把 Forge 组件写入源码；也可以从组件盘拖到锚点旁，确认后再写入。页面内容留在本机，不经过云端。安装方式是启动本机桥接，在 Chrome 里加载 `extension/`。
@@ -123,61 +123,61 @@ Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库�
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="https://forgeui.org/templates/ecommerce/products"><img alt="电商后台的商品列表" src="./public/images/readme/ecommerce.png"></a><br>
-      <a href="https://forgeui.org/templates/ecommerce/products">电商后台</a>
+      <a href="https://www.forgeui.org/templates/ecommerce/products"><img alt="电商后台的商品列表" src="./public/images/readme/ecommerce.png"></a><br>
+      <a href="https://www.forgeui.org/templates/ecommerce/products">电商后台</a>
     </td>
     <td width="50%" align="center">
-      <a href="https://forgeui.org/templates/dashboards/ecommerce-1"><img alt="电商仪表盘，含收入、订单和地图" src="./public/images/readme/dashboard.png"></a><br>
-      <a href="https://forgeui.org/templates/dashboards/ecommerce-1">仪表盘</a>
+      <a href="https://www.forgeui.org/templates/dashboards/ecommerce-1"><img alt="电商仪表盘，含收入、订单和地图" src="./public/images/readme/dashboard.png"></a><br>
+      <a href="https://www.forgeui.org/templates/dashboards/ecommerce-1">仪表盘</a>
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="https://forgeui.org/cases/button-link"><img alt="组件页：按钮的效果与案例，可以直接操作" src="./public/images/readme/components.png"></a><br>
-      <a href="https://forgeui.org/cases/button-link">组件</a>
+      <a href="https://www.forgeui.org/cases/button-link"><img alt="组件页：按钮的效果与案例，可以直接操作" src="./public/images/readme/components.png"></a><br>
+      <a href="https://www.forgeui.org/cases/button-link">组件</a>
     </td>
     <td width="50%" align="center">
-      <a href="https://forgeui.org/templates/agent"><img alt="智能体对话页，含思考过程、流式回答和输入栏" src="./public/images/readme/agent.png"></a><br>
-      <a href="https://forgeui.org/templates/agent">智能体</a>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <a href="https://forgeui.org/blocks"><img alt="页面组件目录：按看板首屏、AI 与智能体、数据列表等分类的 70 个页面组件" src="./public/images/readme/blocks.png" width="1200"></a><br>
-      <a href="https://forgeui.org/blocks">页面组件</a>
+      <a href="https://www.forgeui.org/templates/agent"><img alt="智能体对话页，含思考过程、流式回答和输入栏" src="./public/images/readme/agent.png"></a><br>
+      <a href="https://www.forgeui.org/templates/agent">智能体</a>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="center">
-      <a href="https://forgeui.org/templates/finance-template/wealth"><img alt="暗色主题的财务后台，含资产、支出和交易" src="./public/images/readme/dark.png" width="1200"></a><br>
-      <a href="https://forgeui.org/templates/finance-template/wealth">暗色主题 · 财务后台</a>
+      <a href="https://www.forgeui.org/blocks"><img alt="页面组件目录：按看板首屏、AI 与智能体、数据列表等分类的 70 个页面组件" src="./public/images/readme/blocks.png" width="1200"></a><br>
+      <a href="https://www.forgeui.org/blocks">页面组件</a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <a href="https://www.forgeui.org/templates/finance-template/wealth"><img alt="暗色主题的财务后台，含资产、支出和交易" src="./public/images/readme/dark.png" width="1200"></a><br>
+      <a href="https://www.forgeui.org/templates/finance-template/wealth">暗色主题 · 财务后台</a>
     </td>
   </tr>
 </table>
 
-更多整页示例在[模板目录](https://forgeui.org/templates)：项目管理、客户关系、仪表盘外壳，以及 10 个已填数据的控制台。
+更多整页示例在[模板目录](https://www.forgeui.org/templates)：项目管理、客户关系、仪表盘外壳，以及 10 个已填数据的控制台。
 
 ## 给 AI 编码助手
 
 一条命令装好 Forge Skill 和只读 MCP 服务器，自动识别本机的 Claude Code、Cursor、Codex：
 
 ```bash
-curl -fsSL https://forgeui.org/setup.sh | bash
+curl -fsSL https://www.forgeui.org/setup.sh | bash
 
 # 只装到当前项目，并放好 DESIGN.md
-curl -fsSL https://forgeui.org/setup.sh | bash -s -- --scope project --design
+curl -fsSL https://www.forgeui.org/setup.sh | bash -s -- --scope project --design
 
 # 检查是否装好
-curl -fsSL https://forgeui.org/setup.sh | bash -s -- --check
+curl -fsSL https://www.forgeui.org/setup.sh | bash -s -- --check
 ```
 
 | | 用途 |
 | --- | --- |
-| [MCP 服务器](https://forgeui.org/docs/mcp) `https://forgeui.org/api/mcp` | `recommend` 按一句需求给出模板、页面组件和组件；`search`、`get_component`、`get_block`、`get_tokens` 查细节；`check_code` 检查代码 |
-| [页面检查](https://forgeui.org/docs/check) | `curl -fsSL https://forgeui.org/forge-check.mjs -o forge-check.mjs && node forge-check.mjs src`，按审计清单报行号和改法，可放进 CI |
-| [DESIGN.md](https://forgeui.org/DESIGN.md) | 视觉规则，遵循 google-labs-code/design.md 格式 |
-| [llms.txt](https://forgeui.org/llms.txt) | 文档索引；每个文档、组件、页面组件页面在地址后加 `.md` 就是 Markdown |
-| [AGENTS.md](https://forgeui.org/docs/agents-md) | 不装插件时放在项目根目录的使用规则 |
+| [MCP 服务器](https://www.forgeui.org/docs/mcp) `https://www.forgeui.org/api/mcp` | `recommend` 按一句需求给出模板、页面组件和组件；`search`、`get_component`、`get_block`、`get_tokens` 查细节；`check_code` 检查代码 |
+| [页面检查](https://www.forgeui.org/docs/check) | `curl -fsSL https://www.forgeui.org/forge-check.mjs -o forge-check.mjs && node forge-check.mjs src`，按审计清单报行号和改法，可放进 CI |
+| [DESIGN.md](https://www.forgeui.org/DESIGN.md) | 视觉规则，遵循 google-labs-code/design.md 格式 |
+| [llms.txt](https://www.forgeui.org/llms.txt) | 文档索引；每个文档、组件、页面组件页面在地址后加 `.md` 就是 Markdown |
+| [AGENTS.md](https://www.forgeui.org/docs/agents-md) | 不装插件时放在项目根目录的使用规则 |
 
 仓库内给 AI 读的清单：[`docs/for-agents/README.md`](./docs/for-agents/README.md)（入口）、[`components.md`](./docs/for-agents/components.md)（组件用途）、[`inventory.json`](./docs/for-agents/inventory.json)（全量导出）。
 

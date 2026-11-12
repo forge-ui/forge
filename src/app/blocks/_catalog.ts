@@ -10,7 +10,7 @@ export const categoryItems = categories.map(category => ({
 }));
 
 export function installationCommand(name: string) {
-  return `npx shadcn@latest add https://forgeui.org/r/${name}.json`;
+  return `npx shadcn@latest add https://www.forgeui.org/r/${name}.json`;
 }
 
 export function formatPropType(type: string) {
