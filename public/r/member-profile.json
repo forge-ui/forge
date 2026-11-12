@@ -5,7 +5,7 @@
   "title": "成员详情",
   "description": "成员档案卡、任务统计，以及参与项目、手头任务与动态分页签。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "详情页",
@@ -34,7 +34,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "DataTable",
         "Panel",

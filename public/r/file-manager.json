@@ -5,7 +5,7 @@
   "title": "文件管理",
   "description": "按类型筛选的文件夹与文件卡片墙，支持搜索、多选、上传与删除确认。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "协作与项目",
@@ -53,7 +53,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "ButtonGroup",

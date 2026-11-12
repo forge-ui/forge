@@ -1,6 +1,6 @@
 # Forge UI
 
-> Forge 是面向中文后台的 React 组件库 @forge-ui-official/core@0.8.0（Next.js、React 19、Tailwind v4）。包含组件、70 个可复制的页面组件（blocks）、多页业务模板和 Next.js 起点仓库，以及给编码助手用的 Skill、MCP 服务器和 DESIGN.md。
+> Forge 是面向中文后台的 React 组件库 @forge-ui-official/core@0.8.1（Next.js、React 19、Tailwind v4）。包含组件、70 个可复制的页面组件（blocks）、多页业务模板和 Next.js 起点仓库，以及给编码助手用的 Skill、MCP 服务器和 DESIGN.md。
 
 使用要点：
 - 先找最接近的模板页面（Screen）或页面组件（Block），再查组件 API：Screen → Blocks → Components。

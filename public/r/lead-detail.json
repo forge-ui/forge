@@ -5,7 +5,7 @@
   "title": "线索详情",
   "description": "线索名片与基础信息，按类型筛选的跟进动态，以及添加跟进记录弹窗。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "详情页",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "Modal",

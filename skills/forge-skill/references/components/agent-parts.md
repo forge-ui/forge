@@ -1,6 +1,6 @@
 # agent-parts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.8.0**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.8.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessagePart (type)
@@ -20,7 +20,7 @@ export type AgentMessagePart =
 ## AgentParts (value)
 
 ```ts
-({ parts, status, renderTool, onOpenFile, locale, className }: AgentPartsProps) => JSX.Element
+({ parts, status, renderTool, onOpenFile, onToolApproval, locale, className }: AgentPartsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -29,6 +29,7 @@ export type AgentMessagePart =
 | `status` | 否 | `"error" \| "streaming" \| "ready" \| "submitted" \| undefined` | `useChat` status; "streaming" keeps the last text part animating. |
 | `renderTool` | 否 | `Record<string, (part: AgentToolPart) => ReactNode> \| undefined` | Generative UI: render a tool result with your own component, keyed by tool name. Return null to fall back. |
 | `onOpenFile` | 否 | `((part: { url: string; filename?: string; mediaType: string; }) => void) \| undefined` |  |
+| `onToolApproval` | 否 | `((response: AgentToolApprovalResponse) => void) \| undefined` | Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. |
 | `locale` | 否 | `"zh" \| "en" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -42,6 +43,8 @@ export type AgentPartsProps = {
   /** Generative UI: render a tool result with your own component, keyed by tool name. Return null to fall back. */
   renderTool?: Record<string, (part: AgentToolPart) => ReactNode>;
   onOpenFile?: (part: { url: string; filename?: string; mediaType: string }) => void;
+  /** Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. */
+  onToolApproval?: (response: AgentToolApprovalResponse) => void;
   locale?: "zh" | "en";
   className?: string;
 };
@@ -58,11 +61,12 @@ export type AgentToolPart = {
   input?: unknown;
   output?: unknown;
   errorText?: string;
+  approval?: AgentToolApproval;
 };
 ```
 
 ## AgentToolState (type)
 
 ```ts
-export type AgentToolState = "input-streaming" | "input-available" | "output-available" | "output-error";
+export type AgentToolState = "input-streaming" | "input-available" | "approval-requested" | "approval-responded" | "output-available" | "output-error" | "output-denied";
 ```

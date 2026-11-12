@@ -5,7 +5,7 @@
   "title": "通知设置",
   "description": "按事件和渠道（站内、邮件、飞书）开关通知，配置邮件摘要与夜间免打扰。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.0"
+    "@forge-ui-official/core@^0.8.1"
   ],
   "meta": {
     "category": "设置",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.0",
+      "version": "^0.8.1",
       "components": [
         "Button",
         "SelectOption",

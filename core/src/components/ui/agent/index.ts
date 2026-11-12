@@ -39,4 +39,4 @@ export { Conversation, AgentMessage, MessageActions, PromptSuggestions, Artifact
 export type { ConversationProps, AgentMessageRole, AgentMessageProps, MessageFeedback, MessageActionsProps, PromptSuggestionsProps, ArtifactKind, ArtifactStatus, ArtifactCardProps } from "./agent-conversation";
 
 export { AgentParts } from "./agent-parts";
-export type { AgentToolState, AgentToolPart, AgentMessagePart, AgentPartsProps } from "./agent-parts";
+export type { AgentToolState, AgentToolPart, AgentToolApproval, AgentToolApprovalResponse, AgentMessagePart, AgentPartsProps } from "./agent-parts";

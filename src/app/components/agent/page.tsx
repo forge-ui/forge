@@ -18,7 +18,7 @@ import {
   AgentFlowchart,
 } from "@forge-ui-official/core";
 import { StreamingAnswerDemo } from "../../cases/agent/_streaming-demo";
-import { ArtifactDemo, ConversationDemo, PartsDemo } from "./_conversation-demo";
+import { ApprovalPartsDemo, ArtifactDemo, ConversationDemo, PartsDemo } from "./_conversation-demo";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -72,6 +72,11 @@ const CODE_PARTS = `// AI SDK v5：const { messages, status } = useChat();
   </AgentMessage>
 ))}`;
 
+const CODE_APPROVAL_PARTS = `// AI SDK 7：服务端 streamText({ toolApproval: { createPurchaseOrder: "user-approval" } })
+const { messages, status, addToolApprovalResponse } = useChat();
+
+<AgentParts parts={message.parts} status={status} onToolApproval={addToolApprovalResponse} />`;
+
 const CODE_ARTIFACT = `<ArtifactCard title="十一月运营周报.md" kind="document" meta="Markdown · 4.2 KB" onOpen={open} onDownload={download} />
 <ArtifactCard title="周报.md" status="generating" />
 <ArtifactCard title="渠道对账.xlsx" kind="table" status="error" />`;
@@ -110,6 +115,7 @@ const PARTS_ROWS: ApiTableRow[] = [
   { attr: "status", type: "'submitted' | 'streaming' | 'ready' | 'error'", defaultValue: "'ready'", description: "useChat 的 status；streaming 时最后一段文本逐字显示。" },
   { attr: "renderTool", type: "Record<string, (part: AgentToolPart) => ReactNode>", defaultValue: "{}", description: "按工具名把完成的工具调用换成自己的组件（生成式界面）；返回 null 时仍显示工具记录。" },
   { attr: "onOpenFile", type: "(file: { url; filename?; mediaType }) => void", defaultValue: "—", description: "点产物卡片的打开。" },
+  { attr: "onToolApproval", type: "(response: { id; approved; reason? }) => void", defaultValue: "—", description: "工具需要确认（AI SDK 6 起的 approval-requested）时显示允许、拒绝；直接传 useChat 的 addToolApprovalResponse。不传时只显示“等待确认”。被拒绝的调用在工具组里标为已停止。" },
 ];
 
 const THINKING_PROPS: ApiTableRow[] = [
@@ -503,6 +509,9 @@ export default function AgentSpecPage() {
         </DocExample>
         <DocExample id="agentparts" title="AgentParts" summary="一条 AI SDK 消息里的思考、两次工具调用、回答、来源和文件；打开开关后库存查询换成自定义卡片。" code={CODE_PARTS} minHeight={420}>
           <PartsDemo />
+        </DocExample>
+        <DocExample id="toolapproval" title="AgentParts 工具确认" summary="会改数据的工具先让用户允许或拒绝，再继续执行。" code={CODE_APPROVAL_PARTS} minHeight={300}>
+          <ApprovalPartsDemo />
         </DocExample>
         <DocExample id="artifactcard" title="ArtifactCard" summary="生成中、已完成和失败三种状态。" code={CODE_ARTIFACT} minHeight={260}>
           <ArtifactDemo />
