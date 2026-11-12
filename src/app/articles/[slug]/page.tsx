@@ -31,7 +31,7 @@ export default async function ArticlePage({ params }: Props) {
   };
   const headings = articleHeadings(article);
   return (
-    <div className="mx-auto grid w-full max-w-[44rem] gap-16 lg:max-w-[62rem] lg:grid-cols-[13rem_minmax(0,44rem)]">
+    <div className="mx-auto grid w-full max-w-[44rem] gap-16 lg:max-w-[66rem] lg:grid-cols-[13rem_minmax(0,44rem)] lg:gap-24">
       <aside className="hidden lg:block">
         <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
           <TableOfContents headings={headings} />

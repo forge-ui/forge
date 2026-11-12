@@ -21,7 +21,7 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
   );
 
   return (
-    <nav aria-label="本文目录" className="flex flex-col gap-3 text-sm">
+    <nav aria-label="本文目录" className="flex flex-col gap-4 text-sm">
       <p className="font-semibold text-fg-black">本文目录</p>
       <ul className="flex flex-col border-l border-fg-grey-200">
         {headings.map(heading => (
@@ -29,7 +29,7 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
             <a
               href={`#${heading.id}`}
               aria-current={heading.id === activeId ? "location" : undefined}
-              className={`-ml-px block border-l py-1.5 leading-5 transition-colors ${heading.level === 3 ? "pl-7" : "pl-4"} ${heading.id === activeId ? "border-fg-black font-medium text-fg-black" : "border-transparent text-fg-grey-700 hover:text-fg-black"}`}
+              className={`-ml-px block border-l py-2 leading-5 transition-colors ${heading.level === 3 ? "pl-7" : "pl-4"} ${heading.id === activeId ? "border-fg-black font-medium text-fg-black" : "border-transparent text-fg-grey-700 hover:text-fg-black"}`}
             >
               {heading.text}
             </a>
