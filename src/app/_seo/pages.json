@@ -19,6 +19,10 @@
     "title": "生成式 UI 是什么，React 里怎么实现",
     "description": "生成式 UI 让大模型的回答不只是文字，而是可以操作的界面。本文讲清三种实现方式：Markdown、工具调用加预制组件、模型生成界面描述（A2UI、json-render），并用 AI SDK 7 和 Forge 演示最常用的工具调用方案。"
   },
+  "/articles/react-ai-chat-ui": {
+    "title": "用 React 和 AI SDK 做 AI 对话界面：消息、流式回答、工具调用与确认",
+    "description": "给后台加一个 AI 助手，界面要处理的不只是一问一答：流式回答、思考过程、工具调用、需要用户确认的操作、生成的文件。本文用 AI SDK 7 和 Forge 的对话组件，一步步搭出一个能用的 AI 对话界面。"
+  },
   "/articles/react-ui-library-2026": {
     "title": "2026 年 React 组件库怎么选：shadcn/ui、Ant Design、MUI、HeroUI 对比",
     "description": "按样式方案、后台组件完整度、AI 编码助手友好度和团队技术栈，对比 shadcn/ui、Ant Design 6、MUI 9、HeroUI 3、Mantine、TDesign、Arco Design 和 Forge，给出不同场景下的选择建议。"
