@@ -2,11 +2,11 @@
 
 Package: @forge-ui-official/core@0.8.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 428e9876f7f80636e110d00c9aad1f1fea0a0e190387186af892767196effe79
+Source fingerprint: cc4ff2955288456e780a3451d51de164f26ef05822146a23b676d21bd92c550f
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
+Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
 ## Public exports (507, values and types distinguished)
 
