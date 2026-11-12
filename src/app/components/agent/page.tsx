@@ -263,7 +263,8 @@ export default function AgentSpecPage() {
 
       <p className="text-sm leading-6 text-fg-grey-700">
         消息输入、智能体提及、附件和生成控制请查看
-        <Link href="/components/chat-input-bar" className="ml-1 text-fg-blue underline underline-offset-4">消息输入栏</Link>。
+        <Link href="/components/chat-input-bar" className="ml-1 text-fg-blue underline underline-offset-4">消息输入栏</Link>；想先看整体效果和接入 AI SDK 的方式，见
+        <Link href="/ai-chat" className="ml-1 text-fg-blue underline underline-offset-4">AI 对话组件介绍</Link>。
       </p>
 
       <Section title="用法" description="从已经展开的思考步骤开始。">

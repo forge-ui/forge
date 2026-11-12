@@ -3,7 +3,7 @@ export const LANGUAGE_PAIRS: ReadonlyArray<readonly [zh: string, en: string]> = 
   ["/", "/en"],
   ["/docs/ui-for-agents", "/en/frontend-design-skill"],
   ["/templates", "/en/admin-templates"],
-  ["/components/agent", "/en/ai-chat-components"],
+  ["/ai-chat", "/en/ai-chat-components"],
 ];
 
 export const isEnglishPath = (path: string) => path === "/en" || path.startsWith("/en/");

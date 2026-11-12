@@ -3,6 +3,10 @@
     "title": "Forge UI · 中文后台 React 组件库",
     "description": "面向中文后台的 React 组件库：500 多个组件、70 个可复制的页面组件和整套后台模板，配套 Skill、MCP 和页面检查，人和编码助手按同一套规范做出一致的界面。"
   },
+  "/ai-chat": {
+    "title": "React AI 对话组件：接入 AI SDK 的聊天界面",
+    "description": "Forge 的 React AI 对话组件：消息、输入栏、推荐提问、产物卡片和 AgentParts，直接渲染 AI SDK useChat 的流式回答、思考过程和工具调用，支持 renderTool 生成式界面、中英文和深色模式。"
+  },
   "/articles": {
     "title": "文章",
     "description": "用 Forge 搭中文后台、让 Claude Code 和 Codex 按规范写页面、给产品加 AI 对话界面的实践文章。"

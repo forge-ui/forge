@@ -21,6 +21,7 @@ const STATIC = {
   "/en/frontend-design-skill": { lang: "en", title: "Frontend Design Skill for Claude Code, Codex and Cursor", description: "Install the Forge frontend design skill in one command. Claude Code, Codex and Cursor learn which components to use, how to lay out admin pages and how to check their own output. In our 20-task eval, pass rate went from 90% to 100%." },
   "/en/admin-templates": { lang: "en", title: "React Admin Templates for Next.js and shadcn", description: "Free, MIT-licensed React admin dashboard templates built on Next.js 16, React 19 and Tailwind v4: CRM, e-commerce, finance, projects, task board and an AI agent workspace. 70 page blocks install with the shadcn CLI." },
   "/en/ai-chat-components": { lang: "en", title: "React AI Chat Components for the AI SDK", description: "Conversation, message, actions, suggestions and artifact components for React, plus AgentParts that renders AI SDK useChat messages: streaming markdown, reasoning, grouped tool calls, sources and files." },
+  "/ai-chat": { title: "React AI 对话组件：接入 AI SDK 的聊天界面", description: "Forge 的 React AI 对话组件：消息、输入栏、推荐提问、产物卡片和 AgentParts，直接渲染 AI SDK useChat 的流式回答、思考过程和工具调用，支持 renderTool 生成式界面、中英文和深色模式。" },
   "/articles": { title: "文章", description: "用 Forge 搭中文后台、让 Claude Code 和 Codex 按规范写页面、给产品加 AI 对话界面的实践文章。" },
   "/guides": { title: "使用指南", description: "用 Forge UI 搭后台的分场景指南：看板、列表、详情、表单、设置、反馈和让编码助手按规范生成页面。" },
   "/components/menu-sections": { title: "应用布局 · 用法与参数", description: "AppLayout 的侧栏菜单分组：主菜单、分组标题、折叠和多级菜单的写法与参数。" },
