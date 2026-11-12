@@ -2,7 +2,8 @@
 title: 2026 年 React 组件库怎么选：shadcn/ui、Ant Design、MUI、HeroUI 对比
 description: 按样式方案、后台组件完整度、AI 编码助手友好度和团队技术栈，对比 shadcn/ui、Ant Design 6、MUI 9、HeroUI 3、Mantine、TDesign、Arco Design 和 Forge，给出不同场景下的选择建议。
 date: 2026-11-12
-tags: React 组件库, shadcn/ui, Ant Design, MUI, HeroUI, 后台管理系统, Tailwind CSS
+keywords: React 组件库, shadcn/ui, Ant Design, MUI, HeroUI, 后台管理系统, Tailwind CSS
+tags: 组件库选型, 后台页面
 ---
 
 2026 年选 React 组件库，和三年前相比多了两个变量：一是 Tailwind CSS v4 和 React 19 成了新项目的默认组合，二是越来越多的页面由 Claude Code、Codex、Cursor 这类编码助手写出来。组件库不只要人用得顺手，还要让 AI 用得对。

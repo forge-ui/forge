@@ -2,7 +2,8 @@
 title: 用 Claude Code 写后台页面：从一句话需求到通过规范检查
 description: AI 写的后台页面往往能跑、但不像同一个产品。本文用 Forge 的 Skill、MCP 和页面检查，演示 Claude Code 从一句中文需求生成订单列表页，并把颜色、组件和交互都收进同一套规范。
 date: 2026-11-12
-tags: Claude Code, AI 写前端, vibe coding, 后台页面, 前端 Skill
+keywords: Claude Code, AI 写前端, vibe coding, 后台页面, 前端 Skill
+tags: Claude Code, 前端 Skill, 后台页面
 ---
 
 让 Claude Code、Codex 或 Cursor 写一个后台页面，现在几分钟就能跑起来。问题通常出在第二个、第十个页面：按钮圆角不一样，表格有的自己画、有的用组件，状态颜色每页一套，弹窗按 Esc 有的能关、有的不能。单看每页都“能用”，放在一起却不像同一个产品。

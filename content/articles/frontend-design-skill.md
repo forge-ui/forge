@@ -2,7 +2,8 @@
 title: 前端设计 Skill 怎么选：通用审美、组件库规范与团队自写
 description: Claude Code、Codex、Cursor 都支持 Skill。前端设计类 Skill 大致分三种：通用审美、组件库自带规范、团队自己写。本文讲清它们的区别、怎么判断一个 Skill 好不好，以及怎么组合使用。
 date: 2026-11-12
-tags: 前端 Skill, 前端设计 Skill, Claude Code Skill, frontend design skill, Agent Skills
+keywords: 前端 Skill, 前端设计 Skill, Claude Code Skill, frontend design skill, Agent Skills
+tags: 前端 Skill, Claude Code
 ---
 
 Skill 是一份放在编码助手 skills 目录里的说明书：一个 `SKILL.md` 加上若干参考文档和脚本。和每次手写提示词不同，Skill 会被助手按需自动读取，内容也能随项目一起维护。Claude Code、Codex、Cursor 都支持这种格式（[Agent Skills 规范](https://agentskills.io/home)）。
