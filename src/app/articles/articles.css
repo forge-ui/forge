@@ -33,5 +33,5 @@
 .article-anchor { margin-left: 0.4em; font-weight: 400; text-decoration: none; color: var(--color-fg-grey-400); opacity: 0; transition: opacity 0.15s; }
 .article-prose :where(h2, h3):hover .article-anchor, .article-anchor:focus-visible { opacity: 1; }
 
-.article-tag { display: inline-flex; align-items: center; border-radius: 6px; padding: 0.125rem 0.625rem; font-size: 0.875rem; font-weight: 600; line-height: 1.5rem; background: var(--fg-black-fill, var(--color-fg-black)); color: #fff; transition: opacity 0.15s; }
-.article-tag:hover { opacity: 0.8; }
+.article-tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 0.125rem 0.75rem; font-size: 0.8125rem; font-weight: 500; line-height: 1.5rem; background: var(--color-fg-grey-100); color: var(--color-fg-grey-900); transition: background-color 0.15s; }
+.article-tag:hover { background: var(--color-fg-grey-200); color: var(--color-fg-black); }

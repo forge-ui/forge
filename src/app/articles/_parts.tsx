@@ -16,17 +16,13 @@ export function TagLink({ name, count }: { name: string; count?: number }) {
 }
 
 export function PostItem({ article }: { article: Article }) {
-  const href = `/articles/${article.slug}`;
   return (
-    <li className="flex flex-col gap-2">
-      <h2 className="text-xl font-semibold leading-snug text-fg-black">
-        <Link href={href} className="hover:underline hover:underline-offset-4">{article.title}</Link>
-      </h2>
-      <p className="leading-7 text-fg-grey-700">
-        {article.description}
-        <Link href={href} className="ml-2 whitespace-nowrap text-fg-black underline underline-offset-4">阅读全文 →</Link>
-      </p>
-      <time dateTime={article.date} className="text-sm text-fg-grey-700">{formatDate(article.date)}</time>
+    <li className="border-t border-fg-grey-200 py-10 first:border-t-0 first:pt-0">
+      <Link href={`/articles/${article.slug}`} className="group flex flex-col gap-3">
+        <time dateTime={article.date} className="text-sm text-fg-grey-700">{formatDate(article.date)}</time>
+        <h2 className="text-[1.375rem] font-semibold leading-snug text-fg-black group-hover:underline group-hover:underline-offset-4">{article.title}</h2>
+        <p className="line-clamp-2 leading-7 text-fg-grey-700">{article.description}</p>
+      </Link>
     </li>
   );
 }

@@ -26,12 +26,12 @@ export default async function TagPage({ params }: Props) {
   const tag = await findTag(params);
   if (!tag) notFound();
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-16">
       <header className="flex items-start gap-3">
         <h1 className="article-title grow">标签：{tag.name}</h1>
         <Link href="/articles" className="mt-3 shrink-0 text-sm text-fg-grey-700 underline underline-offset-4 hover:text-fg-black">全部文章</Link>
       </header>
-      <ul className="flex flex-col gap-10">
+      <ul className="flex flex-col">
         {listArticles().filter(article => article.tags.includes(tag.name)).map(article => <PostItem key={article.slug} article={article} />)}
       </ul>
     </div>
