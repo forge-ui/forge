@@ -8,10 +8,11 @@ import { useEffect, useId, useRef, useState } from "react";
  * Only Chromium renders SVG filters in backdrop-filter, so other browsers keep the plain frosted
  * look from tokens.css.
  */
+// Channel values, not palette colors: red carries the x offset and blue the y offset, 128 is neutral.
 function displacementMap(width: number, height: number) {
   const radius = height / 2;
   const edge = Math.max(4, Math.round(height * 0.28));
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><defs><linearGradient id="r" x1="0" x2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#f00"/></linearGradient><linearGradient id="b" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#00f"/></linearGradient><filter id="s"><feGaussianBlur stdDeviation="${edge / 2}"/></filter></defs><rect width="${width}" height="${height}" fill="#000"/><rect width="${width}" height="${height}" rx="${radius}" fill="url(#r)"/><rect width="${width}" height="${height}" rx="${radius}" fill="url(#b)" style="mix-blend-mode:screen"/><rect x="${edge}" y="${edge}" width="${Math.max(0, width - edge * 2)}" height="${Math.max(0, height - edge * 2)}" rx="${Math.max(0, radius - edge)}" fill="rgb(128,128,128)" filter="url(#s)"/></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><defs><linearGradient id="r" x1="0" x2="1"><stop offset="0" stop-color="rgb(0,0,0)"/><stop offset="1" stop-color="rgb(255,0,0)"/></linearGradient><linearGradient id="b" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgb(0,0,0)"/><stop offset="1" stop-color="rgb(0,0,255)"/></linearGradient><filter id="s"><feGaussianBlur stdDeviation="${edge / 2}"/></filter></defs><rect width="${width}" height="${height}" fill="rgb(0,0,0)"/><rect width="${width}" height="${height}" rx="${radius}" fill="url(#r)"/><rect width="${width}" height="${height}" rx="${radius}" fill="url(#b)" style="mix-blend-mode:screen"/><rect x="${edge}" y="${edge}" width="${Math.max(0, width - edge * 2)}" height="${Math.max(0, height - edge * 2)}" rx="${Math.max(0, radius - edge)}" fill="rgb(128,128,128)" filter="url(#s)"/></svg>`;
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
