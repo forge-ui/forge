@@ -1,0 +1,37 @@
+/* Docs: soft grey page, larger body text, numbered steps on a rule, scrollbars only while scrolling. */
+.docs-ui { background: var(--color-fg-grey-50); color: var(--color-fg-black); font-size: 16px; }
+
+/* Scrollbars stay invisible until the page or panel is scrolled or hovered. */
+html:has(.docs-ui) { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+html:has(.docs-ui)[data-scrolling] { scrollbar-color: var(--color-fg-grey-300) transparent; }
+.docs-scroll { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.docs-scroll:hover, html[data-scrolling] .docs-scroll { scrollbar-color: var(--color-fg-grey-300) transparent; }
+html:has(.docs-ui)::-webkit-scrollbar, .docs-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+html:has(.docs-ui)::-webkit-scrollbar-thumb, .docs-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+html:has(.docs-ui)[data-scrolling]::-webkit-scrollbar-thumb, .docs-scroll:hover::-webkit-scrollbar-thumb, html[data-scrolling] .docs-scroll::-webkit-scrollbar-thumb { background-color: var(--color-fg-grey-300); }
+
+.docs-steps { counter-reset: docs-step; list-style: none; }
+.docs-step { counter-increment: docs-step; }
+.docs-step::before {
+  content: counter(docs-step);
+  position: absolute;
+  left: calc(-2rem - 16px);
+  top: 0;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--color-fg-grey-200);
+  background: var(--color-fg-grey-50);
+  font-size: 14px;
+  color: var(--color-fg-grey-900);
+}
+
+.docs-ui :not(pre) > code { border: 1px solid var(--color-fg-grey-200); border-radius: 6px; background: var(--color-fg-grey-100); padding: 0.1em 0.35em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85em; }
+.docs-ui .prose-link { color: var(--color-fg-black); font-weight: 500; text-decoration: underline; text-decoration-color: var(--color-fg-grey-300); text-underline-offset: 4px; }
+.docs-ui .prose-link:hover { text-decoration-color: currentColor; }
+/* Body copy: 16px, near-black, slightly heavier than regular so Manrope does not read thin. */
+.docs-ui .docs-prose { font-size: 16px; line-height: 1.75; color: color-mix(in srgb, var(--color-fg-black) 85%, transparent); }
+.docs-ui article :is(p, li) { font-weight: 450; }

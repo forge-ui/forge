@@ -26,7 +26,7 @@ export function PromptBlock({ content }: { content: string }) {
   const showCollapsed = collapsible && !expanded;
 
   return (
-    <div className="relative overflow-hidden rounded-xl border border-fg-grey-200 bg-background">
+    <div className="relative overflow-hidden rounded-2xl border border-fg-grey-200 bg-fg-grey-100/60">
       <button
         type="button"
         onClick={handleCopy}
@@ -61,7 +61,7 @@ export function PromptBlock({ content }: { content: string }) {
 
         {showCollapsed && (
           <>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/85 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-fg-grey-100 via-fg-grey-100/85 to-transparent" />
             <button
               type="button"
               onClick={() => setExpanded(true)}

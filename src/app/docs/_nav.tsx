@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
+  AltArrowDownLinear,
   ArrowRightUpLinear,
   DangerTriangleLinear,
   DownloadLinear,
@@ -67,40 +69,51 @@ export const docsNavGroups: NavGroup[] = [
 
 export function DocsNav() {
   const pathname = usePathname();
+  const [closed, setClosed] = useState<Record<string, boolean>>({});
 
   return (
-    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto lg:block">
-      <nav className="flex flex-col gap-10 px-4 py-8">
-        {docsNavGroups.map((g) => (
-          <div key={g.title} className="flex flex-col gap-1.5">
-            <p className="mb-2 px-3 text-base font-bold tracking-fg text-fg-black">
-              {g.title}
-            </p>
-            {g.items.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
-                    active
-                      ? "bg-fg-grey-100 font-bold text-fg-black"
-                      : "font-semibold text-fg-grey-900 hover:bg-background hover:text-fg-black",
-                  )}
-                >
-                  <span className="flex items-center gap-2">
-                    <item.icon size={16} color="currentColor" />
-                    <span>{item.label}</span>
-                  </span>
-                  {item.external && (
-                    <ArrowRightUpLinear size={12} color="#71717A" />
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-        ))}
+    <aside className="docs-scroll sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto lg:block">
+      <nav aria-label="文档导航" className="flex flex-col gap-6 px-4 py-8 text-sm">
+        {docsNavGroups.map((group) => {
+          const open = !closed[group.title];
+          return (
+            <div key={group.title} className="flex flex-col gap-1">
+              <button
+                type="button"
+                aria-expanded={open}
+                onClick={() => setClosed((current) => ({ ...current, [group.title]: open }))}
+                className="flex items-center justify-between rounded-lg px-2 py-1.5 text-left font-medium text-fg-black hover:bg-fg-grey-100"
+              >
+                {group.title}
+                <AltArrowDownLinear size={14} className={cn("text-fg-grey-700 transition-transform", !open && "-rotate-90")} />
+              </button>
+              {open && (
+                <ul className="ml-2 flex flex-col border-l border-fg-grey-200 pl-2">
+                  {group.items.map((item) => {
+                    const active = pathname === item.href;
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          className={cn(
+                            "relative flex items-center justify-between rounded-lg px-2.5 py-1.5 transition-colors",
+                            active
+                              ? "bg-fg-grey-200/70 font-medium text-fg-black before:absolute before:-left-[9px] before:top-1.5 before:bottom-1.5 before:w-px before:bg-fg-black"
+                              : "text-fg-grey-700 hover:text-fg-black",
+                          )}
+                        >
+                          {item.label}
+                          {item.external && <ArrowRightUpLinear size={12} className="text-fg-grey-500" />}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+          );
+        })}
       </nav>
     </aside>
   );
