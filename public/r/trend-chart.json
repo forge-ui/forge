@@ -5,7 +5,7 @@
   "title": "趋势图表卡",
   "description": "对比不同周期的业务走势，适用于收入、订单和流量分析。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "图表与指标",
@@ -1506,7 +1506,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "ChartHeader",
         "ChartMetricRow",

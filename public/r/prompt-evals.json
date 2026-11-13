@@ -5,7 +5,7 @@
   "title": "提示词评测",
   "description": "按版本对比通过率、得分、延迟与成本，展示提示词改动和可筛选的测试用例结果。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Button",
         "ButtonGroup",

@@ -5,7 +5,7 @@
   "title": "消息渠道",
   "description": "把智能体接入微信、企业微信、飞书、钉钉和 QQ：渠道入口、智能体与渠道的连接卡片、连接状态，以及填写凭据和绑定智能体的连接弹窗。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Breadcrumbs",
         "Button",

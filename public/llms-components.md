@@ -1,8 +1,8 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.8.1
+Package: @forge-ui-official/core@0.8.2
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: cc4ff2955288456e780a3451d51de164f26ef05822146a23b676d21bd92c550f
+Source fingerprint: 016f8e6d90f185cee01da7da307042db5db3aa4b40da38305299705fb447a36b
 
 ## Adopted rules / 采用规则
 
@@ -524,7 +524,7 @@ Source: skills/forge-skill/references/components/accent-utils.md
 
 # accent-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AccentColor (type)
@@ -570,7 +570,7 @@ Source: skills/forge-skill/references/components/accordion.md
 
 # accordion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Accordion (value)
@@ -609,7 +609,7 @@ Source: skills/forge-skill/references/components/activity-card.md
 
 # activity-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ActivityCard (value)
@@ -641,7 +641,7 @@ Source: skills/forge-skill/references/components/add-member.md
 
 # add-member
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AddMember (value)
@@ -715,7 +715,7 @@ Source: skills/forge-skill/references/components/agent-code-block.md
 
 # agent-code-block
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentCodeBlock (value)
@@ -787,7 +787,7 @@ Source: skills/forge-skill/references/components/agent-conversation.md
 
 # agent-conversation
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-conversation.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-conversation.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessage (value)
@@ -970,7 +970,7 @@ Source: skills/forge-skill/references/components/agent-diff-table.md
 
 # agent-diff-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentDiffChange (type)
@@ -1024,7 +1024,7 @@ Source: skills/forge-skill/references/components/agent-flowchart.md
 
 # agent-flowchart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentFlowchart (value)
@@ -1081,7 +1081,7 @@ Source: skills/forge-skill/references/components/agent-parts.md
 
 # agent-parts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessagePart (type)
@@ -1158,7 +1158,7 @@ Source: skills/forge-skill/references/components/agent-task-rows.md
 
 # agent-task-rows
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentTask (type)
@@ -1209,7 +1209,7 @@ Source: skills/forge-skill/references/components/app-layout.md
 
 # app-layout
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppLayout (value)
@@ -1446,7 +1446,7 @@ Source: skills/forge-skill/references/components/approval-card.md
 
 # approval-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ApprovalCard (value)
@@ -1486,7 +1486,7 @@ Source: skills/forge-skill/references/components/ask-ai.md
 
 # ask-ai
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAi (value)
@@ -1598,7 +1598,7 @@ Source: skills/forge-skill/references/components/ask-ai-fullscreen.md
 
 # ask-ai-fullscreen
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ASK_AI_FS_LAYER_ATTR (value)
@@ -1619,7 +1619,7 @@ Source: skills/forge-skill/references/components/ask-ai-types.md
 
 # ask-ai-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAiLink (type)
@@ -1674,7 +1674,7 @@ Source: skills/forge-skill/references/components/avatar.md
 
 # avatar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Avatar (value)
@@ -1727,7 +1727,7 @@ Source: skills/forge-skill/references/components/badge.md
 
 # badge
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ArtisticIcon (value)
@@ -1851,7 +1851,7 @@ Source: skills/forge-skill/references/components/balance-card.md
 
 # balance-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BalanceCard (value)
@@ -1899,7 +1899,7 @@ Source: skills/forge-skill/references/components/bar-chart.md
 
 # bar-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChart (value)
@@ -1936,7 +1936,7 @@ Source: skills/forge-skill/references/components/bar-chart-stat-card.md
 
 # bar-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChartStatCard (value)
@@ -1989,7 +1989,7 @@ Source: skills/forge-skill/references/components/bar-horizontal-chart.md
 
 # bar-horizontal-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarHorizontalChart (value)
@@ -2022,7 +2022,7 @@ Source: skills/forge-skill/references/components/bar-upside-down-chart.md
 
 # bar-upside-down-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarUpsideDownChart (value)
@@ -2052,7 +2052,7 @@ Source: skills/forge-skill/references/components/breadcrumbs.md
 
 # breadcrumbs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BreadcrumbColor (type)
@@ -2095,7 +2095,7 @@ Source: skills/forge-skill/references/components/bubble-chart.md
 
 # bubble-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BubbleChart (value)
@@ -2116,7 +2116,7 @@ Source: skills/forge-skill/references/components/button.md
 
 # button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Button (value)
@@ -2494,7 +2494,7 @@ Source: skills/forge-skill/references/components/button-group.md
 
 # button-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ButtonGroup (value)
@@ -2547,7 +2547,7 @@ Source: skills/forge-skill/references/components/calendar-card.md
 
 # calendar-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarCard (value)
@@ -2602,7 +2602,7 @@ Source: skills/forge-skill/references/components/calendar-day-cell.md
 
 # calendar-day-cell
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarDayCell (value)
@@ -2633,7 +2633,7 @@ Source: skills/forge-skill/references/components/calendar-week-row.md
 
 # calendar-week-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarWeekRow (value)
@@ -2658,7 +2658,7 @@ Source: skills/forge-skill/references/components/card-utils.md
 
 # card-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ALL_CARD_THEMES (value)
@@ -2972,7 +2972,7 @@ Source: skills/forge-skill/references/components/chart-card.md
 
 # chart-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartCard (value)
@@ -3000,7 +3000,7 @@ Source: skills/forge-skill/references/components/chart-legend-item.md
 
 # chart-legend-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartLegendItem (value)
@@ -3023,7 +3023,7 @@ Source: skills/forge-skill/references/components/chart-list-item.md
 
 # chart-list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartListItem (value)
@@ -3048,7 +3048,7 @@ Source: skills/forge-skill/references/components/chart-stat-footer.md
 
 # chart-stat-footer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartStatFooter (value)
@@ -3068,7 +3068,7 @@ Source: skills/forge-skill/references/components/chart-tooltip.md
 
 # chart-tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartTooltip (value)
@@ -3088,7 +3088,7 @@ Source: skills/forge-skill/references/components/chart-value-row.md
 
 # chart-value-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartValueRow (value)
@@ -3111,7 +3111,7 @@ Source: skills/forge-skill/references/components/chat-bubble.md
 
 # chat-bubble
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatBubble (value)
@@ -3157,7 +3157,7 @@ Source: skills/forge-skill/references/components/chat-input-bar.md
 
 # chat-input-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatInputBar (value)
@@ -3296,7 +3296,7 @@ Source: skills/forge-skill/references/components/chat-interactions.md
 
 # chat-interactions
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatReaction (type)
@@ -3317,7 +3317,7 @@ Source: skills/forge-skill/references/components/checkbox.md
 
 # checkbox
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checkbox (value)
@@ -3935,7 +3935,7 @@ Source: skills/forge-skill/references/components/checklist.md
 
 # checklist
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checklist (value)
@@ -4002,7 +4002,7 @@ Source: skills/forge-skill/references/components/command-search.md
 
 # command-search
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommandSearch (value)
@@ -4048,7 +4048,7 @@ Source: skills/forge-skill/references/components/comment-item.md
 
 # comment-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommentData (type)
@@ -4104,7 +4104,7 @@ Source: skills/forge-skill/references/components/composer-types.md
 
 # composer-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ComposerModel (type)
@@ -4137,7 +4137,7 @@ Source: skills/forge-skill/references/components/confirmation-dialog.md
 
 # confirmation-dialog
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ConfirmationDialog (value)
@@ -4189,7 +4189,7 @@ Source: skills/forge-skill/references/components/contact-item.md
 
 # contact-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContactItem (value)
@@ -4224,7 +4224,7 @@ Source: skills/forge-skill/references/components/context-cards.md
 
 # context-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContextCards (value)
@@ -4261,7 +4261,7 @@ Source: skills/forge-skill/references/components/credit-card.md
 
 # credit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CreditCard (value)
@@ -4295,7 +4295,7 @@ Source: skills/forge-skill/references/components/currency-converter.md
 
 # currency-converter
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CurrencyConverter (value)
@@ -4343,7 +4343,7 @@ Source: skills/forge-skill/references/components/dashboard-charts.md
 
 # dashboard-charts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartHeader (value)
@@ -4479,7 +4479,7 @@ Source: skills/forge-skill/references/components/dashed-half-donut-chart.md
 
 # dashed-half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DashedHalfDonutChart (value)
@@ -4504,7 +4504,7 @@ Source: skills/forge-skill/references/components/data-table.md
 
 # data-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CellActionKey (type)
@@ -4998,7 +4998,7 @@ Source: skills/forge-skill/references/components/datepicker.md
 
 # datepicker
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Datepicker (value)
@@ -5058,7 +5058,7 @@ Source: skills/forge-skill/references/components/debit-card.md
 
 # debit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DebitCard (value)
@@ -5091,7 +5091,7 @@ Source: skills/forge-skill/references/components/donut-chart.md
 
 # donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DonutChart (value)
@@ -5123,7 +5123,7 @@ Source: skills/forge-skill/references/components/drawer.md
 
 # drawer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Drawer (value)
@@ -5162,7 +5162,7 @@ Source: skills/forge-skill/references/components/dropdown-panel.md
 
 # dropdown-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DropdownDivider (value)
@@ -5197,7 +5197,7 @@ Source: skills/forge-skill/references/components/event-card.md
 
 # event-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventCard (value)
@@ -5232,7 +5232,7 @@ Source: skills/forge-skill/references/components/event-tag.md
 
 # event-tag
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventTag (value)
@@ -5279,7 +5279,7 @@ Source: skills/forge-skill/references/components/file-input.md
 
 # file-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-input.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-input.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileInput (value)
@@ -5610,7 +5610,7 @@ Source: skills/forge-skill/references/components/file-upload.md
 
 # file-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileCard (value)
@@ -5691,7 +5691,7 @@ Source: skills/forge-skill/references/components/filter-group.md
 
 # filter-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterGroup (value)
@@ -5775,7 +5775,7 @@ Source: skills/forge-skill/references/components/filter-panel.md
 
 # filter-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterPanel (value)
@@ -5807,7 +5807,7 @@ Source: skills/forge-skill/references/components/filter-trigger.md
 
 # filter-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterTrigger (value)
@@ -5835,7 +5835,7 @@ Source: skills/forge-skill/references/components/folder.md
 
 # folder
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Folder (value)
@@ -5916,7 +5916,7 @@ Source: skills/forge-skill/references/components/folder-float.md
 
 # folder-float
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FolderFloat (value)
@@ -5953,7 +5953,7 @@ Source: skills/forge-skill/references/components/full-calendar.md
 
 # full-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarEvent (type)
@@ -5999,7 +5999,7 @@ Source: skills/forge-skill/references/components/grid.md
 
 # grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Grid (value)
@@ -6647,7 +6647,7 @@ Source: skills/forge-skill/references/components/half-donut-chart.md
 
 # half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HalfDonutChart (value)
@@ -6672,7 +6672,7 @@ Source: skills/forge-skill/references/components/highlight-card.md
 
 # highlight-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HighlightCard (value)
@@ -6714,7 +6714,7 @@ Source: skills/forge-skill/references/components/history-grouped.md
 
 # history-grouped
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryGrouped (value)
@@ -6746,7 +6746,7 @@ Source: skills/forge-skill/references/components/history-item.md
 
 # history-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryItem (value)
@@ -6818,7 +6818,7 @@ Source: skills/forge-skill/references/components/icon-button.md
 
 # icon-button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconButton (value)
@@ -7172,7 +7172,7 @@ Source: skills/forge-skill/references/components/icon-selector.md
 
 # icon-selector
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorPicker (value)
@@ -7232,7 +7232,7 @@ Source: skills/forge-skill/references/components/icon-trigger.md
 
 # icon-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconTrigger (value)
@@ -7289,7 +7289,7 @@ Source: skills/forge-skill/references/components/image-grid.md
 
 # image-grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageGrid (value)
@@ -7322,7 +7322,7 @@ Source: skills/forge-skill/references/components/image-stat-card.md
 
 # image-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageStatCard (value)
@@ -7372,7 +7372,7 @@ Source: skills/forge-skill/references/components/info-row.md
 
 # info-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/info-row.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/info-row.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InfoRow (value)
@@ -7403,7 +7403,7 @@ Source: skills/forge-skill/references/components/insight-cards.md
 
 # insight-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InsightCard (type)
@@ -7466,7 +7466,7 @@ Source: skills/forge-skill/references/components/kebab-menu.md
 
 # kebab-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## KebabMenu (value)
@@ -7513,7 +7513,7 @@ Source: skills/forge-skill/references/components/line-chart-stat-card.md
 
 # line-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LineChartColor (type)
@@ -7573,7 +7573,7 @@ Source: skills/forge-skill/references/components/link.md
 
 # link
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LinkColor (type)
@@ -7612,7 +7612,7 @@ Source: skills/forge-skill/references/components/liquid-tabs.md
 
 # liquid-tabs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LiquidTabs (value)
@@ -7677,7 +7677,7 @@ Source: skills/forge-skill/references/components/list-group.md
 
 # list-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ListGroup (value)
@@ -7730,7 +7730,7 @@ Source: skills/forge-skill/references/components/list-item.md
 
 # list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DescriptionItem (value)
@@ -7831,7 +7831,7 @@ Source: skills/forge-skill/references/components/map-card.md
 
 # map-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MapCard (value)
@@ -7896,7 +7896,7 @@ Source: skills/forge-skill/references/components/media-upload.md
 
 # media-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MediaItem (type)
@@ -7954,7 +7954,7 @@ Source: skills/forge-skill/references/components/menu-item.md
 
 # menu-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MenuItem (value)
@@ -8032,7 +8032,7 @@ Source: skills/forge-skill/references/components/meter-chart.md
 
 # meter-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MeterChart (value)
@@ -8056,7 +8056,7 @@ Source: skills/forge-skill/references/components/modal.md
 
 # modal
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Modal (value)
@@ -8105,7 +8105,7 @@ Source: skills/forge-skill/references/components/motion.md
 
 # motion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MotionPreference (type)
@@ -8120,7 +8120,7 @@ Source: skills/forge-skill/references/components/multilayer-donut-chart.md
 
 # multilayer-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MultilayerDonutChart (value)
@@ -8148,7 +8148,7 @@ Source: skills/forge-skill/references/components/notification-item.md
 
 # notification-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## NotificationItem (value)
@@ -8188,7 +8188,7 @@ Source: skills/forge-skill/references/components/otp-input.md
 
 # otp-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## OtpInput (value)
@@ -8253,7 +8253,7 @@ Source: skills/forge-skill/references/components/page-dot.md
 
 # page-dot
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageDot (value)
@@ -8287,7 +8287,7 @@ Source: skills/forge-skill/references/components/page-header.md
 
 # page-header
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageHeader (value)
@@ -8472,7 +8472,7 @@ Source: skills/forge-skill/references/components/pagination.md
 
 # pagination
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Pagination (value)
@@ -8508,7 +8508,7 @@ Source: skills/forge-skill/references/components/panel.md
 
 # panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Panel (value)
@@ -8833,7 +8833,7 @@ Source: skills/forge-skill/references/components/pie-chart.md
 
 # pie-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PieChart (value)
@@ -8855,7 +8855,7 @@ Source: skills/forge-skill/references/components/plain-icons.md
 
 # plain-icons
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckIcon (value)
@@ -8894,7 +8894,7 @@ Source: skills/forge-skill/references/components/product-row.md
 
 # product-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProductRow (value)
@@ -8921,7 +8921,7 @@ Source: skills/forge-skill/references/components/profile-card.md
 
 # profile-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProfileCard (value)
@@ -8966,7 +8966,7 @@ Source: skills/forge-skill/references/components/progress-bar.md
 
 # progress-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressBar (value)
@@ -9029,7 +9029,7 @@ Source: skills/forge-skill/references/components/progress-card.md
 
 # progress-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressCard (value)
@@ -9063,7 +9063,7 @@ Source: skills/forge-skill/references/components/progress-stat-card.md
 
 # progress-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressStatCard (value)
@@ -9112,7 +9112,7 @@ Source: skills/forge-skill/references/components/project-card.md
 
 # project-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProjectCard (value)
@@ -9156,7 +9156,7 @@ Source: skills/forge-skill/references/components/rating-stars.md
 
 # rating-stars
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RatingStars (value)
@@ -9195,7 +9195,7 @@ Source: skills/forge-skill/references/components/recommendation-card.md
 
 # recommendation-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RecommendationCard (value)
@@ -9242,7 +9242,7 @@ Source: skills/forge-skill/references/components/review-item.md
 
 # review-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ReviewItem (value)
@@ -9276,7 +9276,7 @@ Source: skills/forge-skill/references/components/select-option.md
 
 # select-option
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SelectOption (value)
@@ -9359,7 +9359,7 @@ Source: skills/forge-skill/references/components/selection-control.md
 
 # selection-control
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckboxWithLabel (value)
@@ -9464,7 +9464,7 @@ Source: skills/forge-skill/references/components/sidebar-menu.md
 
 # sidebar-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SidebarMenu (value)
@@ -9539,7 +9539,7 @@ Source: skills/forge-skill/references/components/sidebar-popovers.md
 
 # sidebar-popovers
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppSwitcherDropdown (value)
@@ -9590,7 +9590,7 @@ Source: skills/forge-skill/references/components/small-calendar.md
 
 # small-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmallCalendar (value)
@@ -9632,7 +9632,7 @@ Source: skills/forge-skill/references/components/small-daily-calendar.md
 
 # small-daily-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DailyEvent (type)
@@ -9678,7 +9678,7 @@ Source: skills/forge-skill/references/components/smooth-line-chart.md
 
 # smooth-line-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmoothLineChart (value)
@@ -9714,7 +9714,7 @@ Source: skills/forge-skill/references/components/stat-card.md
 
 # stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StatCard (value)
@@ -9768,7 +9768,7 @@ Source: skills/forge-skill/references/components/stepper.md
 
 # stepper
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Stepper (value)
@@ -9813,7 +9813,7 @@ Source: skills/forge-skill/references/components/streaming-answer.md
 
 # streaming-answer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StreamingAnswer (value)
@@ -9889,7 +9889,7 @@ Source: skills/forge-skill/references/components/style-guide.md
 
 # style-guide
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorScaleStop (type)
@@ -9978,7 +9978,7 @@ Source: skills/forge-skill/references/components/surface-card.md
 
 # surface-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SurfaceCard (value)
@@ -10293,7 +10293,7 @@ Source: skills/forge-skill/references/components/tab-bar.md
 
 # tab-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabBar (value)
@@ -10352,7 +10352,7 @@ Source: skills/forge-skill/references/components/tabs-content.md
 
 # tabs-content
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabsContent (value)
@@ -10405,7 +10405,7 @@ Source: skills/forge-skill/references/components/task-card.md
 
 # task-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TaskCard (value)
@@ -10452,7 +10452,7 @@ Source: skills/forge-skill/references/components/text-area.md
 
 # text-area
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextArea (value)
@@ -10806,7 +10806,7 @@ Source: skills/forge-skill/references/components/text-field.md
 
 # text-field
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextField (value)
@@ -11190,7 +11190,7 @@ Source: skills/forge-skill/references/components/text-field-select.md
 
 # text-field-select
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextFieldSelectSuffix (value)
@@ -11213,7 +11213,7 @@ Source: skills/forge-skill/references/components/thinking-trace.md
 
 # thinking-trace
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ThinkingRow (type)
@@ -11261,7 +11261,7 @@ Source: skills/forge-skill/references/components/toast.md
 
 # toast
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToastApi (type)
@@ -11301,7 +11301,7 @@ Source: skills/forge-skill/references/components/tool-chips.md
 
 # tool-chips
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToolChipDetail (type)
@@ -11367,7 +11367,7 @@ Source: skills/forge-skill/references/components/toolbar.md
 
 # toolbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageTitleToolbar (value)
@@ -11633,7 +11633,7 @@ Source: skills/forge-skill/references/components/tooltip.md
 
 # tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Tooltip (value)
@@ -12009,7 +12009,7 @@ Source: skills/forge-skill/references/components/topbar.md
 
 # topbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TopBar (value)
@@ -12042,7 +12042,7 @@ Source: skills/forge-skill/references/components/user-card.md
 
 # user-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## UserCard (value)
@@ -12077,7 +12077,7 @@ Source: skills/forge-skill/references/components/utils.md
 
 # utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## cn (value)
@@ -12136,7 +12136,7 @@ Source: skills/forge-skill/references/components/wallet-goal-card.md
 
 # wallet-goal-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WalletGoalCard (value)
@@ -12195,7 +12195,7 @@ Source: skills/forge-skill/references/components/wheel-chart-stat-card.md
 
 # wheel-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.8.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.8.2**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WheelChartStatCard (value)

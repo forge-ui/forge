@@ -5,7 +5,7 @@
   "title": "项目看板",
   "description": "项目详情页：按状态分栏的任务看板，可拖拽、勾选完成、展开子任务和快速添加；右侧项目属性、描述与资源，点任务卡片打开带动态、评论和属性的任务详情。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "协作与项目",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Avatar",
         "Breadcrumbs",

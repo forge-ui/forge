@@ -5,7 +5,7 @@
   "title": "客户经营摘要",
   "description": "概览客户规模与增长情况，为销售团队提供经营摘要。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "图表与指标",
@@ -139,7 +139,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Panel",
         "DescriptionItem",

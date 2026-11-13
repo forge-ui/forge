@@ -315,7 +315,7 @@
   },
   "/docs/changelog": {
     "title": "更新日志",
-    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.8.1。"
+    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.8.2。"
   },
   "/docs/check": {
     "title": "页面检查",
@@ -339,7 +339,7 @@
   },
   "/docs/quick-start": {
     "title": "快速开始",
-    "description": "把 @forge-ui-official/core 0.8.1 接到 Next.js 和 Tailwind v4 项目里。"
+    "description": "把 @forge-ui-official/core 0.8.2 接到 Next.js 和 Tailwind v4 项目里。"
   },
   "/docs/theme": {
     "title": "主题定制",

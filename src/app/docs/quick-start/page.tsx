@@ -22,6 +22,26 @@ const GLOBALS_CSS = `@import "tailwindcss";
 /* 样式文件在 src/app/globals.css 时改成这一行 */
 @source "../../node_modules/@forge-ui-official/core/dist";`;
 
+const FONTS = `pnpm add @fontsource-variable/manrope @fontsource-variable/plus-jakarta-sans
+
+// app/layout.tsx
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/plus-jakarta-sans";
+
+/* app/globals.css */
+:root {
+  --font-manrope: "Manrope Variable", system-ui, sans-serif;
+  --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+}`;
+
+const SHADCN_FIX = `/* shadcn init 写进 globals.css 的 @theme inline 里，把这两行 */
+--font-sans: var(--font-sans);
+--font-heading: var(--font-sans);
+
+/* 改成 */
+--font-sans: var(--font-manrope);
+--font-heading: var(--font-plus-jakarta-sans);`;
+
 const USE = `import { Button } from "@forge-ui-official/core";
 
 export default function Page() {
@@ -101,6 +121,26 @@ export default function QuickStartPage() {
         />
         <Step
           n={3}
+          title="加载字体"
+          caption={
+            <>
+              Forge 的正文用 Manrope，标题用 Plus Jakarta Sans，中文跟随系统字体。没加载时会退回系统字体，组件照常可用，只是和官网看起来不一样。
+            </>
+          }
+          code={FONTS}
+        />
+        <Step
+          n={4}
+          title="用过 shadcn init 的项目：改一行字体设置"
+          caption={
+            <>
+              要用 <Link href="/blocks" className="text-fg-blue underline underline-offset-4">页面组件</Link> 时，<code className="rounded bg-fg-grey-100 px-1 text-xs">npx shadcn add</code> 会先让你运行 shadcn init。init 写入的 <code className="rounded bg-fg-grey-100 px-1 text-xs">--font-sans: var(--font-sans)</code> 引用了自己，整站会变成衬线字，需要改成下面这样。没用过 shadcn 的项目跳过这一步。
+            </>
+          }
+          code={SHADCN_FIX}
+        />
+        <Step
+          n={5}
           title="渲染第一个组件"
           caption={
             <>
@@ -110,7 +150,7 @@ export default function QuickStartPage() {
           code={USE}
         />
         <Step
-          n={4}
+          n={6}
           title="给编码助手装 skill（可选）"
           caption={
             <>

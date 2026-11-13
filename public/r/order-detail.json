@@ -5,7 +5,7 @@
   "title": "订单详情",
   "description": "订单状态、商品明细、费用汇总、客户与收货信息，以及物流进度弹窗。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "详情页",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Button",
         "HistoryItem",

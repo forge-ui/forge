@@ -5,7 +5,7 @@
   "title": "任务会话",
   "description": "短会话模式的自主智能体任务：左侧对话记录与带快捷操作的追问输入框，回复逐字生成可停止；右侧概要、知识库授权与结果产物。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -34,7 +34,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Breadcrumbs",
         "Button",

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2
+
+- 没有加载 Manrope 和 Plus Jakarta Sans 时，正文和标题退回系统字体（中文用苹方或微软雅黑），不再变成浏览器默认的衬线字。
+- README 补充字体加载方法，以及用过 `shadcn init` 的项目要改的那一行字体设置。
+
 ## 0.8.1
 
 - AgentParts 支持 AI SDK 6 起的工具确认：`approval-requested` 时显示允许、拒绝（`onToolApproval` 直接传 `useChat` 的 `addToolApprovalResponse`），自动确认和已答复的调用按进行中显示，被拒绝的调用（`output-denied`）在工具组里标为已停止并显示原因。之前这几种状态没有对应显示。

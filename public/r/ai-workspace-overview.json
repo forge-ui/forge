@@ -5,7 +5,7 @@
   "title": "智能体工作台",
   "description": "工作台首页：应用智能体、知识库、工具与模型的资源汇总，按时间范围与智能体筛选的监控统计、趋势图和 TOP5 排行榜。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -54,7 +54,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Breadcrumbs",
         "Button",

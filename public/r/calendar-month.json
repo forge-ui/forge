@@ -5,7 +5,7 @@
   "title": "月历日程",
   "description": "月视图日历标注团队日程，侧栏列出近期安排，点击查看时间、地点与参会人。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "协作与项目",
@@ -54,7 +54,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Avatar",
         "Button",

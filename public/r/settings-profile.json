@@ -5,7 +5,7 @@
   "title": "个人资料设置",
   "description": "头像上传、基本信息与地区语言，带校验和底部常驻的保存与撤销条。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "设置",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Button",
         "SelectOption",

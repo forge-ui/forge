@@ -5,7 +5,7 @@
   "title": "交易流水",
   "description": "支出构成圆环、月度预算进度，配合按收支方向筛选与搜索的交易明细表。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "财务",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "ButtonGroup",
         "CellTextSubtitle",
