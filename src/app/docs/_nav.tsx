@@ -90,7 +90,7 @@ export function DocsNav() {
               {open && (
                 <ul className="ml-2 flex flex-col border-l border-fg-grey-200 pl-2">
                   {group.items.map((item) => {
-                    const active = pathname === item.href;
+                    const active = pathname === item.href || (item.href === "/guides" && pathname.startsWith("/guides/"));
                     return (
                       <li key={item.href}>
                         <Link
