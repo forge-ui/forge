@@ -1,30 +1,25 @@
 import Link from "next/link";
 import { DocArticle, DocHeader } from "../_shared";
-import { PromptBlock } from "../agents-md/_prompt-block";
-import { coreVersion, nodeRequirement, pnpmVersion, repoNext, repoReact } from "../_versions";
+import { Callout, Code, Step, Steps } from "../_ui";
+import { coreVersion, nodeRequirement, repoNext } from "../_versions";
 
-const REQUIREMENTS = [
-  `Node ${nodeRequirement}`,
-  `pnpm ${pnpmVersion}`,
-  `Next.js ${repoNext}`,
-  `React ${repoReact}`,
-  "Tailwind v4",
+const toc = [
+  { id: "install", title: "安装组件库" },
+  { id: "styles", title: "接入样式" },
+  { id: "fonts", title: "加载字体" },
+  { id: "first-component", title: "渲染第一个组件" },
+  { id: "agents", title: "给编码助手装 Skill" },
+  { id: "shadcn", title: "用过 shadcn init 的项目" },
+  { id: "next", title: "下一步" },
 ];
-
-const INSTALL = `pnpm add @forge-ui-official/core@${coreVersion}`;
 
 const GLOBALS_CSS = `@import "tailwindcss";
 @import "@forge-ui-official/core/styles.css";
 
-/* 样式文件在 app/globals.css 时用这一行 */
-@source "../node_modules/@forge-ui-official/core/dist";
+/* app/globals.css 用这一行；src/app/globals.css 改成 ../../node_modules */
+@source "../node_modules/@forge-ui-official/core/dist";`;
 
-/* 样式文件在 src/app/globals.css 时改成这一行 */
-@source "../../node_modules/@forge-ui-official/core/dist";`;
-
-const FONTS = `pnpm add @fontsource-variable/manrope @fontsource-variable/plus-jakarta-sans
-
-// app/layout.tsx
+const FONTS = `// app/layout.tsx
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/plus-jakarta-sans";
 
@@ -34,7 +29,13 @@ import "@fontsource-variable/plus-jakarta-sans";
   --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
 }`;
 
-const SHADCN_FIX = `/* shadcn init 写进 globals.css 的 @theme inline 里，把这两行 */
+const USE = `import { Button } from "@forge-ui-official/core";
+
+export default function Page() {
+  return <Button>开始使用</Button>;
+}`;
+
+const SHADCN_FIX = `/* 把 @theme inline 里的这两行 */
 --font-sans: var(--font-sans);
 --font-heading: var(--font-sans);
 
@@ -42,154 +43,77 @@ const SHADCN_FIX = `/* shadcn init 写进 globals.css 的 @theme inline 里，�
 --font-sans: var(--font-manrope);
 --font-heading: var(--font-plus-jakarta-sans);`;
 
-const USE = `import { Button } from "@forge-ui-official/core";
-
-export default function Page() {
-  return <Button>开始使用</Button>;
-}`;
-
-const INSTALL_SKILL = `curl -fsSL https://www.forgeui.org/install-skill.sh | bash`;
-
-function Step({
-  n,
-  title,
-  caption,
-  code,
-}: {
-  n: number;
-  title: string;
-  caption?: React.ReactNode;
-  code: string;
-}) {
-  return (
-    <section className="flex flex-col gap-3">
-      <div className="flex items-baseline gap-3">
-        <span className="font-display text-2xl font-semibold text-fg-blue">{n}</span>
-        <h2 className="font-display text-xl font-semibold tracking-fg text-fg-black">{title}</h2>
-      </div>
-      {caption && (
-        <p className="text-sm leading-relaxed text-fg-grey-700">{caption}</p>
-      )}
-      <PromptBlock content={code} />
-    </section>
-  );
-}
-
 export default function QuickStartPage() {
   return (
-    <DocArticle>
+    <DocArticle toc={toc}>
       <DocHeader
         breadcrumbs={[
           { label: "文档", href: "/docs" },
           { label: "快速开始" },
         ]}
         title="快速开始"
-        description={`把 @forge-ui-official/core ${coreVersion} 接到 Next.js 和 Tailwind v4 项目里。`}
+        description="五分钟把 Forge 接进一个 Next.js 项目：装组件库、接样式、渲染第一个按钮。"
       />
 
-      <div className="flex flex-wrap gap-2">
-        {REQUIREMENTS.map((chip) => (
-          <span
-            key={chip}
-            className="rounded-full bg-fg-grey-100 px-3 py-1 text-xs font-medium text-fg-grey-900"
-          >
-            {chip}
-          </span>
-        ))}
-      </div>
+        <p className="leading-7 text-fg-black/85">
+          Forge 是一个 npm 包加一份样式文件。装好之后，在页面里直接引入组件就能用，不需要额外的 Provider 或配置文件。下面的步骤按顺序做一遍，最后页面上会出现一颗蓝色按钮。
+        </p>
 
-      <div className="flex flex-col gap-8">
-        <Step
-          n={1}
-          title="安装 @forge-ui-official/core"
-          caption={
-            <>
-              当前仓库对应的版本是 {coreVersion}。要装别的版本，把命令里的版本号换掉。
-            </>
-          }
-          code={INSTALL}
-        />
-        <Step
-          n={2}
-          title="接入 Tailwind 样式"
-          caption={
-            <>
-              在全局样式顶部引入 Tailwind 和 Forge 的样式，并用 <code className="rounded bg-fg-grey-100 px-1 text-xs">@source</code> 让 Tailwind v4 扫描组件产物。样式文件在 <code className="rounded bg-fg-grey-100 px-1 text-xs">app/globals.css</code> 时用 <code className="rounded bg-fg-grey-100 px-1 text-xs">../node_modules</code>；在 <code className="rounded bg-fg-grey-100 px-1 text-xs">src/app/globals.css</code> 时用 <code className="rounded bg-fg-grey-100 px-1 text-xs">../../node_modules</code>。只保留和文件位置匹配的那一行。
-            </>
-          }
-          code={GLOBALS_CSS}
-        />
-        <Step
-          n={3}
-          title="加载字体"
-          caption={
-            <>
-              Forge 的正文用 Manrope，标题用 Plus Jakarta Sans，中文跟随系统字体。没加载时会退回系统字体，组件照常可用，只是和官网看起来不一样。
-            </>
-          }
-          code={FONTS}
-        />
-        <Step
-          n={4}
-          title="用过 shadcn init 的项目：改一行字体设置"
-          caption={
-            <>
-              要用 <Link href="/blocks" className="text-fg-blue underline underline-offset-4">页面组件</Link> 时，<code className="rounded bg-fg-grey-100 px-1 text-xs">npx shadcn add</code> 会先让你运行 shadcn init。init 写入的 <code className="rounded bg-fg-grey-100 px-1 text-xs">--font-sans: var(--font-sans)</code> 引用了自己，整站会变成衬线字，需要改成下面这样。没用过 shadcn 的项目跳过这一步。
-            </>
-          }
-          code={SHADCN_FIX}
-        />
-        <Step
-          n={5}
-          title="渲染第一个组件"
-          caption={
-            <>
-              运行 <code className="rounded bg-fg-grey-100 px-1 text-xs">pnpm dev</code>。页面上应出现一颗默认的蓝色实心按钮，文字是「开始使用」。
-            </>
-          }
-          code={USE}
-        />
-        <Step
-          n={6}
-          title="给编码助手装 skill（可选）"
-          caption={
-            <>
-              让 Claude Code、Cursor 或 Codex 按 Forge 的用法写页面：组件从{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui-official/core</code> 引入，颜色用{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">fg-*</code>，图标从{" "}
-              <code className="rounded bg-fg-grey-100 px-1 text-xs">@forge-ui-official/core/icons</code> 引入。装完后重启助手。
-            </>
-          }
-          code={INSTALL_SKILL}
-        />
-      </div>
+        <Callout title="开始前需要">
+          <ul className="ml-4 list-disc space-y-1">
+            <li>Node {nodeRequirement}</li>
+            <li>一个 Next.js {repoNext} 以上、React 19、Tailwind CSS v4 的项目。没有的话先运行 <code>npx create-next-app@latest</code>。</li>
+          </ul>
+        </Callout>
 
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-fg-grey-200 pt-6 text-sm">
-        <Link
-          href="/docs/installation"
-          className="font-semibold text-fg-blue underline underline-offset-4 hover:text-fg-blue-700"
-        >
-          详细安装说明 →
-        </Link>
-        <Link
-          href="/docs/troubleshoot"
-          className="font-semibold text-fg-grey-900 underline underline-offset-4 hover:text-fg-black"
-        >
-          遇到问题？
-        </Link>
-        <Link
-          href="/docs/ui-for-agents"
-          className="font-semibold text-fg-grey-900 underline underline-offset-4 hover:text-fg-black"
-        >
-          AI skill 说明
-        </Link>
-        <Link
-          href="/components"
-          className="font-semibold text-fg-grey-900 underline underline-offset-4 hover:text-fg-black"
-        >
-          看全部组件
-        </Link>
-      </div>
+        <Steps>
+          <Step id="install" title="安装组件库">
+            <Code label="终端">{`pnpm add @forge-ui-official/core@${coreVersion}`}</Code>
+            <p className="leading-7 text-fg-black/85">当前版本是 {coreVersion}。用 npm 或 yarn 也可以，把 <code>pnpm add</code> 换成对应的命令。</p>
+          </Step>
+          <Step id="styles" title="接入样式">
+            <p className="leading-7 text-fg-black/85">在全局样式文件顶部引入 Tailwind 和 Forge 的样式。<code>@source</code> 让 Tailwind 扫描组件里用到的类名，路径要和样式文件的位置对应。</p>
+            <Code label="app/globals.css">{GLOBALS_CSS}</Code>
+          </Step>
+          <Step id="fonts" title="加载字体">
+            <p className="leading-7 text-fg-black/85">正文用 Manrope，标题用 Plus Jakarta Sans，中文跟随系统字体。不加载也能用，会退回系统字体，只是和官网看起来不一样。</p>
+            <Code label="终端">{"pnpm add @fontsource-variable/manrope @fontsource-variable/plus-jakarta-sans"}</Code>
+            <Code>{FONTS}</Code>
+          </Step>
+          <Step id="first-component" title="渲染第一个组件">
+            <Code label="app/page.tsx">{USE}</Code>
+            <p className="leading-7 text-fg-black/85">运行 <code>pnpm dev</code>，打开 <code>http://localhost:3000</code>，页面上应出现一颗蓝色实心按钮，文字是「开始使用」。</p>
+          </Step>
+          <Step id="agents" title="给编码助手装 Skill（可选）">
+            <p className="leading-7 text-fg-black/85">让 Claude Code、Codex 和 Cursor 按 Forge 的规范写页面：选对组件、用对颜色，写完自己检查。</p>
+            <Code label="终端">{"curl -fsSL https://www.forgeui.org/setup.sh | bash"}</Code>
+          </Step>
+        </Steps>
+
+        <section id="shadcn" className="flex scroll-mt-24 flex-col gap-4 pt-4">
+          <h2 className="text-2xl font-semibold leading-8 text-fg-black">用过 shadcn init 的项目</h2>
+          <p className="leading-7 text-fg-black/85">
+            安装 <Link href="/blocks" className="prose-link">页面组件</Link> 时，<code>npx shadcn add</code> 会先运行 shadcn init。init 写入的 <code>--font-sans: var(--font-sans)</code> 引用了自己，整站会变成衬线字，改成下面这样就好：
+          </p>
+          <Code label="app/globals.css">{SHADCN_FIX}</Code>
+        </section>
+
+        <section id="next" className="flex scroll-mt-24 flex-col gap-4 pt-4">
+          <h2 className="text-2xl font-semibold leading-8 text-fg-black">下一步</h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              { href: "/blocks", title: "页面组件", body: "70 个整页区块，一条命令复制进项目。" },
+              { href: "/templates", title: "后台模板", body: "CRM、电商、财务等完整后台，直接点开体验。" },
+              { href: "/docs/theme", title: "主题定制", body: "换主色、圆角和字体，生成一段 CSS。" },
+              { href: "/docs/ui-for-agents", title: "前端设计 Skill", body: "让编码助手按同一套规范写页面。" },
+            ].map(card => (
+              <Link key={card.href} href={card.href} className="flex flex-col gap-1 rounded-2xl border border-fg-grey-200 bg-background p-4 transition-colors hover:border-fg-grey-300">
+                <span className="font-medium text-fg-black">{card.title}</span>
+                <span className="text-sm leading-6 text-fg-grey-700">{card.body}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
     </DocArticle>
   );
 }

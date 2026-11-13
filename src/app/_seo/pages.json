@@ -339,7 +339,7 @@
   },
   "/docs/quick-start": {
     "title": "快速开始",
-    "description": "把 @forge-ui-official/core 0.8.2 接到 Next.js 和 Tailwind v4 项目里。"
+    "description": "五分钟把 Forge 接进一个 Next.js 项目：装组件库、接样式、渲染第一个按钮。"
   },
   "/docs/theme": {
     "title": "主题定制",
