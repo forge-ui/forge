@@ -440,6 +440,8 @@ export type {
   ArtifactCardProps,
   AgentToolState,
   AgentToolPart,
+  AgentToolApproval,
+  AgentToolApprovalResponse,
   AgentMessagePart,
   AgentPartsProps,
 } from "./agent";
