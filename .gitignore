@@ -82,3 +82,7 @@ goal/
 # Eval runs: keep results.json and report.md, not the generated workspaces
 /evals/results/*/baseline/
 /evals/results/*/forge/
+
+# Local scratch output (audits, dev logs)
+/tmp-*/
+/.dev/
