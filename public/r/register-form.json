@@ -5,7 +5,7 @@
   "title": "注册",
   "description": "左图右表单的注册页，含第三方注册、邮箱与密码校验、协议勾选和成功反馈。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "认证",
@@ -63,7 +63,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Button",
         "Checkbox",

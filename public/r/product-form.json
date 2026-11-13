@@ -5,7 +5,7 @@
   "title": "分组表单",
   "description": "字段较多的录入页：同一张卡片里按基本信息、价格库存、图片、物流上架分组，每行三列等宽、单位写在输入框尾部，底部固定操作栏带校验结果与保存状态。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "表单",
@@ -43,7 +43,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Breadcrumbs",
         "Button",

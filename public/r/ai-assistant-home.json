@@ -5,7 +5,7 @@
   "title": "智能体对话",
   "description": "按自主智能体与应用智能体分组的会话侧栏，可搜索、展开历史会话；选中智能体后展示介绍与开场建议，带快捷操作和访问权限的输入框，回复逐字生成。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "ChatBubble",
         "ChatInputBar",

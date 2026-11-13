@@ -5,7 +5,7 @@
   "title": "商品列表",
   "description": "按状态筛选、搜索、批量勾选与分页的商品管理表，含编辑与删除确认。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "数据列表",
@@ -59,7 +59,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "Button",
         "ButtonGroup",

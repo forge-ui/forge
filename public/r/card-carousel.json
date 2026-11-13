@@ -5,7 +5,7 @@
   "title": "卡片轮播",
   "description": "以可切换的卡片展示多个账户，适用于钱包和财务首页。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.1"
+    "@forge-ui-official/core@^0.8.2"
   ],
   "meta": {
     "category": "财务",
@@ -58,7 +58,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.1",
+      "version": "^0.8.2",
       "components": [
         "CreditCard",
         "PageDot"
