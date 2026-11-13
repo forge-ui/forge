@@ -50,6 +50,18 @@ export type AgentPartsProps = {
 };
 ```
 
+## AgentToolApproval (type)
+
+```ts
+export type AgentToolApproval = { id: string; approved?: boolean; reason?: string; requestReason?: string; isAutomatic?: boolean };
+```
+
+## AgentToolApprovalResponse (type)
+
+```ts
+export type AgentToolApprovalResponse = { id: string; approved: boolean; reason?: string };
+```
+
 ## AgentToolPart (type)
 
 ```ts

@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.8.2
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 016f8e6d90f185cee01da7da307042db5db3aa4b40da38305299705fb447a36b
+Source fingerprint: 6e9b6a8165347f74386995a14203c029628e9c0f34471e3a7f56ab7528b13eab
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (507, values and types distinguished)
+## Public exports (509, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -44,6 +44,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AgentTaskChild [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskRows [value] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskStatus [type] — core/src/components/ui/agent/agent-task-rows.tsx
+- AgentToolApproval [type] — core/src/components/ui/agent/agent-parts.tsx
+- AgentToolApprovalResponse [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolPart [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolState [type] — core/src/components/ui/agent/agent-parts.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
@@ -1129,6 +1131,18 @@ export type AgentPartsProps = {
   locale?: "zh" | "en";
   className?: string;
 };
+```
+
+## AgentToolApproval (type)
+
+```ts
+export type AgentToolApproval = { id: string; approved?: boolean; reason?: string; requestReason?: string; isAutomatic?: boolean };
+```
+
+## AgentToolApprovalResponse (type)
+
+```ts
+export type AgentToolApprovalResponse = { id: string; approved: boolean; reason?: string };
 ```
 
 ## AgentToolPart (type)

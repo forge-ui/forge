@@ -1,6 +1,7 @@
 packages:
   - "."
   - "core"
+  - "agent"
 allowBuilds:
   esbuild: true
   sharp: true

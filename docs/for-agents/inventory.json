@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.8.2",
   "source": "core/src/index.ts",
-  "revision": "31269eeaa2e6a6f952fcdfc6ff0bc9969b849948",
+  "revision": "cb7e9a9bd7da256def7fed10112f3354f5f80ce9",
   "dirty": false,
-  "exportFingerprint": "4a71d7174a719e594a03a6b46cdd03e69495da40",
-  "generatedAt": "2026-11-13T15:50:10+08:00",
+  "exportFingerprint": "61c4f58d4ea1bf0b234cb9ca4718190f18e648f1",
+  "generatedAt": "2026-11-13T19:26:53+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 507,
+  "componentCount": 509,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -841,6 +841,24 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-task-rows.tsx",
       "module": "agent/agent-task-rows",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentToolApproval",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentToolApprovalResponse",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-parts.tsx",
+      "module": "agent/agent-parts",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

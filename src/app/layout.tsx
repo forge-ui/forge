@@ -7,6 +7,7 @@ import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
 import { themeBootScript } from "@/lib/theme-boot";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { SiteAgent } from "./_components/site-agent";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -35,6 +36,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col font-sans">
         {children}
+        {process.env.NEXT_PUBLIC_FORGE_AGENT === "1" && <SiteAgent />}
         <Analytics />
         <SpeedInsights />
       </body>

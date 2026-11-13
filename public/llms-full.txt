@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.8.2
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 016f8e6d90f185cee01da7da307042db5db3aa4b40da38305299705fb447a36b
+Source fingerprint: 6e9b6a8165347f74386995a14203c029628e9c0f34471e3a7f56ab7528b13eab
 
 ## Adopted rules / 采用规则
 
@@ -288,7 +288,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (507, values and types distinguished)
+## Public exports (509, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -324,6 +324,8 @@ export function ModuleOverview() {
 - AgentTaskChild [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskRows [value] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskStatus [type] — core/src/components/ui/agent/agent-task-rows.tsx
+- AgentToolApproval [type] — core/src/components/ui/agent/agent-parts.tsx
+- AgentToolApprovalResponse [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolPart [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolState [type] — core/src/components/ui/agent/agent-parts.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
