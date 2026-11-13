@@ -8,7 +8,7 @@ export const maxDuration = 60;
 const config = {
   baseURL: process.env.FORGE_AGENT_BASE_URL,
   apiKey: process.env.FORGE_AGENT_API_KEY,
-  model: process.env.FORGE_AGENT_MODEL ?? "qwen-plus",
+  model: process.env.FORGE_AGENT_MODEL ?? "qwen3.8-flash",
 };
 
 const clip = (value: unknown, max = 6000) => {
@@ -64,7 +64,8 @@ const instructions = `你是 Forge UI 官网（www.forgeui.org）上的助手“
 - 用户问“做某个页面用什么”时先 recommend，再用 show_cards 列出推荐的页面组件（带安装命令）和组件，最后给简短理由。
 - 用户问组件用法时用 get_component，再用 show_code 给一段能直接用的示例，组件从 @forge-ui-official/core 引入。
 - 站内链接用相对路径：组件文档 /components/<家族>、案例 /cases/<家族>、页面组件 /blocks/<slug>、文档 /docs/...。工具结果里的 https://www.forgeui.org 前缀可以去掉。
-- 用户想看某个页面时调用 open_page；想切换深浅色时调用 set_color_mode；想试主色时调用 preview_accent_color；要复制命令时调用 copy_text。
+- 用户想看某个页面时调用 open_page；想切换深浅色时调用 set_color_mode；要复制命令时调用 copy_text。
+- 用户想换主色、圆角、字体并拿到 CSS 时，打开主题定制页 /docs/theme 在页面上操作给他看（选颜色、选圆角，最后 scroll_to 到生成的 CSS）；只想在当前页临时看看效果时才用 preview_accent_color。
 - 用简体中文，句子短，先给结论。`;
 
 export async function POST(request: Request) {

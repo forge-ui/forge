@@ -50,16 +50,6 @@ export function SiteAgent() {
 
   const tools = [
     defineTool({
-      name: "open_page",
-      label: "打开页面",
-      description: "在官网里打开一个页面。path 是站内路径，如 /components/button-link、/blocks/orders-table-section、/docs/quick-start。",
-      input: z.object({ path: z.string().regex(/^\/[^\s]*$/, "必须是以 / 开头的站内路径") }),
-      execute: ({ path }) => {
-        router.push(path);
-        return { opened: path };
-      },
-    }),
-    defineTool({
       name: "set_color_mode",
       label: "切换深浅色",
       description: "把整站切换成浅色或深色。",
@@ -95,7 +85,7 @@ export function SiteAgent() {
       endpoint="/api/agent"
       title="问 Forge"
       greeting="想做什么页面、查哪个组件，都可以问我。"
-      suggestions={["做订单列表页用哪些组件？", "StatusBadge 怎么设置颜色？", "把主色换成绿色看看", "怎么让 Claude Code 按 Forge 写页面？"]}
+      suggestions={["做订单列表页用哪些组件？", "StatusBadge 怎么设置颜色？", "带我把主色换成绿色、圆角改圆润", "怎么让 Claude Code 按 Forge 写页面？"]}
       storageKey="forge-agent:site"
       context={() => ({
         path: window.location.pathname,
@@ -104,6 +94,7 @@ export function SiteAgent() {
         colorMode: document.documentElement.dataset.theme === "dark" ? "dark" : "light",
       })}
       tools={tools}
+      operate={{ navigate: path => router.push(path) }}
       toolLabels={{ search: "检索文档", recommend: "推荐组件", get_component: "查组件", get_block: "查页面组件", get_tokens: "查设计 token", check_code: "检查代码" }}
     />
   );

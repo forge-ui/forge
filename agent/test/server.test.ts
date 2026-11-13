@@ -54,6 +54,18 @@ test("browser tools cannot shadow server or catalog tools", async () => {
   assert.doesNotMatch(JSON.stringify(cards[0]), /fake/);
 });
 
+test("the current page and operating rules reach the model only when the browser can operate it", async () => {
+  const page = "当前页面 /docs/theme\n[e7] 按钮「紫」（主色）";
+  const readPage = { name: "read_page", description: "读取页面", inputSchema: { type: "object" } };
+  const operating = mockModel();
+  await (await createAgentHandler({ model: operating, instructions: "x" })(post({ messages: [userMessage], page, tools: [readPage] }))).text();
+  assert.match(JSON.stringify(operating.doStreamCalls[0].prompt), /页面操作规则[\s\S]*\[e7\] 按钮「紫」/);
+
+  const reading = mockModel();
+  await (await createAgentHandler({ model: reading, instructions: "x" })(post({ messages: [userMessage], page }))).text();
+  assert.doesNotMatch(JSON.stringify(reading.doStreamCalls[0].prompt), /页面操作规则|\[e7\]/);
+});
+
 test("generated values must appear in tool results", () => {
   const sources = sourcesFrom([{ total: 1284, url: "https://example.com/a.png" }]);
   assert.ok(sources.has(1284));
