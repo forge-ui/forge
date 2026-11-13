@@ -482,8 +482,9 @@
    --- */
 
 @theme inline {
-  --font-sans: var(--font-manrope);
-  --font-display: var(--font-plus-jakarta-sans);
+  /* Apps load Manrope / Plus Jakarta Sans and set these variables; without them text falls back to the system UI font, not the browser serif. */
+  --font-sans: var(--font-manrope, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
+  --font-display: var(--font-plus-jakarta-sans, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
 
   /* Primitive colors → utility classes (bg-fg-violet-500, text-fg-blue-700, etc.) */
   --color-fg-violet: var(--fg-violet);
