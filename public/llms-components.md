@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.8.2
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 6e9b6a8165347f74386995a14203c029628e9c0f34471e3a7f56ab7528b13eab
+Source fingerprint: e0623486e38a3a9ef080d2ffef2c28f9fd75d51fbc38488015580e63bb98f2c9
 
 ## Adopted rules / 采用规则
 
@@ -945,7 +945,7 @@ export type MessageFeedback = "up" | "down" | null;
 ## PromptSuggestions (value)
 
 ```ts
-({ suggestions, onSelect, label, className }: PromptSuggestionsProps) => JSX.Element | null
+({ suggestions, onSelect, label, size, className }: PromptSuggestionsProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -953,6 +953,7 @@ export type MessageFeedback = "up" | "down" | null;
 | `suggestions` | 是 | `string[]` |  |
 | `onSelect` | 是 | `(text: string, index: number) => void` |  |
 | `label` | 否 | `string \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## PromptSuggestionsProps (type)
@@ -962,6 +963,7 @@ export type PromptSuggestionsProps = {
   suggestions: string[];
   onSelect: (text: string, index: number) => void;
   label?: string;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1103,7 +1105,7 @@ export type AgentMessagePart =
 ## AgentParts (value)
 
 ```ts
-({ parts, status, renderTool, onOpenFile, onToolApproval, locale, className }: AgentPartsProps) => JSX.Element
+({ parts, status, renderTool, onOpenFile, onToolApproval, locale, size, className }: AgentPartsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1114,6 +1116,7 @@ export type AgentMessagePart =
 | `onOpenFile` | 否 | `((part: { url: string; filename?: string; mediaType: string; }) => void) \| undefined` |  |
 | `onToolApproval` | 否 | `((response: AgentToolApprovalResponse) => void) \| undefined` | Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. |
 | `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` | sm suits side panels: 14px answer text, tool calls as a plain list that folds once they finish. |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentPartsProps (type)
@@ -1129,6 +1132,8 @@ export type AgentPartsProps = {
   /** Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. */
   onToolApproval?: (response: AgentToolApprovalResponse) => void;
   locale?: "zh" | "en";
+  /** sm suits side panels: 14px answer text, tool calls as a plain list that folds once they finish. */
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -9833,7 +9838,7 @@ Source: skills/forge-skill/references/components/streaming-answer.md
 ## StreamingAnswer (value)
 
 ```ts
-({ text, locale, streaming, status, format, animation, duration, motion, sources, sourcesLabel, followUps, followUpsLabel, onFollowUp, onDone, className, }: StreamingAnswerProps) => JSX.Element
+({ text, locale, streaming, status, format, animation, size, duration, motion, sources, sourcesLabel, followUps, followUpsLabel, onFollowUp, onDone, className, }: StreamingAnswerProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -9844,6 +9849,7 @@ Source: skills/forge-skill/references/components/streaming-answer.md
 | `status` | 否 | `StreamingAnswerStatus \| undefined` | Transport state. Complete drains the display buffer; stopped freezes it. |
 | `format` | 否 | `"plain" \| "markdown" \| undefined` | Plain preserves literal text and whitespace; Markdown is opt-in. |
 | `animation` | 否 | `"fade" \| "blur" \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` | sm suits side panels and other narrow columns: 14px text and tighter block spacing. |
 | `duration` | 否 | `number \| undefined` | Fade duration in milliseconds; zero shows incoming content immediately. |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
 | `sources` | 否 | `StreamingSource[] \| undefined` |  |
@@ -9867,6 +9873,8 @@ export type StreamingAnswerProps = {
   /** Plain preserves literal text and whitespace; Markdown is opt-in. */
   format?: "plain" | "markdown";
   animation?: "fade" | "blur";
+  /** sm suits side panels and other narrow columns: 14px text and tighter block spacing. */
+  size?: "md" | "sm";
   /** Fade duration in milliseconds; zero shows incoming content immediately. */
   duration?: number;
   motion?: MotionPreference;
@@ -11350,7 +11358,7 @@ export type ToolChipKind = "think" | "write" | "run" | "read" | "edit";
 ## ToolChips (value)
 
 ```ts
-({ items, locale, motion, state, result, actions, diffs, summary, className, }: { items: ToolChipItem[]; locale?: "zh" | "en"; motion?: MotionPreference; state?: "idle" | "running" | "success" | "error" | "cancelled"; result?: ReactNode; actions?: ReactNode; diffs?: ToolDiffChip[]; summary?: string; className?: string; }) => JSX.Element
+({ items, locale, motion, state, result, actions, size, defaultOpen, diffs, summary, className, }: { items: ToolChipItem[]; locale?: "zh" | "en"; motion?: MotionPreference; state?: "idle" | "running" | "success" | "error" | "cancelled"; result?: ReactNode; actions?: ReactNode; size?: "md" | "sm"; defaultOpen?: boolean; diffs?: ToolDiffChip[]; summary?: string; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -11361,6 +11369,8 @@ export type ToolChipKind = "think" | "write" | "run" | "read" | "edit";
 | `state` | 否 | `"idle" \| "success" \| "error" \| "running" \| "cancelled" \| undefined` |  |
 | `result` | 否 | `ReactNode` |  |
 | `actions` | 否 | `ReactNode` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` | sm drops the card around the group and tightens rows, for side panels. |
+| `defaultOpen` | 否 | `boolean \| undefined` | Whether the list starts expanded. A later change applies until the reader toggles it. |
 | `diffs` | 否 | `ToolDiffChip[] \| undefined` |  |
 | `summary` | 否 | `string \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |

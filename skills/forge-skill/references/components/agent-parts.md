@@ -20,7 +20,7 @@ export type AgentMessagePart =
 ## AgentParts (value)
 
 ```ts
-({ parts, status, renderTool, onOpenFile, onToolApproval, locale, className }: AgentPartsProps) => JSX.Element
+({ parts, status, renderTool, onOpenFile, onToolApproval, locale, size, className }: AgentPartsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -31,6 +31,7 @@ export type AgentMessagePart =
 | `onOpenFile` | 否 | `((part: { url: string; filename?: string; mediaType: string; }) => void) \| undefined` |  |
 | `onToolApproval` | 否 | `((response: AgentToolApprovalResponse) => void) \| undefined` | Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. |
 | `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` | sm suits side panels: 14px answer text, tool calls as a plain list that folds once they finish. |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentPartsProps (type)
@@ -46,6 +47,8 @@ export type AgentPartsProps = {
   /** Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. */
   onToolApproval?: (response: AgentToolApprovalResponse) => void;
   locale?: "zh" | "en";
+  /** sm suits side panels: 14px answer text, tool calls as a plain list that folds once they finish. */
+  size?: "md" | "sm";
   className?: string;
 };
 ```

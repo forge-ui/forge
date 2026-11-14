@@ -2,10 +2,10 @@
   "package": "@forge-ui-official/core",
   "version": "0.8.2",
   "source": "core/src/index.ts",
-  "revision": "cb7e9a9bd7da256def7fed10112f3354f5f80ce9",
+  "revision": "c89e1c2b0513730c01a19d4af1c122e4a9360726",
   "dirty": false,
-  "exportFingerprint": "61c4f58d4ea1bf0b234cb9ca4718190f18e648f1",
-  "generatedAt": "2026-11-13T19:26:53+08:00",
+  "exportFingerprint": "54bb86ee9772d0de6bdadc908de61f3ef89cb8c7",
+  "generatedAt": "2026-11-14T14:47:11+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
   "componentCount": 509,
   "oneShotDefaultCount": 24,
@@ -722,7 +722,7 @@
       "module": "agent/agent-parts",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ parts, status, renderTool, onOpenFile, onToolApproval, locale, className }: AgentPartsProps) => JSX.Element",
+      "signature": "({ parts, status, renderTool, onOpenFile, onToolApproval, locale, size, className }: AgentPartsProps) => JSX.Element",
       "props": [
         {
           "name": "parts",
@@ -759,6 +759,12 @@
           "optional": true,
           "type": "\"zh\" | \"en\" | undefined",
           "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": "sm suits side panels: 14px answer text, tool calls as a plain list that folds once they finish."
         },
         {
           "name": "className",
@@ -25771,7 +25777,7 @@
       "module": "agent/agent-conversation",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ suggestions, onSelect, label, className }: PromptSuggestionsProps) => JSX.Element | null",
+      "signature": "({ suggestions, onSelect, label, size, className }: PromptSuggestionsProps) => JSX.Element | null",
       "props": [
         {
           "name": "suggestions",
@@ -25789,6 +25795,12 @@
           "name": "label",
           "optional": true,
           "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -27471,7 +27483,7 @@
       "module": "agent/streaming-answer",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ text, locale, streaming, status, format, animation, duration, motion, sources, sourcesLabel, followUps, followUpsLabel, onFollowUp, onDone, className, }: StreamingAnswerProps) => JSX.Element",
+      "signature": "({ text, locale, streaming, status, format, animation, size, duration, motion, sources, sourcesLabel, followUps, followUpsLabel, onFollowUp, onDone, className, }: StreamingAnswerProps) => JSX.Element",
       "props": [
         {
           "name": "text",
@@ -27508,6 +27520,12 @@
           "optional": true,
           "type": "\"fade\" | \"blur\" | undefined",
           "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": "sm suits side panels and other narrow columns: 14px text and tighter block spacing."
         },
         {
           "name": "duration",
@@ -34381,7 +34399,7 @@
       "module": "agent/tool-chips",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ items, locale, motion, state, result, actions, diffs, summary, className, }: { items: ToolChipItem[]; locale?: \"zh\" | \"en\"; motion?: MotionPreference; state?: \"idle\" | \"running\" | \"success\" | \"error\" | \"cancelled\"; result?: ReactNode; actions?: ReactNode; diffs?: ToolDiffChip[]; summary?: string; className?: string; }) => JSX.Element",
+      "signature": "({ items, locale, motion, state, result, actions, size, defaultOpen, diffs, summary, className, }: { items: ToolChipItem[]; locale?: \"zh\" | \"en\"; motion?: MotionPreference; state?: \"idle\" | \"running\" | \"success\" | \"error\" | \"cancelled\"; result?: ReactNode; actions?: ReactNode; size?: \"md\" | \"sm\"; defaultOpen?: boolean; diffs?: ToolDiffChip[]; summary?: string; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "items",
@@ -34418,6 +34436,18 @@
           "optional": true,
           "type": "ReactNode",
           "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": "sm drops the card around the group and tightens rows, for side panels."
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Whether the list starts expanded. A later change applies until the reader toggles it."
         },
         {
           "name": "diffs",
