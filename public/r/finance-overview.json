@@ -5,7 +5,7 @@
   "title": "财务概览",
   "description": "结合账户余额、收支趋势和储蓄目标，构建完整的财务工作台。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "看板首屏",
@@ -67,7 +67,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "ChartMetricRow",
         "CreditCard",

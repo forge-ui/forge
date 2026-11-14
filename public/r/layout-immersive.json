@@ -5,7 +5,7 @@
   "title": "沉浸式布局",
   "description": "去掉页头，侧栏收成图标条，内容区整块留给对话、画布或编辑器这类需要满屏的工作区。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "页面结构",
@@ -38,7 +38,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "AppLayout",
         "ChatBubble",

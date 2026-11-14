@@ -5,7 +5,7 @@
   "title": "任务执行详情",
   "description": "自主智能体任务详情：状态与来源、概要和知识库授权、带时间的执行过程，以及按类型分组、可预览下载复制的结果产物。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -34,7 +34,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Breadcrumbs",
         "Button",

@@ -5,7 +5,7 @@
   "title": "项目总览",
   "description": "整体进度、项目进展与需要关注三张统计卡，项目按状态筛选、搜索与归档切换，并可在可操作的卡片和表格之间切换。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "协作与项目",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Avatar",
         "Breadcrumbs",

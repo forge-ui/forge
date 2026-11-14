@@ -5,7 +5,7 @@
   "title": "资产概览",
   "description": "总资产、现金与待收款趋势卡，配合企业卡与资金目标完成度。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "看板首屏",
@@ -49,7 +49,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Button",
         "CreditCard",

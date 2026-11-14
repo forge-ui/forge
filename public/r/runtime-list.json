@@ -5,7 +5,7 @@
   "title": "运行时管理",
   "description": "自主智能体可用的执行引擎：类型、在线状态、版本与最后检测时间、连接地址，支持搜索、单个检查与探测本机运行时。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Breadcrumbs",
         "Button",
