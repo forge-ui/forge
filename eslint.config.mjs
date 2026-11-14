@@ -11,6 +11,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     ".vercel/**",
     "core/dist/**",
+    "agent/dist/**",
     "core/tmp/**",
     "tmp/**",
     "tmp-audit/**",

@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.8.2，共 507 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.8.2，共 509 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -40,6 +40,8 @@
 | AgentTaskChild | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
 | AgentTaskRows | value | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
 | AgentTaskStatus | type | [源码](../../core/src/components/ui/agent/agent-task-rows.tsx) | [agent-task-rows](../../skills/forge-skill/references/components/agent-task-rows.md) |
+| AgentToolApproval | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
+| AgentToolApprovalResponse | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
 | AgentToolPart | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
 | AgentToolState | type | [源码](../../core/src/components/ui/agent/agent-parts.tsx) | [agent-parts](../../skills/forge-skill/references/components/agent-parts.md) |
 | ALL_CARD_THEMES | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |

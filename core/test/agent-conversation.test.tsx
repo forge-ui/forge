@@ -22,11 +22,19 @@ const parts: AgentMessagePart[] = [
 
 test("AgentParts maps AI SDK parts to Forge components", () => {
   const html = renderToStaticMarkup(<AgentParts parts={parts} />);
-  for (const text of ["思考过程", "先查库存", "getInventory", "getPrice", "2 次工具调用", "1 个来源", "补货清单.csv", "text/csv"]) assert.ok(html.includes(text), text);
+  for (const text of ["思考", "getInventory", "getPrice", "2 次工具调用", "1 个来源", "补货清单.csv", "text/csv"]) assert.ok(html.includes(text), text);
+  assert.ok(!html.includes("思考过程"), "reasoning before tool calls is a row of their group, not a block of its own");
   assert.ok(html.includes("建议补货 30 件"), "answer text");
   assert.ok(!html.includes("**12**"), "markdown syntax is rendered, not shown raw");
   assert.equal((html.match(/data-tool-state/g) ?? []).length, 1, "consecutive tools grouped");
   assert.ok(html.includes('data-tool-state="error"'));
+});
+
+test("AgentParts keeps reasoning on its own when no tool call follows, skipping empty parts", () => {
+  const html = renderToStaticMarkup(<AgentParts parts={[{ type: "reasoning", text: "", state: "done" }, { type: "reasoning", text: "先查库存。", state: "done" }, { type: "reasoning", text: "再算补货量。", state: "done" }, { type: "text", text: "建议补货 30 件。", state: "done" }]} />);
+  assert.equal((html.match(/思考过程/g) ?? []).length, 1, "one block for the run");
+  for (const text of ["先查库存。", "再算补货量。"]) assert.ok(html.includes(text), text);
+  assert.ok(!html.includes("data-tool-state"));
 });
 
 test("renderTool replaces a finished tool call with custom UI", () => {

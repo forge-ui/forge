@@ -35,3 +35,8 @@ html:has(.docs-ui)[data-scrolling]::-webkit-scrollbar-thumb, .docs-scroll:hover:
 /* Body copy: 16px, near-black, slightly heavier than regular so Manrope does not read thin. */
 .docs-ui .docs-prose { font-size: 16px; line-height: 1.75; color: color-mix(in srgb, var(--color-fg-black) 85%, transparent); }
 .docs-ui article :is(p, li) { font-weight: 450; }
+
+/* The Forge Agent panel takes 400px from the page; the page TOC gives way so the article keeps its width. */
+html[data-forge-agent-open] .docs-toc {
+  display: none;
+}

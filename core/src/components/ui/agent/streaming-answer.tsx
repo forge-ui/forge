@@ -31,6 +31,8 @@ export type StreamingAnswerProps = {
   /** Plain preserves literal text and whitespace; Markdown is opt-in. */
   format?: "plain" | "markdown";
   animation?: "fade" | "blur";
+  /** sm suits side panels and other narrow columns: 14px text and tighter block spacing. */
+  size?: "md" | "sm";
   /** Fade duration in milliseconds; zero shows incoming content immediately. */
   duration?: number;
   motion?: MotionPreference;
@@ -106,6 +108,7 @@ export function StreamingAnswer({
   status,
   format = "plain",
   animation = "fade",
+  size = "md",
   duration = 500,
   motion = "auto",
   sources = [],
@@ -122,6 +125,7 @@ export function StreamingAnswer({
   const segments = useMemo(() => plainSegments(playout.text), [playout.text]);
   const animate = playout.busy && !playout.motionDisabled && !reduced && fadeDuration > 0;
   const [sourcesOpen, setSourcesOpen] = useState(false);
+  const bodySize = size === "sm" ? "text-sm leading-[22px]" : "text-[15px] leading-7";
   const notified = useRef<{ generation: number; text: string } | null>(null);
 
   useEffect(() => {
@@ -132,11 +136,11 @@ export function StreamingAnswer({
   }, [playout.done, playout.generation, text, onDone]);
 
   return (
-    <div className={cn("forge-streaming-answer flex flex-col gap-3 text-sm", className)} data-motion={motion} data-streaming-state={status === "stopped" ? "stopped" : playout.busy ? "streaming" : "complete"} aria-busy={playout.busy}>
+    <div className={cn("forge-streaming-answer flex flex-col text-sm", size === "sm" ? "gap-2" : "gap-3", className)} data-size={size} data-motion={motion} data-streaming-state={status === "stopped" ? "stopped" : playout.busy ? "streaming" : "complete"} aria-busy={playout.busy}>
       {format === "markdown" ? (
         <Streamdown
           key={playout.generation}
-          className="forge-streaming-body forge-streaming-markdown text-[15px] leading-7 tracking-fg text-fg-black"
+          className={cn("forge-streaming-body forge-streaming-markdown tracking-fg text-fg-black", bodySize)}
           mode="streaming"
           BlockComponent={AnswerBlock}
           isAnimating={animate}
@@ -146,7 +150,7 @@ export function StreamingAnswer({
           skipHtml
         >{playout.text}</Streamdown>
       ) : (
-        <p key={playout.generation} className="forge-streaming-body whitespace-pre-wrap text-[15px] leading-7 tracking-fg text-fg-black">
+        <p key={playout.generation} className={cn("forge-streaming-body whitespace-pre-wrap tracking-fg text-fg-black", bodySize)}>
           {animate ? segments.map((segment) => <span key={segment.offset} className="forge-answer-segment" style={{ "--forge-answer-duration": `${fadeDuration}ms`, "--forge-answer-animation": animation === "blur" ? "sd-forge-answer-blur" : "sd-forge-answer-in" } as CSSProperties}>{segment.value}</span>) : playout.text}
         </p>
       )}

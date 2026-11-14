@@ -156,7 +156,7 @@ export type MessageFeedback = "up" | "down" | null;
 ## PromptSuggestions (value)
 
 ```ts
-({ suggestions, onSelect, label, className }: PromptSuggestionsProps) => JSX.Element | null
+({ suggestions, onSelect, label, size, className }: PromptSuggestionsProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -164,6 +164,7 @@ export type MessageFeedback = "up" | "down" | null;
 | `suggestions` | 是 | `string[]` |  |
 | `onSelect` | 是 | `(text: string, index: number) => void` |  |
 | `label` | 否 | `string \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## PromptSuggestionsProps (type)
@@ -173,6 +174,7 @@ export type PromptSuggestionsProps = {
   suggestions: string[];
   onSelect: (text: string, index: number) => void;
   label?: string;
+  size?: "md" | "sm";
   className?: string;
 };
 ```

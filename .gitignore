@@ -45,6 +45,7 @@ next-env.d.ts
 
 # workspace build outputs
 /core/dist
+/agent/dist
 /core/src/assets/_inlined.ts
 .turbo
 tmp/

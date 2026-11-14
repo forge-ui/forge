@@ -35,7 +35,7 @@ export type ToolChipKind = "think" | "write" | "run" | "read" | "edit";
 ## ToolChips (value)
 
 ```ts
-({ items, locale, motion, state, result, actions, diffs, summary, className, }: { items: ToolChipItem[]; locale?: "zh" | "en"; motion?: MotionPreference; state?: "idle" | "running" | "success" | "error" | "cancelled"; result?: ReactNode; actions?: ReactNode; diffs?: ToolDiffChip[]; summary?: string; className?: string; }) => JSX.Element
+({ items, locale, motion, state, result, actions, size, defaultOpen, diffs, summary, className, }: { items: ToolChipItem[]; locale?: "zh" | "en"; motion?: MotionPreference; state?: "idle" | "running" | "success" | "error" | "cancelled"; result?: ReactNode; actions?: ReactNode; size?: "md" | "sm"; defaultOpen?: boolean; diffs?: ToolDiffChip[]; summary?: string; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -46,6 +46,8 @@ export type ToolChipKind = "think" | "write" | "run" | "read" | "edit";
 | `state` | 否 | `"idle" \| "success" \| "error" \| "running" \| "cancelled" \| undefined` |  |
 | `result` | 否 | `ReactNode` |  |
 | `actions` | 否 | `ReactNode` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` | sm drops the card around the group and tightens rows, for side panels. |
+| `defaultOpen` | 否 | `boolean \| undefined` | Whether the list starts expanded. A later change applies until the reader toggles it. |
 | `diffs` | 否 | `ToolDiffChip[] \| undefined` |  |
 | `summary` | 否 | `string \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |

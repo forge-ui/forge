@@ -26,7 +26,7 @@ export function DocsToc({ items }: { items: TocItem[] }) {
     () => items[0]?.id,
   );
   return (
-    <aside className="docs-scroll sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 overflow-y-auto xl:block">
+    <aside className="docs-toc docs-scroll sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 overflow-y-auto xl:block">
       <div className="flex flex-col gap-8 py-10 pr-4 text-sm">
         <div className="flex flex-col gap-3">
           <p className="flex items-center gap-2 text-fg-grey-700"><HamburgerMenuLinear size={16} />本页目录</p>

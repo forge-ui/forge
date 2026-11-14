@@ -194,7 +194,7 @@ export function ThemeGenerator({ reference }: { reference: Scale }) {
         </div>
       </div>
 
-      <CodeBlock code={css} lang="css" />
+      <CodeBlock code={css} lang="css" label="生成的 CSS" />
     </div>
   );
 }

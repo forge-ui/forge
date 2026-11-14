@@ -6,7 +6,7 @@
 ## StreamingAnswer (value)
 
 ```ts
-({ text, locale, streaming, status, format, animation, duration, motion, sources, sourcesLabel, followUps, followUpsLabel, onFollowUp, onDone, className, }: StreamingAnswerProps) => JSX.Element
+({ text, locale, streaming, status, format, animation, size, duration, motion, sources, sourcesLabel, followUps, followUpsLabel, onFollowUp, onDone, className, }: StreamingAnswerProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -17,6 +17,7 @@
 | `status` | 否 | `StreamingAnswerStatus \| undefined` | Transport state. Complete drains the display buffer; stopped freezes it. |
 | `format` | 否 | `"plain" \| "markdown" \| undefined` | Plain preserves literal text and whitespace; Markdown is opt-in. |
 | `animation` | 否 | `"fade" \| "blur" \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` | sm suits side panels and other narrow columns: 14px text and tighter block spacing. |
 | `duration` | 否 | `number \| undefined` | Fade duration in milliseconds; zero shows incoming content immediately. |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
 | `sources` | 否 | `StreamingSource[] \| undefined` |  |
@@ -40,6 +41,8 @@ export type StreamingAnswerProps = {
   /** Plain preserves literal text and whitespace; Markdown is opt-in. */
   format?: "plain" | "markdown";
   animation?: "fade" | "blur";
+  /** sm suits side panels and other narrow columns: 14px text and tighter block spacing. */
+  size?: "md" | "sm";
   /** Fade duration in milliseconds; zero shows incoming content immediately. */
   duration?: number;
   motion?: MotionPreference;

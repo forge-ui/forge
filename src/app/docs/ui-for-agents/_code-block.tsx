@@ -6,9 +6,12 @@ import { CopyLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
 export function CodeBlock({
   code,
   lang,
+  label,
 }: {
   code: string;
   lang?: string;
+  /** Accessible name; also how the site assistant finds and scrolls to this block. */
+  label?: string;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -42,7 +45,7 @@ export function CodeBlock({
           <CopyLinear size={14} color="#71717A" />
         )}
       </button>
-      <pre className="overflow-x-auto px-4 py-3 pr-12 text-[13px] leading-relaxed text-fg-black">
+      <pre aria-label={label} className="overflow-x-auto px-4 py-3 pr-12 text-[13px] leading-relaxed text-fg-black">
         <code className="font-mono whitespace-pre">{code}</code>
       </pre>
     </div>

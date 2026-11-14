@@ -51,14 +51,21 @@ export type AgentPartsProps = {
   /** Answer a tool approval request; pass `addToolApprovalResponse` from `useChat`. Without it the request shows as waiting. */
   onToolApproval?: (response: AgentToolApprovalResponse) => void;
   locale?: "zh" | "en";
+  /** sm suits side panels: 14px answer text, tool calls as a plain list that folds once they finish. */
+  size?: "md" | "sm";
   className?: string;
 };
 
 const toolName = (part: AgentToolPart) => part.toolName ?? part.type.replace(/^tool-/, "");
 const isTool = (part: AgentMessagePart): part is AgentToolPart => typeof part.type === "string" && (part.type.startsWith("tool-") || part.type === "dynamic-tool");
+// A lone argument reads better as its value than as JSON: {"slug":"DataTable"} → DataTable.
+const soleValue = (value: unknown) => {
+  const values = value && typeof value === "object" && !Array.isArray(value) ? Object.values(value) : [];
+  return values.length === 1 && (typeof values[0] === "string" || typeof values[0] === "number") ? String(values[0]) : undefined;
+};
 const preview = (value: unknown, length = 48) => {
   if (value === undefined) return "";
-  const text = typeof value === "string" ? value : JSON.stringify(value);
+  const text = typeof value === "string" ? value : soleValue(value) ?? JSON.stringify(value);
   return text.length > length ? text.slice(0, length - 1) + "…" : text;
 };
 const lines = (value: unknown) => (typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "").split("\n").slice(0, 40).map(text => ({ text }));
@@ -71,11 +78,11 @@ const detailFor = (part: AgentToolPart, locale: "zh" | "en"): ToolChipItem["deta
   return part.output === undefined ? undefined : lines(part.output);
 };
 
-function ToolApprovalRequest({ part, onAnswer, locale }: { part: AgentToolPart; onAnswer?: (response: AgentToolApprovalResponse) => void; locale: "zh" | "en" }) {
+function ToolApprovalRequest({ part, onAnswer, locale, small }: { part: AgentToolPart; onAnswer?: (response: AgentToolApprovalResponse) => void; locale: "zh" | "en"; small: boolean }) {
   const id = part.approval?.id ?? part.toolCallId;
   const input = preview(part.input, 120);
   return (
-    <div role="group" aria-label={locale === "en" ? `Approve ${toolName(part)}` : `确认调用 ${toolName(part)}`} className="flex flex-col gap-3 rounded-xl border border-fg-grey-200 bg-background p-4 text-sm">
+    <div role="group" aria-label={locale === "en" ? `Approve ${toolName(part)}` : `确认调用 ${toolName(part)}`} className={cn("flex flex-col rounded-xl border border-fg-grey-200 bg-background", small ? "gap-2 p-3 text-[13px]" : "gap-3 p-4 text-sm")}>
       <p className="font-semibold text-fg-black">{locale === "en" ? `Allow ${toolName(part)} to run?` : `允许执行 ${toolName(part)} 吗？`}</p>
       {part.approval?.requestReason && <p className="text-fg-grey-700">{part.approval.requestReason}</p>}
       {input && <code className="block overflow-x-auto whitespace-pre rounded-lg bg-fg-grey-100 px-3 py-2 font-mono text-xs text-fg-grey-900">{input}</code>}
@@ -91,9 +98,9 @@ function ToolApprovalRequest({ part, onAnswer, locale }: { part: AgentToolPart; 
   );
 }
 
-function Reasoning({ text, streaming, locale }: { text: string; streaming: boolean; locale: "zh" | "en" }) {
+function Reasoning({ text, streaming, locale, small }: { text: string; streaming: boolean; locale: "zh" | "en"; small: boolean }) {
   return (
-    <details open={streaming} className="group rounded-xl text-sm">
+    <details open={streaming} className={cn("group rounded-xl text-sm", small && "-ml-1.5")}>
       <summary className="flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100">
         <LightbulbLinear size={14} color="currentColor" />
         {streaming ? (locale === "en" ? "Thinking…" : "思考中…") : (locale === "en" ? "Thought process" : "思考过程")}
@@ -109,44 +116,60 @@ function Reasoning({ text, streaming, locale }: { text: string; streaming: boole
  * collapsible trace, consecutive tool calls as one ToolChips group (or your component via renderTool),
  * sources under the answer and files as artifact cards.
  */
-export function AgentParts({ parts, status = "ready", renderTool = {}, onOpenFile, onToolApproval, locale = "zh", className }: AgentPartsProps) {
+export function AgentParts({ parts, status = "ready", renderTool = {}, onOpenFile, onToolApproval, locale = "zh", size = "md", className }: AgentPartsProps) {
+  const small = size === "sm";
   const sources: StreamingSource[] = parts.flatMap(part =>
     part.type === "source-url" ? [{ name: String(part.title ?? part.url), href: String(part.url), domain: (() => { try { return new URL(String(part.url)).hostname; } catch { return undefined; } })() }]
       : part.type === "source-document" ? [{ name: String(part.title) }] : []);
   const lastText = parts.map(part => part.type).lastIndexOf("text");
   const blocks: ReactNode[] = [];
-  let tools: AgentToolPart[] = [];
+  // Reasoning and tool calls between two pieces of visible output: a multi-step run alternates them,
+  // and one line per part would bury the answer.
+  type Thought = { thought: string; streaming: boolean; index: number };
+  let work: (AgentToolPart | Thought)[] = [];
+  const isThought = (entry: AgentToolPart | Thought): entry is Thought => "thought" in entry;
 
-  const flushTools = (key: string) => {
-    if (!tools.length) return;
-    const items = tools.map(part => ({ id: part.toolCallId, kind: "run" as const, label: toolName(part), chip: preview(part.input), mono: true, status: STATUS[part.state] ?? "pending", detail: detailFor(part, locale) }));
-    const running = tools.some(isRunning);
+  const flushWork = (key: string) => {
+    if (!work.length) return;
+    const entries = work;
+    work = [];
+    const thoughts = entries.filter(isThought);
+    const tools = entries.filter((entry): entry is AgentToolPart => !isThought(entry));
+    if (!tools.length) {
+      blocks.push(<Reasoning key={key} text={thoughts.map(entry => entry.thought).join("\n\n")} streaming={thoughts.some(entry => entry.streaming)} locale={locale} small={small} />);
+      return;
+    }
+    const items: ToolChipItem[] = entries.map(entry => isThought(entry)
+      ? { id: `thought-${entry.index}`, kind: "think", label: entry.streaming ? (locale === "en" ? "Thinking…" : "思考中…") : (locale === "en" ? "Thought" : "思考"), chip: "", detail: entry.thought.split("\n").filter(Boolean).map(text => ({ text })) }
+      : { id: entry.toolCallId, kind: "run", label: toolName(entry), chip: preview(entry.input), mono: true, status: STATUS[entry.state] ?? "pending", detail: detailFor(entry, locale) });
+    const running = tools.some(isRunning) || thoughts.some(entry => entry.streaming);
     const failed = tools.some(part => part.state === "output-error");
     const denied = tools.every(part => STATUS[part.state] === "cancelled" || (part.state === "approval-responded" && part.approval?.approved === false));
-    blocks.push(<ToolChips key={key} items={items} locale={locale} state={running ? "running" : failed ? "error" : denied ? "cancelled" : "success"} />);
-    tools = [];
+    blocks.push(<ToolChips key={key} items={items} locale={locale} size={size} summary={locale === "en" ? `${tools.length} tool calls` : `${tools.length} 次工具调用`} defaultOpen={!small || running || failed} state={running ? "running" : failed ? "error" : denied ? "cancelled" : "success"} />);
   };
 
   parts.forEach((part, index) => {
     if (isTool(part)) {
-      if (needsAnswer(part)) { flushTools(`tools-${index}`); blocks.push(<ToolApprovalRequest key={part.toolCallId} part={part} onAnswer={onToolApproval} locale={locale} />); return; }
+      if (needsAnswer(part)) { flushWork(`work-${index}`); blocks.push(<ToolApprovalRequest key={part.toolCallId} part={part} onAnswer={onToolApproval} locale={locale} small={small} />); return; }
       const custom = part.state === "output-available" ? renderTool[toolName(part)]?.(part) : undefined;
-      if (custom) { flushTools(`tools-${index}`); blocks.push(<Fragment key={part.toolCallId}>{custom}</Fragment>); }
-      else tools.push(part);
+      if (custom) { flushWork(`work-${index}`); blocks.push(<Fragment key={part.toolCallId}>{custom}</Fragment>); }
+      else work.push(part);
       return;
     }
-    flushTools(`tools-${index}`);
-    if (part.type === "text") {
+    if (part.type === "reasoning") {
+      // Some providers send an empty reasoning part with every step.
+      if (String(part.text).trim()) work.push({ thought: String(part.text), streaming: part.state === "streaming", index });
+    } else if (part.type === "text") {
+      flushWork(`work-${index}`);
       const live = index === lastText && status === "streaming" && part.state !== "done";
-      blocks.push(<StreamingAnswer key={index} text={String(part.text)} format="markdown" status={live ? "streaming" : "complete"} duration={live ? undefined : 0} locale={locale} sources={index === lastText && sources.length ? sources : undefined} />);
-    } else if (part.type === "reasoning") {
-      blocks.push(<Reasoning key={index} text={String(part.text)} streaming={part.state === "streaming"} locale={locale} />);
+      blocks.push(<StreamingAnswer key={index} text={String(part.text)} format="markdown" size={size} status={live ? "streaming" : "complete"} duration={live ? undefined : 0} locale={locale} sources={index === lastText && sources.length ? sources : undefined} />);
     } else if (part.type === "file") {
+      flushWork(`work-${index}`);
       const file = part as { url: string; filename?: string; mediaType: string };
       blocks.push(<ArtifactCard key={index} title={file.filename ?? file.url} meta={file.mediaType} kind={file.mediaType.startsWith("image/") ? "image" : "file"} locale={locale} onOpen={onOpenFile ? () => onOpenFile(file) : undefined} />);
     }
   });
-  flushTools("tools-end");
+  flushWork("work-end");
 
-  return <div className={cn("flex min-w-0 flex-col gap-3", className)}>{blocks}</div>;
+  return <div className={cn("flex min-w-0 flex-col", small ? "gap-2" : "gap-3", className)}>{blocks}</div>;
 }
