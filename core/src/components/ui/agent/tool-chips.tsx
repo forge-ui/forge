@@ -56,6 +56,8 @@ const KIND_ICON: Record<ToolChipKind, typeof LightbulbLinear> = {
 export function ToolChips({
   items,
   locale = "zh", motion = "auto", state, result, actions,
+  size = "md",
+  defaultOpen = true,
   diffs = [],
   summary,
   className = "",
@@ -66,32 +68,39 @@ export function ToolChips({
   state?: "idle" | "running" | "success" | "error" | "cancelled";
   result?: ReactNode;
   actions?: ReactNode;
+  /** sm drops the card around the group and tightens rows, for side panels. */
+  size?: "md" | "sm";
+  /** Whether the list starts expanded. A later change applies until the reader toggles it. */
+  defaultOpen?: boolean;
   diffs?: ToolDiffChip[];
   summary?: string;
   className?: string;
 }) {
   const reduced = useReducedMotion(motion);
-  const [open, setOpen] = useState(true);
+  const [toggled, setToggled] = useState<boolean>();
+  const open = toggled ?? defaultOpen;
+  const small = size === "sm";
   const [openRows, setOpenRows] = useState<Record<string, boolean>>({});
 
   return (
-    <div className={cn("flex flex-col gap-2 text-sm", state && "rounded-xl border border-fg-grey-200 bg-background p-4", className)} data-tool-state={state} data-motion={reduced ? "none" : motion}>
+    <div className={cn("flex flex-col text-sm", small ? "gap-1" : "gap-2", state && !small && "rounded-xl border border-fg-grey-200 bg-background p-4", className)} data-tool-state={state} data-size={size} data-motion={reduced ? "none" : motion}>
       <button
         type="button"
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-fit items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100"
+        onClick={() => setToggled(!open)}
+        className={cn("flex w-fit items-center gap-1.5 rounded-lg py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100", small ? "-ml-1.5 px-1.5" : "px-1.5")}
       >
         <AltArrowDownLinear
           size={12}
           color="var(--fg-grey-500)"
+          className={cn("transition-transform", !open && "-rotate-90")}
         />
         {summary ?? (locale === "zh" ? `${items.length} 次工具调用` : `${items.length} tool calls`)}
         {state && <span role="status">{(locale === "zh" ? { idle: "准备调用", running: "正在执行", success: "已完成", error: "执行失败", cancelled: "已停止" } : { idle: "Ready", running: "Running", success: "Completed", error: "Failed", cancelled: "Stopped" })[state]}</span>}
       </button>
 
       <AnimatePresence initial={false}>{open && (
-        <animated.div initial={reduced ? false : { height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduced ? 0 : .25 }} className="flex flex-col gap-1 overflow-hidden">
+        <animated.div initial={reduced ? false : { height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduced ? 0 : .25 }} className={cn("flex flex-col overflow-hidden", small ? "gap-0" : "gap-1")}>
           {items.map((item) => {
             const Icon = KIND_ICON[item.kind];
             const expanded = openRows[item.id];
@@ -101,19 +110,20 @@ export function ToolChips({
                   type="button"
                   aria-expanded={Boolean(expanded)}
                   onClick={() => setOpenRows((current) => ({ ...current, [item.id]: !current[item.id] }))}
-                  className="flex min-h-8 items-center gap-2 rounded-lg px-1.5 text-left hover:bg-fg-grey-100"
+                  className={cn("flex items-center gap-2 rounded-lg text-left hover:bg-fg-grey-100", small ? "-ml-1.5 min-h-7 px-1.5 text-[13px]" : "min-h-8 px-1.5")}
                 >
-                  {item.status === "complete" ? <CheckCircleLinear size={16} color="var(--fg-green-500)" /> : item.status === "error" ? <DangerTriangleLinear size={16} color="var(--fg-red)" /> : item.status ? <ClockCircleLinear size={16} color="var(--fg-grey-500)" /> : <Icon size={14} color="var(--fg-grey-700)" />}
-                  <span className="font-medium text-fg-black">{item.label}</span>
-                  <span
+                  {item.status === "complete" ? <CheckCircleLinear size={small ? 14 : 16} color="var(--fg-green-500)" /> : item.status === "error" ? <DangerTriangleLinear size={small ? 14 : 16} color="var(--fg-red)" /> : item.status ? <ClockCircleLinear size={small ? 14 : 16} color="var(--fg-grey-500)" /> : <Icon size={14} color="var(--fg-grey-700)" />}
+                  <span className={cn("text-fg-black", small ? "shrink-0" : "font-medium")}>{item.label}</span>
+                  {item.chip && <span
                     className={cn(
                       "rounded-md bg-fg-grey-100 px-1.5 py-0.5 text-xs text-fg-grey-700",
                       item.mono && "font-mono",
+                      small && "min-w-0 truncate",
                     )}
                   >
                     {item.chip}
-                  </span>
-                  {item.status && <span className="ml-auto text-xs text-fg-grey-500">{(locale === "zh" ? { pending: "等待", running: "进行中", complete: "完成", error: "失败", cancelled: "已停止" } : { pending: "Pending", running: "Running", complete: "Done", error: "Failed", cancelled: "Stopped" })[item.status]}</span>}
+                  </span>}
+                  {item.status && !(small && item.status === "complete") && <span className="ml-auto text-xs text-fg-grey-500">{(locale === "zh" ? { pending: "等待", running: "进行中", complete: "完成", error: "失败", cancelled: "已停止" } : { pending: "Pending", running: "Running", complete: "Done", error: "Failed", cancelled: "Stopped" })[item.status]}</span>}
                 </button>
                 {expanded && item.detail && (
                   <div className="ml-6 mt-1 flex flex-col gap-0.5 border-l border-fg-grey-200 pl-3">
@@ -121,7 +131,8 @@ export function ToolChips({
                       <p
                         key={line.text}
                         className={cn(
-                          "font-mono text-xs leading-5",
+                          "text-xs leading-5",
+                          item.kind === "think" ? "whitespace-pre-wrap" : "font-mono",
                           line.tone === "add" && "text-fg-green-500",
                           line.tone === "del" && "text-fg-red",
                           !line.tone || line.tone === "plain" ? "text-fg-grey-700" : null,

@@ -194,19 +194,20 @@ export type PromptSuggestionsProps = {
   suggestions: string[];
   onSelect: (text: string, index: number) => void;
   label?: string;
+  size?: "md" | "sm";
   className?: string;
 };
 
 /** Starter prompts or follow-ups as wrapping chips. */
-export function PromptSuggestions({ suggestions, onSelect, label, className }: PromptSuggestionsProps) {
+export function PromptSuggestions({ suggestions, onSelect, label, size = "md", className }: PromptSuggestionsProps) {
   if (!suggestions.length) return null;
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       {label && <span className="text-xs font-semibold tracking-fg text-fg-grey-700">{label}</span>}
-      <div className="flex flex-wrap gap-2">
+      <div className={cn("flex flex-wrap", size === "sm" ? "gap-1.5" : "gap-2")}>
         {suggestions.map((suggestion, index) => (
           <button key={suggestion} type="button" onClick={() => onSelect(suggestion, index)}
-            className="rounded-full border border-fg-grey-200 bg-background px-3 py-1.5 text-left text-sm tracking-fg text-fg-black transition-colors hover:border-fg-blue hover:text-fg-blue">
+            className={cn("rounded-full border border-fg-grey-200 bg-background text-left tracking-fg text-fg-black transition-colors hover:border-fg-blue hover:text-fg-blue", size === "sm" ? "px-2.5 py-1 text-[13px]" : "px-3 py-1.5 text-sm")}>
             {suggestion}
           </button>
         ))}

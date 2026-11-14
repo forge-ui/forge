@@ -986,6 +986,12 @@ body {
 .forge-streaming-markdown :is(th,td) { border-bottom: 1px solid var(--fg-grey-200); padding: .5rem .75rem; }
 .forge-streaming-markdown th { background: var(--fg-grey-50); font-weight: 600; }
 .forge-streaming-markdown hr { border: 0; border-top: 1px solid var(--fg-grey-200); margin-block: 1.5rem; }
+[data-size="sm"] > .forge-streaming-markdown > * + * { margin-top: .625rem; }
+[data-size="sm"] > .forge-streaming-markdown :is(h1,h2,h3,h4,h5,h6) { font-size: 1em; margin-block: 1rem .375rem; }
+[data-size="sm"] > .forge-streaming-markdown :is(ul,ol) { padding-left: 1.25rem; }
+[data-size="sm"] > .forge-streaming-markdown li { margin-block: .25rem; padding-left: 0; }
+[data-size="sm"] > .forge-streaming-markdown pre { padding: .75rem; line-height: 1.6; }
+[data-size="sm"] > .forge-streaming-markdown :is(th,td) { padding: .375rem .5rem; }
 .forge-streaming-answer[data-motion="none"] :is(.forge-answer-segment,[data-sd-animate],.forge-fade-up) { animation: none; }
 @media (prefers-reduced-motion: reduce) {
   .forge-streaming-answer :is(.forge-answer-segment,[data-sd-animate],.forge-fade-up) { animation: none; }
