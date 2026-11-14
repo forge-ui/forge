@@ -28,7 +28,7 @@
     "test": "tsx --test test/*.test.ts"
   },
   "peerDependencies": {
-    "@forge-ui-official/core": ">=0.8.2",
+    "@forge-ui-official/core": ">=0.8.3",
     "react": ">=19",
     "react-dom": ">=19"
   },

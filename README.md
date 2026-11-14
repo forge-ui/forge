@@ -109,6 +109,7 @@ npx shadcn@latest add https://www.forgeui.org/r/kanban-board.json
 | | 做什么 | 从哪里开始 |
 | --- | --- | --- |
 | `@forge-ui-official/core` | 组件、设计 token、`AppLayout` | `pnpm add @forge-ui-official/core` |
+| `@forge-ui-official/agent` | 嵌进应用的 AI 助手：回答问题、调用接口、用 Forge 组件回答、操作页面 | [agent/README.md](agent/README.md) |
 | [Forge Starter](https://github.com/forge-ui/forge-starter) | 后台脚手架：登录、样板模块、加页面 | `git clone` 后 `pnpm dev` |
 | [页面组件](https://www.forgeui.org/blocks) | 70 个可复制的整页源码 | `npx shadcn@latest add https://www.forgeui.org/r/<name>.json` |
 | [Forge Skill](https://www.forgeui.org/docs/ui-for-agents) 与 [MCP](https://www.forgeui.org/docs/mcp) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | `curl -fsSL https://www.forgeui.org/setup.sh \| bash` |
@@ -242,6 +243,7 @@ pnpm lint            # ESLint
 | 路径 | 说明 |
 | --- | --- |
 | `core/` | `@forge-ui-official/core` 源码 |
+| `agent/` | `@forge-ui-official/agent` 源码 |
 | `blocks/` | 页面组件源码，生成到 `public/r/` 供 shadcn 安装 |
 | `content/guides/` | 使用指南（Markdown） |
 | `docs/for-agents/` | 给 AI 的组件路由表和介绍表，先读 `README.md` |
