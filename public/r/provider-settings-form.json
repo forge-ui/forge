@@ -5,7 +5,7 @@
   "title": "服务配置表单",
   "description": "设置类表单：顶部按登录、支付、邮件、存储分标签，每个服务一张卡片，开关启用后展开字段与回调地址，卡片底部单独测试连接与保存。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "表单",
@@ -34,7 +34,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Breadcrumbs",
         "Button",

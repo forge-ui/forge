@@ -5,7 +5,7 @@
   "title": "应用智能体目录",
   "description": "左侧目录树，按发布状态与类型筛选、排序和搜索的应用智能体卡片，分页浏览，并可从模板库一键创建高级工作流智能体。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "AI 与智能体",
@@ -44,7 +44,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Breadcrumbs",
         "Button",

@@ -20,15 +20,17 @@
   },
   "files": [
     "dist",
+    "README.md",
     "LICENSE"
   ],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test test/*.test.ts"
+    "test": "tsx --test test/*.test.ts",
+    "prepublishOnly": "pnpm build && pnpm typecheck && pnpm test"
   },
   "peerDependencies": {
-    "@forge-ui-official/core": ">=0.8.2",
+    "@forge-ui-official/core": ">=0.8.3",
     "react": ">=19",
     "react-dom": ">=19"
   },
@@ -45,5 +47,14 @@
     "tsup": "^8.5.0",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0"
+  },
+  "homepage": "https://www.forgeui.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://atomgit.com/bitlink/forge.git",
+    "directory": "agent"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

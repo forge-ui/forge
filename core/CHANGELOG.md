@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.3
+
+- AgentParts、StreamingAnswer、ToolChips、PromptSuggestions 新增 `size="sm"`，给侧边面板等窄栏用：回答正文 14px、间距更紧，工具调用完成后折成一行。默认尺寸不变。
+- AgentParts 把两段可见输出之间的思考和工具调用合成一组显示，不再一条思考一条工具交替出现；空的思考段跳过；只有思考时多段合并成一个「思考过程」。
+- ToolChips 新增 `defaultOpen`；只有一个参数的工具调用直接显示参数值，不再显示整段 JSON。
+
 ## 0.8.2
 
 - 没有加载 Manrope 和 Plus Jakarta Sans 时，正文和标题退回系统字体（中文用苹方或微软雅黑），不再变成浏览器默认的衬线字。

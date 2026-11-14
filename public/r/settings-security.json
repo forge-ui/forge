@@ -5,7 +5,7 @@
   "title": "安全设置",
   "description": "密码与强度提示、两步验证、单点登录、登录设备管理与 API 密钥。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "设置",
@@ -39,7 +39,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "Button",
         "Modal",

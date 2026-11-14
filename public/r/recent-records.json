@@ -5,7 +5,7 @@
   "title": "最近记录表卡",
   "description": "在一张卡片内查看最近订单、交易或业务记录。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "数据列表",
@@ -1492,7 +1492,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "DataTable",
         "Panel"

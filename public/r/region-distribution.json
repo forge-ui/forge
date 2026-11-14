@@ -5,7 +5,7 @@
   "title": "地区分布卡",
   "description": "结合地图与地区明细，查看客户或收入的地域分布。",
   "dependencies": [
-    "@forge-ui-official/core@^0.8.2"
+    "@forge-ui-official/core@^0.8.3"
   ],
   "meta": {
     "category": "图表与指标",
@@ -77,7 +77,7 @@
       }
     ],
     "core": {
-      "version": "^0.8.2",
+      "version": "^0.8.3",
       "components": [
         "MapCard"
       ]

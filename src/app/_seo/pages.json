@@ -315,7 +315,7 @@
   },
   "/docs/changelog": {
     "title": "更新日志",
-    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.8.2。"
+    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.8.3。"
   },
   "/docs/check": {
     "title": "页面检查",
