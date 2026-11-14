@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { defineTool, type AgentTool } from "../tool";
-import { beginRun, pointAt, ripple, setStep, sleep } from "./overlay";
+import { beginRun, finishStep, pointAt, ripple, setStep, sleep } from "./overlay";
 import { describe, elementFor, isRisky, isSensitive, peekElement, readPage } from "./page";
 
-/** 演示给我看: every step is animated on the page. 直接帮我做: the same steps, instantly. */
+/** 演示给我看: the pointer travels and every step is paced to be followed. 直接帮我做: the same steps, the pointer only hops. */
 export type OperateMode = "show" | "direct";
 
 export type PageToolsOptions = {
@@ -96,12 +96,16 @@ export function pageTools({ mode, navigate = path => location.assign(path) }: Pa
     const started = generation;
     const run = queue.then(async () => {
       checkpoint(started);
-      if (animate) beginRun();
+      beginRun();
       setStep(label);
-      const done = await action(started);
-      checkpoint(started);
-      await settle();
-      return `${done}。页面已更新，下一轮会附上最新页面。`;
+      try {
+        const done = await action(started);
+        checkpoint(started);
+        await settle();
+        return `${done}。页面已更新，下一轮会附上最新页面。`;
+      } finally {
+        finishStep();
+      }
     });
     queue = run.catch(() => undefined);
     return run;
@@ -145,7 +149,7 @@ export function pageTools({ mode, navigate = path => location.assign(path) }: Pa
         const rect = await pointAt(element, animate);
         const x = rect.left + Math.min(rect.width / 2, 40);
         const y = rect.top + rect.height / 2;
-        if (animate) await ripple(x, y);
+        await ripple(animate);
         const leaving = element instanceof HTMLAnchorElement && element.href && element.target !== "_blank" && element.pathname !== location.pathname ? element.pathname : undefined;
         pointerSequence(element, x, y);
         if (leaving) await waitForPath(leaving, started);
@@ -164,8 +168,8 @@ export function pageTools({ mode, navigate = path => location.assign(path) }: Pa
         const editable = element.isContentEditable;
         const textual = element instanceof HTMLTextAreaElement || (element instanceof HTMLInputElement && TEXT_INPUTS.has(element.type));
         if (!editable && !textual && !(element instanceof HTMLInputElement)) throw new Error(`${describe(element)} 不能输入文字`);
-        const rect = await pointAt(element, animate);
-        if (animate) await ripple(rect.left + Math.min(rect.width / 2, 40), rect.top + rect.height / 2);
+        await pointAt(element, animate);
+        await ripple(animate);
         element.focus({ preventScroll: true });
         if (editable) {
           document.execCommand("selectAll");
@@ -218,7 +222,7 @@ export function pageTools({ mode, navigate = path => location.assign(path) }: Pa
         // Custom select: open it, then press the matching option in the list it controls.
         const opener = await pointAt(element, animate);
         if (element.getAttribute("aria-expanded") !== "true") {
-          if (animate) await ripple(opener.left + Math.min(opener.width / 2, 40), opener.top + opener.height / 2);
+          await ripple(animate);
           pointerSequence(element, opener.left + 10, opener.top + opener.height / 2);
           await settle(150, 1000);
         }
@@ -226,7 +230,7 @@ export function pageTools({ mode, navigate = path => location.assign(path) }: Pa
         const list = document.getElementById(element.getAttribute("aria-controls") ?? "") ?? document;
         const choice = pick([...list.querySelectorAll<HTMLElement>("[role='option']")].filter(item => item.getClientRects().length > 0), item => item.textContent ?? "", option);
         const rect = await pointAt(choice, animate);
-        if (animate) await ripple(rect.left + Math.min(rect.width / 2, 40), rect.top + rect.height / 2);
+        await ripple(animate);
         pointerSequence(choice, rect.left + 10, rect.top + rect.height / 2);
         return `已选择「${(choice.textContent ?? "").trim()}」`;
       }),

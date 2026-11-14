@@ -1,20 +1,22 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport, type UIMessage } from "ai";
+import { DefaultChatTransport, generateId, type UIMessage } from "ai";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
-import { AgentMessage, AgentParts, ButtonGroup, ChatInputBar, Conversation, IconButton, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
-import { AddCircleLinear, CloseCircleLinear, StarsLinear } from "@forge-ui-official/core/icons";
+import { AgentMessage, AgentParts, ChatInputBar, Conversation, IconButton, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
+import { PenNewSquareLinear, PlusLinear, StarsLinear } from "@forge-ui-official/core/icons";
 import { renderCatalog, sourcesFrom } from "./catalog/render";
 import { uiToolNames, type UiToolName } from "./catalog/schema";
-import { endRun, endRunSoon, setStopHandler } from "./operator/overlay";
-import { readPage } from "./operator/page";
+import { endRun, endRunSoon, holdRun, setStopHandler } from "./operator/overlay";
+import { findByName, readPage } from "./operator/page";
+import { findPlaybook, forgetRun, loadRuns, recordRun, rememberRun, type Playbook } from "./operator/replay";
 import { cancelPageActions, pageTools, type OperateMode } from "./operator/tools";
 import type { AgentTool } from "./tool";
 
 export { defineTool, type AgentTool } from "./tool";
 export type { OperateMode } from "./operator/tools";
+export type { Playbook, PlaybookStep } from "./operator/replay";
 
 export type OperateOptions = {
   /** Client-side navigation, e.g. Next.js `router.push`. Defaults to a full page load. */
@@ -39,13 +41,23 @@ export type ForgeAgentProps = {
   toolLabels?: Record<string, string>;
   /** Let the agent read and operate this page: open, click, type, choose, scroll. */
   operate?: boolean | OperateOptions;
+  /** Steps for common requests (e.g. the suggestions), replayed on the page without calling the model. */
+  playbooks?: Playbook[];
+  /** Remember page runs that worked and replay them when the same request comes again on the same page. */
+  remember?: boolean;
+  /** Change it when the pages change; runs remembered on the old pages are then dropped. */
+  version?: string;
 };
 
 const catalogNames = new Set<string>(uiToolNames);
 const toolName = (part: { type: string; toolName?: string }) => part.toolName ?? part.type.replace(/^tool-/, "");
 const pageToolNames = new Set(pageTools({ mode: "direct" }).map(item => item.name));
 const MODE_LABELS: Record<OperateMode, string> = { show: "演示给我看", direct: "直接帮我做" };
-const MODES: OperateMode[] = ["show", "direct"];
+const MODES = (Object.keys(MODE_LABELS) as OperateMode[]).map(id => ({ id, label: MODE_LABELS[id] }));
+// Page tools whose input points at an element; a replay finds it again by name.
+const PAGE_TARGETS = new Set(["click", "type_text", "select_option", "scroll_to"]);
+
+type MessagePart = UIMessage["parts"][number];
 
 // Each page action returns the whole page; only the newest copy is worth sending back to the model.
 function trimSnapshots(messages: UIMessage[]): UIMessage[] {
@@ -65,7 +77,7 @@ function trimSnapshots(messages: UIMessage[]): UIMessage[] {
   }).reverse();
 }
 
-const PANEL_WIDTH = 440;
+const PANEL_WIDTH = 400;
 
 // On wide screens the open panel takes its width from the page instead of covering it, so what
 // the agent operates stays in view. Sticky headers follow; fixed full-width bars do not.
@@ -112,8 +124,13 @@ function messageText(message: UIMessage) {
   return message.parts.map(part => (part.type === "text" ? part.text : "")).join("").trim();
 }
 
-export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什么可以帮你？", suggestions = [], context, tools: appTools = [], storageKey, launcherLabel, defaultOpen = false, toolLabels = {}, operate }: ForgeAgentProps) {
+export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什么可以帮你？", suggestions = [], context, tools: appTools = [], storageKey, launcherLabel, defaultOpen = false, toolLabels = {}, operate, playbooks = [], remember = true, version = "1" }: ForgeAgentProps) {
   const operateOptions = operate === true ? {} : operate || undefined;
+  const operating = Boolean(operateOptions);
+  const runsKey = `${storageKey ?? "forge-agent"}:runs`;
+  const [replaying, setReplaying] = useState(false);
+  // The request a model run started from, kept until the run can be remembered.
+  const runStart = useRef<{ text: string; path: string } | undefined>(undefined);
   const [open, setOpen] = useState(defaultOpen);
   const [mode, setMode] = useState<OperateMode>(operateOptions?.defaultMode ?? "show");
   // Approval decisions for browser tools, keyed by tool call; false keeps the call shown as denied.
@@ -209,10 +226,65 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
     }
   }, [storageKey, messages, status]);
 
+  const sendToModel = (text: string, history: UIMessage[]) => {
+    // Only a request that stands on its own is worth remembering; a follow-up leans on what came before.
+    runStart.current = history.length === 0 ? { text, path: location.pathname } : undefined;
+    void sendMessage({ text });
+  };
+
+  // Runs the steps of a playbook as if the model had called them; any step that does not fit hands the
+  // request to the model, which reads the page as the steps left it.
+  const replay = async (playbook: Playbook, text: string) => {
+    const before = messages;
+    const user: UIMessage = { id: generateId(), role: "user", parts: [{ type: "text", text }] };
+    const assistantId = generateId();
+    const parts: MessagePart[] = [{ type: "step-start" }];
+    const show = () => setMessages([...before, user, { id: assistantId, role: "assistant", parts: [...parts] }]);
+    setReplaying(true);
+    show();
+    try {
+      for (const step of playbook.steps) {
+        const item = toolsRef.current.find(entry => entry.name === step.tool);
+        if (!item) throw new Error(`没有 ${step.tool} 这个工具`);
+        let input = step.input;
+        if (PAGE_TARGETS.has(step.tool) && typeof input.name === "string") {
+          const id = findByName(input.name, typeof input.group === "string" ? input.group : undefined);
+          if (!id) throw new Error(`页面上找不到唯一的「${input.name}」`);
+          input = { ...input, id };
+        }
+        const parsed = item.input.safeParse(input);
+        if (!parsed.success || item.needsApproval || (item.needsApprovalFor && safely(() => item.needsApprovalFor!(parsed.data), true))) throw new Error("这一步要由模型判断");
+        parts.push({ type: `tool-${step.tool}`, toolCallId: generateId(), state: "input-available", input: parsed.data } as MessagePart);
+        show();
+        const output = (await item.execute(parsed.data)) ?? { done: true };
+        parts[parts.length - 1] = { ...parts[parts.length - 1], state: "output-available", output } as MessagePart;
+        show();
+      }
+      parts.push({ type: "text", text: playbook.reply, state: "done" });
+      show();
+    } catch (failure) {
+      if (stoppedRef.current) {
+        const last = parts[parts.length - 1];
+        if ("toolCallId" in last) parts[parts.length - 1] = { ...last, state: "output-error", errorText: "用户已停止操作" } as MessagePart;
+        show();
+        return;
+      }
+      // A remembered run that no longer fits is dropped; the model's new run may replace it.
+      forgetRun(runsKey, version, playbook);
+      console.info("[forge-agent] replay handed to the model:", failure instanceof Error ? failure.message : failure);
+      setMessages(before);
+      sendToModel(text, before);
+    } finally {
+      setReplaying(false);
+    }
+  };
+
   const ask = (text: string) => {
     if (!text.trim()) return;
     stoppedRef.current = false;
-    void sendMessage({ text });
+    const playbook = operateOptions ? findPlaybook([...playbooks, ...(remember ? loadRuns(runsKey, version) : [])], text, location.pathname) : undefined;
+    if (playbook) void replay(playbook, text);
+    else sendToModel(text, messages);
   };
 
   const answerApproval = (message: UIMessage, response: ApprovalResponse) => {
@@ -250,14 +322,30 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
     return Object.fromEntries(uiToolNames.map(name => [name, (part: { input?: unknown }) => renderCatalog(name as UiToolName, part.input, ask, sources)]));
   };
 
-  const busy = status === "submitted" || status === "streaming";
+  const busy = status === "submitted" || status === "streaming" || replaying;
 
-  // The chat is idle while a page action runs and between steps; a new action cancels the hide.
+  // A model run that operated the page and finished cleanly is remembered for the same request.
   useEffect(() => {
-    if (!busy) endRunSoon(1200);
+    const start = runStart.current;
+    const assistant = messages.at(-1);
+    if (status !== "ready" || !start || stoppedRef.current || assistant?.role !== "assistant") return;
+    const approved = new Set(assistant.parts.filter(part => "toolCallId" in part && (gated[part.toolCallId] || toolsRef.current.find(item => item.name === toolName(part as { type: string }))?.needsApproval)).map(part => (part as { toolCallId: string }).toolCallId));
+    const run = recordRun(start.text, assistant, { replayable: new Set(toolsRef.current.map(item => item.name)), approved, pageTargets: PAGE_TARGETS, path: start.path });
+    if (!run) return;
+    runStart.current = undefined;
+    if (remember && operating && run.steps.some(step => pageToolNames.has(step.tool))) rememberRun(runsKey, version, run);
+  }, [status, messages, gated, remember, operating, runsKey, version]);
+
+  // The page stays taken over from the first action until the chat has been idle for a moment.
+  useEffect(() => {
+    if (busy) holdRun();
+    else endRunSoon(1200);
   }, [busy]);
 
   const halt = () => haltRef.current();
+
+  // Never leave the page locked behind an unmounted panel.
+  useEffect(() => endRun, []);
 
   useEffect(() => {
     insetPage(open);
@@ -279,50 +367,55 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
   }
 
   return (
-    <aside aria-label={title} data-forge-agent="panel" className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[440px] flex-col border-l border-fg-grey-200 bg-background shadow-2xl">
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-fg-grey-200 px-4">
-        <span className="flex items-center gap-2 text-sm font-semibold text-fg-black"><StarsLinear size={18} />{title}</span>
-        <div className="flex items-center gap-1">
-          <IconButton variant="tertiary" color="grey" size="sm" aria-label="新对话" onClick={() => { halt(); setMessages([]); setDecisions({}); setGated({}); }}><AddCircleLinear size={18} /></IconButton>
-          <IconButton variant="tertiary" color="grey" size="sm" aria-label="关闭" onClick={() => setOpen(false)}><CloseCircleLinear size={18} /></IconButton>
+    <aside aria-label={title} data-forge-agent="panel" className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[400px] flex-col border-l border-fg-grey-200 bg-background shadow-2xl lg:shadow-none">
+      <header className="flex h-12 shrink-0 items-center justify-between border-b border-fg-grey-200 pl-4 pr-2">
+        <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg-black"><StarsLinear size={16} className="text-fg-blue" />{title}</span>
+        <div className="flex items-center">
+          <IconButton variant="ghost" shape="square" size="sm" aria-label="新对话" title="新对话" onClick={() => { halt(); runStart.current = undefined; setMessages([]); setDecisions({}); setGated({}); }}><PenNewSquareLinear size={16} /></IconButton>
+          {/* The icon set has no bare cross; a turned plus keeps the same stroke. */}
+          <IconButton variant="ghost" shape="square" size="sm" aria-label="关闭" title="关闭" onClick={() => setOpen(false)}><PlusLinear size={18} className="rotate-45" /></IconButton>
         </div>
       </header>
-      {operateOptions && (
-        <div className="flex shrink-0 items-center justify-between gap-3 border-b border-fg-grey-200 px-4 py-2">
-          <span className="text-xs text-fg-grey-700">操作页面时</span>
-          <ButtonGroup items={MODES.map(item => ({ label: MODE_LABELS[item] }))} activeIndex={MODES.indexOf(mode)} onChange={index => setMode(MODES[index])} color="black" ariaLabel="操作方式" />
-        </div>
-      )}
       <div className="flex min-h-0 flex-1 flex-col">
         <Conversation followKey={messages.length + (messages.at(-1)?.parts.length ?? 0)}>
           {messages.length === 0 && (
-            <div className="flex flex-col gap-4 py-6">
-              <p className="text-base font-semibold text-fg-black">{greeting}</p>
-              {suggestions.length > 0 && <PromptSuggestions label="可以试试" suggestions={suggestions} onSelect={ask} />}
+            <div className="flex flex-col gap-3 pt-2">
+              <p className="text-[15px] font-semibold leading-6 text-fg-black">{greeting}</p>
+              <PromptSuggestions size="sm" suggestions={suggestions} onSelect={ask} />
             </div>
           )}
           {messages.map(message => message.role === "user"
             ? <AgentMessage key={message.id} role="user">{messageText(message)}</AgentMessage>
             : (
-              <AgentMessage
-                key={message.id}
-                role="assistant"
-                name={title}
-                actions={messageText(message) ? <MessageActions copyText={messageText(message)} onRetry={busy ? undefined : () => void regenerate({ messageId: message.id })} /> : undefined}
-              >
+              <div key={message.id} data-role="assistant" className="flex min-w-0 flex-col gap-1.5">
                 <AgentParts
+                  size="sm"
                   parts={partsFor(message).filter(part => !(catalogNames.has(toolName(part as { type: string })) && "state" in part && part.state !== "output-available"))}
                   status={status}
                   renderTool={renderToolFor(message)}
                   onToolApproval={response => answerApproval(message, response)}
                 />
-              </AgentMessage>
+                {messageText(message) && !(busy && message === messages.at(-1)) && <MessageActions copyText={messageText(message)} onRetry={busy ? undefined : () => void regenerate({ messageId: message.id })} />}
+              </div>
             ))}
-          {error && <p role="alert" className="py-2 text-sm text-fg-red">出错了：{error.message}</p>}
+          {error && <p role="alert" className="text-[13px] text-fg-red">出错了：{error.message}</p>}
         </Conversation>
       </div>
-      <div className="shrink-0 border-t border-fg-grey-200 p-3">
-        <ChatInputBar placeholder={`问${title.replace(/^问/, "")}…`} status={busy ? "running" : "idle"} onStop={halt} onSend={ask} />
+      <div className="shrink-0 px-3 pb-3">
+        <ChatInputBar
+          multiline
+          sendOnEnter
+          density="compact"
+          showAttachment={false}
+          placeholder={`问${title.replace(/^问/, "")}…`}
+          status={busy ? "running" : "idle"}
+          onStop={halt}
+          onSend={ask}
+          permissions={operateOptions ? MODES : undefined}
+          permission={mode}
+          onPermissionChange={id => setMode(id as OperateMode)}
+          permissionMenuLabel="操作页面的方式"
+        />
       </div>
     </aside>
   );

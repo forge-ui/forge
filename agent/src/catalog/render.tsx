@@ -7,11 +7,13 @@ import { uiSchemas, type UiSpec, type UiToolName } from "./schema";
 
 type Row = Record<string, string | number | boolean | null>;
 
-function CopyLine({ text }: { text: string }) {
+// A command to copy: one grey line (or a few), without the file header and line numbers of a code block.
+function Command({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
+  const multiline = text.includes("\n");
   return (
-    <div className="flex items-center gap-2 rounded-lg bg-fg-grey-100 py-1.5 pl-3 pr-1.5 font-mono text-xs text-fg-black">
-      <span className="min-w-0 flex-1 truncate">{text}</span>
+    <div className={`flex gap-2 rounded-lg bg-fg-grey-100 py-1.5 pl-3 pr-1.5 font-mono text-xs leading-5 text-fg-black ${multiline ? "items-start" : "items-center"}`}>
+      {multiline ? <pre className="min-w-0 flex-1 overflow-x-auto">{text}</pre> : <span className="min-w-0 flex-1 truncate" title={text}>{text}</span>}
       <button
         type="button"
         aria-label={copied ? "已复制" : "复制"}
@@ -44,7 +46,7 @@ function Cards({ title, items }: UiSpec<"show_cards">) {
           return (
             <div key={item.title} className="flex min-w-0 flex-col gap-2 overflow-hidden rounded-xl border border-fg-grey-200 bg-background p-3">
               {item.href ? <a href={item.href} className="flex flex-col gap-2 hover:opacity-80">{body}</a> : body}
-              {item.code && <CopyLine text={item.code} />}
+              {item.code && <Command text={item.code} />}
             </div>
           );
         })}
@@ -95,7 +97,7 @@ function Steps({ title, steps }: UiSpec<"show_steps">) {
             <div className="flex min-w-0 flex-1 flex-col gap-1.5">
               <span className="text-sm font-medium text-fg-black">{step.title}</span>
               {step.detail && <span className="text-xs leading-5 text-fg-grey-700">{step.detail}</span>}
-              {step.code && <AgentCodeBlock filename="命令" lines={step.code.split("\n")} />}
+              {step.code && <Command text={step.code.replace(/\n$/, "")} />}
             </div>
           </li>
         ))}
@@ -163,6 +165,6 @@ function catalogContent(name: UiToolName, data: unknown, onAsk: (question: strin
     case "show_metrics": return <Metrics {...(parsed.data as UiSpec<"show_metrics">)} />;
     case "show_chart": return <Chart {...(parsed.data as UiSpec<"show_chart">)} />;
     case "show_steps": return <Steps {...(parsed.data as UiSpec<"show_steps">)} />;
-    case "suggest_followups": return <PromptSuggestions suggestions={(parsed.data as UiSpec<"suggest_followups">).questions} onSelect={onAsk} />;
+    case "suggest_followups": return <PromptSuggestions size="sm" suggestions={(parsed.data as UiSpec<"suggest_followups">).questions} onSelect={onAsk} />;
   }
 }

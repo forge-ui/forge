@@ -14,7 +14,8 @@ before(() => {
   dom.window.Element.prototype.getBoundingClientRect = () => ({ x: 100, y: 100, left: 100, top: 100, width: 80, height: 32, right: 180, bottom: 132, toJSON: () => ({}) });
 });
 
-const { readPage, elementFor, isRisky } = await import("../src/operator/page");
+const { readPage, elementFor, isRisky, findByName } = await import("../src/operator/page");
+const { recordRun, findPlaybook } = await import("../src/operator/replay");
 const { pageTools } = await import("../src/operator/tools");
 
 beforeEach(() => {
@@ -78,4 +79,34 @@ test("page tools type through React's value setter, choose options and refuse se
 
   await assert.rejects(async () => tools.type_text.execute({ id: idOf(page, "输入框「密码」"), name: "密码", text: "x" }), /敏感字段/);
   assert.equal(tools.click.needsApprovalFor?.({ id: idOf(page, "按钮「删除账号」"), name: "删除账号" }), true);
+});
+
+test("a replay finds an element by its name, and by caption when the name repeats", () => {
+  document.body.insertAdjacentHTML("beforeend", `<fieldset><legend>圆角</legend><button>默认</button></fieldset><fieldset><legend>字号</legend><button>默认</button></fieldset><pre aria-label="生成的 CSS">:root {}</pre>`);
+  const id = findByName("橙");
+  assert.ok(id && elementFor(id).textContent === "橙");
+  assert.equal(findByName("默认"), undefined, "ambiguous names are not guessed");
+  const radius = findByName("默认", "圆角");
+  assert.ok(radius && elementFor(radius).closest("fieldset")?.querySelector("legend")?.textContent === "圆角");
+  assert.ok(findByName("生成的 CSS"));
+  assert.equal(findByName("不存在"), undefined);
+});
+
+test("a clean page run is recorded by element names; runs that needed the model or approval are not", () => {
+  const page = readPage();
+  const orange = idOf(page, "按钮「橙」");
+  const options = { replayable: new Set(["read_page", "click", "set_color_mode"]), approved: new Set<string>(), pageTargets: new Set(["click"]), path: "/accounts" };
+  const assistant = (parts: unknown[]) => ({ id: "a", role: "assistant" as const, parts: parts as never });
+  const click = { type: "tool-click", toolCallId: "c1", state: "output-available", input: { id: orange, name: "橙色" }, output: "已点击" };
+  const run = recordRun("换成橙色", assistant([{ type: "step-start" }, { type: "text", text: "先点橙色" }, click, { type: "text", text: "已换成橙色。" }]), options);
+  assert.deepEqual(run?.steps, [{ tool: "click", input: { name: "橙", group: "主色" } }]);
+  assert.equal(run?.reply, "已换成橙色。");
+  assert.ok(findPlaybook([run!], " 换成橙色。", "/accounts"));
+  assert.equal(findPlaybook([run!], "换成橙色", "/settings"), undefined);
+
+  const search = { type: "tool-search", toolCallId: "s1", state: "output-available", input: { query: "x" }, output: {} };
+  assert.equal(recordRun("x", assistant([search, click, { type: "text", text: "好" }]), options), undefined, "server tool");
+  assert.equal(recordRun("x", assistant([click, { type: "text", text: "好" }]), { ...options, approved: new Set(["c1"]) }), undefined, "approved");
+  assert.equal(recordRun("x", assistant([{ ...click, state: "output-error" }, { type: "text", text: "好" }]), options), undefined, "failed");
+  assert.equal(recordRun("x", assistant([{ type: "text", text: "先点" }, click]), options), undefined, "no closing reply yet");
 });

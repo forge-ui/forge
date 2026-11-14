@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { z } from "zod";
-import { ForgeAgent, defineTool } from "@forge-ui-official/agent";
+import { ForgeAgent, defineTool, type Playbook } from "@forge-ui-official/agent";
 import { SCALE_STEPS, normalizeHex, previewVariables } from "@/lib/theme.mjs";
 import { THEME_STORAGE_KEY } from "@/lib/theme-boot";
 
@@ -40,6 +40,23 @@ function previewAccent(color: string) {
   previewKeys = Object.keys(variables);
   return { color: hex, mode, hint: "刷新页面即可恢复，或让我恢复默认。主题定制页可以生成 CSS：/docs/theme" };
 }
+
+// The suggestion that operates the page runs these steps directly; the model takes over if one no longer fits.
+const PLAYBOOKS: Playbook[] = [
+  {
+    request: "带我把主色换成绿色、圆角改圆润",
+    steps: [
+      { tool: "open_page", input: { path: "/docs/theme" } },
+      { tool: "click", input: { name: "绿", group: "主色" } },
+      { tool: "click", input: { name: "圆润", group: "圆角" } },
+      { tool: "scroll_to", input: { name: "生成的 CSS" } },
+    ],
+    reply: "主色已换成绿色、圆角改成圆润，上面是预览，这里是生成的 CSS，复制到全局样式文件里就能生效。还想换字体或别的颜色，直接告诉我。",
+  },
+];
+
+// Runs remembered on an older build may point at controls that have since changed.
+const VERSION = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "local";
 
 const HIDDEN = /^\/(templates|prototype|blocks\/[^/]+\/preview)/;
 
@@ -95,6 +112,8 @@ export function SiteAgent() {
       })}
       tools={tools}
       operate={{ navigate: path => router.push(path) }}
+      playbooks={PLAYBOOKS}
+      version={VERSION}
       toolLabels={{ search: "检索文档", recommend: "推荐组件", get_component: "查组件", get_block: "查页面组件", get_tokens: "查设计 token", check_code: "检查代码" }}
     />
   );

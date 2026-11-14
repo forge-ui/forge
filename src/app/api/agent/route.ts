@@ -1,5 +1,6 @@
-import { createAgentHandler, createOpenAICompatible, tool } from "@forge-ui-official/agent/server";
+import { createAgentHandler, createOpenAICompatible, tool, type CannedAnswer, type PageInstructions, type Topic } from "@forge-ui-official/agent/server";
 import { z } from "zod";
+import rawData from "@/lib/mcp/data.json";
 import { executeTool } from "@/lib/mcp/server.mjs";
 
 export const runtime = "nodejs";
@@ -68,8 +69,62 @@ const instructions = `你是 Forge UI 官网（www.forgeui.org）上的助手“
 - 用户想换主色、圆角、字体并拿到 CSS 时，打开主题定制页 /docs/theme 在页面上操作给他看（选颜色、选圆角，最后 scroll_to 到生成的 CSS）；只想在当前页临时看看效果时才用 preview_accent_color。
 - 用简体中文，句子短，先给结论。`;
 
+const guides = (rawData as unknown as { guides: { slug: string; title: string; content: string }[] }).guides;
+
+// Docs pages, read as the same Markdown the site serves at <page>.md. Only titles go into every prompt.
+const DOCS: { slug: string; title: string; summary: string; match?: (string | RegExp)[] }[] = [
+  { slug: "quick-start", title: "快速开始", summary: "安装 core、接入 Tailwind 和 Forge 样式、渲染第一个组件。", match: ["快速开始", /怎么(安装|装|接入|开始用)/, /(安装|引入|接入).{0,8}(forge|组件库|core)/i] },
+  { slug: "installation", title: "详细安装", summary: "环境要求、依赖、样式接入、升级到新版本。", match: [/升级|依赖版本|环境要求/] },
+  { slug: "troubleshoot", title: "故障排查", summary: "样式不生效、类名没扫到等常见安装问题。", match: [/样式(不生效|没生效|不对|丢了)|没有样式|故障/] },
+  { slug: "theme", title: "主题定制", summary: "换主色、圆角、字体并生成 CSS；深色模式。", match: [/主题.{0,4}(css|定制)|深色模式|暗色/i] },
+  { slug: "ui-for-agents", title: "前端设计 Skill", summary: "让 Claude Code、Codex、Cursor 按 Forge 写页面：一条命令装 Skill 和 MCP。", match: [/claude ?code|codex|cursor|skill|编码助手/i] },
+  { slug: "mcp", title: "MCP 服务器", summary: "Forge MCP 的地址、工具和各客户端的配置方法。", match: [/\bmcp\b/i] },
+  { slug: "check", title: "页面检查", summary: "用 check_code 或 forge-check.mjs 按审计清单检查页面代码。", match: ["页面检查", "check_code", "forge-check"] },
+];
+
+function topicsFor(origin: string): Topic[] {
+  return [
+    ...DOCS.map(doc => ({
+      id: doc.slug,
+      title: doc.title,
+      summary: doc.summary,
+      match: doc.match,
+      content: async () => {
+        const response = await fetch(new URL(`/docs/${doc.slug}.md`, origin));
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.text();
+      },
+    })),
+    ...guides.map(guide => ({ id: `guide-${guide.slug}`, title: guide.title, summary: "使用指南：这类页面用哪些组件、怎么组织。", content: guide.content })),
+  ];
+}
+
+const pageInstructions: PageInstructions = {
+  "/docs/theme": `主题定制页的控件：
+- 主色：「主色」下的圆形按钮「Forge 蓝」「紫」「青」「绿」「橙」「玫红」。用户说的颜色接近哪个预设就点哪个；预设里没有的才在输入框「自定义色值」填 6 位色值。
+- 圆角：「直角」「紧凑」「默认」「圆润」。
+- 字体：「字体」下的下拉框，可选 Manrope（默认）、系统字体、Inter、思源黑体。
+- 「浅色」「深色」只切换右侧预览，不改整站；整站深浅色用 set_color_mode。
+- 生成的 CSS 是页面最下方的代码块「生成的 CSS」，改完用 scroll_to 滚过去；「恢复默认」会撤销全部选择。`,
+};
+
+const answers: CannedAnswer[] = [
+  {
+    question: "怎么让 Claude Code 按 Forge 写页面？",
+    answer: `装上 Forge 的 Skill 和 MCP 就行，一条命令：
+
+\`\`\`bash
+curl -fsSL https://www.forgeui.org/setup.sh | bash
+\`\`\`
+
+脚本会识别本机的 Claude Code、Cursor 和 Codex，装好 Skill 和 Forge MCP，已装过的会跳过。只想装到当前项目并放一份 DESIGN.md，用 \`bash -s -- --scope project --design\`；装完可以用 \`bash -s -- --check\` 自检。
+
+之后直接用中文描述页面，助手会先判断页面角色、用 MCP 查组件参数，写完调用 check_code 自查。详见[前端设计 Skill](/docs/ui-for-agents)。`,
+  },
+];
+
 export async function POST(request: Request) {
   if (!config.baseURL || !config.apiKey) return Response.json({ error: "助手还没有配置模型（FORGE_AGENT_BASE_URL、FORGE_AGENT_API_KEY）" }, { status: 503 });
   const provider = createOpenAICompatible({ name: "forge-agent", baseURL: config.baseURL, apiKey: config.apiKey });
-  return createAgentHandler({ model: provider(config.model), instructions, tools })(request);
+  return createAgentHandler({ model: provider(config.model), instructions, tools, topics: topicsFor(new URL(request.url).origin), pageInstructions, answers })(request);
 }

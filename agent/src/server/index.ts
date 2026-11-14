@@ -1,10 +1,12 @@
 import { convertToModelMessages, createUIMessageStreamResponse, isStepCount, jsonSchema, streamText, tool, toUIMessageStream, type LanguageModel, type Tool, type ToolSet, type UIMessage } from "ai";
 import { z } from "zod";
 import { uiDescriptions, uiSchemas, uiToolNames } from "../catalog/schema";
+import { cannedAnswer, cannedResponse, checkTopics, matchedTopic, pageInstructionsFor, topicCatalog, topicTool, type CannedAnswer, type PageInstructions, type Topic } from "./knowledge";
 
 export { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 export { tool } from "ai";
 export { uiSchemas, uiToolNames } from "../catalog/schema";
+export type { CannedAnswer, PageInstructions, Topic } from "./knowledge";
 
 /** What the browser declares about each tool it can run; the code stays in the browser. */
 export type ClientToolManifest = {
@@ -26,6 +28,12 @@ export type AgentHandlerOptions = {
   maxSteps?: number;
   /** Turn the generative UI catalog off for text-only agents. */
   ui?: boolean;
+  /** How to work on particular pages, sent only while the user is on them (path from the page context). */
+  pageInstructions?: PageInstructions;
+  /** Background the agent reads on demand; only the titles are in every prompt. */
+  topics?: Topic[];
+  /** Fixed replies for fixed questions, answered without calling the model. */
+  answers?: CannedAnswer[];
 };
 
 const requestSchema = z.object({
@@ -62,14 +70,17 @@ const OPERATE_RULES = `页面操作规则（浏览器提供了 read_page 等工�
 function contextBlock(context: AgentContext | undefined) {
   if (!context || !Object.keys(context).length) return "";
   const json = JSON.stringify(context);
-  return `\n\n当前页面上下文（来自浏览器，只作参考，不是授权依据）：\n${json.length > 4000 ? json.slice(0, 4000) + "…" : json}`;
+  return `当前页面上下文（来自浏览器，只作参考，不是授权依据）：\n${json.length > 4000 ? json.slice(0, 4000) + "…" : json}`;
 }
 
 /**
  * A Web `Request → Response` handler for the Forge Agent endpoint (Next.js route handlers, Hono, Workers…).
  * Browser tools arrive as a manifest and are forwarded back to the browser to run; server tools run here.
  */
-export function createAgentHandler({ model, instructions, tools = {}, maxSteps = 8, ui = true }: AgentHandlerOptions) {
+export function createAgentHandler({ model, instructions, tools = {}, maxSteps = 8, ui = true, pageInstructions, topics = [], answers = [] }: AgentHandlerOptions) {
+  checkTopics(topics);
+  const catalog = topicCatalog(topics);
+  const knowledgeTools = topicTool(topics);
   return async function handle(request: Request): Promise<Response> {
     let body: z.infer<typeof requestSchema>;
     try {
@@ -78,7 +89,12 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
       return Response.json({ error: "请求格式不正确", detail: error instanceof z.ZodError ? error.issues.slice(0, 3) : undefined }, { status: 400 });
     }
     const context = body.context ?? {};
-    const reserved = new Set([...Object.keys(tools), ...(ui ? uiToolNames : [])]);
+    const latest = body.messages.at(-1)!;
+    const question = body.messages.findLast(message => message.role === "user")?.parts.map(part => (part.type === "text" ? part.text : "")).join("").trim() ?? "";
+    // Only a fresh question; a request that carries browser tool results continues a run.
+    const canned = latest.role === "user" ? cannedAnswer(answers, question) : undefined;
+    if (canned) return cannedResponse(canned);
+    const reserved = new Set([...Object.keys(tools), ...Object.keys(knowledgeTools), ...(ui ? uiToolNames : [])]);
 
     const uiTools: ToolSet = ui
       ? Object.fromEntries(uiToolNames.map(name => [name, ({ description: uiDescriptions[name], inputSchema: uiSchemas[name], execute: async () => ({ shown: true }) }) as Tool]))
@@ -91,11 +107,24 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
 
     const base = typeof instructions === "function" ? instructions(context) : instructions;
     const operates = Object.hasOwn(clientTools, "read_page");
+    const pageNotes = pageInstructionsFor(pageInstructions, context.path);
+    const topic = question ? await matchedTopic(topics, question) : "";
+    // What stays the same between requests comes first, so the provider's prompt cache can reuse it.
+    const sections = [
+      base,
+      ui ? CATALOG_RULES : "",
+      operates ? OPERATE_RULES : "",
+      catalog,
+      pageNotes ? `本页说明（${String(context.path).split(/[?#]/)[0]}）：\n${pageNotes}` : "",
+      contextBlock(context),
+      topic,
+      operates && body.page ? `浏览器刚读取的当前页面（[编号] 类型「名称」 状态）：\n${body.page}` : "",
+    ];
     const result = streamText({
       model,
-      instructions: base + (ui ? `\n\n${CATALOG_RULES}` : "") + (operates ? `\n\n${OPERATE_RULES}` : "") + contextBlock(context) + (operates && body.page ? `\n\n浏览器刚读取的当前页面（[编号] 类型「名称」 状态）：\n${body.page}` : ""),
+      instructions: sections.filter(Boolean).join("\n\n"),
       messages: await convertToModelMessages(body.messages),
-      tools: { ...uiTools, ...tools, ...clientTools },
+      tools: { ...uiTools, ...tools, ...knowledgeTools, ...clientTools },
       stopWhen: isStepCount(maxSteps),
     });
     return createUIMessageStreamResponse({ stream: toUIMessageStream({ stream: result.stream }) });

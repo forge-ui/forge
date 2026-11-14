@@ -121,8 +121,14 @@ function inViewport(element: Element) {
 const LANDMARKS = "h1, h2, h3, pre";
 const CHROME = "header, nav, footer, aside, [role='banner'], [role='navigation'], [role='contentinfo'], [role='complementary']";
 
+// A code block is named by its aria-label when the page gives one, since its first line changes with its content.
+function landmarkName(element: Element) {
+  if (element.tagName !== "PRE") return clean(element.textContent);
+  return clean(element.getAttribute("aria-label")) || clean(element.textContent?.split("\n").find(line => line.trim()), 50);
+}
+
 function landmarkLine(element: Element) {
-  if (element.tagName === "PRE") return `代码块「${clean(element.textContent?.split("\n").find(line => line.trim()), 50)}」`;
+  if (element.tagName === "PRE") return `代码块「${landmarkName(element)}」`;
   return `${element.tagName === "H1" ? "页面标题" : "小节"}「${clean(element.textContent)}」`;
 }
 
@@ -191,6 +197,29 @@ export function matchesName(element: Element, given: string) {
   if (!wanted) return true;
   const actual = [nameOf(element), groupOf(element, nameOf(element)) ?? "", element.matches(LANDMARKS) ? clean(element.textContent) : ""].map(normalize).filter(Boolean);
   return actual.some(text => text.includes(wanted) || wanted.includes(text));
+}
+
+const normalizeName = (text: string) => text.replace(/[\s「」"'“”]/g, "").toLowerCase();
+
+/** The element's own name and caption, recorded so a later replay finds it again without an id. */
+export function labelOf(id: string): { name: string; group?: string } | undefined {
+  const element = elements.get(id);
+  if (!element?.isConnected) return undefined;
+  const name = element.matches(LANDMARKS) ? landmarkName(element) : nameOf(element);
+  return { name, group: element.matches(LANDMARKS) ? undefined : groupOf(element, name) };
+}
+
+/**
+ * The id of the one element now on the page with this name (and caption, when given). Undefined when
+ * none or several fit: a replay then hands the step back to the model instead of guessing.
+ */
+export function findByName(name: string, group?: string) {
+  readPage();
+  const wanted = normalizeName(name);
+  const candidates = [...elements.entries()].filter(([, element]) => element.isConnected && !element.closest(HIDDEN_FROM_AGENT) && isShown(element));
+  const named = candidates.filter(([, element]) => normalizeName(element.matches(LANDMARKS) ? landmarkName(element) : nameOf(element)) === wanted);
+  const fits = named.length > 1 && group ? named.filter(([, element]) => normalizeName(groupOf(element, nameOf(element)) ?? "") === normalizeName(group)) : named;
+  return fits.length === 1 ? fits[0][0] : undefined;
 }
 
 export function elementFor(id: string, name?: string): HTMLElement {
