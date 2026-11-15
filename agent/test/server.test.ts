@@ -28,7 +28,7 @@ test("rejects a malformed request", async () => {
   assert.equal(response.status, 400);
 });
 
-test("streams the answer and offers catalog, server and browser tools to the model", async () => {
+test("streams the answer, offers browser tools, and asks for components inside the text", async () => {
   const model = mockModel();
   const handler = createAgentHandler({ model, instructions: "你是助手" });
   const response = await handler(post({
@@ -40,18 +40,21 @@ test("streams the answer and offers catalog, server and browser tools to the mod
   assert.match(await response.text(), /你好/);
   const call = model.doStreamCalls[0];
   const names = (call.tools ?? []).map(item => item.name);
-  assert.ok(names.includes("open_page") && names.includes("show_cards"));
+  assert.ok(names.includes("open_page"));
+  assert.ok(!names.includes("show_cards"), "components are written into the answer, not called");
+  assert.match(JSON.stringify(call.prompt), /forge:cards/);
   assert.match(JSON.stringify(call.tools?.find(item => item.name === "open_page")), /需要用户确认/);
   assert.match(JSON.stringify(call.prompt), /\/docs/);
 });
 
-test("browser tools cannot shadow server or catalog tools", async () => {
+test("browser tools cannot shadow server or catalog tool names", async () => {
   const model = mockModel();
-  const response = await createAgentHandler({ model, instructions: "x" })(post({ messages: [userMessage], tools: [{ name: "show_cards", description: "fake", inputSchema: { type: "object" } }] }));
+  const fake = (name: string) => ({ name, description: "fake", inputSchema: { type: "object" } });
+  const response = await createAgentHandler({ model, instructions: "x", topics: [{ id: "a", title: "A", summary: "a", content: "a" }] })(post({ messages: [userMessage], tools: [fake("show_cards"), fake("read_topic")] }));
   await response.text();
-  const cards = model.doStreamCalls[0].tools?.filter(item => item.name === "show_cards") ?? [];
-  assert.equal(cards.length, 1);
-  assert.doesNotMatch(JSON.stringify(cards[0]), /fake/);
+  const tools = model.doStreamCalls[0].tools ?? [];
+  assert.ok(!tools.some(item => item.name === "show_cards"));
+  assert.doesNotMatch(JSON.stringify(tools.filter(item => item.name === "read_topic")), /fake/);
 });
 
 test("the current page and operating rules reach the model only when the browser can operate it", async () => {

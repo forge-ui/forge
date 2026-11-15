@@ -2,7 +2,7 @@
 
 把一个 AI 助手嵌进你的 React 应用：它能回答产品问题、调用你的接口、用 Forge 组件（卡片、表格、图表、步骤）回答，还能在页面上替用户点、填、选。模型和数据都在你自己的服务器上，可以接通义千问、DeepSeek 等任何 OpenAI 兼容接口。
 
-线上示例：[forgeui.org](https://www.forgeui.org) 右下角的「问 Forge」。
+线上示例：[forgeui.org](https://www.forgeui.org) 右下角的「Forge Agent」。
 
 ## 快速开始
 

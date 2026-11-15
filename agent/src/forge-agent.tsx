@@ -6,7 +6,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { AgentMessage, AgentParts, ChatInputBar, Conversation, IconButton, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
 import { PenNewSquareLinear, PlusLinear, StarsLinear } from "@forge-ui-official/core/icons";
-import { renderCatalog, sourcesFrom } from "./catalog/render";
+import { splitBlocks, proseOf } from "./catalog/blocks";
+import { Command, renderCatalog, sourcesFrom } from "./catalog/render";
 import { uiToolNames, type UiToolName } from "./catalog/schema";
 import { endRun, endRunSoon, holdRun, setStopHandler } from "./operator/overlay";
 import { findByName, readPage } from "./operator/page";
@@ -36,6 +37,8 @@ export type ForgeAgentProps = {
   /** Conversation is kept in localStorage under this key; omit to keep nothing. */
   storageKey?: string;
   launcherLabel?: string;
+  /** Composer placeholder. */
+  placeholder?: string;
   defaultOpen?: boolean;
   /** Display names for server tools, keyed by tool name. */
   toolLabels?: Record<string, string>;
@@ -124,7 +127,7 @@ function messageText(message: UIMessage) {
   return message.parts.map(part => (part.type === "text" ? part.text : "")).join("").trim();
 }
 
-export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什么可以帮你？", suggestions = [], context, tools: appTools = [], storageKey, launcherLabel, defaultOpen = false, toolLabels = {}, operate, playbooks = [], remember = true, version = "1" }: ForgeAgentProps) {
+export function ForgeAgent({ endpoint, title = "AI 助手", greeting = "有什么可以帮你？", suggestions = [], context, tools: appTools = [], storageKey, launcherLabel, placeholder, defaultOpen = false, toolLabels = {}, operate, playbooks = [], remember = true, version = "1" }: ForgeAgentProps) {
   const operateOptions = operate === true ? {} : operate || undefined;
   const operating = Boolean(operateOptions);
   const runsKey = `${storageKey ?? "forge-agent"}:runs`;
@@ -298,9 +301,19 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
   };
 
   // Browser tools that need approval are shown through AgentParts' approval states.
-  const partsFor = (message: UIMessage): AgentMessagePart[] => message.parts.map(original => {
-    // Pictures only come through show_cards, where they are checked against tool results.
-    if (original.type === "text") return { ...original, text: original.text.replace(/!\[[^\]]*\]\([^)]*\)/g, "") } as AgentMessagePart;
+  const partsFor = (message: UIMessage, live: boolean): AgentMessagePart[] => message.parts.flatMap((original, index): AgentMessagePart | AgentMessagePart[] => {
+    // Components written into the answer become parts of their own, rendered through renderTool.
+    if (original.type === "text") {
+      const streaming = live && original.state === "streaming";
+      return splitBlocks(original.text, streaming).map((segment, at) => {
+        const id = `${message.id}-${index}-${at}`;
+        // Pictures only come through cards, where they are checked against tool results.
+        if (segment.kind === "text") return { type: "text", text: segment.text.replace(/!\[[^\]]*\]\([^)]*\)/g, ""), state: original.state };
+        if (segment.kind === "block") return { type: `tool-${segment.name}`, toolCallId: id, state: "output-available", input: segment.input };
+        if (segment.kind === "command") return { type: "tool-forge_command", toolCallId: id, state: "output-available", input: { code: segment.code } };
+        return { type: "tool-show_code", toolCallId: id, state: "output-available", input: { filename: segment.language || "代码", code: segment.code } };
+      });
+    }
     if (!("toolCallId" in original)) return original as AgentMessagePart;
     const name = toolName(original as { type: string });
     if (catalogNames.has(name)) return original as AgentMessagePart;
@@ -319,7 +332,10 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
 
   const renderToolFor = (message: UIMessage) => {
     const sources = sourcesFrom(message.parts.filter(part => "toolCallId" in part && !catalogNames.has(toolName(part as { type: string })) && "output" in part).map(part => (part as { output?: unknown }).output));
-    return Object.fromEntries(uiToolNames.map(name => [name, (part: { input?: unknown }) => renderCatalog(name as UiToolName, part.input, ask, sources)]));
+    return {
+      ...Object.fromEntries(uiToolNames.map(name => [name, (part: { input?: unknown }) => renderCatalog(name as UiToolName, part.input, ask, sources)])),
+      forge_command: (part: { input?: unknown }) => <Command text={(part.input as { code: string }).code} />,
+    };
   };
 
   const busy = status === "submitted" || status === "streaming" || replaying;
@@ -358,7 +374,7 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
         type="button"
         data-forge-agent="launcher"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-fg-black px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
+        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_color-mix(in_srgb,var(--accent)_55%,transparent)] transition hover:brightness-110 hover:scale-[1.03]"
       >
         <StarsLinear size={18} />
         {launcherLabel ?? title}
@@ -390,12 +406,12 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
               <div key={message.id} data-role="assistant" className="flex min-w-0 flex-col gap-1.5">
                 <AgentParts
                   size="sm"
-                  parts={partsFor(message).filter(part => !(catalogNames.has(toolName(part as { type: string })) && "state" in part && part.state !== "output-available"))}
+                  parts={partsFor(message, busy && message === messages.at(-1)).filter(part => !(catalogNames.has(toolName(part as { type: string })) && "state" in part && part.state !== "output-available"))}
                   status={status}
                   renderTool={renderToolFor(message)}
                   onToolApproval={response => answerApproval(message, response)}
                 />
-                {messageText(message) && !(busy && message === messages.at(-1)) && <MessageActions copyText={messageText(message)} onRetry={busy ? undefined : () => void regenerate({ messageId: message.id })} />}
+                {proseOf(messageText(message)) && !(busy && message === messages.at(-1)) && <MessageActions copyText={proseOf(messageText(message))} onRetry={busy ? undefined : () => void regenerate({ messageId: message.id })} />}
               </div>
             ))}
           {error && <p role="alert" className="text-[13px] text-fg-red">出错了：{error.message}</p>}
@@ -407,7 +423,7 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
           sendOnEnter
           density="compact"
           showAttachment={false}
-          placeholder={`问${title.replace(/^问/, "")}…`}
+          placeholder={placeholder ?? (operateOptions ? "问问题，或让我帮你操作页面…" : "输入你的问题…")}
           status={busy ? "running" : "idle"}
           onStop={halt}
           onSend={ask}
