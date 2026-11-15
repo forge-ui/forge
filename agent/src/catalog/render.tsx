@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { AgentCodeBlock, BarChart, DataTable, PromptSuggestions, SmoothLineChart, StatCard, type ColumnDef } from "@forge-ui-official/core";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { BarChart, DataTable, PromptSuggestions, SmoothLineChart, StatCard, type ColumnDef } from "@forge-ui-official/core";
 import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
 import { uiSchemas, type UiSpec, type UiToolName } from "./schema";
 
 type Row = Record<string, string | number | boolean | null>;
 
 // A command to copy: one grey line (or a few), without the file header and line numbers of a code block.
-function Command({ text }: { text: string }) {
+export function Command({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   const multiline = text.includes("\n");
   return (
@@ -26,6 +26,80 @@ function Command({ text }: { text: string }) {
   );
 }
 
+// Code in the narrow panel: small type, a one-line header with the language and copy, no line numbers.
+function CodeView({ language, code }: { language: string; code: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <div className="min-w-0 overflow-hidden rounded-lg border border-fg-grey-200 bg-fg-grey-50">
+      <div className="flex items-center justify-between border-b border-fg-grey-200 py-1 pl-3 pr-1 text-xs text-fg-grey-700">
+        <span className="font-mono">{language}</span>
+        <button
+          type="button"
+          aria-label={copied ? "已复制" : "复制"}
+          onClick={() => navigator.clipboard.writeText(code).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1500); }, () => undefined)}
+          className="rounded-md p-1 hover:bg-fg-grey-200 hover:text-fg-black"
+        >
+          {copied ? <CheckCircleLinear size={14} /> : <CopyLinear size={14} />}
+        </button>
+      </div>
+      <pre className="max-h-80 overflow-auto px-3 py-2 font-mono text-xs leading-5 text-fg-black">{code}</pre>
+    </div>
+  );
+}
+
+const PREVIEW_WIDTH = 1024;
+
+/**
+ * A same-site page drawn as a scaled-down, inert thumbnail, so a card shows what it points at.
+ * Loaded when scrolled near; hidden if the page turns out not to exist.
+ */
+function PagePreview({ path, label }: { path: string; label: string }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+  const [near, setNear] = useState(false);
+  const [state, setState] = useState<"loading" | "ready" | "missing">("loading");
+  useEffect(() => {
+    const element = box.current;
+    if (!element) return;
+    const resize = new ResizeObserver(() => setWidth(element.clientWidth));
+    const visible = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) setNear(true);
+    }, { rootMargin: "300px" });
+    resize.observe(element);
+    visible.observe(element);
+    return () => { resize.disconnect(); visible.disconnect(); };
+  }, []);
+  if (state === "missing") return null;
+  return (
+    <div ref={box} aria-hidden="true" inert className="pointer-events-none relative aspect-[8/5] w-full select-none overflow-hidden rounded-lg border border-fg-grey-200 bg-fg-grey-50">
+      {state === "loading" && <div className="absolute inset-0 animate-pulse bg-fg-grey-100" />}
+      {near && width > 0 && (
+        <iframe
+          src={path}
+          title={`${label} 预览`}
+          tabIndex={-1}
+          loading="lazy"
+          onLoad={event => {
+            // Same origin, so a missing page shows up as the 404 document.
+            const title = safeTitle(event.currentTarget);
+            setState(/404|not be found|找不到/i.test(title) ? "missing" : "ready");
+          }}
+          className="absolute left-0 top-0 origin-top-left border-0"
+          style={{ width: PREVIEW_WIDTH, height: PREVIEW_WIDTH * 5 / 8, transform: `scale(${width / PREVIEW_WIDTH})`, visibility: state === "ready" ? "visible" : "hidden" }}
+        />
+      )}
+    </div>
+  );
+}
+
+function safeTitle(frame: HTMLIFrameElement) {
+  try {
+    return frame.contentDocument?.title ?? "";
+  } catch {
+    return "";
+  }
+}
+
 function Cards({ title, items }: UiSpec<"show_cards">) {
   return (
     <div className="flex min-w-0 flex-col gap-2">
@@ -35,7 +109,7 @@ function Cards({ title, items }: UiSpec<"show_cards">) {
           const body = (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element -- the package does not depend on Next.js */}
-              {item.image && <img src={item.image} alt="" onError={event => { event.currentTarget.hidden = true; }} className="aspect-[16/10] w-full rounded-lg border border-fg-grey-200 object-cover object-top" loading="lazy" />}
+              {item.preview ? <PagePreview path={item.preview} label={item.title} /> : item.image && <img src={item.image} alt="" onError={event => { event.currentTarget.hidden = true; }} className="aspect-[16/10] w-full rounded-lg border border-fg-grey-200 object-cover object-top" loading="lazy" />}
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold text-fg-black">{item.title}</span>
                 {item.tag && <span className="rounded-full bg-fg-grey-100 px-2 py-0.5 text-xs text-fg-grey-700">{item.tag}</span>}
@@ -122,6 +196,8 @@ function groundCards(spec: UiSpec<"show_cards">, sources: Sources): UiSpec<"show
       ...item,
       image: item.image && sources.has(item.image) ? item.image : undefined,
       href: item.href && (item.href.startsWith("/") || sources.has(item.href)) ? item.href : undefined,
+      // Only this site's own pages are embedded.
+      preview: item.preview && /^\/(?!\/)/.test(item.preview) ? item.preview : undefined,
     })),
   };
 }
@@ -159,7 +235,7 @@ function catalogContent(name: UiToolName, data: unknown, onAsk: (question: strin
     case "show_cards": return <Cards {...(parsed.data as UiSpec<"show_cards">)} />;
     case "show_code": {
       const spec = parsed.data as UiSpec<"show_code">;
-      return <AgentCodeBlock className="min-w-0" filename={spec.filename ?? "代码"} lines={spec.code.replace(/\n$/, "").split("\n")} />;
+      return <CodeView language={spec.filename ?? "代码"} code={spec.code.replace(/\n$/, "")} />;
     }
     case "show_table": return <Table {...(parsed.data as UiSpec<"show_table">)} />;
     case "show_metrics": return <Metrics {...(parsed.data as UiSpec<"show_metrics">)} />;

@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useSyncExternalStore } from "react";
 import { z } from "zod";
 import { ForgeAgent, defineTool, type Playbook } from "@forge-ui-official/agent";
 import { SCALE_STEPS, normalizeHex, previewVariables } from "@/lib/theme.mjs";
@@ -58,12 +59,16 @@ const PLAYBOOKS: Playbook[] = [
 // Runs remembered on an older build may point at controls that have since changed.
 const VERSION = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "local";
 
+const noSubscription = () => () => undefined;
+
 const HIDDEN = /^\/(templates|prototype|blocks\/[^/]+\/preview)/;
 
 export function SiteAgent() {
   const pathname = usePathname();
   const router = useRouter();
-  if (HIDDEN.test(pathname)) return null;
+  // Previews of site pages are embedded in frames (also by the agent itself); those get no second assistant.
+  const framed = useSyncExternalStore(noSubscription, () => window.self !== window.top, () => false);
+  if (HIDDEN.test(pathname) || framed) return null;
 
   const tools = [
     defineTool({

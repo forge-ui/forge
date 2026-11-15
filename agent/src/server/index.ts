@@ -1,6 +1,6 @@
-import { APICallError, convertToModelMessages, createUIMessageStreamResponse, isStepCount, jsonSchema, streamText, tool, toUIMessageStream, type LanguageModel, type Tool, type ToolSet, type UIMessage } from "ai";
+import { APICallError, convertToModelMessages, createUIMessageStreamResponse, isStepCount, jsonSchema, streamText, tool, toUIMessageStream, type LanguageModel, type ToolSet, type UIMessage } from "ai";
 import { z } from "zod";
-import { uiDescriptions, uiSchemas, uiToolNames } from "../catalog/schema";
+import { uiToolNames } from "../catalog/schema";
 import { cannedAnswer, cannedResponse, checkTopics, matchedTopic, pageInstructionsFor, topicCatalog, topicTool, type CannedAnswer, type PageInstructions, type Topic } from "./knowledge";
 
 export { createOpenAICompatible } from "@ai-sdk/openai-compatible";
@@ -26,7 +26,7 @@ export type AgentHandlerOptions = {
   tools?: ToolSet;
   /** Model steps per request, tool calls included. */
   maxSteps?: number;
-  /** Turn the generative UI catalog off for text-only agents. */
+  /** Let the model answer with Forge components (cards, steps, tables…) written into its text; off for plain text. */
   ui?: boolean;
   /** How to work on particular pages, sent only while the user is on them (path from the page context). */
   pageInstructions?: PageInstructions;
@@ -48,12 +48,21 @@ const requestSchema = z.object({
   })).max(40).optional(),
 });
 
-const CATALOG_RULES = `回答界面规则：
-- 需要工具时直接发起工具调用；正文里不要写工具名、函数调用或 JSON。
-- 能用组件表达时调用 show_* 工具，而不是在正文里画表格或贴长代码；正文只写结论和必要说明。
-- show_table、show_metrics、show_chart 里的数字必须来自本轮工具结果，不能估算或编造。
-- 链接只用工具结果里出现过的地址；图片只用工具结果里的图片地址。
-- 回答结束时如有合适的后续问题，调用 suggest_followups；调用后正文里不要再把这些问题列一遍。
+const ANSWER_RULES = `回答格式：
+- 正文用 Markdown，句子短，先给结论。需要工具时直接发起工具调用，能同时查的一次查齐，查完一次写完回答；正文里不要写工具名或函数调用。
+- 结构化的内容直接写在正文里的组件块中：三个反引号加 forge:类型 开头，内容是一个 JSON 对象，前端会渲染成组件。不要为了展示内容去调用工具。
+  - forge:cards 卡片：{"title"?, "items": [{"title", "description"?, "tag"?, "href"?, "preview"?, "code"?, "image"?}]}，最多 8 项。preview 是能嵌入预览的站内页面路径，会显示成缩略图；code 是一行可复制的命令。
+  - forge:steps 步骤：{"title"?, "steps": [{"title", "detail"?, "code"?}]}
+  - forge:table 表格：{"title"?, "columns": [{"key", "header", "numeric"?}], "rows": [{列 key: 值}]}
+  - forge:metrics 指标：{"items": [{"label", "value", "change"?, "direction"?: "up" 或 "down"}]}
+  - forge:chart 图表：{"title"?, "type": "line" 或 "bar", "labels": [...], "series": [{"label", "data": [数字]}]}
+  - forge:followups 后续问题：{"questions": [1 到 4 个短问题]}，放在回答最后，正文里不要再列一遍。
+- 例：
+\`\`\`forge:cards
+{"items": [{"title": "订单列表", "tag": "页面组件", "description": "搜索、筛选、分页都已接好", "href": "/blocks/orders-table-section", "code": "npx shadcn@latest add https://www.forgeui.org/r/orders-table-section.json"}]}
+\`\`\`
+- 代码和命令用普通 Markdown 代码块并标上语言，命令用 bash。
+- 表格、指标、图表里的数字必须来自本轮工具结果，不能估算或编造；链接只用工具结果里出现过的地址或站内路径；图片只用工具结果里的图片地址。
 - 会改变页面或数据的浏览器工具，用户可能会拒绝；被拒绝时说明没有执行，不要重复调用。`;
 
 const OPERATE_RULES = `页面操作规则（浏览器提供了 read_page 等工具时适用）：
@@ -106,11 +115,9 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
     // Only a fresh question; a request that carries browser tool results continues a run.
     const canned = latest.role === "user" ? cannedAnswer(answers, question) : undefined;
     if (canned) return cannedResponse(canned);
-    const reserved = new Set([...Object.keys(tools), ...Object.keys(knowledgeTools), ...(ui ? uiToolNames : [])]);
+    // Catalog names stay reserved: older conversations still carry show_* parts.
+    const reserved = new Set([...Object.keys(tools), ...Object.keys(knowledgeTools), ...uiToolNames]);
 
-    const uiTools: ToolSet = ui
-      ? Object.fromEntries(uiToolNames.map(name => [name, ({ description: uiDescriptions[name], inputSchema: uiSchemas[name], execute: async () => ({ shown: true }) }) as Tool]))
-      : {};
     // No `execute`: the call streams to the browser, which runs it and posts the output back.
     const clientTools: ToolSet = Object.fromEntries((body.tools ?? []).filter(item => !reserved.has(item.name)).map(item => [item.name, tool({
       description: item.needsApproval ? `${item.description}（执行前需要用户确认）` : item.description,
@@ -124,7 +131,7 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
     // What stays the same between requests comes first, so the provider's prompt cache can reuse it.
     const sections = [
       base,
-      ui ? CATALOG_RULES : "",
+      ui ? ANSWER_RULES : "",
       operates ? OPERATE_RULES : "",
       catalog,
       pageNotes ? `本页说明（${String(context.path).split(/[?#]/)[0]}）：\n${pageNotes}` : "",
@@ -136,7 +143,7 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
       model,
       instructions: sections.filter(Boolean).join("\n\n"),
       messages: await convertToModelMessages(body.messages),
-      tools: { ...uiTools, ...tools, ...knowledgeTools, ...clientTools },
+      tools: { ...tools, ...knowledgeTools, ...clientTools },
       stopWhen: isStepCount(maxSteps),
     });
     return createUIMessageStreamResponse({ stream: toUIMessageStream({ stream: result.stream, onError: describeError }) });
