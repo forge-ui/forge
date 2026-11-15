@@ -18,6 +18,7 @@
     "docs:llms": "node scripts/generate-llms-docs.mjs",
     "docs:mcp": "node scripts/generate-mcp-data.mjs",
     "test:mcp": "pnpm docs:mcp && node --test scripts/test-mcp.mjs",
+    "test:rate-limit": "node --test scripts/test-rate-limit.mjs",
     "core:build": "pnpm --filter @forge-ui-official/core build",
     "core:typecheck": "pnpm --filter @forge-ui-official/core typecheck",
     "core:test": "pnpm --filter @forge-ui-official/core test",
@@ -44,7 +45,7 @@
     "check:design": "node scripts/check-design-md.mjs",
     "test:check": "node --test scripts/test-forge-check.mjs",
     "check:pages": "node public/forge-check.mjs blocks src/app/templates",
-    "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links && pnpm check:design && pnpm check:seo && pnpm check:dark-tokens && pnpm test:check && pnpm check:pages"
+    "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm test:rate-limit && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links && pnpm check:design && pnpm check:seo && pnpm check:dark-tokens && pnpm test:check && pnpm check:pages"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.8.0",
