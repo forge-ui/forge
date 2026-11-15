@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { simulateReadableStream } from "ai";
+import { APICallError, simulateReadableStream } from "ai";
 import { MockLanguageModelV4 } from "ai/test";
 import { createAgentHandler } from "../src/server/index";
 import { sourcesFrom } from "../src/catalog/render";
@@ -111,6 +111,24 @@ test("a canned question is answered without the model; a continuing run still re
   const assistant = { id: "a3", role: "assistant", parts: [{ type: "text", text: "好" }] };
   await (await handler(post({ messages: [asked, assistant] }))).text();
   assert.equal(model.doStreamCalls.length, 1);
+});
+
+test("a failed model call reaches the panel with the provider's status and message", async () => {
+  const model = new MockLanguageModelV4({
+    doStream: async () => {
+      throw new APICallError({ message: "Unauthorized", url: "https://example.com/v1/chat/completions", requestBodyValues: { apiKey: "sk-secret" }, statusCode: 401, responseBody: '{"error":{"message":"Incorrect API key provided."}}' });
+    },
+  });
+  const original = console.error;
+  console.error = () => undefined;
+  try {
+    const text = await (await createAgentHandler({ model, instructions: "x" })(post({ messages: [userMessage] }))).text();
+    assert.match(text, /模型接口返回 401/);
+    assert.match(text, /Incorrect API key provided/);
+    assert.doesNotMatch(text, /sk-secret/);
+  } finally {
+    console.error = original;
+  }
 });
 
 test("topic ids are checked when the handler is created", () => {
