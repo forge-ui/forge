@@ -2,6 +2,7 @@ import { createAgentHandler, createOpenAICompatible, tool, type CannedAnswer, ty
 import { z } from "zod";
 import rawData from "@/lib/mcp/data.json";
 import { executeTool } from "@/lib/mcp/server.mjs";
+import { clientIp, createLimiter } from "@/lib/rate-limit.mjs";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -123,8 +124,36 @@ curl -fsSL https://www.forgeui.org/setup.sh | bash
   },
 ];
 
+const HOUR = 60 * 60 * 1000;
+// A question is a request whose last message is the user's; the rest continue a run after browser tools.
+const questionsPerIp = createLimiter({ limit: 30, windowMs: HOUR });
+const requestsPerIp = createLimiter({ limit: 300, windowMs: HOUR });
+const questionsPerDay = createLimiter({ limit: 3000, windowMs: 24 * HOUR });
+
+function tooMany(message: string, retryAfterMs: number) {
+  return new Response(message, { status: 429, headers: { "content-type": "text/plain; charset=utf-8", "retry-after": String(Math.ceil(retryAfterMs / 1000)) } });
+}
+
+async function isQuestion(request: Request) {
+  try {
+    const body = (await request.clone().json()) as { messages?: { role?: string }[] };
+    return body.messages?.at(-1)?.role === "user";
+  } catch {
+    return true;
+  }
+}
+
 export async function POST(request: Request) {
   if (!config.baseURL || !config.apiKey) return Response.json({ error: "助手还没有配置模型（FORGE_AGENT_BASE_URL、FORGE_AGENT_API_KEY）" }, { status: 503 });
+  const ip = clientIp(request);
+  const anyRequest = requestsPerIp.hit(ip);
+  if (!anyRequest.allowed) return tooMany("操作太频繁了，请稍后再试。", anyRequest.retryAfterMs);
+  if (await isQuestion(request)) {
+    const mine = questionsPerIp.hit(ip);
+    if (!mine.allowed) return tooMany(`提问太频繁了，${Math.ceil(mine.retryAfterMs / 60000)} 分钟后再试。`, mine.retryAfterMs);
+    const site = questionsPerDay.hit("site");
+    if (!site.allowed) return tooMany("今天的提问次数已经用完，明天再来。", site.retryAfterMs);
+  }
   const provider = createOpenAICompatible({ name: "forge-agent", baseURL: config.baseURL, apiKey: config.apiKey });
   return createAgentHandler({ model: provider(config.model), instructions, tools, topics: topicsFor(new URL(request.url).origin), pageInstructions, answers })(request);
 }
