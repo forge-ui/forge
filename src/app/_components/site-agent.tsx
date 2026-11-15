@@ -100,7 +100,7 @@ export function SiteAgent() {
   return (
     <ForgeAgent
       endpoint="/api/agent"
-      title="问 Forge"
+      title="Forge Agent"
       greeting="想做什么页面、查哪个组件，都可以问我。"
       suggestions={["做订单列表页用哪些组件？", "StatusBadge 怎么设置颜色？", "带我把主色换成绿色、圆角改圆润", "怎么让 Claude Code 按 Forge 写页面？"]}
       storageKey="forge-agent:site"

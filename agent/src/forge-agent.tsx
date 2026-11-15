@@ -36,6 +36,8 @@ export type ForgeAgentProps = {
   /** Conversation is kept in localStorage under this key; omit to keep nothing. */
   storageKey?: string;
   launcherLabel?: string;
+  /** Composer placeholder. */
+  placeholder?: string;
   defaultOpen?: boolean;
   /** Display names for server tools, keyed by tool name. */
   toolLabels?: Record<string, string>;
@@ -124,7 +126,7 @@ function messageText(message: UIMessage) {
   return message.parts.map(part => (part.type === "text" ? part.text : "")).join("").trim();
 }
 
-export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什么可以帮你？", suggestions = [], context, tools: appTools = [], storageKey, launcherLabel, defaultOpen = false, toolLabels = {}, operate, playbooks = [], remember = true, version = "1" }: ForgeAgentProps) {
+export function ForgeAgent({ endpoint, title = "AI 助手", greeting = "有什么可以帮你？", suggestions = [], context, tools: appTools = [], storageKey, launcherLabel, placeholder, defaultOpen = false, toolLabels = {}, operate, playbooks = [], remember = true, version = "1" }: ForgeAgentProps) {
   const operateOptions = operate === true ? {} : operate || undefined;
   const operating = Boolean(operateOptions);
   const runsKey = `${storageKey ?? "forge-agent"}:runs`;
@@ -358,7 +360,7 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
         type="button"
         data-forge-agent="launcher"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-fg-black px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-[1.03]"
+        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_color-mix(in_srgb,var(--accent)_55%,transparent)] transition hover:brightness-110 hover:scale-[1.03]"
       >
         <StarsLinear size={18} />
         {launcherLabel ?? title}
@@ -407,7 +409,7 @@ export function ForgeAgent({ endpoint, title = "问 Forge", greeting = "有什�
           sendOnEnter
           density="compact"
           showAttachment={false}
-          placeholder={`问${title.replace(/^问/, "")}…`}
+          placeholder={placeholder ?? (operateOptions ? "问问题，或让我帮你操作页面…" : "输入你的问题…")}
           status={busy ? "running" : "idle"}
           onStop={halt}
           onSend={ask}
