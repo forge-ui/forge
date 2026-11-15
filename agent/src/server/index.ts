@@ -1,4 +1,4 @@
-import { convertToModelMessages, createUIMessageStreamResponse, isStepCount, jsonSchema, streamText, tool, toUIMessageStream, type LanguageModel, type Tool, type ToolSet, type UIMessage } from "ai";
+import { APICallError, convertToModelMessages, createUIMessageStreamResponse, isStepCount, jsonSchema, streamText, tool, toUIMessageStream, type LanguageModel, type Tool, type ToolSet, type UIMessage } from "ai";
 import { z } from "zod";
 import { uiDescriptions, uiSchemas, uiToolNames } from "../catalog/schema";
 import { cannedAnswer, cannedResponse, checkTopics, matchedTopic, pageInstructionsFor, topicCatalog, topicTool, type CannedAnswer, type PageInstructions, type Topic } from "./knowledge";
@@ -67,6 +67,18 @@ const OPERATE_RULES = `页面操作规则（浏览器提供了 read_page 等工�
 - 密码、验证码不读不填；需要登录或验证时请用户自己处理。
 - 完成后用一两句话说明做了什么、结果在哪里。`;
 
+// What the panel shows when the model call fails: the provider's status and message (never the
+// request, which carries the key), so a wrong key or model name is visible without server logs.
+function describeError(error: unknown) {
+  console.error("[forge-agent]", error);
+  if (APICallError.isInstance(error)) {
+    const status = error.statusCode ? `模型接口返回 ${error.statusCode}` : "模型接口调用失败";
+    const detail = (error.responseBody ?? error.message).replace(/\s+/g, " ").slice(0, 200);
+    return `${status}：${detail}`;
+  }
+  return error instanceof Error ? error.message.slice(0, 200) : "模型调用失败";
+}
+
 function contextBlock(context: AgentContext | undefined) {
   if (!context || !Object.keys(context).length) return "";
   const json = JSON.stringify(context);
@@ -127,6 +139,6 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
       tools: { ...uiTools, ...tools, ...knowledgeTools, ...clientTools },
       stopWhen: isStepCount(maxSteps),
     });
-    return createUIMessageStreamResponse({ stream: toUIMessageStream({ stream: result.stream }) });
+    return createUIMessageStreamResponse({ stream: toUIMessageStream({ stream: result.stream, onError: describeError }) });
   };
 }
