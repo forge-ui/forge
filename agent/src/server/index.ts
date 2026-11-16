@@ -56,6 +56,7 @@ const ANSWER_RULES = `回答格式：
   - forge:table 表格：{"title"?, "columns": [{"key", "header", "numeric"?}], "rows": [{列 key: 值}]}
   - forge:metrics 指标：{"items": [{"label", "value", "change"?, "direction"?: "up" 或 "down"}]}
   - forge:chart 图表：{"title"?, "type": "line" 或 "bar", "labels": [...], "series": [{"label", "data": [数字]}]}
+  - forge:choices 让用户选：{"title", "options": [{"label", "description"?}]}，2 到 8 项。要用户在几个明确方案里挑一个时用，用户点选后会作为下一条消息发来；问开放问题时直接用文字问。
   - forge:followups 后续问题：{"questions": [1 到 4 个短问题]}，放在回答最后，正文里不要再列一遍。
 - 例：
 \`\`\`forge:cards

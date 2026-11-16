@@ -37,3 +37,8 @@ test("a malformed or off-schema block renders nothing", () => {
   assert.deepEqual(splitBlocks("```forge:cards\n{oops\n```\n好"), [{ kind: "text", text: "好" }]);
   assert.deepEqual(splitBlocks("```forge:metrics\n{\"items\": []}\n```"), []);
 });
+
+test("choices need at least two options", () => {
+  assert.equal((splitBlocks('```forge:choices\n{"title": "选一个", "options": [{"label": "A"}, {"label": "B"}]}\n```')[0] as { name: string }).name, "show_choices");
+  assert.deepEqual(splitBlocks('```forge:choices\n{"title": "选一个", "options": [{"label": "A"}]}\n```'), []);
+});
