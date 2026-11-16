@@ -139,6 +139,7 @@ export function RunProgress({ steps }: { steps: ProgressStep[] }) {
   if (!steps.length) return null;
   const items: ToolChipItem[] = steps.map(step => ({ id: step.id, kind: "run", label: step.title, chip: step.meta ?? "", status: STEP_STATUS[step.status] }));
   const active = steps.some(step => step.status === "running" || step.status.startsWith("waiting"));
-  const failed = steps.some(step => step.status === "failed");
+  // A step that failed and was retried does not fail the run; only an unfinished end does.
+  const failed = steps.at(-1)?.status === "failed";
   return <ToolChips items={items} size="sm" defaultOpen={active || failed} summary={`${steps.length} 个步骤`} state={active ? "running" : failed ? "error" : "success"} />;
 }
