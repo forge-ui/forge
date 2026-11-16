@@ -1,6 +1,6 @@
 {
   "name": "@forge-ui-official/agent",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Forge Agent — an embeddable AI agent that understands your product, calls its tools and answers with Forge components",
   "license": "MIT",
   "private": false,
