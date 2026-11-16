@@ -22,10 +22,8 @@ export function SiteHeader({ tone = "default" }: { tone?: "default" | "blend" })
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 border-b",
-        tone === "blend"
-          ? "home-header-blend border-transparent"
-          : "border-fg-grey-200 bg-fg-grey-50/80 backdrop-blur",
+        "sticky top-0 z-40",
+        tone === "blend" ? "home-header-blend" : "bg-fg-grey-50/80 backdrop-blur",
       )}
     >
       <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center">
