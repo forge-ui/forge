@@ -11,6 +11,7 @@ export const BLOCK_NAMES: Record<string, UiToolName> = {
   "forge:table": "show_table",
   "forge:metrics": "show_metrics",
   "forge:chart": "show_chart",
+  "forge:choices": "show_choices",
   "forge:followups": "suggest_followups",
 };
 

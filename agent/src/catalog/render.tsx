@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { BarChart, DataTable, PromptSuggestions, SmoothLineChart, StatCard, type ColumnDef } from "@forge-ui-official/core";
 import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
+import { ChoiceCard } from "../interact";
 import { uiSchemas, type UiSpec, type UiToolName } from "./schema";
 
 type Row = Record<string, string | number | boolean | null>;
@@ -218,7 +219,7 @@ function numbersOf(name: UiToolName, spec: unknown): (string | number)[] {
  * malformed call shows nothing rather than a broken component. Numbers in tables, metrics and charts
  * must come from tool results in the same answer; otherwise a note replaces the figure.
  */
-export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question: string) => void, sources: Sources): ReactNode {
+export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question: string) => void, sources: Sources, answer?: string): ReactNode {
   const parsed = uiSchemas[name].safeParse(input);
   if (!parsed.success) return null;
   const data = name === "show_cards" ? groundCards(parsed.data as UiSpec<"show_cards">, sources) : parsed.data;
@@ -226,10 +227,10 @@ export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question
     return <p className="text-xs text-fg-grey-700">这组数字没能和查询结果核对上，已省略。</p>;
   }
   // The chat column is narrow; wide content (code, tables) scrolls inside its own box.
-  return <div className="min-w-0 max-w-full overflow-x-auto">{catalogContent(name, data, onAsk)}</div>;
+  return <div className="min-w-0 max-w-full overflow-x-auto">{catalogContent(name, data, onAsk, answer)}</div>;
 }
 
-function catalogContent(name: UiToolName, data: unknown, onAsk: (question: string) => void): ReactNode {
+function catalogContent(name: UiToolName, data: unknown, onAsk: (question: string) => void, answer?: string): ReactNode {
   const parsed = { data };
   switch (name) {
     case "show_cards": return <Cards {...(parsed.data as UiSpec<"show_cards">)} />;
@@ -241,6 +242,12 @@ function catalogContent(name: UiToolName, data: unknown, onAsk: (question: strin
     case "show_metrics": return <Metrics {...(parsed.data as UiSpec<"show_metrics">)} />;
     case "show_chart": return <Chart {...(parsed.data as UiSpec<"show_chart">)} />;
     case "show_steps": return <Steps {...(parsed.data as UiSpec<"show_steps">)} />;
+    case "show_choices": {
+      // A pick is sent as the user's next message; once answered the card shows the answer.
+      const spec = parsed.data as UiSpec<"show_choices">;
+      const options = spec.options.map(option => ({ id: option.label, ...option }));
+      return <ChoiceCard title={spec.title} options={options} answered={answer} onAnswer={picked => { if ("optionId" in picked) onAsk(picked.optionId); }} />;
+    }
     case "suggest_followups": return <PromptSuggestions size="sm" suggestions={(parsed.data as UiSpec<"suggest_followups">).questions} onSelect={onAsk} />;
   }
 }

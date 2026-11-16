@@ -45,6 +45,10 @@ export const uiSchemas = {
     title: text(60).optional(),
     steps: z.array(z.object({ title: text(80), detail: text(400).optional(), code: z.string().max(2000).optional() })).min(1).max(10),
   }),
+  show_choices: z.object({
+    title: text(80),
+    options: z.array(z.object({ label: text(60), description: text(120).optional() })).min(2).max(8),
+  }),
   suggest_followups: z.object({
     questions: z.array(text(40)).min(1).max(4),
   }),

@@ -4,8 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, generateId, type UIMessage } from "ai";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
-import { AgentMessage, AgentParts, ChatInputBar, Conversation, IconButton, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
-import { PenNewSquareLinear, PlusLinear, StarsLinear } from "@forge-ui-official/core/icons";
+import { AgentMessage, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
 import { splitBlocks, proseOf } from "./catalog/blocks";
 import { Command, renderCatalog, sourcesFrom } from "./catalog/render";
 import { uiToolNames, type UiToolName } from "./catalog/schema";
@@ -13,6 +12,7 @@ import { endRun, endRunSoon, holdRun, setStopHandler } from "./operator/overlay"
 import { findByName, readPage } from "./operator/page";
 import { findPlaybook, forgetRun, loadRuns, recordRun, rememberRun, type Playbook } from "./operator/replay";
 import { cancelPageActions, pageTools, type OperateMode } from "./operator/tools";
+import { AgentPanel } from "./panel";
 import type { AgentTool } from "./tool";
 
 export { defineTool, type AgentTool } from "./tool";
@@ -78,22 +78,6 @@ function trimSnapshots(messages: UIMessage[]): UIMessage[] {
     });
     return { ...message, parts: [...parts].reverse() } as UIMessage;
   }).reverse();
-}
-
-const PANEL_WIDTH = 400;
-
-// On wide screens the open panel takes its width from the page instead of covering it, so what
-// the agent operates stays in view. Sticky headers follow; fixed full-width bars do not.
-function insetPage(open: boolean) {
-  const root = document.documentElement;
-  if (open && matchMedia("(min-width: 1024px)").matches) {
-    root.style.marginRight = `${PANEL_WIDTH}px`;
-    // Lets the app tighten its layout while the panel is open, e.g. hide a secondary column.
-    root.setAttribute("data-forge-agent-open", "");
-  } else {
-    root.style.removeProperty("margin-right");
-    root.removeAttribute("data-forge-agent-open");
-  }
 }
 
 const safely = <T,>(read: () => T, fallback: T) => {
@@ -330,10 +314,11 @@ export function ForgeAgent({ endpoint, title = "AI 助手", greeting = "有什�
     return part as AgentMessagePart;
   });
 
-  const renderToolFor = (message: UIMessage) => {
+  // `answer` is what the user sent next, so choices in an earlier reply show what was picked.
+  const renderToolFor = (message: UIMessage, answer?: string) => {
     const sources = sourcesFrom(message.parts.filter(part => "toolCallId" in part && !catalogNames.has(toolName(part as { type: string })) && "output" in part).map(part => (part as { output?: unknown }).output));
     return {
-      ...Object.fromEntries(uiToolNames.map(name => [name, (part: { input?: unknown }) => renderCatalog(name as UiToolName, part.input, ask, sources)])),
+      ...Object.fromEntries(uiToolNames.map(name => [name, (part: { input?: unknown }) => renderCatalog(name as UiToolName, part.input, ask, sources, answer)])),
       forge_command: (part: { input?: unknown }) => <Command text={(part.input as { code: string }).code} />,
     };
   };
@@ -363,76 +348,53 @@ export function ForgeAgent({ endpoint, title = "AI 助手", greeting = "有什�
   // Never leave the page locked behind an unmounted panel.
   useEffect(() => endRun, []);
 
-  useEffect(() => {
-    insetPage(open);
-    return () => insetPage(false);
-  }, [open]);
-
-  if (!open) {
-    return (
-      <button
-        type="button"
-        data-forge-agent="launcher"
-        onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_color-mix(in_srgb,var(--accent)_55%,transparent)] transition hover:brightness-110 hover:scale-[1.03]"
-      >
-        <StarsLinear size={18} />
-        {launcherLabel ?? title}
-      </button>
-    );
-  }
+  const newChat = () => { halt(); runStart.current = undefined; setMessages([]); setDecisions({}); setGated({}); };
+  const last = messages.at(-1);
 
   return (
-    <aside aria-label={title} data-forge-agent="panel" className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[400px] flex-col border-l border-fg-grey-200 bg-background shadow-2xl lg:shadow-none">
-      <header className="flex h-12 shrink-0 items-center justify-between border-b border-fg-grey-200 pl-4 pr-2">
-        <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg-black"><StarsLinear size={16} className="text-fg-blue" />{title}</span>
-        <div className="flex items-center">
-          <IconButton variant="ghost" shape="square" size="sm" aria-label="新对话" title="新对话" onClick={() => { halt(); runStart.current = undefined; setMessages([]); setDecisions({}); setGated({}); }}><PenNewSquareLinear size={16} /></IconButton>
-          {/* The icon set has no bare cross; a turned plus keeps the same stroke. */}
-          <IconButton variant="ghost" shape="square" size="sm" aria-label="关闭" title="关闭" onClick={() => setOpen(false)}><PlusLinear size={18} className="rotate-45" /></IconButton>
+    <AgentPanel
+      title={title}
+      open={open}
+      onOpenChange={setOpen}
+      launcherLabel={launcherLabel}
+      followKey={messages.length + (last?.parts.length ?? 0)}
+      onNewChat={newChat}
+      empty={(
+        <div className="flex flex-col gap-3 pt-2">
+          <p className="text-[15px] font-semibold leading-6 text-fg-black">{greeting}</p>
+          <PromptSuggestions size="sm" suggestions={suggestions} onSelect={ask} />
         </div>
-      </header>
-      <div className="flex min-h-0 flex-1 flex-col">
-        <Conversation followKey={messages.length + (messages.at(-1)?.parts.length ?? 0)}>
-          {messages.length === 0 && (
-            <div className="flex flex-col gap-3 pt-2">
-              <p className="text-[15px] font-semibold leading-6 text-fg-black">{greeting}</p>
-              <PromptSuggestions size="sm" suggestions={suggestions} onSelect={ask} />
-            </div>
-          )}
-          {messages.map(message => message.role === "user"
+      )}
+      composer={{
+        placeholder: placeholder ?? (operateOptions ? "问问题，或让我帮你操作页面…" : "输入你的问题…"),
+        status: busy ? "running" : "idle",
+        onStop: halt,
+        onSend: ask,
+        permissions: operateOptions ? MODES : undefined,
+        permission: mode,
+        onPermissionChange: id => setMode(id as OperateMode),
+        permissionMenuLabel: "操作页面的方式",
+      }}
+    >
+      {messages.length > 0 && (
+        <>
+          {messages.map((message, index) => message.role === "user"
             ? <AgentMessage key={message.id} role="user">{messageText(message)}</AgentMessage>
             : (
               <div key={message.id} data-role="assistant" className="flex min-w-0 flex-col gap-1.5">
                 <AgentParts
                   size="sm"
-                  parts={partsFor(message, busy && message === messages.at(-1)).filter(part => !(catalogNames.has(toolName(part as { type: string })) && "state" in part && part.state !== "output-available"))}
+                  parts={partsFor(message, busy && message === last).filter(part => !(catalogNames.has(toolName(part as { type: string })) && "state" in part && part.state !== "output-available"))}
                   status={status}
-                  renderTool={renderToolFor(message)}
+                  renderTool={renderToolFor(message, messages[index + 1]?.role === "user" ? messageText(messages[index + 1]) : undefined)}
                   onToolApproval={response => answerApproval(message, response)}
                 />
-                {proseOf(messageText(message)) && !(busy && message === messages.at(-1)) && <MessageActions copyText={proseOf(messageText(message))} onRetry={busy ? undefined : () => void regenerate({ messageId: message.id })} />}
+                {proseOf(messageText(message)) && !(busy && message === last) && <MessageActions copyText={proseOf(messageText(message))} onRetry={busy ? undefined : () => void regenerate({ messageId: message.id })} />}
               </div>
             ))}
           {error && <p role="alert" className="text-[13px] text-fg-red">出错了：{error.message}</p>}
-        </Conversation>
-      </div>
-      <div className="shrink-0 px-3 pb-3">
-        <ChatInputBar
-          multiline
-          sendOnEnter
-          density="compact"
-          showAttachment={false}
-          placeholder={placeholder ?? (operateOptions ? "问问题，或让我帮你操作页面…" : "输入你的问题…")}
-          status={busy ? "running" : "idle"}
-          onStop={halt}
-          onSend={ask}
-          permissions={operateOptions ? MODES : undefined}
-          permission={mode}
-          onPermissionChange={id => setMode(id as OperateMode)}
-          permissionMenuLabel="操作页面的方式"
-        />
-      </div>
-    </aside>
+        </>
+      )}
+    </AgentPanel>
   );
 }
