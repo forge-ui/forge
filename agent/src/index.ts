@@ -6,3 +6,5 @@ export { AgentPanel, PANEL_WIDTH } from "./panel";
 export type { AgentPanelProps, AgentSession } from "./panel";
 export { ChoiceCard, ConfirmCard, RunProgress } from "./interact";
 export type { ChoiceAnswer, ChoiceOption, ConfirmField, ProgressStep } from "./interact";
+export { takeOverPage } from "./takeover";
+export type { PageTakeover } from "./takeover";
