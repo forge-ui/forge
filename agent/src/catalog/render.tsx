@@ -119,7 +119,7 @@ function Cards({ title, items }: UiSpec<"show_cards">) {
             </>
           );
           return (
-            <div key={item.title} className="flex min-w-0 flex-col gap-2 overflow-hidden rounded-xl border border-fg-grey-200 bg-background p-3">
+            <div key={item.title} className="flex min-w-0 flex-col gap-2 overflow-hidden rounded-2xl bg-background p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
               {item.href ? <a href={item.href} className="flex flex-col gap-2 hover:opacity-80">{body}</a> : body}
               {item.code && <Command text={item.code} />}
             </div>

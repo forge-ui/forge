@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import { AltArrowLeftLinear, CheckCircleLinear, QuestionCircleBoldDuotone } from "../../../icons";
+import { useState, type KeyboardEvent, type ReactNode } from "react";
+import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "../../../icons";
+import { AgentCard, CardActions, ChoiceMark, SoftBadge, accentButton, fieldInput } from "../../../internal/agent-kit";
 import { cn } from "../../../lib/utils";
 import { Button } from "../button";
 import { pick, type AgentLocale } from "./agent-utils";
@@ -30,6 +31,7 @@ export type QuestionAnswer = { optionIds: string[]; text?: string };
 export type QuestionProps = {
   questions: QuestionItem[];
   onSubmit: (answers: Record<string, QuestionAnswer>) => void;
+  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */
   onCancel?: () => void;
   /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
   answers?: Record<string, QuestionAnswer>;
@@ -51,25 +53,26 @@ const describe = (item: QuestionItem, answer: QuestionAnswer | undefined) => [
 ].join("、");
 
 /**
- * The agent asks before it guesses: one or several questions with numbered options, free text and
- * keyboard answers (1–9 picks, Enter continues). Answered, it folds into what was chosen.
+ * The agent asks before it guesses, in ApprovalCard's card: one or several questions with radio or
+ * check options, free text, a pager and keyboard answers (1–9 picks, Enter continues). Answered, it
+ * shows what was chosen.
  */
 export function Question({ questions, onSubmit, onCancel, answers: answered, confirm = false, disabled = false, submitLabel, locale = "zh", size = "md", className }: QuestionProps) {
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<Record<string, QuestionAnswer>>({});
-  const root = useRef<HTMLDivElement>(null);
-  const small = size === "sm";
 
   if (answered) {
     return (
-      <div className={cn("flex flex-col gap-1 tracking-fg text-fg-grey-700", small ? "text-xs" : "text-[13px]", className)}>
-        {questions.map(item => (
-          <p key={item.id} className="flex items-start gap-1.5">
-            <CheckCircleLinear size={14} color="var(--fg-green-500)" className="mt-0.5 shrink-0" />
-            <span>{item.title}：<span className="text-fg-black">{describe(item, answered[item.id]) || pick(locale, "未回答", "Skipped")}</span></span>
-          </p>
-        ))}
-      </div>
+      <AgentCard size={size} className={className} data-state="answered">
+        <div role="status" className="flex flex-col gap-1.5">
+          {questions.map(item => (
+            <p key={item.id} className="flex items-start gap-2 text-sm">
+              <CheckCircleLinear size={16} color="var(--fg-green-500)" className="mt-0.5 shrink-0" />
+              <span className="min-w-0 text-fg-grey-700">{item.title}：<span className="font-medium text-fg-black">{describe(item, answered[item.id]) || pick(locale, "未回答", "Skipped")}</span></span>
+            </p>
+          ))}
+        </div>
+      </AgentCard>
     );
   }
 
@@ -86,13 +89,21 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
     if (last) onSubmit(next);
     else setStep(step + 1);
   };
+  // One question: skipping cancels it. Several: skip this one, and the last skip submits the rest.
+  const skip = () => {
+    if (questions.length === 1) { onCancel?.(); return; }
+    const next = { ...draft };
+    delete next[item.id];
+    setDraft(next);
+    if (last) onSubmit(next); else setStep(step + 1);
+  };
   const choose = (option: QuestionOption) => {
     if (disabled) return;
     if (item.multiple) {
       update({ ...answer, optionIds: answer.optionIds.includes(option.id) ? answer.optionIds.filter(id => id !== option.id) : [...answer.optionIds, option.id] });
       return;
     }
-    const next = { ...draft, [item.id]: { optionIds: [option.id] } };
+    const next = { ...draft, [item.id]: { ...answer, optionIds: [option.id] } };
     setDraft(next);
     if (instant) onSubmit(next);
     else if (questions.length > 1 && !last) setStep(step + 1);
@@ -104,69 +115,74 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
     else if (event.key === "Enter" && ready && showSubmit) { event.preventDefault(); advance(); }
   };
 
+  const pager = questions.length > 1 && (
+    <span className="flex items-center gap-1 text-xs tabular-nums text-fg-grey-500">
+      <button type="button" aria-label={pick(locale, "上一题", "Previous question")} disabled={step === 0} onClick={() => setStep(step - 1)} className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30">
+        <AltArrowLeftLinear size={14} color="var(--fg-grey-700)" />
+      </button>
+      {step + 1} / {questions.length}
+      <button type="button" aria-label={pick(locale, "下一题", "Next question")} disabled={last || !ready} onClick={() => setStep(step + 1)} className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30">
+        <AltArrowRightLinear size={14} color="var(--fg-grey-700)" />
+      </button>
+    </span>
+  );
+
   return (
-    <div
-      ref={root}
+    <AgentCard
+      size={size}
+      className={cn("outline-none", className)}
       role="group"
       aria-label={item.title}
       tabIndex={-1}
       onKeyDown={onKeyDown}
-      className={cn("flex flex-col gap-2.5 rounded-xl border border-fg-grey-200 bg-background tracking-fg outline-none focus-visible:border-accent", small ? "p-3" : "p-4", className)}
+      footer={(showSubmit || onCancel) && (
+        <CardActions aside={pager || (item.options.length > 1 && size === "md" ? pick(locale, "可按数字键选择", "Press a number to pick") : undefined)}>
+          {onCancel && <Button size="sm" variant="tertiary" color="grey" disabled={disabled} onClick={skip}>{last && questions.length > 1 ? pick(locale, "跳过并提交", "Skip and submit") : pick(locale, "跳过", "Skip")}</Button>}
+          {showSubmit && <button type="button" className={accentButton} disabled={disabled || !ready} onClick={() => advance()}>{last ? submitLabel ?? pick(locale, "提交", "Submit") : pick(locale, "继续", "Continue")}</button>}
+        </CardActions>
+      )}
     >
-      <div className="flex items-start gap-2">
-        <QuestionCircleBoldDuotone size={small ? 16 : 18} color="var(--accent)" className="mt-0.5 shrink-0" />
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <p className={cn("font-semibold text-fg-black", small ? "text-[13px]" : "text-sm")}>{item.title}</p>
+      <div key={item.id} className="forge-fade-up flex flex-col gap-3">
+        <div className="flex flex-col gap-1">
+          <p className="text-sm font-semibold leading-6 text-fg-black">{item.title}</p>
           {item.description && <p className="text-xs leading-5 text-fg-grey-700">{item.description}</p>}
         </div>
-        {questions.length > 1 && <span className="shrink-0 tabular-nums text-xs text-fg-grey-500">{step + 1}/{questions.length}</span>}
-      </div>
-      {item.options.length > 0 && (
-        <div className="flex flex-col gap-1">
-          {item.options.map((option, index) => {
-            const on = answer.optionIds.includes(option.id);
-            return (
-              <button
-                key={option.id}
-                type="button"
-                disabled={disabled}
-                aria-pressed={item.multiple || !instant ? on : undefined}
-                onClick={() => choose(option)}
-                className="group flex min-w-0 items-start gap-2.5 rounded-lg border border-fg-grey-200 px-3 py-2 text-left transition-colors hover:border-accent hover:bg-fg-grey-50 disabled:opacity-50 aria-pressed:border-accent aria-pressed:bg-fg-blue-50"
-              >
-                <kbd className="mt-px flex size-5 shrink-0 items-center justify-center rounded-md border border-fg-grey-200 bg-fg-grey-50 font-sans text-[11px] text-fg-grey-700 group-aria-pressed:border-accent group-aria-pressed:text-accent">{index + 1}</kbd>
-                <span className="flex min-w-0 flex-1 flex-col">
-                  <span className={cn("flex items-center gap-1.5 text-fg-black", small ? "text-[13px]" : "text-sm")}>
-                    {option.label}
-                    {option.recommended && <span className="rounded-full bg-fg-blue-50 px-1.5 py-px text-[11px] text-accent">{pick(locale, "推荐", "Recommended")}</span>}
+        {item.options.length > 0 && (
+          <div className="flex flex-col gap-1.5">
+            {item.options.map(option => {
+              const on = answer.optionIds.includes(option.id);
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  disabled={disabled}
+                  aria-pressed={on}
+                  onClick={() => choose(option)}
+                  className={cn("flex items-start gap-2.5 rounded-xl px-3 py-2 text-left text-sm transition-colors disabled:opacity-50", on ? "bg-accent-soft text-accent" : "text-fg-black hover:bg-fg-grey-100")}
+                >
+                  <span className="pt-0.5"><ChoiceMark multiple={item.multiple} on={on} /></span>
+                  <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                    <span className="flex flex-wrap items-center gap-2 font-medium">{option.label}{option.recommended && <SoftBadge tone="blue">{pick(locale, "推荐", "Recommended")}</SoftBadge>}</span>
+                    {option.description && <span className={cn("text-xs", on ? "text-accent" : "text-fg-grey-500")}>{option.description}</span>}
                   </span>
-                  {option.description && <span className="text-xs leading-5 text-fg-grey-700">{option.description}</span>}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      )}
-      {(item.allowText || item.options.length === 0) && (
-        <input
-          value={answer.text ?? ""}
-          disabled={disabled}
-          onChange={event => update({ ...answer, text: event.target.value })}
-          onKeyDown={event => { if (event.key === "Enter" && ready) { event.preventDefault(); advance(); } }}
-          placeholder={item.textPlaceholder ?? (item.options.length ? pick(locale, "或者直接写", "Or type your own") : pick(locale, "填写回答", "Type your answer"))}
-          aria-label={item.textPlaceholder ?? item.title}
-          className="min-w-0 rounded-lg border border-fg-grey-200 bg-background px-3 py-1.5 text-[13px] text-fg-black outline-none placeholder:text-fg-grey-500 focus:border-accent"
-        />
-      )}
-      {(showSubmit || onCancel) && (
-        <div className="flex items-center gap-2">
-          {step > 0 && <Button size="sm" variant="tertiary" color="grey" iconLeft={<AltArrowLeftLinear size={14} />} onClick={() => setStep(step - 1)}>{pick(locale, "上一题", "Back")}</Button>}
-          {showSubmit && <Button size="sm" disabled={disabled || !ready} onClick={() => advance()}>{last ? submitLabel ?? pick(locale, "提交", "Submit") : pick(locale, "下一题", "Next")}</Button>}
-          {onCancel && <Button size="sm" variant="tertiary" color="grey" disabled={disabled} onClick={onCancel}>{pick(locale, "跳过", "Skip")}</Button>}
-          <span className="ml-auto hidden text-[11px] text-fg-grey-500 sm:inline">{pick(locale, "按数字键选择", "Press a number to pick")}</span>
-        </div>
-      )}
-    </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {(item.allowText || item.options.length === 0) && (
+          <input
+            value={answer.text ?? ""}
+            disabled={disabled}
+            onChange={event => update({ ...answer, text: event.target.value })}
+            onKeyDown={event => { if (event.key === "Enter" && ready) { event.preventDefault(); advance(); } }}
+            placeholder={item.textPlaceholder ?? (item.options.length ? pick(locale, "或者直接写", "Or type your own") : pick(locale, "填写回答", "Type your answer"))}
+            aria-label={item.textPlaceholder ?? item.title}
+            className={fieldInput}
+          />
+        )}
+      </div>
+    </AgentCard>
   );
 }
 
@@ -192,10 +208,10 @@ export type ChoiceCardProps = {
 export function ChoiceCard({ title, options, multiple = false, allowText = false, disabled = false, answered, onAnswer, onCancel, locale = "zh" }: ChoiceCardProps) {
   if (answered) {
     return (
-      <div className="flex items-center gap-1.5 text-[13px] tracking-fg text-fg-grey-700">
-        <CheckCircleLinear size={14} color="var(--fg-green-500)" />
-        {title}：<span className="text-fg-black">{answered}</span>
-      </div>
+      <p role="status" className="flex items-center gap-2 text-sm tracking-fg text-fg-grey-700">
+        <CheckCircleLinear size={16} color="var(--fg-green-500)" />
+        {title}：<span className="font-medium text-fg-black">{answered}</span>
+      </p>
     );
   }
   return (

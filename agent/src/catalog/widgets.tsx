@@ -19,10 +19,10 @@ import type { UiSpec } from "./schema";
 
 /** Components the model writes into its answer, beyond cards, tables and metrics (see render.tsx). */
 
-const frame = "flex min-w-0 flex-col gap-2 rounded-xl border border-fg-grey-200 bg-background p-3";
+const frame = "flex min-w-0 flex-col gap-2 rounded-2xl bg-background p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200";
 const Title = ({ children }: { children?: ReactNode }) => (children ? <p className="text-sm font-semibold text-fg-black">{children}</p> : null);
 const Answered = ({ children }: { children: ReactNode }) => (
-  <p className="flex items-start gap-1.5 text-[13px] text-fg-grey-700"><CheckCircleLinear size={14} color="var(--fg-green-500)" className="mt-0.5 shrink-0" /><span className="min-w-0">{children}</span></p>
+  <p className="flex items-start gap-1.5 text-sm text-fg-grey-700"><CheckCircleLinear size={14} color="var(--fg-green-500)" className="mt-0.5 shrink-0" /><span className="min-w-0">{children}</span></p>
 );
 const safeHref = (href?: string) => (href && (/^\/(?!\/)/.test(href) || /^https:\/\//.test(href)) ? href : undefined);
 
@@ -38,7 +38,7 @@ const TONE = {
 export function Callout({ tone, title, text }: UiSpec<"show_callout">) {
   const { icon: Icon, style } = TONE[tone];
   return (
-    <div role={tone === "danger" || tone === "warning" ? "alert" : "note"} className={cn("flex gap-2 rounded-xl border px-3 py-2.5 text-[13px] leading-5", style)}>
+    <div role={tone === "danger" || tone === "warning" ? "alert" : "note"} className={cn("flex gap-2 rounded-xl border px-3 py-2.5 text-sm leading-5", style)}>
       <Icon size={16} className="mt-0.5 shrink-0" />
       <div className="flex min-w-0 flex-col gap-0.5">{title && <span className="font-semibold">{title}</span>}<span>{text}</span></div>
     </div>
@@ -54,9 +54,9 @@ export function RecordCard({ title, subtitle, status, fields, href }: UiSpec<"sh
           <span className="truncate text-sm font-semibold text-fg-black">{title}</span>
           {subtitle && <span className="truncate text-xs text-fg-grey-700">{subtitle}</span>}
         </div>
-        {status && <span className="shrink-0 rounded-full bg-fg-grey-100 px-2 py-0.5 text-[11px] text-fg-grey-900">{status}</span>}
+        {status && <span className="shrink-0 rounded-full bg-fg-grey-100 px-2 py-0.5 text-xs text-fg-grey-900">{status}</span>}
       </div>
-      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-[13px]">
+      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-sm">
         {fields.map(field => (
           <div key={field.label} className="contents"><dt className="text-fg-grey-700">{field.label}</dt><dd className="min-w-0 break-words text-fg-black">{field.value}</dd></div>
         ))}
@@ -70,16 +70,16 @@ export function ListBlock({ title, items }: UiSpec<"show_list">) {
   return (
     <div className="flex min-w-0 flex-col gap-1.5">
       <Title>{title}</Title>
-      <ul className="flex flex-col divide-y divide-fg-grey-100 rounded-xl border border-fg-grey-200 bg-background">
+      <ul className="flex flex-col divide-y divide-fg-grey-100 rounded-2xl bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
         {items.map(item => {
           const link = safeHref(item.href);
           const body = (
             <>
               <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate text-[13px] text-fg-black">{item.title}</span>
+                <span className="truncate text-sm text-fg-black">{item.title}</span>
                 {item.description && <span className="line-clamp-2 text-xs text-fg-grey-700">{item.description}</span>}
               </span>
-              {item.tag && <span className="shrink-0 rounded-full bg-fg-grey-100 px-2 py-0.5 text-[11px] text-fg-grey-900">{item.tag}</span>}
+              {item.tag && <span className="shrink-0 rounded-full bg-fg-grey-100 px-2 py-0.5 text-xs text-fg-grey-900">{item.tag}</span>}
               {item.meta && <span className="shrink-0 text-xs tabular-nums text-fg-grey-500">{item.meta}</span>}
             </>
           );
@@ -103,7 +103,7 @@ export function Timeline({ title, events }: UiSpec<"show_timeline">) {
             <span aria-hidden="true" className={cn("mt-1.5 size-2 shrink-0 rounded-full", DOT[event.tone ?? "info"])} />
             <div className="flex min-w-0 flex-col gap-0.5">
               <span className="text-xs tabular-nums text-fg-grey-500">{event.time}</span>
-              <span className="text-[13px] text-fg-black">{event.title}</span>
+              <span className="text-sm text-fg-black">{event.title}</span>
               {event.detail && <span className="text-xs leading-5 text-fg-grey-700">{event.detail}</span>}
             </div>
           </li>
@@ -130,9 +130,9 @@ export function Compare({ title, items }: UiSpec<"show_compare">) {
         {items.map(item => (
           <div key={item.title} className={cn("flex min-w-0 flex-col gap-1.5 rounded-xl border p-3", item.recommended ? "border-accent bg-fg-blue-50" : "border-fg-grey-200 bg-background")}>
             <div className="flex items-center gap-1.5">
-              <span className="text-[13px] font-semibold text-fg-black">{item.title}</span>
-              {item.recommended && <span className="rounded-full bg-accent px-1.5 py-px text-[10px] text-white">推荐</span>}
-              {item.tag && !item.recommended && <span className="rounded-full bg-fg-grey-100 px-1.5 py-px text-[10px] text-fg-grey-700">{item.tag}</span>}
+              <span className="text-sm font-semibold text-fg-black">{item.title}</span>
+              {item.recommended && <span className="rounded-full bg-accent px-1.5 py-px text-2xs text-white">推荐</span>}
+              {item.tag && !item.recommended && <span className="rounded-full bg-fg-grey-100 px-1.5 py-px text-2xs text-fg-grey-700">{item.tag}</span>}
             </div>
             <ul className="flex flex-col gap-1 text-xs leading-5 text-fg-grey-900">{item.points.map(point => <li key={point} className="flex gap-1.5"><span className="text-fg-grey-400">·</span>{point}</li>)}</ul>
           </div>
@@ -146,7 +146,7 @@ export function Changes({ title, fields }: UiSpec<"show_changes">) {
   return (
     <div className={frame}>
       <Title>{title}</Title>
-      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-[13px]">
+      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-sm">
         {fields.map(field => (
           <div key={field.label} className="contents">
             <dt className="text-fg-grey-700">{field.label}</dt>
@@ -169,7 +169,7 @@ export function Flow({ title, nodes, edges }: UiSpec<"show_flow">) {
           const decision = node.kind === "decision";
           return (
             <li key={node.id} className="flex flex-col items-start gap-1">
-              <span className={cn("px-3 py-1.5 text-[13px] text-fg-black", decision ? "rounded-lg border border-dashed border-fg-yellow-400 bg-fg-yellow-50" : node.kind === "start" || node.kind === "end" ? "rounded-full bg-fg-grey-100" : "rounded-lg border border-fg-grey-200 bg-background")}>{node.label}</span>
+              <span className={cn("px-3 py-1.5 text-sm text-fg-black", decision ? "rounded-lg border border-dashed border-fg-yellow-400 bg-fg-yellow-50" : node.kind === "start" || node.kind === "end" ? "rounded-full bg-fg-grey-100" : "rounded-lg border border-fg-grey-200 bg-background")}>{node.label}</span>
               {out.map(edge => (
                 <span key={`${edge.from}-${edge.to}`} className="ml-3 flex items-center gap-1 text-xs text-fg-grey-700">
                   ↓{edge.label && <span className="rounded bg-fg-grey-100 px-1.5 py-px">{edge.label}</span>}<span className="text-fg-grey-500">到「{byId.get(edge.to)?.label}」</span>
@@ -233,7 +233,7 @@ export function Progress({ title, items }: UiSpec<"show_progress">) {
       <Title>{title}</Title>
       {items.map(item => (
         <div key={item.label} className="flex flex-col gap-1">
-          <div className="flex items-baseline gap-2 text-[13px]"><span className="min-w-0 flex-1 truncate text-fg-black">{item.label}</span>{item.note && <span className="text-xs text-fg-grey-500">{item.note}</span>}<span className="tabular-nums text-fg-grey-900">{item.value}%</span></div>
+          <div className="flex items-baseline gap-2 text-sm"><span className="min-w-0 flex-1 truncate text-fg-black">{item.label}</span>{item.note && <span className="text-xs text-fg-grey-500">{item.note}</span>}<span className="tabular-nums text-fg-grey-900">{item.value}%</span></div>
           <ProgressBar value={item.value} color={item.value >= 90 ? "red" : "blue"} />
         </div>
       ))}
@@ -248,7 +248,7 @@ export function Funnel({ title, stages }: UiSpec<"show_funnel">) {
       <Title>{title}</Title>
       {stages.map((stage, index) => (
         <div key={stage.label} className="flex flex-col gap-0.5">
-          <div className="flex items-baseline gap-2 text-[13px]">
+          <div className="flex items-baseline gap-2 text-sm">
             <span className="min-w-0 flex-1 truncate text-fg-black">{stage.label}</span>
             <span className="tabular-nums text-fg-black">{stage.value}</span>
             {index > 0 && <span className="w-12 text-right tabular-nums text-xs text-fg-grey-500">{stages[index - 1].value ? `${Math.round((stage.value / stages[index - 1].value) * 100)}%` : "—"}</span>}
@@ -281,7 +281,7 @@ export function Form({ title, submitLabel, fields, answer, onAsk }: UiSpec<"show
   if (answer) return <Answered>{answer}</Answered>;
   const set = (name: string, value: FieldValue) => setValues(current => ({ ...current, [name]: value }));
   const missing = fields.filter(field => field.required && (values[field.name] === "" || (Array.isArray(values[field.name]) && !(values[field.name] as string[]).length)));
-  const input = "w-full min-w-0 rounded-lg border border-fg-grey-200 bg-background px-2.5 py-1.5 text-[13px] text-fg-black outline-none placeholder:text-fg-grey-500 focus:border-accent";
+  const input = "w-full min-w-0 rounded-lg border border-fg-grey-200 bg-background px-2.5 py-1.5 text-sm text-fg-black outline-none placeholder:text-fg-grey-500 focus:border-accent";
   const describe = (value: FieldValue) => (Array.isArray(value) ? value.join("、") : typeof value === "boolean" ? (value ? "是" : "否") : String(value));
   return (
     <form

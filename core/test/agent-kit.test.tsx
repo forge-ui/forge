@@ -59,9 +59,9 @@ test("Question answers with number keys and walks through several questions", as
     { id: "format", title: "输出格式", options: [{ id: "table", label: "表格" }, { id: "chart", label: "图表" }], multiple: true },
   ]} />);
   try {
-    assert.ok(view.html().includes("1/2") && view.html().includes("推荐"));
+    assert.ok(view.html().includes("1 / 2") && view.html().includes("推荐"));
     await view.key('[role="group"]', "2");
-    assert.ok(view.html().includes("2/2"), "a single choice moves on");
+    assert.ok(view.html().includes("2 / 2"), "a single choice moves on");
     await view.key('[role="group"]', "1");
     await view.key('[role="group"]', "2");
     await view.clickText("提交");
@@ -77,7 +77,7 @@ test("ChoiceCard keeps its single-question contract", async () => {
   const answers: unknown[] = [];
   const view = await mount(<ChoiceCard title="选哪个账号" options={[{ id: "u1", label: "张三" }, { id: "u2", label: "李四" }]} onAnswer={answer => answers.push(answer)} />);
   try {
-    await view.clickText("2李四");
+    await view.clickText("李四");
     assert.deepEqual(answers, [{ optionId: "u2" }]);
   } finally {
     await view.unmount();
@@ -93,7 +93,7 @@ test("Approval offers scopes, asks why on deny and folds when resolved", async (
     await view.clickText("本次对话都允许");
     await view.clickText("拒绝");
     assert.ok(view.html().includes("拒绝原因"), "deny asks for a reason first");
-    await view.clickText("拒绝");
+    await view.clickText("确认拒绝");
     assert.deepEqual(calls, ["session", { reason: undefined }]);
   } finally {
     await view.unmount();
@@ -138,9 +138,9 @@ test("AgentPlan edits in review and retries from a failed step", async () => {
     await view.unmount();
   }
   const running = renderToStaticMarkup(<AgentPlan mode="running" onRetryFrom={() => undefined} steps={[{ id: "a", title: "拉取订单", status: "done", duration: 1200 }, { id: "b", title: "生成报表", status: "failed" }]} />);
-  assert.ok(running.includes("1/2") && running.includes("从这一步重试") && running.includes("1.2 秒"));
+  assert.ok(running.includes("有失败") && running.includes("从这一步重试") && running.includes("1.2 秒"));
   const trail = renderToStaticMarkup(<AgentTrail title="月末对账" steps={[{ id: "a", title: "下载流水", status: "done" }, { id: "b", title: "核对", status: "running", activity: "第 3 张发票", substeps: [{ id: "x", title: "发票 1", status: "done" }] }, { id: "c", title: "提交", status: "waiting", waiting: <span>等你确认</span> }]} />);
-  for (const text of ["1/3", "第 3 张发票", "发票 1", "等你确认"]) assert.ok(trail.includes(text), text);
+  for (const text of ["等你确认", "第 3 张发票", "发票 1"]) assert.ok(trail.includes(text), text);
 });
 
 test("ChangeLedger undoes dependents together", async () => {
@@ -161,9 +161,9 @@ test("ChangeLedger undoes dependents together", async () => {
     await view.unmount();
   }
   const points = renderToStaticMarkup(<AgentCheckpoints onRewind={() => undefined} checkpoints={[{ id: "1", label: "读取需求" }, { id: "2", label: "第一版方案", abandoned: true }, { id: "3", label: "第二版方案" }]} />);
-  assert.ok(points.includes("已放弃的尝试") && points.includes("回到这里"));
+  assert.ok(points.includes("已放弃") && points.includes("当前") && points.includes("回到这里"));
   const autonomy = renderToStaticMarkup(<AutonomySelector value="balanced" onChange={() => undefined} actions={[{ id: "a", label: "查询订单", risk: "low" }, { id: "b", label: "退款", risk: "high" }]} />);
-  assert.ok(autonomy.includes("自己做") && autonomy.includes("先问你") && autonomy.includes('aria-checked="true"'));
+  assert.ok(autonomy.includes("自己做") && autonomy.includes("先问你") && autonomy.includes('aria-pressed="true"'));
 });
 
 test("ops views: inbox filters, running pill and away summary", async () => {
@@ -175,7 +175,7 @@ test("ops views: inbox filters, running pill and away summary", async () => {
   const view = await mount(<AgentInbox tasks={tasks} onApprove={() => undefined} onRetry={() => undefined} />);
   try {
     assert.ok(view.html().indexOf("退款审批") < view.html().indexOf("核对 11 月发票"), "what needs you comes first");
-    await view.click('[role="tab"]:nth-child(5)');
+    await act(async () => { document.querySelectorAll<HTMLElement>('[role="tab"]')[4].click(); });
     assert.ok(view.html().includes("这里没有任务"));
   } finally {
     await view.unmount();
