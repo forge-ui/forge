@@ -1,19 +1,11 @@
-import { uiSchemas, type UiToolName } from "./schema";
+import { BLOCK_OF, uiSchemas, uiToolNames, type UiToolName } from "./schema";
 
 /**
  * The model writes components inside its answer as fenced blocks (```forge:cards + JSON), so a whole
  * answer, components included, comes from one model step. Splitting the text turns each block into
  * a component; plain code fences become code or a copyable command.
  */
-export const BLOCK_NAMES: Record<string, UiToolName> = {
-  "forge:cards": "show_cards",
-  "forge:steps": "show_steps",
-  "forge:table": "show_table",
-  "forge:metrics": "show_metrics",
-  "forge:chart": "show_chart",
-  "forge:choices": "show_choices",
-  "forge:followups": "suggest_followups",
-};
+export const BLOCK_NAMES: Record<string, UiToolName> = Object.fromEntries(uiToolNames.map(name => [BLOCK_OF[name], name]));
 
 export type Segment =
   | { kind: "text"; text: string }

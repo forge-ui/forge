@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { BarChart, DataTable, PromptSuggestions, SmoothLineChart, StatCard, type ColumnDef } from "@forge-ui-official/core";
+import { ChoiceCard, DataTable, PromptSuggestions, StatCard, type ColumnDef } from "@forge-ui-official/core";
 import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
-import { ChoiceCard } from "../interact";
 import { uiSchemas, type UiSpec, type UiToolName } from "./schema";
+import { Actions, Callout, Changes, Chart, Compare, Confirm, Flow, Form, Funnel, Images, ListBlock, Plan, Progress, Questions, RecordCard, Tags, Timeline } from "./widgets";
 
 type Row = Record<string, string | number | boolean | null>;
 
@@ -147,20 +147,6 @@ function Metrics({ items }: UiSpec<"show_metrics">) {
   );
 }
 
-function Chart({ title, type, labels, series }: UiSpec<"show_chart">) {
-  return (
-    <div className="flex flex-col gap-2 rounded-xl border border-fg-grey-200 bg-background p-3">
-      {title && <p className="text-sm font-semibold text-fg-black">{title}</p>}
-      <div className="h-40">
-        {type === "bar"
-          ? <BarChart data={labels.map((label, index) => ({ label, value: series[0]?.data[index] ?? 0 }))} ariaLabel={title} />
-          : <SmoothLineChart series={series.map(item => ({ label: item.label, data: item.data }))} ariaLabel={title} />}
-      </div>
-      <div className="flex justify-between text-xs text-fg-grey-700"><span>{labels[0]}</span><span>{labels[labels.length - 1]}</span></div>
-    </div>
-  );
-}
-
 function Steps({ title, steps }: UiSpec<"show_steps">) {
   return (
     <div className="flex flex-col gap-2">
@@ -206,6 +192,8 @@ function groundCards(spec: UiSpec<"show_cards">, sources: Sources): UiSpec<"show
 function numbersOf(name: UiToolName, spec: unknown): (string | number)[] {
   if (name === "show_metrics") return (spec as UiSpec<"show_metrics">).items.map(item => item.value.replace(/[^0-9.\-]/g, "")).filter(Boolean);
   if (name === "show_chart") return (spec as UiSpec<"show_chart">).series.flatMap(item => item.data);
+  if (name === "show_progress") return (spec as UiSpec<"show_progress">).items.map(item => item.value);
+  if (name === "show_funnel") return (spec as UiSpec<"show_funnel">).stages.map(stage => stage.value);
   if (name === "show_table") {
     const table = spec as UiSpec<"show_table">;
     const numeric = table.columns.filter(column => column.numeric).map(column => column.key);
@@ -214,15 +202,33 @@ function numbersOf(name: UiToolName, spec: unknown): (string | number)[] {
   return [];
 }
 
+// Links and images must be this site's pages or appear in a tool result.
+function ground(name: UiToolName, data: unknown, sources: Sources): unknown {
+  const href = (value?: string) => (value && (value.startsWith("/") || sources.has(value)) ? value : undefined);
+  switch (name) {
+    case "show_cards": return groundCards(data as UiSpec<"show_cards">, sources);
+    case "show_record": { const spec = data as UiSpec<"show_record">; return { ...spec, href: href(spec.href) }; }
+    case "show_list": { const spec = data as UiSpec<"show_list">; return { ...spec, items: spec.items.map(item => ({ ...item, href: href(item.href) })) }; }
+    case "show_actions": { const spec = data as UiSpec<"show_actions">; return { ...spec, items: spec.items.map(item => ({ ...item, href: href(item.href) })).filter(item => item.href || item.ask) }; }
+    case "show_images": {
+      const spec = data as UiSpec<"show_images">;
+      const items = spec.items.filter(item => sources.has(item.src));
+      return items.length ? { items } : undefined;
+    }
+    default: return data;
+  }
+}
+
 /**
  * Renders one catalog tool call. Inputs are validated again here, so a part replayed from storage or a
- * malformed call shows nothing rather than a broken component. Numbers in tables, metrics and charts
- * must come from tool results in the same answer; otherwise a note replaces the figure.
+ * malformed call shows nothing rather than a broken component. Numbers in tables, metrics, charts,
+ * progress and funnels must come from tool results in the same answer; otherwise a note replaces them.
  */
 export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question: string) => void, sources: Sources, answer?: string): ReactNode {
   const parsed = uiSchemas[name].safeParse(input);
   if (!parsed.success) return null;
-  const data = name === "show_cards" ? groundCards(parsed.data as UiSpec<"show_cards">, sources) : parsed.data;
+  const data = ground(name, parsed.data, sources);
+  if (data === undefined) return null;
   if (numbersOf(name, data).some(value => !sources.has(value))) {
     return <p className="text-xs text-fg-grey-700">这组数字没能和查询结果核对上，已省略。</p>;
   }
@@ -231,23 +237,38 @@ export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question
 }
 
 function catalogContent(name: UiToolName, data: unknown, onAsk: (question: string) => void, answer?: string): ReactNode {
-  const parsed = { data };
   switch (name) {
-    case "show_cards": return <Cards {...(parsed.data as UiSpec<"show_cards">)} />;
+    case "show_cards": return <Cards {...(data as UiSpec<"show_cards">)} />;
     case "show_code": {
-      const spec = parsed.data as UiSpec<"show_code">;
-      return <CodeView language={spec.filename ?? "代码"} code={spec.code.replace(/\n$/, "")} />;
+      const code = data as UiSpec<"show_code">;
+      return <CodeView language={code.filename ?? "代码"} code={code.code.replace(/\n$/, "")} />;
     }
-    case "show_table": return <Table {...(parsed.data as UiSpec<"show_table">)} />;
-    case "show_metrics": return <Metrics {...(parsed.data as UiSpec<"show_metrics">)} />;
-    case "show_chart": return <Chart {...(parsed.data as UiSpec<"show_chart">)} />;
-    case "show_steps": return <Steps {...(parsed.data as UiSpec<"show_steps">)} />;
+    case "show_steps": return <Steps {...(data as UiSpec<"show_steps">)} />;
+    case "show_callout": return <Callout {...(data as UiSpec<"show_callout">)} />;
+    case "show_record": return <RecordCard {...(data as UiSpec<"show_record">)} />;
+    case "show_list": return <ListBlock {...(data as UiSpec<"show_list">)} />;
+    case "show_timeline": return <Timeline {...(data as UiSpec<"show_timeline">)} />;
+    case "show_tags": return <Tags {...(data as UiSpec<"show_tags">)} />;
+    case "show_compare": return <Compare {...(data as UiSpec<"show_compare">)} />;
+    case "show_changes": return <Changes {...(data as UiSpec<"show_changes">)} />;
+    case "show_flow": return <Flow {...(data as UiSpec<"show_flow">)} />;
+    case "show_images": return <Images {...(data as UiSpec<"show_images">)} />;
+    case "show_table": return <Table {...(data as UiSpec<"show_table">)} />;
+    case "show_metrics": return <Metrics {...(data as UiSpec<"show_metrics">)} />;
+    case "show_chart": return <Chart {...(data as UiSpec<"show_chart">)} />;
+    case "show_progress": return <Progress {...(data as UiSpec<"show_progress">)} />;
+    case "show_funnel": return <Funnel {...(data as UiSpec<"show_funnel">)} />;
     case "show_choices": {
       // A pick is sent as the user's next message; once answered the card shows the answer.
-      const spec = parsed.data as UiSpec<"show_choices">;
-      const options = spec.options.map(option => ({ id: option.label, ...option }));
-      return <ChoiceCard title={spec.title} options={options} answered={answer} onAnswer={picked => { if ("optionId" in picked) onAsk(picked.optionId); }} />;
+      const choices = data as UiSpec<"show_choices">;
+      const options = choices.options.map(option => ({ id: option.label, ...option }));
+      return <ChoiceCard title={choices.title} options={options} answered={answer} onAnswer={picked => { if ("optionId" in picked) onAsk(picked.optionId); }} />;
     }
-    case "suggest_followups": return <PromptSuggestions size="sm" suggestions={(parsed.data as UiSpec<"suggest_followups">).questions} onSelect={onAsk} />;
+    case "show_questions": return <Questions {...(data as UiSpec<"show_questions">)} answer={answer} onAsk={onAsk} />;
+    case "show_form": return <Form {...(data as UiSpec<"show_form">)} answer={answer} onAsk={onAsk} />;
+    case "show_confirm": return <Confirm {...(data as UiSpec<"show_confirm">)} answer={answer} onAsk={onAsk} />;
+    case "show_plan": return <Plan {...(data as UiSpec<"show_plan">)} answer={answer} onAsk={onAsk} />;
+    case "show_actions": return <Actions {...(data as UiSpec<"show_actions">)} onAsk={onAsk} />;
+    case "suggest_followups": return <PromptSuggestions size="sm" suggestions={(data as UiSpec<"suggest_followups">).questions} onSelect={onAsk} />;
   }
 }

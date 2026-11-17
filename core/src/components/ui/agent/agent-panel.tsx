@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
-import { ChatInputBar, Conversation, IconButton } from "@forge-ui-official/core";
-import { ClockCircleLinear, PenNewSquareLinear, PlusLinear, StarsLinear } from "@forge-ui-official/core/icons";
+import { ChatInputBar } from "../chat-input-bar";
+import { IconButton } from "../icon-button";
+import { Conversation } from "./agent-conversation";
+import { ClockCircleLinear, PenNewSquareLinear, PlusLinear, StarsLinear } from "../../../icons";
 
-export const PANEL_WIDTH = 400;
+export const AGENT_PANEL_WIDTH = 400;
 
 // On wide screens the open panel takes its width from the page instead of covering it, so what
 // the agent operates stays in view. Sticky headers follow; fixed full-width bars do not.
 function insetPage(open: boolean) {
   const root = document.documentElement;
   if (open && matchMedia("(min-width: 1024px)").matches) {
-    root.style.marginRight = `${PANEL_WIDTH}px`;
+    root.style.marginRight = `${AGENT_PANEL_WIDTH}px`;
     // Lets the app tighten its layout while the panel is open, e.g. hide a secondary column.
     root.setAttribute("data-forge-agent-open", "");
   } else {
@@ -89,7 +91,7 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
             <div ref={history} className="relative">
               <IconButton variant="ghost" shape="square" size="sm" aria-label="历史对话" title="历史对话" aria-expanded={historyOpen} onClick={() => setHistoryOpen(value => !value)}><ClockCircleLinear size={16} /></IconButton>
               {historyOpen && (
-                <ul role="menu" aria-label="历史对话" className="absolute right-0 top-9 z-10 max-h-80 w-64 overflow-y-auto rounded-xl border border-fg-grey-200 bg-background p-1 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)]">
+                <ul role="menu" aria-label="历史对话" className="absolute right-0 top-9 z-10 max-h-80 w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-xl border border-fg-grey-200 bg-background p-1 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)]">
                   {sessions.map(session => (
                     <li key={session.id} role="none">
                       <button

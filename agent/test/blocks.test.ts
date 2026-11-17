@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { proseOf, splitBlocks } from "../src/catalog/blocks";
+import { BLOCK_NAMES, proseOf, splitBlocks } from "../src/catalog/blocks";
+import { BLOCK_OF, catalogGuide, uiToolNames } from "../src/catalog/schema";
 
 const answer = [
   "直接用订单列表页面组件。",
@@ -41,4 +42,28 @@ test("a malformed or off-schema block renders nothing", () => {
 test("choices need at least two options", () => {
   assert.equal((splitBlocks('```forge:choices\n{"title": "选一个", "options": [{"label": "A"}, {"label": "B"}]}\n```')[0] as { name: string }).name, "show_choices");
   assert.deepEqual(splitBlocks('```forge:choices\n{"title": "选一个", "options": [{"label": "A"}]}\n```'), []);
+});
+
+test("every catalog component has a block name and a prompt line", () => {
+  for (const name of uiToolNames) {
+    assert.ok(BLOCK_OF[name].startsWith("forge:"), name);
+    assert.equal(BLOCK_NAMES[BLOCK_OF[name]], name);
+  }
+  const guide = catalogGuide(["show_table", "show_form"]);
+  assert.match(guide, /forge:table/);
+  assert.match(guide, /forge:form/);
+  assert.doesNotMatch(guide, /forge:cards/);
+});
+
+test("asking blocks parse: form, confirm, plan, questions, actions", () => {
+  const block = (name: string, json: unknown) => splitBlocks("```forge:" + name + "\n" + JSON.stringify(json) + "\n```")[0] as { name: string } | undefined;
+  assert.equal(block("form", { title: "新建客户", fields: [{ name: "name", label: "名称", type: "text", required: true }] })?.name, "show_form");
+  assert.equal(block("form", { title: "新建客户", fields: [{ name: "name", label: "名称", type: "color" }] }), undefined, "unknown field types are rejected");
+  assert.equal(block("confirm", { title: "删除 3 条草稿", risk: "high" })?.name, "show_confirm");
+  assert.equal(block("plan", { steps: [{ title: "拉数据" }, { title: "出报表" }] })?.name, "show_plan");
+  assert.equal(block("plan", { steps: [{ title: "只有一步" }] }), undefined);
+  assert.equal(block("questions", { questions: [{ title: "范围", options: [{ label: "本周" }] }] })?.name, "show_questions");
+  assert.equal(block("actions", { items: [{ label: "去看看", href: "/orders" }] })?.name, "show_actions");
+  assert.equal(block("chart", { type: "donut", labels: ["A", "B"], series: [{ label: "占比", data: [1, 2] }] })?.name, "show_chart");
+  assert.equal(block("callout", { tone: "loud", text: "x" }), undefined);
 });

@@ -716,6 +716,15 @@ body {
 .forge-pulse-dot {
   animation: forge-pulse-dot 1s ease-in-out infinite;
 }
+/* Text that is being worked on: a light band sweeps across the letters. */
+.forge-text-shimmer {
+  background-image: linear-gradient(90deg, currentColor 0%, currentColor 40%, var(--fg-grey-300) 50%, currentColor 60%, currentColor 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: forge-shimmer 1.6s linear infinite reverse;
+}
 
 .forge-dot-canvas {
   background-image: radial-gradient(circle, var(--fg-grey-200) 1px, transparent 1px);
@@ -771,6 +780,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .forge-shimmer,
+  .forge-text-shimmer,
   .forge-fade-up,
   .forge-stream-in,
   .forge-pulse-dot,

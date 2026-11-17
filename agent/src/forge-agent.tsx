@@ -4,7 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, generateId, type UIMessage } from "ai";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
-import { AgentMessage, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
+import { AgentMessage, AgentPanel, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
 import { splitBlocks, proseOf } from "./catalog/blocks";
 import { Command, renderCatalog, sourcesFrom } from "./catalog/render";
 import { uiToolNames, type UiToolName } from "./catalog/schema";
@@ -12,7 +12,6 @@ import { endRun, endRunSoon, holdRun, setStopHandler } from "./operator/overlay"
 import { findByName, readPage } from "./operator/page";
 import { findPlaybook, forgetRun, loadRuns, recordRun, rememberRun, type Playbook } from "./operator/replay";
 import { cancelPageActions, pageTools, type OperateMode } from "./operator/tools";
-import { AgentPanel } from "./panel";
 import type { AgentTool } from "./tool";
 
 export { defineTool, type AgentTool } from "./tool";
