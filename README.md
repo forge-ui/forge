@@ -113,9 +113,9 @@ npx shadcn@latest add https://www.forgeui.org/r/kanban-board.json
 | [Forge Starter](https://github.com/forge-ui/forge-starter) | 后台脚手架：登录、样板模块、加页面 | `git clone` 后 `pnpm dev` |
 | [页面组件](https://www.forgeui.org/blocks) | 70 个可复制的整页源码 | `npx shadcn@latest add https://www.forgeui.org/r/<name>.json` |
 | [Forge Skill](https://www.forgeui.org/docs/ui-for-agents) 与 [MCP](https://www.forgeui.org/docs/mcp) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | `curl -fsSL https://www.forgeui.org/setup.sh \| bash` |
-| [Forge Design Extension](https://github.com/forge-ui/forge-design-extension) | 在真实 Chrome 页面上点选、放置组件并改界面 | 独立仓库的 README |
+| [Forge Design Extension](https://github.com/forge-ui/forge-design-extension) | 让本机的 AI 编程助手用你的 Chrome：点选、放置组件改界面，读登录后的页面、截图、看报错 | 独立仓库的 README |
 
-Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库，也不替代 Starter。Starter 负责把后台跑起来，Design Extension 负责改已经跑起来的页面：点中要改的位置，侧边栏里的本地模型带着真实 selector 改文案、样式和交互，或把 Forge 组件写入源码；也可以从组件盘拖到锚点旁，确认后再写入。页面内容留在本机，不经过云端。安装方式是启动本机桥接，在 Chrome 里加载 `extension/`。
+Forge Design Extension 是 Chrome 插件加本机桥接。它不替代组件库，也不替代 Starter。Starter 负责把后台跑起来，Design Extension 负责改已经跑起来的页面：点中要改的位置，侧边栏里由你本机的 AI 编程助手（Claude Code、Codex 等）带着真实 selector 改文案、样式和交互，或把 Forge 组件写入源码；也可以从组件盘拖到锚点旁，确认后再写入。改完让同一个助手在你的 Chrome 里截图、看控制台报错来验收。页面内容留在本机，不经过云端。安装方式是启动本机桥接，在 Chrome 里加载 `extension/`。
 
 相关示例：[forge-agent](https://github.com/forge-ui/forge-agent)，一个基于 Forge 的 AI Agent 产品壳。
 
