@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：be8b5b414655dd142f198b6e0e88cac5afb9d42d，包含本地未提交源码。
+基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：1da58dc7fffb9592acdef1bb84b224bd20d5e474，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
