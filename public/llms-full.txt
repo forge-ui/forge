@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 721f64735c8d9eb92ba3bd969db84a91c02c43a5a839c0c6d162947f00535883
+Source fingerprint: 5b81ab7bfc36802c668ddffdae4bdc635e6c5f6bfd97de4cb56ab8de563c373a
 
 ## Adopted rules / 采用规则
 
@@ -2551,7 +2551,7 @@ Source: skills/forge-skill/references/blocks/agent-catalog.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -2582,7 +2582,7 @@ Source: skills/forge-skill/references/blocks/agent-orchestration.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Panel、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、Panel、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2611,7 +2611,7 @@ Source: skills/forge-skill/references/blocks/agent-run.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -2640,7 +2640,7 @@ Source: skills/forge-skill/references/blocks/agent-usage.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
+依赖：core ^0.9.0；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2669,7 +2669,7 @@ Source: skills/forge-skill/references/blocks/ai-assistant-home.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
+依赖：core ^0.9.0；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
 
 ## 最小可用示例
 
@@ -2699,7 +2699,7 @@ Source: skills/forge-skill/references/blocks/ai-workspace-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
 
 ## 最小可用示例
 
@@ -2732,7 +2732,7 @@ Source: skills/forge-skill/references/blocks/autonomous-agents.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -2763,7 +2763,7 @@ Source: skills/forge-skill/references/blocks/calendar-month.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
+依赖：core ^0.9.0；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
 
 ## 最小可用示例
 
@@ -2796,7 +2796,7 @@ Source: skills/forge-skill/references/blocks/card-carousel.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：CreditCard、PageDot。
+依赖：core ^0.9.0；组件：CreditCard、PageDot。
 
 ## 最小可用示例
 
@@ -2829,7 +2829,7 @@ Source: skills/forge-skill/references/blocks/cards-management.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2860,7 +2860,7 @@ Source: skills/forge-skill/references/blocks/categories-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
+依赖：core ^0.9.0；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -2891,7 +2891,7 @@ Source: skills/forge-skill/references/blocks/client-directory.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -2922,7 +2922,7 @@ Source: skills/forge-skill/references/blocks/composition-card.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：DonutChart、Panel。
+依赖：core ^0.9.0；组件：DonutChart、Panel。
 
 ## 最小可用示例
 
@@ -3235,7 +3235,7 @@ Source: skills/forge-skill/references/blocks/crm-summary.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Panel、DescriptionItem、LineChartStatCard、SurfaceCard。
+依赖：core ^0.9.0；组件：Panel、DescriptionItem、LineChartStatCard、SurfaceCard。
 
 ## 最小可用示例
 
@@ -3297,7 +3297,7 @@ Source: skills/forge-skill/references/blocks/customer-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
+依赖：core ^0.9.0；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -3328,7 +3328,7 @@ Source: skills/forge-skill/references/blocks/customers-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3361,7 +3361,7 @@ Source: skills/forge-skill/references/blocks/deals-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3394,7 +3394,7 @@ Source: skills/forge-skill/references/blocks/dialog-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
 
 ## 最小可用示例
 
@@ -3423,7 +3423,7 @@ Source: skills/forge-skill/references/blocks/file-manager.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3455,7 +3455,7 @@ Source: skills/forge-skill/references/blocks/finance-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
+依赖：core ^0.9.0；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
 
 ## 最小可用示例
 
@@ -3489,7 +3489,7 @@ Source: skills/forge-skill/references/blocks/finance-workspace.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Panel、DescriptionItem、SurfaceCard、ToolbarKebabButton。
+依赖：core ^0.9.0；组件：Panel、DescriptionItem、SurfaceCard、ToolbarKebabButton。
 
 ## 最小可用示例
 
@@ -3582,7 +3582,7 @@ Source: skills/forge-skill/references/blocks/goal-progress-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
+依赖：core ^0.9.0；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
 
 ## 最小可用示例
 
@@ -3909,7 +3909,7 @@ Source: skills/forge-skill/references/blocks/integrations-directory.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3939,7 +3939,7 @@ Source: skills/forge-skill/references/blocks/invoice-document.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -3971,7 +3971,7 @@ Source: skills/forge-skill/references/blocks/invoice-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4003,7 +4003,7 @@ Source: skills/forge-skill/references/blocks/invoices-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4035,7 +4035,7 @@ Source: skills/forge-skill/references/blocks/kanban-board.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
+依赖：core ^0.9.0；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
 
 ## 最小可用示例
 
@@ -4066,7 +4066,7 @@ Source: skills/forge-skill/references/blocks/kpi-metrics.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
+依赖：core ^0.9.0；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
 
 ## 最小可用示例
 
@@ -4107,7 +4107,7 @@ Source: skills/forge-skill/references/blocks/layout-icon-rail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+依赖：core ^0.9.0；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4136,7 +4136,7 @@ Source: skills/forge-skill/references/blocks/layout-immersive.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：AppLayout、ChatBubble、ChatInputBar。
+依赖：core ^0.9.0；组件：AppLayout、ChatBubble、ChatInputBar。
 
 ## 最小可用示例
 
@@ -4165,7 +4165,7 @@ Source: skills/forge-skill/references/blocks/layout-settings.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
+依赖：core ^0.9.0；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
 
 ## 最小可用示例
 
@@ -4194,7 +4194,7 @@ Source: skills/forge-skill/references/blocks/layout-sidebar-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
+依赖：core ^0.9.0；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
 
 ## 最小可用示例
 
@@ -4223,7 +4223,7 @@ Source: skills/forge-skill/references/blocks/layout-topbar-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
+依赖：core ^0.9.0；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
 
 ## 最小可用示例
 
@@ -4252,7 +4252,7 @@ Source: skills/forge-skill/references/blocks/lead-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
+依赖：core ^0.9.0；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
 
 ## 最小可用示例
 
@@ -4282,7 +4282,7 @@ Source: skills/forge-skill/references/blocks/leads-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4315,7 +4315,7 @@ Source: skills/forge-skill/references/blocks/login-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
 
 ## 最小可用示例
 
@@ -4349,7 +4349,7 @@ Source: skills/forge-skill/references/blocks/member-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
+依赖：core ^0.9.0；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -4378,7 +4378,7 @@ Source: skills/forge-skill/references/blocks/message-channels.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4409,7 +4409,7 @@ Source: skills/forge-skill/references/blocks/onboarding-flow.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
+依赖：core ^0.9.0；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -4439,7 +4439,7 @@ Source: skills/forge-skill/references/blocks/order-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4470,7 +4470,7 @@ Source: skills/forge-skill/references/blocks/order-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4500,7 +4500,7 @@ Source: skills/forge-skill/references/blocks/orders-table-section.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
+依赖：core ^0.9.0；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
 
 ## 最小可用示例
 
@@ -4534,7 +4534,7 @@ Source: skills/forge-skill/references/blocks/overview-dashboard.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
+依赖：core ^0.9.0；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
 
 ## 最小可用示例
 
@@ -4569,7 +4569,7 @@ Source: skills/forge-skill/references/blocks/password-recovery.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、OtpInput、TextField、cn。
+依赖：core ^0.9.0；组件：Button、OtpInput、TextField、cn。
 
 ## 最小可用示例
 
@@ -4602,7 +4602,7 @@ Source: skills/forge-skill/references/blocks/product-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Panel、StatusBadge、TabBar、cn。
+依赖：core ^0.9.0；组件：Button、Panel、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -4632,7 +4632,7 @@ Source: skills/forge-skill/references/blocks/product-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4662,7 +4662,7 @@ Source: skills/forge-skill/references/blocks/products-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4696,7 +4696,7 @@ Source: skills/forge-skill/references/blocks/project-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4732,7 +4732,7 @@ Source: skills/forge-skill/references/blocks/project-portfolio.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
+依赖：core ^0.9.0；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
 
 ## 最小可用示例
 
@@ -4762,7 +4762,7 @@ Source: skills/forge-skill/references/blocks/prompt-evals.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4792,7 +4792,7 @@ Source: skills/forge-skill/references/blocks/provider-settings-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
 
 ## 最小可用示例
 
@@ -4821,7 +4821,7 @@ Source: skills/forge-skill/references/blocks/ranking-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：ChartListItem、ListGroup、cn。
+依赖：core ^0.9.0；组件：ChartListItem、ListGroup、cn。
 
 ## 最小可用示例
 
@@ -4863,7 +4863,7 @@ Source: skills/forge-skill/references/blocks/recent-records.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：DataTable、Panel。
+依赖：core ^0.9.0；组件：DataTable、Panel。
 
 ## 最小可用示例
 
@@ -5178,7 +5178,7 @@ Source: skills/forge-skill/references/blocks/region-distribution.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：MapCard。
+依赖：core ^0.9.0；组件：MapCard。
 
 ## 最小可用示例
 
@@ -5214,7 +5214,7 @@ Source: skills/forge-skill/references/blocks/register-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Checkbox、TextField、cn。
+依赖：core ^0.9.0；组件：Button、Checkbox、TextField、cn。
 
 ## 最小可用示例
 
@@ -5248,7 +5248,7 @@ Source: skills/forge-skill/references/blocks/runtime-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -5278,7 +5278,7 @@ Source: skills/forge-skill/references/blocks/savings-goals-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
+依赖：core ^0.9.0；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
 
 ## 最小可用示例
 
@@ -5308,7 +5308,7 @@ Source: skills/forge-skill/references/blocks/sellers-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5341,7 +5341,7 @@ Source: skills/forge-skill/references/blocks/settings-billing.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -5373,7 +5373,7 @@ Source: skills/forge-skill/references/blocks/settings-members.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5404,7 +5404,7 @@ Source: skills/forge-skill/references/blocks/settings-notifications.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、SelectOption、Toggle、cn。
+依赖：core ^0.9.0；组件：Button、SelectOption、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5434,7 +5434,7 @@ Source: skills/forge-skill/references/blocks/settings-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、SelectOption、TextArea、TextField、cn。
+依赖：core ^0.9.0；组件：Button、SelectOption、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -5465,7 +5465,7 @@ Source: skills/forge-skill/references/blocks/settings-roles.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
+依赖：core ^0.9.0；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -5496,7 +5496,7 @@ Source: skills/forge-skill/references/blocks/settings-security.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
+依赖：core ^0.9.0；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5526,7 +5526,7 @@ Source: skills/forge-skill/references/blocks/task-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
+依赖：core ^0.9.0；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
 
 ## 最小可用示例
 
@@ -5556,7 +5556,7 @@ Source: skills/forge-skill/references/blocks/task-run-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -5585,7 +5585,7 @@ Source: skills/forge-skill/references/blocks/transactions-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.9.0；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5616,7 +5616,7 @@ Source: skills/forge-skill/references/blocks/trend-chart.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
+依赖：core ^0.9.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
 
 ## 最小可用示例
 
@@ -5933,7 +5933,7 @@ Source: skills/forge-skill/references/blocks/wealth-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
+依赖：core ^0.9.0；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
 
 ## 最小可用示例
 
@@ -5965,7 +5965,7 @@ Source: skills/forge-skill/references/blocks/workflow-builder.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.8.3；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
+依赖：core ^0.9.0；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
 
 ## 最小可用示例
 
