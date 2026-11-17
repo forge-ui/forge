@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：1da58dc7fffb9592acdef1bb84b224bd20d5e474，包含本地未提交源码。
+基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：127a6da6931b6d5f887e0c093fc44b4447bb2f67，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
@@ -33,33 +33,33 @@
 | ArtifactCard | 9 | 9 | — | — | — |
 | AgentParts | 8 | 8 | — | — | — |
 | ThinkingIndicator | 0 | 7 | label, phases, phaseDuration, startedAt, locale, size, className | — | — |
-| Reasoning | 0 | 12 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, size, className | — | — |
-| ToolCall | 0 | 19 | name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, size, className | — | — |
-| ToolCallGroup | 0 | 7 | children, label, count, status, defaultOpen, locale, className | — | — |
+| Reasoning | 0 | 13 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, motion, size, className | — | — |
+| ToolCall | 0 | 20 | name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className | — | — |
+| ToolCallGroup | 0 | 8 | children, label, count, status, defaultOpen, locale, motion, className | — | — |
 | Question | 0 | 10 | questions, onSubmit, onCancel, answers, confirm, disabled, submitLabel, locale, size, className | — | — |
 | ChoiceCard | 0 | 9 | title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale | — | — |
 | Approval | 0 | 19 | title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className | — | — |
 | ConfirmCard | 0 | 10 | title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale | — | — |
 | Citation | 0 | 4 | source, active, onActiveChange, locale | — | — |
-| CitedAnswer | 0 | 6 | text, sources, hideSourceList, locale, size, className | — | — |
-| PromptQueue | 0 | 7 | items, onRemove, onEdit, onSendNow, onMove, locale, className | — | — |
-| RunControls | 0 | 12 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, className | — | — |
+| CitedAnswer | 0 | 9 | text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className | — | — |
+| PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
+| RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
 | AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
 | AgentWelcome | 0 | 8 | title, description, icon, capabilities, onPick, footer, size, className | — | — |
 | AgentPanel | 0 | 14 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer | — | — |
-| AgentPlan | 0 | 12 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, size, className | — | — |
-| AgentTrail | 0 | 5 | title, steps, collapseAfter, locale, className | — | — |
+| AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
+| AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
 | RunProgress | 0 | 2 | steps, locale | — | — |
-| ChangeLedger | 0 | 5 | entries, title, onUndo, locale, className | — | — |
-| AgentCheckpoints | 0 | 5 | checkpoints, currentId, onRewind, locale, className | — | — |
-| AutonomySelector | 0 | 5 | value, onChange, actions, locale, className | — | — |
-| AgentInbox | 0 | 8 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, className | — | — |
+| ChangeLedger | 0 | 7 | entries, title, onUndo, locale, motion, size, className | — | — |
+| AgentCheckpoints | 0 | 7 | checkpoints, currentId, onRewind, title, locale, size, className | — | — |
+| AutonomySelector | 0 | 7 | value, onChange, actions, title, locale, size, className | — | — |
+| AgentInbox | 0 | 10 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className | — | — |
 | RunningNow | 0 | 4 | tasks, onOpen, locale, className | — | — |
-| AwaySummary | 0 | 5 | awayFor, items, onDismiss, locale, className | — | — |
-| ContextUsage | 0 | 9 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, className | — | — |
-| TraceWaterfall | 0 | 7 | spans, now, selectedId, onSelect, currency, locale, className | — | — |
+| AwaySummary | 0 | 6 | awayFor, items, onDismiss, locale, size, className | — | — |
+| ContextUsage | 0 | 10 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, size, className | — | — |
+| TraceWaterfall | 0 | 9 | spans, now, selectedId, onSelect, title, currency, locale, size, className | — | — |
 | AgentTree | 0 | 6 | root, selectedId, onSelect, currency, locale, className | — | — |
-| AgentLanes | 0 | 6 | lanes, blocks, now, onSelect, locale, className | — | — |
+| AgentLanes | 0 | 8 | lanes, blocks, now, onSelect, title, locale, size, className | — | — |
 
 ## 全部公开组件
 
@@ -240,33 +240,33 @@
 | ArtifactCard | 9 | 9 | — | — | — |
 | AgentParts | 8 | 8 | — | — | — |
 | ThinkingIndicator | 0 | 7 | label, phases, phaseDuration, startedAt, locale, size, className | — | — |
-| Reasoning | 0 | 12 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, size, className | — | — |
-| ToolCall | 0 | 19 | name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, size, className | — | — |
-| ToolCallGroup | 0 | 7 | children, label, count, status, defaultOpen, locale, className | — | — |
+| Reasoning | 0 | 13 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, motion, size, className | — | — |
+| ToolCall | 0 | 20 | name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className | — | — |
+| ToolCallGroup | 0 | 8 | children, label, count, status, defaultOpen, locale, motion, className | — | — |
 | Question | 0 | 10 | questions, onSubmit, onCancel, answers, confirm, disabled, submitLabel, locale, size, className | — | — |
 | ChoiceCard | 0 | 9 | title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale | — | — |
 | Approval | 0 | 19 | title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className | — | — |
 | ConfirmCard | 0 | 10 | title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale | — | — |
 | Citation | 0 | 4 | source, active, onActiveChange, locale | — | — |
-| CitedAnswer | 0 | 6 | text, sources, hideSourceList, locale, size, className | — | — |
-| PromptQueue | 0 | 7 | items, onRemove, onEdit, onSendNow, onMove, locale, className | — | — |
-| RunControls | 0 | 12 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, className | — | — |
+| CitedAnswer | 0 | 9 | text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className | — | — |
+| PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
+| RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
 | AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
 | AgentWelcome | 0 | 8 | title, description, icon, capabilities, onPick, footer, size, className | — | — |
 | AgentPanel | 0 | 14 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer | — | — |
-| AgentPlan | 0 | 12 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, size, className | — | — |
-| AgentTrail | 0 | 5 | title, steps, collapseAfter, locale, className | — | — |
+| AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
+| AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
 | RunProgress | 0 | 2 | steps, locale | — | — |
-| ChangeLedger | 0 | 5 | entries, title, onUndo, locale, className | — | — |
-| AgentCheckpoints | 0 | 5 | checkpoints, currentId, onRewind, locale, className | — | — |
-| AutonomySelector | 0 | 5 | value, onChange, actions, locale, className | — | — |
-| AgentInbox | 0 | 8 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, className | — | — |
+| ChangeLedger | 0 | 7 | entries, title, onUndo, locale, motion, size, className | — | — |
+| AgentCheckpoints | 0 | 7 | checkpoints, currentId, onRewind, title, locale, size, className | — | — |
+| AutonomySelector | 0 | 7 | value, onChange, actions, title, locale, size, className | — | — |
+| AgentInbox | 0 | 10 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className | — | — |
 | RunningNow | 0 | 4 | tasks, onOpen, locale, className | — | — |
-| AwaySummary | 0 | 5 | awayFor, items, onDismiss, locale, className | — | — |
-| ContextUsage | 0 | 9 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, className | — | — |
-| TraceWaterfall | 0 | 7 | spans, now, selectedId, onSelect, currency, locale, className | — | — |
+| AwaySummary | 0 | 6 | awayFor, items, onDismiss, locale, size, className | — | — |
+| ContextUsage | 0 | 10 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, size, className | — | — |
+| TraceWaterfall | 0 | 9 | spans, now, selectedId, onSelect, title, currency, locale, size, className | — | — |
 | AgentTree | 0 | 6 | root, selectedId, onSelect, currency, locale, className | — | — |
-| AgentLanes | 0 | 6 | lanes, blocks, now, onSelect, locale, className | — | — |
+| AgentLanes | 0 | 8 | lanes, blocks, now, onSelect, title, locale, size, className | — | — |
 | Modal | 12 | 12 | — | — | — |
 | Drawer | 15 | 15 | — | — | — |
 | Accordion | 6 | 6 | — | — | — |
@@ -849,6 +849,7 @@
 | open | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | onOpenChange | `((open: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
@@ -875,6 +876,7 @@
 | defaultOpen | `boolean \| undefined` | 否 | false |
 | variant | `"row" \| "card" \| undefined` | 否 | "card" |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
@@ -890,6 +892,7 @@
 | status | `"success" \| "error" \| "running" \| undefined` | 否 | "success" |
 | defaultOpen | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### Question
@@ -988,7 +991,10 @@
 | text | `string` | 是 | 未在参数解构处设置 |
 | sources | `CitationSource[]` | 是 | 未在参数解构处设置 |
 | hideSourceList | `boolean \| undefined` | 否 | false |
+| defaultSourcesOpen | `boolean \| undefined` | 否 | true |
+| sourcesLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
@@ -1004,6 +1010,7 @@
 | onSendNow | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | onMove | `((id: string, direction: -1 \| 1) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### RunControls
@@ -1023,6 +1030,7 @@
 | onDismiss | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
 | onSteer | `((note: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### AttachmentList
@@ -1090,6 +1098,7 @@
 | onRetryFrom | `((stepId: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | approveLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
 | size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
@@ -1103,6 +1112,7 @@
 | steps | `TrailStep[]` | 是 | 未在参数解构处设置 |
 | collapseAfter | `number \| undefined` | 否 | 4 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### RunProgress
@@ -1124,6 +1134,8 @@
 | title | `ReactNode` | 否 | 未在参数解构处设置 |
 | onUndo | `((id: string, alsoUndone: string[]) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### AgentCheckpoints
@@ -1135,7 +1147,9 @@
 | checkpoints | `Checkpoint[]` | 是 | 未在参数解构处设置 |
 | currentId | `string \| undefined` | 否 | 未在参数解构处设置 |
 | onRewind | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### AutonomySelector
@@ -1147,7 +1161,9 @@
 | value | `AutonomyLevel` | 是 | 未在参数解构处设置 |
 | onChange | `(value: AutonomyLevel) => void` | 是 | 未在参数解构处设置 |
 | actions | `AutonomyAction[] \| undefined` | 否 | [] |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### AgentInbox
@@ -1163,6 +1179,8 @@
 | onRetry | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | onOpen | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### RunningNow
@@ -1186,6 +1204,7 @@
 | items | `AwayItem[]` | 是 | 未在参数解构处设置 |
 | onDismiss | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### ContextUsage
@@ -1202,6 +1221,7 @@
 | onCompact | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
 | variant | `"inline" \| "card" \| undefined` | 否 | "card" |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### TraceWaterfall
@@ -1214,8 +1234,10 @@
 | now | `number \| undefined` | 否 | 未在参数解构处设置 |
 | selectedId | `string \| undefined` | 否 | 未在参数解构处设置 |
 | onSelect | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
 | currency | `string \| undefined` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### AgentTree
@@ -1241,5 +1263,7 @@
 | blocks | `LaneBlock[]` | 是 | 未在参数解构处设置 |
 | now | `number` | 是 | 未在参数解构处设置 |
 | onSelect | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
 | locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |

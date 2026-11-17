@@ -2,10 +2,10 @@
   "package": "@forge-ui-official/core",
   "version": "0.9.0",
   "source": "core/src/index.ts",
-  "revision": "1da58dc7fffb9592acdef1bb84b224bd20d5e474",
+  "revision": "127a6da6931b6d5f887e0c093fc44b4447bb2f67",
   "dirty": false,
-  "exportFingerprint": "f4506d4bcfd0673082d6c5e8f474f366040f4a20",
-  "generatedAt": "2026-11-17T18:49:52+08:00",
+  "exportFingerprint": "29f83714d1d2f9e6add461b3fff59867f621e967",
+  "generatedAt": "2026-11-17T20:48:03+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
   "componentCount": 605,
   "oneShotDefaultCount": 24,
@@ -313,7 +313,7 @@
       "module": "agent/agent-governance",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ checkpoints, currentId, onRewind, locale, className }: AgentCheckpointsProps) => JSX.Element",
+      "signature": "({ checkpoints, currentId, onRewind, title, locale, size, className }: AgentCheckpointsProps) => JSX.Element",
       "props": [
         {
           "name": "checkpoints",
@@ -334,9 +334,21 @@
           "description": "Go back to this point; the next attempt branches from it."
         },
         {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -702,7 +714,7 @@
       "module": "agent/agent-ops",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, className }: AgentInboxProps) => JSX.Element",
+      "signature": "({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className }: AgentInboxProps) => JSX.Element",
       "props": [
         {
           "name": "tasks",
@@ -747,6 +759,18 @@
           "description": ""
         },
         {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
           "name": "className",
           "optional": true,
           "type": "string | undefined",
@@ -770,7 +794,7 @@
       "module": "agent/agent-observe",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ lanes, blocks, now, onSelect, locale, className }: AgentLanesProps) => JSX.Element",
+      "signature": "({ lanes, blocks, now, onSelect, title, locale, size, className }: AgentLanesProps) => JSX.Element",
       "props": [
         {
           "name": "lanes",
@@ -797,9 +821,21 @@
           "description": ""
         },
         {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -1078,7 +1114,7 @@
       "module": "agent/agent-run",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, size, className }: AgentPlanProps) => JSX.Element",
+      "signature": "({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className }: AgentPlanProps) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -1138,6 +1174,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -1301,7 +1343,7 @@
       "module": "agent/agent-run",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, steps, collapseAfter, locale, className }: AgentTrailProps) => JSX.Element",
+      "signature": "({ title, steps, collapseAfter, locale, size, className }: AgentTrailProps) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -1325,6 +1367,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -2697,7 +2745,7 @@
       "module": "agent/agent-governance",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ value, onChange, actions, locale, className }: AutonomySelectorProps) => JSX.Element",
+      "signature": "({ value, onChange, actions, title, locale, size, className }: AutonomySelectorProps) => JSX.Element",
       "props": [
         {
           "name": "value",
@@ -2718,9 +2766,21 @@
           "description": "Example actions, sorted by what this level lets the agent do on its own."
         },
         {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -2844,7 +2904,7 @@
       "module": "agent/agent-ops",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ awayFor, items, onDismiss, locale, className }: AwaySummaryProps) => JSX.Element",
+      "signature": "({ awayFor, items, onDismiss, locale, size, className }: AwaySummaryProps) => JSX.Element",
       "props": [
         {
           "name": "awayFor",
@@ -2868,6 +2928,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -6290,7 +6356,7 @@
       "module": "agent/agent-governance",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ entries, title, onUndo, locale, className }: ChangeLedgerProps) => JSX.Element",
+      "signature": "({ entries, title, onUndo, locale, motion, size, className }: ChangeLedgerProps) => JSX.Element",
       "props": [
         {
           "name": "entries",
@@ -6314,6 +6380,18 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -11235,7 +11313,7 @@
       "module": "agent/cited-answer",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ text, sources, hideSourceList, locale, size, className }: CitedAnswerProps) => JSX.Element",
+      "signature": "({ text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className }: CitedAnswerProps) => JSX.Element",
       "props": [
         {
           "name": "text",
@@ -11253,12 +11331,30 @@
           "name": "hideSourceList",
           "optional": true,
           "type": "boolean | undefined",
-          "description": "Hide the numbered source list under the answer."
+          "description": "Hide the source list under the answer."
+        },
+        {
+          "name": "defaultSourcesOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Whether the source list starts open."
+        },
+        {
+          "name": "sourcesLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
         },
         {
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -12273,7 +12369,7 @@
       "module": "agent/agent-observe",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ variant, locale, className, ...props }: ContextUsageProps) => JSX.Element",
+      "signature": "({ variant, locale, size, className, ...props }: ContextUsageProps) => JSX.Element",
       "props": [
         {
           "name": "segments",
@@ -12321,6 +12417,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {
@@ -27248,7 +27350,7 @@
       "module": "agent/composer-parts",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ items, onRemove, onEdit, onSendNow, onMove, locale, className }: PromptQueueProps) => JSX.Element | null",
+      "signature": "({ items, onRemove, onEdit, onSendNow, onMove, locale, motion, className }: PromptQueueProps) => JSX.Element | null",
       "props": [
         {
           "name": "items",
@@ -27284,6 +27386,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -27378,7 +27486,7 @@
           "name": "onCancel",
           "optional": true,
           "type": "(() => void) | undefined",
-          "description": ""
+          "description": "Adds a skip button. With one question it cancels; with several the last skip submits what was answered."
         },
         {
           "name": "answers",
@@ -27668,7 +27776,7 @@
       "module": "agent/thinking",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, size, className }: ReasoningProps) => JSX.Element",
+      "signature": "({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, motion, size, className }: ReasoningProps) => JSX.Element",
       "props": [
         {
           "name": "status",
@@ -27728,6 +27836,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -28317,7 +28431,7 @@
       "module": "agent/composer-parts",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, className }: RunControlsProps) => JSX.Element",
+      "signature": "({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className }: RunControlsProps) => JSX.Element",
       "props": [
         {
           "name": "status",
@@ -28383,6 +28497,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -36370,13 +36490,13 @@
       "module": "agent/tool-call",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, size, className }: ToolCallProps) => JSX.Element",
+      "signature": "({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element",
       "props": [
         {
           "name": "name",
           "optional": false,
           "type": "string",
-          "description": "Tool name as the model calls it, shown in mono, e.g. \"search_orders\"."
+          "description": "Tool name as the model calls it, e.g. \"search_orders\"."
         },
         {
           "name": "title",
@@ -36430,7 +36550,7 @@
           "name": "icon",
           "optional": true,
           "type": "ReactNode",
-          "description": ""
+          "description": "Replaces the check once the call has finished, e.g. the tool's logo."
         },
         {
           "name": "onRetry",
@@ -36466,12 +36586,18 @@
           "name": "variant",
           "optional": true,
           "type": "\"row\" | \"card\" | undefined",
-          "description": "row drops the border, for calls listed inside a ToolCallGroup."
+          "description": "row: one line, as listed inside a ToolCallGroup; card: on its own with an outline."
         },
         {
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -36495,7 +36621,7 @@
       "module": "agent/tool-call",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ children, label, count, status, defaultOpen, locale, className }: ToolCallGroupProps) => JSX.Element",
+      "signature": "({ children, label, count, status, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element",
       "props": [
         {
           "name": "children",
@@ -36507,7 +36633,7 @@
           "name": "label",
           "optional": true,
           "type": "ReactNode",
-          "description": "e.g. \"调用了 3 个工具\"; defaults from `count`."
+          "description": "e.g. \"调用了 3 次工具\"; defaults from `count`."
         },
         {
           "name": "count",
@@ -36531,6 +36657,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
           "description": ""
         },
         {
@@ -38630,7 +38762,7 @@
       "module": "agent/agent-observe",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ spans, now, selectedId, onSelect, currency, locale, className }: TraceWaterfallProps) => JSX.Element",
+      "signature": "({ spans, now, selectedId, onSelect, title, currency, locale, size, className }: TraceWaterfallProps) => JSX.Element",
       "props": [
         {
           "name": "spans",
@@ -38657,6 +38789,12 @@
           "description": ""
         },
         {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
           "name": "currency",
           "optional": true,
           "type": "string | undefined",
@@ -38666,6 +38804,12 @@
           "name": "locale",
           "optional": true,
           "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
           "description": ""
         },
         {

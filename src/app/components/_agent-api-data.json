@@ -3738,6 +3738,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
         "name": "size",
         "type": "\"md\" | \"sm\" | undefined",
         "optional": true,
@@ -3807,6 +3813,11 @@
             "optional": true
           }
         ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
       }
     ]
   },
@@ -3915,6 +3926,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
         "name": "size",
         "type": "\"md\" | \"sm\" | undefined",
         "optional": true,
@@ -3931,6 +3948,11 @@
       {
         "name": "ToolCallStatus",
         "definition": "\"pending\" | \"running\" | \"awaiting-approval\" | \"success\" | \"error\" | \"denied\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
         "fields": []
       }
     ]
@@ -3974,13 +3996,25 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
         "defaultValue": null
       }
     ],
-    "types": []
+    "types": [
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
   },
   "Question": {
     "props": [
@@ -4537,10 +4571,28 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultSourcesOpen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "sourcesLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "locale",
         "type": "AgentLocale | undefined",
         "optional": true,
         "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
       },
       {
         "name": "size",
@@ -4586,6 +4638,11 @@
             "optional": true
           }
         ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
       }
     ]
   },
@@ -4628,6 +4685,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
@@ -4655,6 +4718,11 @@
             "optional": true
           }
         ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
       }
     ]
   },
@@ -4727,6 +4795,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
@@ -4737,6 +4811,11 @@
       {
         "name": "RunStatus",
         "definition": "\"running\" | \"stopping\" | \"stopped\" | \"failed\" | \"done\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
         "fields": []
       }
     ]
@@ -5290,6 +5369,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
         "name": "size",
         "type": "\"md\" | \"sm\" | undefined",
         "optional": true,
@@ -5343,6 +5428,11 @@
         "name": "AgentStepStatus",
         "definition": "\"pending\" | \"running\" | \"waiting\" | \"done\" | \"failed\" | \"skipped\"",
         "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
       }
     ]
   },
@@ -5371,6 +5461,12 @@
         "type": "AgentLocale | undefined",
         "optional": true,
         "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
       },
       {
         "name": "className",
@@ -5535,6 +5631,18 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
@@ -5608,6 +5716,11 @@
             "optional": false
           }
         ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
       }
     ]
   },
@@ -5632,10 +5745,22 @@
         "defaultValue": null
       },
       {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "locale",
         "type": "AgentLocale | undefined",
         "optional": true,
         "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
       },
       {
         "name": "className",
@@ -5699,10 +5824,22 @@
         "defaultValue": "[]"
       },
       {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "locale",
         "type": "AgentLocale | undefined",
         "optional": true,
         "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
       },
       {
         "name": "className",
@@ -5785,6 +5922,18 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
@@ -5841,6 +5990,11 @@
       {
         "name": "AgentTaskState",
         "definition": "\"running\" | \"needs-you\" | \"failed\" | \"done\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
         "fields": []
       }
     ]
@@ -5953,6 +6107,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
@@ -6049,6 +6209,12 @@
         "defaultValue": "\"zh\""
       },
       {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
         "name": "className",
         "type": "string | undefined",
         "optional": true,
@@ -6121,6 +6287,12 @@
         "defaultValue": null
       },
       {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "currency",
         "type": "string | undefined",
         "optional": true,
@@ -6131,6 +6303,12 @@
         "type": "AgentLocale | undefined",
         "optional": true,
         "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
       },
       {
         "name": "className",
@@ -6313,10 +6491,22 @@
         "defaultValue": null
       },
       {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "locale",
         "type": "AgentLocale | undefined",
         "optional": true,
         "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
       },
       {
         "name": "className",

@@ -8,6 +8,7 @@
 ```ts
 export type AttachmentItem = {
   id: string;
+  /** File name; its extension picks the file-type icon. */
   name: string;
   /** Bytes. */
   size?: number;
@@ -57,7 +58,7 @@ export type AttachmentListProps = {
 ## PromptQueue (value)
 
 ```ts
-({ items, onRemove, onEdit, onSendNow, onMove, locale, className }: PromptQueueProps) => JSX.Element | null
+({ items, onRemove, onEdit, onSendNow, onMove, locale, motion, className }: PromptQueueProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -68,6 +69,7 @@ export type AttachmentListProps = {
 | `onSendNow` | 否 | `((id: string) => void) \| undefined` | Sends this one next, ahead of the rest. |
 | `onMove` | 否 | `((id: string, direction: -1 \| 1) => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## PromptQueueProps (type)
@@ -81,6 +83,7 @@ export type PromptQueueProps = {
   onSendNow?: (id: string) => void;
   onMove?: (id: string, direction: -1 | 1) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   className?: string;
 };
 ```
@@ -94,7 +97,7 @@ export type QueuedPrompt = { id: string; text: string; attachments?: number };
 ## RunControls (value)
 
 ```ts
-({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, className }: RunControlsProps) => JSX.Element
+({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className }: RunControlsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -110,6 +113,7 @@ export type QueuedPrompt = { id: string; text: string; attachments?: number };
 | `onDismiss` | 否 | `(() => void) \| undefined` |  |
 | `onSteer` | 否 | `((note: string) => void) \| undefined` | Steer while it works: the note is picked up at the agent's next step. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## RunControlsProps (type)
@@ -131,6 +135,7 @@ export type RunControlsProps = {
   /** Steer while it works: the note is picked up at the agent's next step. */
   onSteer?: (note: string) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   className?: string;
 };
 ```

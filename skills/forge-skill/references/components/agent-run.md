@@ -6,7 +6,7 @@
 ## AgentPlan (value)
 
 ```ts
-({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, size, className }: AgentPlanProps) => JSX.Element
+({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className }: AgentPlanProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -21,6 +21,7 @@
 | `onRetryFrom` | 否 | `((stepId: string) => void) \| undefined` | Re-run from a failed step. |
 | `approveLabel` | 否 | `string \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -41,6 +42,7 @@ export type AgentPlanProps = {
   onRetryFrom?: (stepId: string) => void;
   approveLabel?: string;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };
@@ -55,7 +57,7 @@ export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "fail
 ## AgentTrail (value)
 
 ```ts
-({ title, steps, collapseAfter, locale, className }: AgentTrailProps) => JSX.Element
+({ title, steps, collapseAfter, locale, size, className }: AgentTrailProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -64,6 +66,7 @@ export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "fail
 | `steps` | 是 | `TrailStep[]` |  |
 | `collapseAfter` | 否 | `number \| undefined` | Folds finished steps into one line when there are more than this. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentTrailProps (type)
@@ -75,6 +78,7 @@ export type AgentTrailProps = {
   /** Folds finished steps into one line when there are more than this. */
   collapseAfter?: number;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```

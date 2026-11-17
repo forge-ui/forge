@@ -6,12 +6,12 @@
 ## ToolCall (value)
 
 ```ts
-({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, size, className }: ToolCallProps) => JSX.Element
+({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
-| `name` | 是 | `string` | Tool name as the model calls it, shown in mono, e.g. "search_orders". |
+| `name` | 是 | `string` | Tool name as the model calls it, e.g. "search_orders". |
 | `title` | 否 | `ReactNode` | Human label shown instead of the name, e.g. "查询订单". |
 | `summary` | 否 | `ReactNode` | Short summary after the label, e.g. the main argument or "12 条结果". |
 | `status` | 是 | `ToolCallStatus` |  |
@@ -20,31 +20,33 @@
 | `error` | 否 | `string \| undefined` |  |
 | `startedAt` | 否 | `number \| Date \| undefined` | Start time, for the live timer while running. |
 | `duration` | 否 | `number \| undefined` | Final duration in milliseconds. |
-| `icon` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` | Replaces the check once the call has finished, e.g. the tool's logo. |
 | `onRetry` | 否 | `(() => void) \| undefined` | Shown on errors. |
 | `approvalReason` | 否 | `ReactNode` | Why the agent wants to run this; shown while awaiting approval. |
 | `onApprove` | 否 | `(() => void) \| undefined` |  |
 | `onDeny` | 否 | `(() => void) \| undefined` |  |
 | `defaultOpen` | 否 | `boolean \| undefined` |  |
-| `variant` | 否 | `"row" \| "card" \| undefined` | row drops the border, for calls listed inside a ToolCallGroup. |
+| `variant` | 否 | `"row" \| "card" \| undefined` | row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ToolCallGroup (value)
 
 ```ts
-({ children, label, count, status, defaultOpen, locale, className }: ToolCallGroupProps) => JSX.Element
+({ children, label, count, status, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `children` | 是 | `ReactNode` |  |
-| `label` | 否 | `ReactNode` | e.g. "调用了 3 个工具"; defaults from `count`. |
+| `label` | 否 | `ReactNode` | e.g. "调用了 3 次工具"; defaults from `count`. |
 | `count` | 否 | `number \| undefined` |  |
 | `status` | 否 | `"success" \| "error" \| "running" \| undefined` |  |
 | `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself while running or after an error. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ToolCallGroupProps (type)
@@ -52,13 +54,14 @@
 ```ts
 export type ToolCallGroupProps = {
   children: ReactNode;
-  /** e.g. "调用了 3 个工具"; defaults from `count`. */
+  /** e.g. "调用了 3 次工具"; defaults from `count`. */
   label?: ReactNode;
   count?: number;
   status?: "running" | "success" | "error";
   /** Uncontrolled default; the group opens itself while running or after an error. */
   defaultOpen?: boolean;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   className?: string;
 };
 ```
@@ -67,7 +70,7 @@ export type ToolCallGroupProps = {
 
 ```ts
 export type ToolCallProps = {
-  /** Tool name as the model calls it, shown in mono, e.g. "search_orders". */
+  /** Tool name as the model calls it, e.g. "search_orders". */
   name: string;
   /** Human label shown instead of the name, e.g. "查询订单". */
   title?: ReactNode;
@@ -81,6 +84,7 @@ export type ToolCallProps = {
   startedAt?: number | Date;
   /** Final duration in milliseconds. */
   duration?: number;
+  /** Replaces the check once the call has finished, e.g. the tool's logo. */
   icon?: ReactNode;
   /** Shown on errors. */
   onRetry?: () => void;
@@ -89,9 +93,10 @@ export type ToolCallProps = {
   onApprove?: () => void;
   onDeny?: () => void;
   defaultOpen?: boolean;
-  /** row drops the border, for calls listed inside a ToolCallGroup. */
+  /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */
   variant?: "card" | "row";
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };

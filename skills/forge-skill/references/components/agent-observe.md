@@ -6,7 +6,7 @@
 ## AgentLanes (value)
 
 ```ts
-({ lanes, blocks, now, onSelect, locale, className }: AgentLanesProps) => JSX.Element
+({ lanes, blocks, now, onSelect, title, locale, size, className }: AgentLanesProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -15,7 +15,9 @@
 | `blocks` | 是 | `LaneBlock[]` |  |
 | `now` | 是 | `number` | Milliseconds since the start of the window. |
 | `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `title` | 否 | `ReactNode` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentLanesProps (type)
@@ -27,7 +29,9 @@ export type AgentLanesProps = {
   /** Milliseconds since the start of the window. */
   now: number;
   onSelect?: (id: string) => void;
+  title?: ReactNode;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -82,7 +86,7 @@ export type ContextSegmentKind = "system" | "tools" | "memory" | "files" | "chat
 ## ContextUsage (value)
 
 ```ts
-({ variant, locale, className, ...props }: ContextUsageProps) => JSX.Element
+({ variant, locale, size, className, ...props }: ContextUsageProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -95,6 +99,7 @@ export type ContextSegmentKind = "system" | "tools" | "memory" | "files" | "chat
 | `onCompact` | 否 | `(() => void) \| undefined` | Summarise older turns to free room. |
 | `variant` | 否 | `"inline" \| "card" \| undefined` | inline: a small ring for the composer toolbar that opens the breakdown. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ContextUsageProps (type)
@@ -113,6 +118,7 @@ export type ContextUsageProps = {
   /** inline: a small ring for the composer toolbar that opens the breakdown. */
   variant?: "card" | "inline";
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -153,7 +159,7 @@ export type TraceSpan = {
 ## TraceWaterfall (value)
 
 ```ts
-({ spans, now, selectedId, onSelect, currency, locale, className }: TraceWaterfallProps) => JSX.Element
+({ spans, now, selectedId, onSelect, title, currency, locale, size, className }: TraceWaterfallProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -162,8 +168,10 @@ export type TraceSpan = {
 | `now` | 否 | `number \| undefined` | Milliseconds since the start, for spans still running. |
 | `selectedId` | 否 | `string \| undefined` |  |
 | `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `title` | 否 | `ReactNode` |  |
 | `currency` | 否 | `string \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## TraceWaterfallProps (type)
@@ -175,8 +183,10 @@ export type TraceWaterfallProps = {
   now?: number;
   selectedId?: string;
   onSelect?: (id: string) => void;
+  title?: ReactNode;
   currency?: string;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```

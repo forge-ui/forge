@@ -1,6 +1,6 @@
 {
   "mainCommit": "e9349f17bffbfb654144b9155d9c7a1455a470ed",
-  "currentCommit": "1da58dc7fffb9592acdef1bb84b224bd20d5e474",
+  "currentCommit": "127a6da6931b6d5f887e0c093fc44b4447bb2f67",
   "main": {
     "exports": [
       "ALL_CARD_THEMES",
@@ -82688,6 +82688,14 @@
             "file": "core/src/components/ui/agent/thinking.tsx"
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/thinking.tsx"
+          },
+          {
             "name": "size",
             "type": "\"md\" | \"sm\" | undefined",
             "optional": true,
@@ -82713,7 +82721,7 @@
             "type": "string",
             "optional": false,
             "defaultValue": null,
-            "comment": "Tool name as the model calls it, shown in mono, e.g. \"search_orders\".",
+            "comment": "Tool name as the model calls it, e.g. \"search_orders\".",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82785,7 +82793,7 @@
             "type": "ReactNode",
             "optional": true,
             "defaultValue": null,
-            "comment": "",
+            "comment": "Replaces the check once the call has finished, e.g. the tool's logo.",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82833,7 +82841,7 @@
             "type": "\"row\" | \"card\" | undefined",
             "optional": true,
             "defaultValue": "\"card\"",
-            "comment": "row drops the border, for calls listed inside a ToolCallGroup.",
+            "comment": "row: one line, as listed inside a ToolCallGroup; card: on its own with an outline.",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82841,6 +82849,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/tool-call.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
             "comment": "",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
@@ -82878,7 +82894,7 @@
             "type": "ReactNode",
             "optional": true,
             "defaultValue": null,
-            "comment": "e.g. \"调用了 3 个工具\"; defaults from `count`.",
+            "comment": "e.g. \"调用了 3 次工具\"; defaults from `count`.",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82910,6 +82926,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/tool-call.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
             "comment": "",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
@@ -82947,7 +82971,7 @@
             "type": "(() => void) | undefined",
             "optional": true,
             "defaultValue": null,
-            "comment": "",
+            "comment": "Adds a skip button. With one question it cancels; with several the last skip submits what was answered.",
             "file": "core/src/components/ui/agent/question.tsx"
           },
           {
@@ -83388,7 +83412,23 @@
             "type": "boolean | undefined",
             "optional": true,
             "defaultValue": "false",
-            "comment": "Hide the numbered source list under the answer.",
+            "comment": "Hide the source list under the answer.",
+            "file": "core/src/components/ui/agent/cited-answer.tsx"
+          },
+          {
+            "name": "defaultSourcesOpen",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "true",
+            "comment": "Whether the source list starts open.",
+            "file": "core/src/components/ui/agent/cited-answer.tsx"
+          },
+          {
+            "name": "sourcesLabel",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
             "file": "core/src/components/ui/agent/cited-answer.tsx"
           },
           {
@@ -83396,6 +83436,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/cited-answer.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
             "comment": "",
             "file": "core/src/components/ui/agent/cited-answer.tsx"
           },
@@ -83465,6 +83513,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer-parts.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
             "comment": "",
             "file": "core/src/components/ui/agent/composer-parts.tsx"
           },
@@ -83566,6 +83622,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer-parts.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
             "comment": "",
             "file": "core/src/components/ui/agent/composer-parts.tsx"
           },
@@ -83902,6 +83966,14 @@
             "file": "core/src/components/ui/agent/agent-run.tsx"
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-run.tsx"
+          },
+          {
             "name": "size",
             "type": "\"md\" | \"sm\" | undefined",
             "optional": true,
@@ -83951,6 +84023,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-run.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
             "comment": "",
             "file": "core/src/components/ui/agent/agent-run.tsx"
           },
@@ -84021,6 +84101,22 @@
             "file": "core/src/components/ui/agent/agent-governance.tsx"
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-governance.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-governance.tsx"
+          },
+          {
             "name": "className",
             "type": "string | undefined",
             "optional": true,
@@ -84058,10 +84154,26 @@
             "file": "core/src/components/ui/agent/agent-governance.tsx"
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-governance.tsx"
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-governance.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
             "comment": "",
             "file": "core/src/components/ui/agent/agent-governance.tsx"
           },
@@ -84103,10 +84215,26 @@
             "file": "core/src/components/ui/agent/agent-governance.tsx"
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-governance.tsx"
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-governance.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
             "comment": "",
             "file": "core/src/components/ui/agent/agent-governance.tsx"
           },
@@ -84176,6 +84304,22 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-ops.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-ops.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
             "comment": "",
             "file": "core/src/components/ui/agent/agent-ops.tsx"
           },
@@ -84262,6 +84406,14 @@
             "file": "core/src/components/ui/agent/agent-ops.tsx"
           },
           {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-ops.tsx"
+          },
+          {
             "name": "className",
             "type": "string | undefined",
             "optional": true,
@@ -84339,6 +84491,14 @@
             "file": "core/src/components/ui/agent/agent-observe.tsx"
           },
           {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-observe.tsx"
+          },
+          {
             "name": "className",
             "type": "string | undefined",
             "optional": true,
@@ -84384,6 +84544,14 @@
             "file": "core/src/components/ui/agent/agent-observe.tsx"
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-observe.tsx"
+          },
+          {
             "name": "currency",
             "type": "string | undefined",
             "optional": true,
@@ -84396,6 +84564,14 @@
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-observe.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
             "comment": "",
             "file": "core/src/components/ui/agent/agent-observe.tsx"
           },
@@ -84498,10 +84674,26 @@
             "file": "core/src/components/ui/agent/agent-observe.tsx"
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-observe.tsx"
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
             "optional": true,
             "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-observe.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
             "comment": "",
             "file": "core/src/components/ui/agent/agent-observe.tsx"
           },
@@ -99656,7 +99848,7 @@
         ]
       },
       "ReasoningProps": {
-        "type": "{\n  status: ReasoningStatus;\n  /** Free reasoning text from the model (AI SDK reasoning parts). */\n  text?: string;\n  /** Structured steps; shown above `text` when both are given. */\n  steps?: ReasoningStep[];\n  /** Start of the thinking, for the live timer. */\n  startedAt?: number | Date;\n  /** Final duration in milliseconds, shown once done. */\n  duration?: number;\n  /** Header while thinking. */\n  label?: ReactNode;\n  /** Header once done; defaults to \"思考了 4.2 秒\". */\n  doneLabel?: ReactNode;\n  /** Controlled open state. Uncontrolled, it is open while thinking and folds when done. */\n  open?: boolean;\n  onOpenChange?: (open: boolean) => void;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  status: ReasoningStatus;\n  /** Free reasoning text from the model (AI SDK reasoning parts). */\n  text?: string;\n  /** Structured steps; shown above `text` when both are given. */\n  steps?: ReasoningStep[];\n  /** Start of the thinking, for the live timer. */\n  startedAt?: number | Date;\n  /** Final duration in milliseconds, shown once done. */\n  duration?: number;\n  /** Header while thinking. */\n  label?: ReactNode;\n  /** Header once done; defaults to \"思考了 4.2 秒\". */\n  doneLabel?: ReactNode;\n  /** Controlled open state. Uncontrolled, it is open while thinking and folds when done. */\n  open?: boolean;\n  onOpenChange?: (open: boolean) => void;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "status",
@@ -99709,6 +99901,11 @@
             "optional": true
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
             "name": "size",
             "type": "\"md\" | \"sm\" | undefined",
             "optional": true
@@ -99725,7 +99922,7 @@
         "fields": []
       },
       "ToolCallProps": {
-        "type": "{\n  /** Tool name as the model calls it, shown in mono, e.g. \"search_orders\". */\n  name: string;\n  /** Human label shown instead of the name, e.g. \"查询订单\". */\n  title?: ReactNode;\n  /** Short summary after the label, e.g. the main argument or \"12 条结果\". */\n  summary?: ReactNode;\n  status: ToolCallStatus;\n  args?: unknown;\n  result?: unknown;\n  error?: string;\n  /** Start time, for the live timer while running. */\n  startedAt?: number | Date;\n  /** Final duration in milliseconds. */\n  duration?: number;\n  icon?: ReactNode;\n  /** Shown on errors. */\n  onRetry?: () => void;\n  /** Why the agent wants to run this; shown while awaiting approval. */\n  approvalReason?: ReactNode;\n  onApprove?: () => void;\n  onDeny?: () => void;\n  defaultOpen?: boolean;\n  /** row drops the border, for calls listed inside a ToolCallGroup. */\n  variant?: \"card\" | \"row\";\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  /** Tool name as the model calls it, e.g. \"search_orders\". */\n  name: string;\n  /** Human label shown instead of the name, e.g. \"查询订单\". */\n  title?: ReactNode;\n  /** Short summary after the label, e.g. the main argument or \"12 条结果\". */\n  summary?: ReactNode;\n  status: ToolCallStatus;\n  args?: unknown;\n  result?: unknown;\n  error?: string;\n  /** Start time, for the live timer while running. */\n  startedAt?: number | Date;\n  /** Final duration in milliseconds. */\n  duration?: number;\n  /** Replaces the check once the call has finished, e.g. the tool's logo. */\n  icon?: ReactNode;\n  /** Shown on errors. */\n  onRetry?: () => void;\n  /** Why the agent wants to run this; shown while awaiting approval. */\n  approvalReason?: ReactNode;\n  onApprove?: () => void;\n  onDeny?: () => void;\n  defaultOpen?: boolean;\n  /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */\n  variant?: \"card\" | \"row\";\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "name",
@@ -99813,6 +100010,11 @@
             "optional": true
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
             "name": "size",
             "type": "\"md\" | \"sm\" | undefined",
             "optional": true
@@ -99825,7 +100027,7 @@
         ]
       },
       "ToolCallGroupProps": {
-        "type": "{\n  children: ReactNode;\n  /** e.g. \"调用了 3 个工具\"; defaults from `count`. */\n  label?: ReactNode;\n  count?: number;\n  status?: \"running\" | \"success\" | \"error\";\n  /** Uncontrolled default; the group opens itself while running or after an error. */\n  defaultOpen?: boolean;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  children: ReactNode;\n  /** e.g. \"调用了 3 次工具\"; defaults from `count`. */\n  label?: ReactNode;\n  count?: number;\n  status?: \"running\" | \"success\" | \"error\";\n  /** Uncontrolled default; the group opens itself while running or after an error. */\n  defaultOpen?: boolean;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  className?: string;\n}",
         "fields": [
           {
             "name": "children",
@@ -99855,6 +100057,11 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
             "optional": true
           },
           {
@@ -99945,7 +100152,7 @@
         ]
       },
       "QuestionProps": {
-        "type": "{\n  questions: QuestionItem[];\n  onSubmit: (answers: Record<string, QuestionAnswer>) => void;\n  onCancel?: () => void;\n  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */\n  answers?: Record<string, QuestionAnswer>;\n  /**\n   * A single single-choice question submits on click unless this is set.\n   * Several questions or multiple choice always confirm.\n   */\n  confirm?: boolean;\n  disabled?: boolean;\n  submitLabel?: string;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  questions: QuestionItem[];\n  onSubmit: (answers: Record<string, QuestionAnswer>) => void;\n  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */\n  onCancel?: () => void;\n  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */\n  answers?: Record<string, QuestionAnswer>;\n  /**\n   * A single single-choice question submits on click unless this is set.\n   * Several questions or multiple choice always confirm.\n   */\n  confirm?: boolean;\n  disabled?: boolean;\n  submitLabel?: string;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "questions",
@@ -100281,7 +100488,7 @@
         ]
       },
       "CitationSource": {
-        "type": "{\n  /** The number used in the text: \"[2]\" refers to id 2. */\n  id: number;\n  title: string;\n  href?: string;\n  /** e.g. \"docs.example.com\" or \"订单 1024\". */\n  domain?: string;\n  /** The passage the claim rests on, shown in the preview. */\n  quote?: string;\n}",
+        "type": "{\n  /** The number used in the text: \"[2]\" refers to id 2. */\n  id: number;\n  title: string;\n  href?: string;\n  /** e.g. \"docs.example.com\" or \"订单中心\". */\n  domain?: string;\n  /** The passage the claim rests on, shown in the preview. */\n  quote?: string;\n}",
         "fields": [
           {
             "name": "id",
@@ -100336,7 +100543,7 @@
         ]
       },
       "CitedAnswerProps": {
-        "type": "{\n  /** Plain text with citation markers like \"[1]\" or \"[1][3]\"; blank lines separate paragraphs. */\n  text: string;\n  sources: CitationSource[];\n  /** Hide the numbered source list under the answer. */\n  hideSourceList?: boolean;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  /** Plain text with citation markers like \"[1]\" or \"[1][3]\"; blank lines separate paragraphs. */\n  text: string;\n  sources: CitationSource[];\n  /** Hide the source list under the answer. */\n  hideSourceList?: boolean;\n  /** Whether the source list starts open. */\n  defaultSourcesOpen?: boolean;\n  sourcesLabel?: string;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "text",
@@ -100354,8 +100561,23 @@
             "optional": true
           },
           {
+            "name": "defaultSourcesOpen",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "sourcesLabel",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
             "optional": true
           },
           {
@@ -100391,7 +100613,7 @@
         ]
       },
       "PromptQueueProps": {
-        "type": "{\n  items: QueuedPrompt[];\n  onRemove?: (id: string) => void;\n  onEdit?: (id: string, text: string) => void;\n  /** Sends this one next, ahead of the rest. */\n  onSendNow?: (id: string) => void;\n  onMove?: (id: string, direction: -1 | 1) => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  items: QueuedPrompt[];\n  onRemove?: (id: string) => void;\n  onEdit?: (id: string, text: string) => void;\n  /** Sends this one next, ahead of the rest. */\n  onSendNow?: (id: string) => void;\n  onMove?: (id: string, direction: -1 | 1) => void;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  className?: string;\n}",
         "fields": [
           {
             "name": "items",
@@ -100424,6 +100646,11 @@
             "optional": true
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
             "name": "className",
             "type": "string | undefined",
             "optional": true
@@ -100435,7 +100662,7 @@
         "fields": []
       },
       "RunControlsProps": {
-        "type": "{\n  status: RunStatus;\n  /** What the agent is doing now, e.g. \"正在核对 3 张发票\". */\n  activity?: string;\n  startedAt?: number | Date;\n  duration?: number;\n  /** Shown when failed. */\n  error?: string;\n  onStop?: () => void;\n  /** Continue a stopped run from where it stopped. */\n  onResume?: () => void;\n  onRetry?: () => void;\n  onDismiss?: () => void;\n  /** Steer while it works: the note is picked up at the agent's next step. */\n  onSteer?: (note: string) => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  status: RunStatus;\n  /** What the agent is doing now, e.g. \"正在核对 3 张发票\". */\n  activity?: string;\n  startedAt?: number | Date;\n  duration?: number;\n  /** Shown when failed. */\n  error?: string;\n  onStop?: () => void;\n  /** Continue a stopped run from where it stopped. */\n  onResume?: () => void;\n  onRetry?: () => void;\n  onDismiss?: () => void;\n  /** Steer while it works: the note is picked up at the agent's next step. */\n  onSteer?: (note: string) => void;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  className?: string;\n}",
         "fields": [
           {
             "name": "status",
@@ -100493,6 +100720,11 @@
             "optional": true
           },
           {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
             "name": "className",
             "type": "string | undefined",
             "optional": true
@@ -100504,7 +100736,7 @@
         "fields": []
       },
       "AttachmentItem": {
-        "type": "{\n  id: string;\n  name: string;\n  /** Bytes. */\n  size?: number;\n  kind?: AttachmentKind;\n  /** Thumbnail for images. */\n  previewUrl?: string;\n  /** Upload progress from 0 to 100; omit when done. */\n  progress?: number;\n  error?: string;\n}",
+        "type": "{\n  id: string;\n  /** File name; its extension picks the file-type icon. */\n  name: string;\n  /** Bytes. */\n  size?: number;\n  kind?: AttachmentKind;\n  /** Thumbnail for images. */\n  previewUrl?: string;\n  /** Upload progress from 0 to 100; omit when done. */\n  progress?: number;\n  error?: string;\n}",
         "fields": [
           {
             "name": "id",
@@ -100783,7 +101015,7 @@
         ]
       },
       "AgentPlanProps": {
-        "type": "{\n  title?: ReactNode;\n  description?: ReactNode;\n  steps: PlanStep[];\n  /** review: the user can edit before it runs; running/done: progress only. */\n  mode?: \"review\" | \"running\" | \"done\";\n  /** Edits in review mode: rename, reorder, remove and add steps. Without it the plan is read-only. */\n  onChange?: (steps: PlanStep[]) => void;\n  onApprove?: () => void;\n  onCancel?: () => void;\n  /** Re-run from a failed step. */\n  onRetryFrom?: (stepId: string) => void;\n  approveLabel?: string;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  title?: ReactNode;\n  description?: ReactNode;\n  steps: PlanStep[];\n  /** review: the user can edit before it runs; running/done: progress only. */\n  mode?: \"review\" | \"running\" | \"done\";\n  /** Edits in review mode: rename, reorder, remove and add steps. Without it the plan is read-only. */\n  onChange?: (steps: PlanStep[]) => void;\n  onApprove?: () => void;\n  onCancel?: () => void;\n  /** Re-run from a failed step. */\n  onRetryFrom?: (stepId: string) => void;\n  approveLabel?: string;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "title",
@@ -100833,6 +101065,11 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
             "optional": true
           },
           {
@@ -100923,7 +101160,7 @@
         ]
       },
       "AgentTrailProps": {
-        "type": "{\n  title: ReactNode;\n  steps: TrailStep[];\n  /** Folds finished steps into one line when there are more than this. */\n  collapseAfter?: number;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  title: ReactNode;\n  steps: TrailStep[];\n  /** Folds finished steps into one line when there are more than this. */\n  collapseAfter?: number;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "title",
@@ -100943,6 +101180,11 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101043,7 +101285,7 @@
         ]
       },
       "ChangeLedgerProps": {
-        "type": "{\n  entries: LedgerEntry[];\n  title?: ReactNode;\n  /** Undo one entry; entries that depend on it are listed in the confirmation and undone with it. */\n  onUndo?: (id: string, alsoUndone: string[]) => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  entries: LedgerEntry[];\n  title?: ReactNode;\n  /** Undo one entry; entries that depend on it are listed in the confirmation and undone with it. */\n  onUndo?: (id: string, alsoUndone: string[]) => void;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "entries",
@@ -101063,6 +101305,16 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101103,7 +101355,7 @@
         ]
       },
       "AgentCheckpointsProps": {
-        "type": "{\n  checkpoints: Checkpoint[];\n  currentId?: string;\n  /** Go back to this point; the next attempt branches from it. */\n  onRewind?: (id: string) => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  checkpoints: Checkpoint[];\n  currentId?: string;\n  /** Go back to this point; the next attempt branches from it. */\n  onRewind?: (id: string) => void;\n  title?: ReactNode;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "checkpoints",
@@ -101121,8 +101373,18 @@
             "optional": true
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101157,7 +101419,7 @@
         ]
       },
       "AutonomySelectorProps": {
-        "type": "{\n  value: AutonomyLevel;\n  onChange: (value: AutonomyLevel) => void;\n  /** Example actions, sorted by what this level lets the agent do on its own. */\n  actions?: AutonomyAction[];\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  value: AutonomyLevel;\n  onChange: (value: AutonomyLevel) => void;\n  /** Example actions, sorted by what this level lets the agent do on its own. */\n  actions?: AutonomyAction[];\n  title?: ReactNode;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "value",
@@ -101175,8 +101437,18 @@
             "optional": true
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101236,7 +101508,7 @@
         ]
       },
       "AgentInboxProps": {
-        "type": "{\n  tasks: InboxTask[];\n  title?: ReactNode;\n  onApprove?: (id: string) => void;\n  onReject?: (id: string) => void;\n  onRetry?: (id: string) => void;\n  onOpen?: (id: string) => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  tasks: InboxTask[];\n  title?: ReactNode;\n  onApprove?: (id: string) => void;\n  onReject?: (id: string) => void;\n  onRetry?: (id: string) => void;\n  onOpen?: (id: string) => void;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "tasks",
@@ -101271,6 +101543,16 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101341,7 +101623,7 @@
         ]
       },
       "AwaySummaryProps": {
-        "type": "{\n  /** How long the user was away, in milliseconds. */\n  awayFor: number;\n  items: AwayItem[];\n  onDismiss?: () => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  /** How long the user was away, in milliseconds. */\n  awayFor: number;\n  items: AwayItem[];\n  onDismiss?: () => void;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "awayFor",
@@ -101361,6 +101643,11 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101405,7 +101692,7 @@
         ]
       },
       "ContextUsageProps": {
-        "type": "{\n  segments: ContextSegment[];\n  /** The model's context window in tokens. */\n  limit: number;\n  /** Spend so far in this conversation. */\n  cost?: number;\n  currency?: string;\n  onRemove?: (id: string) => void;\n  /** Summarise older turns to free room. */\n  onCompact?: () => void;\n  /** inline: a small ring for the composer toolbar that opens the breakdown. */\n  variant?: \"card\" | \"inline\";\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  segments: ContextSegment[];\n  /** The model's context window in tokens. */\n  limit: number;\n  /** Spend so far in this conversation. */\n  cost?: number;\n  currency?: string;\n  onRemove?: (id: string) => void;\n  /** Summarise older turns to free room. */\n  onCompact?: () => void;\n  /** inline: a small ring for the composer toolbar that opens the breakdown. */\n  variant?: \"card\" | \"inline\";\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "segments",
@@ -101445,6 +101732,11 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101505,7 +101797,7 @@
         ]
       },
       "TraceWaterfallProps": {
-        "type": "{\n  spans: TraceSpan[];\n  /** Milliseconds since the start, for spans still running. */\n  now?: number;\n  selectedId?: string;\n  onSelect?: (id: string) => void;\n  currency?: string;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  spans: TraceSpan[];\n  /** Milliseconds since the start, for spans still running. */\n  now?: number;\n  selectedId?: string;\n  onSelect?: (id: string) => void;\n  title?: ReactNode;\n  currency?: string;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "spans",
@@ -101528,6 +101820,11 @@
             "optional": true
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
             "name": "currency",
             "type": "string | undefined",
             "optional": true
@@ -101535,6 +101832,11 @@
           {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -101664,7 +101966,7 @@
         ]
       },
       "AgentLanesProps": {
-        "type": "{\n  lanes: { id: string; name: string; icon?: ReactNode }[];\n  blocks: LaneBlock[];\n  /** Milliseconds since the start of the window. */\n  now: number;\n  onSelect?: (id: string) => void;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "type": "{\n  lanes: { id: string; name: string; icon?: ReactNode }[];\n  blocks: LaneBlock[];\n  /** Milliseconds since the start of the window. */\n  now: number;\n  onSelect?: (id: string) => void;\n  title?: ReactNode;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "lanes",
@@ -101687,8 +101989,18 @@
             "optional": true
           },
           {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
             "name": "locale",
             "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
             "optional": true
           },
           {
@@ -105979,7 +106291,7 @@
       "name": "Reasoning",
       "file": "core/src/components/ui/agent/thinking.tsx",
       "mainCount": 0,
-      "currentCount": 12,
+      "currentCount": 13,
       "added": [
         "status",
         "text",
@@ -105991,6 +106303,7 @@
         "open",
         "onOpenChange",
         "locale",
+        "motion",
         "size",
         "className"
       ],
@@ -106001,7 +106314,7 @@
       "name": "ToolCall",
       "file": "core/src/components/ui/agent/tool-call.tsx",
       "mainCount": 0,
-      "currentCount": 19,
+      "currentCount": 20,
       "added": [
         "name",
         "title",
@@ -106020,6 +106333,7 @@
         "defaultOpen",
         "variant",
         "locale",
+        "motion",
         "size",
         "className"
       ],
@@ -106030,7 +106344,7 @@
       "name": "ToolCallGroup",
       "file": "core/src/components/ui/agent/tool-call.tsx",
       "mainCount": 0,
-      "currentCount": 7,
+      "currentCount": 8,
       "added": [
         "children",
         "label",
@@ -106038,6 +106352,7 @@
         "status",
         "defaultOpen",
         "locale",
+        "motion",
         "className"
       ],
       "removed": [],
@@ -106149,12 +106464,15 @@
       "name": "CitedAnswer",
       "file": "core/src/components/ui/agent/cited-answer.tsx",
       "mainCount": 0,
-      "currentCount": 6,
+      "currentCount": 9,
       "added": [
         "text",
         "sources",
         "hideSourceList",
+        "defaultSourcesOpen",
+        "sourcesLabel",
         "locale",
+        "motion",
         "size",
         "className"
       ],
@@ -106165,7 +106483,7 @@
       "name": "PromptQueue",
       "file": "core/src/components/ui/agent/composer-parts.tsx",
       "mainCount": 0,
-      "currentCount": 7,
+      "currentCount": 8,
       "added": [
         "items",
         "onRemove",
@@ -106173,6 +106491,7 @@
         "onSendNow",
         "onMove",
         "locale",
+        "motion",
         "className"
       ],
       "removed": [],
@@ -106182,7 +106501,7 @@
       "name": "RunControls",
       "file": "core/src/components/ui/agent/composer-parts.tsx",
       "mainCount": 0,
-      "currentCount": 12,
+      "currentCount": 13,
       "added": [
         "status",
         "activity",
@@ -106195,6 +106514,7 @@
         "onDismiss",
         "onSteer",
         "locale",
+        "motion",
         "className"
       ],
       "removed": [],
@@ -106262,7 +106582,7 @@
       "name": "AgentPlan",
       "file": "core/src/components/ui/agent/agent-run.tsx",
       "mainCount": 0,
-      "currentCount": 12,
+      "currentCount": 13,
       "added": [
         "title",
         "description",
@@ -106274,6 +106594,7 @@
         "onRetryFrom",
         "approveLabel",
         "locale",
+        "motion",
         "size",
         "className"
       ],
@@ -106284,12 +106605,13 @@
       "name": "AgentTrail",
       "file": "core/src/components/ui/agent/agent-run.tsx",
       "mainCount": 0,
-      "currentCount": 5,
+      "currentCount": 6,
       "added": [
         "title",
         "steps",
         "collapseAfter",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106311,12 +106633,14 @@
       "name": "ChangeLedger",
       "file": "core/src/components/ui/agent/agent-governance.tsx",
       "mainCount": 0,
-      "currentCount": 5,
+      "currentCount": 7,
       "added": [
         "entries",
         "title",
         "onUndo",
         "locale",
+        "motion",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106326,12 +106650,14 @@
       "name": "AgentCheckpoints",
       "file": "core/src/components/ui/agent/agent-governance.tsx",
       "mainCount": 0,
-      "currentCount": 5,
+      "currentCount": 7,
       "added": [
         "checkpoints",
         "currentId",
         "onRewind",
+        "title",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106341,12 +106667,14 @@
       "name": "AutonomySelector",
       "file": "core/src/components/ui/agent/agent-governance.tsx",
       "mainCount": 0,
-      "currentCount": 5,
+      "currentCount": 7,
       "added": [
         "value",
         "onChange",
         "actions",
+        "title",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106356,7 +106684,7 @@
       "name": "AgentInbox",
       "file": "core/src/components/ui/agent/agent-ops.tsx",
       "mainCount": 0,
-      "currentCount": 8,
+      "currentCount": 10,
       "added": [
         "tasks",
         "title",
@@ -106365,6 +106693,8 @@
         "onRetry",
         "onOpen",
         "locale",
+        "motion",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106388,12 +106718,13 @@
       "name": "AwaySummary",
       "file": "core/src/components/ui/agent/agent-ops.tsx",
       "mainCount": 0,
-      "currentCount": 5,
+      "currentCount": 6,
       "added": [
         "awayFor",
         "items",
         "onDismiss",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106403,7 +106734,7 @@
       "name": "ContextUsage",
       "file": "core/src/components/ui/agent/agent-observe.tsx",
       "mainCount": 0,
-      "currentCount": 9,
+      "currentCount": 10,
       "added": [
         "segments",
         "limit",
@@ -106413,6 +106744,7 @@
         "onCompact",
         "variant",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106422,14 +106754,16 @@
       "name": "TraceWaterfall",
       "file": "core/src/components/ui/agent/agent-observe.tsx",
       "mainCount": 0,
-      "currentCount": 7,
+      "currentCount": 9,
       "added": [
         "spans",
         "now",
         "selectedId",
         "onSelect",
+        "title",
         "currency",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],
@@ -106455,13 +106789,15 @@
       "name": "AgentLanes",
       "file": "core/src/components/ui/agent/agent-observe.tsx",
       "mainCount": 0,
-      "currentCount": 6,
+      "currentCount": 8,
       "added": [
         "lanes",
         "blocks",
         "now",
         "onSelect",
+        "title",
         "locale",
+        "size",
         "className"
       ],
       "removed": [],

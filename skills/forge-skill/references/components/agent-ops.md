@@ -6,7 +6,7 @@
 ## AgentInbox (value)
 
 ```ts
-({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, className }: AgentInboxProps) => JSX.Element
+({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className }: AgentInboxProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -18,6 +18,8 @@
 | `onRetry` | 否 | `((id: string) => void) \| undefined` |  |
 | `onOpen` | 否 | `((id: string) => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentInboxProps (type)
@@ -31,6 +33,8 @@ export type AgentInboxProps = {
   onRetry?: (id: string) => void;
   onOpen?: (id: string) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -57,7 +61,7 @@ export type AwayItem = {
 ## AwaySummary (value)
 
 ```ts
-({ awayFor, items, onDismiss, locale, className }: AwaySummaryProps) => JSX.Element
+({ awayFor, items, onDismiss, locale, size, className }: AwaySummaryProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -66,6 +70,7 @@ export type AwayItem = {
 | `items` | 是 | `AwayItem[]` |  |
 | `onDismiss` | 否 | `(() => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AwaySummaryProps (type)
@@ -77,6 +82,7 @@ export type AwaySummaryProps = {
   items: AwayItem[];
   onDismiss?: () => void;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 5b81ab7bfc36802c668ddffdae4bdc635e6c5f6bfd97de4cb56ab8de563c373a
+Source fingerprint: a5e4285341284b33aee5c3081ef70e5b2296d0e2848cf56b877124972b7778ac
 
 ## Adopted rules / 采用规则
 
@@ -1198,7 +1198,7 @@ Source: skills/forge-skill/references/components/agent-governance.md
 ## AgentCheckpoints (value)
 
 ```ts
-({ checkpoints, currentId, onRewind, locale, className }: AgentCheckpointsProps) => JSX.Element
+({ checkpoints, currentId, onRewind, title, locale, size, className }: AgentCheckpointsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1206,7 +1206,9 @@ Source: skills/forge-skill/references/components/agent-governance.md
 | `checkpoints` | 是 | `Checkpoint[]` |  |
 | `currentId` | 否 | `string \| undefined` |  |
 | `onRewind` | 否 | `((id: string) => void) \| undefined` | Go back to this point; the next attempt branches from it. |
+| `title` | 否 | `ReactNode` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentCheckpointsProps (type)
@@ -1217,7 +1219,9 @@ export type AgentCheckpointsProps = {
   currentId?: string;
   /** Go back to this point; the next attempt branches from it. */
   onRewind?: (id: string) => void;
+  title?: ReactNode;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1237,7 +1241,7 @@ export type AutonomyLevel = "ask" | "balanced" | "auto";
 ## AutonomySelector (value)
 
 ```ts
-({ value, onChange, actions, locale, className }: AutonomySelectorProps) => JSX.Element
+({ value, onChange, actions, title, locale, size, className }: AutonomySelectorProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1245,7 +1249,9 @@ export type AutonomyLevel = "ask" | "balanced" | "auto";
 | `value` | 是 | `AutonomyLevel` |  |
 | `onChange` | 是 | `(value: AutonomyLevel) => void` |  |
 | `actions` | 否 | `AutonomyAction[] \| undefined` | Example actions, sorted by what this level lets the agent do on its own. |
+| `title` | 否 | `ReactNode` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AutonomySelectorProps (type)
@@ -1256,7 +1262,9 @@ export type AutonomySelectorProps = {
   onChange: (value: AutonomyLevel) => void;
   /** Example actions, sorted by what this level lets the agent do on its own. */
   actions?: AutonomyAction[];
+  title?: ReactNode;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1264,7 +1272,7 @@ export type AutonomySelectorProps = {
 ## ChangeLedger (value)
 
 ```ts
-({ entries, title, onUndo, locale, className }: ChangeLedgerProps) => JSX.Element
+({ entries, title, onUndo, locale, motion, size, className }: ChangeLedgerProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1273,6 +1281,8 @@ export type AutonomySelectorProps = {
 | `title` | 否 | `ReactNode` |  |
 | `onUndo` | 否 | `((id: string, alsoUndone: string[]) => void) \| undefined` | Undo one entry; entries that depend on it are listed in the confirmation and undone with it. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ChangeLedgerProps (type)
@@ -1284,6 +1294,8 @@ export type ChangeLedgerProps = {
   /** Undo one entry; entries that depend on it are listed in the confirmation and undone with it. */
   onUndo?: (id: string, alsoUndone: string[]) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1338,7 +1350,7 @@ Source: skills/forge-skill/references/components/agent-observe.md
 ## AgentLanes (value)
 
 ```ts
-({ lanes, blocks, now, onSelect, locale, className }: AgentLanesProps) => JSX.Element
+({ lanes, blocks, now, onSelect, title, locale, size, className }: AgentLanesProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1347,7 +1359,9 @@ Source: skills/forge-skill/references/components/agent-observe.md
 | `blocks` | 是 | `LaneBlock[]` |  |
 | `now` | 是 | `number` | Milliseconds since the start of the window. |
 | `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `title` | 否 | `ReactNode` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentLanesProps (type)
@@ -1359,7 +1373,9 @@ export type AgentLanesProps = {
   /** Milliseconds since the start of the window. */
   now: number;
   onSelect?: (id: string) => void;
+  title?: ReactNode;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1414,7 +1430,7 @@ export type ContextSegmentKind = "system" | "tools" | "memory" | "files" | "chat
 ## ContextUsage (value)
 
 ```ts
-({ variant, locale, className, ...props }: ContextUsageProps) => JSX.Element
+({ variant, locale, size, className, ...props }: ContextUsageProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1427,6 +1443,7 @@ export type ContextSegmentKind = "system" | "tools" | "memory" | "files" | "chat
 | `onCompact` | 否 | `(() => void) \| undefined` | Summarise older turns to free room. |
 | `variant` | 否 | `"inline" \| "card" \| undefined` | inline: a small ring for the composer toolbar that opens the breakdown. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ContextUsageProps (type)
@@ -1445,6 +1462,7 @@ export type ContextUsageProps = {
   /** inline: a small ring for the composer toolbar that opens the breakdown. */
   variant?: "card" | "inline";
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1485,7 +1503,7 @@ export type TraceSpan = {
 ## TraceWaterfall (value)
 
 ```ts
-({ spans, now, selectedId, onSelect, currency, locale, className }: TraceWaterfallProps) => JSX.Element
+({ spans, now, selectedId, onSelect, title, currency, locale, size, className }: TraceWaterfallProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1494,8 +1512,10 @@ export type TraceSpan = {
 | `now` | 否 | `number \| undefined` | Milliseconds since the start, for spans still running. |
 | `selectedId` | 否 | `string \| undefined` |  |
 | `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `title` | 否 | `ReactNode` |  |
 | `currency` | 否 | `string \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## TraceWaterfallProps (type)
@@ -1507,8 +1527,10 @@ export type TraceWaterfallProps = {
   now?: number;
   selectedId?: string;
   onSelect?: (id: string) => void;
+  title?: ReactNode;
   currency?: string;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1547,7 +1569,7 @@ Source: skills/forge-skill/references/components/agent-ops.md
 ## AgentInbox (value)
 
 ```ts
-({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, className }: AgentInboxProps) => JSX.Element
+({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className }: AgentInboxProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1559,6 +1581,8 @@ Source: skills/forge-skill/references/components/agent-ops.md
 | `onRetry` | 否 | `((id: string) => void) \| undefined` |  |
 | `onOpen` | 否 | `((id: string) => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentInboxProps (type)
@@ -1572,6 +1596,8 @@ export type AgentInboxProps = {
   onRetry?: (id: string) => void;
   onOpen?: (id: string) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1598,7 +1624,7 @@ export type AwayItem = {
 ## AwaySummary (value)
 
 ```ts
-({ awayFor, items, onDismiss, locale, className }: AwaySummaryProps) => JSX.Element
+({ awayFor, items, onDismiss, locale, size, className }: AwaySummaryProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1607,6 +1633,7 @@ export type AwayItem = {
 | `items` | 是 | `AwayItem[]` |  |
 | `onDismiss` | 否 | `(() => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AwaySummaryProps (type)
@@ -1618,6 +1645,7 @@ export type AwaySummaryProps = {
   items: AwayItem[];
   onDismiss?: () => void;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -1838,7 +1866,7 @@ Source: skills/forge-skill/references/components/agent-run.md
 ## AgentPlan (value)
 
 ```ts
-({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, size, className }: AgentPlanProps) => JSX.Element
+({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className }: AgentPlanProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1853,6 +1881,7 @@ Source: skills/forge-skill/references/components/agent-run.md
 | `onRetryFrom` | 否 | `((stepId: string) => void) \| undefined` | Re-run from a failed step. |
 | `approveLabel` | 否 | `string \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -1873,6 +1902,7 @@ export type AgentPlanProps = {
   onRetryFrom?: (stepId: string) => void;
   approveLabel?: string;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };
@@ -1887,7 +1917,7 @@ export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "fail
 ## AgentTrail (value)
 
 ```ts
-({ title, steps, collapseAfter, locale, className }: AgentTrailProps) => JSX.Element
+({ title, steps, collapseAfter, locale, size, className }: AgentTrailProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1896,6 +1926,7 @@ export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "fail
 | `steps` | 是 | `TrailStep[]` |  |
 | `collapseAfter` | 否 | `number \| undefined` | Folds finished steps into one line when there are more than this. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentTrailProps (type)
@@ -1907,6 +1938,7 @@ export type AgentTrailProps = {
   /** Folds finished steps into one line when there are more than this. */
   collapseAfter?: number;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -5048,7 +5080,7 @@ export type CitationSource = {
   id: number;
   title: string;
   href?: string;
-  /** e.g. "docs.example.com" or "订单 1024". */
+  /** e.g. "docs.example.com" or "订单中心". */
   domain?: string;
   /** The passage the claim rests on, shown in the preview. */
   quote?: string;
@@ -5058,15 +5090,18 @@ export type CitationSource = {
 ## CitedAnswer (value)
 
 ```ts
-({ text, sources, hideSourceList, locale, size, className }: CitedAnswerProps) => JSX.Element
+({ text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className }: CitedAnswerProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `text` | 是 | `string` | Plain text with citation markers like "[1]" or "[1][3]"; blank lines separate paragraphs. |
 | `sources` | 是 | `CitationSource[]` |  |
-| `hideSourceList` | 否 | `boolean \| undefined` | Hide the numbered source list under the answer. |
+| `hideSourceList` | 否 | `boolean \| undefined` | Hide the source list under the answer. |
+| `defaultSourcesOpen` | 否 | `boolean \| undefined` | Whether the source list starts open. |
+| `sourcesLabel` | 否 | `string \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -5077,9 +5112,13 @@ export type CitedAnswerProps = {
   /** Plain text with citation markers like "[1]" or "[1][3]"; blank lines separate paragraphs. */
   text: string;
   sources: CitationSource[];
-  /** Hide the numbered source list under the answer. */
+  /** Hide the source list under the answer. */
   hideSourceList?: boolean;
+  /** Whether the source list starts open. */
+  defaultSourcesOpen?: boolean;
+  sourcesLabel?: string;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };
@@ -5201,6 +5240,7 @@ Source: skills/forge-skill/references/components/composer-parts.md
 ```ts
 export type AttachmentItem = {
   id: string;
+  /** File name; its extension picks the file-type icon. */
   name: string;
   /** Bytes. */
   size?: number;
@@ -5250,7 +5290,7 @@ export type AttachmentListProps = {
 ## PromptQueue (value)
 
 ```ts
-({ items, onRemove, onEdit, onSendNow, onMove, locale, className }: PromptQueueProps) => JSX.Element | null
+({ items, onRemove, onEdit, onSendNow, onMove, locale, motion, className }: PromptQueueProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -5261,6 +5301,7 @@ export type AttachmentListProps = {
 | `onSendNow` | 否 | `((id: string) => void) \| undefined` | Sends this one next, ahead of the rest. |
 | `onMove` | 否 | `((id: string, direction: -1 \| 1) => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## PromptQueueProps (type)
@@ -5274,6 +5315,7 @@ export type PromptQueueProps = {
   onSendNow?: (id: string) => void;
   onMove?: (id: string, direction: -1 | 1) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   className?: string;
 };
 ```
@@ -5287,7 +5329,7 @@ export type QueuedPrompt = { id: string; text: string; attachments?: number };
 ## RunControls (value)
 
 ```ts
-({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, className }: RunControlsProps) => JSX.Element
+({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className }: RunControlsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -5303,6 +5345,7 @@ export type QueuedPrompt = { id: string; text: string; attachments?: number };
 | `onDismiss` | 否 | `(() => void) \| undefined` |  |
 | `onSteer` | 否 | `((note: string) => void) \| undefined` | Steer while it works: the note is picked up at the agent's next step. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## RunControlsProps (type)
@@ -5324,6 +5367,7 @@ export type RunControlsProps = {
   /** Steer while it works: the note is picked up at the agent's next step. */
   onSteer?: (note: string) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   className?: string;
 };
 ```
@@ -10452,7 +10496,7 @@ export type ChoiceOption = { id: string; label: string; description?: string };
 |---|---|---|---|
 | `questions` | 是 | `QuestionItem[]` |  |
 | `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` |  |
-| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` | Adds a skip button. With one question it cancels; with several the last skip submits what was answered. |
 | `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card turns into a one-line summary per question. |
 | `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click unless this is set. Several questions or multiple choice always confirm. |
 | `disabled` | 否 | `boolean \| undefined` |  |
@@ -10500,6 +10544,7 @@ export type QuestionOption = {
 export type QuestionProps = {
   questions: QuestionItem[];
   onSubmit: (answers: Record<string, QuestionAnswer>) => void;
+  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */
   onCancel?: () => void;
   /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
   answers?: Record<string, QuestionAnswer>;
@@ -12588,7 +12633,7 @@ Source: skills/forge-skill/references/components/thinking.md
 ## Reasoning (value)
 
 ```ts
-({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, size, className }: ReasoningProps) => JSX.Element
+({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, motion, size, className }: ReasoningProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -12603,6 +12648,7 @@ Source: skills/forge-skill/references/components/thinking.md
 | `open` | 否 | `boolean \| undefined` | Controlled open state. Uncontrolled, it is open while thinking and folds when done. |
 | `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -12627,6 +12673,7 @@ export type ReasoningProps = {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };
@@ -12791,12 +12838,12 @@ Source: skills/forge-skill/references/components/tool-call.md
 ## ToolCall (value)
 
 ```ts
-({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, size, className }: ToolCallProps) => JSX.Element
+({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
-| `name` | 是 | `string` | Tool name as the model calls it, shown in mono, e.g. "search_orders". |
+| `name` | 是 | `string` | Tool name as the model calls it, e.g. "search_orders". |
 | `title` | 否 | `ReactNode` | Human label shown instead of the name, e.g. "查询订单". |
 | `summary` | 否 | `ReactNode` | Short summary after the label, e.g. the main argument or "12 条结果". |
 | `status` | 是 | `ToolCallStatus` |  |
@@ -12805,31 +12852,33 @@ Source: skills/forge-skill/references/components/tool-call.md
 | `error` | 否 | `string \| undefined` |  |
 | `startedAt` | 否 | `number \| Date \| undefined` | Start time, for the live timer while running. |
 | `duration` | 否 | `number \| undefined` | Final duration in milliseconds. |
-| `icon` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` | Replaces the check once the call has finished, e.g. the tool's logo. |
 | `onRetry` | 否 | `(() => void) \| undefined` | Shown on errors. |
 | `approvalReason` | 否 | `ReactNode` | Why the agent wants to run this; shown while awaiting approval. |
 | `onApprove` | 否 | `(() => void) \| undefined` |  |
 | `onDeny` | 否 | `(() => void) \| undefined` |  |
 | `defaultOpen` | 否 | `boolean \| undefined` |  |
-| `variant` | 否 | `"row" \| "card" \| undefined` | row drops the border, for calls listed inside a ToolCallGroup. |
+| `variant` | 否 | `"row" \| "card" \| undefined` | row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ToolCallGroup (value)
 
 ```ts
-({ children, label, count, status, defaultOpen, locale, className }: ToolCallGroupProps) => JSX.Element
+({ children, label, count, status, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `children` | 是 | `ReactNode` |  |
-| `label` | 否 | `ReactNode` | e.g. "调用了 3 个工具"; defaults from `count`. |
+| `label` | 否 | `ReactNode` | e.g. "调用了 3 次工具"; defaults from `count`. |
 | `count` | 否 | `number \| undefined` |  |
 | `status` | 否 | `"success" \| "error" \| "running" \| undefined` |  |
 | `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself while running or after an error. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ToolCallGroupProps (type)
@@ -12837,13 +12886,14 @@ Source: skills/forge-skill/references/components/tool-call.md
 ```ts
 export type ToolCallGroupProps = {
   children: ReactNode;
-  /** e.g. "调用了 3 个工具"; defaults from `count`. */
+  /** e.g. "调用了 3 次工具"; defaults from `count`. */
   label?: ReactNode;
   count?: number;
   status?: "running" | "success" | "error";
   /** Uncontrolled default; the group opens itself while running or after an error. */
   defaultOpen?: boolean;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   className?: string;
 };
 ```
@@ -12852,7 +12902,7 @@ export type ToolCallGroupProps = {
 
 ```ts
 export type ToolCallProps = {
-  /** Tool name as the model calls it, shown in mono, e.g. "search_orders". */
+  /** Tool name as the model calls it, e.g. "search_orders". */
   name: string;
   /** Human label shown instead of the name, e.g. "查询订单". */
   title?: ReactNode;
@@ -12866,6 +12916,7 @@ export type ToolCallProps = {
   startedAt?: number | Date;
   /** Final duration in milliseconds. */
   duration?: number;
+  /** Replaces the check once the call has finished, e.g. the tool's logo. */
   icon?: ReactNode;
   /** Shown on errors. */
   onRetry?: () => void;
@@ -12874,9 +12925,10 @@ export type ToolCallProps = {
   onApprove?: () => void;
   onDeny?: () => void;
   defaultOpen?: boolean;
-  /** row drops the border, for calls listed inside a ToolCallGroup. */
+  /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */
   variant?: "card" | "row";
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };

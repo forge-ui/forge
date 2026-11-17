@@ -6,7 +6,7 @@
 ## AgentCheckpoints (value)
 
 ```ts
-({ checkpoints, currentId, onRewind, locale, className }: AgentCheckpointsProps) => JSX.Element
+({ checkpoints, currentId, onRewind, title, locale, size, className }: AgentCheckpointsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -14,7 +14,9 @@
 | `checkpoints` | 是 | `Checkpoint[]` |  |
 | `currentId` | 否 | `string \| undefined` |  |
 | `onRewind` | 否 | `((id: string) => void) \| undefined` | Go back to this point; the next attempt branches from it. |
+| `title` | 否 | `ReactNode` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AgentCheckpointsProps (type)
@@ -25,7 +27,9 @@ export type AgentCheckpointsProps = {
   currentId?: string;
   /** Go back to this point; the next attempt branches from it. */
   onRewind?: (id: string) => void;
+  title?: ReactNode;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -45,7 +49,7 @@ export type AutonomyLevel = "ask" | "balanced" | "auto";
 ## AutonomySelector (value)
 
 ```ts
-({ value, onChange, actions, locale, className }: AutonomySelectorProps) => JSX.Element
+({ value, onChange, actions, title, locale, size, className }: AutonomySelectorProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -53,7 +57,9 @@ export type AutonomyLevel = "ask" | "balanced" | "auto";
 | `value` | 是 | `AutonomyLevel` |  |
 | `onChange` | 是 | `(value: AutonomyLevel) => void` |  |
 | `actions` | 否 | `AutonomyAction[] \| undefined` | Example actions, sorted by what this level lets the agent do on its own. |
+| `title` | 否 | `ReactNode` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## AutonomySelectorProps (type)
@@ -64,7 +70,9 @@ export type AutonomySelectorProps = {
   onChange: (value: AutonomyLevel) => void;
   /** Example actions, sorted by what this level lets the agent do on its own. */
   actions?: AutonomyAction[];
+  title?: ReactNode;
   locale?: AgentLocale;
+  size?: "md" | "sm";
   className?: string;
 };
 ```
@@ -72,7 +80,7 @@ export type AutonomySelectorProps = {
 ## ChangeLedger (value)
 
 ```ts
-({ entries, title, onUndo, locale, className }: ChangeLedgerProps) => JSX.Element
+({ entries, title, onUndo, locale, motion, size, className }: ChangeLedgerProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -81,6 +89,8 @@ export type AutonomySelectorProps = {
 | `title` | 否 | `ReactNode` |  |
 | `onUndo` | 否 | `((id: string, alsoUndone: string[]) => void) \| undefined` | Undo one entry; entries that depend on it are listed in the confirmation and undone with it. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## ChangeLedgerProps (type)
@@ -92,6 +102,8 @@ export type ChangeLedgerProps = {
   /** Undo one entry; entries that depend on it are listed in the confirmation and undone with it. */
   onUndo?: (id: string, alsoUndone: string[]) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
+  size?: "md" | "sm";
   className?: string;
 };
 ```

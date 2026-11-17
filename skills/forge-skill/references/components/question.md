@@ -60,7 +60,7 @@ export type ChoiceOption = { id: string; label: string; description?: string };
 |---|---|---|---|
 | `questions` | 是 | `QuestionItem[]` |  |
 | `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` |  |
-| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` | Adds a skip button. With one question it cancels; with several the last skip submits what was answered. |
 | `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card turns into a one-line summary per question. |
 | `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click unless this is set. Several questions or multiple choice always confirm. |
 | `disabled` | 否 | `boolean \| undefined` |  |
@@ -108,6 +108,7 @@ export type QuestionOption = {
 export type QuestionProps = {
   questions: QuestionItem[];
   onSubmit: (answers: Record<string, QuestionAnswer>) => void;
+  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */
   onCancel?: () => void;
   /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
   answers?: Record<string, QuestionAnswer>;

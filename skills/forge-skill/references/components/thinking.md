@@ -6,7 +6,7 @@
 ## Reasoning (value)
 
 ```ts
-({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, size, className }: ReasoningProps) => JSX.Element
+({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, motion, size, className }: ReasoningProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -21,6 +21,7 @@
 | `open` | 否 | `boolean \| undefined` | Controlled open state. Uncontrolled, it is open while thinking and folds when done. |
 | `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -45,6 +46,7 @@ export type ReasoningProps = {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   locale?: AgentLocale;
+  motion?: MotionPreference;
   size?: "md" | "sm";
   className?: string;
 };
