@@ -79,3 +79,12 @@ test("blocks survive the usual model slips: inner quotes and limits overshot", (
   const label = splitBlocks('```forge:tags\n{"tags": ["' + "很".repeat(40) + '"]}\n```')[0] as { input: { tags: string[] } };
   assert.ok(label.input.tags[0].length <= 24 && label.input.tags[0].endsWith("…"));
 });
+
+test("blocks written slightly off the fence format still render", () => {
+  const glued = splitBlocks('看这里：\n```forge:tags\n{"tags": ["大客户", "年框"]}```\n好的');
+  assert.equal((glued[1] as { name: string }).name, "show_tags", "closing fence glued to the JSON");
+  const labelled = splitBlocks('```json\nforge:tags\n{"tags": ["大客户"]}\n```');
+  assert.equal((labelled[0] as { name: string }).name, "show_tags", "block name on the first line");
+  const inline = splitBlocks('```forge:tags {"tags": ["大客户"]}```');
+  assert.equal((inline[0] as { name: string }).name, "show_tags", "the whole block on one line");
+});

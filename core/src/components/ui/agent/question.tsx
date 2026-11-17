@@ -56,6 +56,9 @@ export type QuestionProps = {
   className?: string;
 };
 
+// "统计范围：本月", but "怎么处理？本月" — a question mark already ends the label.
+const withColon = (title: string) => (/[？?：:]$/.test(title.trim()) ? `${title.trim()} ` : `${title}：`);
+
 const describe = (item: QuestionItem, answer: QuestionAnswer | undefined) => [
   ...item.options.filter(option => answer?.optionIds.includes(option.id)).map(option => option.label),
   ...(answer?.text ? [answer.text] : []),
@@ -103,7 +106,7 @@ export function Question({ questions, onSubmit, onCancel, skippable = false, ans
           {questions.map(item => (
             <p key={item.id} className="flex items-start gap-2 text-sm">
               <CheckCircleLinear size={16} color="var(--fg-green-500)" className="mt-0.5 shrink-0" />
-              <span className="min-w-0 text-fg-grey-700">{item.title}：<span className="font-medium text-fg-black">{describe(item, answered[item.id]) || text.skipped}</span></span>
+              <span className="min-w-0 text-fg-grey-700">{withColon(item.title)}<span className="font-medium text-fg-black">{describe(item, answered[item.id]) || text.skipped}</span></span>
             </p>
           ))}
         </div>
@@ -165,7 +168,7 @@ export function Question({ questions, onSubmit, onCancel, skippable = false, ans
   return (
     <AgentCard
       size={size}
-      className={cn("outline-none", className)}
+      className={cn("focus-visible:outline-accent", className)}
       role="group"
       aria-label={item.title}
       tabIndex={-1}
@@ -246,7 +249,7 @@ export function ChoiceCard({ title, options, multiple = false, allowText = false
     return (
       <p role="status" className="flex items-center gap-2 text-sm tracking-fg text-fg-grey-700">
         <CheckCircleLinear size={16} color="var(--fg-green-500)" />
-        {title}：<span className="font-medium text-fg-black">{answered}</span>
+        {withColon(title)}<span className="font-medium text-fg-black">{answered}</span>
       </p>
     );
   }

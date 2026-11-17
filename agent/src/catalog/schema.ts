@@ -126,7 +126,7 @@ export const uiSchemas = {
     title: text(80),
     description: text(300).optional(),
     risk: z.enum(["low", "medium", "high"]).optional(),
-    fields: z.array(z.object({ label: text(30), before: z.string().max(120).optional(), after: z.string().max(120).optional() })).max(10).optional(),
+    fields: z.array(z.object({ label: text(30), before: z.string().max(120).optional(), after: z.string().max(120).optional(), value: z.string().max(120).optional() })).max(10).optional(),
     confirmLabel: text(12).optional(),
   }),
   show_plan: z.object({

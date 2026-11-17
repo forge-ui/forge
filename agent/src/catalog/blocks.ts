@@ -51,7 +51,11 @@ function blockInput(name: UiToolName, body: string): unknown {
   return parseBlock(name, value);
 }
 
-function fenced(language: string, body: string): Segment | undefined {
+function fenced(fenceLanguage: string, fenceBody: string): Segment | undefined {
+  // ```json with "forge:table" on the first line, or a bare ``` followed by it.
+  const named = fenceBody.match(/^\s*(forge:[a-z]+)\s*\n/);
+  const language = named && BLOCK_NAMES[named[1]] ? named[1] : fenceLanguage;
+  const body = named && BLOCK_NAMES[named[1]] ? fenceBody.slice(named[0].length) : fenceBody;
   const name = BLOCK_NAMES[language.toLowerCase()];
   if (name) {
     const input = blockInput(name, body);
@@ -78,19 +82,36 @@ export function splitBlocks(text: string, streaming = false): Segment[] {
     prose = [];
   };
   for (let index = 0; index < lines.length; index++) {
+    // The whole block on one line: ```forge:tags {"tags": [...]}```
+    const inline = lines[index].match(/^ {0,3}`{3,}\s*(forge:[a-z]+)\s+(\{.*\})\s*`{3,}\s*$/);
+    if (inline) {
+      flush();
+      const segment = fenced(inline[1], inline[2]);
+      if (segment) segments.push(segment);
+      continue;
+    }
     const open = lines[index].match(FENCE);
     if (!open) {
       prose.push(lines[index]);
       continue;
     }
-    const close = lines.findIndex((line, at) => at > index && new RegExp(`^ {0,3}${open[1]}\`*[ \\t]*$`).test(line));
+    let close = lines.findIndex((line, at) => at > index && new RegExp(`^ {0,3}${open[1]}\`*[ \\t]*$`).test(line));
+    let body = lines.slice(index + 1, close).join("\n");
+    // Models sometimes close a block on the JSON's last line: {"title": "…"}```
+    if (close < 0 && BLOCK_NAMES[open[2].toLowerCase()]) {
+      const glued = lines.findIndex((line, at) => at > index && new RegExp(`${open[1]}\\s*$`).test(line));
+      if (glued > 0) {
+        close = glued;
+        body = [...lines.slice(index + 1, glued), lines[glued].replace(new RegExp(`${open[1]}\\s*$`), "")].join("\n");
+      }
+    }
     if (close < 0) {
       if (streaming) break;
       prose.push(...lines.slice(index));
       break;
     }
     flush();
-    const segment = fenced(open[2], lines.slice(index + 1, close).join("\n"));
+    const segment = fenced(open[2], body);
     if (segment) segments.push(segment);
     index = close;
   }

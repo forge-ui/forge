@@ -68,8 +68,10 @@ const preview = (value: unknown, length = 48) => {
   return text.length > length ? text.slice(0, length - 1) + "…" : text;
 };
 const denied = (part: AgentToolPart) => part.state === "output-denied" || (part.state === "approval-responded" && part.approval?.approved === false);
+// The model asked for a tool that does not exist; nothing ran, so it is not shown as a failure.
+const unavailable = (part: AgentToolPart) => part.state === "output-error" && /unavailable tool|NoSuchTool/i.test(part.errorText ?? "");
 const callStatus = (part: AgentToolPart): ToolCallStatus => {
-  if (denied(part)) return "denied";
+  if (denied(part) || unavailable(part)) return "denied";
   switch (part.state) {
     case "input-streaming": return "pending";
     case "approval-requested": return "awaiting-approval";
@@ -104,12 +106,12 @@ export function AgentParts({ parts, status = "ready", renderTool = {}, onOpenFil
       return;
     }
     const running = tools.some(part => callStatus(part) === "running" || callStatus(part) === "pending") || thoughts.some(entry => entry.streaming);
-    const failed = tools.some(part => part.state === "output-error");
+    const failed = tools.some(part => part.state === "output-error" && !unavailable(part));
     blocks.push(
       <ToolCallGroup key={key} count={tools.length} status={running ? "running" : failed ? "error" : "success"} defaultOpen={small ? undefined : true} locale={locale}>
         {entries.map(entry => isThought(entry)
           ? <Reasoning key={`thought-${entry.index}`} status={entry.streaming ? "thinking" : "done"} text={entry.thought} doneLabel={locale === "en" ? "Thought" : "思考"} locale={locale} size="sm" />
-          : <ToolCall key={entry.toolCallId} variant="row" name={toolName(entry)} summary={preview(entry.input) || undefined} status={callStatus(entry)} args={entry.input} result={entry.output} error={entry.errorText ?? (denied(entry) && entry.approval?.reason ? entry.approval.reason : undefined)} locale={locale} size={small ? "sm" : "md"} />)}
+          : <ToolCall key={entry.toolCallId} variant="row" name={toolName(entry)} summary={preview(entry.input) || undefined} status={callStatus(entry)} args={entry.input} error={unavailable(entry) ? undefined : entry.errorText ?? (denied(entry) && entry.approval?.reason ? entry.approval.reason : undefined)} result={unavailable(entry) ? (locale === "en" ? "No such tool; skipped." : "没有这个工具，已跳过。") : entry.output} locale={locale} size={small ? "sm" : "md"} />)}
       </ToolCallGroup>,
     );
   };

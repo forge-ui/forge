@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChoiceCard, DataTable, PromptSuggestions, StatCard, type ColumnDef } from "@forge-ui-official/core";
+import { ChoiceCard, PromptSuggestions, StatCard } from "@forge-ui-official/core";
 import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
 import { parseBlock, type UiSpec, type UiToolName } from "./schema";
 import { Actions, Callout, Changes, Chart, Compare, Confirm, Flow, Form, Funnel, Images, ListBlock, Plan, Progress, Questions, RecordCard, Tags, Timeline } from "./widgets";
@@ -130,11 +130,30 @@ function Cards({ title, items }: UiSpec<"show_cards">) {
   );
 }
 
+// A compact table for the narrow panel: no wrapping headers, figures right-aligned with separators.
 function Table({ title, columns, rows }: UiSpec<"show_table">) {
-  const defs: ColumnDef<Row>[] = columns.map(column => column.numeric
-    ? { key: column.key, header: column.header, valueKind: "number", render: row => String(row[column.key] ?? "") }
-    : { key: column.key, header: column.header, render: row => String(row[column.key] ?? "") });
-  return <DataTable title={title} columns={defs} rows={rows} getRowKey={(_, index) => index} />;
+  const show = (value: Row[string], numeric?: boolean) => (value === null || value === undefined ? "—" : numeric && typeof value === "number" ? value.toLocaleString("zh-CN") : String(value));
+  return (
+    <div className="flex min-w-0 flex-col gap-2">
+      {title && <p className="text-sm font-semibold text-fg-black">{title}</p>}
+      <div className="overflow-x-auto rounded-2xl bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+        <table className="w-full min-w-max text-sm tracking-fg">
+          <thead>
+            <tr className="border-b border-fg-grey-200 bg-fg-grey-50">
+              {columns.map(column => <th key={column.key} scope="col" className={`whitespace-nowrap px-3 py-2 text-xs font-semibold text-fg-grey-700 ${column.numeric ? "text-right" : "text-left"}`}>{column.header}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr key={index} className="border-b border-fg-grey-100 last:border-b-0">
+                {columns.map((column, at) => <td key={column.key} className={`whitespace-nowrap px-3 py-2 ${column.numeric ? "text-right tabular-nums" : ""} ${at === 0 ? "font-medium text-fg-black" : "text-fg-grey-900"}`}>{show(row[column.key], column.numeric)}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 function Metrics({ items }: UiSpec<"show_metrics">) {

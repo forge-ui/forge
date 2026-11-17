@@ -162,18 +162,33 @@ export function Flow({ title, nodes, edges }: UiSpec<"show_flow">) {
   return (
     <div className={frame}>
       <Title>{title}</Title>
-      <ol className="flex flex-col gap-1">
-        {nodes.map(node => {
+      <ol className="flex flex-col">
+        {nodes.map((node, index) => {
           const out = edges.filter(edge => edge.from === node.id && byId.has(edge.to));
+          const next = nodes[index + 1];
+          // The plain hand-off to the next node is the line itself; only branches and jumps get a note.
+          const notes = out.filter(edge => edge.label || edge.to !== next?.id);
+          const flowsOn = Boolean(next) && (out.some(edge => edge.to === next.id) || !out.length);
           const decision = node.kind === "decision";
+          const terminal = node.kind === "start" || node.kind === "end";
           return (
-            <li key={node.id} className="flex flex-col items-start gap-1">
-              <span className={cn("px-3 py-1.5 text-sm text-fg-black", decision ? "rounded-lg border border-dashed border-fg-yellow-400 bg-fg-yellow-50" : node.kind === "start" || node.kind === "end" ? "rounded-full bg-fg-grey-100" : "rounded-lg border border-fg-grey-200 bg-background")}>{node.label}</span>
-              {out.map(edge => (
-                <span key={`${edge.from}-${edge.to}`} className="ml-3 flex items-center gap-1 text-xs text-fg-grey-700">
-                  ↓{edge.label && <span className="rounded bg-fg-grey-100 px-1.5 py-px">{edge.label}</span>}<span className="text-fg-grey-500">到「{byId.get(edge.to)?.label}」</span>
-                </span>
-              ))}
+            <li key={node.id} className="flex gap-3">
+              <span className="flex w-5 shrink-0 flex-col items-center">
+                <span className={cn("mt-2 size-2.5 shrink-0 rotate-0", decision ? "rotate-45 rounded-[2px] bg-fg-yellow-500" : terminal ? "rounded-full bg-fg-grey-400" : "rounded-full bg-accent")} />
+                {index < nodes.length - 1 && <span className={cn("w-px flex-1", flowsOn ? "bg-fg-grey-300" : "border-l border-dashed border-fg-grey-300")} />}
+              </span>
+              <div className="flex min-w-0 flex-1 flex-col gap-1 pb-3">
+                <span className={cn("text-sm", decision ? "font-medium text-fg-yellow-700" : terminal ? "text-fg-grey-700" : "font-medium text-fg-black")}>{node.label}</span>
+                {notes.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {notes.map(edge => (
+                      <span key={`${edge.from}-${edge.to}`} className="inline-flex items-center gap-1 rounded-full bg-fg-grey-50 px-2 py-0.5 text-xs text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+                        {edge.label && <span className="font-semibold text-fg-black">{edge.label}</span>}→ {byId.get(edge.to)?.label}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </li>
           );
         })}
@@ -247,10 +262,17 @@ export function Chart({ title, type, labels, series }: UiSpec<"show_chart">) {
           <div className="h-40">
             {type === "bar"
               ? <BarChart data={points} ariaLabel={title} />
-              : <SmoothLineChart series={series.map(item => ({ label: item.label, data: item.data, fillArea: type === "area" }))} ariaLabel={title} />}
+              : <SmoothLineChart series={series.map((item, index) => ({ label: item.label, data: item.data, fillArea: type === "area", color: SLICE_COLORS[index % SLICE_COLORS.length] }))} ariaLabel={title} />}
           </div>
-          <div className="flex justify-between text-xs text-fg-grey-700"><span>{labels[0]}</span><span>{labels[labels.length - 1]}</span></div>
-          {series.length > 1 && <div className="flex flex-wrap gap-3 text-xs text-fg-grey-700">{series.map(item => <span key={item.label}>{item.label}</span>)}</div>}
+          <div className="flex justify-between text-xs tabular-nums text-fg-grey-500">{(labels.length > 4 ? [labels[0], labels[Math.floor((labels.length - 1) / 2)], labels[labels.length - 1]] : labels).map((label, index) => <span key={`${label}-${index}`}>{label}</span>)}</div>
+          {series.length > 1 && (
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-fg-grey-700">
+              {series.map((item, index) => {
+                const last = item.data[item.data.length - 1];
+                return <span key={item.label} className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-0.5 w-3 rounded-full" style={{ background: SLICE_COLORS[index % SLICE_COLORS.length] }} />{item.label}{last !== undefined && <span className="tabular-nums text-fg-black">{formatNumber(last)}</span>}</span>;
+              })}
+            </div>
+          )}
         </>
       )}
     </div>
@@ -367,7 +389,11 @@ export function Confirm({ title, description, risk, fields, confirmLabel, answer
       description={description}
       risk={risk}
       // A field with only "before" is context (the current value), not a change.
-      fields={fields?.map(field => (field.after === undefined ? { label: field.label, after: field.before ?? "" } : { label: field.label, before: field.before, after: field.after }))}
+      fields={fields?.flatMap(field => {
+        const after = field.after ?? field.value;
+        if (after !== undefined) return [{ label: field.label, before: field.after !== undefined ? field.before : undefined, after }];
+        return field.before ? [{ label: field.label, after: field.before }] : [];
+      })}
       state={state}
       approveLabel={confirmLabel ?? "确认"}
       denyLabel="取消"
