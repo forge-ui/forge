@@ -5,8 +5,7 @@ import {
   AgentPlan,
   Approval,
   BarChart,
-  BarHorizontalChart,
-  Button,
+    Button,
   DonutChart,
   ProgressBar,
   Question,
@@ -14,7 +13,7 @@ import {
   cn,
   type PlanStep,
 } from "@forge-ui-official/core";
-import { AltArrowRightLinear, CheckCircleLinear, DangerTriangleLinear, InfoCircleLinear } from "@forge-ui-official/core/icons";
+import { AltArrowDownLinear, AltArrowRightLinear, CheckCircleLinear, DangerTriangleLinear, InfoCircleLinear } from "@forge-ui-official/core/icons";
 import type { UiSpec } from "./schema";
 
 /** Components the model writes into its answer, beyond cards, tables and metrics (see render.tsx). */
@@ -199,6 +198,25 @@ export function Images({ items }: UiSpec<"show_images">) {
 
 /* ── Data ── */
 
+const formatNumber = (value: number) => value.toLocaleString("zh-CN");
+// Share slices: distinct hues from the theme, the same in the ring and its legend.
+const SLICE_COLORS = ["var(--accent)", "var(--fg-cyan-400)", "var(--fg-violet-400)", "var(--fg-yellow-400)", "var(--fg-green-400)", "var(--fg-red-300)", "var(--fg-grey-400)", "var(--fg-blue-200)"];
+
+// Bars in a narrow column read best sideways: every label and value stays legible.
+function RankBars({ points }: { points: { label: string; value: number }[] }) {
+  const top = Math.max(1, ...points.map(point => point.value));
+  return (
+    <div className="flex flex-col gap-2.5">
+      {points.map((point, index) => (
+        <div key={`${point.label}-${index}`} className="flex flex-col gap-1">
+          <div className="flex items-baseline gap-2 text-sm"><span className="min-w-0 flex-1 truncate text-fg-black">{point.label}</span><span className="tabular-nums font-medium text-fg-black">{formatNumber(point.value)}</span></div>
+          <div className="h-2 rounded-full bg-fg-grey-100"><div className="h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: `${(point.value / top) * 100}%` }} /></div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function Chart({ title, type, labels, series }: UiSpec<"show_chart">) {
   const first = series[0]?.data ?? [];
   const points = labels.map((label, index) => ({ label, value: first[index] ?? 0 }));
@@ -207,11 +225,23 @@ export function Chart({ title, type, labels, series }: UiSpec<"show_chart">) {
       <Title>{title}</Title>
       {type === "donut" ? (
         <div className="flex items-center gap-4">
-          <DonutChart segments={points} size="sm" ariaLabel={title} />
-          <ul className="flex min-w-0 flex-col gap-1 text-xs">{points.map(point => <li key={point.label} className="flex gap-2"><span className="truncate text-fg-grey-700">{point.label}</span><span className="ml-auto tabular-nums text-fg-black">{point.value}</span></li>)}</ul>
+          <div className="w-28 shrink-0"><DonutChart segments={points.map((point, index) => ({ ...point, color: SLICE_COLORS[index % SLICE_COLORS.length] }))} size="sm" ariaLabel={title} /></div>
+          <ul className="flex min-w-0 flex-1 flex-col gap-1.5 text-sm">
+            {points.map((point, index) => {
+              const total = points.reduce((sum, item) => sum + item.value, 0) || 1;
+              return (
+                <li key={point.label} className="flex min-w-0 items-center gap-2">
+                  <span aria-hidden="true" className="size-2 shrink-0 rounded-[3px]" style={{ background: SLICE_COLORS[index % SLICE_COLORS.length] }} />
+                  <span className="min-w-0 flex-1 truncate text-fg-black" title={point.label}>{point.label}</span>
+                  <span className="tabular-nums text-fg-black">{formatNumber(point.value)}</span>
+                  <span className="w-10 text-right tabular-nums text-xs text-fg-grey-500">{Math.round((point.value / total) * 100)}%</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      ) : type === "hbar" ? (
-        <BarHorizontalChart data={points} showLabels />
+      ) : type === "hbar" || (type === "bar" && points.length <= 12) ? (
+        <RankBars points={points} />
       ) : (
         <>
           <div className="h-40">
@@ -281,7 +311,7 @@ export function Form({ title, submitLabel, fields, answer, onAsk }: UiSpec<"show
   if (answer) return <Answered>{answer}</Answered>;
   const set = (name: string, value: FieldValue) => setValues(current => ({ ...current, [name]: value }));
   const missing = fields.filter(field => field.required && (values[field.name] === "" || (Array.isArray(values[field.name]) && !(values[field.name] as string[]).length)));
-  const input = "w-full min-w-0 rounded-lg border border-fg-grey-200 bg-background px-2.5 py-1.5 text-sm text-fg-black outline-none placeholder:text-fg-grey-500 focus:border-accent";
+  const input = "w-full min-w-0 rounded-xl bg-background px-3 py-2 text-sm leading-5 text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-all placeholder:text-fg-grey-700 focus:outline-accent";
   const describe = (value: FieldValue) => (Array.isArray(value) ? value.join("、") : typeof value === "boolean" ? (value ? "是" : "否") : String(value));
   return (
     <form
@@ -301,10 +331,13 @@ export function Form({ title, submitLabel, fields, answer, onAsk }: UiSpec<"show
             <label htmlFor={id} className="text-xs text-fg-grey-700">{field.label}{field.required && <span className="text-fg-red"> *</span>}</label>
             {field.type === "textarea" ? <textarea id={id} rows={3} value={String(value)} placeholder={field.placeholder} onChange={event => set(field.name, event.target.value)} className={input} />
               : field.type === "select" ? (
-                <select id={id} value={String(value)} onChange={event => set(field.name, event.target.value)} className={input}>
-                  <option value="">{field.placeholder ?? "请选择"}</option>
-                  {(field.options ?? []).map(option => <option key={option} value={option}>{option}</option>)}
-                </select>
+                <span className="relative flex">
+                  <select id={id} value={String(value)} onChange={event => set(field.name, event.target.value)} className={cn(input, "appearance-none pr-9", value === "" && "text-fg-grey-700")}>
+                    <option value="">{field.placeholder ?? "请选择"}</option>
+                    {(field.options ?? []).map(option => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                  <AltArrowDownLinear size={14} color="var(--fg-grey-500)" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" />
+                </span>
               ) : field.type === "multiselect" ? (
                 <div id={id} role="group" aria-label={field.label} className="flex flex-wrap gap-1.5">
                   {(field.options ?? []).map(option => {
