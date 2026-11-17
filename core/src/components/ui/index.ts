@@ -505,7 +505,6 @@ export type {
   AttachmentKind,
   AttachmentItem,
   AttachmentListProps,
-  WelcomeCapability,
   AgentWelcomeProps,
   AgentPanelProps,
   AgentSession,

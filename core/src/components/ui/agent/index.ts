@@ -60,7 +60,7 @@ export { PromptQueue, RunControls, AttachmentList } from "./composer-parts";
 export type { QueuedPrompt, PromptQueueProps, RunStatus, RunControlsProps, AttachmentKind, AttachmentItem, AttachmentListProps } from "./composer-parts";
 
 export { AgentWelcome } from "./agent-welcome";
-export type { WelcomeCapability, AgentWelcomeProps } from "./agent-welcome";
+export type { AgentWelcomeProps } from "./agent-welcome";
 
 export { AgentPanel, AGENT_PANEL_WIDTH } from "./agent-panel";
 export type { AgentPanelProps, AgentSession } from "./agent-panel";

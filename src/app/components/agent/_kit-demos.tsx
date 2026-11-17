@@ -42,7 +42,6 @@ import {
   type QueuedPrompt,
   type RunStatus,
 } from "@forge-ui-official/core";
-import { ChartSquareLinear, DocumentTextLinear, ShieldCheckBold, UsersGroupRoundedLinear } from "@forge-ui-official/core/icons";
 
 /** Quick-action cards for an agent composer; the kinds pick ChatInputBar's built-in illustrations. */
 export const AGENT_QUICK_ACTIONS: ChatInputBarQuickAction[] = [
@@ -226,20 +225,12 @@ export function ComposerPartsDemo() {
 }
 
 export function WelcomeDemo() {
-  const [sent, setSent] = useState<string>();
   return (
-    <div className={box}>
+    <div className="w-full max-w-xl">
       <AgentWelcome
         title="你好，我是运营助手"
         description="能查订单和退款、生成报表，也能帮你处理审批。改数据前都会先问你。"
-        onPick={setSent}
-        capabilities={[
-          { id: "report", title: "生成本周经营报表", description: "销售额、订单、退款和对比", icon: <ChartSquareLinear size={16} />, prompt: "生成本周经营报表" },
-          { id: "refund", title: "处理待审退款", description: "逐条确认，超过 500 元先问你", icon: <ShieldCheckBold size={16} />, prompt: "处理待审退款" },
-          { id: "contract", title: "检查合同到期", description: "30 天内到期的合同和负责人", icon: <DocumentTextLinear size={16} />, prompt: "检查 30 天内到期的合同" },
-          { id: "team", title: "调整成员权限", description: "改角色、开关模块权限", icon: <UsersGroupRoundedLinear size={16} />, prompt: "调整成员权限" },
-        ]}
-        footer={sent && <p className="text-xs text-fg-grey-700">将发送：{sent}</p>}
+        footer={<p className="text-xs text-fg-grey-500">起手任务放在输入框的快捷卡片里，见上面的消息输入栏。</p>}
       />
     </div>
   );

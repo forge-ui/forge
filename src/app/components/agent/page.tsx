@@ -297,7 +297,8 @@ const KIT_CODE = {
   hasMessages={messages.length > 0}
   onSend={send}
 />`,
-  welcome: `<AgentWelcome title="你好，我是运营助手" description="改数据前都会先问你。" capabilities={capabilities} onPick={send} />`,
+  welcome: `<AgentWelcome title="你好，我是运营助手" description="改数据前都会先问你。" />
+<ChatInputBar quickActions={quickActions} hasMessages={false} onSend={send} />`,
   panel: `<AgentPanel title="Forge Agent" open={open} onOpenChange={setOpen} sessions={sessions} onNewChat={newChat}
   empty={<AgentWelcome size="sm" title="有什么可以帮你？" />} composer={{ onSend: send }}>
   {turns}
@@ -381,7 +382,7 @@ export default function AgentSpecPage() {
           <ConversationDemo />
         </DocExample>
         <ExampleGrid>
-          <DocExample id="agentwelcome" title="AgentWelcome" summary="空对话：它是谁、能做什么，点能力卡直接开始。" code={KIT_CODE.welcome} minHeight={320}><WelcomeDemo /></DocExample>
+          <DocExample id="agentwelcome" title="AgentWelcome" summary="空对话的问候：它是谁、能做什么。起手任务交给输入框的快捷卡片。" code={KIT_CODE.welcome} minHeight={200}><WelcomeDemo /></DocExample>
           <DocExample id="runcontrols" title="RunControls / PromptQueue / AttachmentList" summary="运行中可以停止、插一句；停下后继续或重试。回答没结束时写的消息先排队，可调序、编辑、提前发。" code={KIT_CODE.composer} minHeight={320}><ComposerPartsDemo /></DocExample>
         </ExampleGrid>
         <DocExample id="agentpanel" title="AgentPanel" summary="右侧面板：历史对话、新对话、消息区和输入框；宽屏时页面让出面板宽度。" code={KIT_CODE.panel} minHeight={120}><PanelDemo /></DocExample>
