@@ -1,6 +1,6 @@
 {
   "mainCommit": "e9349f17bffbfb654144b9155d9c7a1455a470ed",
-  "currentCommit": "127a6da6931b6d5f887e0c093fc44b4447bb2f67",
+  "currentCommit": "988dadefe6bd271759686e13412bb51023551d24",
   "main": {
     "exports": [
       "ALL_CARD_THEMES",
@@ -83877,7 +83877,7 @@
             "type": "{ locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
             "optional": false,
             "defaultValue": null,
-            "comment": "",
+            "comment": "ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages.",
             "file": "core/src/components/ui/agent/agent-panel.tsx"
           }
         ]
@@ -100886,7 +100886,7 @@
         ]
       },
       "AgentPanelProps": {
-        "type": "{\n  title: string;\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  /** The floating launcher; turn it off when the app opens the panel from its own button. */\n  launcher?: boolean;\n  launcherLabel?: string;\n  /** Shown above the composer when there is nothing in the conversation yet. */\n  empty?: ReactNode;\n  /** Changes when content arrives, to keep following the latest reply. */\n  followKey?: unknown;\n  children?: ReactNode;\n  onNewChat?: () => void;\n  /** Earlier conversations, listed under the history button. */\n  sessions?: AgentSession[];\n  currentSessionId?: string;\n  onSelectSession?: (id: string) => void;\n  /** Above the composer: errors, attachments, notices. */\n  notice?: ReactNode;\n  composer: ComponentProps<typeof ChatInputBar>;\n}",
+        "type": "{\n  title: string;\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  /** The floating launcher; turn it off when the app opens the panel from its own button. */\n  launcher?: boolean;\n  launcherLabel?: string;\n  /** Shown above the composer when there is nothing in the conversation yet. */\n  empty?: ReactNode;\n  /** Changes when content arrives, to keep following the latest reply. */\n  followKey?: unknown;\n  children?: ReactNode;\n  onNewChat?: () => void;\n  /** Earlier conversations, listed under the history button. */\n  sessions?: AgentSession[];\n  currentSessionId?: string;\n  onSelectSession?: (id: string) => void;\n  /** Above the composer: errors, attachments, notices. */\n  notice?: ReactNode;\n  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */\n  composer: ComponentProps<typeof ChatInputBar>;\n}",
         "fields": [
           {
             "name": "title",

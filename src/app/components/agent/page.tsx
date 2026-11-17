@@ -26,6 +26,7 @@ import {
   AutonomyDemo,
   AwayDemo,
   CheckpointsDemo,
+  AgentComposerDemo,
   CitedAnswerDemo,
   ComposerPartsDemo,
   ContextDemo,
@@ -291,6 +292,11 @@ const KIT_CODE = {
   composer: `<RunControls status={status} activity="正在核对第 3 张发票" startedAt={startedAt} onStop={stop} onResume={resume} onRetry={retry} onSteer={note => steer(note)} />
 <PromptQueue items={queue} onMove={move} onEdit={edit} onSendNow={sendNext} onRemove={remove} />
 <AttachmentList items={files} onRemove={remove} onRetry={retryUpload} />`,
+  composerBar: `<ChatInputBar
+  quickActions={[{ id: "report", label: "生成报表", kind: "docs", placeholder: "要哪段时间、看哪些指标？" }, …]}
+  hasMessages={messages.length > 0}
+  onSend={send}
+/>`,
   welcome: `<AgentWelcome title="你好，我是运营助手" description="改数据前都会先问你。" capabilities={capabilities} onPick={send} />`,
   panel: `<AgentPanel title="Forge Agent" open={open} onOpenChange={setOpen} sessions={sessions} onNewChat={newChat}
   empty={<AgentWelcome size="sm" title="有什么可以帮你？" />} composer={{ onSend: send }}>
@@ -369,106 +375,28 @@ export default function AgentSpecPage() {
       </Section>
 
 
-      <Section title="思考与工具" description="思考、等待和工具调用都由宿主驱动：状态、计时和展开都跟着你给的数据走。">
+      <Section title="对话与输入" description="消息、输入框和面板：Forge Agent 的外壳。空对话时输入框上方是快捷卡片，有了消息自然收起。">
+        <DocExample id="chatinputbar" title="ChatInputBar · 快捷卡片" summary="空对话时输入框上方展开快捷卡片，发送后自然收起，左侧加号可以再打开；@ 提及、/ 命令、模型和权限菜单都在这里。完整用法见消息输入栏。" code={KIT_CODE.composerBar} minHeight={420}><AgentComposerDemo /></DocExample>
+        <DocExample id="conversation" title="Conversation" summary="可以输入或点推荐提问；新回复自动跟随，上翻后出现“回到最新”。" code={CODE_CONVERSATION} minHeight={460}>
+          <ConversationDemo />
+        </DocExample>
+        <ExampleGrid>
+          <DocExample id="agentwelcome" title="AgentWelcome" summary="空对话：它是谁、能做什么，点能力卡直接开始。" code={KIT_CODE.welcome} minHeight={320}><WelcomeDemo /></DocExample>
+          <DocExample id="runcontrols" title="RunControls / PromptQueue / AttachmentList" summary="运行中可以停止、插一句；停下后继续或重试。回答没结束时写的消息先排队，可调序、编辑、提前发。" code={KIT_CODE.composer} minHeight={320}><ComposerPartsDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="agentpanel" title="AgentPanel" summary="右侧面板：历史对话、新对话、消息区和输入框；宽屏时页面让出面板宽度。" code={KIT_CODE.panel} minHeight={120}><PanelDemo /></DocExample>
+        <DocExample id="artifactcard" title="ArtifactCard" summary="生成中、已完成和失败三种状态。" code={CODE_ARTIFACT} minHeight={260}>
+          <ArtifactDemo />
+        </DocExample>
+      </Section>
+
+      <Section title="思考与工具" description="思考、等待和工具调用。Reasoning、ToolCall 由宿主驱动状态和计时；ThinkingTrace、ToolChips 自带播放，适合演示和静态页面。">
         <ExampleGrid>
           <DocExample id="reasoning" title="Reasoning" summary="思考中实时计时，结束后折成“思考了 3.2 秒 · 3 步”。点“重新思考”看完整过程。" code={KIT_CODE.reasoning} minHeight={220}><ReasoningDemo /></DocExample>
           <DocExample id="thinkingindicator" title="ThinkingIndicator" summary="第一个字出来前的等待：固定文案，或按阶段轮换并计时。" code={KIT_CODE.indicator} minHeight={120}><ThinkingIndicatorDemo /></DocExample>
         </ExampleGrid>
         <DocExample id="toolcall" title="ToolCall / ToolCallGroup" summary="一次调用一行：状态、计时、摘要，展开看参数和结果；失败可重试，需要确认时就地允许或拒绝。" code={KIT_CODE.toolCall} minHeight={300}><ToolCallDemo /></DocExample>
-      </Section>
-
-      <Section title="提问与确认" description="智能体缺信息时先问，改数据前先确认。答完、确认完都折成一行结果。">
         <ExampleGrid>
-          <DocExample id="question" title="Question" summary="一次问几件事：数字键选择、回车继续，可多选、可补充文字。" code={KIT_CODE.question} minHeight={300}><QuestionDemo /></DocExample>
-          <DocExample id="approval" title="Approval" summary="风险等级、改动明细、“仅这次 / 本次对话都允许”，拒绝时可以说明原因，倒计时在指针悬停时暂停。" code={KIT_CODE.approval} minHeight={300}><ApprovalDemo /></DocExample>
-        </ExampleGrid>
-        <DocExample id="choicecard" title="ChoiceCard / ConfirmCard" summary="Forge Agent 运行时（服务端会话、候选校验、签名确认、保存回执）用的两张卡，是 Question 和 Approval 的简写。" code={KIT_CODE.harness} minHeight={240}><HarnessCardsDemo /></DocExample>
-      </Section>
-
-      <Section title="回答与引用" description="回答里的每个结论都能回到出处。">
-        <DocExample id="citedanswer" title="CitedAnswer" summary="指向角标会高亮它支撑的那句话和下方来源，并预览原文摘录。" code={KIT_CODE.cited} minHeight={220}><CitedAnswerDemo /></DocExample>
-      </Section>
-
-      <Section title="输入与面板" description="输入框周围的东西：运行控制、排队消息、附件，以及空状态和侧边面板。">
-        <ExampleGrid>
-          <DocExample id="runcontrols" title="RunControls / PromptQueue / AttachmentList" summary="运行中可以停止、插一句；停下后继续或重试。回答没结束时写的消息先排队，可调序、编辑、提前发。" code={KIT_CODE.composer} minHeight={320}><ComposerPartsDemo /></DocExample>
-          <DocExample id="agentwelcome" title="AgentWelcome" summary="空对话：它是谁、能做什么，点能力卡直接开始。" code={KIT_CODE.welcome} minHeight={320}><WelcomeDemo /></DocExample>
-        </ExampleGrid>
-        <DocExample id="agentpanel" title="AgentPanel" summary="右侧面板：历史对话、新对话、消息区和输入框；宽屏时页面让出面板宽度。" code={KIT_CODE.panel} minHeight={120}><PanelDemo /></DocExample>
-      </Section>
-
-      <Section title="运行" description="多步任务：先给计划、跑起来看轨迹、随时回到检查点。">
-        <ExampleGrid>
-          <DocExample id="agentplan" title="AgentPlan" summary="执行前可改名、调序、删改步骤；执行时逐步计时，失败的一步可以从这里重试。" code={KIT_CODE.plan} minHeight={360}><AgentPlanDemo /></DocExample>
-          <DocExample id="agenttrail" title="AgentTrail / RunProgress" summary="当前做到第几步、在做什么、子步骤和计时；等你确认的一步就地放审批。" code={KIT_CODE.trail} minHeight={360}><AgentTrailDemo /></DocExample>
-        </ExampleGrid>
-        <DocExample id="agentcheckpoints" title="AgentCheckpoints" summary="像 git 一样回到任意一步重来，放弃的尝试淡出但保留。" code={KIT_CODE.checkpoints} minHeight={200}><CheckpointsDemo /></DocExample>
-      </Section>
-
-      <Section title="治理" description="智能体改过什么、能自己做多少，都摆在明面上。">
-        <ExampleGrid>
-          <DocExample id="changeledger" title="ChangeLedger" summary="每项改动有前后对比和撤销；撤销前列出会一并撤销的后续改动，发出去的邮件标为不可撤销。" code={KIT_CODE.ledger} minHeight={360}><LedgerDemo /></DocExample>
-          <DocExample id="autonomyselector" title="AutonomySelector" summary="谨慎、平衡、放手三档，真实操作按“自己做 / 先问你”分好。" code={KIT_CODE.autonomy} minHeight={260}><AutonomyDemo /></DocExample>
-        </ExampleGrid>
-      </Section>
-
-      <Section title="运营" description="后台任务多了以后：哪些在跑、哪些等你、离开时发生了什么。">
-        <ExampleGrid>
-          <DocExample id="agentinbox" title="AgentInbox / RunningNow" summary="待你处理排在最前，运行中实时计时，展开看最近几步并就地处理。" code={KIT_CODE.inbox} minHeight={380}><InboxDemo /></DocExample>
-          <DocExample id="awaysummary" title="AwaySummary" summary="回来时先看这张：离开多久、要你处理的、没做成的、做完的。" code={KIT_CODE.away} minHeight={320}><AwayDemo /></DocExample>
-        </ExampleGrid>
-      </Section>
-
-      <Section title="观测" description="上下文、耗时、花费和多智能体协作。">
-        <ExampleGrid>
-          <DocExample id="contextusage" title="ContextUsage" summary="上下文被什么占着：可以把文件移出去，或压缩早期对话。" code={KIT_CODE.context} minHeight={320}><ContextDemo /></DocExample>
-          <DocExample id="agenttree" title="AgentTree / AgentLanes" summary="谁派了谁、每个在做什么、花费按分支汇总；泳道看每个智能体的时间线。" code={KIT_CODE.tree} minHeight={380}><TreeDemo /></DocExample>
-        </ExampleGrid>
-        <DocExample id="tracewaterfall" title="TraceWaterfall" summary="一次运行的时间和钱花在哪：模型调用、工具和子智能体按时间排开。" code={KIT_CODE.trace} minHeight={280}><TraceDemo /></DocExample>
-      </Section>
-
-      <Section title="例子" description="早期的展示组件：分步思考动画、推荐卡、变更审核表、洞察卡等，适合静态页面和演示。">
-        <ExampleGrid>
-          <DocExample
-            id="streaminganswer"
-            title="StreamingAnswer"
-            summary="回答带上来源和后续追问，也可以按接收进度逐段淡入。"
-            code={CODE_STREAM}
-            minHeight={360}
-          >
-            <div className="flex w-full max-w-3xl flex-col gap-8">
-              <div className="w-full max-w-lg">
-                <StreamingAnswer
-                  text="开心果口味增长最快，本月销量提升了 23%。"
-                  sources={[
-                    { name: "销量数据", domain: "scoopdata.io" },
-                    { name: "趋势指标", domain: "trends.google.com" },
-                  ]}
-                  followUps={["冬季哪些口味最畅销"]}
-                />
-              </div>
-              <StreamingAnswerDemo />
-            </div>
-          </DocExample>
-
-          <DocExample id="approvalcard" title="ApprovalCard" summary="把选项列出来，等用户选定后再继续。" code={CODE_APPROVAL} minHeight={260}>
-            <div className="w-full max-w-lg">
-              <ApprovalCard
-                questions={[
-                  {
-                    id: "count",
-                    prompt: "我们应该推出几种口味？",
-                    options: [
-                      { id: "three", label: "三项推荐" },
-                      { id: "five", label: "五项推荐" },
-                      { id: "one", label: "单项重点推荐" },
-                    ],
-                  },
-                ]}
-              />
-            </div>
-          </DocExample>
-
           <DocExample id="toolchips" title="ToolChips" summary="一次调用里同时看到思考、写入和文件增删。" code={CODE_TOOLS} minHeight={180}>
             <div className="w-full max-w-lg">
               <ToolChips
@@ -494,7 +422,6 @@ export default function AgentSpecPage() {
               />
             </div>
           </DocExample>
-
           <DocExample id="agenttaskrows" title="AgentTaskRows" summary="任务带上完成、失败和进行中的子项。" code={CODE_TASKS} minHeight={200}>
             <div className="w-full max-w-lg">
               <AgentTaskRows
@@ -519,7 +446,80 @@ export default function AgentSpecPage() {
               />
             </div>
           </DocExample>
+        </ExampleGrid>
+      </Section>
 
+      <Section title="提问与确认" description="缺信息先问，改数据先确认，答完、确认完都留下结果。">
+        <ExampleGrid>
+          <DocExample id="question" title="Question" summary="一次问几件事：数字键选择、回车继续，可多选、可补充文字。" code={KIT_CODE.question} minHeight={300}><QuestionDemo /></DocExample>
+          <DocExample id="approval" title="Approval" summary="风险等级、改动明细、“仅这次 / 本次对话都允许”，拒绝时可以说明原因，倒计时在指针悬停时暂停。" code={KIT_CODE.approval} minHeight={300}><ApprovalDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="choicecard" title="ChoiceCard / ConfirmCard" summary="Forge Agent 运行时（服务端会话、候选校验、签名确认、保存回执）用的两张卡，是 Question 和 Approval 的简写。" code={KIT_CODE.harness} minHeight={240}><HarnessCardsDemo /></DocExample>
+        <DocExample id="toolapproval" title="AgentParts 工具确认" summary="会改数据的工具先让用户允许或拒绝，再继续执行。" code={CODE_APPROVAL_PARTS} minHeight={300}>
+          <ApprovalPartsDemo />
+        </DocExample>
+        <ExampleGrid>
+          <DocExample id="approvalcard" title="ApprovalCard" summary="把选项列出来，等用户选定后再继续。" code={CODE_APPROVAL} minHeight={260}>
+            <div className="w-full max-w-lg">
+              <ApprovalCard
+                questions={[
+                  {
+                    id: "count",
+                    prompt: "我们应该推出几种口味？",
+                    options: [
+                      { id: "three", label: "三项推荐" },
+                      { id: "five", label: "五项推荐" },
+                      { id: "one", label: "单项重点推荐" },
+                    ],
+                  },
+                ]}
+              />
+            </div>
+          </DocExample>
+          <DocExample id="recommendationcard" title="RecommendationCard" summary="主建议下面列出可以替换的备选方案。" code={CODE_RECOMMEND} minHeight={240}>
+            <div className="w-full max-w-lg">
+              <RecommendationCard
+                title="要帮你提交这笔补货订单吗？"
+                body="向华丰食品补订华夫甜筒，交货周期为 7 天。"
+                alternatives={[
+                  { id: "vanilla", label: "改用马达加斯加香草", confidence: "review" },
+                  { id: "full", label: "为全部商品补货", confidence: "none" },
+                ]}
+              />
+            </div>
+          </DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="回答与引用" description="正文流式出现，结论能回到出处，结构化结果用对应的卡片。">
+        <DocExample id="agentparts" title="AgentParts" summary="一条 AI SDK 消息里的思考、两次工具调用、回答、来源和文件；打开开关后库存查询换成自定义卡片。" code={CODE_PARTS} minHeight={420}>
+          <PartsDemo />
+        </DocExample>
+        <ExampleGrid>
+          <DocExample
+            id="streaminganswer"
+            title="StreamingAnswer"
+            summary="回答带上来源和后续追问，也可以按接收进度逐段淡入。"
+            code={CODE_STREAM}
+            minHeight={360}
+          >
+            <div className="flex w-full max-w-3xl flex-col gap-8">
+              <div className="w-full max-w-lg">
+                <StreamingAnswer
+                  text="开心果口味增长最快，本月销量提升了 23%。"
+                  sources={[
+                    { name: "销量数据", domain: "scoopdata.io" },
+                    { name: "趋势指标", domain: "trends.google.com" },
+                  ]}
+                  followUps={["冬季哪些口味最畅销"]}
+                />
+              </div>
+              <StreamingAnswerDemo />
+            </div>
+          </DocExample>
+          <DocExample id="citedanswer" title="CitedAnswer" summary="指向角标会高亮它支撑的那句话和下方来源，并预览原文摘录。" code={KIT_CODE.cited} minHeight={220}><CitedAnswerDemo /></DocExample>
+        </ExampleGrid>
+        <ExampleGrid>
           <DocExample id="contextcards" title="ContextCards" summary="检索到的段落带上来源文件和字数。" code={CODE_CONTEXT} minHeight={200}>
             <div className="w-full max-w-lg">
               <ContextCards
@@ -537,40 +537,6 @@ export default function AgentSpecPage() {
               />
             </div>
           </DocExample>
-
-          <DocExample id="recommendationcard" title="RecommendationCard" summary="主建议下面列出可以替换的备选方案。" code={CODE_RECOMMEND} minHeight={240}>
-            <div className="w-full max-w-lg">
-              <RecommendationCard
-                title="要帮你提交这笔补货订单吗？"
-                body="向华丰食品补订华夫甜筒，交货周期为 7 天。"
-                alternatives={[
-                  { id: "vanilla", label: "改用马达加斯加香草", confidence: "review" },
-                  { id: "full", label: "为全部商品补货", confidence: "none" },
-                ]}
-              />
-            </div>
-          </DocExample>
-
-          <DocExample id="agentdifftable" title="AgentDiffTable" summary="保留、删除和新增的行放在同一张审核表里。" code={CODE_DIFF_TABLE} minHeight={280}>
-            <div className="w-full max-w-2xl">
-              <AgentDiffTable
-                title="口味排期"
-                columns={[
-                  { key: "flavor", label: "口味" },
-                  { key: "scoops", label: "每周销量" },
-                  { key: "action", label: "操作" },
-                ]}
-                rows={DIFF_ROWS}
-              />
-            </div>
-          </DocExample>
-
-          <DocExample id="agentcodeblock" title="AgentCodeBlock" summary="文件名下面同时给出完整代码和增删行。" code={CODE_CODE_BLOCK} minHeight={280}>
-            <div className="w-full max-w-2xl">
-              <AgentCodeBlock filename="lib/reorder.ts" lines={CODE_LINES} diff={CODE_DIFF} />
-            </div>
-          </DocExample>
-
           <DocExample id="insightcards" title="InsightCards" summary="每张卡用一句摘要配上折线、柱状或占比。" code={CODE_INSIGHT} minHeight={280}>
             <div className="w-full max-w-lg">
               <InsightCards
@@ -606,20 +572,28 @@ export default function AgentSpecPage() {
               />
             </div>
           </DocExample>
-
-          <DocExample id="commandsearch" title="CommandSearch" summary="命令按规划、数据和流程分组，输入后即时筛选。" code={CODE_SEARCH} minHeight={280}>
-            <div className="w-full max-w-lg">
-              <CommandSearch
-                items={[
-                  { id: "plan", label: "起草项目计划", hint: "/plan", group: "规划" },
-                  { id: "compare", label: "对比上季度数据", hint: "/compare", group: "规划" },
-                  { id: "pos", label: "打开销售报表", hint: "CSV", group: "数据" },
-                  { id: "reorder", label: "创建采购任务", hint: "/task", group: "流程" },
+        </ExampleGrid>
+        <ExampleGrid>
+          <DocExample id="agentcodeblock" title="AgentCodeBlock" summary="文件名下面同时给出完整代码和增删行。" code={CODE_CODE_BLOCK} minHeight={280}>
+            <div className="w-full max-w-2xl">
+              <AgentCodeBlock filename="lib/reorder.ts" lines={CODE_LINES} diff={CODE_DIFF} />
+            </div>
+          </DocExample>
+          <DocExample id="agentdifftable" title="AgentDiffTable" summary="保留、删除和新增的行放在同一张审核表里。" code={CODE_DIFF_TABLE} minHeight={280}>
+            <div className="w-full max-w-2xl">
+              <AgentDiffTable
+                title="口味排期"
+                columns={[
+                  { key: "flavor", label: "口味" },
+                  { key: "scoops", label: "每周销量" },
+                  { key: "action", label: "操作" },
                 ]}
+                rows={DIFF_ROWS}
               />
             </div>
           </DocExample>
-
+        </ExampleGrid>
+        <ExampleGrid>
           <DocExample id="agentflowchart" title="AgentFlowchart" summary="触发、条件和动作连成一条补货流程。" code={CODE_FLOW} minHeight={360}>
             <div className="w-full max-w-lg">
               <AgentFlowchart
@@ -636,22 +610,49 @@ export default function AgentSpecPage() {
               />
             </div>
           </DocExample>
+          <DocExample id="commandsearch" title="CommandSearch" summary="命令按规划、数据和流程分组，输入后即时筛选。" code={CODE_SEARCH} minHeight={280}>
+            <div className="w-full max-w-lg">
+              <CommandSearch
+                items={[
+                  { id: "plan", label: "起草项目计划", hint: "/plan", group: "规划" },
+                  { id: "compare", label: "对比上季度数据", hint: "/compare", group: "规划" },
+                  { id: "pos", label: "打开销售报表", hint: "CSV", group: "数据" },
+                  { id: "reorder", label: "创建采购任务", hint: "/task", group: "流程" },
+                ]}
+              />
+            </div>
+          </DocExample>
         </ExampleGrid>
       </Section>
 
-      <Section title="对话" description="把模型回复直接渲染成 Forge 组件：消息、操作、推荐提问、产物，以及 AI SDK 消息的适配。">
-        <DocExample id="conversation" title="Conversation" summary="可以输入或点推荐提问；新回复自动跟随，上翻后出现“回到最新”。" code={CODE_CONVERSATION} minHeight={460}>
-          <ConversationDemo />
-        </DocExample>
-        <DocExample id="agentparts" title="AgentParts" summary="一条 AI SDK 消息里的思考、两次工具调用、回答、来源和文件；打开开关后库存查询换成自定义卡片。" code={CODE_PARTS} minHeight={420}>
-          <PartsDemo />
-        </DocExample>
-        <DocExample id="toolapproval" title="AgentParts 工具确认" summary="会改数据的工具先让用户允许或拒绝，再继续执行。" code={CODE_APPROVAL_PARTS} minHeight={300}>
-          <ApprovalPartsDemo />
-        </DocExample>
-        <DocExample id="artifactcard" title="ArtifactCard" summary="生成中、已完成和失败三种状态。" code={CODE_ARTIFACT} minHeight={260}>
-          <ArtifactDemo />
-        </DocExample>
+      <Section title="运行" description="多步任务：先给计划、跑起来看轨迹、随时回到检查点。">
+        <ExampleGrid>
+          <DocExample id="agentplan" title="AgentPlan" summary="执行前可改名、调序、删改步骤；执行时逐步计时，失败的一步可以从这里重试。" code={KIT_CODE.plan} minHeight={360}><AgentPlanDemo /></DocExample>
+          <DocExample id="agenttrail" title="AgentTrail / RunProgress" summary="当前做到第几步、在做什么、子步骤和计时；等你确认的一步就地放审批。" code={KIT_CODE.trail} minHeight={360}><AgentTrailDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="agentcheckpoints" title="AgentCheckpoints" summary="像 git 一样回到任意一步重来，放弃的尝试淡出但保留。" code={KIT_CODE.checkpoints} minHeight={200}><CheckpointsDemo /></DocExample>
+      </Section>
+
+      <Section title="治理" description="智能体改过什么、能自己做多少，都摆在明面上。">
+        <ExampleGrid>
+          <DocExample id="changeledger" title="ChangeLedger" summary="每项改动有前后对比和撤销；撤销前列出会一并撤销的后续改动，发出去的邮件标为不可撤销。" code={KIT_CODE.ledger} minHeight={360}><LedgerDemo /></DocExample>
+          <DocExample id="autonomyselector" title="AutonomySelector" summary="谨慎、平衡、放手三档，真实操作按“自己做 / 先问你”分好。" code={KIT_CODE.autonomy} minHeight={260}><AutonomyDemo /></DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="运营" description="后台任务多了以后：哪些在跑、哪些等你、离开时发生了什么。">
+        <ExampleGrid>
+          <DocExample id="agentinbox" title="AgentInbox / RunningNow" summary="待你处理排在最前，运行中实时计时，展开看最近几步并就地处理。" code={KIT_CODE.inbox} minHeight={380}><InboxDemo /></DocExample>
+          <DocExample id="awaysummary" title="AwaySummary" summary="回来时先看这张：离开多久、要你处理的、没做成的、做完的。" code={KIT_CODE.away} minHeight={320}><AwayDemo /></DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="观测" description="上下文、耗时、花费和多智能体协作。">
+        <ExampleGrid>
+          <DocExample id="contextusage" title="ContextUsage" summary="上下文被什么占着：可以把文件移出去，或压缩早期对话。" code={KIT_CODE.context} minHeight={320}><ContextDemo /></DocExample>
+          <DocExample id="agenttree" title="AgentTree / AgentLanes" summary="谁派了谁、每个在做什么、花费按分支汇总；泳道看每个智能体的时间线。" code={KIT_CODE.tree} minHeight={380}><TreeDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="tracewaterfall" title="TraceWaterfall" summary="一次运行的时间和钱花在哪：模型调用、工具和子智能体按时间排开。" code={KIT_CODE.trace} minHeight={280}><TraceDemo /></DocExample>
       </Section>
 
       <Section title="API">

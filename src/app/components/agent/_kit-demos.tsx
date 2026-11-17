@@ -16,6 +16,7 @@ import {
   AwaySummary,
   Button,
   ChangeLedger,
+  ChatInputBar,
   ChoiceCard,
   CitedAnswer,
   ConfirmCard,
@@ -31,6 +32,7 @@ import {
   ToolCallGroup,
   TraceWaterfall,
   type AgentPlanProps,
+  type ChatInputBarQuickAction,
   type ApprovalScope,
   type AutonomyLevel,
   type InboxTask,
@@ -41,6 +43,15 @@ import {
   type RunStatus,
 } from "@forge-ui-official/core";
 import { ChartSquareLinear, DocumentTextLinear, ShieldCheckBold, UsersGroupRoundedLinear } from "@forge-ui-official/core/icons";
+
+/** Quick-action cards for an agent composer; the kinds pick ChatInputBar's built-in illustrations. */
+export const AGENT_QUICK_ACTIONS: ChatInputBarQuickAction[] = [
+  { id: "report", label: "生成报表", kind: "docs", placeholder: "要哪段时间、看哪些指标？" },
+  { id: "todo", label: "记待办", kind: "note", placeholder: "记下要跟进的事…" },
+  { id: "meeting", label: "约会议", kind: "event", placeholder: "和谁、什么时候、聊什么？" },
+  { id: "voice", label: "语音提问", kind: "voice", placeholder: "说出你的问题…" },
+  { id: "image", label: "识别票据", kind: "image", placeholder: "上传发票或单据照片…" },
+];
 
 const box = "w-full max-w-xl";
 
@@ -234,6 +245,31 @@ export function WelcomeDemo() {
   );
 }
 
+export function AgentComposerDemo() {
+  const [session, setSession] = useState(0);
+  const [messages, setMessages] = useState<string[]>([]);
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-4">
+      {messages.length === 0
+        ? <AgentWelcome size="sm" title="你好，我是运营助手" description="选一张卡片开始，或者直接输入。改数据前都会先问你。" />
+        : <div className="flex flex-col items-end gap-2">{messages.map((message, index) => <p key={index} className="forge-fade-up max-w-[80%] rounded-2xl rounded-br-md bg-fg-grey-100 px-4 py-2.5 text-sm text-fg-black">{message}</p>)}</div>}
+      <ChatInputBar
+        key={session}
+        multiline
+        sendOnEnter
+        quickActions={AGENT_QUICK_ACTIONS}
+        hasMessages={messages.length > 0}
+        models={[{ id: "flash", label: "qwen3.8-flash" }, { id: "deep", label: "推理模型" }]}
+        model="flash"
+        modelMenuLabel="选择模型"
+        placeholder="问运营助手…"
+        onSend={message => setMessages(current => [...current, message])}
+      />
+      {messages.length > 0 && <Button size="sm" variant="tertiary" color="grey" className="self-start" onClick={() => { setMessages([]); setSession(value => value + 1); }}>新会话</Button>}
+    </div>
+  );
+}
+
 export function PanelDemo() {
   const [open, setOpen] = useState(false);
   return (
@@ -249,7 +285,7 @@ export function PanelDemo() {
         currentSessionId="1"
         onSelectSession={() => undefined}
         empty={<AgentWelcome size="sm" title="有什么可以帮你？" description="面板打开时页面会让出右侧空间，关闭后恢复。" />}
-        composer={{ placeholder: "问点什么…", onSend: () => undefined }}
+        composer={{ placeholder: "问点什么…", quickActions: AGENT_QUICK_ACTIONS, onSend: () => undefined }}
       />
     </div>
   );

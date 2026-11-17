@@ -12,6 +12,7 @@ import {
   AwaySummary,
   Button,
   ChangeLedger,
+  ChatInputBar,
   CitedAnswer,
   ContextUsage,
   MessageActions,
@@ -33,6 +34,7 @@ import {
   type TrailStep,
 } from "@forge-ui-official/core";
 import { RefreshLinear } from "@forge-ui-official/core/icons";
+import { AGENT_QUICK_ACTIONS } from "../../components/agent/_kit-demos";
 
 /** Advances `stage` on a timer until `stop`; user actions can also move it. */
 function useScript(delays: number[], stop: number) {
@@ -46,7 +48,7 @@ function useScript(delays: number[], stop: number) {
   return { stage, setStage, replay: () => { setStage(0); setRound(value => value + 1); } };
 }
 
-function Frame({ title, description, onReplay, children }: { title: string; description: string; onReplay: () => void; children: ReactNode }) {
+function Frame({ title, description, onReplay, children, composer = true }: { title: string; description: string; onReplay: () => void; children: ReactNode; composer?: boolean }) {
   return (
     <div className="flex w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
       <div className="flex items-start gap-3 border-b border-fg-grey-100 px-4 py-3">
@@ -57,6 +59,11 @@ function Frame({ title, description, onReplay, children }: { title: string; desc
         <Button size="sm" variant="tertiary" color="grey" iconLeft={<RefreshLinear size={14} />} onClick={onReplay}>重放</Button>
       </div>
       <div className="flex min-h-[420px] flex-col gap-5 bg-fg-grey-50/40 p-4">{children}</div>
+      {composer && (
+        <div className="border-t border-fg-grey-100 p-3">
+          <ChatInputBar density="compact" multiline sendOnEnter quickActions={AGENT_QUICK_ACTIONS} hasMessages placeholder="继续问…" onSend={() => undefined} />
+        </div>
+      )}
     </div>
   );
 }
@@ -224,7 +231,7 @@ export function OpsScenario() {
   const [away, setAway] = useState(true);
   const resolve = (id: string, status: InboxTask["status"], summary: string) => setTasks(items => items.map(item => (item.id === id ? { ...item, status, summary, duration: 2000 } : item)));
   return (
-    <Frame title="后台任务中心" description="智能体在后台跑的任务：回来先看离开摘要，再在收件箱里批准、驳回或重试。" onReplay={() => setAway(true)}>
+    <Frame composer={false} title="后台任务中心" description="智能体在后台跑的任务：回来先看离开摘要，再在收件箱里批准、驳回或重试。" onReplay={() => setAway(true)}>
       <div className="flex items-center justify-between"><span className="text-xs text-fg-grey-700">顶栏</span><RunningNow tasks={tasks} /></div>
       {away && <AwaySummary awayFor={2 * 3600_000 + 15 * 60_000} onDismiss={() => setAway(false)} items={[
         { id: "2", title: "退款审批 · 订单 1024", kind: "needs-you", detail: "¥860，等你确认", actionLabel: "批准", onAction: () => resolve("2", "done", "已批准") },
@@ -242,7 +249,7 @@ export function MultiAgentScenario() {
   const { stage, replay } = useScript(TEAM_DELAYS, 3);
   const status = (from: number) => (stage > from ? "done" : stage === from ? "running" : "idle") as "done" | "running" | "idle";
   return (
-    <Frame title="多智能体协作" description="主管把任务拆给三个助手：谁在做什么、各花了多少、时间耗在哪，一屏看清。" onReplay={replay}>
+    <Frame composer={false} title="多智能体协作" description="主管把任务拆给三个助手：谁在做什么、各花了多少、时间耗在哪，一屏看清。" onReplay={replay}>
       <AgentTree root={{
         id: "lead", name: "运营主管", role: "编排", status: stage >= 3 ? "done" : "running", activity: stage >= 3 ? "周报已发出" : "分派并等结果", cost: 0.02,
         children: [

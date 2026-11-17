@@ -43,6 +43,7 @@ export type AgentPanelProps = {
   onSelectSession?: (id: string) => void;
   /** Above the composer: errors, attachments, notices. */
   notice?: ReactNode;
+  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */
   composer: ComponentProps<typeof ChatInputBar>;
 };
 
@@ -121,7 +122,7 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
       </div>
       <div className="shrink-0 px-3 pb-3">
         {notice}
-        <ChatInputBar multiline sendOnEnter density="compact" showAttachment={false} {...composer} />
+        <ChatInputBar multiline sendOnEnter density="compact" showAttachment={false} hasMessages={Boolean(children)} {...composer} />
       </div>
     </aside>
   );
