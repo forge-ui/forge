@@ -18,6 +18,7 @@ import {
   MessageActions,
   PromptSuggestions,
   Question,
+  InlineDiff,
   Reasoning,
   RunControls,
   RunningNow,
@@ -34,7 +35,7 @@ import {
   type TrailStep,
 } from "@forge-ui-official/core";
 import { RefreshLinear } from "@forge-ui-official/core/icons";
-import { AGENT_QUICK_ACTIONS } from "../../components/agent/_kit-demos";
+import { AGENT_QUICK_ACTIONS, POLISH_SEGMENTS } from "../../components/agent/_kit-demos";
 
 /** Advances `stage` on a timer until `stop`; user actions can also move it. */
 function useScript(delays: number[], stop: number) {
@@ -283,6 +284,32 @@ export function MultiAgentScenario() {
           ]} />
         </>
       )}
+    </Frame>
+  );
+}
+
+/* 6 ── 文档写作：AI 改写 → 逐处审 → 应用 */
+
+const WRITING_DELAYS = [900, 1300];
+
+export function WritingScenario() {
+  const { stage, replay } = useScript(WRITING_DELAYS, 2);
+  const [round, setRound] = useState(0);
+  const [applied, setApplied] = useState<string>();
+  return (
+    <Frame title="文档写作" description="AI 改写一段文字，改动就地显示；逐处接受或拒绝，最后应用成定稿。" onReplay={() => { setApplied(undefined); setRound(value => value + 1); replay(); }}>
+      <AgentMessage role="user">把退款周报第一段改得正式一点，用上数据</AgentMessage>
+      <AgentMessage role="assistant">
+        {stage === 0 && <ThinkingIndicator label="读取周报和退款数据" size="sm" />}
+        {stage >= 1 && <Reasoning size="sm" status={stage === 1 ? "thinking" : "done"} duration={stage > 1 ? 1300 : undefined} text="把模糊说法换成数字，统一“尺码不符”的口径，去掉口语。" />}
+        {stage >= 2 && !applied && <InlineDiff key={round} size="sm" title="润色：退款周报第一段" segments={POLISH_SEGMENTS} onApply={setApplied} />}
+        {applied && (
+          <div className="forge-fade-up flex flex-col gap-2">
+            <p className="text-sm text-fg-grey-700">已更新周报第一段：</p>
+            <p className="rounded-xl bg-fg-grey-50 px-3 py-2 text-sm leading-6 text-fg-black">{applied}</p>
+          </div>
+        )}
+      </AgentMessage>
     </Frame>
   );
 }

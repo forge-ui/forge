@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "../../../icons";
 import { AgentCard, CardActions, ChoiceMark, SoftBadge, accentButton, fieldInput } from "../../../internal/agent-kit";
 import { cn } from "../../../lib/utils";
@@ -21,27 +21,36 @@ export type QuestionItem = {
   description?: string;
   options: QuestionOption[];
   multiple?: boolean;
-  /** Adds a free-text field; with no options the question is text only. */
+  /** Adds a free-text field. Defaults to on when there are no options. */
   allowText?: boolean;
   textPlaceholder?: string;
 };
 
 export type QuestionAnswer = { optionIds: string[]; text?: string };
 
+export type QuestionLabels = Partial<Record<"skip" | "skipSubmit" | "continue" | "submit" | "cancel" | "previous" | "next" | "sent" | "skipped", string>>;
+
 export type QuestionProps = {
   questions: QuestionItem[];
+  /** Called once with every answer; skipped questions are left out. */
   onSubmit: (answers: Record<string, QuestionAnswer>) => void;
-  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */
+  /** Adds a cancel button that drops the whole question. */
   onCancel?: () => void;
-  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
+  /** Adds a skip button per question; the last skip submits what was answered. */
+  skippable?: boolean;
+  /**
+   * Once answered, pass the answers back: the card shows what was chosen. Without it the card shows
+   * a short "答案已提交" status after submitting.
+   */
   answers?: Record<string, QuestionAnswer>;
   /**
-   * A single single-choice question submits on click unless this is set.
-   * Several questions or multiple choice always confirm.
+   * A single single-choice question submits on click, and a single choice moves to the next question,
+   * unless this is set; then every step waits for Continue.
    */
   confirm?: boolean;
   disabled?: boolean;
   submitLabel?: string;
+  labels?: QuestionLabels;
   locale?: AgentLocale;
   size?: "md" | "sm";
   className?: string;
@@ -57,9 +66,35 @@ const describe = (item: QuestionItem, answer: QuestionAnswer | undefined) => [
  * check options, free text, a pager and keyboard answers (1–9 picks, Enter continues). Answered, it
  * shows what was chosen.
  */
-export function Question({ questions, onSubmit, onCancel, answers: answered, confirm = false, disabled = false, submitLabel, locale = "zh", size = "md", className }: QuestionProps) {
+export function Question({ questions, onSubmit, onCancel, skippable = false, answers: answered, confirm = false, disabled = false, submitLabel, labels = {}, locale = "zh", size = "md", className }: QuestionProps) {
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<Record<string, QuestionAnswer>>({});
+  const [sent, setSent] = useState(false);
+  const submitted = useRef(false);
+  const status = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (sent) status.current?.focus({ preventScroll: true }); }, [sent]);
+  const text = {
+    skip: pick(locale, "跳过", "Skip"), skipSubmit: pick(locale, "跳过并提交", "Skip and submit"), continue: pick(locale, "继续", "Continue"),
+    submit: submitLabel ?? pick(locale, "提交", "Submit"), cancel: pick(locale, "取消", "Cancel"), previous: pick(locale, "上一题", "Previous question"),
+    next: pick(locale, "下一题", "Next question"), sent: pick(locale, "答案已提交", "Answers sent"), skipped: pick(locale, "未回答", "Skipped"), ...labels,
+  };
+  // A double click on submit must not send twice.
+  const submit = (next: Record<string, QuestionAnswer>) => {
+    if (submitted.current) return;
+    submitted.current = true;
+    onSubmit(next);
+    if (!answered) setSent(true);
+  };
+
+  if (sent && !answered) {
+    return (
+      <AgentCard size={size} className={className} data-state="sent">
+        <div ref={status} role="status" tabIndex={-1} className="flex items-center gap-2 text-sm font-medium text-fg-green-500 outline-none">
+          <CheckCircleLinear size={18} color="var(--fg-green-500)" />{text.sent}
+        </div>
+      </AgentCard>
+    );
+  }
 
   if (answered) {
     return (
@@ -68,7 +103,7 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
           {questions.map(item => (
             <p key={item.id} className="flex items-start gap-2 text-sm">
               <CheckCircleLinear size={16} color="var(--fg-green-500)" className="mt-0.5 shrink-0" />
-              <span className="min-w-0 text-fg-grey-700">{item.title}：<span className="font-medium text-fg-black">{describe(item, answered[item.id]) || pick(locale, "未回答", "Skipped")}</span></span>
+              <span className="min-w-0 text-fg-grey-700">{item.title}：<span className="font-medium text-fg-black">{describe(item, answered[item.id]) || text.skipped}</span></span>
             </p>
           ))}
         </div>
@@ -81,21 +116,21 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
   const answer = draft[item.id] ?? { optionIds: [] };
   const last = step === questions.length - 1;
   const instant = questions.length === 1 && !item.multiple && !confirm;
-  const ready = answer.optionIds.length > 0 || Boolean(answer.text?.trim());
-  const showSubmit = !instant || item.allowText || item.options.length === 0;
+  // Picking none of several options is a valid answer.
+  const ready = Boolean(item.multiple) || answer.optionIds.length > 0 || Boolean(answer.text?.trim());
+  const withText = item.allowText ?? item.options.length === 0;
+  const showSubmit = !instant || withText;
 
   const update = (next: QuestionAnswer) => setDraft(current => ({ ...current, [item.id]: next }));
   const advance = (next = draft) => {
-    if (last) onSubmit(next);
+    if (last) submit(next);
     else setStep(step + 1);
   };
-  // One question: skipping cancels it. Several: skip this one, and the last skip submits the rest.
   const skip = () => {
-    if (questions.length === 1) { onCancel?.(); return; }
     const next = { ...draft };
     delete next[item.id];
     setDraft(next);
-    if (last) onSubmit(next); else setStep(step + 1);
+    if (last) submit(next); else setStep(step + 1);
   };
   const choose = (option: QuestionOption) => {
     if (disabled) return;
@@ -105,8 +140,8 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
     }
     const next = { ...draft, [item.id]: { ...answer, optionIds: [option.id] } };
     setDraft(next);
-    if (instant) onSubmit(next);
-    else if (questions.length > 1 && !last) setStep(step + 1);
+    if (instant) submit(next);
+    else if (!confirm && questions.length > 1 && !last) setStep(step + 1);
   };
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.target instanceof HTMLInputElement) return;
@@ -115,13 +150,13 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
     else if (event.key === "Enter" && ready && showSubmit) { event.preventDefault(); advance(); }
   };
 
-  const pager = questions.length > 1 && (
+  const pager = (questions.length > 1 || skippable) && (
     <span className="flex items-center gap-1 text-xs tabular-nums text-fg-grey-500">
-      <button type="button" aria-label={pick(locale, "上一题", "Previous question")} disabled={step === 0} onClick={() => setStep(step - 1)} className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30">
+      <button type="button" aria-label={text.previous} disabled={step === 0} onClick={() => setStep(step - 1)} className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30">
         <AltArrowLeftLinear size={14} color="var(--fg-grey-700)" />
       </button>
       {step + 1} / {questions.length}
-      <button type="button" aria-label={pick(locale, "下一题", "Next question")} disabled={last || !ready} onClick={() => setStep(step + 1)} className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30">
+      <button type="button" aria-label={text.next} disabled={last || !ready} onClick={() => setStep(step + 1)} className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30">
         <AltArrowRightLinear size={14} color="var(--fg-grey-700)" />
       </button>
     </span>
@@ -135,10 +170,11 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
       aria-label={item.title}
       tabIndex={-1}
       onKeyDown={onKeyDown}
-      footer={(showSubmit || onCancel) && (
+      footer={(showSubmit || onCancel || skippable) && (
         <CardActions aside={pager || (item.options.length > 1 && size === "md" ? pick(locale, "可按数字键选择", "Press a number to pick") : undefined)}>
-          {onCancel && <Button size="sm" variant="tertiary" color="grey" disabled={disabled} onClick={skip}>{last && questions.length > 1 ? pick(locale, "跳过并提交", "Skip and submit") : pick(locale, "跳过", "Skip")}</Button>}
-          {showSubmit && <button type="button" className={accentButton} disabled={disabled || !ready} onClick={() => advance()}>{last ? submitLabel ?? pick(locale, "提交", "Submit") : pick(locale, "继续", "Continue")}</button>}
+          {onCancel && <Button size="sm" variant="tertiary" color="grey" disabled={disabled} onClick={onCancel}>{text.cancel}</Button>}
+          {skippable && <Button size="sm" variant="tertiary" color="grey" disabled={disabled} onClick={skip}>{last ? text.skipSubmit : text.skip}</Button>}
+          {showSubmit && <button type="button" className={accentButton} disabled={disabled || !ready} onClick={() => advance()}>{last ? text.submit : text.continue}</button>}
         </CardActions>
       )}
     >
@@ -170,7 +206,7 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
             })}
           </div>
         )}
-        {(item.allowText || item.options.length === 0) && (
+        {withText && (
           <input
             value={answer.text ?? ""}
             disabled={disabled}

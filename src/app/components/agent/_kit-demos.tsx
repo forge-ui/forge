@@ -17,6 +17,15 @@ import {
   Button,
   ChangeLedger,
   ChatInputBar,
+  Composer,
+  ComposerAction,
+  ComposerHeader,
+  ComposerInput,
+  ComposerModelMenu,
+  ComposerSend,
+  ComposerToolbar,
+  ConversationList,
+  InlineDiff,
   ChoiceCard,
   CitedAnswer,
   ConfirmCard,
@@ -33,6 +42,7 @@ import {
   TraceWaterfall,
   type AgentPlanProps,
   type ChatInputBarQuickAction,
+  type ConversationItem,
   type ApprovalScope,
   type AutonomyLevel,
   type InboxTask,
@@ -120,6 +130,7 @@ export function ToolCallDemo() {
 
 export function QuestionDemo() {
   const [answers, setAnswers] = useState<Record<string, QuestionAnswer>>();
+  const [round, setRound] = useState(0);
   const questions = [
     { id: "range", title: "统计哪段时间？", options: [{ id: "week", label: "本周" }, { id: "month", label: "本月", recommended: true }, { id: "quarter", label: "本季度" }] },
     { id: "split", title: "按什么拆分？", multiple: true, options: [{ id: "region", label: "地区" }, { id: "channel", label: "渠道" }, { id: "product", label: "商品" }] },
@@ -127,8 +138,8 @@ export function QuestionDemo() {
   ];
   return (
     <div className={`${box} flex flex-col gap-3`}>
-      <Question questions={questions} answers={answers} onSubmit={setAnswers} onCancel={() => setAnswers({})} />
-      {answers && <Button size="sm" variant="tertiary" color="grey" className="self-start" onClick={() => setAnswers(undefined)}>重新回答</Button>}
+      <Question key={round} skippable questions={questions} answers={answers} onSubmit={setAnswers} />
+      {answers && <Button size="sm" variant="tertiary" color="grey" className="self-start" onClick={() => { setAnswers(undefined); setRound(value => value + 1); }}>重新回答</Button>}
     </div>
   );
 }
@@ -495,6 +506,85 @@ export function TreeDemo() {
           { id: "e", laneId: "notify", title: "等确认", start: 40_000, status: "waiting" },
         ]}
       />
+    </div>
+  );
+}
+
+/* ── Composer in parts, history, inline edits ── */
+
+export function ComposerPartsBuildDemo() {
+  const [sent, setSent] = useState<string[]>([]);
+  const [model, setModel] = useState("flash");
+  const [search, setSearch] = useState(false);
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-3">
+      <Composer quickActions={AGENT_QUICK_ACTIONS} hasMessages={sent.length > 0} placeholder="问运营助手…" onSend={(text, action) => setSent(current => [...current, action ? `【${action.label}】${text}` : text])}>
+        {sent.length > 0 && <ComposerHeader><AttachmentList items={[{ id: "1", name: "11 月发票.pdf", size: 2_400_000 }]} onRemove={() => undefined} /></ComposerHeader>}
+        <ComposerInput />
+        <ComposerToolbar>
+          <ComposerAction label="快捷操作" toggleQuickActions />
+          <ComposerAction label="联网搜索" showLabel active={search} onClick={() => setSearch(value => !value)} icon={<span aria-hidden="true" className="size-2 rounded-full bg-current" />} />
+          <span className="ml-auto flex items-center gap-2">
+            <ComposerModelMenu models={[{ id: "flash", label: "qwen3.8-flash" }, { id: "deep", label: "推理模型" }]} model={model} onModelChange={setModel} />
+            <ComposerSend />
+          </span>
+        </ComposerToolbar>
+      </Composer>
+      {sent.length > 0 && <p className="text-xs text-fg-grey-500">已发送：{sent.join(" · ")}</p>}
+    </div>
+  );
+}
+
+const HOUR = 3600_000;
+
+export function ConversationListDemo() {
+  const [now] = useState(() => Date.now());
+  const [current, setCurrent] = useState("a");
+  const [items, setItems] = useState<ConversationItem[]>([
+    { id: "a", title: "11 月退款分析", preview: "尺码不符占 41%", updatedAt: now - HOUR },
+    { id: "b", title: "合同到期提醒", preview: "6 份合同 30 天内到期", updatedAt: now - 2 * HOUR, running: true },
+    { id: "c", title: "调整成员权限", updatedAt: now - 26 * HOUR, unread: true },
+    { id: "d", title: "季度销售报表", updatedAt: now - 40 * 24 * HOUR, pinned: true },
+    { id: "e", title: "供应商对账", updatedAt: now - 4 * 24 * HOUR },
+    { id: "f", title: "新员工入职清单", updatedAt: now - 20 * 24 * HOUR },
+  ]);
+  return (
+    <div className="w-full max-w-xs rounded-2xl bg-background p-2 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+      <ConversationList
+        now={now}
+        items={items}
+        currentId={current}
+        searchAfter={5}
+        onSelect={id => { setCurrent(id); setItems(list => list.map(item => (item.id === id ? { ...item, unread: false } : item))); }}
+        onNew={() => { const id = `n${items.length}`; setItems(list => [{ id, title: "新对话", updatedAt: Date.now() }, ...list]); setCurrent(id); }}
+        onRename={(id, title) => setItems(list => list.map(item => (item.id === id ? { ...item, title } : item)))}
+        onDelete={id => setItems(list => list.filter(item => item.id !== id))}
+        onPin={(id, pinned) => setItems(list => list.map(item => (item.id === id ? { ...item, pinned } : item)))}
+      />
+    </div>
+  );
+}
+
+export const POLISH_SEGMENTS = [
+  { type: "same" as const, text: "本月退款" },
+  { type: "change" as const, id: "1", before: "比较多", after: "128 笔，环比增加 18%", reason: "用数字代替模糊说法" },
+  { type: "same" as const, text: "。主要原因是" },
+  { type: "change" as const, id: "2", before: "衣服尺码不太对", after: "尺码不符（占 41%）", reason: "统一口径并补充占比" },
+  { type: "same" as const, text: "，" },
+  { type: "change" as const, id: "3", before: "我们觉得应该", after: "建议", reason: "去掉主观表述" },
+  { type: "same" as const, text: "在商品页补充尺码对照表" },
+  { type: "change" as const, id: "4", before: "，越快越好", after: "", reason: "删去口语" },
+  { type: "same" as const, text: "。" },
+];
+
+export function InlineDiffDemo() {
+  const [round, setRound] = useState(0);
+  const [result, setResult] = useState<string>();
+  return (
+    <div className={`${box} flex flex-col gap-3`}>
+      <InlineDiff key={round} title="润色：退款周报第一段" segments={POLISH_SEGMENTS} onApply={setResult} />
+      {result && <p className="forge-fade-up rounded-xl bg-fg-grey-50 px-3 py-2 text-sm leading-6 text-fg-black">{result}</p>}
+      {result && <Button size="sm" variant="tertiary" color="grey" className="self-start" onClick={() => { setResult(undefined); setRound(value => value + 1); }}>重新审</Button>}
     </div>
   );
 }

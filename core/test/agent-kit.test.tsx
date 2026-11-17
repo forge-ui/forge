@@ -11,6 +11,9 @@ import { Approval, ConfirmCard } from "../src/components/ui/agent/approval";
 import { CitedAnswer } from "../src/components/ui/agent/cited-answer";
 import { AttachmentList, PromptQueue, RunControls } from "../src/components/ui/agent/composer-parts";
 import { ChoiceCard, Question } from "../src/components/ui/agent/question";
+import { Composer, ComposerAction, ComposerInput, ComposerSend, ComposerToolbar } from "../src/components/ui/agent/composer";
+import { ConversationList } from "../src/components/ui/agent/conversation-list";
+import { InlineDiff, resolveInlineDiff } from "../src/components/ui/agent/inline-diff";
 import { Reasoning, ThinkingIndicator } from "../src/components/ui/agent/thinking";
 import { ToolCall, ToolCallGroup } from "../src/components/ui/agent/tool-call";
 const protocol = "node:";
@@ -19,7 +22,7 @@ const { test } = require(`${protocol}test`);
 
 async function mount(node: React.ReactNode) {
   const dom = new JSDOM('<div id="root"></div>');
-  Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true, window: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, HTMLInputElement: dom.window.HTMLInputElement, KeyboardEvent: dom.window.KeyboardEvent });
+  Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true, window: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, HTMLInputElement: dom.window.HTMLInputElement, HTMLTextAreaElement: dom.window.HTMLTextAreaElement, KeyboardEvent: dom.window.KeyboardEvent, getComputedStyle: dom.window.getComputedStyle.bind(dom.window) });
   const root = createRoot(document.getElementById("root")!);
   await act(async () => root.render(node));
   return {
@@ -194,4 +197,73 @@ test("observability: context, trace and tree roll up numbers", () => {
   assert.ok(trace.includes("3.0 秒") && trace.includes("1.5K") && trace.includes("$0.01"));
   const tree = renderToStaticMarkup(<AgentTree root={{ id: "lead", name: "主管", status: "running", cost: 0.1, children: [{ id: "a", name: "检索", status: "done", cost: 0.05 }, { id: "b", name: "写作", status: "running", cost: 0.2 }] }} />);
   assert.ok(tree.includes("$0.35"), "the root shows its branch total");
+});
+
+test("Composer parts send, fold the quick cards and switch to stop while streaming", async () => {
+  const sent: unknown[] = [];
+  const quick = [{ id: "report", label: "生成报表", kind: "docs" as const, placeholder: "要哪段时间？" }];
+  const view = await mount(
+    <Composer value=" 本周 " onSend={(text, action) => sent.push([text, action?.id])} quickActions={quick}>
+      <ComposerInput />
+      <ComposerToolbar><ComposerAction label="快捷操作" toggleQuickActions /><span className="ml-auto"><ComposerSend /></span></ComposerToolbar>
+    </Composer>,
+  );
+  try {
+    assert.ok(document.querySelector("[data-quick-open]"), "cards open on an empty chat");
+    await view.clickText("生成报表");
+    assert.equal(document.querySelector("textarea")!.getAttribute("placeholder"), "要哪段时间？");
+    // React's input events need react-dom loaded after the DOM globals, so the draft is controlled here.
+    assert.equal(document.querySelector<HTMLButtonElement>('[aria-label="发送消息"]')?.disabled, false, "send enabled");
+    await view.key("textarea", "Enter");
+    assert.deepEqual(sent, [["本周", "report"]]);
+    assert.ok(!document.querySelector("[data-quick-open]"), "cards fold after sending");
+  } finally {
+    await view.unmount();
+  }
+  const streaming = renderToStaticMarkup(<Composer onSend={() => undefined} status="running" onStop={() => undefined}><ComposerInput /><ComposerSend /></Composer>);
+  assert.ok(streaming.includes("停止生成"));
+});
+
+test("ConversationList groups by day, pins first and confirms deletes", async () => {
+  const now = new Date(2026, 10, 17, 15).getTime();
+  const items = [
+    { id: "a", title: "退款分析", updatedAt: now - 3600_000 },
+    { id: "b", title: "合同到期", updatedAt: now - 26 * 3600_000, unread: true },
+    { id: "c", title: "季度报表", updatedAt: now - 40 * 86_400_000, pinned: true },
+    { id: "d", title: "发票核对", updatedAt: now - 3 * 86_400_000, running: true },
+  ];
+  const html = renderToStaticMarkup(<ConversationList now={now} items={items} currentId="a" onSelect={() => undefined} />);
+  const order = ["置顶", "季度报表", "今天", "退款分析", "昨天", "合同到期", "7 天内", "发票核对"].map(text => html.indexOf(text));
+  assert.deepEqual([...order].sort((left, right) => left - right), order, "pinned, today, yesterday, this week");
+  assert.ok(html.includes("有新回复") && html.includes('aria-current="true"'));
+  const deleted: string[] = [];
+  const view = await mount(<ConversationList now={now} items={items} onSelect={() => undefined} onDelete={id => deleted.push(id)} />);
+  try {
+    await view.click('[aria-label="删除"]');
+    assert.ok(view.html().includes("删除「"), "asks first");
+    await act(async () => { [...document.querySelectorAll<HTMLElement>("button")].find(button => button.textContent === "删除")!.click(); });
+    assert.equal(deleted.length, 1);
+  } finally {
+    await view.unmount();
+  }
+});
+
+test("InlineDiff resolves accepted and rejected edits into the final text", async () => {
+  const segments = [
+    { type: "same" as const, text: "本月退款" },
+    { type: "change" as const, id: "1", before: "很多", after: "128 笔" },
+    { type: "same" as const, text: "，主要因为" },
+    { type: "change" as const, id: "2", before: "质量", after: "尺码" },
+  ];
+  assert.equal(resolveInlineDiff(segments, { 1: "accepted", 2: "rejected" }), "本月退款128 笔，主要因为质量");
+  let applied = "";
+  const view = await mount(<InlineDiff segments={segments} onApply={text => { applied = text; }} />);
+  try {
+    assert.ok(view.html().includes("0/2 已处理"));
+    await view.clickText("全部接受");
+    await act(async () => { [...document.querySelectorAll<HTMLElement>("button")].find(button => button.textContent?.startsWith("应用"))!.click(); });
+    assert.equal(applied, "本月退款128 笔，主要因为尺码");
+  } finally {
+    await view.unmount();
+  }
 });

@@ -1,6 +1,6 @@
 {
   "mainCommit": "e9349f17bffbfb654144b9155d9c7a1455a470ed",
-  "currentCommit": "c26e034fec96116a85b55f451cbe059e04bae55d",
+  "currentCommit": "f1d5e65bdb6cc20c3058f3c901915d5139c81015",
   "main": {
     "exports": [
       "ALL_CARD_THEMES",
@@ -50290,11 +50290,22 @@
       "CommentData",
       "CommentItem",
       "CommentReply",
+      "Composer",
+      "ComposerAction",
+      "ComposerActionProps",
       "ComposerCommand",
+      "ComposerHeader",
+      "ComposerInput",
+      "ComposerInputProps",
       "ComposerModel",
+      "ComposerModelMenu",
+      "ComposerModelMenuProps",
+      "ComposerProps",
       "ComposerReply",
+      "ComposerSend",
       "ComposerSource",
       "ComposerStatus",
+      "ComposerToolbar",
       "ComposerVoiceState",
       "ConfirmCard",
       "ConfirmCardProps",
@@ -50311,6 +50322,9 @@
       "ContextUsageProps",
       "ControlColor",
       "Conversation",
+      "ConversationItem",
+      "ConversationList",
+      "ConversationListProps",
       "ConversationProps",
       "CreditCard",
       "CurrencyConverter",
@@ -50410,6 +50424,10 @@
       "InboxTask",
       "InfoRow",
       "InfoRowProps",
+      "InlineDiff",
+      "InlineDiffDecision",
+      "InlineDiffProps",
+      "InlineDiffSegment",
       "InsightCard",
       "InsightCards",
       "InsightChart",
@@ -50519,6 +50537,7 @@
       "Question",
       "QuestionAnswer",
       "QuestionItem",
+      "QuestionLabels",
       "QuestionOption",
       "QuestionProps",
       "QueuedPrompt",
@@ -50667,6 +50686,7 @@
       "cn",
       "financialThemes",
       "resolveCardTheme",
+      "resolveInlineDiff",
       "resolveTableColumnAlign",
       "statCardSizes",
       "useToast"
@@ -81309,7 +81329,7 @@
             "name": "skipLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"跳过\" : \"Skip\"",
+            "defaultValue": "pick(locale, \"跳过\", \"Skip\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -81317,7 +81337,7 @@
             "name": "skipSubmitLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"跳过并提交\" : \"Skip and submit\"",
+            "defaultValue": "pick(locale, \"跳过并提交\", \"Skip and submit\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -81325,7 +81345,7 @@
             "name": "continueLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"继续\" : \"Continue\"",
+            "defaultValue": "pick(locale, \"继续\", \"Continue\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -81333,7 +81353,7 @@
             "name": "sendLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"提交\" : \"Send\"",
+            "defaultValue": "pick(locale, \"提交\", \"Send\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -81341,7 +81361,7 @@
             "name": "sentLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"答案已提交\" : \"Answers sent\"",
+            "defaultValue": "pick(locale, \"答案已提交\", \"Answers sent\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -81357,7 +81377,7 @@
             "name": "previousQuestionLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"上一题\" : \"Previous question\"",
+            "defaultValue": "pick(locale, \"上一题\", \"Previous question\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -81365,7 +81385,7 @@
             "name": "nextQuestionLabel",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "locale === \"zh\" ? \"下一题\" : \"Next question\"",
+            "defaultValue": "pick(locale, \"下一题\", \"Next question\")",
             "comment": "",
             "file": "core/src/components/ui/agent/approval-card.tsx"
           },
@@ -82796,6 +82816,14 @@
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
+            "name": "details",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "Custom body shown when the row opens, instead of the argument and result blocks.",
+            "file": "core/src/components/ui/agent/tool-call.tsx"
+          },
+          {
             "name": "onRetry",
             "type": "(() => void) | undefined",
             "optional": true,
@@ -82833,6 +82861,14 @@
             "optional": true,
             "defaultValue": "false",
             "comment": "",
+            "file": "core/src/components/ui/agent/tool-call.tsx"
+          },
+          {
+            "name": "openOnError",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "true",
+            "comment": "Open by itself when the call fails, so the error shows.",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82906,10 +82942,18 @@
           },
           {
             "name": "status",
-            "type": "\"success\" | \"error\" | \"running\" | undefined",
+            "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
             "optional": true,
             "defaultValue": "\"success\"",
             "comment": "",
+            "file": "core/src/components/ui/agent/tool-call.tsx"
+          },
+          {
+            "name": "statusLabel",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "Replaces the status word after the label, e.g. \"执行失败\".",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82917,7 +82961,7 @@
             "type": "boolean | undefined",
             "optional": true,
             "defaultValue": null,
-            "comment": "Uncontrolled default; the group opens itself while running or after an error.",
+            "comment": "Uncontrolled default; the group opens itself unless everything succeeded.",
             "file": "core/src/components/ui/agent/tool-call.tsx"
           },
           {
@@ -82962,7 +83006,7 @@
             "type": "(answers: Record<string, QuestionAnswer>) => void",
             "optional": false,
             "defaultValue": null,
-            "comment": "",
+            "comment": "Called once with every answer; skipped questions are left out.",
             "file": "core/src/components/ui/agent/question.tsx"
           },
           {
@@ -82970,7 +83014,15 @@
             "type": "(() => void) | undefined",
             "optional": true,
             "defaultValue": null,
-            "comment": "Adds a skip button. With one question it cancels; with several the last skip submits what was answered.",
+            "comment": "Adds a cancel button that drops the whole question.",
+            "file": "core/src/components/ui/agent/question.tsx"
+          },
+          {
+            "name": "skippable",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "false",
+            "comment": "Adds a skip button per question; the last skip submits what was answered.",
             "file": "core/src/components/ui/agent/question.tsx"
           },
           {
@@ -82978,7 +83030,7 @@
             "type": "Record<string, QuestionAnswer> | undefined",
             "optional": true,
             "defaultValue": null,
-            "comment": "Once answered, pass the answers back: the card turns into a one-line summary per question.",
+            "comment": "Once answered, pass the answers back: the card shows what was chosen. Without it the card shows\na short \"答案已提交\" status after submitting.",
             "file": "core/src/components/ui/agent/question.tsx"
           },
           {
@@ -82986,7 +83038,7 @@
             "type": "boolean | undefined",
             "optional": true,
             "defaultValue": "false",
-            "comment": "A single single-choice question submits on click unless this is set.\nSeveral questions or multiple choice always confirm.",
+            "comment": "A single single-choice question submits on click, and a single choice moves to the next question,\nunless this is set; then every step waits for Continue.",
             "file": "core/src/components/ui/agent/question.tsx"
           },
           {
@@ -83002,6 +83054,14 @@
             "type": "string | undefined",
             "optional": true,
             "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/question.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<Record<\"submit\" | \"next\" | \"previous\" | \"sent\" | \"skip\" | \"skipSubmit\" | \"continue\" | \"cancel\" | \"skipped\", string>> | undefined",
+            "optional": true,
+            "defaultValue": "{}",
             "comment": "",
             "file": "core/src/components/ui/agent/question.tsx"
           },
@@ -83825,7 +83885,7 @@
           },
           {
             "name": "sessions",
-            "type": "AgentSession[] | undefined",
+            "type": "ConversationItem[] | undefined",
             "optional": true,
             "defaultValue": null,
             "comment": "Earlier conversations, listed under the history button.",
@@ -83842,6 +83902,30 @@
           {
             "name": "onSelectSession",
             "type": "((id: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-panel.tsx"
+          },
+          {
+            "name": "onRenameSession",
+            "type": "((id: string, title: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-panel.tsx"
+          },
+          {
+            "name": "onDeleteSession",
+            "type": "((id: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/agent-panel.tsx"
+          },
+          {
+            "name": "onPinSession",
+            "type": "((id: string, pinned: boolean) => void) | undefined",
             "optional": true,
             "defaultValue": null,
             "comment": "",
@@ -84687,6 +84771,491 @@
             "defaultValue": null,
             "comment": "",
             "file": "core/src/components/ui/agent/agent-observe.tsx"
+          }
+        ]
+      },
+      "Composer": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "children",
+            "type": "ReactNode",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "onSend",
+            "type": "(text: string, quickAction?: ChatInputBarQuickAction) => void",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "Called with the trimmed text and the quick action picked for it, if any.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "value",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "Controlled draft; omit to let the composer keep it.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "onValueChange",
+            "type": "((value: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "status",
+            "type": "ComposerStatus | undefined",
+            "optional": true,
+            "defaultValue": "\"idle\"",
+            "comment": "\"running\" turns send into stop.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "onStop",
+            "type": "(() => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "false",
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "quickActions",
+            "type": "ChatInputBarQuickAction[] | undefined",
+            "optional": true,
+            "defaultValue": "[]",
+            "comment": "Cards that fan out above the input on an empty conversation, as in ChatInputBar.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "hasMessages",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "false",
+            "comment": "Folds the quick-action cards once the conversation has messages.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "keepOnSend",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "false",
+            "comment": "Keep the draft after sending, e.g. until the host confirms.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "locale",
+            "type": "AgentLocale | undefined",
+            "optional": true,
+            "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ComposerHeader": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "children",
+            "type": "ReactNode",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ComposerInput": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "rows",
+            "type": "number | undefined",
+            "optional": true,
+            "defaultValue": "2",
+            "comment": "Visible rows before the field grows.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "maxRows",
+            "type": "number | undefined",
+            "optional": true,
+            "defaultValue": "8",
+            "comment": "Rows it grows to before scrolling.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "sendOnEnter",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "true",
+            "comment": "Enter sends and Shift+Enter breaks the line; off makes Enter a line break and ⌘/Ctrl+Enter sends.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ComposerToolbar": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "children",
+            "type": "ReactNode",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ComposerAction": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "toggleQuickActions",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "false",
+            "comment": "Toggles the quick-action cards instead of calling onClick.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "active",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "showLabel",
+            "type": "boolean | undefined",
+            "optional": true,
+            "defaultValue": "false",
+            "comment": "Shows the label next to the icon.",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ComposerModelMenu": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "models",
+            "type": "ComposerModel[]",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "model",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "onModelChange",
+            "type": "((id: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ComposerSend": {
+        "file": "core/src/components/ui/agent/composer.tsx",
+        "props": [
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "stopLabel",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          },
+          {
+            "name": "stoppingLabel",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/composer.tsx"
+          }
+        ]
+      },
+      "ConversationList": {
+        "file": "core/src/components/ui/agent/conversation-list.tsx",
+        "props": [
+          {
+            "name": "items",
+            "type": "ConversationItem[]",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "currentId",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "onSelect",
+            "type": "(id: string) => void",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "onNew",
+            "type": "(() => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "onRename",
+            "type": "((id: string, title: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "onDelete",
+            "type": "((id: string) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "onPin",
+            "type": "((id: string, pinned: boolean) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "searchAfter",
+            "type": "number | undefined",
+            "optional": true,
+            "defaultValue": "8",
+            "comment": "Shows a search field once there are more items than this.",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "now",
+            "type": "number | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "Reference time for the groups; pass it when rendering on the server.",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "locale",
+            "type": "AgentLocale | undefined",
+            "optional": true,
+            "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true,
+            "defaultValue": "\"auto\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/conversation-list.tsx"
+          }
+        ]
+      },
+      "InlineDiff": {
+        "file": "core/src/components/ui/agent/inline-diff.tsx",
+        "props": [
+          {
+            "name": "segments",
+            "type": "InlineDiffSegment[]",
+            "optional": false,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "onApply",
+            "type": "((text: string, decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "Called with the text that results from the current decisions.",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "onDecisionsChange",
+            "type": "((decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "applyLabel",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "locale",
+            "type": "AgentLocale | undefined",
+            "optional": true,
+            "defaultValue": "\"zh\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true,
+            "defaultValue": "\"md\"",
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true,
+            "defaultValue": null,
+            "comment": "",
+            "file": "core/src/components/ui/agent/inline-diff.tsx"
           }
         ]
       },
@@ -99905,7 +100474,7 @@
         "fields": []
       },
       "ToolCallProps": {
-        "type": "{\n  /** Tool name as the model calls it, e.g. \"search_orders\". */\n  name: string;\n  /** Human label shown instead of the name, e.g. \"查询订单\". */\n  title?: ReactNode;\n  /** Short summary after the label, e.g. the main argument or \"12 条结果\". */\n  summary?: ReactNode;\n  status: ToolCallStatus;\n  args?: unknown;\n  result?: unknown;\n  error?: string;\n  /** Start time, for the live timer while running. */\n  startedAt?: number | Date;\n  /** Final duration in milliseconds. */\n  duration?: number;\n  /** Replaces the check once the call has finished, e.g. the tool's logo. */\n  icon?: ReactNode;\n  /** Shown on errors. */\n  onRetry?: () => void;\n  /** Why the agent wants to run this; shown while awaiting approval. */\n  approvalReason?: ReactNode;\n  onApprove?: () => void;\n  onDeny?: () => void;\n  defaultOpen?: boolean;\n  /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */\n  variant?: \"card\" | \"row\";\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  /** Tool name as the model calls it, e.g. \"search_orders\". */\n  name: string;\n  /** Human label shown instead of the name, e.g. \"查询订单\". */\n  title?: ReactNode;\n  /** Short summary after the label, e.g. the main argument or \"12 条结果\". */\n  summary?: ReactNode;\n  status: ToolCallStatus;\n  args?: unknown;\n  result?: unknown;\n  error?: string;\n  /** Start time, for the live timer while running. */\n  startedAt?: number | Date;\n  /** Final duration in milliseconds. */\n  duration?: number;\n  /** Replaces the check once the call has finished, e.g. the tool's logo. */\n  icon?: ReactNode;\n  /** Custom body shown when the row opens, instead of the argument and result blocks. */\n  details?: ReactNode;\n  /** Shown on errors. */\n  onRetry?: () => void;\n  /** Why the agent wants to run this; shown while awaiting approval. */\n  approvalReason?: ReactNode;\n  onApprove?: () => void;\n  onDeny?: () => void;\n  defaultOpen?: boolean;\n  /** Open by itself when the call fails, so the error shows. */\n  openOnError?: boolean;\n  /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */\n  variant?: \"card\" | \"row\";\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "name",
@@ -99958,6 +100527,11 @@
             "optional": true
           },
           {
+            "name": "details",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
             "name": "onRetry",
             "type": "(() => void) | undefined",
             "optional": true
@@ -99979,6 +100553,11 @@
           },
           {
             "name": "defaultOpen",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "openOnError",
             "type": "boolean | undefined",
             "optional": true
           },
@@ -100010,7 +100589,7 @@
         ]
       },
       "ToolCallGroupProps": {
-        "type": "{\n  children: ReactNode;\n  /** e.g. \"调用了 3 次工具\"; defaults from `count`. */\n  label?: ReactNode;\n  count?: number;\n  status?: \"running\" | \"success\" | \"error\";\n  /** Uncontrolled default; the group opens itself while running or after an error. */\n  defaultOpen?: boolean;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  className?: string;\n}",
+        "type": "{\n  children: ReactNode;\n  /** e.g. \"调用了 3 次工具\"; defaults from `count`. */\n  label?: ReactNode;\n  count?: number;\n  status?: \"idle\" | \"running\" | \"success\" | \"error\" | \"cancelled\";\n  /** Replaces the status word after the label, e.g. \"执行失败\". */\n  statusLabel?: ReactNode;\n  /** Uncontrolled default; the group opens itself unless everything succeeded. */\n  defaultOpen?: boolean;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  className?: string;\n}",
         "fields": [
           {
             "name": "children",
@@ -100029,7 +100608,12 @@
           },
           {
             "name": "status",
-            "type": "\"success\" | \"error\" | \"running\" | undefined",
+            "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "statusLabel",
+            "type": "ReactNode",
             "optional": true
           },
           {
@@ -100080,7 +100664,7 @@
         ]
       },
       "QuestionItem": {
-        "type": "{\n  id: string;\n  title: string;\n  description?: string;\n  options: QuestionOption[];\n  multiple?: boolean;\n  /** Adds a free-text field; with no options the question is text only. */\n  allowText?: boolean;\n  textPlaceholder?: string;\n}",
+        "type": "{\n  id: string;\n  title: string;\n  description?: string;\n  options: QuestionOption[];\n  multiple?: boolean;\n  /** Adds a free-text field. Defaults to on when there are no options. */\n  allowText?: boolean;\n  textPlaceholder?: string;\n}",
         "fields": [
           {
             "name": "id",
@@ -100135,7 +100719,7 @@
         ]
       },
       "QuestionProps": {
-        "type": "{\n  questions: QuestionItem[];\n  onSubmit: (answers: Record<string, QuestionAnswer>) => void;\n  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */\n  onCancel?: () => void;\n  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */\n  answers?: Record<string, QuestionAnswer>;\n  /**\n   * A single single-choice question submits on click unless this is set.\n   * Several questions or multiple choice always confirm.\n   */\n  confirm?: boolean;\n  disabled?: boolean;\n  submitLabel?: string;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  questions: QuestionItem[];\n  /** Called once with every answer; skipped questions are left out. */\n  onSubmit: (answers: Record<string, QuestionAnswer>) => void;\n  /** Adds a cancel button that drops the whole question. */\n  onCancel?: () => void;\n  /** Adds a skip button per question; the last skip submits what was answered. */\n  skippable?: boolean;\n  /**\n   * Once answered, pass the answers back: the card shows what was chosen. Without it the card shows\n   * a short \"答案已提交\" status after submitting.\n   */\n  answers?: Record<string, QuestionAnswer>;\n  /**\n   * A single single-choice question submits on click, and a single choice moves to the next question,\n   * unless this is set; then every step waits for Continue.\n   */\n  confirm?: boolean;\n  disabled?: boolean;\n  submitLabel?: string;\n  labels?: QuestionLabels;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "questions",
@@ -100150,6 +100734,11 @@
           {
             "name": "onCancel",
             "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "skippable",
+            "type": "boolean | undefined",
             "optional": true
           },
           {
@@ -100170,6 +100759,11 @@
           {
             "name": "submitLabel",
             "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "labels",
+            "type": "Partial<Record<\"submit\" | \"next\" | \"previous\" | \"sent\" | \"skip\" | \"skipSubmit\" | \"continue\" | \"cancel\" | \"skipped\", string>> | undefined",
             "optional": true
           },
           {
@@ -100829,7 +101423,7 @@
         ]
       },
       "AgentPanelProps": {
-        "type": "{\n  title: string;\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  /** The floating launcher; turn it off when the app opens the panel from its own button. */\n  launcher?: boolean;\n  launcherLabel?: string;\n  /** Shown above the composer when there is nothing in the conversation yet. */\n  empty?: ReactNode;\n  /** Changes when content arrives, to keep following the latest reply. */\n  followKey?: unknown;\n  children?: ReactNode;\n  onNewChat?: () => void;\n  /** Earlier conversations, listed under the history button. */\n  sessions?: AgentSession[];\n  currentSessionId?: string;\n  onSelectSession?: (id: string) => void;\n  /** Above the composer: errors, attachments, notices. */\n  notice?: ReactNode;\n  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */\n  composer: ComponentProps<typeof ChatInputBar>;\n}",
+        "type": "{\n  title: string;\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  /** The floating launcher; turn it off when the app opens the panel from its own button. */\n  launcher?: boolean;\n  launcherLabel?: string;\n  /** Shown above the composer when there is nothing in the conversation yet. */\n  empty?: ReactNode;\n  /** Changes when content arrives, to keep following the latest reply. */\n  followKey?: unknown;\n  children?: ReactNode;\n  onNewChat?: () => void;\n  /** Earlier conversations, listed under the history button. */\n  sessions?: AgentSession[];\n  currentSessionId?: string;\n  onSelectSession?: (id: string) => void;\n  onRenameSession?: (id: string, title: string) => void;\n  onDeleteSession?: (id: string) => void;\n  onPinSession?: (id: string, pinned: boolean) => void;\n  /** Above the composer: errors, attachments, notices. */\n  notice?: ReactNode;\n  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */\n  composer: ComponentProps<typeof ChatInputBar>;\n}",
         "fields": [
           {
             "name": "title",
@@ -100878,7 +101472,7 @@
           },
           {
             "name": "sessions",
-            "type": "AgentSession[] | undefined",
+            "type": "ConversationItem[] | undefined",
             "optional": true
           },
           {
@@ -100889,6 +101483,21 @@
           {
             "name": "onSelectSession",
             "type": "((id: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onRenameSession",
+            "type": "((id: string, title: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onDeleteSession",
+            "type": "((id: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onPinSession",
+            "type": "((id: string, pinned: boolean) => void) | undefined",
             "optional": true
           },
           {
@@ -100904,7 +101513,7 @@
         ]
       },
       "AgentSession": {
-        "type": "{ id: string; title: string }",
+        "type": "ConversationItem",
         "fields": [
           {
             "name": "id",
@@ -100915,6 +101524,31 @@
             "name": "title",
             "type": "string",
             "optional": false
+          },
+          {
+            "name": "updatedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "preview",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "pinned",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "running",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "unread",
+            "type": "boolean | undefined",
+            "optional": true
           }
         ]
       },
@@ -101934,6 +102568,334 @@
           {
             "name": "title",
             "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "locale",
+            "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "size",
+            "type": "\"md\" | \"sm\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "ComposerProps": {
+        "type": "{\n  children: ReactNode;\n  /** Called with the trimmed text and the quick action picked for it, if any. */\n  onSend: (text: string, quickAction?: ChatInputBarQuickAction) => void;\n  /** Controlled draft; omit to let the composer keep it. */\n  value?: string;\n  onValueChange?: (value: string) => void;\n  /** \"running\" turns send into stop. */\n  status?: ComposerStatus;\n  onStop?: () => void;\n  disabled?: boolean;\n  placeholder?: string;\n  /** Cards that fan out above the input on an empty conversation, as in ChatInputBar. */\n  quickActions?: ChatInputBarQuickAction[];\n  /** Folds the quick-action cards once the conversation has messages. */\n  hasMessages?: boolean;\n  /** Keep the draft after sending, e.g. until the host confirms. */\n  keepOnSend?: boolean;\n  locale?: AgentLocale;\n  className?: string;\n}",
+        "fields": [
+          {
+            "name": "children",
+            "type": "ReactNode",
+            "optional": false
+          },
+          {
+            "name": "onSend",
+            "type": "(text: string, quickAction?: ChatInputBarQuickAction) => void",
+            "optional": false
+          },
+          {
+            "name": "value",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onValueChange",
+            "type": "((value: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "ComposerStatus | undefined",
+            "optional": true
+          },
+          {
+            "name": "onStop",
+            "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "disabled",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "quickActions",
+            "type": "ChatInputBarQuickAction[] | undefined",
+            "optional": true
+          },
+          {
+            "name": "hasMessages",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "keepOnSend",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "locale",
+            "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "ComposerInputProps": {
+        "type": "{\n  /** Visible rows before the field grows. */\n  rows?: number;\n  /** Rows it grows to before scrolling. */\n  maxRows?: number;\n  /** Enter sends and Shift+Enter breaks the line; off makes Enter a line break and ⌘/Ctrl+Enter sends. */\n  sendOnEnter?: boolean;\n  label?: string;\n  className?: string;\n}",
+        "fields": [
+          {
+            "name": "rows",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "maxRows",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "sendOnEnter",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "ComposerActionProps": {
+        "type": "{\n  label: string;\n  icon?: ReactNode;\n  onClick?: () => void;\n  /** Toggles the quick-action cards instead of calling onClick. */\n  toggleQuickActions?: boolean;\n  active?: boolean;\n  /** Shows the label next to the icon. */\n  showLabel?: boolean;\n}",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "toggleQuickActions",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "active",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "showLabel",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "ComposerModelMenuProps": {
+        "type": "{\n  models: ComposerModel[];\n  model?: string;\n  onModelChange?: (id: string) => void;\n  label?: string;\n}",
+        "fields": [
+          {
+            "name": "models",
+            "type": "ComposerModel[]",
+            "optional": false
+          },
+          {
+            "name": "model",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onModelChange",
+            "type": "((id: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "ConversationItem": {
+        "type": "{\n  id: string;\n  title: string;\n  /** Last activity; groups the list into today, yesterday, this week and earlier. */\n  updatedAt?: number | Date;\n  /** First line of the last message, shown under the title. */\n  preview?: string;\n  pinned?: boolean;\n  /** The agent is still working in this conversation. */\n  running?: boolean;\n  /** Has a reply the user has not read. */\n  unread?: boolean;\n}",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "updatedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "preview",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "pinned",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "running",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "unread",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "ConversationListProps": {
+        "type": "{\n  items: ConversationItem[];\n  currentId?: string;\n  onSelect: (id: string) => void;\n  onNew?: () => void;\n  onRename?: (id: string, title: string) => void;\n  onDelete?: (id: string) => void;\n  onPin?: (id: string, pinned: boolean) => void;\n  /** Shows a search field once there are more items than this. */\n  searchAfter?: number;\n  /** Reference time for the groups; pass it when rendering on the server. */\n  now?: number;\n  locale?: AgentLocale;\n  motion?: MotionPreference;\n  className?: string;\n}",
+        "fields": [
+          {
+            "name": "items",
+            "type": "ConversationItem[]",
+            "optional": false
+          },
+          {
+            "name": "currentId",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onSelect",
+            "type": "(id: string) => void",
+            "optional": false
+          },
+          {
+            "name": "onNew",
+            "type": "(() => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onRename",
+            "type": "((id: string, title: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onDelete",
+            "type": "((id: string) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onPin",
+            "type": "((id: string, pinned: boolean) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "searchAfter",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "now",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "locale",
+            "type": "AgentLocale | undefined",
+            "optional": true
+          },
+          {
+            "name": "motion",
+            "type": "MotionPreference | undefined",
+            "optional": true
+          },
+          {
+            "name": "className",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      "QuestionLabels": {
+        "type": "Partial<Record<\"skip\" | \"skipSubmit\" | \"continue\" | \"submit\" | \"cancel\" | \"previous\" | \"next\" | \"sent\" | \"skipped\", string>>",
+        "fields": []
+      },
+      "InlineDiffSegment": {
+        "type": "| { type: \"same\"; text: string }\n  | { type: \"change\"; id: string; before: string; after: string; /** Why the agent changed it; shown on hover. */ reason?: string }",
+        "fields": [
+          {
+            "name": "type",
+            "type": "\"same\" | \"change\"",
+            "optional": false
+          }
+        ]
+      },
+      "InlineDiffDecision": {
+        "type": "\"pending\" | \"accepted\" | \"rejected\"",
+        "fields": []
+      },
+      "InlineDiffProps": {
+        "type": "{\n  segments: InlineDiffSegment[];\n  title?: ReactNode;\n  /** Called with the text that results from the current decisions. */\n  onApply?: (text: string, decisions: Record<string, InlineDiffDecision>) => void;\n  onDecisionsChange?: (decisions: Record<string, InlineDiffDecision>) => void;\n  applyLabel?: string;\n  locale?: AgentLocale;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "fields": [
+          {
+            "name": "segments",
+            "type": "InlineDiffSegment[]",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "onApply",
+            "type": "((text: string, decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "onDecisionsChange",
+            "type": "((decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+            "optional": true
+          },
+          {
+            "name": "applyLabel",
+            "type": "string | undefined",
             "optional": true
           },
           {
@@ -106257,7 +107219,7 @@
       "name": "ToolCall",
       "file": "core/src/components/ui/agent/tool-call.tsx",
       "mainCount": 0,
-      "currentCount": 20,
+      "currentCount": 22,
       "added": [
         "name",
         "title",
@@ -106269,11 +107231,13 @@
         "startedAt",
         "duration",
         "icon",
+        "details",
         "onRetry",
         "approvalReason",
         "onApprove",
         "onDeny",
         "defaultOpen",
+        "openOnError",
         "variant",
         "locale",
         "motion",
@@ -106287,12 +107251,13 @@
       "name": "ToolCallGroup",
       "file": "core/src/components/ui/agent/tool-call.tsx",
       "mainCount": 0,
-      "currentCount": 8,
+      "currentCount": 9,
       "added": [
         "children",
         "label",
         "count",
         "status",
+        "statusLabel",
         "defaultOpen",
         "locale",
         "motion",
@@ -106305,15 +107270,17 @@
       "name": "Question",
       "file": "core/src/components/ui/agent/question.tsx",
       "mainCount": 0,
-      "currentCount": 10,
+      "currentCount": 12,
       "added": [
         "questions",
         "onSubmit",
         "onCancel",
+        "skippable",
         "answers",
         "confirm",
         "disabled",
         "submitLabel",
+        "labels",
         "locale",
         "size",
         "className"
@@ -106499,7 +107466,7 @@
       "name": "AgentPanel",
       "file": "core/src/components/ui/agent/agent-panel.tsx",
       "mainCount": 0,
-      "currentCount": 14,
+      "currentCount": 17,
       "added": [
         "title",
         "open",
@@ -106513,6 +107480,9 @@
         "sessions",
         "currentSessionId",
         "onSelectSession",
+        "onRenameSession",
+        "onDeleteSession",
+        "onPinSession",
         "notice",
         "composer"
       ],
@@ -106737,6 +107707,151 @@
         "now",
         "onSelect",
         "title",
+        "locale",
+        "size",
+        "className"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "Composer",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 13,
+      "added": [
+        "children",
+        "onSend",
+        "value",
+        "onValueChange",
+        "status",
+        "onStop",
+        "disabled",
+        "placeholder",
+        "quickActions",
+        "hasMessages",
+        "keepOnSend",
+        "locale",
+        "className"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ComposerHeader",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 2,
+      "added": [
+        "children",
+        "className"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ComposerInput",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 5,
+      "added": [
+        "rows",
+        "maxRows",
+        "sendOnEnter",
+        "label",
+        "className"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ComposerToolbar",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 2,
+      "added": [
+        "children",
+        "className"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ComposerAction",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 6,
+      "added": [
+        "label",
+        "icon",
+        "onClick",
+        "toggleQuickActions",
+        "active",
+        "showLabel"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ComposerModelMenu",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 4,
+      "added": [
+        "models",
+        "model",
+        "onModelChange",
+        "label"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ComposerSend",
+      "file": "core/src/components/ui/agent/composer.tsx",
+      "mainCount": 0,
+      "currentCount": 3,
+      "added": [
+        "label",
+        "stopLabel",
+        "stoppingLabel"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "ConversationList",
+      "file": "core/src/components/ui/agent/conversation-list.tsx",
+      "mainCount": 0,
+      "currentCount": 12,
+      "added": [
+        "items",
+        "currentId",
+        "onSelect",
+        "onNew",
+        "onRename",
+        "onDelete",
+        "onPin",
+        "searchAfter",
+        "now",
+        "locale",
+        "motion",
+        "className"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "name": "InlineDiff",
+      "file": "core/src/components/ui/agent/inline-diff.tsx",
+      "mainCount": 0,
+      "currentCount": 8,
+      "added": [
+        "segments",
+        "title",
+        "onApply",
+        "onDecisionsChange",
+        "applyLabel",
         "locale",
         "size",
         "className"
@@ -106994,6 +108109,17 @@
     "CitationSource",
     "CitedAnswer",
     "CitedAnswerProps",
+    "Composer",
+    "ComposerAction",
+    "ComposerActionProps",
+    "ComposerHeader",
+    "ComposerInput",
+    "ComposerInputProps",
+    "ComposerModelMenu",
+    "ComposerModelMenuProps",
+    "ComposerProps",
+    "ComposerSend",
+    "ComposerToolbar",
     "ConfirmCard",
     "ConfirmCardProps",
     "ConfirmField",
@@ -107001,7 +108127,14 @@
     "ContextSegmentKind",
     "ContextUsage",
     "ContextUsageProps",
+    "ConversationItem",
+    "ConversationList",
+    "ConversationListProps",
     "InboxTask",
+    "InlineDiff",
+    "InlineDiffDecision",
+    "InlineDiffProps",
+    "InlineDiffSegment",
     "LaneBlock",
     "LedgerEntry",
     "LedgerField",
@@ -107012,6 +108145,7 @@
     "Question",
     "QuestionAnswer",
     "QuestionItem",
+    "QuestionLabels",
     "QuestionOption",
     "QuestionProps",
     "QueuedPrompt",
@@ -107039,6 +108173,7 @@
     "TrailStep",
     "TrailSubstep",
     "TreeAgent",
-    "TreeAgentStatus"
+    "TreeAgentStatus",
+    "resolveInlineDiff"
   ]
 }

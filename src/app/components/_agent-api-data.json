@@ -2022,31 +2022,31 @@
         "name": "skipLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"跳过\" : \"Skip\""
+        "defaultValue": "pick(locale, \"跳过\", \"Skip\")"
       },
       {
         "name": "skipSubmitLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"跳过并提交\" : \"Skip and submit\""
+        "defaultValue": "pick(locale, \"跳过并提交\", \"Skip and submit\")"
       },
       {
         "name": "continueLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"继续\" : \"Continue\""
+        "defaultValue": "pick(locale, \"继续\", \"Continue\")"
       },
       {
         "name": "sendLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"提交\" : \"Send\""
+        "defaultValue": "pick(locale, \"提交\", \"Send\")"
       },
       {
         "name": "sentLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"答案已提交\" : \"Answers sent\""
+        "defaultValue": "pick(locale, \"答案已提交\", \"Answers sent\")"
       },
       {
         "name": "onSubmitted",
@@ -2058,13 +2058,13 @@
         "name": "previousQuestionLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"上一题\" : \"Previous question\""
+        "defaultValue": "pick(locale, \"上一题\", \"Previous question\")"
       },
       {
         "name": "nextQuestionLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"下一题\" : \"Next question\""
+        "defaultValue": "pick(locale, \"下一题\", \"Next question\")"
       },
       {
         "name": "className",
@@ -3884,6 +3884,12 @@
         "defaultValue": null
       },
       {
+        "name": "details",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "onRetry",
         "type": "(() => void) | undefined",
         "optional": true,
@@ -3912,6 +3918,12 @@
         "type": "boolean | undefined",
         "optional": true,
         "defaultValue": "false"
+      },
+      {
+        "name": "openOnError",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
       },
       {
         "name": "variant",
@@ -3979,9 +3991,15 @@
       },
       {
         "name": "status",
-        "type": "\"success\" | \"error\" | \"running\" | undefined",
+        "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
         "optional": true,
         "defaultValue": "\"success\""
+      },
+      {
+        "name": "statusLabel",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
       },
       {
         "name": "defaultOpen",
@@ -4037,6 +4055,12 @@
         "defaultValue": null
       },
       {
+        "name": "skippable",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
         "name": "answers",
         "type": "Record<string, QuestionAnswer> | undefined",
         "optional": true,
@@ -4059,6 +4083,12 @@
         "type": "string | undefined",
         "optional": true,
         "defaultValue": null
+      },
+      {
+        "name": "labels",
+        "type": "Partial<Record<\"submit\" | \"next\" | \"previous\" | \"sent\" | \"skip\" | \"skipSubmit\" | \"continue\" | \"cancel\" | \"skipped\", string>> | undefined",
+        "optional": true,
+        "defaultValue": "{}"
       },
       {
         "name": "locale",
@@ -5007,7 +5037,7 @@
       },
       {
         "name": "sessions",
-        "type": "AgentSession[] | undefined",
+        "type": "ConversationItem[] | undefined",
         "optional": true,
         "defaultValue": null
       },
@@ -5020,6 +5050,24 @@
       {
         "name": "onSelectSession",
         "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRenameSession",
+        "type": "((id: string, title: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDeleteSession",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onPinSession",
+        "type": "((id: string, pinned: boolean) => void) | undefined",
         "optional": true,
         "defaultValue": null
       },
@@ -5038,7 +5086,7 @@
     ],
     "types": [
       {
-        "name": "AgentSession",
+        "name": "ConversationItem",
         "definition": "",
         "fields": [
           {
@@ -5050,6 +5098,31 @@
             "name": "title",
             "type": "string",
             "optional": false
+          },
+          {
+            "name": "updatedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "preview",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "pinned",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "running",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "unread",
+            "type": "boolean | undefined",
+            "optional": true
           }
         ]
       },
@@ -6507,6 +6580,504 @@
             "optional": false
           }
         ]
+      }
+    ]
+  },
+  "Composer": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSend",
+        "type": "(text: string, quickAction?: ChatInputBarQuickAction) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "type": "((value: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "ComposerStatus | undefined",
+        "optional": true,
+        "defaultValue": "\"idle\""
+      },
+      {
+        "name": "onStop",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "quickActions",
+        "type": "ChatInputBarQuickAction[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "hasMessages",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "keepOnSend",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ChatInputBarQuickAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "\"note\" | \"voice\" | \"image\" | \"event\" | \"docs\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerStatus",
+        "definition": "\"idle\" | \"running\" | \"stopping\"",
+        "fields": []
+      }
+    ]
+  },
+  "ComposerHeader": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ComposerInput": {
+    "props": [
+      {
+        "name": "rows",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "2"
+      },
+      {
+        "name": "maxRows",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "8"
+      },
+      {
+        "name": "sendOnEnter",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ComposerToolbar": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ComposerAction": {
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onClick",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "toggleQuickActions",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "active",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showLabel",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      }
+    ],
+    "types": []
+  },
+  "ComposerModelMenu": {
+    "props": [
+      {
+        "name": "models",
+        "type": "ComposerModel[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "model",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onModelChange",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ComposerModel",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "ComposerSend": {
+    "props": [
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stopLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stoppingLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ConversationList": {
+    "props": [
+      {
+        "name": "items",
+        "type": "ConversationItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "currentId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "(id: string) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onNew",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRename",
+        "type": "((id: string, title: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDelete",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onPin",
+        "type": "((id: string, pinned: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "searchAfter",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "8"
+      },
+      {
+        "name": "now",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ConversationItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "updatedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "preview",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "pinned",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "running",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "unread",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "InlineDiff": {
+    "props": [
+      {
+        "name": "segments",
+        "type": "InlineDiffSegment[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onApply",
+        "type": "((text: string, decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDecisionsChange",
+        "type": "((decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "applyLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "InlineDiffSegment",
+        "definition": "",
+        "fields": [
+          {
+            "name": "type",
+            "type": "\"same\" | \"change\"",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "InlineDiffDecision",
+        "definition": "\"pending\" | \"accepted\" | \"rejected\"",
+        "fields": []
       }
     ]
   }

@@ -112,7 +112,10 @@ function responseLinks(links: AskAiLink[] = []): AskAiLink[] {
 
 const DEFAULT_SUGGESTIONS = ["这个页面可以做什么？", "下一步该做什么？", "帮我总结当前内容"];
 
-/** Header entry, modal conversation drawer, and optional fullscreen shell. No network calls or page scraping. */
+/**
+ * Header entry, modal conversation drawer, and optional fullscreen shell. No network calls or page scraping.
+ * The earlier agent shell: new products use AgentPanel, which Forge Agent, Starter and the agent factory share.
+ */
 export function AskAi({
   color,
   label = "Ask AI",

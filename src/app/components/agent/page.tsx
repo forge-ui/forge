@@ -27,6 +27,9 @@ import {
   AwayDemo,
   CheckpointsDemo,
   AgentComposerDemo,
+  ComposerPartsBuildDemo,
+  ConversationListDemo,
+  InlineDiffDemo,
   CitedAnswerDemo,
   ComposerPartsDemo,
   ContextDemo,
@@ -297,6 +300,24 @@ const KIT_CODE = {
   hasMessages={messages.length > 0}
   onSend={send}
 />`,
+  composerParts: `<Composer quickActions={quickActions} hasMessages={messages.length > 0} onSend={send}>
+  <ComposerHeader><AttachmentList items={files} /></ComposerHeader>
+  <ComposerInput />
+  <ComposerToolbar>
+    <ComposerAction label="快捷操作" toggleQuickActions />
+    <ComposerAction label="联网搜索" showLabel active={search} onClick={toggleSearch} />
+    <span className="ml-auto flex items-center gap-2">
+      <ComposerModelMenu models={models} model={model} onModelChange={setModel} />
+      <ComposerSend />
+    </span>
+  </ComposerToolbar>
+</Composer>`,
+  conversations: `<ConversationList items={sessions} currentId={current} onSelect={open} onNew={newChat}
+  onRename={rename} onDelete={remove} onPin={pin} />`,
+  inlineDiff: `<InlineDiff
+  segments={[{ type: "same", text: "本月退款" }, { type: "change", id: "1", before: "比较多", after: "128 笔", reason: "用数字" }]}
+  onApply={text => save(text)}
+/>`,
   welcome: `<AgentWelcome title="你好，我是运营助手" description="改数据前都会先问你。" />
 <ChatInputBar quickActions={quickActions} hasMessages={false} onSend={send} />`,
   panel: `<AgentPanel title="Forge Agent" open={open} onOpenChange={setOpen} sessions={sessions} onNewChat={newChat}
@@ -321,6 +342,34 @@ const KIT_CODE = {
   tree: `<AgentTree root={{ id: "lead", name: "运营主管", status: "running", children: [...] }} onSelect={select} />
 <AgentLanes lanes={lanes} blocks={blocks} now={elapsed} />`,
 };
+
+const CHOOSE: { need: string; use: string; avoid: string }[] = [
+  { need: "等模型的第一个字", use: "ThinkingIndicator", avoid: "Reasoning（还没有内容时）" },
+  { need: "模型的思考过程", use: "Reasoning；演示页用 ThinkingTrace", avoid: "把工具调用写进思考步骤" },
+  { need: "工具调用", use: "ToolCall / ToolCallGroup；AI SDK 消息直接用 AgentParts", avoid: "给最终用户看大段参数 JSON" },
+  { need: "缺信息要用户选", use: "Question；运行时候选用 ChoiceCard", avoid: "开放问题（直接用文字问）" },
+  { need: "改数据前确认", use: "Approval；运行时提案用 ConfirmCard", avoid: "只读查询（不需要确认）" },
+  { need: "给建议和备选", use: "RecommendationCard", avoid: "需要用户确认执行时" },
+  { need: "回答正文", use: "StreamingAnswer；每句要出处用 CitedAnswer", avoid: "把来源堆在正文里" },
+  { need: "AI 改写一段文字", use: "InlineDiff", avoid: "表格改动（AgentDiffTable）、代码改动（AgentCodeBlock）" },
+  { need: "输入框", use: "ChatInputBar；要自己排布用 Composer 系列", avoid: "评论、搜索框" },
+  { need: "历史对话", use: "ConversationList（AgentPanel 已内置）", avoid: "普通导航菜单" },
+  { need: "多步任务", use: "先 AgentPlan，执行中 AgentTrail", avoid: "单次工具调用" },
+  { need: "撤销智能体的改动", use: "ChangeLedger；回到某一步用 AgentCheckpoints", avoid: "单次确认" },
+  { need: "后台任务", use: "AgentInbox、顶栏 RunningNow、回来时 AwaySummary", avoid: "一次对话里的步骤" },
+  { need: "上下文、耗时、花费", use: "ContextUsage、TraceWaterfall、AgentTree / AgentLanes", avoid: "业务指标（用 StatCard 和图表）" },
+];
+
+function ChooseTable() {
+  return (
+    <div className="overflow-x-auto rounded-xl border border-fg-grey-200">
+      <table className="w-full text-left text-sm">
+        <thead className="bg-fg-grey-50 text-fg-grey-700"><tr>{["要做的事", "用", "不要用在"].map(label => <th key={label} className="px-4 py-3 font-semibold">{label}</th>)}</tr></thead>
+        <tbody>{CHOOSE.map(row => <tr key={row.need} className="border-t border-fg-grey-200"><td className="px-4 py-3 text-fg-black">{row.need}</td><td className="px-4 py-3 font-medium text-fg-black">{row.use}</td><td className="px-4 py-3 text-fg-grey-700">{row.avoid}</td></tr>)}</tbody>
+      </table>
+    </div>
+  );
+}
 
 function AgentApi({
   id,
@@ -376,8 +425,13 @@ export default function AgentSpecPage() {
       </Section>
 
 
+      <Section title="怎么选" description="按要做的事挑组件；右列是常见的误用。">
+        <ChooseTable />
+      </Section>
+
       <Section title="对话与输入" description="消息、输入框和面板：Forge Agent 的外壳。空对话时输入框上方是快捷卡片，有了消息自然收起。">
         <DocExample id="chatinputbar" title="ChatInputBar · 快捷卡片" summary="空对话时输入框上方展开快捷卡片，发送后自然收起，左侧加号可以再打开；@ 提及、/ 命令、模型和权限菜单都在这里。完整用法见消息输入栏。" code={KIT_CODE.composerBar} minHeight={420}><AgentComposerDemo /></DocExample>
+        <DocExample id="composer" title="Composer · 自己拼装" summary="同一套外观和快捷卡片，部件自己摆：头部放附件，工具栏加自定义按钮，模型菜单和发送放右边。" code={KIT_CODE.composerParts} minHeight={380}><ComposerPartsBuildDemo /></DocExample>
         <DocExample id="conversation" title="Conversation" summary="可以输入或点推荐提问；新回复自动跟随，上翻后出现“回到最新”。" code={CODE_CONVERSATION} minHeight={460}>
           <ConversationDemo />
         </DocExample>
@@ -386,6 +440,7 @@ export default function AgentSpecPage() {
           <DocExample id="runcontrols" title="RunControls / PromptQueue / AttachmentList" summary="运行中可以停止、插一句；停下后继续或重试。回答没结束时写的消息先排队，可调序、编辑、提前发。" code={KIT_CODE.composer} minHeight={320}><ComposerPartsDemo /></DocExample>
         </ExampleGrid>
         <DocExample id="agentpanel" title="AgentPanel" summary="右侧面板：历史对话、新对话、消息区和输入框；宽屏时页面让出面板宽度。" code={KIT_CODE.panel} minHeight={120}><PanelDemo /></DocExample>
+        <DocExample id="conversationlist" title="ConversationList" summary="按今天、昨天、7 天内分组；置顶、重命名、删除，进行中和有新回复都有标记。面板的历史按钮里就是它。" code={KIT_CODE.conversations} minHeight={420}><ConversationListDemo /></DocExample>
         <DocExample id="artifactcard" title="ArtifactCard" summary="生成中、已完成和失败三种状态。" code={CODE_ARTIFACT} minHeight={260}>
           <ArtifactDemo />
         </DocExample>
@@ -520,6 +575,7 @@ export default function AgentSpecPage() {
           </DocExample>
           <DocExample id="citedanswer" title="CitedAnswer" summary="指向角标会高亮它支撑的那句话和下方来源，并预览原文摘录。" code={KIT_CODE.cited} minHeight={220}><CitedAnswerDemo /></DocExample>
         </ExampleGrid>
+        <DocExample id="inlinediff" title="InlineDiff" summary="AI 改写的文字就地显示删改：逐处接受或拒绝（也可按 A / R），或者全部处理后应用。" code={KIT_CODE.inlineDiff} minHeight={280}><InlineDiffDemo /></DocExample>
         <ExampleGrid>
           <DocExample id="contextcards" title="ContextCards" summary="检索到的段落带上来源文件和字数。" code={CODE_CONTEXT} minHeight={200}>
             <div className="w-full max-w-lg">
@@ -663,6 +719,15 @@ export default function AgentSpecPage() {
         <AgentApi id="promptsuggestions" name="PromptSuggestions" descriptions={SUGGESTION_ROWS} />
         <AgentApi id="artifactcard" name="ArtifactCard" descriptions={ARTIFACT_ROWS} />
         <AgentApi id="agentparts" name="AgentParts" descriptions={PARTS_ROWS} />
+        <AgentApi id="composer" name="Composer" />
+        <AgentApi id="composerheader" name="ComposerHeader" />
+        <AgentApi id="composerinput" name="ComposerInput" />
+        <AgentApi id="composertoolbar" name="ComposerToolbar" />
+        <AgentApi id="composeraction" name="ComposerAction" />
+        <AgentApi id="composermodelmenu" name="ComposerModelMenu" />
+        <AgentApi id="composersend" name="ComposerSend" />
+        <AgentApi id="conversationlist" name="ConversationList" />
+        <AgentApi id="inlinediff" name="InlineDiff" />
         <AgentApi id="reasoning" name="Reasoning" />
         <AgentApi id="thinkingindicator" name="ThinkingIndicator" />
         <AgentApi id="toolcall" name="ToolCall" />

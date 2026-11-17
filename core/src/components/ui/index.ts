@@ -425,6 +425,16 @@ export {
   TraceWaterfall,
   AgentTree,
   AgentLanes,
+  Composer,
+  ComposerHeader,
+  ComposerInput,
+  ComposerToolbar,
+  ComposerAction,
+  ComposerModelMenu,
+  ComposerSend,
+  ConversationList,
+  InlineDiff,
+  resolveInlineDiff,
 } from "./agent";
 export type {
   ThinkingVariant,
@@ -539,6 +549,16 @@ export type {
   AgentTreeProps,
   LaneBlock,
   AgentLanesProps,
+  ComposerProps,
+  ComposerInputProps,
+  ComposerActionProps,
+  ComposerModelMenuProps,
+  ConversationItem,
+  ConversationListProps,
+  QuestionLabels,
+  InlineDiffSegment,
+  InlineDiffDecision,
+  InlineDiffProps,
 } from "./agent";
 
 // Overlay, disclosure, content transitions and notifications.

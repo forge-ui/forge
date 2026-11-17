@@ -27,6 +27,8 @@ export type ToolCallProps = {
   duration?: number;
   /** Replaces the check once the call has finished, e.g. the tool's logo. */
   icon?: ReactNode;
+  /** Custom body shown when the row opens, instead of the argument and result blocks. */
+  details?: ReactNode;
   /** Shown on errors. */
   onRetry?: () => void;
   /** Why the agent wants to run this; shown while awaiting approval. */
@@ -34,6 +36,8 @@ export type ToolCallProps = {
   onApprove?: () => void;
   onDeny?: () => void;
   defaultOpen?: boolean;
+  /** Open by itself when the call fails, so the error shows. */
+  openOnError?: boolean;
   /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */
   variant?: "card" | "row";
   locale?: AgentLocale;
@@ -78,15 +82,15 @@ function StatusIcon({ status, icon }: { status: ToolCallStatus; icon?: ReactNode
  * opens to the arguments and the result (or the error with a retry); a call that needs approval asks
  * in a card with allow and deny.
  */
-export function ToolCall({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen = false, variant = "card", locale = "zh", motion = "auto", size = "md", className }: ToolCallProps) {
+export function ToolCall({ name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen = false, openOnError = true, variant = "card", locale = "zh", motion = "auto", size = "md", className }: ToolCallProps) {
   const running = status === "running" || status === "pending";
   const elapsed = useElapsed(startedAt, running);
   const [toggled, setToggled] = useState<boolean>();
   // Errors open themselves so the message is visible, until the reader folds it.
-  const open = toggled ?? (defaultOpen || status === "error");
+  const open = toggled ?? (defaultOpen || (openOnError && status === "error"));
   const asking = status === "awaiting-approval";
   const time = duration ?? elapsed;
-  const hasBody = args !== undefined || result !== undefined || Boolean(error);
+  const hasBody = details !== undefined || args !== undefined || result !== undefined || Boolean(error);
   const label = title ?? name;
   const trailing = status === "error" ? pick(locale, "失败", "Failed")
     : status === "denied" ? pick(locale, "已拒绝", "Denied")
@@ -135,6 +139,7 @@ export function ToolCall({ name, title, summary, status, args, result, error, st
       </button>
       <Collapse open={open && hasBody} motion={motion}>
         <div className="ml-[22px] mt-1 flex flex-col gap-2 border-l border-fg-grey-200 pb-1 pl-3">
+          {details}
           {args !== undefined && <Payload label={pick(locale, "参数", "Arguments")} value={pretty(args)} locale={locale} />}
           {result !== undefined && <Payload label={pick(locale, "结果", "Result")} value={pretty(result)} locale={locale} />}
           {result === undefined && running && <p className="forge-text-shimmer text-xs text-fg-grey-500">{pick(locale, "等待结果…", "Waiting for result…")}</p>}
@@ -151,8 +156,10 @@ export type ToolCallGroupProps = {
   /** e.g. "调用了 3 次工具"; defaults from `count`. */
   label?: ReactNode;
   count?: number;
-  status?: "running" | "success" | "error";
-  /** Uncontrolled default; the group opens itself while running or after an error. */
+  status?: "idle" | "running" | "success" | "error" | "cancelled";
+  /** Replaces the status word after the label, e.g. "执行失败". */
+  statusLabel?: ReactNode;
+  /** Uncontrolled default; the group opens itself unless everything succeeded. */
   defaultOpen?: boolean;
   locale?: AgentLocale;
   motion?: MotionPreference;
@@ -160,18 +167,18 @@ export type ToolCallGroupProps = {
 };
 
 /** Several tool calls of one turn behind one line, so the answer is not buried under them. */
-export function ToolCallGroup({ children, label, count, status = "success", defaultOpen, locale = "zh", motion = "auto", className }: ToolCallGroupProps) {
+export function ToolCallGroup({ children, label, count, status = "success", statusLabel, defaultOpen, locale = "zh", motion = "auto", className }: ToolCallGroupProps) {
   // A toggle holds until the status changes; then the group follows the status again.
   const [toggled, setToggled] = useState<{ status: string; open: boolean }>();
   const open = toggled?.status === status ? toggled.open : defaultOpen ?? status !== "success";
   const text = label ?? (count !== undefined ? pick(locale, `调用了 ${count} 次工具`, `Called ${count} tools`) : pick(locale, "工具调用", "Tool calls"));
-  const state = status === "running" ? pick(locale, "正在执行", "Running") : status === "error" ? pick(locale, "有失败", "Failed") : undefined;
+  const state = statusLabel ?? (status === "running" ? pick(locale, "正在执行", "Running") : status === "error" ? pick(locale, "有失败", "Failed") : status === "cancelled" ? pick(locale, "已停止", "Stopped") : undefined);
   return (
     <div data-tool-group={status} className={cn("flex min-w-0 flex-col gap-1 text-sm tracking-fg", className)}>
       <button type="button" aria-expanded={open} onClick={() => setToggled({ status, open: !open })} className="-ml-1.5 flex w-fit items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100">
         <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("transition-transform", !open && "-rotate-90")} />
         {text}
-        {state && <span role="status" className={cn(status === "running" ? "forge-text-shimmer" : "text-fg-red")}>{state}</span>}
+        {state && <span role="status" className={cn(status === "running" ? "forge-text-shimmer" : status === "error" ? "text-fg-red" : "text-fg-grey-500")}>{state}</span>}
       </button>
       <Collapse open={open} motion={motion}>
         <div className="flex flex-col">{children}</div>

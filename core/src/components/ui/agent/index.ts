@@ -48,7 +48,7 @@ export { ToolCall, ToolCallGroup } from "./tool-call";
 export type { ToolCallStatus, ToolCallProps, ToolCallGroupProps } from "./tool-call";
 
 export { Question, ChoiceCard } from "./question";
-export type { QuestionOption, QuestionItem, QuestionAnswer, QuestionProps, ChoiceOption, ChoiceAnswer, ChoiceCardProps } from "./question";
+export type { QuestionOption, QuestionItem, QuestionAnswer, QuestionLabels, QuestionProps, ChoiceOption, ChoiceAnswer, ChoiceCardProps } from "./question";
 
 export { Approval, ConfirmCard } from "./approval";
 export type { ApprovalRisk, ApprovalScope, ApprovalState, ApprovalField, ApprovalProps, ConfirmField, ConfirmCardProps } from "./approval";
@@ -76,3 +76,12 @@ export type { AgentTaskState, InboxTask, AgentInboxProps, RunningNowProps, AwayI
 
 export { ContextUsage, TraceWaterfall, AgentTree, AgentLanes } from "./agent-observe";
 export type { ContextSegmentKind, ContextSegment, ContextUsageProps, TraceSpan, TraceWaterfallProps, TreeAgentStatus, TreeAgent, AgentTreeProps, LaneBlock, AgentLanesProps } from "./agent-observe";
+
+export { Composer, ComposerHeader, ComposerInput, ComposerToolbar, ComposerAction, ComposerModelMenu, ComposerSend } from "./composer";
+export type { ComposerProps, ComposerInputProps, ComposerActionProps, ComposerModelMenuProps } from "./composer";
+
+export { ConversationList } from "./conversation-list";
+export type { ConversationItem, ConversationListProps } from "./conversation-list";
+
+export { InlineDiff, resolveInlineDiff } from "./inline-diff";
+export type { InlineDiffSegment, InlineDiffDecision, InlineDiffProps } from "./inline-diff";

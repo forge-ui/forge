@@ -18,7 +18,7 @@ import {
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { StreamingAnswerDemo } from "./_streaming-demo";
-import { AnalysisScenario, MultiAgentScenario, OpsScenario, PlanScenario, RefundScenario } from "./_scenarios";
+import { AnalysisScenario, MultiAgentScenario, OpsScenario, PlanScenario, RefundScenario, WritingScenario } from "./_scenarios";
 
 const TASKS = [
   {
@@ -71,6 +71,7 @@ export default function AgentCasePage() {
         <SubSection title="经营分析问答" stack><AnalysisScenario /></SubSection>
         <SubSection title="退款处理" stack><RefundScenario /></SubSection>
         <SubSection title="多步任务" stack><PlanScenario /></SubSection>
+        <SubSection title="文档写作" stack><WritingScenario /></SubSection>
         <SubSection title="后台任务中心" stack><OpsScenario /></SubSection>
         <SubSection title="多智能体协作" stack><MultiAgentScenario /></SubSection>
       </Section>
