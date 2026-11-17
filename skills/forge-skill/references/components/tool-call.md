@@ -6,7 +6,7 @@
 ## ToolCall (value)
 
 ```ts
-({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element
+({ name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -21,11 +21,13 @@
 | `startedAt` | 否 | `number \| Date \| undefined` | Start time, for the live timer while running. |
 | `duration` | 否 | `number \| undefined` | Final duration in milliseconds. |
 | `icon` | 否 | `ReactNode` | Replaces the check once the call has finished, e.g. the tool's logo. |
+| `details` | 否 | `ReactNode` | Custom body shown when the row opens, instead of the argument and result blocks. |
 | `onRetry` | 否 | `(() => void) \| undefined` | Shown on errors. |
 | `approvalReason` | 否 | `ReactNode` | Why the agent wants to run this; shown while awaiting approval. |
 | `onApprove` | 否 | `(() => void) \| undefined` |  |
 | `onDeny` | 否 | `(() => void) \| undefined` |  |
 | `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `openOnError` | 否 | `boolean \| undefined` | Open by itself when the call fails, so the error shows. |
 | `variant` | 否 | `"row" \| "card" \| undefined` | row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
@@ -35,7 +37,7 @@
 ## ToolCallGroup (value)
 
 ```ts
-({ children, label, count, status, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element
+({ children, label, count, status, statusLabel, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -43,8 +45,9 @@
 | `children` | 是 | `ReactNode` |  |
 | `label` | 否 | `ReactNode` | e.g. "调用了 3 次工具"; defaults from `count`. |
 | `count` | 否 | `number \| undefined` |  |
-| `status` | 否 | `"success" \| "error" \| "running" \| undefined` |  |
-| `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself while running or after an error. |
+| `status` | 否 | `"idle" \| "success" \| "error" \| "running" \| "cancelled" \| undefined` |  |
+| `statusLabel` | 否 | `ReactNode` | Replaces the status word after the label, e.g. "执行失败". |
+| `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself unless everything succeeded. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
@@ -57,8 +60,10 @@ export type ToolCallGroupProps = {
   /** e.g. "调用了 3 次工具"; defaults from `count`. */
   label?: ReactNode;
   count?: number;
-  status?: "running" | "success" | "error";
-  /** Uncontrolled default; the group opens itself while running or after an error. */
+  status?: "idle" | "running" | "success" | "error" | "cancelled";
+  /** Replaces the status word after the label, e.g. "执行失败". */
+  statusLabel?: ReactNode;
+  /** Uncontrolled default; the group opens itself unless everything succeeded. */
   defaultOpen?: boolean;
   locale?: AgentLocale;
   motion?: MotionPreference;
@@ -86,6 +91,8 @@ export type ToolCallProps = {
   duration?: number;
   /** Replaces the check once the call has finished, e.g. the tool's logo. */
   icon?: ReactNode;
+  /** Custom body shown when the row opens, instead of the argument and result blocks. */
+  details?: ReactNode;
   /** Shown on errors. */
   onRetry?: () => void;
   /** Why the agent wants to run this; shown while awaiting approval. */
@@ -93,6 +100,8 @@ export type ToolCallProps = {
   onApprove?: () => void;
   onDeny?: () => void;
   defaultOpen?: boolean;
+  /** Open by itself when the call fails, so the error shows. */
+  openOnError?: boolean;
   /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */
   variant?: "card" | "row";
   locale?: AgentLocale;
@@ -107,3 +116,12 @@ export type ToolCallProps = {
 ```ts
 export type ToolCallStatus = "pending" | "running" | "awaiting-approval" | "success" | "error" | "denied";
 ```
+
+## 选型
+
+- 一次工具调用（状态、计时、参数、结果、重试、就地确认）→ `ToolCall`
+- 一轮里的多次调用折成一行 → `ToolCallGroup`
+
+不要用：
+- 面向最终用户、不关心参数时 → 只给一行 `ThinkingIndicator` 状态
+- 只是思考 → `Reasoning`

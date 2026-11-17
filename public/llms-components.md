@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 952c9a640599cc6580f1923ee88999ee523bb319282a81fa5a7a03046d5f49d2
+Source fingerprint: b032d2378c5506198666dfb596e8cdbf82bb4934e7baa796829c119a5862a655
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (604, values and types distinguished)
+## Public exports (624, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -237,11 +237,22 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - CommentData [type] — core/src/components/ui/comment-item.tsx
 - CommentItem [value] — core/src/components/ui/comment-item.tsx
 - CommentReply [type] — core/src/components/ui/comment-item.tsx
+- Composer [value] — core/src/components/ui/agent/composer.tsx
+- ComposerAction [value] — core/src/components/ui/agent/composer.tsx
+- ComposerActionProps [type] — core/src/components/ui/agent/composer.tsx
 - ComposerCommand [type] — core/src/components/ui/chat-input-bar.tsx
+- ComposerHeader [value] — core/src/components/ui/agent/composer.tsx
+- ComposerInput [value] — core/src/components/ui/agent/composer.tsx
+- ComposerInputProps [type] — core/src/components/ui/agent/composer.tsx
 - ComposerModel [type] — core/src/components/ui/composer-types.ts
+- ComposerModelMenu [value] — core/src/components/ui/agent/composer.tsx
+- ComposerModelMenuProps [type] — core/src/components/ui/agent/composer.tsx
+- ComposerProps [type] — core/src/components/ui/agent/composer.tsx
 - ComposerReply [type] — core/src/components/ui/composer-types.ts
+- ComposerSend [value] — core/src/components/ui/agent/composer.tsx
 - ComposerSource [type] — core/src/components/ui/chat-input-bar.tsx
 - ComposerStatus [type] — core/src/components/ui/composer-types.ts
+- ComposerToolbar [value] — core/src/components/ui/agent/composer.tsx
 - ComposerVoiceState [type] — core/src/components/ui/composer-types.ts
 - ConfirmationDialog [value] — core/src/components/ui/confirmation-dialog.tsx
 - ConfirmationDialogColor [type] — core/src/components/ui/confirmation-dialog.tsx
@@ -258,6 +269,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ContextUsageProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - ControlColor [type] — core/src/components/ui/forms/selection-control.tsx
 - Conversation [value] — core/src/components/ui/agent/agent-conversation.tsx
+- ConversationItem [type] — core/src/components/ui/agent/conversation-list.tsx
+- ConversationList [value] — core/src/components/ui/agent/conversation-list.tsx
+- ConversationListProps [type] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
 - CreditCard [value] — core/src/components/ui/credit-card.tsx
 - CurrencyConverter [value] — core/src/components/ui/currency-converter.tsx
@@ -358,6 +372,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - InboxTask [type] — core/src/components/ui/agent/agent-ops.tsx
 - InfoRow [value] — core/src/components/ui/info-row.tsx
 - InfoRowProps [type] — core/src/components/ui/info-row.tsx
+- InlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
+- InlineDiffDecision [type] — core/src/components/ui/agent/inline-diff.tsx
+- InlineDiffProps [type] — core/src/components/ui/agent/inline-diff.tsx
+- InlineDiffSegment [type] — core/src/components/ui/agent/inline-diff.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightCards [value] — core/src/components/ui/agent/insight-cards.tsx
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -467,6 +485,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - Question [value] — core/src/components/ui/agent/question.tsx
 - QuestionAnswer [type] — core/src/components/ui/agent/question.tsx
 - QuestionItem [type] — core/src/components/ui/agent/question.tsx
+- QuestionLabels [type] — core/src/components/ui/agent/question.tsx
 - QuestionOption [type] — core/src/components/ui/agent/question.tsx
 - QuestionProps [type] — core/src/components/ui/agent/question.tsx
 - QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
@@ -483,6 +502,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - RecommendationConfidence [type] — core/src/components/ui/agent/recommendation-card.tsx
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
+- resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
 - resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
 - RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
@@ -1074,6 +1094,13 @@ export type PromptSuggestionsProps = {
 };
 ```
 
+## 选型
+
+- 消息滚动区（跟随最新、回到最新）→ `Conversation`；一轮消息 → `AgentMessage`；回复下的操作 → `MessageActions`；推荐提问 → `PromptSuggestions`；生成的文件 → `ArtifactCard`
+
+不要用：
+- 人和人的聊天 → `ChatBubble`
+
 ---
 
 Source: skills/forge-skill/references/components/agent-diff-table.md
@@ -1337,6 +1364,15 @@ export type LedgerEntry = {
 export type LedgerField = { label: string; before?: string; after: string };
 ```
 
+## 选型
+
+- 智能体改过的数据和撤销 → `ChangeLedger`
+- 回到某一步重来 → `AgentCheckpoints`
+- 智能体能自己做多少 → `AutonomySelector`
+
+不要用：
+- 单次确认 → `Approval`
+
 ---
 
 Source: skills/forge-skill/references/components/agent-observe.md
@@ -1556,6 +1592,15 @@ export type TreeAgent = {
 export type TreeAgentStatus = "running" | "waiting" | "done" | "failed" | "idle";
 ```
 
+## 选型
+
+- 上下文占用和压缩 → `ContextUsage`
+- 一次运行的耗时和花费 → `TraceWaterfall`
+- 多智能体分工 → `AgentTree`；时间线 → `AgentLanes`
+
+不要用：
+- 业务指标 → `StatCard` / 图表
+
 ---
 
 Source: skills/forge-skill/references/components/agent-ops.md
@@ -1691,6 +1736,15 @@ export type RunningNowProps = {
 };
 ```
 
+## 选型
+
+- 后台任务列表（批准、驳回、重试）→ `AgentInbox`
+- 顶栏的运行状态 → `RunningNow`
+- 用户回来时的摘要 → `AwaySummary`
+
+不要用：
+- 一次对话里的步骤 → `AgentTrail`
+
 ---
 
 Source: skills/forge-skill/references/components/agent-panel.md
@@ -1709,7 +1763,7 @@ Source: skills/forge-skill/references/components/agent-panel.md
 ## AgentPanel (value)
 
 ```ts
-({ title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer }: AgentPanelProps) => JSX.Element | null
+({ title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer }: AgentPanelProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -1723,9 +1777,12 @@ Source: skills/forge-skill/references/components/agent-panel.md
 | `followKey` | 否 | `unknown` | Changes when content arrives, to keep following the latest reply. |
 | `children` | 否 | `ReactNode` |  |
 | `onNewChat` | 否 | `(() => void) \| undefined` |  |
-| `sessions` | 否 | `AgentSession[] \| undefined` | Earlier conversations, listed under the history button. |
+| `sessions` | 否 | `ConversationItem[] \| undefined` | Earlier conversations, listed under the history button. |
 | `currentSessionId` | 否 | `string \| undefined` |  |
 | `onSelectSession` | 否 | `((id: string) => void) \| undefined` |  |
+| `onRenameSession` | 否 | `((id: string, title: string) => void) \| undefined` |  |
+| `onDeleteSession` | 否 | `((id: string) => void) \| undefined` |  |
+| `onPinSession` | 否 | `((id: string, pinned: boolean) => void) \| undefined` |  |
 | `notice` | 否 | `ReactNode` | Above the composer: errors, attachments, notices. |
 | `composer` | 是 | `{ locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` | ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. |
 
@@ -1749,6 +1806,9 @@ export type AgentPanelProps = {
   sessions?: AgentSession[];
   currentSessionId?: string;
   onSelectSession?: (id: string) => void;
+  onRenameSession?: (id: string, title: string) => void;
+  onDeleteSession?: (id: string) => void;
+  onPinSession?: (id: string, pinned: boolean) => void;
   /** Above the composer: errors, attachments, notices. */
   notice?: ReactNode;
   /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */
@@ -1759,8 +1819,15 @@ export type AgentPanelProps = {
 ## AgentSession (type)
 
 ```ts
-export type AgentSession = { id: string; title: string };
+export type AgentSession = ConversationItem;
 ```
+
+## 选型
+
+- 页面右侧的智能体面板（入口按钮、历史、新对话、消息区、输入框）→ `AgentPanel`；接模型运行时直接用 agent 包的 `ForgeAgent`
+
+不要用：
+- 旧的抽屉式助手 → `AskAi` 只为兼容保留
 
 ---
 
@@ -1853,6 +1920,13 @@ export type AgentToolPart = {
 ```ts
 export type AgentToolState = "input-streaming" | "input-available" | "approval-requested" | "approval-responded" | "output-available" | "output-error" | "output-denied";
 ```
+
+## 选型
+
+- useChat 的 message.parts → `AgentParts`（思考、工具、确认、正文、来源、文件一次渲染）
+
+不要用：
+- 非 AI SDK 的自定义运行时 → 自己组合 Reasoning、ToolCall、StreamingAnswer
 
 ---
 
@@ -1997,6 +2071,15 @@ export type TrailStep = {
 export type TrailSubstep = { id: string; title: string; status: AgentStepStatus; duration?: number };
 ```
 
+## 选型
+
+- 执行前给用户改计划 → `AgentPlan`
+- 执行中看步骤、子步骤和等待确认 → `AgentTrail`
+- Forge Agent 运行时的步骤 → `RunProgress`
+
+不要用：
+- 单次工具调用 → `ToolCall`
+
 ---
 
 Source: skills/forge-skill/references/components/agent-task-rows.md
@@ -2048,6 +2131,14 @@ export type AgentTaskChild = {
 export type AgentTaskStatus = "running" | "failed" | "completed";
 ```
 
+## 选型
+
+- 回复里列几项任务及状态 → `AgentTaskRows`
+
+不要用：
+- 后台任务管理 → `AgentInbox`
+- 多步执行进度 → `AgentTrail`
+
 ---
 
 Source: skills/forge-skill/references/components/agent-welcome.md
@@ -2085,6 +2176,13 @@ export type AgentWelcomeProps = {
   className?: string;
 };
 ```
+
+## 选型
+
+- 空对话时介绍智能体 → `AgentWelcome`，起手任务放在输入框的 `quickActions`
+
+不要用：
+- 有内容的对话 → 不显示
 
 ---
 
@@ -2465,6 +2563,15 @@ export type ConfirmCardProps = {
 export type ConfirmField = ApprovalField;
 ```
 
+## 选型
+
+- 写操作、付款、删除前请用户确认（风险、前后对比、允许范围、拒绝原因）→ `Approval`
+- Forge Agent 运行时的提案确认 → `ConfirmCard`
+
+不要用：
+- 只读查询 → 不需要确认
+- 工具调用自带的确认 → `ToolCall` 的 awaiting-approval 状态（AgentParts 会自动渲染）
+
 ---
 
 Source: skills/forge-skill/references/components/approval-card.md
@@ -2477,7 +2584,7 @@ Source: skills/forge-skill/references/components/approval-card.md
 ## ApprovalCard (value)
 
 ```ts
-({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: "zh" | "en"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element | null
+({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: "zh" | "en"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -2504,6 +2611,13 @@ export type ApprovalQuestion = {
   options: { id: string; label: string }[];
 };
 ```
+
+## 选型
+
+- 已有 ApprovalQuestion 数据 → `ApprovalCard`（内部即 Question）
+
+不要用：
+- 新代码 → `Question`
 
 ---
 
@@ -2616,6 +2730,13 @@ export interface AskAiProps {
   railLabel?: string;
 }
 ```
+
+## 选型
+
+- 已有页面继续用 → `AskAi`
+
+不要用：
+- 新功能 → `AgentPanel`
 
 ---
 
@@ -4311,7 +4432,8 @@ export type ComposerSource = {
 
 ## 选型
 
-- 聊天页底部 → `ChatInputBar`
+- 聊天页、智能体面板底部的现成输入框（快捷卡片、@ 提及、/ 命令、模型、权限、语音）→ `ChatInputBar`
+- 要自己排布输入框的部件 → `Composer` + `ComposerInput` / `ComposerToolbar` / `ComposerSend`
 - 评论输入 → 用 `TextArea` + 自定义 Submit
 - 搜索输入 → `ToolbarSearchInput`
 
@@ -5106,6 +5228,14 @@ export type CitedAnswerProps = {
 };
 ```
 
+## 选型
+
+- 每个结论要能回到资料（角标预览原文、高亮对应句子）→ `CitedAnswer`
+
+不要用：
+- 流式 Markdown 正文 → `StreamingAnswer` / `AgentParts`
+- 只列来源不标句子 → StreamingAnswer 的 sources
+
 ---
 
 Source: skills/forge-skill/references/components/command-search.md
@@ -5207,6 +5337,187 @@ export type CommentReply = {
 - 讨论区 / 评论列表 → `CommentItem`
 - 打分评价 → `ReviewItem`（带 rating）
 - 活动日志 → `ActivityCard`
+
+---
+
+Source: skills/forge-skill/references/components/composer.md
+
+# composer
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/composer.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Composer (value)
+
+```ts
+({ children, onSend, value: controlled, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className }: ComposerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `onSend` | 是 | `(text: string, quickAction?: ChatInputBarQuickAction) => void` | Called with the trimmed text and the quick action picked for it, if any. |
+| `value` | 否 | `string \| undefined` | Controlled draft; omit to let the composer keep it. |
+| `onValueChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `status` | 否 | `ComposerStatus \| undefined` | "running" turns send into stop. |
+| `onStop` | 否 | `(() => void) \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `quickActions` | 否 | `ChatInputBarQuickAction[] \| undefined` | Cards that fan out above the input on an empty conversation, as in ChatInputBar. |
+| `hasMessages` | 否 | `boolean \| undefined` | Folds the quick-action cards once the conversation has messages. |
+| `keepOnSend` | 否 | `boolean \| undefined` | Keep the draft after sending, e.g. until the host confirms. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ComposerAction (value)
+
+```ts
+({ label, icon, onClick, toggleQuickActions, active, showLabel }: ComposerActionProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `label` | 是 | `string` |  |
+| `icon` | 否 | `ReactNode` |  |
+| `onClick` | 否 | `(() => void) \| undefined` |  |
+| `toggleQuickActions` | 否 | `boolean \| undefined` | Toggles the quick-action cards instead of calling onClick. |
+| `active` | 否 | `boolean \| undefined` |  |
+| `showLabel` | 否 | `boolean \| undefined` | Shows the label next to the icon. |
+
+## ComposerActionProps (type)
+
+```ts
+export type ComposerActionProps = {
+  label: string;
+  icon?: ReactNode;
+  onClick?: () => void;
+  /** Toggles the quick-action cards instead of calling onClick. */
+  toggleQuickActions?: boolean;
+  active?: boolean;
+  /** Shows the label next to the icon. */
+  showLabel?: boolean;
+};
+```
+
+## ComposerHeader (value)
+
+```ts
+({ children, className }: { children: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ComposerInput (value)
+
+```ts
+({ rows, maxRows, sendOnEnter, label, className }: ComposerInputProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `rows` | 否 | `number \| undefined` | Visible rows before the field grows. |
+| `maxRows` | 否 | `number \| undefined` | Rows it grows to before scrolling. |
+| `sendOnEnter` | 否 | `boolean \| undefined` | Enter sends and Shift+Enter breaks the line; off makes Enter a line break and ⌘/Ctrl+Enter sends. |
+| `label` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ComposerInputProps (type)
+
+```ts
+export type ComposerInputProps = {
+  /** Visible rows before the field grows. */
+  rows?: number;
+  /** Rows it grows to before scrolling. */
+  maxRows?: number;
+  /** Enter sends and Shift+Enter breaks the line; off makes Enter a line break and ⌘/Ctrl+Enter sends. */
+  sendOnEnter?: boolean;
+  label?: string;
+  className?: string;
+};
+```
+
+## ComposerModelMenu (value)
+
+```ts
+({ models, model, onModelChange, label }: ComposerModelMenuProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `models` | 是 | `ComposerModel[]` |  |
+| `model` | 否 | `string \| undefined` |  |
+| `onModelChange` | 否 | `((id: string) => void) \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+
+## ComposerModelMenuProps (type)
+
+```ts
+export type ComposerModelMenuProps = {
+  models: ComposerModel[];
+  model?: string;
+  onModelChange?: (id: string) => void;
+  label?: string;
+};
+```
+
+## ComposerProps (type)
+
+```ts
+export type ComposerProps = {
+  children: ReactNode;
+  /** Called with the trimmed text and the quick action picked for it, if any. */
+  onSend: (text: string, quickAction?: ChatInputBarQuickAction) => void;
+  /** Controlled draft; omit to let the composer keep it. */
+  value?: string;
+  onValueChange?: (value: string) => void;
+  /** "running" turns send into stop. */
+  status?: ComposerStatus;
+  onStop?: () => void;
+  disabled?: boolean;
+  placeholder?: string;
+  /** Cards that fan out above the input on an empty conversation, as in ChatInputBar. */
+  quickActions?: ChatInputBarQuickAction[];
+  /** Folds the quick-action cards once the conversation has messages. */
+  hasMessages?: boolean;
+  /** Keep the draft after sending, e.g. until the host confirms. */
+  keepOnSend?: boolean;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## ComposerSend (value)
+
+```ts
+({ label, stopLabel, stoppingLabel }: { label?: string; stopLabel?: string; stoppingLabel?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `label` | 否 | `string \| undefined` |  |
+| `stopLabel` | 否 | `string \| undefined` |  |
+| `stoppingLabel` | 否 | `string \| undefined` |  |
+
+## ComposerToolbar (value)
+
+```ts
+({ children, className }: { children: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## 选型
+
+- 要改输入框布局（工具栏位置、额外按钮、头部放附件和排队）→ `Composer` 及其部件
+
+不要用：
+- 默认布局就够 → `ChatInputBar`
 
 ---
 
@@ -5359,6 +5670,15 @@ export type RunControlsProps = {
 ```ts
 export type RunStatus = "running" | "stopping" | "stopped" | "failed" | "done";
 ```
+
+## 选型
+
+- 运行中停止/继续/重试/插一句 → `RunControls`
+- 回答没结束时写的消息 → `PromptQueue`
+- 消息附件 → `AttachmentList`
+
+不要用：
+- 文件上传表单 → `FileUpload`
 
 ---
 
@@ -5516,6 +5836,82 @@ export type ContextChunk = {
   charCount?: number;
 };
 ```
+
+---
+
+Source: skills/forge-skill/references/components/conversation-list.md
+
+# conversation-list
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/conversation-list.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ConversationItem (type)
+
+```ts
+export type ConversationItem = {
+  id: string;
+  title: string;
+  /** Last activity; groups the list into today, yesterday, this week and earlier. */
+  updatedAt?: number | Date;
+  /** First line of the last message, shown under the title. */
+  preview?: string;
+  pinned?: boolean;
+  /** The agent is still working in this conversation. */
+  running?: boolean;
+  /** Has a reply the user has not read. */
+  unread?: boolean;
+};
+```
+
+## ConversationList (value)
+
+```ts
+({ items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now: fixedNow, locale, motion, className }: ConversationListProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `ConversationItem[]` |  |
+| `currentId` | 否 | `string \| undefined` |  |
+| `onSelect` | 是 | `(id: string) => void` |  |
+| `onNew` | 否 | `(() => void) \| undefined` |  |
+| `onRename` | 否 | `((id: string, title: string) => void) \| undefined` |  |
+| `onDelete` | 否 | `((id: string) => void) \| undefined` |  |
+| `onPin` | 否 | `((id: string, pinned: boolean) => void) \| undefined` |  |
+| `searchAfter` | 否 | `number \| undefined` | Shows a search field once there are more items than this. |
+| `now` | 否 | `number \| undefined` | Reference time for the groups; pass it when rendering on the server. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ConversationListProps (type)
+
+```ts
+export type ConversationListProps = {
+  items: ConversationItem[];
+  currentId?: string;
+  onSelect: (id: string) => void;
+  onNew?: () => void;
+  onRename?: (id: string, title: string) => void;
+  onDelete?: (id: string) => void;
+  onPin?: (id: string, pinned: boolean) => void;
+  /** Shows a search field once there are more items than this. */
+  searchAfter?: number;
+  /** Reference time for the groups; pass it when rendering on the server. */
+  now?: number;
+  locale?: AgentLocale;
+  motion?: MotionPreference;
+  className?: string;
+};
+```
+
+## 选型
+
+- 按时间分组、可搜索、置顶、重命名、删除的对话列表 → `ConversationList`（AgentPanel 的历史按钮已内置）
+
+不要用：
+- 普通导航列表 → `SidebarMenu` / `ListItem`
 
 ---
 
@@ -8661,6 +9057,121 @@ export interface InfoRowProps {
 
 ---
 
+Source: skills/forge-skill/references/components/inline-diff.md
+
+# inline-diff
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/inline-diff.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## InlineDiff (value)
+
+```ts
+({ segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className }: InlineDiffProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `segments` | 是 | `InlineDiffSegment[]` |  |
+| `title` | 否 | `ReactNode` |  |
+| `onApply` | 否 | `((text: string, decisions: Record<string, InlineDiffDecision>) => void) \| undefined` | Called with the text that results from the current decisions. |
+| `onDecisionsChange` | 否 | `((decisions: Record<string, InlineDiffDecision>) => void) \| undefined` |  |
+| `applyLabel` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## InlineDiffDecision (type)
+
+```ts
+export type InlineDiffDecision = "pending" | "accepted" | "rejected";
+```
+
+## InlineDiffProps (type)
+
+```ts
+export type InlineDiffProps = {
+  segments: InlineDiffSegment[];
+  title?: ReactNode;
+  /** Called with the text that results from the current decisions. */
+  onApply?: (text: string, decisions: Record<string, InlineDiffDecision>) => void;
+  onDecisionsChange?: (decisions: Record<string, InlineDiffDecision>) => void;
+  applyLabel?: string;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+## InlineDiffSegment (type)
+
+```ts
+export type InlineDiffSegment =
+  | { type: "same"; text: string }
+  | { type: "change"; id: string; before: string; after: string; /** Why the agent changed it; shown on hover. */ reason?: string };
+```
+
+## resolveInlineDiff (value)
+
+```ts
+(segments: InlineDiffSegment[], decisions: Record<string, InlineDiffDecision>) => string
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `length` | 是 | `number` | Gets or sets the length of the array. This is a number one higher than the highest index in the array. |
+| `toString` | 是 | `() => string` | Returns a string representation of an array. |
+| `toLocaleString` | 是 | `{ (): string; (locales: string \| string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; }` | Returns a string representation of an array. The elements are converted to string using their toLocaleString methods. |
+| `pop` | 是 | `() => InlineDiffSegment \| undefined` | Removes the last element from an array and returns it. If the array is empty, undefined is returned and the array is not modified. |
+| `push` | 是 | `(...items: InlineDiffSegment[]) => number` | Appends new elements to the end of an array, and returns the new length of the array. |
+| `concat` | 是 | `{ (...items: ConcatArray<InlineDiffSegment>[]): InlineDiffSegment[]; (...items: (InlineDiffSegment \| ConcatArray<InlineDiffSegment>)[]): InlineDiffSegment[]; }` | Combines two or more arrays. This method returns a new array without modifying any existing arrays. |
+| `join` | 是 | `(separator?: string) => string` | Adds all the elements of an array into a string, separated by the specified separator string. |
+| `reverse` | 是 | `() => InlineDiffSegment[]` | Reverses the elements in an array in place. This method mutates the array and returns a reference to the same array. |
+| `shift` | 是 | `() => InlineDiffSegment \| undefined` | Removes the first element from an array and returns it. If the array is empty, undefined is returned and the array is not modified. |
+| `slice` | 是 | `(start?: number, end?: number) => InlineDiffSegment[]` | Returns a copy of a section of an array. For both start and end, a negative index can be used to indicate an offset from the end of the array. For example, -2 refers to the second to last element of the array. |
+| `sort` | 是 | `(compareFn?: ((a: InlineDiffSegment, b: InlineDiffSegment) => number) \| undefined) => InlineDiffSegment[]` | Sorts an array in place. This method mutates the array and returns a reference to the same array. |
+| `splice` | 是 | `{ (start: number, deleteCount?: number): InlineDiffSegment[]; (start: number, deleteCount: number, ...items: InlineDiffSegment[]): InlineDiffSegment[]; }` | Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements. |
+| `unshift` | 是 | `(...items: InlineDiffSegment[]) => number` | Inserts new elements at the start of an array, and returns the new length of the array. |
+| `indexOf` | 是 | `(searchElement: InlineDiffSegment, fromIndex?: number) => number` | Returns the index of the first occurrence of a value in an array, or -1 if it is not present. |
+| `lastIndexOf` | 是 | `(searchElement: InlineDiffSegment, fromIndex?: number) => number` | Returns the index of the last occurrence of a specified value in an array, or -1 if it is not present. |
+| `every` | 是 | `{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): this is S[]; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): boolean; }` | Determines whether all the members of an array satisfy the specified test. |
+| `some` | 是 | `(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any) => boolean` | Determines whether the specified callback function returns true for any element of an array. |
+| `forEach` | 是 | `(callbackfn: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => void, thisArg?: any) => void` | Performs the specified action for each element in an array. |
+| `map` | 是 | `<U>(callbackfn: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => U, thisArg?: any) => U[]` | Calls a defined callback function on each element of an array, and returns an array that contains the results. |
+| `filter` | 是 | `{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): S[]; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment[]; }` | Returns the elements of an array that meet the condition specified in a callback function. |
+| `reduce` | 是 | `{ (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment): InlineDiffSegment; (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment, initialValue: InlineDiffSegment): InlineDiffSegment; <U>(callbackfn: (previousValue: U, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => U, initialValue: U): U; }` | Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function. |
+| `reduceRight` | 是 | `{ (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment): InlineDiffSegment; (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment, initialValue: InlineDiffSegment): InlineDiffSegment; <U>(callbackfn: (previousValue: U, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => U, initialValue: U): U; }` | Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function. |
+| `find` | 是 | `{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => value is S, thisArg?: any): S \| undefined; (predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment \| undefined; }` | Returns the value of the first element in the array where predicate is true, and undefined otherwise. |
+| `findIndex` | 是 | `(predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => unknown, thisArg?: any) => number` | Returns the index of the first element in the array where predicate is true, and -1 otherwise. |
+| `fill` | 是 | `(value: InlineDiffSegment, start?: number, end?: number) => InlineDiffSegment[]` | Changes all array elements from `start` to `end` index to a static `value` and returns the modified array |
+| `copyWithin` | 是 | `(target: number, start: number, end?: number) => InlineDiffSegment[]` | Returns the this object after copying a section of the array identified by start and end to the same array starting at position target |
+| `entries` | 是 | `() => ArrayIterator<[number, InlineDiffSegment]>` | Returns an iterable of key, value pairs for every entry in the array |
+| `keys` | 是 | `() => ArrayIterator<number>` | Returns an iterable of keys in the array |
+| `values` | 是 | `() => ArrayIterator<InlineDiffSegment>` | Returns an iterable of values in the array |
+| `includes` | 是 | `(searchElement: InlineDiffSegment, fromIndex?: number) => boolean` | Determines whether an array includes a certain element, returning true or false as appropriate. |
+| `flatMap` | 是 | `<U, This = undefined>(callback: (this: This, value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => U \| readonly U[], thisArg?: This \| undefined) => U[]` | Calls a defined callback function on each element of an array. Then, flattens the result into a new array. This is identical to a map followed by flat with depth 1. |
+| `flat` | 是 | `<A, D extends number = 1>(this: A, depth?: D \| undefined) => FlatArray<A, D>[]` | Returns a new array with all sub-array elements concatenated into it recursively up to the specified depth. |
+| `at` | 是 | `(index: number) => InlineDiffSegment \| undefined` | Returns the item located at the specified index. |
+| `findLast` | 是 | `{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): S \| undefined; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment \| undefined; }` | Returns the value of the last element in the array where predicate is true, and undefined otherwise. |
+| `findLastIndex` | 是 | `(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any) => number` | Returns the index of the last element in the array where predicate is true, and -1 otherwise. |
+| `toReversed` | 是 | `() => InlineDiffSegment[]` | Returns a copy of an array with its elements reversed. |
+| `toSorted` | 是 | `(compareFn?: ((a: InlineDiffSegment, b: InlineDiffSegment) => number) \| undefined) => InlineDiffSegment[]` | Returns a copy of an array with its elements sorted. |
+| `toSpliced` | 是 | `{ (start: number, deleteCount: number, ...items: InlineDiffSegment[]): InlineDiffSegment[]; (start: number, deleteCount?: number): InlineDiffSegment[]; }` | Copies an array and removes elements and, if necessary, inserts new elements in their place. Returns the copied array. Copies an array and removes elements while returning the remaining elements. |
+| `with` | 是 | `(index: number, value: InlineDiffSegment) => InlineDiffSegment[]` | Copies an array, then overwrites the value at the provided index with the given value. If the index is negative, then it replaces from the end of the array. |
+| `__@iterator@34` | 是 | `() => ArrayIterator<InlineDiffSegment>` | Iterator |
+| `__@unscopables@36` | 是 | `{ [x: number]: boolean \| undefined; length?: boolean \| undefined; toString?: boolean \| undefined; toLocaleString?: boolean \| undefined; pop?: boolean \| undefined; push?: boolean \| undefined; concat?: boolean \| undefined; join?: boolean \| undefined; reverse?: boolean \| undefined; shift?: boolean \| undefined; slice?: boolean \| undefined; sort?: boolean \| undefined; splice?: boolean \| undefined; unshift?: boolean \| undefined; indexOf?: boolean \| undefined; lastIndexOf?: boolean \| undefined; every?: boolean \| undefined; some?: boolean \| undefined; forEach?: boolean \| undefined; map?: boolean \| undefined; filter?: boolean \| undefined; reduce?: boolean \| undefined; reduceRight?: boolean \| undefined; find?: boolean \| undefined; findIndex?: boolean \| undefined; fill?: boolean \| undefined; copyWithin?: boolean \| undefined; entries?: boolean \| undefined; keys?: boolean \| undefined; values?: boolean \| undefined; includes?: boolean \| undefined; flatMap?: boolean \| undefined; flat?: boolean \| undefined; at?: boolean \| undefined; findLast?: boolean \| undefined; findLastIndex?: boolean \| undefined; toReversed?: boolean \| undefined; toSorted?: boolean \| undefined; toSpliced?: boolean \| undefined; with?: boolean \| undefined; [Symbol.iterator]?: boolean \| undefined; readonly [Symbol.unscopables]?: boolean \| undefined; }` | Is an object whose properties have the value 'true' when they will be absent when used in a 'with' statement. |
+
+## 选型
+
+- AI 改写文字，用户逐处接受/拒绝 → `InlineDiff`
+
+不要用：
+- 表格行的增删改 → `AgentDiffTable`
+- 代码改动 → `AgentCodeBlock`
+- 字段前后对比后确认 → `Approval`
+
+---
+
 Source: skills/forge-skill/references/components/insight-cards.md
 
 # insight-cards
@@ -10471,18 +10982,20 @@ export type ChoiceOption = { id: string; label: string; description?: string };
 ## Question (value)
 
 ```ts
-({ questions, onSubmit, onCancel, answers: answered, confirm, disabled, submitLabel, locale, size, className }: QuestionProps) => JSX.Element | null
+({ questions, onSubmit, onCancel, skippable, answers: answered, confirm, disabled, submitLabel, labels, locale, size, className }: QuestionProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `questions` | 是 | `QuestionItem[]` |  |
-| `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` |  |
-| `onCancel` | 否 | `(() => void) \| undefined` | Adds a skip button. With one question it cancels; with several the last skip submits what was answered. |
-| `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card turns into a one-line summary per question. |
-| `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click unless this is set. Several questions or multiple choice always confirm. |
+| `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` | Called once with every answer; skipped questions are left out. |
+| `onCancel` | 否 | `(() => void) \| undefined` | Adds a cancel button that drops the whole question. |
+| `skippable` | 否 | `boolean \| undefined` | Adds a skip button per question; the last skip submits what was answered. |
+| `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card shows what was chosen. Without it the card shows a short "答案已提交" status after submitting. |
+| `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click, and a single choice moves to the next question, unless this is set; then every step waits for Continue. |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `submitLabel` | 否 | `string \| undefined` |  |
+| `labels` | 否 | `Partial<Record<"submit" \| "next" \| "previous" \| "sent" \| "skip" \| "skipSubmit" \| "continue" \| "cancel" \| "skipped", string>> \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
@@ -10502,10 +11015,16 @@ export type QuestionItem = {
   description?: string;
   options: QuestionOption[];
   multiple?: boolean;
-  /** Adds a free-text field; with no options the question is text only. */
+  /** Adds a free-text field. Defaults to on when there are no options. */
   allowText?: boolean;
   textPlaceholder?: string;
 };
+```
+
+## QuestionLabels (type)
+
+```ts
+export type QuestionLabels = Partial<Record<"skip" | "skipSubmit" | "continue" | "submit" | "cancel" | "previous" | "next" | "sent" | "skipped", string>>;
 ```
 
 ## QuestionOption (type)
@@ -10525,23 +11044,39 @@ export type QuestionOption = {
 ```ts
 export type QuestionProps = {
   questions: QuestionItem[];
+  /** Called once with every answer; skipped questions are left out. */
   onSubmit: (answers: Record<string, QuestionAnswer>) => void;
-  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */
+  /** Adds a cancel button that drops the whole question. */
   onCancel?: () => void;
-  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
+  /** Adds a skip button per question; the last skip submits what was answered. */
+  skippable?: boolean;
+  /**
+   * Once answered, pass the answers back: the card shows what was chosen. Without it the card shows
+   * a short "答案已提交" status after submitting.
+   */
   answers?: Record<string, QuestionAnswer>;
   /**
-   * A single single-choice question submits on click unless this is set.
-   * Several questions or multiple choice always confirm.
+   * A single single-choice question submits on click, and a single choice moves to the next question,
+   * unless this is set; then every step waits for Continue.
    */
   confirm?: boolean;
   disabled?: boolean;
   submitLabel?: string;
+  labels?: QuestionLabels;
   locale?: AgentLocale;
   size?: "md" | "sm";
   className?: string;
 };
 ```
+
+## 选型
+
+- 缺信息、要用户在明确选项里挑 → `Question`（单题点选即提交，多题逐题、可跳过）
+- Forge Agent 运行时的候选选择 → `ChoiceCard`
+
+不要用：
+- 开放问题 → 直接用文字问
+- 改数据前确认 → `Approval`
 
 ---
 
@@ -10628,6 +11163,14 @@ export type RecommendationOption = {
   confidence?: RecommendationConfidence;
 };
 ```
+
+## 选型
+
+- 一个推荐方案 + 置信度 + 可替换的备选 → `RecommendationCard`
+
+不要用：
+- 要用户确认执行 → `Approval`
+- 几个平级选项让用户挑 → `Question`
 
 ---
 
@@ -11278,6 +11821,13 @@ export type StreamingSource = {
   href?: string;
 };
 ```
+
+## 选型
+
+- 模型回答正文（Markdown、逐段淡入、来源、追问）→ `StreamingAnswer`，AI SDK 消息用 `AgentParts`
+
+不要用：
+- 每句要回到出处 → `CitedAnswer`
 
 ---
 
@@ -12720,6 +13270,15 @@ export type ThinkingIndicatorProps = {
 };
 ```
 
+## 选型
+
+- 真实模型的思考过程、等待首字 → `Reasoning`（宿主给 status、时长、步骤）
+- 首字之前的一行等待 → `ThinkingIndicator`
+
+不要用：
+- 静态演示页里自己播放的思考动画 → `ThinkingTrace`
+- 工具调用 → `ToolCall`，不要塞进 Reasoning 的步骤
+
 ---
 
 Source: skills/forge-skill/references/components/thinking-trace.md
@@ -12767,6 +13326,13 @@ export type ThinkingRow = {
 ```ts
 export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";
 ```
+
+## 选型
+
+- 营销页、空状态里自己逐条播放的思考过程 → `ThinkingTrace`（内部用 Reasoning 渲染）
+
+不要用：
+- 接真实模型 → `Reasoning`，状态由宿主驱动
 
 ---
 
@@ -12820,7 +13386,7 @@ Source: skills/forge-skill/references/components/tool-call.md
 ## ToolCall (value)
 
 ```ts
-({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element
+({ name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -12835,11 +13401,13 @@ Source: skills/forge-skill/references/components/tool-call.md
 | `startedAt` | 否 | `number \| Date \| undefined` | Start time, for the live timer while running. |
 | `duration` | 否 | `number \| undefined` | Final duration in milliseconds. |
 | `icon` | 否 | `ReactNode` | Replaces the check once the call has finished, e.g. the tool's logo. |
+| `details` | 否 | `ReactNode` | Custom body shown when the row opens, instead of the argument and result blocks. |
 | `onRetry` | 否 | `(() => void) \| undefined` | Shown on errors. |
 | `approvalReason` | 否 | `ReactNode` | Why the agent wants to run this; shown while awaiting approval. |
 | `onApprove` | 否 | `(() => void) \| undefined` |  |
 | `onDeny` | 否 | `(() => void) \| undefined` |  |
 | `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `openOnError` | 否 | `boolean \| undefined` | Open by itself when the call fails, so the error shows. |
 | `variant` | 否 | `"row" \| "card" \| undefined` | row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
@@ -12849,7 +13417,7 @@ Source: skills/forge-skill/references/components/tool-call.md
 ## ToolCallGroup (value)
 
 ```ts
-({ children, label, count, status, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element
+({ children, label, count, status, statusLabel, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -12857,8 +13425,9 @@ Source: skills/forge-skill/references/components/tool-call.md
 | `children` | 是 | `ReactNode` |  |
 | `label` | 否 | `ReactNode` | e.g. "调用了 3 次工具"; defaults from `count`. |
 | `count` | 否 | `number \| undefined` |  |
-| `status` | 否 | `"success" \| "error" \| "running" \| undefined` |  |
-| `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself while running or after an error. |
+| `status` | 否 | `"idle" \| "success" \| "error" \| "running" \| "cancelled" \| undefined` |  |
+| `statusLabel` | 否 | `ReactNode` | Replaces the status word after the label, e.g. "执行失败". |
+| `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself unless everything succeeded. |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
@@ -12871,8 +13440,10 @@ export type ToolCallGroupProps = {
   /** e.g. "调用了 3 次工具"; defaults from `count`. */
   label?: ReactNode;
   count?: number;
-  status?: "running" | "success" | "error";
-  /** Uncontrolled default; the group opens itself while running or after an error. */
+  status?: "idle" | "running" | "success" | "error" | "cancelled";
+  /** Replaces the status word after the label, e.g. "执行失败". */
+  statusLabel?: ReactNode;
+  /** Uncontrolled default; the group opens itself unless everything succeeded. */
   defaultOpen?: boolean;
   locale?: AgentLocale;
   motion?: MotionPreference;
@@ -12900,6 +13471,8 @@ export type ToolCallProps = {
   duration?: number;
   /** Replaces the check once the call has finished, e.g. the tool's logo. */
   icon?: ReactNode;
+  /** Custom body shown when the row opens, instead of the argument and result blocks. */
+  details?: ReactNode;
   /** Shown on errors. */
   onRetry?: () => void;
   /** Why the agent wants to run this; shown while awaiting approval. */
@@ -12907,6 +13480,8 @@ export type ToolCallProps = {
   onApprove?: () => void;
   onDeny?: () => void;
   defaultOpen?: boolean;
+  /** Open by itself when the call fails, so the error shows. */
+  openOnError?: boolean;
   /** row: one line, as listed inside a ToolCallGroup; card: on its own with an outline. */
   variant?: "card" | "row";
   locale?: AgentLocale;
@@ -12921,6 +13496,15 @@ export type ToolCallProps = {
 ```ts
 export type ToolCallStatus = "pending" | "running" | "awaiting-approval" | "success" | "error" | "denied";
 ```
+
+## 选型
+
+- 一次工具调用（状态、计时、参数、结果、重试、就地确认）→ `ToolCall`
+- 一轮里的多次调用折成一行 → `ToolCallGroup`
+
+不要用：
+- 面向最终用户、不关心参数时 → 只给一行 `ThinkingIndicator` 状态
+- 只是思考 → `Reasoning`
 
 ---
 
@@ -12989,6 +13573,13 @@ export type ToolDiffChip = {
   del?: number;
 };
 ```
+
+## 选型
+
+- 已有 ToolChipItem 数据、要显示思考/写入/运行混排和文件增删 → `ToolChips`（内部用 ToolCall 渲染）
+
+不要用：
+- 新接 AI SDK 工具调用 → `ToolCall` / `ToolCallGroup`，或直接 `AgentParts`
 
 ---
 

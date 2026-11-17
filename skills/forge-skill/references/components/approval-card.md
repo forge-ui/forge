@@ -6,7 +6,7 @@
 ## ApprovalCard (value)
 
 ```ts
-({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: "zh" | "en"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element | null
+({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: "zh" | "en"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -33,3 +33,10 @@ export type ApprovalQuestion = {
   options: { id: string; label: string }[];
 };
 ```
+
+## 选型
+
+- 已有 ApprovalQuestion 数据 → `ApprovalCard`（内部即 Question）
+
+不要用：
+- 新代码 → `Question`

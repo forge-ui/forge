@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.9.0",
   "source": "core/src/index.ts",
-  "revision": "c26e034fec96116a85b55f451cbe059e04bae55d",
+  "revision": "27dd800f4d345875727cc3116a3684609172e481",
   "dirty": false,
-  "exportFingerprint": "4fdc93c5c98ec317504c07431a44957f7928dcd1",
-  "generatedAt": "2026-11-17T21:20:49+08:00",
+  "exportFingerprint": "7c3f3360367459dfaac6cb64d61fca6660378819",
+  "generatedAt": "2026-11-17T21:48:12+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 604,
+  "componentCount": 624,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -942,7 +942,7 @@
       "module": "agent/agent-panel",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer }: AgentPanelProps) => JSX.Element | null",
+      "signature": "({ title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer }: AgentPanelProps) => JSX.Element | null",
       "props": [
         {
           "name": "title",
@@ -1001,7 +1001,7 @@
         {
           "name": "sessions",
           "optional": true,
-          "type": "AgentSession[] | undefined",
+          "type": "ConversationItem[] | undefined",
           "description": "Earlier conversations, listed under the history button."
         },
         {
@@ -1014,6 +1014,24 @@
           "name": "onSelectSession",
           "optional": true,
           "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRenameSession",
+          "optional": true,
+          "type": "((id: string, title: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDeleteSession",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPinSession",
+          "optional": true,
+          "type": "((id: string, pinned: boolean) => void) | undefined",
           "description": ""
         },
         {
@@ -2056,7 +2074,7 @@
       "module": "agent/approval-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: \"zh\" | \"en\"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element | null",
+      "signature": "({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: \"zh\" | \"en\"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "questions",
@@ -11950,10 +11968,228 @@
       "props": []
     },
     {
+      "name": "Composer",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, onSend, value: controlled, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className }: ComposerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onSend",
+          "optional": false,
+          "type": "(text: string, quickAction?: ChatInputBarQuickAction) => void",
+          "description": "Called with the trimmed text and the quick action picked for it, if any."
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Controlled draft; omit to let the composer keep it."
+        },
+        {
+          "name": "onValueChange",
+          "optional": true,
+          "type": "((value: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "optional": true,
+          "type": "ComposerStatus | undefined",
+          "description": "\"running\" turns send into stop."
+        },
+        {
+          "name": "onStop",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "quickActions",
+          "optional": true,
+          "type": "ChatInputBarQuickAction[] | undefined",
+          "description": "Cards that fan out above the input on an empty conversation, as in ChatInputBar."
+        },
+        {
+          "name": "hasMessages",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Folds the quick-action cards once the conversation has messages."
+        },
+        {
+          "name": "keepOnSend",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Keep the draft after sending, e.g. until the host confirms."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerAction",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ label, icon, onClick, toggleQuickActions, active, showLabel }: ComposerActionProps) => JSX.Element",
+      "props": [
+        {
+          "name": "label",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onClick",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "toggleQuickActions",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Toggles the quick-action cards instead of calling onClick."
+        },
+        {
+          "name": "active",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "showLabel",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Shows the label next to the icon."
+        }
+      ]
+    },
+    {
+      "name": "ComposerActionProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ComposerCommand",
       "kind": "type",
       "source": "core/src/components/ui/chat-input-bar.tsx",
       "module": "chat-input-bar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComposerHeader",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, className }: { children: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerInput",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ rows, maxRows, sendOnEnter, label, className }: ComposerInputProps) => JSX.Element",
+      "props": [
+        {
+          "name": "rows",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Visible rows before the field grows."
+        },
+        {
+          "name": "maxRows",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Rows it grows to before scrolling."
+        },
+        {
+          "name": "sendOnEnter",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Enter sends and Shift+Enter breaks the line; off makes Enter a line break and ⌘/Ctrl+Enter sends."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerInputProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -11968,6 +12204,59 @@
       "props": []
     },
     {
+      "name": "ComposerModelMenu",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ models, model, onModelChange, label }: ComposerModelMenuProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "models",
+          "optional": false,
+          "type": "ComposerModel[]",
+          "description": ""
+        },
+        {
+          "name": "model",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onModelChange",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerModelMenuProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComposerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ComposerReply",
       "kind": "type",
       "source": "core/src/components/ui/composer-types.ts",
@@ -11975,6 +12264,35 @@
       "group": "ui",
       "oneShotDefault": false,
       "props": []
+    },
+    {
+      "name": "ComposerSend",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ label, stopLabel, stoppingLabel }: { label?: string; stopLabel?: string; stoppingLabel?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "stopLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "stoppingLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
     },
     {
       "name": "ComposerSource",
@@ -11993,6 +12311,29 @@
       "group": "ui",
       "oneShotDefault": false,
       "props": []
+    },
+    {
+      "name": "ComposerToolbar",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, className }: { children: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
     },
     {
       "name": "ComposerVoiceState",
@@ -12485,6 +12826,107 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ConversationItem",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/conversation-list.tsx",
+      "module": "agent/conversation-list",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ConversationList",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/conversation-list.tsx",
+      "module": "agent/conversation-list",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now: fixedNow, locale, motion, className }: ConversationListProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "ConversationItem[]",
+          "description": ""
+        },
+        {
+          "name": "currentId",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": false,
+          "type": "(id: string) => void",
+          "description": ""
+        },
+        {
+          "name": "onNew",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRename",
+          "optional": true,
+          "type": "((id: string, title: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDelete",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPin",
+          "optional": true,
+          "type": "((id: string, pinned: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "searchAfter",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Shows a search field once there are more items than this."
+        },
+        {
+          "name": "now",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Reference time for the groups; pass it when rendering on the server."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ConversationListProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/conversation-list.tsx",
+      "module": "agent/conversation-list",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ConversationProps",
@@ -22677,6 +23119,92 @@
       "props": []
     },
     {
+      "name": "InlineDiff",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className }: InlineDiffProps) => JSX.Element",
+      "props": [
+        {
+          "name": "segments",
+          "optional": false,
+          "type": "InlineDiffSegment[]",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onApply",
+          "optional": true,
+          "type": "((text: string, decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+          "description": "Called with the text that results from the current decisions."
+        },
+        {
+          "name": "onDecisionsChange",
+          "optional": true,
+          "type": "((decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "applyLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "InlineDiffDecision",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "InlineDiffProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "InlineDiffSegment",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "InsightCard",
       "kind": "type",
       "source": "core/src/components/ui/agent/insight-cards.tsx",
@@ -27456,7 +27984,7 @@
       "module": "agent/question",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ questions, onSubmit, onCancel, answers: answered, confirm, disabled, submitLabel, locale, size, className }: QuestionProps) => JSX.Element | null",
+      "signature": "({ questions, onSubmit, onCancel, skippable, answers: answered, confirm, disabled, submitLabel, labels, locale, size, className }: QuestionProps) => JSX.Element | null",
       "props": [
         {
           "name": "questions",
@@ -27468,25 +27996,31 @@
           "name": "onSubmit",
           "optional": false,
           "type": "(answers: Record<string, QuestionAnswer>) => void",
-          "description": ""
+          "description": "Called once with every answer; skipped questions are left out."
         },
         {
           "name": "onCancel",
           "optional": true,
           "type": "(() => void) | undefined",
-          "description": "Adds a skip button. With one question it cancels; with several the last skip submits what was answered."
+          "description": "Adds a cancel button that drops the whole question."
+        },
+        {
+          "name": "skippable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds a skip button per question; the last skip submits what was answered."
         },
         {
           "name": "answers",
           "optional": true,
           "type": "Record<string, QuestionAnswer> | undefined",
-          "description": "Once answered, pass the answers back: the card turns into a one-line summary per question."
+          "description": "Once answered, pass the answers back: the card shows what was chosen. Without it the card shows\na short \"答案已提交\" status after submitting."
         },
         {
           "name": "confirm",
           "optional": true,
           "type": "boolean | undefined",
-          "description": "A single single-choice question submits on click unless this is set.\nSeveral questions or multiple choice always confirm."
+          "description": "A single single-choice question submits on click, and a single choice moves to the next question,\nunless this is set; then every step waits for Continue."
         },
         {
           "name": "disabled",
@@ -27498,6 +28032,12 @@
           "name": "submitLabel",
           "optional": true,
           "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "labels",
+          "optional": true,
+          "type": "Partial<Record<\"submit\" | \"next\" | \"previous\" | \"sent\" | \"skip\" | \"skipSubmit\" | \"continue\" | \"cancel\" | \"skipped\", string>> | undefined",
           "description": ""
         },
         {
@@ -27531,6 +28071,15 @@
     },
     {
       "name": "QuestionItem",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "QuestionLabels",
       "kind": "type",
       "source": "core/src/components/ui/agent/question.tsx",
       "module": "agent/question",
@@ -28303,6 +28852,263 @@
           "optional": false,
           "type": "() => StringIterator<string>",
           "description": "Iterator"
+        }
+      ]
+    },
+    {
+      "name": "resolveInlineDiff",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "(segments: InlineDiffSegment[], decisions: Record<string, InlineDiffDecision>) => string",
+      "props": [
+        {
+          "name": "length",
+          "optional": false,
+          "type": "number",
+          "description": "Gets or sets the length of the array. This is a number one higher than the highest index in the array."
+        },
+        {
+          "name": "toString",
+          "optional": false,
+          "type": "() => string",
+          "description": "Returns a string representation of an array."
+        },
+        {
+          "name": "toLocaleString",
+          "optional": false,
+          "type": "{ (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; }",
+          "description": "Returns a string representation of an array. The elements are converted to string using their toLocaleString methods."
+        },
+        {
+          "name": "pop",
+          "optional": false,
+          "type": "() => InlineDiffSegment | undefined",
+          "description": "Removes the last element from an array and returns it.\nIf the array is empty, undefined is returned and the array is not modified."
+        },
+        {
+          "name": "push",
+          "optional": false,
+          "type": "(...items: InlineDiffSegment[]) => number",
+          "description": "Appends new elements to the end of an array, and returns the new length of the array."
+        },
+        {
+          "name": "concat",
+          "optional": false,
+          "type": "{ (...items: ConcatArray<InlineDiffSegment>[]): InlineDiffSegment[]; (...items: (InlineDiffSegment | ConcatArray<InlineDiffSegment>)[]): InlineDiffSegment[]; }",
+          "description": "Combines two or more arrays.\nThis method returns a new array without modifying any existing arrays."
+        },
+        {
+          "name": "join",
+          "optional": false,
+          "type": "(separator?: string) => string",
+          "description": "Adds all the elements of an array into a string, separated by the specified separator string."
+        },
+        {
+          "name": "reverse",
+          "optional": false,
+          "type": "() => InlineDiffSegment[]",
+          "description": "Reverses the elements in an array in place.\nThis method mutates the array and returns a reference to the same array."
+        },
+        {
+          "name": "shift",
+          "optional": false,
+          "type": "() => InlineDiffSegment | undefined",
+          "description": "Removes the first element from an array and returns it.\nIf the array is empty, undefined is returned and the array is not modified."
+        },
+        {
+          "name": "slice",
+          "optional": false,
+          "type": "(start?: number, end?: number) => InlineDiffSegment[]",
+          "description": "Returns a copy of a section of an array.\nFor both start and end, a negative index can be used to indicate an offset from the end of the array.\nFor example, -2 refers to the second to last element of the array."
+        },
+        {
+          "name": "sort",
+          "optional": false,
+          "type": "(compareFn?: ((a: InlineDiffSegment, b: InlineDiffSegment) => number) | undefined) => InlineDiffSegment[]",
+          "description": "Sorts an array in place.\nThis method mutates the array and returns a reference to the same array."
+        },
+        {
+          "name": "splice",
+          "optional": false,
+          "type": "{ (start: number, deleteCount?: number): InlineDiffSegment[]; (start: number, deleteCount: number, ...items: InlineDiffSegment[]): InlineDiffSegment[]; }",
+          "description": "Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements."
+        },
+        {
+          "name": "unshift",
+          "optional": false,
+          "type": "(...items: InlineDiffSegment[]) => number",
+          "description": "Inserts new elements at the start of an array, and returns the new length of the array."
+        },
+        {
+          "name": "indexOf",
+          "optional": false,
+          "type": "(searchElement: InlineDiffSegment, fromIndex?: number) => number",
+          "description": "Returns the index of the first occurrence of a value in an array, or -1 if it is not present."
+        },
+        {
+          "name": "lastIndexOf",
+          "optional": false,
+          "type": "(searchElement: InlineDiffSegment, fromIndex?: number) => number",
+          "description": "Returns the index of the last occurrence of a specified value in an array, or -1 if it is not present."
+        },
+        {
+          "name": "every",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): this is S[]; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): boolean; }",
+          "description": "Determines whether all the members of an array satisfy the specified test."
+        },
+        {
+          "name": "some",
+          "optional": false,
+          "type": "(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any) => boolean",
+          "description": "Determines whether the specified callback function returns true for any element of an array."
+        },
+        {
+          "name": "forEach",
+          "optional": false,
+          "type": "(callbackfn: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => void, thisArg?: any) => void",
+          "description": "Performs the specified action for each element in an array."
+        },
+        {
+          "name": "map",
+          "optional": false,
+          "type": "<U>(callbackfn: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => U, thisArg?: any) => U[]",
+          "description": "Calls a defined callback function on each element of an array, and returns an array that contains the results."
+        },
+        {
+          "name": "filter",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): S[]; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment[]; }",
+          "description": "Returns the elements of an array that meet the condition specified in a callback function."
+        },
+        {
+          "name": "reduce",
+          "optional": false,
+          "type": "{ (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment): InlineDiffSegment; (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment, initialValue: InlineDiffSegment): InlineDiffSegment; <U>(callbackfn: (previousValue: U, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => U, initialValue: U): U; }",
+          "description": "Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function."
+        },
+        {
+          "name": "reduceRight",
+          "optional": false,
+          "type": "{ (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment): InlineDiffSegment; (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment, initialValue: InlineDiffSegment): InlineDiffSegment; <U>(callbackfn: (previousValue: U, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => U, initialValue: U): U; }",
+          "description": "Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function."
+        },
+        {
+          "name": "find",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => value is S, thisArg?: any): S | undefined; (predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment | undefined; }",
+          "description": "Returns the value of the first element in the array where predicate is true, and undefined\notherwise."
+        },
+        {
+          "name": "findIndex",
+          "optional": false,
+          "type": "(predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => unknown, thisArg?: any) => number",
+          "description": "Returns the index of the first element in the array where predicate is true, and -1\notherwise."
+        },
+        {
+          "name": "fill",
+          "optional": false,
+          "type": "(value: InlineDiffSegment, start?: number, end?: number) => InlineDiffSegment[]",
+          "description": "Changes all array elements from `start` to `end` index to a static `value` and returns the modified array"
+        },
+        {
+          "name": "copyWithin",
+          "optional": false,
+          "type": "(target: number, start: number, end?: number) => InlineDiffSegment[]",
+          "description": "Returns the this object after copying a section of the array identified by start and end\nto the same array starting at position target"
+        },
+        {
+          "name": "entries",
+          "optional": false,
+          "type": "() => ArrayIterator<[number, InlineDiffSegment]>",
+          "description": "Returns an iterable of key, value pairs for every entry in the array"
+        },
+        {
+          "name": "keys",
+          "optional": false,
+          "type": "() => ArrayIterator<number>",
+          "description": "Returns an iterable of keys in the array"
+        },
+        {
+          "name": "values",
+          "optional": false,
+          "type": "() => ArrayIterator<InlineDiffSegment>",
+          "description": "Returns an iterable of values in the array"
+        },
+        {
+          "name": "includes",
+          "optional": false,
+          "type": "(searchElement: InlineDiffSegment, fromIndex?: number) => boolean",
+          "description": "Determines whether an array includes a certain element, returning true or false as appropriate."
+        },
+        {
+          "name": "flatMap",
+          "optional": false,
+          "type": "<U, This = undefined>(callback: (this: This, value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => U | readonly U[], thisArg?: This | undefined) => U[]",
+          "description": "Calls a defined callback function on each element of an array. Then, flattens the result into\na new array.\nThis is identical to a map followed by flat with depth 1."
+        },
+        {
+          "name": "flat",
+          "optional": false,
+          "type": "<A, D extends number = 1>(this: A, depth?: D | undefined) => FlatArray<A, D>[]",
+          "description": "Returns a new array with all sub-array elements concatenated into it recursively up to the\nspecified depth."
+        },
+        {
+          "name": "at",
+          "optional": false,
+          "type": "(index: number) => InlineDiffSegment | undefined",
+          "description": "Returns the item located at the specified index."
+        },
+        {
+          "name": "findLast",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): S | undefined; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment | undefined; }",
+          "description": "Returns the value of the last element in the array where predicate is true, and undefined\notherwise."
+        },
+        {
+          "name": "findLastIndex",
+          "optional": false,
+          "type": "(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any) => number",
+          "description": "Returns the index of the last element in the array where predicate is true, and -1\notherwise."
+        },
+        {
+          "name": "toReversed",
+          "optional": false,
+          "type": "() => InlineDiffSegment[]",
+          "description": "Returns a copy of an array with its elements reversed."
+        },
+        {
+          "name": "toSorted",
+          "optional": false,
+          "type": "(compareFn?: ((a: InlineDiffSegment, b: InlineDiffSegment) => number) | undefined) => InlineDiffSegment[]",
+          "description": "Returns a copy of an array with its elements sorted."
+        },
+        {
+          "name": "toSpliced",
+          "optional": false,
+          "type": "{ (start: number, deleteCount: number, ...items: InlineDiffSegment[]): InlineDiffSegment[]; (start: number, deleteCount?: number): InlineDiffSegment[]; }",
+          "description": "Copies an array and removes elements and, if necessary, inserts new elements in their place. Returns the copied array.\nCopies an array and removes elements while returning the remaining elements."
+        },
+        {
+          "name": "with",
+          "optional": false,
+          "type": "(index: number, value: InlineDiffSegment) => InlineDiffSegment[]",
+          "description": "Copies an array, then overwrites the value at the provided index with the\ngiven value. If the index is negative, then it replaces from the end\nof the array."
+        },
+        {
+          "name": "__@iterator@34",
+          "optional": false,
+          "type": "() => ArrayIterator<InlineDiffSegment>",
+          "description": "Iterator"
+        },
+        {
+          "name": "__@unscopables@36",
+          "optional": false,
+          "type": "{ [x: number]: boolean | undefined; length?: boolean | undefined; toString?: boolean | undefined; toLocaleString?: boolean | undefined; pop?: boolean | undefined; push?: boolean | undefined; concat?: boolean | undefined; join?: boolean | undefined; reverse?: boolean | undefined; shift?: boolean | undefined; slice?: boolean | undefined; sort?: boolean | undefined; splice?: boolean | undefined; unshift?: boolean | undefined; indexOf?: boolean | undefined; lastIndexOf?: boolean | undefined; every?: boolean | undefined; some?: boolean | undefined; forEach?: boolean | undefined; map?: boolean | undefined; filter?: boolean | undefined; reduce?: boolean | undefined; reduceRight?: boolean | undefined; find?: boolean | undefined; findIndex?: boolean | undefined; fill?: boolean | undefined; copyWithin?: boolean | undefined; entries?: boolean | undefined; keys?: boolean | undefined; values?: boolean | undefined; includes?: boolean | undefined; flatMap?: boolean | undefined; flat?: boolean | undefined; at?: boolean | undefined; findLast?: boolean | undefined; findLastIndex?: boolean | undefined; toReversed?: boolean | undefined; toSorted?: boolean | undefined; toSpliced?: boolean | undefined; with?: boolean | undefined; [Symbol.iterator]?: boolean | undefined; readonly [Symbol.unscopables]?: boolean | undefined; }",
+          "description": "Is an object whose properties have the value 'true'\nwhen they will be absent when used in a 'with' statement."
         }
       ]
     },
@@ -36478,7 +37284,7 @@
       "module": "agent/tool-call",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element",
+      "signature": "({ name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element",
       "props": [
         {
           "name": "name",
@@ -36541,6 +37347,12 @@
           "description": "Replaces the check once the call has finished, e.g. the tool's logo."
         },
         {
+          "name": "details",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Custom body shown when the row opens, instead of the argument and result blocks."
+        },
+        {
           "name": "onRetry",
           "optional": true,
           "type": "(() => void) | undefined",
@@ -36569,6 +37381,12 @@
           "optional": true,
           "type": "boolean | undefined",
           "description": ""
+        },
+        {
+          "name": "openOnError",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Open by itself when the call fails, so the error shows."
         },
         {
           "name": "variant",
@@ -36609,7 +37427,7 @@
       "module": "agent/tool-call",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ children, label, count, status, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element",
+      "signature": "({ children, label, count, status, statusLabel, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element",
       "props": [
         {
           "name": "children",
@@ -36632,14 +37450,20 @@
         {
           "name": "status",
           "optional": true,
-          "type": "\"success\" | \"error\" | \"running\" | undefined",
+          "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
           "description": ""
+        },
+        {
+          "name": "statusLabel",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Replaces the status word after the label, e.g. \"执行失败\"."
         },
         {
           "name": "defaultOpen",
           "optional": true,
           "type": "boolean | undefined",
-          "description": "Uncontrolled default; the group opens itself while running or after an error."
+          "description": "Uncontrolled default; the group opens itself unless everything succeeded."
         },
         {
           "name": "locale",

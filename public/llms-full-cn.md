@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 952c9a640599cc6580f1923ee88999ee523bb319282a81fa5a7a03046d5f49d2
+Source fingerprint: b032d2378c5506198666dfb596e8cdbf82bb4934e7baa796829c119a5862a655
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -290,7 +290,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (604, values and types distinguished)
+## Public exports (624, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -519,11 +519,22 @@ export function ModuleOverview() {
 - CommentData [type] — core/src/components/ui/comment-item.tsx
 - CommentItem [value] — core/src/components/ui/comment-item.tsx
 - CommentReply [type] — core/src/components/ui/comment-item.tsx
+- Composer [value] — core/src/components/ui/agent/composer.tsx
+- ComposerAction [value] — core/src/components/ui/agent/composer.tsx
+- ComposerActionProps [type] — core/src/components/ui/agent/composer.tsx
 - ComposerCommand [type] — core/src/components/ui/chat-input-bar.tsx
+- ComposerHeader [value] — core/src/components/ui/agent/composer.tsx
+- ComposerInput [value] — core/src/components/ui/agent/composer.tsx
+- ComposerInputProps [type] — core/src/components/ui/agent/composer.tsx
 - ComposerModel [type] — core/src/components/ui/composer-types.ts
+- ComposerModelMenu [value] — core/src/components/ui/agent/composer.tsx
+- ComposerModelMenuProps [type] — core/src/components/ui/agent/composer.tsx
+- ComposerProps [type] — core/src/components/ui/agent/composer.tsx
 - ComposerReply [type] — core/src/components/ui/composer-types.ts
+- ComposerSend [value] — core/src/components/ui/agent/composer.tsx
 - ComposerSource [type] — core/src/components/ui/chat-input-bar.tsx
 - ComposerStatus [type] — core/src/components/ui/composer-types.ts
+- ComposerToolbar [value] — core/src/components/ui/agent/composer.tsx
 - ComposerVoiceState [type] — core/src/components/ui/composer-types.ts
 - ConfirmationDialog [value] — core/src/components/ui/confirmation-dialog.tsx
 - ConfirmationDialogColor [type] — core/src/components/ui/confirmation-dialog.tsx
@@ -540,6 +551,9 @@ export function ModuleOverview() {
 - ContextUsageProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - ControlColor [type] — core/src/components/ui/forms/selection-control.tsx
 - Conversation [value] — core/src/components/ui/agent/agent-conversation.tsx
+- ConversationItem [type] — core/src/components/ui/agent/conversation-list.tsx
+- ConversationList [value] — core/src/components/ui/agent/conversation-list.tsx
+- ConversationListProps [type] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
 - CreditCard [value] — core/src/components/ui/credit-card.tsx
 - CurrencyConverter [value] — core/src/components/ui/currency-converter.tsx
@@ -640,6 +654,10 @@ export function ModuleOverview() {
 - InboxTask [type] — core/src/components/ui/agent/agent-ops.tsx
 - InfoRow [value] — core/src/components/ui/info-row.tsx
 - InfoRowProps [type] — core/src/components/ui/info-row.tsx
+- InlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
+- InlineDiffDecision [type] — core/src/components/ui/agent/inline-diff.tsx
+- InlineDiffProps [type] — core/src/components/ui/agent/inline-diff.tsx
+- InlineDiffSegment [type] — core/src/components/ui/agent/inline-diff.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightCards [value] — core/src/components/ui/agent/insight-cards.tsx
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -749,6 +767,7 @@ export function ModuleOverview() {
 - Question [value] — core/src/components/ui/agent/question.tsx
 - QuestionAnswer [type] — core/src/components/ui/agent/question.tsx
 - QuestionItem [type] — core/src/components/ui/agent/question.tsx
+- QuestionLabels [type] — core/src/components/ui/agent/question.tsx
 - QuestionOption [type] — core/src/components/ui/agent/question.tsx
 - QuestionProps [type] — core/src/components/ui/agent/question.tsx
 - QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
@@ -765,6 +784,7 @@ export function ModuleOverview() {
 - RecommendationConfidence [type] — core/src/components/ui/agent/recommendation-card.tsx
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
+- resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
 - resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
 - RunControls [value] — core/src/components/ui/agent/composer-parts.tsx

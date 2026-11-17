@@ -53,18 +53,20 @@ export type ChoiceOption = { id: string; label: string; description?: string };
 ## Question (value)
 
 ```ts
-({ questions, onSubmit, onCancel, answers: answered, confirm, disabled, submitLabel, locale, size, className }: QuestionProps) => JSX.Element | null
+({ questions, onSubmit, onCancel, skippable, answers: answered, confirm, disabled, submitLabel, labels, locale, size, className }: QuestionProps) => JSX.Element | null
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `questions` | 是 | `QuestionItem[]` |  |
-| `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` |  |
-| `onCancel` | 否 | `(() => void) \| undefined` | Adds a skip button. With one question it cancels; with several the last skip submits what was answered. |
-| `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card turns into a one-line summary per question. |
-| `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click unless this is set. Several questions or multiple choice always confirm. |
+| `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` | Called once with every answer; skipped questions are left out. |
+| `onCancel` | 否 | `(() => void) \| undefined` | Adds a cancel button that drops the whole question. |
+| `skippable` | 否 | `boolean \| undefined` | Adds a skip button per question; the last skip submits what was answered. |
+| `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card shows what was chosen. Without it the card shows a short "答案已提交" status after submitting. |
+| `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click, and a single choice moves to the next question, unless this is set; then every step waits for Continue. |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `submitLabel` | 否 | `string \| undefined` |  |
+| `labels` | 否 | `Partial<Record<"submit" \| "next" \| "previous" \| "sent" \| "skip" \| "skipSubmit" \| "continue" \| "cancel" \| "skipped", string>> \| undefined` |  |
 | `locale` | 否 | `AgentLocale \| undefined` |  |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
@@ -84,10 +86,16 @@ export type QuestionItem = {
   description?: string;
   options: QuestionOption[];
   multiple?: boolean;
-  /** Adds a free-text field; with no options the question is text only. */
+  /** Adds a free-text field. Defaults to on when there are no options. */
   allowText?: boolean;
   textPlaceholder?: string;
 };
+```
+
+## QuestionLabels (type)
+
+```ts
+export type QuestionLabels = Partial<Record<"skip" | "skipSubmit" | "continue" | "submit" | "cancel" | "previous" | "next" | "sent" | "skipped", string>>;
 ```
 
 ## QuestionOption (type)
@@ -107,20 +115,36 @@ export type QuestionOption = {
 ```ts
 export type QuestionProps = {
   questions: QuestionItem[];
+  /** Called once with every answer; skipped questions are left out. */
   onSubmit: (answers: Record<string, QuestionAnswer>) => void;
-  /** Adds a skip button. With one question it cancels; with several the last skip submits what was answered. */
+  /** Adds a cancel button that drops the whole question. */
   onCancel?: () => void;
-  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
+  /** Adds a skip button per question; the last skip submits what was answered. */
+  skippable?: boolean;
+  /**
+   * Once answered, pass the answers back: the card shows what was chosen. Without it the card shows
+   * a short "答案已提交" status after submitting.
+   */
   answers?: Record<string, QuestionAnswer>;
   /**
-   * A single single-choice question submits on click unless this is set.
-   * Several questions or multiple choice always confirm.
+   * A single single-choice question submits on click, and a single choice moves to the next question,
+   * unless this is set; then every step waits for Continue.
    */
   confirm?: boolean;
   disabled?: boolean;
   submitLabel?: string;
+  labels?: QuestionLabels;
   locale?: AgentLocale;
   size?: "md" | "sm";
   className?: string;
 };
 ```
+
+## 选型
+
+- 缺信息、要用户在明确选项里挑 → `Question`（单题点选即提交，多题逐题、可跳过）
+- Forge Agent 运行时的候选选择 → `ChoiceCard`
+
+不要用：
+- 开放问题 → 直接用文字问
+- 改数据前确认 → `Approval`

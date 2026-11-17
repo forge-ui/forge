@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.9.0，共 604 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.9.0，共 624 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -233,11 +233,22 @@
 | CommentData | type | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
 | CommentItem | value | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
 | CommentReply | type | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
+| Composer | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
+| ComposerAction | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
+| ComposerActionProps | type | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
 | ComposerCommand | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
+| ComposerHeader | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
+| ComposerInput | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
+| ComposerInputProps | type | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
 | ComposerModel | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ComposerModelMenu | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
+| ComposerModelMenuProps | type | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
+| ComposerProps | type | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
 | ComposerReply | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ComposerSend | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
 | ComposerSource | type | [源码](../../core/src/components/ui/chat-input-bar.tsx) | [chat-input-bar](../../skills/forge-skill/references/components/chat-input-bar.md) |
 | ComposerStatus | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
+| ComposerToolbar | value | [源码](../../core/src/components/ui/agent/composer.tsx) | [composer](../../skills/forge-skill/references/components/composer.md) |
 | ComposerVoiceState | type | [源码](../../core/src/components/ui/composer-types.ts) | [composer-types](../../skills/forge-skill/references/components/composer-types.md) |
 | ConfirmationDialog | value | [源码](../../core/src/components/ui/confirmation-dialog.tsx) | [confirmation-dialog](../../skills/forge-skill/references/components/confirmation-dialog.md) |
 | ConfirmationDialogColor | type | [源码](../../core/src/components/ui/confirmation-dialog.tsx) | [confirmation-dialog](../../skills/forge-skill/references/components/confirmation-dialog.md) |
@@ -254,6 +265,9 @@
 | ContextUsageProps | type | [源码](../../core/src/components/ui/agent/agent-observe.tsx) | [agent-observe](../../skills/forge-skill/references/components/agent-observe.md) |
 | ControlColor | type | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
 | Conversation | value | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
+| ConversationItem | type | [源码](../../core/src/components/ui/agent/conversation-list.tsx) | [conversation-list](../../skills/forge-skill/references/components/conversation-list.md) |
+| ConversationList | value | [源码](../../core/src/components/ui/agent/conversation-list.tsx) | [conversation-list](../../skills/forge-skill/references/components/conversation-list.md) |
+| ConversationListProps | type | [源码](../../core/src/components/ui/agent/conversation-list.tsx) | [conversation-list](../../skills/forge-skill/references/components/conversation-list.md) |
 | ConversationProps | type | [源码](../../core/src/components/ui/agent/agent-conversation.tsx) | [agent-conversation](../../skills/forge-skill/references/components/agent-conversation.md) |
 | CreditCard | value | [源码](../../core/src/components/ui/credit-card.tsx) | [credit-card](../../skills/forge-skill/references/components/credit-card.md) |
 | CurrencyConverter | value | [源码](../../core/src/components/ui/currency-converter.tsx) | [currency-converter](../../skills/forge-skill/references/components/currency-converter.md) |
@@ -354,6 +368,10 @@
 | InboxTask | type | [源码](../../core/src/components/ui/agent/agent-ops.tsx) | [agent-ops](../../skills/forge-skill/references/components/agent-ops.md) |
 | InfoRow | value | [源码](../../core/src/components/ui/info-row.tsx) | [info-row](../../skills/forge-skill/references/components/info-row.md) |
 | InfoRowProps | type | [源码](../../core/src/components/ui/info-row.tsx) | [info-row](../../skills/forge-skill/references/components/info-row.md) |
+| InlineDiff | value | [源码](../../core/src/components/ui/agent/inline-diff.tsx) | [inline-diff](../../skills/forge-skill/references/components/inline-diff.md) |
+| InlineDiffDecision | type | [源码](../../core/src/components/ui/agent/inline-diff.tsx) | [inline-diff](../../skills/forge-skill/references/components/inline-diff.md) |
+| InlineDiffProps | type | [源码](../../core/src/components/ui/agent/inline-diff.tsx) | [inline-diff](../../skills/forge-skill/references/components/inline-diff.md) |
+| InlineDiffSegment | type | [源码](../../core/src/components/ui/agent/inline-diff.tsx) | [inline-diff](../../skills/forge-skill/references/components/inline-diff.md) |
 | InsightCard | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
 | InsightCards | value | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
 | InsightChart | type | [源码](../../core/src/components/ui/agent/insight-cards.tsx) | [insight-cards](../../skills/forge-skill/references/components/insight-cards.md) |
@@ -463,6 +481,7 @@
 | Question | value | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | QuestionAnswer | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | QuestionItem | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
+| QuestionLabels | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | QuestionOption | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | QuestionProps | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | QueuedPrompt | type | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
@@ -479,6 +498,7 @@
 | RecommendationConfidence | type | [源码](../../core/src/components/ui/agent/recommendation-card.tsx) | [recommendation-card](../../skills/forge-skill/references/components/recommendation-card.md) |
 | RecommendationOption | type | [源码](../../core/src/components/ui/agent/recommendation-card.tsx) | [recommendation-card](../../skills/forge-skill/references/components/recommendation-card.md) |
 | resolveCardTheme | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
+| resolveInlineDiff | value | [源码](../../core/src/components/ui/agent/inline-diff.tsx) | [inline-diff](../../skills/forge-skill/references/components/inline-diff.md) |
 | resolveTableColumnAlign | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
 | ReviewItem | value | [源码](../../core/src/components/ui/review-item.tsx) | [review-item](../../skills/forge-skill/references/components/review-item.md) |
 | RunControls | value | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
