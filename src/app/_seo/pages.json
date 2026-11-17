@@ -42,7 +42,7 @@
   },
   "/cases/agent": {
     "title": "智能体组件 · 效果与案例",
-    "description": "展示智能体的思考、回答、工具调用、任务和审批过程。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
+    "description": "先看完整场景，再看单个组件：思考、回答、工具调用、提问与确认、运行、治理和观测。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
   },
   "/cases/badge": {
     "title": "徽章与标签组件 · 效果与案例",
@@ -172,7 +172,7 @@
   },
   "/components/agent": {
     "title": "智能体组件 · 用法与参数",
-    "description": "展示智能体的对话、思考、回答、工具调用、任务和审批过程；可以直接渲染 AI SDK 的消息。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
+    "description": "智能体界面的整套组件：对话与输入、思考与工具、提问与确认、回答与引用、运行、治理、运营和观测；可以直接渲染 AI SDK 的消息。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
   },
   "/components/badge": {
     "title": "徽章与标签组件 · 用法与参数",
@@ -315,7 +315,7 @@
   },
   "/docs/changelog": {
     "title": "更新日志",
-    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.8.3。"
+    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.9.0。"
   },
   "/docs/check": {
     "title": "页面检查",
