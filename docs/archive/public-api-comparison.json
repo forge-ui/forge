@@ -1,6 +1,6 @@
 {
   "mainCommit": "e9349f17bffbfb654144b9155d9c7a1455a470ed",
-  "currentCommit": "0106352d2ca703e40746192d2760054460e0d925",
+  "currentCommit": "c26e034fec96116a85b55f451cbe059e04bae55d",
   "main": {
     "exports": [
       "ALL_CARD_THEMES",
@@ -50659,7 +50659,6 @@
       "UserCard",
       "WalletGoalCard",
       "WalletGoalCardProps",
-      "WelcomeCapability",
       "WheelChartStatCard",
       "WheelChartStatCardProps",
       "WheelColor",
@@ -83724,27 +83723,11 @@
             "file": "core/src/components/ui/agent/agent-welcome.tsx"
           },
           {
-            "name": "capabilities",
-            "type": "WelcomeCapability[] | undefined",
-            "optional": true,
-            "defaultValue": "[]",
-            "comment": "What it can do, as cards that start a conversation.",
-            "file": "core/src/components/ui/agent/agent-welcome.tsx"
-          },
-          {
-            "name": "onPick",
-            "type": "((prompt: string) => void) | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "",
-            "file": "core/src/components/ui/agent/agent-welcome.tsx"
-          },
-          {
             "name": "footer",
             "type": "ReactNode",
             "optional": true,
             "defaultValue": null,
-            "comment": "Anything under the cards, e.g. recent conversations.",
+            "comment": "Anything under the greeting, e.g. recent conversations. Starter tasks belong in ChatInputBar's quickActions.",
             "file": "core/src/components/ui/agent/agent-welcome.tsx"
           },
           {
@@ -100810,38 +100793,8 @@
           }
         ]
       },
-      "WelcomeCapability": {
-        "type": "{\n  id: string;\n  title: string;\n  description?: string;\n  icon?: ReactNode;\n  /** Sent as the first message when picked. */\n  prompt: string;\n}",
-        "fields": [
-          {
-            "name": "id",
-            "type": "string",
-            "optional": false
-          },
-          {
-            "name": "title",
-            "type": "string",
-            "optional": false
-          },
-          {
-            "name": "description",
-            "type": "string | undefined",
-            "optional": true
-          },
-          {
-            "name": "icon",
-            "type": "ReactNode",
-            "optional": true
-          },
-          {
-            "name": "prompt",
-            "type": "string",
-            "optional": false
-          }
-        ]
-      },
       "AgentWelcomeProps": {
-        "type": "{\n  title: ReactNode;\n  description?: ReactNode;\n  icon?: ReactNode;\n  /** What it can do, as cards that start a conversation. */\n  capabilities?: WelcomeCapability[];\n  onPick?: (prompt: string) => void;\n  /** Anything under the cards, e.g. recent conversations. */\n  footer?: ReactNode;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
+        "type": "{\n  title: ReactNode;\n  description?: ReactNode;\n  icon?: ReactNode;\n  /** Anything under the greeting, e.g. recent conversations. Starter tasks belong in ChatInputBar's quickActions. */\n  footer?: ReactNode;\n  size?: \"md\" | \"sm\";\n  className?: string;\n}",
         "fields": [
           {
             "name": "title",
@@ -100856,16 +100809,6 @@
           {
             "name": "icon",
             "type": "ReactNode",
-            "optional": true
-          },
-          {
-            "name": "capabilities",
-            "type": "WelcomeCapability[] | undefined",
-            "optional": true
-          },
-          {
-            "name": "onPick",
-            "type": "((prompt: string) => void) | undefined",
             "optional": true
           },
           {
@@ -106540,13 +106483,11 @@
       "name": "AgentWelcome",
       "file": "core/src/components/ui/agent/agent-welcome.tsx",
       "mainCount": 0,
-      "currentCount": 8,
+      "currentCount": 6,
       "added": [
         "title",
         "description",
         "icon",
-        "capabilities",
-        "onPick",
         "footer",
         "size",
         "className"
@@ -107098,7 +107039,6 @@
     "TrailStep",
     "TrailSubstep",
     "TreeAgent",
-    "TreeAgentStatus",
-    "WelcomeCapability"
+    "TreeAgentStatus"
   ]
 }

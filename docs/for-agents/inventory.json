@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.9.0",
   "source": "core/src/index.ts",
-  "revision": "0106352d2ca703e40746192d2760054460e0d925",
+  "revision": "c26e034fec96116a85b55f451cbe059e04bae55d",
   "dirty": false,
-  "exportFingerprint": "ea9aff84606df6f772921151f6673526125fac45",
-  "generatedAt": "2026-11-17T21:11:47+08:00",
+  "exportFingerprint": "4fdc93c5c98ec317504c07431a44957f7928dcd1",
+  "generatedAt": "2026-11-17T21:20:49+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 605,
+  "componentCount": 604,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -1455,7 +1455,7 @@
       "module": "agent/agent-welcome",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ title, description, icon, capabilities, onPick, footer, size, className }: AgentWelcomeProps) => JSX.Element",
+      "signature": "({ title, description, icon, footer, size, className }: AgentWelcomeProps) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -1476,22 +1476,10 @@
           "description": ""
         },
         {
-          "name": "capabilities",
-          "optional": true,
-          "type": "WelcomeCapability[] | undefined",
-          "description": "What it can do, as cards that start a conversation."
-        },
-        {
-          "name": "onPick",
-          "optional": true,
-          "type": "((prompt: string) => void) | undefined",
-          "description": ""
-        },
-        {
           "name": "footer",
           "optional": true,
           "type": "ReactNode",
-          "description": "Anything under the cards, e.g. recent conversations."
+          "description": "Anything under the greeting, e.g. recent conversations. Starter tasks belong in ChatInputBar's quickActions."
         },
         {
           "name": "size",
@@ -39142,15 +39130,6 @@
       "kind": "type",
       "source": "core/src/components/ui/wallet-goal-card.tsx",
       "module": "wallet-goal-card",
-      "group": "ui",
-      "oneShotDefault": false,
-      "props": []
-    },
-    {
-      "name": "WelcomeCapability",
-      "kind": "type",
-      "source": "core/src/components/ui/agent/agent-welcome.tsx",
-      "module": "agent/agent-welcome",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

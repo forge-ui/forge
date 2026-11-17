@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.9.0，共 605 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.9.0，共 604 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -607,7 +607,6 @@
 | useToast | value | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
 | WalletGoalCard | value | [源码](../../core/src/components/ui/wallet-goal-card.tsx) | [wallet-goal-card](../../skills/forge-skill/references/components/wallet-goal-card.md) |
 | WalletGoalCardProps | type | [源码](../../core/src/components/ui/wallet-goal-card.tsx) | [wallet-goal-card](../../skills/forge-skill/references/components/wallet-goal-card.md) |
-| WelcomeCapability | type | [源码](../../core/src/components/ui/agent/agent-welcome.tsx) | [agent-welcome](../../skills/forge-skill/references/components/agent-welcome.md) |
 | WheelChartStatCard | value | [源码](../../core/src/components/ui/wheel-chart-stat-card.tsx) | [wheel-chart-stat-card](../../skills/forge-skill/references/components/wheel-chart-stat-card.md) |
 | WheelChartStatCardProps | type | [源码](../../core/src/components/ui/wheel-chart-stat-card.tsx) | [wheel-chart-stat-card](../../skills/forge-skill/references/components/wheel-chart-stat-card.md) |
 | WheelColor | type | [源码](../../core/src/components/ui/wheel-chart-stat-card.tsx) | [wheel-chart-stat-card](../../skills/forge-skill/references/components/wheel-chart-stat-card.md) |

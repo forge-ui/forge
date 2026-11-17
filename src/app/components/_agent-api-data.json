@@ -4929,18 +4929,6 @@
         "defaultValue": null
       },
       {
-        "name": "capabilities",
-        "type": "WelcomeCapability[] | undefined",
-        "optional": true,
-        "defaultValue": "[]"
-      },
-      {
-        "name": "onPick",
-        "type": "((prompt: string) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
         "name": "footer",
         "type": "ReactNode",
         "optional": true,
@@ -4959,39 +4947,7 @@
         "defaultValue": null
       }
     ],
-    "types": [
-      {
-        "name": "WelcomeCapability",
-        "definition": "",
-        "fields": [
-          {
-            "name": "id",
-            "type": "string",
-            "optional": false
-          },
-          {
-            "name": "title",
-            "type": "string",
-            "optional": false
-          },
-          {
-            "name": "description",
-            "type": "string | undefined",
-            "optional": true
-          },
-          {
-            "name": "icon",
-            "type": "ReactNode",
-            "optional": true
-          },
-          {
-            "name": "prompt",
-            "type": "string",
-            "optional": false
-          }
-        ]
-      }
-    ]
+    "types": []
   },
   "AgentPanel": {
     "props": [

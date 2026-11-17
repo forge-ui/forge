@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 98e0da3a211145ba76e1c40906311ec5198bb4bfe9423b388b15c16dd57af8d4
+Source fingerprint: 952c9a640599cc6580f1923ee88999ee523bb319282a81fa5a7a03046d5f49d2
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (605, values and types distinguished)
+## Public exports (604, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -611,7 +611,6 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - useToast [value] — core/src/components/ui/toast.tsx
 - WalletGoalCard [value] — core/src/components/ui/wallet-goal-card.tsx
 - WalletGoalCardProps [type] — core/src/components/ui/wallet-goal-card.tsx
-- WelcomeCapability [type] — core/src/components/ui/agent/agent-welcome.tsx
 - WheelChartStatCard [value] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx
@@ -2061,7 +2060,7 @@ Source: skills/forge-skill/references/components/agent-welcome.md
 ## AgentWelcome (value)
 
 ```ts
-({ title, description, icon, capabilities, onPick, footer, size, className }: AgentWelcomeProps) => JSX.Element
+({ title, description, icon, footer, size, className }: AgentWelcomeProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -2069,9 +2068,7 @@ Source: skills/forge-skill/references/components/agent-welcome.md
 | `title` | 是 | `ReactNode` |  |
 | `description` | 否 | `ReactNode` |  |
 | `icon` | 否 | `ReactNode` |  |
-| `capabilities` | 否 | `WelcomeCapability[] \| undefined` | What it can do, as cards that start a conversation. |
-| `onPick` | 否 | `((prompt: string) => void) \| undefined` |  |
-| `footer` | 否 | `ReactNode` | Anything under the cards, e.g. recent conversations. |
+| `footer` | 否 | `ReactNode` | Anything under the greeting, e.g. recent conversations. Starter tasks belong in ChatInputBar's quickActions. |
 | `size` | 否 | `"md" \| "sm" \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
@@ -2082,26 +2079,10 @@ export type AgentWelcomeProps = {
   title: ReactNode;
   description?: ReactNode;
   icon?: ReactNode;
-  /** What it can do, as cards that start a conversation. */
-  capabilities?: WelcomeCapability[];
-  onPick?: (prompt: string) => void;
-  /** Anything under the cards, e.g. recent conversations. */
+  /** Anything under the greeting, e.g. recent conversations. Starter tasks belong in ChatInputBar's quickActions. */
   footer?: ReactNode;
   size?: "md" | "sm";
   className?: string;
-};
-```
-
-## WelcomeCapability (type)
-
-```ts
-export type WelcomeCapability = {
-  id: string;
-  title: string;
-  description?: string;
-  icon?: ReactNode;
-  /** Sent as the first message when picked. */
-  prompt: string;
 };
 ```
 

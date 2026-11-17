@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：0106352d2ca703e40746192d2760054460e0d925，包含本地未提交源码。
+基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：c26e034fec96116a85b55f451cbe059e04bae55d，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
@@ -45,7 +45,7 @@
 | PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
 | RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
 | AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
-| AgentWelcome | 0 | 8 | title, description, icon, capabilities, onPick, footer, size, className | — | — |
+| AgentWelcome | 0 | 6 | title, description, icon, footer, size, className | — | — |
 | AgentPanel | 0 | 14 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer | — | — |
 | AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
 | AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
@@ -252,7 +252,7 @@
 | PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
 | RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
 | AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
-| AgentWelcome | 0 | 8 | title, description, icon, capabilities, onPick, footer, size, className | — | — |
+| AgentWelcome | 0 | 6 | title, description, icon, footer, size, className | — | — |
 | AgentPanel | 0 | 14 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer | — | — |
 | AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
 | AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
@@ -294,7 +294,7 @@
 
 删除：无。
 
-新增：AGENT_PANEL_WIDTH, AgentCheckpoints, AgentCheckpointsProps, AgentInbox, AgentInboxProps, AgentLanes, AgentLanesProps, AgentPanel, AgentPanelProps, AgentPlan, AgentPlanProps, AgentSession, AgentStepStatus, AgentTaskState, AgentTrail, AgentTrailProps, AgentTree, AgentTreeProps, AgentWelcome, AgentWelcomeProps, Approval, ApprovalField, ApprovalProps, ApprovalRisk, ApprovalScope, ApprovalState, AttachmentItem, AttachmentKind, AttachmentList, AttachmentListProps, AutonomyAction, AutonomyLevel, AutonomySelector, AutonomySelectorProps, AwayItem, AwaySummary, AwaySummaryProps, ChangeLedger, ChangeLedgerProps, Checkpoint, ChoiceAnswer, ChoiceCard, ChoiceCardProps, ChoiceOption, Citation, CitationProps, CitationSource, CitedAnswer, CitedAnswerProps, ConfirmCard, ConfirmCardProps, ConfirmField, ContextSegment, ContextSegmentKind, ContextUsage, ContextUsageProps, InboxTask, LaneBlock, LedgerEntry, LedgerField, PlanStep, ProgressStep, PromptQueue, PromptQueueProps, Question, QuestionAnswer, QuestionItem, QuestionOption, QuestionProps, QueuedPrompt, Reasoning, ReasoningProps, ReasoningSource, ReasoningStatus, ReasoningStep, RunControls, RunControlsProps, RunProgress, RunStatus, RunningNow, RunningNowProps, ThinkingIndicator, ThinkingIndicatorProps, ToolCall, ToolCallGroup, ToolCallGroupProps, ToolCallProps, ToolCallStatus, TraceSpan, TraceWaterfall, TraceWaterfallProps, TrailStep, TrailSubstep, TreeAgent, TreeAgentStatus, WelcomeCapability。
+新增：AGENT_PANEL_WIDTH, AgentCheckpoints, AgentCheckpointsProps, AgentInbox, AgentInboxProps, AgentLanes, AgentLanesProps, AgentPanel, AgentPanelProps, AgentPlan, AgentPlanProps, AgentSession, AgentStepStatus, AgentTaskState, AgentTrail, AgentTrailProps, AgentTree, AgentTreeProps, AgentWelcome, AgentWelcomeProps, Approval, ApprovalField, ApprovalProps, ApprovalRisk, ApprovalScope, ApprovalState, AttachmentItem, AttachmentKind, AttachmentList, AttachmentListProps, AutonomyAction, AutonomyLevel, AutonomySelector, AutonomySelectorProps, AwayItem, AwaySummary, AwaySummaryProps, ChangeLedger, ChangeLedgerProps, Checkpoint, ChoiceAnswer, ChoiceCard, ChoiceCardProps, ChoiceOption, Citation, CitationProps, CitationSource, CitedAnswer, CitedAnswerProps, ConfirmCard, ConfirmCardProps, ConfirmField, ContextSegment, ContextSegmentKind, ContextUsage, ContextUsageProps, InboxTask, LaneBlock, LedgerEntry, LedgerField, PlanStep, ProgressStep, PromptQueue, PromptQueueProps, Question, QuestionAnswer, QuestionItem, QuestionOption, QuestionProps, QueuedPrompt, Reasoning, ReasoningProps, ReasoningSource, ReasoningStatus, ReasoningStep, RunControls, RunControlsProps, RunProgress, RunStatus, RunningNow, RunningNowProps, ThinkingIndicator, ThinkingIndicatorProps, ToolCall, ToolCallGroup, ToolCallGroupProps, ToolCallProps, ToolCallStatus, TraceSpan, TraceWaterfall, TraceWaterfallProps, TrailStep, TrailSubstep, TreeAgent, TreeAgentStatus。
 
 ## 智能体与聊天参数明细
 
@@ -1055,8 +1055,6 @@
 | title | `ReactNode` | 是 | 未在参数解构处设置 |
 | description | `ReactNode` | 否 | 未在参数解构处设置 |
 | icon | `ReactNode` | 否 | 未在参数解构处设置 |
-| capabilities | `WelcomeCapability[] \| undefined` | 否 | [] |
-| onPick | `((prompt: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | footer | `ReactNode` | 否 | 未在参数解构处设置 |
 | size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |

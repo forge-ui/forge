@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 98e0da3a211145ba76e1c40906311ec5198bb4bfe9423b388b15c16dd57af8d4
+Source fingerprint: 952c9a640599cc6580f1923ee88999ee523bb319282a81fa5a7a03046d5f49d2
 
 ## Adopted rules / 采用规则
 
@@ -288,7 +288,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (605, values and types distinguished)
+## Public exports (604, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -891,7 +891,6 @@ export function ModuleOverview() {
 - useToast [value] — core/src/components/ui/toast.tsx
 - WalletGoalCard [value] — core/src/components/ui/wallet-goal-card.tsx
 - WalletGoalCardProps [type] — core/src/components/ui/wallet-goal-card.tsx
-- WelcomeCapability [type] — core/src/components/ui/agent/agent-welcome.tsx
 - WheelChartStatCard [value] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx
