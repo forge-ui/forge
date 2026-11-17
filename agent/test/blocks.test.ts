@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { BLOCK_NAMES, proseOf, splitBlocks } from "../src/catalog/blocks";
+import { BLOCK_NAMES, proseOf, repairQuotes, splitBlocks } from "../src/catalog/blocks";
 import { BLOCK_OF, catalogGuide, uiToolNames } from "../src/catalog/schema";
 
 const answer = [
@@ -66,4 +66,16 @@ test("asking blocks parse: form, confirm, plan, questions, actions", () => {
   assert.equal(block("actions", { items: [{ label: "去看看", href: "/orders" }] })?.name, "show_actions");
   assert.equal(block("chart", { type: "donut", labels: ["A", "B"], series: [{ label: "占比", data: [1, 2] }] })?.name, "show_chart");
   assert.equal(block("callout", { tone: "loud", text: "x" }), undefined);
+});
+
+test("blocks survive the usual model slips: inner quotes and limits overshot", () => {
+  const quoted = '{"title": "对比", "items": [{"title": "A", "points": ["不是"接上就好"", "快"]}, {"title": "B", "points": ["慢"]}]}';
+  assert.equal(JSON.parse(repairQuotes(quoted)).items[0].points[0], '不是"接上就好"');
+  const block = splitBlocks("```forge:compare\n" + quoted + "\n```")[0] as { name: string };
+  assert.equal(block.name, "show_compare");
+  const long = { title: "选一个", options: Array.from({ length: 12 }, (_, index) => ({ label: `选项 ${index + 1}` })) };
+  const parsed = splitBlocks("```forge:choices\n" + JSON.stringify(long) + "\n```")[0] as { input: { options: unknown[] } };
+  assert.equal(parsed.input.options.length, 8, "an overlong list is cut to its limit");
+  const label = splitBlocks('```forge:tags\n{"tags": ["' + "很".repeat(40) + '"]}\n```')[0] as { input: { tags: string[] } };
+  assert.ok(label.input.tags[0].length <= 24 && label.input.tags[0].endsWith("…"));
 });

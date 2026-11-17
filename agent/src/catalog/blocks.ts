@@ -1,4 +1,4 @@
-import { BLOCK_OF, uiSchemas, uiToolNames, type UiToolName } from "./schema";
+import { BLOCK_OF, parseBlock, uiToolNames, type UiToolName } from "./schema";
 
 /**
  * The model writes components inside its answer as fenced blocks (```forge:cards + JSON), so a whole
@@ -16,17 +16,39 @@ export type Segment =
 const SHELL = new Set(["bash", "sh", "shell", "zsh", "console", "terminal"]);
 const FENCE = /^ {0,3}(`{3,})[ \t]*([^\s`]*)[^\n]*$/;
 
-function blockInput(name: UiToolName, body: string): unknown {
-  let value: unknown;
-  try {
-    value = JSON.parse(body);
-  } catch {
-    return undefined;
+/**
+ * Models often quote words inside a string with plain double quotes (不是"接上就好"). A quote is
+ * structural only next to JSON punctuation; any other quote inside a string is escaped.
+ */
+export function repairQuotes(body: string) {
+  let out = "";
+  let inString = false;
+  for (let index = 0; index < body.length; index++) {
+    const char = body[index];
+    if (char === "\\" && inString) { out += char + (body[index + 1] ?? ""); index++; continue; }
+    if (char !== '"') { out += char; continue; }
+    if (!inString) { inString = true; out += char; continue; }
+    const next = body.slice(index + 1).trimStart()[0];
+    if (next === undefined || next === ":" || next === "," || next === "}" || next === "]") { inString = false; out += char; }
+    else out += '\\"';
   }
+  return out;
+}
+
+function parseJson(body: string): unknown {
+  try {
+    return JSON.parse(body);
+  } catch {
+    try { return JSON.parse(repairQuotes(body)); } catch { return undefined; }
+  }
+}
+
+function blockInput(name: UiToolName, body: string): unknown {
+  let value = parseJson(body);
+  if (value === undefined) return undefined;
   // A bare list is the obvious shorthand for follow-up questions.
   if (name === "suggest_followups" && Array.isArray(value)) value = { questions: value };
-  const parsed = uiSchemas[name].safeParse(value);
-  return parsed.success ? parsed.data : undefined;
+  return parseBlock(name, value);
 }
 
 function fenced(language: string, body: string): Segment | undefined {

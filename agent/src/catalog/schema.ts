@@ -54,7 +54,7 @@ export const uiSchemas = {
   }),
   show_compare: z.object({
     title: text(60).optional(),
-    items: z.array(z.object({ title: text(40), tag: text(20).optional(), points: z.array(text(80)).min(1).max(6), recommended: z.boolean().optional() })).min(2).max(4),
+    items: z.array(z.object({ title: text(40), tag: text(20).optional(), points: z.array(text(120)).min(1).max(8), recommended: z.boolean().optional() })).min(2).max(4),
   }),
   show_changes: z.object({
     title: text(60).optional(),
@@ -126,7 +126,7 @@ export const uiSchemas = {
     title: text(80),
     description: text(300).optional(),
     risk: z.enum(["low", "medium", "high"]).optional(),
-    fields: z.array(z.object({ label: text(30), before: z.string().max(120).optional(), after: z.string().max(120) })).max(10).optional(),
+    fields: z.array(z.object({ label: text(30), before: z.string().max(120).optional(), after: z.string().max(120).optional() })).max(10).optional(),
     confirmLabel: text(12).optional(),
   }),
   show_plan: z.object({
@@ -196,7 +196,7 @@ export const BLOCK_GUIDE: Record<UiToolName, string> = {
   show_choices: `让用户选：{"title", "options": [{"label", "description"?}]}，2 到 8 项。要用户在几个明确方案里挑一个时用，用户点选后会作为下一条消息发来；问开放问题时直接用文字问。`,
   show_questions: `一次问几件事：{"questions": [{"title", "options": [{"label", "description"?}], "multiple"?, "allowText"?}]}，最多 4 题；缺好几项信息才能继续时用，答案会作为下一条消息发来。`,
   show_form: `表单：{"title", "submitLabel"?, "fields": [{"name", "label", "type": "text"|"textarea"|"number"|"date"|"select"|"multiselect"|"switch", "options"?, "required"?, "placeholder"?, "default"?}]}，让用户填一组结构化信息（例如新建记录）；提交内容会作为下一条消息发来。`,
-  show_confirm: `请用户确认：{"title", "description"?, "risk"?: "low"|"medium"|"high", "fields"?: [{"label", "before"?, "after"}], "confirmLabel"?}，在你要执行改动前用；用户的确认或取消会作为下一条消息发来。`,
+  show_confirm: `请用户确认：{"title", "description"?, "risk"?: "low"|"medium"|"high", "fields"?: [{"label", "before"?, "after"}], "confirmLabel"?}。用户要你改数据、删除、发送时，先用它列出改动请用户确认，确认后再执行；用户的确认或取消会作为下一条消息发来。`,
   show_plan: `执行计划：{"title"?, "steps": [{"title", "detail"?}]}，多步任务开始前给用户看，用户可以增删改步骤，确认后计划会作为下一条消息发来。`,
   show_actions: `操作按钮：{"items": [{"label", "ask"?, "href"?, "primary"?}]}，最多 4 个；ask 是点了之后发出的消息，href 是要打开的链接。`,
   suggest_followups: `后续问题：{"questions": [1 到 4 个短问题]}，放在回答最后，正文里不要再列一遍。`,
@@ -218,4 +218,31 @@ const EXAMPLES: Partial<Record<UiToolName, string>> = {
 export function catalogExample(names: readonly UiToolName[]) {
   const name = names.find(item => EXAMPLES[item]);
   return name ? `- 例：\n\`\`\`${BLOCK_OF[name]}\n${EXAMPLES[name]}\n\`\`\`\n` : "";
+}
+
+type Issue = { code: string; path: PropertyKey[]; maximum?: number | bigint; origin?: string };
+
+/**
+ * Models overshoot limits: one point too many, a label a few characters long. Instead of dropping the
+ * whole component, cut lists and strings to the limit the schema reports, and parse again.
+ */
+export function parseBlock<Name extends UiToolName>(name: Name, value: unknown): UiSpec<Name> | undefined {
+  let current = value;
+  for (let round = 0; round < 4; round++) {
+    const parsed = uiSchemas[name].safeParse(current);
+    if (parsed.success) return parsed.data as UiSpec<Name>;
+    const fixable = (parsed.error.issues as Issue[]).filter(issue => issue.code === "too_big" && typeof issue.maximum === "number" && (issue.origin === "array" || issue.origin === "string"));
+    if (!fixable.length) return undefined;
+    current = structuredClone(current);
+    for (const issue of fixable) {
+      const parent = issue.path.slice(0, -1).reduce<unknown>((node, key) => (node as Record<PropertyKey, unknown> | undefined)?.[key], current) as Record<PropertyKey, unknown> | undefined;
+      const key = issue.path.at(-1);
+      const target = key === undefined ? current : parent?.[key];
+      const max = Number(issue.maximum);
+      const cut = Array.isArray(target) ? target.slice(0, max) : typeof target === "string" ? `${target.slice(0, Math.max(1, max - 1))}…` : target;
+      if (key === undefined) current = cut;
+      else if (parent) parent[key] = cut;
+    }
+  }
+  return undefined;
 }

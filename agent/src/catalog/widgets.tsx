@@ -333,7 +333,8 @@ export function Confirm({ title, description, risk, fields, confirmLabel, answer
       title={title}
       description={description}
       risk={risk}
-      fields={fields}
+      // A field with only "before" is context (the current value), not a change.
+      fields={fields?.map(field => (field.after === undefined ? { label: field.label, after: field.before ?? "" } : { label: field.label, before: field.before, after: field.after }))}
       state={state}
       approveLabel={confirmLabel ?? "确认"}
       denyLabel="取消"

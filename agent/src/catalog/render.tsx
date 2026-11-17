@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ChoiceCard, DataTable, PromptSuggestions, StatCard, type ColumnDef } from "@forge-ui-official/core";
 import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
-import { uiSchemas, type UiSpec, type UiToolName } from "./schema";
+import { parseBlock, type UiSpec, type UiToolName } from "./schema";
 import { Actions, Callout, Changes, Chart, Compare, Confirm, Flow, Form, Funnel, Images, ListBlock, Plan, Progress, Questions, RecordCard, Tags, Timeline } from "./widgets";
 
 type Row = Record<string, string | number | boolean | null>;
@@ -225,9 +225,9 @@ function ground(name: UiToolName, data: unknown, sources: Sources): unknown {
  * progress and funnels must come from tool results in the same answer; otherwise a note replaces them.
  */
 export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question: string) => void, sources: Sources, answer?: string): ReactNode {
-  const parsed = uiSchemas[name].safeParse(input);
-  if (!parsed.success) return null;
-  const data = ground(name, parsed.data, sources);
+  const parsed = parseBlock(name, input);
+  if (parsed === undefined) return null;
+  const data = ground(name, parsed, sources);
   if (data === undefined) return null;
   if (numbersOf(name, data).some(value => !sources.has(value))) {
     return <p className="text-xs text-fg-grey-700">这组数字没能和查询结果核对上，已省略。</p>;
