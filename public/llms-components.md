@@ -1,14 +1,14 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.8.3
+Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 4d3e2a816edacdcd42bbecbe60987a8a551cc10904ca5d024f54d16327414df2
+Source fingerprint: 5387cb7513e93c4d1bc6dba74c5ee45d3846bbef353a714654adaabd1a407884
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (509, values and types distinguished)
+## Public exports (605, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -21,6 +21,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AddMemberItem [type] — core/src/components/ui/add-member.tsx
 - AddMemberLabels [type] — core/src/components/ui/add-member.tsx
 - AddMemberProps [type] — core/src/components/ui/add-member.tsx
+- AGENT_PANEL_WIDTH [value] — core/src/components/ui/agent/agent-panel.tsx
+- AgentCheckpoints [value] — core/src/components/ui/agent/agent-governance.tsx
+- AgentCheckpointsProps [type] — core/src/components/ui/agent/agent-governance.tsx
 - AgentCodeBlock [value] — core/src/components/ui/agent/agent-code-block.tsx
 - AgentCodeDiffRow [type] — core/src/components/ui/agent/agent-code-block.tsx
 - AgentCodeDiffType [type] — core/src/components/ui/agent/agent-code-block.tsx
@@ -34,20 +37,37 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AgentFlowEdge [type] — core/src/components/ui/agent/agent-flowchart.tsx
 - AgentFlowKind [type] — core/src/components/ui/agent/agent-flowchart.tsx
 - AgentFlowNode [type] — core/src/components/ui/agent/agent-flowchart.tsx
+- AgentInbox [value] — core/src/components/ui/agent/agent-ops.tsx
+- AgentInboxProps [type] — core/src/components/ui/agent/agent-ops.tsx
+- AgentLanes [value] — core/src/components/ui/agent/agent-observe.tsx
+- AgentLanesProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - AgentMessage [value] — core/src/components/ui/agent/agent-conversation.tsx
 - AgentMessagePart [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentMessageProps [type] — core/src/components/ui/agent/agent-conversation.tsx
 - AgentMessageRole [type] — core/src/components/ui/agent/agent-conversation.tsx
+- AgentPanel [value] — core/src/components/ui/agent/agent-panel.tsx
+- AgentPanelProps [type] — core/src/components/ui/agent/agent-panel.tsx
 - AgentParts [value] — core/src/components/ui/agent/agent-parts.tsx
 - AgentPartsProps [type] — core/src/components/ui/agent/agent-parts.tsx
+- AgentPlan [value] — core/src/components/ui/agent/agent-run.tsx
+- AgentPlanProps [type] — core/src/components/ui/agent/agent-run.tsx
+- AgentSession [type] — core/src/components/ui/agent/agent-panel.tsx
+- AgentStepStatus [type] — core/src/components/ui/agent/agent-run.tsx
 - AgentTask [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskChild [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskRows [value] — core/src/components/ui/agent/agent-task-rows.tsx
+- AgentTaskState [type] — core/src/components/ui/agent/agent-ops.tsx
 - AgentTaskStatus [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentToolApproval [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolApprovalResponse [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolPart [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolState [type] — core/src/components/ui/agent/agent-parts.tsx
+- AgentTrail [value] — core/src/components/ui/agent/agent-run.tsx
+- AgentTrailProps [type] — core/src/components/ui/agent/agent-run.tsx
+- AgentTree [value] — core/src/components/ui/agent/agent-observe.tsx
+- AgentTreeProps [type] — core/src/components/ui/agent/agent-observe.tsx
+- AgentWelcome [value] — core/src/components/ui/agent/agent-welcome.tsx
+- AgentWelcomeProps [type] — core/src/components/ui/agent/agent-welcome.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
 - AppLayout [value] — core/src/components/layouts/app-layout.tsx
 - AppLayoutAccentColor [type] — core/src/components/layouts/app-layout.tsx
@@ -61,8 +81,14 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AppLayoutProfileMenuItem [type] — core/src/components/layouts/app-layout.tsx
 - AppLayoutProfilePosition [type] — core/src/components/layouts/app-layout.tsx
 - AppLayoutProps [type] — core/src/components/layouts/app-layout.tsx
+- Approval [value] — core/src/components/ui/agent/approval.tsx
 - ApprovalCard [value] — core/src/components/ui/agent/approval-card.tsx
+- ApprovalField [type] — core/src/components/ui/agent/approval.tsx
+- ApprovalProps [type] — core/src/components/ui/agent/approval.tsx
 - ApprovalQuestion [type] — core/src/components/ui/agent/approval-card.tsx
+- ApprovalRisk [type] — core/src/components/ui/agent/approval.tsx
+- ApprovalScope [type] — core/src/components/ui/agent/approval.tsx
+- ApprovalState [type] — core/src/components/ui/agent/approval.tsx
 - AppSwitcherDropdown [value] — core/src/components/layouts/sidebar-popovers.tsx
 - AppSwitcherItem [type] — core/src/components/layouts/sidebar-popovers.tsx
 - ArtifactCard [value] — core/src/components/ui/agent/agent-conversation.tsx
@@ -81,10 +107,21 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AskAiRequest [type] — core/src/internal/ask-ai-types.ts
 - AskAiResponse [type] — core/src/internal/ask-ai-types.ts
 - AskAiSessionItem [type] — core/src/internal/ask-ai-types.ts
+- AttachmentItem [type] — core/src/components/ui/agent/composer-parts.tsx
+- AttachmentKind [type] — core/src/components/ui/agent/composer-parts.tsx
+- AttachmentList [value] — core/src/components/ui/agent/composer-parts.tsx
+- AttachmentListProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- AutonomyAction [type] — core/src/components/ui/agent/agent-governance.tsx
+- AutonomyLevel [type] — core/src/components/ui/agent/agent-governance.tsx
+- AutonomySelector [value] — core/src/components/ui/agent/agent-governance.tsx
+- AutonomySelectorProps [type] — core/src/components/ui/agent/agent-governance.tsx
 - Avatar [value] — core/src/components/ui/avatar.tsx
 - AvatarGroup [value] — core/src/components/ui/avatar.tsx
 - AvatarInitialColor [type] — core/src/components/ui/avatar.tsx
 - AvatarSize [type] — core/src/components/ui/avatar.tsx
+- AwayItem [type] — core/src/components/ui/agent/agent-ops.tsx
+- AwaySummary [value] — core/src/components/ui/agent/agent-ops.tsx
+- AwaySummaryProps [type] — core/src/components/ui/agent/agent-ops.tsx
 - BalanceCard [value] — core/src/components/ui/balance-card.tsx
 - BalanceCardProps [type] — core/src/components/ui/balance-card.tsx
 - BarChart [value] — core/src/components/ui/charts/bar-chart.tsx
@@ -142,6 +179,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - CellStatusDot [value] — core/src/components/ui/data-table.tsx
 - CellText [value] — core/src/components/ui/data-table.tsx
 - CellTextSubtitle [value] — core/src/components/ui/data-table.tsx
+- ChangeLedger [value] — core/src/components/ui/agent/agent-governance.tsx
+- ChangeLedgerProps [type] — core/src/components/ui/agent/agent-governance.tsx
 - ChartCard [value] — core/src/components/ui/charts/chart-card.tsx
 - ChartHeader [value] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartHeaderProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
@@ -171,10 +210,20 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ChecklistItem [value] — core/src/components/ui/checklist.tsx
 - ChecklistSize [type] — core/src/components/ui/checklist.tsx
 - ChecklistTask [type] — core/src/components/ui/checklist.tsx
+- Checkpoint [type] — core/src/components/ui/agent/agent-governance.tsx
+- ChoiceAnswer [type] — core/src/components/ui/agent/question.tsx
+- ChoiceCard [value] — core/src/components/ui/agent/question.tsx
+- ChoiceCardProps [type] — core/src/components/ui/agent/question.tsx
+- ChoiceOption [type] — core/src/components/ui/agent/question.tsx
 - CircleIcon [value] — core/src/components/ui/badge.tsx
 - CircleIconColor [type] — core/src/components/ui/badge.tsx
 - CircleIconSize [type] — core/src/components/ui/badge.tsx
 - CircleIconVariant [type] — core/src/components/ui/badge.tsx
+- Citation [value] — core/src/components/ui/agent/cited-answer.tsx
+- CitationProps [type] — core/src/components/ui/agent/cited-answer.tsx
+- CitationSource [type] — core/src/components/ui/agent/cited-answer.tsx
+- CitedAnswer [value] — core/src/components/ui/agent/cited-answer.tsx
+- CitedAnswerProps [type] — core/src/components/ui/agent/cited-answer.tsx
 - CloseIcon [value] — core/src/components/ui/plain-icons.tsx
 - cn [value] — core/src/lib/utils.ts
 - ColorPicker [value] — core/src/components/ui/forms/icon-selector.tsx
@@ -197,9 +246,16 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ConfirmationDialog [value] — core/src/components/ui/confirmation-dialog.tsx
 - ConfirmationDialogColor [type] — core/src/components/ui/confirmation-dialog.tsx
 - ConfirmationDialogLayout [type] — core/src/components/ui/confirmation-dialog.tsx
+- ConfirmCard [value] — core/src/components/ui/agent/approval.tsx
+- ConfirmCardProps [type] — core/src/components/ui/agent/approval.tsx
+- ConfirmField [type] — core/src/components/ui/agent/approval.tsx
 - ContactItem [value] — core/src/components/ui/contact-item.tsx
 - ContextCards [value] — core/src/components/ui/agent/context-cards.tsx
 - ContextChunk [type] — core/src/components/ui/agent/context-cards.tsx
+- ContextSegment [type] — core/src/components/ui/agent/agent-observe.tsx
+- ContextSegmentKind [type] — core/src/components/ui/agent/agent-observe.tsx
+- ContextUsage [value] — core/src/components/ui/agent/agent-observe.tsx
+- ContextUsageProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - ControlColor [type] — core/src/components/ui/forms/selection-control.tsx
 - Conversation [value] — core/src/components/ui/agent/agent-conversation.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
@@ -299,6 +355,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ImageGridSize [type] — core/src/components/ui/image-grid.tsx
 - ImageStatCard [value] — core/src/components/ui/image-stat-card.tsx
 - ImageStatCardProps [type] — core/src/components/ui/image-stat-card.tsx
+- InboxTask [type] — core/src/components/ui/agent/agent-ops.tsx
 - InfoRow [value] — core/src/components/ui/info-row.tsx
 - InfoRowProps [type] — core/src/components/ui/info-row.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -313,6 +370,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - LabelColor [type] — core/src/components/ui/badge.tsx
 - LabelSize [type] — core/src/components/ui/badge.tsx
 - LabelVariant [type] — core/src/components/ui/badge.tsx
+- LaneBlock [type] — core/src/components/ui/agent/agent-observe.tsx
+- LedgerEntry [type] — core/src/components/ui/agent/agent-governance.tsx
+- LedgerField [type] — core/src/components/ui/agent/agent-governance.tsx
 - LegacyCardTheme [type] — core/src/components/ui/card-utils.tsx
 - LineChartColor [type] — core/src/components/ui/line-chart-stat-card.tsx
 - LineChartStatCard [value] — core/src/components/ui/line-chart-stat-card.tsx
@@ -379,6 +439,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - Panel [value] — core/src/components/ui/panel.tsx
 - PanelProps [type] — core/src/components/ui/panel.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
+- PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
@@ -396,20 +457,40 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ProgressSize [type] — core/src/components/ui/progress-bar.tsx
 - ProgressStatCard [value] — core/src/components/ui/progress-stat-card.tsx
 - ProgressStatCardProps [type] — core/src/components/ui/progress-stat-card.tsx
+- ProgressStep [type] — core/src/components/ui/agent/agent-run.tsx
 - ProjectCard [value] — core/src/components/ui/project-card.tsx
 - ProjectCardColor [type] — core/src/components/ui/project-card.tsx
+- PromptQueue [value] — core/src/components/ui/agent/composer-parts.tsx
+- PromptQueueProps [type] — core/src/components/ui/agent/composer-parts.tsx
 - PromptSuggestions [value] — core/src/components/ui/agent/agent-conversation.tsx
 - PromptSuggestionsProps [type] — core/src/components/ui/agent/agent-conversation.tsx
+- Question [value] — core/src/components/ui/agent/question.tsx
+- QuestionAnswer [type] — core/src/components/ui/agent/question.tsx
+- QuestionItem [type] — core/src/components/ui/agent/question.tsx
+- QuestionOption [type] — core/src/components/ui/agent/question.tsx
+- QuestionProps [type] — core/src/components/ui/agent/question.tsx
+- QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
 - RadioWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - RatingStars [value] — core/src/components/ui/rating-stars.tsx
 - RatingStarsSize [type] — core/src/components/ui/rating-stars.tsx
+- Reasoning [value] — core/src/components/ui/agent/thinking.tsx
+- ReasoningProps [type] — core/src/components/ui/agent/thinking.tsx
+- ReasoningSource [type] — core/src/components/ui/agent/thinking.tsx
+- ReasoningStatus [type] — core/src/components/ui/agent/thinking.tsx
+- ReasoningStep [type] — core/src/components/ui/agent/thinking.tsx
 - RecommendationCard [value] — core/src/components/ui/agent/recommendation-card.tsx
 - RecommendationConfidence [type] — core/src/components/ui/agent/recommendation-card.tsx
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
+- RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
+- RunControlsProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- RunningNow [value] — core/src/components/ui/agent/agent-ops.tsx
+- RunningNowProps [type] — core/src/components/ui/agent/agent-ops.tsx
+- RunProgress [value] — core/src/components/ui/agent/agent-run.tsx
+- RunStatus [type] — core/src/components/ui/agent/composer-parts.tsx
 - SelectOption [value] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionBgVariant [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionColor [type] — core/src/components/ui/forms/select-option.tsx
@@ -472,6 +553,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TextFieldSelectSuffix [value] — core/src/components/ui/forms/text-field-select.tsx
 - TextFieldShape [type] — core/src/components/ui/forms/text-field.tsx
 - TextFieldState [type] — core/src/components/ui/forms/text-field.tsx
+- ThinkingIndicator [value] — core/src/components/ui/agent/thinking.tsx
+- ThinkingIndicatorProps [type] — core/src/components/ui/agent/thinking.tsx
 - ThinkingRow [type] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingTrace [value] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingVariant [type] — core/src/components/ui/agent/thinking-trace.tsx
@@ -494,6 +577,11 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ToolbarSelectDropdown [value] — core/src/components/ui/toolbar.tsx
 - ToolbarSelectionOptions [type] — core/src/components/ui/toolbar.tsx
 - ToolbarShowSelect [value] — core/src/components/ui/toolbar.tsx
+- ToolCall [value] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallGroup [value] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallGroupProps [type] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallProps [type] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallStatus [type] — core/src/components/ui/agent/tool-call.tsx
 - ToolChipDetail [type] — core/src/components/ui/agent/tool-chips.tsx
 - ToolChipItem [type] — core/src/components/ui/agent/tool-chips.tsx
 - ToolChipKind [type] — core/src/components/ui/agent/tool-chips.tsx
@@ -508,6 +596,13 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TooltipSize [type] — core/src/components/ui/tooltip.tsx
 - TopBar [value] — core/src/components/ui/topbar.tsx
 - TopBarColor [type] — core/src/components/ui/topbar.tsx
+- TraceSpan [type] — core/src/components/ui/agent/agent-observe.tsx
+- TraceWaterfall [value] — core/src/components/ui/agent/agent-observe.tsx
+- TraceWaterfallProps [type] — core/src/components/ui/agent/agent-observe.tsx
+- TrailStep [type] — core/src/components/ui/agent/agent-run.tsx
+- TrailSubstep [type] — core/src/components/ui/agent/agent-run.tsx
+- TreeAgent [type] — core/src/components/ui/agent/agent-observe.tsx
+- TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx
@@ -516,6 +611,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - useToast [value] — core/src/components/ui/toast.tsx
 - WalletGoalCard [value] — core/src/components/ui/wallet-goal-card.tsx
 - WalletGoalCardProps [type] — core/src/components/ui/wallet-goal-card.tsx
+- WelcomeCapability [type] — core/src/components/ui/agent/agent-welcome.tsx
 - WheelChartStatCard [value] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx
@@ -526,7 +622,7 @@ Source: skills/forge-skill/references/components/accent-utils.md
 
 # accent-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AccentColor (type)
@@ -572,7 +668,7 @@ Source: skills/forge-skill/references/components/accordion.md
 
 # accordion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Accordion (value)
@@ -611,7 +707,7 @@ Source: skills/forge-skill/references/components/activity-card.md
 
 # activity-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ActivityCard (value)
@@ -643,7 +739,7 @@ Source: skills/forge-skill/references/components/add-member.md
 
 # add-member
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AddMember (value)
@@ -717,7 +813,7 @@ Source: skills/forge-skill/references/components/agent-code-block.md
 
 # agent-code-block
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentCodeBlock (value)
@@ -789,7 +885,7 @@ Source: skills/forge-skill/references/components/agent-conversation.md
 
 # agent-conversation
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-conversation.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-conversation.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessage (value)
@@ -908,7 +1004,7 @@ export type ConversationProps = {
 ## MessageActions (value)
 
 ```ts
-({ copyText, onRetry, onFeedback, feedback: controlled, locale, labels, className }: MessageActionsProps) => JSX.Element
+({ copyText, onRetry, onFeedback, feedback: controlled, versions, onEdit, feedbackReasons, onFeedbackReason, locale, labels, className }: MessageActionsProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -917,8 +1013,12 @@ export type ConversationProps = {
 | `onRetry` | 否 | `(() => void) \| undefined` |  |
 | `onFeedback` | 否 | `((value: MessageFeedback) => void) \| undefined` |  |
 | `feedback` | 否 | `MessageFeedback \| undefined` |  |
+| `versions` | 否 | `{ current: number; total: number; onChange: (index: number) => void; } \| undefined` | Regenerated replies: shows "2/3" with previous and next. `current` is 0-based. |
+| `onEdit` | 否 | `(() => void) \| undefined` | Edit and resend; usually on the user's message. |
+| `feedbackReasons` | 否 | `string[] \| undefined` | Offered after a thumbs down, e.g. ["没回答问题", "数据不对", "太长"]. |
+| `onFeedbackReason` | 否 | `((reason: string) => void) \| undefined` |  |
 | `locale` | 否 | `Locale \| undefined` |  |
-| `labels` | 否 | `Partial<Record<"copy" \| "up" \| "down" \| "copied" \| "retry", string>> \| undefined` |  |
+| `labels` | 否 | `Partial<Record<"next" \| "previous" \| "copy" \| "up" \| "down" \| "copied" \| "retry" \| "edit", string>> \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
 
 ## MessageActionsProps (type)
@@ -930,8 +1030,15 @@ export type MessageActionsProps = {
   onRetry?: () => void;
   onFeedback?: (value: MessageFeedback) => void;
   feedback?: MessageFeedback;
+  /** Regenerated replies: shows "2/3" with previous and next. `current` is 0-based. */
+  versions?: { current: number; total: number; onChange: (index: number) => void };
+  /** Edit and resend; usually on the user's message. */
+  onEdit?: () => void;
+  /** Offered after a thumbs down, e.g. ["没回答问题", "数据不对", "太长"]. */
+  feedbackReasons?: string[];
+  onFeedbackReason?: (reason: string) => void;
   locale?: Locale;
-  labels?: Partial<Record<"copy" | "copied" | "retry" | "up" | "down", string>>;
+  labels?: Partial<Record<"copy" | "copied" | "retry" | "up" | "down" | "edit" | "previous" | "next", string>>;
   className?: string;
 };
 ```
@@ -974,7 +1081,7 @@ Source: skills/forge-skill/references/components/agent-diff-table.md
 
 # agent-diff-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentDiffChange (type)
@@ -1028,7 +1135,7 @@ Source: skills/forge-skill/references/components/agent-flowchart.md
 
 # agent-flowchart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentFlowchart (value)
@@ -1081,11 +1188,559 @@ export type AgentFlowNode = {
 
 ---
 
+Source: skills/forge-skill/references/components/agent-governance.md
+
+# agent-governance
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-governance.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AgentCheckpoints (value)
+
+```ts
+({ checkpoints, currentId, onRewind, locale, className }: AgentCheckpointsProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `checkpoints` | 是 | `Checkpoint[]` |  |
+| `currentId` | 否 | `string \| undefined` |  |
+| `onRewind` | 否 | `((id: string) => void) \| undefined` | Go back to this point; the next attempt branches from it. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentCheckpointsProps (type)
+
+```ts
+export type AgentCheckpointsProps = {
+  checkpoints: Checkpoint[];
+  currentId?: string;
+  /** Go back to this point; the next attempt branches from it. */
+  onRewind?: (id: string) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## AutonomyAction (type)
+
+```ts
+export type AutonomyAction = { id: string; label: string; risk: "low" | "medium" | "high" };
+```
+
+## AutonomyLevel (type)
+
+```ts
+export type AutonomyLevel = "ask" | "balanced" | "auto";
+```
+
+## AutonomySelector (value)
+
+```ts
+({ value, onChange, actions, locale, className }: AutonomySelectorProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 是 | `AutonomyLevel` |  |
+| `onChange` | 是 | `(value: AutonomyLevel) => void` |  |
+| `actions` | 否 | `AutonomyAction[] \| undefined` | Example actions, sorted by what this level lets the agent do on its own. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AutonomySelectorProps (type)
+
+```ts
+export type AutonomySelectorProps = {
+  value: AutonomyLevel;
+  onChange: (value: AutonomyLevel) => void;
+  /** Example actions, sorted by what this level lets the agent do on its own. */
+  actions?: AutonomyAction[];
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## ChangeLedger (value)
+
+```ts
+({ entries, title, onUndo, locale, className }: ChangeLedgerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `entries` | 是 | `LedgerEntry[]` |  |
+| `title` | 否 | `ReactNode` |  |
+| `onUndo` | 否 | `((id: string, alsoUndone: string[]) => void) \| undefined` | Undo one entry; entries that depend on it are listed in the confirmation and undone with it. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ChangeLedgerProps (type)
+
+```ts
+export type ChangeLedgerProps = {
+  entries: LedgerEntry[];
+  title?: ReactNode;
+  /** Undo one entry; entries that depend on it are listed in the confirmation and undone with it. */
+  onUndo?: (id: string, alsoUndone: string[]) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## Checkpoint (type)
+
+```ts
+export type Checkpoint = {
+  id: string;
+  label: string;
+  detail?: string;
+  time?: string;
+  /** An attempt the run moved away from after a rewind; shown faded beside the line. */
+  abandoned?: boolean;
+};
+```
+
+## LedgerEntry (type)
+
+```ts
+export type LedgerEntry = {
+  id: string;
+  /** What changed, e.g. "张三的角色". */
+  title: string;
+  /** Where, e.g. "账号管理" or a record number. */
+  target?: string;
+  fields?: LedgerField[];
+  time?: string;
+  /** Who made it, e.g. the agent's name. */
+  actor?: string;
+  status?: "applied" | "undone" | "irreversible";
+  /** Entries this one builds on; undoing those undoes this one too. */
+  dependsOn?: string[];
+};
+```
+
+## LedgerField (type)
+
+```ts
+export type LedgerField = { label: string; before?: string; after: string };
+```
+
+---
+
+Source: skills/forge-skill/references/components/agent-observe.md
+
+# agent-observe
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-observe.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AgentLanes (value)
+
+```ts
+({ lanes, blocks, now, onSelect, locale, className }: AgentLanesProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `lanes` | 是 | `{ id: string; name: string; icon?: ReactNode; }[]` |  |
+| `blocks` | 是 | `LaneBlock[]` |  |
+| `now` | 是 | `number` | Milliseconds since the start of the window. |
+| `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentLanesProps (type)
+
+```ts
+export type AgentLanesProps = {
+  lanes: { id: string; name: string; icon?: ReactNode }[];
+  blocks: LaneBlock[];
+  /** Milliseconds since the start of the window. */
+  now: number;
+  onSelect?: (id: string) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## AgentTree (value)
+
+```ts
+({ root, selectedId, onSelect, currency, locale, className }: AgentTreeProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `root` | 是 | `TreeAgent` |  |
+| `selectedId` | 否 | `string \| undefined` |  |
+| `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `currency` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentTreeProps (type)
+
+```ts
+export type AgentTreeProps = {
+  root: TreeAgent;
+  selectedId?: string;
+  onSelect?: (id: string) => void;
+  currency?: string;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## ContextSegment (type)
+
+```ts
+export type ContextSegment = {
+  id: string;
+  label: string;
+  tokens: number;
+  kind?: ContextSegmentKind;
+  /** Files and memories can be taken out of the context. */
+  removable?: boolean;
+};
+```
+
+## ContextSegmentKind (type)
+
+```ts
+export type ContextSegmentKind = "system" | "tools" | "memory" | "files" | "chat" | "other";
+```
+
+## ContextUsage (value)
+
+```ts
+({ variant, locale, className, ...props }: ContextUsageProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `segments` | 是 | `ContextSegment[]` |  |
+| `limit` | 是 | `number` | The model's context window in tokens. |
+| `cost` | 否 | `number \| undefined` | Spend so far in this conversation. |
+| `currency` | 否 | `string \| undefined` |  |
+| `onRemove` | 否 | `((id: string) => void) \| undefined` |  |
+| `onCompact` | 否 | `(() => void) \| undefined` | Summarise older turns to free room. |
+| `variant` | 否 | `"inline" \| "card" \| undefined` | inline: a small ring for the composer toolbar that opens the breakdown. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ContextUsageProps (type)
+
+```ts
+export type ContextUsageProps = {
+  segments: ContextSegment[];
+  /** The model's context window in tokens. */
+  limit: number;
+  /** Spend so far in this conversation. */
+  cost?: number;
+  currency?: string;
+  onRemove?: (id: string) => void;
+  /** Summarise older turns to free room. */
+  onCompact?: () => void;
+  /** inline: a small ring for the composer toolbar that opens the breakdown. */
+  variant?: "card" | "inline";
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## LaneBlock (type)
+
+```ts
+export type LaneBlock = {
+  id: string;
+  laneId: string;
+  title: string;
+  /** Milliseconds from the start of the window. */
+  start: number;
+  /** Omit while it is still running; it then grows to `now`. */
+  end?: number;
+  status: "running" | "waiting" | "done" | "failed";
+};
+```
+
+## TraceSpan (type)
+
+```ts
+export type TraceSpan = {
+  id: string;
+  name: string;
+  kind: "llm" | "tool" | "agent" | "other";
+  /** Milliseconds from the start of the run. */
+  start: number;
+  /** Milliseconds; omit while running. */
+  duration?: number;
+  depth?: number;
+  tokens?: number;
+  cost?: number;
+  status?: "ok" | "error" | "running";
+};
+```
+
+## TraceWaterfall (value)
+
+```ts
+({ spans, now, selectedId, onSelect, currency, locale, className }: TraceWaterfallProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `spans` | 是 | `TraceSpan[]` |  |
+| `now` | 否 | `number \| undefined` | Milliseconds since the start, for spans still running. |
+| `selectedId` | 否 | `string \| undefined` |  |
+| `onSelect` | 否 | `((id: string) => void) \| undefined` |  |
+| `currency` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TraceWaterfallProps (type)
+
+```ts
+export type TraceWaterfallProps = {
+  spans: TraceSpan[];
+  /** Milliseconds since the start, for spans still running. */
+  now?: number;
+  selectedId?: string;
+  onSelect?: (id: string) => void;
+  currency?: string;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## TreeAgent (type)
+
+```ts
+export type TreeAgent = {
+  id: string;
+  name: string;
+  role?: string;
+  status: TreeAgentStatus;
+  /** What it is doing right now. */
+  activity?: string;
+  cost?: number;
+  duration?: number;
+  children?: TreeAgent[];
+};
+```
+
+## TreeAgentStatus (type)
+
+```ts
+export type TreeAgentStatus = "running" | "waiting" | "done" | "failed" | "idle";
+```
+
+---
+
+Source: skills/forge-skill/references/components/agent-ops.md
+
+# agent-ops
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-ops.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AgentInbox (value)
+
+```ts
+({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, className }: AgentInboxProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `tasks` | 是 | `InboxTask[]` |  |
+| `title` | 否 | `ReactNode` |  |
+| `onApprove` | 否 | `((id: string) => void) \| undefined` |  |
+| `onReject` | 否 | `((id: string) => void) \| undefined` |  |
+| `onRetry` | 否 | `((id: string) => void) \| undefined` |  |
+| `onOpen` | 否 | `((id: string) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentInboxProps (type)
+
+```ts
+export type AgentInboxProps = {
+  tasks: InboxTask[];
+  title?: ReactNode;
+  onApprove?: (id: string) => void;
+  onReject?: (id: string) => void;
+  onRetry?: (id: string) => void;
+  onOpen?: (id: string) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## AgentTaskState (type)
+
+```ts
+export type AgentTaskState = "running" | "needs-you" | "failed" | "done";
+```
+
+## AwayItem (type)
+
+```ts
+export type AwayItem = {
+  id: string;
+  title: string;
+  kind: "needs-you" | "failed" | "done";
+  detail?: string;
+  actionLabel?: string;
+  onAction?: () => void;
+};
+```
+
+## AwaySummary (value)
+
+```ts
+({ awayFor, items, onDismiss, locale, className }: AwaySummaryProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `awayFor` | 是 | `number` | How long the user was away, in milliseconds. |
+| `items` | 是 | `AwayItem[]` |  |
+| `onDismiss` | 否 | `(() => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AwaySummaryProps (type)
+
+```ts
+export type AwaySummaryProps = {
+  /** How long the user was away, in milliseconds. */
+  awayFor: number;
+  items: AwayItem[];
+  onDismiss?: () => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## InboxTask (type)
+
+```ts
+export type InboxTask = {
+  id: string;
+  title: string;
+  /** Which agent works on it. */
+  agent?: string;
+  status: AgentTaskState;
+  startedAt?: number | Date;
+  duration?: number;
+  /** One line on where it stands, e.g. "等你确认退款金额". */
+  summary?: string;
+  /** The last few things it did, shown when the row opens. */
+  recent?: string[];
+};
+```
+
+## RunningNow (value)
+
+```ts
+({ tasks, onOpen, locale, className }: RunningNowProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `tasks` | 是 | `InboxTask[]` |  |
+| `onOpen` | 否 | `((id: string) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## RunningNowProps (type)
+
+```ts
+export type RunningNowProps = {
+  tasks: InboxTask[];
+  onOpen?: (id: string) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+---
+
+Source: skills/forge-skill/references/components/agent-panel.md
+
+# agent-panel
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-panel.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AGENT_PANEL_WIDTH (value)
+
+```ts
+400
+```
+
+## AgentPanel (value)
+
+```ts
+({ title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, notice, composer }: AgentPanelProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `string` |  |
+| `open` | 是 | `boolean` |  |
+| `onOpenChange` | 是 | `(open: boolean) => void` |  |
+| `launcher` | 否 | `boolean \| undefined` | The floating launcher; turn it off when the app opens the panel from its own button. |
+| `launcherLabel` | 否 | `string \| undefined` |  |
+| `empty` | 否 | `ReactNode` | Shown above the composer when there is nothing in the conversation yet. |
+| `followKey` | 否 | `unknown` | Changes when content arrives, to keep following the latest reply. |
+| `children` | 否 | `ReactNode` |  |
+| `onNewChat` | 否 | `(() => void) \| undefined` |  |
+| `sessions` | 否 | `AgentSession[] \| undefined` | Earlier conversations, listed under the history button. |
+| `currentSessionId` | 否 | `string \| undefined` |  |
+| `onSelectSession` | 否 | `((id: string) => void) \| undefined` |  |
+| `notice` | 否 | `ReactNode` | Above the composer: errors, attachments, notices. |
+| `composer` | 是 | `{ locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` |  |
+
+## AgentPanelProps (type)
+
+```ts
+export type AgentPanelProps = {
+  title: string;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  /** The floating launcher; turn it off when the app opens the panel from its own button. */
+  launcher?: boolean;
+  launcherLabel?: string;
+  /** Shown above the composer when there is nothing in the conversation yet. */
+  empty?: ReactNode;
+  /** Changes when content arrives, to keep following the latest reply. */
+  followKey?: unknown;
+  children?: ReactNode;
+  onNewChat?: () => void;
+  /** Earlier conversations, listed under the history button. */
+  sessions?: AgentSession[];
+  currentSessionId?: string;
+  onSelectSession?: (id: string) => void;
+  /** Above the composer: errors, attachments, notices. */
+  notice?: ReactNode;
+  composer: ComponentProps<typeof ChatInputBar>;
+};
+```
+
+## AgentSession (type)
+
+```ts
+export type AgentSession = { id: string; title: string };
+```
+
+---
+
 Source: skills/forge-skill/references/components/agent-parts.md
 
 # agent-parts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessagePart (type)
@@ -1173,11 +1828,150 @@ export type AgentToolState = "input-streaming" | "input-available" | "approval-r
 
 ---
 
+Source: skills/forge-skill/references/components/agent-run.md
+
+# agent-run
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-run.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AgentPlan (value)
+
+```ts
+({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, size, className }: AgentPlanProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 否 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `steps` | 是 | `PlanStep[]` |  |
+| `mode` | 否 | `"done" \| "running" \| "review" \| undefined` | review: the user can edit before it runs; running/done: progress only. |
+| `onChange` | 否 | `((steps: PlanStep[]) => void) \| undefined` | Edits in review mode: rename, reorder, remove and add steps. Without it the plan is read-only. |
+| `onApprove` | 否 | `(() => void) \| undefined` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `onRetryFrom` | 否 | `((stepId: string) => void) \| undefined` | Re-run from a failed step. |
+| `approveLabel` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentPlanProps (type)
+
+```ts
+export type AgentPlanProps = {
+  title?: ReactNode;
+  description?: ReactNode;
+  steps: PlanStep[];
+  /** review: the user can edit before it runs; running/done: progress only. */
+  mode?: "review" | "running" | "done";
+  /** Edits in review mode: rename, reorder, remove and add steps. Without it the plan is read-only. */
+  onChange?: (steps: PlanStep[]) => void;
+  onApprove?: () => void;
+  onCancel?: () => void;
+  /** Re-run from a failed step. */
+  onRetryFrom?: (stepId: string) => void;
+  approveLabel?: string;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+## AgentStepStatus (type)
+
+```ts
+export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "failed" | "skipped";
+```
+
+## AgentTrail (value)
+
+```ts
+({ title, steps, collapseAfter, locale, className }: AgentTrailProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` |  |
+| `steps` | 是 | `TrailStep[]` |  |
+| `collapseAfter` | 否 | `number \| undefined` | Folds finished steps into one line when there are more than this. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentTrailProps (type)
+
+```ts
+export type AgentTrailProps = {
+  title: ReactNode;
+  steps: TrailStep[];
+  /** Folds finished steps into one line when there are more than this. */
+  collapseAfter?: number;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## PlanStep (type)
+
+```ts
+export type PlanStep = {
+  id: string;
+  title: string;
+  detail?: string;
+  status?: AgentStepStatus;
+  startedAt?: number | Date;
+  duration?: number;
+};
+```
+
+## ProgressStep (type)
+
+```ts
+export type ProgressStep = { id: string; title: string; status: "running" | "waiting-user" | "waiting-external" | "completed" | "cancelled" | "failed"; meta?: string };
+```
+
+## RunProgress (value)
+
+```ts
+({ steps, locale }: { steps: ProgressStep[]; locale?: AgentLocale; }) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `steps` | 是 | `ProgressStep[]` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+
+## TrailStep (type)
+
+```ts
+export type TrailStep = {
+  id: string;
+  title: string;
+  status: AgentStepStatus;
+  /** What it is doing right now, shown under a running step. */
+  activity?: string;
+  startedAt?: number | Date;
+  duration?: number;
+  substeps?: TrailSubstep[];
+  /** Content for a waiting step, usually an Approval or Question. */
+  waiting?: ReactNode;
+  error?: string;
+};
+```
+
+## TrailSubstep (type)
+
+```ts
+export type TrailSubstep = { id: string; title: string; status: AgentStepStatus; duration?: number };
+```
+
+---
+
 Source: skills/forge-skill/references/components/agent-task-rows.md
 
 # agent-task-rows
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentTask (type)
@@ -1224,11 +2018,67 @@ export type AgentTaskStatus = "running" | "failed" | "completed";
 
 ---
 
+Source: skills/forge-skill/references/components/agent-welcome.md
+
+# agent-welcome
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-welcome.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AgentWelcome (value)
+
+```ts
+({ title, description, icon, capabilities, onPick, footer, size, className }: AgentWelcomeProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` |  |
+| `capabilities` | 否 | `WelcomeCapability[] \| undefined` | What it can do, as cards that start a conversation. |
+| `onPick` | 否 | `((prompt: string) => void) \| undefined` |  |
+| `footer` | 否 | `ReactNode` | Anything under the cards, e.g. recent conversations. |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AgentWelcomeProps (type)
+
+```ts
+export type AgentWelcomeProps = {
+  title: ReactNode;
+  description?: ReactNode;
+  icon?: ReactNode;
+  /** What it can do, as cards that start a conversation. */
+  capabilities?: WelcomeCapability[];
+  onPick?: (prompt: string) => void;
+  /** Anything under the cards, e.g. recent conversations. */
+  footer?: ReactNode;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+## WelcomeCapability (type)
+
+```ts
+export type WelcomeCapability = {
+  id: string;
+  title: string;
+  description?: string;
+  icon?: ReactNode;
+  /** Sent as the first message when picked. */
+  prompt: string;
+};
+```
+
+---
+
 Source: skills/forge-skill/references/components/app-layout.md
 
 # app-layout
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppLayout (value)
@@ -1461,11 +2311,153 @@ export interface AppLayoutProps {
 
 ---
 
+Source: skills/forge-skill/references/components/approval.md
+
+# approval
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Approval (value)
+
+```ts
+({ title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className }: ApprovalProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` | What will happen, e.g. "把张三的角色改为管理员". |
+| `description` | 否 | `ReactNode` | Why the agent wants it, or what else it affects. |
+| `requester` | 否 | `ReactNode` | Who asks, e.g. the agent's name. |
+| `risk` | 否 | `ApprovalRisk \| undefined` |  |
+| `fields` | 否 | `ApprovalField[] \| undefined` | Field changes, shown as before → after. |
+| `preview` | 否 | `ReactNode` | Any preview: a diff, a draft, a record. |
+| `scopes` | 否 | `ApprovalScope[] \| undefined` | Offer standing permission, e.g. ["once", "session", "always"]. Without it there is one approve button and `onApprove` receives "once". |
+| `state` | 否 | `ApprovalState \| undefined` |  |
+| `result` | 否 | `ReactNode` | Shown once approved, e.g. the saved record from the receipt. |
+| `onApprove` | 否 | `((scope: ApprovalScope) => void) \| undefined` |  |
+| `onDeny` | 否 | `((reason?: string) => void) \| undefined` |  |
+| `askDenyReason` | 否 | `boolean \| undefined` | Lets the user say why when denying; the reason goes back to the agent. |
+| `expiresIn` | 否 | `number \| undefined` | Seconds until the request lapses; pauses while the pointer is on the card. |
+| `onExpire` | 否 | `(() => void) \| undefined` |  |
+| `approveLabel` | 否 | `string \| undefined` |  |
+| `denyLabel` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ApprovalField (type)
+
+```ts
+export type ApprovalField = { label: string; before?: string; after: string };
+```
+
+## ApprovalProps (type)
+
+```ts
+export type ApprovalProps = {
+  /** What will happen, e.g. "把张三的角色改为管理员". */
+  title: ReactNode;
+  /** Why the agent wants it, or what else it affects. */
+  description?: ReactNode;
+  /** Who asks, e.g. the agent's name. */
+  requester?: ReactNode;
+  risk?: ApprovalRisk;
+  /** Field changes, shown as before → after. */
+  fields?: ApprovalField[];
+  /** Any preview: a diff, a draft, a record. */
+  preview?: ReactNode;
+  /**
+   * Offer standing permission, e.g. ["once", "session", "always"]. Without it there is one approve
+   * button and `onApprove` receives "once".
+   */
+  scopes?: ApprovalScope[];
+  state?: ApprovalState;
+  /** Shown once approved, e.g. the saved record from the receipt. */
+  result?: ReactNode;
+  onApprove?: (scope: ApprovalScope) => void;
+  onDeny?: (reason?: string) => void;
+  /** Lets the user say why when denying; the reason goes back to the agent. */
+  askDenyReason?: boolean;
+  /** Seconds until the request lapses; pauses while the pointer is on the card. */
+  expiresIn?: number;
+  onExpire?: () => void;
+  approveLabel?: string;
+  denyLabel?: string;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+## ApprovalRisk (type)
+
+```ts
+export type ApprovalRisk = "low" | "medium" | "high";
+```
+
+## ApprovalScope (type)
+
+```ts
+export type ApprovalScope = "once" | "session" | "always";
+```
+
+## ApprovalState (type)
+
+```ts
+export type ApprovalState = "pending" | "working" | "approved" | "denied" | "expired";
+```
+
+## ConfirmCard (value)
+
+```ts
+({ title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale }: ConfirmCardProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `string` |  |
+| `fields` | 否 | `ApprovalField[] \| undefined` |  |
+| `body` | 否 | `string \| undefined` |  |
+| `confirmLabel` | 否 | `string \| undefined` |  |
+| `cancelLabel` | 否 | `string \| undefined` |  |
+| `state` | 否 | `"done" \| "cancelled" \| "pending" \| "working" \| undefined` |  |
+| `result` | 否 | `string \| undefined` | Shown once done, e.g. the saved record from the receipt. |
+| `onConfirm` | 否 | `(() => void) \| undefined` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+
+## ConfirmCardProps (type)
+
+```ts
+export type ConfirmCardProps = {
+  title: string;
+  fields?: ConfirmField[];
+  body?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  state?: "pending" | "working" | "done" | "cancelled";
+  /** Shown once done, e.g. the saved record from the receipt. */
+  result?: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  locale?: AgentLocale;
+};
+```
+
+## ConfirmField (type)
+
+```ts
+export type ConfirmField = ApprovalField;
+```
+
+---
+
 Source: skills/forge-skill/references/components/approval-card.md
 
 # approval-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ApprovalCard (value)
@@ -1505,7 +2497,7 @@ Source: skills/forge-skill/references/components/ask-ai.md
 
 # ask-ai
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAi (value)
@@ -1617,7 +2609,7 @@ Source: skills/forge-skill/references/components/ask-ai-fullscreen.md
 
 # ask-ai-fullscreen
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ASK_AI_FS_LAYER_ATTR (value)
@@ -1638,7 +2630,7 @@ Source: skills/forge-skill/references/components/ask-ai-types.md
 
 # ask-ai-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAiLink (type)
@@ -1693,7 +2685,7 @@ Source: skills/forge-skill/references/components/avatar.md
 
 # avatar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Avatar (value)
@@ -1746,7 +2738,7 @@ Source: skills/forge-skill/references/components/badge.md
 
 # badge
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ArtisticIcon (value)
@@ -1870,7 +2862,7 @@ Source: skills/forge-skill/references/components/balance-card.md
 
 # balance-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BalanceCard (value)
@@ -1918,7 +2910,7 @@ Source: skills/forge-skill/references/components/bar-chart.md
 
 # bar-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChart (value)
@@ -1955,7 +2947,7 @@ Source: skills/forge-skill/references/components/bar-chart-stat-card.md
 
 # bar-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChartStatCard (value)
@@ -2008,7 +3000,7 @@ Source: skills/forge-skill/references/components/bar-horizontal-chart.md
 
 # bar-horizontal-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarHorizontalChart (value)
@@ -2041,7 +3033,7 @@ Source: skills/forge-skill/references/components/bar-upside-down-chart.md
 
 # bar-upside-down-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarUpsideDownChart (value)
@@ -2071,7 +3063,7 @@ Source: skills/forge-skill/references/components/breadcrumbs.md
 
 # breadcrumbs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BreadcrumbColor (type)
@@ -2114,7 +3106,7 @@ Source: skills/forge-skill/references/components/bubble-chart.md
 
 # bubble-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BubbleChart (value)
@@ -2135,7 +3127,7 @@ Source: skills/forge-skill/references/components/button.md
 
 # button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Button (value)
@@ -2513,7 +3505,7 @@ Source: skills/forge-skill/references/components/button-group.md
 
 # button-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ButtonGroup (value)
@@ -2566,7 +3558,7 @@ Source: skills/forge-skill/references/components/calendar-card.md
 
 # calendar-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarCard (value)
@@ -2621,7 +3613,7 @@ Source: skills/forge-skill/references/components/calendar-day-cell.md
 
 # calendar-day-cell
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarDayCell (value)
@@ -2652,7 +3644,7 @@ Source: skills/forge-skill/references/components/calendar-week-row.md
 
 # calendar-week-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarWeekRow (value)
@@ -2677,7 +3669,7 @@ Source: skills/forge-skill/references/components/card-utils.md
 
 # card-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ALL_CARD_THEMES (value)
@@ -2991,7 +3983,7 @@ Source: skills/forge-skill/references/components/chart-card.md
 
 # chart-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartCard (value)
@@ -3019,7 +4011,7 @@ Source: skills/forge-skill/references/components/chart-legend-item.md
 
 # chart-legend-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartLegendItem (value)
@@ -3042,7 +4034,7 @@ Source: skills/forge-skill/references/components/chart-list-item.md
 
 # chart-list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartListItem (value)
@@ -3067,7 +4059,7 @@ Source: skills/forge-skill/references/components/chart-stat-footer.md
 
 # chart-stat-footer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartStatFooter (value)
@@ -3087,7 +4079,7 @@ Source: skills/forge-skill/references/components/chart-tooltip.md
 
 # chart-tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartTooltip (value)
@@ -3107,7 +4099,7 @@ Source: skills/forge-skill/references/components/chart-value-row.md
 
 # chart-value-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartValueRow (value)
@@ -3130,7 +4122,7 @@ Source: skills/forge-skill/references/components/chat-bubble.md
 
 # chat-bubble
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatBubble (value)
@@ -3176,7 +4168,7 @@ Source: skills/forge-skill/references/components/chat-input-bar.md
 
 # chat-input-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatInputBar (value)
@@ -3315,7 +4307,7 @@ Source: skills/forge-skill/references/components/chat-interactions.md
 
 # chat-interactions
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatReaction (type)
@@ -3336,7 +4328,7 @@ Source: skills/forge-skill/references/components/checkbox.md
 
 # checkbox
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checkbox (value)
@@ -3954,7 +4946,7 @@ Source: skills/forge-skill/references/components/checklist.md
 
 # checklist
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checklist (value)
@@ -4017,11 +5009,89 @@ export type ChecklistTask = {
 
 ---
 
+Source: skills/forge-skill/references/components/cited-answer.md
+
+# cited-answer
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/cited-answer.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Citation (value)
+
+```ts
+({ source, active, onActiveChange, locale }: CitationProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `source` | 是 | `CitationSource` |  |
+| `active` | 否 | `boolean \| undefined` |  |
+| `onActiveChange` | 否 | `((active: boolean) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+
+## CitationProps (type)
+
+```ts
+export type CitationProps = {
+  source: CitationSource;
+  active?: boolean;
+  onActiveChange?: (active: boolean) => void;
+  locale?: AgentLocale;
+};
+```
+
+## CitationSource (type)
+
+```ts
+export type CitationSource = {
+  /** The number used in the text: "[2]" refers to id 2. */
+  id: number;
+  title: string;
+  href?: string;
+  /** e.g. "docs.example.com" or "订单 1024". */
+  domain?: string;
+  /** The passage the claim rests on, shown in the preview. */
+  quote?: string;
+};
+```
+
+## CitedAnswer (value)
+
+```ts
+({ text, sources, hideSourceList, locale, size, className }: CitedAnswerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `text` | 是 | `string` | Plain text with citation markers like "[1]" or "[1][3]"; blank lines separate paragraphs. |
+| `sources` | 是 | `CitationSource[]` |  |
+| `hideSourceList` | 否 | `boolean \| undefined` | Hide the numbered source list under the answer. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CitedAnswerProps (type)
+
+```ts
+export type CitedAnswerProps = {
+  /** Plain text with citation markers like "[1]" or "[1][3]"; blank lines separate paragraphs. */
+  text: string;
+  sources: CitationSource[];
+  /** Hide the numbered source list under the answer. */
+  hideSourceList?: boolean;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+---
+
 Source: skills/forge-skill/references/components/command-search.md
 
 # command-search
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommandSearch (value)
@@ -4067,7 +5137,7 @@ Source: skills/forge-skill/references/components/comment-item.md
 
 # comment-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommentData (type)
@@ -4119,11 +5189,158 @@ export type CommentReply = {
 
 ---
 
+Source: skills/forge-skill/references/components/composer-parts.md
+
+# composer-parts
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/composer-parts.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## AttachmentItem (type)
+
+```ts
+export type AttachmentItem = {
+  id: string;
+  name: string;
+  /** Bytes. */
+  size?: number;
+  kind?: AttachmentKind;
+  /** Thumbnail for images. */
+  previewUrl?: string;
+  /** Upload progress from 0 to 100; omit when done. */
+  progress?: number;
+  error?: string;
+};
+```
+
+## AttachmentKind (type)
+
+```ts
+export type AttachmentKind = "image" | "document" | "sheet" | "file";
+```
+
+## AttachmentList (value)
+
+```ts
+({ items, onRemove, onRetry, onOpen, locale, className }: AttachmentListProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `AttachmentItem[]` |  |
+| `onRemove` | 否 | `((id: string) => void) \| undefined` |  |
+| `onRetry` | 否 | `((id: string) => void) \| undefined` |  |
+| `onOpen` | 否 | `((id: string) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## AttachmentListProps (type)
+
+```ts
+export type AttachmentListProps = {
+  items: AttachmentItem[];
+  onRemove?: (id: string) => void;
+  onRetry?: (id: string) => void;
+  onOpen?: (id: string) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## PromptQueue (value)
+
+```ts
+({ items, onRemove, onEdit, onSendNow, onMove, locale, className }: PromptQueueProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `QueuedPrompt[]` |  |
+| `onRemove` | 否 | `((id: string) => void) \| undefined` |  |
+| `onEdit` | 否 | `((id: string, text: string) => void) \| undefined` |  |
+| `onSendNow` | 否 | `((id: string) => void) \| undefined` | Sends this one next, ahead of the rest. |
+| `onMove` | 否 | `((id: string, direction: -1 \| 1) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## PromptQueueProps (type)
+
+```ts
+export type PromptQueueProps = {
+  items: QueuedPrompt[];
+  onRemove?: (id: string) => void;
+  onEdit?: (id: string, text: string) => void;
+  /** Sends this one next, ahead of the rest. */
+  onSendNow?: (id: string) => void;
+  onMove?: (id: string, direction: -1 | 1) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## QueuedPrompt (type)
+
+```ts
+export type QueuedPrompt = { id: string; text: string; attachments?: number };
+```
+
+## RunControls (value)
+
+```ts
+({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, className }: RunControlsProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `status` | 是 | `RunStatus` |  |
+| `activity` | 否 | `string \| undefined` | What the agent is doing now, e.g. "正在核对 3 张发票". |
+| `startedAt` | 否 | `number \| Date \| undefined` |  |
+| `duration` | 否 | `number \| undefined` |  |
+| `error` | 否 | `string \| undefined` | Shown when failed. |
+| `onStop` | 否 | `(() => void) \| undefined` |  |
+| `onResume` | 否 | `(() => void) \| undefined` | Continue a stopped run from where it stopped. |
+| `onRetry` | 否 | `(() => void) \| undefined` |  |
+| `onDismiss` | 否 | `(() => void) \| undefined` |  |
+| `onSteer` | 否 | `((note: string) => void) \| undefined` | Steer while it works: the note is picked up at the agent's next step. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## RunControlsProps (type)
+
+```ts
+export type RunControlsProps = {
+  status: RunStatus;
+  /** What the agent is doing now, e.g. "正在核对 3 张发票". */
+  activity?: string;
+  startedAt?: number | Date;
+  duration?: number;
+  /** Shown when failed. */
+  error?: string;
+  onStop?: () => void;
+  /** Continue a stopped run from where it stopped. */
+  onResume?: () => void;
+  onRetry?: () => void;
+  onDismiss?: () => void;
+  /** Steer while it works: the note is picked up at the agent's next step. */
+  onSteer?: (note: string) => void;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## RunStatus (type)
+
+```ts
+export type RunStatus = "running" | "stopping" | "stopped" | "failed" | "done";
+```
+
+---
+
 Source: skills/forge-skill/references/components/composer-types.md
 
 # composer-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ComposerModel (type)
@@ -4156,7 +5373,7 @@ Source: skills/forge-skill/references/components/confirmation-dialog.md
 
 # confirmation-dialog
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ConfirmationDialog (value)
@@ -4208,7 +5425,7 @@ Source: skills/forge-skill/references/components/contact-item.md
 
 # contact-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContactItem (value)
@@ -4243,7 +5460,7 @@ Source: skills/forge-skill/references/components/context-cards.md
 
 # context-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContextCards (value)
@@ -4280,7 +5497,7 @@ Source: skills/forge-skill/references/components/credit-card.md
 
 # credit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CreditCard (value)
@@ -4314,7 +5531,7 @@ Source: skills/forge-skill/references/components/currency-converter.md
 
 # currency-converter
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CurrencyConverter (value)
@@ -4362,7 +5579,7 @@ Source: skills/forge-skill/references/components/dashboard-charts.md
 
 # dashboard-charts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartHeader (value)
@@ -4498,7 +5715,7 @@ Source: skills/forge-skill/references/components/dashed-half-donut-chart.md
 
 # dashed-half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DashedHalfDonutChart (value)
@@ -4523,7 +5740,7 @@ Source: skills/forge-skill/references/components/data-table.md
 
 # data-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CellActionKey (type)
@@ -5017,7 +6234,7 @@ Source: skills/forge-skill/references/components/datepicker.md
 
 # datepicker
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Datepicker (value)
@@ -5077,7 +6294,7 @@ Source: skills/forge-skill/references/components/debit-card.md
 
 # debit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DebitCard (value)
@@ -5110,7 +6327,7 @@ Source: skills/forge-skill/references/components/donut-chart.md
 
 # donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DonutChart (value)
@@ -5142,7 +6359,7 @@ Source: skills/forge-skill/references/components/drawer.md
 
 # drawer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Drawer (value)
@@ -5181,7 +6398,7 @@ Source: skills/forge-skill/references/components/dropdown-panel.md
 
 # dropdown-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DropdownDivider (value)
@@ -5216,7 +6433,7 @@ Source: skills/forge-skill/references/components/event-card.md
 
 # event-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventCard (value)
@@ -5251,7 +6468,7 @@ Source: skills/forge-skill/references/components/event-tag.md
 
 # event-tag
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventTag (value)
@@ -5298,7 +6515,7 @@ Source: skills/forge-skill/references/components/file-input.md
 
 # file-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-input.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-input.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileInput (value)
@@ -5629,7 +6846,7 @@ Source: skills/forge-skill/references/components/file-upload.md
 
 # file-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileCard (value)
@@ -5710,7 +6927,7 @@ Source: skills/forge-skill/references/components/filter-group.md
 
 # filter-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterGroup (value)
@@ -5794,7 +7011,7 @@ Source: skills/forge-skill/references/components/filter-panel.md
 
 # filter-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterPanel (value)
@@ -5826,7 +7043,7 @@ Source: skills/forge-skill/references/components/filter-trigger.md
 
 # filter-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterTrigger (value)
@@ -5854,7 +7071,7 @@ Source: skills/forge-skill/references/components/folder.md
 
 # folder
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Folder (value)
@@ -5935,7 +7152,7 @@ Source: skills/forge-skill/references/components/folder-float.md
 
 # folder-float
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FolderFloat (value)
@@ -5972,7 +7189,7 @@ Source: skills/forge-skill/references/components/full-calendar.md
 
 # full-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarEvent (type)
@@ -6018,7 +7235,7 @@ Source: skills/forge-skill/references/components/grid.md
 
 # grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Grid (value)
@@ -6666,7 +7883,7 @@ Source: skills/forge-skill/references/components/half-donut-chart.md
 
 # half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HalfDonutChart (value)
@@ -6691,7 +7908,7 @@ Source: skills/forge-skill/references/components/highlight-card.md
 
 # highlight-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HighlightCard (value)
@@ -6733,7 +7950,7 @@ Source: skills/forge-skill/references/components/history-grouped.md
 
 # history-grouped
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryGrouped (value)
@@ -6765,7 +7982,7 @@ Source: skills/forge-skill/references/components/history-item.md
 
 # history-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryItem (value)
@@ -6837,7 +8054,7 @@ Source: skills/forge-skill/references/components/icon-button.md
 
 # icon-button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconButton (value)
@@ -7191,7 +8408,7 @@ Source: skills/forge-skill/references/components/icon-selector.md
 
 # icon-selector
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorPicker (value)
@@ -7251,7 +8468,7 @@ Source: skills/forge-skill/references/components/icon-trigger.md
 
 # icon-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconTrigger (value)
@@ -7308,7 +8525,7 @@ Source: skills/forge-skill/references/components/image-grid.md
 
 # image-grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageGrid (value)
@@ -7341,7 +8558,7 @@ Source: skills/forge-skill/references/components/image-stat-card.md
 
 # image-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageStatCard (value)
@@ -7391,7 +8608,7 @@ Source: skills/forge-skill/references/components/info-row.md
 
 # info-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/info-row.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/info-row.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InfoRow (value)
@@ -7422,7 +8639,7 @@ Source: skills/forge-skill/references/components/insight-cards.md
 
 # insight-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InsightCard (type)
@@ -7485,7 +8702,7 @@ Source: skills/forge-skill/references/components/kebab-menu.md
 
 # kebab-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## KebabMenu (value)
@@ -7532,7 +8749,7 @@ Source: skills/forge-skill/references/components/line-chart-stat-card.md
 
 # line-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LineChartColor (type)
@@ -7592,7 +8809,7 @@ Source: skills/forge-skill/references/components/link.md
 
 # link
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LinkColor (type)
@@ -7631,7 +8848,7 @@ Source: skills/forge-skill/references/components/liquid-tabs.md
 
 # liquid-tabs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LiquidTabs (value)
@@ -7696,7 +8913,7 @@ Source: skills/forge-skill/references/components/list-group.md
 
 # list-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ListGroup (value)
@@ -7749,7 +8966,7 @@ Source: skills/forge-skill/references/components/list-item.md
 
 # list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DescriptionItem (value)
@@ -7850,7 +9067,7 @@ Source: skills/forge-skill/references/components/map-card.md
 
 # map-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MapCard (value)
@@ -7915,7 +9132,7 @@ Source: skills/forge-skill/references/components/media-upload.md
 
 # media-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MediaItem (type)
@@ -7973,7 +9190,7 @@ Source: skills/forge-skill/references/components/menu-item.md
 
 # menu-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MenuItem (value)
@@ -8051,7 +9268,7 @@ Source: skills/forge-skill/references/components/meter-chart.md
 
 # meter-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MeterChart (value)
@@ -8075,7 +9292,7 @@ Source: skills/forge-skill/references/components/modal.md
 
 # modal
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Modal (value)
@@ -8124,7 +9341,7 @@ Source: skills/forge-skill/references/components/motion.md
 
 # motion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MotionPreference (type)
@@ -8139,7 +9356,7 @@ Source: skills/forge-skill/references/components/multilayer-donut-chart.md
 
 # multilayer-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MultilayerDonutChart (value)
@@ -8167,7 +9384,7 @@ Source: skills/forge-skill/references/components/notification-item.md
 
 # notification-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## NotificationItem (value)
@@ -8207,7 +9424,7 @@ Source: skills/forge-skill/references/components/otp-input.md
 
 # otp-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## OtpInput (value)
@@ -8272,7 +9489,7 @@ Source: skills/forge-skill/references/components/page-dot.md
 
 # page-dot
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageDot (value)
@@ -8306,7 +9523,7 @@ Source: skills/forge-skill/references/components/page-header.md
 
 # page-header
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageHeader (value)
@@ -8491,7 +9708,7 @@ Source: skills/forge-skill/references/components/pagination.md
 
 # pagination
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Pagination (value)
@@ -8527,7 +9744,7 @@ Source: skills/forge-skill/references/components/panel.md
 
 # panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Panel (value)
@@ -8852,7 +10069,7 @@ Source: skills/forge-skill/references/components/pie-chart.md
 
 # pie-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PieChart (value)
@@ -8874,7 +10091,7 @@ Source: skills/forge-skill/references/components/plain-icons.md
 
 # plain-icons
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckIcon (value)
@@ -8913,7 +10130,7 @@ Source: skills/forge-skill/references/components/product-row.md
 
 # product-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProductRow (value)
@@ -8940,7 +10157,7 @@ Source: skills/forge-skill/references/components/profile-card.md
 
 # profile-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProfileCard (value)
@@ -8985,7 +10202,7 @@ Source: skills/forge-skill/references/components/progress-bar.md
 
 # progress-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressBar (value)
@@ -9048,7 +10265,7 @@ Source: skills/forge-skill/references/components/progress-card.md
 
 # progress-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressCard (value)
@@ -9082,7 +10299,7 @@ Source: skills/forge-skill/references/components/progress-stat-card.md
 
 # progress-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressStatCard (value)
@@ -9131,7 +10348,7 @@ Source: skills/forge-skill/references/components/project-card.md
 
 # project-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProjectCard (value)
@@ -9171,11 +10388,141 @@ export type ProjectCardColor =
 
 ---
 
+Source: skills/forge-skill/references/components/question.md
+
+# question
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/question.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ChoiceAnswer (type)
+
+```ts
+export type ChoiceAnswer = { optionId: string } | { optionIds: string[] } | { text: string };
+```
+
+## ChoiceCard (value)
+
+```ts
+({ title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale }: ChoiceCardProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `string` |  |
+| `options` | 是 | `ChoiceOption[]` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `allowText` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `answered` | 否 | `ReactNode` | What was chosen once answered; the card then shows it instead of the controls. |
+| `onAnswer` | 是 | `(answer: ChoiceAnswer) => void` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+
+## ChoiceCardProps (type)
+
+```ts
+export type ChoiceCardProps = {
+  title: string;
+  options: ChoiceOption[];
+  multiple?: boolean;
+  allowText?: boolean;
+  disabled?: boolean;
+  /** What was chosen once answered; the card then shows it instead of the controls. */
+  answered?: ReactNode;
+  onAnswer: (answer: ChoiceAnswer) => void;
+  onCancel?: () => void;
+  locale?: AgentLocale;
+};
+```
+
+## ChoiceOption (type)
+
+```ts
+export type ChoiceOption = { id: string; label: string; description?: string };
+```
+
+## Question (value)
+
+```ts
+({ questions, onSubmit, onCancel, answers: answered, confirm, disabled, submitLabel, locale, size, className }: QuestionProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `questions` | 是 | `QuestionItem[]` |  |
+| `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card turns into a one-line summary per question. |
+| `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click unless this is set. Several questions or multiple choice always confirm. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `submitLabel` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## QuestionAnswer (type)
+
+```ts
+export type QuestionAnswer = { optionIds: string[]; text?: string };
+```
+
+## QuestionItem (type)
+
+```ts
+export type QuestionItem = {
+  id: string;
+  title: string;
+  description?: string;
+  options: QuestionOption[];
+  multiple?: boolean;
+  /** Adds a free-text field; with no options the question is text only. */
+  allowText?: boolean;
+  textPlaceholder?: string;
+};
+```
+
+## QuestionOption (type)
+
+```ts
+export type QuestionOption = {
+  id: string;
+  label: string;
+  description?: string;
+  /** Marks the option the agent would pick. */
+  recommended?: boolean;
+};
+```
+
+## QuestionProps (type)
+
+```ts
+export type QuestionProps = {
+  questions: QuestionItem[];
+  onSubmit: (answers: Record<string, QuestionAnswer>) => void;
+  onCancel?: () => void;
+  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
+  answers?: Record<string, QuestionAnswer>;
+  /**
+   * A single single-choice question submits on click unless this is set.
+   * Several questions or multiple choice always confirm.
+   */
+  confirm?: boolean;
+  disabled?: boolean;
+  submitLabel?: string;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+---
+
 Source: skills/forge-skill/references/components/rating-stars.md
 
 # rating-stars
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RatingStars (value)
@@ -9214,7 +10561,7 @@ Source: skills/forge-skill/references/components/recommendation-card.md
 
 # recommendation-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RecommendationCard (value)
@@ -9261,7 +10608,7 @@ Source: skills/forge-skill/references/components/review-item.md
 
 # review-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ReviewItem (value)
@@ -9295,7 +10642,7 @@ Source: skills/forge-skill/references/components/select-option.md
 
 # select-option
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SelectOption (value)
@@ -9378,7 +10725,7 @@ Source: skills/forge-skill/references/components/selection-control.md
 
 # selection-control
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckboxWithLabel (value)
@@ -9483,7 +10830,7 @@ Source: skills/forge-skill/references/components/sidebar-menu.md
 
 # sidebar-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SidebarMenu (value)
@@ -9558,7 +10905,7 @@ Source: skills/forge-skill/references/components/sidebar-popovers.md
 
 # sidebar-popovers
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppSwitcherDropdown (value)
@@ -9609,7 +10956,7 @@ Source: skills/forge-skill/references/components/small-calendar.md
 
 # small-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmallCalendar (value)
@@ -9651,7 +10998,7 @@ Source: skills/forge-skill/references/components/small-daily-calendar.md
 
 # small-daily-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DailyEvent (type)
@@ -9697,7 +11044,7 @@ Source: skills/forge-skill/references/components/smooth-line-chart.md
 
 # smooth-line-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmoothLineChart (value)
@@ -9733,7 +11080,7 @@ Source: skills/forge-skill/references/components/stat-card.md
 
 # stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StatCard (value)
@@ -9787,7 +11134,7 @@ Source: skills/forge-skill/references/components/stepper.md
 
 # stepper
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Stepper (value)
@@ -9832,7 +11179,7 @@ Source: skills/forge-skill/references/components/streaming-answer.md
 
 # streaming-answer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StreamingAnswer (value)
@@ -9911,7 +11258,7 @@ Source: skills/forge-skill/references/components/style-guide.md
 
 # style-guide
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorScaleStop (type)
@@ -10000,7 +11347,7 @@ Source: skills/forge-skill/references/components/surface-card.md
 
 # surface-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SurfaceCard (value)
@@ -10315,7 +11662,7 @@ Source: skills/forge-skill/references/components/tab-bar.md
 
 # tab-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabBar (value)
@@ -10374,7 +11721,7 @@ Source: skills/forge-skill/references/components/tabs-content.md
 
 # tabs-content
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabsContent (value)
@@ -10427,7 +11774,7 @@ Source: skills/forge-skill/references/components/task-card.md
 
 # task-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TaskCard (value)
@@ -10474,7 +11821,7 @@ Source: skills/forge-skill/references/components/text-area.md
 
 # text-area
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextArea (value)
@@ -10828,7 +12175,7 @@ Source: skills/forge-skill/references/components/text-field.md
 
 # text-field
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextField (value)
@@ -11212,7 +12559,7 @@ Source: skills/forge-skill/references/components/text-field-select.md
 
 # text-field-select
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextFieldSelectSuffix (value)
@@ -11231,11 +12578,126 @@ Source: skills/forge-skill/references/components/text-field-select.md
 
 ---
 
+Source: skills/forge-skill/references/components/thinking.md
+
+# thinking
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Reasoning (value)
+
+```ts
+({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, size, className }: ReasoningProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `status` | 是 | `ReasoningStatus` |  |
+| `text` | 否 | `string \| undefined` | Free reasoning text from the model (AI SDK reasoning parts). |
+| `steps` | 否 | `ReasoningStep[] \| undefined` | Structured steps; shown above `text` when both are given. |
+| `startedAt` | 否 | `number \| Date \| undefined` | Start of the thinking, for the live timer. |
+| `duration` | 否 | `number \| undefined` | Final duration in milliseconds, shown once done. |
+| `label` | 否 | `ReactNode` | Header while thinking. |
+| `doneLabel` | 否 | `ReactNode` | Header once done; defaults to "思考了 4.2 秒". |
+| `open` | 否 | `boolean \| undefined` | Controlled open state. Uncontrolled, it is open while thinking and folds when done. |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ReasoningProps (type)
+
+```ts
+export type ReasoningProps = {
+  status: ReasoningStatus;
+  /** Free reasoning text from the model (AI SDK reasoning parts). */
+  text?: string;
+  /** Structured steps; shown above `text` when both are given. */
+  steps?: ReasoningStep[];
+  /** Start of the thinking, for the live timer. */
+  startedAt?: number | Date;
+  /** Final duration in milliseconds, shown once done. */
+  duration?: number;
+  /** Header while thinking. */
+  label?: ReactNode;
+  /** Header once done; defaults to "思考了 4.2 秒". */
+  doneLabel?: ReactNode;
+  /** Controlled open state. Uncontrolled, it is open while thinking and folds when done. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+## ReasoningSource (type)
+
+```ts
+export type ReasoningSource = { title: string; href?: string; domain?: string };
+```
+
+## ReasoningStatus (type)
+
+```ts
+export type ReasoningStatus = "thinking" | "done" | "stopped" | "error";
+```
+
+## ReasoningStep (type)
+
+```ts
+export type ReasoningStep = {
+  id: string;
+  label: ReactNode;
+  detail?: ReactNode;
+  status?: "running" | "done" | "error";
+  /** Pages or records this step read, shown as small chips. */
+  sources?: ReasoningSource[];
+};
+```
+
+## ThinkingIndicator (value)
+
+```ts
+({ label, phases, phaseDuration, startedAt, locale, size, className }: ThinkingIndicatorProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `label` | 否 | `string \| undefined` | Fixed label; ignored when `phases` is given. |
+| `phases` | 否 | `string[] \| undefined` | Labels shown in turn while waiting, e.g. ["读取页面", "查询订单", "整理回答"]; stays on the last one. |
+| `phaseDuration` | 否 | `number \| undefined` | Milliseconds per phase. |
+| `startedAt` | 否 | `number \| Date \| undefined` | Shows a live timer from this moment. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ThinkingIndicatorProps (type)
+
+```ts
+export type ThinkingIndicatorProps = {
+  /** Fixed label; ignored when `phases` is given. */
+  label?: string;
+  /** Labels shown in turn while waiting, e.g. ["读取页面", "查询订单", "整理回答"]; stays on the last one. */
+  phases?: string[];
+  /** Milliseconds per phase. */
+  phaseDuration?: number;
+  /** Shows a live timer from this moment. */
+  startedAt?: number | Date;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+---
+
 Source: skills/forge-skill/references/components/thinking-trace.md
 
 # thinking-trace
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ThinkingRow (type)
@@ -11283,7 +12745,7 @@ Source: skills/forge-skill/references/components/toast.md
 
 # toast
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToastApi (type)
@@ -11319,11 +12781,120 @@ export interface ToastOptions { title: string; description?: string; /** Millise
 
 ---
 
+Source: skills/forge-skill/references/components/tool-call.md
+
+# tool-call
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-call.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ToolCall (value)
+
+```ts
+({ name, title, summary, status, args, result, error, startedAt, duration, icon, onRetry, approvalReason, onApprove, onDeny, defaultOpen, variant, locale, size, className }: ToolCallProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `name` | 是 | `string` | Tool name as the model calls it, shown in mono, e.g. "search_orders". |
+| `title` | 否 | `ReactNode` | Human label shown instead of the name, e.g. "查询订单". |
+| `summary` | 否 | `ReactNode` | Short summary after the label, e.g. the main argument or "12 条结果". |
+| `status` | 是 | `ToolCallStatus` |  |
+| `args` | 否 | `unknown` |  |
+| `result` | 否 | `unknown` |  |
+| `error` | 否 | `string \| undefined` |  |
+| `startedAt` | 否 | `number \| Date \| undefined` | Start time, for the live timer while running. |
+| `duration` | 否 | `number \| undefined` | Final duration in milliseconds. |
+| `icon` | 否 | `ReactNode` |  |
+| `onRetry` | 否 | `(() => void) \| undefined` | Shown on errors. |
+| `approvalReason` | 否 | `ReactNode` | Why the agent wants to run this; shown while awaiting approval. |
+| `onApprove` | 否 | `(() => void) \| undefined` |  |
+| `onDeny` | 否 | `(() => void) \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `variant` | 否 | `"row" \| "card" \| undefined` | row drops the border, for calls listed inside a ToolCallGroup. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ToolCallGroup (value)
+
+```ts
+({ children, label, count, status, defaultOpen, locale, className }: ToolCallGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `label` | 否 | `ReactNode` | e.g. "调用了 3 个工具"; defaults from `count`. |
+| `count` | 否 | `number \| undefined` |  |
+| `status` | 否 | `"success" \| "error" \| "running" \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` | Uncontrolled default; the group opens itself while running or after an error. |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## ToolCallGroupProps (type)
+
+```ts
+export type ToolCallGroupProps = {
+  children: ReactNode;
+  /** e.g. "调用了 3 个工具"; defaults from `count`. */
+  label?: ReactNode;
+  count?: number;
+  status?: "running" | "success" | "error";
+  /** Uncontrolled default; the group opens itself while running or after an error. */
+  defaultOpen?: boolean;
+  locale?: AgentLocale;
+  className?: string;
+};
+```
+
+## ToolCallProps (type)
+
+```ts
+export type ToolCallProps = {
+  /** Tool name as the model calls it, shown in mono, e.g. "search_orders". */
+  name: string;
+  /** Human label shown instead of the name, e.g. "查询订单". */
+  title?: ReactNode;
+  /** Short summary after the label, e.g. the main argument or "12 条结果". */
+  summary?: ReactNode;
+  status: ToolCallStatus;
+  args?: unknown;
+  result?: unknown;
+  error?: string;
+  /** Start time, for the live timer while running. */
+  startedAt?: number | Date;
+  /** Final duration in milliseconds. */
+  duration?: number;
+  icon?: ReactNode;
+  /** Shown on errors. */
+  onRetry?: () => void;
+  /** Why the agent wants to run this; shown while awaiting approval. */
+  approvalReason?: ReactNode;
+  onApprove?: () => void;
+  onDeny?: () => void;
+  defaultOpen?: boolean;
+  /** row drops the border, for calls listed inside a ToolCallGroup. */
+  variant?: "card" | "row";
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```
+
+## ToolCallStatus (type)
+
+```ts
+export type ToolCallStatus = "pending" | "running" | "awaiting-approval" | "success" | "error" | "denied";
+```
+
+---
+
 Source: skills/forge-skill/references/components/tool-chips.md
 
 # tool-chips
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToolChipDetail (type)
@@ -11391,7 +12962,7 @@ Source: skills/forge-skill/references/components/toolbar.md
 
 # toolbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageTitleToolbar (value)
@@ -11657,7 +13228,7 @@ Source: skills/forge-skill/references/components/tooltip.md
 
 # tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Tooltip (value)
@@ -12033,7 +13604,7 @@ Source: skills/forge-skill/references/components/topbar.md
 
 # topbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TopBar (value)
@@ -12066,7 +13637,7 @@ Source: skills/forge-skill/references/components/user-card.md
 
 # user-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## UserCard (value)
@@ -12101,7 +13672,7 @@ Source: skills/forge-skill/references/components/utils.md
 
 # utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## cn (value)
@@ -12160,7 +13731,7 @@ Source: skills/forge-skill/references/components/wallet-goal-card.md
 
 # wallet-goal-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WalletGoalCard (value)
@@ -12219,7 +13790,7 @@ Source: skills/forge-skill/references/components/wheel-chart-stat-card.md
 
 # wheel-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WheelChartStatCard (value)

@@ -85,8 +85,8 @@ export type ReasoningProps = {
 
 function StepIcon({ status }: { status: ReasoningStep["status"] }) {
   if (status === "running") return <span className="mt-1.5 size-2 shrink-0 animate-pulse rounded-full bg-accent" />;
-  if (status === "error") return <DangerTriangleLinear size={14} className="mt-0.5 shrink-0 text-fg-red" />;
-  return <CheckCircleLinear size={14} className="mt-0.5 shrink-0 text-fg-grey-500" />;
+  if (status === "error") return <DangerTriangleLinear size={14} color="var(--fg-red)" className="mt-0.5 shrink-0" />;
+  return <CheckCircleLinear size={14} color="var(--fg-grey-500)" className="mt-0.5 shrink-0" />;
 }
 
 /**
@@ -118,7 +118,7 @@ export function Reasoning({ status, text, steps = [], startedAt, duration, label
         onClick={toggle}
         className="-ml-1.5 flex w-fit items-center gap-1.5 rounded-lg px-1.5 py-1 text-fg-grey-700 enabled:hover:bg-fg-grey-100 enabled:hover:text-fg-black"
       >
-        <LightbulbLinear size={small ? 14 : 16} className={cn(status === "error" && "text-fg-red")} />
+        <LightbulbLinear size={small ? 14 : 16} color={status === "error" ? "var(--fg-red)" : undefined} />
         <span className={cn("font-medium", working && "forge-text-shimmer")}>{header}</span>
         {working && shown !== undefined && <span className="tabular-nums text-xs text-fg-grey-500">{formatDuration(shown, locale)}</span>}
         {!working && steps.length > 0 && <span className="text-xs text-fg-grey-500">· {pick(locale, `${steps.length} 步`, `${steps.length} steps`)}</span>}

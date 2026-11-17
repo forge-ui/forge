@@ -85,7 +85,7 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
   return (
     <aside aria-label={title} data-forge-agent="panel" className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[400px] flex-col border-l border-fg-grey-200 bg-background shadow-2xl lg:shadow-none">
       <header className="flex h-12 shrink-0 items-center justify-between border-b border-fg-grey-200 pl-4 pr-2">
-        <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg-black"><StarsLinear size={16} className="text-fg-blue" />{title}</span>
+        <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg-black"><StarsLinear size={16} color="var(--fg-blue)" />{title}</span>
         <div className="flex items-center">
           {sessions && sessions.length > 0 && onSelectSession && (
             <div ref={history} className="relative">

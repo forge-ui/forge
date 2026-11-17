@@ -71,7 +71,7 @@ export function ChangeLedger({ entries, title, onUndo, locale = "zh", className 
           return (
             <li key={entry.id} data-status={entry.status ?? "applied"} className={cn("flex flex-col gap-1.5 rounded-lg border px-3 py-2 transition-colors", highlighted ? "border-fg-yellow-300 bg-fg-yellow-50" : "border-fg-grey-100", undone && "opacity-60")}>
               <div className="flex min-w-0 items-center gap-2 text-[13px]">
-                {undone ? <RestartCircleLinear size={14} className="shrink-0 text-fg-grey-500" /> : <CheckCircleLinear size={14} className="shrink-0 text-fg-green-500" />}
+                {undone ? <RestartCircleLinear size={14} color="var(--fg-grey-500)" className="shrink-0" /> : <CheckCircleLinear size={14} color="var(--fg-green-500)" className="shrink-0" />}
                 <span className={cn("min-w-0 flex-1 truncate text-fg-black", undone && "line-through")}>{entry.title}</span>
                 {entry.target && <span className="shrink-0 rounded bg-fg-grey-100 px-1.5 py-px text-[11px] text-fg-grey-700">{entry.target}</span>}
                 {undone ? <span className="shrink-0 text-xs text-fg-grey-500">{pick(locale, "已撤销", "Undone")}</span>
@@ -213,7 +213,7 @@ export function AutonomySelector({ value, onChange, actions = [], locale = "zh",
       <p className="text-xs text-fg-grey-700">{pick(locale, current.zhHint, current.enHint)}</p>
       {actions.length > 0 && (
         <div className="grid grid-cols-2 gap-2 text-xs">
-          {[{ list: alone, zh: "自己做", en: "Runs on its own", icon: <CheckCircleLinear size={12} className="text-fg-green-500" /> }, { list: asks, zh: "先问你", en: "Asks first", icon: <ShieldCheckBold size={12} className="text-fg-yellow-700" /> }].map(column => (
+          {[{ list: alone, zh: "自己做", en: "Runs on its own", icon: <CheckCircleLinear size={12} color="var(--fg-green-500)" /> }, { list: asks, zh: "先问你", en: "Asks first", icon: <ShieldCheckBold size={12} color="var(--fg-yellow-700)" /> }].map(column => (
             <div key={column.zh} className="flex flex-col gap-1 rounded-lg border border-fg-grey-200 p-2">
               <span className="flex items-center gap-1 font-medium text-fg-black">{column.icon}{pick(locale, column.zh, column.en)}<span className="ml-auto tabular-nums text-fg-grey-500">{column.list.length}</span></span>
               {column.list.map(action => <span key={action.id} className="truncate text-fg-grey-900">{action.label}</span>)}

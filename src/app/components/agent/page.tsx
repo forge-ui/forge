@@ -19,9 +19,32 @@ import {
 } from "@forge-ui-official/core";
 import { StreamingAnswerDemo } from "../../cases/agent/_streaming-demo";
 import { ApprovalPartsDemo, ArtifactDemo, ConversationDemo, PartsDemo } from "./_conversation-demo";
+import {
+  AgentPlanDemo,
+  AgentTrailDemo,
+  ApprovalDemo,
+  AutonomyDemo,
+  AwayDemo,
+  CheckpointsDemo,
+  CitedAnswerDemo,
+  ComposerPartsDemo,
+  ContextDemo,
+  HarnessCardsDemo,
+  InboxDemo,
+  LedgerDemo,
+  PanelDemo,
+  QuestionDemo,
+  ReasoningDemo,
+  ThinkingIndicatorDemo,
+  ToolCallDemo,
+  TraceDemo,
+  TreeDemo,
+  WelcomeDemo,
+} from "./_kit-demos";
 import { PageHeading, Section, SubSection } from "../_shared";
-import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
+import { DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
+import type apiData from "../_agent-api-data.json";
 
 const CODE_IMPORT = `import {
   ThinkingTrace,
@@ -97,7 +120,10 @@ const ACTIONS_ROWS: ApiTableRow[] = [
   { attr: "copyText", type: "string", defaultValue: "—", description: "传了才显示复制按钮。" },
   { attr: "onRetry", type: "() => void", defaultValue: "—", description: "传了才显示重新生成。" },
   { attr: "onFeedback / feedback", type: "(value: 'up' | 'down' | null) => void / MessageFeedback", defaultValue: "—", description: "传了才显示有帮助、没帮助；再点一次取消。传 feedback 时受控。" },
-  { attr: "labels / locale", type: "Partial<Record<'copy' | 'copied' | 'retry' | 'up' | 'down', string>> / 'zh' | 'en'", defaultValue: "'zh'", description: "按钮文字和无障碍名称。" },
+  { attr: "versions", type: "{ current: number; total: number; onChange }", defaultValue: "—", description: "重新生成过的回答显示“2/3”和上一版、下一版；current 从 0 开始。" },
+  { attr: "onEdit", type: "() => void", defaultValue: "—", description: "传了才显示编辑，通常放在用户消息上，编辑后重发。" },
+  { attr: "feedbackReasons / onFeedbackReason", type: "string[] / (reason: string) => void", defaultValue: "—", description: "点了没帮助后给出原因选项，例如“数据不对”“太长”。" },
+  { attr: "labels / locale", type: "Partial<Record<'copy' | 'copied' | 'retry' | 'up' | 'down' | 'edit' | 'previous' | 'next', string>> / 'zh' | 'en'", defaultValue: "'zh'", description: "按钮文字和无障碍名称。" },
 ];
 const SUGGESTION_ROWS: ApiTableRow[] = [
   { attr: "suggestions", type: "string[]", defaultValue: "—", description: "推荐提问，空数组时不渲染。" },
@@ -238,13 +264,64 @@ const CODE_SEARCH = `<CommandSearch items={[{ id, label, group }]} />`;
 
 const CODE_FLOW = `<AgentFlowchart nodes={...} edges={...} />`;
 
+
+const KIT_CODE = {
+  reasoning: `<Reasoning status={thinking ? "thinking" : "done"} startedAt={startedAt} duration={duration}
+  steps={[{ id: "1", label: "读取本月退款单", sources: [{ title: "退款单列表", domain: "订单中心" }] }]} />`,
+  indicator: `<ThinkingIndicator phases={["读取页面", "查询订单", "整理回答"]} startedAt={startedAt} />`,
+  toolCall: `<ToolCallGroup count={3} status="error">
+  <ToolCall variant="row" name="search_orders" status="success" duration={1240} args={args} result={result} />
+  <ToolCall variant="row" name="export_excel" status="error" error="导出服务超时" onRetry={retry} />
+</ToolCallGroup>
+<ToolCall name="create_refund" title="发起退款" status="awaiting-approval" approvalReason="金额超过 500 元" onApprove={allow} onDeny={deny} />`,
+  question: `<Question
+  questions={[
+    { id: "range", title: "统计哪段时间？", options: [{ id: "month", label: "本月", recommended: true }] },
+    { id: "split", title: "按什么拆分？", multiple: true, options },
+  ]}
+  answers={answers}
+  onSubmit={setAnswers}
+/>`,
+  approval: `<Approval requester="财务助手" title="给 3 位客户退款，共 ¥2,460" risk="high"
+  fields={[{ label: "金额", after: "¥2,460" }]} scopes={["once", "session"]} askDenyReason expiresIn={60}
+  state={state} onApprove={scope => approve(scope)} onDeny={reason => deny(reason)} />`,
+  harness: `<ChoiceCard title="找到两个张三，改哪一个？" options={candidates} answered={picked} onAnswer={reply} />
+<ConfirmCard title="修改张三的角色" fields={[{ label: "角色", before: "成员", after: "管理员" }]} state={state} result={receipt} onConfirm={confirm} onCancel={cancel} />`,
+  cited: `<CitedAnswer text="本月退款 128 笔，比上月多 18%[1]。主要原因是尺码不符[1][2]。" sources={[{ id: 1, title: "11 月退款单汇总", quote: "…" }]} />`,
+  composer: `<RunControls status={status} activity="正在核对第 3 张发票" startedAt={startedAt} onStop={stop} onResume={resume} onRetry={retry} onSteer={note => steer(note)} />
+<PromptQueue items={queue} onMove={move} onEdit={edit} onSendNow={sendNext} onRemove={remove} />
+<AttachmentList items={files} onRemove={remove} onRetry={retryUpload} />`,
+  welcome: `<AgentWelcome title="你好，我是运营助手" description="改数据前都会先问你。" capabilities={capabilities} onPick={send} />`,
+  panel: `<AgentPanel title="Forge Agent" open={open} onOpenChange={setOpen} sessions={sessions} onNewChat={newChat}
+  empty={<AgentWelcome size="sm" title="有什么可以帮你？" />} composer={{ onSend: send }}>
+  {turns}
+</AgentPanel>`,
+  plan: `<AgentPlan title="11 月退款分析" steps={steps} mode={mode} onChange={setSteps} onApprove={run} onRetryFrom={retryFrom} />`,
+  trail: `<AgentTrail title="月末对账 · 11 月" steps={[
+  { id: "3", title: "核对差异", status: "running", activity: "第 3 张发票", startedAt, substeps },
+  { id: "4", title: "提交对账结果", status: "waiting", waiting: <Approval … /> },
+]} />
+<RunProgress steps={harnessSteps} />`,
+  checkpoints: `<AgentCheckpoints checkpoints={points} currentId={current} onRewind={rewind} />`,
+  ledger: `<ChangeLedger entries={entries} onUndo={(id, alsoUndone) => undo([id, ...alsoUndone])} />`,
+  autonomy: `<AutonomySelector value={level} onChange={setLevel} actions={[{ id: "e", label: "退款、付款", risk: "high" }]} />`,
+  inbox: `<RunningNow tasks={tasks} onOpen={open} />
+<AgentInbox tasks={tasks} onApprove={approve} onReject={reject} onRetry={retry} onOpen={open} />`,
+  away: `<AwaySummary awayFor={awayMs} items={[{ id: "1", title: "退款审批", kind: "needs-you", onAction: open }]} onDismiss={dismiss} />`,
+  context: `<ContextUsage limit={128_000} cost={0.38} segments={segments} onRemove={remove} onCompact={compact} />
+<ContextUsage variant="inline" limit={128_000} segments={segments} />`,
+  trace: `<TraceWaterfall spans={[{ id: "1", name: "规划", kind: "llm", start: 0, duration: 2100, tokens: 1800, cost: 0.004 }]} onSelect={select} />`,
+  tree: `<AgentTree root={{ id: "lead", name: "运营主管", status: "running", children: [...] }} onSelect={select} />
+<AgentLanes lanes={lanes} blocks={blocks} now={elapsed} />`,
+};
+
 function AgentApi({
   id,
   name,
   descriptions,
 }: {
   id: string;
-  name: "ThinkingTrace" | "StreamingAnswer" | "ApprovalCard" | "ToolChips" | "AgentTaskRows" | "ContextCards" | "RecommendationCard" | "AgentDiffTable" | "AgentCodeBlock" | "InsightCards" | "CommandSearch" | "AgentFlowchart";
+  name: keyof typeof apiData;
   descriptions?: ApiTableRow[];
 }) {
   return (
@@ -264,7 +341,7 @@ export default function AgentSpecPage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="智能体"
-        hint="展示智能体的对话、思考、回答、工具调用、任务和审批过程；可以直接渲染 AI SDK 的消息。"
+        hint="智能体界面的整套组件：对话与输入、思考与工具、提问与确认、回答与引用、运行、治理、运营和观测；可以直接渲染 AI SDK 的消息。"
       />
 
       <p className="text-sm leading-6 text-fg-grey-700">
@@ -291,7 +368,66 @@ export default function AgentSpecPage() {
         </SubSection>
       </Section>
 
-      <Section title="例子" description="回答、确认、工具、任务和流程各留一个。">
+
+      <Section title="思考与工具" description="思考、等待和工具调用都由宿主驱动：状态、计时和展开都跟着你给的数据走。">
+        <ExampleGrid>
+          <DocExample id="reasoning" title="Reasoning" summary="思考中实时计时，结束后折成“思考了 3.2 秒 · 3 步”。点“重新思考”看完整过程。" code={KIT_CODE.reasoning} minHeight={220}><ReasoningDemo /></DocExample>
+          <DocExample id="thinkingindicator" title="ThinkingIndicator" summary="第一个字出来前的等待：固定文案，或按阶段轮换并计时。" code={KIT_CODE.indicator} minHeight={120}><ThinkingIndicatorDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="toolcall" title="ToolCall / ToolCallGroup" summary="一次调用一行：状态、计时、摘要，展开看参数和结果；失败可重试，需要确认时就地允许或拒绝。" code={KIT_CODE.toolCall} minHeight={300}><ToolCallDemo /></DocExample>
+      </Section>
+
+      <Section title="提问与确认" description="智能体缺信息时先问，改数据前先确认。答完、确认完都折成一行结果。">
+        <ExampleGrid>
+          <DocExample id="question" title="Question" summary="一次问几件事：数字键选择、回车继续，可多选、可补充文字。" code={KIT_CODE.question} minHeight={300}><QuestionDemo /></DocExample>
+          <DocExample id="approval" title="Approval" summary="风险等级、改动明细、“仅这次 / 本次对话都允许”，拒绝时可以说明原因，倒计时在指针悬停时暂停。" code={KIT_CODE.approval} minHeight={300}><ApprovalDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="choicecard" title="ChoiceCard / ConfirmCard" summary="Forge Agent 运行时（服务端会话、候选校验、签名确认、保存回执）用的两张卡，是 Question 和 Approval 的简写。" code={KIT_CODE.harness} minHeight={240}><HarnessCardsDemo /></DocExample>
+      </Section>
+
+      <Section title="回答与引用" description="回答里的每个结论都能回到出处。">
+        <DocExample id="citedanswer" title="CitedAnswer" summary="指向角标会高亮它支撑的那句话和下方来源，并预览原文摘录。" code={KIT_CODE.cited} minHeight={220}><CitedAnswerDemo /></DocExample>
+      </Section>
+
+      <Section title="输入与面板" description="输入框周围的东西：运行控制、排队消息、附件，以及空状态和侧边面板。">
+        <ExampleGrid>
+          <DocExample id="runcontrols" title="RunControls / PromptQueue / AttachmentList" summary="运行中可以停止、插一句；停下后继续或重试。回答没结束时写的消息先排队，可调序、编辑、提前发。" code={KIT_CODE.composer} minHeight={320}><ComposerPartsDemo /></DocExample>
+          <DocExample id="agentwelcome" title="AgentWelcome" summary="空对话：它是谁、能做什么，点能力卡直接开始。" code={KIT_CODE.welcome} minHeight={320}><WelcomeDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="agentpanel" title="AgentPanel" summary="右侧面板：历史对话、新对话、消息区和输入框；宽屏时页面让出面板宽度。" code={KIT_CODE.panel} minHeight={120}><PanelDemo /></DocExample>
+      </Section>
+
+      <Section title="运行" description="多步任务：先给计划、跑起来看轨迹、随时回到检查点。">
+        <ExampleGrid>
+          <DocExample id="agentplan" title="AgentPlan" summary="执行前可改名、调序、删改步骤；执行时逐步计时，失败的一步可以从这里重试。" code={KIT_CODE.plan} minHeight={360}><AgentPlanDemo /></DocExample>
+          <DocExample id="agenttrail" title="AgentTrail / RunProgress" summary="当前做到第几步、在做什么、子步骤和计时；等你确认的一步就地放审批。" code={KIT_CODE.trail} minHeight={360}><AgentTrailDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="agentcheckpoints" title="AgentCheckpoints" summary="像 git 一样回到任意一步重来，放弃的尝试淡出但保留。" code={KIT_CODE.checkpoints} minHeight={200}><CheckpointsDemo /></DocExample>
+      </Section>
+
+      <Section title="治理" description="智能体改过什么、能自己做多少，都摆在明面上。">
+        <ExampleGrid>
+          <DocExample id="changeledger" title="ChangeLedger" summary="每项改动有前后对比和撤销；撤销前列出会一并撤销的后续改动，发出去的邮件标为不可撤销。" code={KIT_CODE.ledger} minHeight={360}><LedgerDemo /></DocExample>
+          <DocExample id="autonomyselector" title="AutonomySelector" summary="谨慎、平衡、放手三档，真实操作按“自己做 / 先问你”分好。" code={KIT_CODE.autonomy} minHeight={260}><AutonomyDemo /></DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="运营" description="后台任务多了以后：哪些在跑、哪些等你、离开时发生了什么。">
+        <ExampleGrid>
+          <DocExample id="agentinbox" title="AgentInbox / RunningNow" summary="待你处理排在最前，运行中实时计时，展开看最近几步并就地处理。" code={KIT_CODE.inbox} minHeight={380}><InboxDemo /></DocExample>
+          <DocExample id="awaysummary" title="AwaySummary" summary="回来时先看这张：离开多久、要你处理的、没做成的、做完的。" code={KIT_CODE.away} minHeight={320}><AwayDemo /></DocExample>
+        </ExampleGrid>
+      </Section>
+
+      <Section title="观测" description="上下文、耗时、花费和多智能体协作。">
+        <ExampleGrid>
+          <DocExample id="contextusage" title="ContextUsage" summary="上下文被什么占着：可以把文件移出去，或压缩早期对话。" code={KIT_CODE.context} minHeight={320}><ContextDemo /></DocExample>
+          <DocExample id="agenttree" title="AgentTree / AgentLanes" summary="谁派了谁、每个在做什么、花费按分支汇总；泳道看每个智能体的时间线。" code={KIT_CODE.tree} minHeight={380}><TreeDemo /></DocExample>
+        </ExampleGrid>
+        <DocExample id="tracewaterfall" title="TraceWaterfall" summary="一次运行的时间和钱花在哪：模型调用、工具和子智能体按时间排开。" code={KIT_CODE.trace} minHeight={280}><TraceDemo /></DocExample>
+      </Section>
+
+      <Section title="例子" description="早期的展示组件：分步思考动画、推荐卡、变更审核表、洞察卡等，适合静态页面和演示。">
         <ExampleGrid>
           <DocExample
             id="streaminganswer"
@@ -519,12 +655,40 @@ export default function AgentSpecPage() {
       </Section>
 
       <Section title="API">
-        <ApiBlock id="conversation" title="Conversation" rows={CONVERSATION_ROWS} />
-        <ApiBlock id="agentmessage" title="AgentMessage" rows={MESSAGE_ROWS} />
-        <ApiBlock id="messageactions" title="MessageActions" rows={ACTIONS_ROWS} />
-        <ApiBlock id="promptsuggestions" title="PromptSuggestions" rows={SUGGESTION_ROWS} />
-        <ApiBlock id="artifactcard" title="ArtifactCard" rows={ARTIFACT_ROWS} />
-        <ApiBlock id="agentparts" title="AgentParts" rows={PARTS_ROWS} />
+        <AgentApi id="conversation" name="Conversation" descriptions={CONVERSATION_ROWS} />
+        <AgentApi id="agentmessage" name="AgentMessage" descriptions={MESSAGE_ROWS} />
+        <AgentApi id="messageactions" name="MessageActions" descriptions={ACTIONS_ROWS} />
+        <AgentApi id="promptsuggestions" name="PromptSuggestions" descriptions={SUGGESTION_ROWS} />
+        <AgentApi id="artifactcard" name="ArtifactCard" descriptions={ARTIFACT_ROWS} />
+        <AgentApi id="agentparts" name="AgentParts" descriptions={PARTS_ROWS} />
+        <AgentApi id="reasoning" name="Reasoning" />
+        <AgentApi id="thinkingindicator" name="ThinkingIndicator" />
+        <AgentApi id="toolcall" name="ToolCall" />
+        <AgentApi id="toolcallgroup" name="ToolCallGroup" />
+        <AgentApi id="question" name="Question" />
+        <AgentApi id="approval" name="Approval" />
+        <AgentApi id="choicecard" name="ChoiceCard" />
+        <AgentApi id="confirmcard" name="ConfirmCard" />
+        <AgentApi id="citation" name="Citation" />
+        <AgentApi id="citedanswer" name="CitedAnswer" />
+        <AgentApi id="runcontrols" name="RunControls" />
+        <AgentApi id="promptqueue" name="PromptQueue" />
+        <AgentApi id="attachmentlist" name="AttachmentList" />
+        <AgentApi id="agentwelcome" name="AgentWelcome" />
+        <AgentApi id="agentpanel" name="AgentPanel" />
+        <AgentApi id="agentplan" name="AgentPlan" />
+        <AgentApi id="agenttrail" name="AgentTrail" />
+        <AgentApi id="runprogress" name="RunProgress" />
+        <AgentApi id="agentcheckpoints" name="AgentCheckpoints" />
+        <AgentApi id="changeledger" name="ChangeLedger" />
+        <AgentApi id="autonomyselector" name="AutonomySelector" />
+        <AgentApi id="agentinbox" name="AgentInbox" />
+        <AgentApi id="runningnow" name="RunningNow" />
+        <AgentApi id="awaysummary" name="AwaySummary" />
+        <AgentApi id="contextusage" name="ContextUsage" />
+        <AgentApi id="tracewaterfall" name="TraceWaterfall" />
+        <AgentApi id="agenttree" name="AgentTree" />
+        <AgentApi id="agentlanes" name="AgentLanes" />
         <AgentApi id="thinkingtrace" name="ThinkingTrace" descriptions={THINKING_PROPS} />
         <AgentApi id="streaminganswer" name="StreamingAnswer" descriptions={STREAM_PROPS} />
         <AgentApi id="approvalcard" name="ApprovalCard" descriptions={APPROVAL_PROPS} />

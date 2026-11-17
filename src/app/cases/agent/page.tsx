@@ -18,6 +18,7 @@ import {
 } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { StreamingAnswerDemo } from "./_streaming-demo";
+import { AnalysisScenario, MultiAgentScenario, OpsScenario, PlanScenario, RefundScenario } from "./_scenarios";
 
 const TASKS = [
   {
@@ -63,8 +64,16 @@ export default function AgentCasePage() {
     <div className="flex flex-col gap-10">
       <PageHeading
         title="智能体"
-        hint="展示智能体的思考、回答、工具调用、任务和审批过程。"
+        hint="先看完整场景，再看单个组件：思考、回答、工具调用、提问与确认、运行、治理和观测。"
       />
+
+      <Section title="场景" description="把组件串成完整流程：每个场景都可以直接操作，点“重放”从头再看。">
+        <SubSection title="经营分析问答" stack><AnalysisScenario /></SubSection>
+        <SubSection title="退款处理" stack><RefundScenario /></SubSection>
+        <SubSection title="多步任务" stack><PlanScenario /></SubSection>
+        <SubSection title="后台任务中心" stack><OpsScenario /></SubSection>
+        <SubSection title="多智能体协作" stack><MultiAgentScenario /></SubSection>
+      </Section>
 
       <Section title="ThinkingTrace" description="展示分步、推理、搜索和工具运行过程，点击标题可折叠。">
         <SubSection title="分步、推理、搜索与工具运行" stack>

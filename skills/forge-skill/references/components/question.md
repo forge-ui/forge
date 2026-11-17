@@ -1,0 +1,125 @@
+# question
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/question.tsx`；core **0.9.0**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ChoiceAnswer (type)
+
+```ts
+export type ChoiceAnswer = { optionId: string } | { optionIds: string[] } | { text: string };
+```
+
+## ChoiceCard (value)
+
+```ts
+({ title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale }: ChoiceCardProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `string` |  |
+| `options` | 是 | `ChoiceOption[]` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `allowText` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `answered` | 否 | `ReactNode` | What was chosen once answered; the card then shows it instead of the controls. |
+| `onAnswer` | 是 | `(answer: ChoiceAnswer) => void` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+
+## ChoiceCardProps (type)
+
+```ts
+export type ChoiceCardProps = {
+  title: string;
+  options: ChoiceOption[];
+  multiple?: boolean;
+  allowText?: boolean;
+  disabled?: boolean;
+  /** What was chosen once answered; the card then shows it instead of the controls. */
+  answered?: ReactNode;
+  onAnswer: (answer: ChoiceAnswer) => void;
+  onCancel?: () => void;
+  locale?: AgentLocale;
+};
+```
+
+## ChoiceOption (type)
+
+```ts
+export type ChoiceOption = { id: string; label: string; description?: string };
+```
+
+## Question (value)
+
+```ts
+({ questions, onSubmit, onCancel, answers: answered, confirm, disabled, submitLabel, locale, size, className }: QuestionProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `questions` | 是 | `QuestionItem[]` |  |
+| `onSubmit` | 是 | `(answers: Record<string, QuestionAnswer>) => void` |  |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `answers` | 否 | `Record<string, QuestionAnswer> \| undefined` | Once answered, pass the answers back: the card turns into a one-line summary per question. |
+| `confirm` | 否 | `boolean \| undefined` | A single single-choice question submits on click unless this is set. Several questions or multiple choice always confirm. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `submitLabel` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `AgentLocale \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## QuestionAnswer (type)
+
+```ts
+export type QuestionAnswer = { optionIds: string[]; text?: string };
+```
+
+## QuestionItem (type)
+
+```ts
+export type QuestionItem = {
+  id: string;
+  title: string;
+  description?: string;
+  options: QuestionOption[];
+  multiple?: boolean;
+  /** Adds a free-text field; with no options the question is text only. */
+  allowText?: boolean;
+  textPlaceholder?: string;
+};
+```
+
+## QuestionOption (type)
+
+```ts
+export type QuestionOption = {
+  id: string;
+  label: string;
+  description?: string;
+  /** Marks the option the agent would pick. */
+  recommended?: boolean;
+};
+```
+
+## QuestionProps (type)
+
+```ts
+export type QuestionProps = {
+  questions: QuestionItem[];
+  onSubmit: (answers: Record<string, QuestionAnswer>) => void;
+  onCancel?: () => void;
+  /** Once answered, pass the answers back: the card turns into a one-line summary per question. */
+  answers?: Record<string, QuestionAnswer>;
+  /**
+   * A single single-choice question submits on click unless this is set.
+   * Several questions or multiple choice always confirm.
+   */
+  confirm?: boolean;
+  disabled?: boolean;
+  submitLabel?: string;
+  locale?: AgentLocale;
+  size?: "md" | "sm";
+  className?: string;
+};
+```

@@ -20,9 +20,9 @@ import { ToolChips, type ToolChipItem } from "./tool-chips";
 export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "failed" | "skipped";
 
 function StepMarker({ status, index }: { status: AgentStepStatus; index?: number }) {
-  if (status === "done") return <CheckCircleBold size={18} className="shrink-0 text-fg-green-500" />;
-  if (status === "failed") return <DangerTriangleBold size={18} className="shrink-0 text-fg-red" />;
-  if (status === "waiting") return <ShieldCheckBold size={18} className="shrink-0 text-fg-yellow-700" />;
+  if (status === "done") return <CheckCircleBold size={18} color="var(--fg-green-500)" className="shrink-0" />;
+  if (status === "failed") return <DangerTriangleBold size={18} color="var(--fg-red)" className="shrink-0" />;
+  if (status === "waiting") return <ShieldCheckBold size={18} color="var(--fg-yellow-700)" className="shrink-0" />;
   if (status === "running") {
     return <span aria-hidden="true" className="flex size-[18px] shrink-0 items-center justify-center"><span className="size-3.5 animate-spin rounded-full border-2 border-fg-blue-100 border-t-accent" /></span>;
   }
@@ -85,7 +85,7 @@ export function AgentPlan({ title, description, steps, mode = "review", onChange
   return (
     <div className={cn("flex flex-col gap-3 rounded-xl border border-fg-grey-200 bg-background tracking-fg", small ? "p-3" : "p-4", className)}>
       <div className="flex items-start gap-2">
-        <ClipboardListBoldDuotone size={18} className="mt-0.5 shrink-0 text-accent" />
+        <ClipboardListBoldDuotone size={18} color="var(--accent)" className="mt-0.5 shrink-0" />
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <p className={cn("font-semibold text-fg-black", small ? "text-[13px]" : "text-sm")}>{title ?? pick(locale, "执行计划", "Plan")}</p>
           {description && <p className="text-xs leading-5 text-fg-grey-700">{description}</p>}
@@ -140,7 +140,7 @@ export function AgentPlan({ title, description, steps, mode = "review", onChange
             setAdding("");
           }}
         >
-          <PlusLinear size={14} className="ml-0.5 shrink-0 text-fg-grey-500" />
+          <PlusLinear size={14} color="var(--fg-grey-500)" className="ml-0.5 shrink-0" />
           <input value={adding} onChange={event => setAdding(event.target.value)} placeholder={pick(locale, "加一步", "Add a step")} aria-label={pick(locale, "加一步", "Add a step")} className="min-w-0 flex-1 bg-transparent py-0.5 text-[13px] text-fg-black outline-none placeholder:text-fg-grey-500" />
         </form>
       )}
@@ -204,7 +204,7 @@ export function AgentTrail({ title, steps, collapseAfter = 4, locale = "zh", cla
         {hidden > 0 && (
           <li>
             <button type="button" onClick={() => setExpanded(true)} className="flex items-center gap-2 text-xs text-fg-grey-700 hover:text-fg-black">
-              <CheckCircleBold size={18} className="text-fg-green-500" />
+              <CheckCircleBold size={18} color="var(--fg-green-500)" />
               {pick(locale, `已完成 ${hidden} 步，展开`, `${hidden} steps done · show`)}
             </button>
           </li>

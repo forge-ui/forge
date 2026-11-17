@@ -31,9 +31,9 @@ const STATE_STYLE: Record<AgentTaskState, { zh: string; en: string; tag: string 
 
 function StateIcon({ status }: { status: AgentTaskState }) {
   if (status === "running") return <span aria-hidden="true" className="size-3.5 shrink-0 animate-spin rounded-full border-[1.5px] border-fg-grey-300 border-t-accent" />;
-  if (status === "needs-you") return <ShieldCheckBold size={14} className="shrink-0 text-fg-yellow-700" />;
-  if (status === "failed") return <DangerTriangleLinear size={14} className="shrink-0 text-fg-red" />;
-  return <CheckCircleLinear size={14} className="shrink-0 text-fg-green-500" />;
+  if (status === "needs-you") return <ShieldCheckBold size={14} color="var(--fg-yellow-700)" className="shrink-0" />;
+  if (status === "failed") return <DangerTriangleLinear size={14} color="var(--fg-red)" className="shrink-0" />;
+  return <CheckCircleLinear size={14} color="var(--fg-green-500)" className="shrink-0" />;
 }
 
 function TaskClock({ task, locale }: { task: InboxTask; locale: AgentLocale }) {
@@ -70,7 +70,7 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
   return (
     <div className={cn("flex min-w-0 flex-col rounded-xl border border-fg-grey-200 bg-background tracking-fg", className)}>
       <div className="flex items-center gap-2 px-3 pt-3">
-        <InboxBoldDuotone size={18} className="text-accent" />
+        <InboxBoldDuotone size={18} color="var(--accent)" />
         <span className="text-[13px] font-semibold text-fg-black">{title ?? pick(locale, "智能体任务", "Agent tasks")}</span>
       </div>
       <div role="tablist" className="flex gap-1 overflow-x-auto px-3 pt-2">
@@ -94,7 +94,7 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                 </span>
                 <span className={cn("shrink-0 rounded-full px-1.5 py-px text-[11px] font-medium", STATE_STYLE[task.status].tag)}>{pick(locale, STATE_STYLE[task.status].zh, STATE_STYLE[task.status].en)}</span>
                 <TaskClock task={task} locale={locale} />
-                <AltArrowDownLinear size={12} className={cn("shrink-0 text-fg-grey-500 transition-transform", expanded && "rotate-180")} />
+                <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("shrink-0 transition-transform", expanded && "rotate-180")} />
               </button>
               {expanded && (
                 <div className="flex flex-col gap-2 px-2 pb-2.5 pl-[30px]">

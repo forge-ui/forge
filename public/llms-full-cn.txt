@@ -1,8 +1,8 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.8.3
+Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 4d3e2a816edacdcd42bbecbe60987a8a551cc10904ca5d024f54d16327414df2
+Source fingerprint: 5387cb7513e93c4d1bc6dba74c5ee45d3846bbef353a714654adaabd1a407884
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -290,7 +290,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (509, values and types distinguished)
+## Public exports (605, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -303,6 +303,9 @@ export function ModuleOverview() {
 - AddMemberItem [type] — core/src/components/ui/add-member.tsx
 - AddMemberLabels [type] — core/src/components/ui/add-member.tsx
 - AddMemberProps [type] — core/src/components/ui/add-member.tsx
+- AGENT_PANEL_WIDTH [value] — core/src/components/ui/agent/agent-panel.tsx
+- AgentCheckpoints [value] — core/src/components/ui/agent/agent-governance.tsx
+- AgentCheckpointsProps [type] — core/src/components/ui/agent/agent-governance.tsx
 - AgentCodeBlock [value] — core/src/components/ui/agent/agent-code-block.tsx
 - AgentCodeDiffRow [type] — core/src/components/ui/agent/agent-code-block.tsx
 - AgentCodeDiffType [type] — core/src/components/ui/agent/agent-code-block.tsx
@@ -316,20 +319,37 @@ export function ModuleOverview() {
 - AgentFlowEdge [type] — core/src/components/ui/agent/agent-flowchart.tsx
 - AgentFlowKind [type] — core/src/components/ui/agent/agent-flowchart.tsx
 - AgentFlowNode [type] — core/src/components/ui/agent/agent-flowchart.tsx
+- AgentInbox [value] — core/src/components/ui/agent/agent-ops.tsx
+- AgentInboxProps [type] — core/src/components/ui/agent/agent-ops.tsx
+- AgentLanes [value] — core/src/components/ui/agent/agent-observe.tsx
+- AgentLanesProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - AgentMessage [value] — core/src/components/ui/agent/agent-conversation.tsx
 - AgentMessagePart [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentMessageProps [type] — core/src/components/ui/agent/agent-conversation.tsx
 - AgentMessageRole [type] — core/src/components/ui/agent/agent-conversation.tsx
+- AgentPanel [value] — core/src/components/ui/agent/agent-panel.tsx
+- AgentPanelProps [type] — core/src/components/ui/agent/agent-panel.tsx
 - AgentParts [value] — core/src/components/ui/agent/agent-parts.tsx
 - AgentPartsProps [type] — core/src/components/ui/agent/agent-parts.tsx
+- AgentPlan [value] — core/src/components/ui/agent/agent-run.tsx
+- AgentPlanProps [type] — core/src/components/ui/agent/agent-run.tsx
+- AgentSession [type] — core/src/components/ui/agent/agent-panel.tsx
+- AgentStepStatus [type] — core/src/components/ui/agent/agent-run.tsx
 - AgentTask [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskChild [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentTaskRows [value] — core/src/components/ui/agent/agent-task-rows.tsx
+- AgentTaskState [type] — core/src/components/ui/agent/agent-ops.tsx
 - AgentTaskStatus [type] — core/src/components/ui/agent/agent-task-rows.tsx
 - AgentToolApproval [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolApprovalResponse [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolPart [type] — core/src/components/ui/agent/agent-parts.tsx
 - AgentToolState [type] — core/src/components/ui/agent/agent-parts.tsx
+- AgentTrail [value] — core/src/components/ui/agent/agent-run.tsx
+- AgentTrailProps [type] — core/src/components/ui/agent/agent-run.tsx
+- AgentTree [value] — core/src/components/ui/agent/agent-observe.tsx
+- AgentTreeProps [type] — core/src/components/ui/agent/agent-observe.tsx
+- AgentWelcome [value] — core/src/components/ui/agent/agent-welcome.tsx
+- AgentWelcomeProps [type] — core/src/components/ui/agent/agent-welcome.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
 - AppLayout [value] — core/src/components/layouts/app-layout.tsx
 - AppLayoutAccentColor [type] — core/src/components/layouts/app-layout.tsx
@@ -343,8 +363,14 @@ export function ModuleOverview() {
 - AppLayoutProfileMenuItem [type] — core/src/components/layouts/app-layout.tsx
 - AppLayoutProfilePosition [type] — core/src/components/layouts/app-layout.tsx
 - AppLayoutProps [type] — core/src/components/layouts/app-layout.tsx
+- Approval [value] — core/src/components/ui/agent/approval.tsx
 - ApprovalCard [value] — core/src/components/ui/agent/approval-card.tsx
+- ApprovalField [type] — core/src/components/ui/agent/approval.tsx
+- ApprovalProps [type] — core/src/components/ui/agent/approval.tsx
 - ApprovalQuestion [type] — core/src/components/ui/agent/approval-card.tsx
+- ApprovalRisk [type] — core/src/components/ui/agent/approval.tsx
+- ApprovalScope [type] — core/src/components/ui/agent/approval.tsx
+- ApprovalState [type] — core/src/components/ui/agent/approval.tsx
 - AppSwitcherDropdown [value] — core/src/components/layouts/sidebar-popovers.tsx
 - AppSwitcherItem [type] — core/src/components/layouts/sidebar-popovers.tsx
 - ArtifactCard [value] — core/src/components/ui/agent/agent-conversation.tsx
@@ -363,10 +389,21 @@ export function ModuleOverview() {
 - AskAiRequest [type] — core/src/internal/ask-ai-types.ts
 - AskAiResponse [type] — core/src/internal/ask-ai-types.ts
 - AskAiSessionItem [type] — core/src/internal/ask-ai-types.ts
+- AttachmentItem [type] — core/src/components/ui/agent/composer-parts.tsx
+- AttachmentKind [type] — core/src/components/ui/agent/composer-parts.tsx
+- AttachmentList [value] — core/src/components/ui/agent/composer-parts.tsx
+- AttachmentListProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- AutonomyAction [type] — core/src/components/ui/agent/agent-governance.tsx
+- AutonomyLevel [type] — core/src/components/ui/agent/agent-governance.tsx
+- AutonomySelector [value] — core/src/components/ui/agent/agent-governance.tsx
+- AutonomySelectorProps [type] — core/src/components/ui/agent/agent-governance.tsx
 - Avatar [value] — core/src/components/ui/avatar.tsx
 - AvatarGroup [value] — core/src/components/ui/avatar.tsx
 - AvatarInitialColor [type] — core/src/components/ui/avatar.tsx
 - AvatarSize [type] — core/src/components/ui/avatar.tsx
+- AwayItem [type] — core/src/components/ui/agent/agent-ops.tsx
+- AwaySummary [value] — core/src/components/ui/agent/agent-ops.tsx
+- AwaySummaryProps [type] — core/src/components/ui/agent/agent-ops.tsx
 - BalanceCard [value] — core/src/components/ui/balance-card.tsx
 - BalanceCardProps [type] — core/src/components/ui/balance-card.tsx
 - BarChart [value] — core/src/components/ui/charts/bar-chart.tsx
@@ -424,6 +461,8 @@ export function ModuleOverview() {
 - CellStatusDot [value] — core/src/components/ui/data-table.tsx
 - CellText [value] — core/src/components/ui/data-table.tsx
 - CellTextSubtitle [value] — core/src/components/ui/data-table.tsx
+- ChangeLedger [value] — core/src/components/ui/agent/agent-governance.tsx
+- ChangeLedgerProps [type] — core/src/components/ui/agent/agent-governance.tsx
 - ChartCard [value] — core/src/components/ui/charts/chart-card.tsx
 - ChartHeader [value] — core/src/components/ui/charts/dashboard-charts.tsx
 - ChartHeaderProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
@@ -453,10 +492,20 @@ export function ModuleOverview() {
 - ChecklistItem [value] — core/src/components/ui/checklist.tsx
 - ChecklistSize [type] — core/src/components/ui/checklist.tsx
 - ChecklistTask [type] — core/src/components/ui/checklist.tsx
+- Checkpoint [type] — core/src/components/ui/agent/agent-governance.tsx
+- ChoiceAnswer [type] — core/src/components/ui/agent/question.tsx
+- ChoiceCard [value] — core/src/components/ui/agent/question.tsx
+- ChoiceCardProps [type] — core/src/components/ui/agent/question.tsx
+- ChoiceOption [type] — core/src/components/ui/agent/question.tsx
 - CircleIcon [value] — core/src/components/ui/badge.tsx
 - CircleIconColor [type] — core/src/components/ui/badge.tsx
 - CircleIconSize [type] — core/src/components/ui/badge.tsx
 - CircleIconVariant [type] — core/src/components/ui/badge.tsx
+- Citation [value] — core/src/components/ui/agent/cited-answer.tsx
+- CitationProps [type] — core/src/components/ui/agent/cited-answer.tsx
+- CitationSource [type] — core/src/components/ui/agent/cited-answer.tsx
+- CitedAnswer [value] — core/src/components/ui/agent/cited-answer.tsx
+- CitedAnswerProps [type] — core/src/components/ui/agent/cited-answer.tsx
 - CloseIcon [value] — core/src/components/ui/plain-icons.tsx
 - cn [value] — core/src/lib/utils.ts
 - ColorPicker [value] — core/src/components/ui/forms/icon-selector.tsx
@@ -479,9 +528,16 @@ export function ModuleOverview() {
 - ConfirmationDialog [value] — core/src/components/ui/confirmation-dialog.tsx
 - ConfirmationDialogColor [type] — core/src/components/ui/confirmation-dialog.tsx
 - ConfirmationDialogLayout [type] — core/src/components/ui/confirmation-dialog.tsx
+- ConfirmCard [value] — core/src/components/ui/agent/approval.tsx
+- ConfirmCardProps [type] — core/src/components/ui/agent/approval.tsx
+- ConfirmField [type] — core/src/components/ui/agent/approval.tsx
 - ContactItem [value] — core/src/components/ui/contact-item.tsx
 - ContextCards [value] — core/src/components/ui/agent/context-cards.tsx
 - ContextChunk [type] — core/src/components/ui/agent/context-cards.tsx
+- ContextSegment [type] — core/src/components/ui/agent/agent-observe.tsx
+- ContextSegmentKind [type] — core/src/components/ui/agent/agent-observe.tsx
+- ContextUsage [value] — core/src/components/ui/agent/agent-observe.tsx
+- ContextUsageProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - ControlColor [type] — core/src/components/ui/forms/selection-control.tsx
 - Conversation [value] — core/src/components/ui/agent/agent-conversation.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
@@ -581,6 +637,7 @@ export function ModuleOverview() {
 - ImageGridSize [type] — core/src/components/ui/image-grid.tsx
 - ImageStatCard [value] — core/src/components/ui/image-stat-card.tsx
 - ImageStatCardProps [type] — core/src/components/ui/image-stat-card.tsx
+- InboxTask [type] — core/src/components/ui/agent/agent-ops.tsx
 - InfoRow [value] — core/src/components/ui/info-row.tsx
 - InfoRowProps [type] — core/src/components/ui/info-row.tsx
 - InsightCard [type] — core/src/components/ui/agent/insight-cards.tsx
@@ -595,6 +652,9 @@ export function ModuleOverview() {
 - LabelColor [type] — core/src/components/ui/badge.tsx
 - LabelSize [type] — core/src/components/ui/badge.tsx
 - LabelVariant [type] — core/src/components/ui/badge.tsx
+- LaneBlock [type] — core/src/components/ui/agent/agent-observe.tsx
+- LedgerEntry [type] — core/src/components/ui/agent/agent-governance.tsx
+- LedgerField [type] — core/src/components/ui/agent/agent-governance.tsx
 - LegacyCardTheme [type] — core/src/components/ui/card-utils.tsx
 - LineChartColor [type] — core/src/components/ui/line-chart-stat-card.tsx
 - LineChartStatCard [value] — core/src/components/ui/line-chart-stat-card.tsx
@@ -661,6 +721,7 @@ export function ModuleOverview() {
 - Panel [value] — core/src/components/ui/panel.tsx
 - PanelProps [type] — core/src/components/ui/panel.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
+- PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
@@ -678,20 +739,40 @@ export function ModuleOverview() {
 - ProgressSize [type] — core/src/components/ui/progress-bar.tsx
 - ProgressStatCard [value] — core/src/components/ui/progress-stat-card.tsx
 - ProgressStatCardProps [type] — core/src/components/ui/progress-stat-card.tsx
+- ProgressStep [type] — core/src/components/ui/agent/agent-run.tsx
 - ProjectCard [value] — core/src/components/ui/project-card.tsx
 - ProjectCardColor [type] — core/src/components/ui/project-card.tsx
+- PromptQueue [value] — core/src/components/ui/agent/composer-parts.tsx
+- PromptQueueProps [type] — core/src/components/ui/agent/composer-parts.tsx
 - PromptSuggestions [value] — core/src/components/ui/agent/agent-conversation.tsx
 - PromptSuggestionsProps [type] — core/src/components/ui/agent/agent-conversation.tsx
+- Question [value] — core/src/components/ui/agent/question.tsx
+- QuestionAnswer [type] — core/src/components/ui/agent/question.tsx
+- QuestionItem [type] — core/src/components/ui/agent/question.tsx
+- QuestionOption [type] — core/src/components/ui/agent/question.tsx
+- QuestionProps [type] — core/src/components/ui/agent/question.tsx
+- QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
 - RadioWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - RatingStars [value] — core/src/components/ui/rating-stars.tsx
 - RatingStarsSize [type] — core/src/components/ui/rating-stars.tsx
+- Reasoning [value] — core/src/components/ui/agent/thinking.tsx
+- ReasoningProps [type] — core/src/components/ui/agent/thinking.tsx
+- ReasoningSource [type] — core/src/components/ui/agent/thinking.tsx
+- ReasoningStatus [type] — core/src/components/ui/agent/thinking.tsx
+- ReasoningStep [type] — core/src/components/ui/agent/thinking.tsx
 - RecommendationCard [value] — core/src/components/ui/agent/recommendation-card.tsx
 - RecommendationConfidence [type] — core/src/components/ui/agent/recommendation-card.tsx
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
+- RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
+- RunControlsProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- RunningNow [value] — core/src/components/ui/agent/agent-ops.tsx
+- RunningNowProps [type] — core/src/components/ui/agent/agent-ops.tsx
+- RunProgress [value] — core/src/components/ui/agent/agent-run.tsx
+- RunStatus [type] — core/src/components/ui/agent/composer-parts.tsx
 - SelectOption [value] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionBgVariant [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionColor [type] — core/src/components/ui/forms/select-option.tsx
@@ -754,6 +835,8 @@ export function ModuleOverview() {
 - TextFieldSelectSuffix [value] — core/src/components/ui/forms/text-field-select.tsx
 - TextFieldShape [type] — core/src/components/ui/forms/text-field.tsx
 - TextFieldState [type] — core/src/components/ui/forms/text-field.tsx
+- ThinkingIndicator [value] — core/src/components/ui/agent/thinking.tsx
+- ThinkingIndicatorProps [type] — core/src/components/ui/agent/thinking.tsx
 - ThinkingRow [type] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingTrace [value] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingVariant [type] — core/src/components/ui/agent/thinking-trace.tsx
@@ -776,6 +859,11 @@ export function ModuleOverview() {
 - ToolbarSelectDropdown [value] — core/src/components/ui/toolbar.tsx
 - ToolbarSelectionOptions [type] — core/src/components/ui/toolbar.tsx
 - ToolbarShowSelect [value] — core/src/components/ui/toolbar.tsx
+- ToolCall [value] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallGroup [value] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallGroupProps [type] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallProps [type] — core/src/components/ui/agent/tool-call.tsx
+- ToolCallStatus [type] — core/src/components/ui/agent/tool-call.tsx
 - ToolChipDetail [type] — core/src/components/ui/agent/tool-chips.tsx
 - ToolChipItem [type] — core/src/components/ui/agent/tool-chips.tsx
 - ToolChipKind [type] — core/src/components/ui/agent/tool-chips.tsx
@@ -790,6 +878,13 @@ export function ModuleOverview() {
 - TooltipSize [type] — core/src/components/ui/tooltip.tsx
 - TopBar [value] — core/src/components/ui/topbar.tsx
 - TopBarColor [type] — core/src/components/ui/topbar.tsx
+- TraceSpan [type] — core/src/components/ui/agent/agent-observe.tsx
+- TraceWaterfall [value] — core/src/components/ui/agent/agent-observe.tsx
+- TraceWaterfallProps [type] — core/src/components/ui/agent/agent-observe.tsx
+- TrailStep [type] — core/src/components/ui/agent/agent-run.tsx
+- TrailSubstep [type] — core/src/components/ui/agent/agent-run.tsx
+- TreeAgent [type] — core/src/components/ui/agent/agent-observe.tsx
+- TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx
@@ -798,6 +893,7 @@ export function ModuleOverview() {
 - useToast [value] — core/src/components/ui/toast.tsx
 - WalletGoalCard [value] — core/src/components/ui/wallet-goal-card.tsx
 - WalletGoalCardProps [type] — core/src/components/ui/wallet-goal-card.tsx
+- WelcomeCapability [type] — core/src/components/ui/agent/agent-welcome.tsx
 - WheelChartStatCard [value] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelChartStatCardProps [type] — core/src/components/ui/wheel-chart-stat-card.tsx
 - WheelColor [type] — core/src/components/ui/wheel-chart-stat-card.tsx

@@ -82,7 +82,7 @@ export function Approval({ title, description, requester, risk, fields = [], pre
     const word = state === "approved" ? pick(locale, "已允许", "Approved") : state === "denied" ? pick(locale, "已拒绝", "Denied") : pick(locale, "已过期", "Expired");
     return (
       <div data-state={state} className={cn("flex items-start gap-1.5 tracking-fg text-fg-grey-700", small ? "text-xs" : "text-[13px]", className)}>
-        <Icon size={14} className={cn("mt-0.5 shrink-0", state === "approved" ? "text-fg-green-500" : "text-fg-grey-500")} />
+        <Icon size={14} color={state === "approved" ? "var(--fg-green-500)" : "var(--fg-grey-500)"} className="mt-0.5 shrink-0" />
         <span className="min-w-0">{word} · <span className="text-fg-black">{title}</span>{result && <span className="block text-fg-grey-700">{result}</span>}</span>
       </div>
     );
@@ -99,7 +99,7 @@ export function Approval({ title, description, requester, risk, fields = [], pre
       className={cn("flex flex-col gap-2.5 rounded-xl border bg-background tracking-fg", risk === "high" ? "border-fg-red-200" : "border-fg-grey-200", small ? "p-3" : "p-4", className)}
     >
       <div className="flex items-start gap-2">
-        <ShieldCheckBold size={small ? 16 : 18} className={cn("mt-0.5 shrink-0", risk === "high" ? "text-fg-red" : "text-accent")} />
+        <ShieldCheckBold size={small ? 16 : 18} color={risk === "high" ? "var(--fg-red)" : "var(--accent)"} className="mt-0.5 shrink-0" />
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           {requester && <span className="text-xs text-fg-grey-700">{requester} {pick(locale, "请求执行", "wants to")}</span>}
           <p className={cn("font-semibold text-fg-black", small ? "text-[13px]" : "text-sm")}>{title}</p>
@@ -172,7 +172,7 @@ export type ConfirmCardProps = {
 /** A proposed change waiting for the user's confirmation. A shorthand for `Approval`. */
 export function ConfirmCard({ title, fields = [], body, confirmLabel, cancelLabel, state = "pending", result, onConfirm, onCancel, locale = "zh" }: ConfirmCardProps) {
   if (state === "cancelled") {
-    return <p data-state="cancelled" className="flex items-center gap-1.5 text-xs tracking-fg text-fg-grey-700"><CloseCircleLinear size={14} className="text-fg-grey-500" />{pick(locale, "已取消", "Cancelled")} · {title}</p>;
+    return <p data-state="cancelled" className="flex items-center gap-1.5 text-xs tracking-fg text-fg-grey-700"><CloseCircleLinear size={14} color="var(--fg-grey-500)" />{pick(locale, "已取消", "Cancelled")} · {title}</p>;
   }
   return (
     <Approval

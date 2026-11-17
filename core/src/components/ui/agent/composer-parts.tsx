@@ -115,9 +115,9 @@ export function RunControls({ status, activity, startedAt, duration, error, onSt
     <div data-status={status} className={cn("flex flex-col gap-1.5 rounded-xl border bg-background px-2.5 py-1.5 tracking-fg", status === "failed" ? "border-fg-red-200" : "border-fg-grey-200", className)}>
       <div className="flex min-w-0 items-center gap-2 text-[13px]">
         {running ? <span aria-hidden="true" className="size-3 shrink-0 animate-spin rounded-full border-[1.5px] border-fg-grey-300 border-t-accent" />
-          : status === "failed" ? <DangerTriangleLinear size={14} className="shrink-0 text-fg-red" />
-            : status === "done" ? <CheckCircleLinear size={14} className="shrink-0 text-fg-green-500" />
-              : <PauseLinear size={14} className="shrink-0 text-fg-grey-700" />}
+          : status === "failed" ? <DangerTriangleLinear size={14} color="var(--fg-red)" className="shrink-0" />
+            : status === "done" ? <CheckCircleLinear size={14} color="var(--fg-green-500)" className="shrink-0" />
+              : <PauseLinear size={14} color="var(--fg-grey-700)" className="shrink-0" />}
         <span role="status" className={cn("min-w-0 flex-1 truncate", status === "failed" ? "text-fg-red" : "text-fg-black", status === "running" && "forge-text-shimmer")}>{word}</span>
         {time !== undefined && <span className="shrink-0 tabular-nums text-xs text-fg-grey-500">{formatDuration(time, locale)}</span>}
         <span className="flex shrink-0 items-center">

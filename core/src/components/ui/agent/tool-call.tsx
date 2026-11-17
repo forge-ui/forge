@@ -79,10 +79,10 @@ export function ToolCall({ name, title, summary, status, args, result, error, st
 
   const statusIcon = running
     ? <span aria-hidden="true" className="size-3.5 shrink-0 animate-spin rounded-full border-[1.5px] border-fg-grey-300 border-t-accent" />
-    : status === "success" ? <CheckCircleLinear size={14} className="shrink-0 text-fg-green-500" />
-      : status === "error" ? <DangerTriangleLinear size={14} className="shrink-0 text-fg-red" />
-        : status === "denied" ? <CloseCircleLinear size={14} className="shrink-0 text-fg-grey-500" />
-          : <ShieldCheckBold size={14} className="shrink-0 text-fg-yellow-700" />;
+    : status === "success" ? <CheckCircleLinear size={14} color="var(--fg-green-500)" className="shrink-0" />
+      : status === "error" ? <DangerTriangleLinear size={14} color="var(--fg-red)" className="shrink-0" />
+        : status === "denied" ? <CloseCircleLinear size={14} color="var(--fg-grey-500)" className="shrink-0" />
+          : <ShieldCheckBold size={14} color="var(--fg-yellow-700)" className="shrink-0" />;
   const trailing = status === "error" ? pick(locale, "失败", "Failed")
     : status === "denied" ? pick(locale, "已拒绝", "Denied")
       : asking ? pick(locale, "待确认", "Needs approval")
@@ -103,7 +103,7 @@ export function ToolCall({ name, title, summary, status, args, result, error, st
         {summary && <span className="min-w-0 flex-1 truncate text-fg-grey-700">{summary}</span>}
         {!summary && <span className="flex-1" />}
         {trailing && <span className={cn("shrink-0 tabular-nums text-xs", status === "error" ? "text-fg-red" : asking ? "text-fg-yellow-800" : "text-fg-grey-500")}>{trailing}</span>}
-        {hasBody && <AltArrowDownLinear size={12} className={cn("shrink-0 text-fg-grey-500 transition-transform", open && "rotate-180")} />}
+        {hasBody && <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("shrink-0 transition-transform", open && "rotate-180")} />}
       </button>
       {asking && (
         <div className={cn("flex flex-col gap-2 border-t border-fg-grey-100", small ? "px-2.5 py-2" : "px-3 py-2.5")}>
@@ -154,7 +154,7 @@ export function ToolCallGroup({ children, label, count, status = "success", defa
     <div data-tool-group={status} className={cn("flex min-w-0 flex-col gap-1.5 tracking-fg", className)}>
       <button type="button" aria-expanded={open} onClick={() => setToggled({ status, open: !open })} className="-ml-1.5 flex w-fit items-center gap-1.5 rounded-lg px-1.5 py-1 text-[13px] text-fg-grey-700 hover:bg-fg-grey-100 hover:text-fg-black">
         {status === "running" ? <span aria-hidden="true" className="size-3 animate-spin rounded-full border-[1.5px] border-fg-grey-300 border-t-accent" />
-          : status === "error" ? <DangerTriangleLinear size={14} className="text-fg-red" />
+          : status === "error" ? <DangerTriangleLinear size={14} color="var(--fg-red)" />
             : <SettingsBoldDuotone size={14} />}
         <span className={cn("font-medium", status === "running" && "forge-text-shimmer")}>{text}</span>
         <AltArrowDownLinear size={12} className={cn("transition-transform", open && "rotate-180")} />

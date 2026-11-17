@@ -22,7 +22,7 @@ import type { UiSpec } from "./schema";
 const frame = "flex min-w-0 flex-col gap-2 rounded-xl border border-fg-grey-200 bg-background p-3";
 const Title = ({ children }: { children?: ReactNode }) => (children ? <p className="text-sm font-semibold text-fg-black">{children}</p> : null);
 const Answered = ({ children }: { children: ReactNode }) => (
-  <p className="flex items-start gap-1.5 text-[13px] text-fg-grey-700"><CheckCircleLinear size={14} className="mt-0.5 shrink-0 text-fg-green-500" /><span className="min-w-0">{children}</span></p>
+  <p className="flex items-start gap-1.5 text-[13px] text-fg-grey-700"><CheckCircleLinear size={14} color="var(--fg-green-500)" className="mt-0.5 shrink-0" /><span className="min-w-0">{children}</span></p>
 );
 const safeHref = (href?: string) => (href && (/^\/(?!\/)/.test(href) || /^https:\/\//.test(href)) ? href : undefined);
 

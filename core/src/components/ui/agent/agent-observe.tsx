@@ -287,7 +287,7 @@ export function AgentLanes({ lanes, blocks, now, onSelect, locale = "zh", classN
     <div className={cn("flex min-w-0 flex-col gap-1.5 rounded-xl border border-fg-grey-200 bg-background p-3 tracking-fg", className)}>
       {lanes.map(lane => (
         <div key={lane.id} className="grid grid-cols-[7rem_minmax(0,1fr)] items-center gap-2">
-          <span className="flex min-w-0 items-center gap-1.5 truncate text-xs text-fg-black">{lane.icon ?? <StarsLinear size={12} className="text-accent" />}{lane.name}</span>
+          <span className="flex min-w-0 items-center gap-1.5 truncate text-xs text-fg-black">{lane.icon ?? <StarsLinear size={12} color="var(--accent)" />}{lane.name}</span>
           <div className="relative h-7 rounded-md bg-fg-grey-50">
             {blocks.filter(block => block.laneId === lane.id).map(block => (
               <button

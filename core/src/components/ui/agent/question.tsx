@@ -65,7 +65,7 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
       <div className={cn("flex flex-col gap-1 tracking-fg text-fg-grey-700", small ? "text-xs" : "text-[13px]", className)}>
         {questions.map(item => (
           <p key={item.id} className="flex items-start gap-1.5">
-            <CheckCircleLinear size={14} className="mt-0.5 shrink-0 text-fg-green-500" />
+            <CheckCircleLinear size={14} color="var(--fg-green-500)" className="mt-0.5 shrink-0" />
             <span>{item.title}：<span className="text-fg-black">{describe(item, answered[item.id]) || pick(locale, "未回答", "Skipped")}</span></span>
           </p>
         ))}
@@ -114,7 +114,7 @@ export function Question({ questions, onSubmit, onCancel, answers: answered, con
       className={cn("flex flex-col gap-2.5 rounded-xl border border-fg-grey-200 bg-background tracking-fg outline-none focus-visible:border-accent", small ? "p-3" : "p-4", className)}
     >
       <div className="flex items-start gap-2">
-        <QuestionCircleBoldDuotone size={small ? 16 : 18} className="mt-0.5 shrink-0 text-accent" />
+        <QuestionCircleBoldDuotone size={small ? 16 : 18} color="var(--accent)" className="mt-0.5 shrink-0" />
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <p className={cn("font-semibold text-fg-black", small ? "text-[13px]" : "text-sm")}>{item.title}</p>
           {item.description && <p className="text-xs leading-5 text-fg-grey-700">{item.description}</p>}
@@ -193,7 +193,7 @@ export function ChoiceCard({ title, options, multiple = false, allowText = false
   if (answered) {
     return (
       <div className="flex items-center gap-1.5 text-[13px] tracking-fg text-fg-grey-700">
-        <CheckCircleLinear size={14} className="text-fg-green-500" />
+        <CheckCircleLinear size={14} color="var(--fg-green-500)" />
         {title}：<span className="text-fg-black">{answered}</span>
       </div>
     );

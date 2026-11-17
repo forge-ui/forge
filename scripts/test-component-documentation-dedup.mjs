@@ -22,7 +22,8 @@ test('duplicate tab guide is replaced with a working canonical destination',()=>
 });
 test('agent descriptions and complete API render as one table per component',()=>{
  const html=renderToStaticMarkup(React.createElement(pages.AgentPage));
- assert.equal((html.match(/>参数<\/th>/g)??[]).length,18);
+ const agentComponents=Object.values(JSON.parse(fs.readFileSync('docs/archive/public-api-comparison.json','utf8')).current.components).filter(component=>component.file.includes('/agent/'));
+ assert.equal((html.match(/>参数<\/th>/g)??[]).length,agentComponents.length);
  const { JSDOM } = require('../core/node_modules/jsdom');
  const dom = new JSDOM(html);
  const api = JSON.parse(fs.readFileSync('src/app/components/_agent-api-data.json', 'utf8'));
