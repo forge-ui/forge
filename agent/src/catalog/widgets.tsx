@@ -2,230 +2,216 @@
 
 import { useState, type ReactNode } from "react";
 import {
+  AgentFlowchart,
   AgentPlan,
   Approval,
   BarChart,
-    Button,
+  Button,
+  DescriptionItem,
   DonutChart,
+  HistoryGrouped,
+  ImageGrid,
+  Label,
+  ListGroup,
+  ListItem,
+  Panel,
   ProgressBar,
   Question,
+  SelectOption,
   SmoothLineChart,
+  StatusBadge,
+  TextArea,
+  TextField,
+  Toggle,
   cn,
+  type AgentFlowKind,
   type PlanStep,
 } from "@forge-ui-official/core";
-import { AltArrowDownLinear, AltArrowRightLinear, CheckCircleLinear, DangerTriangleLinear, InfoCircleLinear } from "@forge-ui-official/core/icons";
+import { AltArrowRightLinear, CheckCircleLinear, DangerTriangleLinear, InfoCircleLinear } from "@forge-ui-official/core/icons";
 import type { UiSpec } from "./schema";
 
-/** Components the model writes into its answer, beyond cards, tables and metrics (see render.tsx). */
+/**
+ * Components the model writes into its answer, drawn with the same Forge components the pages use:
+ * Panel, StatCard, the charts, ListGroup, HistoryGrouped, DescriptionItem, AgentFlowchart and the
+ * form fields. Cards, tables and metrics live in render.tsx.
+ */
 
-const frame = "flex min-w-0 flex-col gap-2 rounded-2xl bg-background p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200";
-const Title = ({ children }: { children?: ReactNode }) => (children ? <p className="text-sm font-semibold text-fg-black">{children}</p> : null);
 const Answered = ({ children }: { children: ReactNode }) => (
-  <p className="flex items-start gap-1.5 text-sm text-fg-grey-700"><CheckCircleLinear size={14} color="var(--fg-green-500)" className="mt-0.5 shrink-0" /><span className="min-w-0">{children}</span></p>
+  <p className="flex items-start gap-2 text-sm text-fg-grey-700"><CheckCircleLinear size={16} color="var(--fg-green-500)" className="mt-0.5 shrink-0" /><span className="min-w-0">{children}</span></p>
 );
 const safeHref = (href?: string) => (href && (/^\/(?!\/)/.test(href) || /^https:\/\//.test(href)) ? href : undefined);
+export const formatNumber = (value: number) => value.toLocaleString("zh-CN");
 
 /* ── Display ── */
 
 const TONE = {
-  info: { icon: InfoCircleLinear, style: "border-fg-blue-200 bg-fg-blue-50 text-fg-blue-800" },
-  success: { icon: CheckCircleLinear, style: "border-fg-green-200 bg-fg-green-50 text-fg-green-700" },
-  warning: { icon: DangerTriangleLinear, style: "border-fg-yellow-300 bg-fg-yellow-50 text-fg-yellow-900" },
-  danger: { icon: DangerTriangleLinear, style: "border-fg-red-200 bg-fg-red-50 text-fg-red-700" },
+  info: { icon: InfoCircleLinear, style: "bg-fg-blue-50 text-fg-blue-800 outline-fg-blue-200", color: "var(--fg-blue-500)" },
+  success: { icon: CheckCircleLinear, style: "bg-fg-green-50 text-fg-green-700 outline-fg-green-200", color: "var(--fg-green-500)" },
+  warning: { icon: DangerTriangleLinear, style: "bg-fg-yellow-50 text-fg-yellow-900 outline-fg-yellow-200", color: "var(--fg-yellow-700)" },
+  danger: { icon: DangerTriangleLinear, style: "bg-fg-red-50 text-fg-red-700 outline-fg-red-200", color: "var(--fg-red)" },
 } as const;
 
 export function Callout({ tone, title, text }: UiSpec<"show_callout">) {
-  const { icon: Icon, style } = TONE[tone];
+  const { icon: Icon, style, color } = TONE[tone];
   return (
-    <div role={tone === "danger" || tone === "warning" ? "alert" : "note"} className={cn("flex gap-2 rounded-xl border px-3 py-2.5 text-sm leading-5", style)}>
-      <Icon size={16} className="mt-0.5 shrink-0" />
-      <div className="flex min-w-0 flex-col gap-0.5">{title && <span className="font-semibold">{title}</span>}<span>{text}</span></div>
+    <div role={tone === "danger" || tone === "warning" ? "alert" : "note"} className={cn("flex gap-3 rounded-2xl px-4 py-3 text-sm leading-6 tracking-fg outline outline-1 outline-offset-[-1px]", style)}>
+      <Icon size={18} color={color} className="mt-0.5 shrink-0" />
+      <div className="flex min-w-0 flex-col">{title && <span className="font-semibold">{title}</span>}<span>{text}</span></div>
     </div>
   );
 }
 
+const STATUS_TONE: { test: RegExp; color: "green" | "yellow" | "red" | "blue" | "grey" }[] = [
+  { test: /完成|成功|通过|已退款|已付|正常|启用/, color: "green" },
+  { test: /失败|拒绝|驳回|逾期|异常|超/, color: "red" },
+  { test: /待|审核|处理中|进行|退款中|中$/, color: "yellow" },
+];
+const statusColor = (status: string) => STATUS_TONE.find(rule => rule.test.test(status))?.color ?? "grey";
+
 export function RecordCard({ title, subtitle, status, fields, href }: UiSpec<"show_record">) {
   const link = safeHref(href);
   return (
-    <div className={frame}>
-      <div className="flex items-start gap-2">
-        <div className="flex min-w-0 flex-1 flex-col">
-          <span className="truncate text-sm font-semibold text-fg-black">{title}</span>
-          {subtitle && <span className="truncate text-xs text-fg-grey-700">{subtitle}</span>}
-        </div>
-        {status && <span className="shrink-0 rounded-full bg-fg-grey-100 px-2 py-0.5 text-xs text-fg-grey-900">{status}</span>}
+    <Panel
+      title={title}
+      subtitle={subtitle}
+      action={status && <StatusBadge label={status} color={statusColor(status)} />}
+      footer={link && <a href={link} className="inline-flex items-center gap-1 self-start text-sm font-semibold text-accent hover:underline">查看详情<AltArrowRightLinear size={14} /></a>}
+      gap="sm"
+    >
+      <div className="flex flex-col gap-3">
+        {fields.map(field => <DescriptionItem key={field.label} label={field.label} content={field.value} />)}
       </div>
-      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-sm">
-        {fields.map(field => (
-          <div key={field.label} className="contents"><dt className="text-fg-grey-700">{field.label}</dt><dd className="min-w-0 break-words text-fg-black">{field.value}</dd></div>
-        ))}
-      </dl>
-      {link && <a href={link} className="flex items-center gap-1 self-start text-xs font-medium text-accent hover:underline">查看详情<AltArrowRightLinear size={12} /></a>}
-    </div>
+    </Panel>
   );
 }
 
 export function ListBlock({ title, items }: UiSpec<"show_list">) {
   return (
-    <div className="flex min-w-0 flex-col gap-1.5">
-      <Title>{title}</Title>
-      <ul className="flex flex-col divide-y divide-fg-grey-100 rounded-2xl bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
-        {items.map(item => {
-          const link = safeHref(item.href);
-          const body = (
-            <>
-              <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate text-sm text-fg-black">{item.title}</span>
-                {item.description && <span className="line-clamp-2 text-xs text-fg-grey-700">{item.description}</span>}
-              </span>
-              {item.tag && <span className="shrink-0 rounded-full bg-fg-grey-100 px-2 py-0.5 text-xs text-fg-grey-900">{item.tag}</span>}
-              {item.meta && <span className="shrink-0 text-xs tabular-nums text-fg-grey-500">{item.meta}</span>}
-            </>
-          );
-          return <li key={item.title}>{link ? <a href={link} className="flex min-w-0 items-center gap-2 px-3 py-2 hover:bg-fg-grey-50">{body}</a> : <div className="flex min-w-0 items-center gap-2 px-3 py-2">{body}</div>}</li>;
-        })}
-      </ul>
-    </div>
+    <ListGroup
+      title={title ?? "列表"}
+      density="compact"
+      className="w-full"
+      items={items.map(item => {
+        const link = safeHref(item.href);
+        const row = <ListItem key={item.title} title={item.title} subtitle={item.description} value={item.meta} trailing={item.tag ? <StatusBadge label={item.tag} color={statusColor(item.tag)} /> : undefined} />;
+        return link ? <a key={item.title} href={link} className="block rounded-xl hover:bg-fg-grey-50">{row}</a> : row;
+      })}
+    />
   );
 }
 
-const DOT = { info: "bg-accent", success: "bg-fg-green-500", warning: "bg-fg-yellow-500", danger: "bg-fg-red" } as const;
+const HISTORY_COLOR = { info: "blue", success: "green", warning: "yellow", danger: "red" } as const;
 
 export function Timeline({ title, events }: UiSpec<"show_timeline">) {
   return (
-    <div className="flex min-w-0 flex-col gap-2">
-      <Title>{title}</Title>
-      <ol className="flex flex-col">
-        {events.map((event, index) => (
-          <li key={`${event.time}-${index}`} className="relative flex gap-3 pb-3 last:pb-0">
-            {index < events.length - 1 && <span aria-hidden="true" className="absolute left-[3.5px] top-3 h-full w-px bg-fg-grey-200" />}
-            <span aria-hidden="true" className={cn("mt-1.5 size-2 shrink-0 rounded-full", DOT[event.tone ?? "info"])} />
-            <div className="flex min-w-0 flex-col gap-0.5">
-              <span className="text-xs tabular-nums text-fg-grey-500">{event.time}</span>
-              <span className="text-sm text-fg-black">{event.title}</span>
-              {event.detail && <span className="text-xs leading-5 text-fg-grey-700">{event.detail}</span>}
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
+    <HistoryGrouped
+      title={title ?? "经过"}
+      items={events.map((event, index) => ({ title: event.title, description: event.detail, datetime: event.time, color: HISTORY_COLOR[event.tone ?? "info"], showConnector: index < events.length - 1 }))}
+    />
   );
 }
 
 export function Tags({ title, tags }: UiSpec<"show_tags">) {
   return (
-    <div className="flex min-w-0 flex-col gap-1.5">
-      <Title>{title}</Title>
-      <div className="flex flex-wrap gap-1.5">{tags.map(tag => <span key={tag} className="rounded-full border border-fg-grey-200 px-2.5 py-0.5 text-xs text-fg-grey-900">{tag}</span>)}</div>
-    </div>
+    <Panel title={title} gap="sm">
+      <div className="flex flex-wrap gap-2">{tags.map(tag => <Label key={tag} color="gray" size="md">{tag}</Label>)}</div>
+    </Panel>
   );
 }
 
 export function Compare({ title, items }: UiSpec<"show_compare">) {
   return (
-    <div className="flex min-w-0 flex-col gap-2">
-      <Title>{title}</Title>
-      <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(auto-fit, minmax(9rem, 1fr))` }}>
+    <Panel title={title} gap="sm">
+      <div className="flex flex-col gap-3">
         {items.map(item => (
-          <div key={item.title} className={cn("flex min-w-0 flex-col gap-1.5 rounded-xl border p-3", item.recommended ? "border-accent bg-fg-blue-50" : "border-fg-grey-200 bg-background")}>
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold text-fg-black">{item.title}</span>
-              {item.recommended && <span className="rounded-full bg-accent px-1.5 py-px text-2xs text-white">推荐</span>}
-              {item.tag && !item.recommended && <span className="rounded-full bg-fg-grey-100 px-1.5 py-px text-2xs text-fg-grey-700">{item.tag}</span>}
+          <section key={item.title} className={cn("flex flex-col gap-2 rounded-2xl p-4 outline outline-1 outline-offset-[-1px]", item.recommended ? "bg-accent-soft/40 outline-accent" : "outline-fg-grey-200")}>
+            <div className="flex items-center gap-2">
+              <span className="min-w-0 flex-1 text-sm font-semibold text-fg-black">{item.title}</span>
+              {item.recommended ? <StatusBadge label="推荐" color="blue" /> : item.tag && <StatusBadge label={item.tag} color="grey" />}
             </div>
-            <ul className="flex flex-col gap-1 text-xs leading-5 text-fg-grey-900">{item.points.map(point => <li key={point} className="flex gap-1.5"><span className="text-fg-grey-400">·</span>{point}</li>)}</ul>
-          </div>
+            <ul className="flex flex-col gap-1.5">
+              {item.points.map(point => <li key={point} className="flex gap-2 text-sm leading-5 text-fg-grey-900"><CheckCircleLinear size={16} color={item.recommended ? "var(--accent)" : "var(--fg-grey-400)"} className="mt-0.5 shrink-0" />{point}</li>)}
+            </ul>
+          </section>
         ))}
       </div>
-    </div>
+    </Panel>
   );
 }
 
 export function Changes({ title, fields }: UiSpec<"show_changes">) {
   return (
-    <div className={frame}>
-      <Title>{title}</Title>
-      <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-sm">
+    <Panel title={title ?? "改动"} gap="sm">
+      <div className="flex flex-col gap-3">
         {fields.map(field => (
-          <div key={field.label} className="contents">
-            <dt className="text-fg-grey-700">{field.label}</dt>
-            <dd className="min-w-0 break-words"><span className="rounded bg-fg-red-50 px-1 text-fg-red-700 line-through">{field.before || "空"}</span> → <span className="rounded bg-fg-green-50 px-1 text-fg-green-700">{field.after || "空"}</span></dd>
-          </div>
+          <DescriptionItem
+            key={field.label}
+            label={field.label}
+            content={<span className="inline-flex flex-wrap items-center gap-2"><span className="text-fg-grey-500 line-through">{field.before || "空"}</span><AltArrowRightLinear size={14} color="var(--fg-grey-400)" /><span className="font-semibold text-fg-black">{field.after || "空"}</span></span>}
+          />
         ))}
-      </dl>
-    </div>
+      </div>
+    </Panel>
   );
 }
 
+const FLOW_KIND: Record<string, AgentFlowKind> = { start: "trigger", step: "action", decision: "condition", end: "action" };
+
 export function Flow({ title, nodes, edges }: UiSpec<"show_flow">) {
-  const byId = new Map(nodes.map(node => [node.id, node]));
   return (
-    <div className={frame}>
-      <Title>{title}</Title>
-      <ol className="flex flex-col">
-        {nodes.map((node, index) => {
-          const out = edges.filter(edge => edge.from === node.id && byId.has(edge.to));
-          const next = nodes[index + 1];
-          // The plain hand-off to the next node is the line itself; only branches and jumps get a note.
-          const notes = out.filter(edge => edge.label || edge.to !== next?.id);
-          const flowsOn = Boolean(next) && (out.some(edge => edge.to === next.id) || !out.length);
-          const decision = node.kind === "decision";
-          const terminal = node.kind === "start" || node.kind === "end";
-          return (
-            <li key={node.id} className="flex gap-3">
-              <span className="flex w-5 shrink-0 flex-col items-center">
-                <span className={cn("mt-2 size-2.5 shrink-0 rotate-0", decision ? "rotate-45 rounded-[2px] bg-fg-yellow-500" : terminal ? "rounded-full bg-fg-grey-400" : "rounded-full bg-accent")} />
-                {index < nodes.length - 1 && <span className={cn("w-px flex-1", flowsOn ? "bg-fg-grey-300" : "border-l border-dashed border-fg-grey-300")} />}
-              </span>
-              <div className="flex min-w-0 flex-1 flex-col gap-1 pb-3">
-                <span className={cn("text-sm", decision ? "font-medium text-fg-yellow-700" : terminal ? "text-fg-grey-700" : "font-medium text-fg-black")}>{node.label}</span>
-                {notes.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {notes.map(edge => (
-                      <span key={`${edge.from}-${edge.to}`} className="inline-flex items-center gap-1 rounded-full bg-fg-grey-50 px-2 py-0.5 text-xs text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
-                        {edge.label && <span className="font-semibold text-fg-black">{edge.label}</span>}→ {byId.get(edge.to)?.label}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+    <AgentFlowchart
+      title={title}
+      nodes={nodes.map(node => ({ id: node.id, kind: FLOW_KIND[node.kind ?? "step"], title: node.label }))}
+      edges={edges.map(edge => ({ from: edge.from, to: edge.to, label: edge.label }))}
+      kindLabels={{ trigger: "开始", action: "步骤", condition: "判断" }}
+    />
   );
 }
 
 export function Images({ items }: UiSpec<"show_images">) {
   return (
-    <div className={cn("grid gap-2", items.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
-      {items.map(item => (
-        <figure key={item.src} className="flex min-w-0 flex-col gap-1">
-          {/* eslint-disable-next-line @next/next/no-img-element -- the package does not depend on Next.js */}
-          <img src={item.src} alt={item.caption ?? ""} loading="lazy" onError={event => { event.currentTarget.parentElement!.hidden = true; }} className="aspect-[4/3] w-full rounded-lg border border-fg-grey-200 object-cover" />
-          {item.caption && <figcaption className="truncate text-xs text-fg-grey-700">{item.caption}</figcaption>}
-        </figure>
-      ))}
-    </div>
+    <Panel gap="sm">
+      <ImageGrid images={items.map(item => item.src)} size="md" />
+      {items.some(item => item.caption) && <p className="text-xs text-fg-grey-500">{items.map(item => item.caption).filter(Boolean).join(" · ")}</p>}
+    </Panel>
   );
 }
 
 /* ── Data ── */
 
-const formatNumber = (value: number) => value.toLocaleString("zh-CN");
-// Share slices: distinct hues from the theme, the same in the ring and its legend.
-const SLICE_COLORS = ["var(--accent)", "var(--fg-cyan-400)", "var(--fg-violet-400)", "var(--fg-yellow-400)", "var(--fg-green-400)", "var(--fg-red-300)", "var(--fg-grey-400)", "var(--fg-blue-200)"];
-
-// Bars in a narrow column read best sideways: every label and value stays legible.
-function RankBars({ points }: { points: { label: string; value: number }[] }) {
-  const top = Math.max(1, ...points.map(point => point.value));
+// The latest value of a single series leads the chart, as on Forge's chart cards.
+function Headline({ label, value, previous }: { label: string; value: number; previous?: number }) {
+  const change = previous ? ((value - previous) / previous) * 100 : undefined;
   return (
-    <div className="flex flex-col gap-2.5">
-      {points.map((point, index) => (
-        <div key={`${point.label}-${index}`} className="flex flex-col gap-1">
-          <div className="flex items-baseline gap-2 text-sm"><span className="min-w-0 flex-1 truncate text-fg-black">{point.label}</span><span className="tabular-nums font-medium text-fg-black">{formatNumber(point.value)}</span></div>
-          <div className="h-2 rounded-full bg-fg-grey-100"><div className="h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: `${(point.value / top) * 100}%` }} /></div>
+    <div>
+      <p className="text-xs text-fg-grey-500">{label}</p>
+      <p className="mt-1 text-3xl font-semibold tabular-nums tracking-fg text-fg-black">{formatNumber(value)}</p>
+      {change !== undefined && Number.isFinite(change) && <p className={cn("text-xs", change < 0 ? "text-fg-red" : "text-fg-green-500")}>{change >= 0 ? "+" : ""}{change.toFixed(1)}% 较上一期</p>}
+    </div>
+  );
+}
+
+// As in Forge's spending case: the ring and its rows point at each other on hover.
+function Donut({ title, points, total }: { title?: string; points: { label: string; value: number }[]; total: number }) {
+  const [active, setActive] = useState<number>();
+  const shown = active === undefined ? total : points[active].value;
+  return (
+    <Panel title={title}>
+      <div className="text-fg-black">
+        <DonutChart interactive segments={points} activeIndex={active} onActiveIndexChange={setActive} centerValue={formatNumber(shown)} subtitle={active === undefined ? "合计" : `${points[active].label} · ${Math.round((points[active].value / (total || 1)) * 100)}%`} ariaLabel={title} />
+      </div>
+      <ValueRows rows={points} total={total} active={active} onActive={setActive} />
+    </Panel>
+  );
+}
+
+function ValueRows({ rows, total, active, onActive }: { rows: { label: string; value: number }[]; total?: number; active?: number; onActive?: (index?: number) => void }) {
+  return (
+    <div className="flex flex-col gap-1" onPointerLeave={() => onActive?.(undefined)}>
+      {rows.map((row, index) => (
+        <div key={row.label} onPointerEnter={() => onActive?.(index)} className={cn("flex min-h-9 items-center justify-between gap-3 rounded-lg px-2 text-sm text-fg-black hover:bg-fg-grey-50", active === index && "bg-fg-grey-50")}>
+          <span className="min-w-0 truncate">{row.label}</span>
+          <span className="flex items-baseline gap-2 tabular-nums">{formatNumber(row.value)}{total ? <span className="w-10 text-right text-xs text-fg-grey-500">{Math.round((row.value / total) * 100)}%</span> : null}</span>
         </div>
       ))}
     </div>
@@ -235,80 +221,71 @@ function RankBars({ points }: { points: { label: string; value: number }[] }) {
 export function Chart({ title, type, labels, series }: UiSpec<"show_chart">) {
   const first = series[0]?.data ?? [];
   const points = labels.map((label, index) => ({ label, value: first[index] ?? 0 }));
-  return (
-    <div className={frame}>
-      <Title>{title}</Title>
-      {type === "donut" ? (
-        <div className="flex items-center gap-4">
-          <div className="w-28 shrink-0"><DonutChart segments={points.map((point, index) => ({ ...point, color: SLICE_COLORS[index % SLICE_COLORS.length] }))} size="sm" ariaLabel={title} /></div>
-          <ul className="flex min-w-0 flex-1 flex-col gap-1.5 text-sm">
-            {points.map((point, index) => {
-              const total = points.reduce((sum, item) => sum + item.value, 0) || 1;
-              return (
-                <li key={point.label} className="flex min-w-0 items-center gap-2">
-                  <span aria-hidden="true" className="size-2 shrink-0 rounded-[3px]" style={{ background: SLICE_COLORS[index % SLICE_COLORS.length] }} />
-                  <span className="min-w-0 flex-1 truncate text-fg-black" title={point.label}>{point.label}</span>
-                  <span className="tabular-nums text-fg-black">{formatNumber(point.value)}</span>
-                  <span className="w-10 text-right tabular-nums text-xs text-fg-grey-500">{Math.round((point.value / total) * 100)}%</span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ) : type === "hbar" || (type === "bar" && points.length <= 12) ? (
-        <RankBars points={points} />
-      ) : (
-        <>
-          <div className="h-40">
-            {type === "bar"
-              ? <BarChart data={points} ariaLabel={title} />
-              : <SmoothLineChart series={series.map((item, index) => ({ label: item.label, data: item.data, fillArea: type === "area", color: SLICE_COLORS[index % SLICE_COLORS.length] }))} ariaLabel={title} />}
-          </div>
-          <div className="flex justify-between text-xs tabular-nums text-fg-grey-500">{(labels.length > 4 ? [labels[0], labels[Math.floor((labels.length - 1) / 2)], labels[labels.length - 1]] : labels).map((label, index) => <span key={`${label}-${index}`}>{label}</span>)}</div>
-          {series.length > 1 && (
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-fg-grey-700">
-              {series.map((item, index) => {
-                const last = item.data[item.data.length - 1];
-                return <span key={item.label} className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-0.5 w-3 rounded-full" style={{ background: SLICE_COLORS[index % SLICE_COLORS.length] }} />{item.label}{last !== undefined && <span className="tabular-nums text-fg-black">{formatNumber(last)}</span>}</span>;
-              })}
+  const total = points.reduce((sum, point) => sum + point.value, 0);
+  if (type === "donut") return <Donut title={title} points={points} total={total} />;
+  if (type === "hbar" || (type === "bar" && points.length > 8)) {
+    const top = Math.max(1, ...points.map(point => point.value));
+    return (
+      <Panel title={title}>
+        <div className="flex flex-col gap-3">
+          {points.map(point => (
+            <div key={point.label} className="flex flex-col gap-1.5">
+              <div className="flex items-baseline justify-between gap-3 text-sm"><span className="min-w-0 truncate text-fg-black">{point.label}</span><span className="tabular-nums text-fg-black">{formatNumber(point.value)}</span></div>
+              <ProgressBar value={(point.value / top) * 100} size="sm" />
             </div>
-          )}
-        </>
-      )}
-    </div>
+          ))}
+        </div>
+      </Panel>
+    );
+  }
+  if (type === "bar") {
+    return (
+      <Panel title={title}>
+        <Headline label="合计" value={total} />
+        <BarChart data={points} showLabels barWidth="wide" height="h-44" ariaLabel={title} />
+      </Panel>
+    );
+  }
+  const single = series.length === 1;
+  return (
+    <Panel title={title}>
+      {single && first.length > 0 && <Headline label={labels[labels.length - 1] ?? ""} value={first[first.length - 1]} previous={first[first.length - 2]} />}
+      <SmoothLineChart series={series.map(item => ({ label: item.label, data: item.data, fillArea: single || type === "area" }))} height="h-40" ariaLabel={title} />
+      <div className="flex justify-between text-xs tabular-nums text-fg-grey-500">{(labels.length > 4 ? [labels[0], labels[Math.floor((labels.length - 1) / 2)], labels[labels.length - 1]] : labels).map((label, index) => <span key={`${label}-${index}`}>{label}</span>)}</div>
+      {!single && <ValueRows rows={series.map(item => ({ label: `${item.label}（最新）`, value: item.data[item.data.length - 1] ?? 0 }))} />}
+    </Panel>
   );
 }
 
 export function Progress({ title, items }: UiSpec<"show_progress">) {
   return (
-    <div className={frame}>
-      <Title>{title}</Title>
-      {items.map(item => (
-        <div key={item.label} className="flex flex-col gap-1">
-          <div className="flex items-baseline gap-2 text-sm"><span className="min-w-0 flex-1 truncate text-fg-black">{item.label}</span>{item.note && <span className="text-xs text-fg-grey-500">{item.note}</span>}<span className="tabular-nums text-fg-grey-900">{item.value}%</span></div>
-          <ProgressBar value={item.value} color={item.value >= 90 ? "red" : "blue"} />
-        </div>
-      ))}
-    </div>
+    <Panel title={title}>
+      <div className="flex flex-col gap-4">
+        {items.map(item => (
+          <ProgressBar key={item.label} value={item.value} label={item.note ? `${item.label} · ${item.note}` : item.label} showPercentage color={item.value >= 90 ? "red" : item.value >= 75 ? "yellow" : "blue"} size="sm" />
+        ))}
+      </div>
+    </Panel>
   );
 }
 
 export function Funnel({ title, stages }: UiSpec<"show_funnel">) {
   const top = Math.max(1, stages[0]?.value ?? 1);
   return (
-    <div className={frame}>
-      <Title>{title}</Title>
-      {stages.map((stage, index) => (
-        <div key={stage.label} className="flex flex-col gap-0.5">
-          <div className="flex items-baseline gap-2 text-sm">
-            <span className="min-w-0 flex-1 truncate text-fg-black">{stage.label}</span>
-            <span className="tabular-nums text-fg-black">{stage.value}</span>
-            {index > 0 && <span className="w-12 text-right tabular-nums text-xs text-fg-grey-500">{stages[index - 1].value ? `${Math.round((stage.value / stages[index - 1].value) * 100)}%` : "—"}</span>}
+    <Panel title={title}>
+      <div className="flex flex-col gap-3">
+        {stages.map((stage, index) => (
+          <div key={stage.label} className="flex flex-col gap-1.5">
+            <div className="flex items-baseline gap-3 text-sm">
+              <span className="min-w-0 flex-1 truncate text-fg-black">{stage.label}</span>
+              {index > 0 && <span className="text-xs tabular-nums text-fg-grey-500">转化 {stages[index - 1].value ? `${Math.round((stage.value / stages[index - 1].value) * 100)}%` : "—"}</span>}
+              <span className="tabular-nums font-semibold text-fg-black">{formatNumber(stage.value)}</span>
+            </div>
+            <ProgressBar value={(stage.value / top) * 100} size="sm" />
           </div>
-          <div className="h-2 rounded-full bg-fg-grey-100"><div className="h-full rounded-full bg-accent" style={{ width: `${(stage.value / top) * 100}%`, opacity: 1 - index * 0.08 }} /></div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </Panel>
   );
 }
 
@@ -333,49 +310,29 @@ export function Form({ title, submitLabel, fields, answer, onAsk }: UiSpec<"show
   if (answer) return <Answered>{answer}</Answered>;
   const set = (name: string, value: FieldValue) => setValues(current => ({ ...current, [name]: value }));
   const missing = fields.filter(field => field.required && (values[field.name] === "" || (Array.isArray(values[field.name]) && !(values[field.name] as string[]).length)));
-  const input = "w-full min-w-0 rounded-xl bg-background px-3 py-2 text-sm leading-5 text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-all placeholder:text-fg-grey-700 focus:outline-accent";
   const describe = (value: FieldValue) => (Array.isArray(value) ? value.join("、") : typeof value === "boolean" ? (value ? "是" : "否") : String(value));
+  const label = (field: (typeof fields)[number]) => `${field.label}${field.required ? " *" : ""}`;
   return (
     <form
-      className={frame}
       onSubmit={event => {
         event.preventDefault();
         if (missing.length) return;
         onAsk(`提交「${title}」：${fields.filter(field => describe(values[field.name]) !== "").map(field => `${field.label}：${describe(values[field.name])}`).join("；")}`);
       }}
     >
-      <Title>{title}</Title>
-      {fields.map(field => {
-        const id = `forge-form-${field.name}`;
-        const value = values[field.name];
-        return (
-          <div key={field.name} className={cn("flex gap-1", field.type === "switch" ? "items-center justify-between" : "flex-col")}>
-            <label htmlFor={id} className="text-xs text-fg-grey-700">{field.label}{field.required && <span className="text-fg-red"> *</span>}</label>
-            {field.type === "textarea" ? <textarea id={id} rows={3} value={String(value)} placeholder={field.placeholder} onChange={event => set(field.name, event.target.value)} className={input} />
-              : field.type === "select" ? (
-                <span className="relative flex">
-                  <select id={id} value={String(value)} onChange={event => set(field.name, event.target.value)} className={cn(input, "appearance-none pr-9", value === "" && "text-fg-grey-700")}>
-                    <option value="">{field.placeholder ?? "请选择"}</option>
-                    {(field.options ?? []).map(option => <option key={option} value={option}>{option}</option>)}
-                  </select>
-                  <AltArrowDownLinear size={14} color="var(--fg-grey-500)" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" />
-                </span>
-              ) : field.type === "multiselect" ? (
-                <div id={id} role="group" aria-label={field.label} className="flex flex-wrap gap-1.5">
-                  {(field.options ?? []).map(option => {
-                    const on = (value as string[]).includes(option);
-                    return <button key={option} type="button" aria-pressed={on} onClick={() => set(field.name, on ? (value as string[]).filter(item => item !== option) : [...(value as string[]), option])} className="rounded-full border border-fg-grey-200 px-2.5 py-0.5 text-xs text-fg-grey-900 aria-pressed:border-accent aria-pressed:bg-fg-blue-50 aria-pressed:text-accent">{option}</button>;
-                  })}
-                </div>
-              ) : field.type === "switch" ? (
-                <button id={id} type="button" role="switch" aria-checked={Boolean(value)} onClick={() => set(field.name, !value)} className="relative h-5 w-9 shrink-0 rounded-full bg-fg-grey-200 transition-colors aria-checked:bg-accent">
-                  <span className={cn("absolute top-0.5 size-4 rounded-full bg-white shadow transition-all", value ? "left-[18px]" : "left-0.5")} />
-                </button>
-              ) : <input id={id} type={field.type} value={String(value)} placeholder={field.placeholder} onChange={event => set(field.name, field.type === "number" && event.target.value !== "" ? Number(event.target.value) : event.target.value)} className={input} />}
-          </div>
-        );
-      })}
-      <Button size="sm" type="submit" disabled={missing.length > 0} className="self-start">{submitLabel ?? "提交"}</Button>
+      <Panel title={title} footer={<Button size="sm" type="submit" disabled={missing.length > 0} className="self-end">{submitLabel ?? "提交"}</Button>}>
+        <div className="flex flex-col gap-4">
+          {fields.map(field => {
+            const value = values[field.name];
+            const options = (field.options ?? []).map(option => ({ value: option, label: option }));
+            if (field.type === "textarea") return <TextArea key={field.name} label={label(field)} value={String(value)} placeholder={field.placeholder} onChange={next => set(field.name, next)} />;
+            if (field.type === "select") return <SelectOption key={field.name} type="single" label={label(field)} width="100%" options={options} value={String(value) || undefined} placeholder={field.placeholder ?? "请选择"} onChange={((next: string) => set(field.name, next)) as never} />;
+            if (field.type === "multiselect") return <SelectOption key={field.name} type="multiple" label={label(field)} width="100%" options={options} value={value as string[]} placeholder={field.placeholder ?? "可多选"} onChange={((next: string[]) => set(field.name, next)) as never} />;
+            if (field.type === "switch") return <label key={field.name} className="flex items-center justify-between gap-3 text-sm text-fg-black">{field.label}<Toggle checked={Boolean(value)} onChange={checked => set(field.name, checked)} /></label>;
+            return <TextField key={field.name} label={label(field)} type={field.type === "number" ? "number" : field.type === "date" ? "date" : "text"} value={String(value)} placeholder={field.placeholder} onChange={next => set(field.name, field.type === "number" && next !== "" ? Number(next) : next)} />;
+          })}
+        </div>
+      </Panel>
     </form>
   );
 }
