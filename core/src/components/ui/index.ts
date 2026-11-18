@@ -367,7 +367,7 @@ export type { ColorScaleStop, ColorSwatchSize } from "./style-guide";
 export { AppLayout } from "../layouts/app-layout";
 export type { AppLayoutMode, AppLayoutProfilePosition, AppLayoutAccentColor, AppLayoutMenuItem, AppLayoutProfile, AppLayoutBreadcrumb, AppLayoutPageHeaderVariant } from "../layouts/app-layout";
 
-export { AskAi, ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH } from "./ask-ai";
+export { AskAi } from "./ask-ai";
 export type {
   AskAiProps,
   AskAiRequest,

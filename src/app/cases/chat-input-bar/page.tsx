@@ -20,7 +20,6 @@ export default function ChatInputBarCase() {
   const [model, setModel] = useState("auto");
   const [permission, setPermission] = useState("read");
   const [attached, setAttached] = useState(0);
-  const [full, setFull] = useState(false);
   const [fullscreenError, setFullscreenError] = useState("");
   const host = useRef<HTMLDivElement>(null);
   const change = (id: string) => setModel(id);
@@ -29,7 +28,7 @@ export default function ChatInputBarCase() {
     models={models} model={model} onModelChange={change} modelMenuLabel="选择模型"
     sources={demoSources} commands={[{id: "summarize", label: "总结", description: "整理当前内容的要点"}, {id: "plan", label: "起草计划", description: "起草上线计划"}]} />;
   return <div className="flex flex-col gap-8">
-    <PageHeading title="消息输入栏" hint="发送与停止 · 草稿保留 · 模型菜单 · Ask AI 抽屉 · 全屏" />
+    <PageHeading title="消息输入栏" hint="发送与停止 · 草稿保留 · 模型菜单 · Forge Agent 面板 · 全屏" />
     <Section title="自然动效与快捷卡片" description="空会话默认展开卡片，发送后收起；从左侧加号手动打开。点击输入框任意空白处即可输入。">
       {messages.map((message, index) => <p key={index} className="rounded-xl bg-surface px-4 py-3 text-sm">{message}</p>)}
       {messages.length > 0 && <Button onClick={() => { setMessages([]); setSession(current => current + 1); }}>新会话</Button>}
@@ -46,9 +45,8 @@ export default function ChatInputBarCase() {
       <ChatInputBarGenerationDemo />
     </Section>
     <div className="flex flex-wrap gap-3">
-      <AskAi label="打开 Ask AI 抽屉" color="blue" onSend={() => "这是本地演示回复。"} composer={<div className="shrink-0 overflow-hidden p-4">{prompt}</div>} fullscreen={full} onFullscreenChange={setFull} messages={<div className="min-h-0 flex-1 overflow-y-auto p-5">{messages.map((message, index) => <p key={index} className="mb-3 text-sm">{message}</p>)}</div>} />
-      <Button onClick={() => setFull(true)}>打开全屏面板</Button>
-      <Button onClick={() => { setFullscreenError(""); void host.current?.requestFullscreen().catch(() => setFullscreenError("浏览器未授予原生全屏；可使用 Ask AI 全屏面板。")); }}>浏览器原生全屏</Button>
+      <AskAi label="打开 Forge Agent 面板" color="blue" onSend={() => "这是本地演示回复。"} composer={prompt} messages={messages.length ? <div className="flex flex-col gap-3">{messages.map((message, index) => <p key={index} className="text-sm">{message}</p>)}</div> : undefined} />
+      <Button onClick={() => { setFullscreenError(""); void host.current?.requestFullscreen().catch(() => setFullscreenError("浏览器未授予原生全屏。")); }}>浏览器原生全屏</Button>
     </div>
     {fullscreenError && <p role="alert">{fullscreenError}</p>}
     <p role="status" className="text-sm text-fg-grey-700">权限：{permission === "read" ? "只读" : "可编辑"} · 当前模型：{models.find(item => item.id === model)?.label ?? "Forge 快速模型"} · {attached ? "已打开附件操作（演示）" : "尚未添加附件"}</p>

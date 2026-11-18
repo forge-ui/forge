@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act, createElement } from "react";
-import { renderToString } from "react-dom/server";
 import { createRoot } from "react-dom/client";
 
 const nodeProtocol = "node:";
@@ -9,7 +8,7 @@ const nodeProtocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${nodeProtocol}test`);
 
-import { AskAi, ASK_AI_FS_LAYER_ATTR, type AskAiRequest } from "../src/components/ui/ask-ai";
+import { AskAi, type AskAiRequest } from "../src/components/ui/ask-ai";
 import { PageTitleToolbar } from "../src/components/ui/toolbar";
 import { PageHeader } from "../src/components/ui/page-header";
 
@@ -29,17 +28,20 @@ function installDom() {
     MouseEvent: dom.window.MouseEvent,
     KeyboardEvent: dom.window.KeyboardEvent,
     getComputedStyle: dom.window.getComputedStyle.bind(dom.window),
+    // Reduced motion keeps replies whole; the panel's wide-screen inset stays off.
+    matchMedia: (query: string) => ({ matches: query.includes("reduce"), addEventListener() {}, removeEventListener() {} }),
   });
+  Object.assign(dom.window, { matchMedia: globalThis.matchMedia });
 
   // React is imported before JSDOM; match the existing input-focus test shim.
-  Object.assign(dom.window.HTMLElement.prototype, { attachEvent: () => undefined, detachEvent: () => undefined });
-  dom.window.HTMLDialogElement.prototype.show = function () { this.setAttribute("open", ""); };
-  dom.window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
-  dom.window.HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
+  Object.assign(dom.window.HTMLElement.prototype, { attachEvent: () => undefined, detachEvent: () => undefined, scrollTo: () => undefined });
   return dom;
 }
 
-test("Ask AI opens a modal drawer, retries failures and preserves the conversation", async () => {
+const panel = () => document.querySelector<HTMLElement>('[data-forge-agent="panel"]');
+const buttonIn = (scope: ParentNode, label: string) => [...scope.querySelectorAll("button")].find((item) => item.textContent === label)!;
+
+test("The header entry opens the Forge Agent panel, retries failures and keeps the conversation", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
   const requests: AskAiRequest[] = [];
@@ -49,488 +51,143 @@ test("Ask AI opens a modal drawer, retries failures and preserves the conversati
     onSend: async (_message, request) => { requests.push(request); if (fail) throw new Error("offline"); return "先创建项目"; },
   })));
   const trigger = document.querySelector<HTMLButtonElement>('button[aria-haspopup="dialog"]')!;
+  assert.equal(trigger.getAttribute("aria-label"), "Forge Agent");
+  assert.equal(panel(), null);
   await act(async () => trigger.click());
-  const dialog = document.querySelector("dialog")!;
-  assert.ok(dialog.open);
-  assert.equal(document.body.style.overflow, "hidden");
-  assert.equal(document.activeElement?.getAttribute("aria-label"), "向 AI 提问");
-  assert.equal(document.querySelector('[role="menu"]'), null);
-  const button = (label: string) => [...dialog.querySelectorAll("button")].find((item) => item.textContent === label)!;
-  await act(async () => button("下一步？").click());
+  assert.equal(panel()?.getAttribute("aria-label"), "Forge Agent");
+  await act(async () => buttonIn(panel()!, "下一步？").click());
   assert.equal("context" in requests[0], false);
   assert.equal(requests[0].messages.length, 1);
-  assert.ok(dialog.querySelector('[role="alert"]'));
+  assert.ok(panel()!.querySelector('[role="alert"]'));
   fail = false;
-  await act(async () => button("重试").click());
+  await act(async () => buttonIn(panel()!, "重试").click());
   assert.equal(requests[1].messages.length, 1);
-  assert.ok(dialog.querySelector('[role="log"]')?.textContent?.includes("先创建项目"));
-  await act(async () => dialog.dispatchEvent(new Event("cancel", { bubbles: false, cancelable: true })));
-  assert.equal(document.querySelector("dialog"), null);
-  assert.equal(document.body.style.overflow, "");
-  assert.equal(document.activeElement, trigger);
+  assert.ok(panel()!.querySelector('[role="log"]')?.textContent?.includes("先创建项目"));
+  await act(async () => panel()!.querySelector<HTMLButtonElement>('[aria-label="关闭"]')!.click());
+  assert.equal(panel(), null);
   await act(async () => trigger.click());
-  assert.ok(document.querySelector('[role="log"]')?.textContent?.includes("先创建项目"));
-  await act(async () => document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true, cancelable: true })));
-  assert.equal(document.querySelector("dialog"), null);
-  assert.equal(document.activeElement, trigger);
+  assert.ok(panel()!.querySelector('[role="log"]')?.textContent?.includes("先创建项目"));
   await act(async () => root.unmount());
   dom.window.close();
 });
 
-test("Ask AI does not send the current page, blocks duplicate sends and aborts on unmount", async () => {
+test("Sending blocks duplicates, shows thinking, stops on request and aborts on unmount", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
-  let request: AskAiRequest | undefined;
-  let count = 0;
+  const requests: AskAiRequest[] = [];
   await act(async () => root.render(createElement(AskAi, {
     suggestions: ["总结"],
-    onSend: (_message, value) => { count++; request = value; return new Promise<string>(() => {}); },
+    onSend: (_message, value) => { requests.push(value); return new Promise<string>(() => {}); },
   })));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  const dialog = document.querySelector("dialog")!;
-  assert.equal(dialog.textContent?.includes("当前页"), false);
-  assert.equal(dialog.querySelector('[role="checkbox"]'), null);
-  const suggestion = [...document.querySelectorAll("button")].find((item) => item.textContent === "总结")!;
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Forge Agent"]')!.click());
+  const suggestion = buttonIn(panel()!, "总结");
   await act(async () => { suggestion.click(); suggestion.click(); });
-  assert.equal(count, 1);
-  assert.equal(request && "context" in request, false);
-  assert.ok(document.querySelector('[role="status"]'));
+  assert.equal(requests.length, 1);
+  assert.ok(panel()!.querySelector('[role="status"]'));
+  const stop = panel()!.querySelector<HTMLButtonElement>('button[aria-label="停止生成"], button[aria-label="停止"]');
+  assert.ok(stop);
+  await act(async () => stop!.click());
+  assert.equal(requests[0].signal.aborted, true);
   await act(async () => root.unmount());
-  assert.equal(request?.signal.aborted, true);
-  assert.equal(document.body.style.overflow, "");
+  assert.equal(requests.at(-1)?.signal.aborted, true);
   dom.window.close();
 });
 
-test("Both PageHeader variants opt in to Ask AI with isolated SVG image resources", async () => {
+test("Both PageHeader variants and the toolbar keep the same entry", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
   await act(async () => root.render(createElement(PageHeader, { title: "Legacy" })));
-  assert.equal(document.querySelector('[aria-label="Ask AI"]'), null);
+  assert.equal(document.querySelector('[aria-label="Forge Agent"]'), null);
   const askAi = { onSend: () => "回复" };
   await act(async () => root.render(createElement("div", null,
     createElement(PageHeader, { variant: "title", askAi }),
     createElement(PageHeader, { variant: "search", showMobileMenuButton: true, askAi }),
+    createElement(PageTitleToolbar, { variant: "overview", title: "总览", breadcrumbItems: [], askAi }),
   )));
-  const triggers = document.querySelectorAll<HTMLButtonElement>('[aria-label="Ask AI"]');
-  assert.equal(triggers.length, 2);
-  assert.equal(triggers[1].parentElement?.className.includes("hidden"), false);
+  const triggers = document.querySelectorAll<HTMLButtonElement>('[aria-label="Forge Agent"]');
+  assert.equal(triggers.length, 3);
   for (const trigger of triggers) {
     const image = trigger.querySelector("img")!;
     assert.match(image.src, /^data:image\/svg\+xml;base64,/);
-    const svg = Buffer.from(image.src.split(",")[1], "base64").toString();
-    assert.match(svg, /linearGradient/);
-    assert.match(svg, /#22D3EE/);
-    assert.equal(image.width, 24);
     assert.equal(image.alt, "");
   }
   await act(async () => root.unmount());
   dom.window.close();
 });
 
-test("PageHeader built-in Ask AI accepts structured replies and renders at most two route links", async () => {
-  const dom = installDom();
-  const root = createRoot(document.querySelector("#root")!);
-  await act(async () => root.render(createElement(PageHeader, {
-    title: "Projects", primaryAction: { label: "新建项目" },
-    askAi: {
-      suggestions: ["下一步"],
-      onSend: async () => ({ text: "请选择下一步", links: [
-        { label: "项目", href: "/projects?status=active" },
-        { label: "任务", href: "/tasks#pending" },
-        { label: "额外入口", href: "/extra" },
-      ] }),
-    },
-  })));
-  assert.ok([...document.querySelectorAll("button")].some((button) => button.textContent === "新建项目"));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  await act(async () => [...document.querySelectorAll("dialog button")].find((button) => button.textContent === "下一步")!.dispatchEvent(new MouseEvent("click", { bubbles: true })));
-  const log = document.querySelector('[role="log"]')!;
-  assert.ok(log.textContent?.includes("请选择下一步"));
-  assert.deepEqual([...log.querySelectorAll("a")].map((link) => [link.textContent, link.getAttribute("href")]), [
-    ["项目", "/projects?status=active"], ["任务", "/tasks#pending"],
-  ]);
-  await act(async () => root.unmount());
-  dom.window.close();
-});
-
-test("Structured replies omit unsafe or empty links and support text-only objects", async () => {
-  for (const links of [undefined, [], [
-    { label: "脚本", href: "javascript:alert(1)" },
-    { label: "数据", href: "data:text/html,test" },
-    { label: "", href: "/empty-label" },
-    { label: "空地址", href: " " },
-    { label: "有效路由", href: "/valid" },
-  ]]) {
+test("Structured replies render at most two safe links", async () => {
+  for (const [links, expected] of [
+    [undefined, []],
+    [[{ label: "项目", href: "/projects?status=active" }, { label: "任务", href: "/tasks#pending" }, { label: "额外入口", href: "/extra" }], ["/projects?status=active", "/tasks#pending"]],
+    [[{ label: "脚本", href: "javascript:alert(1)" }, { label: "数据", href: "data:text/html,test" }, { label: "", href: "/empty-label" }, { label: "空地址", href: " " }, { label: "有效路由", href: "/valid" }], ["/valid"]],
+  ] as const) {
     const dom = installDom();
     const root = createRoot(document.querySelector("#root")!);
-    await act(async () => root.render(createElement(AskAi, {
-      suggestions: ["提问"], onSend: () => ({ text: "对象回复", links }),
+    await act(async () => root.render(createElement(PageHeader, {
+      title: "Projects",
+      askAi: { suggestions: ["提问"], onSend: async () => ({ text: "对象回复", links: links ? [...links] : undefined }) },
     })));
-    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-    await act(async () => [...document.querySelectorAll("dialog button")].find((button) => button.textContent === "提问")!.dispatchEvent(new MouseEvent("click", { bubbles: true })));
-    assert.ok(document.querySelector('[role="log"]')?.textContent?.includes("对象回复"));
-    assert.deepEqual([...document.querySelectorAll('dialog a')].map((link) => link.getAttribute("href")), links?.length ? ["/valid"] : []);
+    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Forge Agent"]')!.click());
+    await act(async () => buttonIn(panel()!, "提问").click());
+    const log = panel()!.querySelector('[role="log"]')!;
+    assert.ok(log.textContent?.includes("对象回复"));
+    assert.deepEqual([...log.querySelectorAll("a")].map((link) => link.getAttribute("href")), expected);
     await act(async () => root.unmount());
     dom.window.close();
   }
 });
 
-
-test("Ask AI send button uses the shared accent and copies an ancestor data-accent", async () => {
+test("The panel copies an ancestor data-accent unless a color is given", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
   try {
-    for (const variant of ["search", "title"] as const) {
-      await act(async () => root.render(createElement(PageHeader, {
-        variant, askAi: { onSend: () => "回复" },
-      })));
-      if (!document.querySelector("dialog")) {
-        await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-      }
-      const dialog = document.querySelector("dialog")!;
-      assert.ok(dialog.querySelector('button[type="submit"]')!.classList.contains("bg-accent"));
-      assert.equal(dialog.getAttribute("data-accent"), null);
-      assert.equal(dialog.querySelector("img")!.getAttribute("src"), document.querySelector('[aria-label="Ask AI"] img')!.getAttribute("src"));
-    }
-    await act(async () => root.render(createElement("div", { "data-accent": "blue" },
-      createElement(AskAi, { onSend: () => "回复" }),
-    )));
-    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-    assert.equal(document.querySelector("dialog")!.getAttribute("data-accent"), "blue");
-    await act(async () => root.render(createElement("div", { "data-accent": "blue" },
-      createElement(AskAi, { color: "black", onSend: () => "回复" }),
-    )));
-    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-    assert.equal(document.querySelector("dialog")!.getAttribute("data-accent"), "black");
+    await act(async () => root.render(createElement("div", { "data-accent": "blue" }, createElement(AskAi, { onSend: () => "回复" }))));
+    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Forge Agent"]')!.click());
+    assert.equal(panel()!.closest("[data-accent]")?.getAttribute("data-accent"), "blue");
+    await act(async () => root.render(createElement("div", { "data-accent": "blue" }, createElement(AskAi, { color: "black", onSend: () => "回复" }))));
+    assert.equal(panel()!.parentElement?.getAttribute("data-accent"), "black");
   } finally {
     await act(async () => root.unmount());
     dom.window.close();
   }
 });
 
-test("Ask AI drawer history menu lists sessions and switches the transcript", async () => {
+test("History lists the given sessions and switches the transcript", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
   const selected: string[] = [];
-  let sessions = [
-    { id: "s1", title: "上周的探索" },
-    { id: "s2", title: "版本对比" },
-  ];
-  let current = "s1";
-  function render() {
-    return createElement(AskAi, {
-      suggestions: ["总结"],
-      sessions,
-      currentSessionId: current,
-      onSelectSession: (id: string) => { selected.push(id); current = id; },
-      onNewSession: () => {
-        sessions = [{ id: "s3", title: "新对话" }, ...sessions];
-        current = "s3";
-      },
-      onSend: () => "回复",
-    });
-  }
-  await act(async () => root.render(render()));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  const dialog = () => document.querySelector("dialog")!;
-  assert.equal(dialog().querySelector('[aria-label="历史对话"]')?.textContent, "上周的探索");
-  await act(async () => dialog().querySelector<HTMLButtonElement>('[aria-label="历史对话"]')!.click());
-  const menu = dialog().querySelector("[data-ask-session-menu]")!;
-  assert.match(menu.textContent ?? "", /新建对话/);
-  assert.match(menu.textContent ?? "", /版本对比/);
-  await act(async () => [...menu.querySelectorAll("button")].find((item) => item.textContent === "版本对比")!.click());
-  assert.deepEqual(selected, ["s2"]);
-  await act(async () => root.render(render()));
-  assert.equal(dialog().querySelector('[aria-label="历史对话"]')?.textContent, "版本对比");
-  assert.equal(dialog().querySelector("[data-ask-session-menu]"), null);
-  await act(async () => dialog().querySelector<HTMLButtonElement>('[aria-label="历史对话"]')!.click());
-  await act(async () => [...dialog().querySelectorAll("button")].find((item) => item.textContent === "新建对话")!.click());
-  await act(async () => root.render(render()));
-  assert.equal(dialog().querySelector('[aria-label="历史对话"]')?.textContent, "新对话");
-  await act(async () => root.unmount());
-  dom.window.close();
-});
-
-test("Ask AI opens an independent fullscreen layer from the drawer and can return", async () => {
-  const dom = installDom();
-  const root = createRoot(document.querySelector("#root")!);
+  let created = 0;
   await act(async () => root.render(createElement(AskAi, {
-    suggestions: ["总结"],
+    sessions: [{ id: "s1", title: "上周的探索" }, { id: "s2", title: "版本对比" }],
+    currentSessionId: "s1",
+    onSelectSession: (id: string) => selected.push(id),
+    onNewSession: () => created++,
     onSend: () => "回复",
   })));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  assert.ok(document.querySelector("dialog"));
-  await act(async () => document.querySelector<HTMLButtonElement>("[data-ask-ai-fullscreen]")!.click());
-  assert.equal(document.querySelector("dialog"), null);
-  const layer = document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`);
-  assert.ok(layer);
-  assert.ok(layer?.querySelector("[data-ask-ai-fs-rail]"));
-  assert.ok(layer?.querySelector("[data-ask-ai-fs-landing]"));
-  assert.match(layer?.querySelector("h2")?.className ?? "", /text-3xl/);
-  assert.equal(layer?.querySelector("[data-ask-ai-fs-new]")?.className.includes("bg-transparent"), true);
-  await act(async () => document.querySelector<HTMLButtonElement>("[data-ask-ai-exit-fullscreen]")!.click());
-  assert.equal(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`), null);
-  assert.ok(document.querySelector("dialog"));
-  await act(async () => root.unmount());
-  dom.window.close();
-});
-
-test("Ask AI fullscreen is controlled and accepts session props plus slots", async () => {
-  const dom = installDom();
-  const root = createRoot(document.querySelector("#root")!);
-  const selected: string[] = [];
-  const news: string[] = [];
-  let fullscreen = true;
-  function render() {
-    return createElement(AskAi, {
-      fullscreen,
-      onFullscreenChange: (open: boolean) => { fullscreen = open; },
-      onSend: () => "回复",
-      sessions: [
-        { id: "s1", title: "上周的探索" },
-        { id: "s2", title: "版本对比" },
-      ],
-      currentSessionId: "s1",
-      searchQuery: "版本",
-      onNewSession: () => { news.push("new"); },
-      onSelectSession: (id: string) => { selected.push(id); },
-      brand: createElement("div", { "data-ask-ai-brand-slot": "" }, "Brand"),
-      messages: createElement("div", { "data-ask-ai-messages-slot": "" }, "Messages"),
-      composer: createElement("div", { "data-ask-ai-composer-slot": "" }, "Composer"),
-    });
-  }
-  await act(async () => root.render(render()));
-  const layer = document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`)!;
-  assert.equal(document.querySelector("dialog"), null);
-  assert.ok(layer.querySelector("[data-ask-ai-brand-slot]"));
-  assert.ok(layer.querySelector("[data-ask-ai-messages-slot]"));
-  assert.ok(layer.querySelector("[data-ask-ai-composer-slot]"));
-  assert.ok(layer.querySelector("[data-ask-ai-fs-chat]"));
-  assert.equal(layer.querySelector("[data-ask-ai-fs-landing]"), null);
-  const active = layer.querySelector<HTMLButtonElement>("[data-ask-ai-fs-hist='s1']")!;
-  assert.match(active.className, /bg-accent-soft/);
-  await act(async () => layer.querySelector<HTMLButtonElement>("[data-ask-ai-fs-hist='s2']")!.click());
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Forge Agent"]')!.click());
+  await act(async () => panel()!.querySelector<HTMLButtonElement>('[aria-label="历史对话"]')!.click());
+  const history = panel()!.querySelector('nav[aria-label="历史对话"]')!;
+  assert.match(history.textContent ?? "", /上周的探索/);
+  await act(async () => [...history.querySelectorAll("button")].find((item) => item.textContent?.includes("版本对比"))!.click());
   assert.deepEqual(selected, ["s2"]);
-  await act(async () => layer.querySelector<HTMLButtonElement>("[data-ask-ai-fs-new]")!.click());
-  assert.deepEqual(news, ["new"]);
-  const search = layer.querySelector<HTMLInputElement>("[data-ask-ai-fs-rail-search] input")!;
-  assert.equal(search.getAttribute("aria-label"), "搜索历史");
-  assert.equal(search.value, "版本");
-  await act(async () => document.querySelector<HTMLButtonElement>("[data-ask-ai-exit-fullscreen]")!.click());
-  assert.equal(fullscreen, false);
+  await act(async () => panel()!.querySelector<HTMLButtonElement>('[aria-label="新对话"]')!.click());
+  assert.equal(created, 1);
   await act(async () => root.unmount());
   dom.window.close();
 });
 
-test("Ask AI drawer slots replace default regions without opening fullscreen", async () => {
+test("Custom messages and composer replace the built-in conversation", async () => {
   const dom = installDom();
   const root = createRoot(document.querySelector("#root")!);
   await act(async () => root.render(createElement(AskAi, {
     onSend: () => "回复",
-    header: createElement("div", { "data-ask-ai-header-slot": "" }, "Header"),
-    messages: createElement("div", { "data-ask-ai-messages-slot": "" }, "Body"),
-    composer: createElement("div", { "data-ask-ai-composer-slot": "" }, "Input"),
+    messages: createElement("p", { "data-custom-messages": "" }, "自己的对话"),
+    composer: createElement("form", { "data-custom-composer": "" }),
   })));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  const dialog = document.querySelector("dialog")!;
-  assert.ok(dialog.querySelector("[data-ask-ai-header-slot]"));
-  assert.ok(dialog.querySelector("[data-ask-ai-messages-slot]"));
-  assert.ok(dialog.querySelector("[data-ask-ai-composer-slot]"));
-  assert.equal(dialog.querySelector('[aria-label="关闭 Ask AI"]'), null);
-  assert.equal(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`), null);
+  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Forge Agent"]')!.click());
+  assert.ok(panel()!.querySelector("[data-custom-messages]"));
+  assert.ok(panel()!.querySelector("[data-custom-composer]"));
+  assert.equal(panel()!.querySelector("textarea"), null);
   await act(async () => root.unmount());
-  dom.window.close();
-});
-
-test("Fullscreen follows slot growth, preserves reading position and resets on session change", async () => {
-  const dom = installDom();
-  const root = createRoot(document.querySelector("#root")!);
-  const callbacks: (() => void)[] = [];
-  let disconnected = 0;
-  const previousObserver = globalThis.ResizeObserver;
-  globalThis.ResizeObserver = class {
-    constructor(callback: () => void) { callbacks.push(callback); }
-    observe() {}
-    unobserve() {}
-    disconnect() { disconnected++; }
-  } as unknown as typeof ResizeObserver;
-  function render(id: string, text: string) {
-    return createElement(AskAi, { fullscreen: true, currentSessionId: id,
-      onSend: () => "reply", messages: createElement("div", null, text) });
-  }
-  try {
-    await act(async () => root.render(render("one", "first")));
-    const host = document.querySelector<HTMLElement>("[data-ask-ai-fs-scroll]")!;
-    const composerRegion = document.querySelector<HTMLElement>("[data-ask-ai-fs-composer-region]")!;
-    let composerHeight = 68;
-    composerRegion.getBoundingClientRect = () => ({ height: composerHeight } as DOMRect);
-    let height = 1000;
-    Object.defineProperties(host, {
-      scrollHeight: { get: () => height }, clientHeight: { get: () => 300 },
-    });
-    await act(async () => callbacks.forEach(callback => callback()));
-    assert.equal(host.scrollTop, 1000);
-    assert.equal(document.querySelector<HTMLElement>("[data-ask-ai-fs-messages]")!.style.paddingBottom, "88px");
-    assert.equal(host.style.scrollPaddingBottom, "88px");
-    host.scrollTop = 200;
-    await act(async () => host.dispatchEvent(new Event("scroll")));
-    height = 1400;
-    composerHeight = 160;
-    await act(async () => root.render(render("one", "streamed content")));
-    await act(async () => callbacks.forEach(callback => callback()));
-    assert.equal(host.scrollTop, 200);
-    assert.equal(document.querySelector<HTMLElement>("[data-ask-ai-fs-messages]")!.style.paddingBottom, "180px");
-    const latest = [...document.querySelectorAll("button")].find(button => button.textContent === "回到最新")!;
-    assert.ok(latest);
-    await act(async () => latest.click());
-    assert.equal(host.scrollTop, 1400);
-    assert.equal([...document.querySelectorAll("button")].some(button => button.textContent === "回到最新"), false);
-    host.scrollTop = 100;
-    await act(async () => host.dispatchEvent(new Event("scroll")));
-    await act(async () => root.render(render("two", "another session")));
-    assert.equal(host.scrollTop, 1400);
-    await act(async () => root.unmount());
-    assert.ok(disconnected > 0);
-  } finally {
-    globalThis.ResizeObserver = previousObserver;
-    dom.window.close();
-  }
-});
-
-
-test("Initially controlled fullscreen defers its portal during server rendering", () => {
-  const dom = installDom();
-  try {
-    const html = renderToString(createElement(AskAi, { fullscreen: true, onSend: () => "reply" }));
-    assert.ok(html.includes("Ask AI"));
-    assert.equal(html.includes(ASK_AI_FS_LAYER_ATTR), false);
-  } finally {
-    dom.window.close();
-  }
-});
-
-
-test("Fullscreen rail adapts across breakpoints and preserves manual toggles within a breakpoint", async () => {
-  const dom = installDom();
-  let narrow = true;
-  let listener: (() => void) | undefined;
-  Object.defineProperty(window, "matchMedia", { value: () => ({
-    get matches() { return narrow; },
-    addEventListener: (_event: string, callback: () => void) => { listener = callback; },
-    removeEventListener: () => { listener = undefined; },
-  }) });
-  const root = createRoot(document.querySelector("#root")!);
-  await act(async () => root.render(createElement(AskAi, { fullscreen: true, onSend: async () => "回复" })));
-  const rail = () => document.querySelector("[data-ask-ai-fs-rail]");
-  const toggle = () => document.querySelector<HTMLButtonElement>('button[aria-label$="会话栏"]')!;
-  assert.equal(rail(), null);
-  await act(async () => { narrow = false; listener?.(); });
-  assert.ok(rail());
-  await act(async () => toggle().click());
-  assert.equal(rail(), null);
-  await act(async () => toggle().click());
-  assert.ok(rail());
-  await act(async () => { narrow = true; listener?.(); });
-  assert.equal(rail(), null);
-  await act(async () => toggle().click());
-  assert.ok(rail());
-  await act(async () => { narrow = false; listener?.(); });
-  assert.ok(rail());
-  await act(async () => root.unmount());
-  assert.equal(listener, undefined);
-  dom.window.close();
-});
-
-
-test("PageTitleToolbar Ask AI opens, sends through its configured callback and inherits accent", async () => {
-  const dom = installDom();
-  const root = createRoot(document.querySelector("#root")!);
-  const sent: string[] = [];
-  try {
-    await act(async () => root.render(<div data-accent="blue"><PageTitleToolbar variant="overview" title="总览" breadcrumbItems={[]} askAi={{ suggestions: ["查看进度"], onSend: async message => { sent.push(message); return "已完成"; } }} /></div>));
-    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-    const dialog = document.querySelector("dialog")!;
-    assert.ok(dialog.open);
-    assert.equal(dialog.getAttribute("data-accent"), "blue");
-    await act(async () => Array.from(dialog.querySelectorAll("button")).find(button => button.textContent === "查看进度")!.click());
-    assert.deepEqual(sent, ["查看进度"]);
-    assert.ok(dialog.textContent?.includes("已完成"));
-  } finally { await act(async () => root.unmount()); dom.window.close(); }
-});
-
-
-test("Docked notifications ignore callback identity changes and release the latest host on unmount", async () => {
-  const dom = installDom();
-  Object.defineProperty(window, "matchMedia", { configurable: true, value: () => ({
-    matches: true, addEventListener() {}, removeEventListener() {},
-  }) });
-  const root = createRoot(document.querySelector("#root")!);
-  const first: boolean[] = [];
-  const latest: boolean[] = [];
-  try {
-    await act(async () => root.render(<AskAi onSend={() => "reply"} panelMode="responsive" onDockedChange={value => first.push(value)} />));
-    await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-    assert.deepEqual(first, [false, true]);
-    await act(async () => root.render(<AskAi onSend={() => "reply"} panelMode="responsive" onDockedChange={value => latest.push(value)} />));
-    assert.deepEqual(first, [false, true]);
-    assert.deepEqual(latest, []);
-    await act(async () => root.unmount());
-    assert.deepEqual(latest, [false]);
-  } finally { dom.window.close(); }
-});
-
-test("Responsive panel releases the host, adapts to narrow screens, and preserves drafts and conversation", async () => {
-  const dom = installDom();
-  let wide = true;
-  let update: (() => void) | undefined;
-  Object.defineProperty(window, "matchMedia", { configurable: true, value: (query: string) => ({
-    get matches() { return query === "(min-width: 1440px)" && wide; },
-    addEventListener: (_event: string, callback: () => void) => { if (query === "(min-width: 1440px)") update = callback; },
-    removeEventListener: () => { if (query === "(min-width: 1440px)") update = undefined; },
-  }) });
-  const states: boolean[] = [];
-  const root = createRoot(document.querySelector("#root")!);
-  await act(async () => root.render(createElement(AskAi, {
-    panelMode: "responsive", headerLayout: "session",
-    landingTitle: "有什么可以帮你？", landingDescription: "查询当前账号，或处理操作。",
-    sessions: [{ id: "a", title: "账号查询" }], currentSessionId: "a",
-    onDockedChange: docked => states.push(docked),
-    suggestions: ["查看账号"], onSend: () => "共 3 个账号",
-  })));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Ask AI"]')!.click());
-  const panel = () => document.querySelector("dialog")!;
-  assert.equal(panel().getAttribute("data-ask-ai-panel"), "docked");
-  assert.equal(panel().getAttribute("aria-modal"), null);
-  assert.equal(document.body.style.overflow, "");
-  assert.equal(states.at(-1), true);
-  assert.ok(panel().querySelector('[data-ask-ai-welcome] h3')?.textContent?.includes("有什么可以帮你"));
-  assert.ok(panel().querySelector('[data-ask-ai-header-tools] [aria-label="新建对话"]'));
-  const suggestion = [...panel().querySelectorAll("button")].find(button => button.textContent === "查看账号")!;
-  await act(async () => suggestion.click());
-  const input = panel().querySelector("textarea")!;
-  await act(async () => { wide = false; update?.(); });
-  assert.equal(panel().getAttribute("data-ask-ai-panel"), "modal");
-  assert.equal(panel().getAttribute("aria-modal"), "true");
-  assert.equal(document.body.style.overflow, "hidden");
-  assert.equal(states.at(-1), false);
-  assert.equal(panel().querySelector("textarea"), input);
-  assert.ok(panel().textContent?.includes("共 3 个账号"));
-  await act(async () => { wide = true; update?.(); });
-  assert.equal(document.body.style.overflow, "");
-  assert.equal(states.at(-1), true);
-  // Escape in a business-page field must not close the docked assistant.
-  await act(async () => document.body.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
-  assert.ok(panel().open);
-  await act(async () => panel().querySelector<HTMLButtonElement>('[aria-label="全屏"]')!.click());
-  assert.equal(document.querySelector("dialog"), null);
-  assert.equal(states.at(-1), false);
-  assert.ok(document.querySelector(`[${ASK_AI_FS_LAYER_ATTR}]`));
-  await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="退出全屏"]')!.click());
-  assert.equal(states.at(-1), true);
-  assert.ok(panel().textContent?.includes("共 3 个账号"));
-  await act(async () => root.unmount());
-  assert.equal(states.at(-1), false);
-  assert.equal(document.body.style.overflow, "");
-  assert.equal(update, undefined);
   dom.window.close();
 });

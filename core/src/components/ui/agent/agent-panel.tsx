@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { isValidElement, useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { AskAiCompactComposerContext } from "../../../internal/ask-ai-composer-context";
 import { ChatInputBar } from "../chat-input-bar";
 import { IconButton } from "../icon-button";
 import { Conversation } from "./agent-conversation";
@@ -48,8 +49,8 @@ export type AgentPanelProps = {
   onPinSession?: (id: string, pinned: boolean) => void;
   /** Above the composer: errors, attachments, notices. */
   notice?: ReactNode;
-  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */
-  composer: ComponentProps<typeof ChatInputBar>;
+  /** ChatInputBar props, or your own composer. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */
+  composer: ComponentProps<typeof ChatInputBar> | ReactNode;
 };
 
 /**
@@ -122,7 +123,9 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
       </div>
       <div className="shrink-0 px-3 pb-3">
         {notice}
-        <ChatInputBar multiline sendOnEnter density="compact" showAttachment={false} hasMessages={Boolean(children)} {...composer} />
+        {isValidElement(composer)
+          ? <AskAiCompactComposerContext value={true}>{composer}</AskAiCompactComposerContext>
+          : <ChatInputBar multiline sendOnEnter density="compact" showAttachment={false} hasMessages={Boolean(children)} {...(composer as ComponentProps<typeof ChatInputBar>)} />}
       </div>
     </aside>
   );

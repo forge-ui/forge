@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AgentCodeBlock, ChoiceCard, DataTable, Panel, PromptSuggestions, StatCard, StatusBadge, type ColumnDef } from "@forge-ui-official/core";
 import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
-import { parseBlock, type UiSpec, type UiToolName } from "./schema";
+import { BLOCK_GUIDE, parseBlock, type UiSpec, type UiToolName } from "./schema";
 import { Actions, Callout, Changes, Chart, Compare, Confirm, Flow, Form, Funnel, Images, ListBlock, Plan, Progress, Questions, RecordCard, Tags, Timeline } from "./widgets";
 
 type Row = Record<string, string | number | boolean | null>;
@@ -187,6 +187,18 @@ function ground(name: UiToolName, data: unknown, sources: Sources): unknown {
   }
 }
 
+/** Holds the place of a block the model is still writing, so the answer does not jump when it lands. */
+export function PendingBlock({ name }: { name?: UiToolName }) {
+  const noun = name ? BLOCK_GUIDE[name].split("：")[0] : "代码";
+  return (
+    <div role="status" className="forge-fade-up flex flex-col gap-3 rounded-3xl border border-fg-grey-200 p-4">
+      <span className="forge-text-shimmer text-xs font-medium text-fg-grey-700">正在生成{noun}…</span>
+      <span className="h-2.5 w-3/4 animate-pulse rounded-full bg-fg-grey-100" />
+      <span className="h-2.5 w-1/2 animate-pulse rounded-full bg-fg-grey-100" />
+    </div>
+  );
+}
+
 /**
  * Renders one catalog tool call. Inputs are validated again here, so a part replayed from storage or a
  * malformed call shows nothing rather than a broken component. Numbers in tables, metrics, charts,
@@ -201,7 +213,7 @@ export function renderCatalog(name: UiToolName, input: unknown, onAsk: (question
     return <p className="text-xs text-fg-grey-700">这组数字没能和查询结果核对上，已省略。</p>;
   }
   // The chat column is narrow; wide content (code, tables) scrolls inside its own box.
-  return <div className="min-w-0 max-w-full overflow-x-auto">{catalogContent(name, data, onAsk, answer)}</div>;
+  return <div className="forge-fade-up min-w-0 max-w-full overflow-x-auto">{catalogContent(name, data, onAsk, answer)}</div>;
 }
 
 function catalogContent(name: UiToolName, data: unknown, onAsk: (question: string) => void, answer?: string): ReactNode {

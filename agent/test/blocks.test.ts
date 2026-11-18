@@ -30,7 +30,7 @@ test("components, commands and code come out of the answer in order", () => {
 
 test("an unclosed block waits while streaming and stays text once the answer is done", () => {
   const partial = "先看这个：\n```forge:cards\n{\"items\": [{\"title\": \"订";
-  assert.deepEqual(splitBlocks(partial, true), [{ kind: "text", text: "先看这个：" }]);
+  assert.deepEqual(splitBlocks(partial, true), [{ kind: "text", text: "先看这个：" }, { kind: "pending", name: "show_cards" }]);
   assert.match((splitBlocks(partial)[0] as { text: string }).text, /forge:cards/);
 });
 

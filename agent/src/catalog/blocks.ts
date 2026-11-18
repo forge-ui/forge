@@ -11,7 +11,9 @@ export type Segment =
   | { kind: "text"; text: string }
   | { kind: "block"; name: UiToolName; input: unknown }
   | { kind: "command"; code: string }
-  | { kind: "code"; language: string; code: string };
+  | { kind: "code"; language: string; code: string }
+  /** A fence still being written while streaming; `name` is set when it is a component. */
+  | { kind: "pending"; name?: UiToolName };
 
 const SHELL = new Set(["bash", "sh", "shell", "zsh", "console", "terminal"]);
 const FENCE = /^ {0,3}(`{3,})[ \t]*([^\s`]*)[^\n]*$/;
@@ -69,8 +71,8 @@ function fenced(fenceLanguage: string, fenceBody: string): Segment | undefined {
 }
 
 /**
- * Splits an answer into text, components and code. While `streaming`, an unclosed fence at the end is
- * held back until it closes, so half a block never renders.
+ * Splits an answer into text, components and code. While `streaming`, an unclosed fence at the end
+ * becomes a pending segment until it closes, so half a block never renders.
  */
 export function splitBlocks(text: string, streaming = false): Segment[] {
   const segments: Segment[] = [];
@@ -106,7 +108,11 @@ export function splitBlocks(text: string, streaming = false): Segment[] {
       }
     }
     if (close < 0) {
-      if (streaming) break;
+      if (streaming) {
+        flush();
+        segments.push({ kind: "pending", name: BLOCK_NAMES[open[2].toLowerCase()] });
+        break;
+      }
       prose.push(...lines.slice(index));
       break;
     }
