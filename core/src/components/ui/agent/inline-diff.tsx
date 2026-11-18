@@ -65,10 +65,10 @@ export function InlineDiff({ segments, title, onApply, onDecisionsChange, applyL
     >
       <p className="text-sm leading-7 text-fg-black">
         {segments.map((segment, index) => {
-          if (segment.type === "same") return <span key={index}>{segment.text}</span>;
+          if (segment.type === "same") return <span key={`same-${index}`}>{segment.text}</span>;
           const decision = decisions[segment.id] ?? "pending";
           return (
-            <span key={segment.id} className="group relative inline">
+            <span key={`change-${segment.id}`} className="group relative inline">
               <span
                 role="button"
                 tabIndex={0}
