@@ -1,6 +1,7 @@
 "use client";
 
 // Accepted interaction demo, rendered by the shared Core component.
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Button, StreamingAnswer } from "@forge-ui-official/core";
 import { SAMPLES } from "./samples";
@@ -103,7 +104,7 @@ export default function StreamingPrototype() {
   return (
     <div className={styles.shell}>
       <header className={styles.header}>
-        <a href="/cases/agent" className={styles.brand} aria-label="返回 Forge 组件案例">forge<span> / </span><span>交互实验室</span></a>
+        <Link href="/agent/motion" className={styles.brand} aria-label="返回 Forge Agent 动效">forge<span> / </span><span>交互实验室</span></Link>
         <span className={styles.prototypeLabel}>流式消息 · 体验原型</span>
       </header>
 

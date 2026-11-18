@@ -1495,7 +1495,7 @@
         "name": "label",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "\"Ask AI\""
+        "defaultValue": "\"Forge Agent\""
       },
       {
         "name": "suggestions",
@@ -1528,24 +1528,6 @@
         "defaultValue": null
       },
       {
-        "name": "header",
-        "type": "ReactNode",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "brand",
-        "type": "ReactNode",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "session",
-        "type": "ReactNode",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
         "name": "messages",
         "type": "ReactNode",
         "optional": true,
@@ -1556,30 +1538,6 @@
         "type": "ReactNode",
         "optional": true,
         "defaultValue": null
-      },
-      {
-        "name": "fullscreen",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "defaultFullscreen",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": "false"
-      },
-      {
-        "name": "onFullscreenChange",
-        "type": "((open: boolean) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "showFullscreenTrigger",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": "true"
       },
       {
         "name": "sessions",
@@ -1606,24 +1564,6 @@
         "defaultValue": null
       },
       {
-        "name": "searchQuery",
-        "type": "string | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "onSearchQueryChange",
-        "type": "((query: string) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "hasConversation",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
         "name": "landingTitle",
         "type": "string | undefined",
         "optional": true,
@@ -1634,30 +1574,6 @@
         "type": "string | undefined",
         "optional": true,
         "defaultValue": "\"告诉我你想了解什么，我来帮你梳理。\""
-      },
-      {
-        "name": "headerLayout",
-        "type": "\"brand\" | \"session\" | undefined",
-        "optional": true,
-        "defaultValue": "\"brand\""
-      },
-      {
-        "name": "panelMode",
-        "type": "\"modal\" | \"responsive\" | undefined",
-        "optional": true,
-        "defaultValue": "\"modal\""
-      },
-      {
-        "name": "onDockedChange",
-        "type": "((docked: boolean) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "railLabel",
-        "type": "string | undefined",
-        "optional": true,
-        "defaultValue": null
       }
     ],
     "types": [
@@ -5079,7 +4995,7 @@
       },
       {
         "name": "composer",
-        "type": "{ locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
+        "type": "ReactNode | { locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
         "optional": false,
         "defaultValue": null
       }

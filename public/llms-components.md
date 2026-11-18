@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 5ef2e3083c2bc57127e41f185248c024d995147d2968b616aa662af19f939445
+Source fingerprint: e196010cb72e3ab744dc6a9a26967679241e89bf95dc65d00234fe419c750a49
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (624, values and types distinguished)
+## Public exports (622, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -98,8 +98,6 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ArtisticIcon [value] — core/src/components/ui/badge.tsx
 - ArtisticIconColor [type] — core/src/components/ui/badge.tsx
 - ArtisticIconVariant [type] — core/src/components/ui/badge.tsx
-- ASK_AI_FS_LAYER_ATTR [value] — core/src/internal/ask-ai-fullscreen.tsx
-- ASK_AI_FULLSCREEN_RAIL_WIDTH [value] — core/src/internal/ask-ai-fullscreen.tsx
 - AskAi [value] — core/src/components/ui/ask-ai.tsx
 - AskAiLink [type] — core/src/internal/ask-ai-types.ts
 - AskAiMessage [type] — core/src/internal/ask-ai-types.ts
@@ -1784,7 +1782,7 @@ Source: skills/forge-skill/references/components/agent-panel.md
 | `onDeleteSession` | 否 | `((id: string) => void) \| undefined` |  |
 | `onPinSession` | 否 | `((id: string, pinned: boolean) => void) \| undefined` |  |
 | `notice` | 否 | `ReactNode` | Above the composer: errors, attachments, notices. |
-| `composer` | 是 | `{ locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` | ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. |
+| `composer` | 是 | `ReactNode \| { locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` | ChatInputBar props, or your own composer. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. |
 
 ## AgentPanelProps (type)
 
@@ -1811,8 +1809,8 @@ export type AgentPanelProps = {
   onPinSession?: (id: string, pinned: boolean) => void;
   /** Above the composer: errors, attachments, notices. */
   notice?: ReactNode;
-  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */
-  composer: ComponentProps<typeof ChatInputBar>;
+  /** ChatInputBar props, or your own composer. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */
+  composer: ComponentProps<typeof ChatInputBar> | ReactNode;
 };
 ```
 
@@ -2631,40 +2629,26 @@ Source: skills/forge-skill/references/components/ask-ai.md
 ## AskAi (value)
 
 ```ts
-({ color, label, suggestions, placeholder, onSend, disabled, className, header, brand, session, messages: messagesSlot, composer, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, sessions, currentSessionId, onNewSession, onSelectSession, searchQuery, onSearchQueryChange, hasConversation, landingTitle, landingDescription, headerLayout, panelMode, onDockedChange, railLabel, }: AskAiProps) => JSX.Element
+({ color, label, suggestions, placeholder, onSend, disabled, className, messages: messagesSlot, composer, sessions, currentSessionId, onNewSession, onSelectSession, landingTitle, landingDescription, }: AskAiProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `color` | 否 | `AccentColor \| undefined` | Overrides the surrounding accent. Omit to follow the nearest data-accent, or the kit default. |
-| `label` | 否 | `string \| undefined` |  |
+| `label` | 否 | `string \| undefined` | Entry button text and panel title. |
 | `suggestions` | 否 | `string[] \| undefined` |  |
 | `placeholder` | 否 | `string \| undefined` |  |
 | `onSend` | 是 | `(message: string, request: AskAiRequest) => string \| AskAiResponse \| Promise<string \| AskAiResponse>` | Return plain text or text with business links. At most two safe links are shown. |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `className` | 否 | `string \| undefined` |  |
-| `header` | 否 | `ReactNode` | Replace the entire drawer header (brand, session, tools). |
-| `brand` | 否 | `ReactNode` | Replace the Ask mark + title in the drawer header and fullscreen rail. |
-| `session` | 否 | `ReactNode` | Replace session chrome (drawer header extras / fullscreen history). |
-| `messages` | 否 | `ReactNode` | Replace the conversation / empty-state body. Fullscreen: content-only, natural height; no h-full, flex-1 or vertical overflow container. Core owns [data-ask-ai-fs-scroll], follow and jump-to-latest. Use currentSessionId to reset follow when switching external transcripts. |
-| `composer` | 否 | `ReactNode` | Replace the default composer (textarea + 发送). Fullscreen: content-only, no outer bottom padding/margin or fixed positioning. Core owns the bottom gap (16px or safe-area, whichever is larger). Consumers sharing slots with the drawer should branch on fullscreen state. |
-| `fullscreen` | 否 | `boolean \| undefined` | Controlled fullscreen layer. Independent of the drawer — not a stretched dialog. |
-| `defaultFullscreen` | 否 | `boolean \| undefined` | Uncontrolled initial fullscreen when `fullscreen` is omitted. |
-| `onFullscreenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
-| `showFullscreenTrigger` | 否 | `boolean \| undefined` | Drawer header control that opens the fullscreen layer. Default true. |
-| `sessions` | 否 | `AskAiSessionItem[] \| undefined` | Session list for the default fullscreen rail. Displayed as given; core does not filter. |
+| `messages` | 否 | `ReactNode` | Replace the built-in conversation, e.g. with AgentParts driven by your own runtime. |
+| `composer` | 否 | `ReactNode` | Replace the built-in composer. |
+| `sessions` | 否 | `AskAiSessionItem[] \| undefined` | Earlier conversations, listed under the history button. Displayed as given. |
 | `currentSessionId` | 否 | `string \| undefined` |  |
 | `onNewSession` | 否 | `(() => void) \| undefined` |  |
 | `onSelectSession` | 否 | `((id: string) => void) \| undefined` |  |
-| `searchQuery` | 否 | `string \| undefined` |  |
-| `onSearchQueryChange` | 否 | `((query: string) => void) \| undefined` |  |
-| `hasConversation` | 否 | `boolean \| undefined` | Force fullscreen landing vs chat layout. Defaults to the built-in conversation length (or chat layout when `messages` is passed). |
 | `landingTitle` | 否 | `string \| undefined` |  |
 | `landingDescription` | 否 | `string \| undefined` | Supporting copy below the empty-state heading. |
-| `headerLayout` | 否 | `"brand" \| "session" \| undefined` | Opt-in session-first panel header with a dedicated new-chat action. |
-| `panelMode` | 否 | `"modal" \| "responsive" \| undefined` | Non-modal side panel at >=1440px; falls back to the modal drawer below that. |
-| `onDockedChange` | 否 | `((docked: boolean) => void) \| undefined` | Reserve 460px in the host layout while true. Released on close/fullscreen/unmount. |
-| `railLabel` | 否 | `string \| undefined` | Fullscreen rail title when `brand` is omitted. |
 
 ## AskAiProps (type)
 
@@ -2672,6 +2656,7 @@ Source: skills/forge-skill/references/components/ask-ai.md
 export interface AskAiProps {
   /** Overrides the surrounding accent. Omit to follow the nearest data-accent, or the kit default. */
   color?: AccentColor;
+  /** Entry button text and panel title. */
   label?: string;
   suggestions?: string[];
   placeholder?: string;
@@ -2679,55 +2664,18 @@ export interface AskAiProps {
   onSend: (message: string, request: AskAiRequest) => string | AskAiResponse | Promise<string | AskAiResponse>;
   disabled?: boolean;
   className?: string;
-  /** Replace the entire drawer header (brand, session, tools). */
-  header?: ReactNode;
-  /** Replace the Ask mark + title in the drawer header and fullscreen rail. */
-  brand?: ReactNode;
-  /** Replace session chrome (drawer header extras / fullscreen history). */
-  session?: ReactNode;
-  /** Replace the conversation / empty-state body.
-   * Fullscreen: content-only, natural height; no h-full, flex-1 or vertical
-   * overflow container. Core owns [data-ask-ai-fs-scroll], follow and jump-to-latest.
-   * Use currentSessionId to reset follow when switching external transcripts.
-   */
+  /** Replace the built-in conversation, e.g. with AgentParts driven by your own runtime. */
   messages?: ReactNode;
-  /**
-   * Replace the default composer (textarea + 发送).
-   * Fullscreen: content-only, no outer bottom padding/margin or fixed positioning.
-   * Core owns the bottom gap (16px or safe-area, whichever is larger).
-   * Consumers sharing slots with the drawer should branch on fullscreen state.
-   */
+  /** Replace the built-in composer. */
   composer?: ReactNode;
-  /** Controlled fullscreen layer. Independent of the drawer — not a stretched dialog. */
-  fullscreen?: boolean;
-  /** Uncontrolled initial fullscreen when `fullscreen` is omitted. */
-  defaultFullscreen?: boolean;
-  onFullscreenChange?: (open: boolean) => void;
-  /** Drawer header control that opens the fullscreen layer. Default true. */
-  showFullscreenTrigger?: boolean;
-  /** Session list for the default fullscreen rail. Displayed as given; core does not filter. */
+  /** Earlier conversations, listed under the history button. Displayed as given. */
   sessions?: AskAiSessionItem[];
   currentSessionId?: string;
   onNewSession?: () => void;
   onSelectSession?: (id: string) => void;
-  searchQuery?: string;
-  onSearchQueryChange?: (query: string) => void;
-  /**
-   * Force fullscreen landing vs chat layout.
-   * Defaults to the built-in conversation length (or chat layout when `messages` is passed).
-   */
-  hasConversation?: boolean;
   landingTitle?: string;
   /** Supporting copy below the empty-state heading. */
   landingDescription?: string;
-  /** Opt-in session-first panel header with a dedicated new-chat action. */
-  headerLayout?: "brand" | "session";
-  /** Non-modal side panel at >=1440px; falls back to the modal drawer below that. */
-  panelMode?: "modal" | "responsive";
-  /** Reserve 460px in the host layout while true. Released on close/fullscreen/unmount. */
-  onDockedChange?: (docked: boolean) => void;
-  /** Fullscreen rail title when `brand` is omitted. */
-  railLabel?: string;
 }
 ```
 
@@ -2737,27 +2685,6 @@ export interface AskAiProps {
 
 不要用：
 - 新功能 → `AgentPanel`
-
----
-
-Source: skills/forge-skill/references/components/ask-ai-fullscreen.md
-
-# ask-ai-fullscreen
-
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-fullscreen.tsx`；core **0.9.0**。
-默认值和运行行为以源码初始化为准；类型表不推测默认值。
-
-## ASK_AI_FS_LAYER_ATTR (value)
-
-```ts
-"data-ask-ai-fs-layer"
-```
-
-## ASK_AI_FULLSCREEN_RAIL_WIDTH (value)
-
-```ts
-"16rem"
-```
 
 ---
 

@@ -761,7 +761,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent#commandsearch",
+    "declaredHref": "/agent/api#commandsearch",
     "accepted": true
   },
   {
@@ -1326,7 +1326,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1671,7 +1671,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1691,7 +1691,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1716,7 +1716,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1731,7 +1731,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1921,7 +1921,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1951,7 +1951,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -2016,7 +2016,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -2066,7 +2066,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -2096,7 +2096,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {

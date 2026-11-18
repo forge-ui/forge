@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { AskAi, Button, ChatInputBar, type ChatInputBarQuickAction } from "@forge-ui-official/core";
-import { PageHeading, Section } from "../_shared";
+import { Section } from "../../cases/_shared";
 import { demoSources } from "./_sources";
 import { ChatInputBarGenerationDemo } from "./_generation-demo";
 
@@ -14,7 +14,7 @@ const models = [
 
 const quickActions: ChatInputBarQuickAction[] = [{id:"image",label:"创建图片",kind:"image",placeholder:"描述你想创建的图片…"},{id:"note",label:"写笔记",kind:"note",placeholder:"写下想记录的内容…"},{id:"event",label:"安排日程",kind:"event",placeholder:"什么活动，什么时候？"},{id:"voice",label:"语音输入",kind:"voice",placeholder:"输入要转写的内容…"},{id:"docs",label:"分析文档",kind:"docs",placeholder:"上传文档，或者提一个问题…"}];
 
-export default function ChatInputBarCase() {
+export function ChatInputBarCases() {
   const [session, setSession] = useState(0);
   const [messages, setMessages] = useState<string[]>([]);
   const [model, setModel] = useState("auto");
@@ -28,7 +28,6 @@ export default function ChatInputBarCase() {
     models={models} model={model} onModelChange={change} modelMenuLabel="选择模型"
     sources={demoSources} commands={[{id: "summarize", label: "总结", description: "整理当前内容的要点"}, {id: "plan", label: "起草计划", description: "起草上线计划"}]} />;
   return <div className="flex flex-col gap-8">
-    <PageHeading title="消息输入栏" hint="发送与停止 · 草稿保留 · 模型菜单 · Forge Agent 面板 · 全屏" />
     <Section title="自然动效与快捷卡片" description="空会话默认展开卡片，发送后收起；从左侧加号手动打开。点击输入框任意空白处即可输入。">
       {messages.map((message, index) => <p key={index} className="rounded-xl bg-surface px-4 py-3 text-sm">{message}</p>)}
       {messages.length > 0 && <Button onClick={() => { setMessages([]); setSession(current => current + 1); }}>新会话</Button>}

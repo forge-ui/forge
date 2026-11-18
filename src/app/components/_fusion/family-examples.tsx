@@ -25,7 +25,8 @@ export function VisibleExample({ id, settings, epoch }: { id: string; settings: 
 }
 
 /** Places interaction examples beside their existing component family. */
-export function FusionFamilyExamples() {
+/** Interaction examples for the family of the current case page, or for `family` when given. */
+export function FusionFamilyExamples({ family }: { family?: string } = {}) {
   const pathname = usePathname();
   const [locale, setLocale] = useState<FusionSettings["locale"]>("zh");
   const [color, setColor] = useState<FusionSettings["color"]>("blue");
@@ -33,7 +34,8 @@ export function FusionFamilyExamples() {
   const [epochs, setEpochs] = useState<Record<string, number>>({});
   const parts = pathname.split("/").filter(Boolean);
   const isCases = parts[0] === "cases";
-  const items = isCases && parts.length === 2 ? fusionItems.filter(item => officialCategory(item) === parts[1] && item.id !== "F03") : [];
+  const category = family ?? (isCases && parts.length === 2 ? parts[1] : undefined);
+  const items = category ? fusionItems.filter(item => officialCategory(item) === category && item.id !== "F03") : [];
   if (!items.length) return null;
   const zh = locale === "zh";
   return <section id="component-examples" className="flex min-w-0 scroll-mt-24 flex-col gap-8" aria-label={zh ? "交互示例" : "Interaction examples"}>

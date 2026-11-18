@@ -10,7 +10,7 @@ const require=createRequire(import.meta.url);
 const {build}=require('../node_modules/.pnpm/node_modules/esbuild/lib/main.js');
 const temp=path.resolve('core/tmp/documentation-dedup-tests');fs.mkdirSync(temp,{recursive:true});
 await build({stdin:{contents:`export { default as TabPage } from './src/app/components/tab/page';
-export { default as AgentPage } from './src/app/components/agent/page';
+export { default as AgentPage } from './src/app/agent/api/page';
 export { AnimatedWidgetDemos } from './src/app/_components/animated-widget-demos';`,resolveDir:process.cwd(),loader:'tsx'},outfile:path.join(temp,'pages.mjs'),bundle:true,platform:'node',packages:'external',format:'esm',plugins:[{name:'next-node-extension',setup(b){b.onResolve({filter:/^next\/link$/},()=>({path:'next/link.js',external:true}));}}],jsx:'automatic'});
 const pages=await import(pathToFileURL(path.join(temp,'pages.mjs')).href);
 after(()=>fs.rmSync(temp,{recursive:true,force:true}));
@@ -41,7 +41,7 @@ test('agent descriptions and complete API render as one table per component',()=
  } finally { dom.window.close(); }
 
  assert.match(html,/应用接收回答的状态/);
- assert.match(html,/ChatInputBarSendContext|\/components\/chat-input-bar/);
+ assert.match(html,/ChatInputBarSendContext|\/agent\/chat-input-bar/);
 });
 for(const only of ['otp','tabs','members'])test(`${only} widget has one named guide with its API inside`,()=>{
  const html=renderToStaticMarkup(React.createElement(pages.AnimatedWidgetDemos,{only,motion:'none'}));

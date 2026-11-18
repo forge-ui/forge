@@ -104,7 +104,7 @@ export default function ChatCasePage() {
 
       <p className="text-sm leading-6 text-fg-grey-700">
         输入、附件、提及和停止生成见
-        <Link href="/components/chat-input-bar" className="mx-1 font-semibold text-fg-black underline underline-offset-4">消息输入栏</Link>。
+        <Link href="/agent/chat-input-bar" className="mx-1 font-semibold text-fg-black underline underline-offset-4">消息输入栏</Link>。
       </p>
     </div>
   );

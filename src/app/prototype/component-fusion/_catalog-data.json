@@ -880,7 +880,7 @@
         "CommandSearch",
         "Modal"
       ],
-      "href": "/components/agent#commandsearch",
+      "href": "/agent/api#commandsearch",
       "kind": "command",
       "partialKind": null,
       "accepted": true
@@ -1448,7 +1448,7 @@
         "StreamingAnswer",
         "ChatInputBar"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -1802,7 +1802,7 @@
         "StreamingAnswer",
         "Button"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -1820,7 +1820,7 @@
         "AgentCodeBlock",
         "Button"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -1839,7 +1839,7 @@
         "TextArea",
         "Button"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -1856,7 +1856,7 @@
       "target": [
         "AgentCodeBlock"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -2111,7 +2111,7 @@
         "Button",
         "SurfaceCard"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -2131,7 +2131,7 @@
         "ProgressBar",
         "Button"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -2179,7 +2179,7 @@
       "caseTag": null,
       "mode": "defer",
       "target": [],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -2216,7 +2216,7 @@
         "ThinkingTrace",
         "ToolChips"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -2254,7 +2254,7 @@
         "SurfaceCard",
         "Button"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false
@@ -2274,7 +2274,7 @@
         "AvatarGroup",
         "Button"
       ],
-      "href": "/components/agent",
+      "href": "/agent/api",
       "kind": null,
       "partialKind": null,
       "accepted": false

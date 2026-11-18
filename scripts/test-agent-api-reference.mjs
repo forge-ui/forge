@@ -15,7 +15,7 @@ test('ChatInputBar reference includes every declared property and exact send sig
   assert.match(send, /ChatInputBarSendContext/);
 });
 test('every agent component renders its full parameter reference', () => {
-  const page = fs.readFileSync('src/app/components/agent/page.tsx', 'utf8');
+  const page = fs.readFileSync('src/app/agent/api/page.tsx', 'utf8');
   for (const [name, component] of Object.entries(comparison.current.components)) {
     if (!component.file.includes('/agent/')) continue;
     const source = ts.createSourceFile('agent.tsx', page, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -32,9 +32,14 @@ test('every agent component renders its full parameter reference', () => {
     assert.deepEqual(data[name].props.map(p => p.name), component.props.map(p => p.name));
   }
 });
+// 0.9.0 turned Ask AI into the entry to Forge Agent: its fullscreen layer, docked mode and header slots went away on purpose.
+const INTENDED_REMOVALS = {
+  exports: ['ASK_AI_FS_LAYER_ATTR', 'ASK_AI_FULLSCREEN_RAIL_WIDTH'],
+  AskAi: ['header', 'brand', 'session', 'fullscreen', 'defaultFullscreen', 'onFullscreenChange', 'showFullscreenTrigger', 'searchQuery', 'onSearchQueryChange', 'hasConversation', 'headerLayout', 'panelMode', 'onDockedChange', 'railLabel'],
+};
 test('comparison retains all main public exports and component parameters', () => {
-  assert.deepEqual(comparison.removedExports, []);
-  for (const component of comparison.comparisons) assert.deepEqual(component.removed, [], component.name);
+  assert.deepEqual(comparison.removedExports.filter(name => !INTENDED_REMOVALS.exports.includes(name)), []);
+  for (const component of comparison.comparisons) assert.deepEqual(component.removed.filter(name => !(INTENDED_REMOVALS[component.name] ?? []).includes(name)), [], component.name);
 });
 test('reference describes domain fields rather than built-in String methods', () => {
   for (const type of data.ChatInputBar.types) assert.ok(!type.fields.some(f => f.name === 'charAt'), type.name);

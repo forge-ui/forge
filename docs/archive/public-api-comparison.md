@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：27bd6d67dad6233db652a0b4e9af27a81ece0084，包含本地未提交源码。
+基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：c2e6c8b2a6556ab6b004024aeacbf3820840254e，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
@@ -13,7 +13,7 @@
 | TopBar | 3 | 3 | — | — | — |
 | PageTitleToolbar | 13 | 13 | — | — | — |
 | AppLayout | 50 | 50 | — | — | — |
-| AskAi | 29 | 29 | — | — | — |
+| AskAi | 29 | 15 | — | header, brand, session, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, searchQuery, onSearchQueryChange, hasConversation, headerLayout, panelMode, onDockedChange, railLabel | — |
 | ThinkingTrace | 11 | 11 | — | — | — |
 | StreamingAnswer | 16 | 16 | — | — | — |
 | ApprovalCard | 11 | 11 | — | — | — |
@@ -229,7 +229,7 @@
 | TypographyWeightSample | 3 | 3 | — | — | — |
 | TypographySizeRow | 3 | 3 | — | — | — |
 | AppLayout | 50 | 50 | — | — | — |
-| AskAi | 29 | 29 | — | — | — |
+| AskAi | 29 | 15 | — | header, brand, session, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, searchQuery, onSearchQueryChange, hasConversation, headerLayout, panelMode, onDockedChange, railLabel | — |
 | ThinkingTrace | 11 | 11 | — | — | — |
 | StreamingAnswer | 16 | 16 | — | — | — |
 | ApprovalCard | 11 | 11 | — | — | — |
@@ -310,7 +310,7 @@
 
 ## 导出变化
 
-删除：无。
+删除：ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH。
 
 新增：AGENT_PANEL_WIDTH, AgentCheckpoints, AgentCheckpointsProps, AgentInbox, AgentInboxProps, AgentLanes, AgentLanesProps, AgentPanel, AgentPanelProps, AgentPlan, AgentPlanProps, AgentSession, AgentStepStatus, AgentTaskState, AgentTrail, AgentTrailProps, AgentTree, AgentTreeProps, AgentWelcome, AgentWelcomeProps, Approval, ApprovalField, ApprovalProps, ApprovalRisk, ApprovalScope, ApprovalState, AttachmentItem, AttachmentKind, AttachmentList, AttachmentListProps, AutonomyAction, AutonomyLevel, AutonomySelector, AutonomySelectorProps, AwayItem, AwaySummary, AwaySummaryProps, ChangeLedger, ChangeLedgerProps, Checkpoint, ChoiceAnswer, ChoiceCard, ChoiceCardProps, ChoiceOption, Citation, CitationProps, CitationSource, CitedAnswer, CitedAnswerProps, Composer, ComposerAction, ComposerActionProps, ComposerHeader, ComposerInput, ComposerInputProps, ComposerModelMenu, ComposerModelMenuProps, ComposerProps, ComposerSend, ComposerToolbar, ConfirmCard, ConfirmCardProps, ConfirmField, ContextSegment, ContextSegmentKind, ContextUsage, ContextUsageProps, ConversationItem, ConversationList, ConversationListProps, InboxTask, InlineDiff, InlineDiffDecision, InlineDiffProps, InlineDiffSegment, LaneBlock, LedgerEntry, LedgerField, PlanStep, ProgressStep, PromptQueue, PromptQueueProps, Question, QuestionAnswer, QuestionItem, QuestionLabels, QuestionOption, QuestionProps, QueuedPrompt, Reasoning, ReasoningProps, ReasoningSource, ReasoningStatus, ReasoningStep, RunControls, RunControlsProps, RunProgress, RunStatus, RunningNow, RunningNowProps, ThinkingIndicator, ThinkingIndicatorProps, ToolCall, ToolCallGroup, ToolCallGroupProps, ToolCallProps, ToolCallStatus, TraceSpan, TraceWaterfall, TraceWaterfallProps, TrailStep, TrailSubstep, TreeAgent, TreeAgentStatus, resolveInlineDiff。
 
@@ -508,34 +508,20 @@
 | 参数 | 类型 | 是否必填 | 源码默认值 |
 |---|---|---|---|
 | color | `AccentColor \| undefined` | 否 | 未在参数解构处设置 |
-| label | `string \| undefined` | 否 | "Ask AI" |
+| label | `string \| undefined` | 否 | "Forge Agent" |
 | suggestions | `string[] \| undefined` | 否 | DEFAULT_SUGGESTIONS |
 | placeholder | `string \| undefined` | 否 | "输入问题…" |
 | onSend | `(message: string, request: AskAiRequest) => string \| AskAiResponse \| Promise<string \| AskAiResponse>` | 是 | 未在参数解构处设置 |
 | disabled | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
-| header | `ReactNode` | 否 | 未在参数解构处设置 |
-| brand | `ReactNode` | 否 | 未在参数解构处设置 |
-| session | `ReactNode` | 否 | 未在参数解构处设置 |
 | messages | `ReactNode` | 否 | 未在参数解构处设置 |
 | composer | `ReactNode` | 否 | 未在参数解构处设置 |
-| fullscreen | `boolean \| undefined` | 否 | 未在参数解构处设置 |
-| defaultFullscreen | `boolean \| undefined` | 否 | false |
-| onFullscreenChange | `((open: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| showFullscreenTrigger | `boolean \| undefined` | 否 | true |
 | sessions | `AskAiSessionItem[] \| undefined` | 否 | 未在参数解构处设置 |
 | currentSessionId | `string \| undefined` | 否 | 未在参数解构处设置 |
 | onNewSession | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
 | onSelectSession | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| searchQuery | `string \| undefined` | 否 | 未在参数解构处设置 |
-| onSearchQueryChange | `((query: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| hasConversation | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | landingTitle | `string \| undefined` | 否 | 未在参数解构处设置 |
 | landingDescription | `string \| undefined` | 否 | "告诉我你想了解什么，我来帮你梳理。" |
-| headerLayout | `"brand" \| "session" \| undefined` | 否 | "brand" |
-| panelMode | `"modal" \| "responsive" \| undefined` | 否 | "modal" |
-| onDockedChange | `((docked: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| railLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### ThinkingTrace
 
@@ -1104,7 +1090,7 @@
 | onDeleteSession | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | onPinSession | `((id: string, pinned: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
 | notice | `ReactNode` | 否 | 未在参数解构处设置 |
-| composer | `{ locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` | 是 | 未在参数解构处设置 |
+| composer | `ReactNode \| { locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` | 是 | 未在参数解构处设置 |
 
 ### AgentPlan
 

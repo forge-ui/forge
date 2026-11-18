@@ -33,7 +33,6 @@
 - [按钮与链接](https://www.forgeui.org/components/button-link.md): Button、IconButton、StyledLink、ButtonGroup
 - [表单与输入](https://www.forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Datepicker、RadioButton
 - [筛选](https://www.forgeui.org/components/filter.md): FilterGroup、FilterTrigger、FilterPanel
-- [消息输入栏](https://www.forgeui.org/components/chat-input-bar.md): ChatInputBar
 - [数据表格](https://www.forgeui.org/components/table.md): DataTable、CellActions、StatusBadge、CellTextSubtitle、CellText
 - [图表](https://www.forgeui.org/components/chart.md): DonutChart、ChartCard、ChartListItem、ChartTooltip、ChartLegendItem
 - [列表](https://www.forgeui.org/components/list.md): ListItem、DescriptionItem、ListGroup、Label、ContactItem
@@ -46,7 +45,6 @@
 - [文件展示](https://www.forgeui.org/components/file-type.md): FileTypeIcon、FileCard
 - [聊天](https://www.forgeui.org/components/chat.md): ChatBubble
 - [待办清单](https://www.forgeui.org/components/checklist.md): Checklist、ChecklistItem
-- [智能体](https://www.forgeui.org/components/agent.md): Conversation、AgentMessage、MessageActions、PromptSuggestions、AgentParts
 - [实用组件](https://www.forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
 - [进度](https://www.forgeui.org/components/progress.md): ProgressBar
 - [消息反馈](https://www.forgeui.org/components/feedback.md)

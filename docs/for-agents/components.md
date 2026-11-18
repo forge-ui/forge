@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.9.0，共 624 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.9.0，共 622 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -94,8 +94,6 @@
 | ArtisticIcon | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | ArtisticIconColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | ArtisticIconVariant | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
-| ASK_AI_FS_LAYER_ATTR | value | [源码](../../core/src/internal/ask-ai-fullscreen.tsx) | [ask-ai-fullscreen](../../skills/forge-skill/references/components/ask-ai-fullscreen.md) |
-| ASK_AI_FULLSCREEN_RAIL_WIDTH | value | [源码](../../core/src/internal/ask-ai-fullscreen.tsx) | [ask-ai-fullscreen](../../skills/forge-skill/references/components/ask-ai-fullscreen.md) |
 | AskAi | value | [源码](../../core/src/components/ui/ask-ai.tsx) | [ask-ai](../../skills/forge-skill/references/components/ask-ai.md) |
 | AskAiLink | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |
 | AskAiMessage | type | [源码](../../core/src/internal/ask-ai-types.ts) | [ask-ai-types](../../skills/forge-skill/references/components/ask-ai-types.md) |

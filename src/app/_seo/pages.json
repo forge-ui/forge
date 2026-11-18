@@ -40,10 +40,6 @@
     "title": "折叠面板组件 · 效果与案例",
     "description": "同一时间展开一个面板。下面的场景可以实际打开和收起。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
   },
-  "/cases/agent": {
-    "title": "智能体组件 · 效果与案例",
-    "description": "先看完整场景，再看单个组件：思考、回答、工具调用、提问与确认、运行、治理和观测。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
-  },
   "/cases/badge": {
     "title": "徽章与标签组件 · 效果与案例",
     "description": "展示数量、状态和分类，或用图标强调重要入口。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
@@ -67,10 +63,6 @@
   "/cases/chat": {
     "title": "聊天组件 · 效果与案例",
     "description": "气泡和输入栏、四种整页布局，以及可以嵌进仪表盘的紧凑卡片。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
-  },
-  "/cases/chat-input-bar": {
-    "title": "消息输入栏组件 · 效果与案例",
-    "description": "发送与停止 · 草稿保留 · 模型菜单 · Ask AI 抽屉 · 全屏。Forge UI 中文后台 React 组件库的可操作案例，直接在页面上试。"
   },
   "/cases/checklist": {
     "title": "待办清单组件 · 效果与案例",
@@ -170,10 +162,6 @@
     "title": "折叠面板组件 · 用法与参数",
     "description": "同一时间展开一个面板，用来收纳较长说明。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
   },
-  "/components/agent": {
-    "title": "智能体组件 · 用法与参数",
-    "description": "智能体界面的整套组件：对话与输入、思考与工具、提问与确认、回答与引用、运行、治理、运营和观测；可以直接渲染 AI SDK 的消息。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
-  },
   "/components/badge": {
     "title": "徽章与标签组件 · 用法与参数",
     "description": "同一个组件的颜色、尺寸和样式放在一起，代码按行跟在这组下面。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
@@ -197,10 +185,6 @@
   "/components/chat": {
     "title": "聊天组件 · 用法与参数",
     "description": "展示文字、语音、图片和文件消息。消息输入栏在「消息输入栏」页。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
-  },
-  "/components/chat-input-bar": {
-    "title": "消息输入栏组件 · 用法与参数",
-    "description": "多行输入、发送和 @ 引用。发送与停止、模型菜单、抽屉、全屏和窄屏在组件案例。Forge UI 中文后台 React 组件库，附完整参数说明和可复制代码。"
   },
   "/components/checklist": {
     "title": "待办清单组件 · 用法与参数",

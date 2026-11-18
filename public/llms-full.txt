@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 5ef2e3083c2bc57127e41f185248c024d995147d2968b616aa662af19f939445
+Source fingerprint: e196010cb72e3ab744dc6a9a26967679241e89bf95dc65d00234fe419c750a49
 
 ## Adopted rules / 采用规则
 
@@ -288,7 +288,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (624, values and types distinguished)
+## Public exports (622, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -378,8 +378,6 @@ export function ModuleOverview() {
 - ArtisticIcon [value] — core/src/components/ui/badge.tsx
 - ArtisticIconColor [type] — core/src/components/ui/badge.tsx
 - ArtisticIconVariant [type] — core/src/components/ui/badge.tsx
-- ASK_AI_FS_LAYER_ATTR [value] — core/src/internal/ask-ai-fullscreen.tsx
-- ASK_AI_FULLSCREEN_RAIL_WIDTH [value] — core/src/internal/ask-ai-fullscreen.tsx
 - AskAi [value] — core/src/components/ui/ask-ai.tsx
 - AskAiLink [type] — core/src/internal/ask-ai-types.ts
 - AskAiMessage [type] — core/src/internal/ask-ai-types.ts
@@ -1081,14 +1079,12 @@ export function ModuleOverview() {
 
 - /cases — src/app/cases/page.tsx
 - /cases/accordion — src/app/cases/accordion/page.tsx
-- /cases/agent — src/app/cases/agent/page.tsx
 - /cases/badge — src/app/cases/badge/page.tsx
 - /cases/button-link — src/app/cases/button-link/page.tsx
 - /cases/calendar — src/app/cases/calendar/page.tsx
 - /cases/card — src/app/cases/card/page.tsx
 - /cases/chart — src/app/cases/chart/page.tsx
 - /cases/chat — src/app/cases/chat/page.tsx
-- /cases/chat-input-bar — src/app/cases/chat-input-bar/page.tsx
 - /cases/checklist — src/app/cases/checklist/page.tsx
 - /cases/comment — src/app/cases/comment/page.tsx
 - /cases/dashboard-kit — src/app/cases/dashboard-kit/page.tsx

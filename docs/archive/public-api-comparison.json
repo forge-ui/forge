@@ -1,6 +1,6 @@
 {
   "mainCommit": "e9349f17bffbfb654144b9155d9c7a1455a470ed",
-  "currentCommit": "27bd6d67dad6233db652a0b4e9af27a81ece0084",
+  "currentCommit": "c2e6c8b2a6556ab6b004024aeacbf3820840254e",
   "main": {
     "exports": [
       "ALL_CARD_THEMES",
@@ -50068,8 +50068,6 @@
     "exports": [
       "AGENT_PANEL_WIDTH",
       "ALL_CARD_THEMES",
-      "ASK_AI_FS_LAYER_ATTR",
-      "ASK_AI_FULLSCREEN_RAIL_WIDTH",
       "AccentColor",
       "AccentConfig",
       "Accordion",
@@ -80858,8 +80856,8 @@
             "name": "label",
             "type": "string | undefined",
             "optional": true,
-            "defaultValue": "\"Ask AI\"",
-            "comment": "",
+            "defaultValue": "\"Forge Agent\"",
+            "comment": "Entry button text and panel title.",
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
@@ -80903,35 +80901,11 @@
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
-            "name": "header",
-            "type": "ReactNode",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Replace the entire drawer header (brand, session, tools).",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "brand",
-            "type": "ReactNode",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Replace the Ask mark + title in the drawer header and fullscreen rail.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "session",
-            "type": "ReactNode",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Replace session chrome (drawer header extras / fullscreen history).",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
             "name": "messages",
             "type": "ReactNode",
             "optional": true,
             "defaultValue": null,
-            "comment": "Replace the conversation / empty-state body.\nFullscreen: content-only, natural height; no h-full, flex-1 or vertical\noverflow container. Core owns [data-ask-ai-fs-scroll], follow and jump-to-latest.\nUse currentSessionId to reset follow when switching external transcripts.",
+            "comment": "Replace the built-in conversation, e.g. with AgentParts driven by your own runtime.",
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
@@ -80939,39 +80913,7 @@
             "type": "ReactNode",
             "optional": true,
             "defaultValue": null,
-            "comment": "Replace the default composer (textarea + 发送).\nFullscreen: content-only, no outer bottom padding/margin or fixed positioning.\nCore owns the bottom gap (16px or safe-area, whichever is larger).\nConsumers sharing slots with the drawer should branch on fullscreen state.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "fullscreen",
-            "type": "boolean | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Controlled fullscreen layer. Independent of the drawer — not a stretched dialog.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "defaultFullscreen",
-            "type": "boolean | undefined",
-            "optional": true,
-            "defaultValue": "false",
-            "comment": "Uncontrolled initial fullscreen when `fullscreen` is omitted.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "onFullscreenChange",
-            "type": "((open: boolean) => void) | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "showFullscreenTrigger",
-            "type": "boolean | undefined",
-            "optional": true,
-            "defaultValue": "true",
-            "comment": "Drawer header control that opens the fullscreen layer. Default true.",
+            "comment": "Replace the built-in composer.",
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
@@ -80979,7 +80921,7 @@
             "type": "AskAiSessionItem[] | undefined",
             "optional": true,
             "defaultValue": null,
-            "comment": "Session list for the default fullscreen rail. Displayed as given; core does not filter.",
+            "comment": "Earlier conversations, listed under the history button. Displayed as given.",
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
@@ -81007,30 +80949,6 @@
             "file": "core/src/components/ui/ask-ai.tsx"
           },
           {
-            "name": "searchQuery",
-            "type": "string | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "onSearchQueryChange",
-            "type": "((query: string) => void) | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "hasConversation",
-            "type": "boolean | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Force fullscreen landing vs chat layout.\nDefaults to the built-in conversation length (or chat layout when `messages` is passed).",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
             "name": "landingTitle",
             "type": "string | undefined",
             "optional": true,
@@ -81044,38 +80962,6 @@
             "optional": true,
             "defaultValue": "\"告诉我你想了解什么，我来帮你梳理。\"",
             "comment": "Supporting copy below the empty-state heading.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "headerLayout",
-            "type": "\"brand\" | \"session\" | undefined",
-            "optional": true,
-            "defaultValue": "\"brand\"",
-            "comment": "Opt-in session-first panel header with a dedicated new-chat action.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "panelMode",
-            "type": "\"modal\" | \"responsive\" | undefined",
-            "optional": true,
-            "defaultValue": "\"modal\"",
-            "comment": "Non-modal side panel at >=1440px; falls back to the modal drawer below that.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "onDockedChange",
-            "type": "((docked: boolean) => void) | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Reserve 460px in the host layout while true. Released on close/fullscreen/unmount.",
-            "file": "core/src/components/ui/ask-ai.tsx"
-          },
-          {
-            "name": "railLabel",
-            "type": "string | undefined",
-            "optional": true,
-            "defaultValue": null,
-            "comment": "Fullscreen rail title when `brand` is omitted.",
             "file": "core/src/components/ui/ask-ai.tsx"
           }
         ]
@@ -83941,10 +83827,10 @@
           },
           {
             "name": "composer",
-            "type": "{ locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
+            "type": "ReactNode | { locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
             "optional": false,
             "defaultValue": null,
-            "comment": "ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages.",
+            "comment": "ChatInputBar props, or your own composer. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages.",
             "file": "core/src/components/ui/agent/agent-panel.tsx"
           }
         ]
@@ -99088,21 +98974,6 @@
             "optional": true
           },
           {
-            "name": "header",
-            "type": "ReactNode",
-            "optional": true
-          },
-          {
-            "name": "brand",
-            "type": "ReactNode",
-            "optional": true
-          },
-          {
-            "name": "session",
-            "type": "ReactNode",
-            "optional": true
-          },
-          {
             "name": "messages",
             "type": "ReactNode",
             "optional": true
@@ -99110,26 +98981,6 @@
           {
             "name": "composer",
             "type": "ReactNode",
-            "optional": true
-          },
-          {
-            "name": "fullscreen",
-            "type": "boolean | undefined",
-            "optional": true
-          },
-          {
-            "name": "defaultFullscreen",
-            "type": "boolean | undefined",
-            "optional": true
-          },
-          {
-            "name": "onFullscreenChange",
-            "type": "((open: boolean) => void) | undefined",
-            "optional": true
-          },
-          {
-            "name": "showFullscreenTrigger",
-            "type": "boolean | undefined",
             "optional": true
           },
           {
@@ -99153,47 +99004,12 @@
             "optional": true
           },
           {
-            "name": "searchQuery",
-            "type": "string | undefined",
-            "optional": true
-          },
-          {
-            "name": "onSearchQueryChange",
-            "type": "((query: string) => void) | undefined",
-            "optional": true
-          },
-          {
-            "name": "hasConversation",
-            "type": "boolean | undefined",
-            "optional": true
-          },
-          {
             "name": "landingTitle",
             "type": "string | undefined",
             "optional": true
           },
           {
             "name": "landingDescription",
-            "type": "string | undefined",
-            "optional": true
-          },
-          {
-            "name": "headerLayout",
-            "type": "\"brand\" | \"session\" | undefined",
-            "optional": true
-          },
-          {
-            "name": "panelMode",
-            "type": "\"modal\" | \"responsive\" | undefined",
-            "optional": true
-          },
-          {
-            "name": "onDockedChange",
-            "type": "((docked: boolean) => void) | undefined",
-            "optional": true
-          },
-          {
-            "name": "railLabel",
             "type": "string | undefined",
             "optional": true
           }
@@ -101423,7 +101239,7 @@
         ]
       },
       "AgentPanelProps": {
-        "type": "{\n  title: string;\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  /** The floating launcher; turn it off when the app opens the panel from its own button. */\n  launcher?: boolean;\n  launcherLabel?: string;\n  /** Shown above the composer when there is nothing in the conversation yet. */\n  empty?: ReactNode;\n  /** Changes when content arrives, to keep following the latest reply. */\n  followKey?: unknown;\n  children?: ReactNode;\n  onNewChat?: () => void;\n  /** Earlier conversations, listed under the history button. */\n  sessions?: AgentSession[];\n  currentSessionId?: string;\n  onSelectSession?: (id: string) => void;\n  onRenameSession?: (id: string, title: string) => void;\n  onDeleteSession?: (id: string) => void;\n  onPinSession?: (id: string, pinned: boolean) => void;\n  /** Above the composer: errors, attachments, notices. */\n  notice?: ReactNode;\n  /** ChatInputBar props. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */\n  composer: ComponentProps<typeof ChatInputBar>;\n}",
+        "type": "{\n  title: string;\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  /** The floating launcher; turn it off when the app opens the panel from its own button. */\n  launcher?: boolean;\n  launcherLabel?: string;\n  /** Shown above the composer when there is nothing in the conversation yet. */\n  empty?: ReactNode;\n  /** Changes when content arrives, to keep following the latest reply. */\n  followKey?: unknown;\n  children?: ReactNode;\n  onNewChat?: () => void;\n  /** Earlier conversations, listed under the history button. */\n  sessions?: AgentSession[];\n  currentSessionId?: string;\n  onSelectSession?: (id: string) => void;\n  onRenameSession?: (id: string, title: string) => void;\n  onDeleteSession?: (id: string) => void;\n  onPinSession?: (id: string, pinned: boolean) => void;\n  /** Above the composer: errors, attachments, notices. */\n  notice?: ReactNode;\n  /** ChatInputBar props, or your own composer. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages. */\n  composer: ComponentProps<typeof ChatInputBar> | ReactNode;\n}",
         "fields": [
           {
             "name": "title",
@@ -101507,7 +101323,7 @@
           },
           {
             "name": "composer",
-            "type": "{ locale?: \"zh\" | \"en\"; motion?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").MotionPreference; replyTo?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarQuickAction | null) => void; commands?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").AccentColor; status?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarQuickAction, context?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]; selectedSources?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]; defaultSelectedSources?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]; onSourcesChange?: (sources: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
+            "type": "ReactNode | { locale?: \"zh\" | \"en\"; motion?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").MotionPreference; replyTo?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarQuickAction | null) => void; commands?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").AccentColor; status?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarQuickAction, context?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]; selectedSources?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]; defaultSelectedSources?: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]; onSourcesChange?: (sources: import(\"/Users/hesong/Documents/forge-worktrees/agent-kit/core/src/index\").ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
             "optional": false
           }
         ]
@@ -107001,9 +106817,24 @@
       "name": "AskAi",
       "file": "core/src/components/ui/ask-ai.tsx",
       "mainCount": 29,
-      "currentCount": 29,
+      "currentCount": 15,
       "added": [],
-      "removed": [],
+      "removed": [
+        "header",
+        "brand",
+        "session",
+        "fullscreen",
+        "defaultFullscreen",
+        "onFullscreenChange",
+        "showFullscreenTrigger",
+        "searchQuery",
+        "onSearchQueryChange",
+        "hasConversation",
+        "headerLayout",
+        "panelMode",
+        "onDockedChange",
+        "railLabel"
+      ],
       "changed": []
     },
     {
@@ -108058,7 +107889,10 @@
       "changed": []
     }
   ],
-  "removedExports": [],
+  "removedExports": [
+    "ASK_AI_FS_LAYER_ATTR",
+    "ASK_AI_FULLSCREEN_RAIL_WIDTH"
+  ],
   "addedExports": [
     "AGENT_PANEL_WIDTH",
     "AgentCheckpoints",

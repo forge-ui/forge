@@ -35,7 +35,7 @@ import {
   type TrailStep,
 } from "@forge-ui-official/core";
 import { RefreshLinear } from "@forge-ui-official/core/icons";
-import { AGENT_QUICK_ACTIONS, POLISH_SEGMENTS } from "../../components/agent/_kit-demos";
+import { AGENT_QUICK_ACTIONS, POLISH_SEGMENTS } from "../_kit/_kit-demos";
 
 /** Advances `stage` on a timer until `stop`; user actions can also move it. */
 function useScript(delays: number[], stop: number) {
