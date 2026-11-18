@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { AskAiIcon } from "../../internal/ask-ai-icon";
+import { StarsLinear } from "../../icons";
 import type {
   AskAiLink,
   AskAiMessage,
@@ -12,7 +12,7 @@ import type {
 import { cn } from "../../lib/utils";
 import type { AccentColor } from "./accent-utils";
 import { Button } from "./button";
-import { AgentPanel } from "./agent/agent-panel";
+import { AGENT_ENTRY_CLASS, AgentPanel } from "./agent/agent-panel";
 import { AgentMessage, PromptSuggestions } from "./agent/agent-conversation";
 import { AgentWelcome } from "./agent/agent-welcome";
 import { StreamingAnswer } from "./agent/streaming-answer";
@@ -224,8 +224,8 @@ export function AskAi({
       <button ref={triggerRef} type="button" aria-label={label} aria-haspopup="dialog"
         aria-expanded={open}
         disabled={disabled} onClick={() => setOpen(true)}
-        className={cn("shrink-0 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-background px-3 md:px-4 text-fg-grey-700 outline outline-1 -outline-offset-1 outline-fg-grey-200 hover:bg-fg-grey-100 focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors", className)}>
-        <AskAiIcon />
+        className={cn(AGENT_ENTRY_CLASS, "px-3 md:px-4 hover:shadow-[0_4px_16px_-6px_var(--fg-cyan-500)] aria-expanded:shadow-[0_4px_16px_-6px_var(--fg-blue-500)] focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:cursor-not-allowed disabled:opacity-50", className)}>
+        <StarsLinear size={20} color="var(--fg-blue-500)" />
         <span className="hidden md:inline text-sm font-semibold whitespace-nowrap">{label}</span>
       </button>
       <div data-accent={accent} className="contents">

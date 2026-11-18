@@ -106,11 +106,7 @@ test("Both PageHeader variants and the toolbar keep the same entry", async () =>
   )));
   const triggers = document.querySelectorAll<HTMLButtonElement>('[aria-label="Forge Agent"]');
   assert.equal(triggers.length, 3);
-  for (const trigger of triggers) {
-    const image = trigger.querySelector("img")!;
-    assert.match(image.src, /^data:image\/svg\+xml;base64,/);
-    assert.equal(image.alt, "");
-  }
+  for (const trigger of triggers) assert.ok(trigger.querySelector("svg"));
   await act(async () => root.unmount());
   dom.window.close();
 });

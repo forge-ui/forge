@@ -2,6 +2,7 @@
 
 import { isValidElement, useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
 import { AskAiCompactComposerContext } from "../../../internal/ask-ai-composer-context";
+import { cn } from "../../../lib/utils";
 import { ChatInputBar } from "../chat-input-bar";
 import { IconButton } from "../icon-button";
 import { Conversation } from "./agent-conversation";
@@ -9,6 +10,9 @@ import { ConversationList, type ConversationItem } from "./conversation-list";
 import { ClockCircleLinear, PenNewSquareLinear, PlusLinear, StarsLinear } from "../../../icons";
 
 export const AGENT_PANEL_WIDTH = 400;
+
+/** The Forge Agent entry: white pill with a blue–cyan–green gradient outline. */
+export const AGENT_ENTRY_CLASS = "inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-[1.5px] border-transparent px-4 text-sm font-semibold tracking-fg text-fg-black transition [background:linear-gradient(var(--background),var(--background))_padding-box,linear-gradient(120deg,var(--fg-blue-500),var(--fg-cyan-500),var(--fg-green-500))_border-box]";
 
 // On wide screens the open panel takes its width from the page instead of covering it, so what
 // the agent operates stays in view. Sticky headers follow; fixed full-width bars do not.
@@ -81,9 +85,9 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
         type="button"
         data-forge-agent="launcher"
         onClick={() => onOpenChange(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_color-mix(in_srgb,var(--accent)_55%,transparent)] transition hover:brightness-110 hover:scale-[1.03]"
+        className={cn("fixed bottom-5 right-5 z-50", AGENT_ENTRY_CLASS, "shadow-[0_8px_24px_-6px_color-mix(in_srgb,var(--fg-blue-500)_45%,transparent)] hover:scale-[1.03] hover:shadow-[0_10px_28px_-6px_var(--fg-cyan-500)]")}
       >
-        <StarsLinear size={18} />
+        <StarsLinear size={20} color="var(--fg-blue-500)" />
         {launcherLabel ?? title}
       </button>
     );

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
+import { StarsLinear } from "@forge-ui-official/core/icons";
 import { PageHeading, Section } from "../components/_shared";
 import { AgentApi } from "./_kit/_agent-api";
 import { AgentPreview } from "./_kit/_agent-entries";
@@ -38,13 +39,21 @@ function Note({ markdown }: { markdown: string }) {
 export function AgentEntryView({ slug, note }: { slug: string; note?: string }) {
   const entry = agentEntry(slug)!;
   const related = AGENT_ENTRIES.filter(item => item.group === entry.group && item.slug !== slug);
+  const index = AGENT_ENTRIES.findIndex(item => item.slug === slug);
+  const previous = AGENT_ENTRIES[index - 1];
+  const next = AGENT_ENTRIES[index + 1];
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex flex-col gap-2">
-        <span className="text-xs font-semibold text-fg-grey-500">Forge Agent · {entry.group}</span>
+      <div className="flex flex-col gap-3">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full border-[1.5px] border-transparent px-3 py-1 text-xs font-semibold text-fg-black [background:linear-gradient(var(--background),var(--background))_padding-box,linear-gradient(120deg,var(--fg-blue-500),var(--fg-cyan-500),var(--fg-green-500))_border-box]">
+          <StarsLinear size={14} color="var(--fg-blue-500)" />Forge Agent · {entry.group}
+        </span>
         <PageHeading title={entry.title} hint={entry.summary} />
       </div>
-      <AgentPreview slug={slug} />
+      <div className="relative overflow-hidden rounded-[28px] border border-fg-grey-200 bg-background p-2">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--fg-cyan-500)_18%,transparent),transparent_70%)]" />
+        <div className="relative"><AgentPreview slug={slug} /></div>
+      </div>
       {slug === "chat-input-bar" && <><ChatInputBarDocs /><ChatInputBarCases /></>}
       {note && <Section title="什么时候用"><Note markdown={note} /></Section>}
       {entry.apis.length > 0 && <Section title="API">{entry.apis.map(name => <AgentApi key={name} name={name} />)}</Section>}
@@ -60,6 +69,10 @@ export function AgentEntryView({ slug, note }: { slug: string; note?: string }) 
           </div>
         </Section>
       )}
+      <nav aria-label="上一个和下一个组件" className="grid gap-3 border-t border-fg-grey-200 pt-6 sm:grid-cols-2">
+        {previous ? <Link href={`/agent/${previous.slug}`} className="flex flex-col gap-1 rounded-2xl border border-fg-grey-200 bg-background p-4 hover:bg-fg-grey-50"><span className="text-xs text-fg-grey-500">上一个</span><span className="text-sm font-semibold text-fg-black">{previous.title}</span></Link> : <span />}
+        {next && <Link href={`/agent/${next.slug}`} className="flex flex-col items-end gap-1 rounded-2xl border border-fg-grey-200 bg-background p-4 text-right hover:bg-fg-grey-50"><span className="text-xs text-fg-grey-500">下一个</span><span className="text-sm font-semibold text-fg-black">{next.title}</span></Link>}
+      </nav>
     </div>
   );
 }
