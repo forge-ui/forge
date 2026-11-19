@@ -1,7 +1,7 @@
 "use client";
 
 import { useId } from "react";
-import { chartDomain, chartPoints, bandPath, stackedBounds, linePath } from "../../../internal/chart-geometry";
+import { maxOf, minOf, chartDomain, chartPoints, bandPath, stackedBounds, linePath } from "../../../internal/chart-geometry";
 import { useAnimatedChartValues } from "../../../internal/animated-chart-values";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
@@ -85,8 +85,8 @@ export function SmoothLineChart({
   const animatedBands = bands.map((b, index) => { const offset = seriesLength + bands.slice(0, index).reduce((sum, previous) => sum + previous.lower.length + previous.upper.length, 0); return { ...b, lower: animated.slice(offset, offset + b.lower.length), upper: animated.slice(offset + b.lower.length, offset + b.lower.length + b.upper.length) }; });
   const bounds = stackedBounds(animatedSeries.map(s => s.data));
   const allValues = [...(stacked ? bounds.flatMap(b => [...b.lower, ...b.upper]) : animatedSeries.flatMap(s => s.data)), ...animatedBands.flatMap(b => [...b.lower, ...b.upper])];
-  const autoMax = allValues.length > 0 ? Math.max(...allValues) : 1;
-  const autoMin = allValues.length > 0 ? Math.min(...allValues) : 0;
+  const autoMax = allValues.length > 0 ? maxOf(allValues) : 1;
+  const autoMin = allValues.length > 0 ? minOf(allValues) : 0;
   const [min, max] = chartDomain([autoMin, autoMax], yDomain);
   const rampFallback = rampColors(accent, series.length);
 

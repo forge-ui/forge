@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 0636a8f850e6f9afb2bde34f8e1190e761d957e63717cd37709955ba0357d61f
+Source fingerprint: c52759238b808489e31b8609db4e7f48b699b3caddb8e088f1cade4ebee39eb3
 
 ## Adopted rules / 采用规则
 
@@ -2231,7 +2231,7 @@ Source: skills/forge-skill/references/components/app-layout.md
 | `defaultLanguage` | 否 | `LanguageCode \| undefined` |  |
 | `onLanguageChange` | 否 | `((language: AppLayoutLanguage) => void) \| undefined` |  |
 | `pageHeaderVariant` | 否 | `AppLayoutPageHeaderVariant \| undefined` |  |
-| `askAi` | 否 | `AskAiProps \| undefined` | Optional Ask AI conversation drawer for every header variant. |
+| `askAi` | 否 | `AskAiProps \| undefined` | Optional Forge Agent entry for every header variant. |
 | `onBack` | 否 | `(() => void) \| undefined` |  |
 | `primaryAction` | 否 | `{ label: string; onClick?: () => void; } \| undefined` |  |
 | `secondaryAction` | 否 | `{ label: string; onClick?: () => void; } \| undefined` |  |
@@ -2374,7 +2374,7 @@ export interface AppLayoutProps {
   defaultLanguage?: AppLayoutLanguage;
   onLanguageChange?: (language: AppLayoutLanguage) => void;
   pageHeaderVariant?: AppLayoutPageHeaderVariant;
-  /** Optional Ask AI conversation drawer for every header variant. */
+  /** Optional Forge Agent entry for every header variant. */
   askAi?: AskAiProps;
   onBack?: () => void;
   primaryAction?: { label: string; onClick?: () => void };
@@ -13535,7 +13535,7 @@ Source: skills/forge-skill/references/components/toolbar.md
 |---|---|---|---|
 | `variant` | 否 | `"overview" \| "collection" \| "detail" \| "action" \| undefined` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
-| `askAi` | 否 | `AskAiProps \| undefined` | Optional Ask AI action, with the same configuration as PageHeader. |
+| `askAi` | 否 | `AskAiProps \| undefined` | Optional Forge Agent entry, with the same configuration as PageHeader. |
 | `title` | 是 | `string` |  |
 
 ## PageTitleToolbarAction (type)

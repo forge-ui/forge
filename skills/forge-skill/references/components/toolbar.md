@@ -13,7 +13,7 @@
 |---|---|---|---|
 | `variant` | 否 | `"overview" \| "collection" \| "detail" \| "action" \| undefined` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
-| `askAi` | 否 | `AskAiProps \| undefined` | Optional Ask AI action, with the same configuration as PageHeader. |
+| `askAi` | 否 | `AskAiProps \| undefined` | Optional Forge Agent entry, with the same configuration as PageHeader. |
 | `title` | 是 | `string` |  |
 
 ## PageTitleToolbarAction (type)

@@ -139,7 +139,7 @@ export function Approval({ title, description, requester, risk, fields = [], pre
   );
 }
 
-/* ───────────────── ConfirmCard (Forge Agent / Ask AI harness proposals) ───────────────── */
+/* ───────────────── ConfirmCard (Forge Agent harness proposals) ───────────────── */
 
 export type ConfirmField = ApprovalField;
 

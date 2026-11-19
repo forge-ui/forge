@@ -59,7 +59,7 @@ export type AgentPanelProps = {
 
 /**
  * The Forge Agent panel without a runtime: launcher, side panel, header, conversation and composer.
- * ForgeAgent drives it with the chat runtime; an app with its own runtime (e.g. the Ask AI harness)
+ * ForgeAgent drives it with the chat runtime; an app with its own runtime (e.g. an app-side agent harness)
  * renders its turns inside it.
  */
 export function AgentPanel({ title, open, onOpenChange, launcher = true, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer }: AgentPanelProps) {

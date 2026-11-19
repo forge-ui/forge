@@ -20,6 +20,7 @@ const activeColors = { purple: "bg-fg-violet", blue: "bg-fg-blue", black: "bg-fg
 
 // Figma pattern: active 起头向后展开 5 个页码窗口，左右按需 ellipsis，不强制 first/last
 function getPageNumbers(totalPages: number, currentPage: number, visible = 5): (number | "...")[] {
+  if (totalPages < 1) return [];
   const clamped = Math.min(totalPages, Math.max(1, currentPage));
   const end = Math.min(totalPages, clamped + visible - 1);
 

@@ -126,7 +126,7 @@ export interface AppLayoutProps {
   defaultLanguage?: AppLayoutLanguage;
   onLanguageChange?: (language: AppLayoutLanguage) => void;
   pageHeaderVariant?: AppLayoutPageHeaderVariant;
-  /** Optional Ask AI conversation drawer for every header variant. */
+  /** Optional Forge Agent entry for every header variant. */
   askAi?: AskAiProps;
   onBack?: () => void;
   primaryAction?: { label: string; onClick?: () => void };

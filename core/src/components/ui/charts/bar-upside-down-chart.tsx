@@ -2,6 +2,7 @@ import { cn } from "../../../lib/utils";
 import { ChartTooltip } from "./chart-tooltip";
 import { LABEL_TEXT, LABEL_TEXT_ACTIVE, resolveColor } from "./chart-utils";
 import { accentColors, type AccentColor } from "../accent-utils";
+import { maxOf } from "../../../internal/chart-geometry";
 
 interface BarUpsideDownChartDataItem {
   upperValue: number;
@@ -43,8 +44,8 @@ export function BarUpsideDownChart({
   const theme = accentColors[accent];
   const resolvedUpper = upperColor ?? theme.bg;
   const resolvedLower = lowerColor ?? theme.ramp[2];
-  const maxUpper = Math.max(...data.map((d) => d.upperValue), 1);
-  const maxLower = Math.max(...data.map((d) => d.lowerValue), 1);
+  const maxUpper = maxOf(data.map((d) => d.upperValue), 1);
+  const maxLower = maxOf(data.map((d) => d.lowerValue), 1);
   const maxValue = Math.max(maxUpper, maxLower);
 
   const barClasses =

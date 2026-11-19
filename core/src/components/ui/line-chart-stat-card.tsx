@@ -4,6 +4,7 @@ import { AnimatedNumber } from "../../internal/animated-number";
 import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
 import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
+import { maxOf, minOf } from "../../internal/chart-geometry";
 
 // ============================================================
 // LineChartStatCard — Figma "Line Chart Statistic Card" (node 4299:4765)
@@ -75,8 +76,8 @@ function buildSmoothPath(rawData: number[]): { line: string; area: string } {
   const data = rawData.filter((v): v is number => Number.isFinite(v));
   const n = data.length;
   if (n < 2) return { line: "", area: "" };
-  const min = Math.min(...data);
-  const max = Math.max(...data);
+  const min = minOf(data);
+  const max = maxOf(data);
   const range = max - min;
   const points: [number, number][] = data.map((v, i) => [
     (i / (n - 1)) * VIEWBOX_W,

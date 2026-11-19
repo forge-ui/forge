@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { ArrowRightUpLinear } from "../../../icons";
+import { maxOf } from "../../../internal/chart-geometry";
 
 export type ChartTrend = "up" | "down";
 
@@ -27,8 +28,12 @@ export type GroupedBarTooltipItem = {
 
 const defaultYAxis = ["$1.2k", "$1k", "$800", "$600", "$400", "$200", "0"];
 
+function barPercent(value: number, max: number, scale: number) {
+  return Math.max(8, Number.isFinite(value) ? (value / max) * scale : 0);
+}
+
 function maxValue(points: GroupedBarPoint[]) {
-  return Math.max(...points.flatMap((point) => point.values), 1);
+  return maxOf(points.flatMap((point) => point.values), 1);
 }
 
 function TrendArrow({ trend }: { trend?: ChartTrend }) {
@@ -177,7 +182,7 @@ export function GroupedBarChart({
                 <span
                   key={`${point.label}-${series[seriesIndex]?.label ?? seriesIndex}`}
                   className={`w-3 rounded-full ${series[seriesIndex]?.colorClass ?? "bg-fg-violet"}`}
-                  style={{ height: `${Math.max(8, (value / max) * 100)}%` }}
+                  style={{ height: `${barPercent(value, max, 100)}%` }}
                 />
               ))}
             </div>
@@ -212,7 +217,7 @@ export function DivergingBarChart({
   tooltipLowerValue?: string;
   heightClass?: string;
 }) {
-  const max = Math.max(...data.flatMap((item) => [item.upperValue, item.lowerValue]), 1);
+  const max = maxOf(data.flatMap((item) => [item.upperValue, item.lowerValue]), 1);
 
   return (
     <div className={`relative flex items-center gap-3 overflow-hidden ${heightClass}`}>
@@ -235,8 +240,8 @@ export function DivergingBarChart({
       {data.map((item, index) => (
         <div key={item.label} className="relative z-10 flex h-full flex-1 flex-col items-center justify-center">
           {index === activeIndex && <span className="absolute inset-y-6 w-12 bg-fg-violet-50" />}
-          <span className={`relative z-10 mb-1 w-3 rounded-full ${upperColor}`} style={{ height: `${Math.max(8, (item.upperValue / max) * 42)}%` }} />
-          <span className={`relative z-10 mt-1 w-3 rounded-full ${lowerColor}`} style={{ height: `${Math.max(8, (item.lowerValue / max) * 42)}%` }} />
+          <span className={`relative z-10 mb-1 w-3 rounded-full ${upperColor}`} style={{ height: `${barPercent(item.upperValue, max, 42)}%` }} />
+          <span className={`relative z-10 mt-1 w-3 rounded-full ${lowerColor}`} style={{ height: `${barPercent(item.lowerValue, max, 42)}%` }} />
           <span className={index === activeIndex ? "absolute bottom-0 text-sm font-semibold text-fg-violet" : "absolute bottom-0 text-sm font-medium text-fg-grey-700"}>
             {item.label}
           </span>
