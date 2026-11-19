@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1
+
+- 图表计算最大最小值改为逐个比较，不再把整组数据展开传给 `Math.max`/`Math.min`；数据量很大时（例如 7 万个点的 DivergingBarChart 服务端渲染）不再因调用栈溢出崩溃。柱状图、折线图、看板和洞察类图表统一使用这套计算。
+- 数据里有非有限值（`NaN`、`Infinity`）时，GroupedBarChart 等图表不再让所有柱子高度变成 NaN。
+- Pagination 在 `totalPages=0` 时不渲染页码按钮，之前会出现一个可点击的第 0 页。
+- 组件注释里的「Ask AI」统一改称 Forge Agent。
+- `@forge-ui-official/agent` 0.5.1：解析回答前先把 CRLF 换行统一成 LF，Windows 换行的代码块和 `forge:*` 区块能正常闭合。
+
 ## 0.8.3
 
 - AgentParts、StreamingAnswer、ToolChips、PromptSuggestions 新增 `size="sm"`，给侧边面板等窄栏用：回答正文 14px、间距更紧，工具调用完成后折成一行。默认尺寸不变。
