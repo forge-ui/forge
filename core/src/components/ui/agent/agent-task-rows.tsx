@@ -37,6 +37,7 @@ const STATUS_LABEL: Record<AgentTaskStatus, string> = {
   completed: "Completed",
 };
 
+/** @deprecated Use `AgentTrail` (steps with substeps) or `AgentInbox` for background tasks; AgentTaskRows will be removed in the next major version. */
 export function AgentTaskRows({
   tasks,
   locale = "zh",

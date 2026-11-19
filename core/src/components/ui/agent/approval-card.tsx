@@ -12,7 +12,8 @@ export type ApprovalQuestion = {
 
 /**
  * A short survey the agent asks before it continues: one question at a time, skippable, with a
- * pager and a "答案已提交" status. Rendered by `Question`; prefer Question for new code.
+ * pager and a "答案已提交" status. Rendered by `Question`.
+ * @deprecated Use `Question`; ApprovalCard will be removed in the next major version.
  */
 export function ApprovalCard({
   questions,

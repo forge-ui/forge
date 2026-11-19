@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：41617dcdf7e8be84e576e595aa986088417bfb62，包含本地未提交源码。
+基准 main：ef628df5e8c19ca954b96c44a5b34699669b2eb2。当前 HEAD：3722c13c4e765c369b6a7bf9d9944faaa81590b6，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
@@ -13,7 +13,7 @@
 | TopBar | 3 | 3 | — | — | — |
 | PageTitleToolbar | 13 | 13 | — | — | — |
 | AppLayout | 50 | 50 | — | — | — |
-| AskAi | 29 | 15 | — | header, brand, session, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, searchQuery, onSearchQueryChange, hasConversation, headerLayout, panelMode, onDockedChange, railLabel | — |
+| AskAi | 15 | 15 | — | — | — |
 | ThinkingTrace | 11 | 11 | — | — | — |
 | StreamingAnswer | 16 | 16 | — | — | — |
 | ApprovalCard | 11 | 11 | — | — | — |
@@ -28,47 +28,47 @@
 | AgentFlowchart | 10 | 10 | — | — | — |
 | Conversation | 6 | 6 | — | — | — |
 | AgentMessage | 7 | 7 | — | — | — |
-| MessageActions | 7 | 11 | versions, onEdit, feedbackReasons, onFeedbackReason | — | labels |
+| MessageActions | 11 | 11 | — | — | — |
 | PromptSuggestions | 5 | 5 | — | — | — |
 | ArtifactCard | 9 | 9 | — | — | — |
 | AgentParts | 8 | 8 | — | — | — |
-| ThinkingIndicator | 0 | 7 | label, phases, phaseDuration, startedAt, locale, size, className | — | — |
-| Reasoning | 0 | 13 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, motion, size, className | — | — |
-| ToolCall | 0 | 22 | name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className | — | — |
-| ToolCallGroup | 0 | 9 | children, label, count, status, statusLabel, defaultOpen, locale, motion, className | — | — |
-| Question | 0 | 12 | questions, onSubmit, onCancel, skippable, answers, confirm, disabled, submitLabel, labels, locale, size, className | — | — |
-| ChoiceCard | 0 | 9 | title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale | — | — |
-| Approval | 0 | 19 | title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className | — | — |
-| ConfirmCard | 0 | 10 | title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale | — | — |
-| Citation | 0 | 4 | source, active, onActiveChange, locale | — | — |
-| CitedAnswer | 0 | 9 | text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className | — | — |
-| PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
-| RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
-| AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
-| AgentWelcome | 0 | 6 | title, description, icon, footer, size, className | — | — |
-| AgentPanel | 0 | 17 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer | — | — |
-| AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
-| AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
-| RunProgress | 0 | 2 | steps, locale | — | — |
-| ChangeLedger | 0 | 7 | entries, title, onUndo, locale, motion, size, className | — | — |
-| AgentCheckpoints | 0 | 7 | checkpoints, currentId, onRewind, title, locale, size, className | — | — |
-| AutonomySelector | 0 | 7 | value, onChange, actions, title, locale, size, className | — | — |
-| AgentInbox | 0 | 10 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className | — | — |
-| RunningNow | 0 | 4 | tasks, onOpen, locale, className | — | — |
-| AwaySummary | 0 | 6 | awayFor, items, onDismiss, locale, size, className | — | — |
-| ContextUsage | 0 | 10 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, size, className | — | — |
-| TraceWaterfall | 0 | 9 | spans, now, selectedId, onSelect, title, currency, locale, size, className | — | — |
-| AgentTree | 0 | 6 | root, selectedId, onSelect, currency, locale, className | — | — |
-| AgentLanes | 0 | 8 | lanes, blocks, now, onSelect, title, locale, size, className | — | — |
-| Composer | 0 | 13 | children, onSend, value, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className | — | — |
-| ComposerHeader | 0 | 2 | children, className | — | — |
-| ComposerInput | 0 | 5 | rows, maxRows, sendOnEnter, label, className | — | — |
-| ComposerToolbar | 0 | 2 | children, className | — | — |
-| ComposerAction | 0 | 6 | label, icon, onClick, toggleQuickActions, active, showLabel | — | — |
-| ComposerModelMenu | 0 | 4 | models, model, onModelChange, label | — | — |
-| ComposerSend | 0 | 3 | label, stopLabel, stoppingLabel | — | — |
-| ConversationList | 0 | 12 | items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now, locale, motion, className | — | — |
-| InlineDiff | 0 | 8 | segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className | — | — |
+| ThinkingIndicator | 7 | 7 | — | — | — |
+| Reasoning | 13 | 13 | — | — | — |
+| ToolCall | 22 | 22 | — | — | — |
+| ToolCallGroup | 9 | 9 | — | — | — |
+| Question | 12 | 12 | — | — | — |
+| ChoiceCard | 9 | 9 | — | — | — |
+| Approval | 19 | 19 | — | — | — |
+| ConfirmCard | 10 | 10 | — | — | — |
+| Citation | 4 | 4 | — | — | — |
+| CitedAnswer | 9 | 9 | — | — | — |
+| PromptQueue | 8 | 8 | — | — | — |
+| RunControls | 13 | 13 | — | — | — |
+| AttachmentList | 6 | 6 | — | — | — |
+| AgentWelcome | 6 | 6 | — | — | — |
+| AgentPanel | 17 | 17 | — | — | — |
+| AgentPlan | 13 | 13 | — | — | — |
+| AgentTrail | 6 | 6 | — | — | — |
+| RunProgress | 2 | 2 | — | — | — |
+| ChangeLedger | 7 | 7 | — | — | — |
+| AgentCheckpoints | 7 | 7 | — | — | — |
+| AutonomySelector | 7 | 7 | — | — | — |
+| AgentInbox | 10 | 10 | — | — | — |
+| RunningNow | 4 | 4 | — | — | — |
+| AwaySummary | 6 | 6 | — | — | — |
+| ContextUsage | 10 | 10 | — | — | — |
+| TraceWaterfall | 9 | 9 | — | — | — |
+| AgentTree | 6 | 6 | — | — | — |
+| AgentLanes | 8 | 8 | — | — | — |
+| Composer | 13 | 13 | — | — | — |
+| ComposerHeader | 2 | 2 | — | — | — |
+| ComposerInput | 5 | 5 | — | — | — |
+| ComposerToolbar | 2 | 2 | — | — | — |
+| ComposerAction | 6 | 6 | — | — | — |
+| ComposerModelMenu | 4 | 4 | — | — | — |
+| ComposerSend | 3 | 3 | — | — | — |
+| ConversationList | 12 | 12 | — | — | — |
+| InlineDiff | 8 | 8 | — | — | — |
 
 ## 全部公开组件
 
@@ -229,7 +229,7 @@
 | TypographyWeightSample | 3 | 3 | — | — | — |
 | TypographySizeRow | 3 | 3 | — | — | — |
 | AppLayout | 50 | 50 | — | — | — |
-| AskAi | 29 | 15 | — | header, brand, session, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, searchQuery, onSearchQueryChange, hasConversation, headerLayout, panelMode, onDockedChange, railLabel | — |
+| AskAi | 15 | 15 | — | — | — |
 | ThinkingTrace | 11 | 11 | — | — | — |
 | StreamingAnswer | 16 | 16 | — | — | — |
 | ApprovalCard | 11 | 11 | — | — | — |
@@ -244,47 +244,47 @@
 | AgentFlowchart | 10 | 10 | — | — | — |
 | Conversation | 6 | 6 | — | — | — |
 | AgentMessage | 7 | 7 | — | — | — |
-| MessageActions | 7 | 11 | versions, onEdit, feedbackReasons, onFeedbackReason | — | labels |
+| MessageActions | 11 | 11 | — | — | — |
 | PromptSuggestions | 5 | 5 | — | — | — |
 | ArtifactCard | 9 | 9 | — | — | — |
 | AgentParts | 8 | 8 | — | — | — |
-| ThinkingIndicator | 0 | 7 | label, phases, phaseDuration, startedAt, locale, size, className | — | — |
-| Reasoning | 0 | 13 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, motion, size, className | — | — |
-| ToolCall | 0 | 22 | name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className | — | — |
-| ToolCallGroup | 0 | 9 | children, label, count, status, statusLabel, defaultOpen, locale, motion, className | — | — |
-| Question | 0 | 12 | questions, onSubmit, onCancel, skippable, answers, confirm, disabled, submitLabel, labels, locale, size, className | — | — |
-| ChoiceCard | 0 | 9 | title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale | — | — |
-| Approval | 0 | 19 | title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className | — | — |
-| ConfirmCard | 0 | 10 | title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale | — | — |
-| Citation | 0 | 4 | source, active, onActiveChange, locale | — | — |
-| CitedAnswer | 0 | 9 | text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className | — | — |
-| PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
-| RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
-| AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
-| AgentWelcome | 0 | 6 | title, description, icon, footer, size, className | — | — |
-| AgentPanel | 0 | 17 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer | — | — |
-| AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
-| AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
-| RunProgress | 0 | 2 | steps, locale | — | — |
-| ChangeLedger | 0 | 7 | entries, title, onUndo, locale, motion, size, className | — | — |
-| AgentCheckpoints | 0 | 7 | checkpoints, currentId, onRewind, title, locale, size, className | — | — |
-| AutonomySelector | 0 | 7 | value, onChange, actions, title, locale, size, className | — | — |
-| AgentInbox | 0 | 10 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className | — | — |
-| RunningNow | 0 | 4 | tasks, onOpen, locale, className | — | — |
-| AwaySummary | 0 | 6 | awayFor, items, onDismiss, locale, size, className | — | — |
-| ContextUsage | 0 | 10 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, size, className | — | — |
-| TraceWaterfall | 0 | 9 | spans, now, selectedId, onSelect, title, currency, locale, size, className | — | — |
-| AgentTree | 0 | 6 | root, selectedId, onSelect, currency, locale, className | — | — |
-| AgentLanes | 0 | 8 | lanes, blocks, now, onSelect, title, locale, size, className | — | — |
-| Composer | 0 | 13 | children, onSend, value, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className | — | — |
-| ComposerHeader | 0 | 2 | children, className | — | — |
-| ComposerInput | 0 | 5 | rows, maxRows, sendOnEnter, label, className | — | — |
-| ComposerToolbar | 0 | 2 | children, className | — | — |
-| ComposerAction | 0 | 6 | label, icon, onClick, toggleQuickActions, active, showLabel | — | — |
-| ComposerModelMenu | 0 | 4 | models, model, onModelChange, label | — | — |
-| ComposerSend | 0 | 3 | label, stopLabel, stoppingLabel | — | — |
-| ConversationList | 0 | 12 | items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now, locale, motion, className | — | — |
-| InlineDiff | 0 | 8 | segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className | — | — |
+| ThinkingIndicator | 7 | 7 | — | — | — |
+| Reasoning | 13 | 13 | — | — | — |
+| ToolCall | 22 | 22 | — | — | — |
+| ToolCallGroup | 9 | 9 | — | — | — |
+| Question | 12 | 12 | — | — | — |
+| ChoiceCard | 9 | 9 | — | — | — |
+| Approval | 19 | 19 | — | — | — |
+| ConfirmCard | 10 | 10 | — | — | — |
+| Citation | 4 | 4 | — | — | — |
+| CitedAnswer | 9 | 9 | — | — | — |
+| PromptQueue | 8 | 8 | — | — | — |
+| RunControls | 13 | 13 | — | — | — |
+| AttachmentList | 6 | 6 | — | — | — |
+| AgentWelcome | 6 | 6 | — | — | — |
+| AgentPanel | 17 | 17 | — | — | — |
+| AgentPlan | 13 | 13 | — | — | — |
+| AgentTrail | 6 | 6 | — | — | — |
+| RunProgress | 2 | 2 | — | — | — |
+| ChangeLedger | 7 | 7 | — | — | — |
+| AgentCheckpoints | 7 | 7 | — | — | — |
+| AutonomySelector | 7 | 7 | — | — | — |
+| AgentInbox | 10 | 10 | — | — | — |
+| RunningNow | 4 | 4 | — | — | — |
+| AwaySummary | 6 | 6 | — | — | — |
+| ContextUsage | 10 | 10 | — | — | — |
+| TraceWaterfall | 9 | 9 | — | — | — |
+| AgentTree | 6 | 6 | — | — | — |
+| AgentLanes | 8 | 8 | — | — | — |
+| Composer | 13 | 13 | — | — | — |
+| ComposerHeader | 2 | 2 | — | — | — |
+| ComposerInput | 5 | 5 | — | — | — |
+| ComposerToolbar | 2 | 2 | — | — | — |
+| ComposerAction | 6 | 6 | — | — | — |
+| ComposerModelMenu | 4 | 4 | — | — | — |
+| ComposerSend | 3 | 3 | — | — | — |
+| ConversationList | 12 | 12 | — | — | — |
+| InlineDiff | 8 | 8 | — | — | — |
 | Modal | 12 | 12 | — | — | — |
 | Drawer | 15 | 15 | — | — | — |
 | Accordion | 6 | 6 | — | — | — |
@@ -310,9 +310,9 @@
 
 ## 导出变化
 
-删除：ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH。
+删除：无。
 
-新增：AGENT_PANEL_WIDTH, AgentCheckpoints, AgentCheckpointsProps, AgentInbox, AgentInboxProps, AgentLanes, AgentLanesProps, AgentPanel, AgentPanelProps, AgentPlan, AgentPlanProps, AgentSession, AgentStepStatus, AgentTaskState, AgentTrail, AgentTrailProps, AgentTree, AgentTreeProps, AgentWelcome, AgentWelcomeProps, Approval, ApprovalField, ApprovalProps, ApprovalRisk, ApprovalScope, ApprovalState, AttachmentItem, AttachmentKind, AttachmentList, AttachmentListProps, AutonomyAction, AutonomyLevel, AutonomySelector, AutonomySelectorProps, AwayItem, AwaySummary, AwaySummaryProps, ChangeLedger, ChangeLedgerProps, Checkpoint, ChoiceAnswer, ChoiceCard, ChoiceCardProps, ChoiceOption, Citation, CitationProps, CitationSource, CitedAnswer, CitedAnswerProps, Composer, ComposerAction, ComposerActionProps, ComposerHeader, ComposerInput, ComposerInputProps, ComposerModelMenu, ComposerModelMenuProps, ComposerProps, ComposerSend, ComposerToolbar, ConfirmCard, ConfirmCardProps, ConfirmField, ContextSegment, ContextSegmentKind, ContextUsage, ContextUsageProps, ConversationItem, ConversationList, ConversationListProps, InboxTask, InlineDiff, InlineDiffDecision, InlineDiffProps, InlineDiffSegment, LaneBlock, LedgerEntry, LedgerField, PlanStep, ProgressStep, PromptQueue, PromptQueueProps, Question, QuestionAnswer, QuestionItem, QuestionLabels, QuestionOption, QuestionProps, QueuedPrompt, Reasoning, ReasoningProps, ReasoningSource, ReasoningStatus, ReasoningStep, RunControls, RunControlsProps, RunProgress, RunStatus, RunningNow, RunningNowProps, ThinkingIndicator, ThinkingIndicatorProps, ToolCall, ToolCallGroup, ToolCallGroupProps, ToolCallProps, ToolCallStatus, TraceSpan, TraceWaterfall, TraceWaterfallProps, TrailStep, TrailSubstep, TreeAgent, TreeAgentStatus, resolveInlineDiff。
+新增：无。
 
 ## 智能体与聊天参数明细
 

@@ -32,14 +32,24 @@ export const kitNavGroups: KitNavGroup[] = [
       { slug: "list", label: "列表" },
       { slug: "card", label: "卡片" },
       { slug: "badge", label: "徽章与标签" },
+      { slug: "other-widget", label: "实用组件" },
+    ],
+  },
+  {
+    title: "日程与文件",
+    items: [
       { slug: "calendar", label: "日历与日程" },
       { slug: "map", label: "地图" },
-      { slug: "history", label: "历史记录" },
-      { slug: "comment", label: "评论与评价" },
       { slug: "file-type", label: "文件展示", surfaces: ["components"] },
+      { slug: "history", label: "历史记录" },
+    ],
+  },
+  {
+    title: "协作",
+    items: [
+      { slug: "comment", label: "评论与评价" },
       { slug: "chat", label: "聊天" },
       { slug: "checklist", label: "待办清单" },
-      { slug: "other-widget", label: "实用组件" },
     ],
   },
   {

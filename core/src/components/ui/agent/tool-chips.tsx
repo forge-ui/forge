@@ -48,6 +48,7 @@ const KIND_ICON: Record<ToolChipKind, typeof LightbulbLinear> = {
   run: PlayBoldDuotone,
 };
 
+/** @deprecated Use `ToolCallGroup` with `ToolCall` rows; ToolChips will be removed in the next major version. */
 export function ToolChips({
   items,
   locale = "zh", motion = "auto", state, result, actions,

@@ -17,7 +17,7 @@ import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 import { Button } from "../button";
 import { formatDuration, pick, useElapsed, type AgentLocale } from "./agent-utils";
-import { ToolChips, type ToolChipItem } from "./tool-chips";
+import { ToolCall, ToolCallGroup, type ToolCallStatus } from "./tool-call";
 
 export type AgentStepStatus = "pending" | "running" | "waiting" | "done" | "failed" | "skipped";
 
@@ -295,16 +295,21 @@ export function AgentTrail({ title, steps, collapseAfter = 4, locale = "zh", siz
 
 export type ProgressStep = { id: string; title: string; status: "running" | "waiting-user" | "waiting-external" | "completed" | "cancelled" | "failed"; meta?: string };
 
-const PROGRESS_STATUS: Record<ProgressStep["status"], NonNullable<ToolChipItem["status"]>> = {
-  running: "running", "waiting-user": "pending", "waiting-external": "pending", completed: "complete", cancelled: "cancelled", failed: "error",
+const PROGRESS_STATUS: Record<ProgressStep["status"], ToolCallStatus> = {
+  running: "running", "waiting-user": "pending", "waiting-external": "pending", completed: "success", cancelled: "denied", failed: "error",
 };
 
 /** The steps of a harness run as one folding list; open while something is running or waiting. */
 export function RunProgress({ steps, locale = "zh" }: { steps: ProgressStep[]; locale?: AgentLocale }) {
   if (!steps.length) return null;
-  const items: ToolChipItem[] = steps.map(step => ({ id: step.id, kind: "run", label: step.title, chip: step.meta ?? "", status: PROGRESS_STATUS[step.status] }));
   const active = steps.some(step => step.status === "running" || step.status.startsWith("waiting"));
   // A step that failed and was retried does not fail the run; only an unfinished end does.
   const failed = steps.at(-1)?.status === "failed";
-  return <ToolChips items={items} size="sm" locale={locale} defaultOpen={active || failed} summary={pick(locale, `${steps.length} 个步骤`, `${steps.length} steps`)} state={active ? "running" : failed ? "error" : "success"} />;
+  return (
+    <ToolCallGroup label={pick(locale, `${steps.length} 个步骤`, `${steps.length} steps`)} status={active ? "running" : failed ? "error" : "success"} defaultOpen={active || failed} locale={locale}>
+      {steps.map(step => (
+        <ToolCall key={step.id} variant="row" size="sm" locale={locale} name={step.title} title={<span className="font-normal">{step.title}</span>} summary={step.meta || undefined} status={PROGRESS_STATUS[step.status]} openOnError={false} />
+      ))}
+    </ToolCallGroup>
+  );
 }

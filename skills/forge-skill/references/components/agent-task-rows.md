@@ -45,6 +45,8 @@ export type AgentTaskChild = {
 export type AgentTaskStatus = "running" | "failed" | "completed";
 ```
 
+> 已废弃：新代码用 `AgentTrail`；下个大版本删除。
+
 ## 选型
 
 - 回复里列几项任务及状态 → `AgentTaskRows`

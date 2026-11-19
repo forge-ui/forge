@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { Button, ConfirmationDialog, SelectOption, TextArea, ThinkingTrace } from "@forge-ui-official/core";
+import { Button, ConfirmationDialog, Reasoning, SelectOption, TextArea } from "@forge-ui-official/core";
 import { collaborationStates, transitionCollaboration, type TaskCollaboration } from "./_collaboration";
 import { MarkdownContent } from "./_markdown";
 import { useUnsavedChanges } from "./_use-unsaved-changes";
@@ -39,7 +39,7 @@ export function TaskCollaborationPanel({ task, agents = ["研究助手", "设计
     </div> : value ? <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-3"><span className="text-sm text-fg-black">{value.agent} · {collaborationStates[value.state]}</span><span className="text-xs text-fg-grey-700">{value.attempt ? `第 ${value.attempt} 次执行` : "尚未执行"}</span></div>
       <details><summary className="text-sm text-fg-grey-700 cursor-pointer">执行要求</summary><MarkdownContent value={value.brief} /></details>
-      {value.state === "running" && <ThinkingTrace settled rows={[{ primary: "读取任务与上下文" }, { primary: "整理执行计划" }, { primary: "等待选择演示结果" }]} doneLabel="演示执行过程" />}
+      {value.state === "running" && <Reasoning size="sm" status="done" open doneLabel="演示执行过程" steps={["读取任务与上下文", "整理执行计划", "等待选择演示结果"].map((label, index) => ({ id: String(index), label, status: "done" }))} />}
       {value.state === "waiting" && <p className="text-sm text-fg-black">请补充本次交付的约束或确认执行方向，再继续。</p>}
       {value.result && <div><h3 className="text-sm font-semibold text-fg-black mb-2">{value.state === "ready" ? "上次交付 · 待修改" : "交付结果 · 示例"}</h3><MarkdownContent value={value.result} /></div>}
       {value.feedback && <p className="text-sm text-fg-grey-700">最近反馈：{value.feedback}</p>}

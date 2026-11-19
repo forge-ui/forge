@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       { source: "/cases/agent", destination: "/agent/scenarios", permanent: true },
       { source: "/components/chat-input-bar", destination: "/agent/chat-input-bar", permanent: true },
       { source: "/cases/chat-input-bar", destination: "/agent/chat-input-bar", permanent: true },
+      // Deprecated components point at what replaces them.
+      { source: "/agent/thinking-trace", destination: "/agent/reasoning", permanent: true },
+      { source: "/agent/tool-chips", destination: "/agent/tool-call", permanent: true },
+      { source: "/agent/approval-card", destination: "/agent/question", permanent: true },
+      { source: "/agent/agent-task-rows", destination: "/agent/agent-trail", permanent: true },
     ];
   },
   async headers() {
