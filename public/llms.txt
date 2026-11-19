@@ -38,14 +38,14 @@
 - [列表](https://www.forgeui.org/components/list.md): ListItem、DescriptionItem、ListGroup、Label、ContactItem
 - [卡片](https://www.forgeui.org/components/card.md): LineChartStatCard、StatCard、ProgressStatCard、ImageStatCard、WheelChartStatCard
 - [徽章与标签](https://www.forgeui.org/components/badge.md): NotificationBadge、Label、CircleIcon、ArtisticIcon
+- [实用组件](https://www.forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
 - [日历与日程](https://www.forgeui.org/components/calendar.md): CalendarCard、EventTag、CalendarDayCell、EventCard、SmallCalendar
 - [地图](https://www.forgeui.org/components/map.md): MapCard
+- [文件展示](https://www.forgeui.org/components/file-type.md): FileTypeIcon、FileCard
 - [历史记录](https://www.forgeui.org/components/history.md): HistoryItem、HistoryGrouped
 - [评论与评价](https://www.forgeui.org/components/comment.md): CommentItem、ReviewItem
-- [文件展示](https://www.forgeui.org/components/file-type.md): FileTypeIcon、FileCard
 - [聊天](https://www.forgeui.org/components/chat.md): ChatBubble
 - [待办清单](https://www.forgeui.org/components/checklist.md): Checklist、ChecklistItem
-- [实用组件](https://www.forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
 - [进度](https://www.forgeui.org/components/progress.md): ProgressBar
 - [消息反馈](https://www.forgeui.org/components/feedback.md)
 - [确认弹窗](https://www.forgeui.org/components/modal.md): ConfirmationDialog

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.9.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 3f9d2579402df77f75a58954a502ebfdc6107fc97f657057360411ac0895b16e
+Source fingerprint: 0636a8f850e6f9afb2bde34f8e1190e761d957e63717cd37709955ba0357d61f
 
 ## Adopted rules / 采用规则
 
@@ -2129,6 +2129,8 @@ export type AgentTaskChild = {
 export type AgentTaskStatus = "running" | "failed" | "completed";
 ```
 
+> 已废弃：新代码用 `AgentTrail`；下个大版本删除。
+
 ## 选型
 
 - 回复里列几项任务及状态 → `AgentTaskRows`
@@ -2609,6 +2611,8 @@ export type ApprovalQuestion = {
   options: { id: string; label: string }[];
 };
 ```
+
+> 已废弃：新代码用 `Question`；下个大版本删除。
 
 ## 选型
 
@@ -13254,6 +13258,8 @@ export type ThinkingRow = {
 export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";
 ```
 
+> 已废弃：新代码用 `Reasoning`；下个大版本删除。
+
 ## 选型
 
 - 营销页、空状态里自己逐条播放的思考过程 → `ThinkingTrace`（内部用 Reasoning 渲染）
@@ -13500,6 +13506,8 @@ export type ToolDiffChip = {
   del?: number;
 };
 ```
+
+> 已废弃：新代码用 `ToolCallGroup` + `ToolCall`；下个大版本删除。
 
 ## 选型
 
