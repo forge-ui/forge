@@ -1,8 +1,8 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.9.0
+Package: @forge-ui-official/core@0.9.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: c52759238b808489e31b8609db4e7f48b699b3caddb8e088f1cade4ebee39eb3
+Source fingerprint: 3d6d5c133c65c93bf76d381283d1fdac77d9ba14228735b9da90006de4695890
 
 ## Adopted rules / 采用规则
 
