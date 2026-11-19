@@ -50,7 +50,7 @@ export type ContextUsageProps = {
 
 const KIND_COLOR: Record<ContextSegmentKind, string> = {
   system: "bg-fg-grey-400",
-  tools: "bg-fg-violet-400",
+  tools: "bg-fg-green-400",
   memory: "bg-fg-cyan-400",
   files: "bg-fg-yellow-400",
   chat: "bg-accent",
@@ -169,7 +169,7 @@ export type TraceWaterfallProps = {
   className?: string;
 };
 
-const SPAN_COLOR: Record<TraceSpan["kind"], string> = { llm: "bg-fg-violet-400", tool: "bg-fg-cyan-400", agent: "bg-accent", other: "bg-fg-grey-400" };
+const SPAN_COLOR: Record<TraceSpan["kind"], string> = { llm: "bg-fg-green-400", tool: "bg-fg-cyan-400", agent: "bg-accent", other: "bg-fg-grey-400" };
 const SPAN_LABEL: Record<TraceSpan["kind"], { zh: string; en: string }> = { llm: { zh: "模型", en: "LLM" }, tool: { zh: "工具", en: "Tool" }, agent: { zh: "子智能体", en: "Agent" }, other: { zh: "其他", en: "Other" } };
 
 /** Where the time and money of a run go: every model call, tool call and sub-agent as a bar on one timeline. */

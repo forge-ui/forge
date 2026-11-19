@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { cn } from "@forge-ui-official/core";
+import { cn, TabBar } from "@forge-ui-official/core";
 import { ArrowRightLinear, ChartSquareLinear, LockKeyholeLinear, PenLinear, StarsLinear, WidgetLinear } from "@forge-ui-official/core/icons";
 import { CodeBlock } from "../components/_api-table";
 import { AGENT_DEMOS } from "./_kit/_agent-entries";
-import { AGENT_ENTRIES, AGENT_GROUPS, type AgentEntryMeta } from "./_kit/_agent-meta";
-import { AnalysisScenario } from "./scenarios/_scenarios";
+import { GALLERY_PREVIEWS } from "./_kit/_gallery-previews";
+import { AGENT_ENTRIES, AGENT_GROUPS, AGENT_PURPOSE, type AgentEntryMeta } from "./_kit/_agent-meta";
+import { HeroRun } from "./scenarios/_scenarios";
 
 const SETUP = [
   { title: "装包", code: `pnpm add @forge-ui-official/agent zod` },
@@ -38,44 +39,59 @@ const FEATURES = [
   { icon: WidgetLinear, title: "整套界面组件", body: `${AGENT_ENTRIES.length} 个组件覆盖对话、思考、工具、确认、运行、治理和观测。` },
 ];
 
-// Live previews mount only once they scroll into view; the gallery holds dozens of animated demos.
+const PREVIEW_WIDTH = 600;
+
+// Live previews mount only once they scroll into view, and scale the demo to the card's width.
 function LivePreview({ entry }: { entry: AgentEntryMeta }) {
   const holder = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [scale, setScale] = useState(0);
   useEffect(() => {
     const node = holder.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([item]) => { if (item.isIntersecting) { setVisible(true); observer.disconnect(); } }, { rootMargin: "200px" });
+    const resize = new ResizeObserver(([item]) => setScale(current => (current ? item.contentRect.width / PREVIEW_WIDTH : current)));
+    const observer = new IntersectionObserver(([item]) => {
+      if (!item.isIntersecting) return;
+      setScale(node.clientWidth / PREVIEW_WIDTH);
+      resize.observe(node);
+      observer.disconnect();
+    }, { rootMargin: "200px" });
     observer.observe(node);
-    return () => observer.disconnect();
+    // Background tabs may hold intersection callbacks back; mount anyway after a moment.
+    const fallback = setTimeout(() => setScale(current => current || node.clientWidth / PREVIEW_WIDTH), 1500);
+    return () => { observer.disconnect(); resize.disconnect(); clearTimeout(fallback); };
   }, []);
+  const Custom = GALLERY_PREVIEWS[entry.slug];
   const Demo = AGENT_DEMOS[entry.slug].demo;
   return (
     <div ref={holder} aria-hidden="true" inert className="pointer-events-none relative h-48 overflow-hidden rounded-xl bg-fg-grey-50">
-      {visible && (
-        <div className="absolute left-1/2 top-4 w-[480px] origin-top -translate-x-1/2 scale-[0.62]">
-          <div className="flex justify-center">
+      {scale > 0 && (Custom ? (
+        <div className="flex h-full flex-col justify-center p-4"><Custom /></div>
+      ) : (
+        <>
+          <div className="absolute left-0 top-0 flex origin-top-left justify-center p-6" style={{ width: PREVIEW_WIDTH, transform: `scale(${scale})` }}>
             <Demo />
           </div>
-        </div>
-      )}
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-fg-grey-50 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-fg-grey-50 to-transparent" />
+        </>
+      ))}
     </div>
   );
 }
 
 function EntryCard({ entry }: { entry: AgentEntryMeta }) {
+  const name = entry.title.split(" · ")[0];
+  const purpose = AGENT_PURPOSE[entry.slug];
   return (
-    <Link href={`/agent/${entry.slug}`} className="group flex flex-col gap-3 rounded-2xl border border-fg-grey-200 bg-background p-3 transition hover:-translate-y-0.5 hover:border-fg-grey-300 hover:shadow-[0_8px_24px_-12px_rgba(77,84,100,0.35)]">
+    <div className="group relative flex flex-col gap-3 rounded-2xl border border-fg-grey-200 bg-background p-3 transition hover:-translate-y-0.5 hover:border-fg-grey-300 hover:shadow-[0_8px_24px_-12px_rgba(77,84,100,0.35)]">
       <LivePreview entry={entry} />
       <div className="flex flex-col gap-1 px-1 pb-1">
-        <span className="flex items-center justify-between gap-2 text-sm font-semibold tracking-fg text-fg-black">
-          {entry.title.split(" · ")[0]}
-          <ArrowRightLinear size={14} color="var(--fg-grey-500)" className="opacity-0 transition-opacity group-hover:opacity-100" />
-        </span>
+        <Link href={`/agent/${entry.slug}`} className="flex items-center justify-between gap-2 text-sm font-semibold tracking-fg text-fg-black after:absolute after:inset-0 after:rounded-2xl after:content-['']">
+          <span className="min-w-0">{name}{purpose && <span className="ml-1.5 font-normal text-fg-grey-700">{purpose}</span>}</span>
+          <ArrowRightLinear size={14} color="var(--fg-grey-500)" className="shrink-0 transition-transform group-hover:translate-x-0.5" />
+        </Link>
         <span className="line-clamp-2 text-xs leading-5 text-fg-grey-700">{entry.summary}</span>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -100,18 +116,18 @@ export function AgentHome() {
               <a href="#setup" className={cn(pill, "bg-fg-black text-white hover:bg-fg-grey-900")}>开始接入<ArrowRightLinear size={16} /></a>
               <Link href="/agent/scenarios" className={cn(pill, "border border-fg-grey-200 bg-background text-fg-black hover:bg-fg-grey-50")}>看完整场景</Link>
             </div>
-            <dl className="flex flex-wrap gap-x-8 gap-y-3 pt-2">
-              {[[`${AGENT_ENTRIES.length}`, "个组件"], ["6", "个场景"], ["12", "个 AI 页面组件"], ["1", "套运行时"]].map(([value, label]) => (
-                <div key={label} className="flex items-baseline gap-1.5"><dt className="font-display text-2xl font-semibold text-fg-black">{value}</dt><dd className="text-sm text-fg-grey-700">{label}</dd></div>
-              ))}
-            </dl>
           </div>
-          <div className="relative max-h-[560px] min-w-0 overflow-hidden rounded-3xl border border-fg-grey-200 bg-background/80 p-3 shadow-[0_24px_60px_-30px_rgba(31,64,140,0.35)] backdrop-blur">
-            <AnalysisScenario />
-            <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent" />
+          <div className="min-w-0 rounded-3xl border border-fg-grey-200 bg-fg-grey-50/60 p-2 shadow-[0_24px_60px_-30px_rgba(31,64,140,0.35)]">
+            <HeroRun />
           </div>
         </div>
       </section>
+
+      <dl className="-mt-8 grid grid-cols-2 gap-y-4 border-y border-fg-grey-200 py-5 md:grid-cols-4">
+        {[[`${AGENT_ENTRIES.length}`, "个界面组件"], ["6", "个完整场景"], ["12", "个 AI 页面组件"], ["1", "套运行时，自部署"]].map(([value, label]) => (
+          <div key={label} className="flex flex-col gap-0.5 px-2 md:border-l md:border-fg-grey-200 md:first:border-l-0"><dt className="font-display text-3xl font-semibold text-fg-black">{value}</dt><dd className="text-sm text-fg-grey-700">{label}</dd></div>
+        ))}
+      </dl>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {FEATURES.map(feature => (
@@ -128,18 +144,13 @@ export function AgentHome() {
           <h2 className="font-display text-3xl font-semibold tracking-fg text-fg-black">组件</h2>
           <p className="text-sm leading-6 text-fg-grey-700">{AGENT_GROUPS.find(item => item.title === group)?.description}</p>
         </div>
-        <div role="tablist" aria-label="组件分类" className="flex flex-wrap gap-2">
-          {AGENT_GROUPS.map(item => {
-            const active = item.title === group;
-            const count = AGENT_ENTRIES.filter(entry => entry.group === item.title).length;
-            return (
-              <button key={item.title} type="button" role="tab" aria-selected={active} onClick={() => setGroup(item.title)}
-                className={cn("h-9 rounded-full px-4 text-sm font-semibold tracking-fg transition", active ? "bg-fg-black text-white" : "border border-fg-grey-200 bg-background text-fg-grey-900 hover:bg-fg-grey-50")}>
-                {item.title}<span className={cn("ml-1.5 text-xs", active ? "text-white/70" : "text-fg-grey-500")}>{count}</span>
-              </button>
-            );
-          })}
-        </div>
+        <TabBar
+          ariaLabel="组件分类"
+          color="black"
+          className="max-w-full overflow-x-auto"
+          tabs={AGENT_GROUPS.map(item => ({ label: item.title, active: item.title === group, badge: AGENT_ENTRIES.filter(entry => entry.group === item.title).length }))}
+          onChange={index => setGroup(AGENT_GROUPS[index].title)}
+        />
         <div key={group} className="forge-fade-up grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {entries.map(entry => <EntryCard key={entry.slug} entry={entry} />)}
         </div>

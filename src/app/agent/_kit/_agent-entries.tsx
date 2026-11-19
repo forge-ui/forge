@@ -11,12 +11,12 @@ import {
 import { ApprovalPartsDemo, ArtifactDemo, ConversationDemo, PartsDemo } from "./_conversation-demo";
 import {
   AgentCodeBlockDemo, AgentDiffTableDemo, AgentFlowchartDemo, AgentTaskRowsDemo, ApprovalCardDemo, CommandSearchDemo,
-  ContextCardsDemo, InsightCardsDemo, RecommendationDemo, StreamingAnswerDocDemo, ThinkingTraceDemo, ToolChipsDemo,
+  ContextCardsDemo, InsightCardsDemo, ToolCallStatesDemo, RecommendationDemo, StreamingAnswerDocDemo, ThinkingTraceDemo, ToolChipsDemo,
 } from "./_inline-demos";
 import {
   AgentComposerDemo, AgentPlanDemo, AgentTrailDemo, ApprovalDemo, AutonomyDemo, AwayDemo, CheckpointsDemo, CitedAnswerDemo,
   ComposerPartsBuildDemo, ComposerPartsDemo, ContextDemo, ConversationListDemo, HarnessCardsDemo, InboxDemo, InlineDiffDemo,
-  LedgerDemo, PanelDemo, QuestionDemo, ReasoningDemo, ThinkingIndicatorDemo, ToolCallDemo, TraceDemo, TreeDemo, WelcomeDemo,
+  LedgerDemo, PanelDemo, QuestionDemo, ReasoningDemo, ThinkingIndicatorDemo, TraceDemo, TreeDemo, WelcomeDemo,
 } from "./_kit-demos";
 
 /** The live demo and code for each entry in _agent-meta.ts, keyed by slug. */
@@ -31,7 +31,7 @@ export const AGENT_DEMOS: Record<string, { demo: () => ReactNode; code: string; 
   "artifact-card": { demo: ArtifactDemo, code: CODE_ARTIFACT, minHeight: 260 },
   reasoning: { demo: ReasoningDemo, code: KIT_CODE.reasoning, minHeight: 220 },
   "thinking-indicator": { demo: ThinkingIndicatorDemo, code: KIT_CODE.indicator, minHeight: 120 },
-  "tool-call": { demo: ToolCallDemo, code: KIT_CODE.toolCall, minHeight: 300 },
+  "tool-call": { demo: ToolCallStatesDemo, code: KIT_CODE.toolCall, minHeight: 300 },
   "thinking-trace": { demo: ThinkingTraceDemo, code: CODE_THINKING, minHeight: 200 },
   "tool-chips": { demo: ToolChipsDemo, code: CODE_TOOLS, minHeight: 180 },
   "agent-task-rows": { demo: AgentTaskRowsDemo, code: CODE_TASKS, minHeight: 200 },

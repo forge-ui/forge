@@ -1,18 +1,23 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import {
   AgentCodeBlock,
   AgentDiffTable,
   AgentFlowchart,
   AgentTaskRows,
   ApprovalCard,
+  ButtonGroup,
   CommandSearch,
   ContextCards,
   InsightCards,
   RecommendationCard,
   StreamingAnswer,
   ThinkingTrace,
+  ToolCall,
+  ToolCallGroup,
   ToolChips,
+  type ToolCallStatus,
 } from "@forge-ui-official/core";
 import { StreamingAnswerDemo } from "./_streaming-demo";
 import { CODE_DIFF, CODE_LINES, DIFF_ROWS } from "./_agent-data";
@@ -150,6 +155,65 @@ export function CommandSearchDemo() {
           { id: "reorder", label: "创建采购任务", hint: "/task", group: "流程" },
         ]}
       />
+    </div>
+  );
+}
+
+const TOOL_STATES = ["成功", "运行中", "失败重试", "待确认"] as const;
+
+/** One ToolCall per state; retry and approval play through to their result. */
+export function ToolCallStatesDemo() {
+  const [state, setState] = useState(0);
+  const [run, setRun] = useState<{ status: ToolCallStatus; startedAt?: number; note?: string }>({ status: "success" });
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  const later = (next: typeof run, delay: number) => { clearTimeout(timer.current); timer.current = setTimeout(() => setRun(next), delay); };
+  const pick = (index: number) => {
+    clearTimeout(timer.current);
+    setState(index);
+    const now = Date.now();
+    setRun([{ status: "success" as const }, { status: "running" as const, startedAt: now }, { status: "error" as const }, { status: "awaiting-approval" as const }][index]);
+  };
+  const retry = () => { setRun({ status: "running", startedAt: Date.now() }); later({ status: "success", note: "重试成功" }, 1400); };
+  const approve = () => { setRun({ status: "running", startedAt: Date.now() }); later({ status: "success", note: "已发起退款" }, 1200); };
+  return (
+    <div className="flex w-full max-w-xl flex-col gap-4">
+      <div className="w-fit"><ButtonGroup ariaLabel="调用状态" shape="pill" color="black" items={TOOL_STATES.map(label => ({ label }))} activeIndex={state} onChange={pick} /></div>
+      {state < 3 ? (
+        <ToolCall
+          name="export_excel"
+          summary="11 月退款明细"
+          status={run.status}
+          startedAt={run.startedAt}
+          duration={run.status === "success" ? 2310 : undefined}
+          args={{ month: "2026-11", type: "refund" }}
+          result={run.status === "success" ? { file: "退款明细-11月.xlsx", rows: 128 } : undefined}
+          error={run.status === "error" ? "导出服务超时（30 秒）" : undefined}
+          onRetry={retry}
+        />
+      ) : (
+        <ToolCall
+          name="create_refund"
+          title="发起退款"
+          summary="订单 1024 · ¥860"
+          status={run.status}
+          startedAt={run.startedAt}
+          args={{ orderId: "1024", amount: 860 }}
+          result={run.status === "success" ? { refundId: "RF-3381" } : undefined}
+          approvalReason="金额超过 500 元，需要你确认。"
+          onApprove={approve}
+          onDeny={() => setRun({ status: "denied", note: "已拒绝，没有改动" })}
+        />
+      )}
+      <p role="status" className="text-xs text-fg-grey-700">{run.note ?? (run.status === "error" ? "点“重试”看失败后的恢复" : run.status === "awaiting-approval" ? "点“允许”或“拒绝”看结果" : " ")}</p>
+      <div className="flex flex-col gap-2 border-t border-fg-grey-200 pt-4">
+        <span className="text-xs font-semibold text-fg-grey-700">分组调用：一轮里的多次调用折成一行，点开看每一次</span>
+        <ToolCallGroup count={3} status="error">
+          <ToolCall variant="row" name="search_orders" summary="本月退款" status="success" duration={1240} args={{ month: "2026-11" }} result={{ total: 128 }} />
+          <ToolCall variant="row" name="get_customer" summary="C-20931" status="success" duration={620} args={{ id: "C-20931" }} result={{ name: "华东分公司" }} />
+          <ToolCall variant="row" name="export_excel" summary="退款明细" status="error" error="导出服务超时（30 秒）" onRetry={retry} />
+        </ToolCallGroup>
+      </div>
     </div>
   );
 }

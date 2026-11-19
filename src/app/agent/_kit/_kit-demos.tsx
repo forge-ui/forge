@@ -37,8 +37,6 @@ import {
   RunningNow,
   RunProgress,
   ThinkingIndicator,
-  ToolCall,
-  ToolCallGroup,
   TraceWaterfall,
   type AgentPlanProps,
   type ChatInputBarQuickAction,
@@ -98,30 +96,6 @@ export function ThinkingIndicatorDemo() {
     <div className={`${box} flex flex-col gap-3`}>
       <ThinkingIndicator />
       <ThinkingIndicator phases={["读取页面", "查询订单", "整理回答"]} startedAt={startedAt} />
-    </div>
-  );
-}
-
-export function ToolCallDemo() {
-  const [approval, setApproval] = useState<"awaiting-approval" | "running" | "denied">("awaiting-approval");
-  const [startedAt] = useState(() => Date.now());
-  return (
-    <div className={`${box} flex flex-col gap-3`}>
-      <ToolCallGroup count={3} status="error" defaultOpen>
-        <ToolCall variant="row" name="search_orders" summary="退款 · 本月" status="success" duration={1240} args={{ status: "refunded", month: "2026-11" }} result={{ total: 128, items: "…" }} />
-        <ToolCall variant="row" name="get_customer" summary="C-20931" status="running" startedAt={startedAt} args={{ id: "C-20931" }} />
-        <ToolCall variant="row" name="export_excel" summary="退款明细" status="error" error="导出服务超时（30 秒）" onRetry={() => undefined} />
-      </ToolCallGroup>
-      <ToolCall
-        name="create_refund"
-        title="发起退款"
-        summary="订单 1024 · ¥860"
-        status={approval}
-        args={{ orderId: "1024", amount: 860 }}
-        approvalReason="金额超过 500 元，需要你确认。"
-        onApprove={() => setApproval("running")}
-        onDeny={() => setApproval("denied")}
-      />
     </div>
   );
 }

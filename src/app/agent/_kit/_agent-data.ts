@@ -223,11 +223,17 @@ export const KIT_CODE = {
   reasoning: `<Reasoning status={thinking ? "thinking" : "done"} startedAt={startedAt} duration={duration}
   steps={[{ id: "1", label: "读取本月退款单", sources: [{ title: "退款单列表", domain: "订单中心" }] }]} />`,
   indicator: `<ThinkingIndicator phases={["读取页面", "查询订单", "整理回答"]} startedAt={startedAt} />`,
-  toolCall: `<ToolCallGroup count={3} status="error">
-  <ToolCall variant="row" name="search_orders" status="success" duration={1240} args={args} result={result} />
+  toolCall: `// 一次调用：状态由宿主驱动，失败可重试，需要确认时就地允许或拒绝
+<ToolCall name="export_excel" summary="11 月退款明细" status={status} startedAt={startedAt}
+  args={args} result={result} error={error} onRetry={retry} />
+<ToolCall name="create_refund" title="发起退款" status="awaiting-approval" approvalReason="金额超过 500 元"
+  onApprove={allow} onDeny={deny} />
+
+// 一轮里的多次调用折成一行
+<ToolCallGroup count={3} status="error">
+  <ToolCall variant="row" name="search_orders" status="success" duration={1240} />
   <ToolCall variant="row" name="export_excel" status="error" error="导出服务超时" onRetry={retry} />
-</ToolCallGroup>
-<ToolCall name="create_refund" title="发起退款" status="awaiting-approval" approvalReason="金额超过 500 元" onApprove={allow} onDeny={deny} />`,
+</ToolCallGroup>`,
   question: `<Question
   questions={[
     { id: "range", title: "统计哪段时间？", options: [{ id: "month", label: "本月", recommended: true }] },

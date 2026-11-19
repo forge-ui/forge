@@ -37,7 +37,7 @@ After a few weeks, adjust the space around the way people use it. Let the readin
 ];
 
 const PHASE_LABELS = {
-  idle: "准备就绪", waiting: "等待首段", streaming: "正在生成",
+  idle: "完整效果预览", waiting: "等待首段", streaming: "正在生成",
   settling: "正在呈现", complete: "已完成", stopped: "已停止",
 };
 
@@ -77,7 +77,7 @@ export function StreamingAnswerDemo() {
 
       <div className="min-h-48 border-t border-fg-grey-200 pt-5" aria-label="流式回答预览">
         {stream.phase === "idle" ? (
-          <p className="text-sm leading-7 text-fg-grey-700">点击播放，查看中英文 Markdown 随接收进度逐步淡入。</p>
+          <StreamingAnswer text={example.text} status="complete" format="markdown" duration={0} />
         ) : (
           <>
             {stream.phase === "waiting" && <p className="text-sm leading-7 text-fg-grey-700">正在准备回答…</p>}

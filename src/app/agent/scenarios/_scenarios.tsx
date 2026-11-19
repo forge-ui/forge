@@ -313,3 +313,54 @@ export function WritingScenario() {
     </Frame>
   );
 }
+
+/* Overview hero ── 查询订单 → 生成分析 → 确认操作，三秒跑完，停在有结果的一帧 */
+
+const HERO_DELAYS = [500, 800, 800, 700];
+
+export function HeroRun() {
+  const { stage, replay } = useScript(HERO_DELAYS, 4);
+  const [decision, setDecision] = useState<"pending" | "approved" | "denied">("pending");
+  return (
+    <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
+      <div className="flex items-center justify-between gap-3 border-b border-fg-grey-100 px-4 py-2.5">
+        <span className="flex items-baseline gap-2 text-sm font-semibold text-fg-black">Forge Agent<span className="text-xs font-normal text-fg-grey-500">示例运行</span></span>
+        <Button size="sm" variant="tertiary" color="grey" iconLeft={<RefreshLinear size={14} />} onClick={() => { setDecision("pending"); replay(); }}>重放</Button>
+      </div>
+      <div className="flex min-h-[520px] flex-col gap-4 p-4">
+        <AgentMessage role="user">华东区这周退款为什么多了？能处理的先处理掉</AgentMessage>
+        <AgentMessage role="assistant">
+          {stage === 0 && <ThinkingIndicator phases={["理解问题", "查询订单"]} size="sm" />}
+          {stage >= 1 && (
+            <ToolCallGroup count={2} status={stage < 3 ? "running" : "success"}>
+              <ToolCall variant="row" size="sm" name="search_orders" summary="华东 · 本周退款" status={stage < 2 ? "running" : "success"} duration={stage >= 2 ? 980 : undefined} />
+              <ToolCall variant="row" size="sm" name="group_by_reason" summary="按原因" status={stage < 3 ? "running" : "success"} duration={stage >= 3 ? 640 : undefined} />
+            </ToolCallGroup>
+          )}
+          {stage >= 3 && (
+            <div className="forge-fade-up flex flex-col gap-3">
+              <div className="grid grid-cols-2 gap-2">
+                <StatCard title="本周退款" value="46 笔" trend="+31%" trendDirection="up" size="sm" density="compact" width="full" />
+                <StatCard title="尺码不符" value="22 笔" trend="+12" trendDirection="up" size="sm" density="compact" width="full" />
+              </div>
+              <CitedAnswer size="sm" defaultSourcesOpen={false} text="多出来的主要是两款外套的尺码问题[1]。其中 6 笔已签收超过 7 天、金额都在 300 元以内，可以直接按规则退款[2]。" sources={[{ id: 1, title: "华东退款单", domain: "订单中心" }, { id: 2, title: "售后退款规则", domain: "运营手册" }]} />
+            </div>
+          )}
+          {stage >= 4 && (
+            <Approval
+              size="sm"
+              requester="客服助手"
+              title="给 6 笔订单原路退款，共 ¥1,284"
+              risk="medium"
+              fields={[{ label: "订单", after: "6 笔 · 华东" }, { label: "退款方式", after: "原路退回" }]}
+              state={decision}
+              result={decision === "approved" ? "模拟：已创建 6 张退款单" : "模拟：已取消，没有改动"}
+              onApprove={() => setDecision("approved")}
+              onDeny={() => setDecision("denied")}
+            />
+          )}
+        </AgentMessage>
+      </div>
+    </div>
+  );
+}

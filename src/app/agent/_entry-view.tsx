@@ -50,10 +50,7 @@ export function AgentEntryView({ slug, note }: { slug: string; note?: string }) 
         </span>
         <PageHeading title={entry.title} hint={entry.summary} />
       </div>
-      <div className="relative overflow-hidden rounded-[28px] border border-fg-grey-200 bg-background p-2">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--fg-cyan-500)_18%,transparent),transparent_70%)]" />
-        <div className="relative"><AgentPreview slug={slug} /></div>
-      </div>
+      <Section title="演示"><AgentPreview slug={slug} /></Section>
       {slug === "chat-input-bar" && <><ChatInputBarDocs /><ChatInputBarCases /></>}
       {note && <Section title="什么时候用"><Note markdown={note} /></Section>}
       {entry.apis.length > 0 && <Section title="API">{entry.apis.map(name => <AgentApi key={name} name={name} />)}</Section>}
