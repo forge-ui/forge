@@ -9,7 +9,8 @@ import { AGENT_ENTRIES, AGENT_GROUPS } from "./_kit/_agent-meta";
 
 type NavItem = { href: string; label: string; external?: boolean };
 
-const GROUPS: { title: string; items: NavItem[] }[] = [
+/** Also feeds the site header's 目录 menu on small screens. */
+export const agentNavGroups: { title: string; items: NavItem[] }[] = [
   {
     title: "开始",
     items: [
@@ -46,7 +47,7 @@ export function AgentNav() {
   return (
     <aside ref={aside} className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto lg:block">
       <nav aria-label="Forge Agent" className="flex flex-col gap-6 px-4 py-8">
-        {GROUPS.map(group => (
+        {agentNavGroups.map(group => (
           <div key={group.title} className="flex flex-col gap-0.5">
             <p className="mb-1.5 px-3 text-xs font-semibold tracking-fg text-fg-grey-500">{group.title}</p>
             {group.items.map(item => {

@@ -178,7 +178,7 @@ export function ToolCallStatesDemo() {
   const approve = () => { setRun({ status: "running", startedAt: Date.now() }); later({ status: "success", note: "已发起退款" }, 1200); };
   return (
     <div className="flex w-full max-w-xl flex-col gap-4">
-      <div className="w-fit"><ButtonGroup ariaLabel="调用状态" shape="pill" color="black" items={TOOL_STATES.map(label => ({ label }))} activeIndex={state} onChange={pick} /></div>
+      <div className="max-w-full overflow-x-auto"><div className="w-fit"><ButtonGroup ariaLabel="调用状态" shape="pill" color="black" items={TOOL_STATES.map(label => ({ label }))} activeIndex={state} onChange={pick} /></div></div>
       {state < 3 ? (
         <ToolCall
           name="export_excel"
