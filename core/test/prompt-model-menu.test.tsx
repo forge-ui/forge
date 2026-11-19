@@ -3,7 +3,6 @@ import { JSDOM } from "jsdom";
 import { act, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ChatInputBar } from "../src/components/ui/chat-input-bar";
-import { AskAi } from "../src/components/ui/ask-ai";
 import { modelMenuPosition } from "../src/internal/prompt-model-menu";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -104,21 +103,6 @@ test("position prefers above/right, flips below, clamps viewport and constrains 
   assert.equal(zoom.left, 108); assert.equal(zoom.maxHeight, 186);
 });
 
-
-test("real AskAi fullscreen lets menu consume first Escape before exiting host", async () => {
-  const env = setup(); let exited = 0;
-  try {
-    await act(async () => env.root.render(<AskAi fullscreen onFullscreenChange={() => exited++} onSend={() => ""} composer={<ChatInputBar multiline sendOnEnter sendLabel="Send" sourcesLabel="Sources" commandsLabel="Commands" attachLabel="Attach" models={models} />} />));
-    const trigger = document.querySelector<HTMLButtonElement>('[aria-label^="Model:"]')!;
-    await click(trigger);
-    await key(document.activeElement!, "Escape");
-    assert.equal(exited, 0);
-    assert.equal(document.querySelector('[role="menu"]'), null);
-    assert.equal(document.activeElement, trigger);
-    await key(trigger, "Escape");
-    assert.equal(exited, 1);
-  } finally { await env.cleanup(); }
-});
 
 test("source and command groups switch language in the shared plus menu", async () => {
   const env = setup();

@@ -1,7 +1,7 @@
 [
   {
     "id": "001",
-    "name": "液态玻璃按钮",
+    "name": "玻璃效果按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -16,7 +16,7 @@
   },
   {
     "id": "002",
-    "name": "磁吸箭头按钮",
+    "name": "箭头跟随按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -71,7 +71,7 @@
   },
   {
     "id": "005",
-    "name": "纸飞机发送",
+    "name": "发送按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -91,7 +91,7 @@
   },
   {
     "id": "006",
-    "name": "墨水涟漪按钮",
+    "name": "点击涟漪按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -106,7 +106,7 @@
   },
   {
     "id": "007",
-    "name": "播放暂停变形",
+    "name": "播放与暂停",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -146,7 +146,7 @@
   },
   {
     "id": "009",
-    "name": "文字滚动按钮",
+    "name": "文字切换按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -216,7 +216,7 @@
   },
   {
     "id": "012",
-    "name": "书签丝带",
+    "name": "书签按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -336,7 +336,7 @@
   },
   {
     "id": "021",
-    "name": "日夜切换",
+    "name": "明暗切换",
     "family": "input-field",
     "mode": "enhance",
     "targets": [
@@ -351,7 +351,7 @@
   },
   {
     "id": "022",
-    "name": "点赞心形绽放",
+    "name": "点赞按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -761,7 +761,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent#commandsearch",
+    "declaredHref": "/agent/api#commandsearch",
     "accepted": true
   },
   {
@@ -801,7 +801,7 @@
   },
   {
     "id": "049",
-    "name": "层叠内容卡",
+    "name": "叠放内容卡片",
     "family": "card",
     "mode": "enhance",
     "targets": [
@@ -826,7 +826,7 @@
   },
   {
     "id": "050",
-    "name": "光照倾斜卡",
+    "name": "指针光照卡片",
     "family": "card",
     "mode": "enhance",
     "targets": [
@@ -1261,7 +1261,7 @@
   },
   {
     "id": "081",
-    "name": "环形完成反馈",
+    "name": "完成状态按钮",
     "family": "button-link",
     "mode": "enhance",
     "targets": [
@@ -1296,7 +1296,7 @@
   },
   {
     "id": "084",
-    "name": "语音响应圆点",
+    "name": "语音输入指示",
     "family": "chat",
     "mode": "enhance",
     "targets": [
@@ -1326,7 +1326,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1376,7 +1376,7 @@
   },
   {
     "id": "089",
-    "name": "404 纠错",
+    "name": "地址纠错",
     "family": "feedback",
     "mode": "compose",
     "targets": [
@@ -1501,7 +1501,7 @@
   },
   {
     "id": "095",
-    "name": "形态切换柱图",
+    "name": "柱形切换",
     "family": "chart",
     "mode": "enhance",
     "targets": [
@@ -1526,7 +1526,7 @@
   },
   {
     "id": "096",
-    "name": "滑动股票折线",
+    "name": "可拖动折线",
     "family": "chart",
     "mode": "enhance",
     "targets": [
@@ -1551,7 +1551,7 @@
   },
   {
     "id": "097",
-    "name": "重排环图",
+    "name": "环形图重排",
     "family": "chart",
     "mode": "enhance",
     "targets": [
@@ -1571,7 +1571,7 @@
   },
   {
     "id": "098",
-    "name": "实时数字滚动",
+    "name": "数字更新卡片",
     "family": "card",
     "mode": "enhance",
     "targets": [
@@ -1591,7 +1591,7 @@
   },
   {
     "id": "099",
-    "name": "活动环",
+    "name": "活动进度环",
     "family": "chart",
     "mode": "enhance",
     "targets": [
@@ -1671,7 +1671,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1691,7 +1691,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1716,7 +1716,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1731,7 +1731,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1921,7 +1921,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -1951,7 +1951,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -2016,7 +2016,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -2066,7 +2066,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {
@@ -2096,7 +2096,7 @@
         "publicExport": true
       }
     ],
-    "declaredHref": "/components/agent",
+    "declaredHref": "/agent/api",
     "accepted": false
   },
   {

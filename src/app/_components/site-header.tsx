@@ -11,6 +11,7 @@ import { LanguageSwitch } from "./language-switch";
 const tabs = [
   { href: "/docs", label: "文档" },
   { href: "/components", label: "组件", also: "/cases" },
+  { href: "/agent", label: "Forge Agent" },
   { href: "/blocks", label: "页面组件" },
   { href: "/templates", label: "模板" },
   { href: "/articles", label: "文章" },

@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
       { source: `/${section}/:path*.md`, destination: `/md/${section}/:path*` },
     ]);
   },
+  // Forge Agent moved out of the component library into /agent.
+  async redirects() {
+    return [
+      { source: "/components/agent", destination: "/agent/api", permanent: true },
+      { source: "/cases/agent", destination: "/agent/scenarios", permanent: true },
+      { source: "/components/chat-input-bar", destination: "/agent/chat-input-bar", permanent: true },
+      { source: "/cases/chat-input-bar", destination: "/agent/chat-input-bar", permanent: true },
+    ];
+  },
   async headers() {
     return markdownSections.flatMap((section) => [
       { source: `/${section}`, headers: [{ key: "Link", value: `</${section}.md>; rel="alternate"; type="text/markdown", </llms.txt>; rel="describedby"` }] },

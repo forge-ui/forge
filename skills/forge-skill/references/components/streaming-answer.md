@@ -1,6 +1,6 @@
 # streaming-answer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.8.3**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.9.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StreamingAnswer (value)
@@ -72,3 +72,10 @@ export type StreamingSource = {
   href?: string;
 };
 ```
+
+## 选型
+
+- 模型回答正文（Markdown、逐段淡入、来源、追问）→ `StreamingAnswer`，AI SDK 消息用 `AgentParts`
+
+不要用：
+- 每句要回到出处 → `CitedAnswer`

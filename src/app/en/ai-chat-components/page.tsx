@@ -78,7 +78,7 @@ export default function AiChatComponentsPage() {
           ))}
         </ul>
         <p>
-          Install with <code className="font-mono text-sm">npm install @forge-ui-official/core</code>. Labels default to Chinese; pass <code className="font-mono text-sm">locale=&quot;en&quot;</code> for English. Live examples of the full agent kit — thinking traces, approvals, task rows, diff review — are on the <Link href="/components/agent" hrefLang="zh-CN" className="text-fg-blue underline underline-offset-4">agent components page</Link> (Chinese), and a complete <Link href="/templates/agent" className="text-fg-blue underline underline-offset-4">agent workspace template</Link> shows them together.
+          Install with <code className="font-mono text-sm">npm install @forge-ui-official/core</code>. Labels default to Chinese; pass <code className="font-mono text-sm">locale=&quot;en&quot;</code> for English. Live examples of the full agent kit — thinking traces, approvals, task rows, diff review — are on the <Link href="/agent" hrefLang="zh-CN" className="text-fg-blue underline underline-offset-4">agent components page</Link> (Chinese), and a complete <Link href="/templates/agent" className="text-fg-blue underline underline-offset-4">agent workspace template</Link> shows them together.
         </p>
       </Block>
 

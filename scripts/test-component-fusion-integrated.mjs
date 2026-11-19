@@ -41,7 +41,7 @@ test("99 planned interactions have one implementation, valid family routes, and 
   assert.equal(ids.includes("186"), false);
   for (const item of examples.fusionItems) {
     const route = examples.officialHref(item).split("#")[0];
-    assert.equal(route, `/cases/${examples.officialCategory(item)}`, `${item.id}: example uses its family case page`);
+    assert.equal(route, examples.officialCategory(item) === "agent" ? "/agent/scenarios" : `/cases/${examples.officialCategory(item)}`, `${item.id}: example uses its family case page`);
     assert.equal(examples.officialHref(item).split("#")[1], `interaction-${item.id === "F03" ? "178" : item.id}`, `${item.id}: stable example anchor`);
     assert.notEqual(examples.officialCategory(item), "motion");
     assert.ok(existsSync(resolve(root, `src/app${route}/page.tsx`)), `${item.id}: ${route}`);

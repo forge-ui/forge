@@ -4,15 +4,14 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, generateId, type UIMessage } from "ai";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
-import { AgentMessage, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
+import { AgentMessage, AgentPanel, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
 import { splitBlocks, proseOf } from "./catalog/blocks";
-import { Command, renderCatalog, sourcesFrom } from "./catalog/render";
+import { Command, PendingBlock, renderCatalog, sourcesFrom } from "./catalog/render";
 import { uiToolNames, type UiToolName } from "./catalog/schema";
 import { endRun, endRunSoon, holdRun, setStopHandler } from "./operator/overlay";
 import { findByName, readPage } from "./operator/page";
 import { findPlaybook, forgetRun, loadRuns, recordRun, rememberRun, type Playbook } from "./operator/replay";
 import { cancelPageActions, pageTools, type OperateMode } from "./operator/tools";
-import { AgentPanel } from "./panel";
 import type { AgentTool } from "./tool";
 
 export { defineTool, type AgentTool } from "./tool";
@@ -294,6 +293,7 @@ export function ForgeAgent({ endpoint, title = "AI 助手", greeting = "有什�
         // Pictures only come through cards, where they are checked against tool results.
         if (segment.kind === "text") return { type: "text", text: segment.text.replace(/!\[[^\]]*\]\([^)]*\)/g, ""), state: original.state };
         if (segment.kind === "block") return { type: `tool-${segment.name}`, toolCallId: id, state: "output-available", input: segment.input };
+        if (segment.kind === "pending") return { type: "tool-forge_pending", toolCallId: id, state: "output-available", input: { name: segment.name } };
         if (segment.kind === "command") return { type: "tool-forge_command", toolCallId: id, state: "output-available", input: { code: segment.code } };
         return { type: "tool-show_code", toolCallId: id, state: "output-available", input: { filename: segment.language || "代码", code: segment.code } };
       });
@@ -320,6 +320,7 @@ export function ForgeAgent({ endpoint, title = "AI 助手", greeting = "有什�
     return {
       ...Object.fromEntries(uiToolNames.map(name => [name, (part: { input?: unknown }) => renderCatalog(name as UiToolName, part.input, ask, sources, answer)])),
       forge_command: (part: { input?: unknown }) => <Command text={(part.input as { code: string }).code} />,
+      forge_pending: (part: { input?: unknown }) => <PendingBlock name={(part.input as { name?: UiToolName }).name} />,
     };
   };
 

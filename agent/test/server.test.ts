@@ -47,6 +47,18 @@ test("streams the answer, offers browser tools, and asks for components inside t
   assert.match(JSON.stringify(call.prompt), /\/docs/);
 });
 
+test("ui can limit the catalog to a few components", async () => {
+  const model = mockModel();
+  await (await createAgentHandler({ model, instructions: "x", ui: ["show_table", "show_confirm"] })(post({ messages: [userMessage] }))).text();
+  const prompt = JSON.stringify(model.doStreamCalls[0].prompt);
+  assert.match(prompt, /forge:table/);
+  assert.match(prompt, /forge:confirm/);
+  assert.doesNotMatch(prompt, /forge:cards/);
+  const plain = mockModel();
+  await (await createAgentHandler({ model: plain, instructions: "x", ui: false })(post({ messages: [userMessage] }))).text();
+  assert.doesNotMatch(JSON.stringify(plain.doStreamCalls[0].prompt), /forge:/);
+});
+
 test("browser tools cannot shadow server or catalog tool names", async () => {
   const model = mockModel();
   const fake = (name: string) => ({ name, description: "fake", inputSchema: { type: "object" } });

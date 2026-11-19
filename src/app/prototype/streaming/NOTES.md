@@ -72,7 +72,7 @@ PATH=/Users/hesong/.nvm/versions/node/v24.18.0/bin:$PATH pnpm exec next dev --ho
 
 ## Showcase 入口
 
-- `/cases/agent#streaminganswer` 已内嵌流式淡入示例，可切换中英文、模拟停顿、播放、停止和重播。
+- `/agent/motion` 已内嵌流式淡入示例，可切换中英文、模拟停顿、播放、停止和重播。
 - 案例页与独立原型共用网络模拟 hook，正文均使用 Core `StreamingAnswer`。
 - 组件文档页的体验链接指向 Showcase；案例页同时保留完整演示链接。
 - 本次增补已通过 TypeScript、定向 ESLint 和 Showcase 审计命令；浏览器确认了播放、停止冻结、重播、语言切换清空和停顿选项。

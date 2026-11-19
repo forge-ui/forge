@@ -1,13 +1,13 @@
 {
   "package": "@forge-ui-official/core",
-  "version": "0.8.3",
+  "version": "0.9.0",
   "source": "core/src/index.ts",
-  "revision": "4b3850c3a66ba6a9ef2b94eb508aa61d3598eca5",
+  "revision": "41617dcdf7e8be84e576e595aa986088417bfb62",
   "dirty": false,
-  "exportFingerprint": "54bb86ee9772d0de6bdadc908de61f3ef89cb8c7",
-  "generatedAt": "2026-11-14T19:35:18+08:00",
+  "exportFingerprint": "742b71993790e5773336344737903bb669174c55",
+  "generatedAt": "2026-11-19T14:42:50+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 509,
+  "componentCount": 622,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -292,6 +292,78 @@
       "kind": "type",
       "source": "core/src/components/ui/add-member.tsx",
       "module": "add-member",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AGENT_PANEL_WIDTH",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-panel.tsx",
+      "module": "agent/agent-panel",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "400",
+      "props": []
+    },
+    {
+      "name": "AgentCheckpoints",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ checkpoints, currentId, onRewind, title, locale, size, className }: AgentCheckpointsProps) => JSX.Element",
+      "props": [
+        {
+          "name": "checkpoints",
+          "optional": false,
+          "type": "Checkpoint[]",
+          "description": ""
+        },
+        {
+          "name": "currentId",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRewind",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": "Go back to this point; the next attempt branches from it."
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentCheckpointsProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -636,6 +708,154 @@
       "props": []
     },
     {
+      "name": "AgentInbox",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className }: AgentInboxProps) => JSX.Element",
+      "props": [
+        {
+          "name": "tasks",
+          "optional": false,
+          "type": "InboxTask[]",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onApprove",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onReject",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRetry",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpen",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentInboxProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentLanes",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ lanes, blocks, now, onSelect, title, locale, size, className }: AgentLanesProps) => JSX.Element",
+      "props": [
+        {
+          "name": "lanes",
+          "optional": false,
+          "type": "{ id: string; name: string; icon?: ReactNode; }[]",
+          "description": ""
+        },
+        {
+          "name": "blocks",
+          "optional": false,
+          "type": "LaneBlock[]",
+          "description": ""
+        },
+        {
+          "name": "now",
+          "optional": false,
+          "type": "number",
+          "description": "Milliseconds since the start of the window."
+        },
+        {
+          "name": "onSelect",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentLanesProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "AgentMessage",
       "kind": "value",
       "source": "core/src/components/ui/agent/agent-conversation.tsx",
@@ -716,6 +936,128 @@
       "props": []
     },
     {
+      "name": "AgentPanel",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-panel.tsx",
+      "module": "agent/agent-panel",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer }: AgentPanelProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "open",
+          "optional": false,
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": false,
+          "type": "(open: boolean) => void",
+          "description": ""
+        },
+        {
+          "name": "launcher",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "The floating launcher; turn it off when the app opens the panel from its own button."
+        },
+        {
+          "name": "launcherLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "empty",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Shown above the composer when there is nothing in the conversation yet."
+        },
+        {
+          "name": "followKey",
+          "optional": true,
+          "type": "unknown",
+          "description": "Changes when content arrives, to keep following the latest reply."
+        },
+        {
+          "name": "children",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onNewChat",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "sessions",
+          "optional": true,
+          "type": "ConversationItem[] | undefined",
+          "description": "Earlier conversations, listed under the history button."
+        },
+        {
+          "name": "currentSessionId",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelectSession",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRenameSession",
+          "optional": true,
+          "type": "((id: string, title: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDeleteSession",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPinSession",
+          "optional": true,
+          "type": "((id: string, pinned: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "notice",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Above the composer: errors, attachments, notices."
+        },
+        {
+          "name": "composer",
+          "optional": false,
+          "type": "ReactNode | { locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
+          "description": "ChatInputBar props, or your own composer. Quick-action cards (`quickActions`) open on an empty chat and fold once it has messages."
+        }
+      ]
+    },
+    {
+      "name": "AgentPanelProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-panel.tsx",
+      "module": "agent/agent-panel",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "AgentParts",
       "kind": "value",
       "source": "core/src/components/ui/agent/agent-parts.tsx",
@@ -784,6 +1126,122 @@
       "props": []
     },
     {
+      "name": "AgentPlan",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className }: AgentPlanProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "steps",
+          "optional": false,
+          "type": "PlanStep[]",
+          "description": ""
+        },
+        {
+          "name": "mode",
+          "optional": true,
+          "type": "\"done\" | \"running\" | \"review\" | undefined",
+          "description": "review: the user can edit before it runs; running/done: progress only."
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((steps: PlanStep[]) => void) | undefined",
+          "description": "Edits in review mode: rename, reorder, remove and add steps. Without it the plan is read-only."
+        },
+        {
+          "name": "onApprove",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCancel",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRetryFrom",
+          "optional": true,
+          "type": "((stepId: string) => void) | undefined",
+          "description": "Re-run from a failed step."
+        },
+        {
+          "name": "approveLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentPlanProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentSession",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-panel.tsx",
+      "module": "agent/agent-panel",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentStepStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "AgentTask",
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-task-rows.tsx",
@@ -843,6 +1301,15 @@
       ]
     },
     {
+      "name": "AgentTaskState",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "AgentTaskStatus",
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-task-rows.tsx",
@@ -883,6 +1350,174 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-parts.tsx",
       "module": "agent/agent-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentTrail",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, steps, collapseAfter, locale, size, className }: AgentTrailProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "steps",
+          "optional": false,
+          "type": "TrailStep[]",
+          "description": ""
+        },
+        {
+          "name": "collapseAfter",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Folds finished steps into one line when there are more than this."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentTrailProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentTree",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ root, selectedId, onSelect, currency, locale, className }: AgentTreeProps) => JSX.Element",
+      "props": [
+        {
+          "name": "root",
+          "optional": false,
+          "type": "TreeAgent",
+          "description": ""
+        },
+        {
+          "name": "selectedId",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "currency",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentTreeProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AgentWelcome",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-welcome.tsx",
+      "module": "agent/agent-welcome",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, description, icon, footer, size, className }: AgentWelcomeProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "footer",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Anything under the greeting, e.g. recent conversations. Starter tasks belong in ChatInputBar's quickActions."
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AgentWelcomeProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-welcome.tsx",
+      "module": "agent/agent-welcome",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -1308,13 +1943,138 @@
       "props": []
     },
     {
+      "name": "Approval",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className }: ApprovalProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": "What will happen, e.g. \"把张三的角色改为管理员\"."
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Why the agent wants it, or what else it affects."
+        },
+        {
+          "name": "requester",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Who asks, e.g. the agent's name."
+        },
+        {
+          "name": "risk",
+          "optional": true,
+          "type": "ApprovalRisk | undefined",
+          "description": ""
+        },
+        {
+          "name": "fields",
+          "optional": true,
+          "type": "ApprovalField[] | undefined",
+          "description": "Field changes, shown as before → after."
+        },
+        {
+          "name": "preview",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Any preview: a diff, a draft, a record."
+        },
+        {
+          "name": "scopes",
+          "optional": true,
+          "type": "ApprovalScope[] | undefined",
+          "description": "Offer standing permission, e.g. [\"once\", \"session\", \"always\"]. Without it there is one approve\nbutton and `onApprove` receives \"once\"."
+        },
+        {
+          "name": "state",
+          "optional": true,
+          "type": "ApprovalState | undefined",
+          "description": ""
+        },
+        {
+          "name": "result",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Shown once approved, e.g. the saved record from the receipt."
+        },
+        {
+          "name": "onApprove",
+          "optional": true,
+          "type": "((scope: ApprovalScope) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDeny",
+          "optional": true,
+          "type": "((reason?: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "askDenyReason",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Lets the user say why when denying; the reason goes back to the agent."
+        },
+        {
+          "name": "expiresIn",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Seconds until the request lapses; pauses while the pointer is on the card."
+        },
+        {
+          "name": "onExpire",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "approveLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "denyLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "ApprovalCard",
       "kind": "value",
       "source": "core/src/components/ui/agent/approval-card.tsx",
       "module": "agent/approval-card",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: \"zh\" | \"en\"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element | null",
+      "signature": "({ questions, locale, skipLabel, skipSubmitLabel, continueLabel, sendLabel, sentLabel, onSubmitted, previousQuestionLabel, nextQuestionLabel, className, }: { questions: ApprovalQuestion[]; locale?: \"zh\" | \"en\"; skipLabel?: string; skipSubmitLabel?: string; continueLabel?: string; sendLabel?: string; sentLabel?: string; onSubmitted?: (answers: Record<string, string[]>) => void; previousQuestionLabel?: string; nextQuestionLabel?: string; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "questions",
@@ -1385,10 +2145,55 @@
       ]
     },
     {
+      "name": "ApprovalField",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ApprovalProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ApprovalQuestion",
       "kind": "type",
       "source": "core/src/components/ui/agent/approval-card.tsx",
       "module": "agent/approval-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ApprovalRisk",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ApprovalScope",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ApprovalState",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -1589,33 +2394,13 @@
       "props": []
     },
     {
-      "name": "ASK_AI_FS_LAYER_ATTR",
-      "kind": "value",
-      "source": "core/src/internal/ask-ai-fullscreen.tsx",
-      "module": "core/src/internal/ask-ai-fullscreen",
-      "group": "ui",
-      "oneShotDefault": false,
-      "signature": "\"data-ask-ai-fs-layer\"",
-      "props": []
-    },
-    {
-      "name": "ASK_AI_FULLSCREEN_RAIL_WIDTH",
-      "kind": "value",
-      "source": "core/src/internal/ask-ai-fullscreen.tsx",
-      "module": "core/src/internal/ask-ai-fullscreen",
-      "group": "ui",
-      "oneShotDefault": false,
-      "signature": "\"16rem\"",
-      "props": []
-    },
-    {
       "name": "AskAi",
       "kind": "value",
       "source": "core/src/components/ui/ask-ai.tsx",
       "module": "ask-ai",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ color, label, suggestions, placeholder, onSend, disabled, className, header, brand, session, messages: messagesSlot, composer, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, sessions, currentSessionId, onNewSession, onSelectSession, searchQuery, onSearchQueryChange, hasConversation, landingTitle, landingDescription, headerLayout, panelMode, onDockedChange, railLabel, }: AskAiProps) => JSX.Element",
+      "signature": "({ color, label, suggestions, placeholder, onSend, disabled, className, messages: messagesSlot, composer, sessions, currentSessionId, onNewSession, onSelectSession, landingTitle, landingDescription, }: AskAiProps) => JSX.Element",
       "props": [
         {
           "name": "color",
@@ -1627,7 +2412,7 @@
           "name": "label",
           "optional": true,
           "type": "string | undefined",
-          "description": ""
+          "description": "Entry button text and panel title."
         },
         {
           "name": "suggestions",
@@ -1660,64 +2445,22 @@
           "description": ""
         },
         {
-          "name": "header",
-          "optional": true,
-          "type": "ReactNode",
-          "description": "Replace the entire drawer header (brand, session, tools)."
-        },
-        {
-          "name": "brand",
-          "optional": true,
-          "type": "ReactNode",
-          "description": "Replace the Ask mark + title in the drawer header and fullscreen rail."
-        },
-        {
-          "name": "session",
-          "optional": true,
-          "type": "ReactNode",
-          "description": "Replace session chrome (drawer header extras / fullscreen history)."
-        },
-        {
           "name": "messages",
           "optional": true,
           "type": "ReactNode",
-          "description": "Replace the conversation / empty-state body.\nFullscreen: content-only, natural height; no h-full, flex-1 or vertical\noverflow container. Core owns [data-ask-ai-fs-scroll], follow and jump-to-latest.\nUse currentSessionId to reset follow when switching external transcripts."
+          "description": "Replace the built-in conversation, e.g. with AgentParts driven by your own runtime."
         },
         {
           "name": "composer",
           "optional": true,
           "type": "ReactNode",
-          "description": "Replace the default composer (textarea + 发送).\nFullscreen: content-only, no outer bottom padding/margin or fixed positioning.\nCore owns the bottom gap (16px or safe-area, whichever is larger).\nConsumers sharing slots with the drawer should branch on fullscreen state."
-        },
-        {
-          "name": "fullscreen",
-          "optional": true,
-          "type": "boolean | undefined",
-          "description": "Controlled fullscreen layer. Independent of the drawer — not a stretched dialog."
-        },
-        {
-          "name": "defaultFullscreen",
-          "optional": true,
-          "type": "boolean | undefined",
-          "description": "Uncontrolled initial fullscreen when `fullscreen` is omitted."
-        },
-        {
-          "name": "onFullscreenChange",
-          "optional": true,
-          "type": "((open: boolean) => void) | undefined",
-          "description": ""
-        },
-        {
-          "name": "showFullscreenTrigger",
-          "optional": true,
-          "type": "boolean | undefined",
-          "description": "Drawer header control that opens the fullscreen layer. Default true."
+          "description": "Replace the built-in composer."
         },
         {
           "name": "sessions",
           "optional": true,
           "type": "AskAiSessionItem[] | undefined",
-          "description": "Session list for the default fullscreen rail. Displayed as given; core does not filter."
+          "description": "Earlier conversations, listed under the history button. Displayed as given."
         },
         {
           "name": "currentSessionId",
@@ -1738,24 +2481,6 @@
           "description": ""
         },
         {
-          "name": "searchQuery",
-          "optional": true,
-          "type": "string | undefined",
-          "description": ""
-        },
-        {
-          "name": "onSearchQueryChange",
-          "optional": true,
-          "type": "((query: string) => void) | undefined",
-          "description": ""
-        },
-        {
-          "name": "hasConversation",
-          "optional": true,
-          "type": "boolean | undefined",
-          "description": "Force fullscreen landing vs chat layout.\nDefaults to the built-in conversation length (or chat layout when `messages` is passed)."
-        },
-        {
           "name": "landingTitle",
           "optional": true,
           "type": "string | undefined",
@@ -1766,30 +2491,6 @@
           "optional": true,
           "type": "string | undefined",
           "description": "Supporting copy below the empty-state heading."
-        },
-        {
-          "name": "headerLayout",
-          "optional": true,
-          "type": "\"brand\" | \"session\" | undefined",
-          "description": "Opt-in session-first panel header with a dedicated new-chat action."
-        },
-        {
-          "name": "panelMode",
-          "optional": true,
-          "type": "\"modal\" | \"responsive\" | undefined",
-          "description": "Non-modal side panel at >=1440px; falls back to the modal drawer below that."
-        },
-        {
-          "name": "onDockedChange",
-          "optional": true,
-          "type": "((docked: boolean) => void) | undefined",
-          "description": "Reserve 460px in the host layout while true. Released on close/fullscreen/unmount."
-        },
-        {
-          "name": "railLabel",
-          "optional": true,
-          "type": "string | undefined",
-          "description": "Fullscreen rail title when `brand` is omitted."
         }
       ]
     },
@@ -1843,6 +2544,160 @@
       "kind": "type",
       "source": "core/src/internal/ask-ai-types.ts",
       "module": "core/src/internal/ask-ai-types",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AttachmentItem",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AttachmentKind",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AttachmentList",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, onRemove, onRetry, onOpen, locale, className }: AttachmentListProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "AttachmentItem[]",
+          "description": ""
+        },
+        {
+          "name": "onRemove",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRetry",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpen",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AttachmentListProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutonomyAction",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutonomyLevel",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutonomySelector",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ value, onChange, actions, title, locale, size, className }: AutonomySelectorProps) => JSX.Element",
+      "props": [
+        {
+          "name": "value",
+          "optional": false,
+          "type": "AutonomyLevel",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": false,
+          "type": "(value: AutonomyLevel) => void",
+          "description": ""
+        },
+        {
+          "name": "actions",
+          "optional": true,
+          "type": "AutonomyAction[] | undefined",
+          "description": "Example actions, sorted by what this level lets the agent do on its own."
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AutonomySelectorProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -1931,6 +2786,71 @@
       "kind": "type",
       "source": "core/src/components/ui/avatar.tsx",
       "module": "avatar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AwayItem",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AwaySummary",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ awayFor, items, onDismiss, locale, size, className }: AwaySummaryProps) => JSX.Element",
+      "props": [
+        {
+          "name": "awayFor",
+          "optional": false,
+          "type": "number",
+          "description": "How long the user was away, in milliseconds."
+        },
+        {
+          "name": "items",
+          "optional": false,
+          "type": "AwayItem[]",
+          "description": ""
+        },
+        {
+          "name": "onDismiss",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AwaySummaryProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -5330,6 +6250,68 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ChangeLedger",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ entries, title, onUndo, locale, motion, size, className }: ChangeLedgerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "entries",
+          "optional": false,
+          "type": "LedgerEntry[]",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onUndo",
+          "optional": true,
+          "type": "((id: string, alsoUndone: string[]) => void) | undefined",
+          "description": "Undo one entry; entries that depend on it are listed in the confirmation and undone with it."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ChangeLedgerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ChartCard",
@@ -10011,6 +10993,107 @@
       "props": []
     },
     {
+      "name": "Checkpoint",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChoiceAnswer",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChoiceCard",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale }: ChoiceCardProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "options",
+          "optional": false,
+          "type": "ChoiceOption[]",
+          "description": ""
+        },
+        {
+          "name": "multiple",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "allowText",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "answered",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "What was chosen once answered; the card then shows it instead of the controls."
+        },
+        {
+          "name": "onAnswer",
+          "optional": false,
+          "type": "(answer: ChoiceAnswer) => void",
+          "description": ""
+        },
+        {
+          "name": "onCancel",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ChoiceCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChoiceOption",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "CircleIcon",
       "kind": "value",
       "source": "core/src/components/ui/badge.tsx",
@@ -10068,6 +11151,133 @@
       "kind": "type",
       "source": "core/src/components/ui/badge.tsx",
       "module": "badge",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Citation",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/cited-answer.tsx",
+      "module": "agent/cited-answer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ source, active, onActiveChange, locale }: CitationProps) => JSX.Element",
+      "props": [
+        {
+          "name": "source",
+          "optional": false,
+          "type": "CitationSource",
+          "description": ""
+        },
+        {
+          "name": "active",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onActiveChange",
+          "optional": true,
+          "type": "((active: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "CitationProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/cited-answer.tsx",
+      "module": "agent/cited-answer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "CitationSource",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/cited-answer.tsx",
+      "module": "agent/cited-answer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "CitedAnswer",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/cited-answer.tsx",
+      "module": "agent/cited-answer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className }: CitedAnswerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "text",
+          "optional": false,
+          "type": "string",
+          "description": "Plain text with citation markers like \"[1]\" or \"[1][3]\"; blank lines separate paragraphs."
+        },
+        {
+          "name": "sources",
+          "optional": false,
+          "type": "CitationSource[]",
+          "description": ""
+        },
+        {
+          "name": "hideSourceList",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Hide the source list under the answer."
+        },
+        {
+          "name": "defaultSourcesOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Whether the source list starts open."
+        },
+        {
+          "name": "sourcesLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "CitedAnswerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/cited-answer.tsx",
+      "module": "agent/cited-answer",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -10654,10 +11864,228 @@
       "props": []
     },
     {
+      "name": "Composer",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, onSend, value: controlled, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className }: ComposerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onSend",
+          "optional": false,
+          "type": "(text: string, quickAction?: ChatInputBarQuickAction) => void",
+          "description": "Called with the trimmed text and the quick action picked for it, if any."
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Controlled draft; omit to let the composer keep it."
+        },
+        {
+          "name": "onValueChange",
+          "optional": true,
+          "type": "((value: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "optional": true,
+          "type": "ComposerStatus | undefined",
+          "description": "\"running\" turns send into stop."
+        },
+        {
+          "name": "onStop",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "quickActions",
+          "optional": true,
+          "type": "ChatInputBarQuickAction[] | undefined",
+          "description": "Cards that fan out above the input on an empty conversation, as in ChatInputBar."
+        },
+        {
+          "name": "hasMessages",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Folds the quick-action cards once the conversation has messages."
+        },
+        {
+          "name": "keepOnSend",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Keep the draft after sending, e.g. until the host confirms."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerAction",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ label, icon, onClick, toggleQuickActions, active, showLabel }: ComposerActionProps) => JSX.Element",
+      "props": [
+        {
+          "name": "label",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onClick",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "toggleQuickActions",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Toggles the quick-action cards instead of calling onClick."
+        },
+        {
+          "name": "active",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "showLabel",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Shows the label next to the icon."
+        }
+      ]
+    },
+    {
+      "name": "ComposerActionProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ComposerCommand",
       "kind": "type",
       "source": "core/src/components/ui/chat-input-bar.tsx",
       "module": "chat-input-bar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComposerHeader",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, className }: { children: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerInput",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ rows, maxRows, sendOnEnter, label, className }: ComposerInputProps) => JSX.Element",
+      "props": [
+        {
+          "name": "rows",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Visible rows before the field grows."
+        },
+        {
+          "name": "maxRows",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Rows it grows to before scrolling."
+        },
+        {
+          "name": "sendOnEnter",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Enter sends and Shift+Enter breaks the line; off makes Enter a line break and ⌘/Ctrl+Enter sends."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerInputProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -10672,6 +12100,59 @@
       "props": []
     },
     {
+      "name": "ComposerModelMenu",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ models, model, onModelChange, label }: ComposerModelMenuProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "models",
+          "optional": false,
+          "type": "ComposerModel[]",
+          "description": ""
+        },
+        {
+          "name": "model",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onModelChange",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComposerModelMenuProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComposerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ComposerReply",
       "kind": "type",
       "source": "core/src/components/ui/composer-types.ts",
@@ -10679,6 +12160,35 @@
       "group": "ui",
       "oneShotDefault": false,
       "props": []
+    },
+    {
+      "name": "ComposerSend",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ label, stopLabel, stoppingLabel }: { label?: string; stopLabel?: string; stoppingLabel?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "stopLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "stoppingLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
     },
     {
       "name": "ComposerSource",
@@ -10697,6 +12207,29 @@
       "group": "ui",
       "oneShotDefault": false,
       "props": []
+    },
+    {
+      "name": "ComposerToolbar",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer.tsx",
+      "module": "agent/composer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, className }: { children: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
     },
     {
       "name": "ComposerVoiceState",
@@ -10810,6 +12343,95 @@
       "kind": "type",
       "source": "core/src/components/ui/confirmation-dialog.tsx",
       "module": "confirmation-dialog",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ConfirmCard",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale }: ConfirmCardProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "fields",
+          "optional": true,
+          "type": "ApprovalField[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "body",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "confirmLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "cancelLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "state",
+          "optional": true,
+          "type": "\"done\" | \"cancelled\" | \"pending\" | \"working\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "result",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Shown once done, e.g. the saved record from the receipt."
+        },
+        {
+          "name": "onConfirm",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCancel",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ConfirmCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ConfirmField",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/approval.tsx",
+      "module": "agent/approval",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -10948,6 +12570,104 @@
       "props": []
     },
     {
+      "name": "ContextSegment",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ContextSegmentKind",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ContextUsage",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ variant, locale, size, className, ...props }: ContextUsageProps) => JSX.Element",
+      "props": [
+        {
+          "name": "segments",
+          "optional": false,
+          "type": "ContextSegment[]",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "optional": false,
+          "type": "number",
+          "description": "The model's context window in tokens."
+        },
+        {
+          "name": "cost",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Spend so far in this conversation."
+        },
+        {
+          "name": "currency",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRemove",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCompact",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": "Summarise older turns to free room."
+        },
+        {
+          "name": "variant",
+          "optional": true,
+          "type": "\"inline\" | \"card\" | undefined",
+          "description": "inline: a small ring for the composer toolbar that opens the breakdown."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ContextUsageProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ControlColor",
       "kind": "type",
       "source": "core/src/components/ui/forms/selection-control.tsx",
@@ -11002,6 +12722,107 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ConversationItem",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/conversation-list.tsx",
+      "module": "agent/conversation-list",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ConversationList",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/conversation-list.tsx",
+      "module": "agent/conversation-list",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now: fixedNow, locale, motion, className }: ConversationListProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "ConversationItem[]",
+          "description": ""
+        },
+        {
+          "name": "currentId",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": false,
+          "type": "(id: string) => void",
+          "description": ""
+        },
+        {
+          "name": "onNew",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onRename",
+          "optional": true,
+          "type": "((id: string, title: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDelete",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPin",
+          "optional": true,
+          "type": "((id: string, pinned: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "searchAfter",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Shows a search field once there are more items than this."
+        },
+        {
+          "name": "now",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Reference time for the groups; pass it when rendering on the server."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ConversationListProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/conversation-list.tsx",
+      "module": "agent/conversation-list",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ConversationProps",
@@ -21147,6 +22968,15 @@
       "props": []
     },
     {
+      "name": "InboxTask",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "InfoRow",
       "kind": "value",
       "source": "core/src/components/ui/info-row.tsx",
@@ -21180,6 +23010,92 @@
       "kind": "type",
       "source": "core/src/components/ui/info-row.tsx",
       "module": "info-row",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "InlineDiff",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className }: InlineDiffProps) => JSX.Element",
+      "props": [
+        {
+          "name": "segments",
+          "optional": false,
+          "type": "InlineDiffSegment[]",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onApply",
+          "optional": true,
+          "type": "((text: string, decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+          "description": "Called with the text that results from the current decisions."
+        },
+        {
+          "name": "onDecisionsChange",
+          "optional": true,
+          "type": "((decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "applyLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "InlineDiffDecision",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "InlineDiffProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "InlineDiffSegment",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -21402,6 +23318,33 @@
       "kind": "type",
       "source": "core/src/components/ui/badge.tsx",
       "module": "badge",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "LaneBlock",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "LedgerEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "LedgerField",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-governance.tsx",
+      "module": "agent/agent-governance",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -22250,7 +24193,7 @@
       "module": "agent/agent-conversation",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ copyText, onRetry, onFeedback, feedback: controlled, locale, labels, className }: MessageActionsProps) => JSX.Element",
+      "signature": "({ copyText, onRetry, onFeedback, feedback: controlled, versions, onEdit, feedbackReasons, onFeedbackReason, locale, labels, className }: MessageActionsProps) => JSX.Element",
       "props": [
         {
           "name": "copyText",
@@ -22277,6 +24220,30 @@
           "description": ""
         },
         {
+          "name": "versions",
+          "optional": true,
+          "type": "{ current: number; total: number; onChange: (index: number) => void; } | undefined",
+          "description": "Regenerated replies: shows \"2/3\" with previous and next. `current` is 0-based."
+        },
+        {
+          "name": "onEdit",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": "Edit and resend; usually on the user's message."
+        },
+        {
+          "name": "feedbackReasons",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": "Offered after a thumbs down, e.g. [\"没回答问题\", \"数据不对\", \"太长\"]."
+        },
+        {
+          "name": "onFeedbackReason",
+          "optional": true,
+          "type": "((reason: string) => void) | undefined",
+          "description": ""
+        },
+        {
           "name": "locale",
           "optional": true,
           "type": "Locale | undefined",
@@ -22285,7 +24252,7 @@
         {
           "name": "labels",
           "optional": true,
-          "type": "Partial<Record<\"copy\" | \"up\" | \"down\" | \"copied\" | \"retry\", string>> | undefined",
+          "type": "Partial<Record<\"next\" | \"previous\" | \"copy\" | \"up\" | \"down\" | \"copied\" | \"retry\" | \"edit\", string>> | undefined",
           "description": ""
         },
         {
@@ -25138,6 +27105,15 @@
       ]
     },
     {
+      "name": "PlanStep",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "PlusIcon",
       "kind": "value",
       "source": "core/src/components/ui/plain-icons.tsx",
@@ -25673,6 +27649,15 @@
       "props": []
     },
     {
+      "name": "ProgressStep",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ProjectCard",
       "kind": "value",
       "source": "core/src/components/ui/project-card.tsx",
@@ -25771,6 +27756,74 @@
       "props": []
     },
     {
+      "name": "PromptQueue",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, onRemove, onEdit, onSendNow, onMove, locale, motion, className }: PromptQueueProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "QueuedPrompt[]",
+          "description": ""
+        },
+        {
+          "name": "onRemove",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onEdit",
+          "optional": true,
+          "type": "((id: string, text: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSendNow",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": "Sends this one next, ahead of the rest."
+        },
+        {
+          "name": "onMove",
+          "optional": true,
+          "type": "((id: string, direction: -1 | 1) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PromptQueueProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "PromptSuggestions",
       "kind": "value",
       "source": "core/src/components/ui/agent/agent-conversation.tsx",
@@ -25816,6 +27869,143 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-conversation.tsx",
       "module": "agent/agent-conversation",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Question",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ questions, onSubmit, onCancel, skippable, answers: answered, confirm, disabled, submitLabel, labels, locale, size, className }: QuestionProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "questions",
+          "optional": false,
+          "type": "QuestionItem[]",
+          "description": ""
+        },
+        {
+          "name": "onSubmit",
+          "optional": false,
+          "type": "(answers: Record<string, QuestionAnswer>) => void",
+          "description": "Called once with every answer; skipped questions are left out."
+        },
+        {
+          "name": "onCancel",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": "Adds a cancel button that drops the whole question."
+        },
+        {
+          "name": "skippable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds a skip button per question; the last skip submits what was answered."
+        },
+        {
+          "name": "answers",
+          "optional": true,
+          "type": "Record<string, QuestionAnswer> | undefined",
+          "description": "Once answered, pass the answers back: the card shows what was chosen. Without it the card shows\na short \"答案已提交\" status after submitting."
+        },
+        {
+          "name": "confirm",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "A single single-choice question submits on click, and a single choice moves to the next question,\nunless this is set; then every step waits for Continue."
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "submitLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "labels",
+          "optional": true,
+          "type": "Partial<Record<\"submit\" | \"next\" | \"previous\" | \"sent\" | \"skip\" | \"skipSubmit\" | \"continue\" | \"cancel\" | \"skipped\", string>> | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "QuestionAnswer",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "QuestionItem",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "QuestionLabels",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "QuestionOption",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "QuestionProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/question.tsx",
+      "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "QueuedPrompt",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -26008,6 +28198,131 @@
       "kind": "type",
       "source": "core/src/components/ui/rating-stars.tsx",
       "module": "rating-stars",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Reasoning",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ status, text, steps, startedAt, duration, label, doneLabel, open: controlledOpen, onOpenChange, locale, motion, size, className }: ReasoningProps) => JSX.Element",
+      "props": [
+        {
+          "name": "status",
+          "optional": false,
+          "type": "ReasoningStatus",
+          "description": ""
+        },
+        {
+          "name": "text",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Free reasoning text from the model (AI SDK reasoning parts)."
+        },
+        {
+          "name": "steps",
+          "optional": true,
+          "type": "ReasoningStep[] | undefined",
+          "description": "Structured steps; shown above `text` when both are given."
+        },
+        {
+          "name": "startedAt",
+          "optional": true,
+          "type": "number | Date | undefined",
+          "description": "Start of the thinking, for the live timer."
+        },
+        {
+          "name": "duration",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Final duration in milliseconds, shown once done."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Header while thinking."
+        },
+        {
+          "name": "doneLabel",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Header once done; defaults to \"思考了 4.2 秒\"."
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Controlled open state. Uncontrolled, it is open while thinking and folds when done."
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ReasoningProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ReasoningSource",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ReasoningStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ReasoningStep",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -26437,6 +28752,263 @@
       ]
     },
     {
+      "name": "resolveInlineDiff",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/inline-diff.tsx",
+      "module": "agent/inline-diff",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "(segments: InlineDiffSegment[], decisions: Record<string, InlineDiffDecision>) => string",
+      "props": [
+        {
+          "name": "length",
+          "optional": false,
+          "type": "number",
+          "description": "Gets or sets the length of the array. This is a number one higher than the highest index in the array."
+        },
+        {
+          "name": "toString",
+          "optional": false,
+          "type": "() => string",
+          "description": "Returns a string representation of an array."
+        },
+        {
+          "name": "toLocaleString",
+          "optional": false,
+          "type": "{ (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; }",
+          "description": "Returns a string representation of an array. The elements are converted to string using their toLocaleString methods."
+        },
+        {
+          "name": "pop",
+          "optional": false,
+          "type": "() => InlineDiffSegment | undefined",
+          "description": "Removes the last element from an array and returns it.\nIf the array is empty, undefined is returned and the array is not modified."
+        },
+        {
+          "name": "push",
+          "optional": false,
+          "type": "(...items: InlineDiffSegment[]) => number",
+          "description": "Appends new elements to the end of an array, and returns the new length of the array."
+        },
+        {
+          "name": "concat",
+          "optional": false,
+          "type": "{ (...items: ConcatArray<InlineDiffSegment>[]): InlineDiffSegment[]; (...items: (InlineDiffSegment | ConcatArray<InlineDiffSegment>)[]): InlineDiffSegment[]; }",
+          "description": "Combines two or more arrays.\nThis method returns a new array without modifying any existing arrays."
+        },
+        {
+          "name": "join",
+          "optional": false,
+          "type": "(separator?: string) => string",
+          "description": "Adds all the elements of an array into a string, separated by the specified separator string."
+        },
+        {
+          "name": "reverse",
+          "optional": false,
+          "type": "() => InlineDiffSegment[]",
+          "description": "Reverses the elements in an array in place.\nThis method mutates the array and returns a reference to the same array."
+        },
+        {
+          "name": "shift",
+          "optional": false,
+          "type": "() => InlineDiffSegment | undefined",
+          "description": "Removes the first element from an array and returns it.\nIf the array is empty, undefined is returned and the array is not modified."
+        },
+        {
+          "name": "slice",
+          "optional": false,
+          "type": "(start?: number, end?: number) => InlineDiffSegment[]",
+          "description": "Returns a copy of a section of an array.\nFor both start and end, a negative index can be used to indicate an offset from the end of the array.\nFor example, -2 refers to the second to last element of the array."
+        },
+        {
+          "name": "sort",
+          "optional": false,
+          "type": "(compareFn?: ((a: InlineDiffSegment, b: InlineDiffSegment) => number) | undefined) => InlineDiffSegment[]",
+          "description": "Sorts an array in place.\nThis method mutates the array and returns a reference to the same array."
+        },
+        {
+          "name": "splice",
+          "optional": false,
+          "type": "{ (start: number, deleteCount?: number): InlineDiffSegment[]; (start: number, deleteCount: number, ...items: InlineDiffSegment[]): InlineDiffSegment[]; }",
+          "description": "Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements."
+        },
+        {
+          "name": "unshift",
+          "optional": false,
+          "type": "(...items: InlineDiffSegment[]) => number",
+          "description": "Inserts new elements at the start of an array, and returns the new length of the array."
+        },
+        {
+          "name": "indexOf",
+          "optional": false,
+          "type": "(searchElement: InlineDiffSegment, fromIndex?: number) => number",
+          "description": "Returns the index of the first occurrence of a value in an array, or -1 if it is not present."
+        },
+        {
+          "name": "lastIndexOf",
+          "optional": false,
+          "type": "(searchElement: InlineDiffSegment, fromIndex?: number) => number",
+          "description": "Returns the index of the last occurrence of a specified value in an array, or -1 if it is not present."
+        },
+        {
+          "name": "every",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): this is S[]; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): boolean; }",
+          "description": "Determines whether all the members of an array satisfy the specified test."
+        },
+        {
+          "name": "some",
+          "optional": false,
+          "type": "(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any) => boolean",
+          "description": "Determines whether the specified callback function returns true for any element of an array."
+        },
+        {
+          "name": "forEach",
+          "optional": false,
+          "type": "(callbackfn: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => void, thisArg?: any) => void",
+          "description": "Performs the specified action for each element in an array."
+        },
+        {
+          "name": "map",
+          "optional": false,
+          "type": "<U>(callbackfn: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => U, thisArg?: any) => U[]",
+          "description": "Calls a defined callback function on each element of an array, and returns an array that contains the results."
+        },
+        {
+          "name": "filter",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): S[]; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment[]; }",
+          "description": "Returns the elements of an array that meet the condition specified in a callback function."
+        },
+        {
+          "name": "reduce",
+          "optional": false,
+          "type": "{ (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment): InlineDiffSegment; (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment, initialValue: InlineDiffSegment): InlineDiffSegment; <U>(callbackfn: (previousValue: U, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => U, initialValue: U): U; }",
+          "description": "Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function."
+        },
+        {
+          "name": "reduceRight",
+          "optional": false,
+          "type": "{ (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment): InlineDiffSegment; (callbackfn: (previousValue: InlineDiffSegment, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => InlineDiffSegment, initialValue: InlineDiffSegment): InlineDiffSegment; <U>(callbackfn: (previousValue: U, currentValue: InlineDiffSegment, currentIndex: number, array: InlineDiffSegment[]) => U, initialValue: U): U; }",
+          "description": "Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function."
+        },
+        {
+          "name": "find",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => value is S, thisArg?: any): S | undefined; (predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment | undefined; }",
+          "description": "Returns the value of the first element in the array where predicate is true, and undefined\notherwise."
+        },
+        {
+          "name": "findIndex",
+          "optional": false,
+          "type": "(predicate: (value: InlineDiffSegment, index: number, obj: InlineDiffSegment[]) => unknown, thisArg?: any) => number",
+          "description": "Returns the index of the first element in the array where predicate is true, and -1\notherwise."
+        },
+        {
+          "name": "fill",
+          "optional": false,
+          "type": "(value: InlineDiffSegment, start?: number, end?: number) => InlineDiffSegment[]",
+          "description": "Changes all array elements from `start` to `end` index to a static `value` and returns the modified array"
+        },
+        {
+          "name": "copyWithin",
+          "optional": false,
+          "type": "(target: number, start: number, end?: number) => InlineDiffSegment[]",
+          "description": "Returns the this object after copying a section of the array identified by start and end\nto the same array starting at position target"
+        },
+        {
+          "name": "entries",
+          "optional": false,
+          "type": "() => ArrayIterator<[number, InlineDiffSegment]>",
+          "description": "Returns an iterable of key, value pairs for every entry in the array"
+        },
+        {
+          "name": "keys",
+          "optional": false,
+          "type": "() => ArrayIterator<number>",
+          "description": "Returns an iterable of keys in the array"
+        },
+        {
+          "name": "values",
+          "optional": false,
+          "type": "() => ArrayIterator<InlineDiffSegment>",
+          "description": "Returns an iterable of values in the array"
+        },
+        {
+          "name": "includes",
+          "optional": false,
+          "type": "(searchElement: InlineDiffSegment, fromIndex?: number) => boolean",
+          "description": "Determines whether an array includes a certain element, returning true or false as appropriate."
+        },
+        {
+          "name": "flatMap",
+          "optional": false,
+          "type": "<U, This = undefined>(callback: (this: This, value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => U | readonly U[], thisArg?: This | undefined) => U[]",
+          "description": "Calls a defined callback function on each element of an array. Then, flattens the result into\na new array.\nThis is identical to a map followed by flat with depth 1."
+        },
+        {
+          "name": "flat",
+          "optional": false,
+          "type": "<A, D extends number = 1>(this: A, depth?: D | undefined) => FlatArray<A, D>[]",
+          "description": "Returns a new array with all sub-array elements concatenated into it recursively up to the\nspecified depth."
+        },
+        {
+          "name": "at",
+          "optional": false,
+          "type": "(index: number) => InlineDiffSegment | undefined",
+          "description": "Returns the item located at the specified index."
+        },
+        {
+          "name": "findLast",
+          "optional": false,
+          "type": "{ <S extends InlineDiffSegment>(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => value is S, thisArg?: any): S | undefined; (predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any): InlineDiffSegment | undefined; }",
+          "description": "Returns the value of the last element in the array where predicate is true, and undefined\notherwise."
+        },
+        {
+          "name": "findLastIndex",
+          "optional": false,
+          "type": "(predicate: (value: InlineDiffSegment, index: number, array: InlineDiffSegment[]) => unknown, thisArg?: any) => number",
+          "description": "Returns the index of the last element in the array where predicate is true, and -1\notherwise."
+        },
+        {
+          "name": "toReversed",
+          "optional": false,
+          "type": "() => InlineDiffSegment[]",
+          "description": "Returns a copy of an array with its elements reversed."
+        },
+        {
+          "name": "toSorted",
+          "optional": false,
+          "type": "(compareFn?: ((a: InlineDiffSegment, b: InlineDiffSegment) => number) | undefined) => InlineDiffSegment[]",
+          "description": "Returns a copy of an array with its elements sorted."
+        },
+        {
+          "name": "toSpliced",
+          "optional": false,
+          "type": "{ (start: number, deleteCount: number, ...items: InlineDiffSegment[]): InlineDiffSegment[]; (start: number, deleteCount?: number): InlineDiffSegment[]; }",
+          "description": "Copies an array and removes elements and, if necessary, inserts new elements in their place. Returns the copied array.\nCopies an array and removes elements while returning the remaining elements."
+        },
+        {
+          "name": "with",
+          "optional": false,
+          "type": "(index: number, value: InlineDiffSegment) => InlineDiffSegment[]",
+          "description": "Copies an array, then overwrites the value at the provided index with the\ngiven value. If the index is negative, then it replaces from the end\nof the array."
+        },
+        {
+          "name": "__@iterator@34",
+          "optional": false,
+          "type": "() => ArrayIterator<InlineDiffSegment>",
+          "description": "Iterator"
+        },
+        {
+          "name": "__@unscopables@36",
+          "optional": false,
+          "type": "{ [x: number]: boolean | undefined; length?: boolean | undefined; toString?: boolean | undefined; toLocaleString?: boolean | undefined; pop?: boolean | undefined; push?: boolean | undefined; concat?: boolean | undefined; join?: boolean | undefined; reverse?: boolean | undefined; shift?: boolean | undefined; slice?: boolean | undefined; sort?: boolean | undefined; splice?: boolean | undefined; unshift?: boolean | undefined; indexOf?: boolean | undefined; lastIndexOf?: boolean | undefined; every?: boolean | undefined; some?: boolean | undefined; forEach?: boolean | undefined; map?: boolean | undefined; filter?: boolean | undefined; reduce?: boolean | undefined; reduceRight?: boolean | undefined; find?: boolean | undefined; findIndex?: boolean | undefined; fill?: boolean | undefined; copyWithin?: boolean | undefined; entries?: boolean | undefined; keys?: boolean | undefined; values?: boolean | undefined; includes?: boolean | undefined; flatMap?: boolean | undefined; flat?: boolean | undefined; at?: boolean | undefined; findLast?: boolean | undefined; findLastIndex?: boolean | undefined; toReversed?: boolean | undefined; toSorted?: boolean | undefined; toSpliced?: boolean | undefined; with?: boolean | undefined; [Symbol.iterator]?: boolean | undefined; readonly [Symbol.unscopables]?: boolean | undefined; }",
+          "description": "Is an object whose properties have the value 'true'\nwhen they will be absent when used in a 'with' statement."
+        }
+      ]
+    },
+    {
       "name": "resolveTableColumnAlign",
       "kind": "value",
       "source": "core/src/components/ui/data-table.tsx",
@@ -26541,6 +29113,180 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "RunControls",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className }: RunControlsProps) => JSX.Element",
+      "props": [
+        {
+          "name": "status",
+          "optional": false,
+          "type": "RunStatus",
+          "description": ""
+        },
+        {
+          "name": "activity",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "What the agent is doing now, e.g. \"正在核对 3 张发票\"."
+        },
+        {
+          "name": "startedAt",
+          "optional": true,
+          "type": "number | Date | undefined",
+          "description": ""
+        },
+        {
+          "name": "duration",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Shown when failed."
+        },
+        {
+          "name": "onStop",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onResume",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": "Continue a stopped run from where it stopped."
+        },
+        {
+          "name": "onRetry",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDismiss",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSteer",
+          "optional": true,
+          "type": "((note: string) => void) | undefined",
+          "description": "Steer while it works: the note is picked up at the agent's next step."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "RunControlsProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "RunningNow",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ tasks, onOpen, locale, className }: RunningNowProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "tasks",
+          "optional": false,
+          "type": "InboxTask[]",
+          "description": ""
+        },
+        {
+          "name": "onOpen",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "RunningNowProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-ops.tsx",
+      "module": "agent/agent-ops",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "RunProgress",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ steps, locale }: { steps: ProgressStep[]; locale?: AgentLocale; }) => JSX.Element | null",
+      "props": [
+        {
+          "name": "steps",
+          "optional": false,
+          "type": "ProgressStep[]",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "RunStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/composer-parts.tsx",
+      "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "SelectOption",
@@ -33710,6 +36456,68 @@
       "props": []
     },
     {
+      "name": "ThinkingIndicator",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ label, phases, phaseDuration, startedAt, locale, size, className }: ThinkingIndicatorProps) => JSX.Element",
+      "props": [
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Fixed label; ignored when `phases` is given."
+        },
+        {
+          "name": "phases",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": "Labels shown in turn while waiting, e.g. [\"读取页面\", \"查询订单\", \"整理回答\"]; stays on the last one."
+        },
+        {
+          "name": "phaseDuration",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Milliseconds per phase."
+        },
+        {
+          "name": "startedAt",
+          "optional": true,
+          "type": "number | Date | undefined",
+          "description": "Shows a live timer from this moment."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ThinkingIndicatorProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/thinking.tsx",
+      "module": "agent/thinking",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ThinkingRow",
       "kind": "type",
       "source": "core/src/components/ui/agent/thinking-trace.tsx",
@@ -34364,6 +37172,241 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "ToolCall",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/tool-call.tsx",
+      "module": "agent/tool-call",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className }: ToolCallProps) => JSX.Element",
+      "props": [
+        {
+          "name": "name",
+          "optional": false,
+          "type": "string",
+          "description": "Tool name as the model calls it, e.g. \"search_orders\"."
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Human label shown instead of the name, e.g. \"查询订单\"."
+        },
+        {
+          "name": "summary",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Short summary after the label, e.g. the main argument or \"12 条结果\"."
+        },
+        {
+          "name": "status",
+          "optional": false,
+          "type": "ToolCallStatus",
+          "description": ""
+        },
+        {
+          "name": "args",
+          "optional": true,
+          "type": "unknown",
+          "description": ""
+        },
+        {
+          "name": "result",
+          "optional": true,
+          "type": "unknown",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "startedAt",
+          "optional": true,
+          "type": "number | Date | undefined",
+          "description": "Start time, for the live timer while running."
+        },
+        {
+          "name": "duration",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Final duration in milliseconds."
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Replaces the check once the call has finished, e.g. the tool's logo."
+        },
+        {
+          "name": "details",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Custom body shown when the row opens, instead of the argument and result blocks."
+        },
+        {
+          "name": "onRetry",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": "Shown on errors."
+        },
+        {
+          "name": "approvalReason",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Why the agent wants to run this; shown while awaiting approval."
+        },
+        {
+          "name": "onApprove",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onDeny",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "openOnError",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Open by itself when the call fails, so the error shows."
+        },
+        {
+          "name": "variant",
+          "optional": true,
+          "type": "\"row\" | \"card\" | undefined",
+          "description": "row: one line, as listed inside a ToolCallGroup; card: on its own with an outline."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ToolCallGroup",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/tool-call.tsx",
+      "module": "agent/tool-call",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, label, count, status, statusLabel, defaultOpen, locale, motion, className }: ToolCallGroupProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "e.g. \"调用了 3 次工具\"; defaults from `count`."
+        },
+        {
+          "name": "count",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "optional": true,
+          "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "statusLabel",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Replaces the status word after the label, e.g. \"执行失败\"."
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Uncontrolled default; the group opens itself unless everything succeeded."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ToolCallGroupProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/tool-call.tsx",
+      "module": "agent/tool-call",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ToolCallProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/tool-call.tsx",
+      "module": "agent/tool-call",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ToolCallStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/tool-call.tsx",
+      "module": "agent/tool-call",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ToolChipDetail",
@@ -36407,6 +39450,125 @@
       "kind": "type",
       "source": "core/src/components/ui/topbar.tsx",
       "module": "topbar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TraceSpan",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TraceWaterfall",
+      "kind": "value",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ spans, now, selectedId, onSelect, title, currency, locale, size, className }: TraceWaterfallProps) => JSX.Element",
+      "props": [
+        {
+          "name": "spans",
+          "optional": false,
+          "type": "TraceSpan[]",
+          "description": ""
+        },
+        {
+          "name": "now",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Milliseconds since the start, for spans still running."
+        },
+        {
+          "name": "selectedId",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": true,
+          "type": "((id: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "currency",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "AgentLocale | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TraceWaterfallProps",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TrailStep",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TrailSubstep",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-run.tsx",
+      "module": "agent/agent-run",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TreeAgent",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TreeAgentStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/agent/agent-observe.tsx",
+      "module": "agent/agent-observe",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

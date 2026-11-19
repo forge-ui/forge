@@ -112,7 +112,7 @@ import { StreamingAnswer } from "@forge-ui-official/core";
 
 每条新回答或重播使用新的 React `key`。不传 `status` 时，`streaming` 仍可播放预先准备好的完整文本。两者都省略则直接显示静态回答。
 
-`animation="blur"` 改为模糊渐显。`duration` 是动画毫秒数。`motion="auto"` 遵循系统减少动态效果，`motion="none"` 或 `duration={0}` 直接显示收到的文本。来源、追问和对应回调保持原有用法。演示：`/prototype/streaming?variant=fade`。参数见 `/components/agent`。
+`animation="blur"` 改为模糊渐显。`duration` 是动画毫秒数。`motion="auto"` 遵循系统减少动态效果，`motion="none"` 或 `duration={0}` 直接显示收到的文本。来源、追问和对应回调保持原有用法。演示：`/prototype/streaming?variant=fade`。参数见 `/agent/streaming-answer`。
 
 ### ChatInputBar
 

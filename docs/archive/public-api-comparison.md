@@ -1,6 +1,6 @@
 # 主分支与迁移版本 API 对照
 
-基准 main：54598df83bfaa8a3580355d8952d558f79e24525。当前 HEAD：4f859e2b84171e1e7ce8cbf31b379c141caf710e，包含本地未提交源码。
+基准 main：e9349f17bffbfb654144b9155d9c7a1455a470ed。当前 HEAD：41617dcdf7e8be84e576e595aa986088417bfb62，包含本地未提交源码。
 
 通过 TypeScript 编译器解析 core 根入口的公开组件与实际参数类型，包含继承属性。以下是静态接口核对，不代表行为、示例或浏览器验收通过。类型文字变化需人工判断是否为破坏性修改。
 
@@ -8,138 +8,181 @@
 
 | 组件 | main 参数数 | 当前参数数 | 新增参数 | 删除参数 | 类型变化 |
 |---|---:|---:|---|---|---|
-| ChatBubble | 14 | 22 | locale, motion, reactions, reactionOptions, onReaction, onReply, replyTo, delivery | — | — |
-| ChatInputBar | 51 | 62 | locale, motion, replyTo, onCancelReply, attachments, hasAttachments, voiceState, voiceLevel, onVoiceStart, onVoiceEnd, onVoiceCancel | — | — |
-| TopBar | 3 | 3 | — | — | color |
+| ChatBubble | 22 | 22 | — | — | — |
+| ChatInputBar | 62 | 62 | — | — | — |
+| TopBar | 3 | 3 | — | — | — |
 | PageTitleToolbar | 13 | 13 | — | — | — |
-| AppLayout | 48 | 48 | — | — | — |
-| AskAi | 25 | 29 | landingDescription, headerLayout, panelMode, onDockedChange | — | — |
-| ThinkingTrace | 9 | 11 | locale, motion | — | — |
-| StreamingAnswer | 14 | 15 | locale | — | — |
-| ApprovalCard | 9 | 11 | locale, skipSubmitLabel | — | — |
-| ToolChips | 4 | 9 | locale, motion, state, result, actions | — | — |
-| AgentTaskRows | 4 | 5 | locale | — | — |
-| ContextCards | 5 | 6 | locale | — | — |
-| RecommendationCard | 11 | 12 | locale | — | — |
-| AgentDiffTable | 10 | 11 | locale | — | — |
-| AgentCodeBlock | 10 | 15 | locale, foldRanges, collapsedRangeIds, defaultCollapsedRangeIds, onCollapsedRangeIdsChange | — | — |
-| InsightCards | 7 | 8 | locale | — | — |
-| CommandSearch | 8 | 12 | locale, color, motion, autoFocus | — | — |
-| AgentFlowchart | 9 | 10 | locale | — | — |
+| AppLayout | 50 | 50 | — | — | — |
+| AskAi | 29 | 15 | — | header, brand, session, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, searchQuery, onSearchQueryChange, hasConversation, headerLayout, panelMode, onDockedChange, railLabel | — |
+| ThinkingTrace | 11 | 11 | — | — | — |
+| StreamingAnswer | 16 | 16 | — | — | — |
+| ApprovalCard | 11 | 11 | — | — | — |
+| ToolChips | 11 | 11 | — | — | — |
+| AgentTaskRows | 5 | 5 | — | — | — |
+| ContextCards | 6 | 6 | — | — | — |
+| RecommendationCard | 12 | 12 | — | — | — |
+| AgentDiffTable | 11 | 11 | — | — | — |
+| AgentCodeBlock | 15 | 15 | — | — | — |
+| InsightCards | 8 | 8 | — | — | — |
+| CommandSearch | 12 | 12 | — | — | — |
+| AgentFlowchart | 10 | 10 | — | — | — |
+| Conversation | 6 | 6 | — | — | — |
+| AgentMessage | 7 | 7 | — | — | — |
+| MessageActions | 7 | 11 | versions, onEdit, feedbackReasons, onFeedbackReason | — | labels |
+| PromptSuggestions | 5 | 5 | — | — | — |
+| ArtifactCard | 9 | 9 | — | — | — |
+| AgentParts | 8 | 8 | — | — | — |
+| ThinkingIndicator | 0 | 7 | label, phases, phaseDuration, startedAt, locale, size, className | — | — |
+| Reasoning | 0 | 13 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, motion, size, className | — | — |
+| ToolCall | 0 | 22 | name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className | — | — |
+| ToolCallGroup | 0 | 9 | children, label, count, status, statusLabel, defaultOpen, locale, motion, className | — | — |
+| Question | 0 | 12 | questions, onSubmit, onCancel, skippable, answers, confirm, disabled, submitLabel, labels, locale, size, className | — | — |
+| ChoiceCard | 0 | 9 | title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale | — | — |
+| Approval | 0 | 19 | title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className | — | — |
+| ConfirmCard | 0 | 10 | title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale | — | — |
+| Citation | 0 | 4 | source, active, onActiveChange, locale | — | — |
+| CitedAnswer | 0 | 9 | text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className | — | — |
+| PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
+| RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
+| AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
+| AgentWelcome | 0 | 6 | title, description, icon, footer, size, className | — | — |
+| AgentPanel | 0 | 17 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer | — | — |
+| AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
+| AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
+| RunProgress | 0 | 2 | steps, locale | — | — |
+| ChangeLedger | 0 | 7 | entries, title, onUndo, locale, motion, size, className | — | — |
+| AgentCheckpoints | 0 | 7 | checkpoints, currentId, onRewind, title, locale, size, className | — | — |
+| AutonomySelector | 0 | 7 | value, onChange, actions, title, locale, size, className | — | — |
+| AgentInbox | 0 | 10 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className | — | — |
+| RunningNow | 0 | 4 | tasks, onOpen, locale, className | — | — |
+| AwaySummary | 0 | 6 | awayFor, items, onDismiss, locale, size, className | — | — |
+| ContextUsage | 0 | 10 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, size, className | — | — |
+| TraceWaterfall | 0 | 9 | spans, now, selectedId, onSelect, title, currency, locale, size, className | — | — |
+| AgentTree | 0 | 6 | root, selectedId, onSelect, currency, locale, className | — | — |
+| AgentLanes | 0 | 8 | lanes, blocks, now, onSelect, title, locale, size, className | — | — |
+| Composer | 0 | 13 | children, onSend, value, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className | — | — |
+| ComposerHeader | 0 | 2 | children, className | — | — |
+| ComposerInput | 0 | 5 | rows, maxRows, sendOnEnter, label, className | — | — |
+| ComposerToolbar | 0 | 2 | children, className | — | — |
+| ComposerAction | 0 | 6 | label, icon, onClick, toggleQuickActions, active, showLabel | — | — |
+| ComposerModelMenu | 0 | 4 | models, model, onModelChange, label | — | — |
+| ComposerSend | 0 | 3 | label, stopLabel, stoppingLabel | — | — |
+| ConversationList | 0 | 12 | items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now, locale, motion, className | — | — |
+| InlineDiff | 0 | 8 | segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className | — | — |
 
 ## 全部公开组件
 
 | 组件 | main 参数数 | 当前参数数 | 新增参数 | 删除参数 | 类型变化 |
 |---|---:|---:|---|---|---|
-| NotificationBadge | 2 | 2 | — | — | color |
-| Label | 4 | 4 | — | — | color |
-| CircleIcon | 4 | 4 | — | — | color |
-| ArtisticIcon | 3 | 3 | — | — | color |
-| Button | 293 | 305 | holdDuration, onConfirm, onUndo, confirmed, locale, holdLabels, effect, loading, result, progress, loadingLabel, resultLabel | — | color |
+| NotificationBadge | 2 | 2 | — | — | — |
+| Label | 4 | 4 | — | — | — |
+| CircleIcon | 4 | 4 | — | — | — |
+| ArtisticIcon | 3 | 3 | — | — | — |
+| Button | 305 | 305 | — | — | — |
 | PlusIcon | 1 | 1 | — | — | — |
 | CloseIcon | 1 | 1 | — | — | — |
 | CheckIcon | 1 | 1 | — | — | — |
-| IconButton | 292 | 297 | effect, active, loading, result, progress | — | color |
-| StyledLink | 7 | 9 | effect, motion | — | color |
-| ProgressBar | 8 | 14 | variant, indeterminate, motion, locale, children, className | — | color |
-| Checkbox | 289 | 289 | — | — | color |
-| Checklist | 7 | 8 | locale | — | — |
+| IconButton | 297 | 297 | — | — | — |
+| StyledLink | 9 | 9 | — | — | — |
+| ProgressBar | 14 | 14 | — | — | — |
+| Checkbox | 289 | 289 | — | — | — |
+| Checklist | 8 | 8 | — | — | — |
 | ChecklistItem | 10 | 10 | — | — | — |
-| Avatar | 6 | 6 | — | — | color |
+| Avatar | 6 | 6 | — | — | — |
 | AvatarGroup | 2 | 2 | — | — | — |
-| SurfaceCard | 10 | 287 | effect, motion, color, defaultChecked, defaultValue, suppressContentEditableWarning, suppressHydrationWarning, accessKey, autoCapitalize, autoFocus, contentEditable, contextMenu, dir, draggable, enterKeyHint, hidden, id, lang, nonce, slot, spellCheck, style, tabIndex, translate, radioGroup, role, about, content, datatype, inlist, prefix, property, rel, resource, rev, typeof, vocab, autoCorrect, autoSave, itemProp, itemScope, itemType, itemID, itemRef, results, security, unselectable, popover, popoverTargetAction, popoverTarget, inert, inputMode, is, exportparts, part, aria-activedescendant, aria-atomic, aria-autocomplete, aria-braillelabel, aria-brailleroledescription, aria-busy, aria-checked, aria-colcount, aria-colindex, aria-colindextext, aria-colspan, aria-controls, aria-current, aria-describedby, aria-description, aria-details, aria-disabled, aria-dropeffect, aria-errormessage, aria-expanded, aria-flowto, aria-grabbed, aria-haspopup, aria-hidden, aria-invalid, aria-keyshortcuts, aria-label, aria-labelledby, aria-level, aria-live, aria-modal, aria-multiline, aria-multiselectable, aria-orientation, aria-owns, aria-placeholder, aria-posinset, aria-pressed, aria-readonly, aria-relevant, aria-required, aria-roledescription, aria-rowcount, aria-rowindex, aria-rowindextext, aria-rowspan, aria-selected, aria-setsize, aria-sort, aria-valuemax, aria-valuemin, aria-valuenow, aria-valuetext, dangerouslySetInnerHTML, onCopy, onCopyCapture, onCut, onCutCapture, onPaste, onPasteCapture, onCompositionEnd, onCompositionEndCapture, onCompositionStart, onCompositionStartCapture, onCompositionUpdate, onCompositionUpdateCapture, onFocus, onFocusCapture, onBlur, onBlurCapture, onChange, onChangeCapture, onBeforeInput, onBeforeInputCapture, onInput, onInputCapture, onReset, onResetCapture, onSubmit, onSubmitCapture, onInvalid, onInvalidCapture, onLoad, onLoadCapture, onError, onErrorCapture, onKeyDown, onKeyDownCapture, onKeyPress, onKeyPressCapture, onKeyUp, onKeyUpCapture, onAbort, onAbortCapture, onCanPlay, onCanPlayCapture, onCanPlayThrough, onCanPlayThroughCapture, onDurationChange, onDurationChangeCapture, onEmptied, onEmptiedCapture, onEncrypted, onEncryptedCapture, onEnded, onEndedCapture, onLoadedData, onLoadedDataCapture, onLoadedMetadata, onLoadedMetadataCapture, onLoadStart, onLoadStartCapture, onPause, onPauseCapture, onPlay, onPlayCapture, onPlaying, onPlayingCapture, onProgress, onProgressCapture, onRateChange, onRateChangeCapture, onSeeked, onSeekedCapture, onSeeking, onSeekingCapture, onStalled, onStalledCapture, onSuspend, onSuspendCapture, onTimeUpdate, onTimeUpdateCapture, onVolumeChange, onVolumeChangeCapture, onWaiting, onWaitingCapture, onAuxClick, onAuxClickCapture, onClick, onClickCapture, onContextMenu, onContextMenuCapture, onDoubleClick, onDoubleClickCapture, onDrag, onDragCapture, onDragEnd, onDragEndCapture, onDragEnter, onDragEnterCapture, onDragExit, onDragExitCapture, onDragLeave, onDragLeaveCapture, onDragOver, onDragOverCapture, onDragStart, onDragStartCapture, onDrop, onDropCapture, onMouseDown, onMouseDownCapture, onMouseEnter, onMouseLeave, onMouseMove, onMouseMoveCapture, onMouseOut, onMouseOutCapture, onMouseOver, onMouseOverCapture, onMouseUp, onMouseUpCapture, onSelect, onSelectCapture, onTouchCancel, onTouchCancelCapture, onTouchEnd, onTouchEndCapture, onTouchMove, onTouchMoveCapture, onTouchStart, onTouchStartCapture, onPointerDown, onPointerDownCapture, onPointerMove, onPointerMoveCapture, onPointerUp, onPointerUpCapture, onPointerCancel, onPointerCancelCapture, onPointerEnter, onPointerLeave, onPointerOver, onPointerOverCapture, onPointerOut, onPointerOutCapture, onGotPointerCapture, onGotPointerCaptureCapture, onLostPointerCapture, onLostPointerCaptureCapture, onScroll, onScrollCapture, onScrollEnd, onScrollEndCapture, onWheel, onWheelCapture, onAnimationStart, onAnimationStartCapture, onAnimationEnd, onAnimationEndCapture, onAnimationIteration, onAnimationIterationCapture, onToggle, onBeforeToggle, onTransitionCancel, onTransitionCancelCapture, onTransitionEnd, onTransitionEndCapture, onTransitionRun, onTransitionRunCapture, onTransitionStart, onTransitionStartCapture | — | — |
-| StatCard | 14 | 18 | animateValue, locale, numberFormat, motion | — | value |
+| SurfaceCard | 287 | 287 | — | — | — |
+| StatCard | 18 | 18 | — | — | — |
 | ProjectCard | 13 | 13 | — | — | — |
-| TaskCard | 12 | 14 | locale, progressLabel | — | — |
-| UserCard | 11 | 11 | — | — | initialsColor |
+| TaskCard | 14 | 14 | — | — | — |
+| UserCard | 11 | 11 | — | — | — |
 | ProgressStatCard | 15 | 15 | — | — | — |
-| LineChartStatCard | 14 | 18 | animateValue, locale, numberFormat, motion | — | value |
+| LineChartStatCard | 18 | 18 | — | — | — |
 | WheelChartStatCard | 13 | 13 | — | — | — |
 | BarChartStatCard | 12 | 12 | — | — | — |
 | BalanceCard | 14 | 14 | — | — | — |
-| DebitCard | 7 | 9 | locale, balanceLabel | — | — |
-| CreditCard | 7 | 10 | locale, cardNumberLabel, holderNameLabel | — | — |
+| DebitCard | 9 | 9 | — | — | — |
+| CreditCard | 10 | 10 | — | — | — |
 | ImageStatCard | 16 | 16 | — | — | — |
 | HighlightCard | 8 | 8 | — | — | — |
 | ProgressCard | 10 | 10 | — | — | — |
 | ActivityCard | 8 | 8 | — | — | — |
 | ContactItem | 11 | 11 | — | — | — |
-| ChatBubble | 14 | 22 | locale, motion, reactions, reactionOptions, onReaction, onReply, replyTo, delivery | — | — |
-| ChatInputBar | 51 | 62 | locale, motion, replyTo, onCancelReply, attachments, hasAttachments, voiceState, voiceLevel, onVoiceStart, onVoiceEnd, onVoiceCancel | — | — |
-| CommentItem | 8 | 9 | replyLabel | — | — |
-| ReviewItem | 12 | 14 | ratingLabel, menuLabel | — | — |
+| ChatBubble | 22 | 22 | — | — | — |
+| ChatInputBar | 62 | 62 | — | — | — |
+| CommentItem | 9 | 9 | — | — | — |
+| ReviewItem | 14 | 14 | — | — | — |
 | FilterGroup | 5 | 5 | — | — | — |
 | FilterTrigger | 6 | 6 | — | — | — |
 | FilterPanel | 10 | 10 | — | — | — |
-| HistoryItem | 11 | 11 | — | — | color |
-| HistoryGrouped | 8 | 8 | — | — | color |
-| EventTag | 7 | 7 | — | — | color |
+| HistoryItem | 11 | 11 | — | — | — |
+| HistoryGrouped | 8 | 8 | — | — | — |
+| EventTag | 7 | 7 | — | — | — |
 | CalendarDayCell | 9 | 9 | — | — | — |
 | CalendarWeekRow | 3 | 3 | — | — | — |
 | EventCard | 7 | 7 | — | — | — |
 | SmallCalendar | 7 | 7 | — | — | — |
 | SmallDailyCalendar | 7 | 7 | — | — | — |
-| FullCalendar | 9 | 9 | — | — | — |
+| FullCalendar | 12 | 12 | — | — | — |
 | MeterChart | 6 | 6 | — | — | — |
 | HalfDonutChart | 7 | 7 | — | — | — |
 | DashedHalfDonutChart | 7 | 7 | — | — | — |
-| DonutChart | 8 | 14 | interactive, activeIndex, onActiveIndexChange, onSegmentToggle, motion, ariaLabel | — | — |
+| DonutChart | 14 | 14 | — | — | — |
 | PieChart | 4 | 4 | — | — | — |
-| MultilayerDonutChart | 6 | 10 | sweep, motion, activeIndex, ariaLabel | — | — |
+| MultilayerDonutChart | 10 | 10 | — | — | — |
 | BubbleChart | 3 | 3 | — | — | — |
-| BarChart | 11 | 19 | onActiveIndexChange, onSelect, pinnedIndex, domain, referenceValue, referenceLabel, motion, ariaLabel | — | — |
-| BarHorizontalChart | 10 | 15 | domain, target, targetLabel, ranges, motion | — | — |
+| BarChart | 19 | 19 | — | — | — |
+| BarHorizontalChart | 15 | 15 | — | — | — |
 | BarUpsideDownChart | 12 | 12 | — | — | — |
-| SmoothLineChart | 10 | 18 | stacked, bands, motion, onActiveIndexChange, ariaLabel, interpolation, highlightToActive, markers | — | — |
+| SmoothLineChart | 18 | 18 | — | — | — |
 | ChartTooltip | 2 | 2 | — | — | — |
 | ChartCard | 10 | 10 | — | — | — |
 | ChartListItem | 7 | 7 | — | — | — |
 | ChartLegendItem | 5 | 5 | — | — | — |
 | ChartValueRow | 5 | 5 | — | — | — |
 | ChartStatFooter | 2 | 2 | — | — | — |
-| ListItem | 9 | 12 | onSwipeAction, swipeActionLabel, motion | — | — |
+| ListItem | 12 | 12 | — | — | — |
 | DescriptionItem | 5 | 5 | — | — | — |
 | ListGroup | 13 | 13 | — | — | — |
 | MapCard | 9 | 9 | — | — | — |
 | MenuItem | 15 | 15 | — | — | — |
 | DropdownPanel | 5 | 5 | — | — | — |
-| IconTrigger | 13 | 15 | initialFocus, panelAlign | — | — |
+| IconTrigger | 15 | 15 | — | — | — |
 | ProfileCard | 8 | 8 | — | — | — |
 | NotificationItem | 10 | 10 | — | — | — |
 | KebabMenu | 6 | 6 | — | — | — |
 | SidebarMenu | 16 | 16 | — | — | — |
-| TextField | 320 | 323 | labelPlacement, locale, activeTag | — | — |
+| TextField | 323 | 323 | — | — | — |
 | TextArea | 301 | 301 | — | — | — |
 | SelectOption | 15 | 15 | — | — | — |
 | MediaUpload | 8 | 8 | — | — | — |
 | ProfileImgUpload | 6 | 6 | — | — | — |
-| FileUpload | 8 | 9 | locale | — | — |
-| FileCard | 4 | 6 | locale, color | — | — |
+| FileUpload | 9 | 9 | — | — | — |
+| FileCard | 6 | 6 | — | — | — |
 | FileTypeIcon | 3 | 3 | — | — | — |
-| Datepicker | 12 | 18 | locale, confirmSelection, rangeLabels, inline, minDate, maxDate | — | — |
-| Toggle | 7 | 10 | defaultChecked, draggable, thumbIcon | — | — |
+| Datepicker | 18 | 18 | — | — | — |
+| Toggle | 10 | 10 | — | — | — |
 | RadioButton | 5 | 5 | — | — | — |
-| RadioWithLabel | 8 | 9 | tabIndex | — | — |
-| CheckboxControl | 289 | 289 | — | — | color |
+| RadioWithLabel | 9 | 9 | — | — | — |
+| CheckboxControl | 289 | 289 | — | — | — |
 | CheckboxWithLabel | 11 | 11 | — | — | — |
 | IconSelector | 8 | 8 | — | — | — |
 | IconPicker | 6 | 6 | — | — | — |
 | ColorPicker | 4 | 4 | — | — | — |
 | TextFieldSelectSuffix | 5 | 5 | — | — | — |
-| ConfirmationDialog | 13 | 13 | — | — | color |
-| Tooltip | 7 | 8 | followCursor | — | — |
+| ConfirmationDialog | 13 | 13 | — | — | — |
+| Tooltip | 8 | 8 | — | — | — |
 | TooltipBubble | 3 | 3 | — | — | — |
 | TooltipAnchor | 290 | 290 | — | — | — |
 | TooltipGroup | 3 | 3 | — | — | — |
-| PageDot | 5 | 5 | — | — | color |
-| Pagination | 5 | 7 | locale, motion | — | color |
-| Stepper | 4 | 9 | items, onStepChange, motion, locale, indicator | — | total, color |
-| TabBar | 7 | 9 | appearance, progress | — | color |
-| ButtonGroup | 8 | 8 | — | — | color |
-| TopBar | 3 | 3 | — | — | color |
+| PageDot | 5 | 5 | — | — | — |
+| Pagination | 7 | 7 | — | — | — |
+| Stepper | 9 | 9 | — | — | — |
+| TabBar | 9 | 9 | — | — | — |
+| ButtonGroup | 8 | 8 | — | — | — |
+| TopBar | 3 | 3 | — | — | — |
 | PageHeader | 56 | 56 | — | — | — |
-| Breadcrumbs | 4 | 4 | — | — | color |
-| Toolbar | 3 | 6 | selection, locale, motion | — | — |
+| Breadcrumbs | 4 | 4 | — | — | — |
+| Toolbar | 6 | 6 | — | — | — |
 | ToolbarSearchInput | 7 | 7 | — | — | — |
 | ToolbarSelectDropdown | 8 | 8 | — | — | — |
 | ToolbarDatepicker | 5 | 5 | — | — | — |
@@ -151,72 +194,125 @@
 | ToolbarPillTabs | 5 | 5 | — | — | — |
 | PageTitleToolbar | 13 | 13 | — | — | — |
 | CurrencyConverter | 20 | 20 | — | — | — |
-| RatingStars | 5 | 11 | onChange, readOnly, disabled, locale, ariaLabel, motion | — | — |
+| RatingStars | 11 | 11 | — | — | — |
 | ImageGrid | 5 | 5 | — | — | — |
 | ProductRow | 5 | 5 | — | — | — |
-| TableCell | 10 | 10 | — | — | checkboxColor |
-| DataTable | 28 | 28 | — | — | checkboxColor |
-| FullWidthTable | 33 | 33 | — | — | checkboxColor |
-| StatusBadge | 3 | 3 | — | — | color |
+| TableCell | 10 | 10 | — | — | — |
+| DataTable | 28 | 28 | — | — | — |
+| FullWidthTable | 33 | 33 | — | — | — |
+| StatusBadge | 3 | 3 | — | — | — |
 | ProgressBadge | 2 | 2 | — | — | — |
 | CellText | 1 | 1 | — | — | — |
 | CellTextSubtitle | 2 | 2 | — | — | — |
 | CellMuted | 1 | 1 | — | — | — |
 | CellImageText | 4 | 4 | — | — | — |
-| CellProgressValue | 3 | 3 | — | — | — |
+| CellProgressValue | 4 | 4 | — | — | — |
 | CellKebabMenu | 1 | 1 | — | — | — |
-| CellStatusDot | 3 | 3 | — | — | color |
-| CellNumber | 5 | 5 | — | — | — |
-| CellProgressBar | 3 | 3 | — | — | color |
+| CellStatusDot | 3 | 3 | — | — | — |
+| CellNumber | 6 | 6 | — | — | — |
+| CellProgressBar | 3 | 3 | — | — | — |
 | CellCode | 1 | 1 | — | — | — |
 | CellRating | 2 | 2 | — | — | — |
 | CellFile | 3 | 3 | — | — | — |
 | CellActions | 5 | 5 | — | — | — |
-| CellLink | 3 | 3 | — | — | color |
+| CellLink | 3 | 3 | — | — | — |
 | CardGlow | 1 | 1 | — | — | — |
 | CardTrend | 4 | 4 | — | — | — |
 | CardIconChip | 5 | 5 | — | — | — |
 | CardKebabButton | 2 | 2 | — | — | — |
 | CardAvatarGroup | 4 | 4 | — | — | — |
-| StatCardShell | 16 | 16 | — | — | value |
+| StatCardShell | 16 | 16 | — | — | — |
 | FinancialOrbs | 2 | 2 | — | — | — |
 | ColorSwatch | 4 | 4 | — | — | — |
 | ColorSection | 4 | 4 | — | — | — |
 | TypefaceBlock | 2 | 2 | — | — | — |
 | TypographyWeightSample | 3 | 3 | — | — | — |
 | TypographySizeRow | 3 | 3 | — | — | — |
-| AppLayout | 48 | 48 | — | — | — |
-| AskAi | 25 | 29 | landingDescription, headerLayout, panelMode, onDockedChange | — | — |
-| ThinkingTrace | 9 | 11 | locale, motion | — | — |
-| StreamingAnswer | 14 | 15 | locale | — | — |
-| ApprovalCard | 9 | 11 | locale, skipSubmitLabel | — | — |
-| ToolChips | 4 | 9 | locale, motion, state, result, actions | — | — |
-| AgentTaskRows | 4 | 5 | locale | — | — |
-| ContextCards | 5 | 6 | locale | — | — |
-| RecommendationCard | 11 | 12 | locale | — | — |
-| AgentDiffTable | 10 | 11 | locale | — | — |
-| AgentCodeBlock | 10 | 15 | locale, foldRanges, collapsedRangeIds, defaultCollapsedRangeIds, onCollapsedRangeIdsChange | — | — |
-| InsightCards | 7 | 8 | locale | — | — |
-| CommandSearch | 8 | 12 | locale, color, motion, autoFocus | — | — |
-| AgentFlowchart | 9 | 10 | locale | — | — |
-| Modal | 7 | 9 | locale, closeLabel | — | — |
-| Drawer | 8 | 12 | transition, revealOrigin, locale, closeLabel | — | — |
+| AppLayout | 50 | 50 | — | — | — |
+| AskAi | 29 | 15 | — | header, brand, session, fullscreen, defaultFullscreen, onFullscreenChange, showFullscreenTrigger, searchQuery, onSearchQueryChange, hasConversation, headerLayout, panelMode, onDockedChange, railLabel | — |
+| ThinkingTrace | 11 | 11 | — | — | — |
+| StreamingAnswer | 16 | 16 | — | — | — |
+| ApprovalCard | 11 | 11 | — | — | — |
+| ToolChips | 11 | 11 | — | — | — |
+| AgentTaskRows | 5 | 5 | — | — | — |
+| ContextCards | 6 | 6 | — | — | — |
+| RecommendationCard | 12 | 12 | — | — | — |
+| AgentDiffTable | 11 | 11 | — | — | — |
+| AgentCodeBlock | 15 | 15 | — | — | — |
+| InsightCards | 8 | 8 | — | — | — |
+| CommandSearch | 12 | 12 | — | — | — |
+| AgentFlowchart | 10 | 10 | — | — | — |
+| Conversation | 6 | 6 | — | — | — |
+| AgentMessage | 7 | 7 | — | — | — |
+| MessageActions | 7 | 11 | versions, onEdit, feedbackReasons, onFeedbackReason | — | labels |
+| PromptSuggestions | 5 | 5 | — | — | — |
+| ArtifactCard | 9 | 9 | — | — | — |
+| AgentParts | 8 | 8 | — | — | — |
+| ThinkingIndicator | 0 | 7 | label, phases, phaseDuration, startedAt, locale, size, className | — | — |
+| Reasoning | 0 | 13 | status, text, steps, startedAt, duration, label, doneLabel, open, onOpenChange, locale, motion, size, className | — | — |
+| ToolCall | 0 | 22 | name, title, summary, status, args, result, error, startedAt, duration, icon, details, onRetry, approvalReason, onApprove, onDeny, defaultOpen, openOnError, variant, locale, motion, size, className | — | — |
+| ToolCallGroup | 0 | 9 | children, label, count, status, statusLabel, defaultOpen, locale, motion, className | — | — |
+| Question | 0 | 12 | questions, onSubmit, onCancel, skippable, answers, confirm, disabled, submitLabel, labels, locale, size, className | — | — |
+| ChoiceCard | 0 | 9 | title, options, multiple, allowText, disabled, answered, onAnswer, onCancel, locale | — | — |
+| Approval | 0 | 19 | title, description, requester, risk, fields, preview, scopes, state, result, onApprove, onDeny, askDenyReason, expiresIn, onExpire, approveLabel, denyLabel, locale, size, className | — | — |
+| ConfirmCard | 0 | 10 | title, fields, body, confirmLabel, cancelLabel, state, result, onConfirm, onCancel, locale | — | — |
+| Citation | 0 | 4 | source, active, onActiveChange, locale | — | — |
+| CitedAnswer | 0 | 9 | text, sources, hideSourceList, defaultSourcesOpen, sourcesLabel, locale, motion, size, className | — | — |
+| PromptQueue | 0 | 8 | items, onRemove, onEdit, onSendNow, onMove, locale, motion, className | — | — |
+| RunControls | 0 | 13 | status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale, motion, className | — | — |
+| AttachmentList | 0 | 6 | items, onRemove, onRetry, onOpen, locale, className | — | — |
+| AgentWelcome | 0 | 6 | title, description, icon, footer, size, className | — | — |
+| AgentPanel | 0 | 17 | title, open, onOpenChange, launcher, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer | — | — |
+| AgentPlan | 0 | 13 | title, description, steps, mode, onChange, onApprove, onCancel, onRetryFrom, approveLabel, locale, motion, size, className | — | — |
+| AgentTrail | 0 | 6 | title, steps, collapseAfter, locale, size, className | — | — |
+| RunProgress | 0 | 2 | steps, locale | — | — |
+| ChangeLedger | 0 | 7 | entries, title, onUndo, locale, motion, size, className | — | — |
+| AgentCheckpoints | 0 | 7 | checkpoints, currentId, onRewind, title, locale, size, className | — | — |
+| AutonomySelector | 0 | 7 | value, onChange, actions, title, locale, size, className | — | — |
+| AgentInbox | 0 | 10 | tasks, title, onApprove, onReject, onRetry, onOpen, locale, motion, size, className | — | — |
+| RunningNow | 0 | 4 | tasks, onOpen, locale, className | — | — |
+| AwaySummary | 0 | 6 | awayFor, items, onDismiss, locale, size, className | — | — |
+| ContextUsage | 0 | 10 | segments, limit, cost, currency, onRemove, onCompact, variant, locale, size, className | — | — |
+| TraceWaterfall | 0 | 9 | spans, now, selectedId, onSelect, title, currency, locale, size, className | — | — |
+| AgentTree | 0 | 6 | root, selectedId, onSelect, currency, locale, className | — | — |
+| AgentLanes | 0 | 8 | lanes, blocks, now, onSelect, title, locale, size, className | — | — |
+| Composer | 0 | 13 | children, onSend, value, onValueChange, status, onStop, disabled, placeholder, quickActions, hasMessages, keepOnSend, locale, className | — | — |
+| ComposerHeader | 0 | 2 | children, className | — | — |
+| ComposerInput | 0 | 5 | rows, maxRows, sendOnEnter, label, className | — | — |
+| ComposerToolbar | 0 | 2 | children, className | — | — |
+| ComposerAction | 0 | 6 | label, icon, onClick, toggleQuickActions, active, showLabel | — | — |
+| ComposerModelMenu | 0 | 4 | models, model, onModelChange, label | — | — |
+| ComposerSend | 0 | 3 | label, stopLabel, stoppingLabel | — | — |
+| ConversationList | 0 | 12 | items, currentId, onSelect, onNew, onRename, onDelete, onPin, searchAfter, now, locale, motion, className | — | — |
+| InlineDiff | 0 | 8 | segments, title, onApply, onDecisionsChange, applyLabel, locale, size, className | — | — |
+| Modal | 12 | 12 | — | — | — |
+| Drawer | 15 | 15 | — | — | — |
 | Accordion | 6 | 6 | — | — | — |
-| TabsContent | 7 | 12 | panels, onActiveKeyChange, onProgressChange, transition, direction | — | — |
-| ToastProvider | 2 | 4 | locale, stacked | — | — |
-| OtpInput | 17 | 19 | locale, clearOnError | — | — |
-| CalendarCard | 11 | 11 | — | — | color |
+| TabsContent | 12 | 12 | — | — | — |
+| ToastProvider | 4 | 4 | — | — | — |
+| OtpInput | 19 | 19 | — | — | — |
+| CalendarCard | 11 | 11 | — | — | — |
 | LiquidTabs | 14 | 14 | — | — | — |
-| AddMember | 15 | 16 | accent | — | — |
+| AddMember | 16 | 16 | — | — | — |
+| Folder | 25 | 25 | — | — | — |
+| FolderFloat | 6 | 6 | — | — | — |
+| Panel | 285 | 285 | — | — | — |
+| FileInput | 307 | 307 | — | — | — |
+| WalletGoalCard | 14 | 14 | — | — | — |
+| ChartHeader | 7 | 7 | — | — | — |
+| ChartMetricRow | 1 | 1 | — | — | — |
+| GroupedBarChart | 6 | 6 | — | — | — |
+| DivergingBarChart | 9 | 9 | — | — | — |
+| InfoRow | 3 | 3 | — | — | — |
 | Grid | 285 | 285 | — | — | — |
 | GridItem | 282 | 282 | — | — | — |
-| AppSwitcherDropdown | 5 | 6 | locale | — | — |
+| AppSwitcherDropdown | 6 | 6 | — | — | — |
 
 ## 导出变化
 
-删除：无。
+删除：ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH。
 
-新增：AgentCodeFoldRange, ButtonEffect, ButtonHoldLabels, ButtonProps, ChatReaction, ChatReactionOption, ComposerReply, ComposerVoiceState, IconButtonEffect, StepperItem, ToggleProps, ToolbarProps, ToolbarSelectionOptions。
+新增：AGENT_PANEL_WIDTH, AgentCheckpoints, AgentCheckpointsProps, AgentInbox, AgentInboxProps, AgentLanes, AgentLanesProps, AgentPanel, AgentPanelProps, AgentPlan, AgentPlanProps, AgentSession, AgentStepStatus, AgentTaskState, AgentTrail, AgentTrailProps, AgentTree, AgentTreeProps, AgentWelcome, AgentWelcomeProps, Approval, ApprovalField, ApprovalProps, ApprovalRisk, ApprovalScope, ApprovalState, AttachmentItem, AttachmentKind, AttachmentList, AttachmentListProps, AutonomyAction, AutonomyLevel, AutonomySelector, AutonomySelectorProps, AwayItem, AwaySummary, AwaySummaryProps, ChangeLedger, ChangeLedgerProps, Checkpoint, ChoiceAnswer, ChoiceCard, ChoiceCardProps, ChoiceOption, Citation, CitationProps, CitationSource, CitedAnswer, CitedAnswerProps, Composer, ComposerAction, ComposerActionProps, ComposerHeader, ComposerInput, ComposerInputProps, ComposerModelMenu, ComposerModelMenuProps, ComposerProps, ComposerSend, ComposerToolbar, ConfirmCard, ConfirmCardProps, ConfirmField, ContextSegment, ContextSegmentKind, ContextUsage, ContextUsageProps, ConversationItem, ConversationList, ConversationListProps, InboxTask, InlineDiff, InlineDiffDecision, InlineDiffProps, InlineDiffSegment, LaneBlock, LedgerEntry, LedgerField, PlanStep, ProgressStep, PromptQueue, PromptQueueProps, Question, QuestionAnswer, QuestionItem, QuestionLabels, QuestionOption, QuestionProps, QueuedPrompt, Reasoning, ReasoningProps, ReasoningSource, ReasoningStatus, ReasoningStep, RunControls, RunControlsProps, RunProgress, RunStatus, RunningNow, RunningNowProps, ThinkingIndicator, ThinkingIndicatorProps, ToolCall, ToolCallGroup, ToolCallGroupProps, ToolCallProps, ToolCallStatus, TraceSpan, TraceWaterfall, TraceWaterfallProps, TrailStep, TrailSubstep, TreeAgent, TreeAgentStatus, resolveInlineDiff。
 
 ## 智能体与聊天参数明细
 
@@ -377,6 +473,7 @@
 | favoriteItems | `AppLayoutMenuItem[] \| undefined` | 否 | 未在参数解构处设置 |
 | menuSections | `AppLayoutMenuSection[] \| undefined` | 否 | 未在参数解构处设置 |
 | profile | `AppLayoutProfile \| undefined` | 否 | 未在参数解构处设置 |
+| profileMenuItems | `ProfileMenuItem[] \| undefined` | 否 | 未在参数解构处设置 |
 | notifications | `number \| undefined` | 否 | 未在参数解构处设置 |
 | messages | `number \| undefined` | 否 | 未在参数解构处设置 |
 | language | `LanguageCode \| undefined` | 否 | 未在参数解构处设置 |
@@ -399,6 +496,7 @@
 | sidebarSlot | `ReactNode` | 否 | 未在参数解构处设置 |
 | sidebarWidth | `string \| undefined` | 否 | "16rem" |
 | collapsedSidebarWidth | `string \| undefined` | 否 | "5rem" |
+| defaultSidebarCollapsed | `boolean \| undefined` | 否 | false |
 | hideSidebarWidgets | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | teamLabels | `TeamSwitcherLabels \| undefined` | 否 | 未在参数解构处设置 |
 | showTeamActions | `boolean \| undefined` | 否 | false |
@@ -410,34 +508,20 @@
 | 参数 | 类型 | 是否必填 | 源码默认值 |
 |---|---|---|---|
 | color | `AccentColor \| undefined` | 否 | 未在参数解构处设置 |
-| label | `string \| undefined` | 否 | "Ask AI" |
+| label | `string \| undefined` | 否 | "Forge Agent" |
 | suggestions | `string[] \| undefined` | 否 | DEFAULT_SUGGESTIONS |
 | placeholder | `string \| undefined` | 否 | "输入问题…" |
 | onSend | `(message: string, request: AskAiRequest) => string \| AskAiResponse \| Promise<string \| AskAiResponse>` | 是 | 未在参数解构处设置 |
 | disabled | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | className | `string \| undefined` | 否 | 未在参数解构处设置 |
-| header | `ReactNode` | 否 | 未在参数解构处设置 |
-| brand | `ReactNode` | 否 | 未在参数解构处设置 |
-| session | `ReactNode` | 否 | 未在参数解构处设置 |
 | messages | `ReactNode` | 否 | 未在参数解构处设置 |
 | composer | `ReactNode` | 否 | 未在参数解构处设置 |
-| fullscreen | `boolean \| undefined` | 否 | 未在参数解构处设置 |
-| defaultFullscreen | `boolean \| undefined` | 否 | false |
-| onFullscreenChange | `((open: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| showFullscreenTrigger | `boolean \| undefined` | 否 | true |
 | sessions | `AskAiSessionItem[] \| undefined` | 否 | 未在参数解构处设置 |
 | currentSessionId | `string \| undefined` | 否 | 未在参数解构处设置 |
 | onNewSession | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
 | onSelectSession | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| searchQuery | `string \| undefined` | 否 | 未在参数解构处设置 |
-| onSearchQueryChange | `((query: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| hasConversation | `boolean \| undefined` | 否 | 未在参数解构处设置 |
 | landingTitle | `string \| undefined` | 否 | 未在参数解构处设置 |
 | landingDescription | `string \| undefined` | 否 | "告诉我你想了解什么，我来帮你梳理。" |
-| headerLayout | `"brand" \| "session" \| undefined` | 否 | "brand" |
-| panelMode | `"modal" \| "responsive" \| undefined` | 否 | "modal" |
-| onDockedChange | `((docked: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| railLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
 
 ### ThinkingTrace
 
@@ -469,6 +553,7 @@
 | status | `StreamingAnswerStatus \| undefined` | 否 | 未在参数解构处设置 |
 | format | `"plain" \| "markdown" \| undefined` | 否 | "plain" |
 | animation | `"fade" \| "blur" \| undefined` | 否 | "fade" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
 | duration | `number \| undefined` | 否 | 500 |
 | motion | `MotionPreference \| undefined` | 否 | "auto" |
 | sources | `StreamingSource[] \| undefined` | 否 | [] |
@@ -487,14 +572,14 @@
 |---|---|---|---|
 | questions | `ApprovalQuestion[]` | 是 | 未在参数解构处设置 |
 | locale | `"zh" \| "en" \| undefined` | 否 | "zh" |
-| skipLabel | `string \| undefined` | 否 | locale === "zh" ? "跳过" : "Skip" |
-| skipSubmitLabel | `string \| undefined` | 否 | locale === "zh" ? "跳过并提交" : "Skip and submit" |
-| continueLabel | `string \| undefined` | 否 | locale === "zh" ? "继续" : "Continue" |
-| sendLabel | `string \| undefined` | 否 | locale === "zh" ? "提交" : "Send" |
-| sentLabel | `string \| undefined` | 否 | locale === "zh" ? "答案已提交" : "Answers sent" |
+| skipLabel | `string \| undefined` | 否 | pick(locale, "跳过", "Skip") |
+| skipSubmitLabel | `string \| undefined` | 否 | pick(locale, "跳过并提交", "Skip and submit") |
+| continueLabel | `string \| undefined` | 否 | pick(locale, "继续", "Continue") |
+| sendLabel | `string \| undefined` | 否 | pick(locale, "提交", "Send") |
+| sentLabel | `string \| undefined` | 否 | pick(locale, "答案已提交", "Answers sent") |
 | onSubmitted | `((answers: Record<string, string[]>) => void) \| undefined` | 否 | 未在参数解构处设置 |
-| previousQuestionLabel | `string \| undefined` | 否 | locale === "zh" ? "上一题" : "Previous question" |
-| nextQuestionLabel | `string \| undefined` | 否 | locale === "zh" ? "下一题" : "Next question" |
+| previousQuestionLabel | `string \| undefined` | 否 | pick(locale, "上一题", "Previous question") |
+| nextQuestionLabel | `string \| undefined` | 否 | pick(locale, "下一题", "Next question") |
 | className | `string \| undefined` | 否 | "" |
 
 ### ToolChips
@@ -509,6 +594,8 @@
 | state | `"idle" \| "success" \| "error" \| "running" \| "cancelled" \| undefined` | 否 | 未在参数解构处设置 |
 | result | `ReactNode` | 否 | 未在参数解构处设置 |
 | actions | `ReactNode` | 否 | 未在参数解构处设置 |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| defaultOpen | `boolean \| undefined` | 否 | true |
 | diffs | `ToolDiffChip[] \| undefined` | 否 | [] |
 | summary | `string \| undefined` | 否 | 未在参数解构处设置 |
 | className | `string \| undefined` | 否 | "" |
@@ -647,3 +734,664 @@
 | selectedLabel | `string \| undefined` | 否 | locale === "zh" ? "当前节点" : "Selected" |
 | nextLabel | `string \| undefined` | 否 | locale === "zh" ? "下一步" : "Next" |
 | className | `string \| undefined` | 否 | "" |
+
+### Conversation
+
+源码：`core/src/components/ui/agent/agent-conversation.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| children | `ReactNode` | 是 | 未在参数解构处设置 |
+| followKey | `unknown` | 否 | 未在参数解构处设置 |
+| locale | `Locale \| undefined` | 否 | "zh" |
+| latestLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentMessage
+
+源码：`core/src/components/ui/agent/agent-conversation.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| role | `AgentMessageRole` | 是 | 未在参数解构处设置 |
+| children | `ReactNode` | 是 | 未在参数解构处设置 |
+| name | `string \| undefined` | 否 | 未在参数解构处设置 |
+| avatar | `ReactNode` | 否 | 未在参数解构处设置 |
+| time | `string \| undefined` | 否 | 未在参数解构处设置 |
+| actions | `ReactNode` | 否 | 未在参数解构处设置 |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### MessageActions
+
+源码：`core/src/components/ui/agent/agent-conversation.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| copyText | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onRetry | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onFeedback | `((value: MessageFeedback) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| feedback | `MessageFeedback \| undefined` | 否 | 未在参数解构处设置 |
+| versions | `{ current: number; total: number; onChange: (index: number) => void; } \| undefined` | 否 | 未在参数解构处设置 |
+| onEdit | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| feedbackReasons | `string[] \| undefined` | 否 | [] |
+| onFeedbackReason | `((reason: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `Locale \| undefined` | 否 | "zh" |
+| labels | `Partial<Record<"next" \| "previous" \| "copy" \| "up" \| "down" \| "copied" \| "retry" \| "edit", string>> \| undefined` | 否 | {} |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### PromptSuggestions
+
+源码：`core/src/components/ui/agent/agent-conversation.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| suggestions | `string[]` | 是 | 未在参数解构处设置 |
+| onSelect | `(text: string, index: number) => void` | 是 | 未在参数解构处设置 |
+| label | `string \| undefined` | 否 | 未在参数解构处设置 |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ArtifactCard
+
+源码：`core/src/components/ui/agent/agent-conversation.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `string` | 是 | 未在参数解构处设置 |
+| kind | `ArtifactKind \| undefined` | 否 | "document" |
+| meta | `string \| undefined` | 否 | 未在参数解构处设置 |
+| status | `ArtifactStatus \| undefined` | 否 | "ready" |
+| onOpen | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDownload | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `Locale \| undefined` | 否 | "zh" |
+| labels | `Partial<Record<"error" \| "open" \| "generating" \| "download", string>> \| undefined` | 否 | {} |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentParts
+
+源码：`core/src/components/ui/agent/agent-parts.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| parts | `AgentMessagePart[]` | 是 | 未在参数解构处设置 |
+| status | `"error" \| "streaming" \| "ready" \| "submitted" \| undefined` | 否 | "ready" |
+| renderTool | `Record<string, (part: AgentToolPart) => ReactNode> \| undefined` | 否 | {} |
+| onOpenFile | `((part: { url: string; filename?: string; mediaType: string; }) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onToolApproval | `((response: AgentToolApprovalResponse) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `"zh" \| "en" \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ThinkingIndicator
+
+源码：`core/src/components/ui/agent/thinking.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| label | `string \| undefined` | 否 | 未在参数解构处设置 |
+| phases | `string[] \| undefined` | 否 | 未在参数解构处设置 |
+| phaseDuration | `number \| undefined` | 否 | 2400 |
+| startedAt | `number \| Date \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### Reasoning
+
+源码：`core/src/components/ui/agent/thinking.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| status | `ReasoningStatus` | 是 | 未在参数解构处设置 |
+| text | `string \| undefined` | 否 | 未在参数解构处设置 |
+| steps | `ReasoningStep[] \| undefined` | 否 | [] |
+| startedAt | `number \| Date \| undefined` | 否 | 未在参数解构处设置 |
+| duration | `number \| undefined` | 否 | 未在参数解构处设置 |
+| label | `ReactNode` | 否 | 未在参数解构处设置 |
+| doneLabel | `ReactNode` | 否 | 未在参数解构处设置 |
+| open | `boolean \| undefined` | 否 | 未在参数解构处设置 |
+| onOpenChange | `((open: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ToolCall
+
+源码：`core/src/components/ui/agent/tool-call.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| name | `string` | 是 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| summary | `ReactNode` | 否 | 未在参数解构处设置 |
+| status | `ToolCallStatus` | 是 | 未在参数解构处设置 |
+| args | `unknown` | 否 | 未在参数解构处设置 |
+| result | `unknown` | 否 | 未在参数解构处设置 |
+| error | `string \| undefined` | 否 | 未在参数解构处设置 |
+| startedAt | `number \| Date \| undefined` | 否 | 未在参数解构处设置 |
+| duration | `number \| undefined` | 否 | 未在参数解构处设置 |
+| icon | `ReactNode` | 否 | 未在参数解构处设置 |
+| details | `ReactNode` | 否 | 未在参数解构处设置 |
+| onRetry | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| approvalReason | `ReactNode` | 否 | 未在参数解构处设置 |
+| onApprove | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDeny | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| defaultOpen | `boolean \| undefined` | 否 | false |
+| openOnError | `boolean \| undefined` | 否 | true |
+| variant | `"row" \| "card" \| undefined` | 否 | "card" |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ToolCallGroup
+
+源码：`core/src/components/ui/agent/tool-call.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| children | `ReactNode` | 是 | 未在参数解构处设置 |
+| label | `ReactNode` | 否 | 未在参数解构处设置 |
+| count | `number \| undefined` | 否 | 未在参数解构处设置 |
+| status | `"idle" \| "success" \| "error" \| "running" \| "cancelled" \| undefined` | 否 | "success" |
+| statusLabel | `ReactNode` | 否 | 未在参数解构处设置 |
+| defaultOpen | `boolean \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### Question
+
+源码：`core/src/components/ui/agent/question.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| questions | `QuestionItem[]` | 是 | 未在参数解构处设置 |
+| onSubmit | `(answers: Record<string, QuestionAnswer>) => void` | 是 | 未在参数解构处设置 |
+| onCancel | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| skippable | `boolean \| undefined` | 否 | false |
+| answers | `Record<string, QuestionAnswer> \| undefined` | 否 | 未在参数解构处设置 |
+| confirm | `boolean \| undefined` | 否 | false |
+| disabled | `boolean \| undefined` | 否 | false |
+| submitLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| labels | `Partial<Record<"submit" \| "next" \| "previous" \| "sent" \| "skip" \| "skipSubmit" \| "continue" \| "cancel" \| "skipped", string>> \| undefined` | 否 | {} |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ChoiceCard
+
+源码：`core/src/components/ui/agent/question.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `string` | 是 | 未在参数解构处设置 |
+| options | `ChoiceOption[]` | 是 | 未在参数解构处设置 |
+| multiple | `boolean \| undefined` | 否 | false |
+| allowText | `boolean \| undefined` | 否 | false |
+| disabled | `boolean \| undefined` | 否 | false |
+| answered | `ReactNode` | 否 | 未在参数解构处设置 |
+| onAnswer | `(answer: ChoiceAnswer) => void` | 是 | 未在参数解构处设置 |
+| onCancel | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+
+### Approval
+
+源码：`core/src/components/ui/agent/approval.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `ReactNode` | 是 | 未在参数解构处设置 |
+| description | `ReactNode` | 否 | 未在参数解构处设置 |
+| requester | `ReactNode` | 否 | 未在参数解构处设置 |
+| risk | `ApprovalRisk \| undefined` | 否 | 未在参数解构处设置 |
+| fields | `ApprovalField[] \| undefined` | 否 | [] |
+| preview | `ReactNode` | 否 | 未在参数解构处设置 |
+| scopes | `ApprovalScope[] \| undefined` | 否 | 未在参数解构处设置 |
+| state | `ApprovalState \| undefined` | 否 | "pending" |
+| result | `ReactNode` | 否 | 未在参数解构处设置 |
+| onApprove | `((scope: ApprovalScope) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDeny | `((reason?: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| askDenyReason | `boolean \| undefined` | 否 | false |
+| expiresIn | `number \| undefined` | 否 | 未在参数解构处设置 |
+| onExpire | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| approveLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| denyLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ConfirmCard
+
+源码：`core/src/components/ui/agent/approval.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `string` | 是 | 未在参数解构处设置 |
+| fields | `ApprovalField[] \| undefined` | 否 | [] |
+| body | `string \| undefined` | 否 | 未在参数解构处设置 |
+| confirmLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| cancelLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| state | `"done" \| "cancelled" \| "pending" \| "working" \| undefined` | 否 | "pending" |
+| result | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onConfirm | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onCancel | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+
+### Citation
+
+源码：`core/src/components/ui/agent/cited-answer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| source | `CitationSource` | 是 | 未在参数解构处设置 |
+| active | `boolean \| undefined` | 否 | false |
+| onActiveChange | `((active: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+
+### CitedAnswer
+
+源码：`core/src/components/ui/agent/cited-answer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| text | `string` | 是 | 未在参数解构处设置 |
+| sources | `CitationSource[]` | 是 | 未在参数解构处设置 |
+| hideSourceList | `boolean \| undefined` | 否 | false |
+| defaultSourcesOpen | `boolean \| undefined` | 否 | true |
+| sourcesLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### PromptQueue
+
+源码：`core/src/components/ui/agent/composer-parts.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| items | `QueuedPrompt[]` | 是 | 未在参数解构处设置 |
+| onRemove | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onEdit | `((id: string, text: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onSendNow | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onMove | `((id: string, direction: -1 \| 1) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### RunControls
+
+源码：`core/src/components/ui/agent/composer-parts.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| status | `RunStatus` | 是 | 未在参数解构处设置 |
+| activity | `string \| undefined` | 否 | 未在参数解构处设置 |
+| startedAt | `number \| Date \| undefined` | 否 | 未在参数解构处设置 |
+| duration | `number \| undefined` | 否 | 未在参数解构处设置 |
+| error | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onStop | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onResume | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onRetry | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDismiss | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onSteer | `((note: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AttachmentList
+
+源码：`core/src/components/ui/agent/composer-parts.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| items | `AttachmentItem[]` | 是 | 未在参数解构处设置 |
+| onRemove | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onRetry | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onOpen | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentWelcome
+
+源码：`core/src/components/ui/agent/agent-welcome.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `ReactNode` | 是 | 未在参数解构处设置 |
+| description | `ReactNode` | 否 | 未在参数解构处设置 |
+| icon | `ReactNode` | 否 | 未在参数解构处设置 |
+| footer | `ReactNode` | 否 | 未在参数解构处设置 |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentPanel
+
+源码：`core/src/components/ui/agent/agent-panel.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `string` | 是 | 未在参数解构处设置 |
+| open | `boolean` | 是 | 未在参数解构处设置 |
+| onOpenChange | `(open: boolean) => void` | 是 | 未在参数解构处设置 |
+| launcher | `boolean \| undefined` | 否 | true |
+| launcherLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| empty | `ReactNode` | 否 | 未在参数解构处设置 |
+| followKey | `unknown` | 否 | 未在参数解构处设置 |
+| children | `ReactNode` | 否 | 未在参数解构处设置 |
+| onNewChat | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| sessions | `ConversationItem[] \| undefined` | 否 | 未在参数解构处设置 |
+| currentSessionId | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onSelectSession | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onRenameSession | `((id: string, title: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDeleteSession | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onPinSession | `((id: string, pinned: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| notice | `ReactNode` | 否 | 未在参数解构处设置 |
+| composer | `ReactNode \| { locale?: "zh" \| "en"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction \| null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: "default" \| "compact"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }` | 是 | 未在参数解构处设置 |
+
+### AgentPlan
+
+源码：`core/src/components/ui/agent/agent-run.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| description | `ReactNode` | 否 | 未在参数解构处设置 |
+| steps | `PlanStep[]` | 是 | 未在参数解构处设置 |
+| mode | `"done" \| "running" \| "review" \| undefined` | 否 | "review" |
+| onChange | `((steps: PlanStep[]) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onApprove | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onCancel | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onRetryFrom | `((stepId: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| approveLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentTrail
+
+源码：`core/src/components/ui/agent/agent-run.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| title | `ReactNode` | 是 | 未在参数解构处设置 |
+| steps | `TrailStep[]` | 是 | 未在参数解构处设置 |
+| collapseAfter | `number \| undefined` | 否 | 4 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### RunProgress
+
+源码：`core/src/components/ui/agent/agent-run.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| steps | `ProgressStep[]` | 是 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+
+### ChangeLedger
+
+源码：`core/src/components/ui/agent/agent-governance.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| entries | `LedgerEntry[]` | 是 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| onUndo | `((id: string, alsoUndone: string[]) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentCheckpoints
+
+源码：`core/src/components/ui/agent/agent-governance.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| checkpoints | `Checkpoint[]` | 是 | 未在参数解构处设置 |
+| currentId | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onRewind | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AutonomySelector
+
+源码：`core/src/components/ui/agent/agent-governance.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| value | `AutonomyLevel` | 是 | 未在参数解构处设置 |
+| onChange | `(value: AutonomyLevel) => void` | 是 | 未在参数解构处设置 |
+| actions | `AutonomyAction[] \| undefined` | 否 | [] |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentInbox
+
+源码：`core/src/components/ui/agent/agent-ops.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| tasks | `InboxTask[]` | 是 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| onApprove | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onReject | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onRetry | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onOpen | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### RunningNow
+
+源码：`core/src/components/ui/agent/agent-ops.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| tasks | `InboxTask[]` | 是 | 未在参数解构处设置 |
+| onOpen | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AwaySummary
+
+源码：`core/src/components/ui/agent/agent-ops.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| awayFor | `number` | 是 | 未在参数解构处设置 |
+| items | `AwayItem[]` | 是 | 未在参数解构处设置 |
+| onDismiss | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ContextUsage
+
+源码：`core/src/components/ui/agent/agent-observe.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| segments | `ContextSegment[]` | 是 | 未在参数解构处设置 |
+| limit | `number` | 是 | 未在参数解构处设置 |
+| cost | `number \| undefined` | 否 | 未在参数解构处设置 |
+| currency | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onRemove | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onCompact | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| variant | `"inline" \| "card" \| undefined` | 否 | "card" |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### TraceWaterfall
+
+源码：`core/src/components/ui/agent/agent-observe.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| spans | `TraceSpan[]` | 是 | 未在参数解构处设置 |
+| now | `number \| undefined` | 否 | 未在参数解构处设置 |
+| selectedId | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onSelect | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| currency | `string \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentTree
+
+源码：`core/src/components/ui/agent/agent-observe.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| root | `TreeAgent` | 是 | 未在参数解构处设置 |
+| selectedId | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onSelect | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| currency | `string \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### AgentLanes
+
+源码：`core/src/components/ui/agent/agent-observe.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| lanes | `{ id: string; name: string; icon?: ReactNode; }[]` | 是 | 未在参数解构处设置 |
+| blocks | `LaneBlock[]` | 是 | 未在参数解构处设置 |
+| now | `number` | 是 | 未在参数解构处设置 |
+| onSelect | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### Composer
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| children | `ReactNode` | 是 | 未在参数解构处设置 |
+| onSend | `(text: string, quickAction?: ChatInputBarQuickAction) => void` | 是 | 未在参数解构处设置 |
+| value | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onValueChange | `((value: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| status | `ComposerStatus \| undefined` | 否 | "idle" |
+| onStop | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| disabled | `boolean \| undefined` | 否 | false |
+| placeholder | `string \| undefined` | 否 | 未在参数解构处设置 |
+| quickActions | `ChatInputBarQuickAction[] \| undefined` | 否 | [] |
+| hasMessages | `boolean \| undefined` | 否 | false |
+| keepOnSend | `boolean \| undefined` | 否 | false |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ComposerHeader
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| children | `ReactNode` | 是 | 未在参数解构处设置 |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ComposerInput
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| rows | `number \| undefined` | 否 | 2 |
+| maxRows | `number \| undefined` | 否 | 8 |
+| sendOnEnter | `boolean \| undefined` | 否 | true |
+| label | `string \| undefined` | 否 | 未在参数解构处设置 |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ComposerToolbar
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| children | `ReactNode` | 是 | 未在参数解构处设置 |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ComposerAction
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| label | `string` | 是 | 未在参数解构处设置 |
+| icon | `ReactNode` | 否 | 未在参数解构处设置 |
+| onClick | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| toggleQuickActions | `boolean \| undefined` | 否 | false |
+| active | `boolean \| undefined` | 否 | 未在参数解构处设置 |
+| showLabel | `boolean \| undefined` | 否 | false |
+
+### ComposerModelMenu
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| models | `ComposerModel[]` | 是 | 未在参数解构处设置 |
+| model | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onModelChange | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| label | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ComposerSend
+
+源码：`core/src/components/ui/agent/composer.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| label | `string \| undefined` | 否 | 未在参数解构处设置 |
+| stopLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| stoppingLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### ConversationList
+
+源码：`core/src/components/ui/agent/conversation-list.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| items | `ConversationItem[]` | 是 | 未在参数解构处设置 |
+| currentId | `string \| undefined` | 否 | 未在参数解构处设置 |
+| onSelect | `(id: string) => void` | 是 | 未在参数解构处设置 |
+| onNew | `(() => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onRename | `((id: string, title: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDelete | `((id: string) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onPin | `((id: string, pinned: boolean) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| searchAfter | `number \| undefined` | 否 | 8 |
+| now | `number \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| motion | `MotionPreference \| undefined` | 否 | "auto" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |
+
+### InlineDiff
+
+源码：`core/src/components/ui/agent/inline-diff.tsx`。
+
+| 参数 | 类型 | 是否必填 | 源码默认值 |
+|---|---|---|---|
+| segments | `InlineDiffSegment[]` | 是 | 未在参数解构处设置 |
+| title | `ReactNode` | 否 | 未在参数解构处设置 |
+| onApply | `((text: string, decisions: Record<string, InlineDiffDecision>) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| onDecisionsChange | `((decisions: Record<string, InlineDiffDecision>) => void) \| undefined` | 否 | 未在参数解构处设置 |
+| applyLabel | `string \| undefined` | 否 | 未在参数解构处设置 |
+| locale | `AgentLocale \| undefined` | 否 | "zh" |
+| size | `"md" \| "sm" \| undefined` | 否 | "md" |
+| className | `string \| undefined` | 否 | 未在参数解构处设置 |

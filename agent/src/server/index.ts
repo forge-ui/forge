@@ -1,11 +1,12 @@
 import { APICallError, convertToModelMessages, createUIMessageStreamResponse, isStepCount, jsonSchema, streamText, tool, toUIMessageStream, type LanguageModel, type ToolSet, type UIMessage } from "ai";
 import { z } from "zod";
-import { uiToolNames } from "../catalog/schema";
+import { catalogExample, catalogGuide, uiToolNames, type UiToolName } from "../catalog/schema";
 import { cannedAnswer, cannedResponse, checkTopics, matchedTopic, pageInstructionsFor, topicCatalog, topicTool, type CannedAnswer, type PageInstructions, type Topic } from "./knowledge";
 
 export { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 export { tool } from "ai";
-export { uiSchemas, uiToolNames } from "../catalog/schema";
+export { uiSchemas, uiToolNames, BLOCK_OF } from "../catalog/schema";
+export type { UiToolName } from "../catalog/schema";
 export type { CannedAnswer, PageInstructions, Topic } from "./knowledge";
 
 /** What the browser declares about each tool it can run; the code stays in the browser. */
@@ -26,8 +27,11 @@ export type AgentHandlerOptions = {
   tools?: ToolSet;
   /** Model steps per request, tool calls included. */
   maxSteps?: number;
-  /** Let the model answer with Forge components (cards, steps, tables…) written into its text; off for plain text. */
-  ui?: boolean;
+  /**
+   * Let the model answer with Forge components (cards, tables, charts, forms…) written into its text.
+   * true enables the whole catalog, a list only those components (fewer prompt tokens), false plain text.
+   */
+  ui?: boolean | readonly UiToolName[];
   /** How to work on particular pages, sent only while the user is on them (path from the page context). */
   pageInstructions?: PageInstructions;
   /** Background the agent reads on demand; only the titles are in every prompt. */
@@ -48,22 +52,12 @@ const requestSchema = z.object({
   })).max(40).optional(),
 });
 
-const ANSWER_RULES = `回答格式：
-- 正文用 Markdown，句子短，先给结论。需要工具时直接发起工具调用，能同时查的一次查齐，查完一次写完回答；正文里不要写工具名或函数调用。
-- 结构化的内容直接写在正文里的组件块中：三个反引号加 forge:类型 开头，内容是一个 JSON 对象，前端会渲染成组件。不要为了展示内容去调用工具。
-  - forge:cards 卡片：{"title"?, "items": [{"title", "description"?, "tag"?, "href"?, "preview"?, "code"?, "image"?}]}，最多 8 项。preview 是能嵌入预览的站内页面路径，会显示成缩略图；code 是一行可复制的命令。
-  - forge:steps 步骤：{"title"?, "steps": [{"title", "detail"?, "code"?}]}
-  - forge:table 表格：{"title"?, "columns": [{"key", "header", "numeric"?}], "rows": [{列 key: 值}]}
-  - forge:metrics 指标：{"items": [{"label", "value", "change"?, "direction"?: "up" 或 "down"}]}
-  - forge:chart 图表：{"title"?, "type": "line" 或 "bar", "labels": [...], "series": [{"label", "data": [数字]}]}
-  - forge:choices 让用户选：{"title", "options": [{"label", "description"?}]}，2 到 8 项。要用户在几个明确方案里挑一个时用，用户点选后会作为下一条消息发来；问开放问题时直接用文字问。
-  - forge:followups 后续问题：{"questions": [1 到 4 个短问题]}，放在回答最后，正文里不要再列一遍。
-- 例：
-\`\`\`forge:cards
-{"items": [{"title": "订单列表", "tag": "页面组件", "description": "搜索、筛选、分页都已接好", "href": "/blocks/orders-table-section", "code": "npx shadcn@latest add https://www.forgeui.org/r/orders-table-section.json"}]}
-\`\`\`
-- 代码和命令用普通 Markdown 代码块并标上语言，命令用 bash。
-- 表格、指标、图表里的数字必须来自本轮工具结果，不能估算或编造；链接只用工具结果里出现过的地址或站内路径；图片只用工具结果里的图片地址。
+const answerRules = (CATALOG: string, EXAMPLE: string) => `回答格式：
+- 正文用 Markdown，句子短，先给结论。需要工具时直接发起工具调用，只用提供给你的工具、不要编造工具名，能同时查的一次查齐，查完一次写完回答；正文里不要写工具名或函数调用。
+- 结构化的内容直接写在正文里的组件块中：三个反引号加 forge:类型 开头，内容是一个 JSON 对象，前端会渲染成组件。组件块是正文，不是工具：不要发起名为 forge:… 的工具调用，也不要为了展示内容去调用工具。
+${CATALOG}
+${EXAMPLE}- 代码和命令用普通 Markdown 代码块并标上语言，命令用 bash。
+- 表格、指标、图表、进度、漏斗里的数字必须原样来自本轮工具结果，不能估算或编造，否则会被隐藏；合计、占比、平均这类算出来的数写在正文里；链接只用工具结果里出现过的地址或站内路径；图片只用工具结果里的图片地址。
 - 会改变页面或数据的浏览器工具，用户可能会拒绝；被拒绝时说明没有执行，不要重复调用。`;
 
 const OPERATE_RULES = `页面操作规则（浏览器提供了 read_page 等工具时适用）：
@@ -103,6 +97,8 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
   checkTopics(topics);
   const catalog = topicCatalog(topics);
   const knowledgeTools = topicTool(topics);
+  const enabled = ui === true ? uiToolNames : ui === false ? [] : ui;
+  const rules = enabled.length ? answerRules(catalogGuide(enabled), catalogExample(enabled)) : "";
   return async function handle(request: Request): Promise<Response> {
     let body: z.infer<typeof requestSchema>;
     try {
@@ -132,7 +128,7 @@ export function createAgentHandler({ model, instructions, tools = {}, maxSteps =
     // What stays the same between requests comes first, so the provider's prompt cache can reuse it.
     const sections = [
       base,
-      ui ? ANSWER_RULES : "",
+      rules,
       operates ? OPERATE_RULES : "",
       catalog,
       pageNotes ? `本页说明（${String(context.path).split(/[?#]/)[0]}）：\n${pageNotes}` : "",

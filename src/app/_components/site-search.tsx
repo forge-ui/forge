@@ -7,6 +7,7 @@ import { CommandSearch, type CommandSearchItem } from "@forge-ui-official/core";
 import { HamburgerMenuLinear, MagniferLinear } from "@forge-ui-official/core/icons";
 import { docsNavGroups } from "../docs/_nav";
 import { componentsNavGroups } from "../components/_nav";
+import { agentNavGroups } from "../agent/_nav";
 import pageIndex from "./search-index.json";
 
 const templateItems: CommandSearchItem[] = [
@@ -28,6 +29,7 @@ const searchItems: CommandSearchItem[] = [...(pageIndex as CommandSearchItem[]),
 function directoryGroups(pathname: string) {
   if (["/components", "/cases"].some((root) => pathname === root || pathname.startsWith(`${root}/`))) return componentsNavGroups;
   if (pathname === "/docs" || pathname.startsWith("/docs/")) return docsNavGroups;
+  if (pathname === "/agent" || pathname.startsWith("/agent/")) return agentNavGroups;
   return null;
 }
 
@@ -96,7 +98,7 @@ export function SiteSearch() {
         {panel === "menu" && (
           <>
             <div className="fixed inset-0 z-40" onClick={() => setPanel(null)} />
-            <div className="absolute right-0 top-full z-50 mt-2 w-[min(24rem,calc(100vw-1.5rem))]" role="dialog" aria-label="目录">
+            <div className="fixed inset-x-3 top-16 z-50 sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-96" role="dialog" aria-label="目录">
               <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-fg-grey-200 bg-background p-3">
                 {menu?.map((group) => (
                   <div key={group.title} className="mb-3 last:mb-0">

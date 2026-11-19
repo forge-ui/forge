@@ -102,7 +102,7 @@ export async function POST(request: Request) {
 />
 ```
 
-没写进 `renderTool` 的工具，按默认的工具调用记录显示；连续的调用会合成一组，带状态。文章开头那两张图，就是这个开关打开前后的样子。可以在 [AI 对话组件](/components/agent) 页面直接试。
+没写进 `renderTool` 的工具，按默认的工具调用记录显示；连续的调用会合成一组，带状态。文章开头那两张图，就是这个开关打开前后的样子。可以在 [AI 对话组件](/agent/agent-parts) 页面直接试。
 
 > 让模型调用会改数据的工具（下单、退款、发通知）之前，先让用户确认。AI SDK 7 在 streamText 上用 toolApproval 配置哪些工具需要审批，前端用 addToolApprovalResponse 回传结果。
 
@@ -141,6 +141,6 @@ export async function POST(request: Request) {
 
 ## 相关阅读
 
-- [React AI 对话组件：AgentParts、消息、输入栏](/components/agent)
+- [Forge Agent 组件：AgentParts、消息、输入栏](/agent)
 - [2026 年 React 组件库怎么选](/articles/react-ui-library-2026)
 - [智能体工作台模板](/templates/agent)

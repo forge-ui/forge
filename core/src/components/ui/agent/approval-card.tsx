@@ -1,15 +1,7 @@
 "use client";
 
-/**
- * Interaction pattern adapted from Beautiful UI (MIT, Shane Levine).
- * Forge rewrite: fg-* tokens + solar-icon-set.
- */
-
-import { useEffect, useRef, useState } from "react";
-import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "../../../icons";
-import { cn } from "../../../lib/utils";
-import { Button } from "../button";
-import { SurfaceCard } from "../surface-card";
+import { pick } from "./agent-utils";
+import { Question } from "./question";
 
 export type ApprovalQuestion = {
   id: string;
@@ -18,17 +10,21 @@ export type ApprovalQuestion = {
   options: { id: string; label: string }[];
 };
 
+/**
+ * A short survey the agent asks before it continues: one question at a time, skippable, with a
+ * pager and a "答案已提交" status. Rendered by `Question`; prefer Question for new code.
+ */
 export function ApprovalCard({
   questions,
   locale = "zh",
-  skipLabel = locale === "zh" ? "跳过" : "Skip",
-  skipSubmitLabel = locale === "zh" ? "跳过并提交" : "Skip and submit",
-  continueLabel = locale === "zh" ? "继续" : "Continue",
-  sendLabel = locale === "zh" ? "提交" : "Send",
-  sentLabel = locale === "zh" ? "答案已提交" : "Answers sent",
+  skipLabel = pick(locale, "跳过", "Skip"),
+  skipSubmitLabel = pick(locale, "跳过并提交", "Skip and submit"),
+  continueLabel = pick(locale, "继续", "Continue"),
+  sendLabel = pick(locale, "提交", "Send"),
+  sentLabel = pick(locale, "答案已提交", "Answers sent"),
   onSubmitted,
-  previousQuestionLabel = locale === "zh" ? "上一题" : "Previous question",
-  nextQuestionLabel = locale === "zh" ? "下一题" : "Next question",
+  previousQuestionLabel = pick(locale, "上一题", "Previous question"),
+  nextQuestionLabel = pick(locale, "下一题", "Next question"),
   className = "",
 }: {
   questions: ApprovalQuestion[];
@@ -43,138 +39,15 @@ export function ApprovalCard({
   nextQuestionLabel?: string;
   className?: string;
 }) {
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string[]>>({});
-  const [sent, setSent] = useState(false);
-  const submitted = useRef(false);
-  const result = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (sent) result.current?.focus({ preventScroll: true });
-  }, [sent]);
-  const question = questions[index];
-  const last = index === questions.length - 1;
-  const selected = question ? answers[question.id] ?? [] : [];
-  const multiple = question?.type === "check";
-
-  function toggle(optionId: string) {
-    if (!question) return;
-    setAnswers((current) => {
-      const prev = current[question.id] ?? [];
-      const next = multiple
-        ? prev.includes(optionId)
-          ? prev.filter((id) => id !== optionId)
-          : [...prev, optionId]
-        : [optionId];
-      return { ...current, [question.id]: next };
-    });
-  }
-
-  function skip() {
-    if (!question || submitted.current) return;
-    const next = { ...answers };
-    delete next[question.id];
-    setAnswers(next);
-    advance(next);
-  }
-
-  function advance(nextAnswers = answers) {
-    if (submitted.current) return;
-    if (last) {
-      submitted.current = true;
-      setSent(true);
-      onSubmitted?.(nextAnswers);
-      return;
-    }
-    setIndex((n) => Math.min(questions.length - 1, n + 1));
-  }
-
-  if (!question) return null;
-
-  if (sent) {
-    return (
-      <SurfaceCard className={cn("forge-ask-ai-compact-response", className)} padding="md">
-        <div ref={result} role="status" tabIndex={-1} className="flex items-center gap-2 text-sm font-medium text-fg-green-500">
-          <CheckCircleLinear size={18} color="var(--fg-green-500)" />
-          {sentLabel}
-        </div>
-      </SurfaceCard>
-    );
-  }
-
   return (
-    <SurfaceCard
-      className={cn("forge-ask-ai-compact-response", className)}
-      padding="md"
-      footer={
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-1 text-xs text-fg-grey-500">
-            <button
-              type="button"
-              aria-label={previousQuestionLabel}
-              disabled={index === 0}
-              onClick={() => setIndex((n) => Math.max(0, n - 1))}
-              className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30"
-            >
-              <AltArrowLeftLinear size={14} color="var(--fg-grey-700)" />
-            </button>
-            <span>
-              {index + 1} / {questions.length}
-            </span>
-            <button
-              type="button"
-              aria-label={nextQuestionLabel}
-              disabled={last}
-              onClick={() => setIndex((n) => Math.min(questions.length - 1, n + 1))}
-              className="rounded-md p-1 hover:bg-fg-grey-100 disabled:opacity-30"
-            >
-              <AltArrowRightLinear size={14} color="var(--fg-grey-700)" />
-            </button>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button size="sm" color="grey" variant="tertiary" onClick={skip}>
-              {last ? skipSubmitLabel : skipLabel}
-            </Button>
-            <button
-              type="button"
-              onClick={() => advance()}
-              disabled={!multiple && selected.length === 0}
-              className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {last ? sendLabel : continueLabel}
-            </button>
-          </div>
-        </div>
-      }
-    >
-      <p className="mb-3 text-sm font-semibold leading-6 text-fg-black">{question.prompt}</p>
-      <div className="flex flex-col gap-1.5">
-        {question.options.map((option) => {
-          const on = selected.includes(option.id);
-          return (
-            <button
-              key={option.id}
-              type="button"
-              onClick={() => toggle(option.id)}
-              aria-pressed={on}
-              className={cn(
-                "flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm transition-colors",
-                on ? "bg-accent-soft text-accent" : "text-fg-black hover:bg-fg-grey-100",
-              )}
-            >
-              <span
-                className={cn(
-                  "flex h-4 w-4 shrink-0 items-center justify-center outline outline-1 outline-offset-[-1px]",
-                  multiple ? "rounded-md" : "rounded-full",
-                  on ? "bg-accent outline-accent" : "outline-fg-grey-300",
-                )}
-              >
-                {on && <span className={cn("bg-white", multiple ? "h-1.5 w-1.5" : "h-1.5 w-1.5 rounded-full")} />}
-              </span>
-              {option.label}
-            </button>
-          );
-        })}
-      </div>
-    </SurfaceCard>
+    <Question
+      confirm
+      skippable
+      locale={locale}
+      className={className}
+      questions={questions.map(question => ({ id: question.id, title: question.prompt, multiple: question.type === "check", allowText: false, options: question.options }))}
+      labels={{ skip: skipLabel, skipSubmit: skipSubmitLabel, continue: continueLabel, submit: sendLabel, sent: sentLabel, previous: previousQuestionLabel, next: nextQuestionLabel }}
+      onSubmit={answers => onSubmitted?.(Object.fromEntries(Object.entries(answers).map(([id, answer]) => [id, answer.optionIds])))}
+    />
   );
 }

@@ -22,7 +22,6 @@ export const kitNavGroups: KitNavGroup[] = [
     items: [
       { slug: "input-field", label: "表单与输入" },
       { slug: "filter", label: "筛选" },
-      { slug: "chat-input-bar", label: "消息输入栏" },
     ],
   },
   {
@@ -40,7 +39,6 @@ export const kitNavGroups: KitNavGroup[] = [
       { slug: "file-type", label: "文件展示", surfaces: ["components"] },
       { slug: "chat", label: "聊天" },
       { slug: "checklist", label: "待办清单" },
-      { slug: "agent", label: "智能体" },
       { slug: "other-widget", label: "实用组件" },
     ],
   },

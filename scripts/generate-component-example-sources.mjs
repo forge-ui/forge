@@ -16,8 +16,8 @@ for (const file of readdirSync(join(root,'src/app/components')).filter(name=>nam
 for (const file of ['motion-demos.tsx','animated-widget-demos.tsx']) {
  const path=`src/app/_components/${file}`;sources[path]=readFileSync(path,'utf8');
 }
-for (const file of ['page.tsx', '_generation-demo.tsx', '_sources.ts']) {
- const path=`src/app/cases/chat-input-bar/${file}`;sources[path]=readFileSync(path,'utf8');
+for (const file of ['_chat-input-bar-cases.tsx', '_generation-demo.tsx', '_sources.ts']) {
+ const path=`src/app/agent/_kit/${file}`;sources[path]=readFileSync(path,'utf8');
 }
 const sidebar='src/app/prototype/component-fusion/_sidebar-preview.tsx';sources[sidebar]=readFileSync(sidebar,'utf8');
 writeFileSync(join(root,'src/app/components/_example-sources.json'),JSON.stringify(sources));

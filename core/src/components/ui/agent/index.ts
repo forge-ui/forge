@@ -40,3 +40,48 @@ export type { ConversationProps, AgentMessageRole, AgentMessageProps, MessageFee
 
 export { AgentParts } from "./agent-parts";
 export type { AgentToolState, AgentToolPart, AgentToolApproval, AgentToolApprovalResponse, AgentMessagePart, AgentPartsProps } from "./agent-parts";
+
+export { ThinkingIndicator, Reasoning } from "./thinking";
+export type { ThinkingIndicatorProps, ReasoningStatus, ReasoningSource, ReasoningStep, ReasoningProps } from "./thinking";
+
+export { ToolCall, ToolCallGroup } from "./tool-call";
+export type { ToolCallStatus, ToolCallProps, ToolCallGroupProps } from "./tool-call";
+
+export { Question, ChoiceCard } from "./question";
+export type { QuestionOption, QuestionItem, QuestionAnswer, QuestionLabels, QuestionProps, ChoiceOption, ChoiceAnswer, ChoiceCardProps } from "./question";
+
+export { Approval, ConfirmCard } from "./approval";
+export type { ApprovalRisk, ApprovalScope, ApprovalState, ApprovalField, ApprovalProps, ConfirmField, ConfirmCardProps } from "./approval";
+
+export { Citation, CitedAnswer } from "./cited-answer";
+export type { CitationSource, CitationProps, CitedAnswerProps } from "./cited-answer";
+
+export { PromptQueue, RunControls, AttachmentList } from "./composer-parts";
+export type { QueuedPrompt, PromptQueueProps, RunStatus, RunControlsProps, AttachmentKind, AttachmentItem, AttachmentListProps } from "./composer-parts";
+
+export { AgentWelcome } from "./agent-welcome";
+export type { AgentWelcomeProps } from "./agent-welcome";
+
+export { AgentPanel, AGENT_PANEL_WIDTH } from "./agent-panel";
+export type { AgentPanelProps, AgentSession } from "./agent-panel";
+
+export { AgentPlan, AgentTrail, RunProgress } from "./agent-run";
+export type { AgentStepStatus, PlanStep, AgentPlanProps, TrailSubstep, TrailStep, AgentTrailProps, ProgressStep } from "./agent-run";
+
+export { ChangeLedger, AgentCheckpoints, AutonomySelector } from "./agent-governance";
+export type { LedgerField, LedgerEntry, ChangeLedgerProps, Checkpoint, AgentCheckpointsProps, AutonomyLevel, AutonomyAction, AutonomySelectorProps } from "./agent-governance";
+
+export { AgentInbox, RunningNow, AwaySummary } from "./agent-ops";
+export type { AgentTaskState, InboxTask, AgentInboxProps, RunningNowProps, AwayItem, AwaySummaryProps } from "./agent-ops";
+
+export { ContextUsage, TraceWaterfall, AgentTree, AgentLanes } from "./agent-observe";
+export type { ContextSegmentKind, ContextSegment, ContextUsageProps, TraceSpan, TraceWaterfallProps, TreeAgentStatus, TreeAgent, AgentTreeProps, LaneBlock, AgentLanesProps } from "./agent-observe";
+
+export { Composer, ComposerHeader, ComposerInput, ComposerToolbar, ComposerAction, ComposerModelMenu, ComposerSend } from "./composer";
+export type { ComposerProps, ComposerInputProps, ComposerActionProps, ComposerModelMenuProps } from "./composer";
+
+export { ConversationList } from "./conversation-list";
+export type { ConversationItem, ConversationListProps } from "./conversation-list";
+
+export { InlineDiff, resolveInlineDiff } from "./inline-diff";
+export type { InlineDiffSegment, InlineDiffDecision, InlineDiffProps } from "./inline-diff";

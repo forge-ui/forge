@@ -1162,6 +1162,12 @@
         "defaultValue": null
       },
       {
+        "name": "profileMenuItems",
+        "type": "ProfileMenuItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
         "name": "notifications",
         "type": "number | undefined",
         "optional": true,
@@ -1292,6 +1298,12 @@
         "type": "string | undefined",
         "optional": true,
         "defaultValue": "\"5rem\""
+      },
+      {
+        "name": "defaultSidebarCollapsed",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
       },
       {
         "name": "hideSidebarWidgets",
@@ -1483,7 +1495,7 @@
         "name": "label",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "\"Ask AI\""
+        "defaultValue": "\"Forge Agent\""
       },
       {
         "name": "suggestions",
@@ -1516,24 +1528,6 @@
         "defaultValue": null
       },
       {
-        "name": "header",
-        "type": "ReactNode",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "brand",
-        "type": "ReactNode",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "session",
-        "type": "ReactNode",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
         "name": "messages",
         "type": "ReactNode",
         "optional": true,
@@ -1544,30 +1538,6 @@
         "type": "ReactNode",
         "optional": true,
         "defaultValue": null
-      },
-      {
-        "name": "fullscreen",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "defaultFullscreen",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": "false"
-      },
-      {
-        "name": "onFullscreenChange",
-        "type": "((open: boolean) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "showFullscreenTrigger",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": "true"
       },
       {
         "name": "sessions",
@@ -1594,24 +1564,6 @@
         "defaultValue": null
       },
       {
-        "name": "searchQuery",
-        "type": "string | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "onSearchQueryChange",
-        "type": "((query: string) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "hasConversation",
-        "type": "boolean | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
         "name": "landingTitle",
         "type": "string | undefined",
         "optional": true,
@@ -1622,30 +1574,6 @@
         "type": "string | undefined",
         "optional": true,
         "defaultValue": "\"告诉我你想了解什么，我来帮你梳理。\""
-      },
-      {
-        "name": "headerLayout",
-        "type": "\"brand\" | \"session\" | undefined",
-        "optional": true,
-        "defaultValue": "\"brand\""
-      },
-      {
-        "name": "panelMode",
-        "type": "\"modal\" | \"responsive\" | undefined",
-        "optional": true,
-        "defaultValue": "\"modal\""
-      },
-      {
-        "name": "onDockedChange",
-        "type": "((docked: boolean) => void) | undefined",
-        "optional": true,
-        "defaultValue": null
-      },
-      {
-        "name": "railLabel",
-        "type": "string | undefined",
-        "optional": true,
-        "defaultValue": null
       }
     ],
     "types": [
@@ -1898,6 +1826,12 @@
         "defaultValue": "\"fade\""
       },
       {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
         "name": "duration",
         "type": "number | undefined",
         "optional": true,
@@ -2004,31 +1938,31 @@
         "name": "skipLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"跳过\" : \"Skip\""
+        "defaultValue": "pick(locale, \"跳过\", \"Skip\")"
       },
       {
         "name": "skipSubmitLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"跳过并提交\" : \"Skip and submit\""
+        "defaultValue": "pick(locale, \"跳过并提交\", \"Skip and submit\")"
       },
       {
         "name": "continueLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"继续\" : \"Continue\""
+        "defaultValue": "pick(locale, \"继续\", \"Continue\")"
       },
       {
         "name": "sendLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"提交\" : \"Send\""
+        "defaultValue": "pick(locale, \"提交\", \"Send\")"
       },
       {
         "name": "sentLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"答案已提交\" : \"Answers sent\""
+        "defaultValue": "pick(locale, \"答案已提交\", \"Answers sent\")"
       },
       {
         "name": "onSubmitted",
@@ -2040,13 +1974,13 @@
         "name": "previousQuestionLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"上一题\" : \"Previous question\""
+        "defaultValue": "pick(locale, \"上一题\", \"Previous question\")"
       },
       {
         "name": "nextQuestionLabel",
         "type": "string | undefined",
         "optional": true,
-        "defaultValue": "locale === \"zh\" ? \"下一题\" : \"Next question\""
+        "defaultValue": "pick(locale, \"下一题\", \"Next question\")"
       },
       {
         "name": "className",
@@ -2121,6 +2055,18 @@
         "type": "ReactNode",
         "optional": true,
         "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
       },
       {
         "name": "diffs",
@@ -3145,6 +3091,3909 @@
             "optional": true
           }
         ]
+      }
+    ]
+  },
+  "Conversation": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "followKey",
+        "type": "unknown",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "Locale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "latestLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentMessage": {
+    "props": [
+      {
+        "name": "role",
+        "type": "AgentMessageRole",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "avatar",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "time",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "actions",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "AgentMessageRole",
+        "definition": "\"user\" | \"assistant\"",
+        "fields": []
+      }
+    ]
+  },
+  "MessageActions": {
+    "props": [
+      {
+        "name": "copyText",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRetry",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onFeedback",
+        "type": "((value: MessageFeedback) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "feedback",
+        "type": "MessageFeedback | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "versions",
+        "type": "{ current: number; total: number; onChange: (index: number) => void; } | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onEdit",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "feedbackReasons",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "onFeedbackReason",
+        "type": "((reason: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "Locale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "labels",
+        "type": "Partial<Record<\"next\" | \"previous\" | \"copy\" | \"up\" | \"down\" | \"copied\" | \"retry\" | \"edit\", string>> | undefined",
+        "optional": true,
+        "defaultValue": "{}"
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "MessageFeedback",
+        "definition": "\"up\" | \"down\" | null",
+        "fields": []
+      }
+    ]
+  },
+  "PromptSuggestions": {
+    "props": [
+      {
+        "name": "suggestions",
+        "type": "string[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "(text: string, index: number) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ArtifactCard": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "kind",
+        "type": "ArtifactKind | undefined",
+        "optional": true,
+        "defaultValue": "\"document\""
+      },
+      {
+        "name": "meta",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "ArtifactStatus | undefined",
+        "optional": true,
+        "defaultValue": "\"ready\""
+      },
+      {
+        "name": "onOpen",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDownload",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "Locale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "labels",
+        "type": "Partial<Record<\"error\" | \"open\" | \"generating\" | \"download\", string>> | undefined",
+        "optional": true,
+        "defaultValue": "{}"
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ArtifactKind",
+        "definition": "\"document\" | \"code\" | \"table\" | \"image\" | \"file\"",
+        "fields": []
+      },
+      {
+        "name": "ArtifactStatus",
+        "definition": "\"generating\" | \"ready\" | \"error\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentParts": {
+    "props": [
+      {
+        "name": "parts",
+        "type": "AgentMessagePart[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "\"error\" | \"streaming\" | \"ready\" | \"submitted\" | undefined",
+        "optional": true,
+        "defaultValue": "\"ready\""
+      },
+      {
+        "name": "renderTool",
+        "type": "Record<string, (part: AgentToolPart) => ReactNode> | undefined",
+        "optional": true,
+        "defaultValue": "{}"
+      },
+      {
+        "name": "onOpenFile",
+        "type": "((part: { url: string; filename?: string; mediaType: string; }) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onToolApproval",
+        "type": "((response: AgentToolApprovalResponse) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "\"zh\" | \"en\" | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "AgentMessagePart",
+        "definition": "",
+        "fields": [
+          {
+            "name": "type",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AgentToolPart",
+        "definition": "",
+        "fields": [
+          {
+            "name": "type",
+            "type": "`tool-${string}` | \"dynamic-tool\"",
+            "optional": false
+          },
+          {
+            "name": "toolCallId",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "toolName",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "state",
+            "type": "AgentToolState",
+            "optional": false
+          },
+          {
+            "name": "input",
+            "type": "unknown",
+            "optional": true
+          },
+          {
+            "name": "output",
+            "type": "unknown",
+            "optional": true
+          },
+          {
+            "name": "errorText",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "approval",
+            "type": "AgentToolApproval | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentToolState",
+        "definition": "\"input-streaming\" | \"input-available\" | \"approval-requested\" | \"approval-responded\" | \"output-available\" | \"output-error\" | \"output-denied\"",
+        "fields": []
+      },
+      {
+        "name": "AgentToolApproval",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "approved",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "reason",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "requestReason",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "isAutomatic",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentToolApprovalResponse",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "approved",
+            "type": "boolean",
+            "optional": false
+          },
+          {
+            "name": "reason",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "ThinkingIndicator": {
+    "props": [
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "phases",
+        "type": "string[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "phaseDuration",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "2400"
+      },
+      {
+        "name": "startedAt",
+        "type": "number | Date | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "Reasoning": {
+    "props": [
+      {
+        "name": "status",
+        "type": "ReasoningStatus",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "text",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "steps",
+        "type": "ReasoningStep[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "startedAt",
+        "type": "number | Date | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "duration",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "doneLabel",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "type": "((open: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ReasoningStatus",
+        "definition": "\"thinking\" | \"done\" | \"stopped\" | \"error\"",
+        "fields": []
+      },
+      {
+        "name": "ReasoningStep",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "ReactNode",
+            "optional": false
+          },
+          {
+            "name": "detail",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "\"error\" | \"done\" | \"running\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "sources",
+            "type": "ReasoningSource[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ReasoningSource",
+        "definition": "",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "domain",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "ToolCall": {
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "summary",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "ToolCallStatus",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "args",
+        "type": "unknown",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "result",
+        "type": "unknown",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "error",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "startedAt",
+        "type": "number | Date | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "duration",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "details",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRetry",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "approvalReason",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onApprove",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDeny",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "openOnError",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "variant",
+        "type": "\"row\" | \"card\" | undefined",
+        "optional": true,
+        "defaultValue": "\"card\""
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ToolCallStatus",
+        "definition": "\"pending\" | \"running\" | \"awaiting-approval\" | \"success\" | \"error\" | \"denied\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "ToolCallGroup": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "count",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "\"idle\" | \"success\" | \"error\" | \"running\" | \"cancelled\" | undefined",
+        "optional": true,
+        "defaultValue": "\"success\""
+      },
+      {
+        "name": "statusLabel",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "Question": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "QuestionItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSubmit",
+        "type": "(answers: Record<string, QuestionAnswer>) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "skippable",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "answers",
+        "type": "Record<string, QuestionAnswer> | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "confirm",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "submitLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "labels",
+        "type": "Partial<Record<\"submit\" | \"next\" | \"previous\" | \"sent\" | \"skip\" | \"skipSubmit\" | \"continue\" | \"cancel\" | \"skipped\", string>> | undefined",
+        "optional": true,
+        "defaultValue": "{}"
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "QuestionItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "options",
+            "type": "QuestionOption[]",
+            "optional": false
+          },
+          {
+            "name": "multiple",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "allowText",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "textPlaceholder",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "QuestionOption",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "recommended",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "QuestionAnswer",
+        "definition": "",
+        "fields": [
+          {
+            "name": "optionIds",
+            "type": "string[]",
+            "optional": false
+          },
+          {
+            "name": "text",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "ChoiceCard": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "options",
+        "type": "ChoiceOption[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "multiple",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "allowText",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "answered",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onAnswer",
+        "type": "(answer: ChoiceAnswer) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ChoiceOption",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "Approval": {
+    "props": [
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "requester",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "risk",
+        "type": "ApprovalRisk | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "fields",
+        "type": "ApprovalField[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "preview",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "scopes",
+        "type": "ApprovalScope[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "state",
+        "type": "ApprovalState | undefined",
+        "optional": true,
+        "defaultValue": "\"pending\""
+      },
+      {
+        "name": "result",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onApprove",
+        "type": "((scope: ApprovalScope) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDeny",
+        "type": "((reason?: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "askDenyReason",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "expiresIn",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onExpire",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "approveLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "denyLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ApprovalRisk",
+        "definition": "\"low\" | \"medium\" | \"high\"",
+        "fields": []
+      },
+      {
+        "name": "ApprovalField",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "before",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "after",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "ApprovalScope",
+        "definition": "\"once\" | \"session\" | \"always\"",
+        "fields": []
+      },
+      {
+        "name": "ApprovalState",
+        "definition": "\"pending\" | \"working\" | \"approved\" | \"denied\" | \"expired\"",
+        "fields": []
+      }
+    ]
+  },
+  "ConfirmCard": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "fields",
+        "type": "ApprovalField[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "body",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "confirmLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "cancelLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "state",
+        "type": "\"done\" | \"cancelled\" | \"pending\" | \"working\" | undefined",
+        "optional": true,
+        "defaultValue": "\"pending\""
+      },
+      {
+        "name": "result",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onConfirm",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ApprovalField",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "before",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "after",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "Citation": {
+    "props": [
+      {
+        "name": "source",
+        "type": "CitationSource",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "active",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onActiveChange",
+        "type": "((active: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      }
+    ],
+    "types": [
+      {
+        "name": "CitationSource",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "domain",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "quote",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "CitedAnswer": {
+    "props": [
+      {
+        "name": "text",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "sources",
+        "type": "CitationSource[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "hideSourceList",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "defaultSourcesOpen",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "sourcesLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "CitationSource",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "href",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "domain",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "quote",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "PromptQueue": {
+    "props": [
+      {
+        "name": "items",
+        "type": "QueuedPrompt[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRemove",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onEdit",
+        "type": "((id: string, text: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSendNow",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onMove",
+        "type": "((id: string, direction: -1 | 1) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "QueuedPrompt",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "attachments",
+            "type": "number | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "RunControls": {
+    "props": [
+      {
+        "name": "status",
+        "type": "RunStatus",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "activity",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "startedAt",
+        "type": "number | Date | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "duration",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "error",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onStop",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onResume",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRetry",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDismiss",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSteer",
+        "type": "((note: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "RunStatus",
+        "definition": "\"running\" | \"stopping\" | \"stopped\" | \"failed\" | \"done\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "AttachmentList": {
+    "props": [
+      {
+        "name": "items",
+        "type": "AttachmentItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRemove",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRetry",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onOpen",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "AttachmentItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "size",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "AttachmentKind | undefined",
+            "optional": true
+          },
+          {
+            "name": "previewUrl",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "progress",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "error",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AttachmentKind",
+        "definition": "\"image\" | \"document\" | \"sheet\" | \"file\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentWelcome": {
+    "props": [
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "AgentPanel": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "launcher",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "launcherLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "empty",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "followKey",
+        "type": "unknown",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onNewChat",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "sessions",
+        "type": "ConversationItem[] | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "currentSessionId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelectSession",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRenameSession",
+        "type": "((id: string, title: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDeleteSession",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onPinSession",
+        "type": "((id: string, pinned: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "notice",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "composer",
+        "type": "ReactNode | { locale?: \"zh\" | \"en\"; motion?: MotionPreference; replyTo?: ComposerReply; onCancelReply?: () => void; attachments?: ReactNode; hasAttachments?: boolean; voiceState?: ComposerVoiceState; voiceLevel?: number; onVoiceStart?: () => void; onVoiceEnd?: () => void; onVoiceCancel?: () => void; quickActions?: ChatInputBarQuickAction[]; quickActionsLabel?: string; hasMessages?: boolean; defaultQuickActionsOpen?: boolean; removeQuickActionLabel?: string; onQuickActionChange?: (action: ChatInputBarQuickAction | null) => void; commands?: ComposerCommand[]; commandsLabel?: string; emptyCommandsLabel?: string; connectedLabel?: string; onDictate?: () => void; dictateLabel?: string; toolsMenuLabel?: string; permissions?: ComposerModel[]; permission?: string; onPermissionChange?: (id: string) => void; permissionMenuLabel?: string; color?: AccentColor; status?: ComposerStatus; onStop?: () => void; stopLabel?: string; stoppingLabel?: string; models?: ComposerModel[]; model?: string; onModelChange?: (id: string) => void; modelMenuLabel?: string; placeholder?: string; value?: string; onChange?: (value: string) => void; onSend?: (message: string, action?: ChatInputBarQuickAction, context?: ChatInputBarSendContext) => void; className?: string; multiline?: boolean; rows?: number; toggles?: ChatInputBarToggle[]; sendLabel?: string; showAttachment?: boolean; onAttach?: () => void; attachLabel?: string; sendOnEnter?: boolean; disabled?: boolean; sendDisabled?: boolean; inputLabel?: string; clearOnSend?: boolean; density?: \"default\" | \"compact\"; sources?: ComposerSource[]; selectedSources?: ComposerSource[]; defaultSelectedSources?: ComposerSource[]; onSourcesChange?: (sources: ComposerSource[]) => void; removeSourceLabel?: string; sourcesLabel?: string; emptySourcesLabel?: string; }",
+        "optional": false,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ConversationItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "updatedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "preview",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "pinned",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "running",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "unread",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      },
+      {
+        "name": "ComposerReply",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "ComposerVoiceState",
+        "definition": "\"idle\" | \"recording\" | \"processing\"",
+        "fields": []
+      },
+      {
+        "name": "ChatInputBarQuickAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "\"note\" | \"voice\" | \"image\" | \"event\" | \"docs\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerCommand",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerModel",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "AccentColor",
+        "definition": "\"purple\" | \"blue\" | \"black\"",
+        "fields": []
+      },
+      {
+        "name": "ComposerStatus",
+        "definition": "\"idle\" | \"running\" | \"stopping\"",
+        "fields": []
+      },
+      {
+        "name": "ChatInputBarSendContext",
+        "definition": "",
+        "fields": [
+          {
+            "name": "sources",
+            "type": "ComposerSource[]",
+            "optional": false
+          },
+          {
+            "name": "replyTo",
+            "type": "ComposerReply | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerSource",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "description",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "connected",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "\"agent\" | \"skill\" | \"tool\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "avatarSrc",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ChatInputBarToggle",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "active",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "AgentPlan": {
+    "props": [
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "steps",
+        "type": "PlanStep[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "mode",
+        "type": "\"done\" | \"running\" | \"review\" | undefined",
+        "optional": true,
+        "defaultValue": "\"review\""
+      },
+      {
+        "name": "onChange",
+        "type": "((steps: PlanStep[]) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onApprove",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRetryFrom",
+        "type": "((stepId: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "approveLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "PlanStep",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "detail",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "AgentStepStatus | undefined",
+            "optional": true
+          },
+          {
+            "name": "startedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentStepStatus",
+        "definition": "\"pending\" | \"running\" | \"waiting\" | \"done\" | \"failed\" | \"skipped\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentTrail": {
+    "props": [
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "steps",
+        "type": "TrailStep[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "collapseAfter",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "4"
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "TrailStep",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "status",
+            "type": "AgentStepStatus",
+            "optional": false
+          },
+          {
+            "name": "activity",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "startedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "substeps",
+            "type": "TrailSubstep[] | undefined",
+            "optional": true
+          },
+          {
+            "name": "waiting",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "error",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentStepStatus",
+        "definition": "\"pending\" | \"running\" | \"waiting\" | \"done\" | \"failed\" | \"skipped\"",
+        "fields": []
+      },
+      {
+        "name": "TrailSubstep",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "status",
+            "type": "AgentStepStatus",
+            "optional": false
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "RunProgress": {
+    "props": [
+      {
+        "name": "steps",
+        "type": "ProgressStep[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      }
+    ],
+    "types": [
+      {
+        "name": "ProgressStep",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "status",
+            "type": "\"failed\" | \"running\" | \"cancelled\" | \"completed\" | \"waiting-user\" | \"waiting-external\"",
+            "optional": false
+          },
+          {
+            "name": "meta",
+            "type": "string | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "ChangeLedger": {
+    "props": [
+      {
+        "name": "entries",
+        "type": "LedgerEntry[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onUndo",
+        "type": "((id: string, alsoUndone: string[]) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "LedgerEntry",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "target",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "fields",
+            "type": "LedgerField[] | undefined",
+            "optional": true
+          },
+          {
+            "name": "time",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "actor",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "\"applied\" | \"undone\" | \"irreversible\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "dependsOn",
+            "type": "string[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "LedgerField",
+        "definition": "",
+        "fields": [
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "before",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "after",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentCheckpoints": {
+    "props": [
+      {
+        "name": "checkpoints",
+        "type": "Checkpoint[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "currentId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRewind",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "Checkpoint",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "detail",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "time",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "abandoned",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "AutonomySelector": {
+    "props": [
+      {
+        "name": "value",
+        "type": "AutonomyLevel",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onChange",
+        "type": "(value: AutonomyLevel) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "actions",
+        "type": "AutonomyAction[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "AutonomyLevel",
+        "definition": "\"ask\" | \"balanced\" | \"auto\"",
+        "fields": []
+      },
+      {
+        "name": "AutonomyAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "risk",
+            "type": "\"high\" | \"low\" | \"medium\"",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "AgentInbox": {
+    "props": [
+      {
+        "name": "tasks",
+        "type": "InboxTask[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onApprove",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onReject",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRetry",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onOpen",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "InboxTask",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "agent",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "AgentTaskState",
+            "optional": false
+          },
+          {
+            "name": "startedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "summary",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "recent",
+            "type": "string[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentTaskState",
+        "definition": "\"running\" | \"needs-you\" | \"failed\" | \"done\"",
+        "fields": []
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "RunningNow": {
+    "props": [
+      {
+        "name": "tasks",
+        "type": "InboxTask[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onOpen",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "InboxTask",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "agent",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "AgentTaskState",
+            "optional": false
+          },
+          {
+            "name": "startedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "summary",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "recent",
+            "type": "string[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "AgentTaskState",
+        "definition": "\"running\" | \"needs-you\" | \"failed\" | \"done\"",
+        "fields": []
+      }
+    ]
+  },
+  "AwaySummary": {
+    "props": [
+      {
+        "name": "awayFor",
+        "type": "number",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "items",
+        "type": "AwayItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onDismiss",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "AwayItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "kind",
+            "type": "\"done\" | \"failed\" | \"needs-you\"",
+            "optional": false
+          },
+          {
+            "name": "detail",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "actionLabel",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onAction",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "ContextUsage": {
+    "props": [
+      {
+        "name": "segments",
+        "type": "ContextSegment[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "cost",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "currency",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRemove",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onCompact",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "type": "\"inline\" | \"card\" | undefined",
+        "optional": true,
+        "defaultValue": "\"card\""
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ContextSegment",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "tokens",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "kind",
+            "type": "ContextSegmentKind | undefined",
+            "optional": true
+          },
+          {
+            "name": "removable",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ContextSegmentKind",
+        "definition": "\"system\" | \"tools\" | \"memory\" | \"files\" | \"chat\" | \"other\"",
+        "fields": []
+      }
+    ]
+  },
+  "TraceWaterfall": {
+    "props": [
+      {
+        "name": "spans",
+        "type": "TraceSpan[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "now",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "selectedId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "currency",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "TraceSpan",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "kind",
+            "type": "\"other\" | \"agent\" | \"tool\" | \"llm\"",
+            "optional": false
+          },
+          {
+            "name": "start",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "depth",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "tokens",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "cost",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "\"error\" | \"running\" | \"ok\" | undefined",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  },
+  "AgentTree": {
+    "props": [
+      {
+        "name": "root",
+        "type": "TreeAgent",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "selectedId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "currency",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "TreeAgent",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "role",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "TreeAgentStatus",
+            "optional": false
+          },
+          {
+            "name": "activity",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "cost",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "duration",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "children",
+            "type": "TreeAgent[] | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "TreeAgentStatus",
+        "definition": "\"running\" | \"waiting\" | \"done\" | \"failed\" | \"idle\"",
+        "fields": []
+      }
+    ]
+  },
+  "AgentLanes": {
+    "props": [
+      {
+        "name": "lanes",
+        "type": "{ id: string; name: string; icon?: ReactNode; }[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "blocks",
+        "type": "LaneBlock[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "now",
+        "type": "number",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "LaneBlock",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "laneId",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "start",
+            "type": "number",
+            "optional": false
+          },
+          {
+            "name": "end",
+            "type": "number | undefined",
+            "optional": true
+          },
+          {
+            "name": "status",
+            "type": "\"done\" | \"failed\" | \"running\" | \"waiting\"",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "Composer": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSend",
+        "type": "(text: string, quickAction?: ChatInputBarQuickAction) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "type": "((value: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "status",
+        "type": "ComposerStatus | undefined",
+        "optional": true,
+        "defaultValue": "\"idle\""
+      },
+      {
+        "name": "onStop",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "quickActions",
+        "type": "ChatInputBarQuickAction[] | undefined",
+        "optional": true,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "hasMessages",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "keepOnSend",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ChatInputBarQuickAction",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "icon",
+            "type": "ReactNode",
+            "optional": true
+          },
+          {
+            "name": "kind",
+            "type": "\"note\" | \"voice\" | \"image\" | \"event\" | \"docs\" | undefined",
+            "optional": true
+          },
+          {
+            "name": "placeholder",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "onClick",
+            "type": "(() => void) | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "ComposerStatus",
+        "definition": "\"idle\" | \"running\" | \"stopping\"",
+        "fields": []
+      }
+    ]
+  },
+  "ComposerHeader": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ComposerInput": {
+    "props": [
+      {
+        "name": "rows",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "2"
+      },
+      {
+        "name": "maxRows",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "8"
+      },
+      {
+        "name": "sendOnEnter",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "true"
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ComposerToolbar": {
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ComposerAction": {
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onClick",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "toggleQuickActions",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      },
+      {
+        "name": "active",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showLabel",
+        "type": "boolean | undefined",
+        "optional": true,
+        "defaultValue": "false"
+      }
+    ],
+    "types": []
+  },
+  "ComposerModelMenu": {
+    "props": [
+      {
+        "name": "models",
+        "type": "ComposerModel[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "model",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onModelChange",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ComposerModel",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      }
+    ]
+  },
+  "ComposerSend": {
+    "props": [
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stopLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stoppingLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": []
+  },
+  "ConversationList": {
+    "props": [
+      {
+        "name": "items",
+        "type": "ConversationItem[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "currentId",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "(id: string) => void",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onNew",
+        "type": "(() => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onRename",
+        "type": "((id: string, title: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDelete",
+        "type": "((id: string) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onPin",
+        "type": "((id: string, pinned: boolean) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "searchAfter",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": "8"
+      },
+      {
+        "name": "now",
+        "type": "number | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "motion",
+        "type": "MotionPreference | undefined",
+        "optional": true,
+        "defaultValue": "\"auto\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "ConversationItem",
+        "definition": "",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "optional": false
+          },
+          {
+            "name": "updatedAt",
+            "type": "number | Date | undefined",
+            "optional": true
+          },
+          {
+            "name": "preview",
+            "type": "string | undefined",
+            "optional": true
+          },
+          {
+            "name": "pinned",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "running",
+            "type": "boolean | undefined",
+            "optional": true
+          },
+          {
+            "name": "unread",
+            "type": "boolean | undefined",
+            "optional": true
+          }
+        ]
+      },
+      {
+        "name": "MotionPreference",
+        "definition": "\"auto\" | \"none\"",
+        "fields": []
+      }
+    ]
+  },
+  "InlineDiff": {
+    "props": [
+      {
+        "name": "segments",
+        "type": "InlineDiffSegment[]",
+        "optional": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onApply",
+        "type": "((text: string, decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onDecisionsChange",
+        "type": "((decisions: Record<string, InlineDiffDecision>) => void) | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "applyLabel",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      },
+      {
+        "name": "locale",
+        "type": "AgentLocale | undefined",
+        "optional": true,
+        "defaultValue": "\"zh\""
+      },
+      {
+        "name": "size",
+        "type": "\"md\" | \"sm\" | undefined",
+        "optional": true,
+        "defaultValue": "\"md\""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "optional": true,
+        "defaultValue": null
+      }
+    ],
+    "types": [
+      {
+        "name": "InlineDiffSegment",
+        "definition": "",
+        "fields": [
+          {
+            "name": "type",
+            "type": "\"same\" | \"change\"",
+            "optional": false
+          }
+        ]
+      },
+      {
+        "name": "InlineDiffDecision",
+        "definition": "\"pending\" | \"accepted\" | \"rejected\"",
+        "fields": []
       }
     ]
   }

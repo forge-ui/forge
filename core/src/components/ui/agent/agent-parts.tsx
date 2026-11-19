@@ -1,12 +1,11 @@
 "use client";
 
 import { Fragment, type ReactNode } from "react";
-import { AltArrowDownLinear, LightbulbLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
-import { Button } from "../button";
 import { ArtifactCard } from "./agent-conversation";
 import { StreamingAnswer, type StreamingSource } from "./streaming-answer";
-import { ToolChips, type ToolChipItem } from "./tool-chips";
+import { Reasoning } from "./thinking";
+import { ToolCall, ToolCallGroup, type ToolCallStatus } from "./tool-call";
 
 /**
  * Structural copy of the AI SDK (v5–v7) UIMessage part shapes, so Forge renders `useChat` messages
@@ -68,54 +67,21 @@ const preview = (value: unknown, length = 48) => {
   const text = typeof value === "string" ? value : soleValue(value) ?? JSON.stringify(value);
   return text.length > length ? text.slice(0, length - 1) + "…" : text;
 };
-const lines = (value: unknown) => (typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "").split("\n").slice(0, 40).map(text => ({ text }));
-const STATUS: Record<AgentToolState, NonNullable<ToolChipItem["status"]>> = { "input-streaming": "pending", "input-available": "running", "approval-requested": "pending", "approval-responded": "running", "output-available": "complete", "output-error": "error", "output-denied": "cancelled" };
-const needsAnswer = (part: AgentToolPart) => part.state === "approval-requested" && part.approval !== undefined && !part.approval.isAutomatic;
-const isRunning = (part: AgentToolPart) => part.state === "input-streaming" || part.state === "input-available" || part.state === "approval-requested" || (part.state === "approval-responded" && part.approval?.approved !== false);
-const detailFor = (part: AgentToolPart, locale: "zh" | "en"): ToolChipItem["detail"] => {
-  if (part.state === "output-error") return [{ text: part.errorText ?? "error", tone: "del" }];
-  if (part.state === "output-denied" || (part.state === "approval-responded" && part.approval?.approved === false)) return [{ text: (locale === "en" ? "Denied" : "已拒绝") + (part.approval?.reason ? `: ${part.approval.reason}` : "") }];
-  return part.output === undefined ? undefined : lines(part.output);
+const denied = (part: AgentToolPart) => part.state === "output-denied" || (part.state === "approval-responded" && part.approval?.approved === false);
+// The model asked for a tool that does not exist; nothing ran, so it is not shown as a failure.
+const unavailable = (part: AgentToolPart) => part.state === "output-error" && /unavailable tool|NoSuchTool/i.test(part.errorText ?? "");
+const callStatus = (part: AgentToolPart): ToolCallStatus => {
+  if (denied(part) || unavailable(part)) return "denied";
+  switch (part.state) {
+    case "input-streaming": return "pending";
+    case "approval-requested": return "awaiting-approval";
+    case "output-available": return "success";
+    case "output-error": return "error";
+    default: return "running";
+  }
 };
+const needsAnswer = (part: AgentToolPart) => part.state === "approval-requested" && part.approval !== undefined && !part.approval.isAutomatic;
 
-function ToolApprovalRequest({ part, onAnswer, locale, small }: { part: AgentToolPart; onAnswer?: (response: AgentToolApprovalResponse) => void; locale: "zh" | "en"; small: boolean }) {
-  const id = part.approval?.id ?? part.toolCallId;
-  const input = preview(part.input, 120);
-  return (
-    <div role="group" aria-label={locale === "en" ? `Approve ${toolName(part)}` : `确认调用 ${toolName(part)}`} className={cn("flex flex-col rounded-xl border border-fg-grey-200 bg-background", small ? "gap-2 p-3 text-[13px]" : "gap-3 p-4 text-sm")}>
-      <p className="font-semibold text-fg-black">{locale === "en" ? `Allow ${toolName(part)} to run?` : `允许执行 ${toolName(part)} 吗？`}</p>
-      {part.approval?.requestReason && <p className="text-fg-grey-700">{part.approval.requestReason}</p>}
-      {input && <code className="block overflow-x-auto whitespace-pre rounded-lg bg-fg-grey-100 px-3 py-2 font-mono text-xs text-fg-grey-900">{input}</code>}
-      {onAnswer ? (
-        <div className="flex gap-2">
-          <Button size="sm" onClick={() => onAnswer({ id, approved: true })}>{locale === "en" ? "Allow" : "允许"}</Button>
-          <Button size="sm" color="grey" variant="tertiary" onClick={() => onAnswer({ id, approved: false })}>{locale === "en" ? "Deny" : "拒绝"}</Button>
-        </div>
-      ) : (
-        <p role="status" className="text-xs text-fg-grey-700">{locale === "en" ? "Waiting for approval" : "等待确认"}</p>
-      )}
-    </div>
-  );
-}
-
-function Reasoning({ text, streaming, locale, small }: { text: string; streaming: boolean; locale: "zh" | "en"; small: boolean }) {
-  return (
-    <details open={streaming} className={cn("group rounded-xl text-sm", small && "-ml-1.5")}>
-      <summary className="flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100">
-        <LightbulbLinear size={14} color="currentColor" />
-        {streaming ? (locale === "en" ? "Thinking…" : "思考中…") : (locale === "en" ? "Thought process" : "思考过程")}
-        <AltArrowDownLinear size={12} color="currentColor" className="transition-transform group-open:rotate-180" />
-      </summary>
-      <p className="ml-2 mt-1 whitespace-pre-wrap border-l border-fg-grey-200 pl-3 text-xs leading-5 text-fg-grey-700">{text}</p>
-    </details>
-  );
-}
-
-/**
- * Render the parts of one assistant message: text as a streaming answer (Markdown), reasoning as a
- * collapsible trace, consecutive tool calls as one ToolChips group (or your component via renderTool),
- * sources under the answer and files as artifact cards.
- */
 export function AgentParts({ parts, status = "ready", renderTool = {}, onOpenFile, onToolApproval, locale = "zh", size = "md", className }: AgentPartsProps) {
   const small = size === "sm";
   const sources: StreamingSource[] = parts.flatMap(part =>
@@ -136,21 +102,41 @@ export function AgentParts({ parts, status = "ready", renderTool = {}, onOpenFil
     const thoughts = entries.filter(isThought);
     const tools = entries.filter((entry): entry is AgentToolPart => !isThought(entry));
     if (!tools.length) {
-      blocks.push(<Reasoning key={key} text={thoughts.map(entry => entry.thought).join("\n\n")} streaming={thoughts.some(entry => entry.streaming)} locale={locale} small={small} />);
+      blocks.push(<Reasoning key={key} status={thoughts.some(entry => entry.streaming) ? "thinking" : "done"} text={thoughts.map(entry => entry.thought).join("\n\n")} doneLabel={locale === "en" ? "Thought process" : "思考过程"} locale={locale} size={small ? "sm" : "md"} />);
       return;
     }
-    const items: ToolChipItem[] = entries.map(entry => isThought(entry)
-      ? { id: `thought-${entry.index}`, kind: "think", label: entry.streaming ? (locale === "en" ? "Thinking…" : "思考中…") : (locale === "en" ? "Thought" : "思考"), chip: "", detail: entry.thought.split("\n").filter(Boolean).map(text => ({ text })) }
-      : { id: entry.toolCallId, kind: "run", label: toolName(entry), chip: preview(entry.input), mono: true, status: STATUS[entry.state] ?? "pending", detail: detailFor(entry, locale) });
-    const running = tools.some(isRunning) || thoughts.some(entry => entry.streaming);
-    const failed = tools.some(part => part.state === "output-error");
-    const denied = tools.every(part => STATUS[part.state] === "cancelled" || (part.state === "approval-responded" && part.approval?.approved === false));
-    blocks.push(<ToolChips key={key} items={items} locale={locale} size={size} summary={locale === "en" ? `${tools.length} tool calls` : `${tools.length} 次工具调用`} defaultOpen={!small || running || failed} state={running ? "running" : failed ? "error" : denied ? "cancelled" : "success"} />);
+    const running = tools.some(part => callStatus(part) === "running" || callStatus(part) === "pending") || thoughts.some(entry => entry.streaming);
+    const failed = tools.some(part => part.state === "output-error" && !unavailable(part));
+    blocks.push(
+      <ToolCallGroup key={key} count={tools.length} status={running ? "running" : failed ? "error" : "success"} defaultOpen={small ? undefined : true} locale={locale}>
+        {entries.map(entry => isThought(entry)
+          ? <Reasoning key={`thought-${entry.index}`} status={entry.streaming ? "thinking" : "done"} text={entry.thought} doneLabel={locale === "en" ? "Thought" : "思考"} locale={locale} size="sm" />
+          : <ToolCall key={entry.toolCallId} variant="row" name={toolName(entry)} summary={preview(entry.input) || undefined} status={callStatus(entry)} args={entry.input} error={unavailable(entry) ? undefined : entry.errorText ?? (denied(entry) && entry.approval?.reason ? entry.approval.reason : undefined)} result={unavailable(entry) ? (locale === "en" ? "No such tool; skipped." : "没有这个工具，已跳过。") : entry.output} locale={locale} size={small ? "sm" : "md"} />)}
+      </ToolCallGroup>,
+    );
   };
 
   parts.forEach((part, index) => {
     if (isTool(part)) {
-      if (needsAnswer(part)) { flushWork(`work-${index}`); blocks.push(<ToolApprovalRequest key={part.toolCallId} part={part} onAnswer={onToolApproval} locale={locale} small={small} />); return; }
+      if (needsAnswer(part)) {
+        flushWork(`work-${index}`);
+        const id = part.approval?.id ?? part.toolCallId;
+        blocks.push(
+          <ToolCall
+            key={part.toolCallId}
+            name={toolName(part)}
+            summary={preview(part.input) || undefined}
+            status="awaiting-approval"
+            args={part.input}
+            approvalReason={part.approval?.requestReason}
+            onApprove={onToolApproval && (() => onToolApproval({ id, approved: true }))}
+            onDeny={onToolApproval && (() => onToolApproval({ id, approved: false }))}
+            locale={locale}
+            size={small ? "sm" : "md"}
+          />,
+        );
+        return;
+      }
       const custom = part.state === "output-available" ? renderTool[toolName(part)]?.(part) : undefined;
       if (custom) { flushWork(`work-${index}`); blocks.push(<Fragment key={part.toolCallId}>{custom}</Fragment>); }
       else work.push(part);

@@ -2,22 +2,15 @@
 
 /**
  * Interaction pattern adapted from Beautiful UI (MIT, Shane Levine).
- * Forge rewrite: fg-* tokens + solar-icon-set.
+ * Forge rewrite: fg-* tokens + solar-icon-set. Plays rows in by itself and renders them with
+ * Reasoning; for a live model run, drive Reasoning directly.
  */
 
 import { useEffect, useRef, useState } from "react";
-import {
-  AltArrowDownLinear,
-  CheckCircleLinear,
-  CodeLinear,
-  LightbulbLinear,
-  LinkLinear,
-  MagniferLinear,
-  StarsLinear,
-} from "../../../icons";
 import { useReducedMotion } from "../../../internal/motion";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
+import { Reasoning, type ReasoningStep } from "./thinking";
 
 export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";
 
@@ -113,96 +106,34 @@ export function ThinkingTrace({
     onSettled?.();
   }, [working, onSettled]);
 
-  return (
-    <div className={cn("flex flex-col gap-1.5 text-sm", className)} data-motion={reduced ? "none" : motion}>
-      <button
-        type="button"
-        aria-expanded={expanded}
-        onClick={() => setExpanded((v) => !v)}
-        className="flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-left text-fg-grey-700 hover:bg-fg-grey-100"
-      >
-        <StarsLinear size={16} color="var(--accent)" />
-        <span className={cn("font-medium", working && "forge-shimmer")}>
-          {working ? (activeLabel ?? labels.active) : (doneLabel ?? labels.done)}
+  const steps: ReasoningStep[] = [
+    ...(variant === "search" && query ? [{ id: "query", label: <span className="text-fg-grey-700">{locale === "zh" ? "搜索：" : "Search: "}{query}</span> }] : []),
+    ...list.slice(0, shown).map((row, index) => ({
+      id: `${index}-${row.primary}`,
+      status: index === shown - 1 && working ? "running" as const : "done" as const,
+      label: <span className={cn(row.mono && "font-mono text-xs")}>{row.primary}</span>,
+      detail: (row.secondary && !row.href) || row.add !== undefined || (row.del ?? 0) > 0 ? (
+        <span className="flex items-center gap-2">
+          {row.secondary && !row.href && <span className={cn(row.mono && "font-mono")}>{row.secondary}</span>}
+          {row.add !== undefined && <span className="font-medium text-fg-green-500">+{row.add}</span>}
+          {row.del !== undefined && row.del > 0 && <span className="font-medium text-fg-red">−{row.del}</span>}
         </span>
-        <span className={cn("transition-transform", expanded ? "rotate-180" : "rotate-0")}>
-          <AltArrowDownLinear size={12} color="var(--fg-grey-500)" />
-        </span>
-      </button>
-
-      {expanded && (
-        <div className="ml-2 flex flex-col gap-0.5 border-l border-fg-grey-200 pl-3">
-          {variant === "search" && query && (
-            <p className="flex items-center gap-1.5 py-1 text-xs text-fg-grey-500">
-              <MagniferLinear size={12} color="var(--fg-grey-500)" />
-              {query}
-            </p>
-          )}
-          {list.slice(0, shown).map((row, i) => (
-            <ThinkingRowView key={`${row.primary}-${i}`} variant={variant} row={row} last={i === shown - 1 && working} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ThinkingRowView({
-  variant,
-  row,
-  last,
-}: {
-  variant: ThinkingVariant;
-  row: ThinkingRow;
-  last: boolean;
-}) {
-  const icon =
-    variant === "search" ? (
-      <LinkLinear size={14} color="var(--fg-grey-500)" />
-    ) : variant === "coding" ? (
-      <CodeLinear size={14} color="var(--fg-grey-500)" />
-    ) : last ? (
-      <LightbulbLinear size={14} color="var(--accent)" />
-    ) : (
-      <CheckCircleLinear size={14} color="var(--fg-green-500)" />
-    );
-
-  const body = (
-    <>
-      {icon}
-      <span className={cn("min-w-0 flex-1 text-fg-black", row.mono && "font-mono text-xs")}>
-        {row.primary}
-      </span>
-      {row.secondary && (
-        <span className={cn("text-xs text-fg-grey-500", row.mono && "font-mono")}>
-          {row.secondary}
-        </span>
-      )}
-      {row.add !== undefined && (
-        <span className="text-xs font-medium text-fg-green-500">+{row.add}</span>
-      )}
-      {row.del !== undefined && row.del > 0 && (
-        <span className="text-xs font-medium text-fg-red">−{row.del}</span>
-      )}
-    </>
-  );
-
-  if (row.href) {
-    return (
-      <a
-        href={row.href}
-        target="_blank"
-        rel="noreferrer"
-        className="forge-fade-up flex min-h-7 items-center gap-2 rounded-lg px-1.5 py-0.5 hover:bg-fg-grey-100"
-      >
-        {body}
-      </a>
-    );
-  }
+      ) : undefined,
+      sources: row.href ? [{ title: row.primary, href: row.href, domain: row.secondary }] : undefined,
+    })),
+  ];
 
   return (
-    <div className="forge-fade-up flex min-h-7 items-center gap-2 rounded-lg px-1.5 py-0.5">
-      {body}
-    </div>
+    <Reasoning
+      className={className}
+      status={working ? "thinking" : "done"}
+      steps={steps}
+      label={activeLabel ?? labels.active}
+      doneLabel={doneLabel ?? labels.done}
+      open={expanded}
+      onOpenChange={setExpanded}
+      locale={locale}
+      motion={motion}
+    />
   );
 }

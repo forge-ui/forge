@@ -4,26 +4,26 @@
 
 | 编号 | 案例 | 分类 | 目标组件 | 目录验收标记 |
 |---|---|---|---|---|
-| 001 | 液态玻璃按钮 | button-link | Button | 未标记 |
-| 002 | 磁吸箭头按钮 | button-link | Button、StyledLink | 未标记 |
+| 001 | 玻璃效果按钮 | button-link | Button | 未标记 |
+| 002 | 箭头跟随按钮 | button-link | Button、StyledLink | 未标记 |
 | 003 | 长按删除 | button-link | Button | 未标记 |
 | 004 | 下载进度按钮 | button-link | Button、ProgressBar | 未标记 |
-| 005 | 纸飞机发送 | button-link | IconButton、Button | 未标记 |
-| 006 | 墨水涟漪按钮 | button-link | Button | 未标记 |
-| 007 | 播放暂停变形 | button-link | IconButton | 未标记 |
+| 005 | 发送按钮 | button-link | IconButton、Button | 未标记 |
+| 006 | 点击涟漪按钮 | button-link | Button | 未标记 |
+| 007 | 播放与暂停 | button-link | IconButton | 未标记 |
 | 008 | 复制完成反馈 | button-link | IconButton、Button、ButtonGroup | 未标记 |
-| 009 | 文字滚动按钮 | button-link | Button、StyledLink | 未标记 |
+| 009 | 文字切换按钮 | button-link | Button、StyledLink | 未标记 |
 | 010 | 组合操作按钮 | button-link | Button、IconTrigger、DropdownPanel、MenuItem | 未标记 |
 | 011 | 扇形快捷操作 | menu | IconButton、IconTrigger | 未标记 |
-| 012 | 书签丝带 | button-link | IconButton | 未标记 |
+| 012 | 书签按钮 | button-link | IconButton | 未标记 |
 | 013 | 弹性开关 | input-field | Toggle | 已标记 |
 | 014 | 待办清单 | checklist | Checklist | 未标记 |
 | 015 | 套餐选择卡 | input-field | RadioWithLabel、RadioButton、SurfaceCard | 未标记 |
 | 016 | 星级评价 | comment | RatingStars | 未标记 |
 | 018 | 滚动数量步进 | input-field | IconButton | 未标记 |
 | 019 | 兴趣多选 | input-field | CheckboxControl、CheckboxWithLabel | 未标记 |
-| 021 | 日夜切换 | input-field | Toggle | 未标记 |
-| 022 | 点赞心形绽放 | button-link | IconButton | 未标记 |
+| 021 | 明暗切换 | input-field | Toggle | 未标记 |
+| 022 | 点赞按钮 | button-link | IconButton | 未标记 |
 | 023 | 通知设置展开 | input-field | Toggle、ButtonGroup、Accordion | 未标记 |
 | 025 | 浮动标签输入 | input-field | TextField | 未标记 |
 | 026 | 验证码输入 | input-field | OtpInput | 未标记 |
@@ -46,8 +46,8 @@
 | 046 | 命令面板 | menu | CommandSearch、Modal | 已标记 |
 | 047 | 时间区间切换 | tab | ButtonGroup | 未标记 |
 | 048 | 滑动联动标签 | tab | TabBar、TabsContent | 未标记 |
-| 049 | 层叠内容卡 | card | SurfaceCard、IconButton、Button | 未标记 |
-| 050 | 光照倾斜卡 | card | SurfaceCard、Button | 未标记 |
+| 049 | 叠放内容卡片 | card | SurfaceCard、IconButton、Button | 未标记 |
+| 050 | 指针光照卡片 | card | SurfaceCard、Button | 未标记 |
 | 054 | 关注个人卡 | card | Avatar、Button、SurfaceCard | 未标记 |
 | 056 | 月年计费切换 | input-field | ButtonGroup、RadioButton、TextField、Button | 未标记 |
 | 057 | 头像评价轮播 | comment | ReviewItem、Avatar、IconButton | 未标记 |
@@ -65,22 +65,22 @@
 | 077 | 表情反应面板 | chat | ChatBubble、IconTrigger、IconButton | 未标记 |
 | 078 | 滑动回复 | chat | ChatBubble、ChatInputBar | 未标记 |
 | 080 | 轨道同步指示 | feedback | SurfaceCard、Button、ProgressBar | 未标记 |
-| 081 | 环形完成反馈 | button-link | Button、ProgressBar | 未标记 |
+| 081 | 完成状态按钮 | button-link | Button、ProgressBar | 未标记 |
 | 083 | 队列进度转换 | feedback | ProgressBar | 未标记 |
-| 084 | 语音响应圆点 | chat | ChatInputBar | 未标记 |
+| 084 | 语音输入指示 | chat | ChatInputBar | 未标记 |
 | 086 | AI 流式回答 | agent | StreamingAnswer、ChatInputBar | 未标记 |
 | 087 | 配送步骤 | pagination-stepper | Stepper、HistoryGrouped | 未标记 |
 | 088 | 资料夹空态 | feedback | ListGroup、ListItem、Button | 未标记 |
-| 089 | 404 纠错 | feedback | SurfaceCard、Button | 未标记 |
+| 089 | 地址纠错 | feedback | SurfaceCard、Button | 未标记 |
 | 090 | 可重试错误卡 | feedback | SurfaceCard、Button、BarChart、StatCard | 未标记 |
 | 091 | 离线消息队列 | chat | ChatBubble、ChatInputBar | 未标记 |
 | 092 | 筛选空态恢复 | filter | FilterPanel、ToolbarSearchInput、ListGroup、Button | 未标记 |
 | 093 | 完成庆祝 | checklist | Checklist、ProgressBar、Button | 未标记 |
-| 095 | 形态切换柱图 | chart | BarChart、ChartTooltip、TabBar | 未标记 |
-| 096 | 滑动股票折线 | chart | SmoothLineChart、ChartTooltip、TabBar | 未标记 |
-| 097 | 重排环图 | chart | DonutChart、ChartLegendItem | 未标记 |
-| 098 | 实时数字滚动 | card | StatCard、LineChartStatCard | 未标记 |
-| 099 | 活动环 | chart | MultilayerDonutChart | 未标记 |
+| 095 | 柱形切换 | chart | BarChart、ChartTooltip、TabBar | 未标记 |
+| 096 | 可拖动折线 | chart | SmoothLineChart、ChartTooltip、TabBar | 未标记 |
+| 097 | 环形图重排 | chart | DonutChart、ChartLegendItem | 未标记 |
+| 098 | 数字更新卡片 | card | StatCard、LineChartStatCard | 未标记 |
+| 099 | 活动进度环 | chart | MultilayerDonutChart | 未标记 |
 | 108 | 时区交集 | calendar | SurfaceCard、Button | 未标记 |
 | 110 | 日程冲突修复 | calendar | EventTag、SurfaceCard、Button | 未标记 |
 | 126 | Markdown 编辑与预览 | cases | TextArea、StreamingAnswer、Button | 未标记 |

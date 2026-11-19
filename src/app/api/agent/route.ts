@@ -143,6 +143,9 @@ async function isQuestion(request: Request) {
   }
 }
 
+// The docs assistant answers about components and setup; data and form blocks would only cost prompt tokens.
+const SITE_COMPONENTS = ["show_cards", "show_steps", "show_code", "show_table", "show_compare", "show_callout", "show_list", "show_choices", "show_actions", "suggest_followups"] as const;
+
 export async function POST(request: Request) {
   if (!config.baseURL || !config.apiKey) return Response.json({ error: "助手还没有配置模型（FORGE_AGENT_BASE_URL、FORGE_AGENT_API_KEY）" }, { status: 503 });
   const ip = clientIp(request);
@@ -155,5 +158,5 @@ export async function POST(request: Request) {
     if (!site.allowed) return tooMany("今天的提问次数已经用完，明天再来。", site.retryAfterMs);
   }
   const provider = createOpenAICompatible({ name: "forge-agent", baseURL: config.baseURL, apiKey: config.apiKey });
-  return createAgentHandler({ model: provider(config.model), instructions, tools, topics: topicsFor(new URL(request.url).origin), pageInstructions, answers })(request);
+  return createAgentHandler({ model: provider(config.model), instructions, tools, ui: SITE_COMPONENTS, topics: topicsFor(new URL(request.url).origin), pageInstructions, answers })(request);
 }

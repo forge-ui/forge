@@ -1,16 +1,7 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
-import { createPortal } from "react-dom";
-import { CloseCircleLinear, FullScreenLinear } from "../../icons";
-import { AskAiCompactComposerContext } from "../../internal/ask-ai-composer-context";
-import { AskAiIcon } from "../../internal/ask-ai-icon";
-import { AskHistoryDropdown } from "../../internal/ask-ai-history";
-import {
-  ASK_AI_FS_LAYER_ATTR,
-  ASK_AI_FULLSCREEN_RAIL_WIDTH,
-  AskAiFullscreenLayer,
-} from "../../internal/ask-ai-fullscreen";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { StarsLinear } from "../../icons";
 import type {
   AskAiLink,
   AskAiMessage,
@@ -21,15 +12,14 @@ import type {
 import { cn } from "../../lib/utils";
 import type { AccentColor } from "./accent-utils";
 import { Button } from "./button";
-import { PlusIcon } from "./plain-icons";
-import { IconButton } from "./icon-button";
+import { AGENT_ENTRY_CLASS, AgentPanel } from "./agent/agent-panel";
+import { AgentMessage, PromptSuggestions } from "./agent/agent-conversation";
+import { AgentWelcome } from "./agent/agent-welcome";
+import { StreamingAnswer } from "./agent/streaming-answer";
+import { ThinkingIndicator } from "./agent/thinking";
 
 const EMPTY_MESSAGES: AskAiMessage[] = [];
-const subscribeToClient = () => () => {};
-const clientSnapshot = () => true;
-const serverSnapshot = () => false;
 
-export { ASK_AI_FS_LAYER_ATTR, ASK_AI_FULLSCREEN_RAIL_WIDTH };
 export type {
   AskAiLink,
   AskAiMessage,
@@ -41,6 +31,7 @@ export type {
 export interface AskAiProps {
   /** Overrides the surrounding accent. Omit to follow the nearest data-accent, or the kit default. */
   color?: AccentColor;
+  /** Entry button text and panel title. */
   label?: string;
   suggestions?: string[];
   placeholder?: string;
@@ -48,55 +39,18 @@ export interface AskAiProps {
   onSend: (message: string, request: AskAiRequest) => string | AskAiResponse | Promise<string | AskAiResponse>;
   disabled?: boolean;
   className?: string;
-  /** Replace the entire drawer header (brand, session, tools). */
-  header?: ReactNode;
-  /** Replace the Ask mark + title in the drawer header and fullscreen rail. */
-  brand?: ReactNode;
-  /** Replace session chrome (drawer header extras / fullscreen history). */
-  session?: ReactNode;
-  /** Replace the conversation / empty-state body.
-   * Fullscreen: content-only, natural height; no h-full, flex-1 or vertical
-   * overflow container. Core owns [data-ask-ai-fs-scroll], follow and jump-to-latest.
-   * Use currentSessionId to reset follow when switching external transcripts.
-   */
+  /** Replace the built-in conversation, e.g. with AgentParts driven by your own runtime. */
   messages?: ReactNode;
-  /**
-   * Replace the default composer (textarea + 发送).
-   * Fullscreen: content-only, no outer bottom padding/margin or fixed positioning.
-   * Core owns the bottom gap (16px or safe-area, whichever is larger).
-   * Consumers sharing slots with the drawer should branch on fullscreen state.
-   */
+  /** Replace the built-in composer. */
   composer?: ReactNode;
-  /** Controlled fullscreen layer. Independent of the drawer — not a stretched dialog. */
-  fullscreen?: boolean;
-  /** Uncontrolled initial fullscreen when `fullscreen` is omitted. */
-  defaultFullscreen?: boolean;
-  onFullscreenChange?: (open: boolean) => void;
-  /** Drawer header control that opens the fullscreen layer. Default true. */
-  showFullscreenTrigger?: boolean;
-  /** Session list for the default fullscreen rail. Displayed as given; core does not filter. */
+  /** Earlier conversations, listed under the history button. Displayed as given. */
   sessions?: AskAiSessionItem[];
   currentSessionId?: string;
   onNewSession?: () => void;
   onSelectSession?: (id: string) => void;
-  searchQuery?: string;
-  onSearchQueryChange?: (query: string) => void;
-  /**
-   * Force fullscreen landing vs chat layout.
-   * Defaults to the built-in conversation length (or chat layout when `messages` is passed).
-   */
-  hasConversation?: boolean;
   landingTitle?: string;
   /** Supporting copy below the empty-state heading. */
   landingDescription?: string;
-  /** Opt-in session-first panel header with a dedicated new-chat action. */
-  headerLayout?: "brand" | "session";
-  /** Non-modal side panel at >=1440px; falls back to the modal drawer below that. */
-  panelMode?: "modal" | "responsive";
-  /** Reserve 460px in the host layout while true. Released on close/fullscreen/unmount. */
-  onDockedChange?: (docked: boolean) => void;
-  /** Fullscreen rail title when `brand` is omitted. */
-  railLabel?: string;
 }
 
 function responseLinks(links: AskAiLink[] = []): AskAiLink[] {
@@ -112,47 +66,30 @@ function responseLinks(links: AskAiLink[] = []): AskAiLink[] {
 
 const DEFAULT_SUGGESTIONS = ["这个页面可以做什么？", "下一步该做什么？", "帮我总结当前内容"];
 
-/** Header entry, modal conversation drawer, and optional fullscreen shell. No network calls or page scraping. */
+/**
+ * The page-header entry to Forge Agent: the header button opens the Forge Agent panel (AgentPanel)
+ * with a built-in conversation over `onSend`. For tools, approvals and generative answers, mount
+ * ForgeAgent from @forge-ui-official/agent, or pass your own `messages` and `composer`.
+ */
 export function AskAi({
   color,
-  label = "Ask AI",
+  label = "Forge Agent",
   suggestions = DEFAULT_SUGGESTIONS,
   placeholder = "输入问题…",
   onSend,
   disabled,
   className,
-  header,
-  brand,
-  session,
   messages: messagesSlot,
   composer,
-  fullscreen,
-  defaultFullscreen = false,
-  onFullscreenChange,
-  showFullscreenTrigger = true,
   sessions,
   currentSessionId,
   onNewSession,
   onSelectSession,
-  searchQuery,
-  onSearchQueryChange,
-  hasConversation,
   landingTitle,
   landingDescription = "告诉我你想了解什么，我来帮你梳理。",
-  headerLayout = "brand",
-  panelMode = "modal",
-  onDockedChange,
-  railLabel,
 }: AskAiProps) {
-  const clientReady = useSyncExternalStore(subscribeToClient, clientSnapshot, serverSnapshot);
-  const id = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const conversationRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<AbortController | null>(null);
-  const enteredFromDrawerRef = useRef(false);
-  const skipTriggerFocusRef = useRef(false);
   const [open, setOpen] = useState(false);
   const [inheritedAccent, setInheritedAccent] = useState<AccentColor | undefined>();
   const accent = color ?? inheritedAccent;
@@ -168,57 +105,16 @@ export function AskAi({
   useLayoutEffect(() => { threadsRef.current = threads; }, [threads]);
   const conversation = threads[threadKey] ?? EMPTY_MESSAGES;
   const [pending, setPending] = useState(false);
+  // The reply that arrived last fades in; replies already read show at once.
+  const [fresh, setFresh] = useState<string>();
   const [error, setError] = useState<string | null>(null);
   const [failedQuestion, setFailedQuestion] = useState<string | null>(null);
-  const [internalFullscreen, setInternalFullscreen] = useState(defaultFullscreen);
-  const fullscreenControlled = fullscreen !== undefined;
-  const fullscreenOpen = fullscreenControlled ? fullscreen : internalFullscreen;
-  const fullscreenControlledRef = useRef(fullscreenControlled);
-  const onFullscreenChangeRef = useRef(onFullscreenChange);
+
+  useEffect(() => () => requestRef.current?.abort(), []);
   useLayoutEffect(() => {
-    fullscreenControlledRef.current = fullscreenControlled;
-    onFullscreenChangeRef.current = onFullscreenChange;
-  }, [fullscreenControlled, onFullscreenChange]);
-
-  const [wide, setWide] = useState(false);
-  useEffect(() => {
-    if (panelMode !== "responsive") return;
-    const media = window.matchMedia("(min-width: 1440px)");
-    const update = () => setWide(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, [panelMode]);
-  const docked = panelMode === "responsive" && wide && open && !fullscreenOpen;
-  const onDockedChangeRef = useRef(onDockedChange);
-  useLayoutEffect(() => {
-    onDockedChangeRef.current = onDockedChange;
-  }, [onDockedChange]);
-  useLayoutEffect(() => {
-    onDockedChangeRef.current?.(docked);
-  }, [docked]);
-  useLayoutEffect(() => () => onDockedChangeRef.current?.(false), []);
-
-  function setFullscreenOpen(next: boolean) {
-    if (!fullscreenControlled) setInternalFullscreen(next);
-    onFullscreenChange?.(next);
-  }
-
-  function enterFullscreen() {
-    if (open) {
-      enteredFromDrawerRef.current = true;
-      skipTriggerFocusRef.current = true;
-      setOpen(false);
-    }
-    setFullscreenOpen(true);
-  }
-
-  function exitFullscreen() {
-    const fromDrawer = enteredFromDrawerRef.current;
-    enteredFromDrawerRef.current = false;
-    setFullscreenOpen(false);
-    if (fromDrawer) setOpen(true);
-  }
+    const value = triggerRef.current?.closest("[data-accent]")?.getAttribute("data-accent");
+    setInheritedAccent(value === "purple" || value === "blue" || value === "black" ? value : undefined);
+  }, [open]);
 
   function writeThread(key: string, next: AskAiMessage[]) {
     const updated = { ...threadsRef.current, [key]: next };
@@ -245,72 +141,11 @@ export function AskAi({
     onNewSession?.();
   }
 
-  useEffect(() => () => requestRef.current?.abort(), []);
-  useLayoutEffect(() => {
-    const value = triggerRef.current?.closest("[data-accent]")?.getAttribute("data-accent");
-    setInheritedAccent(value === "purple" || value === "blue" || value === "black" ? value : undefined);
-  }, [open, fullscreenOpen]);
-  useEffect(() => {
-    if (fullscreenOpen && open) {
-      enteredFromDrawerRef.current = true;
-      skipTriggerFocusRef.current = true;
-      // External fullscreen activation must close the competing drawer.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setOpen(false);
-    }
-  }, [fullscreenOpen, open]);
-  useEffect(() => {
-    if (fullscreenOpen) {
-      const previousOverflow = document.body.style.overflow;
-      const escape = (event: KeyboardEvent) => {
-        if (event.key !== "Escape" || event.defaultPrevented) return;
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        const fromDrawer = enteredFromDrawerRef.current;
-        enteredFromDrawerRef.current = false;
-        if (!fullscreenControlledRef.current) setInternalFullscreen(false);
-        onFullscreenChangeRef.current?.(false);
-        if (fromDrawer) setOpen(true);
-      };
-      // Let nested menus handle Escape before the fullscreen host.
-      document.addEventListener("keydown", escape);
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.removeEventListener("keydown", escape);
-        document.body.style.overflow = previousOverflow;
-      };
-    }
-    if (!open) return;
-    const dialog = dialogRef.current;
-    const trigger = triggerRef.current;
-    const previousOverflow = document.body.style.overflow;
-    const escape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && !event.defaultPrevented &&
-          (!docked || dialog?.contains(event.target as Node) || trigger === event.target)) {
-        event.preventDefault(); setOpen(false);
-      }
-    };
-    document.addEventListener("keydown", escape);
-    if (docked) dialog?.show();
-    else {
-      dialog?.showModal();
-      document.body.style.overflow = "hidden";
-    }
-    inputRef.current?.focus();
-    return () => {
-      document.removeEventListener("keydown", escape);
-      dialog?.close();
-      if (!docked) document.body.style.overflow = previousOverflow;
-      if (skipTriggerFocusRef.current) {
-        skipTriggerFocusRef.current = false;
-        return;
-      }
-      if (!dialog?.isConnected) trigger?.focus();
-    };
-  }, [open, fullscreenOpen, docked]);
-  useEffect(() => {
-    if (open && conversationRef.current) conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
-  }, [open, conversation, pending, error]);
+  function stop() {
+    requestRef.current?.abort();
+    requestRef.current = null;
+    setPending(false);
+  }
 
   async function send(question: string, retry = false) {
     const text = question.trim();
@@ -342,6 +177,7 @@ export function AskAi({
       if (!reply.text.trim()) throw new Error("Empty response");
       const links = responseLinks(reply.links);
       writeThread(sentKey, [...history, { role: "assistant", content: reply.text, ...(links.length > 0 && { links }) }]);
+      setFresh(`${sentKey}:${history.length}`);
     } catch {
       if (!controller.signal.aborted) {
         setError("回复暂时未能完成，请重试。");
@@ -355,157 +191,68 @@ export function AskAi({
     }
   }
 
-  function submit(event: FormEvent) {
-    event.preventDefault();
-    void send(draft);
-  }
-
-  const defaultBrand = (
-    <h2 id={`${id}-title`} className="flex items-center gap-2 text-base font-semibold"><AskAiIcon />{label}</h2>
-  );
-  const headerTools = (
-    <div className="flex shrink-0 items-center gap-1" data-ask-ai-header-tools>
-      {headerLayout === "session" && (
-        <IconButton type="button" size="sm" shape="square" variant="ghost" color="grey"
-          title="新建对话" aria-label="新建对话" onClick={startNewSession}>
-          <PlusIcon size={18} />
-        </IconButton>
-      )}
-      {showFullscreenTrigger && (
-        <IconButton
-          type="button"
-          size="sm"
-          shape="square"
-          variant="ghost"
-          color="grey"
-          title="全屏"
-          aria-label="全屏"
-          data-ask-ai-fullscreen
-          onClick={enterFullscreen}
-        >
-          <FullScreenLinear size={18} />
-        </IconButton>
-      )}
-      <button type="button" aria-label="关闭 Ask AI" onClick={() => setOpen(false)} className="rounded-full p-2 text-fg-grey-700 hover:bg-fg-grey-100 focus-visible:outline-2">
-        <CloseCircleLinear size={20} />
-      </button>
+  const transcript = conversation.length > 0 || pending || error ? (
+    <div role="log" aria-label="对话记录" aria-live="polite" className="flex flex-col gap-5">
+      {conversation.map((message, index) => message.role === "user"
+        ? <AgentMessage key={index} role="user">{message.content}</AgentMessage>
+        : (
+          <div key={index} className="flex flex-col gap-2">
+            <StreamingAnswer text={message.content} format="markdown" size="sm" streaming={fresh === `${threadKey}:${index}`} />
+            {message.links && (
+              <div className="flex flex-wrap gap-2">
+                {message.links.map((link, linkIndex) => <a key={linkIndex} href={link.href} className="max-w-full break-words rounded-full border border-fg-grey-200 px-3 py-1.5 text-sm font-semibold text-fg-black hover:bg-fg-grey-100 focus-visible:outline-2 focus-visible:outline-fg-grey-500">{link.label}</a>)}
+              </div>
+            )}
+          </div>
+        ))}
+      {pending && <ThinkingIndicator />}
+      {error && <div className="flex items-center gap-3"><p role="alert" className="text-sm text-fg-red">{error}</p><Button size="sm" variant="tertiary" color="grey" onClick={() => failedQuestion && void send(failedQuestion, true)}>重试</Button></div>}
     </div>
+  ) : undefined;
+
+  const empty = (
+    <AgentWelcome
+      size="sm"
+      title={landingTitle || "有什么可以帮你？"}
+      description={landingDescription}
+      footer={<PromptSuggestions size="sm" suggestions={suggestions} onSelect={(question) => void send(question)} />}
+    />
   );
 
   return (
     <>
       <button ref={triggerRef} type="button" aria-label={label} aria-haspopup="dialog"
-        aria-expanded={open} aria-controls={open ? `${id}-dialog` : undefined}
+        aria-expanded={open}
         disabled={disabled} onClick={() => setOpen(true)}
-        className={cn("shrink-0 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-background px-3 md:px-4 text-fg-grey-700 outline outline-1 -outline-offset-1 outline-fg-grey-200 hover:bg-fg-grey-100 focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors", className)}>
-        <AskAiIcon />
+        className={cn(AGENT_ENTRY_CLASS, "px-3 md:px-4 hover:shadow-[0_4px_16px_-6px_var(--fg-cyan-500)] aria-expanded:shadow-[0_4px_16px_-6px_var(--fg-blue-500)] focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:cursor-not-allowed disabled:opacity-50", className)}>
+        <StarsLinear size={20} color="var(--fg-blue-500)" />
         <span className="hidden md:inline text-sm font-semibold whitespace-nowrap">{label}</span>
       </button>
-      {open && typeof document !== "undefined" && createPortal(
-        <dialog ref={dialogRef} id={`${id}-dialog`} data-accent={accent} data-ask-ai-panel={docked ? "docked" : "modal"} aria-labelledby={`${id}-title`} aria-modal={docked ? undefined : true}
-          onKeyDown={(event) => {
-            if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); setOpen(false); }
-          }}
-          onCancel={(event) => { event.preventDefault(); setOpen(false); }}
-          onClick={(event) => {
-            if (docked || event.target !== event.currentTarget) return;
-            const rect = event.currentTarget.getBoundingClientRect();
-            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) setOpen(false);
-          }}
-          className={cn("fixed inset-y-0 left-auto right-0 m-0 h-dvh max-h-none w-full max-w-[460px] border-0 border-l border-fg-grey-200 bg-background p-0 text-fg-black", docked ? "z-40" : "shadow-xl backdrop:bg-fg-black/30")}>
-          <div className="flex h-full min-h-0 flex-col">
-            <header className="flex shrink-0 items-center justify-between gap-3 border-b border-fg-grey-200 px-5 py-4">
-              {header ?? (
-                <>
-                  <div className="flex min-w-0 flex-1 items-center gap-3">
-                    {headerLayout === "session" ? <h2 id={`${id}-title`} className="sr-only">{label}</h2> : brand ? <div id={`${id}-title`}>{brand}</div> : defaultBrand}
-                    {session ?? (
-                      <AskHistoryDropdown
-                        variant={headerLayout === "session" ? "title" : "default"}
-                        sessions={sessionList}
-                        currentSessionId={activeId ?? undefined}
-                        onNewSession={startNewSession}
-                        onSelectSession={selectSession}
-                      />
-                    )}
-                  </div>
-                  {headerTools}
-                </>
-              )}
-            </header>
-            {messagesSlot ?? (
-              <>
-                <div ref={conversationRef} className="min-h-0 flex-1 overflow-y-auto p-5">
-                  {conversation.length === 0 && <div className="flex flex-col gap-5">
-                    <div className="flex flex-col gap-2 pt-6 pb-2" data-ask-ai-welcome>
-                      <h3 className="text-2xl font-semibold leading-tight tracking-fg text-fg-black">{landingTitle || "有什么可以帮你？"}</h3>
-                      <p className="text-sm leading-6 text-fg-grey-700">{landingDescription}</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      {suggestions.map((question, index) => <button key={`${index}-${question}`} type="button" disabled={disabled} onClick={() => void send(question)} className="rounded-xl border border-fg-grey-200 px-3 py-3 text-left text-sm text-fg-grey-700 hover:bg-fg-grey-100 disabled:opacity-50">{question}</button>)}
-                    </div>
-                  </div>}
-                  <div role="log" aria-label="对话记录" aria-live="polite" className="flex flex-col gap-5">
-                    {conversation.map((message, index) => <div key={index} className={cn("flex flex-col gap-1.5", message.role === "user" && "items-end")}>
-                      <span className="text-xs text-fg-grey-500">{message.role === "user" ? "你" : label}</span>
-                      <p className={cn("max-w-full whitespace-pre-wrap break-words text-sm leading-6", message.role === "user" && "rounded-2xl bg-fg-grey-100 px-4 py-3")}>{message.content}</p>
-                      {message.role === "assistant" && message.links && <div className="flex flex-wrap gap-2">
-                        {message.links.map((link, linkIndex) => <a key={linkIndex} href={link.href} className="max-w-full break-words rounded-xl border border-fg-grey-200 px-3 py-2 text-sm font-semibold text-fg-grey-700 hover:bg-fg-grey-100 focus-visible:outline-2 focus-visible:outline-fg-grey-500">{link.label}</a>)}
-                      </div>}
-                    </div>)}
-                  </div>
-                  {pending && <p role="status" className="mt-5 text-sm text-fg-grey-500">正在思考…</p>}
-                  {error && <div className="mt-5 flex items-center gap-3"><p role="alert" className="text-sm text-fg-red">{error}</p><Button size="sm" variant="tertiary" color="grey" onClick={() => failedQuestion && void send(failedQuestion, true)}>重试</Button></div>}
-                </div>
-              </>
-            )}
-            {composer ? <AskAiCompactComposerContext value={true}>{composer}</AskAiCompactComposerContext> : (
-              <form onSubmit={submit} className="flex shrink-0 items-end gap-2 border-t border-fg-grey-200 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-                <textarea ref={inputRef} aria-label="向 AI 提问" placeholder={placeholder} rows={2} value={draft}
-                  onChange={(event) => setDraft(event.target.value)}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); void send(draft); }
-                  }}
-                  className="min-w-0 flex-1 resize-none rounded-xl border border-fg-grey-200 px-3 py-2.5 text-sm leading-5 placeholder:text-fg-grey-500 focus:outline-fg-grey-500" />
-                <button type="submit" disabled={pending || disabled || !draft.trim()} className="rounded-full bg-accent px-3.5 py-3 text-sm font-bold leading-5 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60">发送</button>
-              </form>
-            )}
-          </div>
-        </dialog>, document.body,
-      )}
-      {fullscreenOpen && clientReady && createPortal(
-        <AskAiFullscreenLayer
-          color={accent}
-          label={label}
-          railLabel={railLabel}
-          landingTitle={landingTitle}
-          placeholder={placeholder}
-          brand={brand}
-          session={session}
-          messages={messagesSlot}
-          composer={composer}
+      <div data-accent={accent} className="contents">
+        <AgentPanel
+          title={label}
+          open={open}
+          onOpenChange={setOpen}
+          launcher={false}
+          empty={empty}
+          followKey={`${conversation.length}-${pending}`}
+          onNewChat={startNewSession}
           sessions={sessionList}
           currentSessionId={activeId ?? undefined}
-          onNewSession={startNewSession}
           onSelectSession={selectSession}
-          searchQuery={searchQuery}
-          onSearchQueryChange={onSearchQueryChange}
-          suggestions={suggestions}
-          draft={draft}
-          onDraftChange={setDraft}
-          pending={pending}
-          disabled={disabled}
-          error={error}
-          failedQuestion={failedQuestion}
-          conversation={conversation}
-          hasConversation={hasConversation ?? (messagesSlot ? true : undefined)}
-          onSubmit={() => void send(draft)}
-          onRetry={() => failedQuestion && void send(failedQuestion, true)}
-          onSuggestion={(question) => void send(question)}
-          onExit={exitFullscreen}
-        />,
-        document.body,
-      )}
+          composer={composer ?? {
+            value: draft,
+            onChange: setDraft,
+            onSend: (message: string) => void send(message),
+            placeholder,
+            disabled,
+            status: pending ? "running" : "idle",
+            onStop: stop,
+          }}
+        >
+          {messagesSlot ?? transcript}
+        </AgentPanel>
+      </div>
     </>
   );
 }

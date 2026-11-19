@@ -252,11 +252,6 @@ function AgentWorkspace() {
               <AskAi
                 color="black"
                 label="项目速问"
-                brand={
-                  <span className="text-sm font-semibold">
-                    项目速问 · 本地预览
-                  </span>
-                }
                 placeholder="询问项目背景或计划…"
                 suggestions={["本周优先做什么？", "有哪些项目风险？"]}
                 onSend={(message) =>

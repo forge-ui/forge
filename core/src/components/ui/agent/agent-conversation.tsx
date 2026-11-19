@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import {
+  AltArrowLeftLinear,
+  AltArrowRightLinear,
   ArrowDownLinear,
   CheckCircleLinear,
   CodeLinear,
@@ -12,6 +14,7 @@ import {
   DownloadMinimalisticLinear,
   GalleryLinear,
   LikeLinear,
+  PenLinear,
   RefreshLinear,
   StarsLinear,
   WidgetLinear,
@@ -142,17 +145,28 @@ export type MessageActionsProps = {
   onRetry?: () => void;
   onFeedback?: (value: MessageFeedback) => void;
   feedback?: MessageFeedback;
+  /** Regenerated replies: shows "2/3" with previous and next. `current` is 0-based. */
+  versions?: { current: number; total: number; onChange: (index: number) => void };
+  /** Edit and resend; usually on the user's message. */
+  onEdit?: () => void;
+  /** Offered after a thumbs down, e.g. ["没回答问题", "数据不对", "太长"]. */
+  feedbackReasons?: string[];
+  onFeedbackReason?: (reason: string) => void;
   locale?: Locale;
-  labels?: Partial<Record<"copy" | "copied" | "retry" | "up" | "down", string>>;
+  labels?: Partial<Record<"copy" | "copied" | "retry" | "up" | "down" | "edit" | "previous" | "next", string>>;
   className?: string;
 };
 
-/** Copy, regenerate and thumbs feedback for an assistant reply. Each action renders only when wired. */
-export function MessageActions({ copyText, onRetry, onFeedback, feedback: controlled, locale = "zh", labels = {}, className }: MessageActionsProps) {
+/**
+ * Copy, edit, regenerate with a version switcher, and thumbs feedback with reasons for a reply.
+ * Each action renders only when wired.
+ */
+export function MessageActions({ copyText, onRetry, onFeedback, feedback: controlled, versions, onEdit, feedbackReasons = [], onFeedbackReason, locale = "zh", labels = {}, className }: MessageActionsProps) {
   const [copied, setCopied] = useState(false);
   const [local, setLocal] = useState<MessageFeedback>(null);
+  const [reasonSent, setReasonSent] = useState<string>();
   const feedback = controlled === undefined ? local : controlled;
-  const text = { copy: pick(locale, "复制", "Copy"), copied: pick(locale, "已复制", "Copied"), retry: pick(locale, "重新生成", "Regenerate"), up: pick(locale, "有帮助", "Helpful"), down: pick(locale, "没帮助", "Not helpful"), ...labels };
+  const text = { copy: pick(locale, "复制", "Copy"), copied: pick(locale, "已复制", "Copied"), retry: pick(locale, "重新生成", "Regenerate"), up: pick(locale, "有帮助", "Helpful"), down: pick(locale, "没帮助", "Not helpful"), edit: pick(locale, "编辑", "Edit"), previous: pick(locale, "上一版", "Previous version"), next: pick(locale, "下一版", "Next version"), ...labels };
   const button = "inline-flex size-8 items-center justify-center rounded-lg text-fg-grey-700 transition-colors hover:bg-fg-grey-100 hover:text-fg-black aria-pressed:text-fg-blue";
 
   const vote = (value: Exclude<MessageFeedback, null>) => {
@@ -162,27 +176,50 @@ export function MessageActions({ copyText, onRetry, onFeedback, feedback: contro
   };
 
   return (
-    <div className={cn("-ml-1.5 flex items-center gap-0.5", className)}>
-      {copyText !== undefined && (
-        <button type="button" aria-label={copied ? text.copied : text.copy} title={copied ? text.copied : text.copy} className={button}
-          onClick={async () => { try { await navigator.clipboard.writeText(copyText); setCopied(true); window.setTimeout(() => setCopied(false), 1500); } catch { setCopied(false); } }}>
-          {copied ? <CheckCircleLinear size={16} color="currentColor" /> : <CopyLinear size={16} color="currentColor" />}
-        </button>
-      )}
-      {onRetry && (
-        <button type="button" aria-label={text.retry} title={text.retry} className={button} onClick={onRetry}>
-          <RefreshLinear size={16} color="currentColor" />
-        </button>
-      )}
-      {onFeedback && (
-        <>
-          <button type="button" aria-label={text.up} title={text.up} aria-pressed={feedback === "up"} className={button} onClick={() => vote("up")}>
-            <LikeLinear size={16} color="currentColor" />
+    <div className={cn("-ml-1.5 flex flex-col gap-1.5", className)}>
+      <div className="flex items-center gap-0.5">
+        {versions && versions.total > 1 && (
+          <span className="mr-1 inline-flex items-center text-xs tabular-nums text-fg-grey-700">
+            <button type="button" aria-label={text.previous} disabled={versions.current <= 0} onClick={() => versions.onChange(versions.current - 1)} className={cn(button, "size-6 disabled:opacity-40")}><AltArrowLeftLinear size={14} color="currentColor" /></button>
+            {versions.current + 1}/{versions.total}
+            <button type="button" aria-label={text.next} disabled={versions.current >= versions.total - 1} onClick={() => versions.onChange(versions.current + 1)} className={cn(button, "size-6 disabled:opacity-40")}><AltArrowRightLinear size={14} color="currentColor" /></button>
+          </span>
+        )}
+        {copyText !== undefined && (
+          <button type="button" aria-label={copied ? text.copied : text.copy} title={copied ? text.copied : text.copy} className={button}
+            onClick={async () => { try { await navigator.clipboard.writeText(copyText); setCopied(true); window.setTimeout(() => setCopied(false), 1500); } catch { setCopied(false); } }}>
+            {copied ? <CheckCircleLinear size={16} color="currentColor" /> : <CopyLinear size={16} color="currentColor" />}
           </button>
-          <button type="button" aria-label={text.down} title={text.down} aria-pressed={feedback === "down"} className={button} onClick={() => vote("down")}>
-            <DislikeLinear size={16} color="currentColor" />
+        )}
+        {onEdit && (
+          <button type="button" aria-label={text.edit} title={text.edit} className={button} onClick={onEdit}>
+            <PenLinear size={16} color="currentColor" />
           </button>
-        </>
+        )}
+        {onRetry && (
+          <button type="button" aria-label={text.retry} title={text.retry} className={button} onClick={onRetry}>
+            <RefreshLinear size={16} color="currentColor" />
+          </button>
+        )}
+        {onFeedback && (
+          <>
+            <button type="button" aria-label={text.up} title={text.up} aria-pressed={feedback === "up"} className={button} onClick={() => vote("up")}>
+              <LikeLinear size={16} color="currentColor" />
+            </button>
+            <button type="button" aria-label={text.down} title={text.down} aria-pressed={feedback === "down"} className={button} onClick={() => vote("down")}>
+              <DislikeLinear size={16} color="currentColor" />
+            </button>
+          </>
+        )}
+      </div>
+      {feedback === "down" && feedbackReasons.length > 0 && onFeedbackReason && (
+        reasonSent
+          ? <p role="status" className="pl-1.5 text-xs text-fg-grey-700">{pick(locale, "收到，谢谢反馈", "Thanks for the feedback")}</p>
+          : <div className="flex flex-wrap gap-1 pl-1.5">
+              {feedbackReasons.map(reason => (
+                <button key={reason} type="button" onClick={() => { setReasonSent(reason); onFeedbackReason(reason); }} className="rounded-full border border-fg-grey-200 px-2.5 py-0.5 text-xs text-fg-grey-900 hover:border-accent hover:text-accent">{reason}</button>
+              ))}
+            </div>
       )}
     </div>
   );

@@ -160,7 +160,7 @@ Vercel AI Elements | AI SDK 团队基于 shadcn/ui 做的组件，源码复制�
 Forge | Tailwind + Next.js，对话放进后台；审批、对比表、任务进度和表格、表单是同一套设计。 | 适合后台里的 AI 助手
 ```
 
-想看所有组件的参数和可操作的例子，打开 [AI 对话组件文档](/components/agent)；想看这些组件拼成一个完整的工作台，打开[智能体工作台模板](/templates/agent)。
+想看所有组件的参数和可操作的例子，打开 [Forge Agent 组件文档](/agent)；想看这些组件拼成一个完整的工作台，打开[智能体工作台模板](/templates/agent)。
 
 ## 相关阅读
 

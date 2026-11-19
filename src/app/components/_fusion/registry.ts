@@ -18,6 +18,11 @@ const categoryOverrides: Record<string, string> = {
 export function officialCategory(item: FusionCatalogItem) {
   return categoryOverrides[item.id] ?? item.family;
 }
+// Agent interactions live with Forge Agent's scenarios; the rest on their family's case page.
+export function officialRoute(item: FusionCatalogItem) {
+  const category = officialCategory(item);
+  return category === "agent" ? "/agent/scenarios" : `/cases/${category}`;
+}
 export function officialHref(item: FusionCatalogItem) {
-  return `/cases/${officialCategory(item)}#interaction-${item.id === "F03" ? "178" : item.id}`;
+  return `${officialRoute(item)}#interaction-${item.id === "F03" ? "178" : item.id}`;
 }
