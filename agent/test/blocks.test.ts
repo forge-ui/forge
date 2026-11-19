@@ -88,3 +88,8 @@ test("blocks written slightly off the fence format still render", () => {
   const inline = splitBlocks('```forge:tags {"tags": ["大客户"]}```');
   assert.equal((inline[0] as { name: string }).name, "show_tags", "the whole block on one line");
 });
+
+test("CRLF answers split into the same code and catalog blocks as LF", () => {
+  const lf = ["前言", "````md", "```ts", "const inner = 1;", "```", "````", "```forge:followups", '["继续？"]', "```", "尾声"].join("\n");
+  assert.deepEqual(splitBlocks(lf.replaceAll("\n", "\r\n")), splitBlocks(lf));
+});

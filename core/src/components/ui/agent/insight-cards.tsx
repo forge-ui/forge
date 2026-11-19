@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { AltArrowLeftLinear, AltArrowRightLinear, StarsLinear } from "../../../icons";
 import { SurfaceCard } from "../surface-card";
+import { maxOf } from "../../../internal/chart-geometry";
 
 export type InsightTone = "violet" | "green" | "yellow" | "blue";
 
@@ -40,7 +41,7 @@ const TONE: Record<InsightTone, string> = {
 function Spark({ series }: { series: InsightSeries[] }) {
   const width = 280;
   const height = 88;
-  const max = Math.max(...series.flatMap((item) => item.values), 1);
+  const max = maxOf(series.flatMap((item) => item.values), 1);
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-24 w-full" aria-hidden>
@@ -67,7 +68,7 @@ function Spark({ series }: { series: InsightSeries[] }) {
 }
 
 function Bars({ values }: { values: number[] }) {
-  const max = Math.max(...values, 1);
+  const max = maxOf(values, 1);
   return (
     <div className="flex h-24 items-end gap-1.5">
       {values.map((value, index) => (

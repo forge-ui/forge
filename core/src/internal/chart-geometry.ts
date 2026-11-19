@@ -1,9 +1,16 @@
 /** Geometry is kept independent of presentation so domains, stacking and intervals agree. */
 export type ChartPoint = [number, number];
+/** Finite extremes without spreading into Math.max/min, which overflows the call stack on large series. */
+export function maxOf(values: number[], floor = -Infinity) {
+  return values.reduce((max, value) => (Number.isFinite(value) && value > max ? value : max), floor);
+}
+export function minOf(values: number[], ceiling = Infinity) {
+  return values.reduce((min, value) => (Number.isFinite(value) && value < min ? value : min), ceiling);
+}
 export function chartDomain(values: number[], domain?: [number, number]): [number, number] {
   if (domain && Number.isFinite(domain[0]) && Number.isFinite(domain[1]) && domain[1] > domain[0]) return domain;
   const valid = values.filter(Number.isFinite);
-  const min = valid.length ? Math.min(...valid) : 0, max = valid.length ? Math.max(...valid) : 1;
+  const min = valid.length ? minOf(valid) : 0, max = valid.length ? maxOf(valid) : 1;
   return min === max ? min > 0 ? [0, max] : min < 0 ? [min - Math.abs(min) * .1, max + Math.abs(max) * .1] : [0, 1] : [min, max];
 }
 export function chartPoints(data: number[], domain: [number, number], width = 400, height = 120): ChartPoint[] {

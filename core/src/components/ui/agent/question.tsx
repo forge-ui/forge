@@ -225,7 +225,7 @@ export function Question({ questions, onSubmit, onCancel, skippable = false, ans
   );
 }
 
-/* ───────────────── ChoiceCard (single question, Forge Agent / Ask AI harness) ───────────────── */
+/* ───────────────── ChoiceCard (single question, Forge Agent harness) ───────────────── */
 
 export type ChoiceOption = { id: string; label: string; description?: string };
 export type ChoiceAnswer = { optionId: string } | { optionIds: string[] } | { text: string };

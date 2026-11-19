@@ -6,6 +6,7 @@ import { cn } from "../../../lib/utils";
 import { ChartTooltip } from "./chart-tooltip";
 import { LABEL_TEXT, LABEL_TEXT_ACTIVE, resolveColor } from "./chart-utils";
 import { accentColors, type AccentColor } from "../accent-utils";
+import { maxOf } from "../../../internal/chart-geometry";
 
 interface BarHorizontalChartDataItem {
   value: number;
@@ -48,7 +49,7 @@ export function BarHorizontalChart({
   const activeColor = color ?? theme.bg;
   const resolvedInactiveColor = inactiveColor ?? activeColor;
   const minValue = domain?.[0] ?? 0;
-  const maxValue = domain?.[1] ?? Math.max(...data.map((d) => d.value), 1);
+  const maxValue = domain?.[1] ?? maxOf(data.map((d) => d.value), 1);
   const percent = (value: number) => Math.max(0, Math.min(100, (value - minValue) / (maxValue - minValue || 1) * 100));
 
   return (

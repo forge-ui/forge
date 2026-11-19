@@ -509,7 +509,7 @@ export interface PageTitleToolbarMenuAction {
 }
 
 interface PageTitleToolbarPresetBase {
-  /** Optional Ask AI action, with the same configuration as PageHeader. */
+  /** Optional Forge Agent entry, with the same configuration as PageHeader. */
   askAi?: AskAiProps;
   title: string;
   breadcrumbItems: BreadcrumbItem[];
@@ -559,7 +559,7 @@ export type PageTitleToolbarPresetProps =
   | PageTitleToolbarActionProps;
 
 interface PageTitleToolbarLegacyProps {
-  /** Optional Ask AI action, with the same configuration as PageHeader. */
+  /** Optional Forge Agent entry, with the same configuration as PageHeader. */
   askAi?: AskAiProps;
   /** @deprecated Use a fixed `variant` with `breadcrumbItems` and typed actions. */
   variant?: never;

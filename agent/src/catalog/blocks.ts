@@ -76,7 +76,7 @@ function fenced(fenceLanguage: string, fenceBody: string): Segment | undefined {
  */
 export function splitBlocks(text: string, streaming = false): Segment[] {
   const segments: Segment[] = [];
-  const lines = text.split("\n");
+  const lines = text.replace(/\r\n?/g, "\n").split("\n");
   let prose: string[] = [];
   const flush = () => {
     const value = prose.join("\n").trim();

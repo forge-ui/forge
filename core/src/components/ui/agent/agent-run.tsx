@@ -291,7 +291,7 @@ export function AgentTrail({ title, steps, collapseAfter = 4, locale = "zh", siz
   );
 }
 
-/* ───────────────── RunProgress (Forge Agent / Ask AI harness) ───────────────── */
+/* ───────────────── RunProgress (Forge Agent harness) ───────────────── */
 
 export type ProgressStep = { id: string; title: string; status: "running" | "waiting-user" | "waiting-external" | "completed" | "cancelled" | "failed"; meta?: string };
 

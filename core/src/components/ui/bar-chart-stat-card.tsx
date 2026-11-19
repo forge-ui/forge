@@ -1,6 +1,7 @@
 import type { CardDensity } from "./card-utils";
 import { cn } from "../../lib/utils";
 import { cardThemes, StatCardShell, resolveCardTheme, type CardTheme, type CardWidth, type LegacyCardTheme, type StatCardSize, type TrendDirection } from "./card-utils";
+import { maxOf } from "../../internal/chart-geometry";
 
 // ============================================================
 // BarChartStatCard — Figma "Bar Chart Statistic Card" (node 6320:5395)
@@ -46,7 +47,7 @@ function BarSlot({
   const isColored = themeKey !== "white" && themeKey !== "black";
   const isWide = size === "wide";
   const isCompact = density === "compact";
-  const maxBar = Math.max(...bars);
+  const maxBar = maxOf(bars);
   const visible = bars.slice(0, isWide ? 7 : 5);
   // In wide mode, normalize input heights to fit within the 64px container.
   const wideMax = 60;
