@@ -41,7 +41,7 @@
 | `defaultLanguage` | 否 | `LanguageCode \| undefined` |  |
 | `onLanguageChange` | 否 | `((language: AppLayoutLanguage) => void) \| undefined` |  |
 | `pageHeaderVariant` | 否 | `AppLayoutPageHeaderVariant \| undefined` |  |
-| `askAi` | 否 | `AskAiProps \| undefined` | Optional Ask AI conversation drawer for every header variant. |
+| `askAi` | 否 | `AskAiProps \| undefined` | Optional Forge Agent entry for every header variant. |
 | `onBack` | 否 | `(() => void) \| undefined` |  |
 | `primaryAction` | 否 | `{ label: string; onClick?: () => void; } \| undefined` |  |
 | `secondaryAction` | 否 | `{ label: string; onClick?: () => void; } \| undefined` |  |
@@ -184,7 +184,7 @@ export interface AppLayoutProps {
   defaultLanguage?: AppLayoutLanguage;
   onLanguageChange?: (language: AppLayoutLanguage) => void;
   pageHeaderVariant?: AppLayoutPageHeaderVariant;
-  /** Optional Ask AI conversation drawer for every header variant. */
+  /** Optional Forge Agent entry for every header variant. */
   askAi?: AskAiProps;
   onBack?: () => void;
   primaryAction?: { label: string; onClick?: () => void };

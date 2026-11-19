@@ -2,10 +2,10 @@
   "package": "@forge-ui-official/core",
   "version": "0.9.0",
   "source": "core/src/index.ts",
-  "revision": "3722c13c4e765c369b6a7bf9d9944faaa81590b6",
+  "revision": "4116913bffbed13e3b993ff925ef36a7d8f5facb",
   "dirty": false,
-  "exportFingerprint": "742b71993790e5773336344737903bb669174c55",
-  "generatedAt": "2026-11-19T17:46:15+08:00",
+  "exportFingerprint": "7fea1ee5dc56edb369a20b6123d3197a9ed8c3b7",
+  "generatedAt": "2026-11-19T21:46:15+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
   "componentCount": 622,
   "oneShotDefaultCount": 24,
@@ -1725,7 +1725,7 @@
           "name": "askAi",
           "optional": true,
           "type": "AskAiProps | undefined",
-          "description": "Optional Ask AI conversation drawer for every header variant."
+          "description": "Optional Forge Agent entry for every header variant."
         },
         {
           "name": "onBack",
@@ -25213,7 +25213,7 @@
           "name": "askAi",
           "optional": true,
           "type": "AskAiProps | undefined",
-          "description": "Optional Ask AI action, with the same configuration as PageHeader."
+          "description": "Optional Forge Agent entry, with the same configuration as PageHeader."
         },
         {
           "name": "title",
