@@ -5,13 +5,13 @@ import { DocExample } from "../../components/_doc-blocks";
 import { PreviewBlock } from "../../components/_preview-block";
 import type { AgentEntryMeta } from "./_agent-meta";
 import {
-  CODE_APPROVAL, CODE_APPROVAL_PARTS, CODE_ARTIFACT, CODE_CODE_BLOCK, CODE_CONTEXT, CODE_CONVERSATION, CODE_DIFF_TABLE, CODE_FLOW,
-  CODE_INSIGHT, CODE_PARTS, CODE_RECOMMEND, CODE_SEARCH, CODE_STREAM, CODE_TASKS, CODE_THINKING, CODE_TOOLS, KIT_CODE,
+  CODE_APPROVAL_PARTS, CODE_ARTIFACT, CODE_CODE_BLOCK, CODE_CONTEXT, CODE_CONVERSATION, CODE_DIFF_TABLE, CODE_FLOW,
+  CODE_INSIGHT, CODE_PARTS, CODE_RECOMMEND, CODE_SEARCH, CODE_STREAM, KIT_CODE,
 } from "./_agent-data";
 import { ApprovalPartsDemo, ArtifactDemo, ConversationDemo, PartsDemo } from "./_conversation-demo";
 import {
-  AgentCodeBlockDemo, AgentDiffTableDemo, AgentFlowchartDemo, AgentTaskRowsDemo, ApprovalCardDemo, CommandSearchDemo,
-  ContextCardsDemo, InsightCardsDemo, ToolCallStatesDemo, RecommendationDemo, StreamingAnswerDocDemo, ThinkingTraceDemo, ToolChipsDemo,
+  AgentCodeBlockDemo, AgentDiffTableDemo, AgentFlowchartDemo, CommandSearchDemo,
+  ContextCardsDemo, InsightCardsDemo, ToolCallStatesDemo, RecommendationDemo, StreamingAnswerDocDemo,
 } from "./_inline-demos";
 import {
   AgentComposerDemo, AgentPlanDemo, AgentTrailDemo, ApprovalDemo, AutonomyDemo, AwayDemo, CheckpointsDemo, CitedAnswerDemo,
@@ -32,14 +32,10 @@ export const AGENT_DEMOS: Record<string, { demo: () => ReactNode; code: string; 
   reasoning: { demo: ReasoningDemo, code: KIT_CODE.reasoning, minHeight: 220 },
   "thinking-indicator": { demo: ThinkingIndicatorDemo, code: KIT_CODE.indicator, minHeight: 120 },
   "tool-call": { demo: ToolCallStatesDemo, code: KIT_CODE.toolCall, minHeight: 300 },
-  "thinking-trace": { demo: ThinkingTraceDemo, code: CODE_THINKING, minHeight: 200 },
-  "tool-chips": { demo: ToolChipsDemo, code: CODE_TOOLS, minHeight: 180 },
-  "agent-task-rows": { demo: AgentTaskRowsDemo, code: CODE_TASKS, minHeight: 200 },
   question: { demo: QuestionDemo, code: KIT_CODE.question, minHeight: 300 },
   approval: { demo: ApprovalDemo, code: KIT_CODE.approval, minHeight: 300 },
   "choice-card": { demo: HarnessCardsDemo, code: KIT_CODE.harness, minHeight: 240 },
   "tool-approval": { demo: ApprovalPartsDemo, code: CODE_APPROVAL_PARTS, minHeight: 300 },
-  "approval-card": { demo: ApprovalCardDemo, code: CODE_APPROVAL, minHeight: 260 },
   "recommendation-card": { demo: RecommendationDemo, code: CODE_RECOMMEND, minHeight: 240 },
   "agent-parts": { demo: PartsDemo, code: CODE_PARTS, minHeight: 420 },
   "streaming-answer": { demo: StreamingAnswerDocDemo, code: CODE_STREAM, minHeight: 360 },

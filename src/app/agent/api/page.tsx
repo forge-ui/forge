@@ -112,11 +112,7 @@ export default function AgentAllPage() {
         <AgentApi name="TraceWaterfall" />
         <AgentApi name="AgentTree" />
         <AgentApi name="AgentLanes" />
-        <AgentApi name="ThinkingTrace" />
         <AgentApi name="StreamingAnswer" />
-        <AgentApi name="ApprovalCard" />
-        <AgentApi name="ToolChips" />
-        <AgentApi name="AgentTaskRows" />
         <AgentApi name="ContextCards" />
         <AgentApi name="RecommendationCard" />
         <AgentApi name="AgentDiffTable" />
@@ -124,6 +120,13 @@ export default function AgentAllPage() {
         <AgentApi name="InsightCards" />
         <AgentApi name="CommandSearch" />
         <AgentApi name="AgentFlowchart" />
+      </Section>
+
+      <Section title="已废弃" description="这几个组件仍可使用，但下个大版本会删除：ThinkingTrace 换成 Reasoning，ToolChips 换成 ToolCallGroup + ToolCall，ApprovalCard 换成 Question，AgentTaskRows 换成 AgentTrail。">
+        <AgentApi name="ThinkingTrace" />
+        <AgentApi name="ToolChips" />
+        <AgentApi name="ApprovalCard" />
+        <AgentApi name="AgentTaskRows" />
       </Section>
     </div>
   );

@@ -5,68 +5,18 @@ import {
   AgentCodeBlock,
   AgentDiffTable,
   AgentFlowchart,
-  AgentTaskRows,
-  ApprovalCard,
   ButtonGroup,
   CommandSearch,
   ContextCards,
   InsightCards,
   RecommendationCard,
   StreamingAnswer,
-  ThinkingTrace,
   ToolCall,
   ToolCallGroup,
-  ToolChips,
   type ToolCallStatus,
 } from "@forge-ui-official/core";
 import { StreamingAnswerDemo } from "./_streaming-demo";
 import { CODE_DIFF, CODE_LINES, DIFF_ROWS } from "./_agent-data";
-
-export function ThinkingTraceDemo() {
-  return <div className="w-full max-w-lg"><ThinkingTrace variant="steps" settled /></div>;
-}
-
-export function ToolChipsDemo() {
-  return (
-    <div className="w-full max-w-lg">
-      <ToolChips
-        summary="调用工具 2 次"
-        items={[
-          { id: "think", kind: "think", label: "思考中", chip: "正在安排生产计划…", detail: [{ text: "周末需求带动了开心果口味的销量。" }] },
-          { id: "write", kind: "write", label: "写入 204 行", chip: "ChurnSchedule.tsx", mono: true, detail: [{ text: "+ return schedule(windows)", tone: "add" }] },
-        ]}
-        diffs={[{ file: "ChurnSchedule.tsx", add: 74, del: 41 }]}
-      />
-    </div>
-  );
-}
-
-export function AgentTaskRowsDemo() {
-  return (
-    <div className="w-full max-w-lg">
-      <AgentTaskRows
-        tasks={[
-          {
-            id: "1", title: "已验证供应商资料", status: "completed", meta: "12 家供应商",
-            children: [
-              { label: "已核对税务编号", value: "12/12", status: "completed" },
-              { label: "已标记过期资料", value: "2", status: "failed" },
-            ],
-          },
-          { id: "2", title: "起草供应商邮件", status: "running", meta: "2 条消息" },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ApprovalCardDemo() {
-  return (
-    <div className="w-full max-w-lg">
-      <ApprovalCard questions={[{ id: "count", prompt: "我们应该推出几种口味？", options: [{ id: "three", label: "三项推荐" }, { id: "five", label: "五项推荐" }, { id: "one", label: "单项重点推荐" }] }]} />
-    </div>
-  );
-}
 
 export function RecommendationDemo() {
   return (

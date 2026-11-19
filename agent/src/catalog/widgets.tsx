@@ -7,6 +7,7 @@ import {
   Approval,
   BarChart,
   Button,
+  ChangeLedger,
   DescriptionItem,
   DonutChart,
   HistoryGrouped,
@@ -139,20 +140,9 @@ export function Compare({ title, items }: UiSpec<"show_compare">) {
   );
 }
 
+// What changed, as one entry of the same ledger the agent keeps for undo; no undo here.
 export function Changes({ title, fields }: UiSpec<"show_changes">) {
-  return (
-    <Panel title={title ?? "改动"} gap="sm">
-      <div className="flex flex-col gap-3">
-        {fields.map(field => (
-          <DescriptionItem
-            key={field.label}
-            label={field.label}
-            content={<span className="inline-flex flex-wrap items-center gap-2"><span className="text-fg-grey-500 line-through">{field.before || "空"}</span><AltArrowRightLinear size={14} color="var(--fg-grey-400)" /><span className="font-semibold text-fg-black">{field.after || "空"}</span></span>}
-          />
-        ))}
-      </div>
-    </Panel>
-  );
+  return <ChangeLedger size="sm" title="改动" entries={[{ id: "changes", title: title ?? "改动明细", fields: fields.map(field => ({ label: field.label, before: field.before || "空", after: field.after || "空" })) }]} />;
 }
 
 const FLOW_KIND: Record<string, AgentFlowKind> = { start: "trigger", step: "action", decision: "condition", end: "action" };

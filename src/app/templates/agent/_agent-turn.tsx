@@ -4,14 +4,15 @@ import {
   Button,
   ChatBubble,
   SurfaceCard,
-  ThinkingTrace,
-  ToolChips,
+  Reasoning,
+  ToolCall,
+  ToolCallGroup,
   StreamingAnswer,
   ContextCards,
   RecommendationCard,
-  ApprovalCard,
+  Question,
   AgentDiffTable,
-  AgentTaskRows,
+  AgentTrail,
   AgentCodeBlock,
   InsightCards,
   AgentFlowchart,
@@ -103,60 +104,40 @@ export function AgentTurn({
         <summary>
           {running ? "正在分析项目资料…" : phase === "stopped" ? "本次生成已停止" : "已查阅项目简报，完成任务分析"}
         </summary>
-        <ThinkingTrace
+        <Reasoning
           key={`trace-${stream.runId}`}
-          variant={turn.kind === "code" ? "coding" : "steps"}
-          settled={!running}
-          play={running}
-          activeLabel="正在整理思路"
+          size="sm"
+          status={running ? "thinking" : phase === "stopped" ? "stopped" : "done"}
+          label="正在整理思路"
           doneLabel={phase === "stopped" ? "思考已停止" : "已完成分析"}
-          rows={[
-            { primary: "理解目标与约束" },
-            { primary: "查阅项目材料" },
-            { primary: "整理建议与下一步" },
-          ]}
+          steps={["理解目标与约束", "查阅项目材料", "整理建议与下一步"].map((label, index) => ({
+            id: String(index),
+            label,
+            status: running ? (index === 0 ? "running" : undefined) : "done",
+          }))}
         />
-        <ToolChips
-          summary={`已查阅 ${turn.kind === "analysis" ? 2 : 1} 项项目资料`}
-          state={
-            running
-              ? "running"
-              : phase === "stopped"
-                ? "cancelled"
-                : "success"
-          }
-          items={[
-            {
-              id: "read",
-              kind: "read",
-              label: "读取",
-              chip: "项目简报.md",
-              status: running
-                ? "running"
-                : phase === "stopped"
-                  ? "cancelled"
-                  : "complete",
-              detail: [{ text: "品牌焕新：调研、视觉方向、首页设计与评审。" }],
-            },
-            ...(turn.kind === "analysis" ? [{
-              id: "tasks", kind: "read" as const, label: "读取", chip: "任务导出.csv",
-              status: running ? "running" as const : phase === "stopped" ? "cancelled" as const : "complete" as const,
-              detail: [{ text: "首页设计等待视觉方向确认，移动端布局尚未完成。" }],
-            }] : []),
-            {
-              id: "plan",
-              kind: "think",
-              label: "分析",
-              chip: "梳理任务依赖",
-              status: running
-                ? "pending"
-                : phase === "stopped"
-                  ? "cancelled"
-                  : "complete",
-              detail: [{ text: "先确认视觉方向，再推进首页方案。" }],
-            },
-          ]}
-        />
+        <ToolCallGroup
+          count={turn.kind === "analysis" ? 3 : 2}
+          label={`已查阅 ${turn.kind === "analysis" ? 2 : 1} 项项目资料`}
+          status={running ? "running" : phase === "stopped" ? "cancelled" : "success"}
+          defaultOpen
+        >
+          {[
+            { id: "read", name: "读取", summary: "项目简报.md", result: "品牌焕新：调研、视觉方向、首页设计与评审。" },
+            ...(turn.kind === "analysis" ? [{ id: "tasks", name: "读取", summary: "任务导出.csv", result: "首页设计等待视觉方向确认，移动端布局尚未完成。" }] : []),
+            { id: "plan", name: "分析", summary: "梳理任务依赖", result: "先确认视觉方向，再推进首页方案。", waits: true },
+          ].map(call => (
+            <ToolCall
+              key={call.id}
+              variant="row"
+              size="sm"
+              name={call.name}
+              summary={call.summary}
+              status={running ? (call.waits ? "pending" : "running") : phase === "stopped" ? "pending" : "success"}
+              result={running ? undefined : call.result}
+            />
+          ))}
+        </ToolCallGroup>
       </details>
       {stream.phase === "waiting" && (
         <p role="status" className="text-sm text-fg-grey-700">
@@ -364,49 +345,14 @@ export function AgentTurn({
               </details>
               <details className="agent-workflow-details">
                 <summary>查看计划整理结果与检查项</summary>
-                <AgentTaskRows
+                <AgentTrail
                   className="agent-task-results"
-                  tasks={[
-                    {
-                      id: "context",
-                      title: "整理项目背景",
-                      status: "completed",
-                      meta: "本地项目简报",
-                      children: [
-                        {
-                          label: "目标、约束与评审日期",
-                          value: "已整理",
-                          status: "completed",
-                        },
-                      ],
-                    },
-                    {
-                      id: "draft",
-                      title: "生成计划草稿",
-                      status: "completed",
-                      meta: applied.length
-                        ? `已保留 ${applied.length} 项变更`
-                        : "等待选择计划变更",
-                      children: [
-                        {
-                          label: "任务依赖与负责人",
-                          value: "已列出",
-                          status: "completed",
-                        },
-                      ],
-                    },
-                    {
-                      id: "review",
-                      title: "确认最终安排",
-                      status: approval ? "completed" : "running",
-                      meta: approval ? "审批选择已记录" : "等待本页审批",
-                      children: [
-                        {
-                          label: "处理方式与优先事项",
-                          value: approval ? "已确认" : "待确认",
-                        },
-                      ],
-                    },
+                  size="sm"
+                  title="计划整理"
+                  steps={[
+                    { id: "context", title: "整理项目背景", status: "done", substeps: [{ id: "c1", title: "目标、约束与评审日期", status: "done" }] },
+                    { id: "draft", title: applied.length ? `生成计划草稿 · 已保留 ${applied.length} 项变更` : "生成计划草稿 · 等待选择计划变更", status: "done", substeps: [{ id: "d1", title: "任务依赖与负责人", status: "done" }] },
+                    { id: "review", title: "确认最终安排", status: approval ? "done" : "waiting", activity: approval ? undefined : "等待本页审批", substeps: [{ id: "r1", title: "处理方式与优先事项", status: approval ? "done" : "pending" }] },
                   ]}
                 />
               </details>
@@ -487,12 +433,13 @@ export function AgentTurn({
                 </SurfaceCard>
               )}
               {!readonly && !approval && (
-                <ApprovalCard
+                <Question
                   key={permission}
+                  size="sm"
                   questions={[
                     {
                       id: "schedule",
-                      prompt: "如何处理这份本周计划？",
+                      title: "如何处理这份本周计划？",
                       options: [
                         { id: "draft", label: "保存为计划草稿" },
                         { id: "review", label: "保留待评审" },
@@ -500,14 +447,14 @@ export function AgentTurn({
                     },
                     {
                       id: "focus",
-                      prompt: "优先推进哪项工作？",
+                      title: "优先推进哪项工作？",
                       options: [
                         { id: "direction", label: "确认视觉方向" },
                         { id: "design", label: "完善首页方案" },
                       ],
                     },
                   ]}
-                  onSubmitted={approve}
+                  onSubmit={answers => approve(Object.fromEntries(Object.entries(answers).map(([id, answer]) => [id, answer.optionIds])))}
                 />
               )}
               {approval && (

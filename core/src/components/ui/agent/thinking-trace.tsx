@@ -53,6 +53,7 @@ const LABELS: Record<ThinkingVariant, { active: string; done: string }> = {
   coding: { active: "Running tools", done: "Ran 3 tools" },
 };
 
+/** @deprecated Use `Reasoning` (host-driven status and steps); ThinkingTrace will be removed in the next major version. */
 export function ThinkingTrace({
   variant = "steps",
   locale = "zh", motion = "auto",

@@ -1,11 +1,12 @@
 import type { ApiTableRow } from "../../components/_api-table";
 
 export const CODE_IMPORT = `import {
-  ThinkingTrace,
+  Reasoning,
+  ToolCall,
+  ToolCallGroup,
+  Question,
+  AgentTrail,
   StreamingAnswer,
-  ApprovalCard,
-  ToolChips,
-  AgentTaskRows,
   ContextCards,
   RecommendationCard,
   AgentDiffTable,
@@ -182,8 +183,6 @@ export const CODE_DIFF = [
   { old: 4, cur: 4, type: "ctx" as const, pieces: [{ text: "}" }] },
 ];
 
-export const CODE_THINKING = `<ThinkingTrace variant="steps" settled />`;
-
 export const CODE_STREAM = `<StreamingAnswer
   text="开心果口味增长最快，本月销量提升了 23%。"
   sources={[{ name: "销量数据", domain: "scoopdata.io" }]}
@@ -197,12 +196,6 @@ export const CODE_STREAM = `<StreamingAnswer
   format="markdown"
   onDone={() => showMessageActions(message.id)}
 />`;
-
-export const CODE_APPROVAL = `<ApprovalCard questions={[{ id: "n", prompt: "我们应该推出几种口味？", options: [...] }]} />`;
-
-export const CODE_TOOLS = `<ToolChips items={[{ id: "1", kind: "write", label: "写入 204 行", chip: "schedule.tsx" }]} />`;
-
-export const CODE_TASKS = `<AgentTaskRows tasks={tasks} />`;
 
 export const CODE_CONTEXT = `<ContextCards chunks={chunks} total={32} />`;
 
@@ -301,7 +294,7 @@ export const KIT_CODE = {
 
 export const CHOOSE: { need: string; use: string; avoid: string }[] = [
   { need: "等模型的第一个字", use: "ThinkingIndicator", avoid: "Reasoning（还没有内容时）" },
-  { need: "模型的思考过程", use: "Reasoning；演示页用 ThinkingTrace", avoid: "把工具调用写进思考步骤" },
+  { need: "模型的思考过程", use: "Reasoning", avoid: "把工具调用写进思考步骤" },
   { need: "工具调用", use: "ToolCall / ToolCallGroup；AI SDK 消息直接用 AgentParts", avoid: "给最终用户看大段参数 JSON" },
   { need: "缺信息要用户选", use: "Question；运行时候选用 ChoiceCard", avoid: "开放问题（直接用文字问）" },
   { need: "改数据前确认", use: "Approval；运行时提案用 ConfirmCard", avoid: "只读查询（不需要确认）" },
