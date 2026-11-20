@@ -1377,7 +1377,7 @@ body {
 
 /* AppLayout: one rail transition, persistent content, and delayed label reveals. */
 .forge-sidebar-motion { --forge-sidebar-spring: cubic-bezier(.34, 1.16, .64, 1); }
-.forge-sidebar-row { min-width: 0; height: 40px; flex-shrink: 0; border-radius: 20px; }
+.forge-sidebar-row { min-width: 0; height: 48px; flex-shrink: 0; border-radius: 24px; }
 .forge-sidebar-label, .forge-sidebar-logo { opacity: 1; translate: 0; }
 .forge-sidebar-row[data-badge="true"] > .forge-sidebar-item-label { padding-right: 28px; }
 .forge-sidebar-badge { position: absolute; right: 14px; top: 50%; translate: 0 -50%; }
