@@ -143,7 +143,7 @@
 - [杂项](https://www.forgeui.org/templates/micellaneous-template): 日历、聊天、文件和表格操作放在同一套侧栏里的示例。
 - [电商后台](https://www.forgeui.org/templates/ecommerce/products): 商品、订单、客户、分类和卖家的列表、详情和表单。
 - [仪表盘](https://www.forgeui.org/templates/dashboards): 10 个已填数据的控制台，覆盖项目、分析、客户、电商和财务。
-- [Forge Starter](https://github.com/forge-ui/forge-starter): 可直接上线的 Next.js 后台脚手架：登录、角色权限、从 OpenAPI 生成模块、Ask AI 和编码助手 Sk…
+- [Forge Starter](https://github.com/forge-ui/forge-starter): 可直接上线的 Next.js 后台脚手架：登录、角色权限、从 OpenAPI 生成模块、Forge Agent 和编码…
 
 ## Optional
 
