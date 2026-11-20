@@ -1,5 +1,5 @@
 /**
- * The Ask AI harness: a framework-free run engine with durable sessions, request idempotency, revision
+ * The Forge Agent harness: a framework-free run engine with durable sessions, request idempotency, revision
  * compare-and-swap, user choices from real candidates, and writes that only happen through a confirmed
  * page operation with a verified receipt. Bring your own store, capabilities and model.
  */

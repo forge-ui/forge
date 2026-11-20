@@ -53,6 +53,10 @@ test("business page components are independently installable and indexed by cate
     assert.ok(item.meta.example.includes(entry.component));
   }
   const search = JSON.parse(fs.readFileSync("src/app/_components/search-index.json", "utf8"));
+  // Site search follows the nav: Forge Agent pages are listed, retired component routes are not.
+  assert.ok(search.some(item => item.id === "/agent"));
+  assert.ok(search.some(item => item.id === "/agent/chat-input-bar"));
+  assert.ok(!search.some(item => /^\/(components|cases)\/(agent|chat-input-bar)(?:[/?#]|$)/.test(item.id)));
   for (const entry of catalog) {
     const matches = search.filter(item => item.id === `/blocks/${entry.name}`);
     assert.equal(matches.length, 1);

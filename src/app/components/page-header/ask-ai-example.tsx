@@ -8,7 +8,7 @@ const SEED: AskAiSessionItem[] = [
   { id: "demo-2", title: "帮我总结当前内容" },
 ];
 
-/** One Ask AI demo. Each header keeps its own session list. */
+/** One Forge Agent entry demo. Each header keeps its own session list. */
 export function useAskAiExample(): AskAiProps {
   const [sessions, setSessions] = useState<AskAiSessionItem[]>(SEED);
   const [currentSessionId, setCurrentSessionId] = useState(SEED[0].id);

@@ -10,27 +10,15 @@
 
 | 原路径 | 归档位置 |
 |---|---|
-| `docs/component-cases-full-audit.md` | [快照](component-cases-full-audit.md) |
 | `docs/component-coverage-audit.json` | [快照](component-coverage-audit.json) |
 | `docs/component-coverage-audit.md` | [快照](component-coverage-audit.md) |
 | `docs/component-duplication-audit.json` | [快照](component-duplication-audit.json) |
 | `docs/component-duplication-audit.md` | [快照](component-duplication-audit.md) |
-| `docs/component-full-audit.md` | [快照](component-full-audit.md) |
 | `docs/component-fusion-browser-test.md` | [快照](component-fusion-browser-test.md) |
 | `docs/component-fusion-parity-audit.md` | [快照](component-fusion-parity-audit.md) |
-| `docs/component-fusion-user-audit-actions.md` | [快照](component-fusion-user-audit-actions.md) |
-| `docs/component-fusion-user-audit-data.md` | [快照](component-fusion-user-audit-data.md) |
-| `docs/component-fusion-user-audit.md` | [快照](component-fusion-user-audit.md) |
-| `docs/component-public-copy-audit.md` | [快照](component-public-copy-audit.md) |
 | `docs/design/component-fusion-api-guide.md` | [快照](design/component-fusion-api-guide.md) |
 | `docs/design/component-fusion-audit.json` | [快照](design/component-fusion-audit.json) |
-| `docs/design/component-fusion-audit.md` | [快照](design/component-fusion-audit.md) |
 | `docs/design/component-fusion-implementation.md` | [快照](design/component-fusion-implementation.md) |
-| `docs/design/component-taxonomy-matrix.md` | [快照](design/component-taxonomy-matrix.md) |
-| `docs/design/component-taxonomy-proposal.json` | [快照](design/component-taxonomy-proposal.json) |
-| `docs/design/component-taxonomy-review.md` | [快照](design/component-taxonomy-review.md) |
-| `docs/design/interaction-generation-prompts.md` | [快照](design/interaction-generation-prompts.md) |
-| `docs/design/local-migration-preview.md` | [快照](design/local-migration-preview.md) |
 | `docs/documentation-audit-confirmed-findings.md` | [快照](documentation-audit-confirmed-findings.md) |
 | `docs/documentation-props-audit.json` | [快照](documentation-props-audit.json) |
 | `docs/documentation-props-audit.md` | [快照](documentation-props-audit.md) |
@@ -40,19 +28,10 @@
 | `docs/migration-delivery-status.md` | [快照](migration-delivery-status.md) |
 | `docs/public-api-comparison.json` | [快照](public-api-comparison.json) |
 | `docs/public-api-comparison.md` | [快照](public-api-comparison.md) |
-| `docs/public-documentation-audit.md` | [快照](public-documentation-audit.md) |
-| `docs/reports/grid-migration-2026-09-10.md` | [快照](reports/grid-migration-2026-09-10.md) |
-| `docs/reports/grid-template-alignment-2026-09-11.md` | [快照](reports/grid-template-alignment-2026-09-11.md) |
 | `docs/research/react-bits-motion-2026-09-28/README.md` | [快照](research/react-bits-motion-2026-09-28/README.md) |
 | `docs/research/react-bits-motion-2026-09-28/catalog.json` | [快照](research/react-bits-motion-2026-09-28/catalog.json) |
-| `docs/research/react-bits-motion-2026-09-28/core-motion-implementation.md` | [快照](research/react-bits-motion-2026-09-28/core-motion-implementation.md) |
-| `docs/research/react-bits-motion-2026-09-28/forge-reverse.csv` | [快照](research/react-bits-motion-2026-09-28/forge-reverse.csv) |
 | `docs/research/react-bits-motion-2026-09-28/index.html` | [快照](research/react-bits-motion-2026-09-28/index.html) |
-| `docs/research/react-bits-motion-2026-09-28/mapping.csv` | [快照](research/react-bits-motion-2026-09-28/mapping.csv) |
 | `docs/ask-ai-fullscreen-layout.md` | [快照](ask-ai-fullscreen-layout.md) |
 | `docs/changes/2026-10-16-ask-ai-panel.md` | [快照](changes/2026-10-16-ask-ai-panel.md) |
-| `docs/design/taxonomy-audit-feedback.json` | [快照](design/taxonomy-audit-feedback.json) |
-| `docs/design/taxonomy-audit-inputs.json` | [快照](design/taxonomy-audit-inputs.json) |
-| `docs/design/taxonomy-audit-workflows.json` | [快照](design/taxonomy-audit-workflows.json) |
 
 截图与验收记录原在仓库根 `artifacts/`，2026-11-10 已移出仓库（可在提交 83588877 及更早的历史中找到）；文中保留的文件名只作出处说明。

@@ -48,7 +48,7 @@ export default function AdminTemplatesPage() {
           <Code>{block}</Code>
         </Block>
         <Block title="Start a full app with Forge Starter">
-          <p><a href="https://github.com/forge-ui/forge-starter" target="_blank" rel="noreferrer" className="text-fg-blue underline underline-offset-4">Forge Starter</a> is a deployable Next.js admin: sign-in, roles and menu permissions, PostgreSQL with Drizzle, a generator that turns an OpenAPI spec into read-only modules, and an Ask AI assistant that reads your data. It ships the same agent skills, so new pages follow the templates.</p>
+          <p><a href="https://github.com/forge-ui/forge-starter" target="_blank" rel="noreferrer" className="text-fg-blue underline underline-offset-4">Forge Starter</a> is a deployable Next.js admin: sign-in, roles and menu permissions, PostgreSQL with Drizzle, a generator that turns an OpenAPI spec into read-only modules, and an Forge Agent assistant that reads your data. It ships the same agent skills, so new pages follow the templates.</p>
         </Block>
       </div>
 
