@@ -94,7 +94,7 @@ export function TaskDetail({ task = defaultTaskDetail, onChecklistChange, classN
         <AvatarGroup>{task.members.map(member => <Avatar key={member.name} src={member.avatar} alt={member.name} size="md" />)}</AvatarGroup>
       </Panel>
       <Panel variant="template" title="附件">
-        <ul className="flex flex-col gap-3">{task.attachments.map(file => <li key={file.id} className="flex items-center gap-3 rounded-xl border border-fg-grey-200 p-3"><img src={file.icon} alt="" className="size-9" /><div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{file.name}</p><p className="text-xs text-fg-grey-700">{file.size}</p></div></li>)}</ul>
+        <ul className="flex flex-col gap-3">{task.attachments.map(file => <li key={file.id} className="flex items-center gap-3 rounded-xl border border-fg-grey-200 p-3"><img src={file.icon} alt="" className="size-9" /><div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{file.name}</p><p className="text-xs text-fg-grey-700">{file.size}</p></div></li>)}</ul>
       </Panel>
     </div>
     <div className="flex min-w-0 flex-col gap-4">
@@ -113,7 +113,7 @@ export function TaskDetail({ task = defaultTaskDetail, onChecklistChange, classN
         <form className="flex gap-2" onSubmit={add}><TextField className="flex-1" shape="pill" aria-label="新的检查项" value={draft} onChange={setDraft} placeholder="添加检查项" /><Button type="submit" variant="tertiary" disabled={!draft.trim()}>添加</Button></form>
       </Panel>
       <Panel variant="template" title="最近动态">
-        <ol className="flex flex-col divide-y divide-fg-grey-200">{task.activity.map(item => <li key={item.id} className="flex flex-wrap justify-between gap-2 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-semibold text-fg-black">{item.title}</p><p className="mt-1 text-sm text-fg-grey-700">{item.detail}</p></div><time className="text-xs text-fg-grey-500">{item.time}</time></li>)}</ol>
+        <ol className="flex flex-col divide-y divide-fg-grey-200">{task.activity.map(item => <li key={item.id} className="flex flex-wrap justify-between gap-2 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-medium text-fg-black">{item.title}</p><p className="mt-1 text-sm text-fg-grey-700">{item.detail}</p></div><time className="text-xs text-fg-grey-500">{item.time}</time></li>)}</ol>
       </Panel>
     </div>
   </div>;

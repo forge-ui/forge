@@ -160,7 +160,7 @@ export function InsightCards({
         {card.prompt && (
           <button
             type="button"
-            className="inline-flex items-center gap-1 self-start rounded-full bg-accent-soft py-2.5 pl-2.5 pr-3 text-xs font-bold leading-4 tracking-fg text-accent"
+            className="inline-flex items-center gap-1 self-start rounded-full bg-accent-soft py-2.5 pl-2.5 pr-3 text-xs font-medium leading-4 tracking-fg text-accent"
             onClick={() => onAsk?.(card.prompt!, card)}
           >
             <StarsLinear size={14} color="var(--accent)" />

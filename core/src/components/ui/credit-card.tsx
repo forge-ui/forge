@@ -62,7 +62,7 @@ export function CreditCard({
           <span className={cn("text-xs font-medium leading-4.5 tracking-fg", cfg.labelColor)}>
             {cardNumberLabel ?? (locale === "en" ? "Card number" : "卡号")}
           </span>
-          <span className={cn("text-sm font-semibold leading-5 tracking-fg", cfg.textColor)}>
+          <span className={cn("text-sm font-medium leading-5 tracking-fg", cfg.textColor)}>
             {formatCardNumber(cardNumber)}
           </span>
         </div>

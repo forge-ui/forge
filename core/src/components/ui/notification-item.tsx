@@ -61,7 +61,7 @@ export function NotificationItem({
         )}
         <div className="self-stretch flex items-start gap-2">
           {leadIcon && <span className="shrink-0 mt-0.5">{leadIcon}</span>}
-          <span className="self-stretch text-fg-black text-sm font-semibold leading-5 tracking-fg">
+          <span className="self-stretch text-fg-black text-sm font-medium leading-5 tracking-fg">
             {title}
           </span>
         </div>
@@ -76,7 +76,7 @@ export function NotificationItem({
           type="button"
           onClick={onMarkRead}
           className={cn(
-            "inline-flex items-center gap-1 text-sm font-bold leading-5 tracking-fg",
+            "inline-flex items-center gap-1 text-sm font-medium leading-5 tracking-fg",
             accent.text
           )}
         >

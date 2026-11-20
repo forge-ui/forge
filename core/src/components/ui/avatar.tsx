@@ -104,7 +104,7 @@ export function AvatarGroup({
       <div className="flex -space-x-2">{children}</div>
       {showOverflow && (
         <div className="w-8 h-8 p-1 bg-fg-violet-100 rounded-full flex justify-center items-center overflow-hidden -ml-2 border-2 border-white">
-          <span className="text-fg-violet text-xs font-semibold leading-4.5 tracking-fg">
+          <span className="text-fg-violet text-xs font-medium leading-4.5 tracking-fg">
             +{overflowCount}
           </span>
         </div>

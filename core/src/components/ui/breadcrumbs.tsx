@@ -51,7 +51,7 @@ export function Breadcrumbs({
                 href={item.href}
                 onClick={item.onClick}
                 className={cn(
-                  "justify-start text-sm font-bold leading-5 tracking-fg cursor-pointer",
+                  "justify-start text-sm font-medium leading-5 tracking-fg cursor-pointer",
                   breadcrumbColors[color],
                 )}
               >
@@ -62,7 +62,7 @@ export function Breadcrumbs({
                 type="button"
                 onClick={item.onClick}
                 className={cn(
-                  "justify-start text-sm font-bold leading-5 tracking-fg cursor-pointer",
+                  "justify-start text-sm font-medium leading-5 tracking-fg cursor-pointer",
                   breadcrumbColors[color],
                 )}
               >
@@ -71,7 +71,7 @@ export function Breadcrumbs({
             ) : (
               <span
                 className={cn(
-                  "justify-start text-sm font-bold leading-5 tracking-fg",
+                  "justify-start text-sm font-medium leading-5 tracking-fg",
                   breadcrumbColors[color],
                 )}
               >

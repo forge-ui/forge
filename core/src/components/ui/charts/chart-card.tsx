@@ -70,7 +70,7 @@ export function ChartCard({
       <div className="self-stretch px-5 pt-5 inline-flex justify-start items-start gap-3">
         <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
           <div className="self-stretch inline-flex justify-start items-center gap-3">
-            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+            <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
               {title}
             </span>
           </div>

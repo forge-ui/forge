@@ -30,7 +30,7 @@ function SamplePage() {
   const channel = channels.find(item => item.id === active)!;
   return <div className="flex h-[720px] min-h-0 overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
     <aside className="hidden w-64 shrink-0 flex-col border-r border-fg-grey-100 md:flex">
-      <div className="px-4 py-3 text-sm font-semibold text-fg-black">消息</div>
+      <div className="px-4 py-3 text-sm font-medium text-fg-black">消息</div>
       <ul className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto px-2 pb-3">
         {channels.map(item => <li key={item.id}><button type="button" onClick={() => setActive(item.id)} className={`flex w-full flex-col gap-0.5 rounded-xl px-3 py-2.5 text-left ${active === item.id ? "bg-fg-grey-100" : "hover:bg-fg-grey-50"}`}>
           <span className="flex items-center justify-between gap-2"><span className="truncate text-sm font-medium text-fg-black">{item.name}</span><span className="shrink-0 text-[11px] text-fg-grey-500">{item.time}</span></span>
@@ -39,7 +39,7 @@ function SamplePage() {
       </ul>
     </aside>
     <section className="flex min-w-0 flex-1 flex-col">
-      <header className="flex h-12 shrink-0 items-center border-b border-fg-grey-100 px-4 text-sm font-semibold text-fg-black">{channel.name}</header>
+      <header className="flex h-12 shrink-0 items-center border-b border-fg-grey-100 px-4 text-sm font-medium text-fg-black">{channel.name}</header>
       <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-4 py-5 sm:px-8">
         {messages.map(message => <div key={message.id} className={`flex flex-col gap-1 ${message.mine ? "items-end" : "items-start"}`}>{message.mine ? null : <span className="px-1 text-xs text-fg-grey-500">{message.author}</span>}<ChatBubble type={message.mine ? "sent" : "received"} color="blue" content={message.text} /></div>)}
       </div>

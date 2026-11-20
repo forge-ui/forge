@@ -79,7 +79,7 @@ export function AgentTaskRows({
         >
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-fg-black">{task.title}</p>
+              <p className="truncate text-sm font-medium text-fg-black">{task.title}</p>
               {task.meta && <p className="text-xs text-fg-grey-500">{task.meta}</p>}
             </div>
             <StatusBadge label={statusLabels?.[task.status] ?? labels[task.status]} color={STATUS_COLOR[task.status]} />

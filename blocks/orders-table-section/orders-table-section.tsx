@@ -79,9 +79,9 @@ export function OrdersTableSection({ title = "订单列表", description = "知�
     <div className="@container min-w-0">
       <div className="hidden @min-[900px]:block"><DataTable columns={columns} rows={visible} getRowKey={order => order.id} /></div>
       <ul aria-label="订单列表" className="divide-y divide-fg-grey-200 rounded-2xl border border-fg-grey-200 @min-[900px]:hidden">{visible.map(order => <li key={order.id} className="flex min-w-0 flex-col gap-3 p-4">
-        <div className="flex items-center justify-between gap-3"><span className="min-w-0 break-all text-sm font-semibold text-fg-black">{order.id}</span><IconButton variant="ghost" color="grey" size="sm" aria-label={`查看订单 ${order.id}`} onClick={() => onViewOrder ? onViewOrder(order) : setSelected(order)}><EyeLinear size={16} /></IconButton></div>
-        <div className="flex min-w-0 items-center gap-3"><Avatar src={order.avatar} initials={order.customer.slice(0, 1)} alt={order.customer} size="sm" /><div className="min-w-0 break-words"><p className="text-sm font-semibold text-fg-black">{order.customer}</p><p className="text-xs text-fg-grey-500">{order.company}</p></div></div>
-        <div className="flex flex-wrap items-center justify-between gap-2"><span className="text-sm font-semibold tabular-nums">{currency(order.amount)}</span><StatusBadge {...orderStatuses[order.status]} variant="soft" /></div>
+        <div className="flex items-center justify-between gap-3"><span className="min-w-0 break-all text-sm font-medium text-fg-black">{order.id}</span><IconButton variant="ghost" color="grey" size="sm" aria-label={`查看订单 ${order.id}`} onClick={() => onViewOrder ? onViewOrder(order) : setSelected(order)}><EyeLinear size={16} /></IconButton></div>
+        <div className="flex min-w-0 items-center gap-3"><Avatar src={order.avatar} initials={order.customer.slice(0, 1)} alt={order.customer} size="sm" /><div className="min-w-0 break-words"><p className="text-sm font-medium text-fg-black">{order.customer}</p><p className="text-xs text-fg-grey-500">{order.company}</p></div></div>
+        <div className="flex flex-wrap items-center justify-between gap-2"><span className="text-sm font-medium tabular-nums">{currency(order.amount)}</span><StatusBadge {...orderStatuses[order.status]} variant="soft" /></div>
         <time dateTime={order.date} className="text-xs text-fg-grey-700">{order.date}</time>
       </li>)}</ul>
     </div>

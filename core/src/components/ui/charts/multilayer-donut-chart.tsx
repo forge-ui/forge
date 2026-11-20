@@ -113,7 +113,7 @@ export function MultilayerDonutChart({
           {trend && (
             <div
               className={cn(
-                "inline-flex items-center gap-0.5 text-xs font-bold leading-4 tracking-fg",
+                "inline-flex items-center gap-0.5 text-xs font-medium leading-4 tracking-fg",
                 trendColorClass(trendDirection),
               )}
             >

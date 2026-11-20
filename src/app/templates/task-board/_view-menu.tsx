@@ -35,7 +35,7 @@ export function ViewMenu({ open, onOpenChange, value, onChange, query, onQueryCh
     <div ref={panel} id={id} popover="auto" role="dialog" aria-label="视图选项" className="task-view-menu" onToggle={(event) => onOpenChange((event.nativeEvent as ToggleEvent).newState === "open")}>
       <DropdownPanel width="w-full" padding="p-4">
         <div className="flex flex-col gap-4">
-          <h2 className="text-sm font-semibold text-fg-black">视图</h2>
+          <h2 className="text-sm font-medium text-fg-black">视图</h2>
           {<div className="flex flex-col gap-2"><span className="text-xs text-fg-grey-700">布局</span><ButtonGroup color="blue" ariaLabel="任务布局" items={[{ label: "看板" }, { label: "列表" }]} activeIndex={value.view} onChange={(view) => onChange({ view })} /></div>}
           {children}
           {!systemScope && <SelectOption color="blue" label="分组" width="100%" value={value.group} onChange={(group) => onChange({ group: group as ViewPreference["group"] })} options={[{ value: "section", label: "分区" }, { value: "priority", label: "优先级" }, { value: "date", label: "日期" }, { value: "label", label: "标签" }, { value: "collaboration", label: "协作状态" }]} />}

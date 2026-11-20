@@ -310,7 +310,7 @@ export default function EditProductPage() {
           <div className="bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-6">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-fg-black">Status</h3>
-              <span className="inline-flex h-6 px-2.5 rounded-full bg-fg-green text-white text-xs font-semibold items-center">
+              <span className="inline-flex h-6 px-2.5 rounded-full bg-fg-green text-white text-xs font-medium items-center">
                 Published
               </span>
             </div>

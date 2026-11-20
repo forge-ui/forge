@@ -23,20 +23,20 @@ const SWATCH_SIZE: Record<ColorSwatchSize, {
 }> = {
   sm: {
     box: "h-16 w-24",
-    label: "text-[10px] font-semibold leading-3",
-    pill: "px-1.5 py-0.5 text-[10px] font-semibold leading-3",
+    label: "text-[10px] font-medium leading-3",
+    pill: "px-1.5 py-0.5 text-[10px] font-medium leading-3",
     inset: "left-1.5 top-1.5 bottom-1.5 right-1.5",
   },
   md: {
     box: "h-28 w-36",
-    label: "text-sm font-semibold leading-5",
-    pill: "px-3 py-1 text-xs font-semibold leading-4",
+    label: "text-sm font-medium leading-5",
+    pill: "px-3 py-1 text-xs font-medium leading-4",
     inset: "left-3 top-3 bottom-3 right-3",
   },
   lg: {
     box: "w-full max-w-48 aspect-[6/5]",
-    label: "text-sm font-semibold leading-5",
-    pill: "px-4 py-2 text-sm font-semibold leading-5",
+    label: "text-sm font-medium leading-5",
+    pill: "px-4 py-2 text-sm font-medium leading-5",
     inset: "left-4 top-4 bottom-4 right-4",
   },
 };

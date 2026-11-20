@@ -24,7 +24,7 @@ const outlineColors = {
 } as const;
 
 const sizes = {
-  sm: "px-2 py-1.5 text-2xs gap-1",
+  sm: "px-2 py-1.5 text-xs gap-1",
   md: "px-2.5 py-2 text-xs gap-1.5",
 } as const;
 

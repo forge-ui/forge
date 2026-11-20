@@ -104,7 +104,7 @@ export function LeadDetail({ lead = defaultLeadDetail, onAddActivity, className 
         const Icon = kindIcon[activity.kind];
         return <li key={activity.id} className="flex gap-3 rounded-card border border-fg-grey-200 p-4">
           <span className={cn("grid size-10 shrink-0 place-items-center rounded-full", kindMeta[activity.kind].tone)}><Icon size={20} /></span>
-          <div className="min-w-0 flex-1"><div className="flex flex-wrap items-baseline justify-between gap-2"><p className="text-sm font-semibold text-fg-black">{activity.title}</p><p className="text-xs text-fg-grey-500">{activity.time}</p></div><p className="mt-2 text-sm leading-6 text-fg-grey-700">{activity.description}</p></div>
+          <div className="min-w-0 flex-1"><div className="flex flex-wrap items-baseline justify-between gap-2"><p className="text-sm font-medium text-fg-black">{activity.title}</p><p className="text-xs text-fg-grey-500">{activity.time}</p></div><p className="mt-2 text-sm leading-6 text-fg-grey-700">{activity.description}</p></div>
         </li>;
       })}</ul> : <p className="flex items-center justify-center gap-2 py-12 text-sm text-fg-grey-700"><DocumentTextBoldDuotone size={20} />暂无{tabs[tab].label}记录</p>}
     </Panel>

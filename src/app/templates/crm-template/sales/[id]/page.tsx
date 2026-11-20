@@ -28,7 +28,7 @@ export default function CrmSaleDetailPage() {
             <CrmSurface>
               <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-fg-grey-500">{sale.id}</p>
+                  <p className="text-sm font-medium text-fg-grey-500">{sale.id}</p>
                   <h2 className="mt-2 text-2xl font-semibold tracking-fg text-fg-black">{sale.product}</h2>
                   <p className="mt-2 text-sm font-medium text-fg-grey-500">{sale.customer} - owned by {sale.owner}</p>
                 </div>
@@ -42,7 +42,7 @@ export default function CrmSaleDetailPage() {
             </CrmSurface>
             <CrmSurface title="Deal Progress">
               <ProgressBar value={72} showPercentage />
-              <div className="mt-5 grid grid-cols-4 gap-2 text-center text-xs font-semibold text-fg-grey-500">
+              <div className="mt-5 grid grid-cols-4 gap-2 text-center text-xs font-medium text-fg-grey-500">
                 <span>Lead</span>
                 <span>Demo</span>
                 <span>Proposal</span>
@@ -68,7 +68,7 @@ function Metric({ icon, label, value }: { icon: React.ReactNode; label: string; 
     <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 p-4">
       <div className="flex items-center gap-2 text-fg-blue">
         {icon}
-        <span className="text-xs font-semibold text-fg-grey-500">{label}</span>
+        <span className="text-xs font-medium text-fg-grey-500">{label}</span>
       </div>
       <p className="mt-3 text-xl font-semibold text-fg-black">{value}</p>
     </Panel>

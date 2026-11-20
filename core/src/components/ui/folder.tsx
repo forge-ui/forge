@@ -85,7 +85,7 @@ export function Folder({ label, items = [], color = "blue", size = "md", open, d
               whileFocus={expanded && focused === null && !zoomOnClick && !reduced ? { y: -width * .48, scale: 1.025 } : undefined} transition={transition}>
               {/* eslint-disable-next-line @next/next/no-img-element -- library component; consumers may not use Next.js */}
               {item.image ? <img src={item.image} alt={item.alt ?? item.title ?? item.label ?? "文件图片"} draggable={false} className="absolute inset-1 h-[calc(100%-8px)] w-[calc(100%-8px)] rounded-lg object-cover" /> : null}
-              <span className="text-xs font-semibold">{item.title ?? item.label}</span>
+              <span className="text-xs font-medium">{item.title ?? item.label}</span>
               <div className="mt-3 text-xs leading-5 text-fg-grey-600">{item.description ?? item.content}</div>
               <div aria-hidden className="mt-auto flex flex-col gap-2 pt-3"><span className="h-1.5 w-full rounded bg-fg-grey-200" /><span className="h-1.5 w-3/4 rounded bg-fg-grey-200" /><span className="h-1.5 w-1/2 rounded bg-fg-grey-200" /></div>
             </motion.button>;

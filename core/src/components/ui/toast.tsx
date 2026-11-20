@@ -49,7 +49,7 @@ function ToastRow({ entry, motion, dismiss, remove, locale }: { entry: Entry; mo
       <div className="pb-3"><MotionPresence open={entry.open} motion={motion} className="pointer-events-auto rounded-xl border border-fg-grey-200 bg-background p-4 shadow-lg">
         <div className="flex items-start gap-4">
           {entry.status && <span aria-hidden className={entry.status === "error" ? "text-fg-red" : "text-fg-grey-700"}>{entry.status === "loading" ? <RefreshLinear size={20} className={reduced ? "" : "forge-action-spinner"} /> : entry.status === "success" ? <CheckCircleLinear size={20} /> : <CloseCircleLinear size={20} />}</span>}
-          <div role="status" className="min-w-0 flex-1"><p className="text-sm font-semibold text-fg-black">{entry.title}</p>{entry.description && <p className="mt-1 text-sm leading-6 text-fg-grey-700">{entry.description}</p>}</div>
+          <div role="status" className="min-w-0 flex-1"><p className="text-sm font-medium text-fg-black">{entry.title}</p>{entry.description && <p className="mt-1 text-sm leading-6 text-fg-grey-700">{entry.description}</p>}</div>
           <IconButton aria-label={`${locale === "en" ? "Dismiss notification" : "关闭通知"}：${entry.title}`} variant="ghost" size="sm" motion={motion} onClick={() => dismiss(entry.id)}><CloseCircleLinear size={18} /></IconButton>
         </div>
         {entry.action && <div className="mt-3"><Button variant="secondary" size="sm" motion={motion} onClick={() => { entry.action!.onClick(); dismiss(entry.id); }}>{entry.action.label}</Button></div>}

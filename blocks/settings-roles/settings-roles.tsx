@@ -68,7 +68,7 @@ export function SettingsRoles({ tree = defaultPermissionTree, roles = defaultWor
   return <div className={cn("grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[280px_minmax(0,1fr)]", className)}>
     <Panel variant="template" title="角色" action={<Button size="sm" variant="tertiary" iconLeft={<PlusIcon size={16} />}>新建</Button>}>
       <ul className="flex flex-col gap-2">{items.map(role => <li key={role.id}><Button variant="unstyled" type="button" aria-current={role.id === active.id ? "true" : undefined} className={cn("flex w-full flex-col items-start gap-1 rounded-xl border px-4 py-3 text-left transition-colors", role.id === active.id ? "border-fg-blue bg-fg-blue-50/50" : "border-fg-grey-200 hover:bg-fg-grey-50")} onClick={() => select(role)}>
-        <span className="flex w-full items-center justify-between gap-2"><span className="text-sm font-semibold text-fg-black">{role.name}</span>{role.system && <StatusBadge label="系统" color="grey" variant="soft" />}</span>
+        <span className="flex w-full items-center justify-between gap-2"><span className="text-sm font-medium text-fg-black">{role.name}</span>{role.system && <StatusBadge label="系统" color="grey" variant="soft" />}</span>
         <span className="text-xs text-fg-grey-700">{role.members} 名成员 · {role.permissions.length} 项权限</span>
       </Button></li>)}</ul>
     </Panel>
@@ -78,7 +78,7 @@ export function SettingsRoles({ tree = defaultPermissionTree, roles = defaultWor
         const ids = (group.children ?? []).map(child => child.id);
         const count = ids.filter(id => draft.has(id)).length;
         return <li key={group.id} className="rounded-card border border-fg-grey-200 p-4">
-          <label className="flex items-center justify-between gap-3 border-b border-fg-grey-200 pb-3"><span className="flex items-center gap-2 text-sm font-semibold text-fg-black"><Checkbox color="blue" checked={count === ids.length} disabled={active.system} onChange={value => toggle(ids, value)} />{group.label}</span><span className="text-xs tabular-nums text-fg-grey-500">{count} / {ids.length}</span></label>
+          <label className="flex items-center justify-between gap-3 border-b border-fg-grey-200 pb-3"><span className="flex items-center gap-2 text-sm font-medium text-fg-black"><Checkbox color="blue" checked={count === ids.length} disabled={active.system} onChange={value => toggle(ids, value)} />{group.label}</span><span className="text-xs tabular-nums text-fg-grey-500">{count} / {ids.length}</span></label>
           <ul className="flex flex-col gap-2 pt-3">{(group.children ?? []).map(child => <li key={child.id}><label className="flex items-center gap-2 pl-6 text-sm text-fg-grey-900"><Checkbox color="blue" checked={draft.has(child.id)} disabled={active.system} onChange={value => toggle([child.id], value)} />{child.label}</label></li>)}</ul>
         </li>;
       })}</ul>

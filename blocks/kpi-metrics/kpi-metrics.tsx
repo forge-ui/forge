@@ -65,7 +65,7 @@ export function FinanceMetricCard({
     <Panel gap="sm" className="min-h-44 justify-between">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
+          <h3 className="text-sm font-medium leading-5 text-fg-black">{title}</h3>
           <p className="mt-1 text-xs font-medium text-fg-grey-700">2 Jul - Today</p>
         </div>
         <span className={`flex size-9 items-center justify-center rounded-full ${iconClass}`}>
@@ -75,7 +75,7 @@ export function FinanceMetricCard({
       <div className="flex items-end justify-between gap-3">
         <div>
           <div className="text-2xl font-semibold leading-8 text-fg-black">{value}</div>
-          <div className="mt-1 flex items-center gap-1 text-sm font-bold text-fg-green">
+          <div className="mt-1 flex items-center gap-1 text-sm font-medium text-fg-green">
             10%
             <span className="inline-block size-0 border-x-[5px] border-b-[7px] border-x-transparent border-b-fg-green" />
             <span className="font-medium text-fg-grey-700">+$150 today</span>

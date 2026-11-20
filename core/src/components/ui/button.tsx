@@ -122,7 +122,7 @@ export function Button({
         sizeConfig.base,
         paddingClass,
         buttonVariants[color][variant],
-        "forge-button rounded-full inline-flex justify-center items-center overflow-hidden font-bold tracking-fg",
+        "forge-button rounded-full inline-flex justify-center items-center overflow-hidden font-medium tracking-fg",
         hasIcon ? "gap-1" : "gap-2",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
         className

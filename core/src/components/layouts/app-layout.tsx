@@ -558,7 +558,7 @@ export function AppLayout({
                   >
                     {teamAvatar && <img src={teamAvatar} alt={teamName} className="w-10 h-10 rounded-full object-cover shrink-0" />}
                     <div className="flex-1 flex flex-col gap-0.5 min-w-0 whitespace-nowrap">
-                      <span className={cn("text-sm font-semibold leading-5 tracking-fg line-clamp-1", config.teamName)}>{teamName}</span>
+                      <span className={cn("text-sm font-medium leading-5 tracking-fg line-clamp-1", config.teamName)}>{teamName}</span>
                       {(teamSubtitle ?? (teamMemberCount !== undefined ? `${teamMemberCount} 名成员` : null)) && (
                         <span className={cn("text-xs font-medium leading-4.5 tracking-fg line-clamp-1", config.teamCount)}>
                           {teamSubtitle ?? `${teamMemberCount} 名成员`}
@@ -607,11 +607,11 @@ export function AppLayout({
                   {section.label && (
                     <div className="forge-sidebar-section-title forge-sidebar-disclosure px-3" data-state={sidebarCollapsed ? "closed" : "open"} aria-hidden={sidebarCollapsed || undefined} inert={sidebarCollapsed || undefined}>
                       <div className="min-h-0 overflow-hidden"><div className="pb-3">
-                        <span className={cn("text-xs font-bold leading-4.5 tracking-fg uppercase whitespace-nowrap", config.sectionTitle)}>{section.label}</span>
+                        <span className={cn("text-xs font-medium leading-4.5 tracking-fg uppercase whitespace-nowrap", config.sectionTitle)}>{section.label}</span>
                       </div></div>
                     </div>
                   )}
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-1">
                     {section.items.map((item, i) => (
                       <SidebarMenuItemRow motion={motion} indicatorId={sidebarIndicatorId} index={sidebarSections.slice(0, sectionIndex).reduce((count, previous) => count + previous.items.length, i)} key={`${item.href ?? item.label}-${i}`} item={item} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={activeSidebarItem} collapsed={sidebarCollapsed} />
                     ))}
@@ -703,7 +703,7 @@ export function AppLayout({
                 <img src={profile.avatar} alt={profile.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
                 <div aria-hidden={sidebarCollapsed || undefined} className="forge-sidebar-label flex-1 flex flex-col gap-0.5 min-w-0 whitespace-nowrap">
                   <span className={cn(
-                    "text-sm font-semibold leading-5 tracking-fg line-clamp-1 text-left",
+                    "text-sm font-medium leading-5 tracking-fg line-clamp-1 text-left",
                     openPopover === "profile" ? "text-white" : config.profileName
                   )}>{profile.name}</span>
                   <span className={cn(

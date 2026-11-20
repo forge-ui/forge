@@ -104,7 +104,7 @@ function MicellaneousFilesContent() {
           <div className="flex flex-col gap-5 p-6">
             <Panel variant="custom" className="rounded-2xl border border-dashed border-fg-blue-300 bg-fg-blue-100 p-5 text-center">
               <CloudUploadLinear size={32} color="var(--fg-blue)" />
-              <p className="mt-3 text-sm font-semibold leading-5 tracking-fg text-fg-black">
+              <p className="mt-3 text-sm font-medium leading-5 tracking-fg text-fg-black">
                 Drop files here or browse from your device
               </p>
               <p className="mt-1 text-xs font-medium leading-4 tracking-fg text-fg-grey-700">

@@ -96,7 +96,7 @@ export function SmallCalendar({
       {/* Header */}
       <div className="px-6 pt-6 flex items-start gap-3">
         <div className="flex-1 flex flex-col gap-2">
-          <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</span>
+          <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">{title}</span>
           <span className="text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{subtitle}</span>
         </div>
         {onMenuClick && (
@@ -160,7 +160,7 @@ export function SmallCalendar({
         {/* Selected day event list */}
         {selectedDay && (
           <div className="flex flex-col gap-3 pt-2 border-t border-fg-grey-200">
-            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+            <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
               {selectedDay} {MONTH_NAMES[viewMonth]} {viewYear}
             </span>
             {selectedEvents.length === 0 ? (

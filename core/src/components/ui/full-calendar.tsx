@@ -142,7 +142,7 @@ export function FullCalendar({
       <div className="px-4 py-3 border-b border-fg-grey-200 flex items-center gap-3">
         <button type="button" onClick={goToday} className="px-3 py-1.5 rounded-lg outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100 cursor-pointer shrink-0">今天</button>
         <button type="button" aria-label={`上一${navUnit}`} onClick={prev} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowLeftLinear size={14} /></button>
-        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg min-w-36 text-center">{titleText}</span>
+        <span className="text-fg-black text-sm font-medium leading-5 tracking-fg min-w-36 text-center">{titleText}</span>
         <button type="button" aria-label={`下一${navUnit}`} onClick={next} className="p-1 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 hover:bg-fg-grey-100 cursor-pointer text-fg-grey-700"><AltArrowRightLinear size={14} /></button>
         <div className="flex-1" />
         <label className="relative inline-flex items-center">
@@ -170,7 +170,7 @@ export function FullCalendar({
         <div className="grid grid-cols-7">
           {DAY_NAMES_UPPER.map((d) => (
             <div key={d} className="px-2 py-2 border-b border-fg-grey-200 text-center">
-              <span className="text-[10px] font-semibold text-fg-grey-700 uppercase tracking-fg">{d}</span>
+              <span className="text-[10px] font-medium text-fg-grey-700 uppercase tracking-fg">{d}</span>
             </div>
           ))}
           {cells.map((c, i) => {
@@ -202,7 +202,7 @@ export function FullCalendar({
               const isT = today !== null && d.toDateString() === today.toDateString();
               return (
                 <div key={i} className="px-1 py-2 text-center border-l border-fg-grey-100">
-                  <span className={cn("text-sm font-semibold", isT ? accent.text : "text-fg-black")}>{d.getDate()}</span>
+                  <span className={cn("text-sm font-medium", isT ? accent.text : "text-fg-black")}>{d.getDate()}</span>
                   <br />
                   <span className={cn("text-[10px] uppercase", isT ? accent.text : "text-fg-grey-500")}>{DAY_NAMES_UPPER[i]}</span>
                 </div>
@@ -240,7 +240,7 @@ export function FullCalendar({
                   {hEvs.map((ev, j) => (
                     <div key={j} className={cn("h-7 rounded-lg flex items-center px-3 gap-2", barBg[ev.color])}>
                       {ev.avatar && <img src={ev.avatar} alt="" className="w-4 h-4 rounded-full border border-white/50 object-cover" />}
-                      <span className={cn("text-xs font-semibold truncate", ev.color === "yellow" ? "text-fg-black" : "text-white")}>{ev.label}</span>
+                      <span className={cn("text-xs font-medium truncate", ev.color === "yellow" ? "text-fg-black" : "text-white")}>{ev.label}</span>
                     </div>
                   ))}
                 </div>

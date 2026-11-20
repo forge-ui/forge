@@ -77,7 +77,7 @@ export function SurfaceCard({
         >
           <div className="min-w-0">
             {title && (
-              <h2 className="text-sm font-semibold leading-5 tracking-fg text-fg-black">
+              <h2 className="text-sm font-medium leading-5 tracking-fg text-fg-black">
                 {title}
               </h2>
             )}

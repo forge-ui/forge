@@ -26,7 +26,7 @@ function StepMarker({ status, index }: { status: AgentStepStatus; index?: number
   if (status === "failed") return <DangerTriangleBold size={20} color="var(--fg-red)" className="shrink-0" />;
   if (status === "running") return <span className="flex size-5 shrink-0 items-center justify-center"><Spinner size={16} /></span>;
   return (
-    <span aria-hidden="true" className={cn("flex size-5 shrink-0 items-center justify-center rounded-full text-2xs font-semibold tabular-nums outline outline-1 outline-offset-[-1px]",
+    <span aria-hidden="true" className={cn("flex size-5 shrink-0 items-center justify-center rounded-full text-2xs font-medium tabular-nums outline outline-1 outline-offset-[-1px]",
       status === "waiting" ? "bg-fg-yellow-50 text-fg-yellow-700 outline-fg-yellow-200" : status === "skipped" ? "text-fg-grey-500 outline-fg-grey-200" : "bg-background text-fg-grey-700 outline-fg-grey-300")}>
       {index ?? ""}
     </span>

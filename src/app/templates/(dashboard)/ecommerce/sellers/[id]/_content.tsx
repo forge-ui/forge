@@ -378,16 +378,16 @@ export default function SellerDetailPage() {
 
           <div className="relative z-10 mt-5 space-y-4 border-t border-fg-grey-200 pt-5">
             <div>
-              <p className="text-sm font-semibold text-fg-grey-700">User ID</p>
+              <p className="text-sm font-medium text-fg-grey-700">User ID</p>
               <p className="mt-1 text-sm font-medium text-fg-black">{display.userId}</p>
             </div>
             <div>
-              <p className="text-sm font-semibold text-fg-grey-700">Owner</p>
+              <p className="text-sm font-medium text-fg-grey-700">Owner</p>
               <p className="mt-1 text-sm font-medium text-fg-black">{display.ownerName}</p>
             </div>
             <div className="flex gap-2">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-fg-grey-700">Email</p>
+                <p className="text-sm font-medium text-fg-grey-700">Email</p>
                 <p className="mt-1 text-sm font-medium text-fg-black">{display.email}</p>
               </div>
               <Button variant="unstyled"
@@ -400,7 +400,7 @@ export default function SellerDetailPage() {
             </div>
             <div className="flex gap-2">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-fg-grey-700">Phone Number</p>
+                <p className="text-sm font-medium text-fg-grey-700">Phone Number</p>
                 <p className="mt-1 text-sm font-medium text-fg-black">{display.phone}</p>
               </div>
               <Button variant="unstyled"
@@ -412,15 +412,15 @@ export default function SellerDetailPage() {
               </Button>
             </div>
             <div>
-              <p className="text-sm font-semibold text-fg-grey-700">Address</p>
+              <p className="text-sm font-medium text-fg-grey-700">Address</p>
               <p className="mt-1 text-sm font-medium text-fg-black">{display.address}</p>
             </div>
             <div>
-              <p className="text-sm font-semibold text-fg-grey-700">Last Order</p>
+              <p className="text-sm font-medium text-fg-grey-700">Last Order</p>
               <p className="mt-1 text-sm font-medium text-fg-black">{display.lastOrder}</p>
             </div>
             <div>
-              <p className="text-sm font-semibold text-fg-grey-700">Added</p>
+              <p className="text-sm font-medium text-fg-grey-700">Added</p>
               <p className="mt-1 text-sm font-medium text-fg-black">{display.added}</p>
             </div>
           </div>

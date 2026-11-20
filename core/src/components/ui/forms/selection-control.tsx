@@ -278,7 +278,7 @@ export function RadioWithLabel({
       <span
         className={cn(
           "text-sm leading-5 tracking-fg",
-          checked ? cn(accent.text, "font-bold") : "text-fg-grey-700 font-semibold",
+          checked ? cn(accent.text, "font-semibold") : "text-fg-grey-700 font-medium",
         )}
       >
         {label}
@@ -366,7 +366,7 @@ export function CheckboxWithLabel({
       <span
         className={cn(
           "text-sm leading-5 tracking-fg",
-          checked ? cn(accent.text, "font-bold") : "text-fg-grey-700 font-semibold",
+          checked ? cn(accent.text, "font-semibold") : "text-fg-grey-700 font-medium",
         )}
       >
         {label}

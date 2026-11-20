@@ -167,7 +167,7 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
     }} />
     </div>
     {value.length > 0 && <div className="flex items-center gap-2 pb-1">
-      <h2 className="text-sm font-semibold text-fg-black">子任务</h2>
+      <h2 className="text-sm font-medium text-fg-black">子任务</h2>
       <span className="text-xs text-fg-grey-700" aria-label="子任务完成进度">{completedCount}/{value.length}</span>
       {completedCount > 0 && <Button color="blue" size="sm" variant="tertiary" className="ml-auto" aria-expanded={showCompleted} onClick={() => setShowCompleted(current => !current)}>{showCompleted ? "隐藏已完成" : `显示已完成（${completedCount}）`}</Button>}
     </div>}
@@ -232,7 +232,7 @@ export function Subtasks({ draftScope, onExitGuardChange, value, onChange, paren
           </div>
         </div>
         {!editingDetailTitle && !editingDetailDescription && <div className="task-description-display">{detail.description && <MarkdownContent value={detail.description} />}<Button color="black" variant="tertiary" className="task-description-edit" aria-label="编辑子任务描述" onClick={() => setEditingDetailDescription(true)}>{detail.description ? "编辑描述" : "添加描述…"}</Button></div>}
-        <section className="flex flex-col gap-2" aria-label="附件">{(detail.attachments?.length ?? 0) > 0 && <h3 className="text-sm font-semibold text-fg-black">附件</h3>}<SubtaskAttachments key={detail.id} value={detail.attachments || []} onChange={(attachments) => updateDetail({ attachments })} /></section>
+        <section className="flex flex-col gap-2" aria-label="附件">{(detail.attachments?.length ?? 0) > 0 && <h3 className="text-sm font-medium text-fg-black">附件</h3>}<SubtaskAttachments key={detail.id} value={detail.attachments || []} onChange={(attachments) => updateDetail({ attachments })} /></section>
         <Subtasks draftScope={draftScope ? `${draftScope}:${detail.id}` : undefined} key={detail.id} onExitGuardChange={(guard) => { childExitGuard.current = guard; }} saveFailed={saveFailed} onRetrySave={onRetrySave} detailPath={controlled ? detailPath?.slice(1) : undefined} onDetailPathChange={onDetailPathChange ? (path) => onDetailPathChange([detail.id, ...path]) : undefined} parentTitle={detail.title} availableLabels={labelOptions} value={detail.subtasks || []} onChange={(subtasks) => updateDetail({ subtasks })} />
         <TaskComments draftKey={draftScope ? `${draftScope}:${detail.id}:comments` : undefined} key={`comments:${detail.id}`} label="子任务评论" value={detail.comments || []} onChange={(comments) => updateDetail({ comments })} />
         </div>

@@ -29,9 +29,9 @@ export const RADIUS_PRESETS = [
 const CJK_FALLBACK = '"PingFang SC", "Microsoft YaHei", sans-serif';
 
 export const FONT_PRESETS = [
-  { id: "default", label: "Manrope（默认）", sans: null, display: null, note: "" },
+  { id: "default", label: "Inter（默认）", sans: null, display: null, note: "" },
   { id: "system", label: "系统字体", sans: `system-ui, -apple-system, ${CJK_FALLBACK}`, display: `system-ui, -apple-system, ${CJK_FALLBACK}`, note: "不用加载任何字体文件。" },
-  { id: "inter", label: "Inter", sans: `"Inter", ${CJK_FALLBACK}`, display: `"Inter", ${CJK_FALLBACK}`, note: "需要自己加载 Inter，例如 @fontsource-variable/inter，字体名改成 \"Inter Variable\"。" },
+  { id: "manrope", label: "Manrope", sans: `"Manrope Variable", ${CJK_FALLBACK}`, display: `"Manrope Variable", ${CJK_FALLBACK}`, note: "需要自己加载 Manrope，例如 @fontsource-variable/manrope。" },
   { id: "noto", label: "思源黑体", sans: `"Noto Sans SC", "Source Han Sans SC", ${CJK_FALLBACK}`, display: `"Noto Sans SC", "Source Han Sans SC", ${CJK_FALLBACK}`, note: "需要自己加载 Noto Sans SC；没装时退回系统中文字体。" },
 ];
 
@@ -111,7 +111,7 @@ export function previewVariables(theme, reference) {
     ...(theme.mode === "dark" ? { "--fg-blue-text": light[300] } : {}),
     "--focus": scale[500],
     ...Object.fromEntries(Object.entries(radius).filter(([key]) => key !== "card").map(([key, px]) => [`--radius-${key}`, `${px}px`])),
-    ...(font.sans ? { "--font-manrope": font.sans, "--font-plus-jakarta-sans": font.display } : {}),
+    ...(font.sans ? { "--font-inter": font.sans, "--font-plus-jakarta-sans": font.display } : {}),
   };
 }
 
@@ -129,7 +129,7 @@ export function themeCss(theme, reference) {
   const declarations = [
     ...(colorChanged ? SCALE_STEPS.map(step => `  --fg-blue-${step}: ${scale[step]};`) : []),
     ...(radiusChanged ? Object.entries(radius).filter(([key]) => key !== "card").map(([key, px]) => `  --radius-${key}: ${px}px;`) : []),
-    ...(font.sans ? [`  --font-manrope: ${font.sans};`, `  --font-plus-jakarta-sans: ${font.display};`] : []),
+    ...(font.sans ? [`  --font-inter: ${font.sans};`, `  --font-plus-jakarta-sans: ${font.display};`] : []),
   ];
   if (!declarations.length) return `/* Forge 主题：${summary}。和默认主题相同，不需要额外 CSS。 */\n`;
   return [

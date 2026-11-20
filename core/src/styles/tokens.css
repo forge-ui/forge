@@ -16,8 +16,8 @@
    * Consumers must read these values from the installed Core stylesheet instead
    * of duplicating Forge metrics in their own validators.
    */
-  --forge-typography-contract-version: 1;
-  --forge-font-sans-family: "Manrope Variable";
+  --forge-typography-contract-version: 2;
+  --forge-font-sans-family: "Inter Variable";
   --forge-font-display-family: "Plus Jakarta Sans Variable";
   --forge-text-2xs-size: 10px;
   --forge-text-xs-size: 12px;
@@ -52,7 +52,7 @@
   --forge-leading-arbitrary-60: 60px;
   --forge-leading-arbitrary-140: 140px;
   --forge-leading-tight-factor: 1.25;
-  --forge-tracking-fg: 0.5px;
+  --forge-tracking-fg: 0px;
   --forge-tracking-tight-factor: -0.025;
   --forge-tracking-wide-factor: 0.025;
 
@@ -134,27 +134,27 @@
   --fg-cyan-900: #1C575A;
 
   /* Black */
-  --fg-black-50:  #E6E7E8;
-  --fg-black-100: #B0B3B8;
-  --fg-black-200: #8A8E95;
-  --fg-black-300: #545B65;
-  --fg-black-400: #333B47;
-  --fg-black-500: #000A19;
-  --fg-black-600: #000917;
-  --fg-black-700: #000712;
-  --fg-black-800: #00060E;
-  --fg-black-900: #00040B;
+  --fg-black-50:  #E9E9E9;
+  --fg-black-100: #BABABA;
+  --fg-black-200: #989898;
+  --fg-black-300: #696969;
+  --fg-black-400: #4C4C4C;
+  --fg-black-500: #1F1F1F;
+  --fg-black-600: #1C1C1C;
+  --fg-black-700: #161616;
+  --fg-black-800: #111111;
+  --fg-black-900: #0D0D0D;
   --fg-black: var(--fg-black-500);
 
   /* Grey */
   --fg-grey-50:  #FAFAFA;
-  --fg-grey-100: #EBEBEB;
-  --fg-grey-200: #E1E1E1;
+  --fg-grey-100: #F5F5F5;
+  --fg-grey-200: #E5E5E5;
   --fg-grey-300: #D3D3D3;
   --fg-grey-400: #CACACA;
   --fg-grey-500: #BDBDBD;
   --fg-grey-600: #ACACAC;
-  --fg-grey-700: #868686;
+  --fg-grey-700: #737373;
   --fg-grey-800: #686868;
   --fg-grey-900: #4F4F4F;
 
@@ -193,6 +193,8 @@
   --text-secondary: var(--fg-grey-900);
   --text-muted: var(--fg-grey-700);
   --text-disabled: var(--fg-grey-500);
+  /* Idle navigation rows stay a step lighter than body grey so the active pill carries the emphasis. */
+  --sidebar-muted: #868686;
 
   /* Borders & Dividers */
   --border: var(--fg-grey-200);
@@ -313,24 +315,24 @@
   --fg-cyan-700: #309299;
   --fg-cyan-800: #257176;
   --fg-cyan-900: #1C575A;
-  --fg-black-50: #E6E7E8;
-  --fg-black-100: #B0B3B8;
-  --fg-black-200: #8A8E95;
-  --fg-black-300: #545B65;
-  --fg-black-400: #333B47;
-  --fg-black-500: #000A19;
-  --fg-black-600: #000917;
-  --fg-black-700: #000712;
-  --fg-black-800: #00060E;
-  --fg-black-900: #00040B;
+  --fg-black-50: #E9E9E9;
+  --fg-black-100: #BABABA;
+  --fg-black-200: #989898;
+  --fg-black-300: #696969;
+  --fg-black-400: #4C4C4C;
+  --fg-black-500: #1F1F1F;
+  --fg-black-600: #1C1C1C;
+  --fg-black-700: #161616;
+  --fg-black-800: #111111;
+  --fg-black-900: #0D0D0D;
   --fg-grey-50: #FAFAFA;
-  --fg-grey-100: #EBEBEB;
-  --fg-grey-200: #E1E1E1;
+  --fg-grey-100: #F5F5F5;
+  --fg-grey-200: #E5E5E5;
   --fg-grey-300: #D3D3D3;
   --fg-grey-400: #CACACA;
   --fg-grey-500: #BDBDBD;
   --fg-grey-600: #ACACAC;
-  --fg-grey-700: #868686;
+  --fg-grey-700: #737373;
   --fg-grey-800: #686868;
   --fg-grey-900: #4F4F4F;
   --fg-violet: var(--fg-violet-500);
@@ -447,6 +449,7 @@
   --text-secondary: var(--fg-grey-900);
   --text-muted: var(--fg-grey-700);
   --text-disabled: var(--fg-grey-500);
+  --sidebar-muted: var(--fg-grey-700);
   --border: var(--fg-grey-200);
   --border-muted: var(--fg-grey-100);
   --divider: var(--fg-grey-200);
@@ -482,8 +485,8 @@
    --- */
 
 @theme inline {
-  /* Apps load Manrope / Plus Jakarta Sans and set these variables; without them text falls back to the system UI font, not the browser serif. */
-  --font-sans: var(--font-manrope, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
+  /* Apps load Inter / Plus Jakarta Sans and set these variables (--font-manrope is still read for apps on the previous default); without them text falls back to the system UI font, not the browser serif. */
+  --font-sans: var(--font-inter, var(--font-manrope, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif));
   --font-display: var(--font-plus-jakarta-sans, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
 
   /* Primitive colors → utility classes (bg-fg-violet-500, text-fg-blue-700, etc.) */
@@ -605,6 +608,7 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
   --color-text-disabled: var(--text-disabled);
+  --color-sidebar-muted: var(--sidebar-muted);
   --color-border: var(--border);
   --color-border-muted: var(--border-muted);
   --color-divider: var(--divider);
@@ -631,7 +635,7 @@
   --text-2xs: 10px;
 
   /* Letter Spacing */
-  --tracking-fg: 0.5px;
+  --tracking-fg: 0px;
 }
 
 body {
@@ -1373,7 +1377,7 @@ body {
 
 /* AppLayout: one rail transition, persistent content, and delayed label reveals. */
 .forge-sidebar-motion { --forge-sidebar-spring: cubic-bezier(.34, 1.16, .64, 1); }
-.forge-sidebar-row { min-width: 0; height: 48px; flex-shrink: 0; border-radius: 24px; }
+.forge-sidebar-row { min-width: 0; height: 40px; flex-shrink: 0; border-radius: 20px; }
 .forge-sidebar-label, .forge-sidebar-logo { opacity: 1; translate: 0; }
 .forge-sidebar-row[data-badge="true"] > .forge-sidebar-item-label { padding-right: 28px; }
 .forge-sidebar-badge { position: absolute; right: 14px; top: 50%; translate: 0 -50%; }

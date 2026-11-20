@@ -66,7 +66,7 @@ export function RecommendationCard({
           <button
             type="button"
             onClick={onAccept}
-            className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground"
+            className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-medium leading-4 tracking-fg text-accent-foreground"
           >
             {acceptLabel}
           </button>
@@ -76,7 +76,7 @@ export function RecommendationCard({
       <p className="text-sm leading-6 text-fg-black">{body}</p>
       {alternatives.length > 0 && (
         <div className="mt-4 flex flex-col gap-2">
-          <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">{alternativesLabel}</p>
+          <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">{alternativesLabel}</p>
           {alternatives.map((option) => (
             <button
               key={option.id}

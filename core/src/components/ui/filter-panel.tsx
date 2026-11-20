@@ -34,14 +34,14 @@ export function FilterPanel({
       className={`w-full max-w-96 bg-background rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] flex flex-col overflow-hidden ${className}`}
     >
       <div className="self-stretch px-5 py-4 border-b border-fg-grey-200 inline-flex items-center justify-between gap-2">
-        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+        <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
           {title}
         </span>
         {onReset && (
           <button
             type="button"
             onClick={onReset}
-            className={`inline-flex items-center gap-1 text-sm font-semibold leading-5 tracking-fg ${accent.text}`}
+            className={`inline-flex items-center gap-1 text-sm font-medium leading-5 tracking-fg ${accent.text}`}
           >
             <RestartCircleLinear size={16} />
             {resetLabel}
@@ -55,14 +55,14 @@ export function FilterPanel({
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700 text-sm font-bold leading-5 tracking-fg"
+          className="px-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg"
         >
           {cancelLabel}
         </button>
         <button
           type="button"
           onClick={onApply}
-          className={`px-4 py-3.5 rounded-full text-white text-sm font-bold leading-5 tracking-fg ${accent.bg}`}
+          className={`px-4 py-3.5 rounded-full text-white text-sm font-medium leading-5 tracking-fg ${accent.bg}`}
         >
           {applyLabel}
         </button>

@@ -85,7 +85,7 @@ export function AgentDiffTable({
                 setApplied(true);
                 onApply?.(changed.map((row) => row.id));
               }}
-              className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-3 py-2.5 text-xs font-medium leading-4 tracking-fg text-accent-foreground disabled:cursor-not-allowed disabled:opacity-60"
             >
               {formatApplyLabel ? formatApplyLabel(changed.length) : (applyLabel ? applyLabel.replace("changes", `${changed.length} ${changed.length === 1 ? "change" : "changes"}`) : locale === "zh" ? `应用 ${changed.length} 项变更` : `Apply ${changed.length} ${changed.length === 1 ? "change" : "changes"}`)}
             </button>
@@ -97,7 +97,7 @@ export function AgentDiffTable({
         <thead>
           <tr className="border-b border-fg-grey-200 text-xs text-fg-grey-500">
             {columns.map((column) => (
-              <th key={column.key} className="px-4 py-2.5 font-semibold">
+              <th key={column.key} className="px-4 py-2.5 font-medium">
                 {column.label}
               </th>
             ))}

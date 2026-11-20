@@ -183,7 +183,7 @@ export default function Ecommerce1Page() {
           <TrendChart className="lg:col-span-2">
             <DashboardHeader className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
+                <h3 className="text-sm font-medium text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -256,7 +256,7 @@ export default function Ecommerce1Page() {
           <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
+                <h3 className="text-sm font-medium text-fg-black">Recent Orders</h3>
                 <p className="text-sm text-fg-grey-500">Recent orders</p>
               </div>
               <div className="flex items-center gap-2">

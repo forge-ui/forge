@@ -32,7 +32,7 @@ export function ProductRow({
           />
         ))}
       <div className="inline-flex flex-col items-start gap-1">
-        <span className="text-sm font-semibold leading-5 text-fg-black tracking-fg">
+        <span className="text-sm font-medium leading-5 text-fg-black tracking-fg">
           {title}
         </span>
         {subtitle && (

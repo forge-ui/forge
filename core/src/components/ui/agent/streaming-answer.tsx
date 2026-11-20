@@ -167,7 +167,7 @@ export function StreamingAnswer({
               {sources.slice(0, 3).map((source) => (
                 <span
                   key={source.name}
-                  className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-fg-grey-100 text-2xs font-semibold text-fg-grey-700 outline outline-1 outline-white"
+                  className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-fg-grey-100 text-2xs font-medium text-fg-grey-700 outline outline-1 outline-white"
                 >
                   {source.name.slice(0, 1)}
                 </span>
@@ -207,7 +207,7 @@ export function StreamingAnswer({
 
       {playout.done && followUps.length > 0 && (
         <div className="flex flex-col gap-1">
-          <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">{followUpsLabel ?? (locale === "zh" ? "继续提问" : "Follow-ups")}</p>
+          <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">{followUpsLabel ?? (locale === "zh" ? "继续提问" : "Follow-ups")}</p>
           {followUps.map((item, index) => (
             <button
               key={item}

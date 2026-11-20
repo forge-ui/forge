@@ -70,7 +70,7 @@ export function FileManager({ files = defaultFiles, onUpload, onOpen, onDelete, 
           <div className="flex items-start justify-between"><Checkbox color="blue" checked={selected.has(file.id)} onChange={value => toggle(file.id, value)} aria-label={`选择${file.name}`} /><CellActions actions={[]} onKebab={() => setPendingDelete(file)} /></div>
           <Button variant="unstyled" type="button" className="flex w-full flex-col items-center gap-4 pt-4 text-center" onClick={() => onOpen?.(file)}>
             <FileTypeIcon fileName={file.kind === "folder" ? "folder" : `${file.name}.${file.kind}`} className="h-16 w-16" />
-            <span className="w-full"><span className="block truncate text-sm font-semibold text-fg-black">{file.name}</span><span className="mt-1 block text-xs text-fg-grey-500">{file.meta}</span></span>
+            <span className="w-full"><span className="block truncate text-sm font-medium text-fg-black">{file.name}</span><span className="mt-1 block text-xs text-fg-grey-500">{file.meta}</span></span>
           </Button>
         </Panel>
       </li>)}</ul>

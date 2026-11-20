@@ -33,13 +33,13 @@ export function ContextCards({
 }) {
   return (
     <div className={cn("flex flex-col gap-3", className)}>
-      <p className="text-xs font-semibold uppercase tracking-fg text-fg-grey-500">
+      <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">
         {allChunksLabel}{typeof total === "number" ? ` · ${total}` : ""}
       </p>
       {chunks.map((chunk) => (
         <SurfaceCard key={chunk.id} padding="sm">
           <div className="mb-2 flex items-start justify-between gap-3">
-            <h3 className="text-sm font-semibold text-fg-black">{chunk.title}</h3>
+            <h3 className="text-sm font-medium text-fg-black">{chunk.title}</h3>
             {chunk.charCount !== undefined && (
               <span className="shrink-0 text-xs text-fg-grey-500">{chunk.charCount.toLocaleString(locale === "zh" ? "zh-CN" : "en-US")} {charactersLabel}</span>
             )}
@@ -48,7 +48,7 @@ export function ContextCards({
           {(chunk.sourceLabel || chunk.sourceKind) && (
             <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-fg-grey-500">
               <DocumentTextLinear size={14} color="var(--fg-grey-500)" />
-              {chunk.sourceKind && <span className="font-semibold text-fg-grey-700">{chunk.sourceKind}</span>}
+              {chunk.sourceKind && <span className="font-medium text-fg-grey-700">{chunk.sourceKind}</span>}
               {chunk.sourceLabel}
             </p>
           )}

@@ -63,7 +63,7 @@ export function WealthOverview({ metrics = defaultWealthMetrics, cards = default
         <ul className="flex flex-col divide-y divide-fg-grey-200">{[...goals].sort((left, right) => right.saved / right.target - left.saved / left.target).map(goal => {
           const percent = Math.min(100, Math.round((goal.saved / goal.target) * 100));
           return <li key={goal.id} className="grid grid-cols-1 items-center gap-3 py-4 first:pt-0 last:pb-0 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
-            <div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{goal.title}</p><p className="text-xs tabular-nums text-fg-grey-700">¥{goal.saved.toLocaleString("zh-CN")} / ¥{goal.target.toLocaleString("zh-CN")}</p></div>
+            <div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{goal.title}</p><p className="text-xs tabular-nums text-fg-grey-700">¥{goal.saved.toLocaleString("zh-CN")} / ¥{goal.target.toLocaleString("zh-CN")}</p></div>
             <ProgressBar value={percent} color={goal.color} label={`${percent}%`} size="sm" />
           </li>;
         })}</ul>

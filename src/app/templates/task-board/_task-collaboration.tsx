@@ -41,7 +41,7 @@ export function TaskCollaborationPanel({ task, agents = ["研究助手", "设计
       <details><summary className="text-sm text-fg-grey-700 cursor-pointer">执行要求</summary><MarkdownContent value={value.brief} /></details>
       {value.state === "running" && <Reasoning size="sm" status="done" open doneLabel="演示执行过程" steps={["读取任务与上下文", "整理执行计划", "等待选择演示结果"].map((label, index) => ({ id: String(index), label, status: "done" }))} />}
       {value.state === "waiting" && <p className="text-sm text-fg-black">请补充本次交付的约束或确认执行方向，再继续。</p>}
-      {value.result && <div><h3 className="text-sm font-semibold text-fg-black mb-2">{value.state === "ready" ? "上次交付 · 待修改" : "交付结果 · 示例"}</h3><MarkdownContent value={value.result} /></div>}
+      {value.result && <div><h3 className="text-sm font-medium text-fg-black mb-2">{value.state === "ready" ? "上次交付 · 待修改" : "交付结果 · 示例"}</h3><MarkdownContent value={value.result} /></div>}
       {value.feedback && <p className="text-sm text-fg-grey-700">最近反馈：{value.feedback}</p>}
       {(value.state === "waiting" || value.state === "review") && <TextArea color="blue" aria-label="协作反馈" placeholder={value.state === "review" ? "需要修改的内容…" : "补充上下文或执行要求…"} value={feedback} onChange={setFeedback} />}
       {task.done && value.state !== "approved" && <p className="text-xs text-fg-grey-700">任务已完成，重新打开任务后可再次执行。</p>}

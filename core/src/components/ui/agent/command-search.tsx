@@ -150,7 +150,7 @@ export function CommandSearch({
             style={{ transition: reduced ? "none" : "translate 300ms cubic-bezier(.2,.8,.2,1), width 200ms ease, height 200ms ease" }} />
           {groups.map(([group, rows], groupIndex) => (
             <div key={group} role="group" aria-labelledby={`${id}-group-${groupIndex}`} className="mb-2 last:mb-0">
-              <p id={`${id}-group-${groupIndex}`} className="px-3 py-1.5 text-xs font-semibold text-fg-grey-500">{group}</p>
+              <p id={`${id}-group-${groupIndex}`} className="px-3 py-1.5 text-xs font-medium text-fg-grey-500">{group}</p>
               {rows.map((item) => {
                 const index = ordered.indexOf(item);
                 return <button

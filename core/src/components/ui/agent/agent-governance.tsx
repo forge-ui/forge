@@ -212,7 +212,7 @@ export function AutonomySelector({ value, onChange, actions = [], title, locale 
               { list: asks, zh: "先问你", en: "Asks first", icon: <ShieldCheckBold size={14} color="var(--fg-yellow-700)" /> },
             ].map(column => (
               <div key={column.zh} className="flex flex-col gap-1.5 rounded-xl bg-fg-grey-50 px-3 py-2.5">
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-fg-black">{column.icon}{pick(locale, column.zh, column.en)}<span className="ml-auto tabular-nums text-fg-grey-500">{column.list.length}</span></span>
+                <span className="flex items-center gap-1.5 text-xs font-medium text-fg-black">{column.icon}{pick(locale, column.zh, column.en)}<span className="ml-auto tabular-nums text-fg-grey-500">{column.list.length}</span></span>
                 {column.list.map(action => <span key={action.id} className="forge-fade-up truncate text-sm text-fg-grey-900">{action.label}</span>)}
                 {!column.list.length && <span className="text-sm text-fg-grey-500">—</span>}
               </div>

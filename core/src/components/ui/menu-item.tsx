@@ -68,7 +68,7 @@ export function MenuItem({
       // Danger items: red text on default surface; on colored bg falls back to white
       if (surface === "onColoredBg") {
         return resolvedState === "active"
-          ? "bg-white/25 text-white font-bold"
+          ? "bg-white/25 text-white font-semibold"
           : resolvedState === "hover"
             ? "bg-white/10 text-white"
             : resolvedState === "disabled"
@@ -86,7 +86,7 @@ export function MenuItem({
 
     if (surface === "onColoredBg") {
       return resolvedState === "active"
-        ? "bg-white/25 text-white font-bold"
+        ? "bg-white/25 text-white font-semibold"
         : resolvedState === "hover"
           ? "bg-white/10 text-white"
           : resolvedState === "disabled"
@@ -104,7 +104,7 @@ export function MenuItem({
           : "text-fg-grey-700 hover:bg-fg-grey-200";
   })();
 
-  const labelWeight = resolvedState === "active" ? "font-bold" : "font-semibold";
+  const labelWeight = resolvedState === "active" ? "font-semibold" : "font-medium";
 
   const content = (
     <>

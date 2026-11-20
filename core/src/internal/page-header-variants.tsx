@@ -258,7 +258,7 @@ export function SearchHeader({
                   <img className="w-10 h-10 shrink-0 rounded-full" src={profile.avatar} alt={profile.name} />
                 </div>
                 <div className="min-w-0 inline-flex flex-col justify-center items-start gap-0.5">
-                  <div className={cn("self-stretch text-sm font-semibold leading-5 tracking-fg line-clamp-1", profileNameClassName ?? "text-fg-black")}>{profile.name}</div>
+                  <div className={cn("self-stretch text-sm font-medium leading-5 tracking-fg line-clamp-1", profileNameClassName ?? "text-fg-black")}>{profile.name}</div>
                   <div className={cn("self-stretch text-xs font-medium leading-4.5 tracking-fg line-clamp-1", profileRoleClassName ?? "text-fg-grey-700")}>{profile.role}</div>
                 </div>
                 <div className={cn("w-6 h-6 flex justify-center items-center gap-2 text-fg-grey-700", profileChevronClassName)}>
@@ -366,7 +366,7 @@ export function TitleHeader({
                 className={cn(iconButton, "gap-1 @min-[1000px]:px-4 @min-[1000px]:py-3.5")}
               >
                 <SortFromTopToBottomBold size={20} />
-                <span className="hidden whitespace-nowrap text-sm font-semibold leading-5 tracking-fg @min-[1000px]:inline">{filtersLabel}</span>
+                <span className="hidden whitespace-nowrap text-sm font-medium leading-5 tracking-fg @min-[1000px]:inline">{filtersLabel}</span>
               </button>
             )}
 
@@ -413,7 +413,7 @@ export function TitleHeader({
                   <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center">{secondaryAction.icon}</span>
                 )}
                 <span className={cn(
-                  "whitespace-nowrap text-sm font-bold leading-5 tracking-fg",
+                  "whitespace-nowrap text-sm font-medium leading-5 tracking-fg",
                   secondaryAction.icon ? "hidden @min-[1000px]:inline" : false,
                 )}>{secondaryAction.label}</span>
               </button>
@@ -435,7 +435,7 @@ export function TitleHeader({
                 )}
               >
                 {primaryAction.icon ?? <PlusIcon />}
-                <span className="whitespace-nowrap text-sm font-bold leading-5 tracking-fg text-white">{primaryAction.label}</span>
+                <span className="whitespace-nowrap text-sm font-medium leading-5 tracking-fg text-white">{primaryAction.label}</span>
               </button>
             )}
           </div>

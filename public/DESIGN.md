@@ -9,19 +9,19 @@ colors:
   primary-hover: "#304CE8"
   background: "#FFFFFF"
   surface: "#FAFAFA"
-  on-surface: "#000A19"
-  text-primary: "#000A19"
+  on-surface: "#1F1F1F"
+  text-primary: "#1F1F1F"
   text-secondary: "#4F4F4F"
-  text-muted: "#868686"
+  text-muted: "#737373"
   text-disabled: "#BDBDBD"
   icon-muted: "#71717A"
-  border: "#E1E1E1"
-  border-muted: "#EBEBEB"
+  border: "#E5E5E5"
+  border-muted: "#F5F5F5"
   overlay: "rgba(0, 10, 25, 0.40)"
   error: "#FE4A23"
   on-error: "#FFFFFF"
   warning: "#F6C002"
-  on-warning: "#000A19"
+  on-warning: "#1F1F1F"
   success: "#09B96D"
   info: "#43CED7"
   violet: "#7239EA"
@@ -42,33 +42,30 @@ typography:
     fontWeight: 600
     lineHeight: 1.25
   headline-sm:
-    fontFamily: Manrope
+    fontFamily: Inter
     fontSize: 18px
     fontWeight: 700
     lineHeight: 28px
   body-md:
-    fontFamily: Manrope
+    fontFamily: Inter
     fontSize: 14px
-    fontWeight: 500
+    fontWeight: 400
     lineHeight: 20px
-    letterSpacing: 0.5px
   body-lg:
-    fontFamily: Manrope
+    fontFamily: Inter
     fontSize: 16px
     fontWeight: 400
     lineHeight: 24px
   label-md:
-    fontFamily: Manrope
+    fontFamily: Inter
     fontSize: 14px
-    fontWeight: 700
+    fontWeight: 500
     lineHeight: 20px
-    letterSpacing: 0.5px
   label-sm:
-    fontFamily: Manrope
+    fontFamily: Inter
     fontSize: 12px
-    fontWeight: 600
+    fontWeight: 500
     lineHeight: 18px
-    letterSpacing: 0.5px
 rounded:
   xs: 4px
   md: 12px
@@ -129,13 +126,13 @@ Forge 用来做中文后台：列表、详情、表单、设置、看板和智�
 
 - 主色（primary，#3553FF，`--accent` / `fg-blue`）：主要按钮、选中态、链接、焦点环。紫色、黑色是可选主题，不是默认。组件 color prop 写 `"purple"`，对应 CSS token `fg-violet`，不要写 `color="violet"`。
 - 页面底（surface，#FAFAFA）和卡片（background，白色）：内容放在白卡里，卡片之间靠浅灰底分开。
-- 文字分四级：正文和标题用 text-primary（#000A19，冷调近黑，不是纯黑）；次要信息 text-secondary（#4F4F4F）；辅助说明 text-muted（#868686）；只有真正不可操作的内容才用 text-disabled（#BDBDBD）。
-- 边框和分割线用 border（#E1E1E1），更轻的分隔用 border-muted（#EBEBEB）。
+- 文字分四级：正文和标题用 text-primary（#1F1F1F，中性近黑，不是纯黑）；次要信息 text-secondary（#4F4F4F）；辅助说明 text-muted（#737373）；只有真正不可操作的内容才用 text-disabled（#BDBDBD）。
+- 边框和分割线用 border（#E5E5E5），更轻的分隔用 border-muted（#F5F5F5）。
 - 状态色：成功绿（#09B96D）、危险红（#FE4A23）、警告黄（#F6C002，黄底上用深色字）、提示青（#43CED7）。七个色族（violet、blue、green、red、yellow、cyan、black）加 grey 都有 50–900 十档，500 是基准，Tailwind 写法 `bg-fg-blue-500`、`text-fg-grey-700`。深色模式在 `<html>` 上加 `data-theme="dark"`，灰阶、文字和彩色浅底自动切换；卡片、面板、输入框背景用 `bg-background`，不要写 `bg-white`。
 
 ## Typography
 
-标题用 Plus Jakarta Sans，正文用 Manrope，中文回落到系统字体。标准字距 0.5px（`tracking-fg`）。正文 14px 是后台默认字号，说明文字 12–14px；页面主标题 30–36px，卡片标题 16–18px。一个视图里字重控制在三档以内：常规或中等写正文，半粗写标签，粗体写标题和按钮。
+标题用 Plus Jakarta Sans，正文用 Inter，中文回落到系统字体。字距保持默认（`tracking-fg` 为 0）。正文 14px 是后台默认字号，说明文字 12–14px；页面主标题 30–36px，卡片标题 16–18px。一个视图里字重控制在三档以内：14px 及以下用常规或中等，选中态用半粗；半粗和粗体留给 16px 以上的标题和数字。
 
 ## Layout
 

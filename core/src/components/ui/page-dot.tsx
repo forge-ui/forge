@@ -19,7 +19,7 @@ const activeColors = {
 export type PageDotColor = keyof typeof activeColors;
 
 const baseClass =
-  "w-10 h-10 p-2 rounded-full inline-flex items-center justify-center text-sm font-semibold";
+  "w-10 h-10 p-2 rounded-full inline-flex items-center justify-center text-sm font-medium";
 
 const defaultClass =
   "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700";

@@ -60,14 +60,14 @@ export default function FinanceInvoiceDetailPage() {
                   <div className="mt-4 flex items-center gap-3">
                     <Avatar src={invoice.avatar} size="md" />
                     <div>
-                      <p className="text-sm font-semibold text-fg-black">{invoice.billTo}</p>
+                      <p className="text-sm font-medium text-fg-black">{invoice.billTo}</p>
                       <p className="text-xs font-medium text-fg-grey-500">{invoice.email}</p>
                     </div>
                   </div>
                 </Panel>
                 <Panel variant="custom" className="rounded-[20px] border border-fg-grey-200 p-5">
                   <p className="text-xs font-medium uppercase tracking-fg text-fg-grey-500">Pay From</p>
-                  <p className="mt-4 text-sm font-semibold text-fg-black">Sugab&apos;s Team</p>
+                  <p className="mt-4 text-sm font-medium text-fg-black">Sugab&apos;s Team</p>
                   <p className="mt-1 text-xs font-medium text-fg-grey-500">finance@protask.com</p>
                 </Panel>
               </div>
@@ -77,7 +77,7 @@ export default function FinanceInvoiceDetailPage() {
                 <FieldLine label="Tax" value="$232.00" />
                 <FieldLine label="Discount" value="$0.00" />
                 <div className="flex items-center justify-between pt-4">
-                  <span className="text-sm font-semibold text-fg-black">Total</span>
+                  <span className="text-sm font-medium text-fg-black">Total</span>
                   <span className="text-2xl font-semibold text-fg-black">$2,552.00</span>
                 </div>
               </Panel>

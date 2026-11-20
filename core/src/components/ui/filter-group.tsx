@@ -82,7 +82,7 @@ export function FilterGroup({
         onClick={() => setOpen((v) => !v)}
         className="self-stretch px-4 py-3 border-b border-fg-grey-200 inline-flex justify-start items-center gap-2"
       >
-        <span className="flex-1 text-left text-fg-black text-sm font-semibold leading-5 tracking-fg">
+        <span className="flex-1 text-left text-fg-black text-sm font-medium leading-5 tracking-fg">
           {title}
         </span>
         <span className="inline-flex text-fg-grey-700">
@@ -260,7 +260,7 @@ function SelectionLabel({
   return (
     <span
       className={`flex-1 text-sm leading-5 tracking-fg ${
-        checked ? `${accentColors[color].text} font-bold` : "text-fg-grey-700 font-semibold"
+        checked ? `${accentColors[color].text} font-semibold` : "text-fg-grey-700 font-medium"
       }`}
     >
       {children}

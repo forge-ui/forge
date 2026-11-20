@@ -82,12 +82,12 @@ export function AgentUsage({ usage = defaultAgentUsage, className }: AgentUsageP
       <Panel variant="template" title="花在哪里" action={<ButtonGroup ariaLabel="分组方式" shape="pill" items={[{ label: "按项目" }, { label: "按模型" }]} activeIndex={view} onChange={setView} />}>
         <ul className="flex flex-col gap-4">{breakdown.map(item => <li key={item.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2">
           <span className="flex min-w-0 items-center gap-2 text-sm text-fg-black"><span className={cn("size-2.5 shrink-0 rounded-full", item.color)} /><span className="truncate">{item.name}</span></span>
-          <span className="text-sm font-semibold tabular-nums text-fg-black">{money(item.amount)} <span className={cn("ml-1 text-xs font-medium", item.change > 0 ? "text-fg-red" : "text-fg-green-500")}>{item.change > 0 ? "+" : ""}{item.change}%</span></span>
+          <span className="text-sm font-medium tabular-nums text-fg-black">{money(item.amount)} <span className={cn("ml-1 text-xs font-medium", item.change > 0 ? "text-fg-red" : "text-fg-green-500")}>{item.change > 0 ? "+" : ""}{item.change}%</span></span>
           <span className="col-span-2 h-1.5 overflow-hidden rounded-full bg-fg-grey-100"><span className={cn("block h-full rounded-full transition-[width] duration-500", item.color)} style={{ width: `${(item.amount / max) * 100}%` }} /></span>
         </li>)}</ul>
       </Panel>
       <Panel variant="template" title="值得关注" subtitle="自动发现的异常用量">
-        <ul className="flex flex-col gap-3">{usage.alerts.map(alert => <li key={alert.id} className={cn("rounded-xl border p-4", alert.tone === "red" ? "border-fg-red-200 bg-fg-red-50" : "border-fg-yellow-200 bg-fg-yellow-50")}><p className="text-sm font-semibold text-fg-black">{alert.title}</p><p className="mt-1 text-xs leading-5 text-fg-grey-700">{alert.detail}</p></li>)}</ul>
+        <ul className="flex flex-col gap-3">{usage.alerts.map(alert => <li key={alert.id} className={cn("rounded-xl border p-4", alert.tone === "red" ? "border-fg-red-200 bg-fg-red-50" : "border-fg-yellow-200 bg-fg-yellow-50")}><p className="text-sm font-medium text-fg-black">{alert.title}</p><p className="mt-1 text-xs leading-5 text-fg-grey-700">{alert.detail}</p></li>)}</ul>
       </Panel>
     </div>
   </section>;

@@ -100,7 +100,7 @@ function AllExpensesPanel() {
     <Panel className="min-h-[420px]">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">All Expenses</h3>
+          <h3 className="text-sm font-medium leading-5 text-fg-black">All Expenses</h3>
           <p className="mt-1 text-xs font-medium text-fg-grey-700">Based on categories</p>
         </div>
         <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -129,13 +129,13 @@ function AllExpensesPanel() {
               <WalletBoldDuotone size={18} color={row.color} />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-fg-black">{row.label}</div>
+              <div className="text-sm font-medium text-fg-black">{row.label}</div>
               <div className="mt-1 text-xs text-fg-grey-700 truncate">{row.subtitle}</div>
             </div>
             <div className="text-right">
-              <div className="text-sm font-semibold text-fg-black">{row.value}</div>
+              <div className="text-sm font-medium text-fg-black">{row.value}</div>
               {row.delta && (
-                <div className="mt-1 flex items-center justify-end gap-1 text-sm font-bold text-fg-green">
+                <div className="mt-1 flex items-center justify-end gap-1 text-sm font-medium text-fg-green">
                   {row.delta}
                   <span className="inline-block size-0 border-x-[4px] border-b-[6px] border-x-transparent border-b-fg-green" />
                 </div>
@@ -167,7 +167,7 @@ export default function Finance2Page() {
           <Panel gap="none" className="min-h-[380px]">
             <DashboardHeader className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold leading-5 text-fg-black">Card</h3>
+                <h3 className="text-sm font-medium leading-5 text-fg-black">Card</h3>
                 <p className="mt-1 text-xs font-medium text-fg-grey-700">All Your Cards</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -177,7 +177,7 @@ export default function Finance2Page() {
               { id: "next", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "blue", variant: "flat" },
               { id: "previous", cardNumber: "9090", holderName: "John Doe Hoegan", expiry: "07/25", theme: "yellow", variant: "flat" },
             ]} />
-            <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={16} />} className="h-10 w-full rounded-full text-sm font-semibold">Add New Card</Button>
+            <Button color="grey" variant="tertiary" iconLeft={<PlusIcon size={16} />} className="h-10 w-full rounded-full text-sm font-medium">Add New Card</Button>
           </Panel>
 
           <WalletProgressPanel />
@@ -193,7 +193,7 @@ export default function Finance2Page() {
           <TrendChart className="min-h-[460px]">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold leading-5 text-fg-black">Statistic</h3>
+                <h3 className="text-sm font-medium leading-5 text-fg-black">Statistic</h3>
                 <p className="mt-1 text-xs font-medium text-fg-grey-700">Income and Expenses</p>
               </div>
               <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="h-10 rounded-full px-5 text-sm font-medium text-fg-grey-700">Monthly</Button>
@@ -238,7 +238,7 @@ export default function Finance2Page() {
           <RecentRecords >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Transaction</h3>
+                <h3 className="text-sm font-medium text-fg-black">Transaction</h3>
                 <p className="text-sm text-fg-grey-500">Recent transactions</p>
               </div>
               <div className="flex items-center gap-2">

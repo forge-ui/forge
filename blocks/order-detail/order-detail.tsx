@@ -106,12 +106,12 @@ export function OrderDetail({ order = defaultOrderDetail, onStatusChange, onView
           {order.lines.map(line => <li key={line.id} className="grid grid-cols-[56px_minmax(0,1fr)_auto] items-center gap-4 py-4 first:pt-0 last:pb-0 sm:grid-cols-[64px_minmax(0,1fr)_112px_112px]">
             <img src={line.image} alt={line.name} className="size-14 rounded-xl bg-fg-grey-100 object-cover sm:size-16" />
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-fg-black">{line.name}</p>
+              <p className="truncate text-sm font-medium text-fg-black">{line.name}</p>
               <p className="mt-1 text-xs text-fg-grey-700">SKU #{line.sku}</p>
               <div className="mt-2 flex flex-wrap gap-2">{line.specs.map(spec => <Label key={spec} color="gray" variant="outline" size="sm">{spec}</Label>)}</div>
             </div>
             <div className="hidden sm:block"><p className="text-xs text-fg-grey-700">单价</p><p className="mt-1 text-sm tabular-nums text-fg-black">{line.quantity} × {money(line.unitPrice)}</p></div>
-            <div className="text-right"><p className="text-xs text-fg-grey-700">小计</p><p className="mt-1 text-sm font-semibold tabular-nums text-fg-black">{money(line.quantity * line.unitPrice)}</p></div>
+            <div className="text-right"><p className="text-xs text-fg-grey-700">小计</p><p className="mt-1 text-sm font-medium tabular-nums text-fg-black">{money(line.quantity * line.unitPrice)}</p></div>
           </li>)}
         </ul>
       </Panel>

@@ -50,12 +50,12 @@ function MicellaneousCalendarContent() {
                 </div>
                 <CellActions actions={[]} />
               </div>
-              <p className="mt-6 text-sm font-semibold text-fg-black">About</p>
+              <p className="mt-6 text-sm font-medium text-fg-black">About</p>
               <p className="mt-2 text-sm font-medium leading-6 text-fg-grey-500">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut pulvinar lacus, tempor dictum augue.
               </p>
               <Button className="mt-5">Join Meeting</Button>
-              <p className="mt-6 text-sm font-semibold text-fg-black">5 guest</p>
+              <p className="mt-6 text-sm font-medium text-fg-black">5 guest</p>
               <div className="mt-3 flex flex-col gap-3">
                 {contacts.slice(0, 5).map((contact) => (
                   <div key={contact.id} className="flex items-center gap-3">

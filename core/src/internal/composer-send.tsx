@@ -39,7 +39,7 @@ export function SendButton({
         aria-label={sendLabel}
         onClick={onClick}
         disabled={disabled}
-        className="flex h-9 shrink-0 whitespace-nowrap items-center gap-1.5 rounded-full bg-accent px-4 text-sm font-semibold text-white transition hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
+        className="flex h-9 shrink-0 whitespace-nowrap items-center gap-1.5 rounded-full bg-accent px-4 text-sm font-medium text-white transition hover:brightness-90 disabled:cursor-not-allowed disabled:bg-fg-grey-300"
       >
         {sendLabel}
         <ArrowUpLinear size={15} color="var(--fg-white)" />

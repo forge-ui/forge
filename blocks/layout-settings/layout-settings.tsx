@@ -44,7 +44,7 @@ function SamplePage() {
     <PageTitleToolbar title="设置" subtitle="管理你的资料、安全与通知偏好。" breadcrumbs={<Breadcrumbs color="blue" items={[{ label: "工作台", href: "#overview" }, { label: "设置" }]} />} />
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[200px_minmax(0,1fr)]">
       <nav aria-label="设置分类" className="flex gap-1 overflow-x-auto lg:sticky lg:top-4 lg:flex-col lg:self-start">
-        {sections.map(section => <button key={section.id} type="button" aria-current={active === section.id ? "page" : undefined} onClick={() => { setActive(section.id); setSaved(null); }} className={`flex shrink-0 items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm transition-colors ${active === section.id ? "bg-background font-semibold text-fg-black shadow-[0_1px_2px_rgba(0,0,0,0.05)]" : "text-fg-grey-700 hover:bg-background/70"}`}>
+        {sections.map(section => <button key={section.id} type="button" aria-current={active === section.id ? "page" : undefined} onClick={() => { setActive(section.id); setSaved(null); }} className={`flex shrink-0 items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm transition-colors ${active === section.id ? "bg-background font-medium text-fg-black shadow-[0_1px_2px_rgba(0,0,0,0.05)]" : "text-fg-grey-700 hover:bg-background/70"}`}>
           <span className={active === section.id ? "text-fg-blue" : "text-fg-grey-500"}>{section.icon}</span>{section.label}
         </button>)}
       </nav>

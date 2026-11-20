@@ -159,7 +159,7 @@ function ActivityPill({ label, color }: { label: string; color: "purple" | "gree
     yellow: "bg-fg-yellow-50 text-fg-yellow-600",
   };
   return (
-    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${map[color]}`}>
+    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${map[color]}`}>
       {label}
     </span>
   );
@@ -194,7 +194,7 @@ function CustomerSidebar() {
         <div className="flex flex-col items-center gap-1">
           <div className="flex items-center gap-2">
             <h3 className="text-xl font-semibold text-fg-black">Linda Blair</h3>
-            <span className="rounded-md bg-fg-blue px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+            <span className="rounded-md bg-fg-blue px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
               Pro
             </span>
           </div>
@@ -217,7 +217,7 @@ function CustomerSidebar() {
         ].map((field) => (
           <div key={field.label}>
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-fg-grey-700">{field.label}</p>
+              <p className="text-sm font-medium text-fg-grey-700">{field.label}</p>
               {field.copy && (
                 <IconButton variant="ghost" shape="square" size="sm">
                   <CopyLinear size={14} />
@@ -239,7 +239,7 @@ function CustomerSidebar() {
               className="h-9 w-9 shrink-0 rounded-full object-cover"
             />
             <div className="flex flex-1 flex-col gap-1">
-              <p className="text-sm font-semibold text-fg-black">{item.title}</p>
+              <p className="text-sm font-medium text-fg-black">{item.title}</p>
               <p className="text-xs leading-relaxed text-fg-grey-700">{item.description}</p>
               {item.pills && (
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -390,12 +390,12 @@ export default function CustomerDetailPage() {
                       className="h-12 w-12 shrink-0 rounded-lg object-cover"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="truncate text-sm font-semibold text-fg-black">{order.name}</p>
+                      <p className="truncate text-sm font-medium text-fg-black">{order.name}</p>
                       {order.countLabel && (
                         <p className="text-xs text-fg-grey-700">{order.countLabel}</p>
                       )}
                     </div>
-                    <p className="shrink-0 text-sm font-semibold text-fg-black">{order.total}</p>
+                    <p className="shrink-0 text-sm font-medium text-fg-black">{order.total}</p>
                   </div>
                 ))}
               </div>
@@ -426,7 +426,7 @@ export default function CustomerDetailPage() {
                     <p className="text-xs text-fg-grey-700">Total</p>
                     <div className="flex items-baseline gap-2">
                       <span className="text-2xl font-semibold text-fg-black">$26,201</span>
-                      <span className="text-xs font-semibold text-fg-green">10% ▲</span>
+                      <span className="text-xs font-medium text-fg-green">10% ▲</span>
                     </div>
                   </div>
                 </div>

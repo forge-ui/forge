@@ -72,7 +72,7 @@ function OptionItem({
         <span
           className={cn(
             "block truncate text-sm leading-5 tracking-fg",
-            selected ? cn("font-bold", accent.text) : "font-semibold text-fg-grey-700",
+            selected ? cn("font-semibold", accent.text) : "font-medium text-fg-grey-700",
           )}
         >{item.label}</span>
         {item.description && <span className="block whitespace-normal break-words text-xs font-normal leading-4 tracking-fg text-fg-grey-600">{item.description}</span>}

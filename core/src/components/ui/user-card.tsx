@@ -65,7 +65,7 @@ export function UserCard({
           </div>
         )}
         <div className="self-stretch flex flex-col justify-center items-center gap-1">
-          <div className="self-stretch text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{name}</div>
+          <div className="self-stretch text-center text-fg-black text-sm font-medium leading-5 tracking-fg">{name}</div>
           {badge && <div>{badge}</div>}
           {subtitle && <div>{subtitle}</div>}
         </div>
@@ -91,7 +91,7 @@ export function UserCard({
             {stats.map((stat, i) => (
               <div key={i} className="flex-1 inline-flex flex-col justify-start items-center gap-1">
                 <div className="self-stretch text-center text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">{stat.label}</div>
-                <div className="self-stretch text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{stat.value}</div>
+                <div className="self-stretch text-center text-fg-black text-sm font-medium leading-5 tracking-fg">{stat.value}</div>
               </div>
             ))}
           </div>

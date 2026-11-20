@@ -43,7 +43,7 @@ export function Citation({ source, active = false, onActiveChange, locale = "zh"
         onFocus={() => show(true)}
         onBlur={() => show(false)}
         onClick={() => { if (source.href) window.open(source.href, "_blank", "noopener"); }}
-        className={cn("mx-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1 align-[1px] text-2xs font-semibold leading-none tracking-fg transition-colors", active || open ? "bg-accent text-accent-foreground" : "bg-fg-grey-100 text-fg-grey-700 hover:bg-fg-grey-200")}
+        className={cn("mx-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1 align-[1px] text-2xs font-medium leading-none tracking-fg transition-colors", active || open ? "bg-accent text-accent-foreground" : "bg-fg-grey-100 text-fg-grey-700 hover:bg-fg-grey-200")}
       >
         {source.id}
       </button>
@@ -53,7 +53,7 @@ export function Citation({ source, active = false, onActiveChange, locale = "zh"
             {source.href ? <LinkLinear size={12} color="var(--fg-grey-500)" /> : <DocumentTextLinear size={12} color="var(--fg-grey-500)" />}
             <span className="truncate">{where}</span>
           </span>
-          <span className="text-sm font-semibold leading-5 text-fg-black">{source.title}</span>
+          <span className="text-sm font-medium leading-5 text-fg-black">{source.title}</span>
           {source.quote && <span className="rounded-xl bg-fg-grey-50 px-3 py-2 text-xs leading-5 text-fg-grey-900">{source.quote}</span>}
         </span>
       )}
@@ -117,7 +117,7 @@ export function CitedAnswer({ text, sources, hideSourceList = false, defaultSour
         <div className="flex flex-col gap-1.5">
           <button type="button" aria-expanded={sourcesOpen} onClick={() => setSourcesOpen(value => !value)} className="-ml-1.5 flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100">
             <span className="flex -space-x-1">
-              {listed.slice(0, 3).map(source => <span key={source.id} className="inline-flex size-5 items-center justify-center rounded-full bg-fg-grey-100 text-2xs font-semibold text-fg-grey-700 outline outline-1 outline-white">{source.id}</span>)}
+              {listed.slice(0, 3).map(source => <span key={source.id} className="inline-flex size-5 items-center justify-center rounded-full bg-fg-grey-100 text-2xs font-medium text-fg-grey-700 outline outline-1 outline-white">{source.id}</span>)}
             </span>
             {sourcesLabel ?? pick(locale, `${listed.length} 个来源`, `${listed.length} sources`)}
             <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("transition-transform", sourcesOpen && "rotate-180")} />
@@ -127,7 +127,7 @@ export function CitedAnswer({ text, sources, hideSourceList = false, defaultSour
               {listed.map(source => {
                 const row = (
                   <>
-                    <span className={cn("inline-flex size-5 shrink-0 items-center justify-center rounded-full text-2xs font-semibold transition-colors", active?.source === source.id ? "bg-accent text-accent-foreground" : "bg-fg-grey-100 text-fg-grey-700")}>{source.id}</span>
+                    <span className={cn("inline-flex size-5 shrink-0 items-center justify-center rounded-full text-2xs font-medium transition-colors", active?.source === source.id ? "bg-accent text-accent-foreground" : "bg-fg-grey-100 text-fg-grey-700")}>{source.id}</span>
                     <span className="min-w-0 truncate font-medium text-fg-black">{source.title}</span>
                     {(source.domain || source.href) && <span className="shrink-0 text-xs text-fg-grey-500">{source.domain ?? safeHost(source.href ?? "")}</span>}
                   </>

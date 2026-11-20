@@ -196,7 +196,7 @@ export default function CrmPage() {
           <Panel gap="sm" >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Success Rate</h3>
+                <h3 className="text-sm font-medium text-fg-black">Success Rate</h3>
                 <p className="text-sm text-fg-grey-500">Conversion rate</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -229,7 +229,7 @@ export default function CrmPage() {
           <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Recent Leads</h3>
+                <h3 className="text-sm font-medium text-fg-black">Recent Leads</h3>
                 <p className="text-sm text-fg-grey-500">Recent leads</p>
               </div>
               <div className="flex items-center gap-2">

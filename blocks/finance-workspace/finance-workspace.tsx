@@ -29,7 +29,7 @@ export function FieldLine({ label, value }: { label: string; value: string }) {
   return (
     <DescriptionItem
       label={label}
-      content={<span className="text-sm font-semibold leading-5 tracking-fg text-fg-grey-900">{value}</span>}
+      content={<span className="text-sm font-medium leading-5 tracking-fg text-fg-grey-900">{value}</span>}
       className="border-b border-fg-grey-100 py-3 last:border-b-0"
     />
   );
@@ -118,7 +118,7 @@ export function FinanceMetricCard({
           <p className="text-lg font-semibold tracking-fg text-fg-black">{title}</p>
           <p className="mt-2 text-sm font-medium text-fg-grey-500">2 Jul - Today</p>
           <p className="mt-10 text-3xl font-semibold tracking-fg text-fg-black">{value}</p>
-          <p className={`mt-3 text-sm font-semibold ${colorClass}`}>
+          <p className={`mt-3 text-sm font-medium ${colorClass}`}>
             {trend} <span className="font-medium text-fg-grey-500">{note}</span>
           </p>
         </div>
@@ -151,7 +151,7 @@ export function WalletProgressLine({
     <div className="min-w-[220px]">
       <div className="mb-2 flex items-center justify-between gap-3">
         <span className="text-sm font-medium text-fg-grey-500">Progress</span>
-        <span className={`text-sm font-semibold ${classes.split(" ")[1]}`}>{value}%</span>
+        <span className={`text-sm font-medium ${classes.split(" ")[1]}`}>{value}%</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-fg-grey-100">
         <div className={`h-full rounded-full ${classes.split(" ")[0]}`} style={{ width: `${value}%` }} />
@@ -184,7 +184,7 @@ export function FinanceGoalCell({
         <span className="size-3 rounded-[4px] bg-current" />
       </span>
       <div className="min-w-0">
-        <p className="text-sm font-semibold leading-5 text-fg-black">{title}</p>
+        <p className="text-sm font-medium leading-5 text-fg-black">{title}</p>
         <p className="truncate text-xs font-medium leading-4.5 text-fg-grey-500">{subtitle}</p>
       </div>
     </div>
@@ -219,7 +219,7 @@ export function FinanceExpenseGauge() {
         <div className="absolute bottom-0 right-8 z-0 h-24 w-24 rounded-full border-[16px] border-fg-red border-b-fg-cyan-500 border-l-fg-green-500 border-t-fg-red" />
         <div className="relative z-10 rounded-full bg-background/90 px-3 text-center">
           <p className="text-3xl font-semibold text-fg-black">$3.1k</p>
-          <p className="mt-3 text-sm font-semibold text-fg-green-500">10% <span className="font-medium text-fg-grey-500">+$181</span></p>
+          <p className="mt-3 text-sm font-medium text-fg-green-500">10% <span className="font-medium text-fg-grey-500">+$181</span></p>
         </div>
       </div>
       <div className="flex flex-col gap-4">
@@ -230,13 +230,13 @@ export function FinanceExpenseGauge() {
                 <span className="size-3 rounded-[4px] bg-current" />
               </span>
               <span>
-                <span className="block text-sm font-semibold text-fg-black">{label}</span>
+                <span className="block text-sm font-medium text-fg-black">{label}</span>
                 <span className="block text-xs font-medium text-fg-grey-500">{subtitle}</span>
               </span>
             </div>
             <span className="text-right">
-              <span className="block text-sm font-semibold text-fg-black">{value}</span>
-              {trend && <span className={`block text-xs font-semibold ${trendColor === "red" ? "text-fg-red" : "text-fg-green-500"}`}>{trend}</span>}
+              <span className="block text-sm font-medium text-fg-black">{value}</span>
+              {trend && <span className={`block text-xs font-medium ${trendColor === "red" ? "text-fg-red" : "text-fg-green-500"}`}>{trend}</span>}
             </span>
           </div>
         ))}

@@ -73,7 +73,7 @@ export function TextFieldSelectSuffix({
                 onClick={() => { if (!open) return; onChange?.(opt); setOpen(false); ref.current?.querySelector<HTMLButtonElement>("button")?.focus(); }}
                 className={cn(
                   "h-12 px-4 py-3 flex items-center cursor-pointer hover:bg-fg-grey-100 transition-colors",
-                  opt === value ? `${accent.text} font-semibold` : "text-fg-grey-700 font-semibold",
+                  opt === value ? `${accent.text} font-semibold` : "text-fg-grey-700 font-medium",
                 )}
               >
                 {opt}

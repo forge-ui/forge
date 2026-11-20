@@ -33,7 +33,7 @@ export function Panel({ title, subtitle, action, footer, children, variant = "da
       {(title || subtitle || action) && (
         <div className={template ? "flex items-start gap-3" : "flex items-start justify-between gap-4"}>
           <div className={template ? "flex-1 min-w-0 flex flex-col gap-1" : "min-w-0"}>
-            {title && <h2 className={template ? "text-lg font-semibold text-fg-black leading-7 tracking-fg" : "text-sm font-semibold leading-5 text-fg-black"}>{title}</h2>}
+            {title && <h2 className={template ? "text-lg font-semibold text-fg-black leading-7 tracking-fg" : "text-sm font-medium leading-5 text-fg-black"}>{title}</h2>}
             {subtitle && (template
               ? <span className="text-sm font-medium text-fg-grey-700 leading-5 tracking-fg">{subtitle}</span>
               : <p className="text-xs leading-4 text-fg-grey-700">{subtitle}</p>)}

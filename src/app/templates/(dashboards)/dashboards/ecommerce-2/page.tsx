@@ -190,7 +190,7 @@ export default function Ecommerce2Page() {
           <TrendChart className="lg:col-span-2">
             <DashboardHeader className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
+                <h3 className="text-sm font-medium text-fg-black">Statistic</h3>
                 <p className="text-sm text-fg-grey-500">Income and Expenses</p>
               </div>
               <div className="inline-flex items-center gap-1 rounded-full bg-fg-grey-100 p-1 text-xs">
@@ -244,7 +244,7 @@ export default function Ecommerce2Page() {
           <Panel >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Expenses</h3>
+                <h3 className="text-sm font-medium text-fg-black">Expenses</h3>
                 <p className="text-sm text-fg-grey-500">Based on category</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -291,11 +291,11 @@ export default function Ecommerce2Page() {
                       <img src={p.imageUrl} alt={p.name} className="size-full object-cover" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-fg-black truncate">{p.name}</div>
+                      <div className="text-sm font-medium text-fg-black truncate">{p.name}</div>
                       <div className="text-xs text-fg-grey-500">{p.sales}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm font-semibold text-fg-black">{p.price}</div>
+                      <div className="text-sm font-medium text-fg-black">{p.price}</div>
                       <div className="text-xs text-emerald-500">8%</div>
                     </div>
                   </div>
@@ -337,7 +337,7 @@ export default function Ecommerce2Page() {
         <RecentRecords >
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
+              <h3 className="text-sm font-medium text-fg-black">Recent Orders</h3>
               <p className="text-sm text-fg-grey-500">Recent orders</p>
             </div>
             <div className="flex items-center gap-2">

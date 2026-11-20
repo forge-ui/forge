@@ -223,7 +223,7 @@ export default function AnalyticsPage() {
                     <UsersGroupTwoRoundedBoldDuotone size={20} />
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-semibold text-fg-black">New Users</div>
+                    <div className="text-sm font-medium text-fg-black">New Users</div>
                   </div>
                   <KebabMenu items={[{ label: "View", onSelect: () => {} }]} />
                 </div>
@@ -295,7 +295,7 @@ export default function AnalyticsPage() {
           <RecentRecords >
             <DashboardHeader className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Top Referral Pages</h3>
+                <h3 className="text-sm font-medium text-fg-black">Top Referral Pages</h3>
                 <p className="text-sm text-fg-grey-500">Based on session</p>
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>
@@ -309,7 +309,7 @@ export default function AnalyticsPage() {
           <RecentRecords >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Top Performing Pages</h3>
+                <h3 className="text-sm font-medium text-fg-black">Top Performing Pages</h3>
                 <p className="text-sm text-fg-grey-500">Based on clicks</p>
               </div>
               <Button size="sm" iconLeft={<DocumentBoldDuotone size={14} />}>Reports</Button>

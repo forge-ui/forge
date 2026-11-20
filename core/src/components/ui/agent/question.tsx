@@ -183,7 +183,7 @@ export function Question({ questions, onSubmit, onCancel, skippable = false, ans
     >
       <div key={item.id} className="forge-fade-up flex flex-col gap-3">
         <div className="flex flex-col gap-1">
-          <p className="text-sm font-semibold leading-6 text-fg-black">{item.title}</p>
+          <p className="text-sm font-medium leading-6 text-fg-black">{item.title}</p>
           {item.description && <p className="text-xs leading-5 text-fg-grey-700">{item.description}</p>}
         </div>
         {item.options.length > 0 && (

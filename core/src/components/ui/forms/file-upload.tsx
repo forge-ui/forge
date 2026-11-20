@@ -115,7 +115,7 @@ export function FileCard({
       <FileTypeIcon fileName={file.name} dim={isUploading} />
 
       <div className="flex-1 inline-flex flex-col justify-center items-start gap-1 min-w-0">
-        <span className="self-stretch text-fg-black text-sm font-semibold leading-5 tracking-fg truncate">
+        <span className="self-stretch text-fg-black text-sm font-medium leading-5 tracking-fg truncate">
           {file.name}
         </span>
         <div className="self-stretch inline-flex items-center gap-1">
@@ -267,7 +267,7 @@ export function FileUpload({
             accent.bg,
           )}
         >
-          <span className="text-white text-sm font-bold leading-5 tracking-fg">
+          <span className="text-white text-sm font-medium leading-5 tracking-fg">
             {buttonLabel ?? (locale === "en" ? "Add files" : "添加文件")}
           </span>
         </button>

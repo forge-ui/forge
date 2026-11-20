@@ -173,7 +173,7 @@ export function RunningNow({ tasks, onOpen, locale = "zh", className }: RunningN
 
   return (
     <div ref={root} className={cn("relative inline-flex tracking-fg", className)}>
-      <button type="button" aria-expanded={open} onClick={() => setOpen(value => !value)} className="inline-flex h-9 items-center gap-2 rounded-full bg-background px-3.5 text-xs font-bold text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-50">
+      <button type="button" aria-expanded={open} onClick={() => setOpen(value => !value)} className="inline-flex h-9 items-center gap-2 rounded-full bg-background px-3.5 text-xs font-medium text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-50">
         {running > 0 && <span className="inline-flex items-center gap-1.5"><Spinner size={12} />{pick(locale, `${running} 个运行中`, `${running} running`)}</span>}
         {running > 0 && waiting > 0 && <span className="h-3 w-px bg-fg-grey-200" />}
         {waiting > 0 && <span className="inline-flex items-center gap-1.5 text-fg-yellow-700"><span className="forge-pulse-dot size-1.5 rounded-full bg-fg-yellow-500" />{pick(locale, `${waiting} 个待你处理`, `${waiting} need you`)}</span>}
@@ -239,7 +239,7 @@ export function AwaySummary({ awayFor, items, onDismiss, locale = "zh", size = "
       <div className="flex flex-col gap-4">
         {groups.map(group => (
           <div key={group.kind} className="flex flex-col gap-1.5">
-            <span className="text-xs font-semibold text-fg-grey-500">{pick(locale, group.zh, group.en)}</span>
+            <span className="text-xs font-medium text-fg-grey-500">{pick(locale, group.zh, group.en)}</span>
             {group.items.map(item => (
               <div key={item.id} className={cn("flex min-w-0 items-center gap-3 rounded-xl px-3 py-2.5 outline outline-1 outline-offset-[-1px]", item.kind === "needs-you" ? "bg-fg-yellow-50 outline-fg-yellow-200" : "bg-background outline-fg-grey-200")}>
                 <StateIcon status={item.kind} />

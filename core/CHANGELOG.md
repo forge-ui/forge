@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.0
+
+这一版调整默认排版和中性色，目的是让中文界面里的文字更清楚。外观会变，升级后请整体看一遍页面。
+
+- 默认正文字体从 Manrope 换成 Inter。用 `@fontsource-variable/inter` 加载并设置 `--font-inter`；仍只设置 `--font-manrope` 的项目会继续显示 Manrope，不会报错。
+- `tracking-fg` 从 0.5px 改为 0，中文不再被整体拉开。类名保留，已有代码不用改。
+- 黑色从带蓝调的 `#000A19` 改为中性的 `#1F1F1F`，`fg-black-50`–`900` 整组改为中性灰阶。
+- 灰字 `fg-grey-700` 从 `#868686` 加深到 `#737373`（白底对比度约 4.7:1）；`fg-grey-200` 改为 `#E5E5E5`，`fg-grey-100` 改为 `#F5F5F5`。深色模式的色板不变。
+- 14px 及以下的文字不再用半粗和粗体：普通强调统一为 medium，选中态为 semibold。按钮、标签、表头、筛选项、分页等都受影响；16px 以上的标题和数字不变。
+- DataTable 表头改为浅灰底（`bg-fg-grey-100`）、medium 字重，表头和单元格的上下内边距收紧（单行行高从 68px 降到 56px）。
+- AppLayout 侧栏菜单项高度从 48px 降到 40px、项间距从 12px 降到 4px；未选中项用常规字重和新的 `--sidebar-muted`（`#868686`），选中项为 semibold。
+- EventTag 的 `sm` 尺寸、日历「更多」链接、聊天时间、流程图标签从 10–11px 提到 12px。数字角标仍是 10px。
+- 排版契约版本（`--forge-typography-contract-version`）升到 2。
+- 建议去掉 `<html>` 上的 `antialiased`：它在 macOS 上会把浅色底上的文字渲染得更细。
+
 ## 0.9.1
 
 - 图表计算最大最小值改为逐个比较，不再把整组数据展开传给 `Math.max`/`Math.min`；数据量很大时（例如 7 万个点的 DivergingBarChart 服务端渲染）不再因调用栈溢出崩溃。柱状图、折线图、看板和洞察类图表统一使用这套计算。

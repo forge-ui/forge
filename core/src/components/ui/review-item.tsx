@@ -37,7 +37,7 @@ function ImageGrid({
       ))}
       {overflowImageCount !== undefined && overflowImageCount > 0 && (
         <div className="w-16 h-16 rounded-xl bg-fg-violet-100 flex items-center justify-center">
-          <span className="text-sm font-semibold text-fg-violet">
+          <span className="text-sm font-medium text-fg-violet">
             +{overflowImageCount}
           </span>
         </div>
@@ -111,7 +111,7 @@ function RegularVariant({
           </div>
           {/* Name + subtitle */}
           <div className="self-stretch inline-flex justify-start items-center gap-2">
-            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+            <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
               {name}
             </span>
             {subtitle && (
@@ -167,7 +167,7 @@ function CardVariant({
             className="w-11 h-11 rounded-full object-cover shrink-0"
           />
           <div className="inline-flex flex-col justify-center items-start gap-1">
-            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+            <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
               {name}
             </span>
             <span className="text-fg-grey-700 text-xs font-normal leading-4 tracking-fg">

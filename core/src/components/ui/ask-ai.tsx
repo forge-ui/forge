@@ -200,7 +200,7 @@ export function AskAi({
             <StreamingAnswer text={message.content} format="markdown" size="sm" streaming={fresh === `${threadKey}:${index}`} />
             {message.links && (
               <div className="flex flex-wrap gap-2">
-                {message.links.map((link, linkIndex) => <a key={linkIndex} href={link.href} className="max-w-full break-words rounded-full border border-fg-grey-200 px-3 py-1.5 text-sm font-semibold text-fg-black hover:bg-fg-grey-100 focus-visible:outline-2 focus-visible:outline-fg-grey-500">{link.label}</a>)}
+                {message.links.map((link, linkIndex) => <a key={linkIndex} href={link.href} className="max-w-full break-words rounded-full border border-fg-grey-200 px-3 py-1.5 text-sm font-medium text-fg-black hover:bg-fg-grey-100 focus-visible:outline-2 focus-visible:outline-fg-grey-500">{link.label}</a>)}
               </div>
             )}
           </div>
@@ -226,7 +226,7 @@ export function AskAi({
         disabled={disabled} onClick={() => setOpen(true)}
         className={cn(AGENT_ENTRY_CLASS, "px-3 md:px-4 hover:shadow-[0_4px_16px_-6px_var(--fg-cyan-500)] aria-expanded:shadow-[0_4px_16px_-6px_var(--fg-blue-500)] focus-visible:ring-2 focus-visible:ring-fg-grey-500 disabled:cursor-not-allowed disabled:opacity-50", className)}>
         <StarsLinear size={20} color="var(--fg-blue-500)" />
-        <span className="hidden md:inline text-sm font-semibold whitespace-nowrap">{label}</span>
+        <span className="hidden md:inline text-sm font-medium whitespace-nowrap">{label}</span>
       </button>
       <div data-accent={accent} className="contents">
         <AgentPanel

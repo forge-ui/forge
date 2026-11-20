@@ -40,7 +40,7 @@ export function Stepper({
   if (items) return <ol className={cn("forge-stepper list-none p-0 m-0", className)} data-motion={motion} data-color={color} aria-label={locale === "en" ? "Progress steps" : "进度步骤"}>
     {indicator && items.length > 0 && <li aria-hidden className="forge-stepper-indicator" style={{ left: `${(Math.min(items.length, Math.max(1, current)) - .5) / items.length * 100}%` }}>{indicator}</li>}
     {items.map((item, index) => <li key={item.id} data-state={index + 1 < current ? "complete" : index + 1 === current ? "current" : "pending"} aria-current={index + 1 === current ? "step" : undefined}>
-      <button type="button" disabled={!onStepChange} onClick={() => onStepChange?.(index + 1)}><span className="forge-stepper-marker">{index + 1 < current ? <CheckCircleLinear size={20} /> : item.icon ?? index + 1}</span><span className="text-xs font-semibold">{item.label}</span>{item.description && <span className="text-xs text-fg-grey-700">{item.description}</span>}</button>
+      <button type="button" disabled={!onStepChange} onClick={() => onStepChange?.(index + 1)}><span className="forge-stepper-marker">{index + 1 < current ? <CheckCircleLinear size={20} /> : item.icon ?? index + 1}</span><span className="text-xs font-medium">{item.label}</span>{item.description && <span className="text-xs text-fg-grey-700">{item.description}</span>}</button>
     </li>)}
   </ol>;
   const clamped = Math.min(total, Math.max(0, current));

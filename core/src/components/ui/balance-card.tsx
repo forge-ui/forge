@@ -106,11 +106,11 @@ export function BalanceCard({
       <div className={cn("self-stretch h-0 outline outline-1 outline-offset-[-0.50px] relative z-10", divider)} />
 
       <div className="self-stretch inline-flex gap-3 relative z-10">
-        <button type="button" onClick={onTransfer} className={cn("flex-1 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", isCompact ? "h-9" : "h-10", transferBtn)}>
+        <button type="button" onClick={onTransfer} className={cn("flex-1 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-medium leading-5 tracking-fg", isCompact ? "h-9" : "h-10", transferBtn)}>
           <RoundTransferHorizontalLinear size={20} />
           转账
         </button>
-        <button type="button" onClick={onRequest} className={cn("flex-1 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-semibold leading-5 tracking-fg", isCompact ? "h-9" : "h-10", requestBtn)}>
+        <button type="button" onClick={onRequest} className={cn("flex-1 px-4 rounded-xl inline-flex justify-center items-center gap-2 cursor-pointer text-sm font-medium leading-5 tracking-fg", isCompact ? "h-9" : "h-10", requestBtn)}>
           <DownloadLinear size={20} />
           收款
         </button>

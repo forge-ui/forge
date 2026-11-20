@@ -80,7 +80,7 @@ export function MessageMenu() {
           role="menuitem"
           className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors"
         >
-          <span className="flex-1 h-6 justify-center text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">{item.label}</span>
+          <span className="flex-1 h-6 justify-center text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{item.label}</span>
           {item.badge !== undefined && (
             <span className="px-1.5 py-0.5 bg-fg-red rounded-full inline-flex flex-col justify-center items-center gap-2">
               <span className="text-white text-2xs font-semibold leading-4 tracking-fg">{item.badge}</span>
@@ -128,7 +128,7 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
             </div>
             {!item.read && (
               <button type="button" className="inline-flex justify-start items-start gap-1 hover:underline">
-                <span className="text-accent text-sm font-bold leading-5 tracking-fg">标为已读</span>
+                <span className="text-accent text-sm font-medium leading-5 tracking-fg">标为已读</span>
               </button>
             )}
           </div>
@@ -138,10 +138,10 @@ export function NotificationPanel({ onClose }: { onClose: () => void }) {
       {/* Footer */}
       <div className="self-stretch shrink-0 p-5 bg-background border-t border-fg-grey-200 inline-flex justify-between items-center overflow-hidden">
         <button type="button" className="flex justify-start items-start gap-1 hover:underline">
-          <span className="text-accent text-sm font-bold leading-5 tracking-fg">全部标为已读</span>
+          <span className="text-accent text-sm font-medium leading-5 tracking-fg">全部标为已读</span>
         </button>
         <button type="button" className="flex justify-start items-start gap-1 hover:underline">
-          <span className="text-accent text-sm font-bold leading-5 tracking-fg">查看更多</span>
+          <span className="text-accent text-sm font-medium leading-5 tracking-fg">查看更多</span>
         </button>
       </div>
     </div>
@@ -190,7 +190,7 @@ export function LanguageSwitcher({
             <span className="w-6 h-6 flex justify-center items-center">
               <img src={lang.flagUrl} alt={lang.label} className="w-5 h-5 rounded-full object-cover" />
             </span>
-            <span className={cn("flex-1 text-sm leading-5 tracking-fg line-clamp-1", isActive ? "font-bold" : "font-semibold")}>{lang.label}</span>
+            <span className={cn("flex-1 text-sm leading-5 tracking-fg line-clamp-1", isActive ? "font-semibold" : "font-medium")}>{lang.label}</span>
           </button>
         );
       })}
@@ -234,7 +234,7 @@ export function ProfileDropdown({ locale = "zh", items, onClose }: { locale?: "z
               <span className="w-5 h-5">{item.icon}</span>
             </span>
           )}
-          <span className="flex-1 text-sm font-semibold leading-5 tracking-fg line-clamp-1">{item.label}</span>
+          <span className="flex-1 text-sm font-medium leading-5 tracking-fg line-clamp-1">{item.label}</span>
         </button>
       ))}
     </div>
@@ -288,7 +288,7 @@ export function TeamSwitcherDropdown({
           </div>
         )}
         <div className="self-stretch shrink-0 flex flex-col justify-center items-center gap-1">
-          <span className="self-stretch shrink-0 text-center text-fg-black text-sm font-semibold leading-5 tracking-fg">{teamName}</span>
+          <span className="self-stretch shrink-0 text-center text-fg-black text-sm font-medium leading-5 tracking-fg">{teamName}</span>
           {subtitle && (
             <span className="self-stretch shrink-0 text-center text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
               {subtitle}
@@ -302,11 +302,11 @@ export function TeamSwitcherDropdown({
           <div className="self-stretch shrink-0 flex flex-col justify-start items-start">
             <button type="button" role="menuitem" className="self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
               <span className="w-6 h-6 flex justify-center items-center"><UserPlusBold size={20} /></span>
-              <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{inviteLabel}</span>
+              <span className="flex-1 text-left text-sm font-medium leading-5 tracking-fg line-clamp-1">{inviteLabel}</span>
             </button>
             <button type="button" role="menuitem" className="self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
               <span className="w-6 h-6 flex justify-center items-center"><SettingsBold size={20} /></span>
-              <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{settingsLabel}</span>
+              <span className="flex-1 text-left text-sm font-medium leading-5 tracking-fg line-clamp-1">{settingsLabel}</span>
             </button>
           </div>
           <div className="self-stretch shrink-0 px-2.5 flex flex-col justify-start items-start gap-2">
@@ -341,7 +341,7 @@ export function TeamSwitcherDropdown({
                     <img src={team.avatar} alt={team.name} className="w-5 h-5 rounded-full object-cover" />
                   )}
                 </span>
-                <span className={cn("flex-1 text-sm leading-5 tracking-fg text-left line-clamp-1", team.active ? "font-bold" : "font-semibold")}>{team.name}</span>
+                <span className={cn("flex-1 text-sm leading-5 tracking-fg text-left line-clamp-1", team.active ? "font-semibold" : "font-medium")}>{team.name}</span>
                 {team.active && <CheckCircleBold size={20} />}
               </button>
             ))}
@@ -357,7 +357,7 @@ export function TeamSwitcherDropdown({
       {showActions ? (
         <button type="button" role="menuitem" className="self-stretch shrink-0 px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
           <span className="w-6 h-6 flex justify-center items-center"><AddCircleBold size={20} /></span>
-          <span className="flex-1 text-left text-sm font-semibold leading-5 tracking-fg line-clamp-1">{createNewLabel}</span>
+          <span className="flex-1 text-left text-sm font-medium leading-5 tracking-fg line-clamp-1">{createNewLabel}</span>
         </button>
       ) : null}
     </div>

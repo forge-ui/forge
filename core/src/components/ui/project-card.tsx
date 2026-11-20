@@ -69,7 +69,7 @@ export function ProjectCard({
         <div className="flex justify-start items-start gap-2">
           {labelText && (
             <div className={`px-2.5 py-1 ${lColor.labelBg} rounded-full inline-flex flex-col justify-center items-center`}>
-              <span className="text-white text-sm font-semibold leading-5 tracking-fg">{labelText}</span>
+              <span className="text-white text-sm font-medium leading-5 tracking-fg">{labelText}</span>
             </div>
           )}
           {onMenuClick && (
@@ -84,7 +84,7 @@ export function ProjectCard({
 
       {/* Content */}
       <div className="self-stretch flex flex-col justify-start items-start gap-2">
-        <div className="self-stretch text-fg-black text-sm font-semibold leading-5 tracking-fg">{title}</div>
+        <div className="self-stretch text-fg-black text-sm font-medium leading-5 tracking-fg">{title}</div>
         {description && (
           <div className="self-stretch h-10 text-fg-grey-700 text-sm font-normal leading-5 tracking-fg line-clamp-2">
             {description}
@@ -96,7 +96,7 @@ export function ProjectCard({
       <div className="self-stretch flex flex-col justify-start items-start gap-2">
         <div className="self-stretch inline-flex justify-start items-start gap-2">
           <span className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">进度</span>
-          <span className={`${pColor.text} text-sm font-bold leading-5 tracking-fg`}>{progress}%</span>
+          <span className={`${pColor.text} text-sm font-medium leading-5 tracking-fg`}>{progress}%</span>
         </div>
         <div className="self-stretch h-2 bg-fg-grey-200 rounded-full overflow-hidden">
           <div
@@ -116,7 +116,7 @@ export function ProjectCard({
           </div>
           {overflowCount && overflowCount > 0 && (
             <div className="w-8 h-8 p-1 bg-fg-violet-100 rounded-full flex justify-center items-center overflow-hidden -ml-2">
-              <span className="text-fg-violet text-xs font-semibold leading-4.5 tracking-fg">+{overflowCount}</span>
+              <span className="text-fg-violet text-xs font-medium leading-4.5 tracking-fg">+{overflowCount}</span>
             </div>
           )}
         </div>

@@ -38,7 +38,7 @@ export function ChartStatFooter({ items, accent = "blue" }: ChartStatFooterProps
             {item.trendDirection && (
               <span
                 className={cn(
-                  "inline-flex items-center gap-0.5 text-sm font-bold leading-5 tracking-fg",
+                  "inline-flex items-center gap-0.5 text-sm font-medium leading-5 tracking-fg",
                   trendColorClass(item.trendDirection),
                 )}
               >

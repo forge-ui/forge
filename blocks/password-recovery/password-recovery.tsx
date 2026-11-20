@@ -71,7 +71,7 @@ export function PasswordRecovery({ image = "/images/blocks/auth-workspace.jpg", 
         <TextField label="新密码" type="password" shape="pill" iconLeft={<LockKeyholeBoldIcon size={16} />} value={password} onChange={setPassword} placeholder="至少 8 位" autoComplete="new-password" {...(touched && resetErrors.password ? { state: "error" as const, errorMessage: resetErrors.password } : {})} />
         <TextField label="确认新密码" type="password" shape="pill" iconLeft={<LockKeyholeBoldIcon size={16} />} value={confirm} onChange={setConfirm} autoComplete="new-password" {...(touched && resetErrors.confirm ? { state: "error" as const, errorMessage: resetErrors.confirm } : {})} />
         <Button type="submit" className="w-full">重置密码</Button>
-        <Button variant="unstyled" type="button" className="text-sm font-semibold text-fg-blue" onClick={() => { setStep("email"); setCode(""); setTouched(false); }}>没收到？重新发送</Button>
+        <Button variant="unstyled" type="button" className="text-sm font-medium text-fg-blue" onClick={() => { setStep("email"); setCode(""); setTouched(false); }}>没收到？重新发送</Button>
       </form>}
       {step === "done" && <Button className="w-full" onClick={onBack}>返回登录</Button>}
       {step !== "done" && <p className="text-center text-sm text-fg-grey-700">想起密码了？<Button variant="unstyled" type="button" className="font-semibold text-fg-blue" onClick={onBack}>返回登录</Button></p>}

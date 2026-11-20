@@ -81,7 +81,7 @@ export function CalendarDayCell({
         {overflowCount > 0 && (
           <button
             onClick={onMoreClick}
-            className="flex items-center gap-1 text-2xs text-fg-grey-700 font-medium text-left hover:underline cursor-pointer"
+            className="flex items-center gap-1 text-xs text-fg-grey-700 font-medium text-left hover:underline cursor-pointer"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             {moreAvatar && <img src={moreAvatar} alt="" className="w-3.5 h-3.5 rounded-full object-cover" />}

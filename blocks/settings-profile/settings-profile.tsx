@@ -58,7 +58,7 @@ export function SettingsProfile({ value = defaultProfileValue, avatar = "/images
     <Section title="头像" description="建议使用 400×400 以上的正方形图片，会显示在评论、任务和成员列表里。">
       <div className="flex flex-wrap items-center gap-4">
         {photo ? <img src={photo} alt={form.name} className="size-20 rounded-full object-cover" /> : <span className="flex size-20 items-center justify-center rounded-full bg-fg-grey-100 text-2xl font-semibold text-fg-grey-600">{form.name.slice(0, 1)}</span>}
-        <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-fg-blue-300 px-4 py-2 text-sm font-semibold text-fg-blue hover:bg-fg-blue-50"><CloudUploadLinear size={16} />上传新头像<input type="file" accept="image/*" className="sr-only" onChange={event => { const file = event.target.files?.[0]; if (file) setPhoto(URL.createObjectURL(file)); }} /></label>
+        <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-fg-blue-300 px-4 py-2 text-sm font-medium text-fg-blue hover:bg-fg-blue-50"><CloudUploadLinear size={16} />上传新头像<input type="file" accept="image/*" className="sr-only" onChange={event => { const file = event.target.files?.[0]; if (file) setPhoto(URL.createObjectURL(file)); }} /></label>
         <Button type="button" variant="unstyled" className="text-sm text-fg-grey-700 hover:text-fg-red" onClick={() => setPhoto("")}>移除</Button>
       </div>
     </Section>

@@ -278,7 +278,7 @@ export function SidebarMenu({
           <div className="px-3 flex items-start gap-2">
             <span
               className={cn(
-                "flex-1 text-xs font-bold leading-4 tracking-fg uppercase",
+                "flex-1 text-xs font-medium leading-4 tracking-fg uppercase",
                 sectionLabelColor
               )}
             >
@@ -295,7 +295,7 @@ export function SidebarMenu({
             <div className="px-3 flex items-start gap-2">
               <span
                 className={cn(
-                  "flex-1 text-xs font-bold leading-4 tracking-fg uppercase",
+                  "flex-1 text-xs font-medium leading-4 tracking-fg uppercase",
                   sectionLabelColor
                 )}
               >

@@ -56,7 +56,7 @@ export function CustomersTable({ customers = defaultCustomers, pageSize = 8, onC
   const visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const columns: ColumnDef<CustomerRecord>[] = [
-    { key: "name", header: "客户", minWidth: 240, render: customer => customer.avatar ? <CellImageText src={customer.avatar} title={customer.name} subtitle={customer.email} rounded="full" /> : <div className="flex items-center gap-3"><Avatar initials={customer.name.slice(0, 1)} alt={customer.name} size="sm" /><div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{customer.name}</p><p className="truncate text-xs text-fg-grey-700">{customer.email || "未填写邮箱"}</p></div></div> },
+    { key: "name", header: "客户", minWidth: 240, render: customer => customer.avatar ? <CellImageText src={customer.avatar} title={customer.name} subtitle={customer.email} rounded="full" /> : <div className="flex items-center gap-3"><Avatar initials={customer.name.slice(0, 1)} alt={customer.name} size="sm" /><div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{customer.name}</p><p className="truncate text-xs text-fg-grey-700">{customer.email || "未填写邮箱"}</p></div></div> },
     { key: "phone", header: "手机号", minWidth: 140, render: customer => <CellMuted>{customer.phone}</CellMuted> },
     { key: "orders", header: "订单数", minWidth: 80, valueKind: "number", render: customer => <CellText>{customer.orders.toLocaleString("zh-CN")}</CellText> },
     { key: "spent", header: "累计消费", minWidth: 120, valueKind: "number", render: customer => <CellText>¥{customer.spent.toLocaleString("zh-CN")}</CellText> },

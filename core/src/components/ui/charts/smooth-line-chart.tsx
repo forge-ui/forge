@@ -198,7 +198,7 @@ export function SmoothLineChart({
                   key={i}
                   className={cn(
                     "text-xs leading-4 tracking-fg",
-                    isActive ? "font-bold" : "text-fg-grey-500",
+                    isActive ? "font-semibold" : "text-fg-grey-500",
                   )}
                   style={isActive && primary ? { color: primary.color } : undefined}
                 >

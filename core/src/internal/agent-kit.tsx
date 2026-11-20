@@ -22,7 +22,7 @@ const SOFT: Record<AgentTone, string> = {
 
 export function SoftBadge({ tone = "grey", children, className }: { tone?: AgentTone; children: ReactNode; className?: string }) {
   return (
-    <span className={cn("inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold leading-4 tracking-fg outline outline-1 outline-offset-[-1px]", SOFT[tone], className)}>
+    <span className={cn("inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium leading-4 tracking-fg outline outline-1 outline-offset-[-1px]", SOFT[tone], className)}>
       {children}
     </span>
   );
@@ -67,7 +67,7 @@ export function AgentCard({
       {(title || subtitle || action) && (
         <div className={cn("flex items-start justify-between gap-3 border-b border-fg-grey-200", pad, size === "sm" ? "py-3" : "py-4")}>
           <div className="flex min-w-0 flex-col gap-1">
-            {title && <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>}
+            {title && <h3 className="text-sm font-medium leading-5 text-fg-black">{title}</h3>}
             {subtitle && <p className="text-xs font-medium leading-4.5 text-fg-grey-700">{subtitle}</p>}
           </div>
           {action && <div className="flex shrink-0 items-center gap-2">{action}</div>}
@@ -123,7 +123,7 @@ export function ChoiceMark({ multiple, on }: { multiple?: boolean; on: boolean }
 }
 
 /** Small accent button used inside agent cards (same as ApprovalCard's submit). */
-export const accentButton = "inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60";
+export const accentButton = "inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-3 py-2.5 text-xs font-medium leading-4 tracking-fg text-accent-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60";
 
 /** Text input in the TextField look (getFieldClasses: rounded-xl, grey outline, accent on focus). */
 export const fieldInput = "w-full min-w-0 rounded-xl bg-background px-3 py-2.5 text-sm leading-5 tracking-fg text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-all placeholder:text-fg-grey-700 focus:outline-accent disabled:cursor-not-allowed disabled:bg-fg-grey-200";
@@ -149,7 +149,7 @@ export function FieldChanges({ fields, empty, className }: { fields: { label: st
 }
 
 /** Second-level action next to accentButton, following the theme accent. */
-export const softAccentButton = "inline-flex items-center justify-center gap-1.5 rounded-full bg-accent-soft px-3 py-2.5 text-xs font-bold leading-4 tracking-fg text-accent transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-60";
+export const softAccentButton = "inline-flex items-center justify-center gap-1.5 rounded-full bg-accent-soft px-3 py-2.5 text-xs font-medium leading-4 tracking-fg text-accent transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-60";
 
 /** Compact outlined pill for row-level actions (undo, rewind, retry). */
-export const rowAction = "inline-flex h-7 shrink-0 items-center gap-1 rounded-full bg-background px-2.5 text-xs font-bold tracking-fg text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 disabled:opacity-50";
+export const rowAction = "inline-flex h-7 shrink-0 items-center gap-1 rounded-full bg-background px-2.5 text-xs font-medium tracking-fg text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 disabled:opacity-50";

@@ -96,7 +96,7 @@ export function AgentTurn({
         <span>响应方式：{turn.request.mode}</span>
         <span>权限：{turn.request.permission === "readonly" ? "仅查看" : "操作前确认"}</span>
       </div>}
-      <div className="flex items-center gap-2 text-sm font-semibold text-fg-black">
+      <div className="flex items-center gap-2 text-sm font-medium text-fg-black">
         <StarBoldDuotone size={22} color="var(--fg-black)" />
         Forge 助手
       </div>

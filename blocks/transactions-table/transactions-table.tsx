@@ -65,8 +65,8 @@ export function TransactionsTable({ transactions = defaultTransactions, categori
   const used = Math.min(100, Math.round((spent / budget) * 100));
 
   const columns: ColumnDef<TransactionRecord>[] = [
-    { key: "name", header: "交易", minWidth: 200, render: item => <div className="flex items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-fg-grey-50"><span className={cn("size-3 rounded", item.dot)} /></span><div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{item.name}</p><p className="text-xs text-fg-grey-700">{item.category}</p></div></div> },
-    { key: "amount", header: "金额", minWidth: 120, valueKind: "number", render: item => <span className={cn("text-sm font-semibold tabular-nums", item.amount > 0 ? "text-fg-green-500" : "text-fg-black")}>{money(item.amount)}</span> },
+    { key: "name", header: "交易", minWidth: 200, render: item => <div className="flex items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-fg-grey-50"><span className={cn("size-3 rounded", item.dot)} /></span><div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{item.name}</p><p className="text-xs text-fg-grey-700">{item.category}</p></div></div> },
+    { key: "amount", header: "金额", minWidth: 120, valueKind: "number", render: item => <span className={cn("text-sm font-medium tabular-nums", item.amount > 0 ? "text-fg-green-500" : "text-fg-black")}>{money(item.amount)}</span> },
     { key: "date", header: "时间", minWidth: 110, render: item => <CellTextSubtitle title={item.date} subtitle={item.time} /> },
     { key: "status", header: "状态", minWidth: 90, render: item => <StatusBadge {...statusMeta[item.status]} variant="soft" /> },
     { key: "view", header: "", minWidth: 48, render: item => <IconButton variant="ghost" color="grey" size="sm" aria-label={`查看${item.name}`} onClick={() => setViewing(item)}><EyeLinear size={16} /></IconButton> },
@@ -76,7 +76,7 @@ export function TransactionsTable({ transactions = defaultTransactions, categori
     <div className="flex min-w-0 flex-col gap-4">
       <Panel variant="template" title="本月支出" subtitle="按类别统计">
         <div className="flex justify-center"><DonutChart segments={categories.map(item => ({ label: item.label, value: item.amount, color: item.color }))} centerValue={`¥${(spent / 10000).toFixed(1)}万`} subtitle="支出合计" size="sm" /></div>
-        <ul className="flex flex-col gap-3">{categories.map(item => <li key={item.label} className="flex items-center gap-3"><span className={cn("size-3 shrink-0 rounded", item.color)} /><div className="min-w-0 flex-1"><p className="text-sm font-semibold text-fg-black">{item.label}</p><p className="text-xs text-fg-grey-700">{item.note}</p></div><span className="text-sm font-semibold tabular-nums text-fg-black">¥{item.amount.toLocaleString("zh-CN")}</span></li>)}</ul>
+        <ul className="flex flex-col gap-3">{categories.map(item => <li key={item.label} className="flex items-center gap-3"><span className={cn("size-3 shrink-0 rounded", item.color)} /><div className="min-w-0 flex-1"><p className="text-sm font-medium text-fg-black">{item.label}</p><p className="text-xs text-fg-grey-700">{item.note}</p></div><span className="text-sm font-medium tabular-nums text-fg-black">¥{item.amount.toLocaleString("zh-CN")}</span></li>)}</ul>
       </Panel>
       <Panel variant="template" title="月度预算" subtitle={`预算 ¥${budget.toLocaleString("zh-CN")}`}>
         <ProgressBar value={used} color={used > 90 ? "red" : "blue"} label={`已使用 ${used}%`} />

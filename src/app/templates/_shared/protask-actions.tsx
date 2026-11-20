@@ -124,7 +124,7 @@ export function ProtaskViewDialog({
         {fields.map((field) => (
           <div key={field.label} className="flex items-start justify-between gap-5 border-b border-fg-grey-200 py-4 first:pt-0 last:border-b-0 last:pb-0">
             <span className="text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{field.label}</span>
-            <span className="max-w-72 text-right text-sm font-semibold leading-5 tracking-fg text-fg-black">{field.value}</span>
+            <span className="max-w-72 text-right text-sm font-medium leading-5 tracking-fg text-fg-black">{field.value}</span>
           </div>
         ))}
       </div>
@@ -235,7 +235,7 @@ export function ProtaskActivityDialog({
 
 function ActivityDialogTab({ active, children }: { active: boolean; children: ReactNode }) {
   return (
-    <div className={`flex flex-col items-center gap-4 text-sm leading-5 tracking-fg ${active ? "font-bold text-fg-blue" : "font-semibold text-fg-grey-700"}`}>
+    <div className={`flex flex-col items-center gap-4 text-sm leading-5 tracking-fg ${active ? "font-medium text-fg-blue" : "font-medium text-fg-grey-700"}`}>
       <span>{children}</span>
       <span className={`h-0.5 w-full ${active ? "bg-fg-blue" : "bg-transparent"}`} />
     </div>
@@ -275,7 +275,7 @@ function LogFields({ isMeet }: { isMeet: boolean }) {
 function NotesUploadBlock() {
   return (
     <div>
-      <p className="mb-2 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">Image</p>
+      <p className="mb-2 text-sm font-medium leading-5 tracking-fg text-fg-grey-700">Image</p>
       <Panel variant="custom" className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-fg-grey-200 bg-background p-6 text-center">
         <span className="grid size-12 place-items-center rounded-full bg-fg-blue-100 text-fg-blue">
           <CloudUploadLinear size={24} />
@@ -292,7 +292,7 @@ function NotesUploadBlock() {
 function UploadButton({ label }: { label: string }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">{label}</p>
+      <p className="mb-2 text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{label}</p>
       <Button>Add File</Button>
     </div>
   );
