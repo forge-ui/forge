@@ -65,7 +65,7 @@ const items: ShowcaseItem[] = [
   {
     href: "https://github.com/forge-ui/forge-starter",
     title: "Forge Starter",
-    description: "可直接上线的 Next.js 后台脚手架：登录、角色权限、从 OpenAPI 生成模块、Ask AI 和编码助手 Skill。",
+    description: "可直接上线的 Next.js 后台脚手架：登录、角色权限、从 OpenAPI 生成模块、Forge Agent 和编码助手 Skill。",
     thumbnail: asset("/images/showcase/forge-starter.png"),
     external: true,
   },
@@ -139,7 +139,7 @@ export default function ExamplesIndex() {
                   只要几个页面：在<Link href="/blocks" className="text-fg-blue hover:underline">页面组件</Link>里找到对应的整页区块，用 <code className="rounded bg-fg-grey-100 px-1.5 py-0.5 font-mono text-xs">npx shadcn add</code> 装进现有的 Next.js 项目，源码归你改。
                 </li>
                 <li>
-                  从零开始一个后台：用 <a href="https://github.com/forge-ui/forge-starter" target="_blank" rel="noreferrer" className="text-fg-blue hover:underline">Forge Starter</a>，自带登录、角色与菜单权限、PostgreSQL、从 OpenAPI 生成模块和 Ask AI。
+                  从零开始一个后台：用 <a href="https://github.com/forge-ui/forge-starter" target="_blank" rel="noreferrer" className="text-fg-blue hover:underline">Forge Starter</a>，自带登录、角色与菜单权限、PostgreSQL、从 OpenAPI 生成模块和 Forge Agent。
                 </li>
               </ul>
             </div>

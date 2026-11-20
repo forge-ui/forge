@@ -92,8 +92,30 @@ outputs.set("public/r/index.json", JSON.stringify({
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "forge-dashboard-blocks", homepage: "https://www.forgeui.org/blocks", items,
 }, null, 2) + "\n");
+/** Plain-data TS modules (nav and agent registries), loaded without the site build. */
+async function loadTsData(file) {
+  const source = fs.readFileSync(path.join(root, file), "utf8");
+  const { outputText } = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } });
+  return import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
+}
+const { kitNavGroups } = await loadTsData("src/app/_components/kit-nav.ts");
+const { AGENT_ENTRIES } = await loadTsData("src/app/agent/_kit/_agent-meta.ts");
+const kitItems = kitNavGroups.flatMap(group => group.items);
+const onSurface = (surface, slug) => kitItems.some(item => item.slug === slug && (item.surfaces ?? ["components", "cases"]).includes(surface));
 const searchFile = "src/app/_components/search-index.json";
-const search = JSON.parse(fs.readFileSync(path.join(root, searchFile), "utf8")).filter(entry => !/^\/blocks(?:[/?#]|$)/.test(entry.id));
+// Blocks and Forge Agent entries are regenerated; component and case entries survive only while their page is still in the nav.
+const search = JSON.parse(fs.readFileSync(path.join(root, searchFile), "utf8")).filter(entry => {
+  if (/^\/(?:blocks|agent)(?:[/?#]|$)/.test(entry.id)) return false;
+  const page = /^\/(components|cases)\/([^/?#]+)/.exec(entry.id);
+  return !page || onSurface(page[1], page[2]);
+});
+search.push({ id: "/agent", label: "Forge Agent", group: "Forge Agent", hint: `${AGENT_ENTRIES.length} 个智能体组件`, keywords: ["agent", "智能体", "AI", "对话", "Forge Agent"] });
+search.push(
+  { id: "/agent/api", label: "Forge Agent API", group: "Forge Agent", hint: "全部组件属性", keywords: ["api", "props", ...AGENT_ENTRIES.flatMap(entry => entry.apis)] },
+  { id: "/agent/scenarios", label: "Forge Agent 场景", group: "Forge Agent", hint: "整页组合示例", keywords: ["scenarios", "场景", "案例"] },
+  { id: "/agent/motion", label: "Forge Agent 动效", group: "Forge Agent", hint: "流式输出与渐进展示", keywords: ["motion", "动效", "streaming", "流式"] },
+);
+search.push(...AGENT_ENTRIES.map(({ slug, title, group, summary, apis }) => ({ id: `/agent/${slug}`, label: title, group: "Forge Agent", hint: group, keywords: [slug, group, summary, ...apis] })));
 search.push({ id: "/blocks", label: "页面组件", group: "页面组件", hint: `${catalog.length} 个页面组件`, keywords: ["blocks", "页面组件库", ...categories] });
 search.push(...catalog.map(({ name, title, description, category, component }) => ({ id: `/blocks/${name}`, label: title, group: "页面组件", hint: category, keywords: [name, component, category, description] })));
 outputs.set(searchFile, JSON.stringify(search) + "\n");
