@@ -258,8 +258,8 @@ function tableColumnClass<T>(
   const align = resolveTableColumnAlign(column);
   return cn(
     variant === "header"
-      ? "px-5 py-2.5 bg-fg-grey-100 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap"
-      : "px-5 py-2",
+      ? "px-5 py-3.5 bg-background text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap"
+      : "px-5 py-3.5",
     align === "right" ? "text-right tabular-nums" : "text-left",
     "min-w-0",
     identity ? "w-[1%] max-w-[280px] overflow-hidden" : "whitespace-nowrap",
@@ -904,7 +904,7 @@ function TableGrid<T>({
         <thead>
           <tr className="border-t border-b border-fg-grey-200">
             {showCheckbox && (
-              <th className="w-14 px-6 py-2.5 bg-fg-grey-100 text-left">
+              <th className="w-14 px-6 py-4 bg-background text-left">
                 <Checkbox
                   aria-label="选择全部行"
                   checked={allSelected}
@@ -967,7 +967,7 @@ function TableGrid<T>({
           {rows.map((row, rowIndex) => (
             <tr key={getKey(row, rowIndex)} className="border-b border-fg-grey-200 bg-background">
               {showCheckbox && (
-                <td className="w-14 px-6 py-2">
+                <td className="w-14 px-6 py-4">
                   <Checkbox
                     aria-label={`选择第 ${rowIndex + 1} 行`}
                     checked={isRowSelected(row, rowIndex)}
