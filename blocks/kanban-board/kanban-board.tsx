@@ -125,7 +125,7 @@ function TaskCard({ item, lanes, dragging, onPointerDown, onOpen, onToggle, onMo
       <span data-no-drag className="relative z-10 inline-flex pt-px"><CompleteToggle checked={done} priority={item.priority} label={item.title} onToggle={onToggle} /></span>
       <div className="min-w-0 flex-1">
         <button type="button" onClick={onOpen} className="flex w-full min-w-0 cursor-grab flex-col text-left after:absolute after:inset-0 after:content-['']">
-          <span className={`block max-w-full truncate text-sm font-semibold leading-5 ${done ? "text-fg-grey-500 line-through" : "text-fg-black"}`}>{item.title}</span>
+          <span className={`block max-w-full truncate text-sm font-medium leading-5 ${done ? "text-fg-grey-500 line-through" : "text-fg-black"}`}>{item.title}</span>
           <span className="mt-0.5 line-clamp-1 text-[13px] leading-5 text-fg-grey-700">{item.description}</span>
         </button>
         <div className="relative z-10 mt-2 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1.5 text-xs leading-4 text-fg-grey-700">
@@ -150,7 +150,7 @@ function QuickAdd({ onAdd }: { onAdd: (title: string, description: string) => vo
   const [description, setDescription] = useState("");
   if (!open) return <button type="button" onClick={() => setOpen(true)} className="flex items-center gap-1.5 px-2 py-1.5 text-left text-sm text-fg-grey-500 hover:text-fg-grey-800"><PlusIcon size={14} />添加任务</button>;
   return <form className="flex shrink-0 flex-col gap-2.5 rounded-[10px] border border-fg-grey-300 bg-background p-3 focus-within:border-fg-grey-500" onSubmit={event => { event.preventDefault(); if (!title.trim()) return; onAdd(title.trim(), description.trim()); setTitle(""); setDescription(""); setOpen(false); }}>
-    <input autoFocus value={title} onChange={event => setTitle(event.target.value)} placeholder="任务标题" className="border-0 bg-transparent p-0 text-sm font-semibold text-fg-black outline-none placeholder:text-fg-grey-500" />
+    <input autoFocus value={title} onChange={event => setTitle(event.target.value)} placeholder="任务标题" className="border-0 bg-transparent p-0 text-sm font-medium text-fg-black outline-none placeholder:text-fg-grey-500" />
     <input value={description} onChange={event => setDescription(event.target.value)} placeholder="添加描述" className="border-0 bg-transparent p-0 text-xs text-fg-grey-700 outline-none placeholder:text-fg-grey-500" />
     <div className="flex items-center gap-2"><span className="inline-flex items-center gap-1 text-xs text-fg-grey-500"><CalendarMinimalisticLinear size={14} />日期</span><div className="ml-auto flex items-center gap-1"><Button color="blue" variant="tertiary" size="sm" type="button" onClick={() => setOpen(false)}>取消</Button><Button color="blue" size="sm" type="submit" disabled={!title.trim()}>添加任务</Button></div></div>
   </form>;
@@ -459,7 +459,7 @@ export function KanbanBoard({ project = defaultBoardProject, lanes: initialLanes
           return <div key={lane.id} className="contents">
             {naming && naming.before === lane.id ? <LaneEditor onSubmit={name => addLane(name, lane.id)} onCancel={() => setNaming(null)} /> : null}
             <div data-lane-slot={lane.id} className={`group/lane relative flex shrink-0 ${enteringLane === lane.id ? "motion-safe:animate-[kanban-lane-enter_260ms_cubic-bezier(.22,1,.36,1)]" : ""}`} onAnimationEnd={() => setEnteringLane(current => current === lane.id ? null : current)}>
-              {index > 0 && !preview && !naming ? <button type="button" aria-label={`在${lane.name}前添加列`} onClick={() => setNaming({ before: lane.id })} className="absolute -left-[10px] bottom-0 top-0 z-10 w-5 opacity-0 transition-opacity before:absolute before:bottom-0 before:left-1/2 before:top-0 before:w-px before:bg-fg-blue hover:opacity-100 focus-visible:opacity-100"><span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap bg-background px-2.5 py-1.5 text-[13px] font-semibold text-fg-blue">添加列</span></button> : null}
+              {index > 0 && !preview && !naming ? <button type="button" aria-label={`在${lane.name}前添加列`} onClick={() => setNaming({ before: lane.id })} className="absolute -left-[10px] bottom-0 top-0 z-10 w-5 opacity-0 transition-opacity before:absolute before:bottom-0 before:left-1/2 before:top-0 before:w-px before:bg-fg-blue hover:opacity-100 focus-visible:opacity-100"><span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap bg-background px-2.5 py-1.5 text-[13px] font-medium text-fg-blue">添加列</span></button> : null}
               <section data-lane={lane.id} aria-label={lane.name} className={`flex h-[520px] w-[272px] flex-col gap-2 rounded-[20px] border p-2 sm:h-[720px] ${lane.tint} ${preview?.lane === lane.id ? "border-fg-blue-300" : "border-transparent"}`}>
                 <div className="flex items-center gap-1 px-1">
                   <span className="min-w-0 flex-1 truncate text-sm font-medium text-fg-black">{lane.name}</span>

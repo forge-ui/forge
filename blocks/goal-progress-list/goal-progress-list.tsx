@@ -30,7 +30,7 @@ export function WalletProgressPanel({ title = "Wallet", subtitle = "Your Savings
     <Panel gap="none" className="min-h-[420px]">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
+          <h3 className="text-sm font-medium leading-5 text-fg-black">{title}</h3>
           <p className="mt-1 text-xs font-medium text-fg-grey-700">{subtitle}</p>
         </div>
         <KebabMenu items={[{ label: "Refresh", onSelect: () => onRefresh?.() }]} />
@@ -45,7 +45,7 @@ export function WalletProgressPanel({ title = "Wallet", subtitle = "Your Savings
                 <WalletBoldDuotone size={20} />
               </span>
               <div>
-                <div className="text-sm font-semibold text-fg-black">{goalTitle}</div>
+                <div className="text-sm font-medium text-fg-black">{goalTitle}</div>
                 <div className="mt-1 text-xs text-fg-grey-700">{date}</div>
               </div>
             </div>
@@ -59,8 +59,8 @@ export function WalletProgressPanel({ title = "Wallet", subtitle = "Your Savings
             <div className="h-full rounded-full bg-fg-violet" style={{ width: `${Math.max(0, Math.min(100, progress))}%` }} />
           </div>
           <div className="mt-5 border-t border-fg-grey-200 pt-5 grid grid-cols-2 gap-3">
-            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-semibold" onClick={onTopUp}>Top Up</Button>
-            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-semibold" onClick={onWithdraw}>Withdraw</Button>
+            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-medium" onClick={onTopUp}>Top Up</Button>
+            <Button color="grey" variant="tertiary" className="h-10 rounded-full text-sm font-medium" onClick={onWithdraw}>Withdraw</Button>
           </div>
         </div>
       </div>

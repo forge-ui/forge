@@ -122,7 +122,7 @@ export function CurrencyConverter({
       {/* Header */}
       <div className="self-stretch p-5 inline-flex justify-start items-start gap-3">
         <div className="flex-1 inline-flex flex-col justify-start items-start gap-2">
-          <div className="self-stretch justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg">
+          <div className="self-stretch justify-start text-fg-black text-sm font-medium leading-5 tracking-fg">
             {title}
           </div>
           <div className="self-stretch justify-start text-fg-grey-700 text-xs font-medium leading-4.5 tracking-fg">
@@ -173,7 +173,7 @@ export function CurrencyConverter({
           <span className="w-5 h-5 flex items-center justify-center text-white">
             {convertIcon ?? <TransferVerticalLinear size={20} />}
           </span>
-          <div className="justify-start text-white text-sm font-bold leading-5 tracking-fg">
+          <div className="justify-start text-white text-sm font-medium leading-5 tracking-fg">
             {convertLabel}
           </div>
         </button>

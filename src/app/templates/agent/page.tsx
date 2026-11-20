@@ -218,7 +218,7 @@ function AgentWorkspace() {
               onClick={() => setSearchOpen(true)}
             />
             <div className="flex flex-col gap-1">
-              <p className="mb-2 px-3 text-xs font-semibold text-fg-grey-700">
+              <p className="mb-2 px-3 text-xs font-medium text-fg-grey-700">
                 最近的对话
               </p>
               {sessions.map((s) => (

@@ -44,7 +44,7 @@ export function MeterChart({
             <div
               key={i}
               className={cn(
-                "flex items-center justify-center overflow-hidden px-1 text-center text-sm font-bold leading-5 tracking-fg text-white line-clamp-1",
+                "flex items-center justify-center overflow-hidden px-1 text-center text-sm font-medium leading-5 tracking-fg text-white line-clamp-1",
                 segment.color ?? rampFallback[i],
               )}
               style={{ width: `${pct}%` }}

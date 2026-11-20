@@ -51,7 +51,7 @@ export function CalendarMonth({ events = defaultScheduleEvents, year = 2026, mon
       <div className="flex items-center justify-between gap-3"><h3 className="text-lg font-semibold text-fg-black">近期日程</h3><Button size="sm" onClick={onCreate}>新建日程</Button></div>
       <ul className="flex flex-col gap-3">{upcoming.map(event => <li key={event.id}><Button variant="unstyled" type="button" className="flex w-full items-start gap-3 rounded-xl border border-fg-grey-200 p-3 text-left transition-colors hover:bg-fg-grey-50" onClick={() => setSelected(event)}>
         <span className={cn("mt-1 size-2.5 shrink-0 rounded-full", dotColor[event.color])} />
-        <span className="min-w-0 flex-1"><span className="block truncate text-sm font-semibold text-fg-black">{event.title}</span><span className="mt-1 block text-xs text-fg-grey-700">{month + 1} 月 {event.day} 日 · {event.time}</span></span>
+        <span className="min-w-0 flex-1"><span className="block truncate text-sm font-medium text-fg-black">{event.title}</span><span className="mt-1 block text-xs text-fg-grey-700">{month + 1} 月 {event.day} 日 · {event.time}</span></span>
       </Button></li>)}</ul>
     </SurfaceCard>
     <Modal open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }} title={selected?.title ?? "日程详情"}>

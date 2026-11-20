@@ -40,7 +40,7 @@ export function ChartListItem({
           </div>
         )}
         <div className="flex-1 flex flex-col gap-1">
-          <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg line-clamp-1">
+          <span className="text-fg-black text-sm font-medium leading-5 tracking-fg line-clamp-1">
             {title}
           </span>
           {subtitle && (
@@ -51,7 +51,7 @@ export function ChartListItem({
         </div>
       </div>
       <div className="flex flex-col items-end gap-1">
-        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+        <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
           {value}
         </span>
         {trend && <TrendText trend={trend} trendDirection={trendDirection} size="xs" />}

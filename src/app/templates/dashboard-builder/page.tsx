@@ -38,7 +38,7 @@ export default function DashboardBuilderGallery() {
               <div className="flex flex-col gap-3 p-6">
                 <h2 className="text-lg font-bold tracking-fg text-fg-black">{v.title}</h2>
                 <p className="text-sm leading-6 text-fg-grey-700">{v.subtitle}</p>
-                <div className="mt-2 flex items-center gap-1 text-sm font-semibold text-fg-violet">
+                <div className="mt-2 flex items-center gap-1 text-sm font-medium text-fg-violet">
                   打开模板
                   <ArrowRightLinear size={16} className="transition-transform group-hover:translate-x-0.5" />
                 </div>

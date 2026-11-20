@@ -122,8 +122,8 @@ export function TabBar({
           className={cn(
             "relative px-4 py-3 text-sm cursor-pointer inline-flex items-center gap-1.5",
             tab.active
-              ? `${tabActiveColors[color]} font-bold`
-              : "text-fg-grey-700 font-semibold"
+              ? `${tabActiveColors[color]} font-semibold`
+              : "text-fg-grey-700 font-medium"
           )}
         >
           {tab.icon && <span aria-hidden className="forge-tab-icon flex h-5 w-5 items-center justify-center">{tab.icon}</span>}
@@ -131,7 +131,7 @@ export function TabBar({
           {tab.badge !== undefined && (
             <span
               className={cn(
-                "px-1.5 py-0.5 rounded-full text-xs font-semibold",
+                "px-1.5 py-0.5 rounded-full text-xs font-medium",
                 tab.active
                   ? `${tabBorderColors[color]} text-white`
                   : "bg-fg-grey-200 text-fg-grey-700"

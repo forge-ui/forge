@@ -50,7 +50,7 @@ function CrmSalesContent() {
             <DocumentTextBoldDuotone size={18} />
           </span>
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold leading-5 tracking-fg text-fg-black">{row.transaction}</p>
+            <p className="truncate text-sm font-medium leading-5 tracking-fg text-fg-black">{row.transaction}</p>
             <p className="truncate text-xs font-normal leading-4 tracking-fg text-fg-grey-700">{row.invoiceId}</p>
           </div>
         </div>

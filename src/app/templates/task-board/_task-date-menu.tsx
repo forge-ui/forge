@@ -98,7 +98,7 @@ export function TaskDateMenu({ value, onChange, time, repeat, repeatRule, onSche
             popup.current?.hidePopover(); anchor.current?.querySelector("button")?.focus();
           }}>保存安排</Button>
         </div> : <>
-        <p className="px-3 py-2 text-sm font-semibold text-fg-black">安排日期</p>
+        <p className="px-3 py-2 text-sm font-medium text-fg-black">安排日期</p>
         {[
           { label: "今天", date: day() }, { label: "明天", date: day(1) },
           { label: "本周周末", date: weekend }, { label: "下周一", date: nextWeek },

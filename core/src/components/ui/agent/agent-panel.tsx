@@ -12,7 +12,7 @@ import { ClockCircleLinear, PenNewSquareLinear, PlusLinear, StarsLinear } from "
 export const AGENT_PANEL_WIDTH = 400;
 
 /** The Forge Agent entry: white pill with a blue–cyan–green gradient outline. */
-export const AGENT_ENTRY_CLASS = "inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-[1.5px] border-transparent px-4 text-sm font-semibold tracking-fg text-fg-black transition [background:linear-gradient(var(--background),var(--background))_padding-box,linear-gradient(120deg,var(--fg-blue-500),var(--fg-cyan-500),var(--fg-green-500))_border-box]";
+export const AGENT_ENTRY_CLASS = "inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border-[1.5px] border-transparent px-4 text-sm font-medium tracking-fg text-fg-black transition [background:linear-gradient(var(--background),var(--background))_padding-box,linear-gradient(120deg,var(--fg-blue-500),var(--fg-cyan-500),var(--fg-green-500))_border-box]";
 
 // On wide screens the open panel takes its width from the page instead of covering it, so what
 // the agent operates stays in view. Sticky headers follow; fixed full-width bars do not.
@@ -96,7 +96,7 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
   return (
     <aside aria-label={title} data-forge-agent="panel" className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[400px] flex-col border-l border-fg-grey-200 bg-background shadow-2xl lg:shadow-none">
       <header className="flex h-12 shrink-0 items-center justify-between border-b border-fg-grey-200 pl-4 pr-2">
-        <span className="flex items-center gap-1.5 text-sm font-semibold tracking-fg text-fg-black"><StarsLinear size={16} color="var(--accent)" />{title}</span>
+        <span className="flex items-center gap-1.5 text-sm font-medium tracking-fg text-fg-black"><StarsLinear size={16} color="var(--accent)" />{title}</span>
         <div className="flex items-center">
           {sessions && sessions.length > 0 && onSelectSession && (
             <div ref={history} className="relative">

@@ -138,15 +138,15 @@ export default function CategoryDetailPage() {
           <div className="flex flex-col gap-3">
             <div>
               <p className="text-sm text-fg-grey-700">Sales</p>
-              <p className="text-sm font-semibold text-fg-black mt-0.5">Google</p>
+              <p className="text-sm font-medium text-fg-black mt-0.5">Google</p>
             </div>
             <div>
               <p className="text-sm text-fg-grey-700">Stock</p>
-              <p className="text-sm font-semibold text-fg-black mt-0.5">204</p>
+              <p className="text-sm font-medium text-fg-black mt-0.5">204</p>
             </div>
             <div>
               <p className="text-sm text-fg-grey-700">Added</p>
-              <p className="text-sm font-semibold text-fg-black mt-0.5">12 December 2022</p>
+              <p className="text-sm font-medium text-fg-black mt-0.5">12 December 2022</p>
             </div>
           </div>
         </Panel>

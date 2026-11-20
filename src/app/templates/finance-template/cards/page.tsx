@@ -61,7 +61,7 @@ function FinanceCardsContent() {
   };
   const columns: ColumnDef<Transaction>[] = [
     { key: "name", header: "Name/Business", sortable: true, flex: true, render: (row) => <FinanceTransactionCell title={row.name} subtitle={row.category} color={transactionAccent(row)} /> },
-    { key: "amount", header: "Amount", sortable: true, width: "w-[170px]", render: (row) => <span className={row.amount.startsWith("+") ? "text-sm font-semibold leading-5 text-fg-green-500" : "text-sm font-semibold leading-5 text-fg-black"}>{row.amount}</span> },
+    { key: "amount", header: "Amount", sortable: true, width: "w-[170px]", render: (row) => <span className={row.amount.startsWith("+") ? "text-sm font-medium leading-5 text-fg-green-500" : "text-sm font-medium leading-5 text-fg-black"}>{row.amount}</span> },
     { key: "date", header: "Date & Time", sortable: true, width: "w-[180px]", render: (row) => <CellTextSubtitle title={row.date} subtitle={row.time} /> },
     { key: "status", header: "Status", width: "w-[140px]", render: (row) => <StatusBadge label={row.status} color={transactionStatusColor[row.status]} /> },
     {

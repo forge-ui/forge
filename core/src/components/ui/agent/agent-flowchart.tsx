@@ -88,16 +88,16 @@ export function AgentFlowchart({
                     selectedId === node.id ? "outline-accent" : "outline-fg-grey-200",
                   )}
                 >
-                  <span className={cn("inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold", KIND_CLASS[node.kind])}>
+                  <span className={cn("inline-flex rounded-full px-2 py-0.5 text-xs font-medium", KIND_CLASS[node.kind])}>
                     {kindLabels?.[node.kind] ?? labels[node.kind]}
                   </span>
-                  <p className="mt-2 text-sm font-semibold text-fg-black">{node.title}</p>
+                  <p className="mt-2 text-sm font-medium text-fg-black">{node.title}</p>
                   {node.body && <p className="mt-1 text-xs leading-5 text-fg-grey-700">{node.body}</p>}
                 </button>
                 {index < nodes.length - 1 && (
                   <div className="flex flex-col items-center text-fg-grey-500">
                     <span className="h-6 w-px bg-fg-grey-200" />
-                    {edge?.label && <span className="text-[11px] font-medium">{edge.label}</span>}
+                    {edge?.label && <span className="text-xs font-medium">{edge.label}</span>}
                     <span className="h-6 w-px bg-fg-grey-200" />
                   </div>
                 )}
@@ -108,7 +108,7 @@ export function AgentFlowchart({
       </div>
       {selected && (
         <div className="border-t border-fg-grey-200 px-5 py-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-fg-grey-500">{selectedLabel}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-fg-grey-500">{selectedLabel}</p>
           <p className="mt-1 text-sm font-medium text-fg-black">{selected.title}</p>
           {outgoing.length > 0 && (
             <p className="mt-1 text-xs text-fg-grey-700">

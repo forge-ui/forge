@@ -179,7 +179,7 @@ function CrmActivityContent() {
           <Panel variant="custom" as="aside" className="flex min-h-[680px] flex-col gap-5 rounded-[20px] bg-background p-4 outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
             <div className="flex items-center gap-3">
               <h2 className="flex-1 text-xl font-semibold leading-8 tracking-fg text-fg-black">Member</h2>
-              <Button variant="unstyled" type="button" className="inline-flex items-center gap-1 text-sm font-bold leading-5 tracking-fg text-fg-blue">
+              <Button variant="unstyled" type="button" className="inline-flex items-center gap-1 text-sm font-medium leading-5 tracking-fg text-fg-blue">
                 <UsersGroupRoundedLinear size={18} />
                 Select All
               </Button>
@@ -192,7 +192,7 @@ function CrmActivityContent() {
                   <Checkbox checked={member.checked} />
                   <Avatar src={avatar(`activity-${member.name.toLowerCase().replaceAll(" ", "-")}`)} alt={member.name} size="lg" />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold leading-5 tracking-fg text-fg-black">{member.name}</p>
+                    <p className="truncate text-sm font-medium leading-5 tracking-fg text-fg-black">{member.name}</p>
                     <p className="truncate text-xs font-medium leading-4 tracking-fg text-fg-grey-700">{member.role}</p>
                   </div>
                 </div>

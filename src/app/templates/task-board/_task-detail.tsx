@@ -152,7 +152,7 @@ export function TaskDetail({
           </div>
         </main>
         <aside className="task-detail-aside" aria-label="任务属性">
-          <h2 className="text-sm font-semibold text-fg-black">任务属性</h2>
+          <h2 className="text-sm font-medium text-fg-black">任务属性</h2>
           <SelectOption
             color="blue"
             label="所属项目"

@@ -20,12 +20,12 @@ const GLOBALS_CSS = `@import "tailwindcss";
 @source "../node_modules/@forge-ui-official/core/dist";`;
 
 const FONTS = `// app/layout.tsx
-import "@fontsource-variable/manrope";
+import "@fontsource-variable/inter";
 import "@fontsource-variable/plus-jakarta-sans";
 
 /* app/globals.css */
 :root {
-  --font-manrope: "Manrope Variable", system-ui, sans-serif;
+  --font-inter: "Inter Variable", system-ui, sans-serif;
   --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
 }`;
 
@@ -40,7 +40,7 @@ const SHADCN_FIX = `/* 把 @theme inline 里的这两行 */
 --font-heading: var(--font-sans);
 
 /* 改成 */
---font-sans: var(--font-manrope);
+--font-sans: var(--font-inter);
 --font-heading: var(--font-plus-jakarta-sans);`;
 
 export default function QuickStartPage() {
@@ -76,8 +76,8 @@ export default function QuickStartPage() {
             <Code label="app/globals.css">{GLOBALS_CSS}</Code>
           </Step>
           <Step id="fonts" title="加载字体">
-            <p className="leading-7 text-fg-black/85">正文用 Manrope，标题用 Plus Jakarta Sans，中文跟随系统字体。不加载也能用，会退回系统字体，只是和官网看起来不一样。</p>
-            <Code label="终端">{"pnpm add @fontsource-variable/manrope @fontsource-variable/plus-jakarta-sans"}</Code>
+            <p className="leading-7 text-fg-black/85">正文用 Inter，标题用 Plus Jakarta Sans，中文跟随系统字体。不加载也能用，会退回系统字体，只是和官网看起来不一样。</p>
+            <Code label="终端">{"pnpm add @fontsource-variable/inter @fontsource-variable/plus-jakarta-sans"}</Code>
             <Code>{FONTS}</Code>
           </Step>
           <Step id="first-component" title="渲染第一个组件">

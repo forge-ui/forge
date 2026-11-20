@@ -87,7 +87,7 @@ export function TableCell({
       )}
       {isHeader ? (
         <>
-          <div className="flex-1 flex items-center gap-1 text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">
+          <div className="flex-1 flex items-center gap-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
             {leadIcon && (
               <span className="w-5 h-5 flex items-center justify-center text-fg-grey-500 shrink-0">
                 {leadIcon}
@@ -258,8 +258,8 @@ function tableColumnClass<T>(
   const align = resolveTableColumnAlign(column);
   return cn(
     variant === "header"
-      ? "px-5 py-3.5 bg-background text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap"
-      : "px-5 py-3.5",
+      ? "px-5 py-2.5 bg-fg-grey-100 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap"
+      : "px-5 py-2",
     align === "right" ? "text-right tabular-nums" : "text-left",
     "min-w-0",
     identity ? "w-[1%] max-w-[280px] overflow-hidden" : "whitespace-nowrap",
@@ -325,7 +325,7 @@ export function StatusBadge({
       >
         <span
           className={cn(
-            "text-center justify-center text-xs font-semibold leading-4.5 tracking-fg",
+            "text-center justify-center text-xs font-medium leading-4.5 tracking-fg",
             soft ? soft.text : "text-white",
           )}
         >
@@ -374,7 +374,7 @@ export function ProgressBadge({
     >
       <span
         className={cn(
-          "text-center justify-center text-xs font-semibold leading-4.5 tracking-fg",
+          "text-center justify-center text-xs font-medium leading-4.5 tracking-fg",
           c.text
         )}
       >
@@ -750,7 +750,7 @@ export function CellLink({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex items-center gap-1 cursor-pointer text-sm font-bold leading-5 tracking-fg",
+        "flex items-center gap-1 cursor-pointer text-sm font-medium leading-5 tracking-fg",
         c.text
       )}
     >
@@ -904,7 +904,7 @@ function TableGrid<T>({
         <thead>
           <tr className="border-t border-b border-fg-grey-200">
             {showCheckbox && (
-              <th className="w-14 px-6 py-4 bg-background text-left">
+              <th className="w-14 px-6 py-2.5 bg-fg-grey-100 text-left">
                 <Checkbox
                   aria-label="选择全部行"
                   checked={allSelected}
@@ -967,7 +967,7 @@ function TableGrid<T>({
           {rows.map((row, rowIndex) => (
             <tr key={getKey(row, rowIndex)} className="border-b border-fg-grey-200 bg-background">
               {showCheckbox && (
-                <td className="w-14 px-6 py-4">
+                <td className="w-14 px-6 py-2">
                   <Checkbox
                     aria-label={`选择第 ${rowIndex + 1} 行`}
                     checked={isRowSelected(row, rowIndex)}
@@ -1039,7 +1039,7 @@ function PaginationControls({
             key={`ellipsis-${index}`}
             className="w-10 h-10 p-2 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden"
           >
-            <span className="flex-1 text-center text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">
+            <span className="flex-1 text-center text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
               ...
             </span>
           </span>
@@ -1055,7 +1055,7 @@ function PaginationControls({
                 : "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700",
             )}
           >
-            <span className="flex-1 text-center text-sm font-semibold leading-5 tracking-fg">
+            <span className="flex-1 text-center text-sm font-medium leading-5 tracking-fg">
               {page}
             </span>
           </button>
@@ -1118,7 +1118,7 @@ export function DataTable<T>({
             <div className="flex-1 flex justify-start items-center gap-4">
               <div className="inline-flex flex-col justify-center items-start gap-2">
                 {title && (
-                  <div className="justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg">
+                  <div className="justify-start text-fg-black text-sm font-medium leading-5 tracking-fg">
                     {title}
                   </div>
                 )}
@@ -1241,7 +1241,7 @@ export function FullWidthTable<T>({
           <div className="flex-1 flex justify-start items-center gap-4">
             <div className="inline-flex flex-col justify-center items-start gap-2">
               {title && (
-                <div className="justify-start text-fg-black text-sm font-semibold leading-5 tracking-fg">
+                <div className="justify-start text-fg-black text-sm font-medium leading-5 tracking-fg">
                   {title}
                 </div>
               )}

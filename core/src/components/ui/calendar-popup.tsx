@@ -86,7 +86,7 @@ export function CalendarPopup({
         onClick={() => onChange?.(new Date(viewYear, viewMonth, d))}
         className={cn(
           "w-8 h-8 rounded-lg flex items-center justify-center text-sm leading-5 transition-colors",
-          isSelected(d) || isToday(d) ? cn(accentBg, "text-white rounded-full font-bold") : "text-fg-grey-900 hover:bg-fg-grey-100"
+          isSelected(d) || isToday(d) ? cn(accentBg, "text-white rounded-full font-semibold") : "text-fg-grey-900 hover:bg-fg-grey-100"
         )}
       >
         {d}
@@ -105,8 +105,8 @@ export function CalendarPopup({
           <AltArrowLeftLinear size={16} />
         </button>
         <div className="flex-1 flex items-center justify-center gap-2">
-          <span className="text-fg-black text-sm font-semibold leading-5">{MONTH_NAMES[viewMonth]}</span>
-          <span className="text-fg-black text-sm font-semibold leading-5">{viewYear}</span>
+          <span className="text-fg-black text-sm font-medium leading-5">{MONTH_NAMES[viewMonth]}</span>
+          <span className="text-fg-black text-sm font-medium leading-5">{viewYear}</span>
         </div>
         <button type="button" aria-label="下个月" onClick={nextMonth} className="w-8 h-8 rounded-lg flex items-center justify-center text-fg-grey-700 hover:bg-fg-grey-100 transition-colors">
           <AltArrowRightLinear size={16} />
@@ -116,7 +116,7 @@ export function CalendarPopup({
       <div className="p-4">
         <div className="grid grid-cols-7 gap-1 mb-2">
           {DAY_LABELS.map((d) => (
-            <div key={d} className="w-8 h-8 flex items-center justify-center text-xs font-semibold text-fg-grey-500">{d}</div>
+            <div key={d} className="w-8 h-8 flex items-center justify-center text-xs font-medium text-fg-grey-500">{d}</div>
           ))}
         </div>
         <div className="grid grid-cols-7 gap-1">

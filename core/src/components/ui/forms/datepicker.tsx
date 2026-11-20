@@ -351,7 +351,7 @@ export function Datepicker({
                     >
                       <span className={cn(
                         "text-sm leading-5 tracking-fg",
-                        isSelected ? `font-bold ${accent.text}` : "font-semibold text-fg-grey-700",
+                        isSelected ? `font-semibold ${accent.text}` : "font-medium text-fg-grey-700",
                       )}>
                         {m}
                       </span>
@@ -376,7 +376,7 @@ export function Datepicker({
                     >
                       <span className={cn(
                         "text-sm leading-5 tracking-fg",
-                        isSelected ? `font-bold ${accent.text}` : "font-semibold text-fg-grey-700",
+                        isSelected ? `font-semibold ${accent.text}` : "font-medium text-fg-grey-700",
                       )}>
                         {y}
                       </span>
@@ -445,7 +445,7 @@ export function Datepicker({
 
                 {mode === "range" && confirmSelection && <div className="flex items-center justify-between gap-3 border-t border-fg-grey-200 px-4 py-3">
                   <span className="text-xs text-fg-grey-700" aria-live="polite">{draft.start && draft.end ? `${Math.round((Date.UTC(draft.end.getFullYear(), draft.end.getMonth(), draft.end.getDate()) - Date.UTC(draft.start.getFullYear(), draft.start.getMonth(), draft.start.getDate())) / 86400000)} ${locale === "zh" ? "晚" : "nights"}` : locale === "zh" ? "请选择日期区间" : "Choose a date range"}</span>
-                  <button type="button" disabled={!draft.start || !draft.end} onClick={() => { if (draft.start && draft.end) { onRangeChange?.(draft.start, draft.end); if (!inline) { setOpen(false); triggerRef.current?.focus(); } } }} className={cn("rounded-full px-4 py-2 text-sm font-semibold text-white disabled:opacity-40", accent.bg)}>{locale === "zh" ? "应用" : "Apply"}</button>
+                  <button type="button" disabled={!draft.start || !draft.end} onClick={() => { if (draft.start && draft.end) { onRangeChange?.(draft.start, draft.end); if (!inline) { setOpen(false); triggerRef.current?.focus(); } } }} className={cn("rounded-full px-4 py-2 text-sm font-medium text-white disabled:opacity-40", accent.bg)}>{locale === "zh" ? "应用" : "Apply"}</button>
                 </div>}
                 {/* Range hint */}
                 {mode === "range" && pickingEnd && (

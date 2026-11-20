@@ -83,16 +83,16 @@ export function ProgressBar({
   // Dark mode: both variants read as 75%-white with their own weight.
   const labelClass = onDark
     ? labelVariant === "value"
-      ? "text-white/75 font-semibold"
+      ? "text-white/75 font-medium"
       : "text-white/75 font-medium"
     : labelVariant === "value"
-      ? "text-fg-black font-semibold"
+      ? "text-fg-black font-medium"
       : "text-fg-grey-700 font-medium";
 
   // Figma keeps percentage color-matched in light mode, but switches to white on dark.
   const percentClass = onDark
-    ? "text-white font-bold"
-    : cn(progressTextColors[color], "font-bold");
+    ? "text-white font-medium"
+    : cn(progressTextColors[color], "font-medium");
 
   const trackClass = onDark ? "bg-fg-grey-200/25" : "bg-fg-grey-200";
 

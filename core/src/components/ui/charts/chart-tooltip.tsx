@@ -32,7 +32,7 @@ export function ChartTooltip({ items, className }: ChartTooltipProps) {
                 <span className="text-xs leading-4 tracking-fg text-fg-grey-500">:</span>
               </>
             )}
-            <span className="text-xs font-bold leading-4 tracking-fg text-white">{item.value}</span>
+            <span className="text-xs font-medium leading-4 tracking-fg text-white">{item.value}</span>
             {item.trend && (
               <span
                 className={cn(

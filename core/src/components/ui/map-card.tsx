@@ -97,7 +97,7 @@ function RegionRow({ region }: { region: MapRegion }) {
           className="w-11 h-11 rounded-lg object-cover shrink-0"
         />
         <div className="flex-1 flex flex-col gap-1 min-w-0">
-          <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg truncate">
+          <span className="text-fg-black text-sm font-medium leading-5 tracking-fg truncate">
             {region.name}
           </span>
           <span className="text-fg-grey-700 text-xs font-normal leading-4 tracking-fg">
@@ -105,7 +105,7 @@ function RegionRow({ region }: { region: MapRegion }) {
           </span>
         </div>
       </div>
-      <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg shrink-0">
+      <span className="text-fg-black text-sm font-medium leading-5 tracking-fg shrink-0">
         {region.value}
       </span>
     </div>
@@ -124,7 +124,7 @@ function CardHeader({
   return (
     <div className="px-5 pt-5 inline-flex justify-start items-start gap-3">
       <div className="flex-1 flex flex-col gap-2">
-        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+        <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
           {title}
         </span>
         {subtitle && (

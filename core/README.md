@@ -20,7 +20,7 @@ Peer dependencies：React 19、React DOM 19、Next.js 15 或以上、Tailwind CS
 @source "../../node_modules/@forge-ui-official/core/dist";
 ```
 
-字体：正文用 Manrope，标题用 Plus Jakarta Sans。用 `@fontsource-variable/manrope` 和 `@fontsource-variable/plus-jakarta-sans` 加载，再设置 `--font-manrope` 和 `--font-plus-jakarta-sans`；没设置时退回系统字体。用过 `shadcn init` 的项目，把它写入的 `--font-sans: var(--font-sans)` 改成 `var(--font-manrope)`。
+字体：正文用 Inter，标题用 Plus Jakarta Sans。用 `@fontsource-variable/inter` 和 `@fontsource-variable/plus-jakarta-sans` 加载，再设置 `--font-inter` 和 `--font-plus-jakarta-sans`；没设置时退回系统字体。用过 `shadcn init` 的项目，把它写入的 `--font-sans: var(--font-sans)` 改成 `var(--font-inter)`。
 
 ```tsx
 import { Button } from "@forge-ui-official/core";

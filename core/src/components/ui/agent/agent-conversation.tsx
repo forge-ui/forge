@@ -82,7 +82,7 @@ export function Conversation({ children, followKey, locale = "zh", latestLabel, 
         <button
           type="button"
           onClick={() => { following.current = true; setAtBottom(true); toBottom(true); }}
-          className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-fg-grey-200 bg-background px-3 py-1.5 text-xs font-semibold tracking-fg text-fg-black shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] hover:bg-fg-grey-50"
+          className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-fg-grey-200 bg-background px-3 py-1.5 text-xs font-medium tracking-fg text-fg-black shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] hover:bg-fg-grey-50"
         >
           <ArrowDownLinear size={14} color="currentColor" />
           {latestLabel ?? pick(locale, "回到最新", "Jump to latest")}
@@ -124,7 +124,7 @@ export function AgentMessage({ role, children, name, avatar, time, actions, clas
       <div className="flex min-w-0 flex-1 flex-col gap-3">
         {(name || time) && (
           <div className="flex items-baseline gap-2 text-sm tracking-fg">
-            {name && <span className="font-semibold text-fg-black">{name}</span>}
+            {name && <span className="font-medium text-fg-black">{name}</span>}
             {time && <span className="text-xs text-fg-grey-700">{time}</span>}
           </div>
         )}
@@ -240,7 +240,7 @@ export function PromptSuggestions({ suggestions, onSelect, label, size = "md", c
   if (!suggestions.length) return null;
   return (
     <div className={cn("flex flex-col gap-2", className)}>
-      {label && <span className="text-xs font-semibold tracking-fg text-fg-grey-700">{label}</span>}
+      {label && <span className="text-xs font-medium tracking-fg text-fg-grey-700">{label}</span>}
       <div className={cn("flex flex-wrap", size === "sm" ? "gap-1.5" : "gap-2")}>
         {suggestions.map((suggestion, index) => (
           <button key={suggestion} type="button" onClick={() => onSelect(suggestion, index)}
@@ -284,13 +284,13 @@ export function ArtifactCard({ title, kind = "document", meta, status = "ready",
         {status === "error" ? <DangerTriangleLinear size={20} color="currentColor" /> : <Icon size={20} color="currentColor" />}
       </div>
       <div className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate text-sm font-semibold tracking-fg text-fg-black">{title}</span>
+        <span className="truncate text-sm font-medium tracking-fg text-fg-black">{title}</span>
         <span className={cn("truncate text-xs tracking-fg", status === "error" ? "text-fg-red" : "text-fg-grey-700")}>
           {status === "generating" ? text.generating : status === "error" ? text.error : meta}
         </span>
       </div>
       {ready && onOpen && (
-        <button type="button" onClick={onOpen} className="rounded-full px-3 py-1.5 text-sm font-semibold tracking-fg text-fg-blue hover:bg-fg-blue-50">{text.open}</button>
+        <button type="button" onClick={onOpen} className="rounded-full px-3 py-1.5 text-sm font-medium tracking-fg text-fg-blue hover:bg-fg-blue-50">{text.open}</button>
       )}
       {ready && onDownload && (
         <button type="button" aria-label={text.download} title={text.download} onClick={onDownload} className="inline-flex size-8 items-center justify-center rounded-lg text-fg-grey-700 hover:bg-fg-grey-100 hover:text-fg-black">

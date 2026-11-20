@@ -55,7 +55,7 @@ export function DetailLine({ label, value }: { label: string; value: string }) {
   return (
     <DescriptionItem
       label={label}
-      content={<span className="text-sm font-semibold text-fg-grey-900">{value}</span>}
+      content={<span className="text-sm font-medium text-fg-grey-900">{value}</span>}
       className="border-b border-fg-grey-100 py-3 last:border-b-0"
     />
   );

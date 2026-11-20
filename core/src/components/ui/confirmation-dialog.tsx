@@ -126,7 +126,7 @@ export function ConfirmationDialog({
           type="button"
           data-motion={motion}
           onClick={() => { onCancel?.(); onOpenChange?.(false); }}
-          className="forge-button w-32 px-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700 font-bold text-sm cursor-pointer"
+          className="forge-button w-32 px-4 py-3.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700 font-medium text-sm cursor-pointer"
         >
           {cancelLabel}
         </button>
@@ -135,7 +135,7 @@ export function ConfirmationDialog({
           data-motion={motion}
           onClick={onConfirm}
           className={cn(
-            "forge-button w-32 px-4 py-3.5 rounded-full text-white font-bold text-sm cursor-pointer",
+            "forge-button w-32 px-4 py-3.5 rounded-full text-white font-medium text-sm cursor-pointer",
             confirmBgColors[color]
           )}
         >

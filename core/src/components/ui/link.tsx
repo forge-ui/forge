@@ -51,7 +51,7 @@ export function StyledLink({
   if (disabled) {
     return (
       <span
-        className={`inline-flex items-start gap-1 opacity-60 ${linkColors[color]} text-sm font-bold leading-5 tracking-fg ${className}`}
+        className={`inline-flex items-start gap-1 opacity-60 ${linkColors[color]} text-sm font-medium leading-5 tracking-fg ${className}`}
       >
         {iconLeft && <span className="w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
         <span>{children}</span>
@@ -65,7 +65,7 @@ export function StyledLink({
       href={href}
       data-effect={effect} data-motion={motion}
       onPointerMove={effects.move} onPointerLeave={effects.leave}
-      className={`forge-styled-link inline-flex items-start gap-1 ${linkColors[color]} text-sm font-bold leading-5 tracking-fg hover:underline ${className}`}
+      className={`forge-styled-link inline-flex items-start gap-1 ${linkColors[color]} text-sm font-medium leading-5 tracking-fg hover:underline ${className}`}
     >
       {iconLeft && <span className="w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
       <span className="forge-action-label">{effect === "roll" && typeof children === "string" ? <><span className="sr-only">{children}</span>{Array.from(children).map((letter, index) => <span aria-hidden="true" className="forge-roll-letter" key={index} data-letter={letter} style={{ transitionDelay: `${index * 18}ms` }}>{letter === " " ? "\u00a0" : letter}</span>)}</> : children}</span>

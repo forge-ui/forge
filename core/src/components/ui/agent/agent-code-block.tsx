@@ -168,7 +168,7 @@ export function AgentCodeBlock({
                   type="button"
                   onClick={() => setView(option)}
                   className={cn(
-                    "rounded-md px-2 py-1 text-xs font-semibold",
+                    "rounded-md px-2 py-1 text-xs font-medium",
                     view === option ? "bg-background text-fg-black" : "text-fg-grey-700",
                   )}
                 >

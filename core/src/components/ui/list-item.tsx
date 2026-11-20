@@ -71,7 +71,7 @@ export function ListItem({
       {lead && <ListItemLeadSlot lead={lead} />}
 
       <div className="flex-1 min-w-0 flex flex-col gap-1">
-        <span className="text-sm font-semibold text-fg-black leading-5 tracking-fg line-clamp-1">
+        <span className="text-sm font-medium text-fg-black leading-5 tracking-fg line-clamp-1">
           {title}
         </span>
         {subtitle && (
@@ -87,7 +87,7 @@ export function ListItem({
         (value || trend || tailSubtext) && (
           <div className="flex flex-col items-end shrink-0 gap-1">
             {value && (
-              <span className="text-sm font-semibold text-fg-black leading-5 tracking-fg">
+              <span className="text-sm font-medium text-fg-black leading-5 tracking-fg">
                 {value}
               </span>
             )}
@@ -129,7 +129,7 @@ export function DescriptionItem({
     <div className={cn("inline-flex items-start gap-2 w-full", className)}>
       {lead && <ListItemLeadSlot lead={lead} />}
       <div className="flex-1 min-w-0 inline-flex flex-col justify-center items-start gap-1">
-        <span className="text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg">
+        <span className="text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
           {label}
         </span>
         {typeof content === "string" ? (
@@ -185,7 +185,7 @@ function TrendTag({ value, direction }: { value: string; direction: "up" | "down
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-0.5 text-xs font-bold leading-4 tracking-fg",
+        "inline-flex items-center gap-0.5 text-xs font-medium leading-4 tracking-fg",
         direction === "up" ? "text-fg-green-500" : "text-fg-red"
       )}
     >

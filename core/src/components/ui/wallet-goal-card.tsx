@@ -47,7 +47,7 @@ export function WalletGoalCard({
             {icon ?? <CalendarMinimalisticLinear size={18} />}
           </div>
           <div>
-            <div className="text-sm font-semibold text-fg-black">{title}</div>
+            <div className="text-sm font-medium text-fg-black">{title}</div>
             <div className="text-xs text-fg-grey-500">{date}</div>
           </div>
         </div>
@@ -55,7 +55,7 @@ export function WalletGoalCard({
       </div>
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold text-fg-black">{amount}</span>
-        <span className="text-sm font-semibold text-fg-grey-700">{progress}%</span>
+        <span className="text-sm font-medium text-fg-grey-700">{progress}%</span>
       </div>
       <ProgressBar value={progress} color={progressColor} size="md" />
       {showActions && (

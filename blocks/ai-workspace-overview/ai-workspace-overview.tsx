@@ -162,13 +162,13 @@ function RankRow({ rank, item, round }: { rank: number; item: RankItem; round?: 
     <div className="relative shrink-0">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={item.avatar} alt="" className={`size-9 object-cover ${round ? "rounded-full" : "rounded-xl"}`} />
-      <span className={`absolute -left-1 -top-1 flex size-4 items-center justify-center rounded-full text-[10px] font-bold shadow-sm ${rankBadge(rank)}`}>{rank}</span>
+      <span className={`absolute -left-1 -top-1 flex size-4 items-center justify-center rounded-full text-[10px] font-medium shadow-sm ${rankBadge(rank)}`}>{rank}</span>
     </div>
     <div className="min-w-0 flex-1">
-      <p className="truncate text-sm font-semibold text-fg-black" title={item.name}>{item.name}</p>
+      <p className="truncate text-sm font-medium text-fg-black" title={item.name}>{item.name}</p>
       <p className="mt-0.5 truncate text-xs text-fg-grey-500">{item.subtitle}</p>
     </div>
-    <p className="shrink-0 text-sm font-semibold tabular-nums text-fg-grey-800">{formatNumber(item.value)}</p>
+    <p className="shrink-0 text-sm font-medium tabular-nums text-fg-grey-800">{formatNumber(item.value)}</p>
   </div>;
 }
 

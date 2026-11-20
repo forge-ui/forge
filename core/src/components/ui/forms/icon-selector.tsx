@@ -219,7 +219,7 @@ export function IconSelector({
           className={cn("flex items-start gap-1 cursor-pointer", accent.text)}
         >
           <AddCircleLinear size={20} />
-          <span className="text-sm font-bold leading-5 tracking-fg">
+          <span className="text-sm font-medium leading-5 tracking-fg">
             {open ? "关闭" : "选择"}
           </span>
         </button>

@@ -1183,7 +1183,7 @@ function WorkspaceController({ children }: { children: ReactNode }) {
                   {scope === "即将到来" && (
                     <div className="date-week-nav">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-semibold">
+                        <span className="text-sm font-medium">
                           {dateLabel(weekDays[0]).split("日")[0]}日起
                         </span>
                         <div className="flex gap-2">
@@ -1306,7 +1306,7 @@ function WorkspaceController({ children }: { children: ReactNode }) {
                                 }}
                               >
                                 {listMode && <div data-no-drag><IconButton color="blue" variant="ghost" size="sm" aria-label={`${collapsedGroups[`${preferenceKey}:${section.id}`] ? "展开" : "折叠"}分区：${section.title}`} aria-expanded={!collapsedGroups[`${preferenceKey}:${section.id}`]} aria-controls={`tasks-${section.id}`} onClick={() => setCollapsedGroups(current => ({ ...current, [`${preferenceKey}:${section.id}`]: !current[`${preferenceKey}:${section.id}`] }))}><span className={collapsedGroups[`${preferenceKey}:${section.id}`] ? "-rotate-90" : ""}><AltArrowDownLinear size={16} /></span></IconButton></div>}
-                                <h2 className="flex-1 text-sm font-bold text-fg-black">
+                                <h2 className="flex-1 text-sm font-medium text-fg-black">
                                   {isEditableSection(section.id) ? <Button color="blue" variant="tertiary" className="section-title-edit" aria-label={`编辑分区：${section.title}`} onClick={() => { if (settlingDrag.current) return; setNaming({ kind: "section", id: section.id, value: board.sections.find(item=>item.id===section.id)?.title ?? section.title, description: board.sections.find(item => item.id === section.id)?.description || "" }); setNameError(""); }}>{section.title}</Button> : section.title}{" "}
                                   <span className="ml-2 font-normal text-fg-grey-700">
                                     {section.tasks.length}
@@ -1492,7 +1492,7 @@ function WorkspaceController({ children }: { children: ReactNode }) {
         <p className="mb-4 text-sm text-fg-grey-700">归档保留分区中的任务及详情。恢复后会重新出现在项目和日程中。</p>
         {board.sections.filter(section => (systemScope || section.project === scope) && section.archived).length === 0 && <p className="py-6 text-sm text-fg-grey-700">这个项目还没有已归档分区。</p>}
         {board.sections.filter(section => (systemScope || section.project === scope) && section.archived).map(section => <div key={section.id} className="flex items-center justify-between gap-4 border-b border-fg-grey-200 py-3">
-          <div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{section.title}</p><p className="text-xs text-fg-grey-700">{board.tasks.filter(task => task.section === section.id).length} 项任务</p></div>
+          <div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{section.title}</p><p className="text-xs text-fg-grey-700">{board.tasks.filter(task => task.section === section.id).length} 项任务</p></div>
           <Button color="blue" size="sm" variant="secondary" aria-label={`恢复分区：${section.title}`} onClick={() => change(setSectionArchived(board, section.id, false), "分区已恢复")}>恢复</Button>
         </div>)}
       </Modal>

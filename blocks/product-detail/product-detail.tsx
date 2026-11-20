@@ -90,10 +90,10 @@ export function ProductDetail({ product = defaultProductDetail, onEdit, classNam
       </Panel>
     </div>}
     {tab === 1 && <Panel variant="template" title="最近订单" subtitle={`近 7 天 ${product.orders.length} 笔`}>
-      <ul className="flex flex-col divide-y divide-fg-grey-200">{product.orders.map(order => <li key={order.id} className="flex flex-wrap items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-semibold text-fg-black">{order.buyer}</p><p className="text-xs text-fg-grey-700">{order.id} · {order.date}</p></div><p className="text-sm text-fg-grey-700">× {order.quantity}<span className="ml-4 font-semibold tabular-nums text-fg-black">{order.total}</span></p></li>)}</ul>
+      <ul className="flex flex-col divide-y divide-fg-grey-200">{product.orders.map(order => <li key={order.id} className="flex flex-wrap items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-medium text-fg-black">{order.buyer}</p><p className="text-xs text-fg-grey-700">{order.id} · {order.date}</p></div><p className="text-sm text-fg-grey-700">× {order.quantity}<span className="ml-4 font-semibold tabular-nums text-fg-black">{order.total}</span></p></li>)}</ul>
     </Panel>}
     {tab === 2 && <Panel variant="template" title="买家评价" subtitle={`平均 ${product.rating} 分`}>
-      <ul className="flex flex-col divide-y divide-fg-grey-200">{product.reviews.map(review => <li key={review.id} className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0"><div className="flex items-center justify-between"><p className="text-sm font-semibold text-fg-black">{review.buyer}</p><p className="flex items-center gap-1 text-sm text-fg-black"><StarBold size={14} className="text-fg-yellow-500" />{review.rating}</p></div><p className="text-sm text-fg-grey-700">{review.comment}</p><p className="text-xs text-fg-grey-500">{review.date}</p></li>)}</ul>
+      <ul className="flex flex-col divide-y divide-fg-grey-200">{product.reviews.map(review => <li key={review.id} className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0"><div className="flex items-center justify-between"><p className="text-sm font-medium text-fg-black">{review.buyer}</p><p className="flex items-center gap-1 text-sm text-fg-black"><StarBold size={14} className="text-fg-yellow-500" />{review.rating}</p></div><p className="text-sm text-fg-grey-700">{review.comment}</p><p className="text-xs text-fg-grey-500">{review.date}</p></li>)}</ul>
     </Panel>}
   </div>;
 }

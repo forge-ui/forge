@@ -79,7 +79,7 @@ export function ProfileCard({
       <div className="flex-1 flex flex-col justify-center items-start gap-0.5 min-w-0">
         <span
           className={cn(
-            "self-stretch text-sm font-semibold leading-5 tracking-fg line-clamp-1",
+            "self-stretch text-sm font-medium leading-5 tracking-fg line-clamp-1",
             titleClass
           )}
         >

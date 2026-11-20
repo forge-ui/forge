@@ -53,7 +53,7 @@ export function DealsTable({ deals = defaultDeals, onAdd, onOpen, onEdit, onExpo
   const totals = (Object.keys(statusMeta) as DealStatus[]).map(status => ({ status, amount: rows.filter(deal => deal.status === status).reduce((sum, deal) => sum + deal.amount, 0) }));
 
   const columns: ColumnDef<DealRecord>[] = [
-    { key: "title", header: "商机", minWidth: 200, render: deal => <div className="flex items-center gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-blue-50 text-fg-blue"><DocumentTextBoldDuotone size={20} /></span><div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{deal.title}</p><p className="text-xs text-fg-grey-700">{deal.invoice}</p></div></div> },
+    { key: "title", header: "商机", minWidth: 200, render: deal => <div className="flex items-center gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-full bg-fg-blue-50 text-fg-blue"><DocumentTextBoldDuotone size={20} /></span><div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{deal.title}</p><p className="text-xs text-fg-grey-700">{deal.invoice}</p></div></div> },
     { key: "amount", header: "金额", minWidth: 110, valueKind: "number", render: deal => <CellText>¥{deal.amount.toLocaleString("zh-CN")}</CellText> },
     { key: "client", header: "客户", minWidth: 170, render: deal => <CellImageText src={deal.avatar} title={deal.client} subtitle={deal.company} rounded="full" /> },
     { key: "payment", header: "付款方式", minWidth: 100, render: deal => <CellText>{deal.payment}</CellText> },

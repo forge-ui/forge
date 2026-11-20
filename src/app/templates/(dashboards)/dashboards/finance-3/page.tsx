@@ -203,7 +203,7 @@ export default function Finance3Page() {
             <TrendChart >
               <DashboardHeader className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-sm font-semibold text-fg-black">Statistic</h3>
+                  <h3 className="text-sm font-medium text-fg-black">Statistic</h3>
                   <p className="text-sm text-fg-grey-500">Income and Expenses</p>
                 </div>
                 <Button color="grey" variant="tertiary" iconRight={<AltArrowDownLinear size={14} />} className="rounded-full text-fg-grey-700">Monthly</Button>
@@ -255,7 +255,7 @@ export default function Finance3Page() {
               <RecentRecords className="lg:col-span-2">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="text-sm font-semibold text-fg-black">Transaction</h3>
+                    <h3 className="text-sm font-medium text-fg-black">Transaction</h3>
                     <p className="text-sm text-fg-grey-500">Recent transactions</p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -297,7 +297,7 @@ export default function Finance3Page() {
                 <Panel gap="sm" >
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-sm font-semibold text-fg-black">All Expenses</h3>
+                      <h3 className="text-sm font-medium text-fg-black">All Expenses</h3>
                       <p className="text-sm text-fg-grey-500">Based on categories</p>
                     </div>
                     <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />

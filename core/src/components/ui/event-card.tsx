@@ -63,7 +63,7 @@ export function EventCard({
       )}
     >
       <div className="self-stretch p-4 flex flex-col gap-1.5">
-        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg truncate">
+        <span className="text-fg-black text-sm font-medium leading-5 tracking-fg truncate">
           {title}
         </span>
         <div className="self-stretch inline-flex justify-between items-end gap-2">
@@ -88,7 +88,7 @@ export function EventCard({
               {overflowCount && overflowCount > 0 && (
                 <span
                   className={cn(
-                    "w-6 h-6 rounded-full border border-white flex items-center justify-center text-[10px] font-semibold",
+                    "w-6 h-6 rounded-full border border-white flex items-center justify-center text-[10px] font-medium",
                     chipBg[color],
                   )}
                 >

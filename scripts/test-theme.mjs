@@ -38,7 +38,7 @@ test("css only overrides what changed; the default theme needs nothing", () => {
   assert.match(css, /--fg-blue-500: #16A34A;/);
   assert.match(css, /--radius-xl: 6px;/);
   assert.match(css, /\.rounded-card \{ border-radius: 10px; \}/);
-  assert.match(css, /--font-manrope: system-ui/);
+  assert.match(css, /--font-inter: system-ui/);
   assert.doesNotMatch(themeCss({ color: "#3553FF", radius: "round", font: "default" }, blue), /--fg-blue|--font/);
 });
 

@@ -229,7 +229,7 @@ export default function OrderDetailPage() {
                     </div>
                     <div className="flex-1 min-w-[80px] text-right">
                       <p className="text-xs text-fg-grey-700">Total</p>
-                      <p className="text-sm font-semibold text-fg-black mt-2">{item.total}</p>
+                      <p className="text-sm font-medium text-fg-black mt-2">{item.total}</p>
                     </div>
                     <Button variant="unstyled"
                       type="button"

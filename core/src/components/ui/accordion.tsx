@@ -37,7 +37,7 @@ function AccordionSection({ item, open, onToggle, motion, reduced }: {
     "--forge-motion-feedback-ease": "cubic-bezier(.2,.8,.2,1)",
   } as CSSProperties}>
     <h3><button type="button" ref={trigger} id={triggerId} aria-controls={panelId} aria-expanded={open} disabled={item.disabled}
-      className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-semibold text-fg-black disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-fg-violet"
+      className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-medium text-fg-black disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-fg-violet"
       onClick={onToggle}
       onKeyDown={(event) => {
         const root = event.currentTarget.closest(".forge-accordion");

@@ -102,7 +102,7 @@ export function TrendText({
   return (
     <span
       className={cn(
-        "font-bold tracking-fg",
+        "font-medium tracking-fg",
         size === "xs" ? "text-xs leading-4" : "text-sm leading-5",
         trendColorClass(trendDirection),
         className,
@@ -115,7 +115,7 @@ export function TrendText({
 
 // Figma label text styles
 export const LABEL_TEXT = "text-xs font-normal leading-4 tracking-fg text-fg-grey-700";
-export const LABEL_TEXT_ACTIVE = "text-xs font-bold leading-4 tracking-fg";
+export const LABEL_TEXT_ACTIVE = "text-xs font-medium leading-4 tracking-fg";
 export const CENTER_VALUE_TEXT = "text-3xl font-semibold tracking-fg";
 
 // ============================================================

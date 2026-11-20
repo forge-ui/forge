@@ -101,8 +101,8 @@ export function CustomerProfile({ customer = defaultCustomerProfile, onCall, onM
         <Panel variant="template" title="最近购买" subtitle="近 30 天">
           <ul className="flex flex-col gap-3">{customer.purchases.map(item => <li key={item.id} className="flex items-center gap-3">
             <img src={item.image} alt={item.name} className="size-12 shrink-0 rounded-lg bg-fg-grey-100 object-cover" />
-            <div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold text-fg-black">{item.name}</p><p className="text-xs text-fg-grey-700">{item.note}</p></div>
-            <p className="shrink-0 text-sm font-semibold tabular-nums text-fg-black">{item.total}</p>
+            <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium text-fg-black">{item.name}</p><p className="text-xs text-fg-grey-700">{item.note}</p></div>
+            <p className="shrink-0 text-sm font-medium tabular-nums text-fg-black">{item.total}</p>
           </li>)}</ul>
         </Panel>
         <Panel variant="template" title="消费走势" subtitle="2026 年按月统计">
@@ -112,8 +112,8 @@ export function CustomerProfile({ customer = defaultCustomerProfile, onCall, onM
       </div>}
       {tab === 1 && <Panel variant="template" title="订单记录" subtitle={`共 ${customer.orders.length} 笔`}>
         <ul className="flex flex-col divide-y divide-fg-grey-200">{customer.orders.map(order => <li key={order.id} className="flex flex-wrap items-center justify-between gap-3 py-3 first:pt-0 last:pb-0">
-          <div className="min-w-0"><p className="text-sm font-semibold text-fg-black">{order.product}</p><p className="text-xs text-fg-grey-700">{order.id} · {order.date}</p></div>
-          <div className="flex items-center gap-4"><span className="text-sm font-semibold tabular-nums text-fg-black">{order.total}</span><StatusBadge {...orderStatus[order.status]} variant="soft" /></div>
+          <div className="min-w-0"><p className="text-sm font-medium text-fg-black">{order.product}</p><p className="text-xs text-fg-grey-700">{order.id} · {order.date}</p></div>
+          <div className="flex items-center gap-4"><span className="text-sm font-medium tabular-nums text-fg-black">{order.total}</span><StatusBadge {...orderStatus[order.status]} variant="soft" /></div>
         </li>)}</ul>
       </Panel>}
       {tab === 2 && <Panel variant="template" title="商品评价" subtitle={`共 ${customer.reviews.length} 条`}>
@@ -124,19 +124,19 @@ export function CustomerProfile({ customer = defaultCustomerProfile, onCall, onM
       <div className="-mx-6 -mt-6 h-28 bg-gradient-to-r from-fg-blue via-fg-violet-300 to-fg-yellow-100" />
       <div className="-mt-12 flex flex-col items-center gap-3">
         <img src={customer.avatar} alt={customer.name} className="size-24 rounded-full border-4 border-white object-cover" />
-        <div className="text-center"><p className="flex items-center justify-center gap-2 text-xl font-semibold text-fg-black">{customer.name}<span className="rounded-md bg-fg-blue px-1.5 py-0.5 text-[10px] font-bold text-white">{customer.tier}</span></p><p className="mt-1 text-sm text-fg-grey-700">{customer.handle}</p></div>
+        <div className="text-center"><p className="flex items-center justify-center gap-2 text-xl font-semibold text-fg-black">{customer.name}<span className="rounded-md bg-fg-blue px-1.5 py-0.5 text-[10px] font-medium text-white">{customer.tier}</span></p><p className="mt-1 text-sm text-fg-grey-700">{customer.handle}</p></div>
       </div>
       <div className="mt-5 grid grid-cols-2 gap-3"><Button variant="tertiary" iconLeft={<PhoneCallingLinear size={16} />} onClick={onCall}>致电</Button><Button iconLeft={<ChatRoundLinear size={16} />} onClick={onMessage}>发消息</Button></div>
       <dl className="mt-5 flex flex-col gap-4 border-t border-fg-grey-200 pt-5">
         {[{ label: "邮箱", value: customer.email, copyable: true }, { label: "手机号", value: customer.phone, copyable: true }, { label: "地址", value: customer.address, copyable: false }].map(field => <div key={field.label}>
-          <dt className="flex items-center justify-between text-sm font-semibold text-fg-grey-700">{field.label}{field.copyable && <IconButton variant="ghost" color="grey" shape="square" size="sm" aria-label={copied === field.label ? "已复制" : `复制${field.label}`} onClick={() => copy(field.label, field.value)}>{copied === field.label ? <CheckCircleLinear size={14} /> : <CopyLinear size={14} />}</IconButton>}</dt>
+          <dt className="flex items-center justify-between text-sm font-medium text-fg-grey-700">{field.label}{field.copyable && <IconButton variant="ghost" color="grey" shape="square" size="sm" aria-label={copied === field.label ? "已复制" : `复制${field.label}`} onClick={() => copy(field.label, field.value)}>{copied === field.label ? <CheckCircleLinear size={14} /> : <CopyLinear size={14} />}</IconButton>}</dt>
           <dd className="mt-1 text-sm font-medium leading-relaxed text-fg-black">{field.value}</dd>
         </div>)}
       </dl>
       <ol className="mt-5 flex flex-col gap-5 border-t border-fg-grey-200 pt-5">
         {customer.timeline.map(item => <li key={item.id} className="flex gap-3">
           <img src={customer.avatar} alt="" className="size-9 shrink-0 rounded-full object-cover" />
-          <div className="flex flex-col gap-1"><p className="text-sm font-semibold text-fg-black">{item.title}</p><p className="text-xs leading-relaxed text-fg-grey-700">{item.description}</p>{item.status && <div className="flex"><StatusBadge {...item.status} variant="soft" /></div>}<p className="text-xs text-fg-grey-700">{item.time}</p></div>
+          <div className="flex flex-col gap-1"><p className="text-sm font-medium text-fg-black">{item.title}</p><p className="text-xs leading-relaxed text-fg-grey-700">{item.description}</p>{item.status && <div className="flex"><StatusBadge {...item.status} variant="soft" /></div>}<p className="text-xs text-fg-grey-700">{item.time}</p></div>
         </li>)}
       </ol>
     </Panel>

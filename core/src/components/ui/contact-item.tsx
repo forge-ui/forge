@@ -65,7 +65,7 @@ export function ContactItem({
           />
         ) : (
           <div className={`w-10 h-10 p-2.5 ${extra.teamBg} rounded-full inline-flex justify-center items-center`}>
-            <span className={`${extra.teamText} text-sm font-bold leading-5 tracking-fg`}>
+            <span className={`${extra.teamText} text-sm font-medium leading-5 tracking-fg`}>
               {computedInitials}
             </span>
           </div>
@@ -80,7 +80,7 @@ export function ContactItem({
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center gap-0.5">
         <p
-          className={`text-sm font-semibold leading-5 tracking-fg line-clamp-1 ${
+          className={`text-sm font-medium leading-5 tracking-fg line-clamp-1 ${
             active ? "text-white" : "text-fg-black"
           }`}
         >

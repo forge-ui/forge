@@ -230,7 +230,7 @@ export default function OrdersPage() {
         render: (row) => (
           <Link
             href={`/templates/ecommerce/orders/${row.id.replace("#", "")}`}
-            className="text-sm font-bold text-fg-black hover:text-fg-blue no-underline"
+            className="text-sm font-medium text-fg-black hover:text-fg-blue no-underline"
           >
             {row.id}
           </Link>

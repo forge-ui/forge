@@ -355,7 +355,7 @@ function ProfileField({
   return (
     <div className="flex items-start gap-2">
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">{label}</p>
+        <p className="text-sm font-medium leading-5 tracking-fg text-fg-grey-700">{label}</p>
         <div className="mt-1 text-sm font-medium leading-5 tracking-fg text-fg-black">{value}</div>
       </div>
       {action ? (
@@ -588,15 +588,15 @@ function TransactionsPanel() {
                   <DocumentTextLinear size={18} color={"var(--fg-blue-500)"} />
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold leading-5 tracking-fg text-fg-black">{row.name}</p>
+                  <p className="truncate text-sm font-medium leading-5 tracking-fg text-fg-black">{row.name}</p>
                   <p className="truncate text-xs font-normal leading-4 tracking-fg text-fg-grey-700">{row.invoice}</p>
                 </div>
               </div>
               <div className="flex flex-col justify-center bg-background px-6 py-4">
-                <span className="text-sm font-semibold leading-5 tracking-fg text-fg-black">{row.date}</span>
+                <span className="text-sm font-medium leading-5 tracking-fg text-fg-black">{row.date}</span>
                 <span className="text-xs font-normal leading-4 tracking-fg text-fg-grey-700">{row.time}</span>
               </div>
-              <div className="flex items-center bg-background px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-black">
+              <div className="flex items-center bg-background px-6 py-4 text-sm font-medium leading-5 tracking-fg text-fg-black">
                 {row.total}
               </div>
               <div className="flex items-center bg-background px-6 py-4">
@@ -616,7 +616,7 @@ function TransactionsPanel() {
 
 function TableHeader({ children, sortable = false }: { children?: ReactNode; sortable?: boolean }) {
   return (
-    <div className="flex items-center gap-2 bg-background px-6 py-4 text-sm font-semibold leading-5 tracking-fg text-fg-grey-700">
+    <div className="flex items-center gap-2 bg-background px-6 py-4 text-sm font-medium leading-5 tracking-fg text-fg-grey-700">
       <span>{children}</span>
       {sortable ? <AltArrowDownLinear size={14} color={"var(--fg-grey-600)"} /> : null}
     </div>

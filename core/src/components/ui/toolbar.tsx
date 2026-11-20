@@ -219,7 +219,7 @@ export function ToolbarSelectDropdown({
               }}
               className={cn(
                 "px-3 py-2 rounded-xl text-left text-sm leading-5 tracking-fg transition-colors whitespace-nowrap",
-                value === opt.value ? "bg-fg-grey-100 text-fg-black font-semibold" : "text-fg-grey-700 hover:bg-fg-grey-100",
+                value === opt.value ? "bg-fg-grey-100 text-fg-black font-medium" : "text-fg-grey-700 hover:bg-fg-grey-100",
               )}
             >
               {opt.label}
@@ -321,7 +321,7 @@ export function ToolbarFilterButton({
         className="px-4 py-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
       >
         <FilterBold size={20} color="var(--fg-grey-700)" />
-        <span className="justify-start text-fg-grey-700 text-sm font-semibold leading-5 tracking-fg whitespace-nowrap">
+        <span className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap">
           {label}
         </span>
       </button>
@@ -471,8 +471,8 @@ export function ToolbarPillTabs({
           className={cn(
             "relative z-[1] flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm leading-5 tracking-fg",
             tab.active
-              ? cn(toolbarPillActive[color].split(" ").filter((value) => !value.startsWith("bg-")).join(" "), "font-bold")
-              : "text-fg-grey-700 font-semibold",
+              ? cn(toolbarPillActive[color].split(" ").filter((value) => !value.startsWith("bg-")).join(" "), "font-semibold")
+              : "text-fg-grey-700 font-medium",
           )}
         >
           {tab.label}

@@ -215,19 +215,19 @@ export function TaskRunDetail({ task = defaultTaskRun, className = "" }: TaskRun
 
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       <section className="rounded-2xl border border-fg-grey-200 bg-background p-4">
-        <h2 className="mb-3 text-sm font-semibold text-fg-black">概要</h2>
+        <h2 className="mb-3 text-sm font-medium text-fg-black">概要</h2>
         <dl className="flex flex-col gap-2 text-sm">
           {rows.map(([label, value]) => <div key={label} className="flex justify-between gap-2"><dt className="text-fg-grey-600">{label}</dt><dd className="text-right text-fg-black">{value}</dd></div>)}
         </dl>
         {task.knowledge.length ? <>
-          <h3 className="mb-2 mt-5 text-sm font-semibold text-fg-black">知识库授权</h3>
+          <h3 className="mb-2 mt-5 text-sm font-medium text-fg-black">知识库授权</h3>
           <ul className="flex flex-col gap-1 text-sm text-fg-grey-700">
             {task.knowledge.map(name => <li key={name}>{name}<span className="ml-1 text-xs text-fg-grey-500">只读</span></li>)}
           </ul>
         </> : null}
       </section>
       <section className="rounded-2xl border border-fg-grey-200 bg-background p-4 lg:col-span-2">
-        <h2 className="mb-3 text-sm font-semibold text-fg-black">执行过程</h2>
+        <h2 className="mb-3 text-sm font-medium text-fg-black">执行过程</h2>
         <ol className="flex flex-col gap-3">
           {task.events.map(event => <li key={event.id} className="flex gap-3 text-sm">
             <span className="w-36 shrink-0 text-xs text-fg-grey-500">{event.at}</span>
@@ -238,7 +238,7 @@ export function TaskRunDetail({ task = defaultTaskRun, className = "" }: TaskRun
     </div>
 
     <section className="rounded-2xl border border-fg-grey-200 bg-background p-4">
-      <h2 className="mb-3 text-sm font-semibold text-fg-black">结果与产物</h2>
+      <h2 className="mb-3 text-sm font-medium text-fg-black">结果与产物</h2>
       <div className="flex flex-col gap-4">
         <div>
           <h3 className="mb-1 text-xs font-medium text-fg-grey-600">摘要</h3>

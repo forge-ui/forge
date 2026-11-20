@@ -116,7 +116,7 @@ export function AiAssistantHome({ peers = defaultChatPeers, threads: initialThre
 
   const sidebar = <div className="flex h-full w-[260px] flex-col border-r border-fg-grey-200 bg-fg-grey-50/60 text-[14px] text-fg-black">
     <div className="flex items-center justify-between gap-1 px-2 py-2.5">
-      <div className="min-w-0 flex-1 px-2 text-sm font-semibold">对话</div>
+      <div className="min-w-0 flex-1 px-2 text-sm font-medium">对话</div>
       <IconButton variant="ghost" shape="square" size="sm" aria-label="收起侧栏" onClick={() => { setSidebarOpen(false); setMobileNav(false); }}><AltArrowLeftLinear size={20} /></IconButton>
     </div>
     <div className="flex min-h-0 flex-1 flex-col px-2 pb-3">

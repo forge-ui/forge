@@ -76,8 +76,8 @@ export function ButtonGroup({
             "relative z-[1] px-4 py-2 text-sm leading-5 cursor-pointer whitespace-nowrap",
             isPill ? "rounded-full" : "rounded-lg",
             index === activeIndex
-              ? `${activeItemColors[color].split(" ").filter((value) => !value.startsWith("bg-")).join(" ")} font-bold`
-              : "text-fg-grey-700 font-semibold"
+              ? `${activeItemColors[color].split(" ").filter((value) => !value.startsWith("bg-")).join(" ")} font-semibold`
+              : "text-fg-grey-700 font-medium"
           )}
         >
           {item.label}

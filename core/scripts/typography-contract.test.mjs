@@ -9,8 +9,8 @@ const coreRoot = path.resolve(scriptDir, "..");
 const tokens = fs.readFileSync(path.join(coreRoot, "src/styles/tokens.css"), "utf8");
 
 const expected = {
-  "--forge-typography-contract-version": "1",
-  "--forge-font-sans-family": '"Manrope Variable"',
+  "--forge-typography-contract-version": "2",
+  "--forge-font-sans-family": '"Inter Variable"',
   "--forge-font-display-family": '"Plus Jakarta Sans Variable"',
   "--forge-text-2xs-size": "10px",
   "--forge-text-xs-size": "12px",
@@ -45,7 +45,7 @@ const expected = {
   "--forge-leading-arbitrary-60": "60px",
   "--forge-leading-arbitrary-140": "140px",
   "--forge-leading-tight-factor": "1.25",
-  "--forge-tracking-fg": "0.5px",
+  "--forge-tracking-fg": "0px",
   "--forge-tracking-tight-factor": "-0.025",
   "--forge-tracking-wide-factor": "0.025",
 };

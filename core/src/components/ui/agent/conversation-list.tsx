@@ -82,7 +82,7 @@ export function ConversationList({ items, currentId, onSelect, onNew, onRename, 
   return (
     <nav aria-label={pick(locale, "历史对话", "Conversations")} className={cn("flex min-w-0 flex-col gap-2 tracking-fg", className)}>
       {onNew && (
-        <button type="button" onClick={onNew} className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-50">
+        <button type="button" onClick={onNew} className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-50">
           <PenNewSquareLinear size={16} />{pick(locale, "新对话", "New chat")}
         </button>
       )}
@@ -97,7 +97,7 @@ export function ConversationList({ items, currentId, onSelect, onNew, onRename, 
         if (!rows.length) return null;
         return (
           <section key={group.key} className="flex flex-col gap-0.5">
-            {group.zh && <h4 className="px-3 pb-0.5 pt-2 text-xs font-semibold text-fg-grey-500">{pick(locale, group.zh, group.en)}</h4>}
+            {group.zh && <h4 className="px-3 pb-0.5 pt-2 text-xs font-medium text-fg-grey-500">{pick(locale, group.zh, group.en)}</h4>}
             <ul className="flex flex-col gap-0.5">
               <AnimatePresence initial={false}>
                 {rows.map(item => {
@@ -118,8 +118,8 @@ export function ConversationList({ items, currentId, onSelect, onNew, onRename, 
                       ) : deleting === item.id ? (
                         <div role="alertdialog" aria-label={pick(locale, "删除对话", "Delete conversation")} className="flex min-w-0 flex-1 items-center gap-2 px-3 py-2 text-sm">
                           <span className="min-w-0 flex-1 truncate text-fg-black">{pick(locale, `删除「${item.title}」？`, `Delete "${item.title}"?`)}</span>
-                          <button type="button" onClick={() => setDeleting(undefined)} className="shrink-0 rounded-full px-2.5 py-1 text-xs font-bold text-fg-black hover:bg-fg-grey-200">{pick(locale, "取消", "Cancel")}</button>
-                          <button type="button" onClick={() => { onDelete?.(item.id); setDeleting(undefined); }} className="shrink-0 rounded-full bg-fg-red px-2.5 py-1 text-xs font-bold text-white">{pick(locale, "删除", "Delete")}</button>
+                          <button type="button" onClick={() => setDeleting(undefined)} className="shrink-0 rounded-full px-2.5 py-1 text-xs font-medium text-fg-black hover:bg-fg-grey-200">{pick(locale, "取消", "Cancel")}</button>
+                          <button type="button" onClick={() => { onDelete?.(item.id); setDeleting(undefined); }} className="shrink-0 rounded-full bg-fg-red px-2.5 py-1 text-xs font-medium text-white">{pick(locale, "删除", "Delete")}</button>
                         </div>
                       ) : (
                         <>

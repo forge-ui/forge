@@ -93,7 +93,7 @@ function FolderSidebar({ folders, selectedId, onSelect, onCreate }: { folders: A
     <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background">
       <div className="shrink-0 border-b border-fg-grey-100 px-3 py-2.5">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="text-sm font-semibold text-fg-black">目录</h3>
+          <h3 className="text-sm font-medium text-fg-black">目录</h3>
           <button type="button" className="text-xs text-fg-blue-700 hover:underline" onClick={() => setCreating(value => !value)}>{creating ? "取消" : "新建"}</button>
         </div>
         <input className="mt-2 h-8 w-full rounded-lg border border-fg-grey-200 px-2 text-xs outline-none focus:border-fg-blue-400" placeholder="搜索目录" value={query} onChange={event => setQuery(event.target.value)} />
@@ -105,7 +105,7 @@ function FolderSidebar({ folders, selectedId, onSelect, onCreate }: { folders: A
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
         <ul className="flex flex-col gap-0.5">
           {visible.map(folder => <li key={folder.id}>
-            <button type="button" onClick={() => onSelect(folder.id)} className={`w-full truncate rounded-xl px-2.5 py-2 text-left text-sm transition ${selectedId === folder.id ? "bg-fg-grey-100 font-semibold text-fg-black" : "text-fg-grey-800 hover:bg-fg-grey-50"}`}>{folder.name}</button>
+            <button type="button" onClick={() => onSelect(folder.id)} className={`w-full truncate rounded-xl px-2.5 py-2 text-left text-sm transition ${selectedId === folder.id ? "bg-fg-grey-100 font-medium text-fg-black" : "text-fg-grey-800 hover:bg-fg-grey-50"}`}>{folder.name}</button>
           </li>)}
         </ul>
       </div>
@@ -152,7 +152,7 @@ function TemplateCard({ template, onUse }: { template: AgentTemplate; onUse: () 
         <img src={template.illustration} alt="" className="size-14 rounded-2xl object-cover shadow-sm ring-1 ring-black/5" />
       </div>
       <div className="flex min-h-0 flex-1 flex-col px-3.5 pb-3 pt-2.5">
-        <h3 className="truncate text-sm font-semibold text-fg-black" title={template.name}>{template.name}</h3>
+        <h3 className="truncate text-sm font-medium text-fg-black" title={template.name}>{template.name}</h3>
         <p className="mt-1 line-clamp-2 flex-1 text-xs leading-5 text-fg-grey-500">{template.description}</p>
         <div className="mt-2.5 flex items-center justify-center border-t border-fg-grey-100 pt-2">
           <span className="text-xs font-medium text-fg-blue-600 group-hover:text-fg-blue-700">立即使用</span>

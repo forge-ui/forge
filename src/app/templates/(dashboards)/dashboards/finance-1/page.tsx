@@ -201,10 +201,10 @@ export default function Finance1Page() {
                       <img src={t.iconUrl} alt={t.name} className="size-full object-cover" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-fg-black">{t.name}</div>
+                      <div className="text-sm font-medium text-fg-black">{t.name}</div>
                       <div className="text-xs text-fg-grey-500">{t.category}</div>
                     </div>
-                    <div className="text-sm font-semibold text-fg-black">{t.amount}</div>
+                    <div className="text-sm font-medium text-fg-black">{t.amount}</div>
                   </div>
                 ))}
               </div>

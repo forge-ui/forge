@@ -163,7 +163,7 @@ function LeadTabContent({ tab }: { tab: LeadTab }) {
         {["Lead Brief.pdf", "File Name.mp4", "Contract Draft.doc"].map((file, index) => (
           <Panel variant="custom" key={file} className="rounded-[20px] border border-fg-grey-200 bg-background p-5">
             <FileTypeIcon fileName={file} className="size-12" />
-            <p className="mt-5 text-sm font-semibold text-fg-black">{file}</p>
+            <p className="mt-5 text-sm font-medium text-fg-black">{file}</p>
             <p className="mt-1 text-xs font-medium text-fg-grey-500">{index + 1}.1 MB</p>
           </Panel>
         ))}

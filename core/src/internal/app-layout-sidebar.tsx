@@ -51,8 +51,8 @@ export const modeConfig = {
     teamCount: "text-fg-grey-700",
     teamChevron: "text-fg-grey-700",
     sectionTitle: "text-fg-grey-700",
-    menuItem: "text-fg-grey-700 hover:bg-fg-grey-100",
-    menuItemActiveText: "text-white font-bold",
+    menuItem: "text-sidebar-muted font-normal hover:bg-fg-grey-100",
+    menuItemActiveText: "text-white font-semibold",
     badgeBg: "bg-fg-red",
     profileBg: "bg-fg-grey-50 outline outline-1 outline-offset-[-1px] outline-fg-grey-200",
     profileName: "text-fg-black",
@@ -77,8 +77,8 @@ export const modeConfig = {
     teamCount: "text-white/70",
     teamChevron: "text-white/70",
     sectionTitle: "text-white/50",
-    menuItem: "text-white/70 hover:bg-white/10",
-    menuItemActiveText: "text-white font-bold",
+    menuItem: "text-white/70 font-normal hover:bg-white/10",
+    menuItemActiveText: "text-white font-semibold",
     badgeBg: "bg-fg-red",
     profileBg: "bg-white/10",
     profileName: "text-white",
@@ -201,7 +201,7 @@ export function SidebarMenuItemRow({
   const disclosure = hasChildren && !rail;
   const toggleExpanded = () => setManualExpansion({ pathname, expanded: !expanded });
   const rowClassName = cn(
-    "forge-sidebar-row relative isolate self-stretch inline-flex items-center gap-2 rounded-full px-3.5 py-3 transition-colors",
+    "forge-sidebar-row relative isolate self-stretch inline-flex items-center gap-2 rounded-full px-3.5 py-2 transition-colors",
     depth > 0 && "pl-[46px]",
     highlighted ? config.menuItemActiveText : config.menuItem
   );
@@ -232,10 +232,10 @@ export function SidebarMenuItemRow({
         />
       )}
       {isActive && depth === 0 && !rail && (
-        <div className={cn("w-1 h-12 absolute left-[-16px] top-0 rounded-tr-lg rounded-br-lg", accentBar)} />
+        <div className={cn("w-1 h-10 absolute left-[-16px] top-0 rounded-tr-lg rounded-br-lg", accentBar)} />
       )}
       {item.icon && <span className="w-6 h-6 flex justify-center items-center shrink-0">{item.icon}</span>}
-      <span aria-hidden={rail || undefined} className="forge-sidebar-label forge-sidebar-item-label min-w-0 flex-1 whitespace-nowrap text-sm font-semibold leading-5 tracking-fg line-clamp-1 text-left">{item.label}</span>
+      <span aria-hidden={rail || undefined} className="forge-sidebar-label forge-sidebar-item-label min-w-0 flex-1 whitespace-nowrap text-sm leading-5 tracking-fg line-clamp-1 text-left">{item.label}</span>
       {item.badge !== undefined && item.badge > 0 && (
         <span className={cn("forge-sidebar-badge px-1.5 py-0.5 rounded-full inline-flex flex-col justify-center items-center gap-2", config.badgeBg)}>
           <span className="text-white text-2xs font-semibold leading-3.5 tracking-fg">{item.badge}</span>

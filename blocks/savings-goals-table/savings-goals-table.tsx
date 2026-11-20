@@ -39,7 +39,7 @@ export function SavingsGoalsTable({ goals = defaultSavingsGoals, onCreate, class
   const target = rows.reduce((sum, goal) => sum + goal.target, 0);
 
   const columns: ColumnDef<SavingsGoal>[] = [
-    { key: "title", header: "目标", minWidth: 200, render: goal => <div className="flex items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-fg-grey-50"><span className={cn("size-3 rounded", dot[goal.color])} /></span><div className="min-w-0"><p className="truncate text-sm font-semibold text-fg-black">{goal.title}</p><p className="truncate text-xs text-fg-grey-700">{goal.note}</p></div></div> },
+    { key: "title", header: "目标", minWidth: 200, render: goal => <div className="flex items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-fg-grey-50"><span className={cn("size-3 rounded", dot[goal.color])} /></span><div className="min-w-0"><p className="truncate text-sm font-medium text-fg-black">{goal.title}</p><p className="truncate text-xs text-fg-grey-700">{goal.note}</p></div></div> },
     { key: "target", header: "目标金额", minWidth: 110, valueKind: "number", render: goal => <span className="text-sm tabular-nums text-fg-black">¥{goal.target.toLocaleString("zh-CN")}</span> },
     { key: "progress", header: "进度", minWidth: 200, render: goal => { const percent = Math.min(100, Math.round((goal.saved / goal.target) * 100)); return <ProgressBar value={percent} color={goal.color} label={`已存 ¥${goal.saved.toLocaleString("zh-CN")} · ${percent}%`} size="sm" />; } },
     { key: "dueAt", header: "截止日期", minWidth: 110, render: goal => <span className="text-sm text-fg-grey-700">{goal.dueAt}</span> },

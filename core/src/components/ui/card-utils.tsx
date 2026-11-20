@@ -183,7 +183,7 @@ export function CardTrend({
     <div className="self-stretch inline-flex justify-start items-center gap-1 relative z-10">
       {trend && (
         <div className="flex items-center gap-0.5">
-          <span className={cn("text-sm font-bold leading-5 tracking-fg", theme.trendColor)}>
+          <span className={cn("text-sm font-medium leading-5 tracking-fg", theme.trendColor)}>
             {trend}
           </span>
           <span className={theme.trendColor}>
@@ -418,7 +418,7 @@ export function CardAvatarGroup({
       {extra > 0 && (
         <span
           className={cn(
-            "rounded-full border-2 flex items-center justify-center text-xs font-semibold",
+            "rounded-full border-2 flex items-center justify-center text-xs font-medium",
             theme.avatarBorder,
             theme.iconChipBg,
             theme.iconChipText,

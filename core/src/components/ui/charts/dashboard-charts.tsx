@@ -71,7 +71,7 @@ export function ChartHeader({
   return (
     <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
-        <h3 className="text-sm font-semibold leading-5 text-fg-black">{title}</h3>
+        <h3 className="text-sm font-medium leading-5 text-fg-black">{title}</h3>
         {subtitle && <p className="text-xs leading-4 text-fg-grey-700">{subtitle}</p>}
       </div>
       {action ?? (tabs.length > 0 && (
@@ -110,7 +110,7 @@ export function ChartMetricRow({ series }: { series: ChartMetricSeries[] }) {
             <div className="flex items-center gap-2">
               <span className="text-base font-semibold leading-6 text-fg-black">{item.value}</span>
               {item.trend && (
-                <span className={item.trend === "up" ? "text-xs font-bold text-fg-green-500" : "text-xs font-bold text-fg-red"}>
+                <span className={item.trend === "up" ? "text-xs font-medium text-fg-green-500" : "text-xs font-medium text-fg-red"}>
                   {item.trendValue ?? "10%"} <TrendArrow trend={item.trend} />
                 </span>
               )}
@@ -163,7 +163,7 @@ export function GroupedBarChart({
                     <span className={`size-2.5 rounded-full ${item.colorClass}`} />
                     {item.label}
                   </span>
-                  <span className="font-semibold">
+                  <span className="font-medium">
                     {item.value} <TrendArrow trend={item.trend} />
                   </span>
                 </div>
@@ -186,7 +186,7 @@ export function GroupedBarChart({
                 />
               ))}
             </div>
-            <div className={pointIndex === activeIndex ? "relative z-10 text-center text-sm font-semibold text-fg-violet" : "relative z-10 text-center text-sm font-medium text-fg-grey-700"}>
+            <div className={pointIndex === activeIndex ? "relative z-10 text-center text-sm font-medium text-fg-violet" : "relative z-10 text-center text-sm font-medium text-fg-grey-700"}>
               {point.label}
             </div>
           </div>
@@ -230,11 +230,11 @@ export function DivergingBarChart({
       <div className="absolute left-1/2 top-6 z-20 min-w-32 -translate-x-1/2 rounded-xl bg-fg-black px-3 py-2 text-white shadow-elevated">
         <div className="flex items-center justify-between gap-3 text-xs">
           <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${upperColor}`} />{upperLabel}</span>
-          <span className="font-semibold">{tooltipUpperValue}</span>
+          <span className="font-medium">{tooltipUpperValue}</span>
         </div>
         <div className="mt-1.5 flex items-center justify-between gap-3 text-xs">
           <span className="flex items-center gap-2 text-white/70"><span className={`size-2.5 rounded-full ${lowerColor}`} />{lowerLabel}</span>
-          <span className="font-semibold">{tooltipLowerValue}</span>
+          <span className="font-medium">{tooltipLowerValue}</span>
         </div>
       </div>
       {data.map((item, index) => (
@@ -242,7 +242,7 @@ export function DivergingBarChart({
           {index === activeIndex && <span className="absolute inset-y-6 w-12 bg-fg-violet-50" />}
           <span className={`relative z-10 mb-1 w-3 rounded-full ${upperColor}`} style={{ height: `${barPercent(item.upperValue, max, 42)}%` }} />
           <span className={`relative z-10 mt-1 w-3 rounded-full ${lowerColor}`} style={{ height: `${barPercent(item.lowerValue, max, 42)}%` }} />
-          <span className={index === activeIndex ? "absolute bottom-0 text-sm font-semibold text-fg-violet" : "absolute bottom-0 text-sm font-medium text-fg-grey-700"}>
+          <span className={index === activeIndex ? "absolute bottom-0 text-sm font-medium text-fg-violet" : "absolute bottom-0 text-sm font-medium text-fg-grey-700"}>
             {item.label}
           </span>
         </div>

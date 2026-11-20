@@ -83,11 +83,11 @@ export function InlineDiff({ segments, title, onApply, onDecisionsChange, applyL
               <span className="pointer-events-none absolute -top-8 left-0 z-20 inline-flex items-center gap-0.5 whitespace-nowrap rounded-full bg-background p-0.5 opacity-0 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-opacity group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100">
                 {decision === "pending" ? (
                   <>
-                    <button type="button" aria-label={pick(locale, "接受", "Accept")} onClick={() => set(segment.id, "accepted")} className="inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-bold text-fg-green-600 hover:bg-fg-green-50"><CheckCircleLinear size={12} />{pick(locale, "接受", "Accept")}</button>
-                    <button type="button" aria-label={pick(locale, "拒绝", "Reject")} onClick={() => set(segment.id, "rejected")} className="inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-bold text-fg-red hover:bg-fg-red-50"><CloseCircleLinear size={12} />{pick(locale, "拒绝", "Reject")}</button>
+                    <button type="button" aria-label={pick(locale, "接受", "Accept")} onClick={() => set(segment.id, "accepted")} className="inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-medium text-fg-green-600 hover:bg-fg-green-50"><CheckCircleLinear size={12} />{pick(locale, "接受", "Accept")}</button>
+                    <button type="button" aria-label={pick(locale, "拒绝", "Reject")} onClick={() => set(segment.id, "rejected")} className="inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-medium text-fg-red hover:bg-fg-red-50"><CloseCircleLinear size={12} />{pick(locale, "拒绝", "Reject")}</button>
                   </>
                 ) : (
-                  <button type="button" aria-label={pick(locale, "撤回决定", "Undo")} onClick={() => set(segment.id, decision)} className="inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-bold text-fg-grey-700 hover:bg-fg-grey-100"><RestartCircleLinear size={12} />{pick(locale, "撤回", "Undo")}</button>
+                  <button type="button" aria-label={pick(locale, "撤回决定", "Undo")} onClick={() => set(segment.id, decision)} className="inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100"><RestartCircleLinear size={12} />{pick(locale, "撤回", "Undo")}</button>
                 )}
               </span>
             </span>

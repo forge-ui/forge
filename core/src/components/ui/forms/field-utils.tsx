@@ -85,7 +85,7 @@ export function FieldTag({
   const accent = formAccents[color];
   return (
     <span data-tag-selected={selected || undefined} className={cn("inline-flex items-center gap-0.5 p-2 rounded-full", tagBgByColor[color], selected && "outline outline-2 outline-current")}>
-      <span className={cn("text-xs font-bold leading-[18px] tracking-fg whitespace-nowrap", accent.text)}>
+      <span className={cn("text-xs font-medium leading-[18px] tracking-fg whitespace-nowrap", accent.text)}>
         {label}
       </span>
       {onRemove && (

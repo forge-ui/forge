@@ -179,7 +179,7 @@ export function ChatBubble({
               <DocumentTextLinear size={20} color={isSent ? "white" : c.playIcon} />
             </div>
             <div className="inline-flex flex-col justify-center items-start gap-0.5 min-w-0">
-              <p className={`text-sm font-semibold leading-5 tracking-fg truncate ${bubbleText}`}>
+              <p className={`text-sm font-medium leading-5 tracking-fg truncate ${bubbleText}`}>
                 {fileName ?? content ?? ""}
               </p>
               {fileSize && (
@@ -214,7 +214,7 @@ export function ChatBubble({
             ))}
             {extraImageCount !== undefined && extraImageCount > 0 && (
               <div className={`w-16 h-16 p-2.5 ${c.filesPlusBg} rounded-xl inline-flex flex-col justify-center items-center gap-2.5 overflow-hidden`}>
-                <span className={`text-sm font-semibold leading-5 tracking-fg ${c.filesPlusText}`}>
+                <span className={`text-sm font-medium leading-5 tracking-fg ${c.filesPlusText}`}>
                   +{extraImageCount}
                 </span>
               </div>
@@ -225,7 +225,7 @@ export function ChatBubble({
         {onReply && <button type="button" className="inline-flex items-center gap-1 rounded-lg px-1 py-0.5 text-xs text-fg-grey-500 hover:bg-fg-grey-100" onClick={onReply}><ReplyLinear size={14} />{locale === "zh" ? "回复" : "Reply"}</button>}
         {onReaction && <ChatReactions reactions={reactions} options={reactionOptions} onChange={onReaction} locale={locale} motion={motion} />}
         {deliveryLabel && <span role="status" className="inline-flex items-center gap-1 text-xs text-fg-grey-500">{delivery === "queued" || delivery === "sending" ? <ClockCircleLinear size={14} /> : delivery === "failed" ? <DangerTriangleLinear size={14} color="var(--fg-red)" /> : <CheckCircleLinear size={14} />}{deliveryLabel}</span>}
-        {time && <span className="text-2xs text-fg-grey-500 px-1">{time}</span>}
+        {time && <span className="text-xs text-fg-grey-500 px-1">{time}</span>}
       </div>
     </div>
   );

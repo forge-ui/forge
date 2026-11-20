@@ -50,7 +50,7 @@ export function ListGroup({
       <div className={cn("self-stretch inline-flex justify-start items-start", density === "compact" ? "px-4 pt-4 gap-3" : "px-5 pt-5 gap-3")}>
         <div className={cn("flex-1 inline-flex flex-col justify-start items-start", "gap-2")}>
           <div className="inline-flex items-center gap-3">
-            <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">
+            <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">
               {title}
             </span>
             {badge}
@@ -94,8 +94,8 @@ export function ListGroup({
                     "flex-1 rounded-full text-sm transition-colors",
                     "px-3.5 py-2.5",
                     isActive
-                      ? `${accent.bgTint} ${accent.text} font-bold`
-                      : "text-fg-grey-700 font-semibold hover:bg-fg-grey-100"
+                      ? `${accent.bgTint} ${accent.text} font-semibold`
+                      : "text-fg-grey-700 font-medium hover:bg-fg-grey-100"
                   )}
                 >
                   {tab.label}

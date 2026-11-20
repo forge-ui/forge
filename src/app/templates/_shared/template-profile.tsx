@@ -11,7 +11,7 @@ export function TemplateProfile({ template, onHelp }: {
   return <div className="template-profile" aria-label="示例用户与模板导航">
     <Avatar size="sm" src="/images/protask/crm/john-hoegan-avatar.png" alt="林晓" />
     <div className="template-profile-text min-w-0 flex-1">
-      <p className="text-sm font-semibold text-fg-black">林晓</p>
+      <p className="text-sm font-medium text-fg-black">林晓</p>
       <p className="text-xs text-fg-grey-700">本地模板预览</p>
     </div>
     <KebabMenu accent="black" items={[

@@ -92,7 +92,7 @@ function ContextBody({ segments, limit, cost, currency, onRemove, onCompact, loc
       </ul>
       {(cost !== undefined || onCompact) && (
         <div className="flex items-center justify-between gap-3 border-t border-fg-grey-200 pt-3">
-          {cost !== undefined ? <span className="text-xs text-fg-grey-500">{pick(locale, "本次对话花费", "Spent in this chat")} <span className="font-semibold tabular-nums text-fg-black">{formatCost(cost, currency)}</span></span> : <span />}
+          {cost !== undefined ? <span className="text-xs text-fg-grey-500">{pick(locale, "本次对话花费", "Spent in this chat")} <span className="font-medium tabular-nums text-fg-black">{formatCost(cost, currency)}</span></span> : <span />}
           {onCompact && <Button size="sm" variant="tertiary" color="grey" onClick={onCompact}>{pick(locale, "压缩早期对话", "Compact")}</Button>}
         </div>
       )}
@@ -132,7 +132,7 @@ export function ContextUsage({ variant = "card", locale = "zh", size = "md", cla
       </button>
       {open && (
         <div className={cn(popover, "absolute bottom-full left-0 mb-2 w-80 max-w-[calc(100vw-2rem)]")}>
-          <div className="mb-3 flex items-baseline justify-between"><span className="text-sm font-semibold text-fg-black">{pick(locale, "上下文", "Context")}</span><span className="text-xs tabular-nums text-fg-grey-500">{summary}</span></div>
+          <div className="mb-3 flex items-baseline justify-between"><span className="text-sm font-medium text-fg-black">{pick(locale, "上下文", "Context")}</span><span className="text-xs tabular-nums text-fg-grey-500">{summary}</span></div>
           <ContextBody {...props} locale={locale} />
         </div>
       )}
@@ -260,7 +260,7 @@ function TreeNode({ agent, root, selectedId, onSelect, currency, locale }: { age
         <button type="button" onClick={() => onSelect?.(agent.id)} className="flex min-w-0 flex-1 items-center gap-3 text-left">
           <span className={cn("flex size-8 shrink-0 items-center justify-center rounded-xl", root ? "bg-accent text-accent-foreground" : "bg-accent-soft text-accent")}><StarsLinear size={16} /></span>
           <span className="flex min-w-0 flex-1 flex-col">
-            <span className="flex min-w-0 items-baseline gap-2"><span className="min-w-0 truncate text-sm font-semibold text-fg-black">{agent.name}</span>{agent.role && <span className="hidden shrink-0 text-xs text-fg-grey-500 @[22rem]:inline">{agent.role}</span>}</span>
+            <span className="flex min-w-0 items-baseline gap-2"><span className="min-w-0 truncate text-sm font-medium text-fg-black">{agent.name}</span>{agent.role && <span className="hidden shrink-0 text-xs text-fg-grey-500 @[22rem]:inline">{agent.role}</span>}</span>
             {agent.activity && <span key={agent.activity} className={cn("forge-fade-up truncate text-xs text-fg-grey-700", agent.status === "running" && "forge-text-shimmer")}>{agent.activity}</span>}
           </span>
           <span className="flex shrink-0 flex-col items-end gap-0.5">

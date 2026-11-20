@@ -66,7 +66,7 @@ function MicellaneousChatContent() {
               <div className="flex items-center gap-3">
                 <Avatar src={active.avatar} size="md" />
                 <div>
-                  <p className="text-sm font-semibold text-fg-black">{active.name}</p>
+                  <p className="text-sm font-medium text-fg-black">{active.name}</p>
               <p className="text-xs font-medium text-fg-green-500">{chat === "team" ? "12 members online" : "Online"}</p>
                 </div>
               </div>
@@ -110,7 +110,7 @@ function MicellaneousChatContent() {
                   <div className="flex items-center gap-3">
                     <Avatar src={contact.avatar} size="md" />
                     <div>
-                      <p className="text-sm font-semibold text-fg-black">{index === 0 ? "Jay Hargudson" : contact.name}</p>
+                      <p className="text-sm font-medium text-fg-black">{index === 0 ? "Jay Hargudson" : contact.name}</p>
                       <p className="text-xs font-medium text-fg-grey-500">{index === 3 ? "UI/UX Designer" : "Project Manager"}</p>
                     </div>
                   </div>

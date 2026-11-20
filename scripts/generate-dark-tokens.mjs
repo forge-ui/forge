@@ -59,6 +59,7 @@ const SEMANTIC = [
   "  --text-secondary: var(--fg-grey-900);",
   "  --text-muted: var(--fg-grey-700);",
   "  --text-disabled: var(--fg-grey-500);",
+  "  --sidebar-muted: var(--fg-grey-700);",
   "  --border: var(--fg-grey-200);",
   "  --border-muted: var(--fg-grey-100);",
   "  --divider: var(--fg-grey-200);",

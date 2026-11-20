@@ -89,7 +89,7 @@ export function InvoiceDocument({ invoice = defaultInvoiceDocument, onSend, onDo
       <div className="flex flex-col gap-8 p-6 sm:p-10">
         <header className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex flex-col gap-3">
-            <p className="flex items-center gap-3 text-2xl font-semibold text-fg-black"><span className="flex size-8 items-center justify-center rounded-lg bg-fg-blue text-sm font-bold text-white">{invoice.seller.initial}</span>{invoice.seller.name}</p>
+            <p className="flex items-center gap-3 text-2xl font-semibold text-fg-black"><span className="flex size-8 items-center justify-center rounded-lg bg-fg-blue text-sm font-medium text-white">{invoice.seller.initial}</span>{invoice.seller.name}</p>
             <p className="max-w-64 text-sm leading-6 text-fg-grey-700">{invoice.seller.address}<br />{invoice.seller.phone}</p>
           </div>
           <p className="text-2xl font-semibold text-fg-black">发票</p>

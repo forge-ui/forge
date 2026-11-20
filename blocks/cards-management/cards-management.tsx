@@ -54,7 +54,7 @@ export function CardsManagement({ cards = defaultManagedCards, onAddCard, onFree
       <ul className="flex flex-col gap-3" role="listbox" aria-label="企业卡">{items.map(item => <li key={item.id}>
         <Button variant="unstyled" type="button" role="option" aria-selected={item.id === active?.id} className={cn("relative block w-full rounded-[20px] outline-offset-2 transition-opacity", item.id === active?.id ? "outline outline-2 outline-fg-blue" : "opacity-80 hover:opacity-100")} onClick={() => setActiveId(item.id)}>
           <CreditCard {...item.card} width="full" />
-          {item.frozen && <span className="absolute inset-0 grid place-items-center rounded-[20px] bg-fg-black/40"><span className="rounded-full bg-background px-3 py-1 text-xs font-semibold text-fg-black">已冻结</span></span>}
+          {item.frozen && <span className="absolute inset-0 grid place-items-center rounded-[20px] bg-fg-black/40"><span className="rounded-full bg-background px-3 py-1 text-xs font-medium text-fg-black">已冻结</span></span>}
         </Button>
       </li>)}</ul>
       <Button variant="tertiary" className="w-full" iconLeft={<PlusIcon size={16} />} onClick={onAddCard}>申请新卡</Button>
@@ -72,7 +72,7 @@ export function CardsManagement({ cards = defaultManagedCards, onAddCard, onFree
         </div>
       </Panel>
       <Panel variant="template" title="最近消费" subtitle={`${active.transactions.length} 笔`}>
-        <ul className="flex flex-col divide-y divide-fg-grey-200">{active.transactions.map(item => <li key={item.id} className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-semibold text-fg-black">{item.merchant}</p><p className="text-xs text-fg-grey-700">{item.time}</p></div><span className="text-sm font-semibold tabular-nums text-fg-black">-¥{item.amount.toLocaleString("zh-CN")}</span></li>)}</ul>
+        <ul className="flex flex-col divide-y divide-fg-grey-200">{active.transactions.map(item => <li key={item.id} className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-medium text-fg-black">{item.merchant}</p><p className="text-xs text-fg-grey-700">{item.time}</p></div><span className="text-sm font-medium tabular-nums text-fg-black">-¥{item.amount.toLocaleString("zh-CN")}</span></li>)}</ul>
       </Panel>
     </div>}
   </div>;

@@ -165,7 +165,7 @@ export function ProtaskAuthPage({
                     <Button variant="unstyled"
                       type="button"
                       onClick={() => router.push(`${basePath}/forgot-password`)}
-                      className="text-sm font-bold leading-5 tracking-fg text-fg-blue"
+                      className="text-sm font-medium leading-5 tracking-fg text-fg-blue"
                     >
                       Forgot Password
                     </Button>

@@ -92,7 +92,7 @@ export function Label({
     <span
       className={`${labelSizes[size]} ${labelColors[color][variant]} rounded-full inline-flex flex-col justify-center items-center gap-2`}
     >
-      <span className="font-semibold tracking-fg">{children}</span>
+      <span className="font-medium tracking-fg">{children}</span>
     </span>
   );
 }

@@ -280,7 +280,7 @@ export default function ProductDetailPage() {
                     className="h-10 px-3 pr-3.5 rounded-lg outline outline-1 outline-fg-grey-200 inline-flex items-center gap-1"
                   >
                     <span className={`w-5 h-5 rounded-full ${variant.color}`} />
-                    <span className="text-sm font-semibold text-fg-grey-700">{variant.name}</span>
+                    <span className="text-sm font-medium text-fg-grey-700">{variant.name}</span>
                   </div>
                 ))}
               </div>
@@ -340,7 +340,7 @@ export default function ProductDetailPage() {
             {reviewList.map((review) => (
               <div key={review.id} className="p-4 rounded-xl outline outline-1 outline-fg-grey-200 flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-fg-black">{review.customer}</span>
+                  <span className="text-sm font-medium text-fg-black">{review.customer}</span>
                   <span className="text-xs text-fg-grey-700">{review.date}</span>
                 </div>
                 <div className="flex items-center gap-0.5">
@@ -363,7 +363,7 @@ export default function ProductDetailPage() {
             {messageList.map((msg) => (
               <div key={msg.id} className="p-4 rounded-xl outline outline-1 outline-fg-grey-200 flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-fg-black">{msg.customer}</span>
+                  <span className="text-sm font-medium text-fg-black">{msg.customer}</span>
                   <span className="text-xs text-fg-grey-700">{msg.date}</span>
                 </div>
                 <p className="text-sm text-fg-grey-700">{msg.message}</p>

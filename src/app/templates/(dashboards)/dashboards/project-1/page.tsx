@@ -158,7 +158,7 @@ export default function Project1Page() {
           <Panel >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">All Project</h3>
+                <h3 className="text-sm font-medium text-fg-black">All Project</h3>
                 <p className="text-sm text-fg-grey-500">Based on status</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -212,7 +212,7 @@ export default function Project1Page() {
           <ScheduleCard gap="sm" className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Daily Activity</h3>
+                <h3 className="text-sm font-medium text-fg-black">Daily Activity</h3>
                 <p className="text-sm text-fg-grey-500">Today&apos;s activity</p>
               </div>
               <KebabMenu items={[{ label: "View all", onSelect: () => {} }]} />
@@ -231,7 +231,7 @@ export default function Project1Page() {
           <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Projects</h3>
+                <h3 className="text-sm font-medium text-fg-black">Projects</h3>
                 <p className="text-sm text-fg-grey-500">Recent projects</p>
               </div>
               <div className="flex items-center gap-2">
@@ -258,7 +258,7 @@ export default function Project1Page() {
                     <div className="flex items-center gap-3">
                       <Avatar src={m.avatar} online={m.online} size="md" />
                       <div>
-                        <div className="text-sm font-semibold text-fg-black">{m.name}</div>
+                        <div className="text-sm font-medium text-fg-black">{m.name}</div>
                         <div className="text-xs text-fg-grey-500">{m.role}</div>
                       </div>
                     </div>

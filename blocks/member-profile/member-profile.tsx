@@ -70,7 +70,7 @@ export interface MemberProfileProps {
 export function MemberProfile({ member = defaultMemberProfile, className }: MemberProfileProps) {
   const [tab, setTab] = useState(0);
   const columns: ColumnDef<MemberProject>[] = [
-    { key: "name", header: "项目", minWidth: 180, render: project => <span className="text-sm font-semibold text-fg-black">{project.name}</span> },
+    { key: "name", header: "项目", minWidth: 180, render: project => <span className="text-sm font-medium text-fg-black">{project.name}</span> },
     { key: "status", header: "状态", minWidth: 96, render: project => <StatusBadge {...project.status} variant="soft" /> },
     { key: "progress", header: "进度", minWidth: 140, render: project => <div className="flex items-center gap-2"><div className="h-1.5 w-20 overflow-hidden rounded-full bg-fg-grey-100"><div className="h-full rounded-full bg-fg-blue" style={{ width: `${project.progress}%` }} /></div><span className="text-xs tabular-nums text-fg-grey-700">{project.progress}%</span></div> },
     { key: "budget", header: "预算", minWidth: 110, valueKind: "number", render: project => <span className="text-sm tabular-nums text-fg-black">¥{project.budget.toLocaleString("zh-CN")}</span> },
@@ -93,7 +93,7 @@ export function MemberProfile({ member = defaultMemberProfile, className }: Memb
       </div>)}</div>
       <div className="fg-scrollbar-hidden overflow-x-auto border-b border-fg-grey-200"><TabBar color="blue" tabs={tabs.map((label, index) => ({ label, active: index === tab }))} onChange={setTab} /></div>
       {tab === 0 && <DataTable<MemberProject> columns={columns} rows={member.projects} getRowKey={project => project.id} footerLeft={<p className="text-sm text-fg-grey-700">共 {member.projects.length} 个项目</p>} />}
-      {tab === 1 && <Panel variant="template" title="手头任务"><ul className="flex flex-col divide-y divide-fg-grey-200">{member.tasks.map(task => <li key={task.id} className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-semibold text-fg-black">{task.title}</p><p className="text-xs text-fg-grey-700">截止 {task.due}</p></div><StatusBadge {...task.status} variant="soft" /></li>)}</ul></Panel>}
+      {tab === 1 && <Panel variant="template" title="手头任务"><ul className="flex flex-col divide-y divide-fg-grey-200">{member.tasks.map(task => <li key={task.id} className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"><div><p className="text-sm font-medium text-fg-black">{task.title}</p><p className="text-xs text-fg-grey-700">截止 {task.due}</p></div><StatusBadge {...task.status} variant="soft" /></li>)}</ul></Panel>}
       {tab === 2 && <Panel variant="template" title="最近动态"><ol className="flex flex-col divide-y divide-fg-grey-200">{member.activity.map(item => <li key={item.id} className="flex justify-between gap-3 py-3 text-sm first:pt-0 last:pb-0"><span className="text-fg-black">{item.text}</span><time className="shrink-0 text-xs text-fg-grey-500">{item.time}</time></li>)}</ol></Panel>}
     </div>
   </div>;

@@ -121,7 +121,7 @@ export function Pagination({
             aria-label={zh ? `第 ${page} 页` : `Page ${page}`}
             onClick={() => onPageChange?.(page)}
             whileTap={reduced ? undefined : { scale: .94 }}
-            className={cn("relative z-[1] w-10 h-10 p-2 rounded-full shrink-0 inline-flex items-center justify-center text-sm font-semibold cursor-pointer",
+            className={cn("relative z-[1] w-10 h-10 p-2 rounded-full shrink-0 inline-flex items-center justify-center text-sm font-medium cursor-pointer",
               page === currentPage ? "text-white" : "outline outline-1 outline-offset-[-1px] outline-fg-grey-200 text-fg-grey-700")}
           >
             {page}

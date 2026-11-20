@@ -43,7 +43,7 @@ export function FilterTrigger({
 
   const accent = accentColors[color];
   const iconColor = open ? accent.text : "text-fg-grey-500";
-  const textCls = open ? `${accent.text} font-bold` : "text-fg-grey-700 font-semibold";
+  const textCls = open ? `${accent.text} font-semibold` : "text-fg-grey-700 font-medium";
   const borderCls = open ? `outline-1 ${accent.outline}` : "outline-1 outline-fg-grey-200";
 
   const handleClick = () => {
@@ -65,7 +65,7 @@ export function FilterTrigger({
         </span>
         <span className={`text-sm leading-5 tracking-fg ${textCls}`}>{label}</span>
         {typeof count === "number" && count > 0 && (
-          <span className="min-w-5 h-5 px-1.5 bg-fg-red text-white text-2xs font-bold leading-4 tracking-fg rounded-full inline-flex items-center justify-center">
+          <span className="min-w-5 h-5 px-1.5 bg-fg-red text-white text-2xs font-semibold leading-4 tracking-fg rounded-full inline-flex items-center justify-center">
             {count > 99 ? "99+" : count}
           </span>
         )}

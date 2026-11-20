@@ -133,7 +133,7 @@ export function MediaUpload({
                 )}
                 {item.state === "uploading" && typeof item.progress === "number" && (
                   <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-2 py-1 bg-accent-soft rounded-full outline outline-1 outline-offset-[-1px] outline-accent">
-                    <span className="text-accent text-xs font-semibold leading-4 tracking-fg">
+                    <span className="text-accent text-xs font-medium leading-4 tracking-fg">
                       {item.progress}%
                     </span>
                   </div>
@@ -162,7 +162,7 @@ export function MediaUpload({
             accent.bg,
           )}
         >
-          <span className="text-white text-sm font-bold leading-5 tracking-fg">
+          <span className="text-white text-sm font-medium leading-5 tracking-fg">
             {buttonLabel}
           </span>
         </button>
@@ -232,7 +232,7 @@ export function ProfileImgUpload({
             <path d="M5 10H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             <path d="M10 5V15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
-          <span className={cn("text-sm font-bold leading-5 tracking-fg", accent.text)}>
+          <span className={cn("text-sm font-medium leading-5 tracking-fg", accent.text)}>
             {linkLabel}
           </span>
         </button>

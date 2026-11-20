@@ -127,7 +127,7 @@ export function TaskComments({ draftKey, value, onChange, label = "任务评论"
   const contentId = useId();
   return <section className="task-detail-section flex flex-col gap-3" aria-label={label}>
     <div className="flex items-center justify-between gap-3">
-      <h3 className="text-sm font-semibold text-fg-black"><Button color="black" size="sm" variant="tertiary" className="task-comments-toggle" aria-label={collapsed ? "展开评论" : "收起评论"} aria-expanded={!collapsed} aria-controls={contentId} onClick={() => setCollapsed(!collapsed)}><span aria-hidden className={collapsed ? "task-comments-chevron collapsed" : "task-comments-chevron"}><AltArrowDownLinear size={16} /></span>评论</Button></h3>
+      <h3 className="text-sm font-medium text-fg-black"><Button color="black" size="sm" variant="tertiary" className="task-comments-toggle" aria-label={collapsed ? "展开评论" : "收起评论"} aria-expanded={!collapsed} aria-controls={contentId} onClick={() => setCollapsed(!collapsed)}><span aria-hidden className={collapsed ? "task-comments-chevron collapsed" : "task-comments-chevron"}><AltArrowDownLinear size={16} /></span>评论</Button></h3>
       <span className="text-xs text-fg-grey-700">{comments.length} 条评论</span>
     </div>
     <div id={contentId} hidden={collapsed} className="task-comments-content"><>

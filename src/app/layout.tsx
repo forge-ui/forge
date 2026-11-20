@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { CSSProperties } from "react";
-import "@fontsource-variable/manrope";
+import "@fontsource-variable/inter";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
 import { themeBootScript } from "@/lib/theme-boot";
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const fontVariables = {
-  "--font-manrope": "'Manrope Variable', system-ui, sans-serif",
+  "--font-inter": "'Inter Variable', system-ui, sans-serif",
   "--font-plus-jakarta-sans": "'Plus Jakarta Sans Variable', system-ui, sans-serif",
 } as CSSProperties;
 
@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" data-accent="blue" className="h-full antialiased" style={fontVariables} suppressHydrationWarning>
+    <html lang="zh-CN" data-accent="blue" className="h-full" style={fontVariables} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>

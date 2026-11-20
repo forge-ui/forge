@@ -35,7 +35,7 @@ function CommentInner({
   return (
     <div className="flex-1 min-w-0 inline-flex flex-col justify-center items-start gap-2">
       <div className="self-stretch inline-flex justify-between items-center">
-        <span className="text-fg-black text-sm font-semibold leading-5 tracking-fg">{name}</span>
+        <span className="text-fg-black text-sm font-medium leading-5 tracking-fg">{name}</span>
         <span className="text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">{date}</span>
       </div>
       <p className="self-stretch text-fg-grey-700 text-sm font-normal leading-5 tracking-fg">
@@ -54,7 +54,7 @@ function CommentInner({
         className="inline-flex justify-start items-center gap-1 cursor-pointer"
       >
         <ReplyLinear size={20} color="currentColor" />
-        <span className="text-accent text-sm font-bold leading-5 tracking-fg">{replyLabel}</span>
+        <span className="text-accent text-sm font-medium leading-5 tracking-fg">{replyLabel}</span>
       </button>
     </div>
   );

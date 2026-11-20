@@ -110,7 +110,7 @@ export type RunControlsProps = {
   className?: string;
 };
 
-const pillButton = "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-bold tracking-fg text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 disabled:opacity-50";
+const pillButton = "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-medium tracking-fg text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 disabled:opacity-50";
 
 /** Everything a running agent needs in one bar: stop, resume, retry, dismiss, and a note to steer it. */
 export function RunControls({ status, activity, startedAt, duration, error, onStop, onResume, onRetry, onDismiss, onSteer, locale = "zh", motion = "auto", className }: RunControlsProps) {
@@ -137,7 +137,7 @@ export function RunControls({ status, activity, startedAt, duration, error, onSt
         <span className="ml-auto flex shrink-0 items-center gap-1.5">
           {running && onSteer && <button type="button" onClick={() => setSteering(value => !value)} aria-expanded={steering} className={cn(pillButton, steering && "bg-fg-grey-100")}><ChatRoundLineLinear size={14} />{pick(locale, "插一句", "Steer")}</button>}
           {running && onStop && <button type="button" disabled={status === "stopping"} onClick={onStop} className={pillButton}><span className="size-2.5 rounded-[3px] bg-fg-black" />{pick(locale, "停止", "Stop")}</button>}
-          {status === "stopped" && onResume && <button type="button" onClick={onResume} className="inline-flex h-8 items-center gap-1.5 rounded-full bg-accent px-3 text-xs font-bold text-accent-foreground hover:opacity-90"><PlayBoldDuotone size={14} />{pick(locale, "继续", "Resume")}</button>}
+          {status === "stopped" && onResume && <button type="button" onClick={onResume} className="inline-flex h-8 items-center gap-1.5 rounded-full bg-accent px-3 text-xs font-medium text-accent-foreground hover:opacity-90"><PlayBoldDuotone size={14} />{pick(locale, "继续", "Resume")}</button>}
           {(status === "failed" || status === "stopped") && onRetry && <button type="button" onClick={onRetry} className={pillButton}><RefreshLinear size={14} />{pick(locale, "重试", "Retry")}</button>}
           {!running && onDismiss && <button type="button" aria-label={pick(locale, "关闭", "Dismiss")} onClick={onDismiss} className={iconAction}><PlusLinear size={16} className="rotate-45" /></button>}
         </span>
@@ -145,7 +145,7 @@ export function RunControls({ status, activity, startedAt, duration, error, onSt
       <Collapse open={running && steering && Boolean(onSteer)} motion={motion}>
         <form className="flex items-center gap-2 border-t border-fg-grey-200 px-3 py-2.5" onSubmit={event => { event.preventDefault(); if (!note.trim()) return; onSteer?.(note.trim()); setNote(""); setSteering(false); }}>
           <input autoFocus value={note} onChange={event => setNote(event.target.value)} placeholder={pick(locale, "补充一句，它下一步会看到", "Add a note for its next step")} aria-label={pick(locale, "补充说明", "Steering note")} className={cn(fieldInput, "py-2")} />
-          <button type="submit" disabled={!note.trim()} className="inline-flex h-9 shrink-0 items-center rounded-full bg-accent px-3.5 text-xs font-bold text-accent-foreground disabled:opacity-50">{pick(locale, "发送", "Send")}</button>
+          <button type="submit" disabled={!note.trim()} className="inline-flex h-9 shrink-0 items-center rounded-full bg-accent px-3.5 text-xs font-medium text-accent-foreground disabled:opacity-50">{pick(locale, "发送", "Send")}</button>
         </form>
       </Collapse>
     </section>

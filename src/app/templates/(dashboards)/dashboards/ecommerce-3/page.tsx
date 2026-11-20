@@ -148,7 +148,7 @@ export default function Ecommerce3Page() {
           <Panel gap="sm" >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Target</h3>
+                <h3 className="text-sm font-medium text-fg-black">Target</h3>
                 <p className="text-sm text-fg-grey-500">Revenue target</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -193,7 +193,7 @@ export default function Ecommerce3Page() {
           <CompositionCard gap="sm" >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">All Expenses</h3>
+                <h3 className="text-sm font-medium text-fg-black">All Expenses</h3>
                 <p className="text-sm text-fg-grey-500">Based on categories</p>
               </div>
               <KebabMenu items={[{ label: "Refresh", onSelect: () => {} }]} />
@@ -239,11 +239,11 @@ export default function Ecommerce3Page() {
                       <img src={p.imageUrl} alt={p.name} className="size-full object-cover" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-fg-black truncate">{p.name}</div>
+                      <div className="text-sm font-medium text-fg-black truncate">{p.name}</div>
                       <div className="text-xs text-fg-grey-500">{p.sales}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm font-semibold text-fg-black">{p.price}</div>
+                      <div className="text-sm font-medium text-fg-black">{p.price}</div>
                     </div>
                   </div>
                 ))}
@@ -286,7 +286,7 @@ export default function Ecommerce3Page() {
           <RecentRecords className="lg:col-span-2">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-fg-black">Recent Orders</h3>
+                <h3 className="text-sm font-medium text-fg-black">Recent Orders</h3>
                 <p className="text-sm text-fg-grey-500">Recent orders</p>
               </div>
               <div className="flex items-center gap-2">
@@ -311,10 +311,10 @@ export default function Ecommerce3Page() {
                   <div key={r.id} className="flex items-center gap-3 py-2.5">
                     <span className="text-2xl">{r.flag}</span>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-fg-black">{r.name}</div>
+                      <div className="text-sm font-medium text-fg-black">{r.name}</div>
                       <div className="text-xs text-fg-grey-500">{r.sales}</div>
                     </div>
-                    <div className="text-sm font-semibold text-fg-black">{r.amount}</div>
+                    <div className="text-sm font-medium text-fg-black">{r.amount}</div>
                   </div>
                 ))}
               </div>

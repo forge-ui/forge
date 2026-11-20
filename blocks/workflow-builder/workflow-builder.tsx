@@ -391,12 +391,12 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
                 <div className="px-3 py-1.5 text-[11px] font-medium text-fg-grey-400">{category}</div>
                 <div className="flex flex-wrap gap-2 px-3 pb-2">
                   {paletteKinds.filter(kind => meta[kind].category === category).map(kind => <button key={kind} type="button" onClick={() => addNode(kind)} className="flex w-[calc(50%-4px)] items-center gap-2 rounded-lg border border-fg-grey-200 bg-background px-2.5 py-2 text-left text-sm text-fg-black transition-colors hover:border-fg-blue hover:bg-fg-blue-50/30">
-                    <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-bold text-white ${meta[kind].chip}`}>{meta[kind].label.slice(0, 1)}</span>{meta[kind].label}
+                    <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-medium text-white ${meta[kind].chip}`}>{meta[kind].label.slice(0, 1)}</span>{meta[kind].label}
                   </button>)}
                 </div>
               </div>) : <div className="flex flex-col gap-1 px-3 py-2">
                 {(paletteTab === 1 ? ["查询订单状态", "创建售后工单", "发送企业微信通知"] : ["售后问答助手", "发票信息提取"]).map(name => <button key={name} type="button" onClick={() => addNode("tool")} className="flex w-full items-center gap-2 rounded-lg border border-transparent px-2.5 py-2 text-left text-sm hover:border-fg-grey-200 hover:bg-fg-grey-50">
-                  <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-bold text-white ${meta.tool.chip}`}>{name.slice(0, 1)}</span>{name}
+                  <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-medium text-white ${meta.tool.chip}`}>{name.slice(0, 1)}</span>{name}
                 </button>)}
               </div>}
             </div>
@@ -419,8 +419,8 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
               {node.kind !== "base" ? <Port id={`${node.id}:in`} side="in" /> : null}
               {node.kind !== "condition" && node.kind !== "reply" ? <Port id={`${node.id}:out`} side="out" /> : null}
               <div data-drag={node.id} className="flex cursor-move items-center gap-1.5 px-2 py-1.5">
-                <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-bold text-white ${meta[node.kind].chip}`}>{meta[node.kind].label.slice(0, 1)}</span>
-                <div className="min-w-0 flex-1 truncate text-xs font-semibold text-fg-black">{node.title}</div>
+                <span className={`flex size-5 shrink-0 items-center justify-center rounded text-[10px] font-medium text-white ${meta[node.kind].chip}`}>{meta[node.kind].label.slice(0, 1)}</span>
+                <div className="min-w-0 flex-1 truncate text-xs font-medium text-fg-black">{node.title}</div>
                 {status ? <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${status === "done" ? "bg-fg-green-50 text-fg-green-700" : "bg-fg-blue-50 text-fg-blue-700"}`}>{status === "done" ? "完成" : "运行中"}</span> : null}
                 <button type="button" title={node.expanded ? "收起" : "展开"} onClick={() => commit({ nodes: nodes.map(item => item.id === node.id ? { ...item, expanded: !item.expanded } : item), edges })} className="rounded p-0.5 text-fg-grey-400 hover:bg-fg-grey-50 hover:text-fg-grey-700"><span className={`block transition-transform ${node.expanded ? "rotate-180" : ""}`}><AltArrowDownLinear size={14} /></span></button>
                 {node.kind !== "base" && node.kind !== "start" ? <button type="button" title="删除" onClick={() => commit({ nodes: nodes.filter(item => item.id !== node.id), edges: edges.filter(edge => edge.from !== node.id && edge.to !== node.id) })} className="rounded p-0.5 text-fg-grey-400 hover:bg-fg-red/5 hover:text-fg-red"><TrashBinMinimalisticLinear size={12} /></button> : null}
@@ -445,7 +445,7 @@ export function WorkflowBuilder({ nodes: initialNodes = defaultWorkflowNodes, ed
         </div>
 
         {debugOpen ? <div data-overlay className="absolute bottom-3 right-3 z-40 flex h-[min(520px,calc(100%-24px))] w-[min(380px,calc(100%-24px))] flex-col overflow-hidden rounded-2xl border border-fg-grey-200 bg-background shadow-2xl">
-          <div className="flex items-center justify-between border-b border-fg-grey-100 px-4 py-3"><span className="text-sm font-semibold text-fg-black">调试</span><button type="button" className="text-xs text-fg-grey-500 hover:text-fg-black" onClick={() => { setDebugOpen(false); setRun(null); }}>关闭</button></div>
+          <div className="flex items-center justify-between border-b border-fg-grey-100 px-4 py-3"><span className="text-sm font-medium text-fg-black">调试</span><button type="button" className="text-xs text-fg-grey-500 hover:text-fg-black" onClick={() => { setDebugOpen(false); setRun(null); }}>关闭</button></div>
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-4 text-sm">
             {run ? <>
               <div className="self-end rounded-2xl rounded-br-md bg-fg-blue-50 px-3 py-2 text-fg-grey-900">{run.question}</div>

@@ -108,7 +108,7 @@ export default function OrderInvoicePage() {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2 h-[34px]">
                 <div className="w-[34px] h-[34px] flex items-center justify-center bg-fg-blue rounded-lg">
-                  <span className="text-white font-bold text-sm">Z</span>
+                  <span className="text-white font-medium text-sm">Z</span>
                 </div>
                 <span className="text-2xl font-semibold text-fg-black">
                   Zello
@@ -197,7 +197,7 @@ export default function OrderInvoicePage() {
                             {item.tags.map((tag) => (
                               <span
                                 key={tag}
-                                className="inline-flex items-center px-2 py-1 rounded-full outline outline-1 outline-fg-grey-200 bg-fg-grey-50 text-xs font-semibold text-fg-grey-700"
+                                className="inline-flex items-center px-2 py-1 rounded-full outline outline-1 outline-fg-grey-200 bg-fg-grey-50 text-xs font-medium text-fg-grey-700"
                               >
                                 {tag}
                               </span>
@@ -219,7 +219,7 @@ export default function OrderInvoicePage() {
                       </div>
                       <div className="flex-1 min-w-[80px] max-w-[100px] text-right">
                         <p className="text-xs text-fg-grey-700 m-0">Total</p>
-                        <p className="text-sm font-semibold text-fg-black mt-2 m-0">
+                        <p className="text-sm font-medium text-fg-black mt-2 m-0">
                           {item.total}
                         </p>
                       </div>
