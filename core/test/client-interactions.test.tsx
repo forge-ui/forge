@@ -929,7 +929,8 @@ test("AppLayout 顶栏 popover 暴露展开状态并在 Escape 后恢复触发�
   await act(async () => trigger.click());
 
   assert.equal(trigger.getAttribute("aria-expanded"), "true");
-  assert.ok(document.querySelector('[data-popover="messages"] [role="menu"]'));
+  assert.ok(document.querySelector('[data-popover="messages"][role="menu"]'));
+  await settle();
   const firstMenuItem = document.querySelector<HTMLElement>(
     '[data-popover="messages"] [role="menuitem"]',
   );
@@ -967,7 +968,10 @@ test("AppLayout 消息菜单支持方向键、Home 与 End 移动焦点", async 
     '[data-popover-trigger="messages"]',
   );
   assert.ok(trigger);
+  // Base UI roving focus skips elements without layout; jsdom has none.
+  dom.window.HTMLElement.prototype.getClientRects = function() { return [{ width: 200, height: 40 }] as unknown as DOMRectList; };
   await act(async () => trigger.click());
+  await settle();
 
   const items = [...document.querySelectorAll<HTMLElement>(
     '[data-popover="messages"] [role="menuitem"]',
@@ -980,6 +984,7 @@ test("AppLayout 消息菜单支持方向键、Home 与 End 移动焦点", async 
         new KeyboardEvent("keydown", { key, bubbles: true }),
       );
     });
+    await settle();
     focusedItemIndexes.push(items.indexOf(document.activeElement as HTMLElement));
   }
 

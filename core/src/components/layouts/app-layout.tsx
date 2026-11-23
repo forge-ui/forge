@@ -5,6 +5,7 @@ import type { MotionPreference } from "../../lib/motion";
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback, useId } from "react";
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { usePathname } from "next/navigation";
 import { cn } from "../../lib/utils";
@@ -33,6 +34,7 @@ import {
   type AppSwitcherItem,
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
+import { ShellMenuContext } from "../../internal/shell-menu-context";
 import { forgeLogoDataUrl } from "../../assets/_inlined";
 import { accentTokens, findActiveSidebarMenuItem, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
 import { languageLabels } from "../../internal/sidebar-popover-data";
@@ -378,6 +380,16 @@ export function AppLayout({
     return () => window.cancelAnimationFrame(frame);
   }, [isMobile, mobileSidebarOpen, openPopover]);
 
+  // Shell menus open from buttons outside Base UI's trigger, so start on the first item like a menu button would.
+  useEffect(() => {
+    if (openPopover !== "team" && openPopover !== "language" && openPopover !== "messages" && openPopover !== "profile") return;
+    const frame = requestAnimationFrame(() => {
+      const popup = document.querySelector<HTMLElement>(`[data-popover="${openPopover}"]`);
+      (popup?.querySelector<HTMLElement>('[role="menuitemradio"][aria-checked="true"]') ?? popup?.querySelector<HTMLElement>('[role^="menuitem"]'))?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [openPopover]);
+
   const togglePopover = useCallback((id: PopoverId) => {
     setPopoverAnchor(popoverTriggerRef.current);
     setOpenPopover((prev) => (prev === id ? null : id));
@@ -404,21 +416,36 @@ export function AppLayout({
   const renderShellPopover = (id: Exclude<PopoverId, null>, label: string, content: ReactNode) => {
     const side = isMobile ? (id === "team" ? "bottom" : "top") : anchorInSidebar ? "right" : "bottom";
     const align = isMobile || id === "team" ? "start" : "end";
+    const onOpenChange = (next: boolean, details: { reason: string; event?: Event }) => {
+      if (next) return;
+      // A press on the trigger toggles through its own click handler.
+      const target = details.event?.target;
+      if (details.reason === "outside-press" && target instanceof Element && target.closest(`[data-popover-trigger="${id}"]`)) return;
+      setOpenPopover((current) => (current === id ? null : current));
+    };
+    const finalFocus = () => mobileNavigationClosed ? layoutRef.current?.querySelector<HTMLElement>('[data-forge-menu-trigger][aria-controls="forge-app-sidebar"]') ?? true : true;
+    const container = isMobile ? sidebarPortalTarget : undefined;
+    const positioner = { anchor: popoverAnchor, side, align, sideOffset: isMobile ? 8 : 16, collisionPadding: 16, className: "z-[60]" } as const;
+    const popupClass = "forge-popup max-h-(--available-height) outline-none";
+    // Lists of actions or choices are Base UI menus (arrow keys, typeahead); calendar and notifications are panels.
+    if (id === "team" || id === "language" || id === "messages" || id === "profile") {
+      return (
+        <MenuPrimitive.Root open={openPopover === id} modal={false} onOpenChange={onOpenChange}>
+          <MenuPrimitive.Portal container={container} data-accent={accent}>
+            <MenuPrimitive.Positioner {...positioner}>
+              <MenuPrimitive.Popup data-popover={id} aria-label={label} finalFocus={finalFocus} data-motion={motion} className={popupClass}>
+                <ShellMenuContext.Provider value>{content}</ShellMenuContext.Provider>
+              </MenuPrimitive.Popup>
+            </MenuPrimitive.Positioner>
+          </MenuPrimitive.Portal>
+        </MenuPrimitive.Root>
+      );
+    }
     return (
-      <PopoverPrimitive.Root
-        open={openPopover === id}
-        modal={false}
-        onOpenChange={(next, details) => {
-          if (next) return;
-          // A press on the trigger toggles through its own click handler.
-          const target = details.event?.target;
-          if (details.reason === "outside-press" && target instanceof Element && target.closest(`[data-popover-trigger="${id}"]`)) return;
-          setOpenPopover((current) => (current === id ? null : current));
-        }}
-      >
-        <PopoverPrimitive.Portal container={isMobile ? sidebarPortalTarget : undefined} data-accent={accent}>
-          <PopoverPrimitive.Positioner anchor={popoverAnchor} side={side} align={align} sideOffset={isMobile ? 8 : 16} collisionPadding={16} className="z-[60]">
-            <PopoverPrimitive.Popup data-popover={id} aria-label={label} finalFocus={() => mobileNavigationClosed ? layoutRef.current?.querySelector<HTMLElement>('[data-forge-menu-trigger][aria-controls="forge-app-sidebar"]') ?? true : true} data-motion={motion} className="forge-popup max-h-(--available-height) outline-none">
+      <PopoverPrimitive.Root open={openPopover === id} modal={false} onOpenChange={onOpenChange}>
+        <PopoverPrimitive.Portal container={container} data-accent={accent}>
+          <PopoverPrimitive.Positioner {...positioner}>
+            <PopoverPrimitive.Popup data-popover={id} aria-label={label} finalFocus={finalFocus} data-motion={motion} className={popupClass}>
               {content}
             </PopoverPrimitive.Popup>
           </PopoverPrimitive.Positioner>

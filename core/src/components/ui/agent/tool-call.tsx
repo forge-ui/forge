@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { AltArrowDownLinear, CheckCircleLinear, ClockCircleLinear, CloseCircleLinear, CopyLinear, DangerTriangleLinear, RefreshLinear } from "../../../icons";
-import { AgentCard, CardActions, Collapse, SoftBadge, Spinner, accentButton } from "../../../internal/agent-kit";
+import { AgentCard, CardActions, Disclosure, DisclosurePanel, DisclosureTrigger, SoftBadge, Spinner, accentButton } from "../../../internal/agent-kit";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 import { Button } from "../button";
@@ -123,11 +123,8 @@ export function ToolCall({ name, title, summary, status, args, result, error, st
   }
 
   return (
-    <div data-status={status} className={cn("flex min-w-0 flex-col tracking-fg", variant === "card" && "rounded-xl bg-background p-1.5 outline outline-1 outline-offset-[-1px] outline-fg-grey-200", className)}>
-      <button
-        type="button"
-        aria-expanded={hasBody ? open : undefined}
-        onClick={() => hasBody && setToggled(!open)}
+    <Disclosure data-status={status} open={open && hasBody} onOpenChange={next => setToggled(next)} disabled={!hasBody} className={cn("flex min-w-0 flex-col tracking-fg", variant === "card" && "rounded-xl bg-background p-1.5 outline outline-1 outline-offset-[-1px] outline-fg-grey-200", className)}>
+      <DisclosureTrigger
         className={cn("flex min-h-8 w-full min-w-0 items-center gap-2 rounded-lg px-1.5 text-left text-sm", hasBody && "hover:bg-fg-grey-100", variant === "row" && size === "sm" && "-ml-1.5 min-h-7")}
       >
         <StatusIcon status={status} icon={icon} />
@@ -136,8 +133,8 @@ export function ToolCall({ name, title, summary, status, args, result, error, st
         <span className="flex-1" />
         {trailing && <span className={cn("shrink-0 tabular-nums text-xs", status === "error" ? "text-fg-red" : "text-fg-grey-500")}>{trailing}</span>}
         {hasBody && <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("shrink-0 transition-transform", !open && "-rotate-90")} />}
-      </button>
-      <Collapse open={open && hasBody} motion={motion}>
+      </DisclosureTrigger>
+      <DisclosurePanel motion={motion}>
         <div className="ml-[22px] mt-1 flex flex-col gap-2 border-l border-fg-grey-200 pb-1 pl-3">
           {details}
           {args !== undefined && <Payload label={pick(locale, "参数", "Arguments")} value={pretty(args)} locale={locale} />}
@@ -146,8 +143,8 @@ export function ToolCall({ name, title, summary, status, args, result, error, st
           {error && <Payload label={pick(locale, "错误", "Error")} value={error} locale={locale} tone="error" />}
           {status === "error" && onRetry && <Button size="sm" variant="tertiary" color="grey" iconLeft={<RefreshLinear size={14} />} onClick={onRetry} className="self-start">{pick(locale, "重试", "Retry")}</Button>}
         </div>
-      </Collapse>
-    </div>
+      </DisclosurePanel>
+    </Disclosure>
   );
 }
 
@@ -174,15 +171,15 @@ export function ToolCallGroup({ children, label, count, status = "success", stat
   const text = label ?? (count !== undefined ? pick(locale, `调用了 ${count} 次工具`, `Called ${count} tools`) : pick(locale, "工具调用", "Tool calls"));
   const state = statusLabel ?? (status === "running" ? pick(locale, "正在执行", "Running") : status === "error" ? pick(locale, "有失败", "Failed") : status === "cancelled" ? pick(locale, "已停止", "Stopped") : undefined);
   return (
-    <div data-tool-group={status} className={cn("flex min-w-0 flex-col gap-1 text-sm tracking-fg", className)}>
-      <button type="button" aria-expanded={open} onClick={() => setToggled({ status, open: !open })} className="-ml-1.5 flex w-fit items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100">
+    <Disclosure data-tool-group={status} open={open} onOpenChange={next => setToggled({ status, open: next })} className={cn("flex min-w-0 flex-col gap-1 text-sm tracking-fg", className)}>
+      <DisclosureTrigger className="-ml-1.5 flex w-fit items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs text-fg-grey-700 hover:bg-fg-grey-100">
         <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("transition-transform", !open && "-rotate-90")} />
         {text}
         {state && <span role="status" className={cn(status === "running" ? "forge-text-shimmer" : status === "error" ? "text-fg-red" : "text-fg-grey-500")}>{state}</span>}
-      </button>
-      <Collapse open={open} motion={motion}>
+      </DisclosureTrigger>
+      <DisclosurePanel motion={motion}>
         <div className="flex flex-col">{children}</div>
-      </Collapse>
-    </div>
+      </DisclosurePanel>
+    </Disclosure>
   );
 }

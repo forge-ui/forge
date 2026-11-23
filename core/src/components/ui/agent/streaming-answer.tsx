@@ -8,6 +8,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Block, Streamdown, type BlockProps } from "streamdown";
 import { AltArrowDownLinear, CopyLinear, LinkLinear } from "../../../icons";
+import { Disclosure, DisclosurePanel, DisclosureTrigger } from "../../../internal/agent-kit";
 import { useReducedMotion } from "../../../internal/motion";
 import { segmentGraphemes, useStreamingText } from "../../../internal/streaming-text";
 import type { MotionPreference } from "../../../lib/motion";
@@ -156,11 +157,8 @@ export function StreamingAnswer({
       )}
 
       {sources.length > 0 && (
-        <div className="flex flex-col gap-2">
-          <button
-            type="button"
-            aria-expanded={sourcesOpen}
-            onClick={() => setSourcesOpen((v) => !v)}
+        <Disclosure open={sourcesOpen} onOpenChange={setSourcesOpen} className="flex flex-col gap-2">
+          <DisclosureTrigger
             className="flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100"
           >
             <span className="flex -space-x-1">
@@ -174,9 +172,9 @@ export function StreamingAnswer({
               ))}
             </span>
             {sourcesLabel ?? (locale === "zh" ? `${sources.length} 个来源` : `${sources.length} sources`)}
-            <AltArrowDownLinear size={12} color="var(--fg-grey-500)" />
-          </button>
-          {sourcesOpen && (
+            <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={sourcesOpen ? "rotate-180 transition-transform" : "transition-transform"} />
+          </DisclosureTrigger>
+          <DisclosurePanel motion={motion}>
             <ul className="flex flex-col gap-1.5">
               {sources.map((source) => (
                 <li key={source.name}>
@@ -201,8 +199,8 @@ export function StreamingAnswer({
                 </li>
               ))}
             </ul>
-          )}
-        </div>
+          </DisclosurePanel>
+        </Disclosure>
       )}
 
       {playout.done && followUps.length > 0 && (

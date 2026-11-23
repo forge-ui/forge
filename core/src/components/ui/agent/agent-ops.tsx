@@ -4,7 +4,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { AnimatePresence, motion as animated } from "motion/react";
 import { useState, type ReactNode } from "react";
 import { AltArrowDownLinear, CheckCircleLinear, ClockCircleLinear, DangerTriangleLinear, PlusLinear } from "../../../icons";
-import { AgentCard, Collapse, SoftBadge, Spinner, accentButton, iconAction, type AgentTone } from "../../../internal/agent-kit";
+import { AgentCard, Disclosure, DisclosurePanel, DisclosureTrigger, SoftBadge, Spinner, accentButton, iconAction, type AgentTone } from "../../../internal/agent-kit";
 import { useReducedMotion } from "../../../internal/motion";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
@@ -110,7 +110,8 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                   data-status={task.status}
                   className={cn("flex flex-col rounded-xl transition-colors", expanded && "bg-fg-grey-50")}
                 >
-                  <button type="button" aria-expanded={expanded} onClick={() => setOpen(expanded ? undefined : task.id)} className="flex min-w-0 items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-fg-grey-50">
+                  <Disclosure open={expanded} onOpenChange={next => setOpen(next ? task.id : undefined)} className="contents">
+                  <DisclosureTrigger className="flex min-w-0 items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-fg-grey-50">
                     <StateIcon status={task.status} />
                     <span className="flex min-w-0 flex-1 flex-col">
                       <span className="truncate text-sm font-medium text-fg-black">{task.title}</span>
@@ -121,8 +122,8 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                       <TaskClock task={task} locale={locale} />
                     </span>
                     <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("shrink-0 transition-transform", expanded && "rotate-180")} />
-                  </button>
-                  <Collapse open={expanded} motion={motion}>
+                  </DisclosureTrigger>
+                  <DisclosurePanel motion={motion}>
                     <div className="flex flex-col gap-3 px-3 pb-3 pl-10">
                       {task.recent && task.recent.length > 0 && (
                         <ol className="flex flex-col gap-1 border-l border-fg-grey-200 pl-3 text-xs text-fg-grey-700">{task.recent.map((line, index) => <li key={index}>{line}</li>)}</ol>
@@ -134,7 +135,8 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                         {task.status === "failed" && onRetry && <button type="button" className={accentButton} onClick={() => onRetry(task.id)}>{pick(locale, "重试", "Retry")}</button>}
                       </div>
                     </div>
-                  </Collapse>
+                  </DisclosurePanel>
+                  </Disclosure>
                 </animated.li>
               );
             })}

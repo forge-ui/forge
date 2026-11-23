@@ -1,5 +1,6 @@
 "use client";
 
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { forwardRef, useCallback, useLayoutEffect, useRef, useState, useSyncExternalStore, type HTMLAttributes, type RefObject, type ReactNode } from "react";
 import type { MotionPreference } from "../lib/motion";
 import { cn } from "../lib/utils";
@@ -83,8 +84,11 @@ export function useMovingIndicator(root: RefObject<HTMLElement | null>, selector
 }
 
 /** CSS grid allows variable-height submenus to reverse direction mid-transition. */
-export function MotionCollapse({ open, motion = "auto", children }: { open: boolean; motion?: MotionPreference; children: ReactNode }) {
-  return <div className="forge-motion-collapse" data-motion={motion} data-state={open ? "open" : "closed"} inert={!open || undefined} aria-hidden={!open || undefined}><div className="min-h-0 overflow-hidden">{children}</div></div>;
+/** Submenu panel inside a Base UI Collapsible.Root; stays mounted (hidden when closed) and animates its height. */
+export function MotionCollapse({ motion = "auto", children }: { motion?: MotionPreference; children: ReactNode }) {
+  // Closed rows stay mounted for continuity; inert keeps them out of focus and the accessibility tree.
+  return <CollapsiblePrimitive.Panel keepMounted className="forge-motion-collapse" data-motion={motion}
+    render={(props, state) => <div {...props} inert={!state.open || undefined} aria-hidden={!state.open || undefined} />}>{children}</CollapsiblePrimitive.Panel>;
 }
 
 /** One hover/focus layer shared by rows; it moves without changing hit areas. */

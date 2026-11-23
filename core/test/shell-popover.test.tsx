@@ -81,7 +81,7 @@ test("AppLayout breakpoint round trip restores the visible main-navigation trigg
     const navigationTrigger = () => document.querySelector<HTMLButtonElement>('[data-forge-menu-trigger]')!;
     await act(async () => { navigationTrigger().focus(); navigationTrigger().click(); });
     await act(async () => document.querySelector<HTMLButtonElement>('[data-popover-trigger="team"]')!.click());
-    const last = () => document.querySelector<HTMLElement>('[data-popover="team"] [role="menu"] > button:last-child')!;
+    const last = () => [...document.querySelectorAll<HTMLElement>('[data-popover="team"] [role="menuitem"]')].at(-1)!;
     await act(async () => last().focus());
     assert.equal(document.activeElement?.textContent, "新建团队");
     await act(async () => { mobile = false; listeners.forEach(callback => callback()); });

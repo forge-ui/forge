@@ -16,7 +16,7 @@ import {
   RefreshLinear,
   TrashBinMinimalisticLinear,
 } from "../../../icons";
-import { Collapse, Spinner, fieldInput, iconAction } from "../../../internal/agent-kit";
+import { Disclosure, DisclosurePanel, DisclosureTrigger, Spinner, fieldInput, iconAction } from "../../../internal/agent-kit";
 import { useReducedMotion } from "../../../internal/motion";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
@@ -127,6 +127,7 @@ export function RunControls({ status, activity, startedAt, duration, error, onSt
 
   return (
     <section data-status={status} className={cn("flex flex-col rounded-2xl bg-background tracking-fg outline outline-1 outline-offset-[-1px]", status === "failed" ? "outline-fg-red-200" : "outline-fg-grey-200", className)}>
+      <Disclosure open={running && steering && Boolean(onSteer)} onOpenChange={setSteering} className="contents">
       <div className="flex min-w-0 flex-wrap items-center gap-x-2.5 gap-y-1.5 py-2 pl-4 pr-2">
         {running ? <Spinner size={14} />
           : status === "failed" ? <DangerTriangleLinear size={16} color="var(--fg-red)" className="shrink-0" />
@@ -135,19 +136,20 @@ export function RunControls({ status, activity, startedAt, duration, error, onSt
         <span role="status" key={word} className={cn("forge-fade-up min-w-[8rem] flex-1 truncate text-sm font-medium", status === "failed" ? "text-fg-red" : "text-fg-black", status === "running" && "forge-text-shimmer")}>{word}</span>
         {time !== undefined && <span className="shrink-0 tabular-nums text-xs text-fg-grey-500">{formatDuration(time, locale)}</span>}
         <span className="ml-auto flex shrink-0 items-center gap-1.5">
-          {running && onSteer && <button type="button" onClick={() => setSteering(value => !value)} aria-expanded={steering} className={cn(pillButton, steering && "bg-fg-grey-100")}><ChatRoundLineLinear size={14} />{pick(locale, "插一句", "Steer")}</button>}
+          {running && onSteer && <DisclosureTrigger className={cn(pillButton, steering && "bg-fg-grey-100")}><ChatRoundLineLinear size={14} />{pick(locale, "插一句", "Steer")}</DisclosureTrigger>}
           {running && onStop && <button type="button" disabled={status === "stopping"} onClick={onStop} className={pillButton}><span className="size-2.5 rounded-[3px] bg-fg-black" />{pick(locale, "停止", "Stop")}</button>}
           {status === "stopped" && onResume && <button type="button" onClick={onResume} className="inline-flex h-8 items-center gap-1.5 rounded-full bg-accent px-3 text-xs font-medium text-accent-foreground hover:opacity-90"><PlayBoldDuotone size={14} />{pick(locale, "继续", "Resume")}</button>}
           {(status === "failed" || status === "stopped") && onRetry && <button type="button" onClick={onRetry} className={pillButton}><RefreshLinear size={14} />{pick(locale, "重试", "Retry")}</button>}
           {!running && onDismiss && <button type="button" aria-label={pick(locale, "关闭", "Dismiss")} onClick={onDismiss} className={iconAction}><PlusLinear size={16} className="rotate-45" /></button>}
         </span>
       </div>
-      <Collapse open={running && steering && Boolean(onSteer)} motion={motion}>
+      <DisclosurePanel motion={motion}>
         <form className="flex items-center gap-2 border-t border-fg-grey-200 px-3 py-2.5" onSubmit={event => { event.preventDefault(); if (!note.trim()) return; onSteer?.(note.trim()); setNote(""); setSteering(false); }}>
           <input autoFocus value={note} onChange={event => setNote(event.target.value)} placeholder={pick(locale, "补充一句，它下一步会看到", "Add a note for its next step")} aria-label={pick(locale, "补充说明", "Steering note")} className={cn(fieldInput, "py-2")} />
           <button type="submit" disabled={!note.trim()} className="inline-flex h-9 shrink-0 items-center rounded-full bg-accent px-3.5 text-xs font-medium text-accent-foreground disabled:opacity-50">{pick(locale, "发送", "Send")}</button>
         </form>
-      </Collapse>
+      </DisclosurePanel>
+      </Disclosure>
     </section>
   );
 }

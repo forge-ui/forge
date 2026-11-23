@@ -884,8 +884,8 @@ body {
 .forge-motion-surface[data-state="closed"] { pointer-events: none; }
 @keyframes forge-surface-in { from { opacity: 0; transform: translateY(4px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes forge-surface-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(2px) scale(.98); } }
-.forge-motion-collapse { display: grid; grid-template-rows: 0fr; }
-.forge-motion-collapse[data-state="open"] { grid-template-rows: 1fr; }
+.forge-motion-collapse { height: var(--collapsible-panel-height); overflow: hidden; }
+.forge-motion-collapse:is([data-starting-style], [data-ending-style]) { height: 0; }
 .forge-chevron { rotate: 0deg; }
 .forge-chevron[data-expanded="true"] { rotate: 180deg; }
 /* Base UI triggers mark the open state themselves. */
@@ -907,7 +907,7 @@ body {
   .forge-tabs-content[data-motion="auto"][data-state="open"] { animation: forge-tabs-content-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
   .forge-motion-surface[data-motion="auto"][data-state="open"] { animation: forge-surface-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
   .forge-motion-surface[data-motion="auto"][data-state="closed"] { animation: forge-surface-out var(--forge-motion-exit-duration) ease-in both; }
-  .forge-motion-collapse[data-motion="auto"] { transition: grid-template-rows var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-motion-collapse[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-chevron[data-motion="auto"] { transition: rotate var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   [data-motion="auto"] > .forge-moving-indicator { transition: translate var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease), width var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease), height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-toggle[data-motion="auto"] { transition: background-color var(--forge-motion-layout-duration) ease; }
@@ -1385,9 +1385,10 @@ body {
 }
 @media (prefers-reduced-motion: no-preference) {
   .forge-sidebar-motion[data-motion="auto"] { transition: width 600ms var(--forge-sidebar-spring), transform 300ms ease; }
-  .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-disclosure, .forge-motion-collapse) {
+  .forge-sidebar-motion[data-motion="auto"] .forge-sidebar-disclosure {
     transition: grid-template-rows 600ms var(--forge-sidebar-spring), opacity 200ms ease;
   }
+  .forge-sidebar-motion[data-motion="auto"] .forge-motion-collapse { transition: height 600ms var(--forge-sidebar-spring), opacity 200ms ease; }
   .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-row, .forge-sidebar-profile) {
     transition: padding 600ms var(--forge-sidebar-spring), border-radius 600ms var(--forge-sidebar-spring), background-color 200ms ease, color 200ms ease;
   }
@@ -1574,3 +1575,8 @@ body {
   .forge-skeleton { animation: none; }
   .forge-tree-chevron { transition: none; }
 }
+
+/* Agent kit disclosures (Thinking, ToolCall, sources…): height and fade on Base UI Collapsible. */
+.forge-disclosure-panel[data-starting-style], .forge-disclosure-panel[data-ending-style] { height: 0; opacity: 0; }
+.forge-disclosure-panel[data-motion="auto"] { transition: height 200ms cubic-bezier(.2,.8,.2,1), opacity 200ms cubic-bezier(.2,.8,.2,1); }
+@media (prefers-reduced-motion: reduce) { .forge-disclosure-panel { transition: none; } }

@@ -1,5 +1,6 @@
 "use client";
 
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import type { MotionPreference } from "../lib/motion";
 import { MotionCollapse, useReducedMotion } from "./motion";
 import { motion as animated } from "motion/react";
@@ -285,12 +286,12 @@ export function SidebarMenuItemRow({
   );
 
   const children = hasChildren && (
-    <MotionCollapse open={expanded && !collapsed} motion={motion}><div className="flex flex-col">
+    <MotionCollapse motion={motion}><div className="flex flex-col">
       {childItems.map((child, i) => (
         <SidebarMenuItemRow motion={motion} indicatorId={indicatorId} index={i} key={`${child.href ?? child.label}-${i}`} item={child} config={config} accentActive={accentActive} accentBar={accentBar} pathname={pathname} activeItem={resolvedActiveItem} depth={depth + 1} collapsed={collapsed} />
       ))}
     </div></MotionCollapse>
   );
 
-  return <div className="flex flex-col">{row}{children}</div>;
+  return <CollapsiblePrimitive.Root open={hasChildren ? expanded && !collapsed : false} className="flex flex-col">{row}{children}</CollapsiblePrimitive.Root>;
 }

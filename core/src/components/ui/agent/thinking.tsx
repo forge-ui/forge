@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { AltArrowDownLinear, CheckCircleLinear, DangerTriangleLinear, LinkLinear, StarsLinear } from "../../../icons";
-import { Collapse, Spinner } from "../../../internal/agent-kit";
+import { Disclosure, DisclosurePanel, DisclosureTrigger, Spinner } from "../../../internal/agent-kit";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 import { formatDuration, pick, useElapsed, type AgentLocale } from "./agent-utils";
@@ -111,12 +111,8 @@ export function Reasoning({ status, text, steps = [], startedAt, duration, label
   const toggle = () => { const next = !open; setToggled({ working, open: next }); onOpenChange?.(next); };
 
   return (
-    <div data-status={status} className={cn("flex min-w-0 flex-col gap-1.5 text-sm tracking-fg", className)}>
-      <button
-        type="button"
-        aria-expanded={hasBody ? open : undefined}
-        disabled={!hasBody}
-        onClick={toggle}
+    <Disclosure data-status={status} open={open && hasBody} onOpenChange={toggle} disabled={!hasBody} className={cn("flex min-w-0 flex-col gap-1.5 text-sm tracking-fg", className)}>
+      <DisclosureTrigger
         className={cn("flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-left text-fg-grey-700 enabled:hover:bg-fg-grey-100", small && "-ml-1.5")}
       >
         {status === "error" ? <DangerTriangleLinear size={16} color="var(--fg-red)" /> : <StarsLinear size={16} color="var(--accent)" />}
@@ -124,8 +120,8 @@ export function Reasoning({ status, text, steps = [], startedAt, duration, label
         {working && shown !== undefined && <span className="tabular-nums text-xs text-fg-grey-500">{formatDuration(shown, locale)}</span>}
         {!working && steps.length > 0 && <span className="text-xs text-fg-grey-500">{pick(locale, `${steps.length} 步`, `${steps.length} steps`)}</span>}
         {hasBody && <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("transition-transform", open && "rotate-180")} />}
-      </button>
-      <Collapse open={open && hasBody} motion={motion}>
+      </DisclosureTrigger>
+      <DisclosurePanel motion={motion}>
         <div className={cn("flex flex-col gap-0.5 border-l border-fg-grey-200 pl-3", small ? "ml-0.5" : "ml-2")}>
           {steps.map(step => (
             <div key={step.id} className="forge-fade-up flex min-h-7 gap-2 rounded-lg px-1.5 py-1">
@@ -149,7 +145,7 @@ export function Reasoning({ status, text, steps = [], startedAt, duration, label
           ))}
           {text?.trim() && <p className="whitespace-pre-wrap px-1.5 py-1 text-xs leading-5 text-fg-grey-700">{text}</p>}
         </div>
-      </Collapse>
-    </div>
+      </DisclosurePanel>
+    </Disclosure>
   );
 }

@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 import { AnchoredPanel } from "../../../internal/anchored-panel";
 import { AltArrowDownLinear, PlusLinear, StarsLinear } from "../../../icons";
-import { AgentCard, SoftBadge, iconAction, type AgentTone } from "../../../internal/agent-kit";
+import { AgentCard, Disclosure, DisclosurePanel, DisclosureTrigger, SoftBadge, iconAction, type AgentTone } from "../../../internal/agent-kit";
 import { cn } from "../../../lib/utils";
 import { Button } from "../button";
 import { formatCost, formatDuration, formatTokens, pick, type AgentLocale } from "./agent-utils";
@@ -250,6 +250,7 @@ function TreeNode({ agent, root, selectedId, onSelect, currency, locale }: { age
   const selected = selectedId === agent.id;
   return (
     <li className={cn("@container relative flex flex-col", !root && "before:absolute before:-left-4 before:top-6 before:h-px before:w-4 before:bg-fg-grey-200")}>
+      <Disclosure open={!folded} onOpenChange={next => setFolded(!next)} className="contents">
       <div className={cn("flex min-w-0 items-center gap-3 rounded-2xl bg-background px-3 py-2.5 outline outline-1 outline-offset-[-1px] transition-colors", selected ? "outline-accent shadow-[0_0_0_3px_var(--accent-soft)]" : "outline-fg-grey-200 hover:outline-fg-grey-300")}>
         <button type="button" onClick={() => onSelect?.(agent.id)} className="flex min-w-0 flex-1 items-center gap-3 text-left">
           <span className={cn("flex size-8 shrink-0 items-center justify-center rounded-xl", root ? "bg-accent text-accent-foreground" : "bg-accent-soft text-accent")}><StarsLinear size={16} /></span>
@@ -267,16 +268,19 @@ function TreeNode({ agent, root, selectedId, onSelect, currency, locale }: { age
           </span>
         </button>
         {children.length > 0 && (
-          <button type="button" aria-label={folded ? pick(locale, "展开", "Expand") : pick(locale, "折叠", "Collapse")} aria-expanded={!folded} onClick={() => setFolded(value => !value)} className={iconAction}>
+          <DisclosureTrigger aria-label={folded ? pick(locale, "展开", "Expand") : pick(locale, "折叠", "Collapse")} className={iconAction}>
             <AltArrowDownLinear size={14} className={cn("transition-transform", folded && "-rotate-90")} />
-          </button>
+          </DisclosureTrigger>
         )}
       </div>
-      {children.length > 0 && !folded && (
+      {children.length > 0 && (
+        <DisclosurePanel>
         <ul className="relative ml-7 flex flex-col gap-2 pl-4 pt-2 before:absolute before:bottom-6 before:left-0 before:top-0 before:w-px before:bg-fg-grey-200">
           {children.map(child => <TreeNode key={child.id} agent={child} selectedId={selectedId} onSelect={onSelect} currency={currency} locale={locale} />)}
         </ul>
+        </DisclosurePanel>
       )}
+      </Disclosure>
     </li>
   );
 }

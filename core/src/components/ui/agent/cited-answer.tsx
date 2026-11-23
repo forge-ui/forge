@@ -1,8 +1,9 @@
 "use client";
 
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import { useState, type ReactNode } from "react";
 import { AltArrowDownLinear, DocumentTextLinear, LinkLinear } from "../../../icons";
-import { Collapse } from "../../../internal/agent-kit";
+import { Disclosure, DisclosurePanel, DisclosureTrigger } from "../../../internal/agent-kit";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
 import { pick, type AgentLocale } from "./agent-utils";
@@ -35,29 +36,29 @@ export function Citation({ source, active = false, onActiveChange, locale = "zh"
   const show = (value: boolean) => { setOpen(value); onActiveChange?.(value); };
   const where = source.domain ?? (source.href ? safeHost(source.href) : pick(locale, "资料", "Document"));
   return (
-    <span className="relative inline-block align-baseline" onPointerEnter={() => show(true)} onPointerLeave={() => show(false)}>
-      <button
-        type="button"
+    <TooltipPrimitive.Root open={open} onOpenChange={next => show(next)}>
+      <TooltipPrimitive.Trigger
+        delay={0}
+        closeDelay={80}
         aria-label={pick(locale, `来源 ${source.id}：${source.title}`, `Source ${source.id}: ${source.title}`)}
-        aria-expanded={open}
-        onFocus={() => show(true)}
-        onBlur={() => show(false)}
         onClick={() => { if (source.href) window.open(source.href, "_blank", "noopener"); }}
         className={cn("mx-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1 align-[1px] text-2xs font-medium leading-none tracking-fg transition-colors", active || open ? "bg-accent text-accent-foreground" : "bg-fg-grey-100 text-fg-grey-700 hover:bg-fg-grey-200")}
       >
         {source.id}
-      </button>
-      {open && (
-        <span role="tooltip" className="forge-fade-up absolute left-0 top-full z-30 mt-1.5 flex w-72 max-w-[calc(100vw-2rem)] flex-col gap-2 rounded-2xl bg-background p-4 text-left tracking-fg shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
-          <span className="flex items-center gap-1.5 text-xs text-fg-grey-500">
-            {source.href ? <LinkLinear size={12} color="var(--fg-grey-500)" /> : <DocumentTextLinear size={12} color="var(--fg-grey-500)" />}
-            <span className="truncate">{where}</span>
-          </span>
-          <span className="text-sm font-medium leading-5 text-fg-black">{source.title}</span>
-          {source.quote && <span className="rounded-xl bg-fg-grey-50 px-3 py-2 text-xs leading-5 text-fg-grey-900">{source.quote}</span>}
-        </span>
-      )}
-    </span>
+      </TooltipPrimitive.Trigger>
+      <TooltipPrimitive.Portal>
+        <TooltipPrimitive.Positioner side="bottom" align="start" sideOffset={6} collisionPadding={8} className="z-50">
+          <TooltipPrimitive.Popup data-motion="auto" className="forge-popup flex w-72 max-w-[calc(100vw-2rem)] flex-col gap-2 rounded-2xl bg-background p-4 text-left tracking-fg shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+            <span className="flex items-center gap-1.5 text-xs text-fg-grey-500">
+              {source.href ? <LinkLinear size={12} color="var(--fg-grey-500)" /> : <DocumentTextLinear size={12} color="var(--fg-grey-500)" />}
+              <span className="truncate">{where}</span>
+            </span>
+            <span className="text-sm font-medium leading-5 text-fg-black">{source.title}</span>
+            {source.quote && <span className="rounded-xl bg-fg-grey-50 px-3 py-2 text-xs leading-5 text-fg-grey-900">{source.quote}</span>}
+          </TooltipPrimitive.Popup>
+        </TooltipPrimitive.Positioner>
+      </TooltipPrimitive.Portal>
+    </TooltipPrimitive.Root>
   );
 }
 
@@ -114,15 +115,15 @@ export function CitedAnswer({ text, sources, hideSourceList = false, defaultSour
     <div className={cn("flex min-w-0 flex-col gap-3 text-sm leading-6 tracking-fg text-fg-black", size === "md" && "leading-7", className)}>
       {body}
       {!hideSourceList && listed.length > 0 && (
-        <div className="flex flex-col gap-1.5">
-          <button type="button" aria-expanded={sourcesOpen} onClick={() => setSourcesOpen(value => !value)} className="-ml-1.5 flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100">
+        <Disclosure open={sourcesOpen} onOpenChange={setSourcesOpen} className="flex flex-col gap-1.5">
+          <DisclosureTrigger className="-ml-1.5 flex w-fit items-center gap-2 rounded-lg px-1.5 py-1 text-xs font-medium text-fg-grey-700 hover:bg-fg-grey-100">
             <span className="flex -space-x-1">
               {listed.slice(0, 3).map(source => <span key={source.id} className="inline-flex size-5 items-center justify-center rounded-full bg-fg-grey-100 text-2xs font-medium text-fg-grey-700 outline outline-1 outline-white">{source.id}</span>)}
             </span>
             {sourcesLabel ?? pick(locale, `${listed.length} 个来源`, `${listed.length} sources`)}
             <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("transition-transform", sourcesOpen && "rotate-180")} />
-          </button>
-          <Collapse open={sourcesOpen} motion={motion}>
+          </DisclosureTrigger>
+          <DisclosurePanel motion={motion}>
             <ol aria-label={pick(locale, "来源", "Sources")} className="flex flex-col gap-0.5">
               {listed.map(source => {
                 const row = (
@@ -136,8 +137,8 @@ export function CitedAnswer({ text, sources, hideSourceList = false, defaultSour
                 return <li key={source.id}>{source.href ? <a href={source.href} target="_blank" rel="noreferrer" className={cn(style, "hover:bg-fg-grey-100")}>{row}</a> : <div className={style}>{row}</div>}</li>;
               })}
             </ol>
-          </Collapse>
-        </div>
+          </DisclosurePanel>
+        </Disclosure>
       )}
     </div>
   );
