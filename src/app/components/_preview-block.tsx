@@ -59,7 +59,7 @@ export function PreviewBlock({
           type="button"
           onClick={handleCopy}
           aria-label="复制代码"
-          className="absolute right-2 top-2 z-20 flex h-7 w-7 items-center justify-center rounded-md text-fg-grey-700 transition-colors hover:bg-fg-grey-100 hover:text-fg-black"
+          className="absolute right-2 top-2 z-20 flex h-7 w-7 items-center justify-center rounded-md bg-fg-grey-50 text-fg-grey-700 transition-colors hover:bg-fg-grey-100 hover:text-fg-black"
         >
           {copied ? (
             <CheckCircleLinear size={14} color="#09B96D" />

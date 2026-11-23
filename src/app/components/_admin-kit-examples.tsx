@@ -402,9 +402,11 @@ export function FormKitExamples() {
               <TreeSelect label="可见范围" multiple nodes={departments} value={scope} onChange={setScope} />
             </div>
           </DocExample>
+          <div style={{ gridColumn: "1 / -1" }}>
           <DocExample id="transfer" title="Transfer" summary="在两列之间移动，例如分配权限。" code={CODE_TRANSFER} minHeight={360}>
-            <Transfer items={permissions} value={granted} onChange={setGranted} titles={["可分配", "已分配"]} />
+            <Transfer items={permissions} value={granted} onChange={setGranted} titles={["可分配权限", "已分配"]} />
           </DocExample>
+          </div>
         </ExampleGrid>
       </Section>
       <Section title="更多选择 API">

@@ -293,7 +293,7 @@ export function TableGrid<T>({
             minWidth: tableMinWidth ?? getDefaultTableMinWidth(columns, showCheckbox) + (hasExpandColumn ? 48 : 0),
           }}
         >
-          <thead className={cn(maxHeight !== undefined && "sticky top-0 z-[2]")}>
+          <thead className={cn(maxHeight !== undefined && "sticky -top-px z-[2]")}>
             <tr className="border-t border-b border-fg-grey-200">
               {showCheckbox && (
                 <th data-col-key="__select" className={cn("w-14 px-6 py-4 bg-background text-left", pinClass("__select"))} style={pinStyle("__select")}>
