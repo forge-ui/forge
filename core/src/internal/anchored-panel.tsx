@@ -9,13 +9,14 @@ import { useInheritedScope } from "./floating";
  * A trigger button with a non-modal panel below it (filters, calendars). The panel
  * brings its own surface; this only positions it and handles dismissal and focus.
  */
-export function AnchoredPanel({ open, onOpenChange, trigger, children, label, align = "end", className }: {
+export function AnchoredPanel({ open, onOpenChange, trigger, children, label, side = "bottom", align = "end", className }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   /** A native `<button>` element; receives the trigger props and ref. */
   trigger: ReactElement;
   children: ReactNode;
   label?: string;
+  side?: "top" | "bottom";
   align?: "start" | "center" | "end";
   className?: string;
 }) {
@@ -25,7 +26,7 @@ export function AnchoredPanel({ open, onOpenChange, trigger, children, label, al
     <PopoverPrimitive.Root open={open} onOpenChange={next => onOpenChange(next)} modal={false}>
       <PopoverPrimitive.Trigger ref={triggerRef} render={trigger} />
       <PopoverPrimitive.Portal {...scope}>
-        <PopoverPrimitive.Positioner side="bottom" align={align} sideOffset={8} collisionPadding={8} className="z-50">
+        <PopoverPrimitive.Positioner side={side} align={align} sideOffset={8} collisionPadding={8} className="z-50">
           <PopoverPrimitive.Popup aria-label={label} data-motion="auto" className={cn("forge-popup max-h-(--available-height) overflow-y-auto outline-none", className)}>
             {children}
           </PopoverPrimitive.Popup>

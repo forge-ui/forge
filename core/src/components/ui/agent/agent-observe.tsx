@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { AnchoredPanel } from "../../../internal/anchored-panel";
 import { AltArrowDownLinear, PlusLinear, StarsLinear } from "../../../icons";
 import { AgentCard, SoftBadge, iconAction, type AgentTone } from "../../../internal/agent-kit";
 import { cn } from "../../../lib/utils";
@@ -103,13 +104,6 @@ function ContextBody({ segments, limit, cost, currency, onRemove, onCompact, loc
 /** What fills the model's context: a bar by part, files you can take out, and compacting older turns. */
 export function ContextUsage({ variant = "card", locale = "zh", size = "md", className, ...props }: ContextUsageProps) {
   const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
-    document.addEventListener("pointerdown", close);
-    return () => document.removeEventListener("pointerdown", close);
-  }, [open]);
   const used = props.segments.reduce((sum, segment) => sum + segment.tokens, 0);
   const ratio = Math.min(1, used / Math.max(1, props.limit));
   const percent = Math.round(ratio * 100);
@@ -125,17 +119,17 @@ export function ContextUsage({ variant = "card", locale = "zh", size = "md", cla
 
   const tone = ratio > 0.9 ? "var(--fg-red)" : ratio > 0.7 ? "var(--fg-yellow-500)" : "var(--accent)";
   return (
-    <div ref={root} className={cn("relative inline-flex tracking-fg", className)}>
-      <button type="button" aria-expanded={open} aria-label={pick(locale, `上下文已用 ${percent}%`, `Context ${percent}% used`)} onClick={() => setOpen(value => !value)} className="inline-flex h-8 items-center gap-1.5 rounded-lg px-2 text-xs font-medium tabular-nums text-fg-grey-700 hover:bg-fg-grey-100">
+    <div className={cn("relative inline-flex tracking-fg", className)}>
+      <AnchoredPanel open={open} onOpenChange={setOpen} side="top" align="start" label={pick(locale, "上下文", "Context")} trigger={
+      <button type="button" aria-label={pick(locale, `上下文已用 ${percent}%`, `Context ${percent}% used`)} className="inline-flex h-8 items-center gap-1.5 rounded-lg px-2 text-xs font-medium tabular-nums text-fg-grey-700 hover:bg-fg-grey-100">
         <span aria-hidden="true" className="size-4 rounded-full" style={{ background: `conic-gradient(${tone} ${ratio * 360}deg, var(--fg-grey-200) 0deg)`, mask: "radial-gradient(circle, transparent 4.5px, black 5px)", WebkitMask: "radial-gradient(circle, transparent 4.5px, black 5px)" }} />
         {percent}%
-      </button>
-      {open && (
-        <div className={cn(popover, "absolute bottom-full left-0 mb-2 w-80 max-w-[calc(100vw-2rem)]")}>
+      </button>}>
+        <div className={cn(popover, "w-80 max-w-[calc(100vw-2rem)]")}>
           <div className="mb-3 flex items-baseline justify-between"><span className="text-sm font-medium text-fg-black">{pick(locale, "上下文", "Context")}</span><span className="text-xs tabular-nums text-fg-grey-500">{summary}</span></div>
           <ContextBody {...props} locale={locale} />
         </div>
-      )}
+      </AnchoredPanel>
     </div>
   );
 }
