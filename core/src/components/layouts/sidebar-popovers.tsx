@@ -80,7 +80,7 @@ export function MessageMenu() {
           role="menuitem"
           className="self-stretch px-3.5 py-3 rounded-full inline-flex justify-start items-center gap-2 hover:bg-fg-grey-100 transition-colors"
         >
-          <span className="flex-1 h-6 justify-center text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{item.label}</span>
+          <span className="flex-1 h-6 text-left text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{item.label}</span>
           {item.badge !== undefined && (
             <span className="px-1.5 py-0.5 bg-fg-red rounded-full inline-flex flex-col justify-center items-center gap-2">
               <span className="text-white text-2xs font-semibold leading-4 tracking-fg">{item.badge}</span>
@@ -190,7 +190,7 @@ export function LanguageSwitcher({
             <span className="w-6 h-6 flex justify-center items-center">
               <img src={lang.flagUrl} alt={lang.label} className="w-5 h-5 rounded-full object-cover" />
             </span>
-            <span className={cn("flex-1 text-sm leading-5 tracking-fg line-clamp-1", isActive ? "font-semibold" : "font-medium")}>{lang.label}</span>
+            <span className={cn("flex-1 text-left text-sm leading-5 tracking-fg line-clamp-1", isActive ? "font-semibold" : "font-medium")}>{lang.label}</span>
           </button>
         );
       })}
@@ -234,7 +234,7 @@ export function ProfileDropdown({ locale = "zh", items, onClose }: { locale?: "z
               <span className="w-5 h-5">{item.icon}</span>
             </span>
           )}
-          <span className="flex-1 text-sm font-medium leading-5 tracking-fg line-clamp-1">{item.label}</span>
+          <span className="flex-1 text-left text-sm font-medium leading-5 tracking-fg line-clamp-1">{item.label}</span>
         </button>
       ))}
     </div>
