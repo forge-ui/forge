@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.10.1",
   "source": "core/src/index.ts",
-  "revision": "cdc406a392f5242286996827f96959f7b7ab29d5",
+  "revision": "ed58e72bc187a4037bc44756205179bc50d38d59",
   "dirty": false,
-  "exportFingerprint": "841f27b6863a57492d5d66005b8d17610299fb70",
-  "generatedAt": "2026-11-23T17:10:43+08:00",
+  "exportFingerprint": "e172743674131a7474a4379629dc9958d34ce306",
+  "generatedAt": "2026-11-23T17:44:16+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 738,
+  "componentCount": 746,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -12301,8 +12301,8 @@
     {
       "name": "ColumnDef",
       "kind": "type",
-      "source": "core/src/components/ui/data-table.tsx",
-      "module": "data-table",
+      "source": "core/src/internal/table-columns.tsx",
+      "module": "core/src/internal/table-columns",
       "group": "ui",
       "oneShotDefault": true,
       "props": []
@@ -14035,7 +14035,7 @@
       "module": "data-table",
       "group": "ui",
       "oneShotDefault": true,
-      "signature": "<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, className, }: DataTableProps<T>) => JSX.Element",
+      "signature": "<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, loading, maxHeight, expandable, getRowChildren, expandedRowKeys, defaultExpandedRowKeys, onExpandedRowKeysChange, columnSettings, hiddenColumnKeys, onHiddenColumnKeysChange, bulkActions, virtualized, pageSize, pageSizeOptions, onPageSizeChange, showQuickJumper, className, }: DataTableProps<T>) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -14200,6 +14200,102 @@
           "description": "Minimum width of the table content. Overflow stays inside the component."
         },
         {
+          "name": "loading",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Shows skeleton rows when empty, otherwise a spinner over the current rows."
+        },
+        {
+          "name": "maxHeight",
+          "optional": true,
+          "type": "string | number | undefined",
+          "description": "Fixed body height (e.g. 480 or \"60vh\"); the header stays put while rows scroll."
+        },
+        {
+          "name": "expandable",
+          "optional": true,
+          "type": "{ render: (row: T, rowIndex: number) => ReactNode; rowExpandable?: ((row: T) => boolean) | undefined; } | undefined",
+          "description": "Extra content under a row, toggled by a chevron column."
+        },
+        {
+          "name": "getRowChildren",
+          "optional": true,
+          "type": "((row: T) => T[] | undefined) | undefined",
+          "description": "Nested rows (tree table); the first column gets the expand toggle and indentation."
+        },
+        {
+          "name": "expandedRowKeys",
+          "optional": true,
+          "type": "ReadonlySet<Key> | undefined",
+          "description": "Expanded rows for `expandable` and tree rows. Uncontrolled when omitted."
+        },
+        {
+          "name": "defaultExpandedRowKeys",
+          "optional": true,
+          "type": "Iterable<Key> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onExpandedRowKeysChange",
+          "optional": true,
+          "type": "((keys: Set<Key>) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "columnSettings",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds a column settings menu to the header."
+        },
+        {
+          "name": "hiddenColumnKeys",
+          "optional": true,
+          "type": "ReadonlySet<string> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onHiddenColumnKeysChange",
+          "optional": true,
+          "type": "((keys: Set<string>) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "bulkActions",
+          "optional": true,
+          "type": "((selectedKeys: Set<Key>) => ReactNode) | undefined",
+          "description": "Actions for the selected rows, shown in a bar above the table while something is selected."
+        },
+        {
+          "name": "virtualized",
+          "optional": true,
+          "type": "{ rowHeight: number; overscan?: number; } | undefined",
+          "description": "Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows."
+        },
+        {
+          "name": "pageSize",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Rows per page selector in the footer."
+        },
+        {
+          "name": "pageSizeOptions",
+          "optional": true,
+          "type": "number[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPageSizeChange",
+          "optional": true,
+          "type": "((size: number) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "showQuickJumper",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds a \"go to page\" field next to the pagination."
+        },
+        {
           "name": "className",
           "optional": true,
           "type": "string | undefined",
@@ -14232,7 +14328,7 @@
       "module": "forms/datepicker",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: \"zh\" | \"en\"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element",
+      "signature": "({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, calendarOnly, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: \"zh\" | \"en\"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; calendarOnly?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "value",
@@ -14263,6 +14359,12 @@
           "optional": true,
           "type": "boolean | undefined",
           "description": ""
+        },
+        {
+          "name": "calendarOnly",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Render only the calendar panel (no field), to embed it in your own layout."
         },
         {
           "name": "minDate",
@@ -14376,6 +14478,140 @@
       "kind": "type",
       "source": "core/src/components/ui/forms/datepicker.tsx",
       "module": "forms/datepicker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DateTimePicker",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/date-time-picker.tsx",
+      "module": "forms/date-time-picker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ value, defaultValue, onChange, withSeconds, step, minDate, maxDate, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: DateTimePickerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "value",
+          "optional": true,
+          "type": "Date | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "Date | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: Date | null) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "withSeconds",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "step",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Minute (and second) step."
+        },
+        {
+          "name": "minDate",
+          "optional": true,
+          "type": "Date | undefined",
+          "description": ""
+        },
+        {
+          "name": "maxDate",
+          "optional": true,
+          "type": "Date | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "clearable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Submits an ISO-like local string \"YYYY-MM-DDTHH:mm(:ss)\"."
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "DateTimePickerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/date-time-picker.tsx",
+      "module": "forms/date-time-picker",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -18051,7 +18287,7 @@
       "module": "data-table",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, showRowCount, rowCountOptions, currentRowCount, onRowCountChange, totalRows, className, }: FullWidthTableProps<T>) => JSX.Element",
+      "signature": "<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, showRowCount, rowCountOptions, currentRowCount, onRowCountChange, totalRows, loading, maxHeight, expandable, getRowChildren, expandedRowKeys, defaultExpandedRowKeys, onExpandedRowKeysChange, columnSettings, hiddenColumnKeys, onHiddenColumnKeysChange, bulkActions, virtualized, pageSize, pageSizeOptions, onPageSizeChange, showQuickJumper, className, }: FullWidthTableProps<T>) => JSX.Element",
       "props": [
         {
           "name": "title",
@@ -18214,6 +18450,102 @@
           "optional": true,
           "type": "Property.MinWidth<string | number> | undefined",
           "description": "Minimum width of the table content. Overflow stays inside the component."
+        },
+        {
+          "name": "loading",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Shows skeleton rows when empty, otherwise a spinner over the current rows."
+        },
+        {
+          "name": "maxHeight",
+          "optional": true,
+          "type": "string | number | undefined",
+          "description": "Fixed body height (e.g. 480 or \"60vh\"); the header stays put while rows scroll."
+        },
+        {
+          "name": "expandable",
+          "optional": true,
+          "type": "{ render: (row: T, rowIndex: number) => ReactNode; rowExpandable?: ((row: T) => boolean) | undefined; } | undefined",
+          "description": "Extra content under a row, toggled by a chevron column."
+        },
+        {
+          "name": "getRowChildren",
+          "optional": true,
+          "type": "((row: T) => T[] | undefined) | undefined",
+          "description": "Nested rows (tree table); the first column gets the expand toggle and indentation."
+        },
+        {
+          "name": "expandedRowKeys",
+          "optional": true,
+          "type": "ReadonlySet<Key> | undefined",
+          "description": "Expanded rows for `expandable` and tree rows. Uncontrolled when omitted."
+        },
+        {
+          "name": "defaultExpandedRowKeys",
+          "optional": true,
+          "type": "Iterable<Key> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onExpandedRowKeysChange",
+          "optional": true,
+          "type": "((keys: Set<Key>) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "columnSettings",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds a column settings menu to the header."
+        },
+        {
+          "name": "hiddenColumnKeys",
+          "optional": true,
+          "type": "ReadonlySet<string> | undefined",
+          "description": ""
+        },
+        {
+          "name": "onHiddenColumnKeysChange",
+          "optional": true,
+          "type": "((keys: Set<string>) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "bulkActions",
+          "optional": true,
+          "type": "((selectedKeys: Set<Key>) => ReactNode) | undefined",
+          "description": "Actions for the selected rows, shown in a bar above the table while something is selected."
+        },
+        {
+          "name": "virtualized",
+          "optional": true,
+          "type": "{ rowHeight: number; overscan?: number; } | undefined",
+          "description": "Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows."
+        },
+        {
+          "name": "pageSize",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Rows per page selector in the footer."
+        },
+        {
+          "name": "pageSizeOptions",
+          "optional": true,
+          "type": "number[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onPageSizeChange",
+          "optional": true,
+          "type": "((size: number) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "showQuickJumper",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds a \"go to page\" field next to the pagination."
         },
         {
           "name": "className",
@@ -28818,6 +29150,143 @@
       "props": []
     },
     {
+      "name": "PeriodGranularity",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/period-picker.tsx",
+      "module": "forms/period-picker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "PeriodPicker",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/period-picker.tsx",
+      "module": "forms/period-picker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ granularity, value, defaultValue, onChange, minDate, maxDate, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: PeriodPickerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "granularity",
+          "optional": false,
+          "type": "PeriodGranularity",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "Date | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "Date | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((start: Date | null) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "minDate",
+          "optional": true,
+          "type": "Date | undefined",
+          "description": ""
+        },
+        {
+          "name": "maxDate",
+          "optional": true,
+          "type": "Date | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "clearable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Submits \"YYYY-MM\", \"YYYY-Qn\" or \"YYYY\"."
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PeriodPickerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/period-picker.tsx",
+      "module": "forms/period-picker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "PieChart",
       "kind": "value",
       "source": "core/src/components/ui/charts/pie-chart.tsx",
@@ -31175,8 +31644,8 @@
     {
       "name": "resolveTableColumnAlign",
       "kind": "value",
-      "source": "core/src/components/ui/data-table.tsx",
-      "module": "data-table",
+      "source": "core/src/internal/table-columns.tsx",
+      "module": "core/src/internal/table-columns",
       "group": "ui",
       "oneShotDefault": false,
       "signature": "<T>(column: Pick<ColumnDef<T>, \"key\" | \"valueKind\" | \"align\" | \"alignOverrideReason\">) => TableColumnAlign",
@@ -34958,6 +35427,15 @@
       ]
     },
     {
+      "name": "TableCellEdit",
+      "kind": "type",
+      "source": "core/src/internal/table-columns.tsx",
+      "module": "core/src/internal/table-columns",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "TableCellProps",
       "kind": "type",
       "source": "core/src/components/ui/data-table.tsx",
@@ -34978,8 +35456,8 @@
     {
       "name": "TableColumnAlign",
       "kind": "type",
-      "source": "core/src/components/ui/data-table.tsx",
-      "module": "data-table",
+      "source": "core/src/internal/table-columns.tsx",
+      "module": "core/src/internal/table-columns",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -34987,8 +35465,8 @@
     {
       "name": "TableValueKind",
       "kind": "type",
-      "source": "core/src/components/ui/data-table.tsx",
-      "module": "data-table",
+      "source": "core/src/internal/table-columns.tsx",
+      "module": "core/src/internal/table-columns",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -42841,6 +43319,140 @@
       "kind": "type",
       "source": "core/src/components/ui/tree.tsx",
       "module": "tree",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TreeSelect",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/tree-select.tsx",
+      "module": "forms/tree-select",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "(props: TreeSelectProps) => JSX.Element",
+      "props": [
+        {
+          "name": "nodes",
+          "optional": false,
+          "type": "TreeNode[]",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "searchable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultExpandedIds",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "clearable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "multiple",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | string[] | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | string[] | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((id: string | null) => void) | ((ids: string[]) => void) | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TreeSelectProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/tree-select.tsx",
+      "module": "forms/tree-select",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

@@ -6,7 +6,7 @@
 ## Datepicker (value)
 
 ```ts
-({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: "zh" | "en"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element
+({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, calendarOnly, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: "zh" | "en"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; calendarOnly?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -16,6 +16,7 @@
 | `confirmSelection` | 否 | `boolean \| undefined` | Keep the range in a draft until the user applies it. |
 | `rangeLabels` | 否 | `[string, string] \| undefined` | Optional separate start/end triggers. |
 | `inline` | 否 | `boolean \| undefined` |  |
+| `calendarOnly` | 否 | `boolean \| undefined` | Render only the calendar panel (no field), to embed it in your own layout. |
 | `minDate` | 否 | `Date \| undefined` |  |
 | `maxDate` | 否 | `Date \| undefined` |  |
 | `rangeStart` | 否 | `Date \| undefined` |  |

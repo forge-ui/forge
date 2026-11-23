@@ -6,6 +6,9 @@ import {
   Button,
   Cascader,
   CopyButton,
+  DateTimePicker,
+  PeriodPicker,
+  TreeSelect,
   Descriptions,
   EmptyState,
   Kbd,
@@ -343,14 +346,36 @@ const CODE_TAGINPUT = `<TagInput
 />`;
 const CODE_TRANSFER = `<Transfer items={permissions} value={granted} onChange={setGranted} titles={["可分配权限", "已分配"]} />`;
 
+const departments: TreeNode[] = [
+  { id: "hq", label: "总部", children: [
+    { id: "rd", label: "研发中心", children: [{ id: "fe", label: "前端组" }, { id: "be", label: "后端组" }, { id: "qa", label: "测试组" }] },
+    { id: "ops", label: "运营部" },
+    { id: "fin", label: "财务部" },
+  ] },
+  { id: "east", label: "华东分公司", children: [{ id: "hz-sales", label: "杭州销售部" }, { id: "nb-sales", label: "宁波销售部" }] },
+];
+
+const CODE_DATETIME = `<DateTimePicker label="上线时间" value={launch} onChange={setLaunch} step={5} />`;
+const CODE_PERIOD = `<PeriodPicker label="账期" granularity="month" value={month} onChange={setMonth} />
+<PeriodPicker label="考核季度" granularity="quarter" value={quarter} onChange={setQuarter} />
+<PeriodPicker label="预算年度" granularity="year" value={year} onChange={setYear} />`;
+const CODE_TREESELECT = `<TreeSelect label="所属部门" nodes={departments} value={dept} onChange={setDept} />
+<TreeSelect label="可见范围" multiple nodes={departments} value={scope} onChange={setScope} />`;
+
 export function FormKitExamples() {
+  const [launch, setLaunch] = useState<Date | null>(new Date(2026, 10, 28, 20, 0));
+  const [month, setMonth] = useState<Date | null>(new Date(2026, 10, 1));
+  const [quarter, setQuarter] = useState<Date | null>(new Date(2026, 9, 1));
+  const [year, setYear] = useState<Date | null>(new Date(2026, 0, 1));
+  const [dept, setDept] = useState<string | null>("fe");
+  const [scope, setScope] = useState<string[]>(["rd", "fe", "be", "qa", "ops"]);
   const [region, setRegion] = useState(["zj", "hz", "xh"]);
   const [time, setTime] = useState("09:30");
   const [emails, setEmails] = useState(["ops@forge.dev"]);
   const [granted, setGranted] = useState(["order.read", "customer.read"]);
   return (
     <>
-      <Section title="更多选择" description="级联、时间、多值输入和穿梭框。">
+      <Section title="更多选择" description="级联、时间、日期时间、期间、树形选择、多值输入和穿梭框。">
         <ExampleGrid>
           <DocExample id="cascader" title="Cascader" summary="逐级选择：省市区、类目。" code={CODE_CASCADER} minHeight={200}>
             <Cascader label="所在地区" options={regions} value={region} onChange={setRegion} />
@@ -360,6 +385,22 @@ export function FormKitExamples() {
           </DocExample>
           <DocExample id="taginput" title="TagInput" summary="自由输入多个值，回车或逗号确认，可粘贴一串。" code={CODE_TAGINPUT} minHeight={200}>
             <TagInput label="抄送" value={emails} onChange={setEmails} validate={value => (/@/.test(value) ? null : "请输入邮箱地址")} />
+          </DocExample>
+          <DocExample id="datetimepicker" title="DateTimePicker" summary="日期和时间一次选完。" code={CODE_DATETIME} minHeight={200}>
+            <DateTimePicker label="上线时间" value={launch} onChange={setLaunch} step={5} />
+          </DocExample>
+          <DocExample id="periodpicker" title="PeriodPicker" summary="按月、季度或年份选择，适合账期、考核和预算。" code={CODE_PERIOD} minHeight={300}>
+            <div className="flex w-full flex-col gap-4">
+              <PeriodPicker label="账期" granularity="month" value={month} onChange={setMonth} />
+              <PeriodPicker label="考核季度" granularity="quarter" value={quarter} onChange={setQuarter} />
+              <PeriodPicker label="预算年度" granularity="year" value={year} onChange={setYear} />
+            </div>
+          </DocExample>
+          <DocExample id="treeselect" title="TreeSelect" summary="在下拉里选树上的节点；多选时勾父级等于整枝。" code={CODE_TREESELECT} minHeight={240}>
+            <div className="flex w-full flex-col gap-4">
+              <TreeSelect label="所属部门" nodes={departments} value={dept} onChange={setDept} />
+              <TreeSelect label="可见范围" multiple nodes={departments} value={scope} onChange={setScope} />
+            </div>
           </DocExample>
           <DocExample id="transfer" title="Transfer" summary="在两列之间移动，例如分配权限。" code={CODE_TRANSFER} minHeight={360}>
             <Transfer items={permissions} value={granted} onChange={setGranted} titles={["可分配", "已分配"]} />
@@ -386,6 +427,25 @@ export function FormKitExamples() {
           row("max", "number", "—", "最多个数。"),
           row("separators", "string[]", "[',', '，']", "除回车外确认输入的按键。"),
           row("label / placeholder / disabled / errorMessage / name", "—", "—", "与其它输入框一致；name 为每个值提交一项。"),
+        ]} />
+        <ApiBlock id="datetimepicker" title="DateTimePicker" rows={[
+          row("value / defaultValue / onChange", "Date | null", "null", "日期时间。"),
+          row("withSeconds / step", "boolean / number", "false / 1", "是否选秒、分秒步长。"),
+          row("minDate / maxDate", "Date", "—", "可选范围。"),
+          row("label / placeholder / clearable / disabled / errorMessage / name", "—", "—", "与其它输入框一致；name 提交 YYYY-MM-DDTHH:mm。"),
+        ]} />
+        <ApiBlock id="periodpicker" title="PeriodPicker" rows={[
+          row("granularity", "'month' | 'quarter' | 'year'", "—", "按月、季度或年。"),
+          row("value / defaultValue / onChange", "Date | null", "null", "所选期间的第一天，例如第 4 季度是 10 月 1 日。"),
+          row("minDate / maxDate", "Date", "—", "超出范围的格子不可选。"),
+          row("label / placeholder / clearable / disabled / errorMessage / name", "—", "—", "与其它输入框一致；name 提交 YYYY-MM、YYYY-Qn 或 YYYY。"),
+        ]} />
+        <ApiBlock id="treeselect" title="TreeSelect" rows={[
+          row("nodes", "TreeNode[]", "—", "与 Tree 相同的节点结构。"),
+          row("multiple", "boolean", "false", "多选：勾父级等于选中整枝，已选显示为标签。"),
+          row("value / defaultValue / onChange", "string | null 或 string[]", "—", "单选是节点 id，多选是 id 数组（包含整枝勾选的父级）。"),
+          row("searchable", "boolean", "true", "顶部搜索，匹配项的上级自动展开。"),
+          row("label / placeholder / clearable / disabled / errorMessage / name", "—", "—", "与其它输入框一致。"),
         ]} />
         <ApiBlock id="transfer" title="Transfer" rows={[
           row("items", "{ value, label, description?, disabled? }[]", "—", "全部条目。"),

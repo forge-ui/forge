@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 69e34c3e6ad805bfdbb4ec1cc61560ae715047452a3324a8784870096e634906
+Source fingerprint: 7a9fa1da9ff13f2d9f7bcbff3c6c5997a5da69761e4a7274a811adcab8c797cc
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -290,7 +290,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (738, values and types distinguished)
+## Public exports (746, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -530,7 +530,7 @@ export function ModuleOverview() {
 - ColorSection [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatch [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatchSize [type] — core/src/components/ui/style-guide.tsx
-- ColumnDef [type] — core/src/components/ui/data-table.tsx
+- ColumnDef [type] — core/src/internal/table-columns.tsx
 - Combobox [value] — core/src/components/ui/forms/combobox.tsx
 - ComboboxColor [type] — core/src/components/ui/forms/combobox.tsx
 - ComboboxOption [type] — core/src/components/ui/forms/combobox.tsx
@@ -596,6 +596,8 @@ export function ModuleOverview() {
 - DatepickerMode [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerShape [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerState [type] — core/src/components/ui/forms/datepicker.tsx
+- DateTimePicker [value] — core/src/components/ui/forms/date-time-picker.tsx
+- DateTimePickerProps [type] — core/src/components/ui/forms/date-time-picker.tsx
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
@@ -804,6 +806,9 @@ export function ModuleOverview() {
 - PaginationColor [type] — core/src/components/ui/pagination.tsx
 - Panel [value] — core/src/components/ui/panel.tsx
 - PanelProps [type] — core/src/components/ui/panel.tsx
+- PeriodGranularity [type] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPicker [value] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPickerProps [type] — core/src/components/ui/forms/period-picker.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
@@ -863,7 +868,7 @@ export function ModuleOverview() {
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
-- resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
+- resolveTableColumnAlign [value] — core/src/internal/table-columns.tsx
 - Result [value] — core/src/components/ui/feedback.tsx
 - ResultProps [type] — core/src/components/ui/feedback.tsx
 - ResultStatus [type] — core/src/components/ui/feedback.tsx
@@ -929,10 +934,11 @@ export function ModuleOverview() {
 - TabBarSurface [type] — core/src/components/ui/tab-bar.tsx
 - TabItem [type] — core/src/components/ui/tab-bar.tsx
 - TableCell [value] — core/src/components/ui/data-table.tsx
+- TableCellEdit [type] — core/src/internal/table-columns.tsx
 - TableCellProps [type] — core/src/components/ui/data-table.tsx
 - TableCellVariant [type] — core/src/components/ui/data-table.tsx
-- TableColumnAlign [type] — core/src/components/ui/data-table.tsx
-- TableValueKind [type] — core/src/components/ui/data-table.tsx
+- TableColumnAlign [type] — core/src/internal/table-columns.tsx
+- TableValueKind [type] — core/src/internal/table-columns.tsx
 - TabsContent [value] — core/src/components/ui/tabs-content.tsx
 - TabsContentProps [type] — core/src/components/ui/tabs-content.tsx
 - Tag [value] — core/src/components/ui/data-display.tsx
@@ -1019,6 +1025,8 @@ export function ModuleOverview() {
 - TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
 - TreeNode [type] — core/src/components/ui/tree.tsx
 - TreeProps [type] — core/src/components/ui/tree.tsx
+- TreeSelect [value] — core/src/components/ui/forms/tree-select.tsx
+- TreeSelectProps [type] — core/src/components/ui/forms/tree-select.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx

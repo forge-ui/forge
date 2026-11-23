@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 69e34c3e6ad805bfdbb4ec1cc61560ae715047452a3324a8784870096e634906
+Source fingerprint: 7a9fa1da9ff13f2d9f7bcbff3c6c5997a5da69761e4a7274a811adcab8c797cc
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (738, values and types distinguished)
+## Public exports (746, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -248,7 +248,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ColorSection [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatch [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatchSize [type] — core/src/components/ui/style-guide.tsx
-- ColumnDef [type] — core/src/components/ui/data-table.tsx
+- ColumnDef [type] — core/src/internal/table-columns.tsx
 - Combobox [value] — core/src/components/ui/forms/combobox.tsx
 - ComboboxColor [type] — core/src/components/ui/forms/combobox.tsx
 - ComboboxOption [type] — core/src/components/ui/forms/combobox.tsx
@@ -314,6 +314,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - DatepickerMode [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerShape [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerState [type] — core/src/components/ui/forms/datepicker.tsx
+- DateTimePicker [value] — core/src/components/ui/forms/date-time-picker.tsx
+- DateTimePickerProps [type] — core/src/components/ui/forms/date-time-picker.tsx
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
@@ -522,6 +524,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - PaginationColor [type] — core/src/components/ui/pagination.tsx
 - Panel [value] — core/src/components/ui/panel.tsx
 - PanelProps [type] — core/src/components/ui/panel.tsx
+- PeriodGranularity [type] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPicker [value] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPickerProps [type] — core/src/components/ui/forms/period-picker.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
@@ -581,7 +586,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
-- resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
+- resolveTableColumnAlign [value] — core/src/internal/table-columns.tsx
 - Result [value] — core/src/components/ui/feedback.tsx
 - ResultProps [type] — core/src/components/ui/feedback.tsx
 - ResultStatus [type] — core/src/components/ui/feedback.tsx
@@ -647,10 +652,11 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TabBarSurface [type] — core/src/components/ui/tab-bar.tsx
 - TabItem [type] — core/src/components/ui/tab-bar.tsx
 - TableCell [value] — core/src/components/ui/data-table.tsx
+- TableCellEdit [type] — core/src/internal/table-columns.tsx
 - TableCellProps [type] — core/src/components/ui/data-table.tsx
 - TableCellVariant [type] — core/src/components/ui/data-table.tsx
-- TableColumnAlign [type] — core/src/components/ui/data-table.tsx
-- TableValueKind [type] — core/src/components/ui/data-table.tsx
+- TableColumnAlign [type] — core/src/internal/table-columns.tsx
+- TableValueKind [type] — core/src/internal/table-columns.tsx
 - TabsContent [value] — core/src/components/ui/tabs-content.tsx
 - TabsContentProps [type] — core/src/components/ui/tabs-content.tsx
 - Tag [value] — core/src/components/ui/data-display.tsx
@@ -737,6 +743,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
 - TreeNode [type] — core/src/components/ui/tree.tsx
 - TreeProps [type] — core/src/components/ui/tree.tsx
+- TreeSelect [value] — core/src/components/ui/forms/tree-select.tsx
+- TreeSelectProps [type] — core/src/components/ui/forms/tree-select.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx
@@ -7035,16 +7043,10 @@ export type CellLinkColor = keyof typeof cellLinkColors;
 | `title` | 是 | `string` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
 
-## ColumnDef (type)
-
-```ts
-export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
-```
-
 ## DataTable (value)
 
 ```ts
-<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, className, }: DataTableProps<T>) => JSX.Element
+<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, loading, maxHeight, expandable, getRowChildren, expandedRowKeys, defaultExpandedRowKeys, onExpandedRowKeysChange, columnSettings, hiddenColumnKeys, onHiddenColumnKeysChange, bulkActions, virtualized, pageSize, pageSizeOptions, onPageSizeChange, showQuickJumper, className, }: DataTableProps<T>) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -7076,6 +7078,22 @@ export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
 | `onPageChange` | 否 | `((page: number) => void) \| undefined` |  |
 | `paginationLabel` | 否 | `string \| undefined` |  |
 | `tableMinWidth` | 否 | `Property.MinWidth<string \| number> \| undefined` | Minimum width of the table content. Overflow stays inside the component. |
+| `loading` | 否 | `boolean \| undefined` | Shows skeleton rows when empty, otherwise a spinner over the current rows. |
+| `maxHeight` | 否 | `string \| number \| undefined` | Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. |
+| `expandable` | 否 | `{ render: (row: T, rowIndex: number) => ReactNode; rowExpandable?: ((row: T) => boolean) \| undefined; } \| undefined` | Extra content under a row, toggled by a chevron column. |
+| `getRowChildren` | 否 | `((row: T) => T[] \| undefined) \| undefined` | Nested rows (tree table); the first column gets the expand toggle and indentation. |
+| `expandedRowKeys` | 否 | `ReadonlySet<Key> \| undefined` | Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. |
+| `defaultExpandedRowKeys` | 否 | `Iterable<Key> \| undefined` |  |
+| `onExpandedRowKeysChange` | 否 | `((keys: Set<Key>) => void) \| undefined` |  |
+| `columnSettings` | 否 | `boolean \| undefined` | Adds a column settings menu to the header. |
+| `hiddenColumnKeys` | 否 | `ReadonlySet<string> \| undefined` |  |
+| `onHiddenColumnKeysChange` | 否 | `((keys: Set<string>) => void) \| undefined` |  |
+| `bulkActions` | 否 | `((selectedKeys: Set<Key>) => ReactNode) \| undefined` | Actions for the selected rows, shown in a bar above the table while something is selected. |
+| `virtualized` | 否 | `{ rowHeight: number; overscan?: number; } \| undefined` | Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. |
+| `pageSize` | 否 | `number \| undefined` | Rows per page selector in the footer. |
+| `pageSizeOptions` | 否 | `number[] \| undefined` |  |
+| `onPageSizeChange` | 否 | `((size: number) => void) \| undefined` |  |
+| `showQuickJumper` | 否 | `boolean \| undefined` | Adds a "go to page" field next to the pagination. |
 | `className` | 否 | `string \| undefined` |  |
 
 ## DataTableColor (type)
@@ -7119,6 +7137,35 @@ export type DataTableProps<T> = {
   paginationLabel?: string;
   /** Minimum width of the table content. Overflow stays inside the component. */
   tableMinWidth?: CSSProperties["minWidth"];
+  /** Shows skeleton rows when empty, otherwise a spinner over the current rows. */
+  loading?: boolean;
+  /** Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. */
+  maxHeight?: number | string;
+  /** Extra content under a row, toggled by a chevron column. */
+  expandable?: {
+    render: (row: T, rowIndex: number) => ReactNode;
+    rowExpandable?: (row: T) => boolean;
+  };
+  /** Nested rows (tree table); the first column gets the expand toggle and indentation. */
+  getRowChildren?: (row: T) => T[] | undefined;
+  /** Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. */
+  expandedRowKeys?: ReadonlySet<Key>;
+  defaultExpandedRowKeys?: Iterable<Key>;
+  onExpandedRowKeysChange?: (keys: Set<Key>) => void;
+  /** Adds a column settings menu to the header. */
+  columnSettings?: boolean;
+  hiddenColumnKeys?: ReadonlySet<string>;
+  onHiddenColumnKeysChange?: (keys: Set<string>) => void;
+  /** Actions for the selected rows, shown in a bar above the table while something is selected. */
+  bulkActions?: (selectedKeys: Set<Key>) => ReactNode;
+  /** Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. */
+  virtualized?: { rowHeight: number; overscan?: number };
+  /** Rows per page selector in the footer. */
+  pageSize?: number;
+  pageSizeOptions?: number[];
+  onPageSizeChange?: (size: number) => void;
+  /** Adds a "go to page" field next to the pagination. */
+  showQuickJumper?: boolean;
   className?: string;
 };
 ```
@@ -7126,7 +7173,7 @@ export type DataTableProps<T> = {
 ## FullWidthTable (value)
 
 ```ts
-<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, showRowCount, rowCountOptions, currentRowCount, onRowCountChange, totalRows, className, }: FullWidthTableProps<T>) => JSX.Element
+<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, showRowCount, rowCountOptions, currentRowCount, onRowCountChange, totalRows, loading, maxHeight, expandable, getRowChildren, expandedRowKeys, defaultExpandedRowKeys, onExpandedRowKeysChange, columnSettings, hiddenColumnKeys, onHiddenColumnKeysChange, bulkActions, virtualized, pageSize, pageSizeOptions, onPageSizeChange, showQuickJumper, className, }: FullWidthTableProps<T>) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -7158,6 +7205,22 @@ export type DataTableProps<T> = {
 | `onPageChange` | 否 | `((page: number) => void) \| undefined` |  |
 | `paginationLabel` | 否 | `string \| undefined` |  |
 | `tableMinWidth` | 否 | `Property.MinWidth<string \| number> \| undefined` | Minimum width of the table content. Overflow stays inside the component. |
+| `loading` | 否 | `boolean \| undefined` | Shows skeleton rows when empty, otherwise a spinner over the current rows. |
+| `maxHeight` | 否 | `string \| number \| undefined` | Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. |
+| `expandable` | 否 | `{ render: (row: T, rowIndex: number) => ReactNode; rowExpandable?: ((row: T) => boolean) \| undefined; } \| undefined` | Extra content under a row, toggled by a chevron column. |
+| `getRowChildren` | 否 | `((row: T) => T[] \| undefined) \| undefined` | Nested rows (tree table); the first column gets the expand toggle and indentation. |
+| `expandedRowKeys` | 否 | `ReadonlySet<Key> \| undefined` | Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. |
+| `defaultExpandedRowKeys` | 否 | `Iterable<Key> \| undefined` |  |
+| `onExpandedRowKeysChange` | 否 | `((keys: Set<Key>) => void) \| undefined` |  |
+| `columnSettings` | 否 | `boolean \| undefined` | Adds a column settings menu to the header. |
+| `hiddenColumnKeys` | 否 | `ReadonlySet<string> \| undefined` |  |
+| `onHiddenColumnKeysChange` | 否 | `((keys: Set<string>) => void) \| undefined` |  |
+| `bulkActions` | 否 | `((selectedKeys: Set<Key>) => ReactNode) \| undefined` | Actions for the selected rows, shown in a bar above the table while something is selected. |
+| `virtualized` | 否 | `{ rowHeight: number; overscan?: number; } \| undefined` | Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. |
+| `pageSize` | 否 | `number \| undefined` | Rows per page selector in the footer. |
+| `pageSizeOptions` | 否 | `number[] \| undefined` |  |
+| `onPageSizeChange` | 否 | `((size: number) => void) \| undefined` |  |
+| `showQuickJumper` | 否 | `boolean \| undefined` | Adds a "go to page" field next to the pagination. |
 | `className` | 否 | `string \| undefined` |  |
 | `showRowCount` | 否 | `boolean \| undefined` |  |
 | `rowCountOptions` | 否 | `number[] \| undefined` |  |
@@ -7200,19 +7263,6 @@ export type ProgressBadgeColor = keyof typeof progressBadgeColors;
 ```ts
 export type ProgressBarColor = ProgressColor;
 ```
-
-## resolveTableColumnAlign (value)
-
-```ts
-<T>(column: Pick<ColumnDef<T>, "key" | "valueKind" | "align" | "alignOverrideReason">) => TableColumnAlign
-```
-
-| 属性 | 必填 | 类型 | 说明 |
-|---|---|---|---|
-| `key` | 是 | `string` |  |
-| `valueKind` | 否 | `"number" \| "identifier" \| undefined` | 省略或 identifier：标识与普通文本，默认左对齐。列头与内容同向。 金额、数量、单价、百分比及同类可比较数值。省略 align 即右对齐。 |
-| `align` | 否 | `TableColumnAlign \| undefined` | 数字列离开默认右对齐。必须同时填写非空 `alignOverrideReason`。 漏写原因会在运行时警告，并标上 `data-forge-align-violation`。 |
-| `alignOverrideReason` | 否 | `string \| undefined` | 标识列一般不需要。数字列禁止用这个字段代替 `valueKind: "number"`。 |
 
 ## StatusBadge (value)
 
@@ -7286,18 +7336,6 @@ export type TableCellProps = {
 export type TableCellVariant = "header" | "body";
 ```
 
-## TableColumnAlign (type)
-
-```ts
-export type TableColumnAlign = "left" | "right";
-```
-
-## TableValueKind (type)
-
-```ts
-export type TableValueKind = "number" | "identifier";
-```
-
 ## 选型
 
 | 场景 | 选 |
@@ -7320,6 +7358,71 @@ export type TableValueKind = "number" | "identifier";
 
 ---
 
+Source: skills/forge-skill/references/components/date-time-picker.md
+
+# date-time-picker
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/date-time-picker.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## DateTimePicker (value)
+
+```ts
+({ value, defaultValue, onChange, withSeconds, step, minDate, maxDate, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: DateTimePickerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `Date \| null \| undefined` |  |
+| `defaultValue` | 否 | `Date \| null \| undefined` |  |
+| `onChange` | 否 | `((value: Date \| null) => void) \| undefined` |  |
+| `withSeconds` | 否 | `boolean \| undefined` |  |
+| `step` | 否 | `number \| undefined` | Minute (and second) step. |
+| `minDate` | 否 | `Date \| undefined` |  |
+| `maxDate` | 否 | `Date \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Submits an ISO-like local string "YYYY-MM-DDTHH:mm(:ss)". |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## DateTimePickerProps (type)
+
+```ts
+export interface DateTimePickerProps {
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (value: Date | null) => void;
+  withSeconds?: boolean;
+  /** Minute (and second) step. */
+  step?: number;
+  minDate?: Date;
+  maxDate?: Date;
+  label?: string;
+  placeholder?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  /** Submits an ISO-like local string "YYYY-MM-DDTHH:mm(:ss)". */
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/datepicker.md
 
 # datepicker
@@ -7330,7 +7433,7 @@ Source: skills/forge-skill/references/components/datepicker.md
 ## Datepicker (value)
 
 ```ts
-({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: "zh" | "en"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element
+({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, calendarOnly, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: "zh" | "en"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; calendarOnly?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -7340,6 +7443,7 @@ Source: skills/forge-skill/references/components/datepicker.md
 | `confirmSelection` | 否 | `boolean \| undefined` | Keep the range in a draft until the user applies it. |
 | `rangeLabels` | 否 | `[string, string] \| undefined` | Optional separate start/end triggers. |
 | `inline` | 否 | `boolean \| undefined` |  |
+| `calendarOnly` | 否 | `boolean \| undefined` | Render only the calendar panel (no field), to embed it in your own layout. |
 | `minDate` | 否 | `Date \| undefined` |  |
 | `maxDate` | 否 | `Date \| undefined` |  |
 | `rangeStart` | 否 | `Date \| undefined` |  |
@@ -11901,6 +12005,74 @@ export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
 
 ---
 
+Source: skills/forge-skill/references/components/period-picker.md
+
+# period-picker
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/period-picker.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## PeriodGranularity (type)
+
+```ts
+export type PeriodGranularity = "month" | "quarter" | "year";
+```
+
+## PeriodPicker (value)
+
+```ts
+({ granularity, value, defaultValue, onChange, minDate, maxDate, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: PeriodPickerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `granularity` | 是 | `PeriodGranularity` |  |
+| `value` | 否 | `Date \| null \| undefined` |  |
+| `defaultValue` | 否 | `Date \| null \| undefined` |  |
+| `onChange` | 否 | `((start: Date \| null) => void) \| undefined` |  |
+| `minDate` | 否 | `Date \| undefined` |  |
+| `maxDate` | 否 | `Date \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Submits "YYYY-MM", "YYYY-Qn" or "YYYY". |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## PeriodPickerProps (type)
+
+```ts
+export interface PeriodPickerProps {
+  granularity: PeriodGranularity;
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (start: Date | null) => void;
+  minDate?: Date;
+  maxDate?: Date;
+  label?: string;
+  placeholder?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  /** Submits "YYYY-MM", "YYYY-Qn" or "YYYY". */
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/pie-chart.md
 
 # pie-chart
@@ -13942,6 +14114,60 @@ export interface TabItem {
 - 页面内部分 tab 切换（详情页的多视图、设置页的多分组）
 - **ButtonGroup 是另一个选项** — 胶囊分段样式，适合紧凑空间
 - tab 多（> 5）且需要 icon 时，考虑自己封装一层
+
+---
+
+Source: skills/forge-skill/references/components/table-columns.md
+
+# table-columns
+
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/table-columns.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ColumnDef (type)
+
+```ts
+export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
+```
+
+## resolveTableColumnAlign (value)
+
+```ts
+<T>(column: Pick<ColumnDef<T>, "key" | "valueKind" | "align" | "alignOverrideReason">) => TableColumnAlign
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `key` | 是 | `string` |  |
+| `valueKind` | 否 | `"number" \| "identifier" \| undefined` | 省略或 identifier：标识与普通文本，默认左对齐。列头与内容同向。 金额、数量、单价、百分比及同类可比较数值。省略 align 即右对齐。 |
+| `align` | 否 | `TableColumnAlign \| undefined` | 数字列离开默认右对齐。必须同时填写非空 `alignOverrideReason`。 漏写原因会在运行时警告，并标上 `data-forge-align-violation`。 |
+| `alignOverrideReason` | 否 | `string \| undefined` | 标识列一般不需要。数字列禁止用这个字段代替 `valueKind: "number"`。 |
+
+## TableCellEdit (type)
+
+```ts
+export type TableCellEdit<T> = {
+  /** The raw value to put in the input. */
+  value: (row: T) => string | number;
+  /** May return a promise; the cell shows the new value only after the host updates `rows`. */
+  onSave: (row: T, value: string) => void | Promise<unknown>;
+  type?: "text" | "number";
+  /** Return a message to reject the value. */
+  validate?: (value: string, row: T) => string | null | undefined;
+};
+```
+
+## TableColumnAlign (type)
+
+```ts
+export type TableColumnAlign = "left" | "right";
+```
+
+## TableValueKind (type)
+
+```ts
+export type TableValueKind = "number" | "identifier";
+```
 
 ---
 
@@ -16154,6 +16380,53 @@ export interface TreeProps {
   motion?: MotionPreference;
   className?: string;
 }
+```
+
+---
+
+Source: skills/forge-skill/references/components/tree-select.md
+
+# tree-select
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/tree-select.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## TreeSelect (value)
+
+```ts
+(props: TreeSelectProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `nodes` | 是 | `TreeNode[]` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `searchable` | 否 | `boolean \| undefined` |  |
+| `defaultExpandedIds` | 否 | `string[] \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `value` | 否 | `string \| string[] \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| string[] \| null \| undefined` |  |
+| `onChange` | 否 | `((id: string \| null) => void) \| ((ids: string[]) => void) \| undefined` |  |
+
+## TreeSelectProps (type)
+
+```ts
+export type TreeSelectProps = TreeSelectBase & (
+  | { multiple?: false; value?: string | null; defaultValue?: string | null; onChange?: (id: string | null) => void }
+  /** Multiple: checking a parent selects its whole branch; reported ids include fully checked parents. */
+  | { multiple: true; value?: string[]; defaultValue?: string[]; onChange?: (ids: string[]) => void }
+);
 ```
 
 ---

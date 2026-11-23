@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 738 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 746 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -244,7 +244,7 @@
 | ColorSection | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
 | ColorSwatch | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
 | ColorSwatchSize | type | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
-| ColumnDef | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| ColumnDef | type | [源码](../../core/src/internal/table-columns.tsx) | [table-columns](../../skills/forge-skill/references/components/table-columns.md) |
 | Combobox | value | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
 | ComboboxColor | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
 | ComboboxOption | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
@@ -310,6 +310,8 @@
 | DatepickerMode | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
 | DatepickerShape | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
 | DatepickerState | type | [源码](../../core/src/components/ui/forms/datepicker.tsx) | [datepicker](../../skills/forge-skill/references/components/datepicker.md) |
+| DateTimePicker | value | [源码](../../core/src/components/ui/forms/date-time-picker.tsx) | [date-time-picker](../../skills/forge-skill/references/components/date-time-picker.md) |
+| DateTimePickerProps | type | [源码](../../core/src/components/ui/forms/date-time-picker.tsx) | [date-time-picker](../../skills/forge-skill/references/components/date-time-picker.md) |
 | DebitCard | value | [源码](../../core/src/components/ui/debit-card.tsx) | [debit-card](../../skills/forge-skill/references/components/debit-card.md) |
 | DescriptionItem | value | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
 | DescriptionItemLead | type | [源码](../../core/src/components/ui/list-item.tsx) | [list-item](../../skills/forge-skill/references/components/list-item.md) |
@@ -518,6 +520,9 @@
 | PaginationColor | type | [源码](../../core/src/components/ui/pagination.tsx) | [pagination](../../skills/forge-skill/references/components/pagination.md) |
 | Panel | value | [源码](../../core/src/components/ui/panel.tsx) | [panel](../../skills/forge-skill/references/components/panel.md) |
 | PanelProps | type | [源码](../../core/src/components/ui/panel.tsx) | [panel](../../skills/forge-skill/references/components/panel.md) |
+| PeriodGranularity | type | [源码](../../core/src/components/ui/forms/period-picker.tsx) | [period-picker](../../skills/forge-skill/references/components/period-picker.md) |
+| PeriodPicker | value | [源码](../../core/src/components/ui/forms/period-picker.tsx) | [period-picker](../../skills/forge-skill/references/components/period-picker.md) |
+| PeriodPickerProps | type | [源码](../../core/src/components/ui/forms/period-picker.tsx) | [period-picker](../../skills/forge-skill/references/components/period-picker.md) |
 | PieChart | value | [源码](../../core/src/components/ui/charts/pie-chart.tsx) | [pie-chart](../../skills/forge-skill/references/components/pie-chart.md) |
 | PlanStep | type | [源码](../../core/src/components/ui/agent/agent-run.tsx) | [agent-run](../../skills/forge-skill/references/components/agent-run.md) |
 | PlusIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
@@ -577,7 +582,7 @@
 | RecommendationOption | type | [源码](../../core/src/components/ui/agent/recommendation-card.tsx) | [recommendation-card](../../skills/forge-skill/references/components/recommendation-card.md) |
 | resolveCardTheme | value | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
 | resolveInlineDiff | value | [源码](../../core/src/components/ui/agent/inline-diff.tsx) | [inline-diff](../../skills/forge-skill/references/components/inline-diff.md) |
-| resolveTableColumnAlign | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| resolveTableColumnAlign | value | [源码](../../core/src/internal/table-columns.tsx) | [table-columns](../../skills/forge-skill/references/components/table-columns.md) |
 | Result | value | [源码](../../core/src/components/ui/feedback.tsx) | [feedback](../../skills/forge-skill/references/components/feedback.md) |
 | ResultProps | type | [源码](../../core/src/components/ui/feedback.tsx) | [feedback](../../skills/forge-skill/references/components/feedback.md) |
 | ResultStatus | type | [源码](../../core/src/components/ui/feedback.tsx) | [feedback](../../skills/forge-skill/references/components/feedback.md) |
@@ -643,10 +648,11 @@
 | TabBarSurface | type | [源码](../../core/src/components/ui/tab-bar.tsx) | [tab-bar](../../skills/forge-skill/references/components/tab-bar.md) |
 | TabItem | type | [源码](../../core/src/components/ui/tab-bar.tsx) | [tab-bar](../../skills/forge-skill/references/components/tab-bar.md) |
 | TableCell | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TableCellEdit | type | [源码](../../core/src/internal/table-columns.tsx) | [table-columns](../../skills/forge-skill/references/components/table-columns.md) |
 | TableCellProps | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
 | TableCellVariant | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
-| TableColumnAlign | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
-| TableValueKind | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| TableColumnAlign | type | [源码](../../core/src/internal/table-columns.tsx) | [table-columns](../../skills/forge-skill/references/components/table-columns.md) |
+| TableValueKind | type | [源码](../../core/src/internal/table-columns.tsx) | [table-columns](../../skills/forge-skill/references/components/table-columns.md) |
 | TabsContent | value | [源码](../../core/src/components/ui/tabs-content.tsx) | [tabs-content](../../skills/forge-skill/references/components/tabs-content.md) |
 | TabsContentProps | type | [源码](../../core/src/components/ui/tabs-content.tsx) | [tabs-content](../../skills/forge-skill/references/components/tabs-content.md) |
 | Tag | value | [源码](../../core/src/components/ui/data-display.tsx) | [data-display](../../skills/forge-skill/references/components/data-display.md) |
@@ -733,6 +739,8 @@
 | TreeAgentStatus | type | [源码](../../core/src/components/ui/agent/agent-observe.tsx) | [agent-observe](../../skills/forge-skill/references/components/agent-observe.md) |
 | TreeNode | type | [源码](../../core/src/components/ui/tree.tsx) | [tree](../../skills/forge-skill/references/components/tree.md) |
 | TreeProps | type | [源码](../../core/src/components/ui/tree.tsx) | [tree](../../skills/forge-skill/references/components/tree.md) |
+| TreeSelect | value | [源码](../../core/src/components/ui/forms/tree-select.tsx) | [tree-select](../../skills/forge-skill/references/components/tree-select.md) |
+| TreeSelectProps | type | [源码](../../core/src/components/ui/forms/tree-select.tsx) | [tree-select](../../skills/forge-skill/references/components/tree-select.md) |
 | TrendDirection | type | [源码](../../core/src/components/ui/card-utils.tsx) | [card-utils](../../skills/forge-skill/references/components/card-utils.md) |
 | TypefaceBlock | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
 | TypographySizeRow | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
