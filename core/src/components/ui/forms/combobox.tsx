@@ -1,11 +1,11 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
-import { useCallback, useId, useRef, type ReactNode, type RefObject } from "react";
+import { useId, useRef, type ReactNode, type RefObject } from "react";
 import { AltArrowDownLinear, CheckCircleLinear, CloseCircleLinear } from "../../../icons";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
-import { useControllableOpen, useDialogLayerRef, useFloatingContainer } from "../../../internal/floating";
+import { useControllableOpen } from "../../../internal/floating";
 import { FieldFrame } from "./field-utils";
 import { formAccents, type FormAccentColor } from "./form-utils";
 import {
@@ -101,9 +101,6 @@ export function Combobox(props: ComboboxProps) {
   const errorId = useId();
   const anchorRef = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useControllableOpen(undefined, undefined);
-  const container = useFloatingContainer(anchorRef, open);
-  const close = useCallback(() => setOpen(false), [setOpen]);
-  const layerRef = useDialogLayerRef(close, anchorRef);
   const accent = formAccents[color];
   const disabled = state === "disabled";
   const isError = state === "error";
@@ -170,7 +167,7 @@ export function Combobox(props: ComboboxProps) {
               {input}
               {chevron}
             </ComboboxPrimitive.Chips>
-            <ComboboxList anchorRef={anchorRef} container={container} layerRef={layerRef} color={color} motion={motion} emptyText={resolvedEmpty} />
+            <ComboboxList anchorRef={anchorRef} color={color} motion={motion} emptyText={resolvedEmpty} />
           </ComboboxPrimitive.Root>
         ) : (
           <ComboboxPrimitive.Root
@@ -186,7 +183,7 @@ export function Combobox(props: ComboboxProps) {
               </ComboboxPrimitive.Clear>
               {chevron}
             </ComboboxPrimitive.InputGroup>
-            <ComboboxList anchorRef={anchorRef} container={container} layerRef={layerRef} color={color} motion={motion} emptyText={resolvedEmpty} />
+            <ComboboxList anchorRef={anchorRef} color={color} motion={motion} emptyText={resolvedEmpty} />
           </ComboboxPrimitive.Root>
         )}
       </div>
@@ -194,19 +191,17 @@ export function Combobox(props: ComboboxProps) {
   );
 }
 
-function ComboboxList({ anchorRef, container, layerRef, color, motion, emptyText }: {
+function ComboboxList({ anchorRef, color, motion, emptyText }: {
   anchorRef: RefObject<HTMLDivElement | null>;
-  container: HTMLElement | undefined;
-  layerRef: (node: HTMLElement | null) => void;
   color: ComboboxColor;
   motion: MotionPreference;
   emptyText: ReactNode;
 }) {
   const accent = formAccents[color];
   return (
-    <ComboboxPrimitive.Portal container={container}>
+    <ComboboxPrimitive.Portal>
       <ComboboxPrimitive.Positioner anchor={anchorRef} sideOffset={4} align="start" collisionPadding={8} className="z-50">
-        <ComboboxPrimitive.Popup ref={layerRef} data-motion={motion} className={floatingListPopupClass}>
+        <ComboboxPrimitive.Popup data-motion={motion} className={floatingListPopupClass}>
           <ComboboxPrimitive.Empty className={floatingEmptyClass}>{emptyText}</ComboboxPrimitive.Empty>
           <ComboboxPrimitive.List className="flex flex-col overflow-y-auto overscroll-contain empty:hidden">
             {(option: ComboboxOption) => (

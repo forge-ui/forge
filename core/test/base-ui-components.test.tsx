@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
-import { JSDOM } from "jsdom";
 import { act, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { click, flush, press, setup, type } from "./helpers/dom";
 import { Modal } from "../src/components/ui/modal";
 import { DropdownMenu, ContextMenu } from "../src/components/ui/dropdown-menu";
 import { Popover } from "../src/components/ui/popover";
@@ -22,49 +21,6 @@ const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
 
-function setup() {
-  const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
-  const window = dom.window;
-  Object.assign(globalThis, {
-    IS_REACT_ACT_ENVIRONMENT: true,
-    window, self: window, document: window.document,
-    HTMLElement: window.HTMLElement, HTMLInputElement: window.HTMLInputElement, Element: window.Element, Node: window.Node,
-    Event: window.Event, MouseEvent: window.MouseEvent, KeyboardEvent: window.KeyboardEvent, FocusEvent: window.FocusEvent, InputEvent: window.InputEvent,
-    PointerEvent: window.MouseEvent, NodeFilter: window.NodeFilter, HTMLButtonElement: window.HTMLButtonElement, SVGElement: window.SVGElement, ShadowRoot: window.ShadowRoot, MutationObserver: window.MutationObserver,
-    getComputedStyle: window.getComputedStyle.bind(window),
-    requestAnimationFrame: (callback: FrameRequestCallback) => setTimeout(() => callback(Date.now()), 0),
-    cancelAnimationFrame: (id: number) => clearTimeout(id),
-    ResizeObserver: class { observe() {} unobserve() {} disconnect() {} },
-    DOMRect: window.DOMRect ?? class { constructor(public x = 0, public y = 0, public width = 0, public height = 0) {} get top() { return this.y; } get left() { return this.x; } get right() { return this.x + this.width; } get bottom() { return this.y + this.height; } static fromRect(rect: { x?: number; y?: number; width?: number; height?: number } = {}) { return { x: rect.x ?? 0, y: rect.y ?? 0, width: rect.width ?? 0, height: rect.height ?? 0, top: rect.y ?? 0, left: rect.x ?? 0, right: (rect.x ?? 0) + (rect.width ?? 0), bottom: (rect.y ?? 0) + (rect.height ?? 0) }; } },
-  });
-  Object.defineProperty(window, "matchMedia", { value: () => ({ matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }) });
-  window.HTMLElement.prototype.getClientRects = function() { return [{ width: 100, height: 32 }] as unknown as DOMRectList; };
-  window.HTMLElement.prototype.scrollIntoView = function() {};
-  window.Element.prototype.getAnimations = function() { return []; };
-  window.HTMLDialogElement.prototype.showModal = function() { this.setAttribute("open", ""); };
-  window.HTMLDialogElement.prototype.close = function() { this.removeAttribute("open"); this.dispatchEvent(new window.Event("close")); };
-  const root = createRoot(document.getElementById("root")!);
-  return { root, cleanup: async () => { await act(async () => root.unmount()); window.close(); } };
-}
-
-const flush = () => act(async () => { for (let index = 0; index < 4; index++) await new Promise(resolve => setTimeout(resolve, 5)); });
-const press = async (node: Element, key: string) => { await act(async () => { node.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true })); }); await flush(); };
-const click = async (node: Element) => {
-  await act(async () => {
-    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup"]) node.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, button: 0 }));
-    (node as HTMLElement).click();
-  });
-  await flush();
-};
-async function type(input: HTMLInputElement, text: string) {
-  await act(async () => {
-    input.focus();
-    const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")!.set!;
-    setter.call(input, text);
-    input.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: text }));
-  });
-  await flush();
-}
 const menuItems = () => [...document.querySelectorAll<HTMLElement>('[role="menuitem"], [role="menuitemcheckbox"]')];
 const options = () => [...document.querySelectorAll<HTMLElement>('[role="option"]')];
 
@@ -102,7 +58,7 @@ test("DropdownMenu checkbox entries toggle without closing", async () => {
   } finally { await env.cleanup(); }
 });
 
-test("DropdownMenu inside Modal portals into the dialog and Escape closes only the menu", async () => {
+test("DropdownMenu inside Modal: Escape closes only the menu", async () => {
   const env = setup(); let modalCloses = 0;
   try {
     await act(async () => env.root.render(<Modal open motion="none" title="Parent" onOpenChange={() => modalCloses++}>
@@ -111,7 +67,6 @@ test("DropdownMenu inside Modal portals into the dialog and Escape closes only t
     const trigger = document.getElementById("menu-trigger")!;
     await click(trigger);
     const menu = document.querySelector<HTMLElement>('[role="menu"]')!;
-    assert.equal(menu.closest("dialog"), trigger.closest("dialog"));
     await press(menu, "Escape");
     assert.equal(modalCloses, 0);
     assert.equal(trigger.getAttribute("aria-expanded"), "false");
@@ -330,7 +285,7 @@ test("Tooltip waits for the hover delay, opens on focus and composes aria-descri
   } finally { await env.cleanup(); }
 });
 
-test("Tooltip inside Modal renders within the dialog", async () => {
+test("Tooltip inside Modal describes its target", async () => {
   const env = setup();
   try {
     await act(async () => env.root.render(<Modal open motion="none" title="Settings" onOpenChange={() => {}}>
@@ -338,7 +293,6 @@ test("Tooltip inside Modal renders within the dialog", async () => {
     </Modal>));
     await flush();
     const tip = document.querySelector('[role="tooltip"]')!;
-    assert.equal(tip.closest("dialog"), document.getElementById("target")!.closest("dialog"));
     assert.equal(document.getElementById("target")!.getAttribute("aria-describedby"), tip.id);
   } finally { await env.cleanup(); }
 });

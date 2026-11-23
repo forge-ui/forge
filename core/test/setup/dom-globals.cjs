@@ -10,6 +10,8 @@ if (typeof document === "undefined") {
   globalThis.window = dom.window;
   globalThis.document = dom.window.document;
 }
+// Base UI reads the user agent once to detect jsdom (e.g. `:focus-visible` is unreliable there).
+Object.defineProperty(globalThis, "navigator", { configurable: true, writable: true, value: globalThis.window.navigator });
 
 const lazyGlobals = [
   "Element", "Node", "HTMLElement", "HTMLInputElement", "HTMLButtonElement", "SVGElement", "ShadowRoot",

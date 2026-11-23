@@ -16,10 +16,12 @@ async function setup() {
   const root = createRoot(document.getElementById("root")!);
   return { dom, render: (node: ReactNode) => act(async () => root.render(node)), close: async () => { await act(async () => root.unmount()); dom.window.close(); } };
 }
+const otpSlot = () => document.querySelector<HTMLInputElement>('.forge-otp__field')!;
+const otpValue = () => [...document.querySelectorAll<HTMLInputElement>('.forge-otp__field')].map(slot => slot.value).join('');
 const click = (element: Element | null) => act(async () => { assert.ok(element); (element as HTMLElement).click(); });
 const button = (label: string) => [...document.querySelectorAll<HTMLButtonElement>('button')].find(element => element.getAttribute('aria-label') === label || element.textContent === label)!;
 async function fill(dom: JSDOM, input: HTMLInputElement, value: string) {
-  await act(async () => { Object.getOwnPropertyDescriptor(dom.window.HTMLInputElement.prototype, 'value')!.set!.call(input, value); input.dispatchEvent(new dom.window.Event('input', { bubbles: true })); });
+  await act(async () => { Object.getOwnPropertyDescriptor(dom.window.HTMLInputElement.prototype, 'value')!.set!.call(input, value); input.dispatchEvent(new dom.window.InputEvent('input', { bubbles: true, inputType: 'insertText', data: value })); });
 }
 async function key(dom: JSDOM, element: Element, value: string) { await act(async () => element.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: value, bubbles: true, cancelable: true }))); }
 
@@ -29,10 +31,10 @@ test('OTP normalizes pasted digits, reports completion, and waits for actual ver
   const verify = () => new Promise<boolean>(done => { resolve = done; });
   try {
     await env.render(<OtpInput verify={verify} onComplete={value => completed.push(value)} onSuccess={value => success.push(value)} />);
-    const input = document.querySelector('input')!;
+    const input = otpSlot();
     assert.equal(input.autocomplete, 'one-time-code');
     await fill(env.dom, input, '12-34 56');
-    assert.equal(input.value, '123456'); assert.deepEqual(completed, ['123456']);
+    assert.equal(otpValue(), '123456'); assert.deepEqual(completed, ['123456']);
     assert.equal(input.readOnly, true); assert.deepEqual(success, []);
     await act(async () => resolve(false));
     assert.equal(input.getAttribute('aria-invalid'), 'true'); assert.deepEqual(success, []);
@@ -40,7 +42,7 @@ test('OTP normalizes pasted digits, reports completion, and waits for actual ver
     await act(async () => resolve(true));
     assert.deepEqual(success, ['654321']); assert.equal(input.readOnly, false);
     await env.render(<OtpInput key="plain" onComplete={value => completed.push(value)} />);
-    await fill(env.dom, document.querySelector('input')!, '123456');
+    await fill(env.dom, otpSlot(), '123456');
     assert.equal(document.querySelector('.forge-otp')!.getAttribute('data-status'), 'idle', 'no built-in passcode verifier');
   } finally { await env.close(); }
 });
@@ -52,7 +54,7 @@ test('OTP controlled changes do not cancel verification when the callback is inl
   }
   try {
     await env.render(<Controlled />);
-    await fill(env.dom, document.querySelector('input')!, '123456');
+    await fill(env.dom, otpSlot(), '123456');
     assert.equal(successes, 1); assert.equal(document.querySelector('.forge-otp')!.getAttribute('data-status'), 'ok');
   } finally { await env.close(); }
 });
@@ -61,14 +63,14 @@ test('OTP ignores stale verification after controlled reset and handles rejected
   const verify = () => new Promise<boolean>(done => { resolve = done; });
   try {
     await env.render(<OtpInput verify={verify} onSuccess={() => successes++} />);
-    await fill(env.dom, document.querySelector('input')!, '123456');
+    await fill(env.dom, otpSlot(), '123456');
     await env.render(<OtpInput value="" verify={verify} onSuccess={() => successes++} />);
     await act(async () => resolve(true)); assert.equal(successes, 0);
     await env.render(<OtpInput key="error" verify={async () => { throw new Error('Unavailable'); }} errorLabel="请重试" />);
-    await fill(env.dom, document.querySelector('input')!, '123456');
+    await fill(env.dom, otpSlot(), '123456');
     assert.equal(document.querySelector('[role="status"]')!.textContent, '请重试');
     await env.render(<OtpInput key="disabled" disabled defaultValue="12" />);
-    assert.equal(document.querySelector('input')!.disabled, true);
+    assert.equal(otpSlot().disabled, true);
   } finally { await env.close(); }
 });
 test('OTP stays editable after length changes and finishes verification while editing is disabled', async () => {
@@ -76,15 +78,15 @@ test('OTP stays editable after length changes and finishes verification while ed
   const verify = () => new Promise<boolean>(done => { resolve = done; });
   try {
     await env.render(<OtpInput length={4} verify={verify} onSuccess={() => successes++} />);
-    await fill(env.dom, document.querySelector('input')!, '1234');
+    await fill(env.dom, otpSlot(), '1234');
     await env.render(<OtpInput length={6} verify={verify} onSuccess={() => successes++} />);
-    assert.equal(document.querySelector('input')!.readOnly, false);
+    assert.equal(otpSlot().readOnly, false);
     await act(async () => resolve(true)); assert.equal(successes, 0);
-    await fill(env.dom, document.querySelector('input')!, '123456');
+    await fill(env.dom, otpSlot(), '123456');
     await env.render(<OtpInput disabled length={6} verify={verify} onSuccess={() => successes++} />);
     await act(async () => resolve(true)); assert.equal(successes, 1);
     await env.render(<OtpInput length={6} verify={verify} />);
-    assert.equal(document.querySelector('input')!.readOnly, false);
+    assert.equal(otpSlot().readOnly, false);
   } finally { await env.close(); }
 });
 test('CalendarCard clamps end-of-month, moves keyboard focus, supports locale and controlled ownership', async () => {
@@ -212,12 +214,12 @@ test('shared motion preference disables transitions without resetting widget sta
   </>;
   try {
     await env.render(widgets('auto'));
-    await fill(env.dom, document.querySelector('input')!, '123');
+    await fill(env.dom, otpSlot(), '123');
     await click(button('2026年10月13日星期二'));
     await click(document.querySelector('.forge-liquid__row'));
     await click(document.querySelector('.forge-member__row'));
     await env.render(widgets('none'));
-    assert.equal(document.querySelector('input')!.value, '123');
+    assert.equal(otpValue(), '123');
     assert.equal(document.querySelector('.forge-calendar__date[aria-pressed="true"]')!.textContent, '13');
     assert.equal(document.querySelector('.forge-liquid__row')!.getAttribute('aria-pressed'), 'true');
     assert.equal(document.querySelector('.forge-member__row')!.getAttribute('aria-pressed'), 'true');

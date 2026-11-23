@@ -4,7 +4,6 @@ import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { useCallback, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import type { MotionPreference } from "../../../lib/motion";
 import { useReducedMotion } from "../../../internal/motion";
-import { useDialogLayerRef, useFloatingContainer } from "../../../internal/floating";
 import { cn } from "../../../lib/utils";
 import { AltArrowDownLinear, CheckCircleLinear, CloseCircleLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
@@ -107,9 +106,6 @@ export function SelectOption(props: SelectOptionProps) {
   const triggerId = useId();
   const reduced = useReducedMotion(motion);
   const effectiveMotion = reduced ? "none" : motion;
-  const container = useFloatingContainer(triggerRef, open);
-  const close = useCallback(() => setOpen(false), []);
-  const layerRef = useDialogLayerRef(close, triggerRef);
   const accent = formAccents[color];
 
   const isError = state === "error";
@@ -251,10 +247,9 @@ export function SelectOption(props: SelectOptionProps) {
               <AltArrowDownLinear size={20} className={isError ? "text-fg-red" : "text-fg-grey-700"} />
             </span>
           </SelectPrimitive.Trigger>
-          <SelectPrimitive.Portal container={container}>
+          <SelectPrimitive.Portal>
             <SelectPrimitive.Positioner alignItemWithTrigger={false} side="bottom" align="start" sideOffset={4} collisionPadding={8} className="z-50">
               <SelectPrimitive.Popup
-                ref={layerRef}
                 data-motion={effectiveMotion}
                 aria-label={label ?? placeholder}
                 onBlur={(event) => {

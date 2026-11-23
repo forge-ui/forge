@@ -1,10 +1,10 @@
 "use client";
 
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card";
-import { useCallback, useRef, type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
-import { floatingSurfaceClass, useControllableOpen, useDialogLayerRef, useFloatingContainer } from "../../internal/floating";
+import { floatingSurfaceClass, useControllableOpen } from "../../internal/floating";
 
 export type PreviewCardSide = "top" | "bottom" | "left" | "right";
 export type PreviewCardAlign = "start" | "center" | "end";
@@ -43,18 +43,13 @@ export function PreviewCard({
   motion = "auto",
 }: PreviewCardProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange);
-  const triggerRef = useRef<HTMLAnchorElement | null>(null);
-  const container = useFloatingContainer(triggerRef, open);
-  const close = useCallback(() => setOpen(false), [setOpen]);
-  const layerRef = useDialogLayerRef(close, triggerRef);
 
   return (
     <PreviewCardPrimitive.Root open={open} onOpenChange={next => setOpen(next)}>
-      <PreviewCardPrimitive.Trigger ref={triggerRef} render={trigger} delay={delay} closeDelay={closeDelay} />
-      <PreviewCardPrimitive.Portal container={container}>
+      <PreviewCardPrimitive.Trigger render={trigger} delay={delay} closeDelay={closeDelay} />
+      <PreviewCardPrimitive.Portal>
         <PreviewCardPrimitive.Positioner side={side} align={align} sideOffset={8} collisionPadding={8} className="z-50">
           <PreviewCardPrimitive.Popup
-            ref={layerRef}
             data-motion={motion}
             className={cn("forge-popup max-w-[min(var(--available-width),calc(100vw-16px))] p-4 outline-none", floatingSurfaceClass, className)}
             style={{ width }}

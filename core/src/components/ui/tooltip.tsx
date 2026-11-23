@@ -14,7 +14,6 @@ import {
   type ReactNode,
 } from "react";
 import type { MotionPreference } from "../../lib/motion";
-import { useFloatingContainer } from "../../internal/floating";
 import { cn } from "../../lib/utils";
 
 // ============================================================
@@ -109,7 +108,6 @@ export function Tooltip({
   const visible = open ?? active;
   const anchorRef = useRef<HTMLElement | null>(null);
   const attachAnchor = useCallback((node: HTMLElement | null) => { anchorRef.current = node; }, []);
-  const container = useFloatingContainer(anchorRef, visible);
   const tooltipId = useId();
 
   const onlyChild = Children.only(children);
@@ -129,7 +127,7 @@ export function Tooltip({
       >
         {trigger}
       </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal container={container}>
+      <TooltipPrimitive.Portal>
         <TooltipPrimitive.Positioner side={position} sideOffset={8} collisionPadding={8} className="z-50">
           <TooltipPrimitive.Popup
             id={tooltipId}

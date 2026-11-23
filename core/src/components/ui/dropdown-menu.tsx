@@ -2,10 +2,10 @@
 
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import { useCallback, useRef, type ReactElement, type ReactNode } from "react";
+import { useRef, type ReactElement, type ReactNode } from "react";
 import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
-import { useControllableOpen, useDialogLayerRef, useFloatingContainer } from "../../internal/floating";
+import { useControllableOpen } from "../../internal/floating";
 import { MenuEntries, popupClass } from "../../internal/menu-entries";
 import type { AccentColor } from "./accent-utils";
 
@@ -85,16 +85,13 @@ export function DropdownMenu({
 }: DropdownMenuProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange, defaultOpen);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const container = useFloatingContainer(triggerRef, open);
-  const close = useCallback(() => setOpen(false), [setOpen]);
-  const layerRef = useDialogLayerRef(close, triggerRef);
 
   return (
     <MenuPrimitive.Root open={open} onOpenChange={next => setOpen(next)} modal={false}>
       <MenuPrimitive.Trigger ref={triggerRef} render={trigger} openOnHover={openOnHover} />
-      <MenuPrimitive.Portal container={container}>
+      <MenuPrimitive.Portal>
         <MenuPrimitive.Positioner side={side} align={align} sideOffset={4} collisionPadding={8} className="z-50">
-          <MenuPrimitive.Popup ref={layerRef} data-motion={motion} className={cn(popupClass, className)}>
+          <MenuPrimitive.Popup data-motion={motion} className={cn(popupClass, className)}>
             <MenuEntries entries={items} accent={accent} motion={motion} />
           </MenuPrimitive.Popup>
         </MenuPrimitive.Positioner>
@@ -125,16 +122,13 @@ export function ContextMenu({
 }: ContextMenuProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange, defaultOpen);
   const areaRef = useRef<HTMLDivElement | null>(null);
-  const container = useFloatingContainer(areaRef, open);
-  const close = useCallback(() => setOpen(false), [setOpen]);
-  const layerRef = useDialogLayerRef(close, areaRef);
 
   return (
     <ContextMenuPrimitive.Root open={open} onOpenChange={next => setOpen(next)}>
       <ContextMenuPrimitive.Trigger ref={areaRef} className={areaClassName}>{children}</ContextMenuPrimitive.Trigger>
-      <ContextMenuPrimitive.Portal container={container}>
+      <ContextMenuPrimitive.Portal>
         <ContextMenuPrimitive.Positioner collisionPadding={8} className="z-50">
-          <ContextMenuPrimitive.Popup ref={layerRef} data-motion={motion} className={cn(popupClass, className)}>
+          <ContextMenuPrimitive.Popup data-motion={motion} className={cn(popupClass, className)}>
             <MenuEntries entries={items} accent={accent} motion={motion} />
           </ContextMenuPrimitive.Popup>
         </ContextMenuPrimitive.Positioner>

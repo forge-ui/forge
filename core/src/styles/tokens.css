@@ -939,56 +939,26 @@ body {
   .forge-motion-trigger, .forge-menu-item, .forge-sidebar-motion, .forge-motion-menu button { transition: none; }
 }
 
-/* Native dialog supplies top-layer stacking, focus containment and restoration. */
-.forge-dialog::backdrop { background: rgb(0 0 0 / .35); }
-.forge-modal { width: min(480px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; }
-.forge-template-modal { max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); margin: auto; }
-.forge-template-modal::backdrop { background: color-mix(in srgb, var(--fg-black) 30%, transparent); }
-.forge-drawer { position: fixed; inset-block: 0; width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; }
-.forge-drawer[data-side="right"] { left: auto; right: 0; }
-.forge-drawer[data-side="left"] { left: 0; right: auto; }
-@keyframes forge-drawer-in { from { transform: translateX(var(--forge-drawer-from)); } to { transform: none; } }
-@keyframes forge-drawer-out { from { transform: none; } to { transform: translateX(var(--forge-drawer-from)); } }
+/* Modal, Drawer and ConfirmationDialog (Base UI Dialog / AlertDialog / Drawer). */
+.forge-overlay-backdrop { position: fixed; inset: 0; z-index: 50; background: rgb(0 0 0 / .35); }
+.forge-overlay-backdrop--template { background: color-mix(in srgb, var(--fg-black) 30%, transparent); }
+.forge-modal { width: min(480px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); }
+.forge-template-modal { max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); }
+.forge-drawer { width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; transform: translateX(var(--drawer-swipe-movement-x, 0px)); }
 .forge-drawer[data-side="right"] { --forge-drawer-from: 100%; }
 .forge-drawer[data-side="left"] { --forge-drawer-from: -100%; }
-/* Dialog enter/exit retarget from the current frame. Keyframes would replay a full tail on interrupt. */
-.forge-dialog[data-motion="auto"]::backdrop {
-  opacity: 0;
-  transition: opacity var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease);
-}
-.forge-dialog[data-motion="auto"][data-state="open"]::backdrop {
-  opacity: 1;
-  transition-duration: var(--forge-motion-enter-duration);
-}
-.forge-modal[data-motion="auto"] {
-  opacity: 0;
-  transition:
-    opacity var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease),
-    transform var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease);
-}
-.forge-modal[data-motion="auto"][data-state="open"] {
-  opacity: 1;
-  transform: none;
-  transition-duration: var(--forge-motion-enter-duration);
-}
-@starting-style {
-  .forge-dialog[data-motion="auto"][data-state="open"]::backdrop { opacity: 0; }
-  .forge-modal[data-motion="auto"][data-state="open"] { opacity: 0; }
-}
+.forge-overlay-backdrop[data-motion="auto"] { transition: opacity var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+.forge-overlay-backdrop[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { opacity: 0; }
+.forge-overlay-backdrop[data-motion="auto"][data-ending-style] { transition-duration: var(--forge-motion-exit-duration); }
+.forge-modal[data-motion="auto"], .forge-template-modal[data-motion="auto"] { transition: opacity var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease), transform var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+:is(.forge-modal, .forge-template-modal)[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { opacity: 0; }
+:is(.forge-modal, .forge-template-modal)[data-motion="auto"][data-ending-style] { transition-duration: var(--forge-motion-exit-duration); }
 @media (prefers-reduced-motion: no-preference) {
-  .forge-modal[data-motion="auto"] { transform: translateY(4px) scale(.98); }
-  @starting-style {
-    .forge-modal[data-motion="auto"][data-state="open"] { opacity: 0; transform: translateY(4px) scale(.98); }
-  }
-  .forge-drawer[data-motion="auto"][data-state="open"] { animation: forge-drawer-in var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease) both; }
-  .forge-drawer[data-motion="auto"][data-state="closed"] { animation: forge-drawer-out var(--forge-motion-exit-duration) ease both; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .forge-modal[data-motion="auto"],
-  .forge-modal[data-motion="auto"][data-state="open"] {
-    transform: none;
-    transition-property: opacity;
-  }
+  :is(.forge-modal, .forge-template-modal)[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { transform: translateY(4px) scale(.98); }
+  .forge-drawer[data-motion="auto"] { transition: transform var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-drawer[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { transform: translateX(var(--forge-drawer-from)); }
+  .forge-drawer[data-motion="auto"][data-ending-style] { transition-duration: var(--forge-motion-exit-duration); transition-timing-function: ease; }
+  .forge-drawer[data-swiping] { transition: none; }
 }
 
 /* StreamingAnswer owns its Markdown styles; consumers only scan Forge dist. */

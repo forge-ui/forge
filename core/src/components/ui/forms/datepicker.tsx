@@ -2,7 +2,6 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { useCallback, useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent } from "react";
-import { useDialogLayerRef, useFloatingContainer } from "../../../internal/floating";
 import { cn } from "../../../lib/utils";
 import {
   CalendarLinear,
@@ -128,9 +127,6 @@ export function Datepicker({
   const anchorRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const closePopup = useCallback(() => { setOpen(false); setPickingEnd(false); setView("calendar"); }, []);
-  const container = useFloatingContainer(anchorRef, open);
-  const layerRef = useDialogLayerRef(closePopup, triggerRef);
-  const attachPanel = useCallback((node: HTMLDivElement | null) => { panelRef.current = node; if (!inline) layerRef(node); }, [inline, layerRef]);
   const triggerId = useId();
   const dialogId = useId();
   const accent = formAccents[color];
@@ -445,7 +441,7 @@ export function Datepicker({
         </button>}
 
         {inline && !isDisabled && (
-          <div ref={attachPanel} id={dialogId} role="dialog" aria-label={label ?? placeholder} className="mt-2 w-96 max-w-full bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+          <div ref={panelRef} id={dialogId} role="dialog" aria-label={label ?? placeholder} className="mt-2 w-96 max-w-full bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
             {panelBody}
           </div>
         )}
@@ -460,10 +456,10 @@ export function Datepicker({
               closePopup();
             }}
           >
-            <PopoverPrimitive.Portal container={container}>
+            <PopoverPrimitive.Portal>
               <PopoverPrimitive.Positioner anchor={anchorRef} side="bottom" align="start" sideOffset={8} collisionPadding={8} className="z-50">
                 <PopoverPrimitive.Popup
-                  ref={attachPanel}
+                  ref={panelRef}
                   id={dialogId}
                   aria-label={label ?? placeholder}
                   initialFocus={false}

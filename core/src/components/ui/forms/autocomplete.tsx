@@ -1,11 +1,11 @@
 "use client";
 
 import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete";
-import { useCallback, useId, useRef, type ReactNode } from "react";
+import { useId, useRef, type ReactNode } from "react";
 import { CloseCircleLinear, MagniferLinear } from "../../../icons";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
-import { useControllableOpen, useDialogLayerRef, useFloatingContainer } from "../../../internal/floating";
+import { useControllableOpen } from "../../../internal/floating";
 import { FieldFrame } from "./field-utils";
 import type { FormAccentColor } from "./form-utils";
 import {
@@ -88,9 +88,6 @@ export function Autocomplete({
   const errorId = useId();
   const anchorRef = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useControllableOpen(undefined, undefined);
-  const container = useFloatingContainer(anchorRef, open);
-  const close = useCallback(() => setOpen(false), [setOpen]);
-  const layerRef = useDialogLayerRef(close, anchorRef);
   const items = options.map(normalize);
   const isError = state === "error";
 
@@ -130,9 +127,9 @@ export function Autocomplete({
               <CloseCircleLinear size={18} />
             </AutocompletePrimitive.Clear>
           </AutocompletePrimitive.InputGroup>
-          <AutocompletePrimitive.Portal container={container}>
+          <AutocompletePrimitive.Portal>
             <AutocompletePrimitive.Positioner anchor={anchorRef} sideOffset={4} align="start" collisionPadding={8} className="z-50">
-              <AutocompletePrimitive.Popup ref={layerRef} data-motion={motion} className={cn(floatingListPopupClass, emptyText === undefined && "has-[[role=listbox]:empty]:hidden")}>
+              <AutocompletePrimitive.Popup data-motion={motion} className={cn(floatingListPopupClass, emptyText === undefined && "has-[[role=listbox]:empty]:hidden")}>
                 {emptyText !== undefined && <AutocompletePrimitive.Empty className={floatingEmptyClass}>{emptyText}</AutocompletePrimitive.Empty>}
                 <AutocompletePrimitive.List className="flex flex-col overflow-y-auto overscroll-contain empty:hidden">
                   {(option: AutocompleteOption) => (

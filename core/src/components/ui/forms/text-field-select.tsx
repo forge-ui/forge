@@ -1,9 +1,8 @@
 "use client";
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { MotionPreference } from "../../../lib/motion";
-import { useDialogLayerRef, useFloatingContainer } from "../../../internal/floating";
 import { cn } from "../../../lib/utils";
 import { AltArrowDownLinear } from "../../../icons";
 import type { FormAccentColor } from "./form-utils";
@@ -40,9 +39,6 @@ export function TextFieldSelectSuffix({
 }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const container = useFloatingContainer(triggerRef, open);
-  const close = useCallback(() => setOpen(false), []);
-  const layerRef = useDialogLayerRef(close, triggerRef);
 
   return (
     <SelectPrimitive.Root value={value} onValueChange={(next) => { if (next != null) onChange?.(next); }} open={open} onOpenChange={setOpen} modal={false}>
@@ -54,10 +50,9 @@ export function TextFieldSelectSuffix({
         <SelectPrimitive.Value>{value}</SelectPrimitive.Value>
         <span className="forge-chevron inline-flex" data-motion={motion} data-expanded={open}><AltArrowDownLinear size={16} /></span>
       </SelectPrimitive.Trigger>
-      <SelectPrimitive.Portal container={container}>
+      <SelectPrimitive.Portal>
         <SelectPrimitive.Positioner alignItemWithTrigger={false} side="bottom" align="end" sideOffset={4} collisionPadding={8} className="z-50">
           <SelectPrimitive.Popup
-            ref={layerRef}
             data-motion={motion}
             className="forge-popup min-w-40 max-w-[calc(100vw-2rem)] py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] flex overflow-hidden"
           >

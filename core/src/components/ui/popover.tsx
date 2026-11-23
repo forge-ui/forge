@@ -4,7 +4,7 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { useCallback, useRef, type ReactElement, type ReactNode } from "react";
 import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
-import { floatingSurfaceClass, useControllableOpen, useDialogLayerRef, useFloatingContainer } from "../../internal/floating";
+import { floatingSurfaceClass, useControllableOpen } from "../../internal/floating";
 
 export type PopoverSide = "top" | "bottom" | "left" | "right";
 export type PopoverAlign = "start" | "center" | "end";
@@ -49,17 +49,14 @@ export function Popover({
 }: PopoverProps) {
   const [open, setOpen] = useControllableOpen(openProp, onOpenChange, defaultOpen);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const container = useFloatingContainer(triggerRef, open);
   const close = useCallback(() => setOpen(false), [setOpen]);
-  const layerRef = useDialogLayerRef(close, triggerRef);
 
   return (
     <PopoverPrimitive.Root open={open} onOpenChange={next => setOpen(next)} modal={false}>
       <PopoverPrimitive.Trigger ref={triggerRef} render={trigger} openOnHover={openOnHover} />
-      <PopoverPrimitive.Portal container={container}>
+      <PopoverPrimitive.Portal>
         <PopoverPrimitive.Positioner side={side} align={align} sideOffset={sideOffset} collisionPadding={8} className="z-50">
           <PopoverPrimitive.Popup
-            ref={layerRef}
             data-motion={motion}
             className={cn(
               "forge-popup flex max-h-(--available-height) max-w-[min(var(--available-width),calc(100vw-16px))] flex-col gap-3 overflow-y-auto p-4 outline-none",

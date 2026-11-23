@@ -2,6 +2,7 @@
 
 // Third-party license notices: core/THIRD_PARTY_NOTICES.md.
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { OTPField } from "@base-ui/react/otp-field";
 import { AnimatePresence, motion } from "motion/react";
 import { useReducedMotion } from "../../internal/motion";
 import type { MotionPreference } from "../../lib/motion";
@@ -49,9 +50,10 @@ export function OtpInput({ length = 6, locale = "zh", value: controlled, default
   const value = clean(controlled ?? internal);
   const [result, setResult] = useState<{ value: string; state: "idle" | "pending" | "ok" | "err" }>({ value: "", state: "idle" });
   const state = value === result.value && value.length === size ? result.state : "idle";
-  const [caret, setCaret] = useState<number | null>(null);
-  const [focused, setFocused] = useState(false);
-  const input = useRef<HTMLInputElement>(null);
+  const [focusedSlot, setFocusedSlot] = useState<number | null>(null);
+  // Latest typed value, so a late verification result for an edited code is ignored.
+  const latest = useRef(value);
+  useLayoutEffect(() => { latest.current = value; }, [value]);
   const request = useRef(0);
   const changeCallback = useRef(onChange);
   useLayoutEffect(() => { changeCallback.current = onChange; }, [onChange]);
@@ -64,6 +66,7 @@ export function OtpInput({ length = 6, locale = "zh", value: controlled, default
     next = clean(next);
     if (next === value || disabled || state === "pending") return;
     const generation = ++request.current;
+    latest.current = next;
     if (controlled === undefined) setInternal(next);
     onChange?.(next);
     setResult({ value: next, state: "idle" });
@@ -72,11 +75,11 @@ export function OtpInput({ length = 6, locale = "zh", value: controlled, default
     if (!verify) return;
     setResult({ value: next, state: "pending" });
     void Promise.resolve().then(() => verify(next)).then(ok => {
-      if (generation !== request.current || input.current?.value !== next) return;
+      if (generation !== request.current || latest.current !== next) return;
       setResult({ value: next, state: ok ? "ok" : "err" });
       if (ok) onSuccess?.(next);
     }, () => {
-      if (generation === request.current && input.current?.value === next) setResult({ value: next, state: "err" });
+      if (generation === request.current && latest.current === next) setResult({ value: next, state: "err" });
     });
   }
   useLayoutEffect(() => { if (result.state === "pending" && (result.value !== value || result.value.length !== size)) request.current++; }, [result, value, size]);
@@ -84,7 +87,7 @@ export function OtpInput({ length = 6, locale = "zh", value: controlled, default
     if (state !== "err" || !clearOnError || disabled) return;
     const generation = request.current;
     const timer = setTimeout(() => {
-      if (generation !== request.current || input.current?.value !== result.value) return;
+      if (generation !== request.current || latest.current !== result.value) return;
       request.current++;
       if (!isControlled) setInternal("");
       changeCallback.current?.("");
@@ -96,36 +99,36 @@ export function OtpInput({ length = 6, locale = "zh", value: controlled, default
   }, [state, result, clearOnError, disabled, isControlled, size]);
   const message = state === "pending" ? verifyingLabel : state === "ok" ? successLabel : state === "err" ? errorLabel : hint;
   return <div className={`forge-otp ${className}`} data-motion={motionPreference} data-status={state} data-disabled={disabled || undefined} style={{ "--forge-otp-count": size } as React.CSSProperties}>
-    <div className="forge-otp__stage">
-      <motion.div className="forge-otp__row" aria-hidden="true" animate={state === "err" && !reduced ? { x: [0, -13, 12, -10, 8, -5, 3, 0] } : { x: 0 }} transition={{ duration: reduced ? 0 : .66 }}>
+    <OTPField.Root className="forge-otp__stage" length={size} value={value} onValueChange={change} name={name} disabled={disabled} readOnly={state === "pending"} inputMode="numeric"
+      aria-label={inputLabel} aria-describedby={hintId} aria-invalid={state === "err" || undefined} aria-busy={state === "pending" || undefined}>
+      <motion.div className="forge-otp__row" animate={state === "err" && !reduced ? { x: [0, -13, 12, -10, 8, -5, 3, 0] } : { x: 0 }} transition={{ duration: reduced ? 0 : .66 }}>
         {Array.from({ length: size }, (_, i) => <span className="forge-otp__slot" key={i}>
-          {i === Math.ceil(size / 2) && <span className="forge-otp__sep">-</span>}
-          <motion.div className="forge-otp__cell" data-state={state === "ok" || state === "err" ? state : focused && i === Math.min(caret ?? value.length, size - 1) ? "focus" : "idle"} data-filled={Boolean(value[i])}
+          {i === Math.ceil(size / 2) && <span className="forge-otp__sep" aria-hidden="true">-</span>}
+          <motion.div className="forge-otp__cell" data-state={state === "ok" || state === "err" ? state : focusedSlot === i ? "focus" : "idle"} data-filled={Boolean(value[i])}
             animate={state === "ok" && !reduced ? { y: [0, -10, 0], scale: [1, 1.06, 1] } : { y: 0, scale: 1 }} transition={{ duration: reduced ? 0 : .6, delay: reduced ? 0 : i * .055 }}>
-            <motion.div className="forge-otp__whole" animate={{ opacity: state === "err" && !reduced ? [1, 1, 0, 0, 1] : 1 }} transition={{ duration: reduced ? 0 : errorDuration, times: [0, .35, .36, .9, 1] }}>
+            <motion.div aria-hidden="true" className="forge-otp__whole" animate={{ opacity: state === "err" && !reduced ? [1, 1, 0, 0, 1] : 1 }} transition={{ duration: reduced ? 0 : errorDuration, times: [0, .35, .36, .9, 1] }}>
               <div className="forge-otp__egg"><Digit value={value[i] ?? ""} index={i} reduced={reduced} /></div>
             </motion.div>
             {halves.map((clipPath, side) => {
               const sign = side ? 1 : -1;
               const broken = state === "err" && !reduced;
-              return <motion.div key={side} className="forge-otp__half" style={{ clipPath }}
+              return <motion.div aria-hidden="true" key={side} className="forge-otp__half" style={{ clipPath }}
                 animate={broken ? { x: [0, 0, sign * 3.5, sign * (46 + i * 7), 0], y: [0, 0, 0, 104, 0], rotate: [0, 0, sign * 7, sign * 56, 0], opacity: [1, 1, 1, 0, 1] } : { x: 0, y: 0, rotate: 0, opacity: 1 }}
                 transition={{ duration: reduced ? 0 : errorDuration, times: [0, .35, .46, .76, 1], delay: reduced ? 0 : i * errorStagger, ease }}>
                 <div className="forge-otp__egg"><Digit value={value[i] ?? ""} index={i} reduced={reduced} /></div>
               </motion.div>;
             })}
-            <motion.svg className="forge-otp__crack" viewBox="0 0 54 68" animate={{ opacity: state === "err" && !reduced ? [0, 1, 1, 0] : 0 }} transition={{ duration: reduced ? 0 : .8, times: [0, .2, .8, 1] }}>
+            <motion.svg aria-hidden="true" className="forge-otp__crack" viewBox="0 0 54 68" animate={{ opacity: state === "err" && !reduced ? [0, 1, 1, 0] : 0 }} transition={{ duration: reduced ? 0 : .8, times: [0, .2, .8, 1] }}>
               <motion.path d={crack} initial={false} animate={{ pathLength: state === "err" ? 1 : 0 }} transition={{ duration: reduced ? 0 : .35, delay: reduced ? 0 : .12 + i * errorStagger }} />
             </motion.svg>
-            <span className="forge-otp__caret" />
+            <span className="forge-otp__caret" aria-hidden="true" />
+            <OTPField.Input className="forge-otp__field" autoFocus={autoFocus && i === 0} spellCheck={false}
+              aria-label={i === 0 ? inputLabel : `${inputLabel} ${i + 1}/${size}`} aria-invalid={state === "err" || undefined}
+              onFocus={() => setFocusedSlot(i)} onBlur={() => setFocusedSlot(current => current === i ? null : current)} />
           </motion.div>
         </span>)}
       </motion.div>
-      <input ref={input} className="forge-otp__field" type="text" inputMode="numeric" autoComplete="one-time-code" name={name} autoFocus={autoFocus}
-        aria-label={inputLabel} aria-describedby={hintId} aria-invalid={state === "err" || undefined} aria-busy={state === "pending" || undefined}
-        value={value} disabled={disabled} readOnly={state === "pending"} spellCheck={false} onChange={event => change(event.target.value)}
-        onSelect={event => setCaret(event.currentTarget.selectionStart)} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} />
-    </div>
+    </OTPField.Root>
     <p id={hintId} className={`forge-otp__hint ${state === "ok" ? "forge-otp__hintOk" : state === "err" ? "forge-otp__hintErr" : ""}`} role="status">{message}</p>
   </div>;
 }

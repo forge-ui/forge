@@ -1,11 +1,10 @@
 "use client";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import { type ReactNode, useCallback, useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import { MenuDotsBold } from "../../icons";
 import type { MotionPreference } from "../../lib/motion";
 import { cn } from "../../lib/utils";
-import { useDialogLayerRef, useFloatingContainer } from "../../internal/floating";
 import { IconTriggerButton } from "../../internal/icon-trigger-button";
 import { MenuEntries, popupClass } from "../../internal/menu-entries";
 import type { AccentColor } from "./accent-utils";
@@ -38,9 +37,6 @@ export function KebabMenu({
 }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const container = useFloatingContainer(triggerRef, open);
-  const close = useCallback(() => setOpen(false), []);
-  const layerRef = useDialogLayerRef(close, triggerRef);
   const entries: DropdownMenuEntry[] = items.map(item => ({ label: item.label, icon: item.icon, danger: item.danger, onSelect: item.onSelect }));
 
   return (
@@ -58,9 +54,9 @@ export function KebabMenu({
             />
           }
         />
-        <MenuPrimitive.Portal container={container}>
+        <MenuPrimitive.Portal>
           <MenuPrimitive.Positioner side="bottom" align={align === "right" ? "end" : "start"} sideOffset={4} collisionPadding={8} className="z-50">
-            <MenuPrimitive.Popup ref={layerRef} data-forge-kebab-menu data-motion={motion} className={cn(popupClass, "w-60 min-w-0")}>
+            <MenuPrimitive.Popup data-forge-kebab-menu data-motion={motion} className={cn(popupClass, "w-60 min-w-0")}>
               <MenuEntries entries={entries} accent={accent} motion={motion} />
             </MenuPrimitive.Popup>
           </MenuPrimitive.Positioner>

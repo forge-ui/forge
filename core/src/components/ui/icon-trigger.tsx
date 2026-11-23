@@ -3,7 +3,6 @@
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { type ReactNode, useCallback, useId, useRef, useState } from "react";
 import type { MotionPreference } from "../../lib/motion";
-import { useDialogLayerRef, useFloatingContainer } from "../../internal/floating";
 import { IconTriggerButton } from "../../internal/icon-trigger-button";
 import { cn } from "../../lib/utils";
 import type { AccentColor } from "./accent-utils";
@@ -58,10 +57,7 @@ export function IconTrigger({
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const panelId = useId();
-  const container = useFloatingContainer(triggerRef, internalOpen);
   const close = useCallback(() => setInternalOpen(false), []);
-  const layerRef = useDialogLayerRef(close, triggerRef);
-  const attachPanel = useCallback((node: HTMLDivElement | null) => { panelRef.current = node; layerRef(node); }, [layerRef]);
 
   const button = (
     <IconTriggerButton
@@ -87,9 +83,9 @@ export function IconTrigger({
   const trigger = usingInternal ? (
     <PopoverPrimitive.Root open={internalOpen} onOpenChange={next => setInternalOpen(next)} modal={false}>
       <PopoverPrimitive.Trigger ref={triggerRef} render={button} />
-      <PopoverPrimitive.Portal container={container}>
+      <PopoverPrimitive.Portal>
         <PopoverPrimitive.Positioner side={panelPlacement} align={panelAlign} sideOffset={8} collisionPadding={8} className="z-50">
-          <PopoverPrimitive.Popup ref={attachPanel} id={panelId} data-icon-trigger-panel data-motion={motion} initialFocus={focusTarget} className="forge-popup outline-none">
+          <PopoverPrimitive.Popup ref={panelRef} id={panelId} data-icon-trigger-panel data-motion={motion} initialFocus={focusTarget} className="forge-popup outline-none">
             {typeof panel === "function" ? panel(close) : panel}
           </PopoverPrimitive.Popup>
         </PopoverPrimitive.Positioner>
