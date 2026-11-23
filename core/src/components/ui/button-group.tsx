@@ -56,8 +56,8 @@ export function ButtonGroup({
       data-motion={motion}
       aria-label={ariaLabel}
       value={[String(activeIndex)]}
-      // A segment cannot be switched off by pressing it again.
-      onValueChange={(next) => { if (next[0] !== undefined) onChange?.(Number(next[0])); }}
+      // Pressing the active segment reports it again (hosts may treat that as "clear"), as before.
+      onValueChange={(next) => onChange?.(next[0] !== undefined ? Number(next[0]) : activeIndex)}
       loopFocus
       className={cn(
         "relative isolate p-1 bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
