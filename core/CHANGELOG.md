@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.1
+
+- ProgressBar、MeterChart 和 DropdownDivider 补上 `"use client"`。0.11.0 里在服务端组件中直接使用 ProgressBar 或 MeterChart 会在构建时报错（函数不能传给客户端组件）。
+- 新增检查：所有用到 Base UI 的模块都必须是客户端模块。
+
 ## 0.11.0
 
 这一版把交互底层统一换成 Base UI（`@base-ui/react` 1.9.0，锁定版本、只在 core 内部使用，公开类型里不出现），并补齐管理后台常用组件。已有组件的外观和用法不变，下面列出需要注意的行为变化。

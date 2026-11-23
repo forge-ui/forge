@@ -1,3 +1,5 @@
+"use client";
+
 import type { MotionPreference } from "../../lib/motion";
 import { MotionMenu } from "../../internal/motion";
 import { Separator } from "@base-ui/react/separator";
