@@ -1,3 +1,4 @@
+import { Progress as ProgressPrimitive } from "@base-ui/react/progress";
 import { cn } from "../../lib/utils";
 import type { MotionPreference } from "../../lib/motion";
 import type { ReactNode } from "react";
@@ -96,10 +97,11 @@ export function ProgressBar({
 
   const trackClass = onDark ? "bg-fg-grey-200/25" : "bg-fg-grey-200";
 
-  if (variant === "ring") return <div className={cn("forge-progress-ring", progressTextColors[color], className)} data-motion={motion} data-indeterminate={indeterminate || undefined} role="progressbar" aria-label={label ?? (locale === "en" ? "Progress" : "进度")} aria-valuemin={0} aria-valuemax={100} aria-valuenow={indeterminate ? undefined : clampedValue}>
+  const ariaValueText = (formatted: string | null, current: number | null) => current === null ? (locale === "en" ? "Loading" : "加载中") : `${Math.round(current)}%`;
+  if (variant === "ring") return <ProgressPrimitive.Root value={indeterminate ? null : clampedValue} locale={locale === "en" ? "en-US" : "zh-CN"} getAriaValueText={ariaValueText} className={cn("forge-progress-ring", progressTextColors[color], className)} data-motion={motion} data-indeterminate={indeterminate || undefined} aria-label={label ?? (locale === "en" ? "Progress" : "进度")}>
     <svg viewBox="0 0 100 100" aria-hidden><circle className="forge-progress-ring-track" cx="50" cy="50" r="44" /><circle className="forge-progress-ring-fill" cx="50" cy="50" r="44" pathLength="100" strokeDasharray="100" strokeDashoffset={indeterminate ? 65 : 100 - clampedValue} /></svg>
     <span>{children ?? (showPercentage && !indeterminate ? `${clampedValue}%` : null)}</span>
-  </div>;
+  </ProgressPrimitive.Root>;
 
   return (
     <div className={cn("forge-progress w-full flex flex-col justify-start items-start gap-2", className)} data-motion={motion} data-indeterminate={indeterminate || undefined}>
@@ -117,19 +119,18 @@ export function ProgressBar({
           )}
         </div>
       )}
-      <div
-        role="progressbar"
+      <ProgressPrimitive.Root
+        value={indeterminate ? null : clampedValue}
+        locale={locale === "en" ? "en-US" : "zh-CN"}
+        getAriaValueText={ariaValueText}
         aria-label={label ?? (locale === "en" ? "Progress" : "进度")}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={indeterminate ? undefined : clampedValue}
         className={cn("self-stretch rounded-full overflow-hidden", progressSizes[size], trackClass)}
       >
         <div
           className={cn("forge-progress-fill rounded-full transition-all", progressSizes[size], progressColors[color])}
           style={{ width: indeterminate ? "35%" : `${clampedValue}%` }}
         />
-      </div>
+      </ProgressPrimitive.Root>
     </div>
   );
 }

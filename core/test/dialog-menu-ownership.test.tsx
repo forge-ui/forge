@@ -4,7 +4,6 @@ import { act, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Modal } from "../src/components/ui/modal";
 import { KebabMenu } from "../src/components/ui/kebab-menu";
-import { fixedPortalCoordinates } from "../src/internal/dialog-ownership";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
@@ -146,14 +145,4 @@ test('a closed owner dismisses its menu rather than leaving an orphan layer', as
     await render(false); await tick();
     assert.equal(document.querySelector('[data-forge-kebab-menu]'), null);
   } finally { await env.cleanup(); }
-});
-
-test('fixed portal coordinates account for transformed origin and scale', () => {
-  const env = setup();
-  const host = document.createElement('div'); document.body.append(host);
-  const append = host.append.bind(host);
-  host.append = (...nodes) => { append(...nodes); for (const node of nodes) if (typeof node !== 'string') (node as HTMLElement).getBoundingClientRect = () => ({ left: 40, top: 60, width: 80, height: 80 }) as DOMRect; };
-  const position = fixedPortalCoordinates(host, 200, 220);
-  assert.deepEqual(position, { left: 200, top: 200, scaleX: .8, scaleY: .8 });
-  return env.cleanup();
 });

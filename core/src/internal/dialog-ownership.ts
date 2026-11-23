@@ -94,29 +94,9 @@ export function isTopDialog(dialog: HTMLDialogElement) {
   return !top || top === dialog;
 }
 
-export function nearestDialogPortal(trigger: HTMLElement) {
-  const dialog = trigger.closest<HTMLDialogElement>('dialog[open]');
-  if (!dialog) return trigger.ownerDocument.body;
-  return [...dialog.querySelectorAll<HTMLElement>('[data-forge-dialog-portal]')].find(node => node.closest('dialog') === dialog) ?? dialog;
-}
 
 export function focusIfAvailable(element: HTMLElement | null) {
   if (!element?.isConnected || isDialogInert(element) || element.closest('dialog')?.hasAttribute('open') === false || element.matches(':disabled, [aria-disabled="true"]') || !element.getClientRects().length) return false;
   element.focus({ preventScroll: true });
   return element.ownerDocument.activeElement === element;
-}
-
-/** Convert viewport pixels into a fixed child's containing-block coordinates.
- * A fixed probe measures translated/scaled ancestors without using entry-scale geometry.
- */
-export function fixedPortalCoordinates(host: HTMLElement, left: number, top: number) {
-  const probe = host.ownerDocument.createElement('div');
-  probe.dataset.forgeFixedProbe = '';
-  Object.assign(probe.style, { position: 'fixed', left: '0px', top: '0px', width: '100px', height: '100px', visibility: 'hidden', pointerEvents: 'none' });
-  host.append(probe);
-  const rect = probe.getBoundingClientRect();
-  probe.remove();
-  const scaleX = rect.width ? rect.width / 100 : 1;
-  const scaleY = rect.height ? rect.height / 100 : 1;
-  return { left: (left - rect.left) / scaleX, top: (top - rect.top) / scaleY, scaleX, scaleY };
 }

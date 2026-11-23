@@ -1,5 +1,6 @@
 "use client";
 
+import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { forwardRef, useId, useImperativeHandle, useLayoutEffect, useRef, type ReactNode, type TextareaHTMLAttributes } from "react";
 import { cn } from "../../../lib/utils";
 import {
@@ -82,20 +83,23 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
       errorId={errorId}
       inputId={inputId}
     >
-      <div className={cn("px-4 py-3 overflow-hidden", wrapper, className)}>
-        <textarea
-          id={inputId}
-          ref={ref}
-          placeholder={placeholder}
-          value={value}
-          disabled={isDisabled}
-          aria-invalid={ariaInvalid ?? (state === "error")}
-          aria-describedby={[ariaDescribedBy, state === "error" && errorMessage ? errorId : undefined].filter(Boolean).join(" ") || undefined}
-          rows={rows}
-          onInput={handleInput}
-          onChange={(e) => onChange?.(e.target.value)}
-          className={cn("w-full block resize-none", text, textareaClassName)}
-          {...textareaProps}
+      <div className={cn("px-4 py-3 overflow-hidden", wrapper, state !== "disabled" && "has-[[data-invalid]]:bg-fg-red-100 has-[[data-invalid]]:outline-fg-red", className)}>
+        {/* Field.Control keeps the textarea in sync with an enclosing FormField. */}
+        <FieldPrimitive.Control
+          render={<textarea rows={rows} />}
+          {...({
+            id: inputId,
+            ref,
+            placeholder,
+            value,
+            disabled: isDisabled,
+            "aria-invalid": ariaInvalid ?? (state === "error"),
+            "aria-describedby": [ariaDescribedBy, state === "error" && errorMessage ? errorId : undefined].filter(Boolean).join(" ") || undefined,
+            onInput: handleInput,
+            onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => onChange?.(e.target.value),
+            className: cn("w-full block resize-none", text, textareaClassName),
+            ...textareaProps,
+          } as Record<string, unknown>)}
         />
       </div>
     </FieldFrame>

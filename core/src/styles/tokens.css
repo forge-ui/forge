@@ -919,6 +919,7 @@ body {
 .forge-accordion-panel:not([data-open]) .forge-accordion-answer, .forge-accordion-panel[data-ending-style] .forge-accordion-answer { opacity: 0; transform: translateY(-8px); }
 @media (prefers-reduced-motion: no-preference) {
   .forge-accordion-panel[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-collapsible-panel[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-accordion-panel[data-motion="auto"] .forge-accordion-answer { transition: opacity 150ms cubic-bezier(.2,.8,.2,1), transform 450ms cubic-bezier(.34,1.16,.64,1); }
   .forge-accordion-panel[data-motion="auto"][data-open] .forge-accordion-answer { transition-duration: 250ms, 450ms; transition-delay: 80ms; }
 }

@@ -1,4 +1,6 @@
 "use client";
+
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import type { MotionPreference } from "../../lib/motion";
 import { ActionStatus, useActionEffect, type ActionResult } from "../../internal/action-effect";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
@@ -109,9 +111,11 @@ export function IconButton({
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">) {
   const effects = useActionEffect(effect, motion, disabled || loading);
   return (
-    <button
+    <ButtonPrimitive
       type={type}
       disabled={disabled || loading}
+      // A loading button stays focusable so keyboard users keep their place.
+      focusableWhenDisabled={loading && !disabled}
       data-motion={motion}
       data-effect={effect}
       data-active={active || undefined}
@@ -124,6 +128,6 @@ export function IconButton({
       {active && (effect === "burst" || effect === "bookmark") && <span aria-hidden="true" className="forge-action-particles">{Array.from({ length: 6 }, (_, i) => <i key={i} style={{ rotate: `${i * 60}deg` }} />)}</span>}
       {progress !== undefined && <svg className="forge-icon-progress" viewBox="0 0 48 48" aria-hidden><circle cx="24" cy="24" r="22" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - Math.min(100, Math.max(0, Number.isFinite(progress) ? progress : 0))} /></svg>}
       <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{loading || result !== "idle" ? <ActionStatus loading={loading} result={result} motion={motion} /> : children}</span>
-    </button>
+    </ButtonPrimitive>
   );
 }

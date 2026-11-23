@@ -196,6 +196,12 @@ export {
   Autocomplete,
   NumberField,
   Slider,
+  Form,
+  FormField,
+  Fieldset,
+  RadioGroup,
+  CheckboxGroup,
+  ToggleGroup,
 } from "./forms";
 export type {
   ToggleProps,
@@ -242,6 +248,18 @@ export type {
   SliderProps,
   SliderColor,
   SliderValue,
+  FormProps,
+  FormFieldProps,
+  FieldsetProps,
+  FormValues,
+  FormValidationMode,
+  RadioGroupProps,
+  CheckboxGroupProps,
+  ToggleGroupProps,
+  ToggleGroupOption,
+  ChoiceGroupOption,
+  ChoiceGroupColor,
+  ChoiceGroupOrientation,
 } from "./forms";
 
 // Dialog & Overlay
@@ -253,6 +271,15 @@ export type { PopoverProps, PopoverSide, PopoverAlign } from "./popover";
 
 export { PreviewCard } from "./preview-card";
 export type { PreviewCardProps, PreviewCardSide, PreviewCardAlign } from "./preview-card";
+
+export { Collapsible } from "./collapsible";
+export type { CollapsibleProps } from "./collapsible";
+
+export { Menubar } from "./menubar";
+export type { MenubarProps, MenubarMenu } from "./menubar";
+
+export { NavigationMenu } from "./navigation-menu";
+export type { NavigationMenuProps, NavigationMenuItem, NavigationMenuLink } from "./navigation-menu";
 
 export { ScrollArea } from "./scroll-area";
 export type { ScrollAreaProps, ScrollAreaOrientation } from "./scroll-area";

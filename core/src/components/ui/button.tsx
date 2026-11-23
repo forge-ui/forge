@@ -1,5 +1,7 @@
 "use client";
 
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+
 import { HoldButton } from "../../internal/hold-button";
 import type { MotionPreference } from "../../lib/motion";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
@@ -109,9 +111,11 @@ export function Button({
   const paddingClass = iconLeft ? sizeConfig.iconLeft : iconRight ? sizeConfig.iconRight : sizeConfig.noIcon;
 
   return (
-    <button
+    <ButtonPrimitive
       type={type}
       disabled={disabled || loading}
+      // A loading button stays focusable so keyboard users keep their place.
+      focusableWhenDisabled={loading && !disabled}
       data-motion={motion}
       data-effect={effect}
       data-size={effect === "glass" ? size : undefined}
@@ -139,6 +143,6 @@ export function Button({
       {iconLeft && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconLeft}</span>}
       <span className="forge-action-label">{loading ? loadingLabel ?? (locale === "en" ? "Processing…" : "处理中…") : result !== "idle" ? resultLabel ?? (result === "success" ? (locale === "en" ? "Done" : "已完成") : (locale === "en" ? "Try again" : "请重试")) : effect === "roll" && typeof children === "string" ? <><span className="sr-only">{children}</span>{Array.from(children).map((letter, index) => <span aria-hidden="true" className="forge-roll-letter" style={{ transitionDelay: `${index * 18}ms` }} data-letter={letter} key={index}>{letter === " " ? "\u00a0" : letter}</span>)}</> : children}</span>
       {iconRight && !loading && result === "idle" && <span className="forge-action-icon w-5 h-5 flex items-center justify-center">{iconRight}</span>}
-    </button>
+    </ButtonPrimitive>
   );
 }

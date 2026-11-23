@@ -1,3 +1,4 @@
+import { Meter as MeterPrimitive } from "@base-ui/react/meter";
 import { cn } from "../../../lib/utils";
 import { TrendText, rampColors } from "./chart-utils";
 import { type AccentColor } from "../accent-utils";
@@ -15,6 +16,8 @@ interface MeterChartProps {
   subtitle?: string;
   /** Meter bar height class. Default h-24 (96px) per figma. */
   height?: string;
+  /** Accessible name; defaults to `subtitle`. */
+  ariaLabel?: string;
 }
 
 export function MeterChart({
@@ -24,6 +27,7 @@ export function MeterChart({
   trendDirection,
   subtitle,
   height = "h-24",
+  ariaLabel,
 }: MeterChartProps) {
   const rampFallback = rampColors(accent, segments.length);
   const total = segments.reduce((sum, s) => sum + s.value, 0);
@@ -33,7 +37,7 @@ export function MeterChart({
 
   return (
     <div className="flex w-full flex-col gap-2">
-      <div className={cn("flex w-full overflow-hidden rounded-xl", height)}>
+      <MeterPrimitive.Root value={Math.min(100, useNormalized ? 100 : total)} aria-label={ariaLabel ?? subtitle} className={cn("flex w-full overflow-hidden rounded-xl", height)}>
         {segments.map((segment, i) => {
           const pct = total > 0
             ? useNormalized
@@ -54,7 +58,7 @@ export function MeterChart({
           );
         })}
         {!useNormalized && total < 100 && <div className="flex-1 bg-fg-grey-200" />}
-      </div>
+      </MeterPrimitive.Root>
       {(subtitle || trend) && (
         <div className="flex items-center justify-between">
           {subtitle && (

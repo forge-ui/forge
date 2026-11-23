@@ -27,7 +27,8 @@ test("action state is controlled, blocks duplicate activation and keeps backgrou
   try {
     await env.render(<Button effect="glass" locale="en" loading onClick={() => calls++}>Save</Button>);
     const button = document.querySelector<HTMLButtonElement>("button")!;
-    assert.equal(button.disabled, true); assert.equal(button.getAttribute("aria-busy"), "true");
+    // Loading keeps the button focusable (aria-disabled) instead of dropping focus.
+    assert.equal(button.getAttribute("aria-disabled"), "true"); assert.equal(button.getAttribute("aria-busy"), "true");
     await act(async () => button.click()); assert.equal(calls, 0);
     assert.match(button.textContent!, /Processing/); assert.equal(button.querySelector(".fusion-glass-decoration"), null);
     await env.render(<Button effect="glass" result="success" resultLabel="Saved" onClick={() => calls++}>Save</Button>);
@@ -43,7 +44,7 @@ test("icon action retains accessible pressed and pending state", () => {
 
 test("indeterminate progress omits a misleading value and ring values clamp", () => {
   const indefinite = renderToString(<ProgressBar indeterminate showPercentage locale="en" />);
-  assert.doesNotMatch(indefinite, /aria-valuenow/); assert.doesNotMatch(indefinite, /0%/); assert.match(indefinite, /aria-label="Progress"/);
+  assert.doesNotMatch(indefinite, /aria-valuenow/); assert.doesNotMatch(indefinite, />\s*0%\s*</); assert.match(indefinite, /aria-label="Progress"/);
   const ring = renderToString(<ProgressBar variant="ring" value={140} showPercentage />);
   assert.match(ring, /aria-valuenow="100"/); assert.match(ring, /100%/);
   assert.match(renderToString(<ProgressBar value={Number.NaN} />), /aria-valuenow="0"/);

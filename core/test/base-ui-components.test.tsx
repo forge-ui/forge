@@ -12,6 +12,12 @@ import { Slider } from "../src/components/ui/forms/slider";
 import { ScrollArea } from "../src/components/ui/scroll-area";
 import { PreviewCard } from "../src/components/ui/preview-card";
 import { Tooltip, TooltipAnchor, TooltipGroup } from "../src/components/ui/tooltip";
+import { Form, FormField, Fieldset } from "../src/components/ui/forms/form";
+import { TextField } from "../src/components/ui/forms/text-field";
+import { RadioGroup, CheckboxGroup, ToggleGroup } from "../src/components/ui/forms/choice-groups";
+import { Collapsible } from "../src/components/ui/collapsible";
+import { Menubar } from "../src/components/ui/menubar";
+import { NavigationMenu } from "../src/components/ui/navigation-menu";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
@@ -334,5 +340,90 @@ test("Tooltip inside Modal renders within the dialog", async () => {
     const tip = document.querySelector('[role="tooltip"]')!;
     assert.equal(tip.closest("dialog"), document.getElementById("target")!.closest("dialog"));
     assert.equal(document.getElementById("target")!.getAttribute("aria-describedby"), tip.id);
+  } finally { await env.cleanup(); }
+});
+
+test("Form blocks submit, shows custom messages on invalid fields and submits named values", async () => {
+  const env = setup(); const submitted: Record<string, unknown>[] = [];
+  try {
+    await act(async () => env.root.render(<Form onSubmit={values => submitted.push(values)}>
+      <Fieldset legend="Account">
+        <FormField name="email" label="Email" messages={{ valueMissing: "请填写邮箱" }}>
+          <TextField type="email" required placeholder="you@example.com" />
+        </FormField>
+        <FormField name="code" label="Code" validate={value => String(value).length === 4 ? null : "需要 4 位"}>
+          <TextField />
+        </FormField>
+      </Fieldset>
+      <button type="submit">Save</button>
+    </Form>));
+    const form = document.querySelector("form")!;
+    await act(async () => { form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); });
+    await flush();
+    assert.equal(submitted.length, 0);
+    assert.ok(document.body.textContent?.includes("请填写邮箱"));
+    const [email, code] = [...document.querySelectorAll<HTMLInputElement>("input")];
+    assert.equal(email.getAttribute("aria-invalid"), "true");
+    await type(email, "a@b.co");
+    await type(code, "1234");
+    await act(async () => { form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); });
+    await flush();
+    assert.deepEqual(submitted, [{ email: "a@b.co", code: "1234" }]);
+  } finally { await env.cleanup(); }
+});
+
+test("RadioGroup moves and selects with arrow keys; CheckboxGroup parent selects all", async () => {
+  const env = setup(); const radios: string[] = []; let checked: string[] = [];
+  function Harness() {
+    const [value, setValue] = useState<string[]>(["a"]);
+    return <CheckboxGroup selectAllLabel="All" value={value} onChange={next => { checked = next; setValue(next); }} options={[{ value: "a", label: "A" }, { value: "b", label: "B" }]} />;
+  }
+  try {
+    await act(async () => env.root.render(<>
+      <RadioGroup ariaLabel="Plan" defaultValue="free" onChange={value => radios.push(value)} options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />
+      <Harness />
+    </>));
+    const radio = [...document.querySelectorAll<HTMLElement>('[role="radio"]')];
+    assert.equal(radio[0].getAttribute("aria-checked"), "true");
+    await act(async () => radio[0].focus());
+    await press(radio[0], "ArrowDown");
+    assert.deepEqual(radios, ["pro"]);
+    const boxes = [...document.querySelectorAll<HTMLElement>('[role="checkbox"]')];
+    assert.equal(boxes[0].getAttribute("aria-checked"), "mixed");
+    await click(boxes[0]);
+    assert.deepEqual(checked, ["a", "b"]);
+  } finally { await env.cleanup(); }
+});
+
+test("ToggleGroup single selection and Collapsible toggling", async () => {
+  const env = setup(); const views: (string | null)[] = [];
+  try {
+    await act(async () => env.root.render(<>
+      <ToggleGroup ariaLabel="View" defaultValue="list" onChange={value => views.push(value)} options={[{ value: "list", label: "List" }, { value: "grid", label: "Grid" }]} />
+      <Collapsible title="Advanced">Hidden settings</Collapsible>
+    </>));
+    const toggles = [...document.querySelectorAll<HTMLElement>("[aria-pressed]")];
+    assert.equal(toggles[0].getAttribute("aria-pressed"), "true");
+    await click(toggles[1]);
+    assert.deepEqual(views, ["grid"]);
+    const trigger = [...document.querySelectorAll<HTMLButtonElement>("button")].find(button => button.textContent === "Advanced")!;
+    assert.equal(trigger.getAttribute("aria-expanded"), "false");
+    await click(trigger);
+    assert.equal(trigger.getAttribute("aria-expanded"), "true");
+  } finally { await env.cleanup(); }
+});
+
+test("Menubar opens a menu and NavigationMenu renders links", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<>
+      <Menubar ariaLabel="App" menus={[{ label: "File", items: [{ label: "New" }, { label: "Open" }] }, { label: "Edit", items: [{ label: "Undo" }] }]} />
+      <NavigationMenu ariaLabel="Site" items={[{ label: "Home", href: "/" }, { label: "Products", links: [{ label: "Forge", href: "/forge", description: "UI kit" }] }]} />
+    </>));
+    assert.equal(document.querySelector('[role="menubar"]')?.getAttribute("aria-label"), "App");
+    const file = [...document.querySelectorAll<HTMLElement>('[role="menubar"] [aria-haspopup="menu"]')][0];
+    await click(file);
+    assert.deepEqual([...document.querySelectorAll('[role="menu"] [role="menuitem"]')].map(item => item.textContent), ["New", "Open"]);
+    assert.ok(document.querySelector('nav a[href="/"]'));
   } finally { await env.cleanup(); }
 });
