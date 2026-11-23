@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 11f90a91d7b8fd7f79a2251f82a680ca40fcf11eb44042f63216a02dc1018cbe
+Source fingerprint: 9cb45706059353c76a3775212c330cc924dfc39e02e6f8692be0fd20769c4a56
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (668, values and types distinguished)
+## Public exports (695, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -207,6 +207,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - Checkbox [value] — core/src/components/ui/checkbox.tsx
 - CheckboxColor [type] — core/src/components/ui/checkbox.tsx
 - CheckboxControl [value] — core/src/components/ui/checkbox.tsx
+- CheckboxGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- CheckboxGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - CheckboxWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - CheckIcon [value] — core/src/components/ui/plain-icons.tsx
 - Checklist [value] — core/src/components/ui/checklist.tsx
@@ -218,6 +220,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ChoiceAnswer [type] — core/src/components/ui/agent/question.tsx
 - ChoiceCard [value] — core/src/components/ui/agent/question.tsx
 - ChoiceCardProps [type] — core/src/components/ui/agent/question.tsx
+- ChoiceGroupColor [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOrientation [type] — core/src/components/ui/forms/choice-groups.tsx
 - ChoiceOption [type] — core/src/components/ui/agent/question.tsx
 - CircleIcon [value] — core/src/components/ui/badge.tsx
 - CircleIconColor [type] — core/src/components/ui/badge.tsx
@@ -230,6 +235,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - CitedAnswerProps [type] — core/src/components/ui/agent/cited-answer.tsx
 - CloseIcon [value] — core/src/components/ui/plain-icons.tsx
 - cn [value] — core/src/lib/utils.ts
+- Collapsible [value] — core/src/components/ui/collapsible.tsx
+- CollapsibleProps [type] — core/src/components/ui/collapsible.tsx
 - ColorPicker [value] — core/src/components/ui/forms/icon-selector.tsx
 - ColorScaleStop [type] — core/src/components/ui/style-guide.tsx
 - ColorSection [value] — core/src/components/ui/style-guide.tsx
@@ -326,6 +333,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - EventTagColor [type] — core/src/components/ui/event-tag.tsx
 - EventTagSize [type] — core/src/components/ui/event-tag.tsx
 - EventTagVariant [type] — core/src/components/ui/event-tag.tsx
+- Fieldset [value] — core/src/components/ui/forms/form.tsx
+- FieldsetProps [type] — core/src/components/ui/forms/form.tsx
 - FileCard [value] — core/src/components/ui/forms/file-upload.tsx
 - FileInput [value] — core/src/components/ui/forms/file-input.tsx
 - FileInputProps [type] — core/src/components/ui/forms/file-input.tsx
@@ -351,6 +360,12 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - FolderFloatProps [type] — core/src/components/ui/folder-float.tsx
 - FolderItem [type] — core/src/components/ui/folder.tsx
 - FolderProps [type] — core/src/components/ui/folder.tsx
+- Form [value] — core/src/components/ui/forms/form.tsx
+- FormField [value] — core/src/components/ui/forms/form.tsx
+- FormFieldProps [type] — core/src/components/ui/forms/form.tsx
+- FormProps [type] — core/src/components/ui/forms/form.tsx
+- FormValidationMode [type] — core/src/components/ui/forms/form.tsx
+- FormValues [type] — core/src/components/ui/forms/form.tsx
 - FullCalendar [value] — core/src/components/ui/full-calendar.tsx
 - FullWidthTable [value] — core/src/components/ui/data-table.tsx
 - FullWidthTableProps [type] — core/src/components/ui/data-table.tsx
@@ -440,6 +455,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - MediaItem [type] — core/src/components/ui/forms/media-upload.tsx
 - MediaUpload [value] — core/src/components/ui/forms/media-upload.tsx
 - MediaUploadColor [type] — core/src/components/ui/forms/media-upload.tsx
+- Menubar [value] — core/src/components/ui/menubar.tsx
+- MenubarMenu [type] — core/src/components/ui/menubar.tsx
+- MenubarProps [type] — core/src/components/ui/menubar.tsx
 - MenuItem [value] — core/src/components/ui/menu-item.tsx
 - MenuItemAccent [type] — core/src/components/ui/menu-item.tsx
 - MenuItemIntent [type] — core/src/components/ui/menu-item.tsx
@@ -455,6 +473,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ModalProps [type] — core/src/components/ui/modal.tsx
 - MotionPreference [type] — core/src/lib/motion.ts
 - MultilayerDonutChart [value] — core/src/components/ui/charts/multilayer-donut-chart.tsx
+- NavigationMenu [value] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuItem [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuLink [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuProps [type] — core/src/components/ui/navigation-menu.tsx
 - NotificationBadge [value] — core/src/components/ui/badge.tsx
 - NotificationBadgeColor [type] — core/src/components/ui/badge.tsx
 - NotificationItem [value] — core/src/components/ui/notification-item.tsx
@@ -527,6 +549,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - QuestionProps [type] — core/src/components/ui/agent/question.tsx
 - QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
+- RadioGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- RadioGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - RadioWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - RatingStars [value] — core/src/components/ui/rating-stars.tsx
 - RatingStarsSize [type] — core/src/components/ui/rating-stars.tsx
@@ -626,6 +650,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ToastOptions [type] — core/src/components/ui/toast.tsx
 - ToastProvider [value] — core/src/components/ui/toast.tsx
 - Toggle [value] — core/src/components/ui/forms/selection-control.tsx
+- ToggleGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - ToggleProps [type] — core/src/components/ui/forms/selection-control.tsx
 - Toolbar [value] — core/src/components/ui/toolbar.tsx
 - ToolbarActions [value] — core/src/components/ui/toolbar.tsx
@@ -4545,15 +4572,19 @@ Source: skills/forge-skill/references/components/checkbox.md
 ## Checkbox (value)
 
 ```ts
-({ checked, color, onChange, disabled, motion, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type">) => JSX.Element
+({ checked, indeterminate, color, onChange, disabled, motion, name, value, required, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; indeterminate?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; name?: string; value?: string; required?: boolean; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type" | "value" | "name">) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `checked` | 否 | `boolean \| undefined` |  |
+| `indeterminate` | 否 | `boolean \| undefined` | Partially selected state; shown as a dash and announced as "mixed". |
 | `color` | 否 | `"purple" \| "blue" \| "orange" \| "green" \| "black" \| "red" \| undefined` |  |
 | `onChange` | 否 | `((checked: boolean) => void) \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; the checkbox submits `value` (default "on") when checked. |
+| `value` | 否 | `string \| undefined` |  |
+| `required` | 否 | `boolean \| undefined` |  |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `form` | 否 | `string \| undefined` |  |
 | `formAction` | 否 | `string \| ((formData: FormData) => void \| Promise<void>) \| undefined` |  |
@@ -4561,8 +4592,6 @@ Source: skills/forge-skill/references/components/checkbox.md
 | `formMethod` | 否 | `string \| undefined` |  |
 | `formNoValidate` | 否 | `boolean \| undefined` |  |
 | `formTarget` | 否 | `string \| undefined` |  |
-| `name` | 否 | `string \| undefined` |  |
-| `value` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
 | `defaultValue` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `suppressContentEditableWarning` | 否 | `boolean \| undefined` |  |
@@ -4849,15 +4878,19 @@ export type CheckboxColor = keyof typeof checkboxColors;
 ## CheckboxControl (value)
 
 ```ts
-({ checked, color, onChange, disabled, motion, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type">) => JSX.Element
+({ checked, indeterminate, color, onChange, disabled, motion, name, value, required, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; indeterminate?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; name?: string; value?: string; required?: boolean; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type" | "value" | "name">) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `checked` | 否 | `boolean \| undefined` |  |
+| `indeterminate` | 否 | `boolean \| undefined` | Partially selected state; shown as a dash and announced as "mixed". |
 | `color` | 否 | `"purple" \| "blue" \| "orange" \| "green" \| "black" \| "red" \| undefined` |  |
 | `onChange` | 否 | `((checked: boolean) => void) \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; the checkbox submits `value` (default "on") when checked. |
+| `value` | 否 | `string \| undefined` |  |
+| `required` | 否 | `boolean \| undefined` |  |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `form` | 否 | `string \| undefined` |  |
 | `formAction` | 否 | `string \| ((formData: FormData) => void \| Promise<void>) \| undefined` |  |
@@ -4865,8 +4898,6 @@ export type CheckboxColor = keyof typeof checkboxColors;
 | `formMethod` | 否 | `string \| undefined` |  |
 | `formNoValidate` | 否 | `boolean \| undefined` |  |
 | `formTarget` | 否 | `string \| undefined` |  |
-| `name` | 否 | `string \| undefined` |  |
-| `value` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
 | `defaultValue` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `suppressContentEditableWarning` | 否 | `boolean \| undefined` |  |
@@ -5220,6 +5251,160 @@ export type ChecklistTask = {
 
 ---
 
+Source: skills/forge-skill/references/components/choice-groups.md
+
+# choice-groups
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/choice-groups.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## CheckboxGroup (value)
+
+```ts
+({ options, value, defaultValue, onChange, selectAllLabel, name, disabled, color, orientation, ariaLabel, motion, className }: CheckboxGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ChoiceGroupOption[]` |  |
+| `value` | 否 | `string[] \| undefined` |  |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((value: string[]) => void) \| undefined` |  |
+| `selectAllLabel` | 否 | `string \| undefined` | Adds a parent checkbox that selects every option and shows a partial state. |
+| `name` | 否 | `string \| undefined` | Form field name; each checked option submits its value. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `orientation` | 否 | `ChoiceGroupOrientation \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CheckboxGroupProps (type)
+
+```ts
+export interface CheckboxGroupProps {
+  options: ChoiceGroupOption[];
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (value: string[]) => void;
+  /** Adds a parent checkbox that selects every option and shows a partial state. */
+  selectAllLabel?: string;
+  /** Form field name; each checked option submits its value. */
+  name?: string;
+  disabled?: boolean;
+  color?: ChoiceGroupColor;
+  orientation?: ChoiceGroupOrientation;
+  ariaLabel?: string;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
+
+## ChoiceGroupColor (type)
+
+```ts
+export type ChoiceGroupColor = FormAccentColor;
+```
+
+## ChoiceGroupOption (type)
+
+```ts
+export interface ChoiceGroupOption {
+  value: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+}
+```
+
+## ChoiceGroupOrientation (type)
+
+```ts
+export type ChoiceGroupOrientation = "vertical" | "horizontal";
+```
+
+## RadioGroup (value)
+
+```ts
+({ options, value, defaultValue, onChange, name, required, disabled, color, orientation, ariaLabel, className }: RadioGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ChoiceGroupOption[]` |  |
+| `value` | 否 | `string \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| undefined` |  |
+| `onChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits the chosen value. |
+| `required` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `orientation` | 否 | `ChoiceGroupOrientation \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name when there is no visible group label. |
+| `className` | 否 | `string \| undefined` |  |
+
+## RadioGroupProps (type)
+
+```ts
+export interface RadioGroupProps {
+  options: ChoiceGroupOption[];
+  value?: string | null;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  /** Form field name; submits the chosen value. */
+  name?: string;
+  required?: boolean;
+  disabled?: boolean;
+  color?: ChoiceGroupColor;
+  orientation?: ChoiceGroupOrientation;
+  /** Accessible name when there is no visible group label. */
+  ariaLabel?: string;
+  className?: string;
+}
+```
+
+## ToggleGroup (value)
+
+```ts
+(props: ToggleGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ToggleGroupOption[]` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `value` | 否 | `string \| string[] \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| string[] \| undefined` |  |
+| `onChange` | 否 | `((value: string \| null) => void) \| ((value: string[]) => void) \| undefined` |  |
+
+## ToggleGroupOption (type)
+
+```ts
+export interface ToggleGroupOption {
+  value: string;
+  label?: string;
+  icon?: ReactNode;
+  /** Required when the option has only an icon. */
+  ariaLabel?: string;
+  disabled?: boolean;
+}
+```
+
+## ToggleGroupProps (type)
+
+```ts
+export type ToggleGroupProps = ToggleGroupBase & (
+  | { multiple?: false; value?: string | null; defaultValue?: string; onChange?: (value: string | null) => void }
+  | { multiple: true; value?: string[]; defaultValue?: string[]; onChange?: (value: string[]) => void }
+);
+```
+
+---
+
 Source: skills/forge-skill/references/components/cited-answer.md
 
 # cited-answer
@@ -5310,6 +5495,48 @@ export type CitedAnswerProps = {
 不要用：
 - 流式 Markdown 正文 → `StreamingAnswer` / `AgentParts`
 - 只列来源不标句子 → StreamingAnswer 的 sources
+
+---
+
+Source: skills/forge-skill/references/components/collapsible.md
+
+# collapsible
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/collapsible.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Collapsible (value)
+
+```ts
+({ title, children, open, defaultOpen, onOpenChange, disabled, motion, className }: CollapsibleProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` | Text or content of the toggle row. |
+| `children` | 是 | `ReactNode` |  |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CollapsibleProps (type)
+
+```ts
+export interface CollapsibleProps {
+  /** Text or content of the toggle row. */
+  title: ReactNode;
+  children: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
 
 ---
 
@@ -7912,6 +8139,116 @@ export type FolderFloatProps = {
 
 ---
 
+Source: skills/forge-skill/references/components/form.md
+
+# form
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/form.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Fieldset (value)
+
+```ts
+({ legend, children, disabled, className }: FieldsetProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `legend` | 是 | `ReactNode` |  |
+| `children` | 是 | `ReactNode` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## FieldsetProps (type)
+
+```ts
+export interface FieldsetProps {
+  legend: ReactNode;
+  children: ReactNode;
+  disabled?: boolean;
+  className?: string;
+}
+```
+
+## Form (value)
+
+```ts
+({ children, onSubmit, errors, validationMode, className }: FormProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `onSubmit` | 否 | `((values: FormValues) => void) \| undefined` | Runs only when every field is valid; receives values keyed by field `name`. |
+| `errors` | 否 | `Record<string, string \| string[]> \| undefined` | Server-side errors keyed by field `name`; shown until that field changes. |
+| `validationMode` | 否 | `FormValidationMode \| undefined` | When fields validate. Invalid fields always re-validate as the user types. |
+| `className` | 否 | `string \| undefined` |  |
+
+## FormField (value)
+
+```ts
+({ name, children, label, description, validate, messages, disabled, className }: FormFieldProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `name` | 是 | `string` | Submitted key; also the key for `Form` `errors`. |
+| `children` | 是 | `ReactNode` | One field-aware control (see list above). |
+| `label` | 否 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `validate` | 否 | `((value: unknown, values: FormValues) => string \| string[] \| null \| void \| Promise<string \| string[] \| null \| void>) \| undefined` | Custom rule; return an error message (or messages) to mark the field invalid. May be async. |
+| `messages` | 否 | `Partial<Record<ValidityKey, string>> \| undefined` | Replace the browser's built-in messages, e.g. `{ valueMissing: "请填写邮箱" }`. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## FormFieldProps (type)
+
+```ts
+export interface FormFieldProps {
+  /** Submitted key; also the key for `Form` `errors`. */
+  name: string;
+  /** One field-aware control (see list above). */
+  children: ReactNode;
+  label?: ReactNode;
+  description?: ReactNode;
+  /** Custom rule; return an error message (or messages) to mark the field invalid. May be async. */
+  validate?: (value: unknown, values: FormValues) => string | string[] | null | void | Promise<string | string[] | null | void>;
+  /** Replace the browser's built-in messages, e.g. `{ valueMissing: "请填写邮箱" }`. */
+  messages?: Partial<Record<ValidityKey, string>>;
+  disabled?: boolean;
+  className?: string;
+}
+```
+
+## FormProps (type)
+
+```ts
+export interface FormProps {
+  children: ReactNode;
+  /** Runs only when every field is valid; receives values keyed by field `name`. */
+  onSubmit?: (values: FormValues) => void;
+  /** Server-side errors keyed by field `name`; shown until that field changes. */
+  errors?: Record<string, string | string[]>;
+  /** When fields validate. Invalid fields always re-validate as the user types. */
+  validationMode?: FormValidationMode;
+  className?: string;
+}
+```
+
+## FormValidationMode (type)
+
+```ts
+export type FormValidationMode = "onSubmit" | "onBlur" | "onChange";
+```
+
+## FormValues (type)
+
+```ts
+export type FormValues = Record<string, unknown>;
+```
+
+---
+
 Source: skills/forge-skill/references/components/full-calendar.md
 
 # full-calendar
@@ -10106,6 +10443,51 @@ export type MenuItemSurface = "default" | "onColoredBg";
 
 ---
 
+Source: skills/forge-skill/references/components/menubar.md
+
+# menubar
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menubar.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Menubar (value)
+
+```ts
+({ menus, accent, ariaLabel, className, motion }: MenubarProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `menus` | 是 | `MenubarMenu[]` |  |
+| `accent` | 否 | `AccentColor \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## MenubarMenu (type)
+
+```ts
+export interface MenubarMenu {
+  label: string;
+  items: DropdownMenuEntry[];
+  disabled?: boolean;
+}
+```
+
+## MenubarProps (type)
+
+```ts
+export interface MenubarProps {
+  menus: MenubarMenu[];
+  accent?: DropdownMenuAccent;
+  ariaLabel?: string;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/meter-chart.md
 
 # meter-chart
@@ -10116,7 +10498,7 @@ Source: skills/forge-skill/references/components/meter-chart.md
 ## MeterChart (value)
 
 ```ts
-({ segments, accent, trend, trendDirection, subtitle, height, }: MeterChartProps) => JSX.Element
+({ segments, accent, trend, trendDirection, subtitle, height, ariaLabel, }: MeterChartProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -10127,6 +10509,7 @@ Source: skills/forge-skill/references/components/meter-chart.md
 | `trendDirection` | 否 | `"up" \| "down" \| undefined` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
 | `height` | 否 | `string \| undefined` | Meter bar height class. Default h-24 (96px) per figma. |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name; defaults to `subtitle`. |
 
 ---
 
@@ -10219,6 +10602,59 @@ Source: skills/forge-skill/references/components/multilayer-donut-chart.md
 | `trend` | 否 | `string \| undefined` |  |
 | `trendDirection` | 否 | `"up" \| "down" \| undefined` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
+
+---
+
+Source: skills/forge-skill/references/components/navigation-menu.md
+
+# navigation-menu
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/navigation-menu.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## NavigationMenu (value)
+
+```ts
+({ items, ariaLabel, className, motion }: NavigationMenuProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `NavigationMenuItem[]` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## NavigationMenuItem (type)
+
+```ts
+export type NavigationMenuItem =
+  | { label: string; href: string; active?: boolean }
+  /** A dropdown panel: pass `links` for a link grid, or `content` for anything custom. */
+  | { label: string; links?: NavigationMenuLink[]; content?: ReactNode; columns?: 1 | 2 };
+```
+
+## NavigationMenuLink (type)
+
+```ts
+export interface NavigationMenuLink {
+  label: string;
+  href: string;
+  description?: string;
+  icon?: ReactNode;
+}
+```
+
+## NavigationMenuProps (type)
+
+```ts
+export interface NavigationMenuProps {
+  items: NavigationMenuItem[];
+  ariaLabel?: string;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
 
 ---
 
@@ -11874,7 +12310,7 @@ Source: skills/forge-skill/references/components/selection-control.md
 ## CheckboxWithLabel (value)
 
 ```ts
-({ checked, motion, onChange, label, color, checkboxPosition, icon, avatar, dotColor, disabled, className, }: { checked?: boolean; motion?: MotionPreference; onChange?: (checked: boolean) => void; label: string; color?: ControlColor; checkboxPosition?: "left" | "right"; icon?: ReactNode; avatar?: string; dotColor?: string; disabled?: boolean; className?: string; }) => JSX.Element
+({ checked, motion, onChange, label, color, checkboxPosition, icon, avatar, dotColor, disabled, name, value, className, }: { checked?: boolean; motion?: MotionPreference; onChange?: (checked: boolean) => void; name?: string; value?: string; label: string; color?: ControlColor; checkboxPosition?: "left" | "right"; icon?: ReactNode; avatar?: string; dotColor?: string; disabled?: boolean; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -11882,6 +12318,8 @@ Source: skills/forge-skill/references/components/selection-control.md
 | `checked` | 否 | `boolean \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
 | `onChange` | 否 | `((checked: boolean) => void) \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits `value` (default "on") when checked. |
+| `value` | 否 | `string \| undefined` |  |
 | `label` | 是 | `string` |  |
 | `color` | 否 | `FormAccentColor \| undefined` |  |
 | `checkboxPosition` | 否 | `"left" \| "right" \| undefined` |  |
@@ -11932,7 +12370,7 @@ export type ControlColor = FormAccentColor;
 ## Toggle (value)
 
 ```ts
-({ checked, defaultChecked, motion, onChange, color, disabled, size, ariaLabel, draggable, thumbIcon, }: ToggleProps) => JSX.Element
+({ checked, defaultChecked, motion, onChange, color, disabled, size, ariaLabel, draggable, thumbIcon, name, value, }: ToggleProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -11947,6 +12385,8 @@ export type ControlColor = FormAccentColor;
 | `ariaLabel` | 否 | `string \| undefined` |  |
 | `draggable` | 否 | `boolean \| undefined` | Allow dragging the thumb; clicking and keyboard activation remain available. |
 | `thumbIcon` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits `value` (default "on") when on. |
+| `value` | 否 | `string \| undefined` |  |
 
 ## ToggleProps (type)
 
@@ -11964,6 +12404,9 @@ export type ToggleProps = {
   /** Allow dragging the thumb; clicking and keyboard activation remain available. */
   draggable?: boolean;
   thumbIcon?: ReactNode;
+  /** Form field name; submits `value` (default "on") when on. */
+  name?: string;
+  value?: string;
 };
 ```
 

@@ -19,6 +19,12 @@ import {
   Autocomplete,
   NumberField,
   Slider,
+  Form,
+  FormField,
+  Fieldset,
+  RadioGroup,
+  CheckboxGroup,
+  Button,
 } from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
@@ -106,6 +112,55 @@ const SLIDER_PROPS: ApiTableRow[] = [
   { attr: "color / disabled / width / name", type: "—", defaultValue: "'blue' / false / '100%' / —", description: "主色、禁用、宽度和表单字段名。" },
 ];
 
+const CODE_FORM_USAGE = `<Form onSubmit={(values) => save(values)} errors={serverErrors}>
+  <Fieldset legend="联系人">
+    <FormField name="email" label="邮箱" messages={{ valueMissing: "请填写邮箱", typeMismatch: "邮箱格式不对" }}>
+      <TextField type="email" required placeholder="name@company.com" />
+    </FormField>
+    <FormField name="seats" label="席位数" validate={(value) => Number(value) > 0 ? null : "至少 1 个"}>
+      <NumberField defaultValue={0} />
+    </FormField>
+  </Fieldset>
+  <Button type="submit">保存</Button>
+</Form>`;
+
+const CODE_CHOICE_USAGE = `<RadioGroup ariaLabel="套餐" defaultValue="team" options={[
+  { value: "free", label: "免费版" },
+  { value: "team", label: "团队版", description: "最多 50 人" },
+]} />
+<CheckboxGroup selectAllLabel="全部通知" defaultValue={["mention"]} options={[
+  { value: "mention", label: "被提及" },
+  { value: "assign", label: "分配给我" },
+]} />`;
+
+const FORM_PROPS: ApiTableRow[] = [
+  { attr: "onSubmit", type: "(values) => void", defaultValue: "—", description: "所有字段通过校验后调用，values 按字段 name 组织。" },
+  { attr: "errors", type: "Record<string, string | string[]>", defaultValue: "—", description: "服务端返回的错误，按 name 显示在对应字段下，用户改动后消失。" },
+  { attr: "validationMode", type: "'onSubmit' | 'onBlur' | 'onChange'", defaultValue: "'onSubmit'", description: "何时校验；出错的字段会在输入时重新校验。" },
+];
+
+const FORMFIELD_PROPS: ApiTableRow[] = [
+  { attr: "name", type: "string", defaultValue: "—", description: "提交的字段名。" },
+  { attr: "label / description", type: "ReactNode", defaultValue: "—", description: "标题和说明，自动关联到控件。" },
+  { attr: "validate", type: "(value, values) => string | null | Promise", defaultValue: "—", description: "自定义规则，返回错误文案；可以是异步。" },
+  { attr: "messages", type: "{ valueMissing?, typeMismatch?, … }", defaultValue: "—", description: "替换浏览器自带的校验文案（required、type、pattern、min/max 等）。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "一个控件：TextField、TextArea、SelectOption、Combobox、NumberField、Slider、Toggle、Checkbox、RadioGroup、CheckboxGroup。" },
+];
+
+const RADIOGROUP_PROPS: ApiTableRow[] = [
+  { attr: "options", type: "{ value, label, description?, disabled? }[]", defaultValue: "—", description: "选项。" },
+  { attr: "value / defaultValue / onChange", type: "string / string / (value) => void", defaultValue: "—", description: "选中值。方向键在选项间移动并选中。" },
+  { attr: "name / required", type: "string / boolean", defaultValue: "—", description: "表单字段名和必选。" },
+  { attr: "orientation", type: "'vertical' | 'horizontal'", defaultValue: "'vertical'", description: "排列方向。" },
+];
+
+const CHECKBOXGROUP_PROPS: ApiTableRow[] = [
+  { attr: "options", type: "{ value, label, description?, disabled? }[]", defaultValue: "—", description: "选项。" },
+  { attr: "value / defaultValue / onChange", type: "string[] / string[] / (value) => void", defaultValue: "—", description: "勾选的值。" },
+  { attr: "selectAllLabel", type: "string", defaultValue: "—", description: "加一个“全选”父项，部分勾选时显示横线。" },
+  { attr: "name / orientation / color", type: "—", defaultValue: "—", description: "同 RadioGroup。" },
+];
+
 const COMBOBOX_PROPS: ApiTableRow[] = [
   { attr: "options", type: "ComboboxOption[]", defaultValue: "—", description: "选项 { value, label, description?, icon?, disabled? }。输入文字按 label 过滤。" },
   { attr: "multiple", type: "boolean", defaultValue: "false", description: "多选。选中项显示为输入框里的标签，可逐个移除。" },
@@ -137,6 +192,7 @@ const CODE_IMPORT = `import {
   MediaUpload, ProfileImgUpload, FileUpload,
   IconSelector, IconPicker, ColorPicker,
   Combobox, Autocomplete, NumberField, Slider,
+  Form, FormField, Fieldset, RadioGroup, CheckboxGroup,
 } from "@forge-ui-official/core";`;
 
 const CODE_TF_COLORS = `<TextField color="purple" state="focus" placeholder="紫色聚焦" />
@@ -365,6 +421,15 @@ export default function InputFieldCasePage() {
           <DocExample id="slider" title="Slider" summary="拖动或用方向键调数值，传数组就是区间。" code={CODE_SLIDER_USAGE} minHeight={200}>
             <SliderDemo />
           </DocExample>
+          <DocExample id="form" title="Form" summary="必填、格式和自定义规则在提交时校验，错误显示在字段下方。" code={CODE_FORM_USAGE} minHeight={360}>
+            <FormDemo />
+          </DocExample>
+          <DocExample id="radiogroup" title="RadioGroup" summary="单选组和多选组，键盘可用方向键操作。" code={CODE_CHOICE_USAGE} minHeight={240}>
+            <div className="flex w-full flex-wrap gap-10">
+              <RadioGroup ariaLabel="套餐" defaultValue="team" options={[{ value: "free", label: "免费版" }, { value: "team", label: "团队版", description: "最多 50 人" }]} />
+              <CheckboxGroup selectAllLabel="全部通知" defaultValue={["mention"]} options={[{ value: "mention", label: "被提及" }, { value: "assign", label: "分配给我" }]} />
+            </div>
+          </DocExample>
           <DocExample id="datepicker" title="Datepicker" summary="单日和日期区间是两种选择。" code={CODE_DP_USAGE} minHeight={200}>
             <div className="flex flex-wrap items-start gap-4">
               <Datepicker label="选择日期" />
@@ -420,6 +485,10 @@ export default function InputFieldCasePage() {
         <ApiBlock id="autocomplete" title="Autocomplete" rows={AUTOCOMPLETE_PROPS} />
         <ApiBlock id="numberfield" title="NumberField" rows={NUMBERFIELD_PROPS} />
         <ApiBlock id="slider" title="Slider" rows={SLIDER_PROPS} />
+        <ApiBlock id="form" title="Form" rows={FORM_PROPS} />
+        <ApiBlock id="formfield" title="FormField" rows={FORMFIELD_PROPS} />
+        <ApiBlock id="radiogroup" title="RadioGroup" rows={RADIOGROUP_PROPS} />
+        <ApiBlock id="checkboxgroup" title="CheckboxGroup" rows={CHECKBOXGROUP_PROPS} />
         <ApiBlock id="datepicker" title="Datepicker" rows={DP_PROPS} />
         <ApiBlock id="radiobutton" title="RadioButton" rows={RADIO_PROPS} />
         <ApiBlock id="checkboxcontrol" title="CheckboxControl" rows={CHECKBOX_PROPS} />
@@ -472,6 +541,26 @@ function SliderDemo() {
     <div className="flex w-full max-w-sm flex-col gap-6">
       <Slider label="相似度阈值" showValue value={threshold} onChange={setThreshold} format={{ style: "percent" }} min={0} max={1} step={0.05} />
       <Slider label="价格区间" showValue value={range} onChange={setRange} min={0} max={1000} step={50} />
+    </div>
+  );
+}
+
+function FormDemo() {
+  const [saved, setSaved] = useState<string | null>(null);
+  return (
+    <div className="w-full max-w-sm">
+      <Form onSubmit={(values) => setSaved(JSON.stringify(values))}>
+        <Fieldset legend="联系人">
+          <FormField name="email" label="邮箱" messages={{ valueMissing: "请填写邮箱", typeMismatch: "邮箱格式不对" }}>
+            <TextField type="email" required placeholder="name@company.com" />
+          </FormField>
+          <FormField name="seats" label="席位数" validate={(value) => Number(value) > 0 ? null : "至少 1 个"}>
+            <NumberField defaultValue={0} />
+          </FormField>
+        </Fieldset>
+        <Button type="submit" size="md">保存</Button>
+        {saved && <p className="text-xs text-fg-grey-700">已提交：{saved}</p>}
+      </Form>
     </div>
   );
 }

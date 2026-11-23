@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { TabBar } from "@forge-ui-official/core";
+import { TabBar, ToggleGroup } from "@forge-ui-official/core";
+import { HamburgerMenuLinear, WidgetLinear } from "@forge-ui-official/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
 // ─── TabBar 代码片段 ───
 
-const CODE_IMPORT = `import { TabBar, ButtonGroup } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { TabBar, ToggleGroup, ButtonGroup } from "@forge-ui-official/core";`;
 
 const CODE_TABBAR_USAGE = `<TabBar
   tabs={[
@@ -61,6 +62,26 @@ const TABBAR_PROPS: ApiTableRow[] = [
     defaultValue: "—",
     description: "额外 className。",
   },
+];
+
+const CODE_TOGGLEGROUP_USAGE = `<ToggleGroup
+  ariaLabel="视图"
+  defaultValue="list"
+  onChange={setView}
+  options={[
+    { value: "list", label: "列表", icon: <HamburgerMenuLinear size={18} /> },
+    { value: "board", label: "看板", icon: <WidgetLinear size={18} /> },
+  ]}
+/>
+<ToggleGroup multiple ariaLabel="筛选" defaultValue={["mine"]} options={[{ value: "mine", label: "我负责的" }, { value: "due", label: "即将到期" }]} />`;
+
+const TOGGLEGROUP_PROPS: ApiTableRow[] = [
+  { attr: "options", type: "{ value, label?, icon?, ariaLabel?, disabled? }[]", defaultValue: "—", description: "选项；只有图标时要传 ariaLabel。" },
+  { attr: "multiple", type: "boolean", defaultValue: "false", description: "多选。单选时再次点击当前项会取消选中。" },
+  { attr: "value / defaultValue", type: "string | null / string[]", defaultValue: "—", description: "选中值；多选时是数组。" },
+  { attr: "onChange", type: "(value) => void", defaultValue: "—", description: "选中变化时回调。" },
+  { attr: "size", type: "'sm' | 'md'", defaultValue: "'md'", description: "高度 28 / 36。" },
+  { attr: "ariaLabel", type: "string", defaultValue: "—", description: "整组的读屏名称。" },
 ];
 
 export default function TabCasePage() {
@@ -122,6 +143,23 @@ export default function TabCasePage() {
       </Section>
 
 
+
+      <Section
+        title="ToggleGroup"
+        description="分段按钮：切换视图（单选），或叠加筛选（多选）。方向键在选项间移动。"
+      >
+        <SubSection title="使用方法" stack>
+          <PreviewBlock code={CODE_TOGGLEGROUP_USAGE} minHeight={140}>
+            <div className="flex flex-wrap items-center gap-4">
+              <ToggleGroup ariaLabel="视图" defaultValue="list" options={[{ value: "list", label: "列表", icon: <HamburgerMenuLinear size={18} /> }, { value: "board", label: "看板", icon: <WidgetLinear size={18} /> }]} />
+              <ToggleGroup multiple ariaLabel="筛选" defaultValue={["mine"]} options={[{ value: "mine", label: "我负责的" }, { value: "due", label: "即将到期" }]} />
+            </div>
+          </PreviewBlock>
+        </SubSection>
+        <SubSection title="API" stack>
+          <ApiTable rows={TOGGLEGROUP_PROPS} />
+        </SubSection>
+      </Section>
 
       <p id="buttongroup" className="scroll-mt-24 text-sm leading-6 text-fg-grey-700">按钮组的展示、用法和参数统一见 <Link href="/components/button-link#buttongroup" className="text-fg-violet underline underline-offset-4">按钮组</Link>。</p>
     </div>

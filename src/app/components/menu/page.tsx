@@ -12,6 +12,8 @@ import {
   Popover,
   Button,
   Toggle,
+  Menubar,
+  NavigationMenu,
 } from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
@@ -31,7 +33,7 @@ import { CodeBlock, type ApiTableRow } from "../_api-table";
 const CODE_IMPORT = `import {
   MenuItem, DropdownPanel, DropdownDivider,
   IconTrigger, KebabMenu,
-  DropdownMenu, ContextMenu, Popover,
+  DropdownMenu, ContextMenu, Popover, Menubar, NavigationMenu,
 } from "@forge-ui-official/core";`;
 
 const CODE_MENUITEM_USAGE = `<MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="首页" />
@@ -93,6 +95,31 @@ const CODE_POPOVER_USAGE = `<Popover
     </>
   )}
 </Popover>`;
+
+const CODE_MENUBAR_USAGE = `<Menubar ariaLabel="编辑器" menus={[
+  { label: "文件", items: [{ label: "新建", shortcut: "⌘N" }, { label: "打开…", shortcut: "⌘O" }, { type: "divider" }, { label: "导出" }] },
+  { label: "编辑", items: [{ label: "撤销", shortcut: "⌘Z" }, { label: "重做", shortcut: "⇧⌘Z" }] },
+  { label: "视图", items: [{ type: "checkbox", label: "显示网格", checked: grid, onCheckedChange: setGrid }] },
+]} />`;
+
+const CODE_NAVIGATIONMENU_USAGE = `<NavigationMenu ariaLabel="站点" items={[
+  { label: "首页", href: "/", active: true },
+  { label: "产品", columns: 2, links: [
+    { label: "智能体工场", href: "/factory", description: "搭建和运营 AI 员工" },
+    { label: "数据集平台", href: "/dataset", description: "采集、标注与发布" },
+  ] },
+  { label: "文档", href: "/docs" },
+]} />`;
+
+const MENUBAR_PROPS: ApiTableRow[] = [
+  { attr: "menus", type: "{ label, items: DropdownMenuEntry[], disabled? }[]", defaultValue: "—", description: "每个菜单的标题和菜单项，菜单项写法同 DropdownMenu。" },
+  { attr: "ariaLabel", type: "string", defaultValue: "—", description: "菜单栏的读屏名称。" },
+];
+
+const NAVIGATIONMENU_PROPS: ApiTableRow[] = [
+  { attr: "items", type: "({ label, href, active? } | { label, links?, content?, columns? })[]", defaultValue: "—", description: "普通链接，或带下拉面板的项：links 是链接列表，content 放任意内容。" },
+  { attr: "ariaLabel", type: "string", defaultValue: "—", description: "导航的读屏名称。" },
+];
 
 const DROPDOWNMENU_PROPS: ApiTableRow[] = [
   { attr: "trigger", type: "ReactElement", defaultValue: "—", description: "打开菜单的元素，需要把 ref 和属性传到 DOM 上（Button、IconTrigger、原生 button 都可以）。" },
@@ -222,6 +249,19 @@ export default function MenuCasePage() {
               在这里点右键
             </ContextMenu>
           </DocExample>
+          <DocExample id="menubar" title="Menubar" summary="桌面应用式菜单栏，打开一个后左右键或悬停切换。" code={CODE_MENUBAR_USAGE} minHeight={180}>
+            <MenubarDemo />
+          </DocExample>
+          <DocExample id="navigationmenu" title="NavigationMenu" summary="官网顶部导航，悬停或键盘展开链接面板。" code={CODE_NAVIGATIONMENU_USAGE} minHeight={180}>
+            <NavigationMenu ariaLabel="站点" items={[
+              { label: "首页", href: "#navigationmenu", active: true },
+              { label: "产品", columns: 2, links: [
+                { label: "智能体工场", href: "#navigationmenu", description: "搭建和运营 AI 员工" },
+                { label: "数据集平台", href: "#navigationmenu", description: "采集、标注与发布" },
+              ] },
+              { label: "文档", href: "#navigationmenu" },
+            ]} />
+          </DocExample>
           <DocExample id="popover" title="Popover" summary="点开的小浮层，放一组设置或说明。" code={CODE_POPOVER_USAGE} minHeight={180}>
             <PopoverDemo />
           </DocExample>
@@ -236,6 +276,8 @@ export default function MenuCasePage() {
         <ApiBlock id="dropdownmenu" title="DropdownMenu" rows={DROPDOWNMENU_PROPS} />
         <ApiBlock id="contextmenu" title="ContextMenu" rows={CONTEXTMENU_PROPS} />
         <ApiBlock id="popover" title="Popover" rows={POPOVER_PROPS} />
+        <ApiBlock id="menubar" title="Menubar" rows={MENUBAR_PROPS} />
+        <ApiBlock id="navigationmenu" title="NavigationMenu" rows={NAVIGATIONMENU_PROPS} />
       </Section>
     </div>
   );
@@ -269,5 +311,16 @@ function PopoverDemo() {
         </>
       )}
     </Popover>
+  );
+}
+
+function MenubarDemo() {
+  const [grid, setGrid] = useState(true);
+  return (
+    <Menubar ariaLabel="编辑器" menus={[
+      { label: "文件", items: [{ label: "新建", shortcut: "⌘N" }, { label: "打开…", shortcut: "⌘O" }, { type: "divider" }, { label: "导出" }] },
+      { label: "编辑", items: [{ label: "撤销", shortcut: "⌘Z" }, { label: "重做", shortcut: "⇧⌘Z" }] },
+      { label: "视图", items: [{ type: "checkbox", label: "显示网格", checked: grid, onCheckedChange: setGrid }] },
+    ]} />
   );
 }

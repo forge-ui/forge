@@ -51,13 +51,13 @@
 - [确认弹窗](https://www.forgeui.org/components/modal.md): ConfirmationDialog
 - [提示气泡](https://www.forgeui.org/components/tooltip.md): PreviewCard、Avatar、TooltipBubble、TooltipAnchor、Tooltip
 - [菜单](https://www.forgeui.org/components/menu.md): MenuItem、DropdownPanel、DropdownDivider、IconTrigger、KebabMenu
-- [页签与切换](https://www.forgeui.org/components/tab.md): TabBar
+- [页签与切换](https://www.forgeui.org/components/tab.md): TabBar、ToggleGroup
 - [分页与步骤](https://www.forgeui.org/components/pagination-stepper.md): Pagination、Stepper、PageDot
 - [页面顶栏](https://www.forgeui.org/components/page-header.md): AppLayout、PageHeader、Breadcrumbs、AskAi、ChatInputBar
 - [工具栏](https://www.forgeui.org/components/toolbar.md): ToolbarSelectDropdown、ToolbarSearchInput、Toolbar、ToolbarShowSelect、PageTitleToolbar
 - [布局栅格](https://www.forgeui.org/components/grid.md): Grid、GridItem、StatCard
 - [应用布局](https://www.forgeui.org/components/menu-sections.md): AppLayout
-- [折叠面板](https://www.forgeui.org/components/accordion.md)
+- [折叠面板](https://www.forgeui.org/components/accordion.md): Collapsible
 
 ## 页面组件
 

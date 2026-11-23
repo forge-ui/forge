@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 668 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 695 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -203,6 +203,8 @@
 | Checkbox | value | [源码](../../core/src/components/ui/checkbox.tsx) | [checkbox](../../skills/forge-skill/references/components/checkbox.md) |
 | CheckboxColor | type | [源码](../../core/src/components/ui/checkbox.tsx) | [checkbox](../../skills/forge-skill/references/components/checkbox.md) |
 | CheckboxControl | value | [源码](../../core/src/components/ui/checkbox.tsx) | [checkbox](../../skills/forge-skill/references/components/checkbox.md) |
+| CheckboxGroup | value | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
+| CheckboxGroupProps | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
 | CheckboxWithLabel | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
 | CheckIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
 | Checklist | value | [源码](../../core/src/components/ui/checklist.tsx) | [checklist](../../skills/forge-skill/references/components/checklist.md) |
@@ -214,6 +216,9 @@
 | ChoiceAnswer | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | ChoiceCard | value | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | ChoiceCardProps | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
+| ChoiceGroupColor | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
+| ChoiceGroupOption | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
+| ChoiceGroupOrientation | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
 | ChoiceOption | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | CircleIcon | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | CircleIconColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
@@ -226,6 +231,8 @@
 | CitedAnswerProps | type | [源码](../../core/src/components/ui/agent/cited-answer.tsx) | [cited-answer](../../skills/forge-skill/references/components/cited-answer.md) |
 | CloseIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
 | cn | value | [源码](../../core/src/lib/utils.ts) | [utils](../../skills/forge-skill/references/components/utils.md) |
+| Collapsible | value | [源码](../../core/src/components/ui/collapsible.tsx) | [collapsible](../../skills/forge-skill/references/components/collapsible.md) |
+| CollapsibleProps | type | [源码](../../core/src/components/ui/collapsible.tsx) | [collapsible](../../skills/forge-skill/references/components/collapsible.md) |
 | ColorPicker | value | [源码](../../core/src/components/ui/forms/icon-selector.tsx) | [icon-selector](../../skills/forge-skill/references/components/icon-selector.md) |
 | ColorScaleStop | type | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
 | ColorSection | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
@@ -322,6 +329,8 @@
 | EventTagColor | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
 | EventTagSize | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
 | EventTagVariant | type | [源码](../../core/src/components/ui/event-tag.tsx) | [event-tag](../../skills/forge-skill/references/components/event-tag.md) |
+| Fieldset | value | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
+| FieldsetProps | type | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
 | FileCard | value | [源码](../../core/src/components/ui/forms/file-upload.tsx) | [file-upload](../../skills/forge-skill/references/components/file-upload.md) |
 | FileInput | value | [源码](../../core/src/components/ui/forms/file-input.tsx) | [file-input](../../skills/forge-skill/references/components/file-input.md) |
 | FileInputProps | type | [源码](../../core/src/components/ui/forms/file-input.tsx) | [file-input](../../skills/forge-skill/references/components/file-input.md) |
@@ -347,6 +356,12 @@
 | FolderFloatProps | type | [源码](../../core/src/components/ui/folder-float.tsx) | [folder-float](../../skills/forge-skill/references/components/folder-float.md) |
 | FolderItem | type | [源码](../../core/src/components/ui/folder.tsx) | [folder](../../skills/forge-skill/references/components/folder.md) |
 | FolderProps | type | [源码](../../core/src/components/ui/folder.tsx) | [folder](../../skills/forge-skill/references/components/folder.md) |
+| Form | value | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
+| FormField | value | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
+| FormFieldProps | type | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
+| FormProps | type | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
+| FormValidationMode | type | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
+| FormValues | type | [源码](../../core/src/components/ui/forms/form.tsx) | [form](../../skills/forge-skill/references/components/form.md) |
 | FullCalendar | value | [源码](../../core/src/components/ui/full-calendar.tsx) | [full-calendar](../../skills/forge-skill/references/components/full-calendar.md) |
 | FullWidthTable | value | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
 | FullWidthTableProps | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
@@ -436,6 +451,9 @@
 | MediaItem | type | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
 | MediaUpload | value | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
 | MediaUploadColor | type | [源码](../../core/src/components/ui/forms/media-upload.tsx) | [media-upload](../../skills/forge-skill/references/components/media-upload.md) |
+| Menubar | value | [源码](../../core/src/components/ui/menubar.tsx) | [menubar](../../skills/forge-skill/references/components/menubar.md) |
+| MenubarMenu | type | [源码](../../core/src/components/ui/menubar.tsx) | [menubar](../../skills/forge-skill/references/components/menubar.md) |
+| MenubarProps | type | [源码](../../core/src/components/ui/menubar.tsx) | [menubar](../../skills/forge-skill/references/components/menubar.md) |
 | MenuItem | value | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
 | MenuItemAccent | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
 | MenuItemIntent | type | [源码](../../core/src/components/ui/menu-item.tsx) | [menu-item](../../skills/forge-skill/references/components/menu-item.md) |
@@ -451,6 +469,10 @@
 | ModalProps | type | [源码](../../core/src/components/ui/modal.tsx) | [modal](../../skills/forge-skill/references/components/modal.md) |
 | MotionPreference | type | [源码](../../core/src/lib/motion.ts) | [motion](../../skills/forge-skill/references/components/motion.md) |
 | MultilayerDonutChart | value | [源码](../../core/src/components/ui/charts/multilayer-donut-chart.tsx) | [multilayer-donut-chart](../../skills/forge-skill/references/components/multilayer-donut-chart.md) |
+| NavigationMenu | value | [源码](../../core/src/components/ui/navigation-menu.tsx) | [navigation-menu](../../skills/forge-skill/references/components/navigation-menu.md) |
+| NavigationMenuItem | type | [源码](../../core/src/components/ui/navigation-menu.tsx) | [navigation-menu](../../skills/forge-skill/references/components/navigation-menu.md) |
+| NavigationMenuLink | type | [源码](../../core/src/components/ui/navigation-menu.tsx) | [navigation-menu](../../skills/forge-skill/references/components/navigation-menu.md) |
+| NavigationMenuProps | type | [源码](../../core/src/components/ui/navigation-menu.tsx) | [navigation-menu](../../skills/forge-skill/references/components/navigation-menu.md) |
 | NotificationBadge | value | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | NotificationBadgeColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | NotificationItem | value | [源码](../../core/src/components/ui/notification-item.tsx) | [notification-item](../../skills/forge-skill/references/components/notification-item.md) |
@@ -523,6 +545,8 @@
 | QuestionProps | type | [源码](../../core/src/components/ui/agent/question.tsx) | [question](../../skills/forge-skill/references/components/question.md) |
 | QueuedPrompt | type | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
 | RadioButton | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| RadioGroup | value | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
+| RadioGroupProps | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
 | RadioWithLabel | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
 | RatingStars | value | [源码](../../core/src/components/ui/rating-stars.tsx) | [rating-stars](../../skills/forge-skill/references/components/rating-stars.md) |
 | RatingStarsSize | type | [源码](../../core/src/components/ui/rating-stars.tsx) | [rating-stars](../../skills/forge-skill/references/components/rating-stars.md) |
@@ -622,6 +646,9 @@
 | ToastOptions | type | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
 | ToastProvider | value | [源码](../../core/src/components/ui/toast.tsx) | [toast](../../skills/forge-skill/references/components/toast.md) |
 | Toggle | value | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
+| ToggleGroup | value | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
+| ToggleGroupOption | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
+| ToggleGroupProps | type | [源码](../../core/src/components/ui/forms/choice-groups.tsx) | [choice-groups](../../skills/forge-skill/references/components/choice-groups.md) |
 | ToggleProps | type | [源码](../../core/src/components/ui/forms/selection-control.tsx) | [selection-control](../../skills/forge-skill/references/components/selection-control.md) |
 | Toolbar | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |
 | ToolbarActions | value | [源码](../../core/src/components/ui/toolbar.tsx) | [toolbar](../../skills/forge-skill/references/components/toolbar.md) |

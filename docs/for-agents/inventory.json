@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.10.1",
   "source": "core/src/index.ts",
-  "revision": "160fb4f7fed8da4e8be9445469bc0712626a3450",
+  "revision": "de72979bfb217caf7bcc3082572022cf1cc60559",
   "dirty": false,
-  "exportFingerprint": "1694820570d82b0173b8902100d1b862a404efa7",
-  "generatedAt": "2026-11-23T12:46:04+08:00",
+  "exportFingerprint": "50884d4217e48b9727845ce7d94a15b760216137",
+  "generatedAt": "2026-11-23T13:57:00+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 668,
+  "componentCount": 695,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -7419,13 +7419,19 @@
       "module": "checkbox",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ checked, color, onChange, disabled, motion, className, onClick, \"aria-label\": ariaLabel, ...props }: { checked?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"color\" | \"onChange\" | \"type\">) => JSX.Element",
+      "signature": "({ checked, indeterminate, color, onChange, disabled, motion, name, value, required, className, onClick, \"aria-label\": ariaLabel, ...props }: { checked?: boolean; indeterminate?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; name?: string; value?: string; required?: boolean; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"color\" | \"onChange\" | \"type\" | \"value\" | \"name\">) => JSX.Element",
       "props": [
         {
           "name": "checked",
           "optional": true,
           "type": "boolean | undefined",
           "description": ""
+        },
+        {
+          "name": "indeterminate",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Partially selected state; shown as a dash and announced as \"mixed\"."
         },
         {
           "name": "color",
@@ -7443,6 +7449,24 @@
           "name": "motion",
           "optional": true,
           "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; the checkbox submits `value` (default \"on\") when checked."
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "required",
+          "optional": true,
+          "type": "boolean | undefined",
           "description": ""
         },
         {
@@ -7485,18 +7509,6 @@
           "name": "formTarget",
           "optional": true,
           "type": "string | undefined",
-          "description": ""
-        },
-        {
-          "name": "name",
-          "optional": true,
-          "type": "string | undefined",
-          "description": ""
-        },
-        {
-          "name": "value",
-          "optional": true,
-          "type": "string | number | readonly string[] | undefined",
           "description": ""
         },
         {
@@ -9173,13 +9185,19 @@
       "module": "checkbox",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ checked, color, onChange, disabled, motion, className, onClick, \"aria-label\": ariaLabel, ...props }: { checked?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"color\" | \"onChange\" | \"type\">) => JSX.Element",
+      "signature": "({ checked, indeterminate, color, onChange, disabled, motion, name, value, required, className, onClick, \"aria-label\": ariaLabel, ...props }: { checked?: boolean; indeterminate?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; name?: string; value?: string; required?: boolean; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"color\" | \"onChange\" | \"type\" | \"value\" | \"name\">) => JSX.Element",
       "props": [
         {
           "name": "checked",
           "optional": true,
           "type": "boolean | undefined",
           "description": ""
+        },
+        {
+          "name": "indeterminate",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Partially selected state; shown as a dash and announced as \"mixed\"."
         },
         {
           "name": "color",
@@ -9197,6 +9215,24 @@
           "name": "motion",
           "optional": true,
           "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; the checkbox submits `value` (default \"on\") when checked."
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "required",
+          "optional": true,
+          "type": "boolean | undefined",
           "description": ""
         },
         {
@@ -9239,18 +9275,6 @@
           "name": "formTarget",
           "optional": true,
           "type": "string | undefined",
-          "description": ""
-        },
-        {
-          "name": "name",
-          "optional": true,
-          "type": "string | undefined",
-          "description": ""
-        },
-        {
-          "name": "value",
-          "optional": true,
-          "type": "string | number | readonly string[] | undefined",
           "description": ""
         },
         {
@@ -10912,13 +10936,105 @@
       ]
     },
     {
+      "name": "CheckboxGroup",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ options, value, defaultValue, onChange, selectAllLabel, name, disabled, color, orientation, ariaLabel, motion, className }: CheckboxGroupProps) => JSX.Element",
+      "props": [
+        {
+          "name": "options",
+          "optional": false,
+          "type": "ChoiceGroupOption[]",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string[]) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "selectAllLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Adds a parent checkbox that selects every option and shows a partial state."
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; each checked option submits its value."
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "orientation",
+          "optional": true,
+          "type": "ChoiceGroupOrientation | undefined",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "CheckboxGroupProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "CheckboxWithLabel",
       "kind": "value",
       "source": "core/src/components/ui/forms/selection-control.tsx",
       "module": "forms/selection-control",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ checked, motion, onChange, label, color, checkboxPosition, icon, avatar, dotColor, disabled, className, }: { checked?: boolean; motion?: MotionPreference; onChange?: (checked: boolean) => void; label: string; color?: ControlColor; checkboxPosition?: \"left\" | \"right\"; icon?: ReactNode; avatar?: string; dotColor?: string; disabled?: boolean; className?: string; }) => JSX.Element",
+      "signature": "({ checked, motion, onChange, label, color, checkboxPosition, icon, avatar, dotColor, disabled, name, value, className, }: { checked?: boolean; motion?: MotionPreference; onChange?: (checked: boolean) => void; name?: string; value?: string; label: string; color?: ControlColor; checkboxPosition?: \"left\" | \"right\"; icon?: ReactNode; avatar?: string; dotColor?: string; disabled?: boolean; className?: string; }) => JSX.Element",
       "props": [
         {
           "name": "checked",
@@ -10936,6 +11052,18 @@
           "name": "onChange",
           "optional": true,
           "type": "((checked: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; submits `value` (default \"on\") when checked."
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
           "description": ""
         },
         {
@@ -11250,6 +11378,33 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/question.tsx",
       "module": "agent/question",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChoiceGroupColor",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChoiceGroupOption",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ChoiceGroupOrientation",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -11725,6 +11880,74 @@
           "description": "Is an object whose properties have the value 'true'\nwhen they will be absent when used in a 'with' statement."
         }
       ]
+    },
+    {
+      "name": "Collapsible",
+      "kind": "value",
+      "source": "core/src/components/ui/collapsible.tsx",
+      "module": "collapsible",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, children, open, defaultOpen, onOpenChange, disabled, motion, className }: CollapsibleProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": "Text or content of the toggle row."
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "CollapsibleProps",
+      "kind": "type",
+      "source": "core/src/components/ui/collapsible.tsx",
+      "module": "collapsible",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ColorPicker",
@@ -14630,6 +14853,50 @@
       "props": []
     },
     {
+      "name": "Fieldset",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ legend, children, disabled, className }: FieldsetProps) => JSX.Element",
+      "props": [
+        {
+          "name": "legend",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "FieldsetProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "FileCard",
       "kind": "value",
       "source": "core/src/components/ui/forms/file-upload.tsx",
@@ -17145,6 +17412,142 @@
       "kind": "type",
       "source": "core/src/components/ui/folder.tsx",
       "module": "folder",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Form",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, onSubmit, errors, validationMode, className }: FormProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onSubmit",
+          "optional": true,
+          "type": "((values: FormValues) => void) | undefined",
+          "description": "Runs only when every field is valid; receives values keyed by field `name`."
+        },
+        {
+          "name": "errors",
+          "optional": true,
+          "type": "Record<string, string | string[]> | undefined",
+          "description": "Server-side errors keyed by field `name`; shown until that field changes."
+        },
+        {
+          "name": "validationMode",
+          "optional": true,
+          "type": "FormValidationMode | undefined",
+          "description": "When fields validate. Invalid fields always re-validate as the user types."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "FormField",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ name, children, label, description, validate, messages, disabled, className }: FormFieldProps) => JSX.Element",
+      "props": [
+        {
+          "name": "name",
+          "optional": false,
+          "type": "string",
+          "description": "Submitted key; also the key for `Form` `errors`."
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": "One field-aware control (see list above)."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "validate",
+          "optional": true,
+          "type": "((value: unknown, values: FormValues) => string | string[] | null | void | Promise<string | string[] | null | void>) | undefined",
+          "description": "Custom rule; return an error message (or messages) to mark the field invalid. May be async."
+        },
+        {
+          "name": "messages",
+          "optional": true,
+          "type": "Partial<Record<ValidityKey, string>> | undefined",
+          "description": "Replace the browser's built-in messages, e.g. `{ valueMissing: \"请填写邮箱\" }`."
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "FormFieldProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "FormProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "FormValidationMode",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "FormValues",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/form.tsx",
+      "module": "forms/form",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -24616,6 +25019,65 @@
       "props": []
     },
     {
+      "name": "Menubar",
+      "kind": "value",
+      "source": "core/src/components/ui/menubar.tsx",
+      "module": "menubar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ menus, accent, ariaLabel, className, motion }: MenubarProps) => JSX.Element",
+      "props": [
+        {
+          "name": "menus",
+          "optional": false,
+          "type": "MenubarMenu[]",
+          "description": ""
+        },
+        {
+          "name": "accent",
+          "optional": true,
+          "type": "AccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "MenubarMenu",
+      "kind": "type",
+      "source": "core/src/components/ui/menubar.tsx",
+      "module": "menubar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "MenubarProps",
+      "kind": "type",
+      "source": "core/src/components/ui/menubar.tsx",
+      "module": "menubar",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "MenuItem",
       "kind": "value",
       "source": "core/src/components/ui/menu-item.tsx",
@@ -24872,7 +25334,7 @@
       "module": "charts/meter-chart",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ segments, accent, trend, trendDirection, subtitle, height, }: MeterChartProps) => JSX.Element",
+      "signature": "({ segments, accent, trend, trendDirection, subtitle, height, ariaLabel, }: MeterChartProps) => JSX.Element",
       "props": [
         {
           "name": "segments",
@@ -24909,6 +25371,12 @@
           "optional": true,
           "type": "string | undefined",
           "description": "Meter bar height class. Default h-24 (96px) per figma."
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Accessible name; defaults to `subtitle`."
         }
       ]
     },
@@ -25083,6 +25551,68 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "NavigationMenu",
+      "kind": "value",
+      "source": "core/src/components/ui/navigation-menu.tsx",
+      "module": "navigation-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, ariaLabel, className, motion }: NavigationMenuProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "NavigationMenuItem[]",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "NavigationMenuItem",
+      "kind": "type",
+      "source": "core/src/components/ui/navigation-menu.tsx",
+      "module": "navigation-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "NavigationMenuLink",
+      "kind": "type",
+      "source": "core/src/components/ui/navigation-menu.tsx",
+      "module": "navigation-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "NavigationMenuProps",
+      "kind": "type",
+      "source": "core/src/components/ui/navigation-menu.tsx",
+      "module": "navigation-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "NotificationBadge",
@@ -29021,6 +29551,92 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "RadioGroup",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ options, value, defaultValue, onChange, name, required, disabled, color, orientation, ariaLabel, className }: RadioGroupProps) => JSX.Element",
+      "props": [
+        {
+          "name": "options",
+          "optional": false,
+          "type": "ChoiceGroupOption[]",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; submits the chosen value."
+        },
+        {
+          "name": "required",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "orientation",
+          "optional": true,
+          "type": "ChoiceGroupOrientation | undefined",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Accessible name when there is no visible group label."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "RadioGroupProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "RadioWithLabel",
@@ -37854,7 +38470,7 @@
       "module": "forms/selection-control",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ checked, defaultChecked, motion, onChange, color, disabled, size, ariaLabel, draggable, thumbIcon, }: ToggleProps) => JSX.Element",
+      "signature": "({ checked, defaultChecked, motion, onChange, color, disabled, size, ariaLabel, draggable, thumbIcon, name, value, }: ToggleProps) => JSX.Element",
       "props": [
         {
           "name": "checked",
@@ -37915,8 +38531,103 @@
           "optional": true,
           "type": "ReactNode",
           "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; submits `value` (default \"on\") when on."
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
         }
       ]
+    },
+    {
+      "name": "ToggleGroup",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "(props: ToggleGroupProps) => JSX.Element",
+      "props": [
+        {
+          "name": "options",
+          "optional": false,
+          "type": "ToggleGroupOption[]",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "multiple",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | string[] | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string | null) => void) | ((value: string[]) => void) | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ToggleGroupOption",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ToggleGroupProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/choice-groups.tsx",
+      "module": "forms/choice-groups",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ToggleProps",

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 11f90a91d7b8fd7f79a2251f82a680ca40fcf11eb44042f63216a02dc1018cbe
+Source fingerprint: 9cb45706059353c76a3775212c330cc924dfc39e02e6f8692be0fd20769c4a56
 
 ## Adopted rules / 采用规则
 
@@ -288,7 +288,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (668, values and types distinguished)
+## Public exports (695, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -487,6 +487,8 @@ export function ModuleOverview() {
 - Checkbox [value] — core/src/components/ui/checkbox.tsx
 - CheckboxColor [type] — core/src/components/ui/checkbox.tsx
 - CheckboxControl [value] — core/src/components/ui/checkbox.tsx
+- CheckboxGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- CheckboxGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - CheckboxWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - CheckIcon [value] — core/src/components/ui/plain-icons.tsx
 - Checklist [value] — core/src/components/ui/checklist.tsx
@@ -498,6 +500,9 @@ export function ModuleOverview() {
 - ChoiceAnswer [type] — core/src/components/ui/agent/question.tsx
 - ChoiceCard [value] — core/src/components/ui/agent/question.tsx
 - ChoiceCardProps [type] — core/src/components/ui/agent/question.tsx
+- ChoiceGroupColor [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOrientation [type] — core/src/components/ui/forms/choice-groups.tsx
 - ChoiceOption [type] — core/src/components/ui/agent/question.tsx
 - CircleIcon [value] — core/src/components/ui/badge.tsx
 - CircleIconColor [type] — core/src/components/ui/badge.tsx
@@ -510,6 +515,8 @@ export function ModuleOverview() {
 - CitedAnswerProps [type] — core/src/components/ui/agent/cited-answer.tsx
 - CloseIcon [value] — core/src/components/ui/plain-icons.tsx
 - cn [value] — core/src/lib/utils.ts
+- Collapsible [value] — core/src/components/ui/collapsible.tsx
+- CollapsibleProps [type] — core/src/components/ui/collapsible.tsx
 - ColorPicker [value] — core/src/components/ui/forms/icon-selector.tsx
 - ColorScaleStop [type] — core/src/components/ui/style-guide.tsx
 - ColorSection [value] — core/src/components/ui/style-guide.tsx
@@ -606,6 +613,8 @@ export function ModuleOverview() {
 - EventTagColor [type] — core/src/components/ui/event-tag.tsx
 - EventTagSize [type] — core/src/components/ui/event-tag.tsx
 - EventTagVariant [type] — core/src/components/ui/event-tag.tsx
+- Fieldset [value] — core/src/components/ui/forms/form.tsx
+- FieldsetProps [type] — core/src/components/ui/forms/form.tsx
 - FileCard [value] — core/src/components/ui/forms/file-upload.tsx
 - FileInput [value] — core/src/components/ui/forms/file-input.tsx
 - FileInputProps [type] — core/src/components/ui/forms/file-input.tsx
@@ -631,6 +640,12 @@ export function ModuleOverview() {
 - FolderFloatProps [type] — core/src/components/ui/folder-float.tsx
 - FolderItem [type] — core/src/components/ui/folder.tsx
 - FolderProps [type] — core/src/components/ui/folder.tsx
+- Form [value] — core/src/components/ui/forms/form.tsx
+- FormField [value] — core/src/components/ui/forms/form.tsx
+- FormFieldProps [type] — core/src/components/ui/forms/form.tsx
+- FormProps [type] — core/src/components/ui/forms/form.tsx
+- FormValidationMode [type] — core/src/components/ui/forms/form.tsx
+- FormValues [type] — core/src/components/ui/forms/form.tsx
 - FullCalendar [value] — core/src/components/ui/full-calendar.tsx
 - FullWidthTable [value] — core/src/components/ui/data-table.tsx
 - FullWidthTableProps [type] — core/src/components/ui/data-table.tsx
@@ -720,6 +735,9 @@ export function ModuleOverview() {
 - MediaItem [type] — core/src/components/ui/forms/media-upload.tsx
 - MediaUpload [value] — core/src/components/ui/forms/media-upload.tsx
 - MediaUploadColor [type] — core/src/components/ui/forms/media-upload.tsx
+- Menubar [value] — core/src/components/ui/menubar.tsx
+- MenubarMenu [type] — core/src/components/ui/menubar.tsx
+- MenubarProps [type] — core/src/components/ui/menubar.tsx
 - MenuItem [value] — core/src/components/ui/menu-item.tsx
 - MenuItemAccent [type] — core/src/components/ui/menu-item.tsx
 - MenuItemIntent [type] — core/src/components/ui/menu-item.tsx
@@ -735,6 +753,10 @@ export function ModuleOverview() {
 - ModalProps [type] — core/src/components/ui/modal.tsx
 - MotionPreference [type] — core/src/lib/motion.ts
 - MultilayerDonutChart [value] — core/src/components/ui/charts/multilayer-donut-chart.tsx
+- NavigationMenu [value] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuItem [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuLink [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuProps [type] — core/src/components/ui/navigation-menu.tsx
 - NotificationBadge [value] — core/src/components/ui/badge.tsx
 - NotificationBadgeColor [type] — core/src/components/ui/badge.tsx
 - NotificationItem [value] — core/src/components/ui/notification-item.tsx
@@ -807,6 +829,8 @@ export function ModuleOverview() {
 - QuestionProps [type] — core/src/components/ui/agent/question.tsx
 - QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
+- RadioGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- RadioGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - RadioWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - RatingStars [value] — core/src/components/ui/rating-stars.tsx
 - RatingStarsSize [type] — core/src/components/ui/rating-stars.tsx
@@ -906,6 +930,9 @@ export function ModuleOverview() {
 - ToastOptions [type] — core/src/components/ui/toast.tsx
 - ToastProvider [value] — core/src/components/ui/toast.tsx
 - Toggle [value] — core/src/components/ui/forms/selection-control.tsx
+- ToggleGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - ToggleProps [type] — core/src/components/ui/forms/selection-control.tsx
 - Toolbar [value] — core/src/components/ui/toolbar.tsx
 - ToolbarActions [value] — core/src/components/ui/toolbar.tsx
