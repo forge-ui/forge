@@ -9,7 +9,6 @@ import { TextField } from "../src/components/ui/forms/text-field";
 import { Datepicker } from "../src/components/ui/forms/datepicker";
 import { RatingStars } from "../src/components/ui/rating-stars";
 import { TabsContent } from "../src/components/ui/tabs-content";
-import { ButtonGroup } from "../src/components/ui/button-group";
 import { TaskCard } from "../src/components/ui/task-card";
 import { Button } from "../src/components/ui/button";
 import { OtpInput } from "../src/components/ui/otp-input";
@@ -131,17 +130,6 @@ test("TabsContent scroll reports fractional progress and makes only the selected
     const panels = [...document.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
     assert.equal(panels.filter(panel => !panel.hasAttribute("inert")).length, 1);
     assert.equal(panels[2].hasAttribute("inert"), false);
-  } finally { await env.close(); }
-});
-
-test("ButtonGroup supports arrows and Home/End without changing the controlled selection", async () => {
-  const env = await setup(), changes: number[] = [];
-  try {
-    await env.render(<ButtonGroup items={[{ label: "Day" }, { label: "Week" }, { label: "Month" }]} activeIndex={1} onChange={i => changes.push(i)} motion="none" />);
-    const buttons = [...document.querySelectorAll<HTMLButtonElement>('button')];
-    await env.key(buttons[1], "ArrowRight"); assert.equal(document.activeElement, buttons[2]);
-    await env.key(buttons[2], "Home"); assert.equal(document.activeElement, buttons[0]);
-    assert.deepEqual(changes, [2, 0]); assert.equal(buttons[1].getAttribute("aria-pressed"), "true");
   } finally { await env.close(); }
 });
 

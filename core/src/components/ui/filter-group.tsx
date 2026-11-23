@@ -1,6 +1,10 @@
 "use client";
 
-import { useId, useState, type ReactNode } from "react";
+import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+import { Radio as RadioPrimitive } from "@base-ui/react/radio";
+import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
+import { useState, type ReactNode } from "react";
 import {
   AddSquareLinear,
   MinusSquareLinear,
@@ -62,7 +66,6 @@ export function FilterGroup({
 }) {
   const computedDefaultOpen = defaultOpen ?? content.type !== "empty";
   const [open, setOpen] = useState(computedDefaultOpen);
-  const radioName = useId();
 
   // range 分组在 Figma 中不展示右侧 accent bar
   const selectionVisible =
@@ -76,10 +79,8 @@ export function FilterGroup({
             : false));
 
   return (
-    <div className="self-stretch bg-fg-grey-50 rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
+    <CollapsiblePrimitive.Root open={open} onOpenChange={setOpen} className="self-stretch bg-fg-grey-50 rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden">
+      <CollapsiblePrimitive.Trigger
         className="self-stretch px-4 py-3 border-b border-fg-grey-200 inline-flex justify-start items-center gap-2"
       >
         <span className="flex-1 text-left text-fg-black text-sm font-medium leading-5 tracking-fg">
@@ -92,10 +93,10 @@ export function FilterGroup({
             <AddSquareLinear size={20} />
           )}
         </span>
-      </button>
+      </CollapsiblePrimitive.Trigger>
 
-      {open && content.type !== "empty" && (
-        <div className="self-stretch bg-background flex justify-start items-stretch">
+      {content.type !== "empty" && (
+        <CollapsiblePrimitive.Panel className="self-stretch bg-background flex justify-start items-stretch">
           <div className="flex-1 p-4 flex flex-col gap-4">
             {content.type === "checkbox" &&
               content.options.map((option) => (
@@ -106,16 +107,18 @@ export function FilterGroup({
                   onToggle={(checked) => content.onToggle?.(option.value, checked)}
                 />
               ))}
-            {content.type === "radio" &&
-              content.options.map((option) => (
-                <RadioRow
-                  key={option.value}
-                  color={color}
-                  name={radioName}
-                  option={option}
-                  onSelect={() => content.onSelect?.(option.value)}
-                />
-              ))}
+            {content.type === "radio" && (
+              <RadioGroupPrimitive
+                aria-label={typeof title === "string" ? title : undefined}
+                value={content.options.find((option) => option.checked)?.value ?? null}
+                onValueChange={(value) => content.onSelect?.(value as string)}
+                className="flex flex-col gap-4"
+              >
+                {content.options.map((option) => (
+                  <RadioRow key={option.value} color={color} option={option} />
+                ))}
+              </RadioGroupPrimitive>
+            )}
             {content.type === "range" && (
               <>
                 <RangeField
@@ -134,9 +137,9 @@ export function FilterGroup({
             )}
           </div>
           <AccentBar color={color} visible={selectionVisible} />
-        </div>
+        </CollapsiblePrimitive.Panel>
       )}
-    </div>
+    </CollapsiblePrimitive.Root>
   );
 }
 
@@ -159,14 +162,12 @@ function CheckboxRow({
 }) {
   const checked = option.checked ?? false;
   return (
-    <label className="self-stretch inline-flex items-start gap-2 cursor-pointer">
+    <CheckboxPrimitive.Root
+      checked={checked}
+      onCheckedChange={(next) => onToggle(next)}
+      className="self-stretch inline-flex items-start gap-2 cursor-pointer rounded-md outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg-blue"
+    >
       <CheckboxBox color={color} checked={checked} />
-      <input
-        type="checkbox"
-        className="sr-only"
-        checked={checked}
-        onChange={(e) => onToggle(e.target.checked)}
-      />
       <span className="flex items-start gap-1">
         {option.colorDot && (
           <span
@@ -178,7 +179,7 @@ function CheckboxRow({
           {option.label}
         </SelectionLabel>
       </span>
-    </label>
+    </CheckboxPrimitive.Root>
   );
 }
 
@@ -214,18 +215,17 @@ function CheckboxBox({
 
 function RadioRow({
   color,
-  name,
   option,
-  onSelect,
 }: {
   color: FilterGroupColor;
-  name: string;
   option: FilterGroupRadioOption;
-  onSelect: () => void;
 }) {
   const checked = option.checked ?? false;
   return (
-    <label className="self-stretch inline-flex items-start gap-2 cursor-pointer">
+    <RadioPrimitive.Root
+      value={option.value}
+      className="self-stretch inline-flex items-start gap-2 cursor-pointer rounded-md outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg-blue"
+    >
       {checked ? (
         <span className={`p-[5px] rounded-full flex items-start ${accentColors[color].bg}`}>
           <span className="w-2.5 h-2.5 bg-white rounded-full" />
@@ -233,18 +233,10 @@ function RadioRow({
       ) : (
         <span className="w-5 h-5 bg-background rounded-full border-2 border-fg-grey-200 inline-block" />
       )}
-      <input
-        type="radio"
-        name={name}
-        value={option.value}
-        className="sr-only"
-        checked={checked}
-        onChange={() => onSelect()}
-      />
       <SelectionLabel color={color} checked={checked}>
         {option.label}
       </SelectionLabel>
-    </label>
+    </RadioPrimitive.Root>
   );
 }
 

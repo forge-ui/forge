@@ -18,6 +18,7 @@ import { Collapsible } from "../src/components/ui/collapsible";
 import { Menubar } from "../src/components/ui/menubar";
 import { NavigationMenu } from "../src/components/ui/navigation-menu";
 import { IconSelector } from "../src/components/ui/forms/icon-selector";
+import { ButtonGroup } from "../src/components/ui/button-group";
 import { FilterTrigger } from "../src/components/ui/filter-trigger";
 import { ToolbarSelectDropdown } from "../src/components/ui/toolbar";
 const protocol = "node:";
@@ -428,5 +429,20 @@ test("ToolbarSelectDropdown is a radio menu that reports the chosen value", asyn
     await click(items[1]);
     assert.deepEqual(values, ["month"]);
     assert.equal(trigger.getAttribute("aria-expanded"), "false");
+  } finally { await env.cleanup(); }
+});
+
+test("ButtonGroup moves focus with arrows and Home/End and reports each selection", async () => {
+  const env = setup(); const changes: number[] = [];
+  try {
+    await act(async () => env.root.render(<ButtonGroup items={[{ label: "Day" }, { label: "Week" }, { label: "Month" }]} activeIndex={1} onChange={index => changes.push(index)} motion="none" />));
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>("button")];
+    await act(async () => buttons[1].focus());
+    await press(buttons[1], "ArrowRight");
+    assert.ok(document.activeElement === buttons[2], "ArrowRight moves focus");
+    await press(buttons[2], "Home");
+    assert.ok(document.activeElement === buttons[0], "Home moves focus");
+    assert.deepEqual(changes, [2, 0]);
+    assert.equal(buttons[1].getAttribute("aria-pressed"), "true", "selection stays controlled");
   } finally { await env.cleanup(); }
 });

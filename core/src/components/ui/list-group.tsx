@@ -1,5 +1,6 @@
 "use client";
 
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import type { CardDensity } from "./card-utils";
 
 import { type ReactNode } from "react";
@@ -39,8 +40,10 @@ export function ListGroup({
   className?: string;
 }) {
   const accent = accentColors[color];
+  const hasTabs = Boolean(tabs && tabs.length > 0);
+  const itemsClass = cn("self-stretch flex flex-col", density === "compact" ? "px-4 py-4 gap-3" : "px-5 py-5 gap-4");
 
-  return (
+  const card = (
     <div
       className={cn(
         "bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex flex-col justify-start items-stretch overflow-hidden",
@@ -75,21 +78,18 @@ export function ListGroup({
         )}
       </div>
 
-      {tabs && tabs.length > 0 && (
+      {hasTabs && (
         <div className="self-stretch px-5 pt-5">
-          <div
-            role="tablist"
+          <TabsPrimitive.List
+            activateOnFocus
             className="p-1 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex w-full"
           >
-            {tabs.map((tab) => {
+            {tabs!.map((tab) => {
               const isActive = tab.value === activeTab;
               return (
-                <button
+                <TabsPrimitive.Tab
                   key={tab.value}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => onTabChange?.(tab.value)}
+                  value={tab.value}
                   className={cn(
                     "flex-1 rounded-full text-sm transition-colors",
                     "px-3.5 py-2.5",
@@ -99,15 +99,21 @@ export function ListGroup({
                   )}
                 >
                   {tab.label}
-                </button>
+                </TabsPrimitive.Tab>
               );
             })}
-          </div>
+          </TabsPrimitive.List>
         </div>
       )}
 
-      <div className={cn("self-stretch flex flex-col", density === "compact" ? "px-4 py-4 gap-3" : "px-5 py-5 gap-4")}>{items}</div>
+      {hasTabs ? <TabsPrimitive.Panel value={activeTab ?? tabs![0].value} className={itemsClass}>{items}</TabsPrimitive.Panel> : <div className={itemsClass}>{items}</div>}
     </div>
+  );
+  if (!hasTabs) return card;
+  return (
+    <TabsPrimitive.Root value={activeTab ?? tabs![0].value} onValueChange={(value) => onTabChange?.(value as string)} render={<div className="contents" />}>
+      {card}
+    </TabsPrimitive.Root>
   );
 }
 

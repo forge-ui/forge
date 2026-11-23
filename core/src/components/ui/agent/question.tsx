@@ -1,5 +1,6 @@
 "use client";
 
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear } from "../../../icons";
 import { AgentCard, CardActions, ChoiceMark, SoftBadge, accentButton, fieldInput } from "../../../internal/agent-kit";
@@ -191,12 +192,11 @@ export function Question({ questions, onSubmit, onCancel, skippable = false, ans
             {item.options.map(option => {
               const on = answer.optionIds.includes(option.id);
               return (
-                <button
+                <TogglePrimitive
                   key={option.id}
-                  type="button"
                   disabled={disabled}
-                  aria-pressed={on}
-                  onClick={() => choose(option)}
+                  pressed={on}
+                  onPressedChange={() => choose(option)}
                   className={cn("flex items-start gap-2.5 rounded-xl px-3 py-2 text-left text-sm transition-colors disabled:opacity-50", on ? "bg-accent-soft text-accent" : "text-fg-black hover:bg-fg-grey-100")}
                 >
                   <span className="pt-0.5"><ChoiceMark multiple={item.multiple} on={on} /></span>
@@ -204,7 +204,7 @@ export function Question({ questions, onSubmit, onCancel, skippable = false, ans
                     <span className="flex flex-wrap items-center gap-2 font-medium">{option.label}{option.recommended && <SoftBadge tone="blue">{pick(locale, "推荐", "Recommended")}</SoftBadge>}</span>
                     {option.description && <span className={cn("text-xs", on ? "text-accent" : "text-fg-grey-500")}>{option.description}</span>}
                   </span>
-                </button>
+                </TogglePrimitive>
               );
             })}
           </div>
