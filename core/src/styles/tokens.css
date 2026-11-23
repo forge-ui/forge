@@ -1580,3 +1580,7 @@ body {
 .forge-disclosure-panel[data-starting-style], .forge-disclosure-panel[data-ending-style] { height: 0; opacity: 0; }
 .forge-disclosure-panel[data-motion="auto"] { transition: height 200ms cubic-bezier(.2,.8,.2,1), opacity 200ms cubic-bezier(.2,.8,.2,1); }
 @media (prefers-reduced-motion: reduce) { .forge-disclosure-panel { transition: none; } }
+
+/* DataTable pinned columns: a soft edge where scrolled content slides under. */
+.forge-table-pin-left { box-shadow: 6px 0 8px -6px rgb(77 84 100 / .16); }
+.forge-table-pin-right { box-shadow: -6px 0 8px -6px rgb(77 84 100 / .16); }

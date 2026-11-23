@@ -206,6 +206,9 @@ export {
   TimePicker,
   TagInput,
   Transfer,
+  DateTimePicker,
+  PeriodPicker,
+  TreeSelect,
 } from "./forms";
 export type {
   ToggleProps,
@@ -270,6 +273,10 @@ export type {
   TagInputProps,
   TransferProps,
   TransferItem,
+  DateTimePickerProps,
+  PeriodPickerProps,
+  PeriodGranularity,
+  TreeSelectProps,
 } from "./forms";
 
 // Dialog & Overlay
@@ -400,6 +407,7 @@ export type {
   DataTableColor,
   DataTableProps,
   FullWidthTableProps,
+  TableCellEdit,
 } from "./data-table";
 
 // Shared accent colors

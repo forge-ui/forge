@@ -40,6 +40,101 @@ function parse(value: string | undefined) {
   return [Number(match[1]), Number(match[2]), Number(match[3] ?? 0)] as const;
 }
 
+export type TimeParts = readonly [number, number, number];
+
+/** Scrollable hour / minute (/ second) listboxes shared by TimePicker and DateTimePicker. */
+export function TimeColumns({ value, onChange, withSeconds = false, step = 1, color = "blue", locale = "zh", onEnter, className }: {
+  value: TimeParts | null;
+  onChange: (parts: TimeParts) => void;
+  withSeconds?: boolean;
+  step?: number;
+  color?: FormAccentColor;
+  locale?: "zh" | "en";
+  onEnter?: () => void;
+  className?: string;
+}) {
+  const idPrefix = useId();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const accent = formAccents[color];
+  const parts = withSeconds ? 3 : 2;
+  const columns = [
+    { label: locale === "en" ? "Hours" : "时", values: range(24) },
+    { label: locale === "en" ? "Minutes" : "分", values: range(60, step) },
+    { label: locale === "en" ? "Seconds" : "秒", values: range(60, step) },
+  ].slice(0, parts);
+  const key = value?.join(":") ?? "";
+
+  // Keep the chosen value centred in each column.
+  useLayoutEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      rootRef.current?.querySelectorAll<HTMLElement>('[role="option"][aria-selected="true"]').forEach(option => {
+        const list = option.parentElement!;
+        list.scrollTop = option.offsetTop - list.clientHeight / 2 + option.offsetHeight / 2;
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [key]);
+
+  function pick(column: number, number: number) {
+    const base: number[] = value ? [...value] : [0, 0, 0];
+    base[column] = number;
+    onChange([base[0], base[1], base[2]]);
+  }
+
+  function onColumnKeyDown(event: KeyboardEvent<HTMLUListElement>, column: number) {
+    const values = columns[column].values;
+    const index = Math.max(0, values.indexOf(value?.[column] ?? -1));
+    const delta = event.key === "ArrowDown" ? 1 : event.key === "ArrowUp" ? -1 : 0;
+    if (delta) {
+      event.preventDefault();
+      pick(column, values[(index + delta + values.length) % values.length]);
+    } else if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+      event.preventDefault();
+      const lists = rootRef.current?.querySelectorAll<HTMLElement>('[role="listbox"]');
+      lists?.[(column + (event.key === "ArrowRight" ? 1 : -1) + parts) % parts]?.focus();
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      if (!value) onChange([0, 0, 0]);
+      onEnter?.();
+    }
+  }
+
+  return (
+    <div ref={rootRef} className={cn("flex", className)}>
+      {columns.map((column, index) => (
+        <ul
+          key={column.label}
+          role="listbox"
+          tabIndex={0}
+          aria-label={column.label}
+          aria-activedescendant={value ? `${idPrefix}-${index}-${value[index]}` : undefined}
+          onKeyDown={event => onColumnKeyDown(event, index)}
+          className="m-0 flex h-64 w-16 list-none flex-col overflow-y-auto border-r border-fg-grey-100 p-1.5 outline-none [scrollbar-width:none] last:border-r-0 focus-visible:bg-fg-grey-50"
+        >
+          {column.values.map(number => {
+            const selected = value?.[index] === number;
+            return (
+              <li
+                key={number}
+                id={`${idPrefix}-${index}-${number}`}
+                role="option"
+                aria-selected={selected}
+                onClick={() => pick(index, number)}
+                className={cn(
+                  "flex h-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-sm tabular-nums tracking-fg",
+                  selected ? cn("font-semibold text-white", accent.bg) : "text-fg-grey-900 hover:bg-fg-grey-100",
+                )}
+              >
+                {pad(number)}
+              </li>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
+  );
+}
+
 /** Time of day in scrollable hour / minute (/ second) columns. */
 export function TimePicker({ value, defaultValue, onChange, withSeconds = false, step = 1, label, placeholder, clearable = true, disabled = false, errorMessage, name, color = "blue", shape = "rounded", motion = "auto", locale = "zh", width, className }: TimePickerProps) {
   const [inner, setInner] = useState(defaultValue ?? "");
@@ -53,11 +148,6 @@ export function TimePicker({ value, defaultValue, onChange, withSeconds = false,
   const accent = formAccents[color];
   const state = disabled ? "disabled" : errorMessage ? "error" : "idle";
   const parts = withSeconds ? 3 : 2;
-  const columns = [
-    { label: locale === "en" ? "Hours" : "时", values: range(24) },
-    { label: locale === "en" ? "Minutes" : "分", values: range(60, step) },
-    { label: locale === "en" ? "Seconds" : "秒", values: range(60, step) },
-  ].slice(0, parts);
 
   function format(next: readonly number[]) {
     return next.slice(0, parts).map(pad).join(":");
@@ -65,41 +155,6 @@ export function TimePicker({ value, defaultValue, onChange, withSeconds = false,
   function set(next: string) {
     if (value === undefined) setInner(next);
     onChange?.(next);
-  }
-  function pick(column: number, number: number) {
-    const base = parsed ? [...parsed] : [0, 0, 0];
-    base[column] = number;
-    set(format(base));
-  }
-
-  // Keep the chosen value centred in each column when the panel opens or changes.
-  useLayoutEffect(() => {
-    if (!open) return;
-    const frame = requestAnimationFrame(() => {
-      panelRef.current?.querySelectorAll<HTMLElement>('[role="option"][aria-selected="true"]').forEach(option => {
-        const list = option.parentElement!;
-        list.scrollTop = option.offsetTop - list.clientHeight / 2 + option.offsetHeight / 2;
-      });
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [open, current]);
-
-  function onColumnKeyDown(event: KeyboardEvent<HTMLUListElement>, column: number) {
-    const values = columns[column].values;
-    const index = Math.max(0, values.indexOf(parsed?.[column] ?? -1));
-    const delta = event.key === "ArrowDown" ? 1 : event.key === "ArrowUp" ? -1 : 0;
-    if (delta) {
-      event.preventDefault();
-      pick(column, values[(index + delta + values.length) % values.length]);
-    } else if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-      event.preventDefault();
-      const lists = panelRef.current?.querySelectorAll<HTMLElement>('[role="listbox"]');
-      lists?.[(column + (event.key === "ArrowRight" ? 1 : -1) + parts) % parts]?.focus();
-    } else if (event.key === "Enter") {
-      event.preventDefault();
-      if (!parsed) set(format([0, 0, 0]));
-      setOpen(false);
-    }
   }
 
   return (
@@ -132,38 +187,7 @@ export function TimePicker({ value, defaultValue, onChange, withSeconds = false,
               initialFocus={() => panelRef.current?.querySelector<HTMLElement>('[role="listbox"]') ?? true}
               className="forge-popup flex flex-col rounded-xl bg-background shadow-[0px_4px_30px_0px_rgba(77,84,100,0.08)] outline outline-1 outline-offset-[-1px] outline-fg-grey-100"
             >
-              <div className="flex">
-                {columns.map((column, index) => (
-                  <ul
-                    key={column.label}
-                    role="listbox"
-                    tabIndex={0}
-                    aria-label={column.label}
-                    aria-activedescendant={parsed ? `${triggerId}-${index}-${parsed[index]}` : undefined}
-                    onKeyDown={event => onColumnKeyDown(event, index)}
-                    className="m-0 flex h-64 w-16 list-none flex-col overflow-y-auto border-r border-fg-grey-100 p-1.5 outline-none [scrollbar-width:none] last:border-r-0 focus-visible:bg-fg-grey-50"
-                  >
-                    {column.values.map(number => {
-                      const selected = parsed?.[index] === number;
-                      return (
-                        <li
-                          key={number}
-                          id={`${triggerId}-${index}-${number}`}
-                          role="option"
-                          aria-selected={selected}
-                          onClick={() => pick(index, number)}
-                          className={cn(
-                            "flex h-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-sm tabular-nums tracking-fg",
-                            selected ? cn("font-semibold text-white", accent.bg) : "text-fg-grey-900 hover:bg-fg-grey-100",
-                          )}
-                        >
-                          {pad(number)}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ))}
-              </div>
+              <TimeColumns value={parsed} onChange={next => set(format(next))} withSeconds={withSeconds} step={step} color={color} locale={locale} onEnter={() => setOpen(false)} />
               <div className="flex items-center justify-between gap-2 border-t border-fg-grey-100 px-3 py-2">
                 <button type="button" className={cn("text-sm font-medium cursor-pointer", accent.text)} onClick={() => { const now = new Date(); set(format([now.getHours(), now.getMinutes() - (now.getMinutes() % step), 0])); }}>
                   {locale === "en" ? "Now" : "此刻"}

@@ -58,6 +58,7 @@ export function Datepicker({
   confirmSelection = false,
   rangeLabels,
   inline = false,
+  calendarOnly = false,
   minDate,
   maxDate,
   state = "idle",
@@ -76,6 +77,8 @@ export function Datepicker({
   /** Optional separate start/end triggers. */
   rangeLabels?: [string, string];
   inline?: boolean;
+  /** Render only the calendar panel (no field), to embed it in your own layout. */
+  calendarOnly?: boolean;
   minDate?: Date;
   maxDate?: Date;
   rangeStart?: Date;
@@ -408,6 +411,10 @@ export function Datepicker({
             )}
           </>
   );
+
+  if (calendarOnly) {
+    return <div ref={panelRef} role="group" aria-label={label ?? placeholder} className={cn("w-80 max-w-full", className)}>{panelBody}</div>;
+  }
 
   return (
     <div className="flex flex-col" ref={ref}>
