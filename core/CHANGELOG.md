@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.2
+
+审计发现的问题修复，不涉及新功能。
+
+- TreeSelect 多选：搜索后勾选某一项，不再把只勾了一部分的上级一起上报为已选。
+- DataTable 树形行：使用按行号的 `selectedRows` / `onSelectRow` 时只有顶层行可勾选（之前勾子行会选中另一个顶层行）；子行按层级编号，如「第 1.1 行」。树形行请让 `getRowKey` 返回行 id。
+- DataTable 固定列在列宽变化后重新计算位置；行内编辑按 Esc 取消后不会再保存；固定表头上沿不再露出 1px 行内容；分页摘要不再折行。
+- 弹窗里再打开弹窗时，后一层重新带上自己的遮罩。
+- AppLayout 语言菜单当前语言那一行保持主题色底；侧栏消息角标不再被裁切。
+- DateTimePicker 限制在 `minDate` / `maxDate` 范围内；PeriodPicker 在 `minDate` 带时刻时不再误禁用整个期间。
+- Tree 的焦点框只出现在当前行；TagInput 粘贴按 `separators` 拆分，合格的值照常添加，不合格的留在输入框里提示。
+
 ## 0.11.1
 
 - ProgressBar、MeterChart 和 DropdownDivider 补上 `"use client"`。0.11.0 里在服务端组件中直接使用 ProgressBar 或 MeterChart 会在构建时报错（函数不能传给客户端组件）。

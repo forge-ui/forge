@@ -1,7 +1,7 @@
 "use client";
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 import { cn } from "../lib/utils";
 import type { MotionPreference } from "../lib/motion";
 import { useReducedMotion } from "./motion";
@@ -98,7 +98,10 @@ export function Disclosure({ open, onOpenChange, disabled, className, children, 
   return <CollapsiblePrimitive.Root {...attributes} open={open} onOpenChange={next => onOpenChange?.(next)} disabled={disabled} className={className}>{children}</CollapsiblePrimitive.Root>;
 }
 
-export const DisclosureTrigger = CollapsiblePrimitive.Trigger;
+/** The toggle of a Disclosure; a native button that gets aria-expanded / aria-controls. */
+export function DisclosureTrigger(props: ButtonHTMLAttributes<HTMLButtonElement>) {
+  return <CollapsiblePrimitive.Trigger {...props} />;
+}
 
 export function DisclosurePanel({ motion = "auto", children, className }: { motion?: MotionPreference; children: ReactNode; className?: string }) {
   const reduced = useReducedMotion(motion);

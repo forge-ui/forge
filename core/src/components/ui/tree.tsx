@@ -171,13 +171,12 @@ export function Tree({ nodes, ariaLabel, expandedIds, defaultExpandedIds = [], o
         aria-disabled={node.disabled || undefined}
         tabIndex={node.id === focusId ? 0 : -1}
         onFocus={event => { if (event.target === event.currentTarget) setActiveId(node.id); }}
-        className="outline-none group/tree"
+        className="outline-none [&:focus-visible>div]:outline-2 [&:focus-visible>div]:outline-offset-[-2px] [&:focus-visible>div]:outline-fg-blue"
       >
         <div
           onClick={() => { setActiveId(node.id); if (hasChildren && !checkable && !onSelect) toggleExpanded(node.id); activate({ node, depth, parentId: null, expanded: open, hasChildren }); }}
           className={cn(
             "flex h-9 items-center gap-1.5 rounded-xl pr-3 text-sm leading-5 tracking-fg transition-colors cursor-pointer",
-            "group-focus-visible/tree:outline-2 group-focus-visible/tree:outline-offset-[-2px] group-focus-visible/tree:outline-fg-blue",
             selected ? "bg-accent-soft font-medium text-accent" : "text-fg-black hover:bg-fg-grey-100",
             node.disabled && "cursor-not-allowed opacity-50 hover:bg-transparent",
           )}

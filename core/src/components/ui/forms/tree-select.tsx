@@ -46,6 +46,17 @@ function textOf(node: TreeNode) {
   return typeof node.label === "string" || typeof node.label === "number" ? String(node.label) : node.id;
 }
 
+/** Rebuild checked parents against the whole tree, so a search-filtered view cannot mark a partly checked parent. */
+function normalizeChecked(ids: string[], index: Map<string, { node: TreeNode; parents: string[] }>) {
+  const leaves = new Set(ids.filter(id => !index.get(id)?.node.children?.length));
+  const enabledLeaves = (node: TreeNode): string[] => node.disabled ? [] : node.children?.length ? node.children.flatMap(enabledLeaves) : [node.id];
+  const parents = [...index.values()].filter(({ node }) => node.children?.length).map(({ node }) => node).filter(node => {
+    const branch = enabledLeaves(node);
+    return branch.length > 0 && branch.every(id => leaves.has(id));
+  }).map(node => node.id);
+  return [...leaves, ...parents];
+}
+
 function filterNodes(nodes: TreeNode[], query: string): TreeNode[] {
   const lower = query.toLowerCase();
   return nodes.flatMap(node => {
@@ -142,7 +153,7 @@ export function TreeSelect(props: TreeSelectProps) {
                 {visibleNodes.length === 0 ? (
                   <p className="px-3 py-6 text-center text-sm text-fg-grey-500">{locale === "en" ? "No matches" : "没有匹配项"}</p>
                 ) : multiple ? (
-                  <Tree key={query} ariaLabel={label ?? "选项"} nodes={visibleNodes} checkable checkedIds={ids} onCheckedChange={setMulti} defaultExpandedIds={query ? expandAll(visibleNodes) : defaultExpandedIds ?? expandedForValue} motion={motion} />
+                  <Tree key={query} ariaLabel={label ?? "选项"} nodes={visibleNodes} checkable checkedIds={ids} onCheckedChange={next => setMulti(normalizeChecked(next, index))} defaultExpandedIds={query ? expandAll(visibleNodes) : defaultExpandedIds ?? expandedForValue} motion={motion} />
                 ) : (
                   <Tree key={query} ariaLabel={label ?? "选项"} nodes={visibleNodes} selectedId={single} onSelect={id => { setSingle(id); setOpen(false); setQuery(""); }} defaultExpandedIds={query ? expandAll(visibleNodes) : defaultExpandedIds ?? expandedForValue} motion={motion} />
                 )}

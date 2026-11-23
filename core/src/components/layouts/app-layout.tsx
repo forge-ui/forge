@@ -614,7 +614,7 @@ export function AppLayout({
             {!hideSidebarWidgets && (
               <div className="forge-sidebar-disclosure" data-state={sidebarCollapsed ? "closed" : "open"} aria-hidden={sidebarCollapsed || undefined} inert={sidebarCollapsed || undefined}>
                 <div className="min-h-0 overflow-hidden">
-                  <div className={cn("flex items-center justify-between", profile && "pb-4")}>
+                  <div className={cn("flex items-center justify-between pr-1.5", profile && "pb-4")}>
                     <button
                       type="button"
                       aria-label={english ? `Change language, current ${activeLanguageLabel}` : `切换语言，当前${activeLanguageLabel}`}

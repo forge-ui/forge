@@ -237,12 +237,14 @@ const TA_PROPS: ApiTableRow[] = [
   { attr: "errorMessage", type: "string", defaultValue: "—", description: "error 文案。" },
 ];
 
-const CODE_SELECT_USAGE = `<SelectOption options={options} />
-<SelectOption type="single" value="o1" options={options} />
-<SelectOption type="multiple" value={["a", "b"]} options={tagOptions} />`;
+const CODE_SELECT_USAGE = `const [single, setSingle] = useState<string>();
+const [many, setMany] = useState<string[]>(["o1", "o2"]);
 
-const CODE_SELECT_SHAPES = `<SelectOption shape="rounded" options={options} />
-<SelectOption shape="pill" options={options} />`;
+<SelectOption type="single" value={single} onChange={setSingle} options={options} />
+<SelectOption type="multiple" value={many} onChange={setMany} options={options} />`;
+
+const CODE_SELECT_SHAPES = `<SelectOption shape="rounded" value={single} onChange={setSingle} options={options} />
+<SelectOption shape="pill" value={single} onChange={setSingle} options={options} />`;
 
 const SELECT_PROPS: ApiTableRow[] = [
   { attr: "options", type: "SelectOptionItem[]", defaultValue: "—", description: "下拉选项列表，每项包含 value、label，可附 image、icon、description。" },
@@ -255,8 +257,12 @@ const SELECT_PROPS: ApiTableRow[] = [
   { attr: "state", type: "'idle' | 'focus' | 'disabled' | 'error'", defaultValue: "'idle'", description: "展示态。" },
 ];
 
-const CODE_DP_USAGE = `<Datepicker label="选择日期" />
-<Datepicker label="日期区间" mode="range" />`;
+const CODE_DP_USAGE = `const [day, setDay] = useState<Date>();
+const [range, setRange] = useState<{ start?: Date; end?: Date | null }>({});
+
+<Datepicker label="选择日期" value={day} onChange={setDay} />
+<Datepicker label="日期区间" mode="range" rangeStart={range.start} rangeEnd={range.end ?? undefined}
+  onRangeChange={(start, end) => setRange({ start, end })} />`;
 
 const DP_PROPS: ApiTableRow[] = [
   { attr: "label", type: "string", defaultValue: "—", description: "顶部标签文字。" },
@@ -358,6 +364,31 @@ const ICONSELECTOR_PROPS: ApiTableRow[] = [
   { attr: "searchPlaceholder", type: "string", defaultValue: "'搜索图标...'", description: "图标搜索面板中的输入提示。" },
 ];
 
+// Both components are controlled: the demos keep the value in state, as real pages do.
+function SelectOptionDemo() {
+  const [single, setSingle] = useState<string>();
+  const [many, setMany] = useState<string[]>([sampleOptions[0].value, sampleOptions[1].value]);
+  return (
+    <div className="flex w-full flex-wrap items-start justify-center gap-3">
+      <SelectOption type="single" value={single} onChange={setSingle} options={sampleOptions} className="w-56" />
+      <SelectOption type="multiple" value={many} onChange={setMany} options={sampleOptions} className="w-56" />
+      <SelectOption shape="rounded" value={single} onChange={setSingle} options={sampleOptions} className="w-56" />
+      <SelectOption shape="pill" value={single} onChange={setSingle} options={sampleOptions} className="w-56" />
+    </div>
+  );
+}
+
+function DatepickerDemo() {
+  const [day, setDay] = useState<Date>();
+  const [range, setRange] = useState<{ start?: Date; end?: Date | null }>({});
+  return (
+    <div className="flex flex-wrap items-start gap-4">
+      <Datepicker label="选择日期" value={day} onChange={setDay} />
+      <Datepicker label="日期区间" mode="range" rangeStart={range.start} rangeEnd={range.end ?? undefined} onRangeChange={(start, end) => setRange({ start, end })} />
+    </div>
+  );
+}
+
 export default function InputFieldCasePage() {
   const [radio, setRadio] = useState("o1");
   const [checked, setChecked] = useState(true);
@@ -403,12 +434,7 @@ export default function InputFieldCasePage() {
             </div>
           </DocExample>
           <DocExample id="selectoption" title="SelectOption" summary="未选、已选，再加上圆角和胶囊。" code={`${CODE_SELECT_USAGE}\n${CODE_SELECT_SHAPES}`}>
-            <div className="flex w-full flex-wrap items-start justify-center gap-3">
-              <SelectOption options={sampleOptions} className="w-56" />
-              <SelectOption type="single" value="o1" options={sampleOptions} className="w-56" />
-              <SelectOption shape="rounded" options={sampleOptions} className="w-56" />
-              <SelectOption shape="pill" options={sampleOptions} className="w-56" />
-            </div>
+            <SelectOptionDemo />
           </DocExample>
           <DocExample id="combobox" title="Combobox" summary="选项多时边输入边筛选，单选或多选。" code={CODE_COMBOBOX_USAGE} minHeight={220}>
             <ComboboxDemo />
@@ -432,10 +458,7 @@ export default function InputFieldCasePage() {
             </div>
           </DocExample>
           <DocExample id="datepicker" title="Datepicker" summary="单日和日期区间是两种选择。" code={CODE_DP_USAGE} minHeight={200}>
-            <div className="flex flex-wrap items-start gap-4">
-              <Datepicker label="选择日期" />
-              <Datepicker label="日期区间" mode="range" />
-            </div>
+            <DatepickerDemo />
           </DocExample>
           <DocExample id="radiobutton" title="RadioButton" summary="同一组里当前这一项处于选中态。" code={CODE_RADIO_USAGE} minHeight={140}>
             <div className="flex items-center gap-6">

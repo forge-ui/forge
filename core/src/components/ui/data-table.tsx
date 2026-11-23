@@ -883,7 +883,7 @@ export function DataTable<T>({
       {(showPagination || footerLeft || footerRight) && (
         <div className="self-stretch p-5 bg-background flex flex-wrap justify-start items-center gap-3">
           {paginationLabel ? (
-            <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+            <div className="flex-1 justify-start whitespace-nowrap text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
               {paginationLabel}
             </div>
           ) : (
@@ -1054,7 +1054,7 @@ export function FullWidthTable<T>({
       {/* Footer */}
       <div className="self-stretch p-5 bg-background flex justify-start items-center gap-3">
         {paginationLabel ? (
-          <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
+          <div className="flex-1 justify-start whitespace-nowrap text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
             {paginationLabel}
           </div>
         ) : footerLeft ? (

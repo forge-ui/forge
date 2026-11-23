@@ -54,6 +54,10 @@ export function DateTimePicker({ value, defaultValue = null, onChange, withSecon
   const accent = formAccents[color];
   const state = disabled ? "disabled" : errorMessage ? "error" : "idle";
 
+  // Keep every draft inside minDate / maxDate, whichever control changed it.
+  const clamp = (next: Date) => minDate && next < minDate ? new Date(minDate) : maxDate && next > maxDate ? new Date(maxDate) : next;
+  const setDraftClamped = (next: Date) => setDraft(clamp(next));
+
   function commit(next: Date | null) {
     if (value === undefined) setInner(next);
     onChange?.(next);
@@ -99,16 +103,16 @@ export function DateTimePicker({ value, defaultValue = null, onChange, withSecon
               className="forge-popup flex max-w-[calc(100vw-16px)] flex-col overflow-hidden rounded-[20px] bg-background shadow-[0px_4px_30px_0px_rgba(77,84,100,0.08)] outline outline-1 outline-offset-[-1px] outline-fg-grey-100"
             >
               <div className="flex max-sm:flex-col">
-                <Datepicker calendarOnly value={draft ?? undefined} onChange={day => setDraft(withDate(day))} minDate={minDate} maxDate={maxDate} color={color} locale={locale} label={locale === "en" ? "Date" : "日期"} />
+                <Datepicker calendarOnly value={draft ?? undefined} onChange={day => setDraftClamped(withDate(day))} minDate={minDate} maxDate={maxDate} color={color} locale={locale} label={locale === "en" ? "Date" : "日期"} />
                 <div className="flex flex-col border-fg-grey-100 sm:border-l max-sm:border-t">
                   <div className="border-b border-fg-grey-100 px-3 py-4 text-center text-sm font-semibold tabular-nums tracking-fg text-fg-black">
                     {draft ? `${pad(draft.getHours())}:${pad(draft.getMinutes())}${withSeconds ? `:${pad(draft.getSeconds())}` : ""}` : "--:--"}
                   </div>
-                  <TimeColumns value={time} onChange={parts => setDraft(withTime(parts))} withSeconds={withSeconds} step={step} color={color} locale={locale} className="flex-1 [&>ul]:h-auto [&>ul]:max-h-72" />
+                  <TimeColumns value={time} onChange={parts => setDraftClamped(withTime(parts))} withSeconds={withSeconds} step={step} color={color} locale={locale} className="flex-1 [&>ul]:h-auto [&>ul]:max-h-72" />
                 </div>
               </div>
               <div className="flex items-center justify-between gap-2 border-t border-fg-grey-100 px-4 py-2.5">
-                <button type="button" className={cn("text-sm font-medium cursor-pointer", accent.text)} onClick={() => { const now = new Date(); now.setSeconds(withSeconds ? now.getSeconds() : 0, 0); now.setMinutes(now.getMinutes() - (now.getMinutes() % step)); setDraft(now); }}>
+                <button type="button" className={cn("text-sm font-medium cursor-pointer", accent.text)} onClick={() => { const now = new Date(); now.setSeconds(withSeconds ? now.getSeconds() : 0, 0); now.setMinutes(now.getMinutes() - (now.getMinutes() % step)); setDraftClamped(now); }}>
                   {locale === "en" ? "Now" : "此刻"}
                 </button>
                 <div className="flex gap-2">

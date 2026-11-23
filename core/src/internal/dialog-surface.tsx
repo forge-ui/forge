@@ -47,7 +47,7 @@ export function DialogSurface({ open, onOpenChange, label, children, motion = "a
     return (
       <Drawer.Root open={active} onOpenChange={handleChange} swipeDirection={side}>
         <Drawer.Portal>
-          <Drawer.Backdrop data-motion={motion} className={backdropClass} />
+          <Drawer.Backdrop forceRender data-motion={motion} className={backdropClass} />
           <Drawer.Viewport className={cn("fixed inset-0 z-50 flex items-stretch", side === "right" ? "justify-end" : "justify-start")}>
             <Drawer.Popup ref={popupRef} aria-label={label} data-motion={motion} data-side={side} className={cn("forge-drawer flex flex-col border-0 bg-background p-0 text-fg-black shadow-xl outline-none", className)}>
               {body}
@@ -62,7 +62,7 @@ export function DialogSurface({ open, onOpenChange, label, children, motion = "a
   return (
     <Primitive.Root open={active} onOpenChange={handleChange}>
       <Primitive.Portal>
-        <Primitive.Backdrop data-motion={motion} className={backdropClass} />
+        <Primitive.Backdrop forceRender data-motion={motion} className={backdropClass} />
         <Primitive.Viewport className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4">
           <Primitive.Popup
             ref={popupRef}

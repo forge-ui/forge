@@ -72,7 +72,9 @@ export function PeriodPicker({ granularity, value, defaultValue = null, onChange
         : Array.from({ length: 12 }, (_, index) => ({ start: new Date(page, index, 1), label: locale === "en" ? new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(2026, index, 1)) : `${index + 1}月` }));
 
   const outOfRange = (start: Date) => {
-    const end = granularity === "year" ? new Date(start.getFullYear() + 1, 0, 0) : granularity === "quarter" ? new Date(start.getFullYear(), start.getMonth() + 3, 0) : new Date(start.getFullYear(), start.getMonth() + 1, 0);
+    // Last millisecond of the period, so a minDate with a time of day still allows that period.
+    const next = granularity === "year" ? new Date(start.getFullYear() + 1, 0, 1) : new Date(start.getFullYear(), start.getMonth() + (granularity === "quarter" ? 3 : 1), 1);
+    const end = new Date(next.getTime() - 1);
     return Boolean((minDate && end < minDate) || (maxDate && start > maxDate));
   };
   const commit = (next: Date | null) => { if (value === undefined) setInner(next); onChange?.(next); };
