@@ -1,0 +1,1746 @@
+{
+ "baseline": "core 0.4.7 (c0605f16)",
+ "components": [
+  {
+   "name": "Accordion",
+   "source": "core/src/components/ui/accordion.tsx",
+   "sheets": [
+    "accordion",
+    "content-layout-policy"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ActivityCard",
+   "source": "core/src/components/ui/activity-card.tsx",
+   "sheets": [
+    "image-activity-cards"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AddMember",
+   "source": "core/src/components/ui/add-member.tsx",
+   "sheets": [
+    "add-member"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AgentCodeBlock",
+   "source": "core/src/components/ui/agent/agent-code-block.tsx",
+   "sheets": [
+    "agent-code-block"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AgentDiffTable",
+   "source": "core/src/components/ui/agent/agent-diff-table.tsx",
+   "sheets": [
+    "agent-diff-table"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AgentFlowchart",
+   "source": "core/src/components/ui/agent/agent-flowchart.tsx",
+   "sheets": [
+    "agent-flowchart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AgentTaskRows",
+   "source": "core/src/components/ui/agent/agent-task-rows.tsx",
+   "sheets": [
+    "agent-task-rows"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AppLayout",
+   "source": "core/src/components/layouts/app-layout.tsx",
+   "sheets": [
+    "app-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ApprovalCard",
+   "source": "core/src/components/ui/agent/approval-card.tsx",
+   "sheets": [
+    "approval-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AppSwitcherDropdown",
+   "source": "core/src/components/layouts/sidebar-popovers.tsx",
+   "sheets": [
+    "app-team-switcher"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ArtisticIcon",
+   "source": "core/src/components/ui/badge.tsx",
+   "sheets": [
+    "icon-containers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AskAi",
+   "source": "core/src/components/ui/ask-ai.tsx",
+   "sheets": [
+    "ask-ai-panel"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Avatar",
+   "source": "core/src/components/ui/avatar.tsx",
+   "sheets": [
+    "avatar"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "AvatarGroup",
+   "source": "core/src/components/ui/avatar.tsx",
+   "sheets": [
+    "avatar"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "BalanceCard",
+   "source": "core/src/components/ui/balance-card.tsx",
+   "sheets": [
+    "financial-card-layouts"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "BarChart",
+   "source": "core/src/components/ui/charts/bar-chart.tsx",
+   "sheets": [
+    "vertical-bar-chart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "BarChartStatCard",
+   "source": "core/src/components/ui/bar-chart-stat-card.tsx",
+   "sheets": [
+    "stat-chart-slots"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "BarHorizontalChart",
+   "source": "core/src/components/ui/charts/bar-horizontal-chart.tsx",
+   "sheets": [
+    "horizontal-bar-chart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "BarUpsideDownChart",
+   "source": "core/src/components/ui/charts/bar-upside-down-chart.tsx",
+   "sheets": [
+    "dual-bar-chart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Breadcrumbs",
+   "source": "core/src/components/ui/breadcrumbs.tsx",
+   "sheets": [
+    "breadcrumbs"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "BubbleChart",
+   "source": "core/src/components/ui/charts/bubble-chart.tsx",
+   "sheets": [
+    "bubble-chart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Button",
+   "source": "core/src/components/ui/button.tsx",
+   "sheets": [
+    "button",
+    "button-hold",
+    "button-effect-geometry"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ButtonGroup",
+   "source": "core/src/components/ui/button-group.tsx",
+   "sheets": [
+    "button-group"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CalendarCard",
+   "source": "core/src/components/ui/calendar-card.tsx",
+   "sheets": [
+    "calendar-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CalendarDayCell",
+   "source": "core/src/components/ui/calendar-day-cell.tsx",
+   "sheets": [
+    "calendar-cell-week"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CalendarPopup",
+   "source": "core/src/components/ui/calendar-popup.tsx",
+   "sheets": [
+    "calendar-popup"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "CalendarWeekRow",
+   "source": "core/src/components/ui/calendar-week-row.tsx",
+   "sheets": [
+    "calendar-cell-week"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CardAvatarGroup",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-accessories"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CardGlow",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-decoration-layers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CardIconChip",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-accessories"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CardKebabButton",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-accessories"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CardTrend",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-accessories"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellActions",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-state-actions"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellCode",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-numeric"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellFile",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellImageText",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellKebabMenu",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-state-actions"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellLink",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-state-actions"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellMuted",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellNumber",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-numeric"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellProgressBar",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-numeric"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellProgressValue",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-numeric"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellRating",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-numeric"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellStatusDot",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-state-actions"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellText",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CellTextSubtitle",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChartCard",
+   "source": "core/src/components/ui/charts/chart-card.tsx",
+   "sheets": [
+    "chart-card-shell"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChartCenterText",
+   "source": "core/src/components/ui/charts/chart-utils.tsx",
+   "sheets": [
+    "chart-tooltip-center",
+    "content-layout-policy"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "ChartLegendItem",
+   "source": "core/src/components/ui/charts/chart-legend-item.tsx",
+   "sheets": [
+    "chart-composition-rows"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChartListItem",
+   "source": "core/src/components/ui/charts/chart-list-item.tsx",
+   "sheets": [
+    "chart-composition-rows"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChartStatFooter",
+   "source": "core/src/components/ui/charts/chart-stat-footer.tsx",
+   "sheets": [
+    "chart-composition-rows"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChartTooltip",
+   "source": "core/src/components/ui/charts/chart-tooltip.tsx",
+   "sheets": [
+    "chart-tooltip-center"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChartValueRow",
+   "source": "core/src/components/ui/charts/chart-value-row.tsx",
+   "sheets": [
+    "chart-composition-rows"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChatBubble",
+   "source": "core/src/components/ui/chat-bubble.tsx",
+   "sheets": [
+    "chat-bubble",
+    "chat-message-states"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChatInputBar",
+   "source": "core/src/components/ui/chat-input-bar.tsx",
+   "sheets": [
+    "chat-input-bar",
+    "chat-message-states"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Checkbox",
+   "source": "core/src/components/ui/checkbox.tsx",
+   "sheets": [
+    "selection-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CheckboxControl",
+   "source": "core/src/components/ui/checkbox.tsx",
+   "sheets": [
+    "selection-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CheckboxVisual",
+   "source": "core/src/components/ui/checkbox.tsx",
+   "sheets": [
+    "selection-controls"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "CheckboxWithLabel",
+   "source": "core/src/components/ui/forms/selection-control.tsx",
+   "sheets": [
+    "selection-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CheckIcon",
+   "source": "core/src/components/ui/plain-icons.tsx",
+   "sheets": [
+    "plain-icons"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Checklist",
+   "source": "core/src/components/ui/checklist.tsx",
+   "sheets": [
+    "checklist"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ChecklistItem",
+   "source": "core/src/components/ui/checklist.tsx",
+   "sheets": [
+    "checklist"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CircleIcon",
+   "source": "core/src/components/ui/badge.tsx",
+   "sheets": [
+    "icon-containers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CloseIcon",
+   "source": "core/src/components/ui/plain-icons.tsx",
+   "sheets": [
+    "plain-icons"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ColorPicker",
+   "source": "core/src/components/ui/forms/icon-selector.tsx",
+   "sheets": [
+    "icon-pickers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ColorSection",
+   "source": "core/src/components/ui/style-guide.tsx",
+   "sheets": [
+    "color-swatch-section"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ColorSwatch",
+   "source": "core/src/components/ui/style-guide.tsx",
+   "sheets": [
+    "color-swatch-section"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CommandSearch",
+   "source": "core/src/components/ui/agent/command-search.tsx",
+   "sheets": [
+    "command-search"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CommentItem",
+   "source": "core/src/components/ui/comment-item.tsx",
+   "sheets": [
+    "comment-review"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ConfirmationDialog",
+   "source": "core/src/components/ui/confirmation-dialog.tsx",
+   "sheets": [
+    "confirmation-dialog"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ContactItem",
+   "source": "core/src/components/ui/contact-item.tsx",
+   "sheets": [
+    "contact-item"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ContextCards",
+   "source": "core/src/components/ui/agent/context-cards.tsx",
+   "sheets": [
+    "context-cards"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CreditCard",
+   "source": "core/src/components/ui/credit-card.tsx",
+   "sheets": [
+    "financial-card-layouts"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "CurrencyConverter",
+   "source": "core/src/components/ui/currency-converter.tsx",
+   "sheets": [
+    "currency-converter"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DashedHalfDonutChart",
+   "source": "core/src/components/ui/charts/dashed-half-donut-chart.tsx",
+   "sheets": [
+    "dashed-half-donut"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DataTable",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "data-table-shell"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Datepicker",
+   "source": "core/src/components/ui/forms/datepicker.tsx",
+   "sheets": [
+    "datepicker"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DebitCard",
+   "source": "core/src/components/ui/debit-card.tsx",
+   "sheets": [
+    "financial-card-layouts"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DescriptionItem",
+   "source": "core/src/components/ui/list-item.tsx",
+   "sheets": [
+    "list-family",
+    "description-item-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DonutChart",
+   "source": "core/src/components/ui/charts/donut-chart.tsx",
+   "sheets": [
+    "conic-chart-geometry"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Drawer",
+   "source": "core/src/components/ui/drawer.tsx",
+   "sheets": [
+    "drawer"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DropdownDivider",
+   "source": "core/src/components/ui/dropdown-panel.tsx",
+   "sheets": [
+    "dropdown-panel"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "DropdownPanel",
+   "source": "core/src/components/ui/dropdown-panel.tsx",
+   "sheets": [
+    "dropdown-panel"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "EventCard",
+   "source": "core/src/components/ui/event-card.tsx",
+   "sheets": [
+    "event-tag-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "EventTag",
+   "source": "core/src/components/ui/event-tag.tsx",
+   "sheets": [
+    "event-tag-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FieldFrame",
+   "source": "core/src/components/ui/forms/field-utils.tsx",
+   "sheets": [
+    "field-primitives"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "FieldTag",
+   "source": "core/src/components/ui/forms/field-utils.tsx",
+   "sheets": [
+    "field-primitives"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FileCard",
+   "source": "core/src/components/ui/forms/file-upload.tsx",
+   "sheets": [
+    "file-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FileTypeIcon",
+   "source": "core/src/components/ui/forms/file-upload.tsx",
+   "sheets": [
+    "file-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FileUpload",
+   "source": "core/src/components/ui/forms/file-upload.tsx",
+   "sheets": [
+    "file-upload"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FilterGroup",
+   "source": "core/src/components/ui/filter-group.tsx",
+   "sheets": [
+    "filter-group"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FilterPanel",
+   "source": "core/src/components/ui/filter-panel.tsx",
+   "sheets": [
+    "filter-panel-trigger"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FilterTrigger",
+   "source": "core/src/components/ui/filter-trigger.tsx",
+   "sheets": [
+    "filter-panel-trigger"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FinancialOrbs",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-decoration-layers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Folder",
+   "source": "core/src/components/ui/folder.tsx",
+   "sheets": [
+    "folder"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FolderFloat",
+   "source": "core/src/components/ui/folder-float.tsx",
+   "sheets": [
+    "folder-float"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FullCalendar",
+   "source": "core/src/components/ui/full-calendar.tsx",
+   "sheets": [
+    "full-calendar"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "FullWidthTable",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "data-table-shell"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Grid",
+   "source": "core/src/components/layouts/grid.tsx",
+   "sheets": [
+    "grid"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "GridItem",
+   "source": "core/src/components/layouts/grid.tsx",
+   "sheets": [
+    "grid"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "HalfDonutChart",
+   "source": "core/src/components/ui/charts/half-donut-chart.tsx",
+   "sheets": [
+    "conic-chart-geometry"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "HighlightCard",
+   "source": "core/src/components/ui/highlight-card.tsx",
+   "sheets": [
+    "highlight-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "HistoryGrouped",
+   "source": "core/src/components/ui/history-grouped.tsx",
+   "sheets": [
+    "history-timeline"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "HistoryItem",
+   "source": "core/src/components/ui/history-item.tsx",
+   "sheets": [
+    "history-timeline"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "IconButton",
+   "source": "core/src/components/ui/icon-button.tsx",
+   "sheets": [
+    "icon-button"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "IconPicker",
+   "source": "core/src/components/ui/forms/icon-selector.tsx",
+   "sheets": [
+    "icon-pickers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "IconSelector",
+   "source": "core/src/components/ui/forms/icon-selector.tsx",
+   "sheets": [
+    "icon-selector"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "IconTrigger",
+   "source": "core/src/components/ui/icon-trigger.tsx",
+   "sheets": [
+    "icon-trigger"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ImageGrid",
+   "source": "core/src/components/ui/image-grid.tsx",
+   "sheets": [
+    "image-grid"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ImageStatCard",
+   "source": "core/src/components/ui/image-stat-card.tsx",
+   "sheets": [
+    "image-activity-cards"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "InsightCards",
+   "source": "core/src/components/ui/agent/insight-cards.tsx",
+   "sheets": [
+    "insight-cards"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "KebabMenu",
+   "source": "core/src/components/ui/kebab-menu.tsx",
+   "sheets": [
+    "kebab-menu"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Label",
+   "source": "core/src/components/ui/badge.tsx",
+   "sheets": [
+    "badge"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "LanguageSwitcher",
+   "source": "core/src/components/layouts/sidebar-popovers.tsx",
+   "sheets": [
+    "sidebar-menus"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "LineChartStatCard",
+   "source": "core/src/components/ui/line-chart-stat-card.tsx",
+   "sheets": [
+    "stat-chart-slots"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "LiquidTabs",
+   "source": "core/src/components/ui/liquid-tabs.tsx",
+   "sheets": [
+    "liquid-tabs"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ListGroup",
+   "source": "core/src/components/ui/list-group.tsx",
+   "sheets": [
+    "list-family",
+    "list-group-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ListItem",
+   "source": "core/src/components/ui/list-item.tsx",
+   "sheets": [
+    "list-family"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "MapCard",
+   "source": "core/src/components/ui/map-card.tsx",
+   "sheets": [
+    "map-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "MastercardLogo",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "card-decoration-layers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "MediaUpload",
+   "source": "core/src/components/ui/forms/media-upload.tsx",
+   "sheets": [
+    "media-upload"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "MenuItem",
+   "source": "core/src/components/ui/menu-item.tsx",
+   "sheets": [
+    "menu-item"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "MessageMenu",
+   "source": "core/src/components/layouts/sidebar-popovers.tsx",
+   "sheets": [
+    "sidebar-menus"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "MeterChart",
+   "source": "core/src/components/ui/charts/meter-chart.tsx",
+   "sheets": [
+    "meter-chart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Modal",
+   "source": "core/src/components/ui/modal.tsx",
+   "sheets": [
+    "modal"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "MultilayerDonutChart",
+   "source": "core/src/components/ui/charts/multilayer-donut-chart.tsx",
+   "sheets": [
+    "multilayer-donut"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "NotificationBadge",
+   "source": "core/src/components/ui/badge.tsx",
+   "sheets": [
+    "badge"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "NotificationItem",
+   "source": "core/src/components/ui/notification-item.tsx",
+   "sheets": [
+    "notification-item",
+    "content-layout-policy"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "NotificationPanel",
+   "source": "core/src/components/layouts/sidebar-popovers.tsx",
+   "sheets": [
+    "notification-panel"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "OtpInput",
+   "source": "core/src/components/ui/otp-input.tsx",
+   "sheets": [
+    "otp-input"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "PageDot",
+   "source": "core/src/components/ui/page-dot.tsx",
+   "sheets": [
+    "pagination"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "PageHeader",
+   "source": "core/src/components/ui/page-header.tsx",
+   "sheets": [
+    "page-header-title"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "PageTitleToolbar",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Pagination",
+   "source": "core/src/components/ui/pagination.tsx",
+   "sheets": [
+    "pagination"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "PieChart",
+   "source": "core/src/components/ui/charts/pie-chart.tsx",
+   "sheets": [
+    "conic-chart-geometry"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "PlusIcon",
+   "source": "core/src/components/ui/plain-icons.tsx",
+   "sheets": [
+    "plain-icons"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProductRow",
+   "source": "core/src/components/ui/product-row.tsx",
+   "sheets": [
+    "product-row"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProfileCard",
+   "source": "core/src/components/ui/profile-card.tsx",
+   "sheets": [
+    "profile-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProfileDropdown",
+   "source": "core/src/components/layouts/sidebar-popovers.tsx",
+   "sheets": [
+    "sidebar-menus"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "ProfileImgUpload",
+   "source": "core/src/components/ui/forms/media-upload.tsx",
+   "sheets": [
+    "profile-upload"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProgressBadge",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-numeric"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProgressBar",
+   "source": "core/src/components/ui/progress-bar.tsx",
+   "sheets": [
+    "progress-bar",
+    "content-layout-policy"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProgressCard",
+   "source": "core/src/components/ui/progress-card.tsx",
+   "sheets": [
+    "progress-card-layouts"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProgressStatCard",
+   "source": "core/src/components/ui/progress-stat-card.tsx",
+   "sheets": [
+    "progress-card-layouts"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ProjectCard",
+   "source": "core/src/components/ui/project-card.tsx",
+   "sheets": [
+    "project-task-cards"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "RadioButton",
+   "source": "core/src/components/ui/forms/selection-control.tsx",
+   "sheets": [
+    "selection-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "RadioWithLabel",
+   "source": "core/src/components/ui/forms/selection-control.tsx",
+   "sheets": [
+    "selection-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "RatingStars",
+   "source": "core/src/components/ui/rating-stars.tsx",
+   "sheets": [
+    "rating-stars"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "RecommendationCard",
+   "source": "core/src/components/ui/agent/recommendation-card.tsx",
+   "sheets": [
+    "recommendation-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ReviewItem",
+   "source": "core/src/components/ui/review-item.tsx",
+   "sheets": [
+    "comment-review"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "SelectOption",
+   "source": "core/src/components/ui/forms/select-option.tsx",
+   "sheets": [
+    "select-option"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "SidebarMenu",
+   "source": "core/src/components/ui/sidebar-menu.tsx",
+   "sheets": [
+    "sidebar-menu"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "SmallCalendar",
+   "source": "core/src/components/ui/small-calendar.tsx",
+   "sheets": [
+    "small-calendars"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "SmallDailyCalendar",
+   "source": "core/src/components/ui/small-daily-calendar.tsx",
+   "sheets": [
+    "small-calendars"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "SmoothLineChart",
+   "source": "core/src/components/ui/charts/smooth-line-chart.tsx",
+   "sheets": [
+    "smooth-line-chart"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "StatCard",
+   "source": "core/src/components/ui/stat-card.tsx",
+   "sheets": [
+    "stat-card-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "StatCardShell",
+   "source": "core/src/components/ui/card-utils.tsx",
+   "sheets": [
+    "stat-card-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "StatusBadge",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-state-actions"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Stepper",
+   "source": "core/src/components/ui/stepper.tsx",
+   "sheets": [
+    "stepper"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "StreamingAnswer",
+   "source": "core/src/components/ui/agent/streaming-answer.tsx",
+   "sheets": [
+    "streaming-answer"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "StyledLink",
+   "source": "core/src/components/ui/link.tsx",
+   "sheets": [
+    "styled-link"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "SurfaceCard",
+   "source": "core/src/components/ui/surface-card.tsx",
+   "sheets": [
+    "card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TabBar",
+   "source": "core/src/components/ui/tab-bar.tsx",
+   "sheets": [
+    "tab-bar"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TableCell",
+   "source": "core/src/components/ui/data-table.tsx",
+   "sheets": [
+    "table-cell-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TabsContent",
+   "source": "core/src/components/ui/tabs-content.tsx",
+   "sheets": [
+    "tabs-content"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TaskCard",
+   "source": "core/src/components/ui/task-card.tsx",
+   "sheets": [
+    "project-task-cards"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TeamSwitcherDropdown",
+   "source": "core/src/components/layouts/sidebar-popovers.tsx",
+   "sheets": [
+    "app-team-switcher"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "TextArea",
+   "source": "core/src/components/ui/forms/text-area.tsx",
+   "sheets": [
+    "text-area"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TextField",
+   "source": "core/src/components/ui/forms/text-field.tsx",
+   "sheets": [
+    "field",
+    "text-field-variants"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TextFieldSelectSuffix",
+   "source": "core/src/components/ui/forms/text-field-select.tsx",
+   "sheets": [
+    "select-suffix"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ThinkingTrace",
+   "source": "core/src/components/ui/agent/thinking-trace.tsx",
+   "sheets": [
+    "thinking-trace"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToastProvider",
+   "source": "core/src/components/ui/toast.tsx",
+   "sheets": [
+    "toast"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Toggle",
+   "source": "core/src/components/ui/forms/selection-control.tsx",
+   "sheets": [
+    "toggle"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Toolbar",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarActions",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-layout"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarDatepicker",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-popovers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarFavoriteButton",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarFilterButton",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-popovers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarKebabButton",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarPillTabs",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarSearchInput",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-controls"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarSelectDropdown",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-popovers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolbarShowSelect",
+   "source": "core/src/components/ui/toolbar.tsx",
+   "sheets": [
+    "toolbar-popovers"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "ToolChips",
+   "source": "core/src/components/ui/agent/tool-chips.tsx",
+   "sheets": [
+    "tool-chips"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "Tooltip",
+   "source": "core/src/components/ui/tooltip.tsx",
+   "sheets": [
+    "tooltip-behavior"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TooltipAnchor",
+   "source": "core/src/components/ui/tooltip.tsx",
+   "sheets": [
+    "tooltip-shape"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TooltipBubble",
+   "source": "core/src/components/ui/tooltip.tsx",
+   "sheets": [
+    "tooltip-shape"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TooltipGroup",
+   "source": "core/src/components/ui/tooltip.tsx",
+   "sheets": [
+    "tooltip-behavior"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TopBar",
+   "source": "core/src/components/ui/topbar.tsx",
+   "sheets": [
+    "top-bar"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TrendText",
+   "source": "core/src/components/ui/charts/chart-utils.tsx",
+   "sheets": [
+    "chart-tooltip-center"
+   ],
+   "publicExport": false
+  },
+  {
+   "name": "TypefaceBlock",
+   "source": "core/src/components/ui/style-guide.tsx",
+   "sheets": [
+    "typography-reference"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TypographySizeRow",
+   "source": "core/src/components/ui/style-guide.tsx",
+   "sheets": [
+    "typography-reference"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "TypographyWeightSample",
+   "source": "core/src/components/ui/style-guide.tsx",
+   "sheets": [
+    "typography-reference"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "UserCard",
+   "source": "core/src/components/ui/user-card.tsx",
+   "sheets": [
+    "user-card"
+   ],
+   "publicExport": true
+  },
+  {
+   "name": "WheelChartStatCard",
+   "source": "core/src/components/ui/wheel-chart-stat-card.tsx",
+   "sheets": [
+    "stat-chart-slots"
+   ],
+   "publicExport": true
+  }
+ ],
+ "excluded": [
+  {
+   "name": "accentColors",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "ALL_CARD_THEMES",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "ASK_AI_FS_LAYER_ATTR",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "ASK_AI_FULLSCREEN_RAIL_WIDTH",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "buildConicGradient",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "cardThemes",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "CENTER_VALUE_TEXT",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "chinaFlagDataUrl",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "cn",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "DAY_NAMES_SHORT",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "DAY_NAMES_UPPER",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "filterIconIndexes",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "financialThemes",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "formAccents",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "formatHour",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "getDaysInMonth",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "getDefaultTableMinWidth",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "getFieldClasses",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "getFirstDayOfMonth",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "getPaginationSummary",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "isSameDay",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "japanFlagDataUrl",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "LABEL_TEXT",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "LABEL_TEXT_ACTIVE",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "languageFlagDataUrls",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "languageMarkDataUrl",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "MAP_PATHS",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "MAP_VIEWBOX",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "MONTH_NAMES",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "rampColors",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "resolveCardTheme",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "resolveCardWidthClass",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "resolveColor",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "resolveTableColumnAlign",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "statCardSizes",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "tailwindColorMap",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "taiwanFlagDataUrl",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "TRACK_COLOR_HEX",
+   "reason": "非组件：常量/配置数据"
+  },
+  {
+   "name": "trendArrow",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "trendColorClass",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "useToast",
+   "reason": "非组件：小写工具函数/Hook"
+  },
+  {
+   "name": "usFlagDataUrl",
+   "reason": "非组件：常量/配置数据"
+  }
+ ]
+}

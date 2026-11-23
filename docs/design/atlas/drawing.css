@@ -1,0 +1,101 @@
+
+/* Layout: one Apple-style dimensional drawing sheet (notes · section · plan · tables · details · layouts · title block), black on white, single light theme by design. */
+:root{--paper:#ececec;--sheet:#ffffff;--ink:#111;--ink2:#444;--ink3:#7a7a7a;--fill:#f3f3f3;--fill2:#e6e6e6;--f:'Arimo','Helvetica Neue',Helvetica,Arial,sans-serif;color-scheme:light}
+body{background:var(--paper);color:var(--ink);font-family:var(--f)}
+.wrap{max-width:1760px;margin:0 auto;padding-block:24px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.scroll{overflow-x:auto;background:var(--sheet);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+svg{display:block;width:100%;min-width:1100px;height:auto}
+.tb{background:var(--sheet);border:1.5px solid var(--ink);display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;margin-bottom:24px}
+.tb>div{border-right:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;padding:10px 12px;min-width:0}
+.tb .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.tb h1{font-size:clamp(26px,4vw,40px);line-height:1;margin:0;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.lbl{text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--ink3);font-weight:600}
+.tb .v{font-size:13px;margin-top:2px;font-variant-numeric:tabular-nums}
+.tb .notes{grid-column:1/-1;border-right:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px;font-size:13px;color:var(--ink2)}
+.tb .notes ol{margin:4px 0 0;padding-left:18px}
+.tb .figs{grid-column:1/-1;border-right:0;border-bottom:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px 18px}
+.tb .figs .v{font-size:17px}
+@media (max-width:640px){.tb{grid-template-columns:1fr 1fr}.tb .big{grid-column:1/-1;grid-row:auto}}
+.sheetwrap{margin-bottom:28px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2);padding:10px 2px 0}
+.foot b{font-weight:600;color:var(--ink)}
+/* drawing */
+.u{font-family:var(--f);text-transform:uppercase;letter-spacing:.07em}
+.border{fill:none;stroke:var(--ink);stroke-width:1.2}
+.obj{fill:var(--sheet);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.well{fill:var(--fill);stroke:var(--ink);stroke-width:1}
+.slot{fill:none;stroke:var(--ink2);stroke-width:.8;stroke-dasharray:4 3}
+.hug{fill:var(--fill2);stroke:var(--ink);stroke-width:1}
+.thin{fill:none;stroke:var(--ink);stroke-width:.8}
+.ph{fill:none;stroke:var(--ink3);stroke-width:.8;stroke-dasharray:14 3 3 3}
+.cl{fill:none;stroke:var(--ink3);stroke-width:.7;stroke-dasharray:16 3 2 3}
+.cut{stroke:var(--ink);stroke-width:2}
+.dl{stroke:var(--ink);stroke-width:.7;fill:none}
+.ext{stroke:var(--ink);stroke-width:.55;fill:none}
+.arrow{fill:var(--ink)}
+.hl{stroke:var(--ink2);stroke-width:.7}
+.hs{stroke:var(--ink);stroke-width:.8}
+.env{fill:none;stroke:var(--ink);stroke-width:.8;stroke-dasharray:10 3 2 3}
+.dt{font:400 11px var(--f);fill:var(--ink);paint-order:stroke;stroke:var(--sheet);stroke-width:4px;stroke-linejoin:round}
+.dts{font:400 9.5px var(--f);fill:var(--ink2);letter-spacing:.06em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.sl{font:400 9px var(--f);fill:var(--ink2);letter-spacing:.08em;text-transform:uppercase}
+.nt{font:400 11.5px var(--f);fill:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+.nth{font:700 13px var(--f);fill:var(--ink);letter-spacing:.06em}
+.vt{font:400 12px var(--f);fill:var(--ink);letter-spacing:.1em;text-transform:uppercase}
+.vtb{font:400 20px var(--f);fill:var(--ink);letter-spacing:.06em}
+.nb{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.nbt{font:400 9.5px var(--f);fill:var(--ink)}
+.lead{stroke:var(--ink);stroke-width:.7;fill:none}
+.dot{fill:var(--ink)}
+.th{font:400 10.5px var(--f);fill:var(--ink);letter-spacing:.05em;text-transform:uppercase}
+.tc{font:400 10.5px var(--f);fill:var(--ink)}
+.tbk{font:400 7px var(--f);fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase}
+.tbt{font:700 15px var(--f);fill:var(--ink)}
+.tbv{font:400 17px var(--f);fill:var(--ink);letter-spacing:.06em}
+
+/* title block restyled to match the drawing sheet: thin black rules, plain caps lettering */
+.tb{border:1.2px solid var(--ink);border-radius:16px;overflow:hidden}
+.tb>div{border-right:.8px solid var(--ink);border-bottom:.8px solid var(--ink);padding:10px 14px}
+.tb>div:nth-child(4),.tb>div:nth-child(7){border-right:0}
+.tb .lbl{font-size:9.5px;font-weight:400;letter-spacing:.06em;color:var(--ink2)}
+.tb h1{font-weight:400;letter-spacing:.1em;font-size:clamp(28px,4vw,44px);margin-top:4px}
+.tb .v{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+.tb .big .v{font-size:11px;color:var(--ink2);line-height:1.6}
+.tb .notes{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);line-height:1.9}
+.tb .notes ol{padding-left:20px}
+.tb .nh{font-weight:700;font-size:13px;letter-spacing:.06em}
+.tb .nh span{font-weight:400;font-size:11.5px;margin-left:6px}
+.tb .figs>div{border-left:.8px solid var(--ink);padding-left:14px}
+.tb .figs>div:first-child{border-left:0;padding-left:0}
+.tb .figs .v{font-size:18px;letter-spacing:.06em;text-transform:none;margin-top:4px}
+.foot{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.foot b{font-weight:700}
+
+*{box-sizing:border-box}body{margin:0}a{color:var(--ink)}button{font:inherit}.wrap{padding:32px 28px 64px}.intro{padding:40px 4px 32px}.eyebrow{font-size:11px;letter-spacing:.16em}.intro h1{font-size:clamp(28px,4vw,52px);font-weight:400;letter-spacing:-.02em;margin:22px 0 16px}.intro p{font-size:15px;line-height:1.8;color:var(--ink2)}.status{display:inline-block;border:1px solid var(--ink);padding:8px 12px;font-size:12px;margin:12px 0 24px}nav{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}nav a{padding:22px 16px;text-decoration:none;border-right:1px solid var(--ink);font-size:16px}nav a:last-child{border:0}nav span{display:block;font-size:11px;color:var(--ink3);margin-bottom:8px}.overview{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin:28px 0}.overview h3{font-size:13px}.overview p{font-size:13px}.notice{border-left:2px solid var(--ink);padding-left:16px}.subject{margin:28px 0 76px;scroll-margin-top:20px}.tb h2{font-size:36px;font-weight:400;margin:10px 0}.tb .big p{font-size:12px;line-height:1.9;margin:0}.reading{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:22px 4px 16px}.reading h3{font-size:14px;margin:10px 0}.reading li,.reading p{font-size:13px;line-height:1.9}.reading ol,.reading ul{padding-left:20px}.reading code{font-size:11px;overflow-wrap:anywhere}.evidence{border-top:1px solid var(--ink3);padding-top:12px}details{border-top:1px solid var(--ink3);padding:16px 4px}summary{cursor:pointer;font-size:13px}details table{width:100%;border-collapse:collapse;margin-top:18px;font-size:13px}th,td{border:1px solid var(--ink3);padding:9px;text-align:left}.back{display:inline-block;font-size:12px;padding:12px 4px}.end{border-top:1px solid var(--ink);padding-top:24px;font-size:12px;color:var(--ink2)}.nt{font-size:12px;letter-spacing:0;text-transform:none}.tc{font-size:11.5px}.vt{font-size:13px}.sl{font-size:10px}.scroll{border-radius:16px}.tb .notes{letter-spacing:0;text-transform:none}.tb .figs .v{font-size:15px}.tb .figs{grid-template-columns:repeat(6,1fr)}.dt{font-size:12px}.svg-note{font-size:12.5px;fill:var(--ink)}.sheet-head{font-size:18px;letter-spacing:.08em;fill:var(--ink)}a:focus-visible,summary:focus-visible,.scroll:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(max-width:900px){nav{grid-template-columns:repeat(3,1fr)}nav a:nth-child(3){border-right:0}.overview,.reading{grid-template-columns:1fr;gap:16px}.tb .figs{grid-template-columns:repeat(3,1fr)}.wrap{padding:20px 16px}.tb{grid-template-columns:1fr 1fr}.tb .big{grid-column:1/-1;grid-row:auto}.intro{padding-top:16px}}
+@media print{body{background:var(--sheet)}.wrap{padding:0;max-width:none}.intro{break-after:page}.subject{break-before:page;margin:0}.scroll{overflow:visible;box-shadow:none}svg{min-width:0}.tb{margin-bottom:12px}.back{display:none}.reading{gap:20px}.subject details{display:none}a{text-decoration:none}.foot{margin-bottom:8px}@page{size:A3 landscape;margin:12mm}}
+
+/* Public API to drawing navigation; native details retains keyboard access. */
+.component-index{margin-top:20px;background:#fff;border:1px solid #777;border-radius:12px;padding:16px;overflow-x:auto}.component-index summary{cursor:pointer;font-size:15px;font-weight:600}.component-index p{font-size:13px;line-height:1.6}.component-index table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.6}.component-index th,.component-index td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #ccc}.component-index th code{overflow-wrap:anywhere}.component-index a{color:#111;text-decoration:underline}.component-index a:focus-visible{outline:2px solid #111;outline-offset:3px}
+
+/* Keep prose and navigation inside the page; drawings retain local horizontal scrolling. */
+nav{grid-template-columns:repeat(6,minmax(0,1fr))}
+nav a{min-width:0;overflow-wrap:anywhere}
+.overview>*,.reading>*{min-width:0;overflow-wrap:anywhere}
+.subject>details{max-width:100%;overflow-x:auto}
+@media(max-width:900px){nav{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tb .figs{grid-template-columns:repeat(6,minmax(0,1fr))}
+.tb .figs>div,.tb .v,.tb .lbl{min-width:0;overflow-wrap:anywhere}
+.tb .notes{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+@media(max-width:900px){.tb .figs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:480px){
+  nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav a:nth-child(3){border-right:1px solid var(--ink)}
+  nav a:nth-child(2n),nav a:last-child{border-right:0}
+  .tb .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.status-note{margin:12px 0 0;padding:10px 14px;border:1px dashed #111;border-radius:10px;font-size:13px;line-height:20px;color:#111;background:#f4f4f4}
+nav a.outdated{opacity:.55}
+.subject.outdated .scroll{opacity:.72}
+ul.records{margin:8px 0 0;padding-left:18px;font-size:12px;line-height:19px;color:#555}
+ul.records li{margin:4px 0}

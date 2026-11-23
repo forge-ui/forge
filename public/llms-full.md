@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 2c5db69e9b26e9e4fdc525c75a3541031bcdb96fa0aa758d06316f614175ff9e
+Source fingerprint: b92ff3048ae76708088f0ca0a292c10c4cb36e93f75c38049470e3ecc202f925
 
 ## Adopted rules / 采用规则
 
@@ -1154,7 +1154,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 
 ## 采用规则
 
-- [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md) 定布局与看板几何；[Grid](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/layout-grid.md) 定 API 和固定/比例列边界；[多维图方法](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-design-dimensional.md) 可随包使用，不依赖本机其他 skill。
+- [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md) 定布局与看板几何，对应结构线稿见 [线稿图集](https://www.forgeui.org/docs/design-atlas)；[Grid](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/layout-grid.md) 定 API 和固定/比例列边界；[多维图方法](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-design-dimensional.md) 可随包使用，不依赖本机其他 skill。
 - 组件来自 `@forge-ui-official/core`，图标来自 `@forge-ui-official/core/icons`。AppLayout 标识使用 `appName`；不要使用已弃用 teamName 或不存在的 FormField。
 - 默认 accent/focus 为 blue，purple/black 仅为可选主题。7 个色族加 grey/white；token `fg-violet` 对应组件颜色 `"purple"`，见 [Tokens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/tokens.md)。
 - 状态默认 soft StatusBadge，分类/角色普通文字；一张表通常最多一个状态胶囊列，见 [状态表达](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/status-presentation.md)。
@@ -7724,6 +7724,8 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 
 # 后台页面推荐标准
 
+结构线稿见[线稿图集](https://www.forgeui.org/docs/design-atlas)：列表、表单、设置、详情四张页面图与本文推荐值一致。
+
 状态：2026-11-02 规范推荐稿，供新页面设计、评审与实施选型使用。本文定义**推荐行为与设计起点**，不证明当前 Core、模板或业务页面已经实现；不回填组件实测值，不关闭历史 pending，也不扩大第一批代码改造范围。用户确认范围、页面实现、技术检查与真实页面验收须分别记录。
 
 
@@ -7779,6 +7781,7 @@ Source: skills/forge-skill/references/page-recommended-standard.md
 - 先识别对象，再读状态和关键操作。默认采用标签—值、正文、附件、明细等阅读结构；静态信息不伪装为禁用输入。
 - 空值、未知、无权限、尚未生成分别表达，不统一画成破折号。短字段可按宽预算分列，长文本跨行，名称及标识可获取完整内容。
 - 关联列表、时间线和附件只在任务需要时加入；内容过多才采用分类/分页，保留当前对象上下文。危险动作说明实际影响范围并确认。
+- 页面铺满可用宽度；960px 只约束单组字段的阅读宽，不是整页宽。不为填满模板加统计或摘要类辅助栏；辅助栏只放确有独立含义的信息（预览、发布摘要、附属方信息）并说明用途。状态放在字段行或页头身份行，不在页头与正文之间孤立放徽章。
 
 ### 设置
 
