@@ -43,6 +43,7 @@
     "seo": "node scripts/generate-seo.mjs",
     "check:seo": "node scripts/generate-seo.mjs --check",
     "check:design": "node scripts/check-design-md.mjs",
+    "design:atlas": "node scripts/build-design-atlas.mjs",
     "test:check": "node --test scripts/test-forge-check.mjs",
     "check:pages": "node public/forge-check.mjs blocks src/app/templates",
     "check": "pnpm typecheck && pnpm lint && pnpm blocks:check && pnpm test:interactions && pnpm test:regression && pnpm test:mcp && pnpm test:rate-limit && pnpm check:skill && pnpm test:llms && pnpm docs:llms:check && pnpm check:doc-links && pnpm check:design && pnpm check:seo && pnpm check:dark-tokens && pnpm test:check && pnpm check:pages"

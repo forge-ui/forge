@@ -54,6 +54,7 @@ export const docsNavGroups: NavGroup[] = [
       { href: "/docs/check", label: "页面检查", icon: StarsLinear },
       { href: "/docs/agents-md", label: "AGENTS.md", icon: FileTextLinear },
       { href: "/docs/design-md", label: "DESIGN.md", icon: FileTextLinear },
+      { href: "/docs/design-atlas", label: "线稿图集", icon: PenLinear },
       { href: "/docs/llms-txt", label: "LLMs.txt", icon: FileTextLinear },
     ],
   },

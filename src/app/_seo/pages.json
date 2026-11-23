@@ -305,6 +305,10 @@
     "title": "页面检查",
     "description": "把审计清单里能从源码判断的条目做成检查：写完页面跑一遍，按行号和改法修，错误清零再交付。"
   },
+  "/docs/design-atlas": {
+    "title": "线稿图集",
+    "description": "Forge 组件与页面的结构尺寸线稿，共 ${atlas.sheets.length} 张：每张图标出槽位、间距与伸缩方式，附变量表、使用规则和待决策项。"
+  },
   "/docs/design-md": {
     "title": "DESIGN.md",
     "description": "Forge 的视觉规则：颜色、字色层级、字体、圆角、状态和布局。按 google-labs-code/design.md 规范编写，开头是 YAML token，后面是说明和该做、不该做的事。"
