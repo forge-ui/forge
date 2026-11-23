@@ -31,7 +31,7 @@
 
 - [设计规范](https://www.forgeui.org/components/style-guide.md): ColorSwatch、ColorSection、TypefaceBlock、TypographyWeightSample、TypographySizeRow
 - [按钮与链接](https://www.forgeui.org/components/button-link.md): Button、IconButton、StyledLink、ButtonGroup
-- [表单与输入](https://www.forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Datepicker、RadioButton
+- [表单与输入](https://www.forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Combobox、Autocomplete
 - [筛选](https://www.forgeui.org/components/filter.md): FilterGroup、FilterTrigger、FilterPanel
 - [数据表格](https://www.forgeui.org/components/table.md): DataTable、CellActions、StatusBadge、CellTextSubtitle、CellText
 - [图表](https://www.forgeui.org/components/chart.md): DonutChart、ChartCard、ChartListItem、ChartTooltip、ChartLegendItem

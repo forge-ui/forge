@@ -15,6 +15,8 @@ import {
   IconSelector,
   IconPicker,
   ColorPicker,
+  Combobox,
+  Autocomplete,
 } from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
@@ -50,11 +52,63 @@ const iconList = [
 ];
 const iconLabels = ["首页", "设置", "用户", "图表", "消息", "通知", "星标", "喜欢"];
 
+
+const cityOptions = [
+  { value: "bj", label: "北京" },
+  { value: "sh", label: "上海" },
+  { value: "sz", label: "深圳" },
+  { value: "hz", label: "杭州" },
+  { value: "cd", label: "成都" },
+  { value: "wh", label: "武汉" },
+];
+
+const CODE_COMBOBOX_USAGE = `const [city, setCity] = useState<string | null>(null);
+const [tags, setTags] = useState<string[]>(["bj"]);
+
+<Combobox label="城市" options={cityOptions} value={city} onChange={setCity} />
+<Combobox multiple label="覆盖城市" options={cityOptions} value={tags} onChange={setTags} />`;
+
+const CODE_AUTOCOMPLETE_USAGE = `const [keyword, setKeyword] = useState("");
+
+<Autocomplete
+  searchIcon
+  label="搜索客户"
+  value={keyword}
+  onChange={setKeyword}
+  options={["比特林克", "比特数据", { value: "北理工", description: "高校" }]}
+/>`;
+
+const COMBOBOX_PROPS: ApiTableRow[] = [
+  { attr: "options", type: "ComboboxOption[]", defaultValue: "—", description: "选项 { value, label, description?, icon?, disabled? }。输入文字按 label 过滤。" },
+  { attr: "multiple", type: "boolean", defaultValue: "false", description: "多选。选中项显示为输入框里的标签，可逐个移除。" },
+  { attr: "value / defaultValue", type: "string | null | string[]", defaultValue: "—", description: "选中的 value；多选时是数组。" },
+  { attr: "onChange", type: "(value) => void", defaultValue: "—", description: "选中变化时回调；清除时单选返回 null。" },
+  { attr: "label", type: "string", defaultValue: "—", description: "输入框上方标题，点击聚焦输入框。" },
+  { attr: "placeholder", type: "string", defaultValue: "'搜索...'", description: "占位文字。" },
+  { attr: "emptyText", type: "ReactNode", defaultValue: "'没有匹配项'", description: "没有匹配时的提示。" },
+  { attr: "state", type: "'idle' | 'disabled' | 'error'", defaultValue: "'idle'", description: "error 时在下方显示 errorMessage。" },
+  { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "聚焦边框、选中项和标签颜色。" },
+  { attr: "shape", type: "'rounded' | 'pill'", defaultValue: "'rounded'", description: "输入框外形。" },
+  { attr: "width", type: "string", defaultValue: "'100%'", description: "输入框宽度，任意 CSS 宽度。" },
+  { attr: "name", type: "string", defaultValue: "—", description: "表单字段名，提交选中的 value。" },
+];
+
+const AUTOCOMPLETE_PROPS: ApiTableRow[] = [
+  { attr: "options", type: "(string | AutocompleteOption)[]", defaultValue: "—", description: "建议项；对象形式 { value, label?, description?, icon?, disabled? }。" },
+  { attr: "value / defaultValue", type: "string", defaultValue: "—", description: "输入框文字。可以是任意文字，不要求在建议里。" },
+  { attr: "onChange", type: "(value: string) => void", defaultValue: "—", description: "输入或选中建议时回调。" },
+  { attr: "onSelect", type: "(option) => void", defaultValue: "—", description: "只在选中某条建议时回调。" },
+  { attr: "emptyText", type: "ReactNode", defaultValue: "—", description: "没有匹配时的提示；不传则直接收起列表。" },
+  { attr: "searchIcon", type: "boolean", defaultValue: "false", description: "左侧显示搜索图标。" },
+  { attr: "state / color / shape / width / name", type: "—", defaultValue: "—", description: "同 Combobox。" },
+];
+
 const CODE_IMPORT = `import {
   TextField, TextArea, SelectOption, Datepicker,
   Toggle, RadioButton, CheckboxControl, CheckboxWithLabel,
   MediaUpload, ProfileImgUpload, FileUpload,
   IconSelector, IconPicker, ColorPicker,
+  Combobox, Autocomplete,
 } from "@forge-ui-official/core";`;
 
 const CODE_TF_COLORS = `<TextField color="purple" state="focus" placeholder="紫色聚焦" />
@@ -271,6 +325,12 @@ export default function InputFieldCasePage() {
               <SelectOption shape="pill" options={sampleOptions} className="w-56" />
             </div>
           </DocExample>
+          <DocExample id="combobox" title="Combobox" summary="选项多时边输入边筛选，单选或多选。" code={CODE_COMBOBOX_USAGE} minHeight={220}>
+            <ComboboxDemo />
+          </DocExample>
+          <DocExample id="autocomplete" title="Autocomplete" summary="自由输入，同时给出可点选的建议。" code={CODE_AUTOCOMPLETE_USAGE} minHeight={200}>
+            <AutocompleteDemo />
+          </DocExample>
           <DocExample id="datepicker" title="Datepicker" summary="单日和日期区间是两种选择。" code={CODE_DP_USAGE} minHeight={200}>
             <div className="flex flex-wrap items-start gap-4">
               <Datepicker label="选择日期" />
@@ -322,6 +382,8 @@ export default function InputFieldCasePage() {
         <ApiBlock id="textfield" title="TextField" rows={TF_PROPS} />
         <ApiBlock id="textarea" title="TextArea" rows={TA_PROPS} />
         <ApiBlock id="selectoption" title="SelectOption" rows={SELECT_PROPS} />
+        <ApiBlock id="combobox" title="Combobox" rows={COMBOBOX_PROPS} />
+        <ApiBlock id="autocomplete" title="Autocomplete" rows={AUTOCOMPLETE_PROPS} />
         <ApiBlock id="datepicker" title="Datepicker" rows={DP_PROPS} />
         <ApiBlock id="radiobutton" title="RadioButton" rows={RADIO_PROPS} />
         <ApiBlock id="checkboxcontrol" title="CheckboxControl" rows={CHECKBOX_PROPS} />
@@ -333,6 +395,26 @@ export default function InputFieldCasePage() {
         <ApiBlock id="iconpicker" title="IconPicker" rows={ICONPICKER_PROPS} />
         <ApiBlock id="iconselector" title="IconSelector" rows={ICONSELECTOR_PROPS} />
       </Section>
+    </div>
+  );
+}
+
+function ComboboxDemo() {
+  const [city, setCity] = useState<string | null>(null);
+  const [tags, setTags] = useState<string[]>(["bj"]);
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-4">
+      <Combobox label="城市" options={cityOptions} value={city} onChange={setCity} />
+      <Combobox multiple label="覆盖城市" options={cityOptions} value={tags} onChange={setTags} />
+    </div>
+  );
+}
+
+function AutocompleteDemo() {
+  const [keyword, setKeyword] = useState("");
+  return (
+    <div className="w-full max-w-sm">
+      <Autocomplete searchIcon label="搜索客户" value={keyword} onChange={setKeyword} options={["比特林克", "比特数据", { value: "北理工", description: "高校" }]} />
     </div>
   );
 }

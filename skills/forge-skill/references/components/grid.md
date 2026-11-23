@@ -15,7 +15,7 @@
 | `gap` | 否 | `GridResponsive<GridGap> \| undefined` | Pixel presets, not Tailwind spacing units. |
 | `rowGap` | 否 | `GridResponsive<GridGap> \| undefined` |  |
 | `columnGap` | 否 | `GridResponsive<GridGap> \| undefined` |  |
-| `alignItems` | 否 | `"center" \| "start" \| "end" \| "stretch" \| "baseline" \| undefined` |  |
+| `alignItems` | 否 | `"start" \| "center" \| "end" \| "stretch" \| "baseline" \| undefined` |  |
 | `ref` | 否 | `Ref<HTMLDivElement> \| undefined` | Allows getting a ref to the component instance. Once the component unmounts, React will set `ref.current` to `null` (or call the ref with `null` if you passed a callback ref). |
 | `key` | 否 | `Key \| null \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |

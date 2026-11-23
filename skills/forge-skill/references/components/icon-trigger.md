@@ -25,7 +25,7 @@
 | `panel` | 否 | `IconTriggerPanel` | Optional panel. `ReactNode` or `(close) => ReactNode` so inner elements can close it. |
 | `panelPlacement` | 否 | `IconTriggerPanelPlacement \| undefined` |  |
 | `initialFocus` | 否 | `false \| "first" \| "selected" \| undefined` |  |
-| `panelAlign` | 否 | `"center" \| "start" \| "end" \| undefined` |  |
+| `panelAlign` | 否 | `"start" \| "center" \| "end" \| undefined` |  |
 
 ## IconTriggerAccent (type)
 

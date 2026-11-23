@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.10.1",
   "source": "core/src/index.ts",
-  "revision": "e226047a24e2b410ee3b0fde8e1614bae76ef9d5",
+  "revision": "0d5f8a163f13fc8b565a38207146949ce864bed0",
   "dirty": false,
-  "exportFingerprint": "7fea1ee5dc56edb369a20b6123d3197a9ed8c3b7",
-  "generatedAt": "2026-11-20T14:45:47+08:00",
+  "exportFingerprint": "e9f5f2d65336cb13df7d5349c41fd67559f86889",
+  "generatedAt": "2026-11-23T11:15:21+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 622,
+  "componentCount": 652,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -2618,6 +2618,176 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/composer-parts.tsx",
       "module": "agent/composer-parts",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Autocomplete",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/autocomplete.tsx",
+      "module": "forms/autocomplete",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ options, value, defaultValue, onChange, onSelect, label, placeholder, emptyText, errorMessage, state, shape, color, searchIcon, width, headerAction, name, locale, className, motion, }: AutocompleteProps) => JSX.Element",
+      "props": [
+        {
+          "name": "options",
+          "optional": false,
+          "type": "(string | AutocompleteOption)[]",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSelect",
+          "optional": true,
+          "type": "((option: AutocompleteOption) => void) | undefined",
+          "description": "Fires when a suggestion is picked (not on free typing)."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "emptyText",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Shown when the text matches nothing. Omit to hide the list instead."
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "state",
+          "optional": true,
+          "type": "FloatingFieldState | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "searchIcon",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Show a search icon at the start."
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "headerAction",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AutocompleteColor",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/autocomplete.tsx",
+      "module": "forms/autocomplete",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutocompleteOption",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/autocomplete.tsx",
+      "module": "forms/autocomplete",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutocompleteProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/autocomplete.tsx",
+      "module": "forms/autocomplete",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutocompleteShape",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/autocomplete.tsx",
+      "module": "forms/autocomplete",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AutocompleteState",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/autocomplete.tsx",
+      "module": "forms/autocomplete",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -11689,6 +11859,170 @@
       "props": []
     },
     {
+      "name": "Combobox",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/combobox.tsx",
+      "module": "forms/combobox",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "(props: ComboboxProps) => JSX.Element",
+      "props": [
+        {
+          "name": "options",
+          "optional": false,
+          "type": "ComboboxOption[]",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "emptyText",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Shown when the query matches nothing."
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "state",
+          "optional": true,
+          "type": "FloatingFieldState | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Field width, any CSS width. Defaults to 100% of the parent."
+        },
+        {
+          "name": "headerAction",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Form field name; submits the selected value(s)."
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "multiple",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | string[] | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | string[] | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string | null) => void) | ((value: string[]) => void) | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ComboboxColor",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/combobox.tsx",
+      "module": "forms/combobox",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComboboxOption",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/combobox.tsx",
+      "module": "forms/combobox",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComboboxProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/combobox.tsx",
+      "module": "forms/combobox",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComboboxShape",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/combobox.tsx",
+      "module": "forms/combobox",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ComboboxState",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/combobox.tsx",
+      "module": "forms/combobox",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "CommandSearch",
       "kind": "value",
       "source": "core/src/components/ui/agent/command-search.tsx",
@@ -12565,6 +12899,89 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/context-cards.tsx",
       "module": "agent/context-cards",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ContextMenu",
+      "kind": "value",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, items, accent, open: openProp, defaultOpen, onOpenChange, className, areaClassName, motion, }: ContextMenuProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "DropdownMenuEntry[]",
+          "description": ""
+        },
+        {
+          "name": "accent",
+          "optional": true,
+          "type": "AccentColor | undefined",
+          "description": "Highlight color for checked entries."
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": "Area that opens the menu on right click or long press."
+        },
+        {
+          "name": "areaClassName",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Class for the trigger area."
+        }
+      ]
+    },
+    {
+      "name": "ContextMenuEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ContextMenuProps",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -13860,6 +14277,173 @@
       "group": "ui",
       "oneShotDefault": false,
       "signature": "() => JSX.Element",
+      "props": []
+    },
+    {
+      "name": "DropdownMenu",
+      "kind": "value",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ trigger, items, accent, side, align, openOnHover, open: openProp, defaultOpen, onOpenChange, className, motion, }: DropdownMenuProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "DropdownMenuEntry[]",
+          "description": ""
+        },
+        {
+          "name": "accent",
+          "optional": true,
+          "type": "AccentColor | undefined",
+          "description": "Highlight color for checked entries."
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "trigger",
+          "optional": false,
+          "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+          "description": "Element that opens the menu. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button)."
+        },
+        {
+          "name": "side",
+          "optional": true,
+          "type": "DropdownMenuSide | undefined",
+          "description": ""
+        },
+        {
+          "name": "align",
+          "optional": true,
+          "type": "DropdownMenuAlign | undefined",
+          "description": ""
+        },
+        {
+          "name": "openOnHover",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Open on hover as well as click."
+        }
+      ]
+    },
+    {
+      "name": "DropdownMenuAccent",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuActionEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuAlign",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuCheckboxEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuDividerEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuGroupEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuProps",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuSide",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DropdownMenuSubmenuEntry",
+      "kind": "type",
+      "source": "core/src/components/ui/dropdown-menu.tsx",
+      "module": "dropdown-menu",
+      "group": "ui",
+      "oneShotDefault": false,
       "props": []
     },
     {
@@ -16902,7 +17486,7 @@
         {
           "name": "alignItems",
           "optional": true,
-          "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\" | undefined",
+          "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\" | undefined",
           "description": ""
         },
         {
@@ -22769,7 +23353,7 @@
         {
           "name": "panelAlign",
           "optional": true,
-          "type": "\"center\" | \"start\" | \"end\" | undefined",
+          "type": "\"start\" | \"center\" | \"end\" | undefined",
           "description": ""
         }
       ]
@@ -27129,6 +27713,128 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "Popover",
+      "kind": "value",
+      "source": "core/src/components/ui/popover.tsx",
+      "module": "popover",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ trigger, children, title, description, side, align, sideOffset, open: openProp, defaultOpen, onOpenChange, openOnHover, width, className, motion, }: PopoverProps) => JSX.Element",
+      "props": [
+        {
+          "name": "trigger",
+          "optional": false,
+          "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+          "description": "Element that toggles the popover. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button)."
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode | ((close: () => void) => ReactNode)",
+          "description": "Panel content. Pass a function to receive `close`."
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "side",
+          "optional": true,
+          "type": "PopoverSide | undefined",
+          "description": ""
+        },
+        {
+          "name": "align",
+          "optional": true,
+          "type": "PopoverAlign | undefined",
+          "description": ""
+        },
+        {
+          "name": "sideOffset",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Gap between trigger and panel, in pixels."
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultOpen",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "openOnHover",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Open on hover as well as click."
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Panel width, any CSS width. Defaults to content width (max 320px)."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PopoverAlign",
+      "kind": "type",
+      "source": "core/src/components/ui/popover.tsx",
+      "module": "popover",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "PopoverProps",
+      "kind": "type",
+      "source": "core/src/components/ui/popover.tsx",
+      "module": "popover",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "PopoverSide",
+      "kind": "type",
+      "source": "core/src/components/ui/popover.tsx",
+      "module": "popover",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "ProductRow",

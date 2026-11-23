@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 622 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 652 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -105,6 +105,12 @@
 | AttachmentKind | type | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
 | AttachmentList | value | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
 | AttachmentListProps | type | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
+| Autocomplete | value | [源码](../../core/src/components/ui/forms/autocomplete.tsx) | [autocomplete](../../skills/forge-skill/references/components/autocomplete.md) |
+| AutocompleteColor | type | [源码](../../core/src/components/ui/forms/autocomplete.tsx) | [autocomplete](../../skills/forge-skill/references/components/autocomplete.md) |
+| AutocompleteOption | type | [源码](../../core/src/components/ui/forms/autocomplete.tsx) | [autocomplete](../../skills/forge-skill/references/components/autocomplete.md) |
+| AutocompleteProps | type | [源码](../../core/src/components/ui/forms/autocomplete.tsx) | [autocomplete](../../skills/forge-skill/references/components/autocomplete.md) |
+| AutocompleteShape | type | [源码](../../core/src/components/ui/forms/autocomplete.tsx) | [autocomplete](../../skills/forge-skill/references/components/autocomplete.md) |
+| AutocompleteState | type | [源码](../../core/src/components/ui/forms/autocomplete.tsx) | [autocomplete](../../skills/forge-skill/references/components/autocomplete.md) |
 | AutonomyAction | type | [源码](../../core/src/components/ui/agent/agent-governance.tsx) | [agent-governance](../../skills/forge-skill/references/components/agent-governance.md) |
 | AutonomyLevel | type | [源码](../../core/src/components/ui/agent/agent-governance.tsx) | [agent-governance](../../skills/forge-skill/references/components/agent-governance.md) |
 | AutonomySelector | value | [源码](../../core/src/components/ui/agent/agent-governance.tsx) | [agent-governance](../../skills/forge-skill/references/components/agent-governance.md) |
@@ -226,6 +232,12 @@
 | ColorSwatch | value | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
 | ColorSwatchSize | type | [源码](../../core/src/components/ui/style-guide.tsx) | [style-guide](../../skills/forge-skill/references/components/style-guide.md) |
 | ColumnDef | type | [源码](../../core/src/components/ui/data-table.tsx) | [data-table](../../skills/forge-skill/references/components/data-table.md) |
+| Combobox | value | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
+| ComboboxColor | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
+| ComboboxOption | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
+| ComboboxProps | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
+| ComboboxShape | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
+| ComboboxState | type | [源码](../../core/src/components/ui/forms/combobox.tsx) | [combobox](../../skills/forge-skill/references/components/combobox.md) |
 | CommandSearch | value | [源码](../../core/src/components/ui/agent/command-search.tsx) | [command-search](../../skills/forge-skill/references/components/command-search.md) |
 | CommandSearchItem | type | [源码](../../core/src/components/ui/agent/command-search.tsx) | [command-search](../../skills/forge-skill/references/components/command-search.md) |
 | CommentData | type | [源码](../../core/src/components/ui/comment-item.tsx) | [comment-item](../../skills/forge-skill/references/components/comment-item.md) |
@@ -257,6 +269,9 @@
 | ContactItem | value | [源码](../../core/src/components/ui/contact-item.tsx) | [contact-item](../../skills/forge-skill/references/components/contact-item.md) |
 | ContextCards | value | [源码](../../core/src/components/ui/agent/context-cards.tsx) | [context-cards](../../skills/forge-skill/references/components/context-cards.md) |
 | ContextChunk | type | [源码](../../core/src/components/ui/agent/context-cards.tsx) | [context-cards](../../skills/forge-skill/references/components/context-cards.md) |
+| ContextMenu | value | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| ContextMenuEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| ContextMenuProps | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
 | ContextSegment | type | [源码](../../core/src/components/ui/agent/agent-observe.tsx) | [agent-observe](../../skills/forge-skill/references/components/agent-observe.md) |
 | ContextSegmentKind | type | [源码](../../core/src/components/ui/agent/agent-observe.tsx) | [agent-observe](../../skills/forge-skill/references/components/agent-observe.md) |
 | ContextUsage | value | [源码](../../core/src/components/ui/agent/agent-observe.tsx) | [agent-observe](../../skills/forge-skill/references/components/agent-observe.md) |
@@ -289,6 +304,17 @@
 | Drawer | value | [源码](../../core/src/components/ui/drawer.tsx) | [drawer](../../skills/forge-skill/references/components/drawer.md) |
 | DrawerProps | type | [源码](../../core/src/components/ui/drawer.tsx) | [drawer](../../skills/forge-skill/references/components/drawer.md) |
 | DropdownDivider | value | [源码](../../core/src/components/ui/dropdown-panel.tsx) | [dropdown-panel](../../skills/forge-skill/references/components/dropdown-panel.md) |
+| DropdownMenu | value | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuAccent | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuActionEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuAlign | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuCheckboxEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuDividerEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuGroupEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuProps | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuSide | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
+| DropdownMenuSubmenuEntry | type | [源码](../../core/src/components/ui/dropdown-menu.tsx) | [dropdown-menu](../../skills/forge-skill/references/components/dropdown-menu.md) |
 | DropdownPanel | value | [源码](../../core/src/components/ui/dropdown-panel.tsx) | [dropdown-panel](../../skills/forge-skill/references/components/dropdown-panel.md) |
 | EventCard | value | [源码](../../core/src/components/ui/event-card.tsx) | [event-card](../../skills/forge-skill/references/components/event-card.md) |
 | EventCardColor | type | [源码](../../core/src/components/ui/event-card.tsx) | [event-card](../../skills/forge-skill/references/components/event-card.md) |
@@ -453,6 +479,10 @@
 | PieChart | value | [源码](../../core/src/components/ui/charts/pie-chart.tsx) | [pie-chart](../../skills/forge-skill/references/components/pie-chart.md) |
 | PlanStep | type | [源码](../../core/src/components/ui/agent/agent-run.tsx) | [agent-run](../../skills/forge-skill/references/components/agent-run.md) |
 | PlusIcon | value | [源码](../../core/src/components/ui/plain-icons.tsx) | [plain-icons](../../skills/forge-skill/references/components/plain-icons.md) |
+| Popover | value | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
+| PopoverAlign | type | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
+| PopoverProps | type | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
+| PopoverSide | type | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
 | ProductRow | value | [源码](../../core/src/components/ui/product-row.tsx) | [product-row](../../skills/forge-skill/references/components/product-row.md) |
 | ProfileCard | value | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |
 | ProfileCardState | type | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 2c5db69e9b26e9e4fdc525c75a3541031bcdb96fa0aa758d06316f614175ff9e
+Source fingerprint: 9ef937c908cd0e4ac9654920a931b863f1c0c1757664ee76ecb2e5cbc9b17377
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -290,7 +290,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (622, values and types distinguished)
+## Public exports (652, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -391,6 +391,12 @@ export function ModuleOverview() {
 - AttachmentKind [type] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentList [value] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentListProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- Autocomplete [value] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteColor [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteOption [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteProps [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteShape [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteState [type] — core/src/components/ui/forms/autocomplete.tsx
 - AutonomyAction [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomyLevel [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomySelector [value] — core/src/components/ui/agent/agent-governance.tsx
@@ -512,6 +518,12 @@ export function ModuleOverview() {
 - ColorSwatch [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatchSize [type] — core/src/components/ui/style-guide.tsx
 - ColumnDef [type] — core/src/components/ui/data-table.tsx
+- Combobox [value] — core/src/components/ui/forms/combobox.tsx
+- ComboboxColor [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxOption [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxProps [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxShape [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxState [type] — core/src/components/ui/forms/combobox.tsx
 - CommandSearch [value] — core/src/components/ui/agent/command-search.tsx
 - CommandSearchItem [type] — core/src/components/ui/agent/command-search.tsx
 - CommentData [type] — core/src/components/ui/comment-item.tsx
@@ -543,6 +555,9 @@ export function ModuleOverview() {
 - ContactItem [value] — core/src/components/ui/contact-item.tsx
 - ContextCards [value] — core/src/components/ui/agent/context-cards.tsx
 - ContextChunk [type] — core/src/components/ui/agent/context-cards.tsx
+- ContextMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
 - ContextSegment [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextSegmentKind [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextUsage [value] — core/src/components/ui/agent/agent-observe.tsx
@@ -575,6 +590,17 @@ export function ModuleOverview() {
 - Drawer [value] — core/src/components/ui/drawer.tsx
 - DrawerProps [type] — core/src/components/ui/drawer.tsx
 - DropdownDivider [value] — core/src/components/ui/dropdown-panel.tsx
+- DropdownMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAccent [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuActionEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAlign [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuCheckboxEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuDividerEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuGroupEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSide [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSubmenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownPanel [value] — core/src/components/ui/dropdown-panel.tsx
 - EventCard [value] — core/src/components/ui/event-card.tsx
 - EventCardColor [type] — core/src/components/ui/event-card.tsx
@@ -739,6 +765,10 @@ export function ModuleOverview() {
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
+- Popover [value] — core/src/components/ui/popover.tsx
+- PopoverAlign [type] — core/src/components/ui/popover.tsx
+- PopoverProps [type] — core/src/components/ui/popover.tsx
+- PopoverSide [type] — core/src/components/ui/popover.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
 - ProfileCardState [type] — core/src/components/ui/profile-card.tsx

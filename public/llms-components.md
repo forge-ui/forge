@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 2c5db69e9b26e9e4fdc525c75a3541031bcdb96fa0aa758d06316f614175ff9e
+Source fingerprint: 9ef937c908cd0e4ac9654920a931b863f1c0c1757664ee76ecb2e5cbc9b17377
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (622, values and types distinguished)
+## Public exports (652, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -109,6 +109,12 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AttachmentKind [type] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentList [value] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentListProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- Autocomplete [value] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteColor [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteOption [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteProps [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteShape [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteState [type] — core/src/components/ui/forms/autocomplete.tsx
 - AutonomyAction [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomyLevel [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomySelector [value] — core/src/components/ui/agent/agent-governance.tsx
@@ -230,6 +236,12 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ColorSwatch [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatchSize [type] — core/src/components/ui/style-guide.tsx
 - ColumnDef [type] — core/src/components/ui/data-table.tsx
+- Combobox [value] — core/src/components/ui/forms/combobox.tsx
+- ComboboxColor [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxOption [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxProps [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxShape [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxState [type] — core/src/components/ui/forms/combobox.tsx
 - CommandSearch [value] — core/src/components/ui/agent/command-search.tsx
 - CommandSearchItem [type] — core/src/components/ui/agent/command-search.tsx
 - CommentData [type] — core/src/components/ui/comment-item.tsx
@@ -261,6 +273,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ContactItem [value] — core/src/components/ui/contact-item.tsx
 - ContextCards [value] — core/src/components/ui/agent/context-cards.tsx
 - ContextChunk [type] — core/src/components/ui/agent/context-cards.tsx
+- ContextMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
 - ContextSegment [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextSegmentKind [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextUsage [value] — core/src/components/ui/agent/agent-observe.tsx
@@ -293,6 +308,17 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - Drawer [value] — core/src/components/ui/drawer.tsx
 - DrawerProps [type] — core/src/components/ui/drawer.tsx
 - DropdownDivider [value] — core/src/components/ui/dropdown-panel.tsx
+- DropdownMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAccent [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuActionEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAlign [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuCheckboxEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuDividerEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuGroupEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSide [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSubmenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownPanel [value] — core/src/components/ui/dropdown-panel.tsx
 - EventCard [value] — core/src/components/ui/event-card.tsx
 - EventCardColor [type] — core/src/components/ui/event-card.tsx
@@ -457,6 +483,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
+- Popover [value] — core/src/components/ui/popover.tsx
+- PopoverAlign [type] — core/src/components/ui/popover.tsx
+- PopoverProps [type] — core/src/components/ui/popover.tsx
+- PopoverSide [type] — core/src/components/ui/popover.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
 - ProfileCardState [type] — core/src/components/ui/profile-card.tsx
@@ -2743,6 +2773,104 @@ export interface AskAiSessionItem {
   id: string;
   title: string;
 }
+```
+
+---
+
+Source: skills/forge-skill/references/components/autocomplete.md
+
+# autocomplete
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/autocomplete.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Autocomplete (value)
+
+```ts
+({ options, value, defaultValue, onChange, onSelect, label, placeholder, emptyText, errorMessage, state, shape, color, searchIcon, width, headerAction, name, locale, className, motion, }: AutocompleteProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `(string \| AutocompleteOption)[]` |  |
+| `value` | 否 | `string \| undefined` |  |
+| `defaultValue` | 否 | `string \| undefined` |  |
+| `onChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `onSelect` | 否 | `((option: AutocompleteOption) => void) \| undefined` | Fires when a suggestion is picked (not on free typing). |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `emptyText` | 否 | `ReactNode` | Shown when the text matches nothing. Omit to hide the list instead. |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `state` | 否 | `FloatingFieldState \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `searchIcon` | 否 | `boolean \| undefined` | Show a search icon at the start. |
+| `width` | 否 | `string \| undefined` |  |
+| `headerAction` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## AutocompleteColor (type)
+
+```ts
+export type AutocompleteColor = FormAccentColor;
+```
+
+## AutocompleteOption (type)
+
+```ts
+export interface AutocompleteOption {
+  /** Text written into the input when picked. */
+  value: string;
+  /** Display text; defaults to `value`. */
+  label?: string;
+  description?: string;
+  icon?: ReactNode;
+  disabled?: boolean;
+}
+```
+
+## AutocompleteProps (type)
+
+```ts
+export interface AutocompleteProps {
+  options: (string | AutocompleteOption)[];
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  /** Fires when a suggestion is picked (not on free typing). */
+  onSelect?: (option: AutocompleteOption) => void;
+  label?: string;
+  placeholder?: string;
+  /** Shown when the text matches nothing. Omit to hide the list instead. */
+  emptyText?: ReactNode;
+  errorMessage?: string;
+  state?: AutocompleteState;
+  shape?: AutocompleteShape;
+  color?: AutocompleteColor;
+  /** Show a search icon at the start. */
+  searchIcon?: boolean;
+  width?: string;
+  headerAction?: ReactNode;
+  name?: string;
+  locale?: "zh" | "en";
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+## AutocompleteShape (type)
+
+```ts
+export type AutocompleteShape = FloatingFieldShape;
+```
+
+## AutocompleteState (type)
+
+```ts
+export type AutocompleteState = FloatingFieldState;
 ```
 
 ---
@@ -5169,6 +5297,78 @@ export type CitedAnswerProps = {
 
 ---
 
+Source: skills/forge-skill/references/components/combobox.md
+
+# combobox
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/combobox.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Combobox (value)
+
+```ts
+(props: ComboboxProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ComboboxOption[]` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `emptyText` | 否 | `ReactNode` | Shown when the query matches nothing. |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `state` | 否 | `FloatingFieldState \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `width` | 否 | `string \| undefined` | Field width, any CSS width. Defaults to 100% of the parent. |
+| `headerAction` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits the selected value(s). |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `value` | 否 | `string \| string[] \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| string[] \| null \| undefined` |  |
+| `onChange` | 否 | `((value: string \| null) => void) \| ((value: string[]) => void) \| undefined` |  |
+
+## ComboboxColor (type)
+
+```ts
+export type ComboboxColor = FormAccentColor;
+```
+
+## ComboboxOption (type)
+
+```ts
+export interface ComboboxOption {
+  value: string;
+  label: string;
+  description?: string;
+  icon?: ReactNode;
+  disabled?: boolean;
+}
+```
+
+## ComboboxProps (type)
+
+```ts
+export type ComboboxProps = ComboboxSingleProps | ComboboxMultipleProps;
+```
+
+## ComboboxShape (type)
+
+```ts
+export type ComboboxShape = FloatingFieldShape;
+```
+
+## ComboboxState (type)
+
+```ts
+export type ComboboxState = FloatingFieldState;
+```
+
+---
+
 Source: skills/forge-skill/references/components/command-search.md
 
 # command-search
@@ -6747,6 +6947,164 @@ export interface DrawerProps extends ModalProps { side?: "left" | "right"; trans
 
 ---
 
+Source: skills/forge-skill/references/components/dropdown-menu.md
+
+# dropdown-menu
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-menu.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ContextMenu (value)
+
+```ts
+({ children, items, accent, open: openProp, defaultOpen, onOpenChange, className, areaClassName, motion, }: ContextMenuProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `DropdownMenuEntry[]` |  |
+| `accent` | 否 | `AccentColor \| undefined` | Highlight color for checked entries. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `children` | 是 | `ReactNode` | Area that opens the menu on right click or long press. |
+| `areaClassName` | 否 | `string \| undefined` | Class for the trigger area. |
+
+## ContextMenuEntry (type)
+
+```ts
+export type ContextMenuEntry = DropdownMenuEntry;
+```
+
+## ContextMenuProps (type)
+
+```ts
+export type ContextMenuProps = SharedMenuProps & {
+  /** Area that opens the menu on right click or long press. */
+  children: ReactNode;
+  /** Class for the trigger area. */
+  areaClassName?: string;
+};
+```
+
+## DropdownMenu (value)
+
+```ts
+({ trigger, items, accent, side, align, openOnHover, open: openProp, defaultOpen, onOpenChange, className, motion, }: DropdownMenuProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `DropdownMenuEntry[]` |  |
+| `accent` | 否 | `AccentColor \| undefined` | Highlight color for checked entries. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | Element that opens the menu. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). |
+| `side` | 否 | `DropdownMenuSide \| undefined` |  |
+| `align` | 否 | `DropdownMenuAlign \| undefined` |  |
+| `openOnHover` | 否 | `boolean \| undefined` | Open on hover as well as click. |
+
+## DropdownMenuAccent (type)
+
+```ts
+export type DropdownMenuAccent = AccentColor;
+```
+
+## DropdownMenuActionEntry (type)
+
+```ts
+export type DropdownMenuActionEntry = EntryBase & {
+  type?: "item";
+  label: ReactNode;
+  icon?: ReactNode;
+  description?: ReactNode;
+  /** Shortcut hint shown on the right, e.g. "⌘K". Display only. */
+  shortcut?: string;
+  danger?: boolean;
+  /** Renders the item as a link. */
+  href?: string;
+  onSelect?: () => void;
+};
+```
+
+## DropdownMenuAlign (type)
+
+```ts
+export type DropdownMenuAlign = "start" | "center" | "end";
+```
+
+## DropdownMenuCheckboxEntry (type)
+
+```ts
+export type DropdownMenuCheckboxEntry = EntryBase & {
+  type: "checkbox";
+  label: ReactNode;
+  icon?: ReactNode;
+  checked: boolean;
+  onCheckedChange: (checked: boolean) => void;
+};
+```
+
+## DropdownMenuDividerEntry (type)
+
+```ts
+export type DropdownMenuDividerEntry = { type: "divider"; key?: string };
+```
+
+## DropdownMenuEntry (type)
+
+```ts
+export type DropdownMenuEntry =
+  | DropdownMenuActionEntry
+  | DropdownMenuCheckboxEntry
+  | DropdownMenuSubmenuEntry
+  | DropdownMenuGroupEntry
+  | DropdownMenuDividerEntry;
+```
+
+## DropdownMenuGroupEntry (type)
+
+```ts
+export type DropdownMenuGroupEntry = { type: "group"; key?: string; label: ReactNode; items: DropdownMenuEntry[] };
+```
+
+## DropdownMenuProps (type)
+
+```ts
+export type DropdownMenuProps = SharedMenuProps & {
+  /** Element that opens the menu. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). */
+  trigger: ReactElement;
+  side?: DropdownMenuSide;
+  align?: DropdownMenuAlign;
+  /** Open on hover as well as click. */
+  openOnHover?: boolean;
+};
+```
+
+## DropdownMenuSide (type)
+
+```ts
+export type DropdownMenuSide = "top" | "bottom" | "left" | "right";
+```
+
+## DropdownMenuSubmenuEntry (type)
+
+```ts
+export type DropdownMenuSubmenuEntry = EntryBase & {
+  type: "submenu";
+  label: ReactNode;
+  icon?: ReactNode;
+  items: DropdownMenuEntry[];
+};
+```
+
+---
+
 Source: skills/forge-skill/references/components/dropdown-panel.md
 
 # dropdown-panel
@@ -7603,7 +7961,7 @@ Source: skills/forge-skill/references/components/grid.md
 | `gap` | 否 | `GridResponsive<GridGap> \| undefined` | Pixel presets, not Tailwind spacing units. |
 | `rowGap` | 否 | `GridResponsive<GridGap> \| undefined` |  |
 | `columnGap` | 否 | `GridResponsive<GridGap> \| undefined` |  |
-| `alignItems` | 否 | `"center" \| "start" \| "end" \| "stretch" \| "baseline" \| undefined` |  |
+| `alignItems` | 否 | `"start" \| "center" \| "end" \| "stretch" \| "baseline" \| undefined` |  |
 | `ref` | 否 | `Ref<HTMLDivElement> \| undefined` | Allows getting a ref to the component instance. Once the component unmounts, React will set `ref.current` to `null` (or call the ref with `null` if you passed a callback ref). |
 | `key` | 否 | `Key \| null \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
@@ -8846,7 +9204,7 @@ Source: skills/forge-skill/references/components/icon-trigger.md
 | `panel` | 否 | `IconTriggerPanel` | Optional panel. `ReactNode` or `(close) => ReactNode` so inner elements can close it. |
 | `panelPlacement` | 否 | `IconTriggerPanelPlacement \| undefined` |  |
 | `initialFocus` | 否 | `false \| "first" \| "selected" \| undefined` |  |
-| `panelAlign` | 否 | `"center" \| "start" \| "end" \| undefined` |  |
+| `panelAlign` | 否 | `"start" \| "center" \| "end" \| undefined` |  |
 
 ## IconTriggerAccent (type)
 
@@ -10591,6 +10949,76 @@ Source: skills/forge-skill/references/components/plain-icons.md
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `size` | 否 | `number \| undefined` |  |
+
+---
+
+Source: skills/forge-skill/references/components/popover.md
+
+# popover
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/popover.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Popover (value)
+
+```ts
+({ trigger, children, title, description, side, align, sideOffset, open: openProp, defaultOpen, onOpenChange, openOnHover, width, className, motion, }: PopoverProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | Element that toggles the popover. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). |
+| `children` | 是 | `ReactNode \| ((close: () => void) => ReactNode)` | Panel content. Pass a function to receive `close`. |
+| `title` | 否 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `side` | 否 | `PopoverSide \| undefined` |  |
+| `align` | 否 | `PopoverAlign \| undefined` |  |
+| `sideOffset` | 否 | `number \| undefined` | Gap between trigger and panel, in pixels. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `openOnHover` | 否 | `boolean \| undefined` | Open on hover as well as click. |
+| `width` | 否 | `string \| undefined` | Panel width, any CSS width. Defaults to content width (max 320px). |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## PopoverAlign (type)
+
+```ts
+export type PopoverAlign = "start" | "center" | "end";
+```
+
+## PopoverProps (type)
+
+```ts
+export interface PopoverProps {
+  /** Element that toggles the popover. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). */
+  trigger: ReactElement;
+  /** Panel content. Pass a function to receive `close`. */
+  children: ReactNode | ((close: () => void) => ReactNode);
+  title?: ReactNode;
+  description?: ReactNode;
+  side?: PopoverSide;
+  align?: PopoverAlign;
+  /** Gap between trigger and panel, in pixels. */
+  sideOffset?: number;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Open on hover as well as click. */
+  openOnHover?: boolean;
+  /** Panel width, any CSS width. Defaults to content width (max 320px). */
+  width?: string;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+## PopoverSide (type)
+
+```ts
+export type PopoverSide = "top" | "bottom" | "left" | "right";
+```
 
 ---
 
