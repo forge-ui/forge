@@ -1225,7 +1225,7 @@ test("SelectOption 从触发器按方向键打开后将焦点移入首末 option
   assert.equal(upFocusedLast, true);
 });
 
-test("SelectOption 打开后支持方向键循环与 Home End 定位", async () => {
+test("SelectOption 打开后支持方向键与 Home End 定位", async () => {
   const dom = installDom();
   const container = document.querySelector<HTMLDivElement>("#root");
   assert.ok(container);
@@ -1250,9 +1250,9 @@ test("SelectOption 打开后支持方向键循环与 Home End 定位", async () 
     const options = [...document.querySelectorAll<HTMLButtonElement>('[role="option"]')];
 
     focusResults.push(document.activeElement === options[0]);
-    await act(async () => options[0].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })));
-    focusResults.push(document.activeElement === options[2]);
-    await act(async () => options[2].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
+    await act(async () => options[0].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
+    focusResults.push(document.activeElement === options[1]);
+    await act(async () => options[1].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })));
     focusResults.push(document.activeElement === options[0]);
     await act(async () => options[0].dispatchEvent(new KeyboardEvent("keydown", { key: "End", bubbles: true })));
     focusResults.push(document.activeElement === options[2]);

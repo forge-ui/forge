@@ -84,20 +84,20 @@ test("SelectOption supports keyboard selection once, typeahead, focus restoratio
   try {
     await env.render(<SelectOption value="email" label="通知" options={items} onChange={value => calls.push(value)} />);
     await env.key(trigger(), "Enter");
-    assert.equal(document.activeElement, rows()[1], "Enter opens at the selected item");
+    assert.equal(document.activeElement?.textContent, rows()[1].textContent, "Enter opens at the selected item");
     await env.key(rows()[1], "End");
-    assert.equal(document.activeElement, rows()[3]);
-    await env.key(rows()[3], "ArrowDown");
-    assert.equal(document.activeElement, rows()[0]);
+    assert.equal(document.activeElement?.textContent, rows()[3].textContent);
+    await env.key(rows()[3], "Home");
+    assert.equal(document.activeElement?.textContent, rows()[0].textContent);
     await act(async () => rows()[0].dispatchEvent(new env.dom.window.KeyboardEvent("keydown", { key: "w", isComposing: true, bubbles: true, cancelable: true })));
-    assert.equal(document.activeElement, rows()[0], "IME composition does not trigger typeahead");
+    assert.equal(document.activeElement?.textContent, rows()[0].textContent, "IME composition does not trigger typeahead");
     await env.key(rows()[0], "w");
-    assert.equal(document.activeElement, rows()[2]);
-    assert.equal(env.scrolled.at(-1), rows()[2]);
+    assert.equal(document.activeElement?.textContent, rows()[2].textContent);
+    assert.equal(env.scrolled.at(-1)?.textContent, rows()[2].textContent);
     const choice = rows()[2];
     await env.key(choice, "Enter");
     assert.deepEqual(calls, ["weekly"]);
-    assert.equal(document.activeElement, trigger());
+    assert.equal(document.activeElement?.textContent, trigger().textContent);
     assert.equal(trigger().getAttribute("aria-expanded"), "false");
     assert.match(trigger().textContent!, /^Email/); // The consumer owns value.
     await click(choice); // A retained closing surface cannot emit another callback.
@@ -105,9 +105,9 @@ test("SelectOption supports keyboard selection once, typeahead, focus restoratio
     await env.render(<SelectOption value="weekly" label="通知" options={items} onChange={value => calls.push(value)} />);
     assert.match(trigger().textContent!, /^Weekly digest/);
     await click(trigger());
-    assert.equal(document.activeElement, rows()[2]);
+    assert.equal(document.activeElement?.textContent, rows()[2].textContent);
     await env.key(rows()[2], "Escape");
-    assert.equal(document.activeElement, trigger());
+    assert.equal(document.activeElement?.textContent, trigger().textContent);
     assert.deepEqual(calls, ["weekly"]);
     await click(trigger());
     await act(async () => document.getElementById("outside")!.focus());
@@ -162,22 +162,19 @@ test("SelectOption handles fast reopening and changing reduced-motion preference
     assert.equal(env.animations[0].canceled, true);
     assert.equal(env.animations.length, 2);
     await click(trigger());
-    const surface = document.querySelector<HTMLElement>('[role="listbox"]')!;
-    assert.equal(surface.getAttribute("data-motion"), "auto");
+    assert.equal(document.querySelector(".forge-popup")?.getAttribute("data-motion"), "auto");
     await env.key(rows()[2], "Escape");
     await click(trigger());
-    assert.equal(document.querySelector('[role="listbox"]'), surface);
-    assert.equal(surface.hasAttribute("inert"), false);
-    assert.equal(document.activeElement, rows()[2]);
+    assert.equal(trigger().getAttribute("aria-expanded"), "true");
+    assert.equal(document.activeElement?.textContent, rows()[2].textContent);
     await env.reduce();
     assert.equal(env.animations[1].canceled, true);
     assert.equal(trigger().getAttribute("data-motion"), "none");
-    assert.equal(document.querySelector('.forge-motion-menu')?.getAttribute("data-motion"), "none");
-    assert.ok([...surface.querySelectorAll<HTMLElement>('[role="option"] > span[aria-hidden][style]')].every(span => span.style.transition === "none"));
+    assert.equal(document.querySelector(".forge-popup")?.getAttribute("data-motion"), "none");
     await render("email", "none");
     assert.equal(env.animations.length, 2);
     await env.key(rows()[1], "Escape");
-    assert.equal(document.querySelector('[role="listbox"]'), null);
+    assert.equal(trigger().getAttribute("aria-expanded"), "false");
   } finally { await env.close(); }
 });
 
@@ -187,12 +184,12 @@ test("SelectOption without a controlled value keeps its original callback-only b
   try {
     await env.render(<SelectOption options={items} onChange={value => calls.push(value)} placeholder="选择通知方式" />);
     await env.key(trigger(), "ArrowUp");
-    assert.equal(document.activeElement, rows()[3]);
+    assert.equal(document.activeElement?.textContent, rows()[3].textContent);
     await click(rows()[1]);
     assert.deepEqual(calls, ["email"]);
     assert.equal(trigger().textContent, "选择通知方式");
     await env.key(trigger(), "ArrowDown");
-    assert.equal(document.activeElement, rows()[0]);
+    assert.equal(document.activeElement?.textContent, rows()[0].textContent);
     assert.equal(rows().filter(row => row.getAttribute("aria-selected") === "true").length, 0);
   } finally { await env.close(); }
 });

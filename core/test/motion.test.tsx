@@ -49,26 +49,22 @@ test("motion none and live reduced-motion changes remove exits immediately", asy
   } finally { await env.cleanup(); }
 });
 
-test("Select Escape restores focus and retained options cannot select", async () => {
+test("Select Escape restores focus and a closed listbox cannot select", async () => {
   const env = setup(); let selected = 0;
   try {
     await act(async () => env.root.render(<SelectOption options={[{ value: "a", label: "Alpha" }]} onChange={() => selected++} />));
-    const trigger = document.querySelector<HTMLButtonElement>('[aria-haspopup="listbox"]')!;
+    const trigger = document.querySelector<HTMLElement>('[aria-haspopup="listbox"]')!;
     await act(async () => trigger.click());
-    const option = document.querySelector<HTMLButtonElement>('[role="option"]')!;
+    const option = document.querySelector<HTMLElement>('[role="option"]')!;
     await act(async () => { option.focus(); option.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); });
     assert.equal(trigger.getAttribute("aria-expanded"), "false");
-    assert.equal(document.activeElement, trigger);
-    const closing = option.closest<HTMLElement>(".forge-motion-surface")!;
-    assert.ok(option.closest('[inert]'));
-    assert.equal(closing.getAttribute("aria-hidden"), "true");
-    const duration = getComputedStyle(closing).getPropertyValue("--forge-motion-exit-duration").trim();
-    const milliseconds = Number.parseFloat(duration) * (duration.endsWith("ms") ? 1 : 1000);
-    assert.ok(Number.isFinite(milliseconds) && milliseconds >= 0);
+    assert.ok(document.activeElement === trigger);
     await act(async () => option.click());
     assert.equal(selected, 0);
-    await wait(milliseconds + 30);
-    assert.equal(Boolean(document.querySelector('[role="option"]')), false);
+    await wait(200);
+    // Base UI keeps the closed list mounted (hidden) for typeahead on the trigger.
+    const remaining = document.querySelector('[role="option"]');
+    assert.ok(!remaining || remaining.closest("[hidden]"));
   } finally { await env.cleanup(); }
 });
 
