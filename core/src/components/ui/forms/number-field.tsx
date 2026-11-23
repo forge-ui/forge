@@ -6,7 +6,7 @@ import { MinusLinear, PlusLinear } from "../../../icons";
 import { cn } from "../../../lib/utils";
 import { FieldFrame } from "./field-utils";
 import type { FormAccentColor } from "./form-utils";
-import { floatingFieldClass, floatingIconButtonClass, floatingInputClass, type FloatingFieldShape, type FloatingFieldState } from "./floating-field";
+import { floatingFieldClass, floatingIconButtonClass, floatingInputTextClass, type FloatingFieldShape, type FloatingFieldState } from "./floating-field";
 
 // Numeric input with step buttons, keyboard (Arrow / PageUp / Home / End) and locale formatting.
 
@@ -91,14 +91,16 @@ export function NumberField({
           <NumberFieldPrimitive.Decrement aria-label={locale === "en" ? "Decrease" : "减少"} className={cn(floatingIconButtonClass, "size-8 rounded-full hover:bg-fg-grey-100 data-disabled:opacity-40")}>
             <MinusLinear size={18} />
           </NumberFieldPrimitive.Decrement>
-          <NumberFieldPrimitive.Input
-            id={inputId}
-            placeholder={placeholder}
-            aria-invalid={isError || undefined}
-            aria-describedby={isError && errorMessage ? errorId : undefined}
-            className={cn(floatingInputClass(state), "min-w-0 text-center tabular-nums")}
-          />
-          {suffix && <span className="shrink-0 text-sm leading-5 tracking-fg text-fg-grey-700">{suffix}</span>}
+          <span className="flex min-w-0 flex-1 items-center justify-center gap-1">
+            <NumberFieldPrimitive.Input
+              id={inputId}
+              placeholder={placeholder}
+              aria-invalid={isError || undefined}
+              aria-describedby={isError && errorMessage ? errorId : undefined}
+              className={cn(floatingInputTextClass(state), "min-w-[2ch] max-w-full text-center tabular-nums", suffix ? "flex-none [field-sizing:content]" : "min-w-0 flex-1")}
+            />
+            {suffix && <span className="shrink-0 text-sm leading-5 tracking-fg text-fg-grey-700">{suffix}</span>}
+          </span>
           <NumberFieldPrimitive.Increment aria-label={locale === "en" ? "Increase" : "增加"} className={cn(floatingIconButtonClass, "size-8 rounded-full hover:bg-fg-grey-100 data-disabled:opacity-40")}>
             <PlusLinear size={18} />
           </NumberFieldPrimitive.Increment>

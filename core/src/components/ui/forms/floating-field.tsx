@@ -26,8 +26,12 @@ export function floatingFieldClass({ state, shape, color }: { state: FloatingFie
 }
 
 export function floatingInputClass(state: FloatingFieldState) {
+  return cn("min-w-12 flex-1", floatingInputTextClass(state));
+}
+
+export function floatingInputTextClass(state: FloatingFieldState) {
   return cn(
-    "min-w-12 flex-1 bg-transparent text-sm font-normal leading-5 tracking-fg outline-none",
+    "bg-transparent text-sm font-normal leading-5 tracking-fg outline-none",
     state === "error" && "text-fg-red placeholder:text-fg-red",
     state === "disabled" && "cursor-not-allowed text-fg-grey-700 placeholder:text-fg-grey-700",
     state === "idle" && "text-fg-black placeholder:text-fg-grey-700",
