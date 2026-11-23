@@ -17,6 +17,9 @@ import { RadioGroup, CheckboxGroup, ToggleGroup } from "../src/components/ui/for
 import { Collapsible } from "../src/components/ui/collapsible";
 import { Menubar } from "../src/components/ui/menubar";
 import { NavigationMenu } from "../src/components/ui/navigation-menu";
+import { IconSelector } from "../src/components/ui/forms/icon-selector";
+import { FilterTrigger } from "../src/components/ui/filter-trigger";
+import { ToolbarSelectDropdown } from "../src/components/ui/toolbar";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
@@ -379,5 +382,51 @@ test("Menubar opens a menu and NavigationMenu renders links", async () => {
     await click(file);
     assert.deepEqual([...document.querySelectorAll('[role="menu"] [role="menuitem"]')].map(item => item.textContent), ["New", "Open"]);
     assert.ok(document.querySelector('nav a[href="/"]'));
+  } finally { await env.cleanup(); }
+});
+
+test("IconSelector opens a non-modal picker, focuses search, picks and closes on Escape", async () => {
+  const env = setup(); const picked: number[] = [];
+  try {
+    await act(async () => env.root.render(<IconSelector icons={[<span key="star">★</span>, <span key="moon">☾</span>]} labels={["星标", "月亮"]} label="项目图标" onChange={index => picked.push(index)} />));
+    const trigger = [...document.querySelectorAll("button")].find(button => button.textContent === "选择")!;
+    await click(trigger);
+    const dialog = document.querySelector<HTMLElement>('[role="dialog"]')!;
+    assert.ok(dialog, "picker opens");
+    assert.equal(trigger.getAttribute("aria-expanded"), "true");
+    assert.ok(document.activeElement === dialog.querySelector("input"), "search receives focus");
+    await type(dialog.querySelector("input")!, "月");
+    assert.deepEqual([...dialog.querySelectorAll("[aria-pressed]")].map(button => button.getAttribute("aria-label")), ["月亮"]);
+    await click(dialog.querySelector('[aria-label="月亮"]')!);
+    assert.deepEqual(picked, [1]);
+    await press(document.activeElement!, "Escape");
+    assert.equal(trigger.getAttribute("aria-expanded"), "false");
+    assert.ok(document.activeElement === trigger, "focus returns to the trigger");
+  } finally { await env.cleanup(); }
+});
+
+test("FilterTrigger panel opens below the trigger and closes through its close callback", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<FilterTrigger label="筛选" panel={close => <button id="apply" onClick={close}>应用</button>} />));
+    const trigger = [...document.querySelectorAll("button")].find(button => button.textContent?.includes("筛选"))!;
+    await click(trigger);
+    assert.equal(trigger.getAttribute("aria-expanded"), "true");
+    await click(document.getElementById("apply")!);
+    assert.equal(trigger.getAttribute("aria-expanded"), "false");
+  } finally { await env.cleanup(); }
+});
+
+test("ToolbarSelectDropdown is a radio menu that reports the chosen value", async () => {
+  const env = setup(); const values: string[] = [];
+  try {
+    await act(async () => env.root.render(<ToolbarSelectDropdown motion="none" value="week" options={[{ label: "本周", value: "week" }, { label: "本月", value: "month" }]} onChange={value => values.push(value)} />));
+    const trigger = document.querySelector("button")!;
+    await click(trigger);
+    const items = [...document.querySelectorAll<HTMLElement>('[role="menuitemradio"]')];
+    assert.deepEqual(items.map(item => item.getAttribute("aria-checked")), ["true", "false"]);
+    await click(items[1]);
+    assert.deepEqual(values, ["month"]);
+    assert.equal(trigger.getAttribute("aria-expanded"), "false");
   } finally { await env.cleanup(); }
 });

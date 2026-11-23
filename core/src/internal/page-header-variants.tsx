@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   AltArrowDownLinear,
   AltArrowLeftLinear,
@@ -17,6 +17,7 @@ import {
 } from "../icons";
 import { accentColors } from "../components/ui/accent-utils";
 import { AskAi } from "../components/ui/ask-ai";
+import { AnchoredPanel } from "./anchored-panel";
 import { CalendarPopup } from "../components/ui/calendar-popup";
 import type { PageHeaderProps } from "../components/ui/page-header";
 import { PlusIcon } from "../components/ui/plain-icons";
@@ -459,55 +460,22 @@ function DatePickerButton({
   accentBg: string;
 }) {
   const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
   const usingInternal = !onClick && enablePopover;
-
-  useEffect(() => {
-    if (!usingInternal || !open) return;
-    function handleOutside(e: MouseEvent) {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key !== "Escape") return;
-      e.preventDefault();
-      setOpen(false);
-      triggerRef.current?.focus();
-    }
-    document.addEventListener("mousedown", handleOutside);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [usingInternal, open]);
-
-  const handleClick = () => {
-    if (onClick) onClick();
-    else if (usingInternal) setOpen((v) => !v);
-  };
+  const button = (
+    <button
+      type="button"
+      aria-label={label}
+      onClick={usingInternal ? undefined : onClick}
+      className="inline-flex items-center justify-center gap-1 overflow-hidden rounded-full bg-background p-2 text-sm font-normal leading-5 tracking-fg text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:px-4 @min-[1000px]:py-3.5"
+    >
+      <CalendarBoldDuotone size={20} />
+      <span className="hidden whitespace-nowrap @min-[1000px]:inline">{label}</span>
+    </button>
+  );
 
   return (
-    <div className="relative inline-flex shrink-0" ref={wrapRef}>
-      <button
-        ref={triggerRef}
-        type="button"
-        aria-label={label}
-        aria-haspopup={usingInternal ? "dialog" : undefined}
-        aria-expanded={usingInternal ? open : undefined}
-        onClick={handleClick}
-        className="inline-flex items-center justify-center gap-1 overflow-hidden rounded-full bg-background p-2 text-sm font-normal leading-5 tracking-fg text-fg-grey-700 outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-100 @min-[1000px]:px-4 @min-[1000px]:py-3.5"
-      >
-        <CalendarBoldDuotone size={20} />
-        <span className="hidden whitespace-nowrap @min-[1000px]:inline">{label}</span>
-      </button>
-      {usingInternal && open && (
-        <div className="absolute right-0 top-full mt-2 z-50">
-          <CalendarPopup accentBg={accentBg} />
-        </div>
-      )}
+    <div className="relative inline-flex shrink-0">
+      {usingInternal ? <AnchoredPanel open={open} onOpenChange={setOpen} trigger={button} label={label}><CalendarPopup accentBg={accentBg} /></AnchoredPanel> : button}
     </div>
   );
 }

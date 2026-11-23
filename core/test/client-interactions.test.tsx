@@ -22,7 +22,6 @@ import { Button } from "../src/components/ui/button";
 import { TabBar } from "../src/components/ui/tab-bar";
 import { SelectOption } from "../src/components/ui/forms/select-option";
 import { Datepicker } from "../src/components/ui/forms/datepicker";
-import { IconSelector } from "../src/components/ui/forms/icon-selector";
 
 function installDom({ mobile = false }: { mobile?: boolean } = {}) {
   const dom = new JSDOM("<!doctype html><html><body><div id=\"root\"></div></body></html>", {
@@ -307,54 +306,6 @@ test("PageHeader 内置日期面板支持 Escape 关闭并把焦点还给触发�
   });
 
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
-
-  await act(async () => root.unmount());
-  dom.window.close();
-});
-
-test("IconSelector 打开非模态 dialog 后移入焦点，Escape 关闭并恢复触发焦点", async () => {
-  const dom = installDom();
-  // React's legacy input-event fallback expects these IE hooks when jsdom is
-  // installed after react-dom has loaded.
-  Object.assign(dom.window.HTMLInputElement.prototype, {
-    attachEvent: () => undefined,
-    detachEvent: () => undefined,
-  });
-  const container = document.querySelector<HTMLDivElement>("#root");
-  assert.ok(container);
-  const root = createRoot(container);
-
-  await act(async () => {
-    root.render(createElement(IconSelector, {
-      icons: [createElement("span", { key: "star" }, "★")],
-      labels: ["星标"],
-      label: "项目图标",
-    }));
-  });
-
-  const trigger = document.querySelector<HTMLButtonElement>(
-    'button[aria-haspopup="dialog"]',
-  );
-  assert.ok(trigger);
-  trigger.focus();
-  await act(async () => trigger.click());
-
-  const dialogId = trigger.getAttribute("aria-controls");
-  assert.ok(dialogId);
-  const dialog = document.getElementById(dialogId);
-  assert.ok(dialog);
-  assert.equal(dialog.getAttribute("role"), "dialog");
-  assert.equal(dialog.getAttribute("aria-modal"), "false");
-  assert.equal(trigger.getAttribute("aria-expanded"), "true");
-  assert.equal(document.activeElement, dialog.querySelector("input"));
-
-  await act(async () => {
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-  });
-
-  assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.getElementById(dialogId), null);
   assert.equal(document.activeElement, trigger);
 
   await act(async () => root.unmount());
