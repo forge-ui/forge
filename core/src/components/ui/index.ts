@@ -135,6 +135,21 @@ export type {
   MenuItemLead,
 } from "./menu-item";
 export { DropdownPanel, DropdownDivider } from "./dropdown-panel";
+export { DropdownMenu, ContextMenu } from "./dropdown-menu";
+export type {
+  DropdownMenuProps,
+  DropdownMenuEntry,
+  DropdownMenuActionEntry,
+  DropdownMenuCheckboxEntry,
+  DropdownMenuSubmenuEntry,
+  DropdownMenuGroupEntry,
+  DropdownMenuDividerEntry,
+  DropdownMenuAccent,
+  DropdownMenuSide,
+  DropdownMenuAlign,
+  ContextMenuProps,
+  ContextMenuEntry,
+} from "./dropdown-menu";
 export { IconTrigger } from "./icon-trigger";
 export type {
   IconTriggerAccent,
@@ -177,6 +192,8 @@ export {
   IconPicker,
   ColorPicker,
   TextFieldSelectSuffix,
+  Combobox,
+  Autocomplete,
 } from "./forms";
 export type {
   ToggleProps,
@@ -206,11 +223,24 @@ export type {
   DatepickerMode,
   ControlColor,
   IconSelectorColor,
+  ComboboxProps,
+  ComboboxOption,
+  ComboboxState,
+  ComboboxShape,
+  ComboboxColor,
+  AutocompleteProps,
+  AutocompleteOption,
+  AutocompleteState,
+  AutocompleteShape,
+  AutocompleteColor,
 } from "./forms";
 
 // Dialog & Overlay
 export { ConfirmationDialog } from "./confirmation-dialog";
 export type { ConfirmationDialogColor, ConfirmationDialogLayout } from "./confirmation-dialog";
+
+export { Popover } from "./popover";
+export type { PopoverProps, PopoverSide, PopoverAlign } from "./popover";
 
 export { Tooltip, TooltipBubble, TooltipAnchor, TooltipGroup } from "./tooltip";
 export type { TooltipPosition, TooltipSize, TooltipAnchorState } from "./tooltip";

@@ -87,6 +87,7 @@
     "directory": "core"
   },
   "dependencies": {
+    "@base-ui/react": "1.9.0",
     "streamdown": "2.6.0",
     "motion": "^14.1.0"
   }

@@ -26,3 +26,9 @@ export { TextFieldSelectSuffix } from "./text-field-select";
 
 export { IconSelector, IconPicker, ColorPicker } from "./icon-selector";
 export type { IconSelectorColor } from "./icon-selector";
+
+export { Combobox } from "./combobox";
+export type { ComboboxProps, ComboboxOption, ComboboxState, ComboboxShape, ComboboxColor } from "./combobox";
+
+export { Autocomplete } from "./autocomplete";
+export type { AutocompleteProps, AutocompleteOption, AutocompleteState, AutocompleteShape, AutocompleteColor } from "./autocomplete";

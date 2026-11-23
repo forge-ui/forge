@@ -914,6 +914,13 @@ body {
   .forge-check-visual[data-motion="auto"] .forge-check-tick { transition: stroke-dashoffset var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-motion-trigger[data-motion="auto"], .forge-menu-item[data-motion="auto"] { transition: background-color var(--forge-motion-feedback-duration) ease, color var(--forge-motion-feedback-duration) ease, outline-color var(--forge-motion-feedback-duration) ease; }
 }
+/* Floating popups: Popover, DropdownMenu, ContextMenu, Combobox, Autocomplete. */
+.forge-popup { transform-origin: var(--transform-origin, top center); }
+@media (prefers-reduced-motion: no-preference) {
+  .forge-popup[data-motion="auto"] { transition: opacity var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease), transform var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+  .forge-popup[data-motion="auto"][data-starting-style] { opacity: 0; transform: translateY(4px) scale(.98); }
+  .forge-popup[data-motion="auto"][data-ending-style] { opacity: 0; transform: translateY(2px) scale(.98); transition-duration: var(--forge-motion-exit-duration); transition-timing-function: ease-in; }
+}
 .forge-motion-trigger[data-motion="none"], .forge-menu-item[data-motion="none"], .forge-sidebar-motion[data-motion="none"] { transition: none; }
 .forge-motion-menu[data-motion="none"] button { transition: none; }
 .forge-checklist-motion[data-motion="none"] *, .forge-checklist-motion[data-motion="none"] { animation: none; transition: none; }
