@@ -38,7 +38,7 @@
 - [列表](https://www.forgeui.org/components/list.md): ListItem、DescriptionItem、ListGroup、Label、ContactItem
 - [卡片](https://www.forgeui.org/components/card.md): LineChartStatCard、StatCard、ProgressStatCard、ImageStatCard、WheelChartStatCard
 - [徽章与标签](https://www.forgeui.org/components/badge.md): NotificationBadge、Label、CircleIcon、ArtisticIcon
-- [实用组件](https://www.forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
+- [实用组件](https://www.forgeui.org/components/other-widget.md): ScrollArea、CurrencyConverter、RatingStars、ImageGrid、ProductRow
 - [日历与日程](https://www.forgeui.org/components/calendar.md): CalendarCard、EventTag、CalendarDayCell、EventCard、SmallCalendar
 - [地图](https://www.forgeui.org/components/map.md): MapCard
 - [文件展示](https://www.forgeui.org/components/file-type.md): FileTypeIcon、FileCard
@@ -49,7 +49,7 @@
 - [进度](https://www.forgeui.org/components/progress.md): ProgressBar
 - [消息反馈](https://www.forgeui.org/components/feedback.md)
 - [确认弹窗](https://www.forgeui.org/components/modal.md): ConfirmationDialog
-- [提示气泡](https://www.forgeui.org/components/tooltip.md): TooltipBubble、TooltipAnchor、Tooltip
+- [提示气泡](https://www.forgeui.org/components/tooltip.md): PreviewCard、Avatar、TooltipBubble、TooltipAnchor、Tooltip
 - [菜单](https://www.forgeui.org/components/menu.md): MenuItem、DropdownPanel、DropdownDivider、IconTrigger、KebabMenu
 - [页签与切换](https://www.forgeui.org/components/tab.md): TabBar
 - [分页与步骤](https://www.forgeui.org/components/pagination-stepper.md): Pagination、Stepper、PageDot

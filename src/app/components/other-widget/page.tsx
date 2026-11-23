@@ -1,11 +1,25 @@
 "use client";
 
-import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";
+import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@forge-ui-official/core";`;
+
+const scrollLogs = Array.from({ length: 24 }, (_, index) => `09:${String(index * 2).padStart(2, "0")} 同步任务 #${1024 + index} 完成`);
+
+const CODE_SCROLLAREA_USAGE = `<ScrollArea ariaLabel="运行日志" maxHeight="200px" contentClassName="flex flex-col gap-2 pr-3">
+  {logs.map(log => <p key={log}>{log}</p>)}
+</ScrollArea>`;
+
+const SCROLLAREA_PROPS: ApiTableRow[] = [
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "滚动内容。" },
+  { attr: "maxHeight / height", type: "string", defaultValue: "—", description: "滚动区域的最大高度或固定高度。" },
+  { attr: "orientation", type: "'vertical' | 'horizontal' | 'both'", defaultValue: "'vertical'", description: "显示哪个方向的滚动条。" },
+  { attr: "ariaLabel", type: "string", defaultValue: "—", description: "区域名称；传了以后可以用 Tab 聚焦、用方向键滚动。" },
+  { attr: "contentClassName", type: "string", defaultValue: "—", description: "内容容器的 class。" },
+];
 
 const CODE_CURRENCY_USAGE = `<CurrencyConverter
   title="兑换"
@@ -99,6 +113,11 @@ export default function OtherWidgetCasePage() {
           <DocExample id="productrow" title="ProductRow" summary="一行商品：缩略图、名称和规格说明。" code={CODE_PRODUCTROW_USAGE}>
             <ProductRow image="https://i.pravatar.cc/44?img=20" title="商品名称" subtitle="3 种规格" />
           </DocExample>
+          <DocExample id="scrollarea" title="ScrollArea" summary="原生滚动，细滚动条只在悬停和滚动时出现。" code={CODE_SCROLLAREA_USAGE} minHeight={240}>
+            <ScrollArea ariaLabel="运行日志" maxHeight="200px" className="w-full max-w-sm rounded-xl border border-fg-grey-200 bg-background" contentClassName="flex flex-col gap-2 p-4 pr-5 text-sm text-fg-grey-700">
+              {scrollLogs.map(log => <p key={log}>{log}</p>)}
+            </ScrollArea>
+          </DocExample>
         </ExampleGrid>
       </Section>
 
@@ -107,6 +126,7 @@ export default function OtherWidgetCasePage() {
         <ApiBlock id="ratingstars" title="RatingStars" rows={RATING_PROPS} />
         <ApiBlock id="imagegrid" title="ImageGrid" rows={IMAGEGRID_PROPS} />
         <ApiBlock id="productrow" title="ProductRow" rows={PRODUCTROW_PROPS} />
+        <ApiBlock id="scrollarea" title="ScrollArea" rows={SCROLLAREA_PROPS} />
       </Section>
     </div>
   );

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 9ef937c908cd0e4ac9654920a931b863f1c0c1757664ee76ecb2e5cbc9b17377
+Source fingerprint: 11f90a91d7b8fd7f79a2251f82a680ca40fcf11eb44042f63216a02dc1018cbe
 
 ## Adopted rules / 采用规则
 
@@ -288,7 +288,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (652, values and types distinguished)
+## Public exports (668, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -739,6 +739,11 @@ export function ModuleOverview() {
 - NotificationBadgeColor [type] — core/src/components/ui/badge.tsx
 - NotificationItem [value] — core/src/components/ui/notification-item.tsx
 - NotificationItemColor [type] — core/src/components/ui/notification-item.tsx
+- NumberField [value] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldColor [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldProps [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldShape [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldState [type] — core/src/components/ui/forms/number-field.tsx
 - OtpInput [value] — core/src/components/ui/otp-input.tsx
 - OtpInputProps [type] — core/src/components/ui/otp-input.tsx
 - PageDot [value] — core/src/components/ui/page-dot.tsx
@@ -767,6 +772,10 @@ export function ModuleOverview() {
 - PopoverAlign [type] — core/src/components/ui/popover.tsx
 - PopoverProps [type] — core/src/components/ui/popover.tsx
 - PopoverSide [type] — core/src/components/ui/popover.tsx
+- PreviewCard [value] — core/src/components/ui/preview-card.tsx
+- PreviewCardAlign [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardProps [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardSide [type] — core/src/components/ui/preview-card.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
 - ProfileCardState [type] — core/src/components/ui/profile-card.tsx
@@ -819,6 +828,9 @@ export function ModuleOverview() {
 - RunningNowProps [type] — core/src/components/ui/agent/agent-ops.tsx
 - RunProgress [value] — core/src/components/ui/agent/agent-run.tsx
 - RunStatus [type] — core/src/components/ui/agent/composer-parts.tsx
+- ScrollArea [value] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaOrientation [type] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaProps [type] — core/src/components/ui/scroll-area.tsx
 - SelectOption [value] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionBgVariant [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionColor [type] — core/src/components/ui/forms/select-option.tsx
@@ -832,6 +844,10 @@ export function ModuleOverview() {
 - SidebarMenuBgMode [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuItem [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuMode [type] — core/src/components/ui/sidebar-menu.tsx
+- Slider [value] — core/src/components/ui/forms/slider.tsx
+- SliderColor [type] — core/src/components/ui/forms/slider.tsx
+- SliderProps [type] — core/src/components/ui/forms/slider.tsx
+- SliderValue [type] — core/src/components/ui/forms/slider.tsx
 - SmallCalendar [value] — core/src/components/ui/small-calendar.tsx
 - SmallCalendarEvent [type] — core/src/components/ui/small-calendar.tsx
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx

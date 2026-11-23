@@ -1,6 +1,6 @@
 # Forge 公开导出清单
 
-由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 652 项（区分 value/type，不将类型误称为可渲染组件）。
+由 `scripts/gen-component-docs.mjs` 从 `core/src/index.ts` 生成；core 0.10.1，共 668 项（区分 value/type，不将类型误称为可渲染组件）。
 
 [机器清单](inventory.json) · [选型与规范](../../skills/forge-skill/SKILL.md)
 
@@ -455,6 +455,11 @@
 | NotificationBadgeColor | type | [源码](../../core/src/components/ui/badge.tsx) | [badge](../../skills/forge-skill/references/components/badge.md) |
 | NotificationItem | value | [源码](../../core/src/components/ui/notification-item.tsx) | [notification-item](../../skills/forge-skill/references/components/notification-item.md) |
 | NotificationItemColor | type | [源码](../../core/src/components/ui/notification-item.tsx) | [notification-item](../../skills/forge-skill/references/components/notification-item.md) |
+| NumberField | value | [源码](../../core/src/components/ui/forms/number-field.tsx) | [number-field](../../skills/forge-skill/references/components/number-field.md) |
+| NumberFieldColor | type | [源码](../../core/src/components/ui/forms/number-field.tsx) | [number-field](../../skills/forge-skill/references/components/number-field.md) |
+| NumberFieldProps | type | [源码](../../core/src/components/ui/forms/number-field.tsx) | [number-field](../../skills/forge-skill/references/components/number-field.md) |
+| NumberFieldShape | type | [源码](../../core/src/components/ui/forms/number-field.tsx) | [number-field](../../skills/forge-skill/references/components/number-field.md) |
+| NumberFieldState | type | [源码](../../core/src/components/ui/forms/number-field.tsx) | [number-field](../../skills/forge-skill/references/components/number-field.md) |
 | OtpInput | value | [源码](../../core/src/components/ui/otp-input.tsx) | [otp-input](../../skills/forge-skill/references/components/otp-input.md) |
 | OtpInputProps | type | [源码](../../core/src/components/ui/otp-input.tsx) | [otp-input](../../skills/forge-skill/references/components/otp-input.md) |
 | PageDot | value | [源码](../../core/src/components/ui/page-dot.tsx) | [page-dot](../../skills/forge-skill/references/components/page-dot.md) |
@@ -483,6 +488,10 @@
 | PopoverAlign | type | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
 | PopoverProps | type | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
 | PopoverSide | type | [源码](../../core/src/components/ui/popover.tsx) | [popover](../../skills/forge-skill/references/components/popover.md) |
+| PreviewCard | value | [源码](../../core/src/components/ui/preview-card.tsx) | [preview-card](../../skills/forge-skill/references/components/preview-card.md) |
+| PreviewCardAlign | type | [源码](../../core/src/components/ui/preview-card.tsx) | [preview-card](../../skills/forge-skill/references/components/preview-card.md) |
+| PreviewCardProps | type | [源码](../../core/src/components/ui/preview-card.tsx) | [preview-card](../../skills/forge-skill/references/components/preview-card.md) |
+| PreviewCardSide | type | [源码](../../core/src/components/ui/preview-card.tsx) | [preview-card](../../skills/forge-skill/references/components/preview-card.md) |
 | ProductRow | value | [源码](../../core/src/components/ui/product-row.tsx) | [product-row](../../skills/forge-skill/references/components/product-row.md) |
 | ProfileCard | value | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |
 | ProfileCardState | type | [源码](../../core/src/components/ui/profile-card.tsx) | [profile-card](../../skills/forge-skill/references/components/profile-card.md) |
@@ -535,6 +544,9 @@
 | RunningNowProps | type | [源码](../../core/src/components/ui/agent/agent-ops.tsx) | [agent-ops](../../skills/forge-skill/references/components/agent-ops.md) |
 | RunProgress | value | [源码](../../core/src/components/ui/agent/agent-run.tsx) | [agent-run](../../skills/forge-skill/references/components/agent-run.md) |
 | RunStatus | type | [源码](../../core/src/components/ui/agent/composer-parts.tsx) | [composer-parts](../../skills/forge-skill/references/components/composer-parts.md) |
+| ScrollArea | value | [源码](../../core/src/components/ui/scroll-area.tsx) | [scroll-area](../../skills/forge-skill/references/components/scroll-area.md) |
+| ScrollAreaOrientation | type | [源码](../../core/src/components/ui/scroll-area.tsx) | [scroll-area](../../skills/forge-skill/references/components/scroll-area.md) |
+| ScrollAreaProps | type | [源码](../../core/src/components/ui/scroll-area.tsx) | [scroll-area](../../skills/forge-skill/references/components/scroll-area.md) |
 | SelectOption | value | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
 | SelectOptionBgVariant | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
 | SelectOptionColor | type | [源码](../../core/src/components/ui/forms/select-option.tsx) | [select-option](../../skills/forge-skill/references/components/select-option.md) |
@@ -548,6 +560,10 @@
 | SidebarMenuBgMode | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
 | SidebarMenuItem | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
 | SidebarMenuMode | type | [源码](../../core/src/components/ui/sidebar-menu.tsx) | [sidebar-menu](../../skills/forge-skill/references/components/sidebar-menu.md) |
+| Slider | value | [源码](../../core/src/components/ui/forms/slider.tsx) | [slider](../../skills/forge-skill/references/components/slider.md) |
+| SliderColor | type | [源码](../../core/src/components/ui/forms/slider.tsx) | [slider](../../skills/forge-skill/references/components/slider.md) |
+| SliderProps | type | [源码](../../core/src/components/ui/forms/slider.tsx) | [slider](../../skills/forge-skill/references/components/slider.md) |
+| SliderValue | type | [源码](../../core/src/components/ui/forms/slider.tsx) | [slider](../../skills/forge-skill/references/components/slider.md) |
 | SmallCalendar | value | [源码](../../core/src/components/ui/small-calendar.tsx) | [small-calendar](../../skills/forge-skill/references/components/small-calendar.md) |
 | SmallCalendarEvent | type | [源码](../../core/src/components/ui/small-calendar.tsx) | [small-calendar](../../skills/forge-skill/references/components/small-calendar.md) |
 | SmallDailyCalendar | value | [源码](../../core/src/components/ui/small-daily-calendar.tsx) | [small-daily-calendar](../../skills/forge-skill/references/components/small-daily-calendar.md) |

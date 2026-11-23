@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 9ef937c908cd0e4ac9654920a931b863f1c0c1757664ee76ecb2e5cbc9b17377
+Source fingerprint: 11f90a91d7b8fd7f79a2251f82a680ca40fcf11eb44042f63216a02dc1018cbe
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (652, values and types distinguished)
+## Public exports (668, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -459,6 +459,11 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - NotificationBadgeColor [type] — core/src/components/ui/badge.tsx
 - NotificationItem [value] — core/src/components/ui/notification-item.tsx
 - NotificationItemColor [type] — core/src/components/ui/notification-item.tsx
+- NumberField [value] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldColor [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldProps [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldShape [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldState [type] — core/src/components/ui/forms/number-field.tsx
 - OtpInput [value] — core/src/components/ui/otp-input.tsx
 - OtpInputProps [type] — core/src/components/ui/otp-input.tsx
 - PageDot [value] — core/src/components/ui/page-dot.tsx
@@ -487,6 +492,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - PopoverAlign [type] — core/src/components/ui/popover.tsx
 - PopoverProps [type] — core/src/components/ui/popover.tsx
 - PopoverSide [type] — core/src/components/ui/popover.tsx
+- PreviewCard [value] — core/src/components/ui/preview-card.tsx
+- PreviewCardAlign [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardProps [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardSide [type] — core/src/components/ui/preview-card.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
 - ProfileCardState [type] — core/src/components/ui/profile-card.tsx
@@ -539,6 +548,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - RunningNowProps [type] — core/src/components/ui/agent/agent-ops.tsx
 - RunProgress [value] — core/src/components/ui/agent/agent-run.tsx
 - RunStatus [type] — core/src/components/ui/agent/composer-parts.tsx
+- ScrollArea [value] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaOrientation [type] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaProps [type] — core/src/components/ui/scroll-area.tsx
 - SelectOption [value] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionBgVariant [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionColor [type] — core/src/components/ui/forms/select-option.tsx
@@ -552,6 +564,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - SidebarMenuBgMode [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuItem [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuMode [type] — core/src/components/ui/sidebar-menu.tsx
+- Slider [value] — core/src/components/ui/forms/slider.tsx
+- SliderColor [type] — core/src/components/ui/forms/slider.tsx
+- SliderProps [type] — core/src/components/ui/forms/slider.tsx
+- SliderValue [type] — core/src/components/ui/forms/slider.tsx
 - SmallCalendar [value] — core/src/components/ui/small-calendar.tsx
 - SmallCalendarEvent [type] — core/src/components/ui/small-calendar.tsx
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
@@ -10246,6 +10262,90 @@ export type NotificationItemColor = AccentColor;
 
 ---
 
+Source: skills/forge-skill/references/components/number-field.md
+
+# number-field
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/number-field.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## NumberField (value)
+
+```ts
+({ value, defaultValue, onChange, min, max, step, format, label, placeholder, suffix, errorMessage, state, shape, color, width, headerAction, name, locale, className, }: NumberFieldProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `number \| null \| undefined` |  |
+| `defaultValue` | 否 | `number \| undefined` |  |
+| `onChange` | 否 | `((value: number \| null) => void) \| undefined` | `null` when the input is cleared. |
+| `min` | 否 | `number \| undefined` |  |
+| `max` | 否 | `number \| undefined` |  |
+| `step` | 否 | `number \| undefined` |  |
+| `format` | 否 | `Intl.NumberFormatOptions \| undefined` | Display format, e.g. `{ style: "currency", currency: "CNY" }` or `{ style: "percent" }`. |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `suffix` | 否 | `ReactNode` | Text after the number, e.g. a unit. |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `state` | 否 | `FloatingFieldState \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `headerAction` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## NumberFieldColor (type)
+
+```ts
+export type NumberFieldColor = FormAccentColor;
+```
+
+## NumberFieldProps (type)
+
+```ts
+export interface NumberFieldProps {
+  value?: number | null;
+  defaultValue?: number;
+  /** `null` when the input is cleared. */
+  onChange?: (value: number | null) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+  /** Display format, e.g. `{ style: "currency", currency: "CNY" }` or `{ style: "percent" }`. */
+  format?: Intl.NumberFormatOptions;
+  label?: string;
+  placeholder?: string;
+  /** Text after the number, e.g. a unit. */
+  suffix?: ReactNode;
+  errorMessage?: string;
+  state?: NumberFieldState;
+  shape?: NumberFieldShape;
+  color?: NumberFieldColor;
+  width?: string;
+  headerAction?: ReactNode;
+  name?: string;
+  locale?: "zh" | "en";
+  className?: string;
+}
+```
+
+## NumberFieldShape (type)
+
+```ts
+export type NumberFieldShape = FloatingFieldShape;
+```
+
+## NumberFieldState (type)
+
+```ts
+export type NumberFieldState = FloatingFieldState;
+```
+
+---
+
 Source: skills/forge-skill/references/components/otp-input.md
 
 # otp-input
@@ -11022,6 +11122,70 @@ export type PopoverSide = "top" | "bottom" | "left" | "right";
 
 ---
 
+Source: skills/forge-skill/references/components/preview-card.md
+
+# preview-card
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/preview-card.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## PreviewCard (value)
+
+```ts
+({ trigger, children, side, align, delay, closeDelay, width, open: openProp, onOpenChange, className, motion, }: PreviewCardProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | Usually a link. It must forward `ref` and spread props onto an `<a>` element. |
+| `children` | 是 | `ReactNode` | Card content shown on hover or keyboard focus. |
+| `side` | 否 | `PreviewCardSide \| undefined` |  |
+| `align` | 否 | `PreviewCardAlign \| undefined` |  |
+| `delay` | 否 | `number \| undefined` | Hover delay before opening, in milliseconds. |
+| `closeDelay` | 否 | `number \| undefined` | Delay before closing after the pointer leaves, in milliseconds. |
+| `width` | 否 | `string \| undefined` | Card width, any CSS width. Defaults to 320px. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## PreviewCardAlign (type)
+
+```ts
+export type PreviewCardAlign = "start" | "center" | "end";
+```
+
+## PreviewCardProps (type)
+
+```ts
+export interface PreviewCardProps {
+  /** Usually a link. It must forward `ref` and spread props onto an `<a>` element. */
+  trigger: ReactElement;
+  /** Card content shown on hover or keyboard focus. */
+  children: ReactNode;
+  side?: PreviewCardSide;
+  align?: PreviewCardAlign;
+  /** Hover delay before opening, in milliseconds. */
+  delay?: number;
+  /** Delay before closing after the pointer leaves, in milliseconds. */
+  closeDelay?: number;
+  /** Card width, any CSS width. Defaults to 320px. */
+  width?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+## PreviewCardSide (type)
+
+```ts
+export type PreviewCardSide = "top" | "bottom" | "left" | "right";
+```
+
+---
+
 Source: skills/forge-skill/references/components/product-row.md
 
 # product-row
@@ -11567,6 +11731,56 @@ Source: skills/forge-skill/references/components/review-item.md
 
 ---
 
+Source: skills/forge-skill/references/components/scroll-area.md
+
+# scroll-area
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/scroll-area.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ScrollArea (value)
+
+```ts
+({ children, orientation, maxHeight, height, className, contentClassName, ariaLabel, }: ScrollAreaProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `orientation` | 否 | `ScrollAreaOrientation \| undefined` | Scroll direction(s) that get a styled scrollbar. |
+| `maxHeight` | 否 | `string \| undefined` | Max height of the scroll viewport, any CSS length. |
+| `height` | 否 | `string \| undefined` | Height of the scroll viewport, any CSS length. |
+| `className` | 否 | `string \| undefined` |  |
+| `contentClassName` | 否 | `string \| undefined` | Class for the inner content wrapper. |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name; set it when the area holds important content (it becomes focusable). |
+
+## ScrollAreaOrientation (type)
+
+```ts
+export type ScrollAreaOrientation = "vertical" | "horizontal" | "both";
+```
+
+## ScrollAreaProps (type)
+
+```ts
+export interface ScrollAreaProps {
+  children: ReactNode;
+  /** Scroll direction(s) that get a styled scrollbar. */
+  orientation?: ScrollAreaOrientation;
+  /** Max height of the scroll viewport, any CSS length. */
+  maxHeight?: string;
+  /** Height of the scroll viewport, any CSS length. */
+  height?: string;
+  className?: string;
+  /** Class for the inner content wrapper. */
+  contentClassName?: string;
+  /** Accessible name; set it when the area holds important content (it becomes focusable). */
+  ariaLabel?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/select-option.md
 
 # select-option
@@ -11877,6 +12091,65 @@ export type TeamSwitcherLabels = {
   settings?: string;
   createNew?: string;
 };
+```
+
+---
+
+Source: skills/forge-skill/references/components/slider.md
+
+# slider
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/slider.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Slider (value)
+
+```ts
+<Value extends SliderValue = number>(props: SliderProps<Value>) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `min` | 否 | `number \| undefined` |  |
+| `max` | 否 | `number \| undefined` |  |
+| `step` | 否 | `number \| undefined` |  |
+| `format` | 否 | `Intl.NumberFormatOptions \| undefined` | Format for the value readout and screen readers, e.g. `{ style: "percent" }`. |
+| `label` | 否 | `ReactNode` |  |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name when there is no visible label. |
+| `showValue` | 否 | `boolean \| undefined` | Show the formatted value next to the label. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `value` | 否 | `Value \| undefined` |  |
+| `defaultValue` | 否 | `Value \| undefined` |  |
+| `onChange` | 否 | `((value: Value) => void) \| undefined` |  |
+| `onCommit` | 否 | `((value: Value) => void) \| undefined` | Fires once when the user releases the thumb. |
+
+## SliderColor (type)
+
+```ts
+export type SliderColor = FormAccentColor;
+```
+
+## SliderProps (type)
+
+```ts
+export type SliderProps<Value extends SliderValue = number> = SliderBaseProps & {
+  value?: Value;
+  defaultValue?: Value;
+  onChange?: (value: Value) => void;
+  /** Fires once when the user releases the thumb. */
+  onCommit?: (value: Value) => void;
+};
+```
+
+## SliderValue (type)
+
+```ts
+export type SliderValue = number | [number, number];
 ```
 
 ---

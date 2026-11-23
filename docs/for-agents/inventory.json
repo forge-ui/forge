@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.10.1",
   "source": "core/src/index.ts",
-  "revision": "0d5f8a163f13fc8b565a38207146949ce864bed0",
+  "revision": "160fb4f7fed8da4e8be9445469bc0712626a3450",
   "dirty": false,
-  "exportFingerprint": "e9f5f2d65336cb13df7d5349c41fd67559f86889",
-  "generatedAt": "2026-11-23T11:15:21+08:00",
+  "exportFingerprint": "1694820570d82b0173b8902100d1b862a404efa7",
+  "generatedAt": "2026-11-23T12:46:04+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 652,
+  "componentCount": 668,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -25197,6 +25197,167 @@
       "props": []
     },
     {
+      "name": "NumberField",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/number-field.tsx",
+      "module": "forms/number-field",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ value, defaultValue, onChange, min, max, step, format, label, placeholder, suffix, errorMessage, state, shape, color, width, headerAction, name, locale, className, }: NumberFieldProps) => JSX.Element",
+      "props": [
+        {
+          "name": "value",
+          "optional": true,
+          "type": "number | null | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: number | null) => void) | undefined",
+          "description": "`null` when the input is cleared."
+        },
+        {
+          "name": "min",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "max",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "step",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "format",
+          "optional": true,
+          "type": "Intl.NumberFormatOptions | undefined",
+          "description": "Display format, e.g. `{ style: \"currency\", currency: \"CNY\" }` or `{ style: \"percent\" }`."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "suffix",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Text after the number, e.g. a unit."
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "state",
+          "optional": true,
+          "type": "FloatingFieldState | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "headerAction",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "NumberFieldColor",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/number-field.tsx",
+      "module": "forms/number-field",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "NumberFieldProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/number-field.tsx",
+      "module": "forms/number-field",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "NumberFieldShape",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/number-field.tsx",
+      "module": "forms/number-field",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "NumberFieldState",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/number-field.tsx",
+      "module": "forms/number-field",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "OtpInput",
       "kind": "value",
       "source": "core/src/components/ui/otp-input.tsx",
@@ -27837,6 +27998,110 @@
       "props": []
     },
     {
+      "name": "PreviewCard",
+      "kind": "value",
+      "source": "core/src/components/ui/preview-card.tsx",
+      "module": "preview-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ trigger, children, side, align, delay, closeDelay, width, open: openProp, onOpenChange, className, motion, }: PreviewCardProps) => JSX.Element",
+      "props": [
+        {
+          "name": "trigger",
+          "optional": false,
+          "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+          "description": "Usually a link. It must forward `ref` and spread props onto an `<a>` element."
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": "Card content shown on hover or keyboard focus."
+        },
+        {
+          "name": "side",
+          "optional": true,
+          "type": "PreviewCardSide | undefined",
+          "description": ""
+        },
+        {
+          "name": "align",
+          "optional": true,
+          "type": "PreviewCardAlign | undefined",
+          "description": ""
+        },
+        {
+          "name": "delay",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Hover delay before opening, in milliseconds."
+        },
+        {
+          "name": "closeDelay",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Delay before closing after the pointer leaves, in milliseconds."
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Card width, any CSS width. Defaults to 320px."
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PreviewCardAlign",
+      "kind": "type",
+      "source": "core/src/components/ui/preview-card.tsx",
+      "module": "preview-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "PreviewCardProps",
+      "kind": "type",
+      "source": "core/src/components/ui/preview-card.tsx",
+      "module": "preview-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "PreviewCardSide",
+      "kind": "type",
+      "source": "core/src/components/ui/preview-card.tsx",
+      "module": "preview-card",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ProductRow",
       "kind": "value",
       "source": "core/src/components/ui/product-row.tsx",
@@ -29995,6 +30260,77 @@
       "props": []
     },
     {
+      "name": "ScrollArea",
+      "kind": "value",
+      "source": "core/src/components/ui/scroll-area.tsx",
+      "module": "scroll-area",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, orientation, maxHeight, height, className, contentClassName, ariaLabel, }: ScrollAreaProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "orientation",
+          "optional": true,
+          "type": "ScrollAreaOrientation | undefined",
+          "description": "Scroll direction(s) that get a styled scrollbar."
+        },
+        {
+          "name": "maxHeight",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Max height of the scroll viewport, any CSS length."
+        },
+        {
+          "name": "height",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Height of the scroll viewport, any CSS length."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "contentClassName",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Class for the inner content wrapper."
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Accessible name; set it when the area holds important content (it becomes focusable)."
+        }
+      ]
+    },
+    {
+      "name": "ScrollAreaOrientation",
+      "kind": "type",
+      "source": "core/src/components/ui/scroll-area.tsx",
+      "module": "scroll-area",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ScrollAreaProps",
+      "kind": "type",
+      "source": "core/src/components/ui/scroll-area.tsx",
+      "module": "scroll-area",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "SelectOption",
       "kind": "value",
       "source": "core/src/components/ui/forms/select-option.tsx",
@@ -30297,6 +30633,146 @@
       "kind": "type",
       "source": "core/src/components/ui/sidebar-menu.tsx",
       "module": "sidebar-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Slider",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/slider.tsx",
+      "module": "forms/slider",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "<Value extends SliderValue = number>(props: SliderProps<Value>) => JSX.Element",
+      "props": [
+        {
+          "name": "min",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "max",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "step",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "format",
+          "optional": true,
+          "type": "Intl.NumberFormatOptions | undefined",
+          "description": "Format for the value readout and screen readers, e.g. `{ style: \"percent\" }`."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Accessible name when there is no visible label."
+        },
+        {
+          "name": "showValue",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Show the formatted value next to the label."
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "Value | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "Value | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: Value) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCommit",
+          "optional": true,
+          "type": "((value: Value) => void) | undefined",
+          "description": "Fires once when the user releases the thumb."
+        }
+      ]
+    },
+    {
+      "name": "SliderColor",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/slider.tsx",
+      "module": "forms/slider",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "SliderProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/slider.tsx",
+      "module": "forms/slider",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "SliderValue",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/slider.tsx",
+      "module": "forms/slider",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

@@ -17,6 +17,8 @@ import {
   ColorPicker,
   Combobox,
   Autocomplete,
+  NumberField,
+  Slider,
 } from "@forge-ui-official/core";
 import {
   HomeBoldDuotone,
@@ -78,6 +80,32 @@ const CODE_AUTOCOMPLETE_USAGE = `const [keyword, setKeyword] = useState("");
   options={["比特林克", "比特数据", { value: "北理工", description: "高校" }]}
 />`;
 
+const CODE_NUMBERFIELD_USAGE = `<NumberField label="成员上限" min={1} max={50} value={seats} onChange={setSeats} suffix="人" />
+<NumberField label="预算" step={1000} defaultValue={20000} format={{ style: "currency", currency: "CNY", maximumFractionDigits: 0 }} />`;
+
+const CODE_SLIDER_USAGE = `<Slider label="相似度阈值" showValue value={threshold} onChange={setThreshold} format={{ style: "percent" }} min={0} max={1} step={0.05} />
+<Slider label="价格区间" showValue value={range} onChange={setRange} min={0} max={1000} step={50} />`;
+
+const NUMBERFIELD_PROPS: ApiTableRow[] = [
+  { attr: "value / defaultValue", type: "number | null", defaultValue: "—", description: "当前数值；清空时为 null。" },
+  { attr: "onChange", type: "(value: number | null) => void", defaultValue: "—", description: "数值变化时回调。" },
+  { attr: "min / max / step", type: "number", defaultValue: "— / — / 1", description: "范围和步长。按钮、方向键、PageUp/PageDown 都按步长调整。" },
+  { attr: "format", type: "Intl.NumberFormatOptions", defaultValue: "—", description: "显示格式，如货币、百分比、千分位。" },
+  { attr: "suffix", type: "ReactNode", defaultValue: "—", description: "数字后的单位。" },
+  { attr: "label / placeholder / errorMessage", type: "string", defaultValue: "—", description: "标题、占位文字和错误提示。" },
+  { attr: "state / color / shape / width / name", type: "—", defaultValue: "—", description: "同 Combobox。" },
+];
+
+const SLIDER_PROPS: ApiTableRow[] = [
+  { attr: "value / defaultValue", type: "number | [number, number]", defaultValue: "—", description: "传数组就是区间滑块，有两个把手。" },
+  { attr: "onChange / onCommit", type: "(value) => void", defaultValue: "—", description: "拖动中持续回调 / 松手时回调一次。" },
+  { attr: "min / max / step", type: "number", defaultValue: "0 / 100 / 1", description: "范围和步长。" },
+  { attr: "format", type: "Intl.NumberFormatOptions", defaultValue: "—", description: "数值显示和读屏的格式。" },
+  { attr: "label / showValue", type: "ReactNode / boolean", defaultValue: "— / false", description: "上方标题，以及右侧显示当前值。" },
+  { attr: "ariaLabel", type: "string", defaultValue: "—", description: "没有可见标题时的读屏名称。" },
+  { attr: "color / disabled / width / name", type: "—", defaultValue: "'blue' / false / '100%' / —", description: "主色、禁用、宽度和表单字段名。" },
+];
+
 const COMBOBOX_PROPS: ApiTableRow[] = [
   { attr: "options", type: "ComboboxOption[]", defaultValue: "—", description: "选项 { value, label, description?, icon?, disabled? }。输入文字按 label 过滤。" },
   { attr: "multiple", type: "boolean", defaultValue: "false", description: "多选。选中项显示为输入框里的标签，可逐个移除。" },
@@ -108,7 +136,7 @@ const CODE_IMPORT = `import {
   Toggle, RadioButton, CheckboxControl, CheckboxWithLabel,
   MediaUpload, ProfileImgUpload, FileUpload,
   IconSelector, IconPicker, ColorPicker,
-  Combobox, Autocomplete,
+  Combobox, Autocomplete, NumberField, Slider,
 } from "@forge-ui-official/core";`;
 
 const CODE_TF_COLORS = `<TextField color="purple" state="focus" placeholder="紫色聚焦" />
@@ -331,6 +359,12 @@ export default function InputFieldCasePage() {
           <DocExample id="autocomplete" title="Autocomplete" summary="自由输入，同时给出可点选的建议。" code={CODE_AUTOCOMPLETE_USAGE} minHeight={200}>
             <AutocompleteDemo />
           </DocExample>
+          <DocExample id="numberfield" title="NumberField" summary="带加减按钮的数字输入，可以设范围、步长和货币格式。" code={CODE_NUMBERFIELD_USAGE} minHeight={220}>
+            <NumberFieldDemo />
+          </DocExample>
+          <DocExample id="slider" title="Slider" summary="拖动或用方向键调数值，传数组就是区间。" code={CODE_SLIDER_USAGE} minHeight={200}>
+            <SliderDemo />
+          </DocExample>
           <DocExample id="datepicker" title="Datepicker" summary="单日和日期区间是两种选择。" code={CODE_DP_USAGE} minHeight={200}>
             <div className="flex flex-wrap items-start gap-4">
               <Datepicker label="选择日期" />
@@ -384,6 +418,8 @@ export default function InputFieldCasePage() {
         <ApiBlock id="selectoption" title="SelectOption" rows={SELECT_PROPS} />
         <ApiBlock id="combobox" title="Combobox" rows={COMBOBOX_PROPS} />
         <ApiBlock id="autocomplete" title="Autocomplete" rows={AUTOCOMPLETE_PROPS} />
+        <ApiBlock id="numberfield" title="NumberField" rows={NUMBERFIELD_PROPS} />
+        <ApiBlock id="slider" title="Slider" rows={SLIDER_PROPS} />
         <ApiBlock id="datepicker" title="Datepicker" rows={DP_PROPS} />
         <ApiBlock id="radiobutton" title="RadioButton" rows={RADIO_PROPS} />
         <ApiBlock id="checkboxcontrol" title="CheckboxControl" rows={CHECKBOX_PROPS} />
@@ -415,6 +451,27 @@ function AutocompleteDemo() {
   return (
     <div className="w-full max-w-sm">
       <Autocomplete searchIcon label="搜索客户" value={keyword} onChange={setKeyword} options={["比特林克", "比特数据", { value: "北理工", description: "高校" }]} />
+    </div>
+  );
+}
+
+function NumberFieldDemo() {
+  const [seats, setSeats] = useState<number | null>(5);
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-4">
+      <NumberField label="成员上限" min={1} max={50} value={seats} onChange={setSeats} suffix="人" />
+      <NumberField label="预算" step={1000} defaultValue={20000} format={{ style: "currency", currency: "CNY", maximumFractionDigits: 0 }} />
+    </div>
+  );
+}
+
+function SliderDemo() {
+  const [threshold, setThreshold] = useState(0.75);
+  const [range, setRange] = useState<[number, number]>([200, 600]);
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-6">
+      <Slider label="相似度阈值" showValue value={threshold} onChange={setThreshold} format={{ style: "percent" }} min={0} max={1} step={0.05} />
+      <Slider label="价格区间" showValue value={range} onChange={setRange} min={0} max={1000} step={50} />
     </div>
   );
 }
