@@ -16,6 +16,7 @@ Object.defineProperty(globalThis, "navigator", { configurable: true, writable: t
 const lazyGlobals = [
   "Element", "Node", "HTMLElement", "HTMLInputElement", "HTMLButtonElement", "SVGElement", "ShadowRoot",
   "NodeFilter", "DOMRect", "MutationObserver", "FocusEvent", "InputEvent", "PointerEvent",
+  "MouseEvent", "KeyboardEvent", "HTMLTextAreaElement", "HTMLSelectElement", "HTMLAnchorElement", "HTMLDivElement", "getComputedStyle",
 ];
 for (const name of lazyGlobals) {
   if (name in globalThis) continue;
@@ -27,7 +28,8 @@ for (const name of lazyGlobals) {
       if (name === "Element" && current?.Element && !current.Element.prototype.getAnimations) {
         current.Element.prototype.getAnimations = () => [];
       }
-      return current?.[name];
+      const value = current?.[name];
+      return typeof value === "function" && name === "getComputedStyle" ? value.bind(current) : value;
     },
     set(value) {
       Object.defineProperty(globalThis, name, { configurable: true, writable: true, value });

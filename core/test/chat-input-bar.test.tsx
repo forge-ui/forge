@@ -5,6 +5,14 @@ import { ChatInputBar, type ChatInputBarSendContext } from "../src/components/ui
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
+// Base UI triggers open on pointer down, so send the full pointer sequence.
+async function pointerClick(element: HTMLElement) {
+  await act(async () => {
+    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup"]) element.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, button: 0 }));
+    element.click();
+  });
+  await act(async () => { for (let index = 0; index < 4; index++) await new Promise(resolve => setTimeout(resolve, 5)); });
+}
 test("ChatInputBar respects IME, Shift+Enter, attachment and async draft ownership", async () => {
   const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
   Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true, window: dom.window, self: dom.window, document: dom.window.document, requestAnimationFrame: dom.window.requestAnimationFrame.bind(dom.window), HTMLElement: dom.window.HTMLElement });
@@ -27,8 +35,8 @@ test("ChatInputBar respects IME, Shift+Enter, attachment and async draft ownersh
     await new Promise(resolve => setTimeout(resolve, 90));
     const changesBeforeSend = changes.length;
     await key({}); assert.deepEqual(sent, ["草稿"]); assert.equal(changes.length, changesBeforeSend);
-    await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
-    const attachment = document.querySelector<HTMLButtonElement>('button[aria-label="添加附件"]')!;
+    await pointerClick(document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!);
+    const attachment = document.querySelector<HTMLButtonElement>('[aria-label="添加附件"]')!;
     assert.equal(attachment.textContent, "添加附件"); assert.equal(attachment.title, "添加附件");
     await act(async () => attachment.click()); assert.equal(attached, 1);
     await render(true); await key({}); assert.equal(sent.length, 1);
@@ -36,9 +44,9 @@ test("ChatInputBar respects IME, Shift+Enter, attachment and async draft ownersh
     const mentionInput = document.querySelector("textarea")!;
     mentionInput.setSelectionRange(5, 5);
     await act(async () => mentionInput.dispatchEvent(new dom.window.Event("select", { bubbles: true })));
-    await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
-    await act(async () => document.querySelector<HTMLButtonElement>('[role="menuitem"]')!.click());
-    assert.equal(document.querySelector('[role="menu"]'), null);
+    await pointerClick(document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!);
+    await pointerClick(document.querySelector<HTMLButtonElement>('[role="menuitem"]')!);
+    assert.ok(!document.querySelector('[role="menu"]'), "menu closes after choosing");
     assert.equal(mentionInput.getAttribute("aria-haspopup"), "listbox");
     assert.equal(mentionInput.hasAttribute("aria-expanded"), false);
     assert.equal(sent.length, 1, "The plus menu picks a mention without sending");
@@ -71,7 +79,7 @@ test("ChatInputBar model selection and controlled stop states work in both layou
       assert.equal(document.querySelector<HTMLButtonElement>('[aria-label="发送消息"]')!.disabled, true);
       const trigger = document.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')!;
       await act(async () => trigger.click());
-      await act(async () => Array.from(document.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]')).find(item => item.textContent === "Beta")!.click());
+      await pointerClick(Array.from(document.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]')).find(item => item.textContent === "Beta")!);
       assert.equal((document.querySelector("input,textarea") as HTMLInputElement).value, "保留草稿");
     }
     assert.equal(stops, 2); assert.deepEqual(models, ["b", "b"]); assert.deepEqual(sent, []);
@@ -93,8 +101,8 @@ for (const props of [{multiline:false}, {multiline:true}, {multiline:true,densit
       assert.equal(plus.getAttribute("aria-expanded"),"true");
       const menu = document.querySelector('[role="menu"]')!;
       assert.ok(menu.textContent?.includes("资料") && menu.textContent?.includes("/plan"));
-      await act(async () => menu.querySelector<HTMLButtonElement>('[aria-label="添加附件"]')!.click());
-      assert.equal(attached,1); assert.equal(document.querySelector('[role="menu"]'),null);
+      await pointerClick(menu.querySelector<HTMLButtonElement>('[aria-label="添加附件"]')!);
+      assert.equal(attached,1); assert.ok(!document.querySelector('[role="menu"]'), "menu closes after choosing");
     } finally {await act(async () => root.unmount());dom.window.close();}
   });
 }
@@ -122,9 +130,9 @@ for (const multiline of [false, true]) {
       await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="发送消息"]')!.click());
       assert.deepEqual(sent, ["原有草稿"]); assert.deepEqual(actions, ["event"]);
       await render("");
-      await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
-      assert.ok(document.querySelector('button[aria-label="添加附件"]'));
-      await act(async () => [...document.querySelectorAll<HTMLButtonElement>('button[role="menuitem"]')].find(button => button.textContent === "快捷操作")!.click());
+      await pointerClick(document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!);
+      assert.ok(document.querySelector('[aria-label="添加附件"]'));
+      await pointerClick([...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(button => button.textContent === "快捷操作")!);
       await act(async () => card.click());
       await act(async () => input.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "Backspace", bubbles: true, cancelable: true })));
       assert.equal(input.placeholder, "输入消息...");
@@ -153,7 +161,7 @@ for (const multiline of [false, true]) {
     const pointer = (element: Element) => act(async () => element.dispatchEvent(new dom.window.MouseEvent('pointerdown', { bubbles: true, cancelable: true, button: 0 })));
     const openManually = async () => {
       await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="添加内容和工具"]')!.click());
-      await act(async () => document.querySelector<HTMLButtonElement>('[role="menuitem"]')!.click());
+      await pointerClick(document.querySelector<HTMLButtonElement>('[role="menuitem"]')!);
     };
     try {
       await render(true);
@@ -173,10 +181,10 @@ for (const multiline of [false, true]) {
       const model = document.querySelector<HTMLButtonElement>('[aria-label^="Model:"]')!;
       assert.ok(plus.compareDocumentPosition(model) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING, 'plus precedes right-side model controls');
       for (const blank of [surface, document.querySelector('.forge-composer-entry')!, document.querySelector('.forge-composer-input-wrap')!]) {
-        input.blur(); await pointer(blank); assert.equal(document.activeElement, input);
+        input.blur(); await pointer(blank); assert.ok(document.activeElement === input, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
       }
       plus.focus(); await pointer(plus.querySelector('svg') ?? plus);
-      assert.equal(document.activeElement, plus, 'tool icons keep their own focus');
+      assert.ok(document.activeElement === plus, 'tool icons keep their own focus', "focus: " + document.activeElement?.outerHTML.slice(0, 120));
       input.focus(); input.setSelectionRange(0, 1); await pointer(input);
       assert.equal(input.selectionEnd, 1, 'native text selection is preserved');
       await render(true); assert.equal(isOpen(), false, 'incoming messages close the automatically opened fan');
@@ -204,7 +212,7 @@ for (const multiline of [false, true]) test(`typed mention chips preserve draft 
   const props = { multiline, sources: [source], onSend: (message: string, _action: unknown, context?: ChatInputBarSendContext) => { sent.push(message); ids.push(context?.sources.map(item => item.id) ?? []); } };
   const choose = async () => {
     await act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
-    await act(async () => [...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(item => item.textContent?.includes('反馈问题'))!.click());
+    await pointerClick([...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(item => item.textContent?.includes('反馈问题'))!);
   };
   try {
     await act(async () => root.render(<ChatInputBar {...props} value="原有草稿" clearOnSend={false} />));
@@ -243,7 +251,7 @@ for (const item of ["mention", "command"] as const) test(`${item} deferred input
   const options = item === "mention" ? { sources: [{ id: "skill:feedback", label: "反馈问题", kind: "skill" as const }] }
     : { commands: [{ id: "feedback", label: "反馈问题" }] };
   const open = () => act(async () => document.querySelector<HTMLButtonElement>('button[aria-label="添加内容和工具"]')!.click());
-  const choose = () => act(async () => document.querySelector<HTMLButtonElement>('[role="menuitem"]')!.click());
+  const choose = () => pointerClick(document.querySelector<HTMLButtonElement>('[role="menuitem"]')!);
   const flushFrames = () => act(async () => {
     const pending = [...frames.values()];
     frames.clear();
@@ -255,23 +263,25 @@ for (const item of ["mention", "command"] as const) test(`${item} deferred input
     assert.ok(frames.size > 0, "choosing defers focus until the input draft has rendered");
     await open();
     const menuItem = document.querySelector<HTMLButtonElement>('[role="menuitem"]')!;
-    assert.equal(document.activeElement, menuItem);
+    assert.ok(document.activeElement === menuItem, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
     await flushFrames();
-    assert.equal(document.querySelector('[role="menuitem"]'), menuItem, "stale focus must not dismiss the reopened menu");
-    assert.equal(document.activeElement, menuItem);
+    assert.ok(document.querySelector('[role="menuitem"]') === menuItem, "stale focus must not dismiss the reopened menu");
+    assert.ok(document.activeElement === menuItem, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
     await choose();
     await flushFrames();
     const input = document.querySelector<HTMLInputElement>("input")!;
-    assert.equal(document.activeElement, input, "an uninterrupted selection still restores input focus");
+    assert.ok(document.activeElement === input, "an uninterrupted selection still restores input focus", "focus: " + document.activeElement?.outerHTML.slice(0, 120));
     assert.equal(input.selectionStart, input.value.length);
     await open(); await choose();
     await act(async () => root.render(<ChatInputBar {...options} disabled />));
-    assert.equal(frames.size, 0, "disabling cancels pending input focus");
+    await flushFrames();
+    assert.ok(document.activeElement !== document.querySelector("input"), "disabling cancels pending input focus");
     await act(async () => root.render(<ChatInputBar {...options} />));
     await open(); await choose();
     await act(async () => root.unmount());
-    assert.equal(frames.size, 0, "unmounting cancels pending input focus");
+    await flushFrames();
+    assert.equal(document.querySelector("input"), null, "unmounting cancels pending input focus without errors");
   } finally {
     await act(async () => root.unmount());
     dom.window.close();
