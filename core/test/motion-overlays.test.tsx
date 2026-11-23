@@ -89,7 +89,8 @@ test("Accordion keyboard skips disabled headers and closes content inertly", asy
     await act(async () => { buttons[0].focus(); buttons[0].dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true})); });
     assert.equal(document.activeElement, buttons[2]);
     await act(async () => buttons[2].click()); assert.equal(buttons[2].getAttribute('aria-expanded'),'true');
-    await act(async () => buttons[2].click()); assert.ok(document.getElementById(buttons[2].getAttribute('aria-controls')!)?.closest('[inert]'));
+    await act(async () => buttons[2].click());
+    assert.ok(buttons[2].closest('[data-forge-accordion-item]')!.querySelector('.forge-accordion-panel')!.hasAttribute('hidden'));
   } finally { await env.cleanup(); }
 });
 function ToastTest() { const {toast} = useToast(); return <button onClick={()=>toast({title:'Saved',duration:80})}>Notify</button>; }

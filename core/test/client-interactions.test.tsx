@@ -1173,7 +1173,8 @@ test("TabBar 支持方向键、Home、End 切换并移动焦点", async () => {
   assert.equal(document.activeElement, tabs[2]);
   await act(async () => tabs[2].dispatchEvent(new KeyboardEvent("keydown", { key: "Home", bubbles: true })));
   assert.equal(document.activeElement, tabs[0]);
-  assert.deepEqual(changes, [1, 2, 0]);
+  // The parent never moved `active` off tab 0, so returning to it is not a change.
+  assert.deepEqual(changes, [1, 2]);
 
   await act(async () => root.unmount());
   dom.window.close();

@@ -914,6 +914,14 @@ body {
   .forge-check-visual[data-motion="auto"] .forge-check-tick { transition: stroke-dashoffset var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-motion-trigger[data-motion="auto"], .forge-menu-item[data-motion="auto"] { transition: background-color var(--forge-motion-feedback-duration) ease, color var(--forge-motion-feedback-duration) ease, outline-color var(--forge-motion-feedback-duration) ease; }
 }
+/* Accordion: Base UI exposes the measured panel height; the answer fades and settles in. */
+.forge-accordion-panel[data-open] .forge-accordion-answer { opacity: 1; transform: none; }
+.forge-accordion-panel:not([data-open]) .forge-accordion-answer, .forge-accordion-panel[data-ending-style] .forge-accordion-answer { opacity: 0; transform: translateY(-8px); }
+@media (prefers-reduced-motion: no-preference) {
+  .forge-accordion-panel[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-accordion-panel[data-motion="auto"] .forge-accordion-answer { transition: opacity 150ms cubic-bezier(.2,.8,.2,1), transform 450ms cubic-bezier(.34,1.16,.64,1); }
+  .forge-accordion-panel[data-motion="auto"][data-open] .forge-accordion-answer { transition-duration: 250ms, 450ms; transition-delay: 80ms; }
+}
 /* Floating popups: Popover, DropdownMenu, ContextMenu, Combobox, Autocomplete. */
 .forge-popup { transform-origin: var(--transform-origin, top center); }
 @media (prefers-reduced-motion: no-preference) {
@@ -1224,7 +1232,7 @@ body {
 .forge-liquid__chevron:active{ transform: scale(0.95);}
 .forge-liquid__chevron:focus-visible{ box-shadow: 0 0 0 2px var(--forge-liquid-ring);}
 .forge-liquid__chevronIcon{ display: grid;}
-.forge-liquid__menu{ position: absolute; top: 46px; right: 8px; z-index: 30; width: 160px; padding: 4px; border: 1px solid var(--forge-liquid-divider); background: var(--forge-liquid-card); box-shadow: var(--forge-liquid-menu-shadow);}
+.forge-liquid__menu{ width: 160px; padding: 4px; border: 1px solid var(--forge-liquid-divider); background: var(--forge-liquid-card); box-shadow: var(--forge-liquid-menu-shadow);}
 .forge-liquid__menuItem{ display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 8px 10px; border: 0; border-radius: 8px; background: none; color: var(--forge-liquid-text); font: inherit; font-size: 13px; font-weight: 500; text-align: left; cursor: pointer; outline: none; transition: background-color 0.2s ease;}
 .forge-liquid__menuItem:hover, .forge-liquid__menuItem:focus-visible{ background: var(--forge-liquid-hover);}
 .forge-liquid__check{ display: grid;}
