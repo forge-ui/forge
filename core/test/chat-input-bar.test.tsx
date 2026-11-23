@@ -184,7 +184,7 @@ for (const multiline of [false, true]) {
         input.blur(); await pointer(blank); assert.ok(document.activeElement === input, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
       }
       plus.focus(); await pointer(plus.querySelector('svg') ?? plus);
-      assert.ok(document.activeElement === plus, 'tool icons keep their own focus', "focus: " + document.activeElement?.outerHTML.slice(0, 120));
+      assert.ok(document.activeElement === plus, 'tool icons keep their own focus');
       input.focus(); input.setSelectionRange(0, 1); await pointer(input);
       assert.equal(input.selectionEnd, 1, 'native text selection is preserved');
       await render(true); assert.equal(isOpen(), false, 'incoming messages close the automatically opened fan');
@@ -271,7 +271,7 @@ for (const item of ["mention", "command"] as const) test(`${item} deferred input
     await choose();
     await flushFrames();
     const input = document.querySelector<HTMLInputElement>("input")!;
-    assert.ok(document.activeElement === input, "an uninterrupted selection still restores input focus", "focus: " + document.activeElement?.outerHTML.slice(0, 120));
+    assert.ok(document.activeElement === input, "an uninterrupted selection still restores input focus");
     assert.equal(input.selectionStart, input.value.length);
     await open(); await choose();
     await act(async () => root.render(<ChatInputBar {...options} disabled />));

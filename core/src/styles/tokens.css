@@ -1560,3 +1560,17 @@ body {
   :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-effect] *::before,
   :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-effect] *::after{animation:none!important;transition:none!important}
 }
+
+/* Spinner, Skeleton and Tree chevron (admin feedback and data display). */
+@keyframes forge-spin { to { rotate: 360deg; } }
+@keyframes forge-skeleton-pulse { 50% { opacity: .55; } }
+.forge-spinner { animation: forge-spin .8s linear infinite; }
+.forge-skeleton { animation: forge-skeleton-pulse 1.6s ease-in-out infinite; }
+.forge-tree-chevron { transition: rotate var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+.forge-tree-chevron[data-open] { rotate: 90deg; }
+.forge-tree-chevron[data-motion="none"] { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .forge-spinner { animation-duration: 1.6s; }
+  .forge-skeleton { animation: none; }
+  .forge-tree-chevron { transition: none; }
+}
