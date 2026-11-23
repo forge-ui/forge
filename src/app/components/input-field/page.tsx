@@ -37,6 +37,7 @@ import {
   HeartBoldDuotone,
   
 } from "@forge-ui-official/core/icons";
+import { FormKitExamples } from "../_admin-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -476,6 +477,8 @@ export default function InputFieldCasePage() {
           </DocExample>
         </ExampleGrid>
       </Section>
+
+      <FormKitExamples />
 
       <Section title="API" description="每个输入组件只列自己的字段。">
         <ApiBlock id="textfield" title="TextField" rows={TF_PROPS} />

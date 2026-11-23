@@ -2,13 +2,13 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: ee753cdb0ff1780defa1f9a9905092d6a68c6108b18a94291779d1e6e9b62881
+Source fingerprint: 8fbb2969f70c294c0e54a9cf3012688ee4a438f20ee96086d1d8ef5445f59de4
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (695, values and types distinguished)
+## Public exports (738, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -68,6 +68,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AgentTreeProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - AgentWelcome [value] — core/src/components/ui/agent/agent-welcome.tsx
 - AgentWelcomeProps [type] — core/src/components/ui/agent/agent-welcome.tsx
+- Alert [value] — core/src/components/ui/feedback.tsx
+- AlertProps [type] — core/src/components/ui/feedback.tsx
+- AlertTone [type] — core/src/components/ui/feedback.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
 - AppLayout [value] — core/src/components/layouts/app-layout.tsx
 - AppLayoutAccentColor [type] — core/src/components/layouts/app-layout.tsx
@@ -166,6 +169,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - cardThemes [value] — core/src/components/ui/card-utils.tsx
 - CardTrend [value] — core/src/components/ui/card-utils.tsx
 - CardWidth [type] — core/src/components/ui/card-utils.tsx
+- Cascader [value] — core/src/components/ui/forms/cascader.tsx
+- CascaderOption [type] — core/src/components/ui/forms/cascader.tsx
+- CascaderProps [type] — core/src/components/ui/forms/cascader.tsx
 - CellActionKey [type] — core/src/components/ui/data-table.tsx
 - CellActions [value] — core/src/components/ui/data-table.tsx
 - CellCode [value] — core/src/components/ui/data-table.tsx
@@ -293,6 +299,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ConversationList [value] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationListProps [type] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
+- CopyButton [value] — core/src/components/ui/data-display.tsx
+- CopyButtonProps [type] — core/src/components/ui/data-display.tsx
 - CreditCard [value] — core/src/components/ui/credit-card.tsx
 - CurrencyConverter [value] — core/src/components/ui/currency-converter.tsx
 - CurrencyConverterColor [type] — core/src/components/ui/currency-converter.tsx
@@ -309,6 +317,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
+- Descriptions [value] — core/src/components/ui/data-display.tsx
+- DescriptionsItem [type] — core/src/components/ui/data-display.tsx
+- DescriptionsProps [type] — core/src/components/ui/data-display.tsx
 - DivergingBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
 - DivergingBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - DonutChart [value] — core/src/components/ui/charts/donut-chart.tsx
@@ -327,6 +338,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - DropdownMenuSide [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownMenuSubmenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownPanel [value] — core/src/components/ui/dropdown-panel.tsx
+- EmptyState [value] — core/src/components/ui/feedback.tsx
+- EmptyStateProps [type] — core/src/components/ui/feedback.tsx
 - EventCard [value] — core/src/components/ui/event-card.tsx
 - EventCardColor [type] — core/src/components/ui/event-card.tsx
 - EventTag [value] — core/src/components/ui/event-tag.tsx
@@ -420,6 +433,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightSeries [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightTone [type] — core/src/components/ui/agent/insight-cards.tsx
+- Kbd [value] — core/src/components/ui/data-display.tsx
 - KebabMenu [value] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuAccent [type] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuItem [type] — core/src/components/ui/kebab-menu.tsx
@@ -447,6 +461,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ListItemIconLead [type] — core/src/components/ui/list-item.tsx
 - ListItemImageLead [type] — core/src/components/ui/list-item.tsx
 - ListItemLead [type] — core/src/components/ui/list-item.tsx
+- LoadingOverlay [value] — core/src/components/ui/feedback.tsx
 - MapCard [value] — core/src/components/ui/map-card.tsx
 - MapContinent [type] — core/src/components/ui/map-card.tsx
 - MapRegion [type] — core/src/components/ui/map-card.tsx
@@ -510,6 +525,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
+- Popconfirm [value] — core/src/components/ui/popconfirm.tsx
+- PopconfirmProps [type] — core/src/components/ui/popconfirm.tsx
 - Popover [value] — core/src/components/ui/popover.tsx
 - PopoverAlign [type] — core/src/components/ui/popover.tsx
 - PopoverProps [type] — core/src/components/ui/popover.tsx
@@ -565,6 +582,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
 - resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
+- Result [value] — core/src/components/ui/feedback.tsx
+- ResultProps [type] — core/src/components/ui/feedback.tsx
+- ResultStatus [type] — core/src/components/ui/feedback.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
 - RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
 - RunControlsProps [type] — core/src/components/ui/agent/composer-parts.tsx
@@ -583,11 +603,14 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - SelectOptionShape [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionState [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionType [type] — core/src/components/ui/forms/select-option.tsx
+- Separator [value] — core/src/components/ui/data-display.tsx
 - SidebarMenu [value] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuAccent [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuBgMode [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuItem [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuMode [type] — core/src/components/ui/sidebar-menu.tsx
+- Skeleton [value] — core/src/components/ui/feedback.tsx
+- SkeletonProps [type] — core/src/components/ui/feedback.tsx
 - Slider [value] — core/src/components/ui/forms/slider.tsx
 - SliderColor [type] — core/src/components/ui/forms/slider.tsx
 - SliderProps [type] — core/src/components/ui/forms/slider.tsx
@@ -596,6 +619,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - SmallCalendarEvent [type] — core/src/components/ui/small-calendar.tsx
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
 - SmoothLineChart [value] — core/src/components/ui/charts/smooth-line-chart.tsx
+- Spinner [value] — core/src/components/ui/feedback.tsx
+- SpinnerSize [type] — core/src/components/ui/feedback.tsx
+- Splitter [value] — core/src/components/ui/splitter.tsx
+- SplitterProps [type] — core/src/components/ui/splitter.tsx
 - StatCard [value] — core/src/components/ui/stat-card.tsx
 - StatCardProps [type] — core/src/components/ui/stat-card.tsx
 - StatCardShell [value] — core/src/components/ui/card-utils.tsx
@@ -626,6 +653,11 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TableValueKind [type] — core/src/components/ui/data-table.tsx
 - TabsContent [value] — core/src/components/ui/tabs-content.tsx
 - TabsContentProps [type] — core/src/components/ui/tabs-content.tsx
+- Tag [value] — core/src/components/ui/data-display.tsx
+- TagColor [type] — core/src/components/ui/data-display.tsx
+- TagInput [value] — core/src/components/ui/forms/tag-input.tsx
+- TagInputProps [type] — core/src/components/ui/forms/tag-input.tsx
+- TagProps [type] — core/src/components/ui/data-display.tsx
 - TaskCard [value] — core/src/components/ui/task-card.tsx
 - TaskCardColor [type] — core/src/components/ui/task-card.tsx
 - Team [type] — core/src/components/layouts/sidebar-popovers.tsx
@@ -646,6 +678,11 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ThinkingRow [type] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingTrace [value] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingVariant [type] — core/src/components/ui/agent/thinking-trace.tsx
+- Timeline [value] — core/src/components/ui/data-display.tsx
+- TimelineItem [type] — core/src/components/ui/data-display.tsx
+- TimelineTone [type] — core/src/components/ui/data-display.tsx
+- TimePicker [value] — core/src/components/ui/forms/time-picker.tsx
+- TimePickerProps [type] — core/src/components/ui/forms/time-picker.tsx
 - ToastApi [type] — core/src/components/ui/toast.tsx
 - ToastOptions [type] — core/src/components/ui/toast.tsx
 - ToastProvider [value] — core/src/components/ui/toast.tsx
@@ -692,8 +729,14 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TraceWaterfallProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - TrailStep [type] — core/src/components/ui/agent/agent-run.tsx
 - TrailSubstep [type] — core/src/components/ui/agent/agent-run.tsx
+- Transfer [value] — core/src/components/ui/forms/transfer.tsx
+- TransferItem [type] — core/src/components/ui/forms/transfer.tsx
+- TransferProps [type] — core/src/components/ui/forms/transfer.tsx
+- Tree [value] — core/src/components/ui/tree.tsx
 - TreeAgent [type] — core/src/components/ui/agent/agent-observe.tsx
 - TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
+- TreeNode [type] — core/src/components/ui/tree.tsx
+- TreeProps [type] — core/src/components/ui/tree.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx
@@ -4216,6 +4259,80 @@ export function MyCustomCard({ theme = "blue" }) {
 
 ---
 
+Source: skills/forge-skill/references/components/cascader.md
+
+# cascader
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/cascader.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Cascader (value)
+
+```ts
+({ options, value, defaultValue, onChange, changeOnSelect, label, placeholder, separator, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: CascaderProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `CascaderOption[]` |  |
+| `value` | 否 | `string[] \| undefined` | Path of values from the top level to the chosen option. |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((path: string[], options: CascaderOption[]) => void) \| undefined` |  |
+| `changeOnSelect` | 否 | `boolean \| undefined` | Allow choosing a parent, not only a leaf (e.g. "整个省"). |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `separator` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CascaderOption (type)
+
+```ts
+export interface CascaderOption {
+  value: string;
+  label: string;
+  children?: CascaderOption[];
+  disabled?: boolean;
+}
+```
+
+## CascaderProps (type)
+
+```ts
+export interface CascaderProps {
+  options: CascaderOption[];
+  /** Path of values from the top level to the chosen option. */
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (path: string[], options: CascaderOption[]) => void;
+  /** Allow choosing a parent, not only a leaf (e.g. "整个省"). */
+  changeOnSelect?: boolean;
+  label?: string;
+  placeholder?: string;
+  separator?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/chart-card.md
 
 # chart-card
@@ -6532,6 +6649,183 @@ Source: skills/forge-skill/references/components/dashed-half-donut-chart.md
 
 ---
 
+Source: skills/forge-skill/references/components/data-display.md
+
+# data-display
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-display.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## CopyButton (value)
+
+```ts
+({ value, label, copiedLabel, ariaLabel, onCopy, className }: CopyButtonProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 是 | `string` |  |
+| `label` | 否 | `string \| undefined` | Visible text; without it the button is icon-only. |
+| `copiedLabel` | 否 | `string \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name for the icon-only button. |
+| `onCopy` | 否 | `((value: string) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CopyButtonProps (type)
+
+```ts
+export interface CopyButtonProps {
+  value: string;
+  /** Visible text; without it the button is icon-only. */
+  label?: string;
+  copiedLabel?: string;
+  /** Accessible name for the icon-only button. */
+  ariaLabel?: string;
+  onCopy?: (value: string) => void;
+  className?: string;
+}
+```
+
+## Descriptions (value)
+
+```ts
+({ items, title, extra, columns, variant, layout, className }: DescriptionsProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `DescriptionsItem[]` |  |
+| `title` | 否 | `ReactNode` |  |
+| `extra` | 否 | `ReactNode` | Actions on the right of the title, e.g. an "编辑" button. |
+| `columns` | 否 | `2 \| 1 \| 3 \| 4 \| undefined` | Columns on wide screens; collapses to one column on phones. |
+| `variant` | 否 | `"plain" \| "bordered" \| undefined` | `bordered` draws a table-like grid with shaded labels. |
+| `layout` | 否 | `"horizontal" \| "vertical" \| undefined` | `horizontal` puts the label beside the value. |
+| `className` | 否 | `string \| undefined` |  |
+
+## DescriptionsItem (type)
+
+```ts
+export interface DescriptionsItem {
+  label: ReactNode;
+  value: ReactNode;
+  /** Columns this item spans (desktop). */
+  span?: number;
+}
+```
+
+## DescriptionsProps (type)
+
+```ts
+export interface DescriptionsProps {
+  items: DescriptionsItem[];
+  title?: ReactNode;
+  /** Actions on the right of the title, e.g. an "编辑" button. */
+  extra?: ReactNode;
+  /** Columns on wide screens; collapses to one column on phones. */
+  columns?: 1 | 2 | 3 | 4;
+  /** `bordered` draws a table-like grid with shaded labels. */
+  variant?: "plain" | "bordered";
+  /** `horizontal` puts the label beside the value. */
+  layout?: "vertical" | "horizontal";
+  className?: string;
+}
+```
+
+## Kbd (value)
+
+```ts
+({ keys, children, className }: { keys?: string[]; children?: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `keys` | 否 | `string[] \| undefined` |  |
+| `children` | 否 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## Separator (value)
+
+```ts
+({ orientation, label, className }: { orientation?: "horizontal" | "vertical"; label?: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `orientation` | 否 | `"horizontal" \| "vertical" \| undefined` |  |
+| `label` | 否 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## Tag (value)
+
+```ts
+({ children, color, icon, onRemove, removeLabel, size, className }: TagProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `color` | 否 | `TagColor \| undefined` |  |
+| `icon` | 否 | `ReactNode` |  |
+| `onRemove` | 否 | `(() => void) \| undefined` | Shows a remove button, e.g. for active filters or selected values. |
+| `removeLabel` | 否 | `string \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TagColor (type)
+
+```ts
+export type TagColor = "grey" | "blue" | "green" | "yellow" | "red" | "violet";
+```
+
+## TagProps (type)
+
+```ts
+export interface TagProps {
+  children: ReactNode;
+  color?: TagColor;
+  icon?: ReactNode;
+  /** Shows a remove button, e.g. for active filters or selected values. */
+  onRemove?: () => void;
+  removeLabel?: string;
+  size?: "sm" | "md";
+  className?: string;
+}
+```
+
+## Timeline (value)
+
+```ts
+({ items, pending, className }: { items: TimelineItem[]; pending?: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `TimelineItem[]` |  |
+| `pending` | 否 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TimelineItem (type)
+
+```ts
+export interface TimelineItem {
+  title: ReactNode;
+  description?: ReactNode;
+  /** Time or date label. */
+  time?: ReactNode;
+  tone?: TimelineTone;
+  /** Replaces the dot, e.g. an icon or avatar. */
+  icon?: ReactNode;
+}
+```
+
+## TimelineTone (type)
+
+```ts
+export type TimelineTone = "default" | "accent" | "success" | "warning" | "error";
+```
+
+---
+
 Source: skills/forge-skill/references/components/data-table.md
 
 # data-table
@@ -7462,6 +7756,186 @@ export type EventTagVariant = "solid" | "outline";
 ## 选型建议
 
 <!-- 待补：什么场景用这个 -->
+
+---
+
+Source: skills/forge-skill/references/components/feedback.md
+
+# feedback
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/feedback.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Alert (value)
+
+```ts
+({ tone, title, children, icon, action, closable, onClose, closeLabel, banner, className }: AlertProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `tone` | 否 | `AlertTone \| undefined` |  |
+| `title` | 否 | `ReactNode` |  |
+| `children` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` | Replaces the tone icon; pass `null` to hide it. |
+| `action` | 否 | `ReactNode` | Buttons or links shown on the right (or below on narrow screens). |
+| `closable` | 否 | `boolean \| undefined` | Shows a close button. The alert hides itself unless `onClose` is controlled by the host. |
+| `onClose` | 否 | `(() => void) \| undefined` |  |
+| `closeLabel` | 否 | `string \| undefined` |  |
+| `banner` | 否 | `boolean \| undefined` | Full-width strip without rounding, for the top of a page or card. |
+| `className` | 否 | `string \| undefined` |  |
+
+## AlertProps (type)
+
+```ts
+export interface AlertProps {
+  tone?: AlertTone;
+  title?: ReactNode;
+  children?: ReactNode;
+  /** Replaces the tone icon; pass `null` to hide it. */
+  icon?: ReactNode | null;
+  /** Buttons or links shown on the right (or below on narrow screens). */
+  action?: ReactNode;
+  /** Shows a close button. The alert hides itself unless `onClose` is controlled by the host. */
+  closable?: boolean;
+  onClose?: () => void;
+  closeLabel?: string;
+  /** Full-width strip without rounding, for the top of a page or card. */
+  banner?: boolean;
+  className?: string;
+}
+```
+
+## AlertTone (type)
+
+```ts
+export type AlertTone = "info" | "success" | "warning" | "error";
+```
+
+## EmptyState (value)
+
+```ts
+({ title, description, icon, action, size, className }: EmptyStateProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` |  |
+| `action` | 否 | `ReactNode` | Primary next step, e.g. a "新建" button. |
+| `size` | 否 | `"default" \| "compact" \| undefined` | `compact` for inside tables and cards. |
+| `className` | 否 | `string \| undefined` |  |
+
+## EmptyStateProps (type)
+
+```ts
+export interface EmptyStateProps {
+  title: ReactNode;
+  description?: ReactNode;
+  icon?: ReactNode;
+  /** Primary next step, e.g. a "新建" button. */
+  action?: ReactNode;
+  /** `compact` for inside tables and cards. */
+  size?: "compact" | "default";
+  className?: string;
+}
+```
+
+## LoadingOverlay (value)
+
+```ts
+({ loading, label, children, className }: { loading: boolean; label?: string; children: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `loading` | 是 | `boolean` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `children` | 是 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## Result (value)
+
+```ts
+({ status, title, description, actions, children, className }: ResultProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `status` | 是 | `ResultStatus` |  |
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `actions` | 否 | `ReactNode` | Buttons, e.g. "返回列表" and "查看详情". |
+| `children` | 否 | `ReactNode` | Extra detail below the actions, such as an error list. |
+| `className` | 否 | `string \| undefined` |  |
+
+## ResultProps (type)
+
+```ts
+export interface ResultProps {
+  status: ResultStatus;
+  title: ReactNode;
+  description?: ReactNode;
+  /** Buttons, e.g. "返回列表" and "查看详情". */
+  actions?: ReactNode;
+  /** Extra detail below the actions, such as an error list. */
+  children?: ReactNode;
+  className?: string;
+}
+```
+
+## ResultStatus (type)
+
+```ts
+export type ResultStatus = "success" | "error" | "warning" | "info" | "403" | "404";
+```
+
+## Skeleton (value)
+
+```ts
+({ shape, lines, width, height, className }: SkeletonProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `shape` | 否 | `"text" \| "circle" \| "rect" \| undefined` | `text` lines, a `circle` (avatar) or a `rect` block. |
+| `lines` | 否 | `number \| undefined` | Number of text lines; the last one is shorter. |
+| `width` | 否 | `string \| number \| undefined` |  |
+| `height` | 否 | `string \| number \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## SkeletonProps (type)
+
+```ts
+export interface SkeletonProps {
+  /** `text` lines, a `circle` (avatar) or a `rect` block. */
+  shape?: "text" | "circle" | "rect";
+  /** Number of text lines; the last one is shorter. */
+  lines?: number;
+  width?: number | string;
+  height?: number | string;
+  className?: string;
+}
+```
+
+## Spinner (value)
+
+```ts
+({ size, label, className }: { size?: SpinnerSize; label?: string; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `size` | 否 | `SpinnerSize \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## SpinnerSize (type)
+
+```ts
+export type SpinnerSize = "sm" | "md" | "lg";
+```
 
 ---
 
@@ -10523,7 +10997,7 @@ Source: skills/forge-skill/references/components/modal.md
 ## Modal (value)
 
 ```ts
-({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element | null
+({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -11485,6 +11959,62 @@ Source: skills/forge-skill/references/components/plain-icons.md
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `size` | 否 | `number \| undefined` |  |
+
+---
+
+Source: skills/forge-skill/references/components/popconfirm.md
+
+# popconfirm
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/popconfirm.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Popconfirm (value)
+
+```ts
+({ trigger, title, description, confirmLabel, cancelLabel, tone, onConfirm, onCancel, side, align, open: openProp, onOpenChange, motion, className }: PopconfirmProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | The button that asks for confirmation. Must forward ref and props to a DOM element. |
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `confirmLabel` | 否 | `string \| undefined` |  |
+| `cancelLabel` | 否 | `string \| undefined` |  |
+| `tone` | 否 | `"default" \| "danger" \| undefined` | `danger` for deletes and other irreversible actions. |
+| `onConfirm` | 是 | `() => void \| Promise<unknown>` | May return a promise; the button shows a spinner and the bubble stays open until it settles. |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `side` | 否 | `"bottom" \| "top" \| "left" \| "right" \| undefined` |  |
+| `align` | 否 | `"start" \| "center" \| "end" \| undefined` |  |
+| `open` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## PopconfirmProps (type)
+
+```ts
+export interface PopconfirmProps {
+  /** The button that asks for confirmation. Must forward ref and props to a DOM element. */
+  trigger: ReactElement;
+  title: ReactNode;
+  description?: ReactNode;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  /** `danger` for deletes and other irreversible actions. */
+  tone?: "default" | "danger";
+  /** May return a promise; the button shows a spinner and the bubble stays open until it settles. */
+  onConfirm: () => void | Promise<unknown>;
+  onCancel?: () => void;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
 
 ---
 
@@ -12721,6 +13251,52 @@ Source: skills/forge-skill/references/components/smooth-line-chart.md
 
 ---
 
+Source: skills/forge-skill/references/components/splitter.md
+
+# splitter
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/splitter.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Splitter (value)
+
+```ts
+({ children, orientation, size, defaultSize, onSizeChange, min, max, handleLabel, className }: SplitterProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `[ReactNode, ReactNode]` | Exactly two panes: list and detail, editor and preview. |
+| `orientation` | 否 | `"horizontal" \| "vertical" \| undefined` |  |
+| `size` | 否 | `number \| undefined` | First pane size in percent. |
+| `defaultSize` | 否 | `number \| undefined` |  |
+| `onSizeChange` | 否 | `((size: number) => void) \| undefined` |  |
+| `min` | 否 | `number \| undefined` |  |
+| `max` | 否 | `number \| undefined` |  |
+| `handleLabel` | 否 | `string \| undefined` | Accessible name of the drag handle. |
+| `className` | 否 | `string \| undefined` |  |
+
+## SplitterProps (type)
+
+```ts
+export interface SplitterProps {
+  /** Exactly two panes: list and detail, editor and preview. */
+  children: [ReactNode, ReactNode];
+  orientation?: "horizontal" | "vertical";
+  /** First pane size in percent. */
+  size?: number;
+  defaultSize?: number;
+  onSizeChange?: (size: number) => void;
+  min?: number;
+  max?: number;
+  /** Accessible name of the drag handle. */
+  handleLabel?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/stat-card.md
 
 # stat-card
@@ -13416,6 +13992,64 @@ export interface TabsContentProps {
   id?: string;
   labelledBy?: string;
   ariaLabel?: string;
+  className?: string;
+}
+```
+
+---
+
+Source: skills/forge-skill/references/components/tag-input.md
+
+# tag-input
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/tag-input.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## TagInput (value)
+
+```ts
+({ value, defaultValue, onChange, label, placeholder, max, validate, separators, disabled, errorMessage, name, color, shape, locale, className }: TagInputProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `string[] \| undefined` |  |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((tags: string[]) => void) \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `max` | 否 | `number \| undefined` | Upper limit; the input disables when reached. |
+| `validate` | 否 | `((tag: string) => string \| null \| undefined) \| undefined` | Return an error message to reject a tag, e.g. an invalid email. |
+| `separators` | 否 | `string[] \| undefined` | Keys that commit the typed text, besides Enter. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TagInputProps (type)
+
+```ts
+export interface TagInputProps {
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (tags: string[]) => void;
+  label?: string;
+  placeholder?: string;
+  /** Upper limit; the input disables when reached. */
+  max?: number;
+  /** Return an error message to reject a tag, e.g. an invalid email. */
+  validate?: (tag: string) => string | null | undefined;
+  /** Keys that commit the typed text, besides Enter. */
+  separators?: string[];
+  disabled?: boolean;
+  errorMessage?: string;
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  locale?: "zh" | "en";
   className?: string;
 }
 ```
@@ -14413,6 +15047,67 @@ export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";
 
 ---
 
+Source: skills/forge-skill/references/components/time-picker.md
+
+# time-picker
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/time-picker.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## TimePicker (value)
+
+```ts
+({ value, defaultValue, onChange, withSeconds, step, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: TimePickerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `string \| undefined` | "HH:mm" or "HH:mm:ss"; empty string or undefined for no value. |
+| `defaultValue` | 否 | `string \| undefined` |  |
+| `onChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `withSeconds` | 否 | `boolean \| undefined` |  |
+| `step` | 否 | `number \| undefined` | Minute (and second) step, e.g. 5 or 15. |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TimePickerProps (type)
+
+```ts
+export interface TimePickerProps {
+  /** "HH:mm" or "HH:mm:ss"; empty string or undefined for no value. */
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  withSeconds?: boolean;
+  /** Minute (and second) step, e.g. 5 or 15. */
+  step?: number;
+  label?: string;
+  placeholder?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/toast.md
 
 # toast
@@ -15334,6 +16029,132 @@ export type TopBarColor = keyof typeof topbarColors;
 - 路由切换 loading → 配 next/navigation 的 loading hook
 - 下载 / 大文件进度 → 优先用 `ProgressBar`（有 label），顶部 `TopBar` 只做粗略全局提示
 - 不要混用 `TopBar` 和 `ProgressBar` 做同一任务
+
+---
+
+Source: skills/forge-skill/references/components/transfer.md
+
+# transfer
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/transfer.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Transfer (value)
+
+```ts
+({ items, value, defaultValue, onChange, titles, searchable, color, motion, locale, className }: TransferProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `TransferItem[]` |  |
+| `value` | 否 | `string[] \| undefined` | Values in the right-hand ("chosen") list. |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((value: string[]) => void) \| undefined` |  |
+| `titles` | 否 | `[ReactNode, ReactNode] \| undefined` |  |
+| `searchable` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TransferItem (type)
+
+```ts
+export interface TransferItem {
+  value: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+}
+```
+
+## TransferProps (type)
+
+```ts
+export interface TransferProps {
+  items: TransferItem[];
+  /** Values in the right-hand ("chosen") list. */
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (value: string[]) => void;
+  titles?: [ReactNode, ReactNode];
+  searchable?: boolean;
+  color?: FormAccentColor;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  className?: string;
+}
+```
+
+---
+
+Source: skills/forge-skill/references/components/tree.md
+
+# tree
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tree.tsx`；core **0.10.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Tree (value)
+
+```ts
+({ nodes, ariaLabel, expandedIds, defaultExpandedIds, onExpandedChange, selectedId, onSelect, checkable, checkedIds, defaultCheckedIds, onCheckedChange, motion, className }: TreeProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `nodes` | 是 | `TreeNode[]` |  |
+| `ariaLabel` | 是 | `string` | Accessible name, e.g. "组织架构". |
+| `expandedIds` | 否 | `string[] \| undefined` |  |
+| `defaultExpandedIds` | 否 | `string[] \| undefined` |  |
+| `onExpandedChange` | 否 | `((ids: string[]) => void) \| undefined` |  |
+| `selectedId` | 否 | `string \| null \| undefined` | Single selection (click a row). |
+| `onSelect` | 否 | `((id: string, node: TreeNode) => void) \| undefined` |  |
+| `checkable` | 否 | `boolean \| undefined` | Adds checkboxes. Checking a parent checks every enabled descendant; parents show a partial state. |
+| `checkedIds` | 否 | `string[] \| undefined` |  |
+| `defaultCheckedIds` | 否 | `string[] \| undefined` |  |
+| `onCheckedChange` | 否 | `((ids: string[]) => void) \| undefined` | Receives checked leaf and parent ids. |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TreeNode (type)
+
+```ts
+export interface TreeNode {
+  id: string;
+  label: ReactNode;
+  icon?: ReactNode;
+  /** Extra text on the right, e.g. a count. */
+  meta?: ReactNode;
+  children?: TreeNode[];
+  disabled?: boolean;
+}
+```
+
+## TreeProps (type)
+
+```ts
+export interface TreeProps {
+  nodes: TreeNode[];
+  /** Accessible name, e.g. "组织架构". */
+  ariaLabel: string;
+  expandedIds?: string[];
+  defaultExpandedIds?: string[];
+  onExpandedChange?: (ids: string[]) => void;
+  /** Single selection (click a row). */
+  selectedId?: string | null;
+  onSelect?: (id: string, node: TreeNode) => void;
+  /** Adds checkboxes. Checking a parent checks every enabled descendant; parents show a partial state. */
+  checkable?: boolean;
+  checkedIds?: string[];
+  defaultCheckedIds?: string[];
+  /** Receives checked leaf and parent ids. */
+  onCheckedChange?: (ids: string[]) => void;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
 
 ---
 

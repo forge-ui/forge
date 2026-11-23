@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.10.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: ee753cdb0ff1780defa1f9a9905092d6a68c6108b18a94291779d1e6e9b62881
+Source fingerprint: 8fbb2969f70c294c0e54a9cf3012688ee4a438f20ee96086d1d8ef5445f59de4
 
 ## Adopted rules / 采用规则
 
@@ -288,7 +288,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (695, values and types distinguished)
+## Public exports (738, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -348,6 +348,9 @@ export function ModuleOverview() {
 - AgentTreeProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - AgentWelcome [value] — core/src/components/ui/agent/agent-welcome.tsx
 - AgentWelcomeProps [type] — core/src/components/ui/agent/agent-welcome.tsx
+- Alert [value] — core/src/components/ui/feedback.tsx
+- AlertProps [type] — core/src/components/ui/feedback.tsx
+- AlertTone [type] — core/src/components/ui/feedback.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
 - AppLayout [value] — core/src/components/layouts/app-layout.tsx
 - AppLayoutAccentColor [type] — core/src/components/layouts/app-layout.tsx
@@ -446,6 +449,9 @@ export function ModuleOverview() {
 - cardThemes [value] — core/src/components/ui/card-utils.tsx
 - CardTrend [value] — core/src/components/ui/card-utils.tsx
 - CardWidth [type] — core/src/components/ui/card-utils.tsx
+- Cascader [value] — core/src/components/ui/forms/cascader.tsx
+- CascaderOption [type] — core/src/components/ui/forms/cascader.tsx
+- CascaderProps [type] — core/src/components/ui/forms/cascader.tsx
 - CellActionKey [type] — core/src/components/ui/data-table.tsx
 - CellActions [value] — core/src/components/ui/data-table.tsx
 - CellCode [value] — core/src/components/ui/data-table.tsx
@@ -573,6 +579,8 @@ export function ModuleOverview() {
 - ConversationList [value] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationListProps [type] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
+- CopyButton [value] — core/src/components/ui/data-display.tsx
+- CopyButtonProps [type] — core/src/components/ui/data-display.tsx
 - CreditCard [value] — core/src/components/ui/credit-card.tsx
 - CurrencyConverter [value] — core/src/components/ui/currency-converter.tsx
 - CurrencyConverterColor [type] — core/src/components/ui/currency-converter.tsx
@@ -589,6 +597,9 @@ export function ModuleOverview() {
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
+- Descriptions [value] — core/src/components/ui/data-display.tsx
+- DescriptionsItem [type] — core/src/components/ui/data-display.tsx
+- DescriptionsProps [type] — core/src/components/ui/data-display.tsx
 - DivergingBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
 - DivergingBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - DonutChart [value] — core/src/components/ui/charts/donut-chart.tsx
@@ -607,6 +618,8 @@ export function ModuleOverview() {
 - DropdownMenuSide [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownMenuSubmenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownPanel [value] — core/src/components/ui/dropdown-panel.tsx
+- EmptyState [value] — core/src/components/ui/feedback.tsx
+- EmptyStateProps [type] — core/src/components/ui/feedback.tsx
 - EventCard [value] — core/src/components/ui/event-card.tsx
 - EventCardColor [type] — core/src/components/ui/event-card.tsx
 - EventTag [value] — core/src/components/ui/event-tag.tsx
@@ -700,6 +713,7 @@ export function ModuleOverview() {
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightSeries [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightTone [type] — core/src/components/ui/agent/insight-cards.tsx
+- Kbd [value] — core/src/components/ui/data-display.tsx
 - KebabMenu [value] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuAccent [type] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuItem [type] — core/src/components/ui/kebab-menu.tsx
@@ -727,6 +741,7 @@ export function ModuleOverview() {
 - ListItemIconLead [type] — core/src/components/ui/list-item.tsx
 - ListItemImageLead [type] — core/src/components/ui/list-item.tsx
 - ListItemLead [type] — core/src/components/ui/list-item.tsx
+- LoadingOverlay [value] — core/src/components/ui/feedback.tsx
 - MapCard [value] — core/src/components/ui/map-card.tsx
 - MapContinent [type] — core/src/components/ui/map-card.tsx
 - MapRegion [type] — core/src/components/ui/map-card.tsx
@@ -790,6 +805,8 @@ export function ModuleOverview() {
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
+- Popconfirm [value] — core/src/components/ui/popconfirm.tsx
+- PopconfirmProps [type] — core/src/components/ui/popconfirm.tsx
 - Popover [value] — core/src/components/ui/popover.tsx
 - PopoverAlign [type] — core/src/components/ui/popover.tsx
 - PopoverProps [type] — core/src/components/ui/popover.tsx
@@ -845,6 +862,9 @@ export function ModuleOverview() {
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
 - resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
+- Result [value] — core/src/components/ui/feedback.tsx
+- ResultProps [type] — core/src/components/ui/feedback.tsx
+- ResultStatus [type] — core/src/components/ui/feedback.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
 - RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
 - RunControlsProps [type] — core/src/components/ui/agent/composer-parts.tsx
@@ -863,11 +883,14 @@ export function ModuleOverview() {
 - SelectOptionShape [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionState [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionType [type] — core/src/components/ui/forms/select-option.tsx
+- Separator [value] — core/src/components/ui/data-display.tsx
 - SidebarMenu [value] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuAccent [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuBgMode [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuItem [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuMode [type] — core/src/components/ui/sidebar-menu.tsx
+- Skeleton [value] — core/src/components/ui/feedback.tsx
+- SkeletonProps [type] — core/src/components/ui/feedback.tsx
 - Slider [value] — core/src/components/ui/forms/slider.tsx
 - SliderColor [type] — core/src/components/ui/forms/slider.tsx
 - SliderProps [type] — core/src/components/ui/forms/slider.tsx
@@ -876,6 +899,10 @@ export function ModuleOverview() {
 - SmallCalendarEvent [type] — core/src/components/ui/small-calendar.tsx
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
 - SmoothLineChart [value] — core/src/components/ui/charts/smooth-line-chart.tsx
+- Spinner [value] — core/src/components/ui/feedback.tsx
+- SpinnerSize [type] — core/src/components/ui/feedback.tsx
+- Splitter [value] — core/src/components/ui/splitter.tsx
+- SplitterProps [type] — core/src/components/ui/splitter.tsx
 - StatCard [value] — core/src/components/ui/stat-card.tsx
 - StatCardProps [type] — core/src/components/ui/stat-card.tsx
 - StatCardShell [value] — core/src/components/ui/card-utils.tsx
@@ -906,6 +933,11 @@ export function ModuleOverview() {
 - TableValueKind [type] — core/src/components/ui/data-table.tsx
 - TabsContent [value] — core/src/components/ui/tabs-content.tsx
 - TabsContentProps [type] — core/src/components/ui/tabs-content.tsx
+- Tag [value] — core/src/components/ui/data-display.tsx
+- TagColor [type] — core/src/components/ui/data-display.tsx
+- TagInput [value] — core/src/components/ui/forms/tag-input.tsx
+- TagInputProps [type] — core/src/components/ui/forms/tag-input.tsx
+- TagProps [type] — core/src/components/ui/data-display.tsx
 - TaskCard [value] — core/src/components/ui/task-card.tsx
 - TaskCardColor [type] — core/src/components/ui/task-card.tsx
 - Team [type] — core/src/components/layouts/sidebar-popovers.tsx
@@ -926,6 +958,11 @@ export function ModuleOverview() {
 - ThinkingRow [type] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingTrace [value] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingVariant [type] — core/src/components/ui/agent/thinking-trace.tsx
+- Timeline [value] — core/src/components/ui/data-display.tsx
+- TimelineItem [type] — core/src/components/ui/data-display.tsx
+- TimelineTone [type] — core/src/components/ui/data-display.tsx
+- TimePicker [value] — core/src/components/ui/forms/time-picker.tsx
+- TimePickerProps [type] — core/src/components/ui/forms/time-picker.tsx
 - ToastApi [type] — core/src/components/ui/toast.tsx
 - ToastOptions [type] — core/src/components/ui/toast.tsx
 - ToastProvider [value] — core/src/components/ui/toast.tsx
@@ -972,8 +1009,14 @@ export function ModuleOverview() {
 - TraceWaterfallProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - TrailStep [type] — core/src/components/ui/agent/agent-run.tsx
 - TrailSubstep [type] — core/src/components/ui/agent/agent-run.tsx
+- Transfer [value] — core/src/components/ui/forms/transfer.tsx
+- TransferItem [type] — core/src/components/ui/forms/transfer.tsx
+- TransferProps [type] — core/src/components/ui/forms/transfer.tsx
+- Tree [value] — core/src/components/ui/tree.tsx
 - TreeAgent [type] — core/src/components/ui/agent/agent-observe.tsx
 - TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
+- TreeNode [type] — core/src/components/ui/tree.tsx
+- TreeProps [type] — core/src/components/ui/tree.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx

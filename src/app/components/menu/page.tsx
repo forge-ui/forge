@@ -26,6 +26,7 @@ import {
   TrashBinTrashBoldDuotone,
   Logout3BoldDuotone,
 } from "@forge-ui-official/core/icons";
+import { PopconfirmExample, POPCONFIRM_PROPS } from "../_admin-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -265,6 +266,7 @@ export default function MenuCasePage() {
           <DocExample id="popover" title="Popover" summary="点开的小浮层，放一组设置或说明。" code={CODE_POPOVER_USAGE} minHeight={180}>
             <PopoverDemo />
           </DocExample>
+          <PopconfirmExample />
         </ExampleGrid>
       </Section>
 
@@ -276,6 +278,7 @@ export default function MenuCasePage() {
         <ApiBlock id="dropdownmenu" title="DropdownMenu" rows={DROPDOWNMENU_PROPS} />
         <ApiBlock id="contextmenu" title="ContextMenu" rows={CONTEXTMENU_PROPS} />
         <ApiBlock id="popover" title="Popover" rows={POPOVER_PROPS} />
+        <ApiBlock id="popconfirm" title="Popconfirm" rows={POPCONFIRM_PROPS} />
         <ApiBlock id="menubar" title="Menubar" rows={MENUBAR_PROPS} />
         <ApiBlock id="navigationmenu" title="NavigationMenu" rows={NAVIGATIONMENU_PROPS} />
       </Section>

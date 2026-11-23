@@ -2,12 +2,12 @@
   "package": "@forge-ui-official/core",
   "version": "0.10.1",
   "source": "core/src/index.ts",
-  "revision": "d021bf1a7660c5370e460f41bccdb9b02800026a",
+  "revision": "33d591122fd0552308953e56b4148c7a74c80f6a",
   "dirty": false,
-  "exportFingerprint": "50884d4217e48b9727845ce7d94a15b760216137",
-  "generatedAt": "2026-11-23T14:12:51+08:00",
+  "exportFingerprint": "841f27b6863a57492d5d66005b8d17610299fb70",
+  "generatedAt": "2026-11-23T16:29:56+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
-  "componentCount": 695,
+  "componentCount": 738,
   "oneShotDefaultCount": 24,
   "components": [
     {
@@ -1518,6 +1518,95 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-welcome.tsx",
       "module": "agent/agent-welcome",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Alert",
+      "kind": "value",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ tone, title, children, icon, action, closable, onClose, closeLabel, banner, className }: AlertProps) => JSX.Element | null",
+      "props": [
+        {
+          "name": "tone",
+          "optional": true,
+          "type": "AlertTone | undefined",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Replaces the tone icon; pass `null` to hide it."
+        },
+        {
+          "name": "action",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Buttons or links shown on the right (or below on narrow screens)."
+        },
+        {
+          "name": "closable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Shows a close button. The alert hides itself unless `onClose` is controlled by the host."
+        },
+        {
+          "name": "onClose",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "closeLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "banner",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Full-width strip without rounding, for the top of a page or card."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "AlertProps",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "AlertTone",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -6002,6 +6091,143 @@
       "kind": "type",
       "source": "core/src/components/ui/card-utils.tsx",
       "module": "card-utils",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Cascader",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/cascader.tsx",
+      "module": "forms/cascader",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ options, value, defaultValue, onChange, changeOnSelect, label, placeholder, separator, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: CascaderProps) => JSX.Element",
+      "props": [
+        {
+          "name": "options",
+          "optional": false,
+          "type": "CascaderOption[]",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": "Path of values from the top level to the chosen option."
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((path: string[], options: CascaderOption[]) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "changeOnSelect",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Allow choosing a parent, not only a leaf (e.g. \"整个省\")."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "separator",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "clearable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "CascaderOption",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/cascader.tsx",
+      "module": "forms/cascader",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "CascaderProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/cascader.tsx",
+      "module": "forms/cascader",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -13474,6 +13700,62 @@
       "props": []
     },
     {
+      "name": "CopyButton",
+      "kind": "value",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ value, label, copiedLabel, ariaLabel, onCopy, className }: CopyButtonProps) => JSX.Element",
+      "props": [
+        {
+          "name": "value",
+          "optional": false,
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Visible text; without it the button is icon-only."
+        },
+        {
+          "name": "copiedLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Accessible name for the icon-only button."
+        },
+        {
+          "name": "onCopy",
+          "optional": true,
+          "type": "((value: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "CopyButtonProps",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "CreditCard",
       "kind": "value",
       "source": "core/src/components/ui/credit-card.tsx",
@@ -14214,6 +14496,77 @@
       "props": []
     },
     {
+      "name": "Descriptions",
+      "kind": "value",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, title, extra, columns, variant, layout, className }: DescriptionsProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "DescriptionsItem[]",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "extra",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Actions on the right of the title, e.g. an \"编辑\" button."
+        },
+        {
+          "name": "columns",
+          "optional": true,
+          "type": "2 | 1 | 3 | 4 | undefined",
+          "description": "Columns on wide screens; collapses to one column on phones."
+        },
+        {
+          "name": "variant",
+          "optional": true,
+          "type": "\"plain\" | \"bordered\" | undefined",
+          "description": "`bordered` draws a table-like grid with shaded labels."
+        },
+        {
+          "name": "layout",
+          "optional": true,
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "description": "`horizontal` puts the label beside the value."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "DescriptionsItem",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "DescriptionsProps",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "DivergingBarChart",
       "kind": "value",
       "source": "core/src/components/ui/charts/dashboard-charts.tsx",
@@ -14709,6 +15062,62 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "EmptyState",
+      "kind": "value",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ title, description, icon, action, size, className }: EmptyStateProps) => JSX.Element",
+      "props": [
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "action",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Primary next step, e.g. a \"新建\" button."
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"default\" | \"compact\" | undefined",
+          "description": "`compact` for inside tables and cards."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "EmptyStateProps",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "EventCard",
@@ -24183,6 +24592,35 @@
       "props": []
     },
     {
+      "name": "Kbd",
+      "kind": "value",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ keys, children, className }: { keys?: string[]; children?: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "keys",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "KebabMenu",
       "kind": "value",
       "source": "core/src/components/ui/kebab-menu.tsx",
@@ -24840,6 +25278,41 @@
       "props": []
     },
     {
+      "name": "LoadingOverlay",
+      "kind": "value",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ loading, label, children, className }: { loading: boolean; label?: string; children: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "loading",
+          "optional": false,
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "MapCard",
       "kind": "value",
       "source": "core/src/components/ui/map-card.tsx",
@@ -25387,7 +25860,7 @@
       "module": "modal",
       "group": "ui",
       "oneShotDefault": false,
-      "signature": "({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element | null",
+      "signature": "({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element",
       "props": [
         {
           "name": "open",
@@ -28406,6 +28879,110 @@
       ]
     },
     {
+      "name": "Popconfirm",
+      "kind": "value",
+      "source": "core/src/components/ui/popconfirm.tsx",
+      "module": "popconfirm",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ trigger, title, description, confirmLabel, cancelLabel, tone, onConfirm, onCancel, side, align, open: openProp, onOpenChange, motion, className }: PopconfirmProps) => JSX.Element",
+      "props": [
+        {
+          "name": "trigger",
+          "optional": false,
+          "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+          "description": "The button that asks for confirmation. Must forward ref and props to a DOM element."
+        },
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "confirmLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "cancelLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "tone",
+          "optional": true,
+          "type": "\"default\" | \"danger\" | undefined",
+          "description": "`danger` for deletes and other irreversible actions."
+        },
+        {
+          "name": "onConfirm",
+          "optional": false,
+          "type": "() => void | Promise<unknown>",
+          "description": "May return a promise; the button shows a spinner and the bubble stays open until it settles."
+        },
+        {
+          "name": "onCancel",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "side",
+          "optional": true,
+          "type": "\"bottom\" | \"top\" | \"left\" | \"right\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "align",
+          "optional": true,
+          "type": "\"start\" | \"center\" | \"end\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "open",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "optional": true,
+          "type": "((open: boolean) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "PopconfirmProps",
+      "kind": "type",
+      "source": "core/src/components/ui/popconfirm.tsx",
+      "module": "popconfirm",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "Popover",
       "kind": "value",
       "source": "core/src/components/ui/popover.tsx",
@@ -30631,6 +31208,71 @@
       ]
     },
     {
+      "name": "Result",
+      "kind": "value",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ status, title, description, actions, children, className }: ResultProps) => JSX.Element",
+      "props": [
+        {
+          "name": "status",
+          "optional": false,
+          "type": "ResultStatus",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "actions",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Buttons, e.g. \"返回列表\" and \"查看详情\"."
+        },
+        {
+          "name": "children",
+          "optional": true,
+          "type": "ReactNode",
+          "description": "Extra detail below the actions, such as an error list."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "ResultProps",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "ResultStatus",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ReviewItem",
       "kind": "value",
       "source": "core/src/components/ui/review-item.tsx",
@@ -31111,6 +31753,35 @@
       "props": []
     },
     {
+      "name": "Separator",
+      "kind": "value",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ orientation, label, className }: { orientation?: \"horizontal\" | \"vertical\"; label?: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "orientation",
+          "optional": true,
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "SidebarMenu",
       "kind": "value",
       "source": "core/src/components/ui/sidebar-menu.tsx",
@@ -31249,6 +31920,56 @@
       "kind": "type",
       "source": "core/src/components/ui/sidebar-menu.tsx",
       "module": "sidebar-menu",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Skeleton",
+      "kind": "value",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ shape, lines, width, height, className }: SkeletonProps) => JSX.Element",
+      "props": [
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "\"text\" | \"circle\" | \"rect\" | undefined",
+          "description": "`text` lines, a `circle` (avatar) or a `rect` block."
+        },
+        {
+          "name": "lines",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Number of text lines; the last one is shorter."
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | number | undefined",
+          "description": ""
+        },
+        {
+          "name": "height",
+          "optional": true,
+          "type": "string | number | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "SkeletonProps",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -31626,6 +32347,118 @@
           "description": ""
         }
       ]
+    },
+    {
+      "name": "Spinner",
+      "kind": "value",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ size, label, className }: { size?: SpinnerSize; label?: string; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "size",
+          "optional": true,
+          "type": "SpinnerSize | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "SpinnerSize",
+      "kind": "type",
+      "source": "core/src/components/ui/feedback.tsx",
+      "module": "feedback",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Splitter",
+      "kind": "value",
+      "source": "core/src/components/ui/splitter.tsx",
+      "module": "splitter",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, orientation, size, defaultSize, onSizeChange, min, max, handleLabel, className }: SplitterProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "[ReactNode, ReactNode]",
+          "description": "Exactly two panes: list and detail, editor and preview."
+        },
+        {
+          "name": "orientation",
+          "optional": true,
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "First pane size in percent."
+        },
+        {
+          "name": "defaultSize",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "onSizeChange",
+          "optional": true,
+          "type": "((size: number) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "min",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "max",
+          "optional": true,
+          "type": "number | undefined",
+          "description": ""
+        },
+        {
+          "name": "handleLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Accessible name of the drag handle."
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "SplitterProps",
+      "kind": "type",
+      "source": "core/src/components/ui/splitter.tsx",
+      "module": "splitter",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
     },
     {
       "name": "StatCard",
@@ -34248,6 +35081,187 @@
       "kind": "type",
       "source": "core/src/components/ui/tabs-content.tsx",
       "module": "tabs-content",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Tag",
+      "kind": "value",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ children, color, icon, onRemove, removeLabel, size, className }: TagProps) => JSX.Element",
+      "props": [
+        {
+          "name": "children",
+          "optional": false,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "TagColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "onRemove",
+          "optional": true,
+          "type": "(() => void) | undefined",
+          "description": "Shows a remove button, e.g. for active filters or selected values."
+        },
+        {
+          "name": "removeLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "optional": true,
+          "type": "\"md\" | \"sm\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TagColor",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TagInput",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/tag-input.tsx",
+      "module": "forms/tag-input",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ value, defaultValue, onChange, label, placeholder, max, validate, separators, disabled, errorMessage, name, color, shape, locale, className }: TagInputProps) => JSX.Element",
+      "props": [
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((tags: string[]) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "max",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Upper limit; the input disables when reached."
+        },
+        {
+          "name": "validate",
+          "optional": true,
+          "type": "((tag: string) => string | null | undefined) | undefined",
+          "description": "Return an error message to reject a tag, e.g. an invalid email."
+        },
+        {
+          "name": "separators",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": "Keys that commit the typed text, besides Enter."
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TagInputProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/tag-input.tsx",
+      "module": "forms/tag-input",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TagProps",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
       "group": "ui",
       "oneShotDefault": false,
       "props": []
@@ -38411,6 +39425,175 @@
       "props": []
     },
     {
+      "name": "Timeline",
+      "kind": "value",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, pending, className }: { items: TimelineItem[]; pending?: ReactNode; className?: string; }) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "TimelineItem[]",
+          "description": ""
+        },
+        {
+          "name": "pending",
+          "optional": true,
+          "type": "ReactNode",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TimelineItem",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TimelineTone",
+      "kind": "type",
+      "source": "core/src/components/ui/data-display.tsx",
+      "module": "data-display",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TimePicker",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/time-picker.tsx",
+      "module": "forms/time-picker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ value, defaultValue, onChange, withSeconds, step, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: TimePickerProps) => JSX.Element",
+      "props": [
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "\"HH:mm\" or \"HH:mm:ss\"; empty string or undefined for no value."
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "withSeconds",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "step",
+          "optional": true,
+          "type": "number | undefined",
+          "description": "Minute (and second) step, e.g. 5 or 15."
+        },
+        {
+          "name": "label",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "clearable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "shape",
+          "optional": true,
+          "type": "FloatingFieldShape | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "width",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TimePickerProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/time-picker.tsx",
+      "module": "forms/time-picker",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
       "name": "ToastApi",
       "kind": "type",
       "source": "core/src/components/ui/toast.tsx",
@@ -41449,6 +42632,184 @@
       "props": []
     },
     {
+      "name": "Transfer",
+      "kind": "value",
+      "source": "core/src/components/ui/forms/transfer.tsx",
+      "module": "forms/transfer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ items, value, defaultValue, onChange, titles, searchable, color, motion, locale, className }: TransferProps) => JSX.Element",
+      "props": [
+        {
+          "name": "items",
+          "optional": false,
+          "type": "TransferItem[]",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": "Values in the right-hand (\"chosen\") list."
+        },
+        {
+          "name": "defaultValue",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "optional": true,
+          "type": "((value: string[]) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "titles",
+          "optional": true,
+          "type": "[ReactNode, ReactNode] | undefined",
+          "description": ""
+        },
+        {
+          "name": "searchable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "optional": true,
+          "type": "FormAccentColor | undefined",
+          "description": ""
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "optional": true,
+          "type": "\"zh\" | \"en\" | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "TransferItem",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/transfer.tsx",
+      "module": "forms/transfer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TransferProps",
+      "kind": "type",
+      "source": "core/src/components/ui/forms/transfer.tsx",
+      "module": "forms/transfer",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "Tree",
+      "kind": "value",
+      "source": "core/src/components/ui/tree.tsx",
+      "module": "tree",
+      "group": "ui",
+      "oneShotDefault": false,
+      "signature": "({ nodes, ariaLabel, expandedIds, defaultExpandedIds, onExpandedChange, selectedId, onSelect, checkable, checkedIds, defaultCheckedIds, onCheckedChange, motion, className }: TreeProps) => JSX.Element",
+      "props": [
+        {
+          "name": "nodes",
+          "optional": false,
+          "type": "TreeNode[]",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "optional": false,
+          "type": "string",
+          "description": "Accessible name, e.g. \"组织架构\"."
+        },
+        {
+          "name": "expandedIds",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultExpandedIds",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onExpandedChange",
+          "optional": true,
+          "type": "((ids: string[]) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "selectedId",
+          "optional": true,
+          "type": "string | null | undefined",
+          "description": "Single selection (click a row)."
+        },
+        {
+          "name": "onSelect",
+          "optional": true,
+          "type": "((id: string, node: TreeNode) => void) | undefined",
+          "description": ""
+        },
+        {
+          "name": "checkable",
+          "optional": true,
+          "type": "boolean | undefined",
+          "description": "Adds checkboxes. Checking a parent checks every enabled descendant; parents show a partial state."
+        },
+        {
+          "name": "checkedIds",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "defaultCheckedIds",
+          "optional": true,
+          "type": "string[] | undefined",
+          "description": ""
+        },
+        {
+          "name": "onCheckedChange",
+          "optional": true,
+          "type": "((ids: string[]) => void) | undefined",
+          "description": "Receives checked leaf and parent ids."
+        },
+        {
+          "name": "motion",
+          "optional": true,
+          "type": "MotionPreference | undefined",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "optional": true,
+          "type": "string | undefined",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "TreeAgent",
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-observe.tsx",
@@ -41462,6 +42823,24 @@
       "kind": "type",
       "source": "core/src/components/ui/agent/agent-observe.tsx",
       "module": "agent/agent-observe",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TreeNode",
+      "kind": "type",
+      "source": "core/src/components/ui/tree.tsx",
+      "module": "tree",
+      "group": "ui",
+      "oneShotDefault": false,
+      "props": []
+    },
+    {
+      "name": "TreeProps",
+      "kind": "type",
+      "source": "core/src/components/ui/tree.tsx",
+      "module": "tree",
       "group": "ui",
       "oneShotDefault": false,
       "props": []

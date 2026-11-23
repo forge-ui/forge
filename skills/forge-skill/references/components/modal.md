@@ -6,7 +6,7 @@
 ## Modal (value)
 
 ```ts
-({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element | null
+({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |

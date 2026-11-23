@@ -11,6 +11,8 @@ const root = resolve(import.meta.dirname, "..");
 const require = createRequire(new URL("../package.json", import.meta.url));
 const { build } = require("./node_modules/.pnpm/node_modules/esbuild/lib/main.js");
 const { JSDOM } = require("./core/node_modules/jsdom");
+// Base UI picks its layout-effect hook when it loads, so a document must exist first.
+require("./core/test/setup/dom-globals.cjs");
 const temporary = resolve(root, "core/tmp/block-gallery-tests");
 const catalog = JSON.parse(readFileSync(resolve(root, "blocks/registry.json"), "utf8"));
 mkdirSync(temporary, { recursive: true });
@@ -69,9 +71,14 @@ async function withDom(callback, url = "https://www.forgeui.org/blocks") {
   const render = async (Component, props) => React.act(async () => app.render(React.createElement(Component, props)));
   const click = async element => {
     assert.ok(element, "click target must exist");
-    await React.act(async () => element.click());
+    // Base UI triggers open on pointer down; menus and dialogs settle on the next frames.
+    await React.act(async () => {
+      for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup"]) element.dispatchEvent(new dom.window.MouseEvent(type, { bubbles: true, cancelable: true, button: 0 }));
+      element.click();
+    });
+    await React.act(async () => { for (let index = 0; index < 4; index++) await new Promise(done => setTimeout(done, 5)); });
   };
-  const button = text => [...document.querySelectorAll("button")].find(element => element.textContent === text);
+  const button = text => [...document.querySelectorAll('button, [role^="menuitem"], [role="option"]')].find(element => element.textContent === text);
   try {
     await callback({ dom, render, click, button, observers, resize: () => React.act(async () => { for (const observer of observers) if (observer.elements.size) observer.callback(); }) });
   } catch (error) {
@@ -338,7 +345,7 @@ test("mobile order actions share search, pagination, export and detail state wit
     const list = () => document.querySelector('ul[aria-label="订单列表"]');
     assert.equal(list().children.length, 2);
     await click(list().querySelector('button[aria-label="查看订单 ZX2026103106"]'));
-    assert.match(document.querySelector("dialog").textContent, /陈思远/);
+    assert.match(document.querySelector('[role="dialog"]').textContent, /陈思远/);
     await click(document.querySelector('button[aria-label="关闭弹窗"]'));
     await click(document.querySelector('button[aria-label="下一页"]'));
     assert.match(list().textContent, /ZX2026103004/);
@@ -408,8 +415,8 @@ test("default order actions show details and export safe CSV content", async () 
     try {
       await render(gallery.OrdersTableSection, { orders: [{ ...gallery.defaultOrders[0], customer: '=SUM(1,2)', company: '青石"设计' }, { ...gallery.defaultOrders[1], customer: ' \t=1+1', company: '\t远山' }] });
       await click(document.querySelector('button[aria-label="查看订单 ZX2026103106"]'));
-      assert.equal(document.querySelector("dialog").open, true);
-      assert.match(document.querySelector("dialog").textContent, /12,800.00/);
+      assert.ok(document.querySelector('[role="dialog"]'), "order detail opens");
+      assert.match(document.querySelector('[role="dialog"]').textContent, /12,800.00/);
       await click(button("导出"));
       const text = await csv.text();
       assert.match(text, /"'=SUM\(1,2\)"/);

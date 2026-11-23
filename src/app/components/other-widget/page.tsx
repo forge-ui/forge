@@ -1,6 +1,7 @@
 "use client";
 
 import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@forge-ui-official/core";
+import { DataDisplayKitExamples } from "../_admin-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -120,6 +121,8 @@ export default function OtherWidgetCasePage() {
           </DocExample>
         </ExampleGrid>
       </Section>
+
+      <DataDisplayKitExamples />
 
       <Section title="API">
         <ApiBlock id="currencyconverter" title="CurrencyConverter" rows={CURRENCY_PROPS} />
