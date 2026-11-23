@@ -32,3 +32,9 @@ export type { ComboboxProps, ComboboxOption, ComboboxState, ComboboxShape, Combo
 
 export { Autocomplete } from "./autocomplete";
 export type { AutocompleteProps, AutocompleteOption, AutocompleteState, AutocompleteShape, AutocompleteColor } from "./autocomplete";
+
+export { NumberField } from "./number-field";
+export type { NumberFieldProps, NumberFieldState, NumberFieldShape, NumberFieldColor } from "./number-field";
+
+export { Slider } from "./slider";
+export type { SliderProps, SliderColor, SliderValue } from "./slider";

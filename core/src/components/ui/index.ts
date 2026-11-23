@@ -194,6 +194,8 @@ export {
   TextFieldSelectSuffix,
   Combobox,
   Autocomplete,
+  NumberField,
+  Slider,
 } from "./forms";
 export type {
   ToggleProps,
@@ -233,6 +235,13 @@ export type {
   AutocompleteState,
   AutocompleteShape,
   AutocompleteColor,
+  NumberFieldProps,
+  NumberFieldState,
+  NumberFieldShape,
+  NumberFieldColor,
+  SliderProps,
+  SliderColor,
+  SliderValue,
 } from "./forms";
 
 // Dialog & Overlay
@@ -241,6 +250,12 @@ export type { ConfirmationDialogColor, ConfirmationDialogLayout } from "./confir
 
 export { Popover } from "./popover";
 export type { PopoverProps, PopoverSide, PopoverAlign } from "./popover";
+
+export { PreviewCard } from "./preview-card";
+export type { PreviewCardProps, PreviewCardSide, PreviewCardAlign } from "./preview-card";
+
+export { ScrollArea } from "./scroll-area";
+export type { ScrollAreaProps, ScrollAreaOrientation } from "./scroll-area";
 
 export { Tooltip, TooltipBubble, TooltipAnchor, TooltipGroup } from "./tooltip";
 export type { TooltipPosition, TooltipSize, TooltipAnchorState } from "./tooltip";

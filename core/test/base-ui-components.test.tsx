@@ -8,6 +8,10 @@ import { DropdownMenu, ContextMenu } from "../src/components/ui/dropdown-menu";
 import { Popover } from "../src/components/ui/popover";
 import { Combobox } from "../src/components/ui/forms/combobox";
 import { Autocomplete } from "../src/components/ui/forms/autocomplete";
+import { NumberField } from "../src/components/ui/forms/number-field";
+import { Slider } from "../src/components/ui/forms/slider";
+import { ScrollArea } from "../src/components/ui/scroll-area";
+import { PreviewCard } from "../src/components/ui/preview-card";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
@@ -31,6 +35,7 @@ function setup() {
   Object.defineProperty(window, "matchMedia", { value: () => ({ matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }) });
   window.HTMLElement.prototype.getClientRects = function() { return [{ width: 100, height: 32 }] as unknown as DOMRectList; };
   window.HTMLElement.prototype.scrollIntoView = function() {};
+  window.Element.prototype.getAnimations = function() { return []; };
   window.HTMLDialogElement.prototype.showModal = function() { this.setAttribute("open", ""); };
   window.HTMLDialogElement.prototype.close = function() { this.removeAttribute("open"); this.dispatchEvent(new window.Event("close")); };
   const root = createRoot(document.getElementById("root")!);
@@ -220,5 +225,70 @@ test("keyboard: ArrowDown + Enter picks in Combobox and fires Autocomplete onSel
     await press(auto, "Enter");
     assert.equal(auto.value, "beta");
     assert.deepEqual(picked, ["beta"]);
+  } finally { await env.cleanup(); }
+});
+
+test("NumberField steps with buttons and arrow keys within bounds", async () => {
+  const env = setup(); const values: (number | null)[] = [];
+  function Harness() {
+    const [value, setValue] = useState<number | null>(1);
+    return <NumberField label="Seats" min={0} max={2} value={value} onChange={next => { values.push(next); setValue(next); }} />;
+  }
+  try {
+    await act(async () => env.root.render(<Harness />));
+    const input = document.querySelector<HTMLInputElement>("input")!;
+    assert.equal(document.querySelector("label")!.htmlFor, input.id);
+    await click(document.querySelector('[aria-label="增加"]')!);
+    assert.equal(values.at(-1), 2);
+    await click(document.querySelector('[aria-label="增加"]')!);
+    assert.equal(input.value, "2");
+    await act(async () => input.focus());
+    await press(input, "ArrowDown");
+    assert.equal(values.at(-1), 1);
+  } finally { await env.cleanup(); }
+});
+
+test("Slider single and range respond to the keyboard", async () => {
+  const env = setup(); let single = 0; let range: [number, number] = [0, 0];
+  function Harness() {
+    const [value, setValue] = useState(40);
+    const [span, setSpan] = useState<[number, number]>([20, 60]);
+    return <>
+      <Slider label="Volume" showValue value={value} step={10} onChange={next => { single = next; setValue(next); }} />
+      <Slider ariaLabel="Price" value={span} step={5} onChange={next => { range = next; setSpan(next); }} />
+    </>;
+  }
+  try {
+    await act(async () => env.root.render(<Harness />));
+    const sliders = [...document.querySelectorAll<HTMLInputElement>('input[type="range"]')];
+    assert.equal(sliders.length, 3);
+    await act(async () => sliders[0].focus());
+    await press(sliders[0], "ArrowRight");
+    assert.equal(single, 50);
+    await act(async () => sliders[2].focus());
+    await press(sliders[2], "ArrowLeft");
+    assert.deepEqual(range, [20, 55]);
+  } finally { await env.cleanup(); }
+});
+
+test("ScrollArea renders content in a labelled focusable viewport", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<ScrollArea ariaLabel="Logs" maxHeight="120px"><p id="row">Row</p></ScrollArea>));
+    const viewport = document.querySelector<HTMLElement>('[aria-label="Logs"]')!;
+    assert.equal(viewport.tabIndex, 0);
+    assert.equal(viewport.style.maxHeight, "120px");
+    assert.ok(viewport.contains(document.getElementById("row")));
+  } finally { await env.cleanup(); }
+});
+
+test("PreviewCard opens when its link receives keyboard focus", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<PreviewCard motion="none" delay={0} trigger={<a href="#u" id="link">Ada</a>}><p id="card">Profile</p></PreviewCard>));
+    const link = document.getElementById("link")!;
+    await act(async () => { link.focus(); link.dispatchEvent(new FocusEvent("focusin", { bubbles: true })); });
+    await flush();
+    assert.ok(document.getElementById("card"), "card opens on focus");
   } finally { await env.cleanup(); }
 });

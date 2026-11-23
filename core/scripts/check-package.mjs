@@ -24,11 +24,12 @@ const [pack] = JSON.parse(
 );
 
 // 0.7.0 raised the budgets for the agent conversation kit (Conversation, AgentMessage, AgentParts…);
-// 0.9.0 for the agent run and governance kit (Reasoning, ToolCall, Question, Approval, AgentPlan…).
+// 0.9.0 for the agent run and governance kit (Reasoning, ToolCall, Question, Approval, AgentPlan…);
+// 0.11.0 for the floating and input primitives (Popover, DropdownMenu, Combobox, NumberField, Slider…).
 const limits = {
   packed: 1_080_000,
   unpacked: 4_300_000,
-  entries: 600,
+  entries: 640,
   sourceMaps: 2_350_000,
   normalJsRaw: 41_000,
   normalJsGzip: 20_000,
