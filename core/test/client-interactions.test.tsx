@@ -1317,7 +1317,10 @@ test("SelectOption 键盘打开、选择与 Escape 关闭后维持触发焦点",
   assert.equal(document.activeElement, trigger);
 
   await act(async () => trigger.click());
-  await act(async () => document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })));
+  // A real outside press: pointerdown → mousedown → pointerup → mouseup → click.
+  await act(async () => {
+    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup", "click"]) document.body.dispatchEvent(new MouseEvent(type, { bubbles: true, button: 0 }));
+  });
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
 
   await act(async () => root.unmount());
@@ -1414,7 +1417,10 @@ test("Datepicker 选择和 Escape 关闭后恢复触发焦点", async () => {
   assert.equal(document.activeElement, trigger);
 
   await act(async () => trigger.click());
-  await act(async () => document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })));
+  // A real outside press: pointerdown → mousedown → pointerup → mouseup → click.
+  await act(async () => {
+    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup", "click"]) document.body.dispatchEvent(new MouseEvent(type, { bubbles: true, button: 0 }));
+  });
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
 
   await act(async () => root.unmount());

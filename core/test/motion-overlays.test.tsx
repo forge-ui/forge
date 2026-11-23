@@ -94,21 +94,23 @@ test("Accordion keyboard skips disabled headers and closes content inertly", asy
   } finally { await env.cleanup(); }
 });
 function ToastTest() { const {toast} = useToast(); return <button onClick={()=>toast({title:'Saved',duration:80})}>Notify</button>; }
-test("Toast pauses on hover, resumes and can be manually dismissed", async () => {
+test("Toast pauses while the pointer is over the notifications, resumes and can be manually dismissed", async () => {
  const env=setup();
  try {
   await act(async()=>env.root.render(<ToastProvider motion="none"><ToastTest/></ToastProvider>));
   await act(async()=>document.querySelector('button')!.click());
-  const row=document.querySelector('li')!;
-  await act(async()=>row.dispatchEvent(new MouseEvent('mouseover',{bubbles:true,relatedTarget:document.body})));
-  await wait(120); assert.ok(document.querySelector('[role="status"]'));
-  await act(async()=>row.dispatchEvent(new MouseEvent('mouseout',{bubbles:true,relatedTarget:document.body})));
-  await wait(110); await wait(10); assert.equal(document.querySelector('[role="status"]'),null);
+  const viewport=document.querySelector('.forge-toast-list')!;
+  // React derives onMouseEnter/Leave from mouseover/mouseout.
+  await act(async()=>viewport.dispatchEvent(new MouseEvent('mouseover',{bubbles:true,relatedTarget:document.body})));
+  await wait(120); assert.ok(document.querySelector('[data-toast-id]'), 'hover keeps the toast');
+  await act(async()=>viewport.dispatchEvent(new MouseEvent('mouseout',{bubbles:true,relatedTarget:document.body})));
+  await wait(200); assert.ok(!document.querySelector('[data-toast-id]'));
   await act(async()=>document.querySelector('button')!.click());
   await act(async()=>document.querySelector<HTMLButtonElement>('[aria-label="关闭通知：Saved"]')!.click());
-  await wait(10); assert.equal(document.querySelector('[role="status"]'),null);
+  await wait(10); assert.ok(!document.querySelector('[data-toast-id]'));
  } finally { await env.cleanup(); }
 });
+
 test("TabsContent replaces previous panel content and keeps supplied label", async()=>{
  const env=setup();
  try {

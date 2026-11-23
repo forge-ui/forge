@@ -987,7 +987,6 @@ body {
     transition-property: opacity;
   }
 }
-.forge-toast .forge-motion-collapse[data-state="closed"] { transition-duration: var(--forge-motion-exit-duration); }
 
 /* StreamingAnswer owns its Markdown styles; consumers only scan Forge dist. */
 @keyframes sd-forge-answer-in { from { opacity: 0; } to { opacity: 1; } }
@@ -1492,8 +1491,15 @@ body {
 .forge-progress-ring-track{stroke:var(--color-fg-grey-200)}
 .forge-progress-ring-fill{stroke:currentColor;stroke-linecap:round;transition:stroke-dashoffset .35s}
 .forge-progress-ring[data-indeterminate]>svg{animation:forge-action-spin 1.2s linear infinite}
-.forge-toast{touch-action:pan-y;transition:translate .2s,margin .25s,scale .25s;transform-origin:bottom center;pointer-events:auto}
-.forge-toast-list[data-stacked]:not(:hover):not(:focus-within) .forge-toast:not(:last-child){margin-bottom:-64px;scale:.96}
+/* Toasts are stacked from the bottom with Base UI's measured offsets (--toast-index / --toast-offset-y). */
+.forge-toast{--forge-toast-gap:12px;position:absolute;left:0;right:0;bottom:0;touch-action:pan-y;pointer-events:auto;outline:none;transform-origin:bottom center;
+  transform:translateX(var(--toast-swipe-movement-x,0px)) translateY(calc(-1 * (var(--toast-offset-y,0px) + var(--toast-index,0) * var(--forge-toast-gap))));
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),opacity .2s ease}
+.forge-toast-list[data-stacked] .forge-toast:not([data-expanded]){transform:translateX(var(--toast-swipe-movement-x,0px)) translateY(calc(var(--toast-index,0) * -10px)) scale(calc(1 - var(--toast-index,0) * .04))}
+.forge-toast[data-starting-style]{opacity:0;transform:translateY(100%)}
+.forge-toast[data-ending-style]{opacity:0}
+.forge-toast[data-ending-style][data-swipe-direction=right]{transform:translateX(calc(var(--toast-swipe-movement-x,0px) + 120%))}
+.forge-toast[data-expanded] .forge-toast-timer>span{animation-play-state:paused}
 .forge-swipe-row{position:relative;overflow:hidden;border-radius:12px}
 .forge-swipe-action{position:absolute;inset:0 0 0 auto;display:flex;gap:6px;align-items:center;justify-content:flex-end;padding:0 16px 0 36px;background:var(--color-fg-red);color:var(--color-white,#fff);font-size:12px;font-weight:600;min-width:115px;border:0}
 .forge-swipe-content{position:relative;background:var(--background);padding:14px;touch-action:pan-y;transition:translate .25s}
@@ -1526,7 +1532,6 @@ body {
 .forge-stepper>.forge-stepper-indicator:before{display:none}
 .forge-toast-timer{height:2px;background:var(--color-fg-grey-100);margin-top:12px;overflow:hidden;border-radius:2px}
 .forge-toast-timer>span{display:block;height:100%;background:var(--color-fg-grey-500);transform-origin:left;animation:forge-toast-expiry linear forwards}
-.forge-toast-timer[data-paused]>span{animation-play-state:paused}
 @keyframes forge-toast-expiry{to{transform:scaleX(0)}}
 
 /* Existing form/navigation primitives: optional interaction variants. */

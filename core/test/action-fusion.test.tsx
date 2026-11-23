@@ -83,9 +83,11 @@ test("toast updates preserve identity and action restores the consumer state", a
     await act(async () => api!.update(id, { title: "Saved", status: "success", duration: 0, action: { label: "Undo", onClick: () => { restored = true; } } }));
     assert.equal(document.querySelectorAll("[data-toast-id]").length, 1);
     assert.equal(document.querySelector("[data-toast-id]")!.getAttribute("data-toast-id"), id);
-    assert.equal(document.querySelector('[role="status"]')!.textContent, "Saved");
+    assert.equal(document.querySelector("[data-toast-id] h2, [data-toast-id] [id]")?.textContent, "Saved");
     await act(async () => Array.from(document.querySelectorAll<HTMLButtonElement>("button")).find(button => button.textContent === "Undo")!.click());
-    assert.equal(restored, true); assert.equal(document.querySelector('[role="status"]'), null);
+    assert.equal(restored, true);
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 20)); });
+    assert.ok(!document.querySelector("[data-toast-id]"));
   } finally { await env.close(); }
 });
 
@@ -113,8 +115,8 @@ test("reduced motion stops the toast expiry animation without disabling automati
     assert.equal(document.querySelector<HTMLElement>(".forge-toast-timer>span")!.style.animationName, "");
     await act(async () => env.setReduced(true));
     assert.equal(document.querySelector<HTMLElement>(".forge-toast-timer>span")!.style.animationName, "none");
-    await act(async () => { await new Promise(resolve => setTimeout(resolve, 120)); });
-    assert.equal(document.querySelector('[role="status"]'), null);
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 200)); });
+    assert.ok(!document.querySelector("[data-toast-id]"));
   } finally { await env.close(); }
 });
 
