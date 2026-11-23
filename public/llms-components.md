@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.11.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 875c29789ada22ffe924bfd02d8f2da6aaa4be3279c8ea2fcf7c33935db9a0ce
+Source fingerprint: e1b06ec8cb306e2f955b46704273e40b268e76139bcec2f059026d642e7869ae
 
 ## Adopted rules / 采用规则
 
