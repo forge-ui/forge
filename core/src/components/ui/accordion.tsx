@@ -73,7 +73,7 @@ export function Accordion({ items, value, defaultValue = null, onValueChange, mo
               className="group flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-medium text-fg-black disabled:opacity-50 data-disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-fg-violet"
             >
               {item.title}
-              <span aria-hidden className="forge-chevron flex shrink-0 items-center justify-center text-fg-grey-700 group-data-panel-open:rotate-180" data-motion={effectiveMotion}>
+              <span aria-hidden className="forge-chevron flex shrink-0 items-center justify-center text-fg-grey-700" data-motion={effectiveMotion}>
                 <AltArrowDownLinear size={20} />
               </span>
             </AccordionPrimitive.Trigger>

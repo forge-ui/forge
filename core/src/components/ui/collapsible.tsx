@@ -27,7 +27,7 @@ export function Collapsible({ title, children, open, defaultOpen, onOpenChange, 
     <CollapsiblePrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={(next) => onOpenChange?.(next)} disabled={disabled} className={cn("w-full", className)}>
       <CollapsiblePrimitive.Trigger className="group flex w-full items-center justify-between gap-4 py-3 text-left text-sm font-medium text-fg-black outline-none cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-fg-blue rounded-md">
         {title}
-        <span aria-hidden className="forge-chevron flex shrink-0 items-center justify-center text-fg-grey-700 group-data-panel-open:rotate-180" data-motion={effectiveMotion}>
+        <span aria-hidden className="forge-chevron flex shrink-0 items-center justify-center text-fg-grey-700" data-motion={effectiveMotion}>
           <AltArrowDownLinear size={20} />
         </span>
       </CollapsiblePrimitive.Trigger>

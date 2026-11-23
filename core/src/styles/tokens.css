@@ -888,6 +888,8 @@ body {
 .forge-motion-collapse[data-state="open"] { grid-template-rows: 1fr; }
 .forge-chevron { rotate: 0deg; }
 .forge-chevron[data-expanded="true"] { rotate: 180deg; }
+/* Base UI triggers mark the open state themselves. */
+:is([data-panel-open], [data-popup-open]) .forge-chevron { rotate: 180deg; }
 .forge-moving-indicator {
   position: absolute; pointer-events: none; visibility: hidden; z-index: 0;
   left: 0; top: 0; width: var(--forge-indicator-width, 0px);

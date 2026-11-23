@@ -42,7 +42,7 @@ export function NavigationMenu({ items, ariaLabel, className, motion = "auto" }:
               <>
                 <NavigationMenuPrimitive.Trigger className={cn(itemClass, "group")}>
                   {item.label}
-                  <NavigationMenuPrimitive.Icon className="forge-chevron inline-flex text-fg-grey-700 group-data-popup-open:rotate-180" data-motion={motion}>
+                  <NavigationMenuPrimitive.Icon className="forge-chevron inline-flex text-fg-grey-700" data-motion={motion}>
                     <AltArrowDownLinear size={16} />
                   </NavigationMenuPrimitive.Icon>
                 </NavigationMenuPrimitive.Trigger>
