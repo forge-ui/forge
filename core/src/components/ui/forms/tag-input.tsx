@@ -48,18 +48,23 @@ export function TagInput({ value, defaultValue = [], onChange, label, placeholde
     onChange?.(next);
   }
 
+  const splitter = new RegExp(`[${separators.map(char => char.replace(/[\\\]^-]/g, "\\$&")).join("")}\\n]`);
+
+  /** Adds every valid value; invalid ones stay in the input with the first error shown. */
   function add(raw: string) {
-    const candidates = raw.split(new RegExp(`[${separators.map(char => char.replace(/[\\\]^-]/g, "\\$&")).join("")}\\n]`)).map(text => text.trim()).filter(Boolean);
+    const candidates = raw.split(splitter).map(text => text.trim()).filter(Boolean);
     const next = [...tags];
+    const invalid: string[] = [];
+    let problem: string | null = null;
     for (const tag of candidates) {
       if (max !== undefined && next.length >= max) break;
       if (next.includes(tag)) continue;
-      const problem = validate?.(tag);
-      if (problem) { setRejected(problem); return; }
+      const message = validate?.(tag);
+      if (message) { invalid.push(tag); problem ??= message; continue; }
       next.push(tag);
     }
-    setRejected(null);
-    setDraft("");
+    setRejected(problem);
+    setDraft(invalid.join(separators[0] ?? ","));
     if (next.length !== tags.length) update(next);
   }
 
@@ -104,7 +109,7 @@ export function TagInput({ value, defaultValue = [], onChange, label, placeholde
           onBlur={() => { if (draft.trim()) add(draft); }}
           onPaste={event => {
             const text = event.clipboardData.getData("text");
-            if (!/[\n,，]/.test(text)) return;
+            if (!splitter.test(text)) return;
             event.preventDefault();
             add(text);
           }}

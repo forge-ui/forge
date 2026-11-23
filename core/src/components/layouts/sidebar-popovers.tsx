@@ -67,7 +67,8 @@ function MenuRow({ radioValue, className, onSelect, children, ...attributes }: {
   radioValue?: string; className: string; onSelect?: () => void; children: ReactNode;
 } & Record<`data-${string}`, string | undefined> & { "aria-checked"?: boolean }) {
   const inMenu = useContext(ShellMenuContext);
-  const rowClass = cn(className, "outline-none cursor-pointer data-highlighted:bg-fg-grey-100");
+  // The checked row keeps its accent fill; only other rows get the highlight tint.
+  const rowClass = cn(className, "outline-none cursor-pointer data-highlighted:[&:not([data-checked])]:bg-fg-grey-100 data-highlighted:data-checked:ring-2 data-highlighted:data-checked:ring-inset data-highlighted:data-checked:ring-white/40");
   if (inMenu && radioValue !== undefined) {
     const { "aria-checked": _checked, ...rest } = attributes;
     void _checked;

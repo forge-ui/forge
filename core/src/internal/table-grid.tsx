@@ -49,7 +49,7 @@ export type TableGridProps<T> = Pick<
   | "virtualized"
 >;
 
-type FlatRow<T> = { row: T; rowIndex: number; key: Key; depth: number; hasChildren: boolean };
+type FlatRow<T> = { row: T; rowIndex: number; key: Key; depth: number; hasChildren: boolean; label: string };
 
 const pinnedCellClass = "sticky z-[1] bg-background";
 
@@ -58,16 +58,19 @@ function EditableCell<T>({ row, edit, children }: { row: T; edit: TableCellEdit<
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const cellRef = useRef<HTMLDivElement>(null);
-  const start = () => { setDraft(String(edit.value(row))); setError(null); };
-  const cancel = () => { setDraft(null); setError(null); requestAnimationFrame(() => cellRef.current?.focus()); };
+  // Escape unmounts the input; a blur fired during that unmount must not save the abandoned draft.
+  const editing = useRef(false);
+  const start = () => { editing.current = true; setDraft(String(edit.value(row))); setError(null); };
+  const cancel = () => { editing.current = false; setDraft(null); setError(null); requestAnimationFrame(() => cellRef.current?.focus()); };
   const save = async () => {
-    if (draft === null || saving) return;
+    if (draft === null || saving || !editing.current) return;
     if (draft === String(edit.value(row))) { cancel(); return; }
     const problem = edit.validate?.(draft, row);
     if (problem) { setError(problem); return; }
     try {
       setSaving(true);
       await edit.onSave(row, draft);
+      editing.current = false;
       setDraft(null);
       requestAnimationFrame(() => cellRef.current?.focus());
     } catch (reason) {
@@ -163,20 +166,25 @@ export function TableGrid<T>({
 
   const getKey = (row: T, rowIndex: number) => getRowKey?.(row, rowIndex) ?? rowIndex;
   const flat: FlatRow<T>[] = [];
-  const walk = (list: T[], depth: number, path: string) => {
+  // Child rows are keyed by getRowKey (use a row id, not the index) or by their path under the parent.
+  // `rowIndex` is the position within the parent; `label` is the human path, e.g. "2" or "2.1".
+  const walk = (list: T[], depth: number, path: string, labelPath: string) => {
     list.forEach((row, index) => {
-      const rowIndex = depth === 0 ? index : flat.length;
-      const key = depth === 0 ? getKey(row, index) : getRowKey?.(row, rowIndex) ?? `${path}.${index}`;
+      const label = labelPath ? `${labelPath}.${index + 1}` : String(index + 1);
+      const key = depth === 0 ? getKey(row, index) : getRowKey ? getRowKey(row, index) : `${path}.${index}`;
       const children = getRowChildren?.(row);
-      flat.push({ row, rowIndex: depth === 0 ? index : rowIndex, key, depth, hasChildren: Boolean(children?.length) });
-      if (children?.length && expanded.has(key)) walk(children, depth + 1, String(key));
+      flat.push({ row, rowIndex: index, key, depth, hasChildren: Boolean(children?.length), label });
+      if (children?.length && expanded.has(key)) walk(children, depth + 1, String(key), label);
     });
   };
-  walk(rows, 0, "");
+  walk(rows, 0, "", "");
+  // Index-based selection (selectedRows / onSelectRow) only addresses top-level rows.
+  const indexMode = selectedRowKeys == null;
+  const selectable = indexMode ? flat.filter((item) => item.depth === 0) : flat;
 
   const isKeySelected = (item: FlatRow<T>) => selectedRowKeys?.has(item.key) ?? (item.depth === 0 && selectedRows?.has(item.rowIndex)) ?? false;
-  const allSelected = flat.length > 0 && flat.every(isKeySelected);
-  const someSelected = !allSelected && flat.some(isKeySelected);
+  const allSelected = selectable.length > 0 && selectable.every(isKeySelected);
+  const someSelected = !allSelected && selectable.some(isKeySelected);
   const updateKeySelection = (checked: boolean, items: FlatRow<T>[]) => {
     if (selectedRowKeys == null) return;
     const next = new Set(selectedRowKeys);
@@ -188,7 +196,15 @@ export function TableGrid<T>({
   const leadingCells = (showCheckbox ? 1 : 0) + (hasExpandColumn ? 1 : 0);
   const anyLeftPin = columns.some((column) => column.pinned === "left");
 
-  // Sticky offsets depend on real cell widths, so measure after layout and when widths change.
+  // Sticky offsets depend on real cell widths: measure after layout and whenever a header cell resizes.
+  const [layoutTick, setLayoutTick] = useState(0);
+  useLayoutEffect(() => {
+    const head = tableRef.current?.querySelector("thead tr");
+    if (!head || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(() => setLayoutTick((tick) => tick + 1));
+    for (const cell of head.children) observer.observe(cell);
+    return () => observer.disconnect();
+  }, [columns, showCheckbox, hasExpandColumn]);
   useLayoutEffect(() => {
     const next: Record<string, number> = {};
     let left = 0;
@@ -207,7 +223,7 @@ export function TableGrid<T>({
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect -- offsets come from measured layout
     setPinOffsets((current) => JSON.stringify(current) === JSON.stringify(next) ? current : next);
-  }, [columns, widths, showCheckbox, hasExpandColumn, rows.length]);
+  }, [columns, widths, showCheckbox, hasExpandColumn, rows.length, layoutTick]);
 
   useLayoutEffect(() => {
     const element = scrollRef.current;
@@ -287,7 +303,7 @@ export function TableGrid<T>({
                     indeterminate={someSelected}
                     color={checkboxColor}
                     onChange={(checked) => {
-                      updateKeySelection(checked, flat);
+                      updateKeySelection(checked, selectable);
                       if (selectedRowKeys == null) onSelectAll?.(checked);
                     }}
                   />
@@ -378,15 +394,15 @@ export function TableGrid<T>({
                   >
                     {showCheckbox && (
                       <td className={cn("w-14 px-6 py-4", pinClass("__select"))} style={pinStyle("__select")}>
-                        <Checkbox
-                          aria-label={`选择第 ${rowIndex + 1} 行`}
+                        {(!indexMode || depth === 0) && <Checkbox
+                          aria-label={`选择第 ${item.label} 行`}
                           checked={selected}
                           color={checkboxColor}
                           onChange={(checked) => {
                             updateKeySelection(checked, [item]);
                             if (selectedRowKeys == null) onSelectRow?.(rowIndex, checked);
                           }}
-                        />
+                        />}
                       </td>
                     )}
                     {hasExpandColumn && (
